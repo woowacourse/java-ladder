@@ -9,4 +9,9 @@ public class TextCalculatorTest {
     void 숫자만입력() {
         assertThat(new TextCalculator().calculate("1")).isEqualTo(1);
     }
+
+    @Test
+    void 쉼표구분자포함() {
+        assertThat(new TextCalculator().calculate("1,2")).isEqualTo(3);
+    }
 }
