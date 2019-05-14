@@ -1,12 +1,24 @@
 package additioncalculator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputValues {
-    private final List<Integer> numbers = new ArrayList<>();
+
+    public List<Integer> extractNumbers(String input) {
+        List<Integer> numbers = new ArrayList<>();
+        String[] array = input.split(makeRegex(input));
+
+        for (String a : array) {
+            numbers.add(Integer.parseInt(a));
+        }
+
+        return numbers;
+    }
+
 
     public boolean validateInput(String input) {
         String expression = extractExpression(input);
