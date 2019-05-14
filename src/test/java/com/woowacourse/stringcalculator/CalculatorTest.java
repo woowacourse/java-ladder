@@ -18,7 +18,7 @@ public class CalculatorTest {
     }
 
     @Test
-    void 예외반환() {
+    void 음수를_전달할경우_예외반환() {
         Calculator calculator = new Calculator();
         List<Integer> numbers = Arrays.asList(-2);
         assertThrows(IllegalArgumentException.class,() -> {
