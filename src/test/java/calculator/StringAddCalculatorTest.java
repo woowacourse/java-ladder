@@ -20,6 +20,11 @@ public class StringAddCalculatorTest {
         assertEquals(stringAddCalculator.add(""), 0);
     }
 
+    @Test
+    void 문자_하나_입려을_숫자로_반환하는지_테스트() {
+        assertEquals(stringAddCalculator.add("3"), 3);
+    }
+
     @AfterEach
     void tearDown() {
         stringAddCalculator = null;
