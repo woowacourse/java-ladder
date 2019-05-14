@@ -11,6 +11,11 @@ public class TextCalculator {
     }
 
     public List<Integer> toInt(List<String> tokens) {
-        return tokens.stream().map(Integer::valueOf).collect(Collectors.toList());
+        return tokens.stream().map((str)->{
+            if (Integer.parseInt(str) < 0){
+                throw new IllegalArgumentException();
+            }
+            return Integer.parseInt(str);
+        }).collect(Collectors.toList());
     }
 }

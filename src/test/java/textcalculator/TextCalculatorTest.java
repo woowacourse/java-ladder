@@ -36,4 +36,9 @@ public class TextCalculatorTest {
         textCalculator.toInt(Arrays.asList("1","2","a"));
 
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void 토큰이_음수인_경우() {
+        textCalculator.toInt(Arrays.asList("-1","2","3"));
+    }
 }
