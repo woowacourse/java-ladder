@@ -26,6 +26,8 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(6);
     }
 
+
+
 //    @Test
 //    public void 스플릿_테스트(){
 //        List<String> separator = new ArrayList<>(Arrays.asList(",",";"));
