@@ -1,11 +1,6 @@
-# java-ladder
-사다리타기 미션 저장소
+# 계산기 TDD 예제
 
-## 우아한테크코스 코드리뷰
-* [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
-
-
-# To-do-list
+## To-do-list
 
 - ~~문자열을 구분자를 기준으로 분리해라~~
     - "" -> null
@@ -19,3 +14,15 @@
     - "//;\n1;2;3"
 - ~~음수를 받으면 RuntimeException 에러를 throw 한다.~~
 - ~~문자열 구분 메소드 리팩토링 필요~~
+
+# 사다리 게임
+
+## To-do-list
+- ~~라인이 겹치면 안 된다. (isConsecutive())~~
+    - true, true -> true
+    - true, false -> false
+    - false, true -> false
+- 사다리를 생성한다.
+    - 생성자에 입력된 높이만큼 라인들을 생성해야 한다.
+- 사다리 타기를 진행할 수 있다.
+    - 사람들이 어떤 위치에서 끝났는지 결과를 확인한다.
