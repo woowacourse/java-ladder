@@ -71,4 +71,11 @@ public class TextCalculatorTest {
             new TextCalculator().calculate("//!\n-1!2,3");
         });
     }
+
+    @Test
+    void 금지된커스텀구분자() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new TextCalculator().calculate("//-\n1!2,3");
+        });
+    }
 }

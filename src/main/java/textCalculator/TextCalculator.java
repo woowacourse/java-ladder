@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 public class TextCalculator {
     private static final String DEFAULT_DELIMITERS = ",:";
+    private static final String FORBIDDEN_DELIMITERS = "-";
     private List<String> delimiters;
 
     public TextCalculator() {
@@ -47,9 +48,16 @@ public class TextCalculator {
         Matcher m = Pattern.compile("//(.*)\n(.*)").matcher(text);
         if (m.find()) {
             delimiters.addAll(Arrays.asList((m.group(1)).split("")));
+            delimiters.stream().forEach(x -> validateOnlyAllowedDelimiters(x));
             return m.group(2);
         }
         return text;
+    }
+
+    private void validateOnlyAllowedDelimiters(String delimiter) {
+        if (delimiter.equals(FORBIDDEN_DELIMITERS)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private String getSplitDelimiter() {
