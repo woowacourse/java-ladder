@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class LadderRowTest {
     @Test
     public void 사다리_한줄_생성() {
-        LadderRow ladderRow = new LadderRow();
+        LadderRow ladderRow = new LadderRow(5);
         ladderRow.draw();
         ladderRow.skip();
         ladderRow.draw();
@@ -19,7 +19,7 @@ public class LadderRowTest {
 
     @Test
     public void 사다리_한줄_생성2() {
-        LadderRow ladderRow = new LadderRow();
+        LadderRow ladderRow = new LadderRow(4);
         ladderRow.skip();
         ladderRow.draw();
         ladderRow.skip();
@@ -29,10 +29,18 @@ public class LadderRowTest {
 
     @Test
     public void 사다리_한줄_생성3() {
-        LadderRow ladderRow = new LadderRow();
+        LadderRow ladderRow = new LadderRow(4);
         ladderRow.draw();
         ladderRow.draw();
 
         assertEquals(Arrays.asList(1, -1, 1, -1), ladderRow.status());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void 사다리_한줄_그리기_불가능() {
+        LadderRow ladderRow = new LadderRow(5);
+        ladderRow.draw();
+        ladderRow.draw();
+        ladderRow.draw();
     }
 }
