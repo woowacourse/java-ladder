@@ -17,4 +17,10 @@ public class IntegerAdderTest {
         integers = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
         assertThat(IntegerAdder.add(integers)).isEqualTo(10);
     }
+
+    @Test
+    void List가_비어있을_떄_0이_나와야_합니다() {
+        List<Integer> integers = new ArrayList<>();
+        assertThat(IntegerAdder.add(integers)).isEqualTo(0);
+    }
 }
