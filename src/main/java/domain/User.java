@@ -24,7 +24,7 @@ public class User {
 
     private void validateNameLength(String name) {
         if (name.length() > 5) {
-            throw  new IllegalArgumentException("5자 초과입니다.");
+            throw  new IllegalArgumentException("이름이 5자 초과입니다.");
         }
     }
 
