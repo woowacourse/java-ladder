@@ -31,4 +31,16 @@ public class StringProcessorTest {
         assertThat(StringProcessor.split("")).isEqualTo(Collections.singletonList(0));
         assertThat(StringProcessor.split(null)).isEqualTo(Collections.singletonList(0));
     }
+
+    @Test
+    void 커스텀_구분자가_있는_경우() {
+        String input = "//!\n2,4,6";
+        assertThat(StringProcessor.split(input)).isEqualTo(Arrays.asList(2, 4, 6));
+    }
+
+    @Test
+    void testSplit() {
+        String str = "//!";
+        assertThat(str.split("//")[1]).isEqualTo("!");
+    }
 }
