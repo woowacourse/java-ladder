@@ -1,5 +1,6 @@
 package textcalculator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,6 +10,10 @@ public class TextCalculator {
     }
 
     public List<Integer> toInt(List<String> tokens) {
-        return Arrays.asList(1, 2, 3);
+        List<Integer> numbers = new ArrayList<>();
+        for (String token : tokens) {
+            numbers.add(Integer.parseInt(token));
+        }
+        return numbers;
     }
 }
