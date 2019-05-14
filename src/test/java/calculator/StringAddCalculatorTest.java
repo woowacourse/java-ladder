@@ -25,6 +25,11 @@ public class StringAddCalculatorTest {
         assertEquals(stringAddCalculator.add("3"), 3);
     }
 
+    @Test
+    void 컴마_구분자를_포함하여_입력할_경우_두_숫자의_합을_반환하는지_테스트() {
+        assertEquals(stringAddCalculator.add("1,2"), 3);
+    }
+
     @AfterEach
     void tearDown() {
         stringAddCalculator = null;
