@@ -4,7 +4,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringAddCalculatorTest {
     StringAddCalculator stringAddCalculator;
@@ -40,6 +42,14 @@ public class StringAddCalculatorTest {
     void 슬래쉬_두개와_개행문자_사이에_커스텀_구분자를_지정하여_두숫자의_합을_반환하는_테스트() {
         assertEquals(stringAddCalculator.add("//;\n1;2;3"), 6);
     }
+
+    @Test
+    void 음수를_전달할_경우_RuntimeException_이_발생하는지_테스트() {
+        assertThrows(RuntimeException.class, () -> {
+            stringAddCalculator.add("-1:2:3");
+        });
+    }
+
     @AfterEach
     void tearDown() {
         stringAddCalculator = null;

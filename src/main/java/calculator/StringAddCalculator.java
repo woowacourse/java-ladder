@@ -1,22 +1,39 @@
 package calculator;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class StringAddCalculator {
-    private static final String DEFAULT_DELIMITER = ",|:";
+    private static final String DEFAULT_DELIMITER = "[,:]";
 
     int add(String text) {
         if (isTextEmpty(text)) {
             return 0;
         }
-        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
-        String delimiter = DEFAULT_DELIMITER;
 
-        return getSum(getTexts(matcher, delimiter, text));
+        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
+        String[] texts = getTexts(matcher, text);
+
+        return sumResult(texts);
     }
 
-    private String[] getTexts(Matcher matcher, String delimiter, String text) {
+    private int sumResult(String[] texts) {
+        return Arrays.stream(texts).mapToInt(Integer::parseInt)
+                .filter(i -> {
+                    if (i < 0) {
+                        throw new RuntimeException("음수는 입력값이 될 수 없습니다.");
+                    }
+                    return true;
+                }).sum();
+    }
+
+    private String[] getTexts(Matcher matcher, String text) {
+        String delimiter = DEFAULT_DELIMITER;
         if (matcher.find()) {
             delimiter = matcher.group(1);
             text = matcher.group(2);
@@ -29,12 +46,4 @@ public class StringAddCalculator {
         return text == null || text.isEmpty();
     }
 
-    private int getSum(String[] texts) {
-        int sum = 0;
-        for (String number : texts) {
-            sum += Integer.parseInt(number);
-        }
-
-        return sum;
-    }
 }
