@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.in;
 
 public class CalculatorTest {
     @Test
@@ -73,16 +72,30 @@ public class CalculatorTest {
     }
 
     @Test
-    void 커스텀_구분자_나누기3() {
-        String input = "//\n\n1\n2\n3";
-        List<String> result = Calculator.customSplitNumbers(input);
-        assertThat(result).isEqualTo(Arrays.asList("1", "2", "3"));
-    }
-
-    @Test
     void 커스텀_구분자_나누기_inputSplit에서() {
         String input = "//:\n1:2:3";
         List<String> result = Calculator.inputSplit(input);
         assertThat(result).isEqualTo(Arrays.asList("1", "2", "3"));
+    }
+
+    @Test
+    void 문자열_숫자를_정수형으로_변환하기() {
+        String input = "//:\n1:2:3";
+        List<Integer> result = Calculator.getNumbers(input);
+        assertThat(result).isEqualTo(Arrays.asList(1, 2, 3));
+    }
+
+    @Test
+    void 문자열_숫자를_정수형으로_변환하기2() {
+        String input = "1,2,3";
+        List<Integer> result = Calculator.getNumbers(input);
+        assertThat(result).isEqualTo(Arrays.asList(1, 2, 3));
+    }
+
+    @Test
+    void 문자열_숫자를_정수형으로_변환하기3() {
+        String input = "3";
+        List<Integer> result = Calculator.getNumbers(input);
+        assertThat(result).isEqualTo(Arrays.asList(3));
     }
 }

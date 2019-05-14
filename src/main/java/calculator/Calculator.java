@@ -2,10 +2,18 @@ package calculator;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Calculator {
+    public static List<Integer> getNumbers(String input) {
+        List<Integer> result = new ArrayList<>();
+        for (String s : inputSplit(input)) {
+            result.add(Integer.parseInt(s));
+        }
+        return result;
+    }
 
     public static List<String> inputSplit(String input) {
         if (StringUtils.isBlank(input)) {
