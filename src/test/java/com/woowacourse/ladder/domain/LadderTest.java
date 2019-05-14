@@ -10,7 +10,7 @@ public class LadderTest {
 
     @Test
     void testCreate() {
-        Ladder ladder = new Ladder(Arrays.asList("pobi", "crong", "honux", 4));
+        Ladder ladder = new Ladder(Arrays.asList("pobi", "crong", "honux"), 4);
         assertThat(ladder.findDestination("pobi")).isEqualTo(0);
         assertThat(ladder.findDestination("crong")).isEqualTo(2);
         assertThat(ladder.findDestination("crong")).isEqualTo(1);
