@@ -59,28 +59,35 @@ public class CalculatorTest {
 
     @Test
     void 커스텀_구분자_나누기() {
-        String input = "//:\n1:2:3";
-        List<String> result = Calculator.customSplitNumbers(input);
+        String input = "//:\\n1:2:3";
+        List<String> result = Calculator.customSplit(input);
         assertThat(result).isEqualTo(Arrays.asList("1", "2", "3"));
     }
 
     @Test
     void 커스텀_구분자_나누기2() {
-        String input = "////\n1//2//3";
-        List<String> result = Calculator.customSplitNumbers(input);
+        String input = "////\\n1//2//3";
+        List<String> result = Calculator.customSplit(input);
+        assertThat(result).isEqualTo(Arrays.asList("1", "2", "3"));
+    }
+
+    @Test
+    void 커스텀_구분자_나누기3() {
+        String input = "//[*]\\n1*2*3";
+        List<String> result = Calculator.customSplit(input);
         assertThat(result).isEqualTo(Arrays.asList("1", "2", "3"));
     }
 
     @Test
     void 커스텀_구분자_나누기_inputSplit에서() {
-        String input = "//:\n1:2:3";
+        String input = "//:\\n1:2:3";
         List<String> result = Calculator.inputSplit(input);
         assertThat(result).isEqualTo(Arrays.asList("1", "2", "3"));
     }
 
     @Test
     void 문자열_숫자를_정수형으로_변환하기() {
-        String input = "//:\n1:2:3";
+        String input = "//:\\n1:2:3";
         List<Integer> result = Calculator.getNumbers(input);
         assertThat(result).isEqualTo(Arrays.asList(1, 2, 3));
     }
