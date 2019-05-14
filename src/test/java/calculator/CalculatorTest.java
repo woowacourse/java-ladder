@@ -4,8 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static calculator.Calculator.customSplit;
 import static calculator.Calculator.split;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
     @Test
@@ -23,4 +25,10 @@ public class CalculatorTest {
     void 문자열콜론구분테스트() {
         assertThat(split("1,2,:3")).isEqualTo(Arrays.asList(1, 2, 3));
     }
+
+    @Test
+    void 커스텀구분자테스트() {
+        assertThat(customSplit("//;\n1;2;3")).isEqualTo(Arrays.asList(1, 2, 3));
+    }
+
 }

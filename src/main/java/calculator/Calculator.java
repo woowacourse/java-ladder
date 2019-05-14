@@ -3,7 +3,8 @@ package calculator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Calculator {
     static List<Integer> split(final String input) {
@@ -11,13 +12,25 @@ public class Calculator {
             return null;
         }
 
-        return getIntegers(input);
+        return getIntegers(input.split("[,:]+"));
     }
 
-    private static List<Integer> getIntegers(String input) {
+    static List<Integer> customSplit(final String input) {
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
+        if (m.find()) {
+            String customDelimiter = m.group(1);
+            String[] tokens = m.group(2).split(customDelimiter);
+
+            return getIntegers(tokens);
+        }
+
+        return null;
+    }
+
+    private static List<Integer> getIntegers(String[] input) {
         List<Integer> nums = new ArrayList<>();
 
-        for (String s : Arrays.asList(input.split("[,:]+"))) {
+        for (String s : input) {
             nums.add(Integer.parseInt(s));
         }
         return nums;
