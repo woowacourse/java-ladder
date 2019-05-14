@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
     @Test
@@ -100,9 +101,45 @@ public class CalculatorTest {
     }
 
     @Test
-    void 문자열_숫자를_정수형으로_변환하기3() {
+    void 숫자_1개_입력할_경우() {
         String input = "3";
         List<Integer> result = Calculator.getNumbers(input);
         assertThat(result).isEqualTo(Arrays.asList(3));
+    }
+
+    @Test
+    void 공백_있는_경우() {
+        String input = "1, 2, 3";
+        List<Integer> result = Calculator.getNumbers(input);
+        assertThat(result).isEqualTo(Arrays.asList(1, 2, 3));
+    }
+
+    @Test
+    void 음수가_포함된_경우() {
+        String input = "1, -2, 3";
+        assertThrows(RuntimeException.class, () -> {
+            Calculator.getNumbers(input);
+        });
+    }
+
+    @Test
+    void 음수가_포함된_경우_함수_사용() {
+        assertThrows(RuntimeException.class, () -> {
+            Calculator.checkMinusNumber(-1);
+        });
+    }
+
+    @Test
+    void 숫자_이외에_다른_입력값이_올_경우() {
+        String input = "a, 2, 3";
+        assertThrows(RuntimeException.class, () -> {
+            Calculator.getNumbers(input);
+        });
+    }
+
+    @Test
+    void 결과값_출력하기() {
+        String input = "//a\\n1a2a3";
+        assertThat(Calculator.calSumNumber(Calculator.getNumbers(input))).isEqualTo(6);
     }
 }
