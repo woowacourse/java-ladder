@@ -19,6 +19,6 @@ public class StringSplitter {
 
     private static String[] splitCustom(Matcher m) {
         String customDelimiter = m.group(1);
-        return m.group(2).split(customDelimiter);
+        return m.group(2).split(Pattern.quote(customDelimiter));
     }
 }

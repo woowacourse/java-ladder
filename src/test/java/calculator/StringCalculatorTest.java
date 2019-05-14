@@ -32,7 +32,7 @@ public class StringCalculatorTest {
 
     @Test
     void 숫자아닌값_예외() {
-        String[] notNumbers = {"a", "b"};
+        String[] notNumbers = {"$", "b"};
 
         assertThrows(RuntimeException.class, () -> {
             StringCalculator.calculate(notNumbers);
