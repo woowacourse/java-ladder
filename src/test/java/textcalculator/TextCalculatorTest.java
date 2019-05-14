@@ -46,4 +46,19 @@ public class TextCalculatorTest {
     public void 토큰의_합() {
         assertEquals(6, textCalculator.sum(Arrays.asList(1, 2, 3)));
     }
+
+    @Test
+    public void 쉼표_또는_콜론_구분() {
+        String inputString = "1,2:3"; // [1,2,3]
+        List<String> tokens = textCalculator.tokenizer(inputString);
+        assertEquals(Arrays.asList("1", "2", "3"), tokens);
+    }
+
+    @Test
+    public void 쉼표_또는_콜론_합계() {
+        String inputString = "1,2:3";
+        assertEquals(6, textCalculator.sum(textCalculator.toInt(textCalculator.tokenizer(inputString))));
+    }
+
+
 }
