@@ -22,7 +22,7 @@ public class Calculator {
         int length = textNums.length;
         int[] nums = new int[length];
 
-        if (textNums[0].equals("")){
+        if (textNums[0].equals("")) {
             return new int[]{0};
         }
 
@@ -38,10 +38,17 @@ public class Calculator {
         Matcher matcher = Pattern.compile(PATTERN).matcher(text);
 
         while (matcher.find()) {
-            regex.append("|(").append(matcher.group(1)).append(")");
+            regex.append("|(").append(checkRegex(matcher.group(1))).append(")");
         }
 
         return regex.toString();
+    }
+
+    public String checkRegex(String regex) {
+        if (regex.matches("\\d")) {
+            throw new IllegalArgumentException();
+        }
+        return regex;
     }
 
     public String textFilter(String text) {
