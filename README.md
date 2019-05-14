@@ -1,5 +1,9 @@
-# java-ladder
-사다리타기 미션 저장소
+## Todo
+* 분리된 타입 int로 바꾸기
+* inputSplit 조건에 따라 메소드 분리
+* 커스텀 구분자 지정하기("//;\n1;2;3")
 
-## 우아한테크코스 코드리뷰
-* [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
+## Done
+* 콜론 구분자 분리
+* 쉼표 구분자 분리
+* 빈 문자열("") 혹은 null 입력할 경우 0 반환
