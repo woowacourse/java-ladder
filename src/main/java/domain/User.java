@@ -18,6 +18,10 @@ public class User {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void validateNameLength(String name) {
         if (name.length() > 5) {
             throw  new IllegalArgumentException("5자 초과입니다.");
