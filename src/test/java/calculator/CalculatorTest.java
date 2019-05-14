@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 
 public class CalculatorTest {
     @Test
@@ -55,5 +56,33 @@ public class CalculatorTest {
         String input = null;
         List<String> result = Calculator.inputSplit(input);
         assertThat(result).isEqualTo(Arrays.asList("0"));
+    }
+
+    @Test
+    void 커스텀_구분자_나누기() {
+        String input = "//:\n1:2:3";
+        List<String> result = Calculator.customSplitNumbers(input);
+        assertThat(result).isEqualTo(Arrays.asList("1", "2", "3"));
+    }
+
+    @Test
+    void 커스텀_구분자_나누기2() {
+        String input = "////\n1//2//3";
+        List<String> result = Calculator.customSplitNumbers(input);
+        assertThat(result).isEqualTo(Arrays.asList("1", "2", "3"));
+    }
+
+    @Test
+    void 커스텀_구분자_나누기3() {
+        String input = "//\n\n1\n2\n3";
+        List<String> result = Calculator.customSplitNumbers(input);
+        assertThat(result).isEqualTo(Arrays.asList("1", "2", "3"));
+    }
+
+    @Test
+    void 커스텀_구분자_나누기_inputSplit에서() {
+        String input = "//:\n1:2:3";
+        List<String> result = Calculator.inputSplit(input);
+        assertThat(result).isEqualTo(Arrays.asList("1", "2", "3"));
     }
 }
