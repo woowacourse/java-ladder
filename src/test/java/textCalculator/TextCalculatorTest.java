@@ -34,4 +34,14 @@ public class TextCalculatorTest {
     void 커스텀구분자여러개포함() {
         assertThat(new TextCalculator().calculate("//;.?\n1;2,3.1?1")).isEqualTo(8);
     }
+
+    @Test
+    void null입력() {
+        assertThat(new TextCalculator().calculate(null)).isEqualTo(0);
+    }
+
+    @Test
+    void 빈문자열입력() {
+        assertThat(new TextCalculator().calculate("")).isEqualTo(0);
+    }
 }

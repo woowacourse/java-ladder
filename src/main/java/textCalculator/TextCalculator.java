@@ -15,7 +15,23 @@ public class TextCalculator {
     }
 
     public int calculate(String text) {
-        return getResult(textTokenizer(text));
+        return getResult(tokenCorrector(textTokenizer(textCorrector(text))));
+    }
+
+    private List<String> tokenCorrector(List<String> tokens) {
+        for (String token : tokens) {
+            if (token.isEmpty()) {
+                return Arrays.asList("0");
+            }
+        }
+        return tokens;
+    }
+
+    private String textCorrector(String text) {
+        if (text == null) {
+            return "0";
+        }
+        return text;
     }
 
     private int getResult(List<String> tokens) {
