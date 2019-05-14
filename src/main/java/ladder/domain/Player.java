@@ -15,7 +15,7 @@ public class Player {
 
     private void checkName(String name) {
         if (name.length() > Const.MAX_NAME_LENGTH || StringUtils.isBlank(name)) {
-            throw new IllegalArgumentException("이름은 1글자 이상 5글자 이하로 입력하셔야 합니다.");
+            throw new IllegalArgumentException(Const.NAME_EX);
         }
     }
 

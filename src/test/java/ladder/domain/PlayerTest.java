@@ -1,6 +1,5 @@
-package ladder;
+package ladder.domain;
 
-import ladder.domain.Player;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,6 +30,13 @@ public class PlayerTest {
     void 참여자_생성_이름_스페이스인경우() {
         assertThrows(IllegalArgumentException.class, () -> {
             Player player = new Player(" ");
+        });
+    }
+
+    @Test
+    void 참여자_생성_이름_null경우() {
+        assertThrows(RuntimeException.class, () -> {
+            Player player = new Player(null);
         });
     }
 }
