@@ -3,6 +3,7 @@ package textcalculator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TextCalculator {
     public List<String> tokenizer(String inputString) {
@@ -10,10 +11,6 @@ public class TextCalculator {
     }
 
     public List<Integer> toInt(List<String> tokens) {
-        List<Integer> numbers = new ArrayList<>();
-        for (String token : tokens) {
-            numbers.add(Integer.parseInt(token));
-        }
-        return numbers;
+        return tokens.stream().map(Integer::valueOf).collect(Collectors.toList());
     }
 }
