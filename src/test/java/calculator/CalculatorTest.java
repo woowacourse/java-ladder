@@ -74,7 +74,7 @@ public class CalculatorTest {
 
     @Test
     void 커스텀_구분자_나누기3() {
-        String input = "//[*]\\n1*2*3";
+        String input = "//*\\n1*2*3";
         List<String> result = Calculator.customSplit(input);
         assertThat(result).isEqualTo(Arrays.asList("1", "2", "3"));
     }

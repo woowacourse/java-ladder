@@ -9,9 +9,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Calculator {
+
     public static List<Integer> getNumbers(String input) {
-        input = input.replaceAll("\\*|\\^|&|@|\\+|\\$|\\)|\\?|\\(", ":")
-                .replaceAll(" ", "");
+        input = input.replaceAll(" ", "");
         List<Integer> result = new ArrayList<>();
         for (String s : inputSplit(input)) {
             result.add(checkMinusNumber(Integer.parseInt(s)));
@@ -21,24 +21,24 @@ public class Calculator {
 
     public static List<String> inputSplit(String input) {
         if (StringUtils.isBlank(input)) {
-            return Arrays.asList("0");
+            return Arrays.asList(Const.STRING_ZERO);
         }
-        if (input.charAt(0) == '/') {
+        if (input.charAt(0) == Const.SLASH) {
             return customSplit(input);
         }
-        return Arrays.asList(input.split(",|:"));
+        return Arrays.asList(input.split(Const.DEFAULT_SYMBOL));
     }
 
     public static List<String> customSplit(String input) {
-        Matcher matcher = Pattern.compile("//(.*)\\\\n(.*)").matcher(input);
+        Matcher matcher = Pattern.compile(Const.FORMAT_SYMBOL).matcher(input);
         if (matcher.find()) {
-            return Arrays.asList(matcher.group(2).split(matcher.group(1)));
+            return Arrays.asList(matcher.group(2).split(Pattern.quote(matcher.group(1))));
         }
         throw new IllegalArgumentException("입력값이 잘못되었습니다.");
     }
 
     static int checkMinusNumber(int number) {
-        if (number < 0) {
+        if (number < Const.ZERO) {
             throw new IllegalArgumentException("음수가 포함되어 있습니다.");
         }
         return number;
