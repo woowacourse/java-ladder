@@ -23,7 +23,9 @@ public class StringCalculator {
         if (numbers.isEmpty()) {
             numbers = Arrays.stream(formula.split(DELIMITER_REGEX)).map(Integer::parseInt).collect(Collectors.toList());
         }
-//        throw new RuntimeException("잘못된 문자열입니다.");
+        if (numbers.isEmpty() || numbers.stream().anyMatch(number -> number < 0)) {
+            throw new RuntimeException("잘못된 문자열입니다.");
+        }
     }
 
     private List<Integer> getNumbersByCustomDelimiter(String formula) {

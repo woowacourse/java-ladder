@@ -37,4 +37,13 @@ public class StringCalculatorTest {
         assertThrows(RuntimeException.class, () -> new StringCalculator("1-2,3"));
     }
 
+    @Test
+    void 숫자만_있는_문자열_검사(){
+        assertThat(new StringCalculator("1").calculate()).isEqualTo(1);
+    }
+
+    @Test
+    void 음수_검사(){
+        assertThrows(RuntimeException.class, () -> new StringCalculator("1,-2,3"));
+    }
 }
