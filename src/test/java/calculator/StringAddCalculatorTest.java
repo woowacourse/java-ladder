@@ -23,6 +23,11 @@ public class StringAddCalculatorTest {
     }
 
     @Test
+    void 공백제거시_값을_반환하는지_테스트() {
+        assertEquals(stringAddCalculator.add("   1:2    "), 3);
+    }
+
+    @Test
     void 문자_하나_입려을_숫자로_반환하는지_테스트() {
         assertEquals(stringAddCalculator.add("3"), 3);
     }

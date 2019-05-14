@@ -15,6 +15,7 @@ public class StringAddCalculator {
         if (isTextEmpty(text)) {
             return 0;
         }
+        text = text.trim();
 
         Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
         String[] texts = getTexts(matcher, text);
@@ -43,7 +44,7 @@ public class StringAddCalculator {
     }
 
     private boolean isTextEmpty(String text) {
-        return text == null || text.isEmpty();
+        return text == null || text.trim().isEmpty();
     }
 
 }
