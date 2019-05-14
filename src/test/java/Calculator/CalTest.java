@@ -53,7 +53,7 @@ public class CalTest {
 
     @Test
     void 커스텀_구분자가_숫자인_경우_예외_테스트() {
-        assertThrows(IllegalArgumentException.class, () -> calculator.checkRegex("1"));
+        assertThrows(IllegalArgumentException.class, () -> calculator.checkRegex("12"));
     }
 
 

@@ -45,7 +45,7 @@ public class Calculator {
     }
 
     public String checkRegex(String regex) {
-        if (regex.matches("\\d")) {
+        if (regex.matches("\\d+")) {
             throw new IllegalArgumentException();
         }
         return regex;
