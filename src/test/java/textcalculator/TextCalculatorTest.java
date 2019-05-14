@@ -60,5 +60,15 @@ public class TextCalculatorTest {
         assertEquals(6, textCalculator.sum(textCalculator.toInt(textCalculator.tokenizer(inputString))));
     }
 
+    @Test
+    public void 커스텀_구분자() {
+        String inputString = "//;\n1;2;3";
+        assertEquals(Arrays.asList("1", "2", "3"), textCalculator.tokenizer(inputString));
+    }
 
+    @Test
+    public void 커스텀_구분자_합계() {
+        String inputString = "//;\n1;2;3";
+        assertEquals(6, textCalculator.sum(textCalculator.toInt(textCalculator.tokenizer(inputString))));
+    }
 }
