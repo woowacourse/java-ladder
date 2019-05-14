@@ -10,6 +10,14 @@ public class Calculator {
                 InputParser.extractDelimiters(input),
                 InputParser.extractExpression(input));
 
+        checkMinus(numbers);
+
         return numbers.stream().mapToInt((i) -> i).sum();
+    }
+
+    private void checkMinus(List<Integer> numbers) throws RuntimeException {
+        if (0 < numbers.stream().filter((number) -> number < 0).count()) {
+            throw new RuntimeException();
+        };
     }
 }

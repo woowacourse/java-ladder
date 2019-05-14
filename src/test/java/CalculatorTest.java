@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
     private Calculator calculator;
@@ -86,6 +87,19 @@ public class CalculatorTest {
     @Test
     void null_입력() {
         assertThat(calculator.evaluate(null)).isEqualTo(0);
+    }
+
+    @Test
+    void 음수_있는_입력() {
+        String[] inputs = {"-1,2,3", "//a\n1a2,-3:4"};
+
+        IntStream.range(0, inputs.length).forEach((i) -> {
+            String input = inputs[i];
+
+            assertThrows(RuntimeException.class, () -> {
+                calculator.evaluate(input);
+            });
+        });
     }
 
 }
