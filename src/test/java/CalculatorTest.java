@@ -61,4 +61,18 @@ public class CalculatorTest {
             assertThat(calculator.evaluate(input)).isEqualTo(want);
         });
     }
+
+    @Test
+    void 커스텀_구분자_및_기존_구분자_혼합() {
+        String[] inputs = {"//a\n1a2,3:4"};
+        int[] wants = {10};
+        Calculator calculator = new Calculator();
+
+        IntStream.range(0, inputs.length).forEach((i) -> {
+            String input = inputs[i];
+            int want = wants[i];
+
+            assertThat(calculator.evaluate(input)).isEqualTo(want);
+        });
+    }
 }

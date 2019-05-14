@@ -12,7 +12,7 @@ public class InputParser {
         Matcher m = Pattern.compile("//(.*)\n(.*)").matcher(input);
         if (m.find()) {
             String delimiter = m.group(1);
-            List<String> updatedSeperators = new ArrayList<>();
+            List<String> updatedSeperators = new ArrayList<>(SEPERATORS);
             updatedSeperators.add(delimiter);
             return updatedSeperators;
         }
