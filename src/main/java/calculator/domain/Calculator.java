@@ -1,11 +1,11 @@
-package calculator;
+package calculator.domain;
 
 import java.util.List;
 
-public class NaturalNumbers {
+public class Calculator {
     private List<Integer> numbers;
 
-    public NaturalNumbers(List<Integer> numbers) {
+    public Calculator(List<Integer> numbers) {
         this.numbers = numbers;
     }
 

@@ -1,4 +1,4 @@
-package calculator;
+package calculator.domain;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class NaturalNumberTest {
     @Test
     void 합() {
-        NaturalNumbers numbers = new NaturalNumbers(Arrays.asList(3,5,8));
+        Calculator numbers = new Calculator(Arrays.asList(3,5,8));
         assertThat(numbers.sum()).isEqualTo(16);
     }
 }
