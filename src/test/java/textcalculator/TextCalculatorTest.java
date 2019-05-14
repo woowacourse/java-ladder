@@ -6,21 +6,21 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class TextCalculatorTest {
     private TextCalculator textCalculator;
 
     @Before
-    public void set(){
+    public void set() {
         textCalculator = new TextCalculator();
     }
 
     @Test
     public void 쉼표_구분() {
         String inputString = "1,2,3"; // [1,2,3]
-        List<String> tokens =  textCalculator.tokenizer(inputString);
-        assertEquals(Arrays.asList("1","2","3"), tokens);
+        List<String> tokens = textCalculator.tokenizer(inputString);
+        assertEquals(Arrays.asList("1", "2", "3"), tokens);
     }
 
     @Test
@@ -33,12 +33,17 @@ public class TextCalculatorTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void 토큰이_문자인_경우() {
-        textCalculator.toInt(Arrays.asList("1","2","a"));
+        textCalculator.toInt(Arrays.asList("1", "2", "a"));
 
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void 토큰이_음수인_경우() {
-        textCalculator.toInt(Arrays.asList("-1","2","3"));
+        textCalculator.toInt(Arrays.asList("-1", "2", "3"));
+    }
+
+    @Test
+    public void 토큰의_합() {
+        assertEquals(6, textCalculator.sum(Arrays.asList(1, 2, 3)));
     }
 }
