@@ -1,17 +1,28 @@
 package calculator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringAddCalculator {
-    private static final String COMMA = ",";
-    private static final String COLON = ":";
-    private static final String PIPE = "|";
+    private static final String DEFAULT_DELIMITER = ",|:";
 
     int add(String text) {
         if (isTextEmpty(text)) {
             return 0;
         }
+        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
+        String delimiter = DEFAULT_DELIMITER;
 
-        String[] texts = text.split(COMMA + PIPE + COLON);
-        return getSum(texts);
+        return getSum(getTexts(matcher, delimiter, text));
+    }
+
+    private String[] getTexts(Matcher matcher, String delimiter, String text) {
+        if (matcher.find()) {
+            delimiter = matcher.group(1);
+            text = matcher.group(2);
+        }
+
+        return text.split(delimiter);
     }
 
     private boolean isTextEmpty(String text) {
@@ -23,6 +34,7 @@ public class StringAddCalculator {
         for (String number : texts) {
             sum += Integer.parseInt(number);
         }
+
         return sum;
     }
 }

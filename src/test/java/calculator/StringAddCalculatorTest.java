@@ -36,6 +36,10 @@ public class StringAddCalculatorTest {
         assertEquals(stringAddCalculator.add("1,2:3"), 6);
     }
 
+    @Test
+    void 슬래쉬_두개와_개행문자_사이에_커스텀_구분자를_지정하여_두숫자의_합을_반환하는_테스트() {
+        assertEquals(stringAddCalculator.add("//;\n1;2;3"), 6);
+    }
     @AfterEach
     void tearDown() {
         stringAddCalculator = null;
