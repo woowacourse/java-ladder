@@ -30,6 +30,12 @@ public class StringAddCalculatorTest {
         assertEquals(stringAddCalculator.add("1,2"), 3);
     }
 
+    @Test
+    void 컴마및_콜론을_구분자로_하여_입력할_경우_두_숫자의_합을_반환하는지_테스트() {
+        assertEquals(stringAddCalculator.add("1:2"), 3);
+        assertEquals(stringAddCalculator.add("1,2:3"), 6);
+    }
+
     @AfterEach
     void tearDown() {
         stringAddCalculator = null;

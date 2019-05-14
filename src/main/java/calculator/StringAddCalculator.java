@@ -2,13 +2,15 @@ package calculator;
 
 public class StringAddCalculator {
     private static final String COMMA = ",";
+    private static final String COLON = ":";
+    private static final String PIPE = "|";
 
     int add(String text) {
         if (isTextEmpty(text)) {
             return 0;
         }
 
-        String[] texts = text.split(COMMA);
+        String[] texts = text.split(COMMA + PIPE + COLON);
         return getSum(texts);
     }
 
