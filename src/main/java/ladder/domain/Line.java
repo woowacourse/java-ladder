@@ -18,4 +18,14 @@ public class Line {
     private boolean isConsecutive() {
         return Collections.indexOfSubList(points, Arrays.asList(true, true)) != -1;
     }
+
+    Direction getDirection(int position) {
+        if (position != 0 && points.get(position - 1)) {
+            return Direction.LEFT;
+        }
+        if (position != points.size() && points.get(position)) {
+            return Direction.RIGHT;
+        }
+        return Direction.STRAIGHT;
+    }
 }

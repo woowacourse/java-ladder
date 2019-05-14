@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -21,6 +22,23 @@ public class LineTest {
         assertDoesNotThrow(() -> new Line(Arrays.asList(false, true)));
         assertDoesNotThrow(() -> new Line(Arrays.asList(false, false)));
     }
+
+    @Test
+    void 첫번째값이동테스트() {
+        assertThat(new Line(Arrays.asList(true, false)).getDirection(0)).isEqualTo(Direction.RIGHT);
+    }
+
+    @Test
+    void 가운데값이동테스트() {
+        assertThat(new Line(Arrays.asList(true, false)).getDirection(1)).isEqualTo(Direction.LEFT);
+    }
+
+    @Test
+    void 마지막값이동테스트() {
+        assertThat(new Line(Arrays.asList(true, false)).getDirection(2)).isEqualTo(Direction.STRAIGHT);
+    }
+
+
 
 
 }
