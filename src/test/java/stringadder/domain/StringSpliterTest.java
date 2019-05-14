@@ -28,10 +28,35 @@ public class StringSpliterTest {
     }
 
     @Test
-    void 숫자열을_분리해주는_기능() {
+    void 커스텀_구분자를_추가저장_하는기능_테스트() {
+        String input = "//;\n1;2;3";
+        StringSpliter testStringSpliter = new StringSpliter();
+
+        testStringSpliter.setAdditionalSeparatorsFrom(input);
+
+        assertThat(testStringSpliter).isEqualTo(new StringSpliter(Arrays.asList(";")));
+    }
+
+    @Test
+    void 커스텀_구분자가_없을떄_문자열을_제대로_반환하는지_테스트() {
+        String input = "1,2,3";
+        StringSpliter testStringSpliter = new StringSpliter();
+
+        String numberString = testStringSpliter.setAdditionalSeparatorsFrom(input);
+
+        assertThat(numberString).isEqualTo(input);
+    }
+
+
+    @Test
+    void 커스텀_구분자를_제외한_문자열을_반환하는지_테스트() {
         String input = "//;\n1;2;3";
         String expected = "1;2;3";
+        StringSpliter testStringSpliter = new StringSpliter();
 
-        assertThat(StringSpliter.splitToNumberString(input)).isEqualTo(expected);
+        String numberString = testStringSpliter.setAdditionalSeparatorsFrom(input);
+
+        assertThat(numberString).isEqualTo(expected);
     }
+
 }
