@@ -1,6 +1,5 @@
 package StringAddCalculator;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Validator {
@@ -11,8 +10,11 @@ public class Validator {
         return input;
     }
 
-    static boolean checkLastIndex(char lastValue, String[] splitter) {
-        List<String> splitters = Arrays.asList(splitter);
+    static boolean checkLastIndex(char lastValue, List<String> splitters) {
         return splitters.contains(Character.toString(lastValue));
+    }
+
+    static boolean matchCustomSplitter(String input) {
+        return input.matches("//.*\\n.*");
     }
 }

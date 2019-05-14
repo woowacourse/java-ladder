@@ -2,6 +2,7 @@ package StringAddCalculator;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,13 +14,13 @@ public class StringAddCalculatorTest {
     void 구분자_구분() {
         String input = "1,2,3";
         String[] splitter = {","};
-        List<Integer> output = StringAddCalculator.splitString(input, splitter);
+        List<Integer> output = StringAddCalculator.splitString(input, Arrays.asList(splitter));
         List<Integer> result = Arrays.asList(1, 2, 3);
         assertThat(output).isEqualTo(result);
 
         input = "1:2:3";
         splitter[0] = ":";
-        output = StringAddCalculator.splitString(input, splitter);
+        output = StringAddCalculator.splitString(input, Arrays.asList(splitter));
         result = Arrays.asList(1, 2, 3);
         assertThat(output).isEqualTo(result);
     }
@@ -28,7 +29,7 @@ public class StringAddCalculatorTest {
     void 콜론_콤마_섞여있을때() {
         String input = "1,2:3";
         String[] splitter = {",", ":"};
-        List<Integer> output = StringAddCalculator.splitString(input, splitter);
+        List<Integer> output = StringAddCalculator.splitString(input, Arrays.asList(splitter));
         List<Integer> result = Arrays.asList(1, 2, 3);
         assertThat(output).isEqualTo(result);
     }
@@ -44,7 +45,7 @@ public class StringAddCalculatorTest {
         String input = "1, 2:3";
         String[] splitter = {",", ":"};
         assertThrows(NumberFormatException.class, () -> {
-            List<Integer> output = StringAddCalculator.splitString(input, splitter);
+            List<Integer> output = StringAddCalculator.splitString(input, Arrays.asList(splitter));
         });
     }
 
@@ -52,7 +53,7 @@ public class StringAddCalculatorTest {
     void 입력이_없는_경우() {
         String input = "";
         String[] splitter = {",", ":"};
-        assertThat(Adder.add(StringAddCalculator.splitString(input, splitter))).isEqualTo(0);
+        assertThat(Adder.add(StringAddCalculator.splitString(input, Arrays.asList(splitter)))).isEqualTo(0);
     }
 
     @Test
@@ -60,7 +61,7 @@ public class StringAddCalculatorTest {
         String input = "1,,2:3";
         String[] splitter = {",", ":"};
         assertThrows(NumberFormatException.class, () -> {
-            List<Integer> output = StringAddCalculator.splitString(input, splitter);
+            List<Integer> output = StringAddCalculator.splitString(input, Arrays.asList(splitter));
         });
     }
 
@@ -69,7 +70,7 @@ public class StringAddCalculatorTest {
         String input = "1,2:3,";
         String[] splitter = {",", ":"};
         assertThrows(IllegalArgumentException.class, () -> {
-            List<Integer> output = StringAddCalculator.splitString(input, splitter);
+            List<Integer> output = StringAddCalculator.splitString(input, Arrays.asList(splitter));
         });
     }
 
@@ -78,7 +79,13 @@ public class StringAddCalculatorTest {
         String input = ",1,2:3";
         String[] splitter = {",", ":"};
         assertThrows(IllegalArgumentException.class, () -> {
-            List<Integer> output = StringAddCalculator.splitString(input, splitter);
+            List<Integer> output = StringAddCalculator.splitString(input, Arrays.asList(splitter));
         });
+    }
+
+    @Test
+    void 구분자설정() {
+        String input = "//;\n1;2;3";
+        assertThat(StringAddCalculator.splitString(input, new ArrayList<String>())).isEqualTo(Arrays.asList(1, 2, 3));
     }
 }
