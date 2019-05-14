@@ -29,7 +29,10 @@ public class StringSpliter {
             seperators.add(input.split(CUSTOM_SEPARATOR_PICKER)[ADDITIONAL_SEPARATOR_POSITION]);
             return input.split(CUSTOM_SEPARATOR_PICKER)[NUMBER_STRING_POSITION];
         } catch (Exception e) {
-            return input;
+            if(input.split(CUSTOM_SEPARATOR_PICKER).length == 1) {  //앞에 커스텀구분자가 없는경우
+                return input;
+            }
+            return "";
         }
     }
 
