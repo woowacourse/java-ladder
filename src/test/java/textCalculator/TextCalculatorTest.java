@@ -3,6 +3,7 @@ package textCalculator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TextCalculatorTest {
     @Test
@@ -41,7 +42,33 @@ public class TextCalculatorTest {
     }
 
     @Test
-    void 빈문자열입력() {
+    void 빈문자열입력1() {
         assertThat(new TextCalculator().calculate("")).isEqualTo(0);
+    }
+
+    @Test
+    void 빈문자열입력2() {
+        assertThat(new TextCalculator().calculate("//!?\n")).isEqualTo(0);
+    }
+
+    @Test
+    void 음수입력1() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new TextCalculator().calculate("-2");
+        });
+    }
+
+    @Test
+    void 음수입력2() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new TextCalculator().calculate("-1,2,3");
+        });
+    }
+
+    @Test
+    void 음수입력3() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new TextCalculator().calculate("//!\n-1!2,3");
+        });
     }
 }

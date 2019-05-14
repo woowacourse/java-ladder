@@ -18,6 +18,18 @@ public class TextCalculator {
         return getResult(tokenCorrector(textTokenizer(textCorrector(text))));
     }
 
+    private int getResult(List<String> tokens) {
+        return tokens.stream().mapToInt(token -> getNonNegativeInteger(token)).sum();
+    }
+
+    private int getNonNegativeInteger(String token) {
+        int integer = Integer.parseInt(token);
+        if (integer < 0) {
+            throw new IllegalArgumentException();
+        }
+        return integer;
+    }
+
     private List<String> tokenCorrector(List<String> tokens) {
         for (String token : tokens) {
             if (token.isEmpty()) {
@@ -25,17 +37,6 @@ public class TextCalculator {
             }
         }
         return tokens;
-    }
-
-    private String textCorrector(String text) {
-        if (text == null) {
-            return "0";
-        }
-        return text;
-    }
-
-    private int getResult(List<String> tokens) {
-        return tokens.stream().mapToInt(token -> Integer.parseInt(token)).sum();
     }
 
     private List<String> textTokenizer(String text) {
@@ -53,5 +54,12 @@ public class TextCalculator {
 
     private String getSplitDelimiter() {
         return delimiters.toString().replaceAll(", ", "");
+    }
+
+    private String textCorrector(String text) {
+        if (text == null) {
+            return "0";
+        }
+        return text;
     }
 }

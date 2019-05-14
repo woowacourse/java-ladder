@@ -8,6 +8,8 @@
 4. 세개의 숫자를 ','와 ':' 구분자를 모두 사용하여 입력할 경우 세 수의 합을 리턴
 5. '//'와 '\n' 사이에 커스텀 구분자를 입력하여 전달할 경우, 커스텀 구분자로 구분한 숫자의 합을 리턴
 6. null 값, 빈 문자열 입력시 0을 리턴
+7. 음수를 전달할 경우 exception 발생
+    - 이를 위해 '-' 커스텀 구분자는 금지
 
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
