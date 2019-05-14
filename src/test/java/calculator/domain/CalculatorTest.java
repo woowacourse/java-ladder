@@ -2,40 +2,41 @@ package calculator.domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CalculatorTest {
     private Calculator calculator;
 
     @Test
-    public void 계산기클래스가_제대로_생성되는지() {
-        calculator = new Calculator("1");
-        assertThat(calculator).isEqualTo(new Calculator("1"));
-    }
-
-    @Test
-    public void 문자열_분리를_쉼표로_제대로_하는지() {
+    public void 컴마가_구분자인_식의_결과를_제대로_나타내는지() {
         calculator = new Calculator("1,2,3");
-        assertThat(calculator.splitExpression()).isEqualTo(Arrays.asList("1", "2", "3"));
+        assertThat(calculator.calculate()).isEqualTo(6);
+
+        calculator = new Calculator("//,\n1,2,3");
+        assertThat(calculator.calculate()).isEqualTo(6);
     }
 
     @Test
-    public void 문자열_분리를_콜론으로_제대로_하는지() {
+    public void 콜론이_구분자인_식의_결과를_제대로_나타내는지() {
         calculator = new Calculator("1:2:3");
-        assertThat(calculator.splitExpression()).isEqualTo(Arrays.asList("1", "2", "3"));
+        assertThat(calculator.calculate()).isEqualTo(6);
+
+        calculator = new Calculator("//:\n1:2:3");
+        assertThat(calculator.calculate()).isEqualTo(6);
     }
 
     @Test
-    public void 문자열_분리를_쉼표와_콜론으로_제대로_하는지() {
-        calculator = new Calculator("1,2:3");
-        assertThat(calculator.splitExpression()).isEqualTo(Arrays.asList("1", "2", "3"));
-    }
-
-    @Test
-    public void 커스텀_구분자로_분리를_제대로_하는지() {
+    public void 커스텀_구분자가_포함된_식의_결과를_제대로_나타내는지() {
         calculator = new Calculator("//;\n1;2;3");
-        assertThat(calculator.splitExpression()).isEqualTo(Arrays.asList("1", "2", "3"));
+        assertThat(calculator.calculate()).isEqualTo(6);
+    }
+
+    @Test
+    public void 주어진_식이_null_공백일때_0을_출력하는지() {
+        calculator = new Calculator("//;\n");
+        assertThat(calculator.calculate()).isEqualTo(0);
+
+        calculator = new Calculator(null);
+        assertThat(calculator.calculate()).isEqualTo(0);
     }
 }

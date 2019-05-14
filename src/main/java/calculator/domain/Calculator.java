@@ -1,16 +1,13 @@
 package calculator.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Calculator {
-    private final String expression;
+    private final Expression expression;
 
     public Calculator(String expression) {
-        this.expression = expression;
+        this.expression = new Expression(expression);
     }
 
     @Override
@@ -26,15 +23,17 @@ public class Calculator {
         return Objects.hash(expression);
     }
 
-    List<String> splitExpression() {
-        return splitExpressionWithMatch();
-    }
+    int calculate() {
+        List<String> numbers = expression.splitExpression();
+        int sum = 0;
 
-    private List<String> splitExpressionWithMatch() {
-        if (expression.matches("//.*\\n.*")) {
-            String splitedExpression = expression.substring(4);
-            return Arrays.asList(splitedExpression.split(Character.toString(expression.charAt(2))));
+        if(numbers.size() == 1){
+            return 0;
         }
-        return Arrays.asList(expression.split(",|:"));
+
+        for (String number : numbers) {
+            sum += Integer.parseInt(number);
+        }
+        return sum;
     }
 }
