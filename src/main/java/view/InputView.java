@@ -8,4 +8,13 @@ public class InputView {
     public static String inputNames() {
         return scanner.nextLine();
     }
+
+    public static int inputLadderLength() {
+        try {
+            return scanner.nextInt();
+        } catch (NumberFormatException e) {
+            scanner.nextLine();
+            return inputLadderLength();
+        }
+    }
 }
