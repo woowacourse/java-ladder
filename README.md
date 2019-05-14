@@ -22,7 +22,9 @@
     - true, true -> true
     - true, false -> false
     - false, true -> false
-- 사다리를 생성한다.
-    - 생성자에 입력된 높이만큼 라인들을 생성해야 한다.
-- 사다리 타기를 진행할 수 있다.
-    - 사람들이 어떤 위치에서 끝났는지 결과를 확인한다.
+- ~~라인은 위치를 받았을 때 진행할 방향을 알려줘야 한다.~~
+    - 0, {true, false} -> RIGHT
+    - 1, {true, false} -> LEFT
+    - 0, {false, true} -> STRAIGHT
+- ~~사다리 타기를 진행해서 결과를 얻는다.~~
+    - lines, {"pobi" : 0, "crong" : 1, "honux": 2} -> {"pobi" : 2, "crong" :1, "honux" : 0}
