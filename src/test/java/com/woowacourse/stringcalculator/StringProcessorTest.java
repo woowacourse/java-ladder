@@ -43,4 +43,46 @@ public class StringProcessorTest {
         String str = "//!";
         assertThat(str.split("//")[1]).isEqualTo("!");
     }
+
+    @Test
+    void 유효하지않은_커스텀구분자_지시자_예외테스트() {
+        assertThrows(IllegalArgumentException.class,() ->{
+            StringProcessor.split("/!\n1,2,3");
+        });
+    }
+
+    @Test
+    void 커스텀구분자안에_숫자가있을때_예외테스트() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            StringProcessor.split("//1234\n1,2,3");
+        });
+    }
+
+    @Test
+    void 숫자가아닌문자로_시작하는_경우_예외테스트() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            StringProcessor.split("//:\n,1,2,3");
+        });
+    }
+
+    @Test
+    void 유효하지않은_구분자를_사용하는경우_예외테스트() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            StringProcessor.split("1!2!3");
+        });
+    }
+
+    @Test
+    void 쉼표를_연속으로_사용하는경우_예외테스트() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            StringProcessor.split("1,,2,,,3");
+        });
+    }
+
+    @Test
+    void 커스텀구분자안에_숫자와문자가_같이_있을때_예외테스트() {
+        assertThat(StringProcessor.split("//ab34\n1ab342")).isEqualTo(Arrays.asList(1,2));
+    }
+
+
 }
