@@ -22,4 +22,12 @@ class TextCalculatorTest {
         List<String> tokens =  textCalculator.tokenizer(inputString);
         assertEquals(Arrays.asList("1","2","3"), tokens);
     }
+
+    @Test
+    void 숫자_변환() {
+        List<String> tokens = Arrays.asList("1", "2", "3");
+        List<Integer> numbers = textCalculator.toInt(tokens);
+        assertEquals(Arrays.asList(1, 2, 3), numbers);
+
+    }
 }
