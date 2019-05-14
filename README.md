@@ -1,5 +1,13 @@
-# java-ladder
-사다리타기 미션 저장소
+## 문자열 덧셈 계산기
+### TODO
+1. 입력을 받는다
+2. 계산 작업을 한다
+   1. 커스텀 구분자를 확인한다
+   2. 컴마나 콜론으로 구분한다
+   3. 구분한 결과를 리스트로 만든다
+   4. 모두 더해서 답을 구한다
+3. 결과를 출력한다
 
-## 우아한테크코스 코드리뷰
-* [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
+## 완료 
+
+---
