@@ -21,16 +21,16 @@ public class Calculator {
 
     public static List<String> inputSplit(String input) {
         if (StringUtils.isBlank(input)) {
-            return Arrays.asList(Const.STRING_ZERO);
+            return Arrays.asList(CalculatorConst.STRING_ZERO);
         }
-        if (input.charAt(0) == Const.SLASH) {
+        if (input.charAt(0) == CalculatorConst.SLASH) {
             return customSplit(input);
         }
-        return Arrays.asList(input.split(Const.DEFAULT_SYMBOL));
+        return Arrays.asList(input.split(CalculatorConst.DEFAULT_SYMBOL));
     }
 
     public static List<String> customSplit(String input) {
-        Matcher matcher = Pattern.compile(Const.FORMAT_SYMBOL).matcher(input);
+        Matcher matcher = Pattern.compile(CalculatorConst.FORMAT_SYMBOL).matcher(input);
         if (matcher.find()) {
             return Arrays.asList(matcher.group(2).split(Pattern.quote(matcher.group(1))));
         }
@@ -38,7 +38,7 @@ public class Calculator {
     }
 
     static int checkMinusNumber(int number) {
-        if (number < Const.ZERO) {
+        if (number < CalculatorConst.ZERO) {
             throw new IllegalArgumentException("음수가 포함되어 있습니다.");
         }
         return number;
