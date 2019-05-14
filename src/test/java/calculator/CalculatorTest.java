@@ -142,4 +142,10 @@ public class CalculatorTest {
         String input = "//a\\n1a2a3";
         assertThat(Calculator.calSumNumber(Calculator.getNumbers(input))).isEqualTo(6);
     }
+
+    @Test
+    void 결과값_출력하기_뒤에_숫자_안씀() {
+        String input = "1,3,2, ";
+        assertThat(Calculator.calSumNumber(Calculator.getNumbers(input))).isEqualTo(6);
+    }
 }

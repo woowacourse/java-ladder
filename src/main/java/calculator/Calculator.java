@@ -10,7 +10,8 @@ import java.util.regex.Pattern;
 
 public class Calculator {
     public static List<Integer> getNumbers(String input) {
-        input = input.replaceAll(" ", "");
+        input = input.replaceAll("\\*|\\^|&|@|\\+|\\$|\\)|\\?|\\(", ":")
+                .replaceAll(" ", "");
         List<Integer> result = new ArrayList<>();
         for (String s : inputSplit(input)) {
             result.add(checkMinusNumber(Integer.parseInt(s)));
