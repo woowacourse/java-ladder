@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 
 public class StringAddCalculator {
     private static final String DEFAULT_DELIMITER = "[,:]";
+    private static final String INTEGER_REGEX = "^[0-9]$";
 
     int add(String text) {
         if (isTextEmpty(text)) {
@@ -30,11 +31,19 @@ public class StringAddCalculator {
     private String[] getTexts(Matcher matcher, String text) {
         String delimiter = DEFAULT_DELIMITER;
         if (matcher.find()) {
-            delimiter = matcher.group(1);
+            delimiter = checkDelimiterType(matcher.group(1));
             text = matcher.group(2);
         }
 
         return text.split(delimiter);
+    }
+
+    private String checkDelimiterType(String delimiter) {
+        if(Pattern.matches(INTEGER_REGEX, delimiter)){
+            throw new IllegalArgumentException("구분자는 숫자가 될수 없습니다.");
+        }
+
+        return delimiter;
     }
 
     private int sumResult(String[] texts) {

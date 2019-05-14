@@ -71,6 +71,13 @@ public class StringAddCalculatorTest {
         });
     }
 
+    @Test
+    void 구분자가_숫자가_오는_경우_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            stringAddCalculator.add("//2\n123");
+        });
+    }
+
     @AfterEach
     void tearDown() {
         stringAddCalculator = null;
