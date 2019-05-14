@@ -26,6 +26,11 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(6);
     }
 
+    @Test
+    void 커스텀구분자사용(){
+        int result = Calculator.calculate("//;.₩n1,2;3");
+        assertThat(result).isEqualTo(6);
+    }
 
 
 //    @Test
