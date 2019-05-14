@@ -1,13 +1,13 @@
 package calculator;
 
 public class Positive {
-    private int number;
+    private final int number;
 
-    public Positive(String number) {
+    public Positive(final String number) {
         this(Integer.parseInt(number));
     }
 
-    public Positive(int number) {
+    public Positive(final int number) {
         if (number < 0) {
             throw new RuntimeException();
         }
