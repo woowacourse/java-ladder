@@ -55,6 +55,22 @@ public class StringAddCalculatorTest {
         });
     }
 
+    @Test
+    void 구분자를_해석할수_없는_경우_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            stringAddCalculator.add("//;\n//;\n1;2;3");
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            stringAddCalculator.add("1//2--3");
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            stringAddCalculator.add("//;;\n1;2;3");
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            stringAddCalculator.add("//\n1;2;3");
+        });
+    }
+
     @AfterEach
     void tearDown() {
         stringAddCalculator = null;

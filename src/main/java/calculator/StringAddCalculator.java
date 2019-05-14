@@ -23,14 +23,8 @@ public class StringAddCalculator {
         return sumResult(texts);
     }
 
-    private int sumResult(String[] texts) {
-        return Arrays.stream(texts).mapToInt(Integer::parseInt)
-                .filter(i -> {
-                    if (i < 0) {
-                        throw new RuntimeException("음수는 입력값이 될 수 없습니다.");
-                    }
-                    return true;
-                }).sum();
+    private boolean isTextEmpty(String text) {
+        return text == null || text.trim().isEmpty();
     }
 
     private String[] getTexts(Matcher matcher, String text) {
@@ -43,8 +37,16 @@ public class StringAddCalculator {
         return text.split(delimiter);
     }
 
-    private boolean isTextEmpty(String text) {
-        return text == null || text.trim().isEmpty();
+    private int sumResult(String[] texts) {
+        try{
+            return Arrays.stream(texts).mapToInt(Integer::parseInt).filter(i -> {
+                if (i < 0) {
+                    throw new RuntimeException("음수는 입력값이 될 수 없습니다.");
+                }
+                return true;
+            }).sum();
+        }catch (IllegalArgumentException e){
+            throw new IllegalArgumentException("올바른 입력값이 아닙니다.");
+        }
     }
-
 }
