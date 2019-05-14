@@ -1,5 +1,11 @@
 # java-ladder
 사다리타기 미션 저장소
 
-## 우아한테크코스 코드리뷰
-* [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
+## 요구사항
+
+* 문자열을 구분자(쉼표, 콜론)로 분리하여 각 숫자의 합을 반환.
+    * 기본 구분자: 쉼표, 콜론
+    * 커스텀 구분자: 임의로 지정 가능해야 함
+        * "//;\n1;2;3" -> 6
+* 입력이 숫자 이외 or 음수인경우 `RuntimeException` 반환
+
