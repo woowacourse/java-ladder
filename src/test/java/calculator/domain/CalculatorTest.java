@@ -2,7 +2,8 @@ package calculator.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
     private Calculator calculator;
@@ -39,4 +40,13 @@ public class CalculatorTest {
         calculator = new Calculator(null);
         assertThat(calculator.calculate()).isEqualTo(0);
     }
+
+    @Test
+    public void 주어진_식에서_음수나_문자가_포함되어있을떄_예외를_발생시키는지_확인() {
+        assertThrows(RuntimeException.class, () -> {
+            new Calculator("-1:2,3").calculate();
+            new Calculator("a:2,3").calculate();
+        });
+    }
+
 }

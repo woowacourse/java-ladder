@@ -39,4 +39,10 @@ class ExpressionTest {
         expression = new Expression("//;\n1;2;3");
         assertThat(expression.splitExpression()).isEqualTo(Arrays.asList("1", "2", "3"));
     }
+
+    @Test
+    public void 문자열을_넘버의_리스트로_제대로_생성하는지() {
+        expression = new Expression("//a\n4a3a2");
+        assertThat(expression.getNumbers()).isEqualTo(Arrays.asList(new Number("4"), new Number("3"), new Number("2")));
+    }
 }

@@ -24,15 +24,15 @@ public class Calculator {
     }
 
     int calculate() {
-        List<String> numbers = expression.splitExpression();
+        List<Number> numbers = expression.getNumbers();
         int sum = 0;
 
         if(numbers.size() == 1){
             return 0;
         }
 
-        for (String number : numbers) {
-            sum += Integer.parseInt(number);
+        for (Number number : numbers) {
+            sum += number.getNumber();
         }
         return sum;
     }

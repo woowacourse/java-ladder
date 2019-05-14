@@ -3,6 +3,7 @@ package calculator.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Expression {
     private static final int LOCATION_OF_DELIMITER = 2;
@@ -17,6 +18,12 @@ public class Expression {
             expression = "";
         }
         this.expression = expression;
+    }
+
+    List<Number> getNumbers() {
+        return splitExpression().stream()
+                .map(Number::new)
+                .collect(Collectors.toList());
     }
 
     List<String> splitExpression() {
