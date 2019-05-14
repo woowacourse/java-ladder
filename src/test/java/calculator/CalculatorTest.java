@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
     private Calculator calculator;
@@ -61,12 +62,20 @@ public class CalculatorTest {
     @Test
     void 빈_문자열을_입력한_경우_문자열_구분값() {
         assertThat(calculator.splitString("")).isEqualTo(new String[]{});
-
     }
 
     @Test
     void 빈_문자열_배열을_입력한_경우_합() {
         assertThat(calculator.sumString(new String[]{})).isEqualTo(0);
+    }
 
+    @Test
+    void 입력된_문자열이_음수인_경우() {
+        assertThrows(RuntimeException.class,() -> calculator.checkCorrectValue(new String[]{"-1", "1", "2"}));
+    }
+
+    @Test
+    void 입력된_문자열이_문자인_경우() {
+        assertThrows(RuntimeException.class,() -> calculator.checkCorrectValue(new String[]{"a", "1", "2"}));
     }
 }

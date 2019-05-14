@@ -1,6 +1,4 @@
 # todo
-* 음수일 때 RuntimeExpection 예외 throw 하기
-* 숫자 이외의 값일 때 RuntimeExpection 예외 throw 하기
 
 # done
 * 쉼표로 문자열을 구분하기
@@ -14,6 +12,9 @@
 
 * Null일 때 0 반환하기
 * ""일 때 0 반환하기
+
+* 음수일 때 RuntimeExpection 예외 throw 하기
+* 숫자 이외의 값일 때 RuntimeExpection 예외 throw 하기
 
 # java-ladder
 사다리타기 미션 저장소
