@@ -2,7 +2,7 @@ import java.util.List;
 
 public class Calculator {
     public int evaluate(String input) {
-        if(input.isEmpty()) {
+        if(input == null || input.isEmpty()) {
             return 0;
         }
 

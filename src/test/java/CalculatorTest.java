@@ -83,4 +83,9 @@ public class CalculatorTest {
         assertThat(calculator.evaluate("")).isEqualTo(0);
     }
 
+    @Test
+    void null_입력() {
+        assertThat(calculator.evaluate(null)).isEqualTo(0);
+    }
+
 }
