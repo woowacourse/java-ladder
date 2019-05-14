@@ -50,10 +50,11 @@ public class StringAddCalculatorTest {
     }
 
     @Test
-    void 입력이_없는_경우() {
+    void 입력이_없는_경우_또는_널입력() {
         String input = "";
         String[] splitter = {",", ":"};
         assertThat(Adder.add(StringAddCalculator.splitString(input, Arrays.asList(splitter)))).isEqualTo(0);
+        assertThat(Adder.add(StringAddCalculator.splitString(null, Arrays.asList(splitter)))).isEqualTo(0);
     }
 
     @Test
@@ -87,5 +88,21 @@ public class StringAddCalculatorTest {
     void 구분자설정() {
         String input = "//;\n1;2;3";
         assertThat(StringAddCalculator.splitString(input, new ArrayList<String>())).isEqualTo(Arrays.asList(1, 2, 3));
+    }
+
+    @Test
+    void 숫자_하나_계산() {
+        String input = "1";
+        String[] splitter = {",", ":"};
+        assertThat(Adder.add(StringAddCalculator.splitString(input, Arrays.asList(splitter)))).isEqualTo(1);
+    }
+
+    @Test
+    void 음수입력() {
+        String input = "-1,-2";
+        String[] splitter = {",", ":"};
+        assertThrows(RuntimeException.class, () -> {
+            Adder.add(StringAddCalculator.splitString(input, Arrays.asList(splitter)));
+        });
     }
 }

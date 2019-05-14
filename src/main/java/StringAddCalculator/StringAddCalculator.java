@@ -36,7 +36,8 @@ public class StringAddCalculator {
     private static List<Integer> convertStringToInt(String[] splitValues) {
         List<Integer> result = new ArrayList<>();
         for (String value : splitValues) {
-            result.add(Integer.parseInt(value));
+            int num = Validator.checkNegativeValue(Integer.parseInt(value));
+            result.add(num);
         }
 
         return result;

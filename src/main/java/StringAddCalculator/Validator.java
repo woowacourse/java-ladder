@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Validator {
     static String checkEmpty(String input) {
-        if (input.length() == 0) {
+        if (input == null || input.length() == 0) {
             input = "0";
         }
         return input;
@@ -16,5 +16,12 @@ public class Validator {
 
     static boolean matchCustomSplitter(String input) {
         return input.matches("//.*\\n.*");
+    }
+
+    static int checkNegativeValue(int number) {
+        if (number < 0) {
+            throw new RuntimeException();
+        }
+        return number;
     }
 }
