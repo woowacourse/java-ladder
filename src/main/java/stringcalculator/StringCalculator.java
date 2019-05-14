@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class StringCalculator {
-    private static final String DELIMITER_REGEX = ",|:";
+    private static final String DELIMITER_REGEX = "[,:]";
     private List<Integer> numbers = new ArrayList<>();
 
     public StringCalculator(String formula) {
@@ -21,7 +21,9 @@ public class StringCalculator {
             numbers = getNumbersByCustomDelimiter(formula);
         }
         if (numbers.isEmpty()) {
-            numbers = Arrays.stream(formula.split(DELIMITER_REGEX)).map(Integer::parseInt).collect(Collectors.toList());
+            numbers = Arrays.stream(formula.split(DELIMITER_REGEX))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
         }
         if (numbers.isEmpty() || numbers.stream().anyMatch(number -> number < 0)) {
             throw new RuntimeException("잘못된 문자열입니다.");
@@ -32,7 +34,9 @@ public class StringCalculator {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(formula);
         m.find();
         String customDelimiter = m.group(1);
-        return Arrays.stream(m.group(2).split(customDelimiter)).map(Integer::parseInt).collect(Collectors.toList());
+        return Arrays.stream(m.group(2).split(customDelimiter))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     public int calculate() {
