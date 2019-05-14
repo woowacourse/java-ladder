@@ -20,6 +20,11 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(3);
     }
 
+    @Test
+    void 구분자_두종류(){
+        int result = Calculator.calculate("1,2;3");
+        assertThat(result).isEqualTo(6);
+    }
 
 //    @Test
 //    public void 스플릿_테스트(){
