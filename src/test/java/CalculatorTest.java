@@ -47,4 +47,18 @@ public class CalculatorTest {
             assertThat(calculator.evaluate(input)).isEqualTo(want);
         });
     }
+
+    @Test
+    void 커스텀_구분자_사용() {
+        String[] inputs = {"//;\n1;2;3", "//a\n1a2a3", "//ab\n1ab2ab3"};
+        int[] wants = {6, 6, 6};
+        Calculator calculator = new Calculator();
+
+        IntStream.range(0, inputs.length).forEach((i) -> {
+            String input = inputs[i];
+            int want = wants[i];
+
+            assertThat(calculator.evaluate(input)).isEqualTo(want);
+        });
+    }
 }

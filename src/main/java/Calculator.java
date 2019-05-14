@@ -1,11 +1,12 @@
-import java.util.Arrays;
+import java.util.List;
 
 public class Calculator {
     public int evaluate(String input) {
-        String[] splittedInputs = input.split(",|:");
 
-        return Arrays.asList(splittedInputs).stream()
-                .mapToInt((splittedInput) -> Integer.parseInt(splittedInput))
-                .sum();
+        List<Integer> numbers = ExpressionParser.parseNumbers(
+                InputParser.extractDelimiters(input),
+                InputParser.extractExpression(input));
+
+        return numbers.stream().mapToInt((i) -> i).sum();
     }
 }
