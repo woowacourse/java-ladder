@@ -53,5 +53,20 @@ public class CalculatorTest {
         assertThat(calculator.sumString(new String[]{"1"})).isEqualTo(1);
     }
 
+    @Test
+    void Null을_입력한_경우_문자열_구분값() {
+        assertThat(calculator.splitString(null)).isEqualTo(new String[]{});
+    }
 
+    @Test
+    void 빈_문자열을_입력한_경우_문자열_구분값() {
+        assertThat(calculator.splitString("")).isEqualTo(new String[]{});
+
+    }
+
+    @Test
+    void 빈_문자열_배열을_입력한_경우_합() {
+        assertThat(calculator.sumString(new String[]{})).isEqualTo(0);
+
+    }
 }
