@@ -31,4 +31,12 @@ public class ConverterTest {
 
         assertThrows(RuntimeException.class, () -> Converter.convert(input));
     }
+
+    @Test
+    void 빈_문자열을_입력했을_때_빈_리스트를_리턴하는지_테스트() {
+        List<String> input = new ArrayList<>(Arrays.asList(""));
+        List<Integer> empty = new ArrayList<>();
+
+        assertThat(Converter.convert(input)).isEqualTo(empty);
+    }
 }

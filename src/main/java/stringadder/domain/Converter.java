@@ -2,13 +2,17 @@ package stringadder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Converter {
     private static final int NUMBER_BOUND = 0;
     public static List<Integer> convert(List<String> input) {
         List<Integer> converted = new ArrayList<>();
 
-        for (String digit : input) {
+        List<String> cleanInput = input.stream()
+                .filter(x -> !x.equals(""))
+                .collect(Collectors.toList());
+        for (String digit : cleanInput) {
             checkPositive(digit);
             converted.add(Integer.parseInt(digit));
         }
