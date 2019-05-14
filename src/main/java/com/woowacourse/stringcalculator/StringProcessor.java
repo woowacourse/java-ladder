@@ -2,6 +2,7 @@ package com.woowacourse.stringcalculator;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class StringProcessor {
@@ -31,7 +32,7 @@ public class StringProcessor {
         if (inputTokens[0].startsWith("//")) {
             String customDelimiter = inputTokens[0].split("//")[1];
             throwIfNumber(customDelimiter);
-            return splitIntoIntegers(inputTokens[1], String.format("(%s|%s)", DEFAULT_DELIMITERS, customDelimiter));
+            return splitIntoIntegers(inputTokens[1], String.format("(%s|%s)", DEFAULT_DELIMITERS, Pattern.quote(customDelimiter)));
         }
         throw new IllegalArgumentException("올바르지 않은 문자열 형식입니다.");
     }

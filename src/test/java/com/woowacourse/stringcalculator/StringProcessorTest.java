@@ -27,6 +27,11 @@ public class StringProcessorTest {
     }
 
     @Test
+    void 커스텀구분자에_정규식문자열 () {
+        assertThat(StringProcessor.split("//.\n1.2.3")).isEqualTo(Arrays.asList(1,2,3));
+    }
+
+    @Test
     void 빈문자열_또는_null입력했을때_테스트 () {
         assertThat(StringProcessor.split("")).isEqualTo(Collections.singletonList(0));
         assertThat(StringProcessor.split(null)).isEqualTo(Collections.singletonList(0));
