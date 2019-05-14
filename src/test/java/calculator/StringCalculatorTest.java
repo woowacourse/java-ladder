@@ -14,6 +14,14 @@ public class StringCalculatorTest {
     }
 
     @Test
+    void 문자열_계산() {
+        String input = "1,2,3";
+        String[] numbers = StringSplitter.split(input);
+
+        assertThat(StringCalculator.calculate(numbers)).isEqualTo(6);
+    }
+
+    @Test
     void 음수값_예외() {
         String[] numbers = {"-1", "2"};
 
