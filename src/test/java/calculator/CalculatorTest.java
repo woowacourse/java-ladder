@@ -32,6 +32,8 @@ public class CalculatorTest {
     @Test
     void 커스텀_구분자로_문자열_구분하기() {
         assertThat(calculator.splitString("//#\n1#2#3")).isEqualTo(new String[]{"1", "2", "3"});
+        assertThat(calculator.splitString("//$\n1$2$3")).isEqualTo(new String[]{"1", "2", "3"});
+
     }
 
     @Test
@@ -41,7 +43,7 @@ public class CalculatorTest {
 
     @Test
     void 구분한_문자열의_합_구하기() {
-        assertThat(calculator.sumString(new String[]{"1", "2", "3"})).isEqualTo(6);
+        assertThat(calculator.sumValues(new String[]{"1", "2", "3"})).isEqualTo(6);
     }
 
     @Test
@@ -51,7 +53,7 @@ public class CalculatorTest {
 
     @Test
     void 숫자_하나를_입력한_경우_합() {
-        assertThat(calculator.sumString(new String[]{"1"})).isEqualTo(1);
+        assertThat(calculator.sumValues(new String[]{"1"})).isEqualTo(1);
     }
 
     @Test
@@ -66,7 +68,7 @@ public class CalculatorTest {
 
     @Test
     void 빈_문자열_배열을_입력한_경우_합() {
-        assertThat(calculator.sumString(new String[]{})).isEqualTo(0);
+        assertThat(calculator.sumValues(new String[]{})).isEqualTo(0);
     }
 
     @Test

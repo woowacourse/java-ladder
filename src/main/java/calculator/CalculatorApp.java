@@ -5,6 +5,10 @@ import java.util.Scanner;
 public class CalculatorApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(Calculator.sumString(Calculator.splitString(scanner.nextLine())));
+        String[] values = Calculator.splitString(scanner.nextLine());
+
+        Calculator.checkCorrectValue(values);
+
+        System.out.println(Calculator.sumValues(values));
     }
 }
