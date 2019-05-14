@@ -21,18 +21,18 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void 커스텀_지정자_두_개_이상일때_예외_발생(){
-        assertThatThrownBy(()-> stringCalculator.createCustomSeparator("//;\n//'\n1:5") ).isInstanceOf(IllegalArgumentException.class);
+    void 커스텀_지정자_두_개_이상일때_예외_발생() {
+        assertThatThrownBy(() -> stringCalculator.createCustomSeparator("//;\n//'\n1:5")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 커스텀_지정자가_숫자인_경우_예외_발생(){
-        assertThatThrownBy(()-> stringCalculator.createCustomSeparator("//0\n")).isInstanceOf(IllegalArgumentException.class);
+    void 커스텀_지정자가_숫자인_경우_예외_발생() {
+        assertThatThrownBy(() -> stringCalculator.createCustomSeparator("//0\n")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 커스텀_지정자가_두_글자_이상인_경우_예외_발생() {
-        assertThatThrownBy(()-> stringCalculator.createCustomSeparator("//;?\n")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> stringCalculator.createCustomSeparator("//;?\n")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
