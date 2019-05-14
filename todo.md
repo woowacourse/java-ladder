@@ -16,5 +16,17 @@
 # 사다리
 
 ## Todo
+* 사다리 높이 입력
+    * 양수 정상
+    * a, 음수 에러
+
+* 사다리 생성
+* 사다리 게임 출력
 
 ## done
+* 사람이름을 입력 받아서 콤마로 분리
+    * pobi,honux,crong -> {pobi,honux,crong}
+    * ,,, -> 에러
+    * crong,, -> {crong}
+    * pobico, honux, crong -> 에러
+    * ,,crong,, -> 에러
