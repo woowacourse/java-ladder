@@ -1,7 +1,5 @@
 package stringadder.domain;
 
-import sun.security.krb5.internal.ccache.CCacheInputStream;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,8 +18,8 @@ public class StringSpliter {
     public StringSpliter() {
     }
 
-    static List<String> splitBySeparators(String numbersWithSeparator, List<String> separators) {
-        String separatorsToRex = String.join("|", separators);
+    List<String> splitBySeparators(String numbersWithSeparator) {
+        String separatorsToRex = String.join("|", seperators);
 
         return Arrays.asList(numbersWithSeparator.split(separatorsToRex));
     }
