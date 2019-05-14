@@ -24,4 +24,14 @@ public class TextCalculatorTest {
     void 콜론쉼표구분자포함() {
         assertThat(new TextCalculator().calculate("1,2:3")).isEqualTo(6);
     }
+
+    @Test
+    void 커스텀구분자포함() {
+        assertThat(new TextCalculator().calculate("//;\n1;2,3")).isEqualTo(6);
+    }
+
+    @Test
+    void 커스텀구분자여러개포함() {
+        assertThat(new TextCalculator().calculate("//;.?\n1;2,3.1?1")).isEqualTo(8);
+    }
 }
