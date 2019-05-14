@@ -27,4 +27,11 @@ public class StringSpliterTest {
         assertThat(StringSpliter.splitBySeparators(numbersWithSeparator, separator)).isEqualTo(expected);
     }
 
+    @Test
+    void 숫자열을_분리해주는_기능() {
+        String input = "//;\n1;2;3";
+        String expected = "1;2;3";
+
+        assertThat(StringSpliter.splitToNumberString(input)).isEqualTo(expected);
+    }
 }
