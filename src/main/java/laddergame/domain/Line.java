@@ -6,12 +6,12 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Line {
-    private List<Boolean> points;
+    private List<Point> points;
 
     public Line(int countOfPerson) {
         points = new ArrayList<>();
         for (int i = 0; i < countOfPerson - 1; i++) {
-            points.add(Boolean.FALSE);
+            points.add(new Point(Boolean.FALSE));
         }
         makeRandomLink(countOfPerson);
     }
@@ -23,9 +23,9 @@ public class Line {
         }
     }
 
-    public void setElement(int index, boolean trueOrFalse){
-        if (!points.get(index - 1)) {
-            points.set(index, trueOrFalse);
+    public void setElement(int index, Point point) {
+        if (!points.get(index - 1).isTrue()) {
+            points.set(index, point);
         }
     }
 
@@ -37,12 +37,12 @@ public class Line {
         return new Random().nextInt(2);
     }
 
-    public boolean isLinked(int point) {
+    public Point isLinked(int point) {
         return points.get(point - 1);
     }
 
-    public boolean makeTrueOrFalse(int randomNumber) {
-        return randomNumber != 0;
+    public Point makeTrueOrFalse(int randomNumber) {
+        return new Point(randomNumber != 0);
     }
 
     @Override
@@ -56,5 +56,16 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(points);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("|");
+        for (Point point : points) {
+            stringBuilder.append(point);
+            stringBuilder.append("|");
+        }
+        return stringBuilder.toString();
     }
 }
