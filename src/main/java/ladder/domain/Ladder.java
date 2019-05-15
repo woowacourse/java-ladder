@@ -12,6 +12,17 @@ public class Ladder {
         }
     }
 
+    public int findOneResult(int playerIndex){
+        for(Line line : floors){
+            moveDown(line, playerIndex);
+        }
+        return playerIndex;
+    }
+
+    private int moveDown(Line line, int index){
+        return line.moveRightOrLeft(index);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

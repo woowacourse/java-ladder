@@ -24,6 +24,10 @@ public class Results {
         return resultNames.size();
     }
 
+    public ResultName getResultName(int index) {
+        return this.resultNames.get(index);
+    }
+
     private void addResultNames(String input) {
         for(String name : input.split(DELIMITER)){
             resultNames.add(new ResultName(name.trim()));

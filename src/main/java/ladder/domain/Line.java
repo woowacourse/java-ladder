@@ -18,6 +18,10 @@ public class Line {
         makeRandomBooleans(playerNumber);
     }
 
+    public Line(List<Boolean> horizon) {
+        this.horizon = horizon;
+    }
+
     public List<Boolean> getHorizon() {
         return this.horizon;
     }
@@ -57,5 +61,15 @@ public class Line {
             result = HORIZON_LINE;
         }
         return result;
+    }
+
+    public int moveRightOrLeft(int playerIndex) {
+        if(playerIndex > 0 && this.horizon.get(playerIndex -1)) {
+            return --playerIndex;
+        }
+        if(playerIndex < horizon.size() &&this.horizon.get(playerIndex)){
+            return ++playerIndex;
+        }
+        return playerIndex;
     }
 }

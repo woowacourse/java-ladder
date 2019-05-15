@@ -25,6 +25,10 @@ public class Players {
         return playerNames.size();
     }
 
+    public int getPlayerIndex(PlayerName name) {
+        return this.playerNames.indexOf(name);
+    }
+
     private void addPlayerNames(String input) {
         for(String name : input.split(DELIMITER)){
             checkDuplicateName(name);
