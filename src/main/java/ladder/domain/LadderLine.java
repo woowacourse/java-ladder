@@ -28,7 +28,7 @@ public class LadderLine {
         List<Boolean> lineStates = new ArrayList<>();
         lineStates.add(false);
         for (int i = 1; i < playerCount; i++) {
-            lineStates.add(setNextState(lineStates.get(i-1)));
+            lineStates.add(setNextState(lineStates.get(i - 1)));
         }
         return lineStates;
     }
@@ -41,8 +41,8 @@ public class LadderLine {
         return this.lineStates.get(i);
     }
 
-    public static boolean setNextState(boolean state){
-        if(state) {
+    public static boolean setNextState(boolean state) {
+        if (state) {
             return false;
         }
         return Util.getRandomState();
@@ -50,9 +50,18 @@ public class LadderLine {
 
     @Override
     public String toString() {
-        return "LadderLine{" +
-                "lineStates=" + lineStates +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        for (Boolean lineState : lineStates) {
+            sb.append(getStateShape(lineState));
+        }
+        return sb.toString();
+    }
+
+    private String getStateShape(boolean lineState) {
+        if (lineState) {
+            return Const.LINE_STATE_TRUE;
+        }
+        return Const.LINE_STATE_FALSE;
     }
 
     @Override
