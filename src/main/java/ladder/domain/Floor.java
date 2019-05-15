@@ -1,8 +1,8 @@
 package ladder.domain;
 
 public class Floor {
-    public static final String NAT_NUM_EXCEPTION_MESSAGE = "층 수 0이하 입력 오류";
-    public static final String VALID_TYPE_EXCEPTION_MESSAGE = "층 수 입력 형식 오류";
+    private static final String NAT_NUM_EXCEPTION_MESSAGE = "층 수 0이하 입력 오류";
+    private static final String VALID_TYPE_EXCEPTION_MESSAGE = "층 수 입력 형식 오류";
 
     private int number;
 
@@ -23,7 +23,7 @@ public class Floor {
         try {
             number = Integer.parseInt(input);
         } catch (Exception e) {
-            throw new IllegalArgumentException("층 수 입력 형식 오류");
+            throw new IllegalArgumentException(VALID_TYPE_EXCEPTION_MESSAGE);
         }
         return number;
     }

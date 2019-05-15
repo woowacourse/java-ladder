@@ -2,10 +2,6 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlayersTest {
@@ -43,10 +39,4 @@ public class PlayersTest {
            new Players("aaa,aaa,bbb,ccc");
         });
     }
-
-    //    @Test
-//    void 플레이어_생성_검사() {
-//        List<PlayerName> playerNames = Arrays.asList(new PlayerName("aaa"),new PlayerName("bbb"),new PlayerName("ccc"));
-//        assertThat(new Players("aaa,bbb,ccc").getPlayerNames()).isEqualTo(playerNames);
-//    }
 }

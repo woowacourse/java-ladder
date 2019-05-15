@@ -11,10 +11,6 @@ public class LadderGame {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(players.toString());
-        sb.append("\n");
-        sb.append(ladder.toString());
-        return sb.toString();
+        return players.toString() + "\n" + ladder.toString();
     }
 }

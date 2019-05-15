@@ -5,46 +5,56 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
+    private static final String HEADER_HORIZON_LINE = "   ";
+    private static final String VERTICAL_LINE = "|";
+    private static final String NEW_LINE = "\n";
+    private static final String NO_HORIZON_LINE = "     ";
+    private static final String HORIZON_LINE = "-----";
+
     private List<Boolean> horizon;
 
     public Line(int playerNumber) {
-        this.horizon = makeRandomBooleans(playerNumber);
+        horizon = new ArrayList<>();
+        makeRandomBooleans(playerNumber);
     }
 
     public List<Boolean> getHorizon() {
         return this.horizon;
     }
 
-    private List<Boolean> makeRandomBooleans(int playerNumber){
-        List<Boolean> booleans = new ArrayList<>();
-        Random random = new Random();
-        booleans.add(random.nextBoolean());
-        for (int i = 1; i < playerNumber - 1; i++) {
-            if (booleans.get(i - 1)) {
-                booleans.add(false);
-                continue;
-            }
-            booleans.add(random.nextBoolean());
+    private void makeRandomBooleans(int playerNumber){
+        for (int i = 0; i < playerNumber - 1; i++) {
+            horizon.add(makeProperBoolean(i));
         }
-        return booleans;
+    }
+
+    private Boolean makeProperBoolean(int currentIndex) {
+        Random random = new Random();
+        if (currentIndex == 0) {
+            return random.nextBoolean();
+        }
+        if (!this.horizon.get(currentIndex - 1)) {
+            return random.nextBoolean();
+        }
+        return false;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("   ");
+        sb.append(HEADER_HORIZON_LINE);
         for (Boolean bool : this.horizon) {
-            sb.append("|");
+            sb.append(VERTICAL_LINE);
             sb.append(toStringEachHorLine(bool));
         }
-        sb.append("|\n");
+        sb.append(VERTICAL_LINE+NEW_LINE);
         return sb.toString();
     }
 
     private String toStringEachHorLine(Boolean bool) {
-        String result = "     ";
+        String result = NO_HORIZON_LINE;
         if (bool) {
-            result = "-----";
+            result = HORIZON_LINE;
         }
         return result;
     }

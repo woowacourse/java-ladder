@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Players {
-    private static String PLAYERNAMES_INPUT_REGEX = "^([^,]+)(,[^,]+)*$";
+    private static final String DELIMITER = ",";
+    private static final String DUPLICATE_NAME_ERROR = "중복 이름 오류";
+    private static final String VALID_INPUT_ERROR = "플레이어 이름들 입력 형식 오류";
+    private static final String PLAYERNAMES_INPUT_REGEX = "^([^,]+)(,[^,]+)*$";
 
     private List<PlayerName> playerNames;
 
     public Players(String input) {
-        checkValidInput(input);
-        String[] splittedInput = input.split(",");
         playerNames = new ArrayList<>();
-        for(String name : splittedInput){
-            checkDuplicateName(name);
-            playerNames.add(new PlayerName(name.trim()));
-        }
+        checkValidInput(input);
+        addPlayerNames(input);
     }
+
     public List<PlayerName> getPlayerNames() {
         return playerNames;
     }
@@ -25,15 +25,22 @@ public class Players {
         return playerNames.size();
     }
 
+    private void addPlayerNames(String input) {
+        for(String name : input.split(DELIMITER)){
+            checkDuplicateName(name);
+            playerNames.add(new PlayerName(name.trim()));
+        }
+    }
+
     private void checkDuplicateName(String name) {
         if (playerNames.contains(new PlayerName(name))) {
-            throw new IllegalArgumentException("중복 이름 오류");
+            throw new IllegalArgumentException(DUPLICATE_NAME_ERROR);
         }
     }
 
     private void checkValidInput(String input) {
         if(!input.matches(PLAYERNAMES_INPUT_REGEX)){
-            throw new IllegalArgumentException("플레이어 이름들 입력 형식 오류");
+            throw new IllegalArgumentException(VALID_INPUT_ERROR);
         }
     }
 
