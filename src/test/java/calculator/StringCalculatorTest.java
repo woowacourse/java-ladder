@@ -42,4 +42,9 @@ class StringCalculatorTest {
         assertThat(stringCalculator.input("1:1:1")).isEqualTo(3);
         assertThat(stringCalculator.input("1:1,1")).isEqualTo(3);
     }
+
+    @Test
+    void 커스텀_구분자_지정() {
+        assertThat(stringCalculator.input("//;\n1;1")).isEqualTo(2);
+    }
 }
