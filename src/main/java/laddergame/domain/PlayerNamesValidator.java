@@ -24,7 +24,7 @@ public class PlayerNamesValidator {
             wrongNameLength = checkCurrentNameLength(names.get(i));
         }
         if (wrongNameLength) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("선수의 이름은 1이상 5이하로 해주세요!");
         }
     }
 

@@ -3,8 +3,8 @@ package laddergame.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerGenerator {
-    public static List<Player> createPlayer(String input) {
+public class PlayersGenerator {
+    public static List<Player> createPlayers(String input) {
         List<String> names = PlayerNames.makeNames(input);
         List<Player> players = new ArrayList<>();
 
