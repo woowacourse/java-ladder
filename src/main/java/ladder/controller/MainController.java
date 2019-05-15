@@ -4,7 +4,7 @@ import ladder.view.InputView;
 
 public class MainController {
     public static void main(String[] args) {
-        String[] names= InputView.inputNames();
-
+        String[] names = InputView.inputNames();
+        int height = InputView.inputLadderHeight();
     }
 }

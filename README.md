@@ -25,7 +25,7 @@
 
 ## Done
 * 이름을 입력받고, 쉼표(,)를 기준으로 구분
-* Player(name,position) 객체 생성
+* Player(n:ame,position) 객체 생성
     - 올바른 이름인지 검증
         + 5글자 이하면 생성
         + 5글자 초과면 예외발생
