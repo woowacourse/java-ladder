@@ -28,7 +28,28 @@ public class Line {
         }
         return booleans;
     }
-//
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("     ");
+        for (Boolean bool : this.horizon) {
+            sb.append("|");
+            sb.append(toStringEachHorLine(bool));
+        }
+        sb.append("|\n");
+        return sb.toString();
+    }
+
+    private String toStringEachHorLine(Boolean bool) {
+        String result = "     ";
+        if (bool) {
+            result = "-----";
+        }
+        return result;
+    }
+
+    //
 //    public void settingHorizonLine() {
 //        for (int i = 0; i < horizon.size(); i++) {
 //            settingHorizonOneLine(getaBoolean());
