@@ -42,7 +42,6 @@ public class Line {
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("|");
 		for (Point point : line) {
 			stringBuilder.append(point);
 			stringBuilder.append("|");
