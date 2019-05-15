@@ -5,6 +5,7 @@ import ladder.Const;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 public class LadderLine {
     private final int playerCount;
@@ -26,13 +27,24 @@ public class LadderLine {
     private List<Boolean> setLineStates() {
         List<Boolean> lineStates = new ArrayList<>();
         for (int i = 0; i < playerCount; i++) {
-            lineStates.add(true);
+            lineStates.add(false);
         }
         return lineStates;
     }
 
     public boolean isMatchLine(List<Boolean> line) {
         return this.lineStates.equals(line);
+    }
+
+    public boolean isMatchLineState(int i) {
+        return this.lineStates.get(i);
+    }
+
+    public static boolean setNextState(boolean state){
+        if(state) {
+            return false;
+        }
+        return new Random().nextBoolean();
     }
 
     @Override
