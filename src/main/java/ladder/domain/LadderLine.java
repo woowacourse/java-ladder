@@ -1,11 +1,11 @@
 package ladder.domain;
 
 import ladder.Const;
+import ladder.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 public class LadderLine {
     private final int playerCount;
@@ -26,8 +26,9 @@ public class LadderLine {
 
     private List<Boolean> setLineStates() {
         List<Boolean> lineStates = new ArrayList<>();
-        for (int i = 0; i < playerCount; i++) {
-            lineStates.add(false);
+        lineStates.add(false);
+        for (int i = 1; i < playerCount; i++) {
+            lineStates.add(setNextState(lineStates.get(i-1)));
         }
         return lineStates;
     }
@@ -44,7 +45,14 @@ public class LadderLine {
         if(state) {
             return false;
         }
-        return new Random().nextBoolean();
+        return Util.getRandomState();
+    }
+
+    @Override
+    public String toString() {
+        return "LadderLine{" +
+                "lineStates=" + lineStates +
+                '}';
     }
 
     @Override

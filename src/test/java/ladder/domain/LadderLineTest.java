@@ -54,4 +54,9 @@ public class LadderLineTest {
             System.out.println(LadderLine.setNextState(false));
         }
     }
+
+    @Test
+    void 라인_결과_출력() {
+        System.out.println(new LadderLine(5));
+    }
 }
