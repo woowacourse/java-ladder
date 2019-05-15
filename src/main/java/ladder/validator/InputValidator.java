@@ -4,9 +4,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 public class InputValidator {
-
     static String isEmpty(String names) {
-        if (names == null || names.contains("")) {
+        if (names == null || names.length() == 0) {
             throw new IllegalArgumentException("양식에 맞는 이름을 입력해주세요.");
         }
         return names;
