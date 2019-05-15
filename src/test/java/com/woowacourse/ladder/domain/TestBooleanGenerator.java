@@ -1,5 +1,7 @@
 package com.woowacourse.ladder.domain;
 
+import com.woowacourse.ladder.interfaces.BooleanGenerator;
+
 import java.util.List;
 
 public class TestBooleanGenerator implements BooleanGenerator {

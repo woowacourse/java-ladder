@@ -35,12 +35,12 @@ public class InputValidatorTest {
 
     @Test
     void 실행결과_길이_초과() {
-        assertThat(InputValidator.isValidExpectedResults(Arrays.asList("꽝", "500000"))).isFalse();
+        assertThat(InputValidator.isValidDestinationsInput(Arrays.asList("꽝", "500000"))).isFalse();
     }
 
     @Test
     void 실행결과_입력이_빈_문자열을_포함() {
-        assertThat(InputValidator.isValidExpectedResults(Arrays.asList("pobi", "", "jk"))).isFalse();
+        assertThat(InputValidator.isValidDestinationsInput(Arrays.asList("pobi", "", "jk"))).isFalse();
     }
 
     @Test

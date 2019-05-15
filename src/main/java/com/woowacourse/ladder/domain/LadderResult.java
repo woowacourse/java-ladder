@@ -2,22 +2,24 @@ package com.woowacourse.ladder.domain;
 
 import java.util.List;
 
-public class LadderResult<T> {
-    private final List<T> participants;
+public class LadderResult<P, D> {
+    private final List<P> participants;
+    private final DestinationGroup<D> destinationGroup;
 
-    public LadderResult(List<T> participants) {
+    public LadderResult(List<P> participants, List<D> destinations) {
         this.participants = participants;
+        this.destinationGroup = new DestinationGroup<>(destinations);
     }
 
-    public T get(int index) {
-        return participants.get(index);
+    public D matchResult(P participant) {
+        int idx = indexOf(participant);
+        if (idx == -1) {
+            throw new IllegalArgumentException(String.format("Participant not found: '%s'", participant));
+        }
+        return destinationGroup.get(idx);
     }
 
-    public int indexOf(T participant) {
+    private int indexOf(P participant) {
         return participants.indexOf(participant);
-    }
-
-    public String matchResult(List<String> result, T participant) {
-        return result.get(indexOf(participant));
     }
 }

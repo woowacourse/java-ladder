@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class ConsoleOutputView implements OutputView {
     @Override
-    public void printLadder(Ladder<String> ladder) {
+    public void printLadder(Ladder<String, String> ladder) {
         System.out.print("");
         ladder.forEachParticipants(p -> {
             System.out.printf("%-6s ", p);
@@ -28,6 +28,10 @@ public class ConsoleOutputView implements OutputView {
             System.out.print(rowString);
             System.out.println("|");
         });
+        ladder.forEachDestinations(p -> {
+            System.out.printf("%-6s ", p);
+        });
+        System.out.println();
     }
 
     @Override
@@ -37,10 +41,10 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printMultipleResult(LadderResult<String> result, List<String> expectedResults, List<String> namesToPrint) {
+    public void printMultipleResult(LadderResult<String, String> result, List<String> namesToPrint) {
         System.out.println("실행 결과");
         for (String name : namesToPrint) {
-            System.out.println(String.format("%s : %s", name, result.matchResult(expectedResults, name)));
+            System.out.println(String.format("%s : %s", name, result.matchResult(name)));
         }
     }
 }

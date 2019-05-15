@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface InputView {
     List<String> promptNames();
-    List<String> promptExpectedResult();
-    List<String> promptNameToQuery();
+    List<String> promptDestinations();
+    List<String> promptNamesToQuery();
     int promptLadderHeight();
 }

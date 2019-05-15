@@ -4,6 +4,7 @@ import java.util.List;
 
 public class InputValidator {
     private static final int MAX_NAME_LENGTH = 5;
+    private static final String BANNED_NAME = "all";
     public static boolean isValidNamesInput(List<String> asList) {
         return asList.stream().map(String::trim)
             .filter(InputValidator::checkIfEmptyString)
@@ -13,7 +14,7 @@ public class InputValidator {
     }
 
     private static boolean checkIfPreservedName(String s) {
-        return !s.toLowerCase().equals("all");
+        return !s.toLowerCase().equals(BANNED_NAME);
     }
 
     private static boolean checkIfEmptyString(final String name) {
@@ -24,7 +25,7 @@ public class InputValidator {
         return name.length() <= MAX_NAME_LENGTH;
     }
 
-    public static boolean isValidExpectedResults(List<String> expectedResults) {
+    public static boolean isValidDestinationsInput(List<String> expectedResults) {
         return expectedResults.stream()
             .map(String::trim)
             .filter(InputValidator::checkLength)

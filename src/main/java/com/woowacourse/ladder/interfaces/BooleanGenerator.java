@@ -1,4 +1,4 @@
-package com.woowacourse.ladder.domain;
+package com.woowacourse.ladder.interfaces;
 
 
 public interface BooleanGenerator {

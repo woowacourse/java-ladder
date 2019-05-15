@@ -1,5 +1,7 @@
 package com.woowacourse.ladder.domain;
 
+import com.woowacourse.ladder.interfaces.BooleanGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
