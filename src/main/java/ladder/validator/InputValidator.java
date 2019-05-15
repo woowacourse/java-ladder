@@ -31,6 +31,12 @@ public class InputValidator {
             throw new IllegalArgumentException("중복된 이름은 허용하지 않습니다.");
         }
     }
+
+    static void checkLastIndex(String names) {
+        if (names.lastIndexOf(",") == names.length() - 1) {
+            throw new IllegalArgumentException("양식에 맞는 이름을 입력해주세요.");
+        }
+    }
 }
 
 

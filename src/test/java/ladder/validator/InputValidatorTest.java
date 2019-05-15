@@ -40,4 +40,10 @@ class InputValidatorTest {
         });
     }
 
+    @Test
+    void 콤마로끝() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputValidator.checkLastIndex("pobi,brown,");
+        });
+    }
 }
