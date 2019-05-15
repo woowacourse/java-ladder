@@ -29,6 +29,8 @@
    * 사다리를 출력하는 기능을 만들어야 합니다.
    * 이동 방향을 알려주는 corsspoints를 구현해야 합니다.
 
+## Done
+   * crossbar 리스트를 입력받아 crossbars 일급 객체를 생성합니다.
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
 
