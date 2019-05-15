@@ -14,7 +14,14 @@ public final class SubLineRandomGenerator implements SubLineGenerator {
     public List<Boolean> generate() {
         List<Boolean> subLines = new ArrayList<>();
         for (int i = 0; i < countOfPlayers - 1; i++) {
-            subLines.add(Math.random() < 0.4);
+            if (Math.random() < 0.5) {
+                subLines.add(true);
+                i++;
+                if(i==countOfPlayers-1){
+                    break;
+                }
+            }
+            subLines.add(false);
         }
         return subLines;
     }
