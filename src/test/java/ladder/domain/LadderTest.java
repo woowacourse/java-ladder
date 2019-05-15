@@ -10,6 +10,6 @@ public class LadderTest {
     void 높이에_따른_라인_개수() {
         String[] names = {"denis", "pobi", "whale", "G-ONL"};
         Ladder ladder = new Ladder(names, 5);
-        assertThat(ladder.getHeight()).isEqualTo(5);
+        assertThat(ladder.getLines().size()).isEqualTo(5);
     }
 }

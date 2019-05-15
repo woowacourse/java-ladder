@@ -15,7 +15,11 @@ public class Ladder {
         }
     }
 
-    public int getHeight(){
-        return lines.size();
+    public String[] getNames() {
+        return names;
+    }
+
+    public List<Line> getLines() {
+        return lines;
     }
 }

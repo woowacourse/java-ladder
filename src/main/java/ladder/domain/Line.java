@@ -33,5 +33,7 @@ public class Line {
         return (int) (Math.random() * RANDOM_FACTOR) == TRUE;
     }
 
-
+    public boolean[] getPoints() {
+        return points;
+    }
 }
