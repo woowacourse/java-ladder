@@ -1,4 +1,4 @@
-package ladder;
+package ladder.model;
 
 public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;
