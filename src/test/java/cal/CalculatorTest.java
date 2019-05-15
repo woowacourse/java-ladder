@@ -15,22 +15,30 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(1);
     }
     @Test
-    void 구분자_한종류(){
+    void 쉼표_구분자(){
         int result = Calculator.calculate("1,2");
         assertThat(result).isEqualTo(3);
     }
 
     @Test
-    void 구분자_두종류(){
-        int result = Calculator.calculate("1,2;3");
-        assertThat(result).isEqualTo(6);
+    void 콜론_구분자(){
+        int result = Calculator.calculate("1:2");
+        assertThat(result).isEqualTo(3);
     }
 
     @Test
-    void 커스텀구분자사용(){
-        int result = Calculator.calculate("//;.₩n1,2;3");
+    void 쉼표_콜론_구분자(){
+        int result = Calculator.calculate("1:2,3");
         assertThat(result).isEqualTo(6);
     }
+
+
+    @Test
+    void 커스텀_구분자(){
+        int result = Calculator.calculate("///.\n1.2:3");
+        assertThat(result).isEqualTo(6);
+    }
+
 
 
 //    @Test

@@ -3,31 +3,33 @@ package cal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Calculator {
-//    public static int calculate(String expression){
-//        List<String> separators =  new ArrayList<>(Arrays.asList(",",";"));
-//        System.out.println(String.join("|",separators));
-//        List<String> splitedExpression= Arrays.asList(expression.split(String.join("|",separators)));
-//        return add(splitedExpression);
-//    }
 
-    private static int add(List<String> splitedExpression) {
+    static final String defaultSeparators = ",;";
+
+    static List<String> customSeparators = Arrays.asList(defaultSeparators);
+
+    private static int add(String[] splitedExpression) {
         int result = 0;
         for (String s : splitedExpression) {
-            result+= Integer.parseInt(s);
+            result += Integer.parseInt(s);
         }
         return result;
     }
 
-    public static int calculate(String expression){
-        expression = expression.substring(2);
-        String [] splitedInput = expression.split("₩n");
-        List <String> separators =new ArrayList<>(Arrays.asList(splitedInput[0].split("")));
-        separators.add(":");
-        separators.add(",");
-        String a = String.join("", separators);
-        List<String> splitedExpression=Arrays.asList(splitedInput[1].split("["+a+"]"));
-        return add(splitedExpression);
+    public static int calculate(String expression) {
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(expression);
+        String customDelimiter = "";
+        if (m.find()) {
+            customDelimiter = m.group(1);
+            expression = m.group(2);
+        }
+        String[] tokens = expression.split("[" + customDelimiter + ",:" + "]");
+        return add(tokens);
     }
 }
