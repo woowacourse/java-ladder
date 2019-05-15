@@ -12,9 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LadderTest {
     @Test
     void 사다리결과테스트() {
-        List<Line> lines = Arrays.asList(new Line(Arrays.asList(true,false)),
-                                        new Line(Arrays.asList(false, true)),
-                                        new Line(Arrays.asList(true, false)));
+        List<Line> lines = Arrays.asList(new Line(Arrays.asList(true, false)),
+                new Line(Arrays.asList(false, true)),
+                new Line(Arrays.asList(true, false)));
         Map<String, Integer> positions = new HashMap<>();
         positions.put("pobi", 0);
         positions.put("crong", 1);

@@ -28,3 +28,6 @@
     - 0, {false, true} -> STRAIGHT
 - ~~사다리 타기를 진행해서 결과를 얻는다.~~
     - lines, {"pobi" : 0, "crong" : 1, "honux": 2} -> {"pobi" : 2, "crong" :1, "honux" : 0}
+- ~~사다리 게임 결과를 생성한다.~~
+    - {"pobi" : 2, "crong" :1, "honux" : 0}, {"꽝", "2000", "3000"} -> {"honux" : "꽝", "crong" : "2000", "pobi" : "3000"}
+- 

@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -37,8 +36,6 @@ public class LineTest {
     void 마지막값이동테스트() {
         assertThat(new Line(Arrays.asList(true, false)).getDirection(2)).isEqualTo(Direction.STRAIGHT);
     }
-
-
 
 
 }
