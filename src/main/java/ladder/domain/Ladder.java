@@ -9,9 +9,32 @@ import java.util.Objects;
 
 public class Ladder {
     private List<Player> players;
+    private final int depth;
+    private List<LadderLine> ladderlines;
 
     public Ladder(String name) {
+        this(name, Const.MIN_LINE_COUNT);
+    }
+
+    public Ladder(String name, int depth) {
         this.players = regePlayers(name.replaceAll(" ", ""));
+        this.depth = checkDepth(depth);
+        this.ladderlines = setLadderLines();
+    }
+
+    private List<LadderLine> setLadderLines() {
+        List<LadderLine> ladderLines = new ArrayList<>();
+        for (int i = 0; i < depth; i++) {
+            ladderLines.add(new LadderLine(players.size()));
+        }
+        return ladderLines;
+    }
+
+    private int checkDepth(int depth) {
+        if (depth < Const.MIN_LINE_COUNT) {
+            throw new IllegalArgumentException(Const.EX_LINE_COUNT);
+        }
+        return depth;
     }
 
     private List<Player> regePlayers(String name) {
@@ -31,16 +54,26 @@ public class Ladder {
         return names;
     }
 
+    public String printLadderLines() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (LadderLine line : ladderlines) {
+            stringBuilder.append(line);
+        }
+        return stringBuilder.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Ladder that = (Ladder) o;
-        return Objects.equals(players, that.players);
+        Ladder ladder = (Ladder) o;
+        return depth == ladder.depth &&
+                Objects.equals(players, ladder.players) &&
+                Objects.equals(ladderlines, ladder.ladderlines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(players);
+        return Objects.hash(players, depth, ladderlines);
     }
 }

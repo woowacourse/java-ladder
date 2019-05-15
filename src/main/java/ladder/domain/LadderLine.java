@@ -57,11 +57,12 @@ public class LadderLine {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         for (Boolean lineState : lineStates) {
-            sb.append(getStateShape(lineState));
+            stringBuilder.append(getStateShape(lineState));
         }
-        return sb.toString();
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
     }
 
     @Override

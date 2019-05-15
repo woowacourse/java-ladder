@@ -11,4 +11,6 @@ public class Const {
     public static final String LINE_STATE_FALSE = "     |";
     public static final String LINE_STATE_TRUE = "-----|";
 
+    public static final int MIN_LINE_COUNT = 1;
+    public static final String EX_LINE_COUNT = "사다리 높이는 1 이상이어야 합니다.";
 }
