@@ -23,6 +23,10 @@ public class Player {
         return position;
     }
 
+    public boolean matchName(String name) {
+        return this.name == name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
