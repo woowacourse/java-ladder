@@ -27,7 +27,16 @@ public class StringCalculator {
 
     private int sum(String[] result) {
         return Arrays.stream(result)
-                .mapToInt(Integer::parseInt)
+                .mapToInt(this::parsePositive)
                 .sum();
+    }
+
+    private int parsePositive(String number) {
+        int num = Integer.parseInt(number);
+
+        if (num < 0) {
+            throw new RuntimeException();
+        }
+        return num;
     }
 }

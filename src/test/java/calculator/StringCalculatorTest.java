@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class StringCalculatorTest {
     private StringCalculator stringCalculator;
@@ -46,5 +47,12 @@ class StringCalculatorTest {
     @Test
     void 커스텀_구분자_지정() {
         assertThat(stringCalculator.input("//;\n1;1")).isEqualTo(2);
+    }
+
+    @Test
+    void 음수가_입력되면_RuntimeException() {
+        assertThrows(RuntimeException.class, () -> {
+            stringCalculator.input("-1");
+        });
     }
 }
