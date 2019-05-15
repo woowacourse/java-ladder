@@ -14,8 +14,19 @@
    * 숫자를 구분해주는 기능
    * 숫자 이외의 값/음수를 입력하였을 때 RuntimeException을 throw하는 기능 
    * Converter에 입력된 문자열 리스트에 빈 문자열이 포함될 경우 제거하는 기능
-# java-ladder
-사다리타기 미션 저장소
+
+
+# 사다리 게임
+## To-do
+   * 참여할 사람 이름을 입력받아야 합니다.
+     - 사다리 길이는 최대 5글자까지 부여할 수 있습니다.
+     - 쉼표로 사람 이름을 구분할 수 있어야 합니다.
+   * 사다리 높이를 입력받아 사다리를 만들어야 합니다.
+     - 높이는 1 이상의 자연수입니다.
+   * 입력받은 사람의 수에 따라서 crossbars를 만들어야 합니다.
+     - crossbars에는 연속된 crossbar가 있어서는 안 됩니다.
+   * crossbar는 '-' 5개로 구성되어 있습니다.
+   * 사다리를 출력하는 기능을 만들어야 합니다.
 
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
