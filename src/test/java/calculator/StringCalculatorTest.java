@@ -27,4 +27,9 @@ class StringCalculatorTest {
     void 숫자_하나를_문자열로_입력할_경우_해당_숫자를_반환() {
         assertThat(stringCalculator.input("1")).isEqualTo(1);
     }
+
+    @Test
+    void 숫자_두개를_컴마_구분자로_입력할_경우_두_숫자의_합을_반환() {
+        assertThat(stringCalculator.input("1,1")).isEqualTo(2);
+    }
 }
