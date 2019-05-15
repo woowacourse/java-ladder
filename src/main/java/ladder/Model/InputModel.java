@@ -3,38 +3,57 @@ package ladder.Model;
 import java.util.*;
 
 public class InputModel {
-    String name;
-    int ladderHeight;
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_HEIGHT = 1;
+    private static String ERROR_MESSAGE = "입력이 올바르지 않습니다.";
 
-    List<String> getValidNames(String names) {
-        if(isBlank(names)) return null;
+    List<String> getValidNames(String names) throws Exception{
+        checkBlank(names);
 
-        List<String> validNames = Arrays.asList(names.split(","));
-        if(validNames.size() ==0) return null;
+        List<String> validNames = Arrays.asList(names.trim().split(","));
+        checkEmpty(validNames);
 
-        Set<String> overlapNames = new HashSet<>(validNames);
-        if(overlapNames.size() != validNames.size()) return null;
+        checkOverlap(validNames);
 
         for (String name : validNames) {
-            if (isInValidNameLength(name)) return null;
+            isInValidNameLength(name);
         }
 
         return validNames;
     }
 
-    private boolean isInValidNameLength(String name) {
-        if(name.length() > 5){
-            return true;
+    private void checkBlank(String names) {
+        if (names == null || names.equals("")) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
         }
-        return false;
     }
 
-    private boolean isBlank(String names) {
-        if(names == null || names == ""){
-            return true;
+    private void checkEmpty(List<String> validNames) {
+        if (validNames.isEmpty()) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
         }
-        return false;
     }
 
+    private void checkOverlap(List<String> validNames) {
+        Set<String> overlapNames = new HashSet<>(validNames);
+        if (overlapNames.size() != validNames.size()) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
+        }
+    }
+
+
+    private void isInValidNameLength(String name) {
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
+        }
+    }
+
+    public int getValidLadderHeight(int number) throws Exception {
+        if (number < MIN_HEIGHT) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
+        }
+
+        return number;
+    }
 
 }

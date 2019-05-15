@@ -2,12 +2,7 @@ package ladder.Model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InputModelTest {
     InputModel inputModel;
@@ -19,25 +14,38 @@ class InputModelTest {
 
     @Test
     void null_또는_빈문자인_경우() {
-        assertThat(inputModel.getValidNames(null)).isEqualTo(null);
-        assertThat(inputModel.getValidNames("")).isEqualTo(null);
+        assertThrows(IllegalArgumentException.class, () -> {
+            inputModel.getValidNames(null);
+            inputModel.getValidNames("");
+        });
     }
 
     @Test
     void 여섯자_이상인_경우() {
-        assertThat(inputModel.getValidNames("abcdef")).isEqualTo(null);
+        assertThrows(IllegalArgumentException.class, () -> {
+            inputModel.getValidNames("abcdefg");
+        });
     }
 
     @Test
     void 이름_중복() {
-        assertThat(inputModel.getValidNames("ab,ab")).isEqualTo(null);
+        assertThrows(IllegalArgumentException.class, () -> {
+            inputModel.getValidNames("ab,ab");
+        });
     }
 
     @Test
-    void 쉼표가_연달아() {
-        assertThat(inputModel.getValidNames(",,")).isEqualTo(null);
+    void 입력이_쉼표만() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            inputModel.getValidNames(",,");
+        });
     }
 
-
+    @Test
+    void 높이가_0_이하인_경우() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            inputModel.getValidLadderHeight(-2);
+        });
+    }
 
 }
