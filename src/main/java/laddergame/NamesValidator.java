@@ -1,8 +1,7 @@
 package laddergame;
 
+import laddergame.domain.Constant;
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.Arrays;
 
 public class NamesValidator {
 

@@ -1,4 +1,4 @@
-package laddergame;
+package laddergame.domain;
 
 public class Constant {
     public static final String COMMA = ",";
