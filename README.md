@@ -27,6 +27,7 @@
      - crossbars에는 연속된 crossbar가 있어서는 안 됩니다.
    * crossbar는 '-' 5개로 구성되어 있습니다.
    * 사다리를 출력하는 기능을 만들어야 합니다.
+   * 이동 방향을 알려주는 corsspoints를 구현해야 합니다.
 
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
