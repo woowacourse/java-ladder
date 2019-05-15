@@ -4,6 +4,7 @@ import ladder.domain.Ladder;
 import ladder.domain.Player;
 import ladder.domain.Result;
 import ladder.view.InputView;
+import ladder.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,9 +45,16 @@ public class LadderGame {
         Result result = new Result(players, rewards);
         String name;
         while (!(name = InputView.getName(players)).equals("all")) {
-            printResult(name, result);
+            OutputView.printResult(name, result);
         }
-        printResultAll(result);
+        OutputView.printResultAll(result);
+    }
+
+    private void printGame() {
+        OutputView.printLadderMessage();
+        OutputView.printNames(players);
+        OutputView.printLadder(ladder);
+        OutputView.printRewards(rewards);
     }
 
 

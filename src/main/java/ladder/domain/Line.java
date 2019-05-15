@@ -28,4 +28,8 @@ public class Line {
         }
         return Direction.STRAIGHT;
     }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
 }

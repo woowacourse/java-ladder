@@ -1,12 +1,10 @@
 package ladder.view;
 
 import ladder.domain.Player;
-import org.graalvm.util.CollectionsUtil;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -39,12 +37,12 @@ public class InputView {
 
 
     public static List<String> getRewards(List<Player> players) {
-        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         final String rewards = scanner.nextLine();
         try {
             validateNoConsecutiveCommas(rewards);
             List<String> splittedRewards = Arrays.asList(rewards.split(","));
-            validateRewardsCount(splittedRewards, players)
+            validateRewardsCount(splittedRewards, players);
             return splittedRewards;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -60,7 +58,7 @@ public class InputView {
 
     public static int getHeight() {
         try {
-            System.out.println("최대 사다리 높이는 몇 개인가요?");
+            System.out.println("\n최대 사다리 높이는 몇 개인가요?");
             int height = Integer.parseInt(scanner.nextLine());
             validateNaturalNumber(height);
             return height;
@@ -86,7 +84,15 @@ public class InputView {
             return name;
         }
 
-        boolean isMatch = players.stream().filter(player -> player.matchName(name)).findAny().orElse(null) != null;
+        //boolean isMatch = players.stream().filter(player -> player.matchName(name)).findAny().orElse(null) != null;
+
+        boolean isMatch = false;
+        for (Player player : players) {
+            if (name.equals(player.getName())) {
+                isMatch = true;
+            }
+
+        }
 
         if (!isMatch) {
             System.out.println("참가자의 이름을 입력해야 합니다.");
