@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class StringCalculator {
-    public int input(String formula) {
+public class StringSumCalculator {
+    public int calculateFormula(String formula) {
         if (isBlank(formula)) {
             return 0;
         }
