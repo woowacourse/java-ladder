@@ -16,7 +16,7 @@ public class LadderGame {
 
     public LadderGame() {
         players = inputNames();
-        rewards = InputView.getRewards(players);
+        rewards = inputRewards();
         int height = InputView.getHeight();
         ladder = new Ladder(players.size(), height);
     }
@@ -29,6 +29,28 @@ public class LadderGame {
             System.out.println(e.getMessage());
             return inputNames();
         }
+    }
+
+    private List<String> inputRewards() {
+        List<String> rewards = InputView.getRewards(players);
+
+        boolean isOverLengthLimit = false;
+        for (String reward : rewards) {
+            isOverLengthLimit = isOverLengthLimit(isOverLengthLimit, reward);
+        }
+
+        if (isOverLengthLimit) {
+            OutputView.printRewardErrorMsg();
+            return inputRewards();
+        }
+        return rewards;
+    }
+
+    private boolean isOverLengthLimit(boolean isOverLengthLimit, String reward) {
+        if (reward.length() > Player.MAX_NAME_LENGTH) {
+            isOverLengthLimit = true;
+        }
+        return isOverLengthLimit;
     }
 
     private List<Player> getPlayers(List<String> names) {
