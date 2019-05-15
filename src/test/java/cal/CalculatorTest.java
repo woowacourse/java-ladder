@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
     @Test
@@ -35,13 +36,51 @@ public class CalculatorTest {
 
     @Test
     void 커스텀_구분자(){
-        int result = Calculator.calculate("///.\n1.2:3");
+        int result = Calculator.calculate("///.?\n1.2?3");
         assertThat(result).isEqualTo(6);
     }
 
     @Test
     void null입력() {
         assertThat(new Calculator().calculate(null)).isEqualTo(0);
+    }
+
+    @Test
+    void 빈문자열입력1() {
+        assertThat(new Calculator().calculate("")).isEqualTo(0);
+    }
+
+    @Test
+    void 빈문자열입력2() {
+        assertThat(new Calculator().calculate("//!?\n")).isEqualTo(0);
+    }
+
+    @Test
+    void 음수입력1() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Calculator().calculate("-2");
+        });
+    }
+
+    @Test
+    void 음수입력2() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Calculator().calculate("-1,2,3");
+        });
+    }
+
+    @Test
+    void 음수입력3() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Calculator().calculate("//!\n-1!2,3");
+        });
+    }
+
+    @Test
+    void 금지된커스텀구분자() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Calculator().calculate("//-\n1,2:3");
+        });
     }
 
 
