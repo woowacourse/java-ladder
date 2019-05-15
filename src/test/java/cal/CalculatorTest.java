@@ -39,6 +39,10 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(6);
     }
 
+    @Test
+    void null입력() {
+        assertThat(new Calculator().calculate(null)).isEqualTo(0);
+    }
 
 
 //    @Test

@@ -10,9 +10,8 @@ import java.util.stream.Stream;
 
 public class Calculator {
 
-    static final String defaultSeparators = ",;";
-
-    static List<String> customSeparators = Arrays.asList(defaultSeparators);
+    private static final String DEFAULT_DELIMITERS = ",:";
+    private static final String FORBIDDEN_DELIMITERS = "-";
 
     private static int add(String[] splitedExpression) {
         int result = 0;
@@ -23,13 +22,19 @@ public class Calculator {
     }
 
     public static int calculate(String expression) {
+        expression = checkNull(expression);
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(expression);
         String customDelimiter = "";
         if (m.find()) {
             customDelimiter = m.group(1);
             expression = m.group(2);
         }
-        String[] tokens = expression.split("[" + customDelimiter + ",:" + "]");
+        String[] tokens = expression.split("[" + customDelimiter + DEFAULT_DELIMITERS + "]");
         return add(tokens);
+    }
+
+    public static String checkNull(String input){
+        if(input == null) return "0";
+        return input;
     }
 }
