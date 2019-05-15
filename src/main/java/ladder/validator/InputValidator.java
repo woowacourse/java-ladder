@@ -44,6 +44,12 @@ public class InputValidator {
             throw new IllegalArgumentException("높이는 1 이상이어야 합니다.");
         }
     }
+
+    static void isSameLength(String[] names, String[] results) {
+        if (names.length != results.length) {
+            throw new IllegalArgumentException("결과의 개수는 %d개가 필요합니다.");
+       }
+    }
 }
 
 

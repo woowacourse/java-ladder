@@ -54,4 +54,12 @@ class InputValidatorTest {
         });
     }
 
+    @Test
+    void 실행결과수_이름수_불일치() {
+        String[] names = {"pobi", "brown", "buddy"};
+        String[] results = {"꽝", "5000", "5000", "꽝"};
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputValidator.isSameLength(names, results);
+        });
+    }
 }
