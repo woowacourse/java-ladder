@@ -5,15 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 public class Result {
-    private Map<String, String> result = new HashMap<>();
+    private Map<Player, String> result = new HashMap<>();
 
-    public Result(Map<String, Integer> positions, List<String> rewards) {
-        for (String name : positions.keySet()) {
-            result.put(name, rewards.get(positions.get(name)));
+    public Result(List<Player> players, List<String> rewards) {
+        for (Player player : players) {
+            result.put(player, rewards.get(player.getPosition()));
         }
     }
 
-    public Map<String, String> getResult() {
+    public Map<Player, String> getResult() {
         return result;
     }
 }

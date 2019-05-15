@@ -1,21 +1,25 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.Map;
 
 public class Ladder {
-    public static Map<String, Integer> goDown(List<Line> lines, Map<String, Integer> positions) {
+    private List<Line> lines;
+
+    public Ladder(int numPlayers, int height) {
+        
+    }
+
+    public static List<Player> goDown(List<Line> lines, List<Player> players) {
         for (Line line : lines) {
-            goDownOneLine(positions, line);
+            goDownOneLine(players, line);
         }
-
-        return positions;
+        return players;
     }
 
-    private static void goDownOneLine(Map<String, Integer> positions, Line line) {
-        for (Map.Entry<String, Integer> entry : positions.entrySet()) {
-            int position = entry.getValue();
-            entry.setValue(position + line.getDirection(position).getValue());
+    private static void goDownOneLine(List<Player> players, Line line) {
+        for (Player player : players) {
+            player.goDown(line);
         }
     }
+
 }
