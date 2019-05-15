@@ -48,6 +48,13 @@ public class LadderLine {
         return Util.getRandomState();
     }
 
+    private String getStateShape(boolean lineState) {
+        if (lineState) {
+            return Const.LINE_STATE_TRUE;
+        }
+        return Const.LINE_STATE_FALSE;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -55,13 +62,6 @@ public class LadderLine {
             sb.append(getStateShape(lineState));
         }
         return sb.toString();
-    }
-
-    private String getStateShape(boolean lineState) {
-        if (lineState) {
-            return Const.LINE_STATE_TRUE;
-        }
-        return Const.LINE_STATE_FALSE;
     }
 
     @Override

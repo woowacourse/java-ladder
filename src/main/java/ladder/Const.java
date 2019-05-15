@@ -9,6 +9,6 @@ public class Const {
     public static final String EX_PLAYER_COUNT = "참여자는 한명 이상이어야합니다.";
 
     public static final String LINE_STATE_FALSE = "     |";
-    public static final String LINE_STATE_TRUE  = "-----|";
+    public static final String LINE_STATE_TRUE = "-----|";
 
 }

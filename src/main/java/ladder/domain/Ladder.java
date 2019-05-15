@@ -11,7 +11,7 @@ public class Ladder {
     private List<Player> players;
 
     public Ladder(String name) {
-        this.players = regePlayers(name.replaceAll(" ",""));
+        this.players = regePlayers(name.replaceAll(" ", ""));
     }
 
     private List<Player> regePlayers(String name) {
