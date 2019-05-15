@@ -1,13 +1,17 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Line {
-    private int height;
-    public Line(int height){
-        this.height = height;
+    private int lineLength;
+    private List<Boolean> points = new ArrayList<>();
+    public Line(int lineLength){
+        this.lineLength = lineLength;
     }
 
-    public int getHeight() {
-        return height;
+    public int getLength() {
+        return lineLength;
     }
 
 }
