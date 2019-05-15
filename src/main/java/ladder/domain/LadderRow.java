@@ -38,12 +38,16 @@ public class LadderRow {
         tempInput.get();
         this.tempInput = tempInput;
         while (this.width > 0) {
-            if (this.width == 1) {
-                this.width -= draw(false);
-                break;
-            }
-            this.width -= draw(getRandomFlag());
+            makeLine();
         }
+    }
+
+    private void makeLine() {
+        if (this.width == 1) {
+            this.width -= draw(false);
+            return;
+        }
+        this.width -= draw(getRandomFlag());
     }
 
     private boolean getRandomFlag() {
