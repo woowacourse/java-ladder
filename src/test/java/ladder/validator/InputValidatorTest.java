@@ -41,6 +41,14 @@ class InputValidatorTest {
     }
 
     @Test
+    void 이름_all() {
+        String name = "all";
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputValidator.nameEqualAll(name);
+        });
+    }
+
+    @Test
     void 콤마로끝() {
         assertThrows(IllegalArgumentException.class, () -> {
             InputValidator.checkLastIndex("pobi,brown,");

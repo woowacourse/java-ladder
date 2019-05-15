@@ -50,6 +50,12 @@ public class InputValidator {
             throw new IllegalArgumentException("결과의 개수는 %d개가 필요합니다.");
        }
     }
+
+    static void nameEqualAll(String name) {
+        if (name.equals("all")) {
+            throw new IllegalArgumentException("이름 all은 허용하지 않습니다.");
+        }
+    }
 }
 
 
