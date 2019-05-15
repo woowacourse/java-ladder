@@ -2,6 +2,8 @@ package ladder.validator;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class InputValidatorTest {
@@ -68,6 +70,14 @@ class InputValidatorTest {
         String[] results = {"꽝", "5000", "5000", "꽝"};
         assertThrows(IllegalArgumentException.class, () -> {
             InputValidator.isSameLength(names, results);
+        });
+    }
+
+    @Test
+    void 초기이름에_미포함_결과이름_요청() {
+        String[] names = {"pobi", "brown", "buddy"};
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputValidator.isNotContainName(Arrays.asList(names), "woni");
         });
     }
 }
