@@ -1,6 +1,7 @@
 package ladder.domain;
 
-import ladder.Const;
+import ladder.util.Const;
+import ladder.util.Rule;
 import ladder.util.Util;
 
 import java.util.ArrayList;
@@ -24,20 +25,13 @@ public class Ladder {
     }
 
     private List<Player> regePlayers(String name) {
-        List<String> names = checkNames(name);
         List<Player> players = new ArrayList<>();
+        List<String> names = Arrays.asList(name.split(","));
+        Rule.ruleNamesMinSize(names);
         for (String s : names) {
             players.add(new Player(s));
         }
         return players;
-    }
-
-    private List<String> checkNames(String name) {
-        List<String> names = Arrays.asList(name.split(","));
-        if (names.size() <= Const.ZERO) {
-            throw new IllegalArgumentException(Const.EX_NAME);
-        }
-        return names;
     }
 
     private int checkDepth(int depth) {

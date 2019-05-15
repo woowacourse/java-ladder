@@ -1,0 +1,24 @@
+package ladder;
+
+import ladder.domain.Ladder;
+import ladder.util.Util;
+import ladder.view.InputView;
+import ladder.view.OutputView;
+
+public class LadderApp {
+    public static void main(String[] args) {
+        String names = inputPlayerNames(InputView.inputPlayerNames());
+        int depth = InputView.inputLadderDepth();
+        Ladder ladder = new Ladder(names, depth);
+        OutputView.outputLadder(ladder.getResultLadderNames(), ladder.getResultLadderLines());
+    }
+
+    private static String inputPlayerNames(String names) {
+        try {
+            return Util.checkName(names);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return inputPlayerNames(InputView.inputPlayerNames());
+        }
+    }
+}

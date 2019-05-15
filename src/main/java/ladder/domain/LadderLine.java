@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.Const;
+import ladder.util.Const;
 import ladder.util.Util;
 
 import java.util.ArrayList;

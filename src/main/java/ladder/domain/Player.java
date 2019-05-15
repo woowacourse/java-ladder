@@ -1,7 +1,6 @@
 package ladder.domain;
 
-import ladder.Const;
-import org.apache.commons.lang3.StringUtils;
+import ladder.util.Rule;
 
 import java.util.Objects;
 
@@ -9,14 +8,8 @@ public class Player {
     private final String name;
 
     public Player(String name) {
-        this.name = checkName(name);
-    }
-
-    private String checkName(String name) {
-        if (name.length() > Const.MAX_NAME_LENGTH || StringUtils.isBlank(name)) {
-            throw new IllegalArgumentException(Const.EX_NAME);
-        }
-        return name;
+        Rule.ruleNameOverLength(name);
+        this.name = name;
     }
 
     public String getName() {
