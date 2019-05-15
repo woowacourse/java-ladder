@@ -68,8 +68,9 @@ public class LadderRow {
     }
 
     private boolean getRandomFlag() {
-//        Random random = new Random();
-        String a = tempInput.getElement();
-        return a.equals("1");
+        Random random = new Random();
+//        String a = tempInput.getElement();
+//        return a.equals("1");
+        return random.nextInt(2) == 1;
     }
 }
