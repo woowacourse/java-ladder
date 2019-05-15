@@ -28,7 +28,7 @@ class InputValidatorTest {
     @Test
     void 입력_다섯글자_초과() {
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.isOverMaxNameLimit("AAAAAA");
+            InputValidator.isOverMaxInputLimit("AAAAAA");
         });
     }
 
@@ -46,4 +46,12 @@ class InputValidatorTest {
             InputValidator.checkLastIndex("pobi,brown,");
         });
     }
+
+    @Test
+    void 높이_최소값_이하() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputValidator.isLowerLimit(0);
+        });
+    }
+
 }

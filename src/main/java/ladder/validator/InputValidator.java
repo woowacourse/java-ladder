@@ -4,23 +4,25 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 public class InputValidator {
-    static String isEmpty(String names) {
-        if (names == null || names.length() == 0) {
-            throw new IllegalArgumentException("양식에 맞는 이름을 입력해주세요.");
+    private static final int MIN_HEIGHT = 1;
+    private static final String EXCEPTION_MESSAGE = "양식에 맞게 입력해 주세요.";
+    static String isEmpty(String input) {
+        if (input == null || input.length() == 0) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE);
         }
-        return names;
+        return input;
     }
 
-    static String hasSpace(String names) {
-        if (names.contains(" ")) {
-            throw new IllegalArgumentException("양식에 맞는 이름을 입력해주세요.");
+    static String hasSpace(String inputs) {
+        if (inputs.contains(" ")) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE);
         }
-        return names;
+        return inputs;
     }
 
-    static void isOverMaxNameLimit(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("양식에 맞는 이름을 입력해주세요.");
+    static void isOverMaxInputLimit(String input) {
+        if (input.length() > 5) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE);
         }
     }
 
@@ -31,9 +33,15 @@ public class InputValidator {
         }
     }
 
-    static void checkLastIndex(String names) {
-        if (names.lastIndexOf(",") == names.length() - 1) {
-            throw new IllegalArgumentException("양식에 맞는 이름을 입력해주세요.");
+    static void checkLastIndex(String inputs) {
+        if (inputs.lastIndexOf(",") == inputs.length() - 1) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE);
+        }
+    }
+
+    static void isLowerLimit(int height) {
+        if (height < MIN_HEIGHT) {
+            throw new IllegalArgumentException("높이는 1 이상이어야 합니다.");
         }
     }
 }
