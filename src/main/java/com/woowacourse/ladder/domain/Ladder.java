@@ -38,6 +38,7 @@ public class Ladder {
         if (pipe.isLinked()) {
             return;
         }
+
         if ((int) (Math.random() * 2) == 1) {
             pipe.connectOn();
             nextPipe.connectOn();
