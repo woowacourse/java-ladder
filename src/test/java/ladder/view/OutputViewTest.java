@@ -1,6 +1,5 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
 import ladder.domain.LadderRow;
 import org.junit.Test;
 
