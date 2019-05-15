@@ -29,7 +29,11 @@ class StringCalculatorTest {
     }
 
     @Test
-    void 숫자_두개를_컴마_구분자로_입력할_경우_두_숫자의_합을_반환() {
+    void 숫자_2개이상을_컴마_구분자로_입력할_경우_모든_숫자의_합을_반환() {
         assertThat(stringCalculator.input("1,1")).isEqualTo(2);
+        assertThat(stringCalculator.input("1,2,3")).isEqualTo(6);
+        assertThat(stringCalculator.input("1,2,3,4")).isEqualTo(10);
+        assertThat(stringCalculator.input("1,2,3,4,5")).isEqualTo(15);
+
     }
 }
