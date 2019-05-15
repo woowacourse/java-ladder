@@ -39,17 +39,13 @@ public class ConsoleInputView implements InputView {
     }
 
     @Override
-    public List<String> promptNamesToQuery() {
+    public String promptResultQuery() {
         String promptText = "결과를 보고 싶은 사람은?";
         Scanner scanner = new Scanner(System.in);
         System.out.println(promptText);
-        List<String> queryTokens = Arrays.stream(scanner.nextLine().split(",")).map(String::trim).collect(Collectors.toList());
-        while(!InputValidator.isValidResultQuery(queryTokens)) {
-            System.out.println("잘못된 입력입니다.");
-            System.out.println(promptText);
-            queryTokens = Arrays.asList(scanner.nextLine().split(","));
-        }
-        return queryTokens;
+        String query = scanner.nextLine();
+        // TODO: Error handling is removed, view must provide other error handling methods.
+        return query;
     }
 
     @Override

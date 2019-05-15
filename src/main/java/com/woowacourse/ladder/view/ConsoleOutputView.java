@@ -2,6 +2,7 @@ package com.woowacourse.ladder.view;
 
 import com.woowacourse.ladder.domain.Ladder;
 import com.woowacourse.ladder.domain.LadderResult;
+import com.woowacourse.ladder.domain.MatchPair;
 import com.woowacourse.ladder.interfaces.OutputView;
 
 import java.util.List;
@@ -35,16 +36,14 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printSingleResult(String result) {
+    public void printResult(List<MatchPair<String, String>> pairs) {
         System.out.println("실행 결과");
-        System.out.println(result);
-    }
-
-    @Override
-    public void printMultipleResult(LadderResult<String, String> result, List<String> namesToPrint) {
-        System.out.println("실행 결과");
-        for (String name : namesToPrint) {
-            System.out.println(String.format("%s : %s", name, result.matchResult(name)));
+        if (pairs.size() == 1) {
+            System.out.println(pairs.get(0).getDestination());
+            return;
         }
+        pairs.forEach(p -> {
+            System.out.println(String.format("%s : %s", p.getParticipant(), p.getDestination()));
+        });
     }
 }

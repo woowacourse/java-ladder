@@ -11,12 +11,16 @@ public class LadderResult<P, D> {
         this.destinationGroup = new DestinationGroup<>(destinations);
     }
 
-    public D matchResult(P participant) {
+    public MatchPair<P, D> matchResult(P participant) {
         int idx = indexOf(participant);
         if (idx == -1) {
             throw new IllegalArgumentException(String.format("Participant not found: '%s'", participant));
         }
-        return destinationGroup.get(idx);
+        return new MatchPair<>(participant, destinationGroup.get(idx));
+    }
+
+    public boolean hasMatchResult(P participant) {
+        return indexOf(participant) > -1;
     }
 
     private int indexOf(P participant) {

@@ -2,11 +2,11 @@ package com.woowacourse.ladder.interfaces;
 
 import com.woowacourse.ladder.domain.Ladder;
 import com.woowacourse.ladder.domain.LadderResult;
+import com.woowacourse.ladder.domain.MatchPair;
 
 import java.util.List;
 
 public interface OutputView {
     void printLadder(Ladder<String, String> ladder);
-    void printSingleResult(String result);
-    void printMultipleResult(LadderResult<String, String> result, List<String> namesToPrint);
+    void printResult(List<MatchPair<String, String>> pairs);
 }
