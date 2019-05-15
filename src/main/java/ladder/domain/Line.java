@@ -9,7 +9,22 @@ class Line {
     Line(final List<Boolean> points) {
         this.points = points;
     }
-    
+
+    String makeLine() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < points.size(); i++) {
+            sb.append(makeRow(i));
+        }
+        return sb.toString();
+    }
+
+    private String makeRow(int index) {
+        if (points.get(index)) {
+            return "-----|";
+        }
+        return "     |";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
