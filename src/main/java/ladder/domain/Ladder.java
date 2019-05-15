@@ -6,8 +6,8 @@ import java.util.List;
 public class Ladder {
     private List<Line> floors = new ArrayList<>();
 
-    public Ladder(int floorNumber, int playerNumber) {
-        for (int i = 0; i < floorNumber; i++) {
+    public Ladder(Floor floor, int playerNumber) {
+        for (int i = 0; i < floor.getNumber(); i++) {
             floors.add(new Line(playerNumber));
         }
     }
