@@ -17,7 +17,7 @@ public class LadderResult<T> {
         return participants.indexOf(participant);
     }
 
-    public String matchResult(List<String> result, T pobi) {
-        return result.get(indexOf(pobi));
+    public String matchResult(List<String> result, T participant) {
+        return result.get(indexOf(participant));
     }
 }

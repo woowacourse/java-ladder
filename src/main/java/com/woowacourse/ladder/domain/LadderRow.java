@@ -2,6 +2,7 @@ package com.woowacourse.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class LadderRow<T> {
     private List<Boolean> cols;
@@ -49,6 +50,10 @@ public class LadderRow<T> {
         T tmp = list.get(from);
         list.set(from, list.get(to));
         list.set(to, tmp);
+    }
+
+    public Stream<Boolean> getColumnStream() {
+        return cols.stream();
     }
 
     @Override
