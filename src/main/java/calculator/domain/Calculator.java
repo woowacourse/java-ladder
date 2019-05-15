@@ -6,8 +6,18 @@ import java.util.Objects;
 public class Calculator {
     private final Expression expression;
 
-    public Calculator(String expression) {
+    public Calculator(final String expression) {
         this.expression = new Expression(expression);
+    }
+
+    int calculate() {
+        List<Number> numbers = expression.getNumbers();
+        int sum = 0;
+
+        for (Number number : numbers) {
+            sum += number.getNumber();
+        }
+        return sum;
     }
 
     @Override
@@ -21,19 +31,5 @@ public class Calculator {
     @Override
     public int hashCode() {
         return Objects.hash(expression);
-    }
-
-    int calculate() {
-        List<Number> numbers = expression.getNumbers();
-        int sum = 0;
-
-        if(numbers.size() == 1){
-            return 0;
-        }
-
-        for (Number number : numbers) {
-            sum += number.getNumber();
-        }
-        return sum;
     }
 }

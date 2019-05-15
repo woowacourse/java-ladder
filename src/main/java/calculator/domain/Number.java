@@ -16,7 +16,7 @@ public class Number {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new RuntimeException("피연산자에 0이상의 정수만 입력해주세요");
+            throw new RuntimeException("문자를 입력하지마세요");
         }
     }
 

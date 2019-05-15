@@ -1,5 +1,7 @@
 package calculator.domain;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -14,8 +16,8 @@ public class Expression {
     private final String expression;
 
     public Expression(String expression) {
-        if (expression == null) {
-            expression = "";
+        if (StringUtils.isBlank(expression)) {
+            expression = "0";
         }
         this.expression = expression;
     }
@@ -28,8 +30,9 @@ public class Expression {
 
     List<String> splitExpression() {
         if (expression.matches(CUSTOM_PATTERN)) {
-            String splitedExpression = expression.substring(EXPRESSION_START_POINT);
-            return Arrays.asList(splitedExpression.split(Character.toString(expression.charAt(LOCATION_OF_DELIMITER))));
+            String splitedExpression = this.expression.substring(EXPRESSION_START_POINT);
+            return Arrays.asList(splitedExpression
+                    .split(Character.toString(this.expression.charAt(LOCATION_OF_DELIMITER))));
         }
         return Arrays.asList(expression.split(COMMA_OR_COLON));
     }

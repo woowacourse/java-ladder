@@ -15,6 +15,12 @@ public class CalculatorTest {
 
         calculator = new Calculator("//,\n1,2,3");
         assertThat(calculator.calculate()).isEqualTo(6);
+
+        calculator = new Calculator("0");
+        assertThat(calculator.calculate()).isEqualTo(0);
+
+        calculator = new Calculator("1");
+        assertThat(calculator.calculate()).isEqualTo(1);
     }
 
     @Test
@@ -34,11 +40,12 @@ public class CalculatorTest {
 
     @Test
     public void 주어진_식이_null_공백일때_0을_출력하는지() {
-        calculator = new Calculator("//;\n");
-        assertThat(calculator.calculate()).isEqualTo(0);
-
         calculator = new Calculator(null);
         assertThat(calculator.calculate()).isEqualTo(0);
+
+        calculator = new Calculator("  ");
+        assertThat(calculator.calculate()).isEqualTo(0);
+
     }
 
     @Test
@@ -48,5 +55,4 @@ public class CalculatorTest {
             new Calculator("a:2,3").calculate();
         });
     }
-
 }
