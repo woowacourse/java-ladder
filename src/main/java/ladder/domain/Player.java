@@ -6,14 +6,32 @@ import java.util.Objects;
 
 public class Player {
     private final String name;
+    private int position;
 
     public Player(String name) {
+        this(name, 0);
+    }
+
+    public Player(String name, int position) {
         Rule.ruleNameOverLength(name);
         this.name = name;
+        this.position = position;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return this.position;
+    }
+
+    public void moveLeftPosition() {
+        --this.position;
+    }
+
+    public void moveRightPosition() {
+        ++this.position;
     }
 
     @Override

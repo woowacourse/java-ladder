@@ -39,4 +39,24 @@ public class PlayerTest {
             Player player = new Player(null);
         });
     }
+
+    @Test
+    void 참여자_위치_필드_추가() {
+        Player player = new Player("abc", 1);
+        assertThat(player).isEqualTo(new Player("abc", 1));
+    }
+
+    @Test
+    void 참여자_포지션_왼쪽_변경() {
+        Player player = new Player("abc", 1);
+        player.moveLeftPosition();
+        assertThat(player.getPosition()).isEqualTo(0);
+    }
+
+    @Test
+    void 참여자_포지션_오른쪽_변경() {
+        Player player = new Player("abc", 1);
+        player.moveRightPosition();
+        assertThat(player.getPosition()).isEqualTo(2);
+    }
 }
