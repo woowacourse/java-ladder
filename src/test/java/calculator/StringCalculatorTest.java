@@ -34,6 +34,12 @@ class StringCalculatorTest {
         assertThat(stringCalculator.input("1,2,3")).isEqualTo(6);
         assertThat(stringCalculator.input("1,2,3,4")).isEqualTo(10);
         assertThat(stringCalculator.input("1,2,3,4,5")).isEqualTo(15);
+    }
 
+    @Test
+    void 구분자로_콜론을_사용() {
+        assertThat(stringCalculator.input("1:1")).isEqualTo(2);
+        assertThat(stringCalculator.input("1:1:1")).isEqualTo(3);
+        assertThat(stringCalculator.input("1:1,1")).isEqualTo(3);
     }
 }
