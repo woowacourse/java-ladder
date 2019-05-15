@@ -11,7 +11,7 @@ public class Ladder {
 		for (int i = 0; i <= height; i++) {
 			ladder.add(new Line(width));
 		}
-		System.out.println("초기상태: \n" + ladder.toString().replace("},", "\n"));
+		// System.out.println("초기상태: \n" + ladder.toString().replace("},", "\n"));
 	}
 
 	public void connect(int row, int column) {
@@ -20,7 +20,7 @@ public class Ladder {
 		} catch (IndexOutOfBoundsException e) {
 			throw new IllegalArgumentException("추가할 수 없습니다");
 		}
-		System.out.println("추가상태: \n" + ladder.toString().replace("},", "\n"));
+		// System.out.println("추가상태: \n" + ladder.toString().replace("},", "\n"));
 	}
 
 	public boolean isLinked(int row, int column) {
@@ -29,5 +29,15 @@ public class Ladder {
 		} catch (IndexOutOfBoundsException e) {
 			throw new IllegalArgumentException("링크가 없음");
 		}
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		for (Line line : ladder) {
+			stringBuilder.append(line);
+			stringBuilder.append("\n");
+		}
+		return stringBuilder.toString();
 	}
 }

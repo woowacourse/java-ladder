@@ -10,6 +10,10 @@ public class Players {
         this.players = players;
     }
 
+    public int getTotalPlayers() {
+        return players.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -21,9 +25,5 @@ public class Players {
     @Override
     public int hashCode() {
         return Objects.hash(players);
-    }
-
-    public int getTotalPlayers() {
-        return players.size();
     }
 }

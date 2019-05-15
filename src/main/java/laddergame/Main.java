@@ -10,5 +10,6 @@ public class Main {
 		PlayerMaker playerMaker = new PlayerMaker(InputView.inputPlayers());
 		LadderHeight ladderHeight = new LadderHeight(InputView.inputLadderHeight());
 		Ladder ladder = new Ladder(ladderHeight.getLadderHeight(), playerMaker.makePlayers().size());
+		OutputView.showResult(playerMaker.makePlayers(), ladder);
 	}
 }
