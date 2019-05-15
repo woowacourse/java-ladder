@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 public class Line {
     private static final int RANDOM_FACTOR = 2;
@@ -25,11 +25,13 @@ public class Line {
         return NON_LINE;
     }
 
-    public boolean isFalse(boolean beforeValue) {
+    private boolean isFalse(boolean beforeValue) {
         return !beforeValue;
     }
 
     private boolean makeRandomBool() {
         return (int) (Math.random() * RANDOM_FACTOR) == TRUE;
     }
+
+
 }
