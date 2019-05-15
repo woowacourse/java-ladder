@@ -27,11 +27,9 @@
         * "" -> 예외 던지기
         * "aaaaa" -> 객체 생성
 
-* result
-    * 이름 길이 테스트 1 <= player.name <= 5
-        * "aaaaaa" -> 예외 던지기
+* drawResult
+    * 결과 길이 테스트 1 <= drawResult.result
         * "" -> 예외 던지기
-        * "aaaaa" -> 객체 생성
 
 
 
