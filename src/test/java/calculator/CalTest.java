@@ -1,5 +1,6 @@
-package Calculator;
+package calculator;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -56,5 +57,8 @@ public class CalTest {
         assertThrows(IllegalArgumentException.class, () -> calculator.checkRegex("12"));
     }
 
-
+    @AfterEach
+    void tearDown() {
+        calculator = null;
+    }
 }
