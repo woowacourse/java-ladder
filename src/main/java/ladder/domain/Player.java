@@ -15,7 +15,7 @@ public class Player {
 
     private void checkName(String name) {
         if (name.length() > Const.MAX_NAME_LENGTH || StringUtils.isBlank(name)) {
-            throw new IllegalArgumentException(Const.NAME_EX);
+            throw new IllegalArgumentException(Const.EX_NAME);
         }
     }
 

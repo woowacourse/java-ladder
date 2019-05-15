@@ -1,35 +1,38 @@
 package ladder.domain;
 
 import ladder.Const;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class LadderLine {
-    private List<Player> players;
+    private final int playerCount;
+    private List<Boolean> lineStates;
 
-    public LadderLine(String name) {
-        this.players = regePlayers(name.replaceAll(" ",""));
+    public LadderLine(int playerCount) {
+        this.playerCount = checkCount(playerCount);
+        this.lineStates = new ArrayList<>();
+        this.lineStates = setLineStates();
     }
 
-    private List<Player> regePlayers(String name) {
-        List<String> names = checkNames(name);
-        List<Player> players = new ArrayList<>();
-        for (String s : names) {
-            players.add(new Player(s));
+    private int checkCount(int playerCount) {
+        if (playerCount < Const.MIN_PLAYER_COUNT) {
+            throw new IllegalArgumentException(Const.EX_PLAYER_COUNT);
         }
-        return players;
+        return playerCount;
     }
 
-    private List<String> checkNames(String name) {
-        List<String> names = Arrays.asList(name.split(","));
-        if (names.size() <= Const.ZERO) {
-            throw new IllegalArgumentException(Const.NAME_EX);
+    private List<Boolean> setLineStates() {
+        List<Boolean> lineStates = new ArrayList<>();
+        for (int i = 0; i < playerCount; i++) {
+            lineStates.add(true);
         }
-        return names;
+        return lineStates;
+    }
+
+    public boolean isMatchLine(List<Boolean> line) {
+        return this.lineStates.equals(line);
     }
 
     @Override
@@ -37,11 +40,12 @@ public class LadderLine {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderLine that = (LadderLine) o;
-        return Objects.equals(players, that.players);
+        return playerCount == that.playerCount &&
+                Objects.equals(lineStates, that.lineStates);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(players);
+        return Objects.hash(playerCount, lineStates);
     }
 }
