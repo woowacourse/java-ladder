@@ -3,7 +3,7 @@ package com.woowacourse.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LadderRow {
+public class LadderRow<T> {
     private List<Boolean> cols;
 
     public LadderRow(final int numOfColumns, final BooleanGenerator booleanGenerator) {
@@ -26,12 +26,12 @@ public class LadderRow {
         }
     }
 
-    public List<String> swapNames(final List<String> names) {
+    public List<T> swapNames(final List<T> names) {
         if (cols.size() + 1 != names.size()) {
             throw new IllegalArgumentException(String.format("Name list's size(%d) is not match with ladder board row's number of columns", names.size()));
         }
 
-        List<String> swappedList = new ArrayList<>(names);
+        List<T> swappedList = new ArrayList<>(names);
         for (int i = 0; i < cols.size(); i++) {
             checkAndSwap(swappedList, i);
         }
@@ -39,14 +39,14 @@ public class LadderRow {
         return swappedList;
     }
 
-    private void checkAndSwap(List<String> list, int idx) {
+    private void checkAndSwap(List<T> list, int idx) {
         if (cols.get(idx)) {
             swapResult(list, idx, idx + 1);
         }
     }
 
-    private void swapResult(List<String> list, int from, int to) {
-        String tmp = list.get(from);
+    private void swapResult(List<T> list, int from, int to) {
+        T tmp = list.get(from);
         list.set(from, list.get(to));
         list.set(to, tmp);
     }

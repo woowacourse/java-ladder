@@ -10,11 +10,11 @@ public class LadderTest {
 
     @Test
     void testCreate() {
-        Ladder ladder = new Ladder(Arrays.asList("pobi", "crong", "honux"), 4,
-            new TestBooleanGenerator(Arrays.asList(true, false, true, false, false, true, false, false)));
-        assertThat(ladder.findDestination("pobi")).isEqualTo(0);
-        assertThat(ladder.findDestination("crong")).isEqualTo(2);
-        assertThat(ladder.findDestination("honux")).isEqualTo(1);
-
+        LadderResult<String> result = new Ladder<>(Arrays.asList("pobi", "crong", "honux"), 4,
+            new TestBooleanGenerator(Arrays.asList(true, false, true, false, false, true, false, false))).getResult();
+        assertThat(result.indexOf("pobi")).isEqualTo(0);
+        assertThat(result.indexOf("crong")).isEqualTo(2);
+        assertThat(result.indexOf("honux")).isEqualTo(1);
     }
+
 }
