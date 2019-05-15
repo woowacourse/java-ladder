@@ -1,20 +1,21 @@
 package ladder.controller;
 
 import ladder.domain.Ladder;
+import ladder.domain.Participant;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class LadderController {
+public class GameController {
     private static final int MIN_PARTICIPANTS_NUMBER = 2;
-    private List<String> participants = new ArrayList<>();
+    private List<Participant> participants = new ArrayList<>();
     private Ladder ladder;
 
     public void registParticipant(List<String> participants){
         validateMinParticipants(participants);
         validateDuplicatedParticipants(participants);
-        this.participants = participants;
+        participants.stream().forEach(x -> this.participants.add(new Participant(x)));
 
     }
 
@@ -34,4 +35,11 @@ public class LadderController {
         ladder = new Ladder(height, participants.size());
     }
 
+    public Ladder getLadder(){
+        return ladder;
+    }
+
+    public List<Participant> getParticipants() {
+        return participants;
+    }
 }

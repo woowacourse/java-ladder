@@ -11,5 +11,9 @@ public class Participant {
         if(name.length()>5) throw new IllegalArgumentException("이름이 5글자가 넘어갑니다.");
     }
 
+    @Override
+    public String toString(){
+        return name;
+    }
 
 }
