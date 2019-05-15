@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,9 +10,16 @@ import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 
 public class LadderRowTest {
+    LadderRow ladderRow;
+
+    @Before
+    public void setLadderRow() {
+        ladderRow = new LadderRow(5);
+    }
+
+
     @Test
     public void 사다리_한줄_생성() {
-        LadderRow ladderRow = new LadderRow(5);
         ladderRow.draw(true);
         ladderRow.draw(false);
         ladderRow.draw(true);
@@ -21,21 +29,21 @@ public class LadderRowTest {
 
     @Test
     public void 사다리_한줄_생성2() {
-        LadderRow ladderRow = new LadderRow(4);
         ladderRow.draw(false);
         ladderRow.draw(true);
         ladderRow.draw(false);
+        ladderRow.draw(false);
 
-        assertEquals(Arrays.asList(0, 1, -1, 0), ladderRow.status());
+        assertEquals(Arrays.asList(0, 1, -1, 0, 0), ladderRow.status());
     }
 
     @Test
     public void 사다리_한줄_생성3() {
-        LadderRow ladderRow = new LadderRow(4);
         ladderRow.draw(true);
         ladderRow.draw(true);
+        ladderRow.draw(false);
 
-        assertEquals(Arrays.asList(1, -1, 1, -1), ladderRow.status());
+        assertEquals(Arrays.asList(1, -1, 1, -1, 0), ladderRow.status());
     }
 
 
@@ -53,7 +61,6 @@ public class LadderRowTest {
 
     @Test
     public void 사다리_만들기_테스트() {
-        LadderRow ladderRow = new LadderRow(5);
         ByteArrayInputStream input = new ByteArrayInputStream("1 1 0".getBytes());
         System.setIn(input);
         ladderRow.makeRow();
@@ -62,7 +69,6 @@ public class LadderRowTest {
 
     @Test
     public void 사다리_한줄_만들기_테스트() {
-        LadderRow ladderRow = new LadderRow(5);
         ByteArrayInputStream input = new ByteArrayInputStream("0 0 0 0 0".getBytes());
         System.setIn(input);
         ladderRow.makeRow();
@@ -71,7 +77,6 @@ public class LadderRowTest {
 
     @Test
     public void 사다리_한줄_만들기_테스트2() {
-        LadderRow ladderRow = new LadderRow(5);
         ByteArrayInputStream input = new ByteArrayInputStream("1 1 1 0 0".getBytes());
         System.setIn(input);
         ladderRow.makeRow();
