@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.Ladder;
+import ladder.util.Rule;
 import ladder.util.Util;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -15,7 +16,7 @@ public class LadderApp {
 
     private static String inputPlayerNames(String names) {
         try {
-            return Util.checkName(names);
+            return Rule.ruleInputPlayerNames(names);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return inputPlayerNames(InputView.inputPlayerNames());
@@ -24,7 +25,7 @@ public class LadderApp {
 
     private static int inputLadderDepth(int depth) {
         try {
-            return Util.checkDepth(depth);
+            return Rule.ruleLadderDepthRange(depth);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return inputLadderDepth(InputView.inputLadderDepth());
