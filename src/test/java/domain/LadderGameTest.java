@@ -27,4 +27,5 @@ public class LadderGameTest {
             new LadderGame("pobi,crong", -1);
         });
     }
+
 }

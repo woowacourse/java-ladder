@@ -8,6 +8,7 @@ import java.util.List;
 public class LadderGame {
 
     private List<User> users;
+    private List<Floor> ladder = new ArrayList<>();
     private int height;
 
     public LadderGame(String inputNames, int height) {
@@ -30,11 +31,21 @@ public class LadderGame {
         return users;
     }
 
+    public void createLadder() {
+        for (int i = 0; i < height; i++) {
+            ladder.add(new Floor(users.size()));
+        }
+    }
+
     public List<User> getUsers() {
         return users;
     }
 
     public int getHeight() {
         return height;
+    }
+
+    public List<Floor> getLadder() {
+        return ladder;
     }
 }
