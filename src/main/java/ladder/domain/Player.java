@@ -9,14 +9,18 @@ public class Player {
     private final String name;
 
     public Player(String name) {
-        checkName(name);
-        this.name = name;
+        this.name = checkName(name);
     }
 
-    private void checkName(String name) {
+    private String checkName(String name) {
         if (name.length() > Const.MAX_NAME_LENGTH || StringUtils.isBlank(name)) {
             throw new IllegalArgumentException(Const.EX_NAME);
         }
+        return name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

@@ -3,9 +3,6 @@ package ladder.domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,20 +18,6 @@ public class LadderLineTest {
         assertThrows(IllegalArgumentException.class, () -> {
             new LadderLine(0);
         });
-    }
-
-    @Test
-    void 라인_배열_생성() {
-        LadderLine line = new LadderLine(3);
-        List<Boolean> lineStates = Arrays.asList(false, false, false);
-        assertTrue(line.isMatchLine(lineStates));
-    }
-
-    @Test
-    void 라인_생성자를_통한_배열_생성() {
-        LadderLine line = new LadderLine(3);
-        List<Boolean> lineStates = Arrays.asList(false, false, false);
-        assertTrue(line.isMatchLine(lineStates));
     }
 
     @Test

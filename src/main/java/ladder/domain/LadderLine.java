@@ -13,7 +13,6 @@ public class LadderLine {
 
     public LadderLine(int playerCount) {
         this.playerCount = checkCount(playerCount);
-        this.lineStates = new ArrayList<>();
         this.lineStates = setLineStates();
     }
 
@@ -33,15 +32,7 @@ public class LadderLine {
         return lineStates;
     }
 
-    public boolean isMatchLine(List<Boolean> line) {
-        return this.lineStates.equals(line);
-    }
-
-    public boolean isMatchLineState(int i) {
-        return this.lineStates.get(i);
-    }
-
-    public static boolean setNextState(boolean state) {
+    static boolean setNextState(boolean state) {
         if (state) {
             return false;
         }
@@ -53,6 +44,10 @@ public class LadderLine {
             return Const.LINE_STATE_TRUE;
         }
         return Const.LINE_STATE_FALSE;
+    }
+
+    boolean isMatchLineState(int i) {
+        return this.lineStates.get(i);
     }
 
     @Override
@@ -69,13 +64,12 @@ public class LadderLine {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderLine that = (LadderLine) o;
-        return playerCount == that.playerCount &&
-                Objects.equals(lineStates, that.lineStates);
+        LadderLine line = (LadderLine) o;
+        return playerCount == line.playerCount;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playerCount, lineStates);
+        return Objects.hash(playerCount);
     }
 }

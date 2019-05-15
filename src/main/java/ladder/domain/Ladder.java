@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.Const;
+import ladder.util.Util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,21 +23,6 @@ public class Ladder {
         this.ladderlines = setLadderLines();
     }
 
-    private List<LadderLine> setLadderLines() {
-        List<LadderLine> ladderLines = new ArrayList<>();
-        for (int i = 0; i < depth; i++) {
-            ladderLines.add(new LadderLine(players.size()));
-        }
-        return ladderLines;
-    }
-
-    private int checkDepth(int depth) {
-        if (depth < Const.MIN_LINE_COUNT) {
-            throw new IllegalArgumentException(Const.EX_LINE_COUNT);
-        }
-        return depth;
-    }
-
     private List<Player> regePlayers(String name) {
         List<String> names = checkNames(name);
         List<Player> players = new ArrayList<>();
@@ -54,12 +40,44 @@ public class Ladder {
         return names;
     }
 
-    public String printLadderLines() {
+    private int checkDepth(int depth) {
+        if (depth < Const.MIN_LINE_COUNT) {
+            throw new IllegalArgumentException(Const.EX_LINE_COUNT);
+        }
+        return depth;
+    }
+
+    private List<LadderLine> setLadderLines() {
+        List<LadderLine> ladderLines = new ArrayList<>();
+        for (int i = 0; i < depth; i++) {
+            ladderLines.add(new LadderLine(players.size()));
+        }
+        return ladderLines;
+    }
+
+    public String getResultLadderLines() {
         StringBuilder stringBuilder = new StringBuilder();
         for (LadderLine line : ladderlines) {
             stringBuilder.append(line);
         }
         return stringBuilder.toString();
+    }
+
+    public String getResultLadderNames() {
+        List<String> names = getNames();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String name : names) {
+            stringBuilder.append(name);
+        }
+        return stringBuilder.toString();
+    }
+
+    private List<String> getNames() {
+        List<String> names = new ArrayList<>();
+        for (Player player : players) {
+            names.add(Util.formatName(player.getName()));
+        }
+        return names;
     }
 
     @Override
@@ -68,12 +86,11 @@ public class Ladder {
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
         return depth == ladder.depth &&
-                Objects.equals(players, ladder.players) &&
-                Objects.equals(ladderlines, ladder.ladderlines);
+                Objects.equals(players, ladder.players);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(players, depth, ladderlines);
+        return Objects.hash(players, depth);
     }
 }
