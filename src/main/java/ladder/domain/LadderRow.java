@@ -18,6 +18,17 @@ public class LadderRow {
         this.width = width;
     }
 
+    public LadderRow(List<Integer> numbers) {
+        this.row = numbers;
+    }
+
+    public LadderRow(int width, TempInput tempInput) {
+        row = new ArrayList<>();
+        this.width = width;
+        this.tempInput = tempInput;
+    }
+
+
     public int draw(boolean isDraw) {
         if (isDraw) {
             row.add(1);
@@ -34,12 +45,14 @@ public class LadderRow {
     }
 
     public void makeRow() {
-        TempInput tempInput = new TempInput();
-        tempInput.get();
-        this.tempInput = tempInput;
         while (this.width > 0) {
             makeLine();
         }
+    }
+
+    public LadderRow getRow() {
+        makeRow();
+        return this;
     }
 
     private void makeLine() {
@@ -48,6 +61,10 @@ public class LadderRow {
             return;
         }
         this.width -= draw(getRandomFlag());
+    }
+
+    private void setTempInput(TempInput temp) {
+        this.tempInput = temp;
     }
 
     private boolean getRandomFlag() {

@@ -18,6 +18,10 @@ public class TempInput {
         inputs = new LinkedList<>(Arrays.asList(scanner.nextLine().split(" ")));
     }
 
+    public void get(String text) {
+        inputs = new LinkedList<>(Arrays.asList(text.split(" ")));
+    }
+
     public String getElement() {
         return inputs.get(index++);
     }
