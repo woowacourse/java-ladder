@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Line {
     private ArrayList<Boolean> points = new ArrayList<>();
@@ -26,5 +27,18 @@ public class Line {
     public void connect(int point) {
         points.add(point, true);
         points.add(point + 1, true);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
     }
 }
