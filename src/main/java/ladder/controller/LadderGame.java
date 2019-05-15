@@ -48,11 +48,11 @@ public class LadderGame {
         return rewards;
     }
 
-    private boolean isOverLengthLimit(boolean isOverLengthLimit, String reward) {
+    static boolean isOverLengthLimit(boolean isFound, String reward) {
         if (reward.length() > MAX_REWARD_LENGTH || reward.length() < MIN_REWARD_LENGTH) {
-            isOverLengthLimit = true;
+            isFound = true;
         }
-        return isOverLengthLimit;
+        return isFound;
     }
 
     private List<Player> getPlayers(List<String> names) {

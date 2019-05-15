@@ -25,7 +25,7 @@ public class InputView {
         }
     }
 
-    private static void validateNoConsecutiveCommas(final String names) {
+    static void validateNoConsecutiveCommas(final String names) {
         if (names.contains(",,")) {
             throw new IllegalArgumentException("','가 두개 이상 연달아 있으면 안 됩니다.");
         }
@@ -51,7 +51,7 @@ public class InputView {
         }
     }
 
-    private static void validateRewardsCount(List<String> splittedRewards, List<Player> players) {
+    static void validateRewardsCount(List<String> splittedRewards, List<Player> players) {
         if (players.size() != splittedRewards.size()) {
             System.out.println(splittedRewards.size());
             System.out.println(players.size());
@@ -74,7 +74,7 @@ public class InputView {
 
     }
 
-    private static void validateNaturalNumber(int height) {
+    static void validateNaturalNumber(int height) {
         if (height <= 0) {
             throw new IllegalArgumentException("사다리 높이는 최소 1 이어야 합니다.");
         }
