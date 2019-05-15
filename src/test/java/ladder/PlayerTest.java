@@ -3,14 +3,14 @@ package ladder;
 import ladder.model.Player;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlayerTest {
 
     @Test
     void 올바른_이름일_때_생성_검증() {
-        assertThat(new Player("bmo", 0)).isEqualTo(new Player("bmo", 0));
+        assertDoesNotThrow(()-> new Player("bmo", 0));
     }
 
     @Test
