@@ -72,4 +72,14 @@ public class LadderLine {
     public int hashCode() {
         return Objects.hash(playerCount);
     }
+
+    public int getNextPosition(int index) {
+        if (lineStates.get(index)) {
+            return -1;
+        }
+        if (index != lineStates.size() - 1 && lineStates.get(index + 1)) {
+            return +1;
+        }
+        return 0;
+    }
 }

@@ -42,4 +42,11 @@ public class LadderLineTest {
     void 라인_결과_출력() {
         System.out.println(new LadderLine(5));
     }
+
+    @Test
+    void 포지션_찾기() {
+        LadderLine ladderLine = new LadderLine(5);
+        System.out.println(ladderLine);
+        System.out.println(ladderLine.getNextPosition(1));
+    }
 }
