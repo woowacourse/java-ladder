@@ -71,6 +71,6 @@ public class OutputView {
     }
 
     public static void printRewardErrorMsg() {
-        System.out.println("보상은 5글자 이내여야 합니다.");
+        System.out.println("보상은 1자 이상 5자 이내여야 합니다.");
     }
 }

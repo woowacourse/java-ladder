@@ -4,15 +4,24 @@ import java.util.Objects;
 
 public class Player {
     public static final int MAX_NAME_LENGTH = 5;
+    public static final int MIN_NAME_LENGTH = 1;
     private String name;
     private int position;
 
     public Player(final String name, final int position) {
-        this.name = name;
+        this.name = name.trim();
+        validateNameLength();
         this.position = position;
     }
 
-    public void goDown(final Line line) {
+    private void validateNameLength() {
+        int nameLength = name.length();
+        if (nameLength > MAX_NAME_LENGTH || nameLength < MIN_NAME_LENGTH) {
+            throw new IllegalArgumentException("이름은 1자 이상 5자 이내여야 합니다.");
+        }
+    }
+
+    void goDown(final Line line) {
         position += line.getDirection(position).getValue();
     }
 
@@ -20,12 +29,8 @@ public class Player {
         return name;
     }
 
-    public int getPosition() {
+    int getPosition() {
         return position;
-    }
-
-    public boolean matchName(String name) {
-        return this.name == name;
     }
 
     @Override

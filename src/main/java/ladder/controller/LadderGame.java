@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
+    private static final int MAX_REWARD_LENGTH = Player.MAX_NAME_LENGTH;
+    private static final int MIN_REWARD_LENGTH = Player.MIN_NAME_LENGTH;
     private Ladder ladder;
     private List<Player> players;
     private List<String> rewards;
@@ -47,7 +49,7 @@ public class LadderGame {
     }
 
     private boolean isOverLengthLimit(boolean isOverLengthLimit, String reward) {
-        if (reward.length() > Player.MAX_NAME_LENGTH) {
+        if (reward.length() > MAX_REWARD_LENGTH || reward.length() < MIN_REWARD_LENGTH) {
             isOverLengthLimit = true;
         }
         return isOverLengthLimit;

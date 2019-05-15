@@ -4,17 +4,7 @@ import ladder.controller.LadderGame;
 
 public class LadderGameApp {
     public static void main(String[] args) {
-        LadderGame ladderGame = createLadderGame();
+        LadderGame ladderGame = new LadderGame();
         ladderGame.play();
-    }
-
-    private static LadderGame createLadderGame() {
-        try {
-            return new LadderGame();
-        }
-        catch (Exception e){
-                System.out.println(e.getMessage());
-            return createLadderGame();
-        }
     }
 }

@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.Player;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -46,12 +47,14 @@ public class InputView {
             return splittedRewards;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return getNames();
+            return getRewards(players);
         }
     }
 
     private static void validateRewardsCount(List<String> splittedRewards, List<Player> players) {
         if (players.size() != splittedRewards.size()) {
+            System.out.println(splittedRewards.size());
+            System.out.println(players.size());
             throw new IllegalArgumentException("실행 결과의 개수는 참여한 사람의 수와 같아야 합니다.");
         }
     }
