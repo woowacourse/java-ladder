@@ -12,50 +12,27 @@ import java.util.List;
 public class LadderGame {
     private static final int MAX_REWARD_LENGTH = Player.MAX_NAME_LENGTH;
     private static final int MIN_REWARD_LENGTH = Player.MIN_NAME_LENGTH;
-    private Ladder ladder;
-    private List<Player> players;
-    private List<String> rewards;
+
+    private final Ladder ladder;
+    private final List<Player> players;
+    private final List<String> rewards;
 
     public LadderGame() {
-        players = inputNames();
+        players = makePlayers();
         rewards = inputRewards();
-        int height = InputView.getHeight();
-        ladder = new Ladder(players.size(), height);
+        ladder = new Ladder(players.size(), InputView.getHeight());
     }
 
-    private List<Player> inputNames() {
+    private List<Player> makePlayers() {
         try {
-            List<String> names = InputView.getNames();
-            return getPlayers(names);
+            return getPlayers(InputView.getNames());
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return inputNames();
+            return makePlayers();
         }
     }
 
-    private List<String> inputRewards() {
-        List<String> rewards = InputView.getRewards(players);
-
-        boolean isOverLengthLimit = false;
-        for (String reward : rewards) {
-            isOverLengthLimit = isOverLengthLimit(isOverLengthLimit, reward);
-        }
-
-        if (isOverLengthLimit) {
-            OutputView.printRewardErrorMsg();
-            return inputRewards();
-        }
-        return rewards;
-    }
-
-    static boolean isOverLengthLimit(boolean isFound, String reward) {
-        if (reward.length() > MAX_REWARD_LENGTH || reward.length() < MIN_REWARD_LENGTH) {
-            isFound = true;
-        }
-        return isFound;
-    }
-
-    private List<Player> getPlayers(List<String> names) {
+    private List<Player> getPlayers(final List<String> names) {
         List<Player> players = new ArrayList<>();
         for (int i = 0; i < names.size(); i++) {
             players.add(new Player(names.get(i), i));
@@ -63,10 +40,35 @@ public class LadderGame {
         return players;
     }
 
+    private List<String> inputRewards() {
+        List<String> rewards = InputView.getRewards(players);
+        boolean isOverLengthLimit = validateRewardsLength(rewards);
+        if (isOverLengthLimit) {
+            OutputView.printRewardErrorMsg();
+            return inputRewards();
+        }
+        return rewards;
+    }
+
+    private static boolean validateRewardsLength(final List<String> rewards) {
+        boolean isOverLengthLimit = false;
+        for (String reward : rewards) {
+            isOverLengthLimit = isOverLengthLimit(isOverLengthLimit, reward);
+        }
+        return isOverLengthLimit;
+    }
+
+    static boolean isOverLengthLimit(boolean isFound, final String reward) {
+        if (reward.length() > MAX_REWARD_LENGTH || reward.length() < MIN_REWARD_LENGTH) {
+            isFound = true;
+        }
+        return isFound;
+    }
+
     public void play() {
         printGame();
         ladder.goDown(players);
-        Result result = new Result(players, rewards);
+        final Result result = new Result(players, rewards);
         String name;
         while (!(name = InputView.getName(players)).equals("all")) {
             OutputView.printResult(name, result);

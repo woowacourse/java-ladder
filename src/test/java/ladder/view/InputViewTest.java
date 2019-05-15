@@ -16,7 +16,7 @@ public class InputViewTest {
 
     @Test
     void 중복된이름이있는경우테스트() {
-        assertThrows(IllegalArgumentException.class, () -> InputView.validateNoConsecutiveCommas("pobi,pobi,crong"));
+        assertThrows(IllegalArgumentException.class, () -> InputView.validateNoDuplication(Arrays.asList("pobi","pobi","crong")));
     }
 
     @Test

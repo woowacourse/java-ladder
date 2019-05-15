@@ -10,43 +10,31 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
+    private static final int PADDING_WIDTH = 5;
 
-    public static void printResultMessage() {
-        System.out.println("\n실행 결과");
-    }
-
-    public static void printResult(String name, Result result) {
-        printResultMessage();
-        System.out.println(result.getResult().get(name) + "\n");
-    }
-
-    public static void printResultAll(Result result) {
-        printResultMessage();
-        Map<String, String> a = result.getResult();
-        for (Map.Entry<String, String> entry : a.entrySet()) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
-        }
+    public static void printRewardErrorMsg() {
+        System.out.println("보상은 1자 이상 5자 이내여야 합니다.");
     }
 
     public static void printLadderMessage() {
         System.out.println("\n사다리 결과\n");
     }
 
-    public static void printNames(List<Player> players) {
+    public static void printNames(final List<Player> players) {
         for (Player player : players) {
-            System.out.printf("%s ", StringUtils.center(player.getName(), 5));
+            System.out.printf("%s ", StringUtils.center(player.getName(), PADDING_WIDTH));
         }
         System.out.println();
     }
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadder(final Ladder ladder) {
         for (Line line : ladder.getLines()) {
             printLine(line);
             System.out.println();
         }
     }
 
-    private static void printLine(Line line) {
+    private static void printLine(final Line line) {
         System.out.print("  |");
         for (Boolean point : line.getPoints()) {
             printPoint(point);
@@ -55,7 +43,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printPoint(Boolean point) {
+    private static void printPoint(final Boolean point) {
         if (point) {
             System.out.print("-----");
             return;
@@ -63,14 +51,27 @@ public class OutputView {
         System.out.print("     ");
     }
 
-    public static void printRewards(List<String> rewards) {
+    public static void printRewards(final List<String> rewards) {
         for (String reward : rewards) {
-            System.out.printf("%s ", StringUtils.center(reward, 5));
+            System.out.printf("%s ", StringUtils.center(reward, PADDING_WIDTH));
         }
         System.out.println("\n");
     }
 
-    public static void printRewardErrorMsg() {
-        System.out.println("보상은 1자 이상 5자 이내여야 합니다.");
+    public static void printResultMessage() {
+        System.out.println("\n실행 결과");
+    }
+
+    public static void printResult(final String name, final Result result) {
+        printResultMessage();
+        System.out.println(result.getResult().get(name) + "\n");
+    }
+
+    public static void printResultAll(final Result result) {
+        printResultMessage();
+        final Map<String, String> a = result.getResult();
+        for (Map.Entry<String, String> entry : a.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
     }
 }

@@ -5,7 +5,8 @@ import java.util.Objects;
 public class Player {
     public static final int MAX_NAME_LENGTH = 5;
     public static final int MIN_NAME_LENGTH = 1;
-    private String name;
+
+    private final String name;
     private int position;
 
     public Player(final String name, final int position) {
@@ -15,8 +16,7 @@ public class Player {
     }
 
     private void validateNameLength() {
-        int nameLength = name.length();
-        if (nameLength > MAX_NAME_LENGTH || nameLength < MIN_NAME_LENGTH) {
+        if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 1자 이상 5자 이내여야 합니다.");
         }
     }

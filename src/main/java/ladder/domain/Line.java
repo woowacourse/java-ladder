@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private List<Boolean> points;
+    private final List<Boolean> points;
 
-    public Line(List<Boolean> points) {
+    public Line(final List<Boolean> points) {
         this.points = points;
 
         if (isConsecutive()) {
