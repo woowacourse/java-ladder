@@ -6,7 +6,8 @@ public class Person implements Comparable<Person> {
     private final String name;
 
     public Person(String name) {
-        if (name.length() < NAME_MIN_LENGTH || name.length() > NAME_MAX_LENGTH) {
+        name = name.trim();
+        if (name.length() < NAME_MIN_LENGTH || name.length() > NAME_MAX_LENGTH || name.equals("") || name.equals(" ")) {
             throw new IllegalArgumentException();
         }
         this.name = name;
@@ -20,6 +21,7 @@ public class Person implements Comparable<Person> {
     public int compareTo(Person rhs) {
         return name.length() - rhs.name.length();
     }
+    
     @Override
     public String toString() {
         return name;

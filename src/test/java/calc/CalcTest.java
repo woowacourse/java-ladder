@@ -7,53 +7,53 @@ import static org.assertj.core.api.Assertions.*;
 class CalcTest {
     @Test
     void nullTest() {
-        assertThat(new Calc(null).getResult()).isEqualTo(0);
+        assertThat(Calc.sum(null)).isEqualTo(0);
     }
 
     @Test
     void emptyTest() {
-        assertThat(new Calc("").getResult()).isEqualTo(0);
+        assertThat(Calc.sum("")).isEqualTo(0);
     }
 
     @Test
     void blankTestA() {
-        assertThat(new Calc(" ").getResult()).isEqualTo(0);
+        assertThat(Calc.sum(" ")).isEqualTo(0);
     }
 
     @Test
     void blankTestB() {
-        assertThat(new Calc("   ").getResult()).isEqualTo(0);
+        assertThat(Calc.sum("   ")).isEqualTo(0);
     }
 
     @Test
     void singleNumberTest() {
-        assertThat(new Calc("5").getResult()).isEqualTo(5);
+        assertThat(Calc.sum("5")).isEqualTo(5);
     }
 
     @Test
     void splitCommaTest() {
-        assertThat(new Calc("2,7").getResult()).isEqualTo(9);
+        assertThat(Calc.sum("2,7")).isEqualTo(9);
     }
 
     @Test
     void splitCommaColonTest() {
-        assertThat(new Calc("1,3:6").getResult()).isEqualTo(10);
+        assertThat(Calc.sum("1,3:6")).isEqualTo(10);
     }
 
     @Test
     void splitCustomTest() {
-        assertThat(new Calc("//;\n4;7,8").getResult()).isEqualTo(19);
+        assertThat(Calc.sum("//;\n4;7,8")).isEqualTo(19);
     }
 
     @Test
     void negativeNumberTest() {
         assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> {
-            new Calc("-3,2,6");
+            Calc.sum("-3,2,6");
         });
     }
 
     @Test
     void wrongInputTest() {
-        assertThatIllegalArgumentException().isThrownBy(() -> new Calc(" a"));
+        assertThatIllegalArgumentException().isThrownBy(() -> Calc.sum(" a"));
     }
 }

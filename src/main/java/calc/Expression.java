@@ -7,17 +7,14 @@ import java.util.stream.Collectors;
 public class Expression {
     private static final String CUSTOM_DELIMITER_EXTRACTOR = "//|\n";
 
-    private List<Integer> numbers;
-
-    public Expression(String input) {
-        if (input == null || input.isBlank()) {
-            numbers = Arrays.asList(0);
-            return;
+    public static List<Integer> getTokens(String input) {
+        if (input == null || input.trim().equals("") || input.trim().equals(" ")) {
+            return Arrays.asList(0);
         }
-        numbers = validate(parse(tokenize(input)));
+        return validate(parse(tokenize(input)));
     }
 
-    private List<String> tokenize(String input) {
+    private static List<String> tokenize(String input) {
         String delimiter = ",|:";
         String[] temp = input.split(CUSTOM_DELIMITER_EXTRACTOR);
         if (temp.length != 1) {
@@ -27,24 +24,19 @@ public class Expression {
         return Arrays.asList(expression.split(delimiter));
     }
 
-    private List<Integer> parse(List<String> tokens) {
+    private static List<Integer> parse(List<String> tokens) {
         return tokens.stream()
                 .map(x -> Integer.parseInt(x))
                 .collect(Collectors.toList());
     }
 
-    private List<Integer> validate(List<Integer> numbers) {
+    private static List<Integer> validate(List<Integer> numbers) {
         try {
-            return (numbers.stream().map(x -> x < 0)
-                    .reduce(false, (x, y) -> x | y))
+            return (numbers.stream().map(x -> x < 0).reduce(false, (x, y) -> x | y))
                     ? Arrays.asList()
                     : numbers;
         } catch (NumberFormatException e) {
             return Arrays.asList();
         }
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 }

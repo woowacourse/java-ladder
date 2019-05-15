@@ -1,71 +1,63 @@
 package ladder.view;
 
 import ladder.model.Ladder;
-import ladder.model.Person;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Map;
 
 public class OutputView {
-    public static void main(String[] argc) {
-        List<Person> people = Arrays.asList(
-                new Person("Kim"),
-                new Person("Park"),
-                new Person("Lee"),
-                new Person("Choi"),
-                new Person("G"),
-                new Person("Jeong"),
-                new Person("No")
-        );
-        List<String> rewards = Arrays.asList(
-                "300",
-                "60,000",
-                "꽝",
-                "꽝",
-                "1,500",
-                "꽝",
-                "10"
-        );
-        final int wordsMaxLength = Math.max(Collections.max(people).getNameLength(), Collections.max(rewards).length());
-        Ladder ladder = new Ladder(people.size(), 11);
-        List<Person> result = 
-        printPeople(people, wordsMaxLength);
-        printLadder(ladder, wordsMaxLength);
-        ladder.apply(people);
-        printWords(rewards, wordsMaxLength);
-        for (int i = 0; i < people.size(); i++) {
-            System.out.println(people.get(i) + " : " + rewards.get(i));
-        }
+    private static final String BLANK = " ";
+    private static final String HORIZONTAL_LINE = "-";
+    private static final String VERTICAL_LINE = "|";
+
+    public static void printGame(List<String> people, Ladder ladder, List<String> rewards, int wordMaxLength) {
+        System.out.println("\n사다리 결과\n");
+        printWords(people, wordMaxLength);
+        printLadder(ladder, wordMaxLength);
+        printWords(rewards, wordMaxLength);
     }
 
-    public static void printWords(List<String> words, int maxLength) {
+    private static void printWords(List<String> words, int maxLength) {
         StringBuilder namesWithPadding = new StringBuilder();
         words.forEach(word -> {
-            String padding = " ".repeat((maxLength - word.length()) / 2);
-            namesWithPadding.append(" " + padding + word + padding + " ");
+            String padding = repeatChar(BLANK, (maxLength - word.length()) / 2);
+            namesWithPadding.append(BLANK + padding + word + padding + BLANK);
         });
         System.out.println(namesWithPadding.toString());
     }
 
-    public static void printPeople(List<Person> people, int maxLength) {
-        printWords(people.stream().map(x -> x.toString()).collect(Collectors.toList()), maxLength);
-    }
-
-    public static void printLadder(Ladder ladder, int length) {
+    private static void printLadder(Ladder ladder, int length) {
+        final int ladderWidth = ladder.getWidth();
         ladder.getLevels().forEach(level -> {
             StringBuilder result = new StringBuilder();
-            for (int i = 0; i < length; i++) {
-                result.append("|" + drawHorizontalLine(level.getLines().contains(i), length));
+            for (int i = 0; i < ladderWidth - 1; i++) {
+                result.append(VERTICAL_LINE + drawHorizontalLine(level.getLines().contains(i), length));
             }
-            result.append("|");
+            result.append(VERTICAL_LINE);
             System.out.println(result);
         });
     }
 
     private static String drawHorizontalLine(boolean exists, int width) {
         if (exists) {
-            return "-".repeat(width);
+            return repeatChar(HORIZONTAL_LINE, width);
         }
-        return " ".repeat(width);
+        return repeatChar(BLANK, width);
+    }
+
+    private static String repeatChar(String text, int n) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            result.append(text);
+        }
+        return result.toString();
+    }
+
+    public static void printResult(Map<String, String> result) {
+        if (result.isEmpty()) {
+            System.out.println("존재하지 않는 참여자입니다. 다시 입력해주세요.");
+            return;
+        }
+        result.entrySet().forEach(x -> System.out.println(x.getKey() + " : " + x.getValue()));
     }
 }
