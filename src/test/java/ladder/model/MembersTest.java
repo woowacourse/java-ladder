@@ -1,8 +1,9 @@
-package ladder;
+package ladder.model;
 
+import ladder.model.Member;
+import ladder.model.Members;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

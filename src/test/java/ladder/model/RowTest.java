@@ -1,5 +1,6 @@
-package ladder;
+package ladder.model;
 
+import ladder.model.Row;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
