@@ -13,7 +13,6 @@ public class StringCalculator {
         customSeparatorGroup = new CustomSeparatorGroup();
     }
 
-    //TODO 로직, 예외처리부분 보강, 숫자(예외 처리)
     public CustomSeparator createCustomSeparator(String input) {
         String[] unrefinedSeparator = input.split(AFTER_SEPARATOR);
         isValidSplitInput(unrefinedSeparator.length, SPLIT_BOUNDARY);
@@ -70,7 +69,7 @@ public class StringCalculator {
     }
 
     private void isNegative(int i) {
-        if(i < 0){
+        if (i < 0) {
             throw new RuntimeException();
         }
     }
