@@ -18,4 +18,11 @@ public class PlayerNameTest {
             PlayerName playerName = new PlayerName("ABCDEF");
         });
     }
+
+    @Test
+    void 이름_공백포함_검사() {
+        assertThrows(IllegalArgumentException.class, ()->{
+            PlayerName playerName = new PlayerName("ABC F");
+        });
+    }
 }
