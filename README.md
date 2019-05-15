@@ -28,9 +28,10 @@
    * 이동 방향을 알려주는 corsspoints를 구현해야 합니다.
 
 ## Done
-   * crossbar 리스트를 입력받아 crossbars를 생성합니다.
+   * 랜덤한 crossbar 리스트를 생성해 Crossbars 객체를 만들어주는 기능
    * crossbars 리스트를 입력받아 Ladder를 생성합니다.
      - crossbars의 갯수는 1 이상이여야 합니다.
+
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
 
