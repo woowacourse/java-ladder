@@ -1,20 +1,18 @@
 package ladder.domain;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private static final String REGEX_OF_NUMBER = "[1-9][0-9]*";
+    private List<Line> lines = new ArrayList<>();
 
-    public static List<String> splitNames(String names) {
-        return Arrays.asList(names.split(","));
+    public Ladder(int countOfPerson, int height) {
+        for (int i = 0; i < height; ++i) {
+            lines.add(new Line(countOfPerson));
+        }
     }
 
-    public static boolean checkNameLength(String name) {
-        return name.length() <= 5;
-    }
-
-    public static boolean checkLadderHeight(String height) {
-        return height.matches(REGEX_OF_NUMBER);
+    public List<Line> getLines() {
+        return this.lines;
     }
 }

@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.Ladder;
 import ladder.domain.Line;
 
 import java.util.ArrayList;
@@ -9,7 +10,13 @@ public class OutputView {
     private static final String LADDER_STEP = "-----";
     private static final String LADDER_SPACE = "     ";
 
-    public static void printLine(Line line) {
+    public static void printLadder(Ladder ladder) {
+        for (Line line : ladder.getLines()) {
+            printLine(line);
+        }
+    }
+
+    private static void printLine(Line line) {
         List<String> steps = new ArrayList<>();
 
         for(boolean point : line.getPoints()) {

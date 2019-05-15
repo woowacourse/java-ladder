@@ -1,6 +1,5 @@
-package domain;
+package ladder.domain;
 
-import ladder.domain.Line;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
