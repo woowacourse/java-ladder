@@ -1,9 +1,8 @@
 package calculator;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class CustomSeparatorGroup {
 
@@ -20,11 +19,9 @@ public class CustomSeparatorGroup {
     }
 
     public String combineSeparatorToRegex() {
-        List<String> separators = new ArrayList<>();
-        for (CustomSeparator customSeparator : customSeparators) {
-            separators.add(customSeparator.getSeparator());
-        }
-        return String.join("|", separators);
+        return customSeparators.stream()
+                .map(CustomSeparator::getSeparator)
+                .collect(Collectors.joining("|"));
     }
 
     public void addCustomSeparator(final CustomSeparator customSeparator) {
