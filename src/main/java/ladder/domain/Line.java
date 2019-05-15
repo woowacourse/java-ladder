@@ -31,6 +31,10 @@ public final class Line {
         }
     }
 
+    public List<Boolean> getSubLines() {
+        return subLines;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
