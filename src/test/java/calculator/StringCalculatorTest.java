@@ -22,4 +22,9 @@ class StringCalculatorTest {
     void null_입력시_0반환() {
         assertThat(stringCalculator.input(null)).isEqualTo(0);
     }
+
+    @Test
+    void 숫자_하나를_문자열로_입력할_경우_해당_숫자를_반환() {
+        assertThat(stringCalculator.input("1")).isEqualTo(1);
+    }
 }
