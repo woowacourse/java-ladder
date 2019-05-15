@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.util.Const;
+import ladder.util.Rule;
 import ladder.util.Util;
 
 import java.util.ArrayList;
@@ -12,15 +13,8 @@ public class LadderLine {
     private List<Boolean> lineStates;
 
     public LadderLine(int playerCount) {
-        this.playerCount = checkCount(playerCount);
+        this.playerCount = Rule.rulePlayerCountSize(playerCount);
         this.lineStates = setLineStates();
-    }
-
-    private int checkCount(int playerCount) {
-        if (playerCount < Const.MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException(Const.EX_PLAYER_COUNT);
-        }
-        return playerCount;
     }
 
     private List<Boolean> setLineStates() {

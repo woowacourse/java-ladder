@@ -20,14 +20,13 @@ public class Ladder {
 
     public Ladder(String name, int depth) {
         this.players = regePlayers(name.replaceAll(" ", ""));
-        this.depth = Util.checkDepth(depth);
+        this.depth = Rule.ruleLadderDepthRange(depth);
         this.ladderlines = setLadderLines();
     }
 
     private List<Player> regePlayers(String name) {
         List<Player> players = new ArrayList<>();
-        List<String> names = Arrays.asList(name.split(","));
-        Rule.ruleNamesMinSize(names);
+        List<String> names = Rule.rulePlayerCountSize(Arrays.asList(name.split(",")));
         for (String s : names) {
             players.add(new Player(s));
         }

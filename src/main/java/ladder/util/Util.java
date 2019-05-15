@@ -16,30 +16,26 @@ public class Util {
     }
 
     public static String checkName(String inputName) {
-        inputName = inputName.replaceAll(" ", "");
-        isBlank(inputName);
-        isNameOverSize(inputName);
-        return inputName;
+        return isNameRuleOK(isBlank(inputName.replaceAll(" ", "")));
     }
 
-    private static void isBlank(String inputName) {
+    private static String isBlank(String inputName) {
         if (StringUtils.isBlank(inputName)) {
             throw new IllegalArgumentException(Const.EX_PLAYER_COUNT);
         }
+        return inputName;
     }
 
-    private static void isNameOverSize(String inputName) {
+    private static String isNameRuleOK(String inputName) {
         List<String> names = Arrays.asList(inputName.split(","));
-        Rule.ruleNamesMinSize(names);
+        Rule.rulePlayerCountSize(names);
         for (String name : names) {
-            Rule.ruleNameOverLength(name);
+            Rule.rulePlayerNameLength(name);
         }
+        return inputName;
     }
 
     public static int checkDepth(int depth) {
-        if (depth < Const.MIN_LINE_COUNT) {
-            throw new IllegalArgumentException(Const.EX_LINE_COUNT);
-        }
-        return depth;
+        return Rule.ruleLadderDepthRange(depth);
     }
 }
