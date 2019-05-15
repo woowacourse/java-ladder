@@ -2,28 +2,18 @@ package ladder.validator;
 
 import ladder.constant.MessageConstant;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 public class PlayerValidator {
 
-    public static void checkPlayerInputAccuracy(String[] inputs){
-         if(isOnePlayer(inputs)){
-             throw new IllegalArgumentException(MessageConstant.ERROR_ONE_PLAYER);
-         }
+    public static final int MAX_NAME_LENGTH = 5;
 
-        if(isOverlapPlayer(inputs)){
-            throw new IllegalArgumentException(MessageConstant.ERROR_OVERLAP_PLAYERS);
+    public static String validatedName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException(MessageConstant.ERROR_HAS_VALUE_EMPTY);
         }
+        if (name.trim().length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(MessageConstant.ERROR_OVERLENGTH);
+        }
+        return name.trim();
     }
 
-    private static boolean isOnePlayer(String[] inputs) {
-        return inputs.length == 1;
-    }
-
-    private static boolean isOverlapPlayer(String[] inputs){
-        Set<String> checkOverlapNames = new HashSet<>(Arrays.asList(inputs));
-        return checkOverlapNames.size() != inputs.length;
-    }
 }

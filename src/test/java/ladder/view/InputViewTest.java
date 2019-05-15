@@ -33,4 +33,27 @@ public class InputViewTest {
             InputView.makePlayers(names);
         });
     }
+
+    @Test
+    void 사다리_높이가_NULL_이거나_빈칸인_경우() {
+        assertThrows(IllegalArgumentException.class, () ->{
+            InputView.makeLadderHeight(null);
+        });
+        assertThrows(IllegalArgumentException.class, () ->{
+            InputView.makeLadderHeight("");
+        });
+        assertThrows(IllegalArgumentException.class, () ->{
+            InputView.makeLadderHeight(" ");
+        });
+    }
+
+    @Test
+    void 높이가_정수_외_문자열을_입력한_경우() {
+        assertThrows(NumberFormatException.class, () -> {
+            InputView.makeLadderHeight("a");
+        });
+        assertThrows(NumberFormatException.class, () -> {
+            InputView.makeLadderHeight("1.1");
+        });
+    }
 }
