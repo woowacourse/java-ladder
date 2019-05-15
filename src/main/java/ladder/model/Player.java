@@ -8,17 +8,17 @@ public class Player {
     private String name;
 
     public Player(String name) {
-        this.name = validatedName(name);;
+        this.name = validatedName(name);
     }
 
     private String validatedName(String name) {
         if(name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException(MessageConstant.ERROR_HASEMPTY);
         }
-        if (name.length() > MAX_NAME_LENGTH) {
+        if (name.trim().length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(MessageConstant.ERROR_OVERLENGTH);
         }
-        return name;
+        return name.trim();
     }
 
     public String getName() {
