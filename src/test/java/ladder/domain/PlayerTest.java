@@ -6,11 +6,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlayerTest {
-    //5글자 , 널, 공백
-
     @Test
     void 정상_입력() {
         Player player = new Player("pobi");
+        assertThat(player).isEqualTo(new Player("pobi"));
+    }
+
+    @Test
+    void 공백이_처음과끝_입력() {
+        Player player = new Player(" pobi  ");
         assertThat(player).isEqualTo(new Player("pobi"));
     }
 

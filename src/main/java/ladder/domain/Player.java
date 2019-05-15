@@ -8,17 +8,21 @@ public final class Player {
     private final String name;
 
     public Player(final String name) {
-        validateName(name);
-        this.name = name;
+        this.name = validName(trimName(name));
     }
 
-    private void validateName(String name) {
+    private String validName(String name) {
         if (name.isEmpty()) {
             throw new IllegalArgumentException("이름은 1글자 이상 입력해주세요.");
         }
         if (name.length() > NAME_LENGTH_CONDITION) {
             throw new IllegalArgumentException("이름은 " + NAME_LENGTH_CONDITION + "글자 이하로 입력해주세요.");
         }
+        return name;
+    }
+
+    private String trimName(String name) {
+        return name.trim();
     }
 
     @Override
