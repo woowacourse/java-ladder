@@ -10,8 +10,4 @@ public class Util {
     public static String formatName(String name) {
         return String.format("%6s", name);
     }
-
-    public static int checkDepth(int depth) {
-        return Rule.ruleLadderDepthRange(depth);
-    }
 }

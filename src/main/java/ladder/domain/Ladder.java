@@ -12,21 +12,21 @@ import java.util.Objects;
 public class Ladder {
     private List<Player> players;
     private final int depth;
-    private List<LadderLine> ladderlines;
+    private List<LadderLine> ladderLines;
 
     public Ladder(String name) {
         this(name, Const.MIN_LINE_COUNT);
     }
 
     public Ladder(String name, int depth) {
-        this.players = regePlayers(name.replaceAll(" ", ""));
+        this.players = regePlayers(name);
         this.depth = Rule.ruleLadderDepthRange(depth);
-        this.ladderlines = setLadderLines();
+        this.ladderLines = setLadderLines();
     }
 
     private List<Player> regePlayers(String name) {
         List<Player> players = new ArrayList<>();
-        List<String> names = Rule.rulePlayerCountSize(Arrays.asList(name.split(",")));
+        List<String> names = Arrays.asList(Rule.ruleInputPlayerNames(name).split(","));
         for (String s : names) {
             players.add(new Player(s));
         }
@@ -43,7 +43,7 @@ public class Ladder {
 
     public String getResultLadderLines() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (LadderLine line : ladderlines) {
+        for (LadderLine line : ladderLines) {
             stringBuilder.append(line);
         }
         return stringBuilder.toString();

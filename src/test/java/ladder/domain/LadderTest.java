@@ -14,7 +14,7 @@ public class LadderTest {
 
     @BeforeEach
     void setUp() {
-        names = "pobi,honux,crong,jk";
+        names = " pobi, honux, crong, jk";
         depth = 5;
         ladder = new Ladder(names,depth);
     }

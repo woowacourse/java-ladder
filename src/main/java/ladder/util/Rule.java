@@ -16,14 +16,14 @@ public class Rule {
     /**
      * 규칙 : 이름은 5글자 이하여야하며 사용자는 1명 이상이어야한다.
      *
-     * @param inputNames
+     * @param inputNames 입력받은 사용자 이름들
      * @return inputNames
      * @throws IllegalArgumentException
      */
     public static String ruleInputPlayerNames(String inputNames) {
         inputNames = inputNames.replaceAll(" ","");
         List<String> names = rulePlayerCountSize(
-                Arrays.asList(inputNames.replaceAll(" ","").split(","))
+                Arrays.asList(inputNames.split(","))
         );
         for (String name : names) {
             rulePlayerNameLength(name);

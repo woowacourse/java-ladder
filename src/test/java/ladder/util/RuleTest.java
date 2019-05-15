@@ -19,6 +19,13 @@ class RuleTest {
     }
 
     @Test
+    void ruleInputPlayerNames_스페이스_예외_확인() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Rule.ruleInputPlayerNames(" ");
+        });
+    }
+
+    @Test
     void ruleInputPlayerNames_빈값_두개_확인() {
         assertThrows(IllegalArgumentException.class, () -> {
             Rule.ruleInputPlayerNames(" , ");
@@ -57,13 +64,6 @@ class RuleTest {
     void rulePlayerNameLength_6글자_예외_확인() {
         assertThrows(IllegalArgumentException.class, () -> {
             Rule.rulePlayerNameLength("sdfghs");
-        });
-    }
-
-    @Test
-    void rulePlayerCountSize_빈값_예외_확인() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            Rule.rulePlayerCountSize(Arrays.asList(""));
         });
     }
 
