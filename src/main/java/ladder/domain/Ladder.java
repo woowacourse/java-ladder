@@ -20,7 +20,7 @@ public class Ladder {
 
     public Ladder(String name, int depth) {
         this.players = regePlayers(name.replaceAll(" ", ""));
-        this.depth = checkDepth(depth);
+        this.depth = Util.checkDepth(depth);
         this.ladderlines = setLadderLines();
     }
 
@@ -32,13 +32,6 @@ public class Ladder {
             players.add(new Player(s));
         }
         return players;
-    }
-
-    private int checkDepth(int depth) {
-        if (depth < Const.MIN_LINE_COUNT) {
-            throw new IllegalArgumentException(Const.EX_LINE_COUNT);
-        }
-        return depth;
     }
 
     private List<LadderLine> setLadderLines() {

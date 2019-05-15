@@ -35,4 +35,11 @@ public class Util {
             Rule.ruleNameOverLength(name);
         }
     }
+
+    public static int checkDepth(int depth) {
+        if (depth < Const.MIN_LINE_COUNT) {
+            throw new IllegalArgumentException(Const.EX_LINE_COUNT);
+        }
+        return depth;
+    }
 }

@@ -13,7 +13,12 @@ public class InputView {
     }
 
     public static int inputLadderDepth() {
-        System.out.println(Const.INPUT_DEPTH);
-        return SCANNER.nextInt();
+        try {
+            System.out.println(Const.INPUT_DEPTH);
+            return Integer.parseInt(SCANNER.nextLine());
+        } catch (Exception e) {
+            System.out.println(Const.EX_LINE_COUNT);
+            return inputLadderDepth();
+        }
     }
 }
