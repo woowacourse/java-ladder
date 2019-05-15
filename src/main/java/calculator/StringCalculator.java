@@ -6,15 +6,14 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
     public int input(String formula) {
-        if (formula == null || formula.isEmpty()) {
+        if (isBlank(formula)) {
             return 0;
         }
+        return sum(split(formula));
+    }
 
-        String[] result = split(formula);
-
-        return Arrays.stream(result)
-                .mapToInt(Integer::parseInt)
-                .sum();
+    private boolean isBlank(String formula) {
+        return formula == null || formula.isEmpty();
     }
 
     private String[] split(String formula) {
@@ -24,5 +23,11 @@ public class StringCalculator {
             return matcher.group(2).split(matcher.group(1));
         }
         return formula.split("[,:]");
+    }
+
+    private int sum(String[] result) {
+        return Arrays.stream(result)
+                .mapToInt(Integer::parseInt)
+                .sum();
     }
 }
