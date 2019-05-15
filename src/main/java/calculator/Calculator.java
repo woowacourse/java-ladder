@@ -1,4 +1,4 @@
-package Calculator;
+package calculator;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -8,6 +8,7 @@ public class Calculator {
     private static final String DEFALUT_REGEX = "[,]|[:]";
     private static final String PATTERN = "//(.+)\n";
     private static final String BLANC = "";
+    private static final String NUM_REGEX = "\\d+";
 
     public int add(String text) {
         int[] nums = makeIntegers(text);
@@ -32,7 +33,6 @@ public class Calculator {
         return nums;
     }
 
-
     public String makeRegex(String text) {
         StringBuilder regex = new StringBuilder(DEFALUT_REGEX);
         Matcher matcher = Pattern.compile(PATTERN).matcher(text);
@@ -44,13 +44,6 @@ public class Calculator {
         return regex.toString();
     }
 
-    public String checkRegex(String regex) {
-        if (regex.matches("\\d+")) {
-            throw new IllegalArgumentException();
-        }
-        return regex;
-    }
-
     public String textFilter(String text) {
         return text.replaceAll(PATTERN, BLANC);
     }
@@ -58,5 +51,12 @@ public class Calculator {
     private int validNum(int num) {
         if (num < 0) throw new RuntimeException();
         return num;
+    }
+
+    public String checkRegex(String regex) {
+        if (regex.matches(NUM_REGEX)) {
+            throw new IllegalArgumentException();
+        }
+        return regex;
     }
 }
