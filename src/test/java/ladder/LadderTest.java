@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.Ladder;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
