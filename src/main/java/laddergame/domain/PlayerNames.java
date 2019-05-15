@@ -3,7 +3,9 @@ package laddergame.domain;
 import java.util.*;
 
 public class PlayerNames {
-    public List<String> makeNames(String input) {
+    public static List<String> makeNames(String input) {
+        checkNullName(input);
+
         input = input.replaceAll(" ", "");
         List<String> names = new ArrayList<>(Arrays.asList(input.split(",")));
 
@@ -13,7 +15,6 @@ public class PlayerNames {
     }
 
     private static void checkConditions(String input, List<String> names) {
-        checkNullName(input);
         checkEmptyName(input);
         checkNameLength(names);
         checkDuplicatedName(names);
