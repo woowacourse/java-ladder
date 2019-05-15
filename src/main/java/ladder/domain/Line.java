@@ -6,10 +6,6 @@ import java.util.List;
 public class Line {
     private List<Boolean> points = new ArrayList<>();
 
-    public Line(int lineLength) {
-        this(lineLength, new RandomPointLadderRule());
-    }
-
     public Line(int lineLength, LadderRule rule) {
         generatePoints(lineLength,rule);
     }
@@ -29,5 +25,15 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    public int move(int endPoint) {
+        if(endPoint > 0) {
+            if(points.get(endPoint-1)) return endPoint-1;
+        }
+        if(points.get(endPoint)){
+            return endPoint+1;
+        }
+        return endPoint;
     }
 }

@@ -11,7 +11,7 @@ public class LineTest {
     @Test
     public void 라인너비초기화 (){
         int length = 5;
-        assertThat(new Line(length).getLength()).isEqualTo(5);
+        assertThat(new Line(length,new ForcedTrueRule()).getLength()).isEqualTo(5);
     }
 
     @Test
