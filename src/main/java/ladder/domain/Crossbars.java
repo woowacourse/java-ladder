@@ -1,22 +1,25 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Crossbars {
     private static final int FIRST_DUMMY_INDEX = 0;
     private static final int LAST_DUMMY_SPACE = 1;
-    private static final int NEIGHBOR_INDEX = 1;
+    private static final int NEXT_INDEX = 1;
     private static final int MINIMUM_SIZE = 2;
-    private static final int CHANGED_POSITION = 1;
 
     private List<Boolean> crossbars;
+    private List<Crosspoint> crosspoints = new ArrayList<>();
 
     Crossbars(List<Boolean> crossbars) {
         validateSize(crossbars);
-        vaildateNeighboredCrossbar(crossbars);
         validateFirstAndLastAreDummy(crossbars);
         this.crossbars = crossbars;
+        for (int i = 0; i < crossbars.size() - 1; i++) {
+            crosspoints.add(new Crosspoint(crossbars.get(i), crossbars.get(i + NEXT_INDEX)));
+        }
     }
 
     public List<Boolean> getCrossbars() {
@@ -35,26 +38,9 @@ public class Crossbars {
         }
     }
 
-    private void vaildateNeighboredCrossbar(List<Boolean> crossbars) {
-        for (int i = 1; i < crossbars.size() - 1; i++) {
-            throwExceptionIfBothAreNeighbor(crossbars.get(i), crossbars.get(i + NEIGHBOR_INDEX));
-        }
-    }
-
-    private void throwExceptionIfBothAreNeighbor(boolean crossbarA, boolean crossbarB) {
-        if (crossbarA && crossbarB) {
-            throw new IllegalArgumentException("연속된 다리는 만들 수 없습니다.");
-        }
-    }
-
     public int answerResultIndexOf(int positionOfPlayer) {
-        if (crossbars.get(positionOfPlayer)) {
-            return positionOfPlayer - CHANGED_POSITION;
-        }
-        if (crossbars.get(positionOfPlayer + CHANGED_POSITION)) {
-            return positionOfPlayer + CHANGED_POSITION;
-        }
-        return positionOfPlayer;
+        return crosspoints.get(positionOfPlayer)
+                .answerResultPositionOf(positionOfPlayer);
     }
 
     @Override
