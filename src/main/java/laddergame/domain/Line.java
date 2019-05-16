@@ -20,7 +20,7 @@ public class Line {
     }
 
     public Boolean canAddScaffold(int index) {
-        return !(scaffolds.get(index) || scaffolds.get(index + 1));
+        return !(scaffolds.get(index + 1) || scaffolds.get(index - 1));
     }
 
     public void addScaffold(int index) {

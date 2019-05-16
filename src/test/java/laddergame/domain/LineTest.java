@@ -12,9 +12,11 @@ class LineTest {
     void 발판을_놓을수_있는지_테스트() {
         Line line = new Line(Arrays.asList(false, false, true, false));
         Line line2 = new Line(Arrays.asList(false, false, false));
+        Line line3 = new Line(Arrays.asList(false, true, false, false));
 
         assertThat(line.canAddScaffold(1)).isFalse();
         assertThat(line2.canAddScaffold(1)).isTrue();
+        assertThat(line3.canAddScaffold(2)).isFalse();
     }
 
     @Test
