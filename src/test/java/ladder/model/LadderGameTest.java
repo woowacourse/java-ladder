@@ -2,29 +2,14 @@ package ladder.model;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LadderGameTest {
     @Test
-    void 플레이어수_결과수_일치검사() {
+    void 찾을_플레이어_존재_검사() {
         assertThrows(IllegalArgumentException.class, ()->{
-           new LadderGame(new Floor("5"),"AA,BB,CC","A,B");
-        });
-    }
-
-    @Test
-    void 결과출력할_플레이어_이름_존재_검사() {
-        LadderGame ladderGame = new LadderGame(new Floor("5"),"aaa,bbb,ccc","aaa,bbb,ccc");
-        assertThrows(IllegalArgumentException.class, ()->{
-            ladderGame.getOnePlayerResult(new PlayerName("ddd"));
-        });
-    }
-
-    @Test
-    void 결과출력할_플레이어_이름_5자초과_검사() {
-        LadderGame ladderGame = new LadderGame(new Floor("5"),"aaa,bbb,ccc","aaa,bbb,ccc");
-        assertThrows(IllegalArgumentException.class, ()->{
-            ladderGame.getOnePlayerResult(new PlayerName("dddddd"));
+            (new LadderGame(new Players("pobi,coogi,luffy"),new Results("1,2,3",3),new Floor("3")))
+                    .getOnePlayerResult(new PlayerName("jason"));
         });
     }
 }

@@ -1,6 +1,5 @@
 package ladder.model.frame;
 
-import ladder.model.PlayerName;
 
 import java.util.ArrayList;
 import java.util.List;
