@@ -14,13 +14,13 @@ public class LadderTest {
                 new Line(Arrays.asList(false, true)),
                 new Line(Arrays.asList(true, false)));
 
-        List<Player> initialPlayers = Arrays.asList(new Player("pobi", 0),
-                new Player("crong", 1),
-                new Player("honux", 2));
+        List<Player> initialPlayers = Arrays.asList(new Player("pobi", 0, 3),
+                new Player("crong", 1, 3),
+                new Player("honux", 2, 3));
 
-        List<Player> resultPlayers = Arrays.asList(new Player("pobi", 2),
-                new Player("crong", 1),
-                new Player("honux", 0));
+        List<Player> resultPlayers = Arrays.asList(new Player("pobi", 2, 3),
+                new Player("crong", 1, 3),
+                new Player("honux", 0, 3));
 
         List<Player> result = Ladder.goDown(lines, initialPlayers);
 

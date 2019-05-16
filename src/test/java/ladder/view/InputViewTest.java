@@ -22,9 +22,9 @@ public class InputViewTest {
     @Test
     void 이름갯수와보상갯수가다른경우테스트() {
         List<Player> players = Arrays.asList(
-                new Player("pobi", 0),
-                new Player("crong", 1),
-                new Player("honux", 2));
+                new Player("pobi", 0, 3),
+                new Player("crong", 1, 3),
+                new Player("honux", 2, 3));
         List<String> rewards = Arrays.asList("1000", "0");
         assertThrows(IllegalArgumentException.class, () -> InputView.validateRewardsCount(rewards, players));
     }

@@ -34,8 +34,9 @@ public class LadderGame {
 
     private List<Player> getPlayers(final List<String> names) {
         List<Player> players = new ArrayList<>();
-        for (int i = 0; i < names.size(); i++) {
-            players.add(new Player(names.get(i), i));
+        int numOfPlayers = names.size();
+        for (int i = 0; i < numOfPlayers; i++) {
+            players.add(new Player(names.get(i), i, numOfPlayers));
         }
         return players;
     }

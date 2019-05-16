@@ -12,9 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ResultTest {
     @Test
     void 사다리게임결과생성() {
-        List<Player> resultPlayers = Arrays.asList(new Player("pobi", 2),
-                new Player("crong", 1),
-                new Player("honux", 0));
+        List<Player> resultPlayers = Arrays.asList(new Player("pobi", 2, 3),
+                new Player("crong", 1, 3),
+                new Player("honux", 0, 3));
 
         Map<String, String> result = new HashMap<>();
         result.put("honux", "꽝");
