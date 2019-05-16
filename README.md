@@ -29,6 +29,7 @@
      - all을 입력하면 경우에는 전부 다 출력합니다.
    * Player, ResultItem 중복
    * InputView 메소드 기능 중복(player,item)
+   * 사다리결과 만드는 기능에서 getter 빼는 방법 생각
 
 ## Done
    * player 이름이 공백, null일 때 예외 처리

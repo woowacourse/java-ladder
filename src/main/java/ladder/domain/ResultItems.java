@@ -1,7 +1,6 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ResultItems {
     List<ResultItem> resultItems = new ArrayList<>();
@@ -13,5 +12,28 @@ public class ResultItems {
         for (String itemName : itemNames) {
             resultItems.add(new ResultItem(itemName));
         }
+    }
+
+    public HashMap<Player, ResultItem> makeLaddringResult(PlayerGroup players) {
+        HashMap<Player, ResultItem> ladderingResult = new LinkedHashMap<>();
+
+        for (Player player : players.getPlayers()) {
+            ladderingResult.put(player, resultItems.get(player.getPosition()));
+        }
+
+        return ladderingResult;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ResultItems that = (ResultItems) o;
+        return Objects.equals(resultItems, that.resultItems);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(resultItems);
     }
 }

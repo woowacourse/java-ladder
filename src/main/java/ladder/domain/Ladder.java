@@ -1,8 +1,6 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Ladder {
     private List<Crosspoints> ladder = new ArrayList<>();
@@ -35,5 +33,13 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(ladder);
+    }
+
+    public HashMap<Player, ResultItem> startLadderGame(PlayerGroup players, ResultItems resultItems) {
+        for (Crosspoints crosspoints : ladder) {
+            players.changePositionBy(crosspoints);
+        }
+
+        return resultItems.makeLaddringResult(players);
     }
 }

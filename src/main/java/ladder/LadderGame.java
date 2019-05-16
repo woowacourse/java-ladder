@@ -4,6 +4,9 @@ import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import javax.xml.transform.Result;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public class LadderGame {
@@ -16,6 +19,9 @@ public class LadderGame {
         Ladder ladder = getLadderBy(randomCrossbarGenerator);
 
         OutputView.showPlayersAndLadder(players, ladder);
+
+//        LadderingResult ladderingResult = ladder.startLadderGame(players, resultItems);
+//        OutputView.showladderingResult(ladderingResult);
     }
 
     private static ResultItems getResultItemsof(int numberOfPlayers) {

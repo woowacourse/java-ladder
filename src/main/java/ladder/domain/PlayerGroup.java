@@ -6,8 +6,8 @@ public class PlayerGroup {
     private Set<Player> players = new LinkedHashSet<>();
 
     public PlayerGroup(List<String> playerNames) {
-        for (String playerName : playerNames) {
-            players.add(new Player(playerName));
+        for (int i = 0; i < playerNames.size(); i++) {
+            players.add(new Player(playerNames.get(i), i));
         }
         checkDuplication(players.size(), playerNames.size());
     }
@@ -22,6 +22,16 @@ public class PlayerGroup {
         return players.size();
     }
 
+    public void changePositionBy(Crosspoints crosspoints) {
+        for (Player player : players) {
+            player.stepDown(crosspoints);
+        }
+    }
+
+    public Set<Player> getPlayers() {
+        return players;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -33,9 +43,5 @@ public class PlayerGroup {
     @Override
     public int hashCode() {
         return Objects.hash(players);
-    }
-
-    public Set<Player> getPlayers() {
-        return players;
     }
 }
