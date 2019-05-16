@@ -4,12 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import ladder.domain.UserOutput;
+import org.apache.commons.lang3.StringUtils;
 
 public class StringSplitUtils {
-	public static List<String> splitNames(String names) {
-		if (org.apache.commons.lang3.StringUtils.isBlank(names)) {
+	public static List<String> splitString(String input) {
+		if (StringUtils.isBlank(input)) {
 			throw new NullPointerException(UserOutput.VIOLATE_PLAYER_NAME.getOutputMessage());
 		}
-		return Arrays.asList(names.split(","));
+		return Arrays.asList(input.split(","));
 	}
 }

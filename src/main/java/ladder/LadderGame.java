@@ -17,7 +17,7 @@ public class LadderGame {
 
 		try {
 			names = InputView.inputNames();
-			Validator.checkNamesLength(StringSplitUtils.splitNames(names));
+			Validator.checkNamesLength(StringSplitUtils.splitString(names));
 			return Arrays.asList(names.split(","));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
