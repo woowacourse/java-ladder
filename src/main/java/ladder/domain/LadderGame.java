@@ -5,7 +5,7 @@
  *
  * 2019.05.16
  *
- * Copyright (c) 2019 KwonMC and KimHG
+ * Copyright (c) 2019 MrKwon and men7627.
  * WoowahanTechCamp, Seoul, KOREA
  * All right Reserved
  */
