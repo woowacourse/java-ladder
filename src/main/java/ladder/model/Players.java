@@ -29,9 +29,7 @@ public class Players {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Player player : players) {
-            stringBuilder.append(String.format("%-6s", player));
-        }
+        players.forEach(player -> stringBuilder.append(String.format("%-6s", player)));
         return stringBuilder.toString();
     }
 }
