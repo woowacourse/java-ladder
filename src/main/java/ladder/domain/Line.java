@@ -1,9 +1,28 @@
+/*
+ * @(#)Line.java
+ *
+ * v 1.0.0
+ *
+ * 2019.05.16
+ *
+ * Copyright (c) 2019 KwonMC and KimHG
+ * WoowahanTechCamp, Seoul, KOREA
+ * All right Reserved
+ */
+
 package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * 사다리 가로줄을 담당하는 클래스
+ *
+ * @author mrkwon
+ * @author men7627
+ * @version 1.0.0
+ */
 public class Line {
     private static final String HEADER_HORIZON_LINE = "   ";
     private static final String VERTICAL_LINE = "|";
@@ -56,6 +75,38 @@ public class Line {
             throw new IllegalArgumentException(HORIZON_DUPLICATION_ERROR);
         }
     }
+    private String toStringEachHorLine(Boolean bool) {
+        String result = NO_HORIZON_LINE;
+        if (bool) {
+            result = HORIZON_LINE;
+        }
+        return result;
+    }
+
+    public int moveRightOrLeft(int index) {
+        if (canMoveLeft(index)) {
+            return moveLeft(index);
+        }
+        if (canMoveRight(index)) {
+            return moveRight(index);
+        }
+        return index;
+    }
+    private boolean canMoveLeft(int index) {
+        return index > 0 && this.horizon.get(index - 1);
+    }
+
+    private int moveLeft(int index) {
+        return index - 1;
+    }
+
+    private boolean canMoveRight(int index) {
+        return index < horizon.size() && this.horizon.get(index);
+    }
+
+    private int moveRight(int index) {
+        return index + 1;
+    }
 
     @Override
     public String toString() {
@@ -69,21 +120,4 @@ public class Line {
         return sb.toString();
     }
 
-    private String toStringEachHorLine(Boolean bool) {
-        String result = NO_HORIZON_LINE;
-        if (bool) {
-            result = HORIZON_LINE;
-        }
-        return result;
-    }
-
-    public int moveRightOrLeft(int playerIndex) {
-        if (playerIndex > 0 && this.horizon.get(playerIndex - 1)) {
-            return --playerIndex;
-        }
-        if (playerIndex < horizon.size() && this.horizon.get(playerIndex)) {
-            return ++playerIndex;
-        }
-        return playerIndex;
-    }
 }

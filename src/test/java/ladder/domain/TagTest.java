@@ -4,25 +4,25 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class NameTest {
+public class TagTest {
     @Test
     void 이름_길이_검사_0() {
         assertThrows(IllegalArgumentException.class, ()->{
-            Name name = new Name("");
+            new Tag("");
         });
     }
 
     @Test
     void 이름_길이_검사_5초과() {
         assertThrows(IllegalArgumentException.class, ()->{
-            Name name = new Name("ABCDEF");
+            new Tag("ABCDEF");
         });
     }
 
     @Test
     void 이름_공백포함_검사() {
         assertThrows(IllegalArgumentException.class, ()->{
-            Name name = new Name("ABC F");
+            new Tag("ABC F");
         });
     }
 }

@@ -1,8 +1,27 @@
+/*
+ * @(#)Tag.java
+ *
+ * v 1.0.0
+ *
+ * 2019.05.16
+ *
+ * Copyright (c) 2019 KwonMC and KimHG
+ * WoowahanTechCamp, Seoul, KOREA
+ * All right Reserved
+ */
+
 package ladder.domain;
 
 import java.util.Objects;
 
-public class Name {
+/**
+ * Player 와 Result 의 이름과 로직을 담당하는 클래스
+ *
+ * @author mrkwon
+ * @author men7627
+ * @version 1.0.0
+ */
+public class Tag {
     private static final String NAME_CONTAIN_SPACE_ERROR = "공백 포함 오류";
     private static final String NAME_LENGTH_ERROR = "길이 5 초과 오류";
     private static final String EMPTY_NAME_ERROR = "공백 입력 불가 오류";
@@ -12,7 +31,7 @@ public class Name {
 
     private String name;
 
-    public Name(String name) {
+    public Tag(String name) {
         checkEmptyName(name);
         checkNameLength(name);
         checkNameContainSpace(name);
@@ -44,8 +63,8 @@ public class Name {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Name)) return false;
-        Name that = (Name) o;
+        if (!(o instanceof Tag)) return false;
+        Tag that = (Tag) o;
         return getName().equals(that.getName());
     }
 

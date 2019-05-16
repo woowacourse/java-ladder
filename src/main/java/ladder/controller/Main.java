@@ -1,43 +1,63 @@
-package ladder;
+/*
+ * @(#)Main.java
+ *
+ * v 1.0.0
+ *
+ * 2019.05.16
+ *
+ * Copyright (c) 2019 KwonMC and KimHG
+ * WoowahanTechCamp, Seoul, KOREA
+ * All right Reserved
+ */
+
+
+package ladder.controller;
 
 import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+/**
+ * View 와 Model 의 매개를 담당하는 컨트롤러 클래스
+ *
+ * @author mrkwon
+ * @author men7627
+ * @version 1.0.0
+ */
 public class Main {
     private static final String EXIT_CONDITION = "exit";
     private static final String ALL_CONDITION = "all";
 
     public static void main(String[] args) {
-        Players players = getPlayers();
-        Results results = getResults(players.size());
+        PlayerTags playerTags = getPlayers();
+        ResultTags results = getResults(playerTags.size());
         Floor floors = getFloor();
 
-        LadderGame ladderGame = new LadderGame(players, results, floors);
+        LadderGame ladderGame = new LadderGame(playerTags, results, floors);
 
         OutputView.resultLadderTitle();
         OutputView.resultLadder(ladderGame);
         showResult(ladderGame);
     }
 
-    private static Players getPlayers() {
-        Players players;
+    private static PlayerTags getPlayers() {
+        PlayerTags playerTags;
         try {
-            players = new Players(InputView.inputPlayerNamesMessage());
+            playerTags = new PlayerTags(InputView.playerNames());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            players = new Players(InputView.inputPlayerNamesMessage());
+            playerTags = new PlayerTags(InputView.playerNames());
         }
-        return players;
+        return playerTags;
     }
 
-    private static Results getResults(int playerNumbers) {
-        Results results;
+    private static ResultTags getResults(int playerNumbers) {
+        ResultTags results;
         try {
-            results = new Results(InputView.inputResultNamesMessage(), playerNumbers);
+            results = new ResultTags(InputView.resultNames(), playerNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            results = new Results(InputView.inputResultNamesMessage(), playerNumbers);
+            results = new ResultTags(InputView.resultNames(), playerNumbers);
         }
         return results;
     }
@@ -45,10 +65,10 @@ public class Main {
     private static Floor getFloor() {
         Floor floors;
         try {
-            floors = InputView.inputFloorsMessage();
+            floors = new Floor(InputView.floors());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            floors = InputView.inputFloorsMessage();
+            floors = new Floor(InputView.floors());
         }
         return floors;
     }
@@ -65,7 +85,7 @@ public class Main {
     private static void selectResult(LadderGame ladderGame) {
         String select = "";
         while (!select.equals(EXIT_CONDITION)) {
-            select = InputView.inputSelectResultMessage();
+            select = InputView.selectResult();
             checkNotAll(ladderGame, select);
             select = checkAll(ladderGame, select);
         }
@@ -83,8 +103,8 @@ public class Main {
     private static void checkNotAll(LadderGame ladderGame, String select) {
         if (!select.equals(EXIT_CONDITION) && !select.equals(ALL_CONDITION)) {
             OutputView.resultTitle();
-            Name selectName = new Name(select);
-            OutputView.resultPrint(ladderGame.getOnePlayerResult(selectName));
+            Tag selectTag = new Tag(select);
+            OutputView.resultPrint(ladderGame.getOnePlayerResult(selectTag));
         }
     }
 }

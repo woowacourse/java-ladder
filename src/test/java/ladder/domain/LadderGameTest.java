@@ -8,25 +8,25 @@ class LadderGameTest {
     @Test
     void 플레이어수_결과수_일치검사() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new LadderGame(new Players("AA,BB,CC"), new Results("A,B", 3), new Floor("5"));
+            new LadderGame(new PlayerTags("AA,BB,CC"), new ResultTags("A,B", 3), new Floor("5"));
         });
     }
 
     @Test
     void 결과출력할_플레이어_이름_존재_검사() {
-        Players players = new Players("aaa,bbb,ccc");
-        LadderGame ladderGame = new LadderGame(players, new Results("aaa,bbb,ccc", players.size()), new Floor("5"));
+        PlayerTags playerTags = new PlayerTags("aaa,bbb,ccc");
+        LadderGame ladderGame = new LadderGame(playerTags, new ResultTags("aaa,bbb,ccc", playerTags.size()), new Floor("5"));
         assertThrows(IllegalArgumentException.class, () -> {
-            ladderGame.getOnePlayerResult(new Name("ddd"));
+            ladderGame.getOnePlayerResult(new Tag("ddd"));
         });
     }
 
     @Test
     void 결과출력할_플레이어_이름_5자초과_검사() {
-        Players players = new Players("aaa,bbb,ccc");
-        LadderGame ladderGame = new LadderGame(players, new Results("aaa,bbb,ccc", players.size()), new Floor("5"));
+        PlayerTags playerTags = new PlayerTags("aaa,bbb,ccc");
+        LadderGame ladderGame = new LadderGame(playerTags, new ResultTags("aaa,bbb,ccc", playerTags.size()), new Floor("5"));
         assertThrows(IllegalArgumentException.class, () -> {
-            ladderGame.getOnePlayerResult(new Name("dddddd"));
+            ladderGame.getOnePlayerResult(new Tag("dddddd"));
         });
     }
 }

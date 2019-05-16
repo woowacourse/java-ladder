@@ -1,17 +1,37 @@
-package ladder.domain;
+/*
+ * @(#)Tags.java
+ *
+ * v 1.0.0
+ *
+ * 2019.05.16
+ *
+ * Copyright (c) 2019 MrKwon.
+ * WoowahanTechCamp, Seoul, KOREA
+ * All right Reserved
+ */
+
+package ladder.domain.frame;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class NameContainer {
+import ladder.domain.Tag;
+
+/**
+ * Tags 에 관련된 공통 변수와 공통 로직을 수행하기 위한 abstract 클래스
+ *
+ * @author mrkwon
+ * @version 1.0.0
+ */
+public abstract class Tags {
     private static final String DELIMITER = ",";
     private static final String VALID_INPUT_ERROR = "입력 형식 오류";
     private static final String PLAYER_NAMES_REGEX = "^([^,]+)(,[^,]+)*$";
 
-    protected List<Name> names;
+    protected List<Tag> tags;
 
-    protected NameContainer(String input) {
-        names = new ArrayList<>();
+    protected Tags(String input) {
+        tags = new ArrayList<>();
         checkValidInput(input);
         addNames(input);
     }
@@ -28,13 +48,13 @@ public abstract class NameContainer {
         for (String name : input.split(DELIMITER)) {
             this.add(name);
         }
-    };
+    }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for(Name name : names){
-            sb.append(String.format("%6s", name.toString()));
+        for(Tag tag : tags){
+            sb.append(String.format("%6s", tag.toString()));
         }
         return sb.toString();
     }
