@@ -14,6 +14,10 @@ public class Prizes {
         return prizes.get(index);
     }
 
+    public List<String> getPrizes() {
+        return prizes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

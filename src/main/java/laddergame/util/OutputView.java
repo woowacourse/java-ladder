@@ -1,18 +1,23 @@
 package laddergame.util;
 
 import laddergame.domain.Ladder;
+import laddergame.domain.LadderGameResult;
+import laddergame.domain.Members;
+import laddergame.domain.Prizes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
-    public static void outputLadderGameResult(List<String> names, Ladder ladder) {
-        System.out.println("실행결과");
-        outputMembers(names);
+    public static void outputLadderGame(Members members, Ladder ladder, Prizes prizes) {
+        System.out.println("사다리 결과");
+        outputTag(members.getMembers());
         outputLadder(ladder);
+        outputTag(prizes.getPrizes());
     }
 
-    private static void outputMembers(List<String> names) {
+    private static void outputTag(List<String> names) {
         StringBuilder namesView = new StringBuilder();
         for (String name : names) {
             namesView.append(makeNameToSevenLength(name));
@@ -35,7 +40,7 @@ public class OutputView {
         for (int i = 0; i < height; i++) {
             ladderView.append(outputLine(ladder, i));
         }
-        System.out.println(ladderView);
+        System.out.print(ladderView);
     }
 
     private static StringBuilder outputLine(Ladder ladder, int index) {
@@ -52,5 +57,22 @@ public class OutputView {
 
     private static String outputScaffold(Boolean scaffold) {
         return scaffold ? "------" : "      ";
+    }
+
+    public static void outputLadderGameResult(String person, LadderGameResult ladderGameResult) {
+        System.out.println("실행 결과");
+        if (person.equals("all")) {
+            outputAllResult(ladderGameResult.allPrizes());
+            return;
+        }
+        System.out.println(ladderGameResult.prize(person));
+    }
+
+    private static void outputAllResult(Map<String, String> allPrizes) {
+        StringBuilder result = new StringBuilder();
+        for (String person : allPrizes.keySet()) {
+            result.append(person).append(" : ").append(allPrizes.get(person)).append('\n');
+        }
+        System.out.print(result);
     }
 }

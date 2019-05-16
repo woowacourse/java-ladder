@@ -27,6 +27,10 @@ public class Members {
         return people.size();
     }
 
+    public List<String> getMembers() {
+        return people;
+    }
+
     private boolean hasDuplicateName(List<String> names) {
         Set<String> nonDuplicateNames = new HashSet<>(names);
         return names.size() != nonDuplicateNames.size();

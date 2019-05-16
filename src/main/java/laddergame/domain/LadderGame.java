@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LadderGame {
-    public static Map<String, String> startGame(Members members, Ladder ladder, Prizes prizes) {
+    public static LadderGameResult startGame(Members members, Ladder ladder, Prizes prizes) {
         Map<String, String> result = new HashMap<>();
         for (int i = 0; i < members.size(); i++) {
             result.put(members.getMember(i), prizes.getPrize(ladder.takeLadder(i)));
         }
-        return result;
+        return new LadderGameResult(result);
     }
 }
