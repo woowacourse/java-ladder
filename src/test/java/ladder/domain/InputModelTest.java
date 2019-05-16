@@ -1,11 +1,11 @@
-package ladder.Model;
+package ladder.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InputModelTest {
-    InputModel inputModel;
+    private InputModel inputModel;
 
     @BeforeEach
     void setUp() {

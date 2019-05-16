@@ -1,31 +1,38 @@
-package ladder.Model;
+package ladder.domain;
 
 import java.util.*;
 
 public class InputModel {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_HEIGHT = 1;
-    private static String ERROR_MESSAGE = "입력이 올바르지 않습니다.";
+    private static final String ERROR_MESSAGE = "입력이 올바르지 않습니다.";
 
-    List<String> getValidNames(String names) throws Exception{
-        checkBlank(names);
+    public List<String> getValidNames(String names) {
+        checkBlankInput(names);
 
-        List<String> validNames = Arrays.asList(names.trim().split(","));
-        checkEmpty(validNames);
-
-        checkOverlap(validNames);
-
-        for (String name : validNames) {
-            isInValidNameLength(name);
-        }
-
-        return validNames;
+        return checkValidNames(Arrays.asList(split(names)));
     }
 
-    private void checkBlank(String names) {
+    private void checkBlankInput(String names) {
         if (names == null || names.equals("")) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
+    }
+
+    private List<String> checkValidNames(List<String> names) {
+        checkEmpty(names);
+
+        checkOverlap(names);
+
+        for (String name : names) {
+            isOverNameLength(name);
+        }
+
+        return names;
+    }
+
+    private String[] split(String names) {
+        return names.trim().split(",");
     }
 
     private void checkEmpty(List<String> validNames) {
@@ -41,19 +48,17 @@ public class InputModel {
         }
     }
 
-
-    private void isInValidNameLength(String name) {
+    private void isOverNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
 
-    public int getValidLadderHeight(int number) throws Exception {
+    public int getValidLadderHeight(int number) {
         if (number < MIN_HEIGHT) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
 
         return number;
     }
-
 }
