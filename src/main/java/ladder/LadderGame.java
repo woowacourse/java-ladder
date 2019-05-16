@@ -65,4 +65,10 @@ public class LadderGame {
 		}
 		return list;
 	}
+
+	public static void matchPlayerAndResult(List<Player> players) {
+	    for (Player player : players) {
+            ladder.goDownLadder(player);
+        }
+    }
 }

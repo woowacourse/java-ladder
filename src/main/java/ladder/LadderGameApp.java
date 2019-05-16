@@ -18,6 +18,8 @@ public class LadderGameApp {
 
 		List<Player> players = LadderGame.generatePlayers(names);
 
+		LadderGame.matchPlayerAndResult(players);
+
 		String name;
 		do {
 			name = InputView.inputNameForResult();
