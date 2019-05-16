@@ -17,4 +17,22 @@ public class Players {
     public List<Player> list() {
         return players;
     }
+
+    public Player player(Player target) {
+        for (Player player : players) {
+            if (player.equals(target)) {
+                return player;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public Player player(String name) {
+        for (Player player : players) {
+            if (player.name().equals(name)) {
+                return player;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
 }

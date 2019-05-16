@@ -70,4 +70,21 @@ public class LadderLadderResult {
 
         assertEquals(Arrays.asList("꽝", "꽝", "3000", "5000"), ladderResult.run(ladder));
     }
+
+
+    @Test
+    public void 플레이어_이용_테스트() {
+        LadderReward ladderReward = new LadderReward("꽝,5000,꽝,3000");
+        Players players = new Players("a,b,c,d");
+
+        Ladder ladder = new Ladder(4, 2);
+        RandomGenerator randomGenerator = new RandomGenerator(Arrays.asList(1, 1, 0, 1));
+        ladder.row(randomGenerator);
+
+        LadderResult ladderResult = new LadderResult(ladderReward);
+        PlayerResult playerResult = ladderResult.run(ladder, players.player("a"));
+
+        PlayerResult expectPlayer = new PlayerResult("a", "꽝");
+        assertEquals(expectPlayer, playerResult);
+    }
 }

@@ -4,8 +4,6 @@ public class Player {
     private final String name;
     private final int position;
 
-    private String reward;
-
     public Player(String name, int position) {
         this.name = name;
         this.position = position;
@@ -23,5 +21,13 @@ public class Player {
         }
         Player another = (Player) obj;
         return this.name.equals(another.name) && this.position == another.position;
+    }
+
+    public String name() {
+        return this.name;
+    }
+
+    public int position() {
+        return this.position;
     }
 }

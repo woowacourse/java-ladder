@@ -1,17 +1,20 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LadderResult {
-    List<String> rewards;
+    LadderReward rewards;
 
     public LadderResult(String text) {
-        rewards = Arrays.asList(text.split(","));
+        rewards = new LadderReward(text);
     }
 
-    public List<String> reward() {
+    public LadderResult(LadderReward reward) {
+        this.rewards = reward;
+    }
+
+    public LadderReward reward() {
         return rewards;
     }
 
@@ -22,7 +25,14 @@ public class LadderResult {
             index += currentLines.get(index);
         }
 
-        return rewards.get(index);
+        return rewards.reward(index);
+    }
+
+    public PlayerResult run(Ladder ladder, Player player) {
+        int index = player.position();
+        PlayerResult result = new PlayerResult(player.name(), run(ladder, index));
+
+        return result;
     }
 
     public List<String> run(Ladder ladder) {
