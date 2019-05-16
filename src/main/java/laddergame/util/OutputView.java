@@ -2,6 +2,7 @@ package laddergame.util;
 
 import laddergame.domain.Ladder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
@@ -39,15 +40,17 @@ public class OutputView {
 
     private static StringBuilder outputLine(Ladder ladder, int index) {
         StringBuilder lineView = new StringBuilder();
-        lineView.append("   |");
+        List<String> scaffoldsView = new ArrayList<>();
+
         for (Boolean scaffold : ladder.getLine(index).getScaffolds()) {
-            lineView.append(outputScaffold(scaffold));
+            scaffoldsView.add(outputScaffold(scaffold));
         }
+        lineView.append(String.join("|", scaffoldsView).substring(3));
         lineView.append("\n");
         return lineView;
     }
 
     private static String outputScaffold(Boolean scaffold) {
-        return scaffold ? "------|" : "      |";
+        return scaffold ? "------" : "      ";
     }
 }
