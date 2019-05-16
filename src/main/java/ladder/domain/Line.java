@@ -5,29 +5,35 @@ import java.util.List;
 import java.util.Objects;
 
 public final class Line {
+    private static final int MIN_PLAYER = 2;
+
     private final List<Boolean> subLines;
 
-    public Line(final List<Boolean> subLines) {
-        validate(subLines);
-        this.subLines = new ArrayList<>(subLines);
+    public Line(final int countOfPerson) {
+        this(countOfPerson, new SubLineRandomGenerator(countOfPerson));
     }
 
-    private void validate(List<Boolean> subLines) {
-        validateSize(subLines);
+    public Line(final int countOfPerson, SubLineGenerator subLineGenerator) {
+        validateSize(countOfPerson);
+        this.subLines = new ArrayList<>(subLineGenerator.generate());
         validateDuplication(subLines);
     }
 
-    private void validateSize(List<Boolean> subLines) {
-        if (subLines.isEmpty()) {
+    private void validateSize(int countOfPerson) {
+        if (countOfPerson < MIN_PLAYER) {
             throw new IllegalArgumentException("사람수는 2명 이상 이어야 합니다.");
         }
     }
 
     private void validateDuplication(List<Boolean> subLines) {
         for (int i = 1; i < subLines.size(); i++) {
-            if (subLines.get(i) && subLines.get(i - 1)) {
-                throw new IllegalArgumentException("Line.class validate Duplication Error");
-            }
+            validateDuplication(subLines.get(i), subLines.get(i - 1));
+        }
+    }
+
+    private void validateDuplication(boolean first, boolean second) {
+        if (first && second) {
+            throw new IllegalArgumentException("Line.class validate Duplication Error");
         }
     }
 

@@ -33,9 +33,8 @@ public final class Ladder {
 
     private List<Line> generateLines(int height, int countOfPlayers) {
         List<Line> generatedLines = new ArrayList<>();
-        SubLineGenerator subLineGenerator = new SubLineRandomGenerator(countOfPlayers);
         for (int i = 0; i < height; i++) {
-            generatedLines.add(new Line(subLineGenerator.generate()));
+            generatedLines.add(new Line(countOfPlayers));
         }
         return generatedLines;
     }
