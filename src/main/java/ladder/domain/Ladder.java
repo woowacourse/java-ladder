@@ -13,6 +13,11 @@ public class Ladder {
         addLines(names, height);
     }
 
+    public Ladder(String[] names, List<Line> lines){
+        this.lines = lines;
+        this.names = names;
+    }
+
     private void addLines(String[] names, int height) {
         for (int i = 0; i < height; i++) {
             lines.add(new Line(names.length));
