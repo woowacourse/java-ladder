@@ -4,6 +4,7 @@ import laddergame.domain.Constant;
 import laddergame.domain.inputValidator;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -15,14 +16,22 @@ public class PlayerBuilder {
         this.names = names;
     }
 
-    public Players makePlayers() {
+    public Players buildPlayers() {
         inputValidator.validateInput(names);
 
         List<Player> players = Arrays.asList(names.split(Constant.COMMA)).stream()
+                .map(String::trim)
                 .map(Player::new)
                 .collect(Collectors.toList());
 
+        checkDuplication(players);
         return new Players(players);
+    }
+
+    private void checkDuplication(List<Player> players) {
+        if(new HashSet<>(players).size() != players.size()){
+            throw new IllegalArgumentException("중복이 있습니다.");
+        }
     }
 
     @Override

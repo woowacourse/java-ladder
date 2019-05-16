@@ -12,7 +12,7 @@ import laddergame.view.OutputView;
 public class Main {
 
 	public static void main(String[] args) {
-		Players players= new PlayerBuilder(InputView.inputPlayers()).makePlayers();
+		Players players= new PlayerBuilder(InputView.inputPlayers()).buildPlayers();
 		LadderHeight ladderHeight = new LadderHeight(InputView.inputLadderHeight());
 		Results results = new ResultBuilder(InputView.inputResults()).makeResults();
 		Ladder ladder = new Ladder(ladderHeight.getLadderHeight(), players.getTotalPlayers());
