@@ -4,37 +4,40 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Line {
-    private static final int CONNECT_CONDITION = 4;
+    private static final int CONNECT_CONDITION = 5;
 
     private ArrayList<Boolean> points = new ArrayList<>();
 
-    public Line(final int countOfPerson) {
-        for (int i = 0; i < countOfPerson; i++) {
+    public Line(final int numberOfPeople) {
+        for (int i = 0; i < numberOfPeople; i++) {
             points.add(false);
         }
     }
 
     public boolean isAvailableToConnect(int point) {
-        if (point >= points.size()) {
-            throw new IndexOutOfBoundsException("좌표를 벗어났습니다.");
-        }
-
         if (point == points.size() - 1) {
             return false;
         }
 
-        return !points.get(point) && !points.get(point + 1);
-    }
-
-    public void connect(int point, int number) {
-        if (number >= CONNECT_CONDITION) {
-            points.add(point, true);
-            points.add(point + 1, true);
+        if (point == 0) {
+            return true;
         }
+
+        return !isConnected(point - 1);
     }
 
     public boolean isConnected(int point) {
         return points.get(point);
+    }
+
+    public void connect(int point, int number) {
+        if (number >= CONNECT_CONDITION) {
+            points.set(point, true);
+        }
+    }
+
+    public int getNumberOfPeople() {
+        return points.size();
     }
 
     @Override

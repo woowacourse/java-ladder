@@ -13,12 +13,10 @@ public class LadderGeneratorTest {
         List<Line> lines = new ArrayList<>();
         int height = 3;
 
-        LineGenerator lineGenerator = new LineGenerator();
         for (int i = 0; i < height; i++) {
-            lines.add(lineGenerator.generate(5));
+            lines.add(new Line(5));
         }
 
-        LadderGenerator ladderGenerator = new LadderGenerator();
-        assertThat(new Ladder(lines)).isEqualTo(ladderGenerator.generate(5, 3));
+        assertThat(new Ladder(lines)).isEqualTo(LadderGenerator.generate(3, 5));
     }
 }

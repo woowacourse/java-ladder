@@ -18,6 +18,18 @@ public class Ladder {
         lines.get(lineNumber).connect(point, randomNumber);
     }
 
+    public Line getLine(int lineNumber) {
+        return lines.get(lineNumber);
+    }
+
+    public int getHeight() {
+        return lines.size();
+    }
+
+    public int getNumberOfPeople() {
+        return lines.get(0).getNumberOfPeople();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
