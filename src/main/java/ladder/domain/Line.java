@@ -10,12 +10,8 @@ public class Line {
         points.add(RandomGenerator.getRandomBoolean());
 
         for (int i = 1; i < countOfPerson - 1; ++i) {
-            points.add(generatePoints(points.get(i - 1)));
+            points.add(RandomGenerator.getRandomBoolean(points.get(i - 1)));
         }
-    }
-
-    public boolean generatePoints(boolean value) {
-        return RandomGenerator.getRandomBoolean(value);
     }
 
     public List<Boolean> getPoints(){
