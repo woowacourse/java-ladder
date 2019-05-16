@@ -1,5 +1,9 @@
 package ladder.domain;
 
-public class LadderGameTest {
+import org.junit.jupiter.api.Test;
 
+public class LadderGameTest {
+    @Test
+    void name() {
+    }
 }
