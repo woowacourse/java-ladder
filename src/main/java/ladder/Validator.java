@@ -22,4 +22,10 @@ public class Validator {
 			throw new NumberFormatException(UserOutput.VIOLATE_LADDER_HEIGHT.getOutputMessage());
 		}
 	}
+
+	public static void checkNumberOfResult(List<String> names, List<String> results) {
+		if (names.size() != results.size()) {
+			throw new IllegalArgumentException(UserOutput.VIOLATE_GAME_RESULTS.getOutputMessage());
+		}
+	}
 }
