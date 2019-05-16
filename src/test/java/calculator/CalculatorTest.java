@@ -1,3 +1,6 @@
+package calculator;
+
+import calculator.Calculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -94,12 +97,12 @@ public class CalculatorTest {
         String[] inputs = {"-1,2,3", "//a\n1a2,-3:4"};
 
         IntStream.range(0, inputs.length).forEach((i) -> {
-            String input = inputs[i];
+        String input = inputs[i];
 
-            assertThrows(RuntimeException.class, () -> {
-                calculator.evaluate(input);
-            });
+        assertThrows(RuntimeException.class, () -> {
+            calculator.evaluate(input);
         });
-    }
+    });
+}
 
 }
