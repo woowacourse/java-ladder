@@ -1,19 +1,27 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
-    private List<Crossbars> ladder;
+    private List<Crossbars> ladder = new ArrayList<>();
 
     public Ladder(int height, CrossbarGenerator crossbarGenerator) {
         validateHeight(height);
+        for (int i = 0; i < height; i++) {
+            ladder.add(crossbarGenerator.generateCrossbars());
+        }
     }
 
     private void validateHeight(int height) {
         if (height <= 0) {
             throw new IllegalArgumentException("사다리의 높이는 1이상이어야 합니다.");
         }
+    }
+
+    public List<Crossbars> getLadder() {
+        return ladder;
     }
 
     @Override

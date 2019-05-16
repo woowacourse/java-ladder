@@ -5,6 +5,7 @@ import ladder.domain.Ladder;
 import ladder.domain.PlayerGroup;
 import ladder.domain.RandomCrossbarGenerator;
 import ladder.view.InputView;
+import ladder.view.OutputView;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ public class LadderGame {
         PlayerGroup players = getPlayers();
         CrossbarGenerator randomCrossbarGenerator = new RandomCrossbarGenerator(players.size() + LAST_DUMMY_SPACE);
         Ladder ladder = getLadderBy(randomCrossbarGenerator);
+
+        OutputView.showPlayersAndLadder(players, ladder);
     }
 
     private static Ladder getLadderBy(CrossbarGenerator crossbarGenerator) {

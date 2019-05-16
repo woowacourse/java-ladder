@@ -29,4 +29,8 @@ public class PlayerGroup {
     public int hashCode() {
         return Objects.hash(players);
     }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
 }

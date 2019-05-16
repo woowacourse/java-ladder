@@ -18,9 +18,11 @@
 
 # 사다리 게임
 ## To-do   
+   * OutputView의 printCrossbars 리팩토링
+   * Ladder에서 foreach getter사용하지 않고 하는 방법?
+   * Ladder 클래스 field명 변경
+   * Ladddr Getter 이름 변경
    * Ladder Game 클래스의 LAST_DMMY_SPACE 리네임
-   * crossbar는 '-' 5개로 구성되어 있습니다.
-   * 사다리를 출력하는 기능을 만들어야 합니다.
    * 이동 방향을 알려주는 corsspoints를 구현해야 합니다.
 
 ## Done
@@ -33,6 +35,9 @@
    * 참여할 사람 이름 길이는 최대 5글자까지 부여할 수 있습니다.
    * 참여할 사람 이름을 입력받아야 합니다.
      - 쉼표로 사람 이름을 구분할 수 있어야 합니다.
+   * 사다리게임 1단계 결과를 출력헤주는 기능을 만들어야 합니다.
+   * crossbar는 '-' 5개로 구성되어 있습니다.
+
 
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)

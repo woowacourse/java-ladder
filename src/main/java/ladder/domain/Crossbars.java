@@ -18,6 +18,10 @@ public class Crossbars {
         this.crossbars = crossbars;
     }
 
+    public List<Boolean> getCrossbars() {
+        return crossbars;
+    }
+
     private void validateSize(List<Boolean> crossbars) {
         if (crossbars.size() < MINIMUM_SIZE) {
             throw new IllegalArgumentException("crossbar의 크기가 잘못되었습니다.");
