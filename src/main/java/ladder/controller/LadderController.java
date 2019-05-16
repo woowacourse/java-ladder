@@ -17,7 +17,6 @@ public class LadderController {
         String[] prizes = splitNames(inputPrizes);
         int height = InputView.inputHeight();
 
-
         Ladder ladder = new Ladder(names.length, height);
         LadderGame ladderGame = new LadderGame(ladder, names, prizes);
         OutputView.printLadderGame(ladderGame);

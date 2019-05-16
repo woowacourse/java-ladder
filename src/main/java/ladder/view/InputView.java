@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.utils.InputValidator;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -13,8 +15,11 @@ public class InputView {
     public static String inputNames() {
         System.out.println(GAME_USER_NAME_INPUT_MSG);
         try {
-            return SCANNER.nextLine();
-        } catch (Exception e) {
+            String names = SCANNER.nextLine();
+            InputValidator.checkValidComponent(names);
+            return names;
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
             return inputNames();
         }
     }
@@ -22,8 +27,11 @@ public class InputView {
     public static String inputPrize(){
         System.out.println(GAME_PRIZE_INPUT_MGS);
         try {
-            return SCANNER.nextLine();
-        } catch (Exception e) {
+            String prizes = SCANNER.nextLine();
+            InputValidator.isWrongLength(prizes);
+            return prizes;
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
             return inputPrize();
         }
     }
@@ -31,8 +39,11 @@ public class InputView {
     public static int inputHeight() {
         System.out.println(GAME_LADDER_HEIGHT_INPUT_MGS);
         try {
-            return Integer.parseInt(SCANNER.nextLine());
+            int height = Integer.parseInt(SCANNER.nextLine());
+            InputValidator.checkPositive(height);
+            return height;
         } catch (Exception e) {
+            System.err.println(e.getMessage());
             return inputHeight();
         }
     }
@@ -40,8 +51,11 @@ public class InputView {
     public static String inputNameForResult() {
         System.out.println(NAME_FOR_RESULT_INPUT_MSG);
         try {
-            return SCANNER.nextLine();
+            String name = SCANNER.nextLine();
+            InputValidator.isWrongLength(name);
+            return name;
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return inputNameForResult();
         }
     }
