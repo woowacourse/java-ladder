@@ -10,12 +10,14 @@ import java.util.List;
 
 public class GameController {
     private static final int MIN_PARTICIPANTS_NUMBER = 2;
-    private List<Participant> participants = new ArrayList<>();
+    private List<Participant> participants;
     private List<String> rewards;
     private List<Integer> ladderResultNumbers;
     private Ladder ladder;
     private Result result;
+
     public void registParticipant(List<String> participants) {
+        this.participants = new ArrayList<>();
         validateMinParticipants(participants);
         validateDuplicatedParticipants(participants);
         participants.stream().forEach(x -> this.participants.add(new Participant(x)));
@@ -39,7 +41,7 @@ public class GameController {
     }
 
     private void validateRewards(List<String> rewards) {
-        if (rewards.size() != participants.size()){
+        if (rewards.size() != participants.size()) {
             throw new IllegalArgumentException("참가자 수와 일치하지 않습니다.");
         }
     }
@@ -53,6 +55,10 @@ public class GameController {
         return ladder;
     }
 
+    public List<String> getRewards() {
+        return rewards;
+    }
+
     public List<Participant> getParticipants() {
         return participants;
     }
@@ -62,11 +68,12 @@ public class GameController {
         participants.stream().forEach(x -> ladderResultNumbers.add(ladder.getEndPoint(participants.indexOf(x))));
     }
 
-    public Result getGameResult(){
-        result = new Result(participants,rewards,ladderResultNumbers);
+    public Result getGameResult() {
+        result = new Result(participants, rewards, ladderResultNumbers);
         return result;
     }
-    public boolean getGameEnd(){
+
+    public boolean getGameEnd() {
         return result.getIsEnd();
     }
 }
