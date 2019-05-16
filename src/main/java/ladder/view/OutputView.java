@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderRow;
-import ladder.domain.LadderRules;
-import ladder.domain.PlayerResult;
+import ladder.domain.*;
 
 import java.util.List;
 
@@ -20,8 +17,6 @@ public class OutputView {
 
 
     public void print(Ladder ladder) {
-        System.out.println(ConsoleMessages.OUTPUT_LADDER.message());
-
         List<LadderRow> rows = ladder.status();
         for (int i = 0; i < rows.size(); i++) {
             System.out.println(line(rows.get(i)));
@@ -32,12 +27,12 @@ public class OutputView {
     public String line(LadderRow row) {
         List<Integer> info = row.status();
         StringBuilder stringBuilder = new StringBuilder();
-
+        stringBuilder.append("   ");
         for (int i = 0; i < info.size() - 1; i++) {
             stringBuilder.append("|");
             stringBuilder.append(mark(info.get(i)));
-        }
 
+        }
         stringBuilder.append("|");
         return stringBuilder.toString();
     }
@@ -64,5 +59,27 @@ public class OutputView {
             stringBuilder.append("\n");
         }
         return stringBuilder.toString();
+    }
+
+    public void print(PlayerResult playerResult) {
+        System.out.println(result(playerResult));
+    }
+
+    public void print(Players players, Ladder ladder, LadderRewards ladderRewards) {
+        System.out.println(ConsoleMessages.OUTPUT_LADDER.message());
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Player player : players.list()) {
+            stringBuilder.append(String.format("%6s", player.name()));
+            stringBuilder.append(" ");
+        }
+
+        System.out.println(stringBuilder.toString());
+        print(ladder);
+        stringBuilder.setLength(0);
+        for (String reward : ladderRewards.reward()) {
+            stringBuilder.append(String.format("%6s", reward));
+            stringBuilder.append(" ");
+        }
+        System.out.println(stringBuilder.toString());
     }
 }

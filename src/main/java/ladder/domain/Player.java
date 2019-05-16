@@ -23,7 +23,7 @@ public class Player {
         return this.name.equals(another.name) && this.position == another.position;
     }
 
-    String name() {
+    public String name() {
         return this.name;
     }
 

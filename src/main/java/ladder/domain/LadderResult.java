@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderResult {
-    LadderRewards rewards;
-
-    public LadderResult(String text) {
-        rewards = new LadderRewards(text);
-    }
+    private LadderRewards rewards;
 
     public LadderResult(LadderRewards reward) {
         this.rewards = reward;
