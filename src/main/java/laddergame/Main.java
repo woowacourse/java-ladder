@@ -19,6 +19,21 @@ public class Main {
 		ladder.connectBridgesRandomly(ladderHeight.getLadderHeight() * players.getTotalPlayers());
 		OutputView.showPlayers(players);
 		OutputView.showLadder(ladder);
-		OutputView.showResult(results);
+		OutputView.showResults(results);
+
+		String command;
+		do {
+			command = InputView.inputCommand();
+			printExecutionResult(players, results, command);
+		} while (!command.equals("all"));
+	}
+
+	private static void printExecutionResult(Players players, Results results, String command) {
+		if (command.equals("all")) {
+			OutputView.showAllResults(players, results);
+			return;
+		}
+		int indexOfName = players.getIndexOfName(command);
+		OutputView.showResult(results.getResult(indexOfName));
 	}
 }

@@ -10,9 +10,6 @@ public class LadderTest {
     @Test
     public void 레더_테스트_사다리의_너비가_1일때() {
         Ladder ladder = new Ladder(1, 1);
-        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            ladder.connectBridge(1, 1);
-        });
         assertThat(ladder.isLinked(1, 1)).isFalse();
     }
 

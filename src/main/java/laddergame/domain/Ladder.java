@@ -35,7 +35,7 @@ public class Ladder {
         try {
             ladder.get(row).connect(column);
         } catch (IndexOutOfBoundsException e) {
-            throw new IllegalArgumentException("연결로를 추가할 수 없음 (테스트용)");
+            //throw new IllegalArgumentException("연결로를 추가할 수 없음 (테스트용)");
         } catch (IllegalArgumentException e) {
             // 왼쪽이나 오른쪽에 연결로가 중복될 떄
         }

@@ -3,8 +3,10 @@ package laddergame.domain.player;
 import laddergame.domain.Constant;
 import laddergame.domain.result.Result;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Players {
     private final List<Player> players;
@@ -22,6 +24,10 @@ public class Players {
             throw new IllegalArgumentException("존재하지않는 이름입니다.");
         }
         return players.indexOf(new Player(name));
+    }
+
+    public String getNameOfIndex(int index) {
+        return players.get(index).getName();
     }
 
     @Override
