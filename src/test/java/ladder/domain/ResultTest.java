@@ -19,7 +19,9 @@ class ResultTest {
     }
     @Test
     public void 게임결과하나얻기(){
-        assertThat(result.eachGetResult("a")).isEqualTo("1");
+        LinkedHashMap<String,String> multiResult =new LinkedHashMap<>();
+        multiResult.put("a","1");
+        assertThat(result.getResult(Arrays.asList("a"))).isEqualTo(multiResult);
     }
 
     @Test
@@ -27,6 +29,20 @@ class ResultTest {
         LinkedHashMap<String,String> multiResult =new LinkedHashMap<>();
         multiResult.put("a","1");
         multiResult.put("b","2");
-        assertThat(result.multiGetResult(Arrays.asList("a","b"))).isEqualTo(multiResult);
+        assertThat(result.getResult(Arrays.asList("a","b"))).isEqualTo(multiResult);
     }
+
+    @Test
+    public void All키워드로얻기(){
+        LinkedHashMap<String,String> multiResult =new LinkedHashMap<>();
+        multiResult.put("a","1");
+        multiResult.put("b","2");
+        multiResult.put("c","3");
+        assertThat(result.getResult(Arrays.asList("all"))).isEqualTo(multiResult);
+        assertThat(result.getResult(Arrays.asList("All"))).isEqualTo(multiResult);
+        assertThat(result.getResult(Arrays.asList("aLl"))).isEqualTo(multiResult);
+
+    }
+
+
 }
