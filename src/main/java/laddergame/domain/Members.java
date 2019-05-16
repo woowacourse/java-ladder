@@ -19,8 +19,12 @@ public class Members {
         this.people = names;
     }
 
-    public List<String> getNames() {
-        return people;
+    public String getMember(int index) {
+        return people.get(index);
+    }
+
+    public int size() {
+        return people.size();
     }
 
     private boolean hasDuplicateName(List<String> names) {

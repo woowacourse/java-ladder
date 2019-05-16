@@ -10,12 +10,16 @@ public class Prizes {
         this.prizes = prizes;
     }
 
+    public String getPrize(int index) {
+        return prizes.get(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Prizes prizes = (Prizes) o;
-        return Objects.equals(prizes, prizes.prizes);
+        Prizes prizes1 = (Prizes) o;
+        return Objects.equals(prizes, prizes1.prizes);
     }
 
     @Override
