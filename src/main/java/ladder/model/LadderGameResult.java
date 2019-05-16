@@ -7,6 +7,9 @@ import java.util.Map;
 public class LadderGameResult {
 
     private static final int START_VALUE = 0;
+    private static final String COLON = " : ";
+    private static final String ENTER = "\n";
+
     private Map<String, String> gameResults = new HashMap<>();
     private List<String> playerNames;
     private List<String> goalNames;
@@ -52,5 +55,14 @@ public class LadderGameResult {
 
     public String match(String targetPlayer) {
         return gameResults.get(targetPlayer);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = 0 ; i < gameResults.size() ; i++){
+            stringBuilder.append(playerNames.get(i)).append(COLON).append(gameResults.get(playerNames.get(i))).append(ENTER);
+        }
+        return stringBuilder.toString();
     }
 }

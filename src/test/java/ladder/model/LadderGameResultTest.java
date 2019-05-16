@@ -1,5 +1,7 @@
 package ladder.model;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -10,8 +12,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGameResultTest {
 
-    @Test
-    void 사다리게임_결과가_잘나오는지_테스트() {
+    private LadderGameResult ladderGameResult;
+
+    @BeforeEach
+    void setUp() {
         List<LadderPlayer> players = new ArrayList<>();
         players.add(new LadderPlayer("red"));
         players.add(new LadderPlayer("blue"));
@@ -32,10 +36,24 @@ public class LadderGameResultTest {
 
         Ladder ladder = new Ladder(ladders);
 
-        LadderGameResult ladderGameResult = new LadderGameResult(new LadderGamePlayers(players), ladder, new LadderGameGoals(goals));
+        ladderGameResult = new LadderGameResult(new LadderGamePlayers(players), ladder, new LadderGameGoals(goals));
+    }
+
+    @Test
+    void 사다리게임_결과가_잘나오는지_테스트() {
         assertThat(ladderGameResult.match("red")).isEqualTo("one");
         assertThat(ladderGameResult.match("blue")).isEqualTo("three");
         assertThat(ladderGameResult.match("green")).isEqualTo("two");
         assertThat(ladderGameResult.match("black")).isEqualTo("four");
+    }
+
+    @Test
+    void all을_입력받으면_전체_결과_출력_테스트() {
+        assertThat(ladderGameResult.toString()).isEqualTo("red : one\nblue : three\ngreen : two\nblack : four\n");
+    }
+
+    @AfterEach
+    void tearDown() {
+        ladderGameResult = null;
     }
 }

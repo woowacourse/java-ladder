@@ -23,11 +23,14 @@ public class LadderGameController {
         LadderGameResult ladderGameResult = new LadderGameResult(players,ladder,goals);
 
         String foundName = InputView.findName();
+        if(foundName.equals("all")){
+            OutputView.showGameResult(ladderGameResult.toString());
+        }
         if(!players.existName(foundName)){
             throw new IllegalArgumentException(MessageConstant.ERROR_PLAYER_NOT_EXIST);
         }
 
-        OutputView.showFoundGameResult(ladderGameResult.match(foundName));
+        OutputView.showGameResult(ladderGameResult.match(foundName));
 
     }
 

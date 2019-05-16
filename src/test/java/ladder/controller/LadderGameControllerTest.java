@@ -22,4 +22,5 @@ class LadderGameControllerTest {
         assertTrue(new LadderGamePlayers(players).existName("red"));
         assertFalse(new LadderGamePlayers(players).existName("black"));
     }
+
 }

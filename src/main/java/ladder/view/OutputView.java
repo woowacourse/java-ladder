@@ -34,8 +34,9 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void showFoundGameResult(String foundGoal){
+    public static void showGameResult(String foundGoal){
         System.out.println(ENTER + MessageConstant.OUTPUT_RESULT);
         System.out.println(foundGoal);
     }
+
 }
