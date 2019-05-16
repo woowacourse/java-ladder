@@ -26,4 +26,9 @@ public class InputView {
         System.out.println(Const.INPUT_REWARDS);
         return SCANNER.nextLine();
     }
+
+    public static String inputWantName() {
+        System.out.println(Const.INPUT_WANT_NAME);
+        return SCANNER.nextLine();
+    }
 }

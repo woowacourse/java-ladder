@@ -14,8 +14,19 @@ public class LadderApp {
         String names = inputPlayerNames(InputView.inputPlayerNames());
         String rewards = InputRewards(InputView.inputRewards(), names.split(",").length);
         int depth = inputLadderDepth(InputView.inputLadderDepth());
-        Ladder ladder = new Ladder(names, depth);
-        OutputView.outputLadder(ladder.getResultLadderNames(), ladder.getResultLadderLines());
+        Ladder ladder = new Ladder(names, rewards, depth);
+        ladder.playRadder();
+        OutputView.outputLadder(ladder.getResultLadderNames(), ladder.getResultLadderLines(), ladder.getResultLadderRewards());
+        OutputView.outputLadderReward(inputWantName(ladder.getResultLadderRewards(InputView.inputWantName()),ladder));
+    }
+
+    private static String inputWantName(String inputWantName, Ladder ladder) {
+        try {
+            return Rule.ruleInputWantName(inputWantName);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return inputWantName(ladder.getResultLadderRewards(InputView.inputWantName()), ladder);
+        }
     }
 
     private static String InputRewards(String inputRewards, int count) {

@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,6 +9,7 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LadderTest {
     Ladder ladder;
@@ -115,6 +117,30 @@ public class LadderTest {
         System.out.println(ladder.getResultLadderRewards());
         System.out.println("pobi : " + ladder.getResultLadderRewards("pobi"));
         System.out.println(ladder.getResultLadderRewards("all"));
+    }
+
+    @Test
+    void 사다리_결과_없는_이름_예외() {
+        Ladder ladder = new Ladder(names, "1000, 2000, 3000, 패스", 5);
+        ladder.playRadder();
+        System.out.println(ladder.getResultLadderNames());
+        System.out.println(ladder.getResultLadderLines());
+        System.out.println(ladder.getResultLadderRewards());
+        System.out.println("pobi : " + ladder.getResultLadderRewards("pobi"));
+        System.out.println(ladder.getResultLadderRewards("pobii"));
+        assertThat(ladder.getResultLadderRewards("pobii")).isEqualTo(null);
+    }
+
+    @Test
+    void 사다리_결과_없는_이름_예외_널_확인() {
+        Ladder ladder = new Ladder(names, "1000, 2000, 3000, 패스", 5);
+        ladder.playRadder();
+        System.out.println(ladder.getResultLadderNames());
+        System.out.println(ladder.getResultLadderLines());
+        System.out.println(ladder.getResultLadderRewards());
+        System.out.println("pobi : " + ladder.getResultLadderRewards("pobi"));
+        System.out.println(ladder.getResultLadderRewards("pobii"));
+        assertTrue(StringUtils.isEmpty(ladder.getResultLadderRewards("pobii")));
     }
 
     @AfterEach

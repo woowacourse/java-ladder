@@ -155,4 +155,16 @@ public class Rule {
         }
         return inputNames;
     }
+
+    /**
+     * 없는 이름이면 안됨
+     * @param inputWantName
+     * @return
+     */
+    public static String ruleInputWantName(String inputWantName) {
+        if (StringUtils.isEmpty(inputWantName)) {
+            throw new IllegalArgumentException(Const.EX_WANT_NAME);
+        }
+        return inputWantName;
+    }
 }

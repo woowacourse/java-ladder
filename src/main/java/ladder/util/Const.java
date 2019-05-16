@@ -18,4 +18,7 @@ public class Const {
     public static final String EX_REWARDS_COUNT = "플레이어 수랑 결과 개수는 같아야 합니다.";
     public static final String INPUT_REWARDS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     public static final String EX_NAME_DUPLE = "이름은 중복 없이 넣어주세요";
+    public static final String INPUT_WANT_NAME = "결과를 보고 싶은 사람은?";
+    public static final String EX_WANT_NAME = "없는 이름입니다.";
+    public static final String OUTPUT_RESULT = "실행 결과";
 }

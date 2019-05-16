@@ -79,7 +79,6 @@ public class Ladder {
         if (name.equals("all")) {
             return getResultAllRewards();
         }
-
         return result.get(name);
     }
 
