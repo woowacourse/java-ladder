@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderRow {
+    private static final int LAST_LINE = 1;
     RandomGenerator randomGenerator;
     private List<Integer> row;
     private int width;
@@ -30,12 +31,12 @@ public class LadderRow {
 
     public int draw(boolean isDraw) {
         if (isDraw) {
-            row.add(1);
-            row.add(-1);
-            return 2;
+            row.add(LadderRules.RIGHT.number());
+            row.add(LadderRules.LEFT.number());
+            return LadderRules.DRAW_MOVE.number();
         }
-        row.add(0);
-        return 1;
+        row.add(LadderRules.SKIP.number());
+        return LadderRules.DRAW_SKIP.number();
     }
 
 
@@ -55,7 +56,7 @@ public class LadderRow {
     }
 
     private void makeLine() {
-        if (this.width == 1) {
+        if (this.width == LAST_LINE) {
             this.width -= draw(false);
             return;
         }
@@ -71,6 +72,6 @@ public class LadderRow {
 //        String a = randomGenerator.getElement();
 //        return a.equals("1");
 //        return random.nextInt(2) == 1;
-        return randomGenerator.getElement() == 1;
+        return randomGenerator.getElement() == LadderRules.RANDOM_DRAW.number();
     }
 }

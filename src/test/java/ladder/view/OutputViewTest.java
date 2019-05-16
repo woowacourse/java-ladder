@@ -3,9 +3,9 @@ package ladder.view;
 import ladder.domain.LadderRow;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 import java.util.Arrays;
+
+import static org.junit.Assert.assertEquals;
 
 public class OutputViewTest {
 
@@ -15,8 +15,8 @@ public class OutputViewTest {
 
         OutputView view = new OutputView();
         LadderRow row = new LadderRow(Arrays.asList(1, -1, 0, 1, -1));
-        System.out.println(view.print(row));
-        assertEquals("|-----|     |     |-----|", view.print(row));
+        view.print(row);
+        assertEquals("|-----|     |     |-----|", view.line(row));
 
     }
 
@@ -24,8 +24,8 @@ public class OutputViewTest {
     public void 사다리_한줄_출력_문자열2() {
         OutputView view = new OutputView();
         LadderRow row = new LadderRow(Arrays.asList(0, 0, 0, 0, 0));
-        System.out.println(view.print(row));
-        assertEquals("|     |     |     |     |", view.print(row));
+        view.print(row);
+        assertEquals("|     |     |     |     |", view.line(row));
 
     }
 }

@@ -15,8 +15,9 @@ public class LadderMain {
         ladder.row();
 
         OutputView outputView = new OutputView();
-        for (int i = 0; i < height; i++) {
-            System.out.println(outputView.print(ladder.status(i)));
-        }
+//        for (int i = 0; i < height; i++) {
+//            outputView.print(ladder.status(i));
+//        }
+        outputView.print(ladder);
     }
 }
