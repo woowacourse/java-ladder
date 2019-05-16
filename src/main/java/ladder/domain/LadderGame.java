@@ -23,7 +23,7 @@ public class LadderGame {
     public LadderGameResult start() {
         int[] result = new int[names.length];
         for (int i = 0; i < names.length; i++) {
-            result[i] = getUserResult(i);
+            result[getUserResult(i)] = i;
         }
         Map<String, String> nameToPrize = new HashMap<>();
         for (int i = 0; i < result.length; i++) {

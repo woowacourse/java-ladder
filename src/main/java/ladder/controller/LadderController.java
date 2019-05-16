@@ -8,6 +8,8 @@ import ladder.view.OutputView;
 
 public class LadderController {
 
+    private static final String SPLIT_SEPARATOR = ",";
+
     public static void main(String[] args) {
         String inputNames = InputView.inputNames();
         String[] names = splitNames(inputNames);
@@ -20,12 +22,15 @@ public class LadderController {
         LadderGame ladderGame = new LadderGame(ladder, names, prizes);
         OutputView.printLadderGame(ladderGame);
         LadderGameResult ladderGameResult = ladderGame.start();
-        String InputNameForResult = InputView.inputNameForResult();
-        OutputView.printLadderGameResult(ladderGameResult, InputNameForResult);
+        String inputNameForResult;
+        do{
+            inputNameForResult = InputView.inputNameForResult();
+            OutputView.printLadderGameResult(ladderGameResult, inputNameForResult);
+        } while(!inputNameForResult.equals(OutputView.ALL_USER));
 
     }
 
     public static String[] splitNames(String names) {
-        return names.split(",");
+        return names.split(SPLIT_SEPARATOR);
     }
 }
