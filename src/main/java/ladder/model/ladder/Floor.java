@@ -1,6 +1,18 @@
-package ladder.model;
+/*
+ * @(#)Floor.java      1.0 2019/05/16
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Ladder, Java, Seoul, KOREA
+ */
 
+package ladder.model.ladder;
+
+/**
+ * @version 1.0 2019년 05년 16일
+ * @author 김효건
+ */
 public class Floor {
+    /*사다리게임의 층수에 대한 클래스*/
     private static final String NOT_NATURAL_NUMBER_ERROR = "층 수 0이하 입력 오류";
     private static final String TYPE_ERROR = "층 수 입력 형식 오류";
     private static final int NUMBER_LOWER_BOUND = 0;

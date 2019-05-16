@@ -1,8 +1,18 @@
-package ladder.model;
+/*
+ * @(#)ResultTags.java      1.0 2019/05/16
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Ladder, Java, Seoul, KOREA
+ */
 
-import ladder.model.frame.Tags;
+package ladder.model.tags;
 
+/**
+ * @version 1.0 2019년 05년 16일
+ * @author 김효건
+ */
 public class ResultTags extends Tags {
+    /*사다리게임의 결과 태그 그룹에 대한 클래스*/
     private static final String NO_MATCH_TAGS_NUMBER_ERROR = "플레이어수와 결과수가 다릅니다.";
 
     public ResultTags(String input, int tagsNumber) {

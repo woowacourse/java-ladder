@@ -1,10 +1,21 @@
-package ladder.model;
+/*
+ * @(#)Line.java      1.0 2019/05/16
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Ladder, Java, Seoul, KOREA
+ */
+package ladder.model.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * @version 1.0 2019년 05년 16일
+ * @author 김효건
+ */
 public class Line {
+    /*사다리게임의 각 층(라인)에 대한 클래스*/
     private static final String HEADER_HORIZON_LINE = "   ";
     private static final String VERTICAL_LINE = "|";
     private static final String NEW_LINE = "\n";

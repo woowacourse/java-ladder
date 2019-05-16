@@ -1,8 +1,20 @@
-package ladder.model;
+/*
+ * @(#)Tag.java      1.0 2019/05/16
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Ladder, Java, Seoul, KOREA
+ */
+
+package ladder.model.tags;
 
 import java.util.Objects;
 
+/**
+ * @version 1.0 2019년 05년 16일
+ * @author 김효건
+ */
 public class Tag {
+    /*사다리게임의 태그에 대한 클래스*/
     private static final String VALUE_CONTAIN_SPACE_ERROR = "이름 공백 포함 오류";
     private static final String VALUE_LENGTH_ERROR = "이름 길이 5초과 오류";
     private static final String EMPTY_VALUE_ERROR = "빈 이름 오류";

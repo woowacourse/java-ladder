@@ -1,10 +1,26 @@
+/*
+ * @(#)Main.java      1.0 2019/05/16
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Ladder, Java, Seoul, KOREA
+ */
+
 package ladder.controller;
 
 import ladder.model.*;
+import ladder.model.ladder.Floor;
+import ladder.model.tags.PlayerTags;
+import ladder.model.tags.ResultTags;
+import ladder.model.tags.Tag;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+/**
+ * @version 1.0 2019년 05년 16일
+ * @author 김효건
+ */
 public class Main {
+    /*사다리게임의 Controller역할을 하는 클래스*/
     private static final String EXIT = "exit";
     private static final String ALL = "all";
 

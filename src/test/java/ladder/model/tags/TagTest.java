@@ -1,11 +1,21 @@
-package ladder.model.frame;
+/*
+ * @(#)TagTest.java      1.0 2019/05/16
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Ladder, Java, Seoul, KOREA
+ */
+package ladder.model.tags;
 
-import ladder.model.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @version 1.0 2019년 05년 16일
+ * @author 김효건
+ */
 class TagTest {
+    /*사다리게임 태그에 대한 테스트*/
     @Test
     void 길이_검사_0() {
         assertThrows(IllegalArgumentException.class, ()->{

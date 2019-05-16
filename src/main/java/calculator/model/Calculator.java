@@ -1,8 +1,19 @@
-package calculator.domain;
+/*
+ * @(#)Calculator.java      1.0 2019/05/16
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Calculator, Java, Seoul, KOREA
+ */
+package calculator.model;
 
 import java.util.List;
 
+/**
+ * @version 1.0 2019년 05년 16일
+ * @author 김효건
+ */
 public class Calculator {
+    /*덧셈을 수행하는 클래스*/
     private List<Integer> numbers;
 
     public Calculator(List<Integer> numbers) {

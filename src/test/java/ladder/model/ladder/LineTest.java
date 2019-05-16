@@ -1,4 +1,11 @@
-package ladder.model;
+/*
+ * @(#)LineTest.java      1.0 2019/05/16
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Ladder, Java, Seoul, KOREA
+ */
+
+package ladder.model.ladder;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +15,12 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * @version 1.0 2019년 05년 16일
+ * @author 김효건
+ */
 public class LineTest {
+    /*사다리게임 각 층(라인)에 대한 테스트     */
     @Test
     void 중복_가로줄_검사_get() {
         List<Boolean> line = (new Line(5)).getHorizon();

@@ -1,4 +1,11 @@
-package calculator.domain;
+/*
+ * @(#)Splitter.java      1.0 2019/05/16
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Calculator, Java, Seoul, KOREA
+ */
+
+package calculator.model;
 
 import calculator.constants.Constants;
 
@@ -8,7 +15,12 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @version 1.0 2019년 05년 16일
+ * @author 김효건
+ */
 public class Splitter {
+    /*(입력 구분기) 주어진 입력에 대해 구분자와, 식을 추출하는 클래스*/
     private String delimiter = Constants.DEFAULT_DELIMITER;
     private String expression;
 

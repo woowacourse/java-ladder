@@ -1,6 +1,24 @@
+/*
+ * @(#)LadderGame.java      1.0 2019/05/16
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Ladder, Java, Seoul, KOREA
+ */
+
 package ladder.model;
 
+import ladder.model.ladder.Floor;
+import ladder.model.ladder.Ladder;
+import ladder.model.tags.PlayerTags;
+import ladder.model.tags.ResultTags;
+import ladder.model.tags.Tag;
+
+/**
+ * @version 1.0 2019년 05년 16일
+ * @author 김효건
+ */
 public class LadderGame {
+    /*사다리 게임을 진행하고 결과를 추출하는 클래스*/
     private static final String NO_MATCHED_PLAYER_TAG_ERROR = "일치하는 플레이어 이름이 없습니다.";
     private static final String NEW_LINE = "\n";
     private static final String SPACE_COLON_SPACE = " : ";
