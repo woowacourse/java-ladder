@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import java.util.Objects;
 
@@ -68,7 +68,7 @@ public class Direction {
 
     @Override
     public String toString() {
-        return "ladder.Direction{" +
+        return "Direction{" +
                 "left=" + left +
                 ", current=" + current +
                 '}';
