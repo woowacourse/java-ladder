@@ -11,8 +11,8 @@ public class LadderGameTest {
 
     @Test
     void 문자열_유저_리스트_반환() {
-        assertThat(new LadderGame("pobi,crong", 1).getUsers()).isEqualTo(Arrays.asList(new User("pobi"), new User("crong")));
-        assertThat(new LadderGame("pobi", 1).getUsers()).isEqualTo(Arrays.asList(new User("pobi")));
+        assertThat(new LadderGame("pobi,crong", 1).getUsers()).isEqualTo(Arrays.asList(new User("pobi", 0), new User("crong", 1)));
+        assertThat(new LadderGame("pobi", 1).getUsers()).isEqualTo(Arrays.asList(new User("pobi", 0)));
     }
 
     @Test
