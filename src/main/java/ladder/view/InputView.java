@@ -31,7 +31,7 @@ public class InputView {
     }
 
     public static int makeLadderHeight(String input) {
-        InputLadderHeightValidator.checkLadderHeightInputAccuracy(input.trim());
+        InputLadderHeightValidator.checkLadderHeightInputAccuracy(input);
         return Integer.parseInt(input.trim());
     }
 }

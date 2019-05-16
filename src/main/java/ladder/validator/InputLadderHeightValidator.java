@@ -12,10 +12,10 @@ public class InputLadderHeightValidator {
         if (isHeightEmpty(input)) {
             throw new IllegalArgumentException(MessageConstant.ERROR_HAS_VALUE_EMPTY);
         }
-        if (!isIntegerNumber(input)) {
+        if (!isIntegerNumber(input.trim())) {
             throw new NumberFormatException(MessageConstant.ERROR_NOT_INTEGER);
         }
-        if (Integer.parseInt(input) < MIN_HEIGHT) {
+        if (Integer.parseInt(input.trim()) < MIN_HEIGHT) {
             throw new IllegalArgumentException(MessageConstant.ERROR_LOWER_MIN_HEIGHT);
         }
     }
