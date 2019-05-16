@@ -10,8 +10,8 @@ public class Floor {
 
     private List<Boolean> stairs = new ArrayList<>();
 
-    public Floor(int lineNum) {
-        makeStairs(lineNum - 1);
+    public Floor(int floorSize) {
+        makeStairs(floorSize);
     }
 
     private void makeStairs(int sector) {

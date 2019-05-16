@@ -5,12 +5,13 @@ import java.util.List;
 
 public class LadderGame {
 
-    private List<Floor> ladder = new ArrayList<>();
-    private int height;
+    private final int height;
+    private List<Floor> ladder;
 
-    public LadderGame(int height) {
+    public LadderGame(int height, int userSize) {
         validatePositiveNumber(height);
         this.height = height;
+        ladder = createLadder(userSize - 1);
     }
 
     private void validatePositiveNumber(int height) {
@@ -19,10 +20,12 @@ public class LadderGame {
         }
     }
 
-    public void createLadder(List<User> users) {
+    private List<Floor> createLadder(int floorSize) {
+        List<Floor> ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            ladder.add(new Floor(users.size()));
+            ladder.add(new Floor(floorSize));
         }
+        return ladder;
     }
 
     public void startLadderGame(List<User> users) {

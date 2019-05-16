@@ -12,33 +12,67 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String names = InputView.inputNames();
-        List<User> users = createUser(names);
+        List<User> users = createUsers();
+        List<String> results = createResults(users.size());
 
-        String inputResults = InputView.inputResults();
-        List<String> results = StringUtil.splitComma(inputResults);
-
-        int height = InputView.inputLadderHeight();
-        LadderGame ladderGame =  new LadderGame(height);
-        ladderGame.createLadder(users);
+        LadderGame ladderGame = createLadderGame(users.size());
         ladderGame.startLadderGame(users);
 
-        OutputView.outputNames(users);
-        OutputView.outputLadder(ladderGame.getLadder());
-        OutputView.outputResults(results);
+        OutputView.printLadderUI(users, ladderGame,ladderGame, results);
 
         LadderGameResult ladderResult = new LadderGameResult(results, users);
-        String name = InputView.inputName();
-        OutputView.outputResult(ladderResult.getResultByName(name));
-        OutputView.outputAll(ladderResult.getResultMap());
+        printResult(ladderResult);
     }
 
-    private static List<User> createUser(String inputNames) {
+    private static void printResult(LadderGameResult ladderResult) {
+        while (true) {
+            String name = InputView.inputName();
+            OutputView.outputResult(ladderResult.getResultByName(name));
+            if (name.equals("all")) {
+                OutputView.outputAll(ladderResult.getResultMap());
+                break;
+            }
+        }
+    }
+
+    private static List<User> createUsers() {
+        try {
+            String names = InputView.inputNames();
+            return createUsers(names);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createUsers();
+        }
+    }
+
+    private static List<User> createUsers(String inputNames) {
         List<User> users = new ArrayList<>();
         List<String> names = StringUtil.splitComma(inputNames);
+
         for (int i = 0; i < names.size(); i++) {
             users.add(new User(names.get(i), i));
         }
         return users;
+    }
+
+    private static List<String> createResults(int userSize) {
+        String inputResults = InputView.inputResults();
+        List<String> results = StringUtil.splitComma(inputResults);
+        if (results.size() != userSize) {
+            System.out.println("결과와 참여자의 수는 같아야 함");
+            return createResults(userSize);
+        }
+        return results;
+    }
+
+    private static LadderGame createLadderGame(int userSize) {
+        try {
+            int height = InputView.inputLadderHeight();
+            return new LadderGame(height, userSize);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createLadderGame(userSize);
+        }
+
     }
 }

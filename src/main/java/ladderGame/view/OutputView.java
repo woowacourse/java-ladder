@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import ladderGame.domain.Floor;
+import ladderGame.domain.LadderGame;
 import ladderGame.domain.User;
 
 public class OutputView {
@@ -53,5 +54,11 @@ public class OutputView {
             String value = resultMap.get(key);
             System.out.println(key+" : "+value);
         }
+    }
+
+    public static void printLadderUI(List<User> users, LadderGame ladderGame, LadderGame ladderGame1, List<String> results) {
+        outputNames(users);
+        outputLadder(ladderGame.getLadder());
+        outputResults(results);
     }
 }
