@@ -1,15 +1,20 @@
 package ladder;
 
+
 import ladder.domain.Ladder;
+import ladder.domain.Player;
 import ladder.util.StringSplitUtils;
 import ladder.view.InputView;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class LadderGame {
-	public static Ladder run(List<String> names, int ladderHeight) {
-		return new Ladder(names.size(), ladderHeight);
+	private static Ladder ladder;
+	private static List<Player> list = new ArrayList<>();
+
+	public static Ladder generatreLadder(List<String> names, int ladderHeight) {
+		ladder = new Ladder(names.size(), ladderHeight);
+		return ladder;
 	}
 
 	public static List<String> getPersonNames() {
@@ -49,5 +54,16 @@ public class LadderGame {
 			System.out.println(e.getMessage());
 			return getGameResult(names);
 		}
+	}
+
+	public static List<Player> generatePlayers(List<String> names) {
+		int position = 0;
+
+		for(String name : names) {
+			list.add(new Player(name, position, ladder.getLastPosition(position)));
+			position++;
+		}
+
+		return list;
 	}
 }

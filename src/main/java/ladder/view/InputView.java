@@ -21,4 +21,9 @@ public class InputView {
         System.out.println(UserOutput.DEMAND_GAME_RESULTS.getOutputMessage());
         return scanner.nextLine();
     }
+
+    public static String inputResult() {
+        System.out.println(UserOutput.DEMAND_PLAYER_NAME_FOR_RESULT.getOutputMessage());
+        return scanner.nextLine();
+    }
 }

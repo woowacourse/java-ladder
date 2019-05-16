@@ -15,4 +15,14 @@ public class Ladder {
     public List<Line> getLines() {
         return this.lines;
     }
+
+    public int getLastPosition(int playerPosition) {
+        int lastPosition = playerPosition;
+
+        for (Line line : lines) {
+            lastPosition = line.getNextPositon(lastPosition);
+        }
+
+        return lastPosition;
+    }
 }

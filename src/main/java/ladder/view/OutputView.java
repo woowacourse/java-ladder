@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.domain.Line;
+import ladder.domain.Player;
 import ladder.domain.UserOutput;
 
 import java.util.ArrayList;
@@ -32,5 +33,21 @@ public class OutputView {
 			System.out.printf("%-6s", value);
 		}
 		System.out.println();
+	}
+
+	public static void printResult(List<Player> players, List<String> result, String name) {
+		if(name.equals("all")) {
+			for(Player player : players) {
+				System.out.println(player.getName() +" : "+result.get(player.getLastPosition()));
+			}
+			return;
+		}
+
+		for(Player player : players) {
+			if(player.matchName(name)) {
+				System.out.println(player.getName() + ":" + result.get(player.getLastPosition()));
+				break;
+			}
+		}
 	}
 }
