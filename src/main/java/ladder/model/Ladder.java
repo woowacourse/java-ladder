@@ -31,6 +31,12 @@ public class Ladder {
         return lines.size();
     }
 
+    void move(Players players) {
+        for (Line line : lines) {
+            line.moveOneLine(players);
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

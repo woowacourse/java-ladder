@@ -27,4 +27,8 @@ public class LadderGame {
         return stringBuilder.toString();
     }
 
+    public void movePlayers() {
+        ladder.move(players);
+    }
+
 }

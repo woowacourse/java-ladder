@@ -17,7 +17,7 @@ public class Player {
         this.position = position;
     }
 
-    public String getName(){
+    String getName() {
         return this.name;
     }
 
@@ -27,6 +27,14 @@ public class Player {
 
     private boolean isValidName(String name) {
         return (!StringUtils.isBlank(name)) && (name.length() <= MAX_NAME_LENGTH);
+    }
+
+    void moveLeft() {
+        this.position--;
+    }
+
+    void moveRight() {
+        this.position++;
     }
 
     @Override
@@ -43,7 +51,7 @@ public class Player {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.name;
     }
 

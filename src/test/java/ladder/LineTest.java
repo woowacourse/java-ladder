@@ -1,6 +1,8 @@
 package ladder;
 
 import ladder.model.Line;
+import ladder.model.Player;
+import ladder.model.Players;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,5 +21,16 @@ public class LineTest {
         }
     }
 
+    @Test
+    void 한_Line에서_가로라인이_있어_이동했을_때_Player의_Position_변경_확인() {
+        Line line = new Line(2);
+        Player player = new Player("bmo",0);
+        line.move(player);
+        if (line.isTrue(0)) {
+            assertThat(player.getPosition()).isEqualTo(1);
+        } else {
+            assertThat(player.getPosition()).isEqualTo(0);
+        }
+    }
 
 }

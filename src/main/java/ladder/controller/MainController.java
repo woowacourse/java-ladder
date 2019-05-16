@@ -19,6 +19,7 @@ public class MainController {
         LadderGameResult ladderGameResult = new LadderGameResult(scannedLadderGameResult,scannedNames.length);
         OutputView.printResultOfLadder(players, ladder, ladderGameResult);
         LadderGame ladderGame=new LadderGame(players,ladder,ladderGameResult);
+        ladderGame.movePlayers();
         System.out.println(ladderGame.getAllResult());
     }
 }

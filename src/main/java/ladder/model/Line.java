@@ -64,4 +64,23 @@ public class Line {
         return EMPTY_LINE;
     }
 
+    public boolean isTrue(int index) {
+        return this.points.get(index);
+    }
+
+    public void moveOneLine(Players players) {
+        for (Player player : players.getAllPlayers()) {
+            this.move(player);
+        }
+    }
+
+    private void move(Player player) {
+        int position = player.getPosition();
+        if (position > 0 && points.get(position - 1)) {
+            player.moveLeft();
+        }
+        if (position < points.size() && points.get(position)) {
+            player.moveRight();
+        }
+    }
 }
