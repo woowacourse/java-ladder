@@ -14,10 +14,19 @@ public class LadderGame {
 
         System.out.println("실행결과");
         LadderDrawer ladderDrawer = new LadderDrawer();
-        ladderDrawer.draw(ladder, rows);
+        ladderDrawer.draw(ladder, 10);
 
         OutputView.printNames(names);
         OutputView.printLadder(ladder.drawn());
 
     }
 }
+
+
+//    a     b     c     d     e
+//        |     |     |     |-----|
+//        |     |-----|     |-----|
+//        |-----|     |-----|     |
+//        |     |-----|     |-----|
+//        |-----|     |     |-----|
+//        |     |     |-----|     |
