@@ -15,7 +15,7 @@ public class Validator {
 		}
 	}
 
-	public static void checkLadderHeight(String height) {
+	public static void validateNumber(String height) {
 		try {
 			Integer.parseInt(height);
 		} catch (Exception e) {
@@ -23,7 +23,7 @@ public class Validator {
 		}
 	}
 
-	public static void checkNumberOfResult(List<String> names, List<String> results) {
+	public static void compareLength(List<String> names, List<String> results) {
 		if (names.size() != results.size()) {
 			throw new IllegalArgumentException(UserOutput.VIOLATE_GAME_RESULTS.getOutputMessage());
 		}

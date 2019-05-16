@@ -35,7 +35,7 @@ public class LadderGame {
 
 		try {
 			height = InputView.inputHeight();
-			Validator.checkLadderHeight(height);
+			Validator.validateNumber(height);
 			return Integer.parseInt(height);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -48,7 +48,7 @@ public class LadderGame {
 
 		try {
 			result = InputView.inputResults();
-			Validator.checkNumberOfResult(names, StringSplitUtils.splitString(result));
+			Validator.compareLength(names, StringSplitUtils.splitString(result));
 			return Arrays.asList(result.split(","));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
