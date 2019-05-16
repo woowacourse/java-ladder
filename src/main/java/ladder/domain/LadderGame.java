@@ -9,21 +9,21 @@ public class LadderGame {
     public LadderGame(Players players, Results results, Floor floor) {
         this.players = players;
         this.results = results;
-        ladder = new Ladder(floor, players.getPlayerNumber());
+        ladder = new Ladder(floor, players.size());
     }
 
-    public String getOnePlayerResult(PlayerName playerName) {
-        if (!this.players.getPlayerNames().contains(playerName)) {
+    public String getOnePlayerResult(Name name) {
+        if (!this.players.getNames().contains(name)) {
             throw new IllegalArgumentException(GET_ONE_PLAYER_ERROR);
         }
-        int resultIndex = ladder.findOneResult(players.getPlayerIndex(playerName));
-        return results.getResultName(resultIndex).toString().trim();
+        int resultIndex = ladder.findOneResult(players.getPlayerIndex(name));
+        return results.get(resultIndex).toString();
     }
 
     public String getAllPlayerResult() {
         StringBuilder sb = new StringBuilder();
-        for (PlayerName playerName : players.getPlayerNames()) {
-            sb.append(playerName.toString().trim() + " : " + this.getOnePlayerResult(playerName).trim() + "\n");
+        for (Name name : players.getNames()) {
+            sb.append(name.toString() + " : " + this.getOnePlayerResult(name) + "\n");
         }
         return sb.toString();
     }
