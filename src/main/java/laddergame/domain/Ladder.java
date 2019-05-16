@@ -39,12 +39,16 @@ public class Ladder {
 
         for (int y = 0; y < height; y++) {
             sb.append("     |");
-            for (int x = 0; x < width - 1; x++) {
-                sb.append(ladderMap.get(y).get(x) ? "-----|" : "     |");
-            }
-            sb.append("\n");
+            toStringLine(sb, y);
         }
 
         return sb.toString();
+    }
+
+    private void toStringLine(StringBuilder sb, int y) {
+        for (int x = 0; x < width - 1; x++) {
+            sb.append(ladderMap.get(y).get(x) ? "-----|" : "     |");
+        }
+        sb.append("\n");
     }
 }

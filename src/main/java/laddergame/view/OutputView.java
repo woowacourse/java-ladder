@@ -18,8 +18,4 @@ public class OutputView {
 
         System.out.println(stringBuilder.toString());
     }
-
-    public static void printLadder2(String sb) {
-        System.out.println(sb);
-    }
 }

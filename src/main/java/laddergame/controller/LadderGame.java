@@ -3,6 +3,7 @@ package laddergame.controller;
 import laddergame.domain.Ladder;
 import laddergame.domain.Player;
 import laddergame.domain.PlayersGenerator;
+import laddergame.domain.Prize;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -15,6 +16,7 @@ public class LadderGame {
         Ladder ladder = getLadder(players.size());
 
         OutputView.printLadder(players, ladder);
+
 
     }
 
