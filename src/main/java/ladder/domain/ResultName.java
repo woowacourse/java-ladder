@@ -13,13 +13,9 @@ public class ResultName {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    private void checkNameContainSpace(String name) {
-        if(name.contains(" ")){
-            throw new IllegalArgumentException(NAME_CONTAIN_SPACE_ERROR);
+    private void checkEmptyName(String name) {
+        if (name.length() == 0) {
+            throw new IllegalArgumentException(EMPTY_NAME_ERROR);
         }
     }
 
@@ -29,9 +25,9 @@ public class ResultName {
         }
     }
 
-    private void checkEmptyName(String name) {
-        if (name.length() == 0) {
-            throw new IllegalArgumentException(EMPTY_NAME_ERROR);
+    private void checkNameContainSpace(String name) {
+        if(name.contains(" ")){
+            throw new IllegalArgumentException(NAME_CONTAIN_SPACE_ERROR);
         }
     }
 

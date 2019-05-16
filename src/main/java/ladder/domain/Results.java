@@ -18,14 +18,14 @@ public class Results {
         checkValidNumbers(playerNumbers);
     }
 
-    private void checkValidNumbers(int playerNumbers) {
-        if (resultNames.size() != playerNumbers) {
-            throw new IllegalArgumentException(PLAYERS_RESULTS_NUMBER_ERROR);
-        }
-    }
-
     public ResultName getResultName(int index) {
         return this.resultNames.get(index);
+    }
+
+    private void checkValidInput(String input) {
+        if(!input.matches(RESULTS_INPUT_REGEX)){
+            throw new IllegalArgumentException(VALID_INPUT_ERROR);
+        }
     }
 
     private void addResultNames(String input) {
@@ -34,9 +34,9 @@ public class Results {
         }
     }
 
-    private void checkValidInput(String input) {
-        if(!input.matches(RESULTS_INPUT_REGEX)){
-            throw new IllegalArgumentException(VALID_INPUT_ERROR);
+    private void checkValidNumbers(int playerNumbers) {
+        if (resultNames.size() != playerNumbers) {
+            throw new IllegalArgumentException(PLAYERS_RESULTS_NUMBER_ERROR);
         }
     }
 

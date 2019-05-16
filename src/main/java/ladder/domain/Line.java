@@ -10,6 +10,7 @@ public class Line {
     private static final String NEW_LINE = "\n";
     private static final String NO_HORIZON_LINE = "     ";
     private static final String HORIZON_LINE = "-----";
+    private static final String HORIZON_DUPLICATION_ERROR = "가로선 중복 오류";
 
     private List<Boolean> horizon;
 
@@ -33,12 +34,6 @@ public class Line {
         }
     }
 
-    private void checkOneDuplicationHorizon(List<Boolean> horizon, int i) {
-        if (horizon.get(i) && horizon.get(i + 1)) {
-            throw new IllegalArgumentException("가로선 중복 오류");
-        }
-    }
-
     private void makeRandomBooleans(int playerNumber) {
         for (int i = 0; i < playerNumber - 1; i++) {
             horizon.add(makeProperBoolean(i));
@@ -54,6 +49,12 @@ public class Line {
             return random.nextBoolean();
         }
         return false;
+    }
+
+    private void checkOneDuplicationHorizon(List<Boolean> horizon, int i) {
+        if (horizon.get(i) && horizon.get(i + 1)) {
+            throw new IllegalArgumentException(HORIZON_DUPLICATION_ERROR);
+        }
     }
 
     @Override

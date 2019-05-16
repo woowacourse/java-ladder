@@ -29,6 +29,12 @@ public class Players {
         return this.playerNames.indexOf(name);
     }
 
+    private void checkValidInput(String input) {
+        if(!input.matches(PLAYERNAMES_INPUT_REGEX)){
+            throw new IllegalArgumentException(VALID_INPUT_ERROR);
+        }
+    }
+
     private void addPlayerNames(String input) {
         for(String name : input.split(DELIMITER)){
             checkDuplicateName(name);
@@ -39,12 +45,6 @@ public class Players {
     private void checkDuplicateName(String name) {
         if (playerNames.contains(new PlayerName(name))) {
             throw new IllegalArgumentException(DUPLICATE_NAME_ERROR);
-        }
-    }
-
-    private void checkValidInput(String input) {
-        if(!input.matches(PLAYERNAMES_INPUT_REGEX)){
-            throw new IllegalArgumentException(VALID_INPUT_ERROR);
         }
     }
 

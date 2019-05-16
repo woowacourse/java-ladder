@@ -12,12 +12,6 @@ public class Floor {
         this.number = number;
     }
 
-    private void checkNatNum(int number) {
-        if (number <= 0) {
-            throw new IllegalArgumentException(NAT_NUM_EXCEPTION_MESSAGE);
-        }
-    }
-
     private int checkValidType(String input) {
         int number;
         try {
@@ -26,6 +20,12 @@ public class Floor {
             throw new IllegalArgumentException(VALID_TYPE_EXCEPTION_MESSAGE);
         }
         return number;
+    }
+
+    private void checkNatNum(int number) {
+        if (number <= 0) {
+            throw new IllegalArgumentException(NAT_NUM_EXCEPTION_MESSAGE);
+        }
     }
 
     public int getNumber() {

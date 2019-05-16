@@ -1,6 +1,7 @@
 package ladder.domain;
 
 public class LadderGame {
+    private static final String GET_ONE_PLAYER_ERROR = "일치하는 플레이어 이름이 없습니다.";
     private Ladder ladder;
     private Players players;
     private Results results;
@@ -13,7 +14,7 @@ public class LadderGame {
 
     public String getOnePlayerResult(PlayerName playerName) {
         if (!this.players.getPlayerNames().contains(playerName)) {
-            throw new IllegalArgumentException("일치하는 플레이어 이름이 없습니다.");
+            throw new IllegalArgumentException(GET_ONE_PLAYER_ERROR);
         }
         int resultIndex = ladder.findOneResult(players.getPlayerIndex(playerName));
         return results.getResultName(resultIndex).toString().trim();
