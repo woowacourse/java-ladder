@@ -22,7 +22,7 @@ public class Ladder {
         }
     }
 
-    public void connetBridgesRandomly(int count) {
+    public void connectBridgesRandomly(int count) {
         for (int i = 0; i < count; i++) {
             int randomRow = new Random().nextInt(height) + 1;
             int randomCol = (int) (Math.random() * (width - 1)) + 1;
@@ -45,7 +45,7 @@ public class Ladder {
         try {
             return ladder.get(row).isLinked(column);
         } catch (IndexOutOfBoundsException e) {
-            throw new IllegalArgumentException("연결로 자체가 없음 (테스트용)");
+            return false;
         }
     }
 
@@ -57,5 +57,12 @@ public class Ladder {
             stringBuilder.append("\n");
         }
         return stringBuilder.toString();
+    }
+
+    public int findResultIndex(int startPosition) {
+        for (Line line : ladder) {
+            startPosition += line.findRoute(startPosition);
+        }
+        return startPosition;
     }
 }

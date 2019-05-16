@@ -14,35 +14,33 @@ public class Line {
     }
 
     public void connect(int column) {
-        checkLeft(column);
-        checkRight(column);
-        line.set(column, new Point(true));
+        if (!checkRight(column) && !checkLeft(column)) {
+            line.set(column, new Point(true));
+        }
     }
 
-    private void checkRight(int column) {
+    private boolean checkRight(int column) {
         try {
-            checkRightBridge(column);
+            return checkRightBridge(column);
         } catch (IndexOutOfBoundsException e) {
+            return false;
         }
     }
 
-    private void checkLeft(int column) {
+    private boolean checkLeft(int column) {
         try {
-            checkLeftBridge(column);
+            return checkLeftBridge(column);
         } catch (IndexOutOfBoundsException e) {
+            return false;
         }
     }
 
-    private void checkRightBridge(int column) {
-        if (line.get(column + 1).hasBridge()) {
-            throw new IllegalArgumentException("오른쪽에 중복");
-        }
+    private boolean checkRightBridge(int column) {
+        return (line.get(column + 1).hasBridge());
     }
 
-    private void checkLeftBridge(int column) {
-        if (line.get(column - 1).hasBridge()) {
-            throw new IllegalArgumentException("왼쪽에 중복");
-        }
+    private boolean checkLeftBridge(int column) {
+        return (line.get(column - 1).hasBridge());
     }
 
     public boolean isLinked(int column) {
@@ -57,5 +55,15 @@ public class Line {
             stringBuilder.append("|");
         }
         return stringBuilder.toString();
+    }
+
+    public int findRoute(int startPosition) {
+        if(checkLeft(startPosition)){
+            return Constant.LEFT_MOVE;
+        }
+        if(checkRight(startPosition-1)){
+            return Constant.RIGHT_MOVE;
+        }
+        return Constant.NOT_MOVE;
     }
 }
