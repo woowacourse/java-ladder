@@ -10,7 +10,7 @@ public class Main {
 		PlayerMaker playerMaker = new PlayerMaker(InputView.inputPlayers());
 		LadderHeight ladderHeight = new LadderHeight(InputView.inputLadderHeight());
 		Ladder ladder = new Ladder(ladderHeight.getLadderHeight(), playerMaker.makePlayers().size());
-		ladder.initialize(7);
+		ladder.initialize(ladderHeight.getLadderHeight() * playerMaker.makePlayers().size());
 		OutputView.showResult(playerMaker.makePlayers(), ladder);
 	}
 }

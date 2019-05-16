@@ -17,9 +17,11 @@ public class Line {
 		try {
 			checkLeft(column);
 		} catch (IndexOutOfBoundsException e) {}
+
 		try {
 			checkRight(column);
 		} catch (IndexOutOfBoundsException e) {}
+
 		line.set(column, new Point(true));
 	}
 

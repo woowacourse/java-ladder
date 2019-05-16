@@ -49,7 +49,7 @@ public class Ladder {
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
-		for (Line line : ladder) {
+		for (Line line : ladder.subList(1, ladder.size())) {
 			stringBuilder.append(line);
 			stringBuilder.append("\n");
 		}
