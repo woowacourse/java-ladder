@@ -1,6 +1,5 @@
 package ladder.model;
 
-import ladder.model.MemberValidator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -10,7 +9,7 @@ public class MemberValidatorTest {
     @Test
     void 쉼표_구분자가_아닌_경우() {
         assertThrows(IllegalArgumentException.class, () -> {
-            MemberValidator.checkSeperator("pobi:crong:sloth:chulsea");
+            MemberValidator.checkSeparator("pobi:crong:sloth:chulsea");
         });
     }
 
