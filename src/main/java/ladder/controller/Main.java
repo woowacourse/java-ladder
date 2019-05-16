@@ -6,7 +6,7 @@
  * 2019.05.16
  *
  * Copyright (c) 2019 MrKwon and men7627.
- * WoowahanTechCamp, Seoul, KOREA
+ * WoowahanTechCourse, Seoul, KOREA
  * All right Reserved
  */
 
@@ -42,19 +42,19 @@ public class Main {
 
     private static PlayerTags getPlayers() {
         try {
-            return new PlayerTags(InputView.playerNames());
+            return new PlayerTags(InputView.players());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return new PlayerTags(InputView.playerNames());
+            return new PlayerTags(InputView.players());
         }
     }
 
     private static ResultTags getResults(int playerNumbers) {
         try {
-            return new ResultTags(InputView.resultNames(), playerNumbers);
+            return new ResultTags(InputView.results(), playerNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return new ResultTags(InputView.resultNames(), playerNumbers);
+            return new ResultTags(InputView.results(), playerNumbers);
         }
     }
 

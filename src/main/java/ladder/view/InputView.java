@@ -6,7 +6,7 @@
  * 2019.05.16
  *
  * Copyright (c) 2019 MrKwon and men7627.
- * WoowahanTechCamp, Seoul, KOREA
+ * WoowahanTechCourse, Seoul, KOREA
  * All right Reserved
  */
 
@@ -29,7 +29,7 @@ public class InputView {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public static String playerNames() {
+    public static String players() {
         System.out.println(INPUT_NAMES);
         return scanner.nextLine();
     }
@@ -39,7 +39,7 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static String resultNames() {
+    public static String results() {
         System.out.println(INPUT_RESULTS);
         return scanner.nextLine();
     }

@@ -6,7 +6,7 @@
  * 2019.05.16
  *
  * Copyright (c) 2019 KwonMC.
- * WoowahanTechCamp, Seoul, KOREA
+ * WoowahanTechCourse, Seoul, KOREA
  * All right Reserved
  */
 
@@ -23,19 +23,19 @@ import ladder.domain.frame.Tags;
  * @see Tags
  */
 public class ResultTags extends Tags {
-    private static final String PLAYERS_RESULTS_NUMBER_ERROR = "플레이어수와 결과수가 다릅니다.";
+    private static final String PLAYERS_RESULTS_NUMBER_ERROR = "플레이어 수와 결과 수가 다릅니다.";
 
-    public ResultTags(String input, int playerNumbers) {
+    public ResultTags(String input, int playerSize) {
         super(input);
-        checkValidNumbers(playerNumbers);
+        validNumbers(playerSize);
     }
 
     public Tag get(int index) {
         return tags.get(index);
     }
 
-    private void checkValidNumbers(int playerNumbers) {
-        if (tags.size() != playerNumbers) {
+    private void validNumbers(int playerSize) {
+        if (tags.size() != playerSize) {
             throw new IllegalArgumentException(PLAYERS_RESULTS_NUMBER_ERROR);
         }
     }

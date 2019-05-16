@@ -6,7 +6,7 @@
  * 2019.05.16
  *
  * Copyright (c) 2019 MrKwon.
- * WoowahanTechCamp, Seoul, KOREA
+ * WoowahanTechCourse, Seoul, KOREA
  * All right Reserved
  */
 
