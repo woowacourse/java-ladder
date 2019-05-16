@@ -27,9 +27,9 @@ public class OutputView {
 				+ UserOutput.LADDER_LINE.getOutputMessage());
 	}
 
-	public static void printNames(List<String> names) {
-		for(String name : names) {
-			System.out.printf("%-6s",name);
+	public static void printLadderValues(List<String> values) {
+		for (String value : values) {
+			System.out.printf("%-6s", value);
 		}
 		System.out.println();
 	}

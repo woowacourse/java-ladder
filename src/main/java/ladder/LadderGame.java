@@ -37,4 +37,17 @@ public class LadderGame {
 			return getLadderHeight();
 		}
 	}
+
+	public static List<String> getGameResult(List<String> names) {
+		String result;
+
+		try {
+			result = InputView.inputResults();
+			Validator.checkNumberOfResult(names, StringSplitUtils.splitString(result));
+			return Arrays.asList(result.split(","));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return getGameResult(names);
+		}
+	}
 }

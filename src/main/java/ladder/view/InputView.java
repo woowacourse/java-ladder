@@ -16,4 +16,9 @@ public class InputView {
         System.out.println(UserOutput.DEMAND_LADDER_HEIGHT.getOutputMessage());
         return scanner.nextLine();
     }
+
+    public static String inputResults() {
+        System.out.println(UserOutput.DEMAND_GAME_RESULTS.getOutputMessage());
+        return scanner.nextLine();
+    }
 }
