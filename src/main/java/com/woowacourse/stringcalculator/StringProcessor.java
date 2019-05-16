@@ -17,10 +17,7 @@ public class StringProcessor {
     }
 
     private static boolean checkIfStringNullOrEmpty(final String input) {
-        if (input == null || input.isEmpty()) {
-            return true;
-        }
-        return false;
+        return input == null || input.isEmpty();
     }
 
     private static List<Integer> handleInputTokens(final String input) {

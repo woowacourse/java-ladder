@@ -6,30 +6,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class LadderRow<T> {
+public class LadderRow {
     private final List<Boolean> cols;
 
-    public LadderRow(final int numOfColumns, final BooleanGenerator booleanGenerator) {
+    LadderRow(final int numOfColumns, final BooleanGenerator booleanGenerator) {
         cols = new ArrayList<>(numOfColumns);
-        for (int i = 0; i < numOfColumns; i++) {
+        createRow(booleanGenerator, numOfColumns);
+    }
+
+    private void createRow(BooleanGenerator generator, int numOfColumns) {
+        boolean lastGenerated = generator.generateBoolean();
+        cols.add(lastGenerated);
+        for (int i = 1; i < numOfColumns; i++) {
+            lastGenerated = checkAndAddColumn(generator, lastGenerated);
+        }
+    }
+
+    private boolean checkAndAddColumn(BooleanGenerator generator, boolean lastGenerated) {
+        boolean b = generator.generateBoolean();
+        if (lastGenerated) {
             cols.add(false);
+            return false;
         }
-        createRow(booleanGenerator);
+        cols.add(b);
+        return b;
     }
 
-    private void createRow(BooleanGenerator generator) {
-        cols.set(0, generator.generateBoolean());
-        for (int i = 1; i < cols.size(); i++) {
-            boolean b = generator.generateBoolean();
-            if (cols.get(i - 1)) {
-                cols.set(i, false);
-                continue;
-            }
-            cols.set(i, b);
-        }
-    }
-
-    public ParticipantGroup<T> swapNames(ParticipantGroup<T> participantGroup) {
+    ParticipantGroup swapNames(ParticipantGroup participantGroup) {
         for (int i = 0; i < cols.size(); i++) {
             participantGroup = checkAndSwap(participantGroup, i);
         }
@@ -37,7 +40,7 @@ public class LadderRow<T> {
         return participantGroup;
     }
 
-    private ParticipantGroup<T> checkAndSwap(ParticipantGroup<T> participantGroup, int idx) {
+    private ParticipantGroup checkAndSwap(ParticipantGroup participantGroup, int idx) {
         if (cols.get(idx)) {
             participantGroup = participantGroup.swap(idx, idx + 1);
         }

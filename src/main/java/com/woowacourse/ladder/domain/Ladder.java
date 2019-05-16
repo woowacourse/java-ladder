@@ -6,56 +6,39 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class Ladder<P, D> {
-    private List<P> participants;
-    private List<D> destinations;
-    private LadderResult<P, D> result;
-    private List<LadderRow<P>> rows;
+public class Ladder {
+    private List<LadderRow> rows;
 
-    public Ladder(List<P> participants, List<D> destinations, int height, BooleanGenerator booleanGenerator) {
-        if (participants.size() != destinations.size()) {
-            throw new IllegalArgumentException("Size of participants and destination list is not same");
-        }
-
+    public Ladder(int numOfParticipants, int height, BooleanGenerator booleanGenerator) {
         rows = new ArrayList<>();
-        this.participants = participants;
-        this.destinations = destinations;
-        createRowsAndExlore(height, booleanGenerator);
+        createRowsAndExplore(numOfParticipants, height, booleanGenerator);
     }
 
-    private void createRowsAndExlore(int height, BooleanGenerator booleanGenerator) {
+    private void createRowsAndExplore(int numOfParticipants, int height, BooleanGenerator booleanGenerator) {
         // height 만큼의 Row 생성
         for (int i = 0; i < height; i++) {
-            // 각 Row는 n(name) - 1 만큼의 Boolean 리스트를 가짐
-            rows.add(new LadderRow<>(participants.size() - 1, booleanGenerator));
+            // 각 Row는 numOfParticipants - 1 크기의 Boolean 리스트를 가짐
+            rows.add(new LadderRow(numOfParticipants - 1, booleanGenerator));
         }
-
-        // 결과 생성
-        explore(new ParticipantGroup<>(participants), new DestinationGroup<>(destinations));
     }
 
-    private void explore(ParticipantGroup<P> participants, DestinationGroup<D> destinations) {
-        ParticipantGroup<P> result = participants;
-        for (LadderRow<P> row : rows) {
+    /**
+     * 생성된 사다리에 인자로 명시된 참가자와 목적지 그룹을 매치한 결과를 생성
+     * @param participants 참가자 리스트
+     * @param destinations 목적지 리스트
+     * @return 사다리 매치 결과
+     */
+    public LadderResult explore(List<String> participants, List<String> destinations) {
+        ParticipantGroup result = new ParticipantGroup(participants);
+        for (LadderRow row : rows) {
             result = row.swapNames(result);
         }
-        this.result = new LadderResult<>(result, destinations);
+
+        return new LadderResult(result, new DestinationGroup(destinations));
     }
 
-    public LadderResult<P, D> getResult() {
-        return result;
-    }
-
-    public void forEachRows(Consumer<LadderRow<P>> consumer) {
+    public void forEachRows(Consumer<LadderRow> consumer) {
         rows.forEach(consumer);
-    }
-
-    public void forEachParticipants(Consumer<P> consumer) {
-        participants.forEach(consumer);
-    }
-
-    public void forEachDestinations(Consumer<D> consumer) {
-        destinations.forEach(consumer);
     }
 
     @Override

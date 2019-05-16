@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ParticipantGroup<T> {
-    private final List<T> participants;
+class ParticipantGroup {
+    private final List<String> participants;
 
-    public ParticipantGroup(List<T> participants) {
+    ParticipantGroup(List<String> participants) {
         this.participants = participants;
     }
 
-    public ParticipantGroup<T> swap(int x, int y) {
-        List<T> newParticipants = new ArrayList<>(participants);
+    ParticipantGroup swap(int x, int y) {
+        List<String> newParticipants = new ArrayList<>(participants);
         Collections.swap(newParticipants, x, y);
 
-        return new ParticipantGroup<>(newParticipants);
+        return new ParticipantGroup(newParticipants);
     }
 
-    public int indexOf(T participant) {
+    int indexOf(String participant) {
         return participants.indexOf(participant);
     }
 }

@@ -2,7 +2,6 @@ package com.woowacourse.ladder;
 
 import com.woowacourse.ladder.domain.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -16,31 +15,24 @@ public class LadderController {
      * @param participants participants list
      * @param destinations destinations list
      * @param height       height of the ladder
-     * @param <P>          type of participants
-     * @param <D>          type of destinations
-     * @return
+     * @return Created Ladder object
      * @throws NullPointerException     if one or more of the arguments are null
      * @throws IllegalStateException    if the participants list or destinations list is empty
      * @throws IllegalArgumentException if each size of participant list and destinations list is not equal, or height is less than zero or equal.
      */
-    public static <P, D> Ladder<P, D> createLadder(List<P> participants, List<D> destinations, int height) {
+    static Ladder createLadder(List<String> participants, List<String> destinations, int height) {
         checkAndThrowIfArgumentsInvalid(participants, destinations, height);
-        return new LadderBuilder<P, D>()
-            .withParticipants(participants)
-            .withDestinations(destinations)
-            .withGenerator(new RandomBooleanGenerator())
-            .withHeight(height)
-            .build();
+        return new Ladder(participants.size(), height, new RandomBooleanGenerator());
     }
 
-    private static <P, D> void checkAndThrowIfArgumentsInvalid(List<P> participants, List<D> destination, int height) {
+    private static void checkAndThrowIfArgumentsInvalid(List<String> participants, List<String> destination, int height) {
         checkAndThrowIfListInvalid(participants, destination);
         if (height <= 0) {
             throw new IllegalArgumentException("Height must be greater than 0");
         }
     }
 
-    private static <P, D> void checkAndThrowIfListInvalid(List<P> participants, List<D> destination) {
+    private static void checkAndThrowIfListInvalid(List<String> participants, List<String> destination) {
         if (participants == null || destination == null) {
             throw new NullPointerException("Null is included in arguments");
         }
@@ -52,15 +44,13 @@ public class LadderController {
         }
     }
 
-    public static <D> List<MatchPair<String, D>> executeResultQuery(Ladder<String, D> ladder, String query) {
+    static List<MatchPair> executeResultQuery(LadderResult result, String query, List<String> participants) {
         List<String> tokens = Arrays.stream(query.split(QUERY_TOKEN_DELIMITER)).map(String::trim).collect(Collectors.toList());
-        List<String> participants = new ArrayList<>();
-        ladder.forEachParticipants(participants::add);
 
-        return handleQuery(ladder.getResult(), tokens, participants);
+        return handleQuery(result, tokens, participants);
     }
 
-    private static <D> List<MatchPair<String, D>> handleQuery(LadderResult<String, D> result, List<String> tokens, List<String> participants) {
+    private static List<MatchPair> handleQuery(LadderResult result, List<String> tokens, List<String> participants) {
         if (checkIfShouldPrintAllResult(tokens)) {
             return participants.stream()
                 .map(result::matchResult)
@@ -72,7 +62,7 @@ public class LadderController {
         throw new IllegalArgumentException("Query cannot be handled");
     }
 
-    private static <D> List<MatchPair<String, D>> getMatchPairs(LadderResult<String, D> result, List<String> tokens) {
+    private static List<MatchPair> getMatchPairs(LadderResult result, List<String> tokens) {
         if (tokens.size() == 1) {
             return Collections.singletonList(result.matchResult(tokens.get(0)));
         }
@@ -88,7 +78,7 @@ public class LadderController {
         return tokens.size() == 1 && tokens.get(0).toLowerCase().equals(QUERY_ALL);
     }
 
-    private static <D> boolean checkIfAllTokensMatch(LadderResult<String, D> result, List<String> tokens) {
+    private static boolean checkIfAllTokensMatch(LadderResult result, List<String> tokens) {
         return tokens.stream()
             .filter(result::hasMatchResult)
             .count() == tokens.size();

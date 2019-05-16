@@ -1,8 +1,6 @@
 package com.woowacourse.ladder.view;
 
-import com.woowacourse.ladder.domain.Ladder;
-import com.woowacourse.ladder.domain.LadderRow;
-import com.woowacourse.ladder.domain.MatchPair;
+import com.woowacourse.ladder.domain.*;
 import com.woowacourse.ladder.interfaces.OutputView;
 
 import java.util.List;
@@ -10,20 +8,20 @@ import java.util.stream.Collectors;
 
 public class ConsoleOutputView implements OutputView {
     @Override
-    public void printLadder(Ladder<String, String> ladder) {
+    public void printLadder(Ladder ladder, List<String> participants, List<String> destinations) {
         System.out.print("");
-        ladder.forEachParticipants(p -> {
+        participants.forEach(p -> {
             System.out.printf("%-6s ", p);
         });
         System.out.println();
         ladder.forEachRows(this::forEachRow);
-        ladder.forEachDestinations(p -> {
+        destinations.forEach(p -> {
             System.out.printf("%-6s ", p);
         });
         System.out.println();
     }
 
-    private void forEachRow(LadderRow<String> r) {
+    private void forEachRow(LadderRow r) {
         System.out.print("   |");
         String rowString = r.getColumnStream()
             .map(this::forEachColumns)
@@ -40,7 +38,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printResult(List<MatchPair<String, String>> pairs) {
+    public void printResult(List<MatchPair> pairs) {
         System.out.println("실행 결과");
         if (pairs.size() == 1) {
             System.out.println(pairs.get(0).getDestination());

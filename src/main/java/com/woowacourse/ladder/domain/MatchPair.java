@@ -2,20 +2,20 @@ package com.woowacourse.ladder.domain;
 
 import java.util.Objects;
 
-public class MatchPair<P, D> {
-    private final P participant;
-    private final D destination;
+public class MatchPair {
+    private final String participant;
+    private final String destination;
 
-    public MatchPair(P participant, D destination) {
+    public MatchPair(String participant, String destination) {
         this.participant = participant;
         this.destination = destination;
     }
 
-    public P getParticipant() {
+    public String getParticipant() {
         return participant;
     }
 
-    public D getDestination() {
+    public String getDestination() {
         return destination;
     }
 
@@ -23,7 +23,7 @@ public class MatchPair<P, D> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MatchPair<?, ?> matchPair = (MatchPair<?, ?>) o;
+        MatchPair matchPair = (MatchPair) o;
         return Objects.equals(participant, matchPair.participant) &&
             Objects.equals(destination, matchPair.destination);
     }
