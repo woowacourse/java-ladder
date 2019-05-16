@@ -14,8 +14,27 @@ public class LadderGame {
         this.results = results;
 
         for (int i = 0; i < ladderHeight; i++) {
-            ladder.add(new Row(members.size()));
+            ladder.add(new Row(linkedStatusGenerator(members.size())));
         }
+    }
+
+    public LadderGame(List<Member> members, int[][] linkedStatus, List<String> results) {
+        this.members = members;
+        this.results = results;
+
+        for (int[] status : linkedStatus) {
+            ladder.add(new Row(status));
+        }
+    }
+
+    private int[] linkedStatusGenerator(int countOfMembers) {
+        int[] linkedStatus = new int[countOfMembers - 1];
+
+        for (int i = 0; i < linkedStatus.length; i++) {
+            linkedStatus[i] = (int) (Math.random() * 2);
+        }
+
+        return linkedStatus;
     }
 
     public List<Row> getLadder() {

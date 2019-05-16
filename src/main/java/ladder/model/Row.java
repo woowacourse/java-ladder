@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Row {
     private static final int LINE = 1;
-    private static final int MAX_BOUNDARY = 2;
     private static final String VERTICAL_LINE = "|";
     private static final String LINKED_LINE = "-----";
     private static final String NONE_LINKED_LINE = "     ";
@@ -13,22 +12,18 @@ public class Row {
 
     private List<Boolean> lines;
 
-    public Row(int countOfMember) {
+    public Row(int[] linked){
         lines = new ArrayList<>();
 
-        lines.add(booleanGenerator(randomValueGenerator(), false));
+        lines.add(linked[0], false);
 
-        for (int i = 1; i < countOfMember - 1; i++) {
-            lines.add(booleanGenerator(randomValueGenerator(), lines.get(i - 1)));
+        for (int i = 1; i < linked.length; i++) {
+            lines.add(booleanGenerator(linked[i], lines.get(i - 1)));
         }
     }
 
     private boolean booleanGenerator(int random, boolean prevStatus) {
         return !prevStatus && random == LINE;
-    }
-
-    private int randomValueGenerator() {
-        return (int) (Math.random() * MAX_BOUNDARY);
     }
 
     public int getLineSize() {
