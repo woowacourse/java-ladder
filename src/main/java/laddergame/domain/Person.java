@@ -12,6 +12,10 @@ public class Person {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private boolean overNameLengthBound(String name) {
         return name.length() > NAME_LENGTH_BOUND;
     }

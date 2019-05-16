@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -21,6 +23,10 @@ public class Line {
 
     public Boolean addScaffold(boolean scaffold) {
         return scaffolds.add(scaffold);
+    }
+
+    public List<Boolean> getScaffolds() {
+        return scaffolds;
     }
 
     @Override

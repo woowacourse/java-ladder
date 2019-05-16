@@ -19,6 +19,14 @@ public class Ladder {
         return lines.add(line);
     }
 
+    public int getHeight() {
+        return lines.size();
+    }
+
+    public Line getLine(int height) {
+        return lines.get(height);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
