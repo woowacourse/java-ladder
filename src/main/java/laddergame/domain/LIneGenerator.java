@@ -16,11 +16,6 @@ public class LIneGenerator {
         return line;
     }
 
-    /*private void putValueIntoSpecificPlace(int x, int y) {
-        boolean random = getConnectableValue(x, y);
-        ladderMap.get(y).add(x, random);
-    }*/
-
     private static boolean getConnectableValue(boolean preValue) {
         if (preValue) return false;
 

@@ -9,12 +9,11 @@ public class LadderGameLauncher {
     }
 
     private static void doLadderGame() {
-        //LadderGame game = new LadderGame();
-        //game.play();
+        LadderGame game = new LadderGame();
+        game.play();
 
-        Ladder ladder = new Ladder(2,2);
-
-
+        /*Ladder ladder = new Ladder(4,5);
+        System.out.println(ladder);*/
 
         /*System.out.println("%-5d%n", "|");
         System.out.println("%-5d%n", "----|");*/

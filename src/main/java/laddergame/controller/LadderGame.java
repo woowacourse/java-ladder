@@ -4,6 +4,7 @@ import laddergame.domain.Ladder;
 import laddergame.domain.Player;
 import laddergame.domain.PlayersGenerator;
 import laddergame.view.InputView;
+import laddergame.view.OutputView;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -12,6 +13,8 @@ public class LadderGame {
     public void play() {
         List<Player> players = getPlayers();
         Ladder ladder = getLadder(players.size());
+
+        OutputView.printLadder(players, ladder);
 
     }
 

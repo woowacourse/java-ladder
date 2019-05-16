@@ -32,4 +32,19 @@ public class Ladder {
     public int hashCode() {
         return Objects.hash(ladderMap, width, height);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (int y = 0; y < height; y++) {
+            sb.append("     |");
+            for (int x = 0; x < width - 1; x++) {
+                sb.append(ladderMap.get(y).get(x) ? "-----|" : "     |");
+            }
+            sb.append("\n");
+        }
+
+        return sb.toString();
+    }
 }
