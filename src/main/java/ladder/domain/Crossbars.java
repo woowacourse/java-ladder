@@ -8,6 +8,7 @@ public class Crossbars {
     private static final int LAST_DUMMY_SPACE = 1;
     private static final int NEIGHBOR_INDEX = 1;
     private static final int MINIMUM_SIZE = 2;
+    private static final int CHANGED_POSITION = 1;
 
     private List<Boolean> crossbars;
 
@@ -44,6 +45,16 @@ public class Crossbars {
         if (crossbarA && crossbarB) {
             throw new IllegalArgumentException("연속된 다리는 만들 수 없습니다.");
         }
+    }
+
+    public int answerResultIndexOf(int positionOfPlayer) {
+        if (crossbars.get(positionOfPlayer)) {
+            return positionOfPlayer - CHANGED_POSITION;
+        }
+        if (crossbars.get(positionOfPlayer + CHANGED_POSITION)) {
+            return positionOfPlayer + CHANGED_POSITION;
+        }
+        return positionOfPlayer;
     }
 
     @Override

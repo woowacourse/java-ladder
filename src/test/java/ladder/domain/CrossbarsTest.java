@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import com.sun.tools.javac.sym.CreateSymbols;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -37,5 +38,14 @@ public class CrossbarsTest {
 
         assertThrows(IllegalArgumentException.class, () -> new Crossbars(crossbars1));
         assertThrows(IllegalArgumentException.class, () -> new Crossbars(crossbars2));
+    }
+
+    @Test
+    void 크로스바에_시작_위치를_입력했을_때_결과_위치를_제대로_알려주는지_테스트() {
+        Crossbars crossbars = new Crossbars(Arrays.asList(false, false, true, false)); // 이렇게 생겼음 :   |     |-----|
+
+        assertThat(crossbars.answerResultIndexOf(0)).isEqualTo(0);
+        assertThat(crossbars.answerResultIndexOf(1)).isEqualTo(2);
+        assertThat(crossbars.answerResultIndexOf(2)).isEqualTo(1);
     }
 }
