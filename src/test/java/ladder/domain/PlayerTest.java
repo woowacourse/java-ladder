@@ -15,4 +15,14 @@ public class PlayerTest {
     void 플레이어의_이름이_5자보다_클_때_예외를_던지는지_테스트() {
         assertThrows(IllegalArgumentException.class, () -> new Player("qweasd"));
     }
+
+    @Test
+    void 플레이어의_이름이_공백으로만_이루어져_았을_때_얘외를_던지는지_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> new Player(" "));
+    }
+
+    @Test
+    void 플레이어의_이름이_null일_때_얘외를_던지는지_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> new Player(null));
+    }
 }

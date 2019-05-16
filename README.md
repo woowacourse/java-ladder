@@ -17,14 +17,14 @@
 
 
 # 사다리 게임
-## To-do
-   * player 이름이 공백일 때 예외 처리
+## To-do   
    * Ladder Game 클래스의 LAST_DMMY_SPACE 리네임
    * crossbar는 '-' 5개로 구성되어 있습니다.
    * 사다리를 출력하는 기능을 만들어야 합니다.
    * 이동 방향을 알려주는 corsspoints를 구현해야 합니다.
 
 ## Done
+   * player 이름이 공백, null일 때 예외 처리
    * 입력받은 사람의 수에 따라서 crossbars를 만들어야 합니다.
      - crossbars에는 연속된 crossbar가 있어서는 안 됩니다.
    * 랜덤한 crossbar 리스트를 생성해 Crossbars 객체를 만들어주는 기능
