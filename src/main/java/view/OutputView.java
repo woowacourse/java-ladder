@@ -40,6 +40,20 @@ public class OutputView {
         for (String result : results) {
             System.out.printf("%-6s", result);
         }
+        System.out.println();
     }
 
+    public static void output(String name, List<User> users, List<String> results) {
+        for (User user : users) {
+            if (name.equals(user.getName())) {
+                System.out.println(results.get(user.getPosition()));
+            }
+        }
+    }
+
+    public static void outputAll(List<User> users, List<String> results) {
+        for (User user : users) {
+            System.out.println(user.getName() + " : " + results.get(user.getPosition()));
+        }
+    }
 }
