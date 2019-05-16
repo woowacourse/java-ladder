@@ -6,13 +6,13 @@ import java.util.Objects;
 class Line {
     private final List<Boolean> points;
 
-    Line(final List<Boolean> points) {
+    Line(List<Boolean> points) {
         this.points = points;
     }
 
     String makeLine() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < points.size(); i++) {
+        for (int i = 0; i < points.size() - 1; i++) {
             sb.append(makeRow(i));
         }
         return sb.toString();
@@ -23,6 +23,16 @@ class Line {
             return "-----|";
         }
         return "     |";
+    }
+
+    int move(int index) {
+        if (points.get(index)) {
+            return ++index;
+        }
+        if (points.get(index - 1)) {
+            return --index;
+        }
+        return index;
     }
 
     @Override
