@@ -6,7 +6,6 @@ public class LineGenerator {
         for (int i = 0; i < numberOfInterval; i++) {
             generateScaffold(rule, line);
         }
-        System.out.println(line);
         return line;
     }
 
