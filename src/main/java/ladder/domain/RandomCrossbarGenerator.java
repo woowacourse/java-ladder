@@ -11,7 +11,7 @@ public class RandomCrossbarGenerator implements CrossbarGenerator {
     private int numberOfCrossbar;
     private List<Boolean> crossbars;
 
-    RandomCrossbarGenerator(int numberOfCrossbar) {
+    public RandomCrossbarGenerator(int numberOfCrossbar) {
         this.numberOfCrossbar = numberOfCrossbar;
     }
 

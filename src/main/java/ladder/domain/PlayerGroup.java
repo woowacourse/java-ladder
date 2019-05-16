@@ -13,6 +13,10 @@ public class PlayerGroup {
         }
     }
 
+    public int size() {
+        return players.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

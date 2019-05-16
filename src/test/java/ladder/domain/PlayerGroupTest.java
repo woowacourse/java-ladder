@@ -13,4 +13,10 @@ public class PlayerGroupTest {
         List<String> playerNames = Arrays.asList("a,b".split(","));
         assertThat(new PlayerGroup(playerNames)).isEqualTo(new PlayerGroup(playerNames));
     }
+
+    @Test
+    void 플레이어_수를_제대로_돌려주는지_테스트() {
+        PlayerGroup players = new PlayerGroup(Arrays.asList("a", "b", "c"));
+        assertThat(players.size()).isEqualTo(3);
+    }
 }

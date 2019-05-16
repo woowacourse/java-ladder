@@ -12,4 +12,9 @@ public class InputView {
         String playerNames = SCANNER.nextLine();
         return Arrays.asList(playerNames.split(","));
     }
+
+    public static String inputHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return SCANNER.nextLine();
+    }
 }
