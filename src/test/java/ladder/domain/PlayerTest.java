@@ -25,4 +25,9 @@ public class PlayerTest {
     void 플레이어의_이름이_null일_때_얘외를_던지는지_테스트() {
         assertThrows(IllegalArgumentException.class, () -> new Player(null));
     }
+
+    @Test
+    void 플레이어의_이름이_all일_때_얘외를_던지는지_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> new Player("all"));
+    }
 }

@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Player {
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final int MINIMUM_NANE_LENGTH = 1;
+    private static final String SHOW_ALL_COMMAND = "all";
     private final String name;
 
     public Player(final String name) {
@@ -20,8 +21,15 @@ public class Player {
 
     private String getTrimed(String name) {
         name = name.trim();
+        vaildateCommandName(name);
         vaildateNameLength(name);
         return name;
+    }
+
+    private void vaildateCommandName(String name) {
+        if (name.equals(SHOW_ALL_COMMAND)) {
+            throw new IllegalArgumentException("이름에는 all이 입력될 수 없습니다.");
+        }
     }
 
     private void vaildateNameLength(String name) {
