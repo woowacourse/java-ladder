@@ -7,39 +7,42 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Result {
-    List<Participant> participants;
-    List<String> resultValues;
-
-    public Result(List<Participant> participants, List<String> resultValues) {
-        this.participants = participants;
-        this.resultValues = resultValues;
-
-    }
-
-    public String eachGetResult(String name) {
-        return resultValues.get(participants.indexOf(findParticipant(name)));
+    HashMap<Participant, String> gameResult = new LinkedHashMap<>();
+    private boolean isEnd = false;
+    public Result(List<Participant> participants, List<String> rewards, List<Integer> ladderNumbers) {
+        for (Participant participant : participants) {
+            gameResult.put(participant, rewards.get(ladderNumbers.get(participants.indexOf(participant))));
+        }
     }
 
     private Participant findParticipant(String name) {
-        Optional<Participant> p = participants.stream().filter(x -> x.toString().equals(name)).findFirst();
-        if (p.isPresent()) {
-            return p.get();
+        Optional<Participant> participant = gameResult.keySet().stream()
+                .filter(x -> x.toString().equals(name))
+                .findFirst();
+        if (participant.isPresent()) {
+            return participant.get();
         }
         throw new IllegalArgumentException("등록되지 않은 참가자 입니다.");
     }
 
-    public HashMap<String,String> getResult(List<String> names){
-        names = convertAllToNames(names);
+    public HashMap<String, String> getResult(List<String> names) {
+        names = checkInput(names);
         LinkedHashMap<String, String> multiResult = new LinkedHashMap<>();
-        names.stream().forEach(name -> multiResult.put(name, eachGetResult(name)));
+        names.stream().forEach(name -> multiResult.put(name, gameResult.get(findParticipant(name))));
         return multiResult;
     }
 
-    private List<String> convertAllToNames(List<String> names) {
-        if(names.size() == 1 && names.get(0).toLowerCase().equals("all")) {
-            return participants.stream().map(x -> x.toString()).collect(Collectors.toList());
+    private List<String> checkInput(List<String> names) {
+        if (names.size() == 1 && names.get(0).toLowerCase().equals("all")) {
+            isEnd = true;
+            return gameResult.keySet().stream()
+                    .map(x -> x.toString())
+                    .collect(Collectors.toList());
         }
         return names;
     }
 
+    public boolean getIsEnd(){
+        return isEnd;
+    }
 }

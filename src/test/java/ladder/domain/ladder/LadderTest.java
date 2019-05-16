@@ -12,12 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class LadderTest {
     int countPerson;
     int ladderHeight;
-    List<Line> lines;
+    List<LineDTO> lines;
     @BeforeEach
     public void setup(){
         countPerson = 3;
         ladderHeight = 5;
-        lines = new Ladder(ladderHeight, countPerson).getLines();
+        lines = new Ladder(ladderHeight, countPerson).getLineDTO();
     }
     @Test
     public void 사다리생성확인(){
@@ -27,7 +27,7 @@ public class LadderTest {
     @Test
     public void 라인너비주입확인(){
         for (int  i = 0; i<lines.size(); i++) {
-            assertThat(lines.get(i).getLength()).isEqualTo(countPerson);
+            assertThat(lines.get(i).getPoints().size()).isEqualTo(countPerson);
         }
     }
 

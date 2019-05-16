@@ -5,6 +5,7 @@ import ladder.domain.rule.RandomPointLadderRule;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;
@@ -26,9 +27,8 @@ public class Ladder {
             throw new IllegalArgumentException();
         }
     }
-
-    public List<Line> getLines() {
-        return lines;
+    public List<LineDTO> getLineDTO() {
+        return lines.stream().map(LineDTO::new).collect(Collectors.toList());
     }
 
     public int getEndPoint(int index) {
@@ -38,4 +38,5 @@ public class Ladder {
         }
         return endPoint;
     }
+
 }

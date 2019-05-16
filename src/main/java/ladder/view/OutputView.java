@@ -1,9 +1,12 @@
 package ladder.view;
 
+import ladder.domain.Result;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.Participant;
+import ladder.domain.ladder.LineDTO;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class OutputView {
@@ -22,14 +25,14 @@ public class OutputView {
     }
 
     public static void drawLadder(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
-            drawLine(line);
+        for (LineDTO lineDTO : ladder.getLineDTO()) {
+            drawLine(lineDTO);
             System.out.println();
         }
     }
 
-    private static void drawLine(Line line) {
-        for (Boolean t : line.getPoints()) {
+    private static void drawLine(LineDTO lineDTO) {
+        for (Boolean t : lineDTO.getPoints()) {
             System.out.print(HORIZONTAL_LINE);
             lineOrEmpty(t);
         }
@@ -48,4 +51,14 @@ public class OutputView {
         }
         return blank.toString();
     }
+
+    public static void printGameResult(Result result){
+        result.getResult(InputView.inputResultNames()).entrySet().stream()
+                .forEach(entry -> printResult(entry.getKey(), entry.getValue()));
+
+    }
+    public static void printResult(String name, String reward){
+        System.out.println(name + " : " + reward);
+    }
+
 }

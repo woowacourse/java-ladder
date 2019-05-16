@@ -6,9 +6,13 @@ import ladder.view.OutputView;
 
 public class GameApplication {
     public static void main(String[] args){
-        GameController ladderController = new GameController();
-        ladderController.registParticipant(InputView.inputNames());
-        ladderController.makeLadder(InputView.inputLadderHeight());
-        OutputView.printLadderResult(ladderController.getLadder(),ladderController.getParticipants());
+        GameController gameController = new GameController();
+        gameController.registParticipant(InputView.inputNames());
+        gameController.resistRewards(InputView.inputRewards());
+        gameController.makeLadder(InputView.inputLadderHeight());
+        OutputView.printLadderResult(gameController.getLadder(),gameController.getParticipants());
+        do{
+            OutputView.printGameResult(gameController.getGameResult());
+        }while(!gameController.getGameEnd());
     }
 }

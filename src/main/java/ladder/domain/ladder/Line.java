@@ -21,14 +21,6 @@ public class Line {
         points.add(false);
     }
 
-    public int getLength() {
-        return points.size();
-    }
-
-    public List<Boolean> getPoints() {
-        return points;
-    }
-
     public int move(int endPoint) {
         if(endPoint > 0) {
             if(points.get(endPoint-1)) return endPoint-1;
@@ -37,5 +29,9 @@ public class Line {
             return endPoint+1;
         }
         return endPoint;
+    }
+
+    public List<Boolean> getPoints() {
+        return points;
     }
 }
