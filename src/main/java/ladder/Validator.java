@@ -2,15 +2,16 @@ package ladder;
 
 import java.util.List;
 
+import ladder.domain.Player;
 import ladder.domain.UserOutput;
 
 public class Validator {
-	private static boolean checkNameLength(String name) {
+	private static boolean validateNameLength(String name) {
 		return name.length() <= 5;
 	}
 
-	public static void checkNamesLength(List<String> names) {
-		if (!names.stream().allMatch(name -> checkNameLength(name))) {
+	public static void validateNamesLength(List<String> names) {
+		if (!names.stream().allMatch(name -> validateNameLength(name))) {
 			throw new IllegalArgumentException(UserOutput.VIOLATE_PLAYER_NAMES.getOutputMessage());
 		}
 	}
@@ -23,8 +24,8 @@ public class Validator {
 		}
 	}
 
-	public static void compareLength(List<String> names, List<String> results) {
-		if (names.size() != results.size()) {
+	public static void compareLength(List<Player> playersNames, List<String> results) {
+		if (playersNames.size() != results.size()) {
 			throw new IllegalArgumentException(UserOutput.VIOLATE_GAME_RESULTS.getOutputMessage());
 		}
 	}
