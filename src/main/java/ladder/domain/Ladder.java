@@ -33,13 +33,13 @@ public class Ladder {
 
     public int findOneResult(int playerIndex){
         for(Line line : ladder){
-            playerIndex = moveDown(line, playerIndex);
+            playerIndex = moveVertical(line, playerIndex);
         }
         return playerIndex;
     }
 
-    private int moveDown(Line line, int index){
-        return line.moveRightOrLeft(index);
+    private int moveVertical(Line line, int index){
+        return line.moveHorizontal(index);
     }
 
     @Override

@@ -86,12 +86,12 @@ public class Main {
         String select = "";
         while (!select.equals(EXIT_CONDITION)) {
             select = InputView.selectResult();
-            checkNotAll(ladderGame, select);
-            select = checkAll(ladderGame, select);
+            chooseOne(ladderGame, select);
+            select = chooseAll(ladderGame, select);
         }
     }
 
-    private static String checkAll(LadderGame ladderGame, String select) {
+    private static String chooseAll(LadderGame ladderGame, String select) {
         if (select.equals(ALL_CONDITION)) {
             OutputView.resultTitle();
             OutputView.resultPrint(ladderGame.getAllPlayerResult());
@@ -100,7 +100,7 @@ public class Main {
         return select;
     }
 
-    private static void checkNotAll(LadderGame ladderGame, String select) {
+    private static void chooseOne(LadderGame ladderGame, String select) {
         if (!select.equals(EXIT_CONDITION) && !select.equals(ALL_CONDITION)) {
             OutputView.resultTitle();
             Tag selectTag = new Tag(select);

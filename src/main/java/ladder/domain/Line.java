@@ -24,38 +24,38 @@ import java.util.Random;
  * @version 1.0.0
  */
 public class Line {
-    private static final String HEADER_HORIZON_LINE = "   ";
+    private static final String HEADER_HORIZONTAL_LINE = "   ";
     private static final String VERTICAL_LINE = "|";
     private static final String NEW_LINE = "\n";
-    private static final String NO_HORIZON_LINE = "     ";
-    private static final String HORIZON_LINE = "-----";
-    private static final String HORIZON_DUPLICATION_ERROR = "가로선 중복 오류";
+    private static final String NO_HORIZONTAL_LINE = "     ";
+    private static final String HORIZONTAL_LINE = "-----";
+    private static final String HORIZONTAL_DUPLICATION_ERROR = "가로선 중복 오류";
 
-    private List<Boolean> horizon;
+    private List<Boolean> horizontal;
 
     public Line(int playerNumber) {
-        horizon = new ArrayList<>();
+        horizontal = new ArrayList<>();
         makeRandomBooleans(playerNumber);
     }
 
-    public Line(List<Boolean> horizon) {
-        checkDuplicateHorizon(horizon);
-        this.horizon = horizon;
+    public Line(List<Boolean> horizontal) {
+        checkDuplicateHorizon(horizontal);
+        this.horizontal = horizontal;
     }
 
-    public List<Boolean> getHorizon() {
-        return this.horizon;
+    public List<Boolean> getHorizontal() {
+        return this.horizontal;
     }
 
     private void checkDuplicateHorizon(List<Boolean> horizon) {
-        for (int i = 0; i < horizon.size(); i++) {
+        for (int i = 0; i < horizon.size() - 1; i++) {
             checkOneDuplicationHorizon(horizon, i);
         }
     }
 
     private void makeRandomBooleans(int playerNumber) {
         for (int i = 0; i < playerNumber - 1; i++) {
-            horizon.add(makeProperBoolean(i));
+            horizontal.add(makeProperBoolean(i));
         }
     }
 
@@ -64,7 +64,7 @@ public class Line {
         if (currentIndex == 0) {
             return random.nextBoolean();
         }
-        if (!this.horizon.get(currentIndex - 1)) {
+        if (!this.horizontal.get(currentIndex - 1)) {
             return random.nextBoolean();
         }
         return false;
@@ -72,18 +72,18 @@ public class Line {
 
     private void checkOneDuplicationHorizon(List<Boolean> horizon, int i) {
         if (horizon.get(i) && horizon.get(i + 1)) {
-            throw new IllegalArgumentException(HORIZON_DUPLICATION_ERROR);
+            throw new IllegalArgumentException(HORIZONTAL_DUPLICATION_ERROR);
         }
     }
     private String toStringEachHorLine(Boolean bool) {
-        String result = NO_HORIZON_LINE;
+        String result = NO_HORIZONTAL_LINE;
         if (bool) {
-            result = HORIZON_LINE;
+            result = HORIZONTAL_LINE;
         }
         return result;
     }
 
-    public int moveRightOrLeft(int index) {
+    public int moveHorizontal(int index) {
         if (canMoveLeft(index)) {
             return moveLeft(index);
         }
@@ -93,7 +93,7 @@ public class Line {
         return index;
     }
     private boolean canMoveLeft(int index) {
-        return index > 0 && this.horizon.get(index - 1);
+        return index > 0 && this.horizontal.get(index - 1);
     }
 
     private int moveLeft(int index) {
@@ -101,7 +101,7 @@ public class Line {
     }
 
     private boolean canMoveRight(int index) {
-        return index < horizon.size() && this.horizon.get(index);
+        return index < horizontal.size() && this.horizontal.get(index);
     }
 
     private int moveRight(int index) {
@@ -111,8 +111,8 @@ public class Line {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(HEADER_HORIZON_LINE);
-        for (Boolean bool : this.horizon) {
+        sb.append(HEADER_HORIZONTAL_LINE);
+        for (Boolean bool : this.horizontal) {
             sb.append(VERTICAL_LINE);
             sb.append(toStringEachHorLine(bool));
         }
