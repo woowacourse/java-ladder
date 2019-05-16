@@ -1,9 +1,6 @@
 package laddergame.controller;
 
-import laddergame.domain.Ladder;
-import laddergame.domain.Player;
-import laddergame.domain.PlayersGenerator;
-import laddergame.domain.Prize;
+import laddergame.domain.*;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -14,10 +11,21 @@ public class LadderGame {
     public void play() {
         List<Player> players = getPlayers();
         Ladder ladder = getLadder(players.size());
+        List<Prize> prizes = getPrizes(players.size());
 
         OutputView.printLadder(players, ladder);
 
 
+    }
+
+    private List<Prize> getPrizes(int numOfPlayers) {
+        try {
+            String input = InputView.askPrizes();
+            return PrizesGenerator.createPrizes(input, numOfPlayers);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return getPrizes(numOfPlayers);
+        }
     }
 
     private static List<Player> getPlayers() {
