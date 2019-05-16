@@ -41,36 +41,30 @@ public class Main {
     }
 
     private static PlayerTags getPlayers() {
-        PlayerTags playerTags;
         try {
-            playerTags = new PlayerTags(InputView.playerNames());
+            return new PlayerTags(InputView.playerNames());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            playerTags = new PlayerTags(InputView.playerNames());
+            return new PlayerTags(InputView.playerNames());
         }
-        return playerTags;
     }
 
     private static ResultTags getResults(int playerNumbers) {
-        ResultTags results;
         try {
-            results = new ResultTags(InputView.resultNames(), playerNumbers);
+            return new ResultTags(InputView.resultNames(), playerNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            results = new ResultTags(InputView.resultNames(), playerNumbers);
+            return new ResultTags(InputView.resultNames(), playerNumbers);
         }
-        return results;
     }
 
     private static Floor getFloor() {
-        Floor floors;
         try {
-            floors = new Floor(InputView.floors());
+            return new Floor(InputView.floors());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            floors = new Floor(InputView.floors());
+            return new Floor(InputView.floors());
         }
-        return floors;
     }
 
     private static void showResult(LadderGame ladderGame) {
@@ -78,7 +72,7 @@ public class Main {
             selectResult(ladderGame);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            selectResult(ladderGame);
+            showResult(ladderGame);
         }
     }
 
