@@ -11,6 +11,7 @@ public class Ladder {
     private final List<String> reward;
     private final int depth;
     private List<LadderLine> ladderLines;
+    private Map<String, String> result;
 
     public Ladder(String name) {
         this(name, Const.MIN_LINE_COUNT);
@@ -74,10 +75,35 @@ public class Ladder {
         return stringBuilder.toString();
     }
 
+    public String getResultLadderRewards(String name) {
+        if (name.equals("all")) {
+            return getResultAllRewards();
+        }
+
+        return result.get(name);
+    }
+
+    private String getResultAllRewards() {
+        StringJoiner stringJoiner = new StringJoiner("\n");
+        for (Map.Entry<String, String> stringStringEntry : result.entrySet()) {
+            stringJoiner.add(stringStringEntry.getKey() + " : " + stringStringEntry.getValue());
+        }
+        return stringJoiner.toString();
+    }
+
     public void playRadder() {
         for (int i = 0; i < depth; i++) {
             moveRadderLIne(i);
         }
+        result = setLadderResult();
+    }
+
+    private Map<String, String> setLadderResult() {
+        Map<String, String> result = new LinkedHashMap<>();
+        for (Player player : players) {
+            result.put(player.getName(),reward.get(player.getPosition()));
+        }
+        return result;
     }
 
     private void moveRadderLIne(int depth) {

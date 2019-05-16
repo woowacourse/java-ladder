@@ -106,6 +106,17 @@ public class LadderTest {
         }
     }
 
+    @Test
+    void 사다리_이름_넣으면_결과_출력() {
+        Ladder ladder = new Ladder(names, "1000, 2000, 3000, 패스", 5);
+        ladder.playRadder();
+        System.out.println(ladder.getResultLadderNames());
+        System.out.println(ladder.getResultLadderLines());
+        System.out.println(ladder.getResultLadderRewards());
+        System.out.println("pobi : " + ladder.getResultLadderRewards("pobi"));
+        System.out.println(ladder.getResultLadderRewards("all"));
+    }
+
     @AfterEach
     void tearDown() {
         ladder = null;
