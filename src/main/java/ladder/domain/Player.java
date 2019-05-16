@@ -30,6 +30,10 @@ public final class Player {
         return name.trim();
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

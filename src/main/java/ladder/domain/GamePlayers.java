@@ -16,4 +16,8 @@ public final class GamePlayers {
             throw new IllegalArgumentException();
         }
     }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
 }
