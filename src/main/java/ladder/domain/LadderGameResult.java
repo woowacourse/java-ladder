@@ -1,14 +1,16 @@
 package ladder.domain;
 
+import java.util.Map;
+
 public class LadderGameResult {
 
-    private int[] ladderResultForUserIndex;
+    private Map<String, String> nameToPrize;
 
-    public LadderGameResult(int[] ladderResultForUserIndex){
-        this.ladderResultForUserIndex = ladderResultForUserIndex;
+    public LadderGameResult(Map<String, String> nameToPrize) {
+        this.nameToPrize = nameToPrize;
     }
 
-    public int[] getLadderResultForUserIndex() {
-        return this.ladderResultForUserIndex;
+    public Map getNameToPrize() {
+        return this.nameToPrize;
     }
 }
