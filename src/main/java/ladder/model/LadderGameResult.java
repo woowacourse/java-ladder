@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class LadderGameResult {
 
+    private static final int START_VALUE = 0;
     private Map<String, String> gameResults = new HashMap<>();
     private List<String> playerNames;
     private List<String> goalNames;
@@ -16,7 +17,7 @@ public class LadderGameResult {
 
         initGameResults();
 
-        generateGameResults(ladder, 0);
+        generateGameResults(ladder, START_VALUE);
     }
 
     private void initGameResults() {
@@ -29,7 +30,7 @@ public class LadderGameResult {
         if (line == ladder.size()) {
             return;
         }
-        generateGameResultsByLine(ladder, line, 0);
+        generateGameResultsByLine(ladder, line, START_VALUE);
         generateGameResults(ladder, line + 1);
     }
 
