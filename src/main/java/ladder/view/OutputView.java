@@ -1,9 +1,9 @@
-package view;
+package ladder.view;
 
 import java.util.List;
 
-import domain.Floor;
-import domain.User;
+import ladder.domain.Floor;
+import ladder.domain.User;
 
 public class OutputView {
     public static void outputNames(List<User> users) {

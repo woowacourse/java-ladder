@@ -1,6 +1,6 @@
-package view;
+package ladder.view;
 
-import util.StringUtil;
+import ladder.util.StringUtil;
 
 public class InputCheck {
 

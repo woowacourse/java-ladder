@@ -1,3 +1,5 @@
+package calculator;
+
 public class Numbers {
     public static int[] toInts(String[] values) {
         int[] numbers = new int[values.length];
