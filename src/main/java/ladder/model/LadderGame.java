@@ -5,17 +5,15 @@ import java.util.List;
 
 public class LadderGame {
 
-    List<Row> ladder = new ArrayList<>();
-    List<Member> members;
+    private final List<Row> ladder = new ArrayList<>();
+    private final List<Member> members;
 
-    public LadderGame(String[] names, int ladderHeight) {
-        members = Members.generateMembers(names);
-
+    public LadderGame(List<Member> members, int ladderHeight) {
+        this.members = members;
         for (int i = 0; i < ladderHeight; i++) {
             ladder.add(new Row(members.size()));
         }
     }
-
 
     public int getLadderHeight() {
         return ladder.size();
