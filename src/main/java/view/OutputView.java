@@ -35,4 +35,11 @@ public class OutputView {
             System.out.print("     ");
         }
     }
+
+    public static void outputResult(List<String> results) {
+        for (String result : results) {
+            System.out.printf("%-6s", result);
+        }
+    }
+
 }
