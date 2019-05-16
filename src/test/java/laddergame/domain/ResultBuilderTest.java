@@ -1,55 +1,54 @@
 package laddergame.domain;
 
-import laddergame.domain.player.PlayerMaker;
+import laddergame.domain.result.ResultBuilder;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class PlayerMakerTest {
-
+class ResultBuilderTest {
     @Test
     public void 객제_생성_검사() {
-        PlayerMaker playerMaker = new PlayerMaker("pobi,crong");
-        assertThat(playerMaker).isEqualTo(new PlayerMaker("pobi,crong"));
+        ResultBuilder playerMaker = new ResultBuilder("pobi,crong");
+        assertThat(playerMaker).isEqualTo(new ResultBuilder("pobi,crong"));
     }
 
     @Test
     public void 공백이_입력되어있을때_검사() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new PlayerMaker(" ").makePlayers();
+            new ResultBuilder(" ").makeResults();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new PlayerMaker("").makePlayers();
+            new ResultBuilder("").makeResults();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new PlayerMaker(null).makePlayers();
+            new ResultBuilder(null).makeResults();
         });
     }
 
     @Test
     public void 이름목록에_스페이스가_포함되어있을때_검사() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new PlayerMaker(" ,pobi,honux,crong,jk").makePlayers();
+            new ResultBuilder(" ,pobi,honux,crong,jk").makeResults();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new PlayerMaker("pobi,honux,crong,jk, ").makePlayers();
+            new ResultBuilder("pobi,honux,crong,jk, ").makeResults();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new PlayerMaker("pobi,honux, ,crong,jk").makePlayers();
+            new ResultBuilder("pobi,honux, ,crong,jk").makeResults();
         });
     }
 
     @Test
     public void 이름목록에_공백이_포함되어있을때_검사() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new PlayerMaker(",pobi,honux,crong,jk").makePlayers();
+            new ResultBuilder(",pobi,honux,crong,jk").makeResults();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new PlayerMaker("pobi,honux,crong,jk,").makePlayers();
+            new ResultBuilder("pobi,honux,crong,jk,").makeResults();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new PlayerMaker("pobi,honux,,crong,jk,").makePlayers();
+            new ResultBuilder("pobi,honux,,crong,jk,").makeResults();
         });
     }
 }

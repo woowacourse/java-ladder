@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.domain.Player;
+import laddergame.domain.player.Player;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

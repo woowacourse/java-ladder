@@ -1,4 +1,7 @@
-package laddergame.domain;
+package laddergame.domain.player;
+
+import laddergame.domain.Constant;
+import laddergame.domain.inputValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +16,7 @@ public class PlayerMaker {
     }
 
     public List<Player> makePlayers() {
-        NamesValidator.validateNames(names);
+        inputValidator.validateInput(names);
 
         return Arrays.asList(names.split(Constant.COMMA)).stream()
                 .map(Player::new)

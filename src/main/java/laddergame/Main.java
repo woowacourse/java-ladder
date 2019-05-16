@@ -2,7 +2,7 @@ package laddergame;
 
 import laddergame.domain.Ladder;
 import laddergame.domain.LadderHeight;
-import laddergame.domain.PlayerMaker;
+import laddergame.domain.player.PlayerMaker;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
