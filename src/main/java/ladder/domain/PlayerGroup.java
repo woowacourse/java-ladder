@@ -1,15 +1,20 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class PlayerGroup {
-    private List<Player> players = new ArrayList<>();
+    private Set<Player> players = new LinkedHashSet<>();
 
     public PlayerGroup(List<String> playerNames) {
         for (String playerName : playerNames) {
             players.add(new Player(playerName));
+        }
+        checkDuplication(players.size(), playerNames.size());
+    }
+
+    private void checkDuplication(int numberOfUniqueNames, int numberOfPlayer) {
+        if (numberOfUniqueNames != numberOfPlayer) {
+            throw new IllegalArgumentException("중복된 이름은 입력할 수 없습니다.");
         }
     }
 
@@ -30,7 +35,7 @@ public class PlayerGroup {
         return Objects.hash(players);
     }
 
-    public List<Player> getPlayers() {
+    public Set<Player> getPlayers() {
         return players;
     }
 }
