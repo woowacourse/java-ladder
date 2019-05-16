@@ -23,6 +23,13 @@ public class Ladder {
         return lines.size();
     }
 
+    public int takeLadder(int point) {
+        for (Line line : lines) {
+            point = line.moveNextPoint(point);
+        }
+        return point;
+    }
+
     public Line getLine(int height) {
         return lines.get(height);
     }
