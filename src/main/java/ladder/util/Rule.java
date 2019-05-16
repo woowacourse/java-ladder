@@ -119,6 +119,7 @@ public class Rule {
      * @throws IllegalArgumentException
      */
     public static String ruleInputReward(String reward, int playerCount) {
+        reward = reward.replaceAll(" ","");
         List<String> rewards = Arrays.asList(ruleRewardRange(reward).split(","));
         ruleRewardSize(rewards.size() != playerCount);
 
@@ -146,7 +147,6 @@ public class Rule {
      * @throws IllegalArgumentException
      */
     public static String ruleRewardRange(String inputNames) {
-        inputNames = inputNames.replaceAll(" ","");
         List<String> names = rulePlayerCountSize(
                 Arrays.asList(inputNames.split(","))
         );
