@@ -11,7 +11,7 @@ public class Ladder {
         addLines(CountOfPerson, height);
     }
 
-    public Ladder(String[] names, List<Line> lines) {
+    public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
