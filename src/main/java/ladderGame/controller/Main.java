@@ -4,7 +4,6 @@ import ladderGame.domain.LadderGame;
 import ladderGame.domain.Result;
 import ladderGame.domain.User;
 import ladderGame.util.StringUtil;
-import ladderGame.view.InputCheck;
 import ladderGame.view.InputView;
 import ladderGame.view.OutputView;
 
@@ -16,25 +15,21 @@ public class Main {
         String names = InputView.inputNames();
         List<User> users = createUser(names);
 
-        int height = InputView.inputLadderHeight();
-        LadderGame ladderGame =  new LadderGame(height);
-
         String inputResults = InputView.inputResults();
         List<String> results = StringUtil.splitComma(inputResults);
 
-        OutputView.outputNames(users);
+        int height = InputView.inputLadderHeight();
+        LadderGame ladderGame =  new LadderGame(height);
         ladderGame.createLadder(users);
-        OutputView.outputLadder(ladderGame.getLadder());
-        OutputView.outputResult(results);
-
         ladderGame.startLadderGame(users);
 
-        String name;
+        OutputView.outputNames(users);
+        OutputView.outputLadder(ladderGame.getLadder());
+        OutputView.outputResults(results);
 
-        do {
-            name = InputView.inputNames1();
-            OutputView.output(name, users, results);
-        } while (!name.equals("all"));
+        Result result = new Result(results, users);
+        String name = InputView.inputName();
+        OutputView.outputResult(result.getResultByName(name));
         OutputView.outputAll(users, results);
     }
 
