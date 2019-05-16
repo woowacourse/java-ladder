@@ -8,14 +8,14 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(final List<Boolean> points) {
-        this.points = points;
-
-        if (isConsecutive()) {
+        if (isConsecutive(points)) {
             throw new IllegalArgumentException();
         }
+
+        this.points = points;
     }
 
-    private boolean isConsecutive() {
+    private boolean isConsecutive(List<Boolean> points) {
         return Collections.indexOfSubList(points, Arrays.asList(true, true)) != -1;
     }
 
