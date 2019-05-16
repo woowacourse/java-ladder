@@ -18,10 +18,19 @@ public class OutputView {
 		List<String> steps = new ArrayList<>();
 
 		for (boolean point : line.getPoints()) {
-			steps.add((point) ? UserOutput.LADDER_STEP.getOutputMessage() : UserOutput.LADDER_SPACE.getOutputMessage());
+			steps.add((point) ? UserOutput.LADDER_STEP.getOutputMessage()
+					: UserOutput.LADDER_SPACE.getOutputMessage());
 		}
 
-		System.out.println(UserOutput.LADDER_LINE.getOutputMessage()+
-				String.join(UserOutput.LADDER_LINE.getOutputMessage(), steps) + UserOutput.LADDER_LINE.getOutputMessage());
+		System.out.println(UserOutput.LADDER_LINE.getOutputMessage() +
+				String.join(UserOutput.LADDER_LINE.getOutputMessage(), steps)
+				+ UserOutput.LADDER_LINE.getOutputMessage());
+	}
+
+	public static void printNames(List<String> names) {
+		for(String name : names) {
+			System.out.printf("%-6s",name);
+		}
+		System.out.println();
 	}
 }
