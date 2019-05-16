@@ -4,7 +4,9 @@ import ladder.validator.PlayerValidator;
 
 public class LadderPlayer {
 
-    private static final String STANDARD_FORMAT = "%-6s";
+    private static final String STANDARD_FORMAT_FIRST_INDEX = "%-";
+    private static final String STANDARD_FORMAT_SECOND_INDEX = "s";
+
     private String name;
 
     public LadderPlayer(String name) {
@@ -15,7 +17,7 @@ public class LadderPlayer {
         return name;
     }
 
-    public String getAlignedName() {
-        return String.format(STANDARD_FORMAT, name);
+    public String getAlignedName(int maxLenOfGoalNames) {
+        return String.format(STANDARD_FORMAT_FIRST_INDEX + (maxLenOfGoalNames + 1) + STANDARD_FORMAT_SECOND_INDEX, name);
     }
 }

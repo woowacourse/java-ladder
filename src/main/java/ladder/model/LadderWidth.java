@@ -8,15 +8,20 @@ import java.util.stream.Collectors;
 public class LadderWidth {
 
     private static final String PIPE = "|";
+    private static final String HYPHEN = "-";
+    private static final String BLANK = " ";
     private static final boolean INITIAL_INDEX = false;
+
     private List<Boolean> crossbars;
+    private int maxLenOfGoalNames;
 
     public LadderWidth(List<Boolean> crossbars) {
         this.crossbars = crossbars;
     }
 
-    public LadderWidth(int width) {
+    public LadderWidth(int width, int maxLenOfGoalNames) {
         this.crossbars = generateLadderWidth(width);
+        this.maxLenOfGoalNames = maxLenOfGoalNames;
     }
 
     private List<Boolean> generateLadderWidth(int width) {
@@ -33,13 +38,24 @@ public class LadderWidth {
         return !index && new Random().nextBoolean();
     }
 
+    private String createCrossbar(String mark){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = 0 ; i < maxLenOfGoalNames ; i++){
+            stringBuilder.append(mark);
+        }
+        return stringBuilder.toString();
+    }
+
     @Override
     public String toString() {
-        return PIPE + crossbars.stream().map(crossbar -> {
-            if (crossbar) {
-                return "-----";
+        String crossbar = createCrossbar(HYPHEN);
+        String notCrossbar = createCrossbar(BLANK);
+
+        return PIPE + crossbars.stream().map(index -> {
+            if (index) {
+                return crossbar;
             }
-            return "     ";
+            return notCrossbar;
         }).collect(Collectors.joining(PIPE)) + PIPE;
     }
 }

@@ -9,10 +9,11 @@ public class OutputView {
 
     public static final String ENTER = "\n";
 
-    public static void showLadderGame(List<String> names, Ladder ladder) {
+    public static void showLadderGame(List<String> names, Ladder ladder, List<String> goalNames) {
         System.out.println(MessageConstant.OUPUT_RESULT);
         showPlayers(names);
         showLadder(ladder);
+        showGoals(goalNames);
     }
 
     private static void showPlayers(List<String> names) {
@@ -25,4 +26,9 @@ public class OutputView {
         System.out.println(ENTER + ladder);
     }
 
+    private static void showGoals(List<String> goalNames) {
+        for (String goal : goalNames) {
+            System.out.print(goal);
+        }
+    }
 }

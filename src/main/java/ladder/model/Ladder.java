@@ -8,9 +8,9 @@ public class Ladder {
 
     private List<LadderWidth> ladder = new ArrayList<>();
 
-    public Ladder(LadderGamePlayers players, int height) {
+    public Ladder(LadderGamePlayers players, int height, int maxLenOfGoalNames) {
         for (int i = 0; i < height; i++) {
-            ladder.add(new LadderWidth(players.size() - 1));
+            ladder.add(new LadderWidth(players.size() - 1, maxLenOfGoalNames));
         }
     }
 

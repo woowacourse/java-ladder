@@ -11,8 +11,8 @@ public class LadderGamePlayers {
         this.ladderPlayers = players;
     }
 
-    public List<String> getAlignedNames() {
-        return ladderPlayers.stream().map(LadderPlayer::getAlignedName).collect(Collectors.toList());
+    public List<String> getAlignedNames(int maxLenOfGoalNames) {
+        return ladderPlayers.stream().map(player -> player.getAlignedName(maxLenOfGoalNames)).collect(Collectors.toList());
     }
 
     public int size() {
