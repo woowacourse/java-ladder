@@ -1,4 +1,4 @@
-package domain;
+package ladderGame.domain;
 
 import org.junit.jupiter.api.Test;
 

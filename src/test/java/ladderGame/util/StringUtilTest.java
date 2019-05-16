@@ -1,4 +1,4 @@
-package util;
+package ladderGame.util;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package util;
+package ladderGame.util;
 
 import java.util.Arrays;
 import java.util.List;

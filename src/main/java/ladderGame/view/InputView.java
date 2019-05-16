@@ -1,6 +1,5 @@
-package view;
+package ladderGame.view;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {

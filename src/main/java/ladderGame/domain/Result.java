@@ -1,6 +1,6 @@
-package domain;
+package ladderGame.domain;
 
-import util.StringUtil;
+import ladderGame.util.StringUtil;
 
 import java.util.List;
 

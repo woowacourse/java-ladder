@@ -1,10 +1,10 @@
-package controller;
+package ladderGame.controller;
 
-import domain.LadderGame;
-import domain.Result;
-import view.InputCheck;
-import view.InputView;
-import view.OutputView;
+import ladderGame.domain.LadderGame;
+import ladderGame.domain.Result;
+import ladderGame.view.InputCheck;
+import ladderGame.view.InputView;
+import ladderGame.view.OutputView;
 
 public class Main {
     public static void main(String[] args) {
