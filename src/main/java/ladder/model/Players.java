@@ -9,7 +9,15 @@ public class Players extends Input<PlayerName> {
 
     public Players(String input) {
         super(input);
-        addPlayerNames(input);
+        addNames(input);
+    }
+
+    @Override
+    protected void addNames(String input) {
+        for(String name : input.split(DELIMITER)){
+            checkDuplicateName(name);
+            names.add(new PlayerName(name));
+        }
     }
 
     public List<PlayerName> getPlayerNames() {
@@ -24,25 +32,9 @@ public class Players extends Input<PlayerName> {
         return this.names.indexOf(name);
     }
 
-    private void addPlayerNames(String input) {
-        for(String name : input.split(DELIMITER)){
-            checkDuplicateName(name);
-            names.add(new PlayerName(name.trim()));
-        }
-    }
-
     private void checkDuplicateName(String name) {
         if (names.contains(new PlayerName(name))) {
             throw new IllegalArgumentException(DUPLICATE_NAME_ERROR);
         }
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for(PlayerName playerName : names){
-            sb.append(playerName.toString());
-        }
-        return sb.toString();
     }
 }

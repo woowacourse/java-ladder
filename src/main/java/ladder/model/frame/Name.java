@@ -37,6 +37,6 @@ public class Name {
 
     @Override
     public String toString() {
-        return String.format("%6s",this.name);
+        return this.name;
     }
 }

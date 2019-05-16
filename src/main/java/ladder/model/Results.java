@@ -7,8 +7,15 @@ public class Results extends Input<ResultName> {
 
     public Results(String input, int playerNumbers) {
         super(input);
-        addResultNames(input);
+        addNames(input);
         checkValidNumbers(playerNumbers);
+    }
+
+    @Override
+    protected void addNames(String input) {
+        for(String name : input.split(DELIMITER)){
+            names.add(new ResultName(name));
+        }
     }
 
     private void checkValidNumbers(int playerNumbers) {
@@ -21,18 +28,5 @@ public class Results extends Input<ResultName> {
         return this.names.get(index);
     }
 
-    private void addResultNames(String input) {
-        for(String name : input.split(DELIMITER)){
-            names.add(new ResultName(name.trim()));
-        }
-    }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for(ResultName resultName : names){
-            sb.append(resultName.toString());
-        }
-        return sb.toString();
-    }
 }
