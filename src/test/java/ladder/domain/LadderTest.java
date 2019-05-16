@@ -22,15 +22,14 @@ public class LadderTest {
 
     @Test
     void Ladder가_제대로_생성되는지_테스트() {
-        List<Crossbars> ladder = Arrays.asList(crossbars1);
+        List<Boolean> userSetCroossbar = Arrays.asList(false, true, false);
 
-        assertThat(new Ladder(ladder)).isEqualTo(new Ladder(ladder));
+        assertThat(new Ladder(3, new UserSetCrossbarGenerator(userSetCroossbar)))
+                .isEqualTo(new Ladder(3, new UserSetCrossbarGenerator(userSetCroossbar)));
     }
 
     @Test
-    void Ladder의_높이가_1보다_작을_때_예외를_던지는지_테스트(){
-        List<Crossbars> ladder = new ArrayList<>();
-
-        assertThrows(IllegalArgumentException.class, () -> new Ladder(ladder));
+    void Ladder의_높이가_1보다_작을_때_예외를_던지는지_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> new Ladder(0, new RandomCrossbarGenerator(4)));
     }
 }

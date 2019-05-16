@@ -6,13 +6,12 @@ import java.util.Objects;
 public class Ladder {
     private List<Crossbars> ladder;
 
-    Ladder(List<Crossbars> ladder) {
-        validateHeight(ladder);
-        this.ladder = ladder;
+    public Ladder(int height, CrossbarGenerator crossbarGenerator) {
+        validateHeight(height);
     }
 
-    private void validateHeight(List<Crossbars> ladder) {
-        if (ladder.isEmpty()) {
+    private void validateHeight(int height) {
+        if (height <= 0) {
             throw new IllegalArgumentException("사다리의 높이는 1이상이어야 합니다.");
         }
     }
