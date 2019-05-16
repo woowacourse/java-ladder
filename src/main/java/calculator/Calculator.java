@@ -7,7 +7,12 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Calculator {
-    static List<Integer> split(final String input) {
+    public static int add(String s) {
+        List<Positive> nums = split(s);
+        return getSum(nums);
+    }
+
+    static List<Positive> split(final String input) {
         if (input.equals("")) {
             return null;
         }
@@ -15,7 +20,7 @@ public class Calculator {
         return getIntegers(input);
     }
 
-    private static List<Integer> getIntegers(String input) {
+    private static List<Positive> getIntegers(String input) {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
         if (m.find()) {
             return convertInputsToIntegers(m.group(2).split(m.group(1)));
@@ -23,24 +28,13 @@ public class Calculator {
         return convertInputsToIntegers(input.split("[,:]+"));
     }
 
-    private static List<Integer> convertInputsToIntegers(String[] input) {
-        return Arrays.asList(input).stream().
-                map(Integer::parseInt).collect(Collectors.toList());
+    private static List<Positive> convertInputsToIntegers(String[] input) {
+        return Arrays.asList(input).stream()
+                .map(s -> new Positive(Integer.parseInt(s)))
+                .collect(Collectors.toList());
     }
 
-    public static int add(String s) {
-        List<Integer> nums = split(s);
-        if (hasNegativeInteger(nums)) {
-            throw new IllegalArgumentException();
-        }
-        return getSum(nums);
-    }
-
-    private static boolean hasNegativeInteger(List<Integer> nums) {
-        return nums.stream().filter(n -> n < 0).collect(Collectors.toList()).size() != 0;
-    }
-
-    private static int getSum(List<Integer> nums) {
-        return nums.stream().mapToInt(Integer::intValue).sum();
+    private static int getSum(List<Positive> nums) {
+        return nums.stream().mapToInt(Positive::getNumber).sum();
     }
 }

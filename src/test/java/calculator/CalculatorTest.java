@@ -13,22 +13,21 @@ public class CalculatorTest {
     @Test
     void 공백문자열구분테스트() {
         assertThat(split("")).isEqualTo(null);
-
     }
 
     @Test
     void 문자열콤마구분테스트() {
-        assertThat(split("1,2,3")).isEqualTo(Arrays.asList(1, 2, 3));
+        assertThat(split("1,2,3")).isEqualTo(Arrays.asList(new Positive(1), new Positive(2), new Positive(3)));
     }
 
     @Test
     void 문자열콜론구분테스트() {
-        assertThat(split("1,2,:3")).isEqualTo(Arrays.asList(1, 2, 3));
+        assertThat(split("1,2,:3")).isEqualTo(Arrays.asList(new Positive(1), new Positive(2), new Positive(3)));
     }
 
     @Test
     void 커스텀구분자테스트() {
-        assertThat(split("//;\n1;2;3")).isEqualTo(Arrays.asList(1, 2, 3));
+        assertThat(split("//;\n1;2;3")).isEqualTo(Arrays.asList(new Positive(1), new Positive(2), new Positive(3)));
     }
 
     @Test
