@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CrosspointTest {
     @Test
@@ -24,5 +25,10 @@ public class CrosspointTest {
                 .isEqualTo(leftPositionOfTestPosition);
         assertThat(testpoint3.answerResultPositionOf(testPosition))
                 .isEqualTo(testPosition);
+    }
+
+    @Test
+    void leftCrossbar_rightCrossbar가_모두_True일_경우_예외를_던져주는지_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> new Crosspoint(true, true));
     }
 }
