@@ -15,6 +15,14 @@ public class LadderGame {
         }
     }
 
+    public List<Row> getLadder() {
+        return ladder;
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
     public int getLadderHeight() {
         return ladder.size();
     }

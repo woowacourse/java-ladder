@@ -1,7 +1,6 @@
 package ladder.model;
 
 public class LadderValidator {
-
     private static final int MIN_HEIGHT = 1;
 
     public static void checkHeight(int height) {

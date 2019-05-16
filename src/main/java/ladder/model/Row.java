@@ -36,4 +36,21 @@ public class Row {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("  ");
+        for (Boolean line : lines) {
+            stringBuilder.append(isLinked(line));
+        }
+        stringBuilder.append("|");
+        return stringBuilder.toString();
+    }
+
+    private String isLinked(boolean line) {
+        if (line){
+            return "|-----";
+        }
+        return "|     ";
+    }
 }
