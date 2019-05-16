@@ -29,4 +29,18 @@ public class ValidatorUtilsTest {
         assertThatThrownBy(() -> {
             ValidatorUtils.checkNames(input5);}).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 입력된_아이템에_빈칸이_있을_때() {
+        List<String> input1 = new ArrayList<>(Arrays.asList(" ,   ".trim().split(",")));
+        List<String> input2 = new ArrayList<>(Arrays.asList("     ".trim().split(",")));
+        List<String> input3 = new ArrayList<>(Arrays.asList("꽝,  ,5000".trim().split(",")));
+
+        assertThatThrownBy(() -> {
+            ValidatorUtils.checkItems(input1);}).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> {
+            ValidatorUtils.checkItems(input2);}).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> {
+            ValidatorUtils.checkItems(input3);}).isInstanceOf(IllegalArgumentException.class);
+    }
 }

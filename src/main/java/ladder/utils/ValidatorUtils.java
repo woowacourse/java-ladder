@@ -15,9 +15,9 @@ public class ValidatorUtils {
         }
     }
 
-    private static void checkBlank(List<String> names) {
-        if (names.size() < 1) {
-            System.err.println("이름을 제대로 입력해 주세요.");
+    private static void checkBlank(List<String> input) {
+        if (input.size() < 1) {
+            System.err.println("빈칸이 있습니다.");
             throw new IllegalArgumentException();
         }
     }
@@ -32,6 +32,21 @@ public class ValidatorUtils {
     public static void checkHeight(int height) {
         if (height < MIN_HEIGHT) {
             System.err.println("높이는 자연수만 가능합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void checkItems(List<String> items) {
+        checkBlank(items);
+
+        for (String item : items) {
+            checkItemLength(item);
+        }
+    }
+
+    private static void checkItemLength(String item) {
+        if (item.trim().length() < MIN_NAME_LENGTH) {
+            System.err.println("빈 아이템이 있습니다.");
             throw new IllegalArgumentException();
         }
     }
