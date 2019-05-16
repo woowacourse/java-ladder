@@ -1,9 +1,9 @@
 package ladder.view;
 
 import ladder.model.Ladder;
+import ladder.model.Result;
 
 import java.util.List;
-import java.util.Map;
 
 public class OutputView {
     private static final String BLANK = " ";
@@ -53,11 +53,14 @@ public class OutputView {
         return result.toString();
     }
 
-    public static void printResult(Map<String, String> result) {
-        if (result.isEmpty()) {
+    public static void printResult(Result result) {
+        if (!result.hasNext()) {
             System.out.println("존재하지 않는 참여자입니다. 다시 입력해주세요.");
             return;
         }
-        result.entrySet().forEach(x -> System.out.println(x.getKey() + " : " + x.getValue()));
+        while (result.hasNext()) {
+            result.next().entrySet().forEach(x -> System.out.println(x.getKey() + " : " + x.getValue()));
+        }
+
     }
 }

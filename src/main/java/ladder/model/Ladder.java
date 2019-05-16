@@ -3,6 +3,8 @@ package ladder.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private final int width;
@@ -21,10 +23,7 @@ public class Ladder {
     }
 
     private List<Integer> processMappingTable() {
-        List<Integer> table = new ArrayList<>();
-        for (int i = 0; i < width; i++) {
-            table.add(i);
-        }
+        List<Integer> table = IntStream.rangeClosed(0, width).boxed().collect(Collectors.toList());
         levels.forEach(level -> {
             level.getLines().forEach(line -> {
                 Collections.swap(table, line, line + 1);
@@ -41,10 +40,10 @@ public class Ladder {
         return levels;
     }
 
-    public List<String> apply(List<String> rewards) {
+    public List<String> apply(List<String> sequence) {
         List<String> result = new ArrayList<>();
-        for (int i = 0; i < rewards.size(); i++) {
-            result.add(rewards.get(mappingTable.indexOf(i)));
+        for (int i = 0; i < sequence.size(); i++) {
+            result.add(sequence.get(mappingTable.indexOf(i)));
         }
         return result;
     }

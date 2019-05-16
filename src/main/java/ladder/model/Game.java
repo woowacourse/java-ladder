@@ -1,6 +1,7 @@
 package ladder.model;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Game {
@@ -29,32 +30,6 @@ public class Game {
         }
     }
 
-    public Map<String, String> getResultOf(String name) {
-        if (name.equals("all")) {
-            return all();
-        }
-        return some(name);
-    }
-
-    private Map<String, String> all() {
-        return new LinkedHashMap<String, String>() {{
-            final List<String> result = ladder.apply(rewards);
-            for (int i = 0; i < people.size(); i++) {
-                put(people.get(i).toString(), result.get(i));
-            }
-        }};
-    }
-
-    private Map<String, String> some(String name) {
-        final int index = people.stream().map(x -> x.toString()).collect(Collectors.toList()).indexOf(name);
-        if (index < 0) {
-            return new HashMap<>();
-        }
-        return new HashMap<String, String>() {{
-            put(people.get(index).toString(), ladder.apply(rewards).get(index));
-        }};
-    }
-
     public List<String> getNames() {
         return people.stream().map(x -> x.toString()).collect(Collectors.toList());
     }
@@ -65,6 +40,10 @@ public class Game {
 
     public List<String> getRewards() {
         return rewards;
+    }
+
+    public Result getResultOf(List<String> query) {
+        return new Result(people, ladder.apply(rewards), query);
     }
 
     public int getMaxWordLength() {

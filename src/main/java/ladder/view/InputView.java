@@ -45,9 +45,9 @@ public class InputView {
         }
     }
 
-    public static String inputCandidates() {
+    public static List<String> inputCandidates() {
         System.out.println("\n결과를 보고 싶은 사람은?");
-        return input.nextLine().trim();
+        return filterInputs(input.nextLine());
     }
 
     private static List<String> filterInputs(String input) {
