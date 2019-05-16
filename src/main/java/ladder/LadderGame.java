@@ -23,6 +23,7 @@ public class LadderGame {
 			Validator.checkNamesLength(StringSplitUtils.splitNames(names));
 			return Arrays.asList(names.split(","));
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return getPersonNames();
 		}
 	}
@@ -35,6 +36,7 @@ public class LadderGame {
 			Validator.checkLadderHeight(height);
 			return Integer.parseInt(height);
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return getLadderHeight();
 		}
 	}
