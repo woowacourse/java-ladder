@@ -16,17 +16,13 @@ public class LadderGame {
     }
 
     private static List<Player> getPlayers() {
-        List<Player> players = null;
-
         try {
             String input = InputView.askUserNames();
-            players = PlayersGenerator.createPlayers(input);
+            return PlayersGenerator.createPlayers(input);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
-            getPlayers();
+            return getPlayers();
         }
-
-        return players;
     }
 
     private static Ladder getLadder(int width) {
@@ -34,9 +30,6 @@ public class LadderGame {
             int height = InputView.askHeight();
             return new Ladder(width, height);
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return getLadder(width);
-        } catch (InputMismatchException e) {
             e.printStackTrace();
             return getLadder(width);
         }

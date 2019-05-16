@@ -1,6 +1,7 @@
 package laddergame;
 
 import laddergame.controller.LadderGame;
+import laddergame.domain.Ladder;
 
 public class LadderGameLauncher {
     public static void main(String[] args) {
@@ -8,7 +9,14 @@ public class LadderGameLauncher {
     }
 
     private static void doLadderGame() {
-        LadderGame game = new LadderGame();
-        game.play();
+        //LadderGame game = new LadderGame();
+        //game.play();
+
+        Ladder ladder = new Ladder(2,2);
+
+
+
+        /*System.out.println("%-5d%n", "|");
+        System.out.println("%-5d%n", "----|");*/
     }
 }
