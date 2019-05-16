@@ -1,7 +1,5 @@
 package laddergame.domain;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,24 +7,32 @@ import java.util.Objects;
 public class Line {
     private List<Boolean> scaffolds;
 
-    public Line() {
-        scaffolds = new ArrayList<>();
-    }
-
     public Line(List<Boolean> scaffolds) {
         this.scaffolds = scaffolds;
     }
 
-    public Boolean canAddTrueScaffold() {
-        return (scaffolds.isEmpty()) || (!scaffolds.get(scaffolds.size() - 1));
+    public Line(int numberOfPerson) {
+        List<Boolean> scaffolds = new ArrayList<>();
+        for (int i = 0; i < numberOfPerson + 1; i++) {
+            scaffolds.add(false);
+        }
+        this.scaffolds = scaffolds;
     }
 
-    public Boolean addScaffold(boolean scaffold) {
-        return scaffolds.add(scaffold);
+    public Boolean canAddScaffold(int index) {
+        return !(scaffolds.get(index) || scaffolds.get(index + 1));
+    }
+
+    public void addScaffold(int index) {
+        scaffolds.set(index, true);
     }
 
     public List<Boolean> getScaffolds() {
         return scaffolds;
+    }
+
+    public int nextPoint(int point) {
+        return scaffolds.get(point) ? point + 1 : point;
     }
 
     @Override

@@ -12,8 +12,8 @@ class LadderGeneratorTest {
     @Test
     void 라인이_제대로_추가되었는지_확인() {
         int height = 5;
-        Ladder ladder = LadderGenerator.generateLadder(height, 3, new AlwaysCreate());
-        Line line = new Line(new ArrayList<>(Arrays.asList(true, false, true)));
+        Ladder ladder = LadderGenerator.generateLadder(height, 2, new AlwaysCreate());
+        Line line = new Line(new ArrayList<>(Arrays.asList(false, true, false)));
         List<Line> lines = new ArrayList<>(Arrays.asList(line, line, line, line, line));
 
         assertThat(ladder).isEqualTo(new Ladder(lines));

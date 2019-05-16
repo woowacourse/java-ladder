@@ -1,19 +1,19 @@
 package laddergame.domain;
 
 public class LineGenerator {
-    public static Line lineGenerate(int numberOfInterval, Rule rule) {
-        Line line = new Line();
-        for (int i = 0; i < numberOfInterval; i++) {
-            generateScaffold(rule, line);
+    public static Line lineGenerate(int numberOfPerson, Rule rule) {
+        final int numberOfInterval = numberOfPerson - 1;
+        Line line = new Line(numberOfPerson);
+
+        for (int i = 1; i <= numberOfInterval; i++) {
+            generateScaffold(rule, line, i);
         }
         return line;
     }
 
-    private static void generateScaffold(Rule rule, Line line) {
-        if (line.canAddTrueScaffold()) {
-            line.addScaffold(rule.canCreate());
-            return;
+    private static void generateScaffold(Rule rule, Line line, int index) {
+        if (line.canAddScaffold(index) && rule.canCreate()) {
+            line.addScaffold(index);
         }
-        line.addScaffold(false);
     }
 }
