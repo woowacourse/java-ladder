@@ -11,6 +11,7 @@ import java.util.Objects;
 
 public class Ladder {
     private List<Player> players;
+    private final List<String> reward;
     private final int depth;
     private List<LadderLine> ladderLines;
 
@@ -19,9 +20,19 @@ public class Ladder {
     }
 
     public Ladder(String name, int depth) {
+        this(name, name, depth);
+    }
+
+    public Ladder(String name, String reward, int depth) {
         this.players = regePlayers(name);
+        this.reward = regeReward(reward);
         this.depth = Rule.ruleLadderDepthRange(depth);
         this.ladderLines = setLadderLines();
+    }
+
+    private List<String> regeReward(String reward) {
+        List<String> rewards = Arrays.asList(Rule.ruleInputReward(reward,players.size()).split(","));
+        return rewards;
     }
 
     private List<Player> regePlayers(String name) {

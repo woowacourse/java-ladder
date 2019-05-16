@@ -80,4 +80,11 @@ class RuleTest {
             Rule.ruleLadderDepthRange(0);
         });
     }
+
+    @Test
+    void ruleInputReward_사이즈_초과_확인() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Rule.ruleInputReward("1,2,3", 2);
+        });
+    }
 }

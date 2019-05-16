@@ -90,4 +90,31 @@ public class Rule {
         }
         return depth;
     }
+
+    /**
+     * 규칙 : 실행 결과는 참여자 수와 같아야하며 각 결과는 5글자 이하여야한다
+     *
+     * @param reward 입력받은 실행 결과
+     * @param playerCount 참여자 수
+     * @return reward
+     * @throws IllegalArgumentException
+     */
+    public static String ruleInputReward(String reward, int playerCount) {
+        List<String> rewards = Arrays.asList(ruleInputPlayerNames(reward).split(","));
+        ruleRewardSize(rewards.size() != playerCount);
+
+        return reward;
+    }
+
+    /**
+     * 규칙 : 실행 결과는 참여자 수와 같아야 한다.
+     *
+     * @param isOverSize 규칙
+     * @throws IllegalArgumentException
+     */
+    private static void ruleRewardSize(boolean isOverSize) {
+        if (isOverSize) {
+            throw new IllegalArgumentException(Const.EX_REWARDS_COUNT);
+        }
+    }
 }

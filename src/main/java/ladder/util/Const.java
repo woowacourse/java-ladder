@@ -14,4 +14,6 @@ public class Const {
     public static final String LINE_STATE_FALSE = "     |";
     public static final String LINE_STATE_TRUE = "-----|";
     public static final String RUN_EX_PLAYER_POSITION = "참여자가 사다리 위치를 벗어났습니다.";
+    public static final String DEFAULT_LADDER_REWARD = "꽝";
+    public static final String EX_REWARDS_COUNT = "플레이어 수랑 결과 개수는 같아야 합니다.";
 }

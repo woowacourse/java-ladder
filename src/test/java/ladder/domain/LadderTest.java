@@ -64,6 +64,26 @@ public class LadderTest {
         System.out.println(ladder.getResultLadderLines());
     }
 
+    @Test
+    void 사다리_객체_결과_입력() {
+        Ladder ladder = new Ladder(names, "꽝,5000,꽝,3000", depth);
+        assertThat(ladder).isEqualTo(new Ladder(names, "꽝,5000,꽝,3000", depth));
+    }
+
+    @Test
+    void 사다리_객체_결과_예외처리() {
+        assertThrows(IllegalArgumentException.class, () ->{
+            new Ladder(names, "꽝,500000,꽝,3000", depth);
+        });
+    }
+
+    @Test
+    void 사다리_객체_결과_개수_예외처리() {
+        assertThrows(IllegalArgumentException.class, () ->{
+            new Ladder(names, "꽝,500000,꽝", depth);
+        });
+    }
+
     @AfterEach
     void tearDown() {
         ladder = null;
