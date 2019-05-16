@@ -39,4 +39,11 @@ public class OutputView {
             System.out.println(stringBuilder.toString());
         }
     }
+
+    public static void printItems(List<String> items) {
+        for (String item : items) {
+            System.out.printf("%6s", item);
+        }
+        System.out.println();
+    }
 }

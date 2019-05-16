@@ -32,14 +32,14 @@ public class InputView {
         }
     }
 
-    public static List<String> inputItems() {
+    public static List<String> inputItems(int numberOfPeople) {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         try {
             List<String> items = new ArrayList<>(Arrays.asList(SCANNER.nextLine().trim().split(",")));
-            ValidatorUtils.checkItems(items);
+            ValidatorUtils.checkItems(items, numberOfPeople);
             return new ArrayList<>(items);
         } catch (IllegalArgumentException e) {
-            return inputItems();
+            return inputItems(numberOfPeople);
         }
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         List<String> names = InputView.inputNames();
-        List<String> items = InputView.inputItems();
+        List<String> items = InputView.inputItems(names.size());
         int height = InputView.inputHeight();
 
         Ladder ladder = LadderGenerator.generate(height, names.size());
@@ -21,5 +21,6 @@ public class Application {
 
         OutputView.printNames(names);
         OutputView.printLadder(ladder);
+        OutputView.printItems(items);
     }
 }

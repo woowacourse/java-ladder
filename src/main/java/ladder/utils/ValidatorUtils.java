@@ -36,9 +36,9 @@ public class ValidatorUtils {
         }
     }
 
-    public static void checkItems(List<String> items) {
+    public static void checkItems(List<String> items, int numberOfPeople) {
         checkBlank(items);
-
+        checkNumberOfItems(items, numberOfPeople);
         for (String item : items) {
             checkItemLength(item);
         }
@@ -47,6 +47,13 @@ public class ValidatorUtils {
     private static void checkItemLength(String item) {
         if (item.trim().length() < MIN_NAME_LENGTH) {
             System.err.println("빈 아이템이 있습니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkNumberOfItems(List<String> items, int numberOfPeople) {
+        if (items.size() != numberOfPeople) {
+            System.err.println("아이템의 수가 사람의 수와 같지 않습니다.");
             throw new IllegalArgumentException();
         }
     }
