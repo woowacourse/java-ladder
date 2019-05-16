@@ -18,6 +18,7 @@ public class AppController {
     private LadderGame initGame() {
         String[] names = InputView.inputNames();
         List<Member> members = Members.generateMembers(names);
+        String[] results = InputView.inputResults(members.size());
         int ladderHeight = InputView.inputLadderHeight();
 
         return new LadderGame(members, ladderHeight);

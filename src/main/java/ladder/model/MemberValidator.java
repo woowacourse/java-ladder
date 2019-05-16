@@ -22,4 +22,10 @@ public class MemberValidator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void checkMemberCount(int countOfResults, int countOfMember) {
+        if (countOfResults != countOfMember) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

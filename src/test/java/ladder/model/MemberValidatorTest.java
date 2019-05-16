@@ -26,4 +26,11 @@ public class MemberValidatorTest {
             MemberValidator.checkNameLength("woowahanbros");
         });
     }
+
+    @Test
+    void 결과의_갯수와_멤버의_갯수가_다를_때_확인() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            MemberValidator.checkMemberCount(2, 3);
+        });
+    }
 }
