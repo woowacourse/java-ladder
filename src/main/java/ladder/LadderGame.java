@@ -3,6 +3,7 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.Player;
+import ladder.domain.Result;
 import ladder.util.StringSplitUtils;
 import ladder.view.InputView;
 
@@ -10,20 +11,31 @@ import java.util.*;
 
 public class LadderGame {
 	private static Ladder ladder;
-	private static List<Player> list = new ArrayList<>();
+	private static List<Player> players = new ArrayList<>();
 
-	public static Ladder generatreLadder(List<String> names, int ladderHeight) {
-		ladder = new Ladder(names.size(), ladderHeight);
+
+	public static List<Result> run(List<String> gameReward) {
+		List<Result> results = new ArrayList<>();
+
+		for(int i=0; i<players.size(); ++i) {
+			results.add(new Result(players.get(i), gameReward.get(ladder.getLastPosition(i))));
+		}
+
+		return results;
+	}
+
+	public static Ladder generatreLadder(final int ladderHeight) {
+		ladder = new Ladder(players.size(), ladderHeight);
 		return ladder;
 	}
 
-	public static List<String> getPersonNames() {
+	public static List<Player> getPersonNames() {
 		String names;
 
 		try {
 			names = InputView.inputNames();
 			Validator.checkNamesLength(StringSplitUtils.splitString(names));
-			return Arrays.asList(names.split(","));
+			return generatePlayers(Arrays.asList(names.split(",")));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return getPersonNames();
@@ -43,27 +55,23 @@ public class LadderGame {
 		}
 	}
 
-	public static List<String> getGameResult(List<String> names) {
+	public static List<String> getGameReward() {
 		String result;
 
 		try {
 			result = InputView.inputResults();
-			Validator.compareLength(names, StringSplitUtils.splitString(result));
+			Validator.compareLength(players, StringSplitUtils.splitString(result));
 			return Arrays.asList(result.split(","));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			return getGameResult(names);
+			return getGameReward();
 		}
 	}
 
 	public static List<Player> generatePlayers(List<String> names) {
-		int position = 0;
-
-		for(String name : names) {
-			list.add(new Player(name, position, ladder.getLastPosition(position)));
-			position++;
+		for(int i = 0;i < names.size(); ++i) {
+			players.add(new Player(names.get(i)));
 		}
-
-		return list;
+		return players;
 	}
 }

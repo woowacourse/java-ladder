@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Player;
-import ladder.domain.UserOutput;
+import ladder.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,17 +32,23 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public static void printResult(List<Player> players, List<String> result, String name) {
+	public static void printPlayerNames(List<Player> players) {
+		for(Player player : players) {
+			System.out.printf("%-6s", player.toString());
+		}
+	}
+
+	public static void printResult(List<Result> results, String name) {
 		if(name.equals("all")) {
-			for(Player player : players) {
-				System.out.println(player.getName() +" : "+result.get(player.getLastPosition()));
+			for(Result result : results) {
+				System.out.println(result.getPlayer() + " : " + result.getReward());
 			}
 			return;
 		}
 
-		for(Player player : players) {
-			if(player.matchName(name)) {
-				System.out.println(player.getName() + ":" + result.get(player.getLastPosition()));
+		for(Result result : results) {
+			if(result.getPlayer().matchName(name)) {
+				System.out.println(result.getPlayer() + " : " + result.getReward());
 				break;
 			}
 		}
