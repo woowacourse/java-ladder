@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;
+    private static final String NEW_LINE = "\n";
     private final int height;
     private List<Line> lines = new ArrayList<>();
 
@@ -28,5 +29,14 @@ public class Ladder {
 
     public int linesSize() {
         return lines.size();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < height; i++) {
+            stringBuilder.append(lines.get(i)).append(NEW_LINE);
+        }
+        return stringBuilder.toString();
     }
 }

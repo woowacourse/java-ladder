@@ -5,8 +5,12 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
     private static final Random RANDOM = new Random();
+    private static final String EMPTY_LINE = "     ";
+    private static final String FILLED_LINE = "-----";
+    private static final String VERTICAL_LINE = "|";
+
+    private List<Boolean> points = new ArrayList<>();
 
     public Line(int countOfPlayer) {
         this.pointsInit(countOfPlayer);
@@ -42,6 +46,22 @@ public class Line {
         if (this.points.get(left) && this.points.get(right)) {
             throw new IllegalArgumentException("이어지는 가로라인 발생");
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder(VERTICAL_LINE);
+        for (int i = 0; i < lineSize(); i++) {
+            stringBuilder.append(getOne(i)).append(VERTICAL_LINE);
+        }
+        return stringBuilder.toString();
+    }
+
+    private String getOne(int pointIndex) {
+        if (this.points.get(pointIndex)) {
+            return FILLED_LINE;
+        }
+        return EMPTY_LINE;
     }
 
 }
