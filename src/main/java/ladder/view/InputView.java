@@ -1,5 +1,8 @@
 package ladder.view;
 
+import ladder.model.MemberGenerator;
+import ladder.model.MemberValidator;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -7,9 +10,17 @@ public class InputView {
     private static final String HEIGHT_INPUT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static Scanner scanner = new Scanner(System.in);
 
-    public static String inputNames() {
+    public static String[] inputNames() {
         System.out.println(NAME_INPUT_MESSAGE);
-        return scanner.nextLine().trim();
+        String inputText = scanner.nextLine().trim();
+        try {
+            MemberValidator.checkSeparator(inputText);
+            String[] names = MemberGenerator.splitByComma(inputText);
+            MemberValidator.checkNamesLength(names);
+            return names;
+        } catch (IllegalArgumentException e) {
+            return inputNames();
+        }
     }
 
     public static int inputLadderHeight(){
