@@ -14,6 +14,11 @@ public class LadderGameResult {
         ladderGameResults = new ArrayList<>(Arrays.asList(inputLadderGameResults));
     }
 
+
+    public String getResultByPosition(int position) {
+        return ladderGameResults.get(position);
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

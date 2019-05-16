@@ -17,6 +17,14 @@ public class Player {
         this.position = position;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
+    public int getPosition() {
+        return this.position;
+    }
+
     private boolean isValidName(String name) {
         return (!StringUtils.isBlank(name)) && (name.length() <= MAX_NAME_LENGTH);
     }
@@ -26,8 +34,7 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return position == player.position &&
-                Objects.equals(name, player.name);
+        return Objects.equals(name, player.name);
     }
 
     @Override
@@ -39,4 +46,5 @@ public class Player {
     public String toString(){
         return this.name;
     }
+
 }

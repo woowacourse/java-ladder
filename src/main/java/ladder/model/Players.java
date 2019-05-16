@@ -26,10 +26,28 @@ public class Players {
         }
     }
 
+    public boolean isContains(String name) {
+        return players.stream().anyMatch(player -> player.getName().equals(name));
+    }
+
+    public int getPositionByName(String name){
+        for (Player player : players) {
+            if(player.getName().equals(name)){
+                return player.getPosition();
+            }
+        }
+        throw new IllegalArgumentException("없는 이름의 플레이어");
+    }
+
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         players.forEach(player -> stringBuilder.append(String.format("%-6s", player)));
         return stringBuilder.toString();
+    }
+
+    public List<Player> getAllPlayers() {
+        return players;
     }
 }
