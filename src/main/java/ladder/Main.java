@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         Players players = getPlayers();
-        Results results = getResults(players.getPlayerNumber());
+        Results results = getResults(players.size());
         Floor floors = getFloor();
 
         LadderGame ladderGame = new LadderGame(players, results, floors);
@@ -83,7 +83,7 @@ public class Main {
     private static void checkNotAll(LadderGame ladderGame, String select) {
         if (!select.equals(EXIT_CONDITION) && !select.equals(ALL_CONDITION)) {
             OutputView.resultTitle();
-            PlayerName selectName = new PlayerName(select);
+            Name selectName = new Name(select);
             OutputView.resultPrint(ladderGame.getOnePlayerResult(selectName));
         }
     }
