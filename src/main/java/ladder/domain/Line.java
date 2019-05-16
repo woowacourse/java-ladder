@@ -23,7 +23,7 @@ public class Line {
 			return (points.get(position) ? position + 1 : position);
 		}
 
-		if (position == points.size() - 1) {
+		if (position == points.size()) {
 			return (points.get(position - 1) ? position - 1 : position);
 		}
 
