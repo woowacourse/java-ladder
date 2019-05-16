@@ -2,6 +2,7 @@ package ladder.domain;
 
 public class Participant {
     private final String name ;
+
     public Participant(final String name){
         validateNameLength(name);
         this.name=name;

@@ -1,6 +1,6 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
-import ladder.view.OutputView;
+import ladder.domain.rule.LadderRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -20,4 +20,5 @@ public class LadderControllerTest {
             new GameController().registParticipant(Arrays.asList("포비","포비"));
         });
     }
+
 }

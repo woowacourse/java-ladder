@@ -1,6 +1,6 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
+import ladder.domain.ladder.Ladder;
 import ladder.domain.Participant;
 
 import java.util.ArrayList;
@@ -16,7 +16,6 @@ public class GameController {
         validateMinParticipants(participants);
         validateDuplicatedParticipants(participants);
         participants.stream().forEach(x -> this.participants.add(new Participant(x)));
-
     }
 
     private void validateMinParticipants(List<String> participants) {

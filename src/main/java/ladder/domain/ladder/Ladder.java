@@ -1,4 +1,7 @@
-package ladder.domain;
+package ladder.domain.ladder;
+
+import ladder.domain.rule.LadderRule;
+import ladder.domain.rule.RandomPointLadderRule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,5 +38,4 @@ public class Ladder {
         }
         return endPoint;
     }
-
 }

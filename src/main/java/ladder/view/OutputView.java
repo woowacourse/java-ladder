@@ -1,7 +1,7 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
 import ladder.domain.Participant;
 
 import java.util.List;
