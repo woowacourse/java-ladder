@@ -3,7 +3,9 @@ package ladder.util;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 데이터 형식 규칙 클래스
@@ -14,7 +16,9 @@ import java.util.List;
  */
 public class Rule {
     /**
-     * 규칙 : 이름은 5글자 이하여야하며 사용자는 1명 이상이어야한다.
+     * 규칙 : 이름은 5글자 이하
+     * <br> 규칙 : 사용자는 1명 이상
+     * <br> 규칙 : 중복 허용 불가
      *
      * @param inputNames 입력받은 사용자 이름들
      * @return inputNames
@@ -25,10 +29,25 @@ public class Rule {
         List<String> names = rulePlayerCountSize(
                 Arrays.asList(inputNames.split(","))
         );
-        for (String name : names) {
+        for (String name : rulePlayerDuple(names)) {
             rulePlayerNameLength(name);
         }
         return inputNames;
+    }
+
+    /**
+     * 규칙 : 중복 허용 불가
+     *
+     * @param names 사용자 이름들
+     * @return names
+     * @throws IllegalArgumentException
+     */
+    private static List<String> rulePlayerDuple(List<String> names) {
+        Set<String> nameSet = new HashSet<>(names);
+        if (nameSet.size() != names.size()) {
+            throw new IllegalArgumentException(Const.EX_NAME_DUPLE);
+        }
+        return names;
     }
 
     /**
@@ -100,7 +119,7 @@ public class Rule {
      * @throws IllegalArgumentException
      */
     public static String ruleInputReward(String reward, int playerCount) {
-        List<String> rewards = Arrays.asList(ruleInputPlayerNames(reward).split(","));
+        List<String> rewards = Arrays.asList(ruleRewardRange(reward).split(","));
         ruleRewardSize(rewards.size() != playerCount);
 
         return reward;
@@ -116,5 +135,24 @@ public class Rule {
         if (isOverSize) {
             throw new IllegalArgumentException(Const.EX_REWARDS_COUNT);
         }
+    }
+
+    /**
+     * 규칙 : 이름은 5글자 이하
+     * <br> 규칙 : 사용자는 1명 이상
+     *
+     * @param inputNames 입력받은 실행 결과들
+     * @return inputNames
+     * @throws IllegalArgumentException
+     */
+    public static String ruleRewardRange(String inputNames) {
+        inputNames = inputNames.replaceAll(" ","");
+        List<String> names = rulePlayerCountSize(
+                Arrays.asList(inputNames.split(","))
+        );
+        for (String name : names) {
+            rulePlayerNameLength(name);
+        }
+        return inputNames;
     }
 }

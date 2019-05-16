@@ -90,10 +90,15 @@ class RuleTest {
 
     @Test
     void ruleInputReward_사이즈_확인() {
-        Rule rule = new Rule();
-        rule.
         assertThrows(IllegalArgumentException.class, () -> {
             Rule.ruleInputReward("1,2,3", 2);
+        });
+    }
+
+    @Test
+    void ruleInputPlayerNames_중복_이름_확인() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Rule.ruleInputPlayerNames("1,2,3,2");
         });
     }
 }
