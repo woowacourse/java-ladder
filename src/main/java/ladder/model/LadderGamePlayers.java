@@ -5,17 +5,17 @@ import java.util.stream.Collectors;
 
 public class LadderGamePlayers {
 
-    private List<Player> players;
+    private List<LadderPlayer> ladderPlayers;
 
-    public LadderGamePlayers(List<Player> players) {
-        this.players = players;
+    public LadderGamePlayers(List<LadderPlayer> players) {
+        this.ladderPlayers = players;
     }
 
     public List<String> getAlignedNames() {
-        return players.stream().map(Player::getAlignedName).collect(Collectors.toList());
+        return ladderPlayers.stream().map(LadderPlayer::getAlignedName).collect(Collectors.toList());
     }
 
     public int size() {
-        return players.size();
+        return ladderPlayers.size();
     }
 }
