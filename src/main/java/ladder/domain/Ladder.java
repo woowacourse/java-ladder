@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class Ladder {
@@ -10,8 +9,12 @@ public final class Ladder {
     private final List<Line> lines;
 
     public Ladder(int height, int countOfPlayers) {
+        this(height, countOfPlayers, new LineRandomGenerator(countOfPlayers, height));
+    }
+
+    public Ladder(int height, int countOfPlayers, LineGenerator lineGenerator) {
         validate(height, countOfPlayers);
-        this.lines = generateLines(height, countOfPlayers);
+        this.lines = lineGenerator.generate();
     }
 
     private void validate(int height, int countOfPlayers) {
@@ -30,15 +33,6 @@ public final class Ladder {
             throw new IllegalArgumentException("사람수는 2명 이상 이어야 합니다.");
         }
     }
-
-    private List<Line> generateLines(int height, int countOfPlayers) {
-        List<Line> generatedLines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            generatedLines.add(new Line(countOfPlayers));
-        }
-        return generatedLines;
-    }
-
 
     public List<Line> getLines() {
         return lines;
