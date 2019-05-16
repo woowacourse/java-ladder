@@ -16,13 +16,10 @@ public class Ladder {
         return this.lines;
     }
 
-    public int getLastPosition(int playerPosition) {
-        int lastPosition = playerPosition;
-
+    public Player getLastPosition(Player player) {
         for (Line line : lines) {
-            lastPosition = line.getNextPositon(lastPosition);
+            line.getNextPositon(player);
         }
-
-        return lastPosition;
+        return player;
     }
 }

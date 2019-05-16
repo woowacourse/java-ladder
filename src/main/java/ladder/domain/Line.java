@@ -18,19 +18,7 @@ public class Line {
 		return this.points;
 	}
 
-	public int getNextPositon(int position) {
-		if (position == 0) {
-			return (points.get(position) ? position + 1 : position);
-		}
-
-		if (position == points.size() - 1) {
-			return (points.get(position - 1) ? position - 1 : position);
-		}
-
-		if ((!points.get(position - 1)) && (!points.get(position))) {
-			return position;
-		}
-
-		return (points.get(position - 1) ? position - 1 : position + 1);
+	public int getNextPositon(Player player) {
+		return player.trymove(points);
 	}
 }

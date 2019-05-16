@@ -60,8 +60,8 @@ public class LadderGame {
 		int position = 0;
 
 		for(String name : names) {
-			list.add(new Player(name, position, ladder.getLastPosition(position)));
-			position++;
+			list.add(new Player(name, position));
+			position ++;
 		}
 
 		return list;
