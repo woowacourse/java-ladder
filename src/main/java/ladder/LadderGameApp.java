@@ -4,6 +4,7 @@ import java.util.List;
 
 import ladder.domain.Player;
 import ladder.domain.Result;
+import ladder.domain.UserOutput;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -24,7 +25,7 @@ public class LadderGameApp {
 			name = InputView.inputResult();
 			OutputView.printResult(result, name);
 		}
-		while (!name.equals("all"));
+		while (!name.equals(UserOutput.PRINT_ALL_PLAYER.getOutputMessage()));
 	}
 }
 

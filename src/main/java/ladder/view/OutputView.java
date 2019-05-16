@@ -27,19 +27,19 @@ public class OutputView {
 
 	public static void printLadderValues(List<String> values) {
 		for (String value : values) {
-			System.out.printf("%-6s", value);
+			System.out.printf(UserOutput.PRINT_FORM.getOutputMessage(), value);
 		}
 		System.out.println();
 	}
 
 	public static void printPlayerNames(List<Player> players) {
 		for(Player player : players) {
-			System.out.printf("%-6s", player.toString());
+			System.out.printf(UserOutput.PRINT_FORM.getOutputMessage(), player.toString());
 		}
 	}
 
 	public static void printResult(List<Result> results, String name) {
-		if(name.equals("all")) {
+		if(name.equals(UserOutput.PRINT_ALL_PLAYER.getOutputMessage())) {
 			for(Result result : results) {
 				System.out.println(result.getPlayer() + " : " + result.getReward());
 			}
