@@ -63,7 +63,6 @@ public class LadderGame {
 			list.add(new Player(name, position));
 			position ++;
 		}
-
 		return list;
 	}
 }

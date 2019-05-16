@@ -35,17 +35,17 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public static void printResult(List<Player> players, List<String> result, String name) {
+	public static void printResult(String name, List<Player> players, List<String> result) {
 		if(name.equals("all")) {
 			for(Player player : players) {
-				System.out.println(player.getName() +" : "+result.get(player.getLastPosition()));
+				System.out.println(player.getName() + " : " + result.get(player.getPosition()));
 			}
 			return;
 		}
 
 		for(Player player : players) {
 			if(player.matchName(name)) {
-				System.out.println(player.getName() + ":" + result.get(player.getLastPosition()));
+				System.out.println("실행결과 \n" + result.get(player.getPosition()));
 				break;
 			}
 		}

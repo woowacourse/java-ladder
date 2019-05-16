@@ -15,6 +15,10 @@ public class Player {
 		return name;
 	}
 
+	public int getPosition() {
+	    return position;
+    }
+
 	public int trymove(List<Boolean> points) {
 		if (position == 0) {
 			return moveRight();

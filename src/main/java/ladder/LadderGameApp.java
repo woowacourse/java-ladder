@@ -16,12 +16,12 @@ public class LadderGameApp {
 		OutputView.printLadder(LadderGame.generatreLadder(names, ladderHeight));
 		OutputView.printLadderValues(gameResults);
 
-		List<Player> player = LadderGame.generatePlayers(names);
+		List<Player> players = LadderGame.generatePlayers(names);
 
 		String name;
 		do {
-			name = InputView.inputResult();
-			OutputView.printResult(player, gameResults, name);
+			name = InputView.inputNameForResult();
+			OutputView.printResult(name, players, gameResults);
 		}
 		while (!name.equals("all"));
 	}
