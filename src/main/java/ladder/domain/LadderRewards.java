@@ -3,10 +3,10 @@ package ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 
-public class LadderReward {
+public class LadderRewards {
     private List<String> rewards;
 
-    public LadderReward(String text) {
+    public LadderRewards(String text) {
         this.rewards = Arrays.asList(text.split(","));
     }
 

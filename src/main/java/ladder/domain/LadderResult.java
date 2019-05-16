@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderResult {
-    LadderReward rewards;
+    LadderRewards rewards;
 
     public LadderResult(String text) {
-        rewards = new LadderReward(text);
+        rewards = new LadderRewards(text);
     }
 
-    public LadderResult(LadderReward reward) {
+    public LadderResult(LadderRewards reward) {
         this.rewards = reward;
     }
 
-    public LadderReward reward() {
+    public LadderRewards reward() {
         return rewards;
     }
 
@@ -35,10 +35,11 @@ public class LadderResult {
         return result;
     }
 
-    public List<String> run(Ladder ladder) {
-        List<String> resultAll = new ArrayList<>();
-        for (int i = 0; i < rewards.size(); i++) {
-            resultAll.add(run(ladder, i));
+    public List<PlayerResult> run(Ladder ladder, Players players) {
+        List<PlayerResult> resultAll = new ArrayList<>();
+
+        for (Player player : players.list()) {
+            resultAll.add(run(ladder, player));
         }
         return resultAll;
     }
