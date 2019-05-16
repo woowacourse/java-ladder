@@ -3,16 +3,16 @@ package com.woowacourse.ladder.domain;
 import java.util.List;
 
 public class LadderResult<P, D> {
-    private final List<P> participants;
+    private final ParticipantGroup<P> participants;
     private final DestinationGroup<D> destinationGroup;
 
-    public LadderResult(List<P> participants, List<D> destinations) {
+    public LadderResult(ParticipantGroup<P> participants, DestinationGroup<D> destinations) {
         this.participants = participants;
-        this.destinationGroup = new DestinationGroup<>(destinations);
+        this.destinationGroup = destinations;
     }
 
     public MatchPair<P, D> matchResult(P participant) {
-        int idx = indexOf(participant);
+        int idx = participants.indexOf(participant);
         if (idx == -1) {
             throw new IllegalArgumentException(String.format("Participant not found: '%s'", participant));
         }
@@ -20,10 +20,6 @@ public class LadderResult<P, D> {
     }
 
     public boolean hasMatchResult(P participant) {
-        return indexOf(participant) > -1;
-    }
-
-    private int indexOf(P participant) {
-        return participants.indexOf(participant);
+        return participants.indexOf(participant) > -1;
     }
 }

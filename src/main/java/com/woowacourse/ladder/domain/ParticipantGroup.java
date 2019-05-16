@@ -1,6 +1,7 @@
 package com.woowacourse.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ParticipantGroup<T> {
@@ -12,10 +13,12 @@ public class ParticipantGroup<T> {
 
     public ParticipantGroup<T> swap(int x, int y) {
         List<T> newParticipants = new ArrayList<>(participants);
-        T t = newParticipants.get(x);
-        participants.set(x, newParticipants.get(y));
-        participants.set(y, t);
+        Collections.swap(newParticipants, x, y);
 
         return new ParticipantGroup<>(newParticipants);
+    }
+
+    public int indexOf(T participant) {
+        return participants.indexOf(participant);
     }
 }

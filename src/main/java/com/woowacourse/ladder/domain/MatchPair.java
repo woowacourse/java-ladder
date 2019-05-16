@@ -1,6 +1,5 @@
 package com.woowacourse.ladder.domain;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class MatchPair<P, D> {
@@ -32,5 +31,10 @@ public class MatchPair<P, D> {
     @Override
     public int hashCode() {
         return Objects.hash(participant, destination);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("MatchPair { participant: '%s', destination: '%s' }", participant, destination);
     }
 }

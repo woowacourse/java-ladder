@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class LadderRow<T> {
-    private List<Boolean> cols;
+    private final List<Boolean> cols;
 
     public LadderRow(final int numOfColumns, final BooleanGenerator booleanGenerator) {
         cols = new ArrayList<>(numOfColumns);
@@ -29,29 +29,20 @@ public class LadderRow<T> {
         }
     }
 
-    public List<T> swapNames(final List<T> names) {
-        if (cols.size() + 1 != names.size()) {
-            throw new IllegalArgumentException(String.format("Name list's size(%d) is not match with ladder board row's number of columns", names.size()));
-        }
-
-        List<T> swappedList = new ArrayList<>(names);
+    public ParticipantGroup<T> swapNames(ParticipantGroup<T> participantGroup) {
         for (int i = 0; i < cols.size(); i++) {
-            checkAndSwap(swappedList, i);
+            participantGroup = checkAndSwap(participantGroup, i);
         }
 
-        return swappedList;
+        return participantGroup;
     }
 
-    private void checkAndSwap(List<T> list, int idx) {
+    private ParticipantGroup<T> checkAndSwap(ParticipantGroup<T> participantGroup, int idx) {
         if (cols.get(idx)) {
-            swapResult(list, idx, idx + 1);
+            participantGroup = participantGroup.swap(idx, idx + 1);
         }
-    }
 
-    private void swapResult(List<T> list, int from, int to) {
-        T tmp = list.get(from);
-        list.set(from, list.get(to));
-        list.set(to, tmp);
+        return participantGroup;
     }
 
     public Stream<Boolean> getColumnStream() {

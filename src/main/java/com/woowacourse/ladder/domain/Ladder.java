@@ -20,6 +20,10 @@ public class Ladder<P, D> {
         rows = new ArrayList<>();
         this.participants = participants;
         this.destinations = destinations;
+        createRowsAndExlore(height, booleanGenerator);
+    }
+
+    private void createRowsAndExlore(int height, BooleanGenerator booleanGenerator) {
         // height 만큼의 Row 생성
         for (int i = 0; i < height; i++) {
             // 각 Row는 n(name) - 1 만큼의 Boolean 리스트를 가짐
@@ -27,11 +31,11 @@ public class Ladder<P, D> {
         }
 
         // 결과 생성
-        explore(participants, destinations);
+        explore(new ParticipantGroup<>(participants), new DestinationGroup<>(destinations));
     }
 
-    private void explore(List<P> participants, List<D> destinations) {
-        List<P> result = participants;
+    private void explore(ParticipantGroup<P> participants, DestinationGroup<D> destinations) {
+        ParticipantGroup<P> result = participants;
         for (LadderRow<P> row : rows) {
             result = row.swapNames(result);
         }
