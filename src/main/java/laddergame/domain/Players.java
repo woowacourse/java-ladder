@@ -26,13 +26,4 @@ public class Players {
     public int hashCode() {
         return Objects.hash(players);
     }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Player player : players) {
-            stringBuilder.append("  "+player);
-        }
-        return stringBuilder.toString();
-    }
 }

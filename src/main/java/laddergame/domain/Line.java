@@ -2,67 +2,57 @@ package laddergame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Random;
 
 public class Line {
-    private List<Point> points;
+    private List<Point> line;
 
-    public Line(int countOfPerson) {
-        points = new ArrayList<>();
-        for (int i = 0; i < countOfPerson - 1; i++) {
-            points.add(new Point(Boolean.FALSE));
-        }
-        makeRandomLink(countOfPerson);
-    }
-
-    public void makeRandomLink(int countOfPerson) {
-        points.set(0, makeTrueOrFalse(generateRandomNumber()));
-        for (int i = 1; i < countOfPerson - 1; i++) {
-            setElement(i, makeTrueOrFalse(generateRandomNumber()));
+    public Line(int width) {
+        line = new ArrayList<>();
+        for (int i = 0; i < width; i++) {
+            line.add(new Point(false));
         }
     }
 
-    public void setElement(int index, Point point) {
-        if (!points.get(index - 1).isTrue()) {
-            points.set(index, point);
+    public void connect(int column) {
+        checkLeft(column);
+        checkRight(column);
+        line.set(column, new Point(true));
+    }
+
+    private void checkRight(int column) {
+        try {
+            checkRightBridge(column);
+        } catch (IndexOutOfBoundsException e) {
         }
     }
 
-    public void printPoints() {
-        points.stream().forEach(System.out::print);
+    private void checkLeft(int column) {
+        try {
+            checkLeftBridge(column);
+        } catch (IndexOutOfBoundsException e) {
+        }
     }
 
-    public int generateRandomNumber() {
-        return new Random().nextInt(2);
+    private void checkRightBridge(int column) {
+        if (line.get(column + 1).hasBridge()) {
+            throw new IllegalArgumentException("오른쪽에 중복");
+        }
     }
 
-    public Point isLinked(int point) {
-        return points.get(point - 1);
+    private void checkLeftBridge(int column) {
+        if (line.get(column - 1).hasBridge()) {
+            throw new IllegalArgumentException("왼쪽에 중복");
+        }
     }
 
-    public Point makeTrueOrFalse(int randomNumber) {
-        return new Point(randomNumber != 0);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Line)) return false;
-        Line line = (Line) o;
-        return Objects.equals(points, line.points);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(points);
+    public boolean isLinked(int column) {
+        return line.get(column).hasBridge();
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("|");
-        for (Point point : points) {
+        for (Point point : line) {
             stringBuilder.append(point);
             stringBuilder.append("|");
         }

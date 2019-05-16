@@ -41,6 +41,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return name;
+        return String.format("%-" + "5" + "s", this.name);
     }
 }

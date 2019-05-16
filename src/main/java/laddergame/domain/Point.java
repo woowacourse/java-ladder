@@ -1,24 +1,19 @@
 package laddergame.domain;
 
 public class Point {
-    private boolean link = false;
+	// TODO Point의 이름을 변경하는 것 고려
+	private final boolean bridge;
 
-    public Point(boolean link) {
-        this.link = link;
-    }
+	public Point(boolean bridge) {
+		this.bridge = bridge;
+	}
 
-    public boolean isTrue() {
-        return this.link;
-    }
-    @Override
-    public String toString() {
-//        StringBuilder stringBuilder = new StringBuilder();
-//        if (link) {
-//            stringBuilder.append("-----");
-//            return stringBuilder.toString();
-//        }
-//        stringBuilder.append("     ");
+	public boolean hasBridge() {
+		return this.bridge;
+	}
 
-        return link ? "-----" : "     ";
-    }
+	@Override
+	public String toString() {
+		return bridge ? "-----" : "     ";
+	}
 }
