@@ -2,7 +2,6 @@ package ladder.validator;
 
 import java.util.List;
 
-import ladder.domain.Player;
 import ladder.domain.UserOutput;
 
 public class Validator {
@@ -24,7 +23,7 @@ public class Validator {
 		}
 	}
 
-	public static void compareLength(List<Player> playersNames, List<String> results) {
+	public static void compareLength(List<String> playersNames, List<String> results) {
 		if (playersNames.size() != results.size()) {
 			throw new IllegalArgumentException(UserOutput.VIOLATE_GAME_RESULTS.getOutputMessage());
 		}

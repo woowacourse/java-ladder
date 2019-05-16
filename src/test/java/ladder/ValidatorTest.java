@@ -1,6 +1,5 @@
 package ladder;
 
-import ladder.domain.Player;
 import ladder.validator.Validator;
 import org.junit.jupiter.api.Test;
 
@@ -32,14 +31,14 @@ public class ValidatorTest {
 
 	@Test
 	void 결과_수가_참가자_수와_같을_경우() {
-		List<Player> players = Arrays.asList(new Player("pobi"), new Player("crong"), new Player("jk"));
+		List<String> players = Arrays.asList("pobi", "crong", "jk");
 		List<String> results = Arrays.asList("꽝", "100", "500");
 		assertDoesNotThrow(() -> Validator.compareLength(players, results));
 	}
 
 	@Test
 	void 결과_수가_참가자_수와_다를_경우_예외_반환() {
-		List<Player> players = Arrays.asList(new Player("pobi"), new Player("crong"));
+		List<String> players = Arrays.asList("pobi", "crong");
 		List<String> results = Arrays.asList("꽝", "100", "500");
 		assertThrows(IllegalArgumentException.class, () -> Validator.compareLength(players, results));
 	}

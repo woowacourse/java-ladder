@@ -2,8 +2,7 @@ package ladder;
 
 
 import ladder.domain.Ladder;
-import ladder.domain.Player;
-import ladder.domain.Result;
+import ladder.domain.LadderGameResult;
 import ladder.util.StringSplitUtils;
 import ladder.validator.Validator;
 import ladder.view.InputView;
@@ -12,17 +11,17 @@ import java.util.*;
 
 public class LadderGame {
 	private static Ladder ladder;
-	private static List<Player> players = new ArrayList<>();
+	private static List<String> players = new ArrayList<>();
 
 
-	public static List<Result> run(List<String> gameReward) {
-		List<Result> results = new ArrayList<>();
+	public static LadderGameResult run(List<String> gameReward) {
+		Map<String, String> gameResult = new HashMap<>();
 
 		for(int i=0; i<players.size(); ++i) {
-			results.add(new Result(players.get(i), gameReward.get(ladder.getLastPosition(i))));
+			gameResult.put(players.get(i), gameReward.get(ladder.getLastPosition(i)));
 		}
 
-		return results;
+		return new LadderGameResult(gameResult);
 	}
 
 	public static Ladder generatreLadder(final int ladderHeight) {
@@ -30,13 +29,14 @@ public class LadderGame {
 		return ladder;
 	}
 
-	public static List<Player> getPersonNames() {
+	public static List<String> getPersonNames() {
 		String names;
 
 		try {
 			names = InputView.inputNames();
 			Validator.validateNamesLength(StringSplitUtils.splitString(names));
-			return generatePlayers(Arrays.asList(names.split(",")));
+			players = Arrays.asList(names.split(","));
+			return players;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return getPersonNames();
@@ -67,12 +67,5 @@ public class LadderGame {
 			System.out.println(e.getMessage());
 			return getGameReward();
 		}
-	}
-
-	public static List<Player> generatePlayers(List<String> names) {
-		for(int i = 0;i < names.size(); ++i) {
-			players.add(new Player(names.get(i)));
-		}
-		return players;
 	}
 }

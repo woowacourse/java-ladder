@@ -32,26 +32,25 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public static void printPlayerNames(List<Player> players) {
-		for(Player player : players) {
-			System.out.printf(UserOutput.PRINT_FORM.getOutputMessage(), player.toString());
+	public static void printPlayerNames(List<String> players) {
+		for (String player : players) {
+			System.out.printf(UserOutput.PRINT_FORM.getOutputMessage(), player);
 		}
 		System.out.println();
 	}
 
-	public static void printResult(List<Result> results, String name) {
-		if(name.equals(UserOutput.PRINT_ALL_PLAYER.getOutputMessage())) {
-			for(Result result : results) {
-				System.out.println(result.getPlayer() + " : " + result.getReward());
+	public static void printResult(LadderGameResult ladderGameResult, String name) {
+		if (name.equals(UserOutput.PRINT_ALL_PLAYER.getOutputMessage())) {
+			// TODO : depth 2 줄이기.
+			for (String playerName : ladderGameResult.getAllPlayerNames()) {
+				System.out.println(playerName + " : " + ladderGameResult.getReward(playerName));
 			}
 			return;
 		}
 
-		for(Result result : results) {
-			if(result.getPlayer().matchName(name)) {
-				System.out.println(result.getPlayer() + " : " + result.getReward());
-				break;
-			}
+		String playerReward = ladderGameResult.getReward(name);
+		if (playerReward != null) {
+			System.out.println(name + " : " + playerReward);
 		}
 	}
 }
