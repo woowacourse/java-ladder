@@ -10,80 +10,79 @@ public class Line {
     private static final String NEW_LINE = "\n";
     private static final String NO_HORIZON_LINE = "     ";
     private static final String HORIZON_LINE = "-----";
-    private static final String HORIZON_DUPLICATION_ERROR = "가로선 중복 오류";
+    private static final String HORIZON_LINE_DUPLICATION_ERROR = "가로선 중복 오류";
 
-    private List<Boolean> horizon;
+    private List<Boolean> horizons;
 
-    public Line(int playerNumber) {
-        horizon = new ArrayList<>();
-        makeRandomBooleans(playerNumber);
+    public Line(int tagsNumber) {
+        horizons = new ArrayList<>();
+        makeRandomHorizons(tagsNumber);
     }
 
     public Line(List<Boolean> horizon) {
         checkDuplicateHorizon(horizon);
-        this.horizon = horizon;
+        this.horizons = horizon;
     }
 
-    public List<Boolean> getHorizon() {
-        return this.horizon;
+    private void makeRandomHorizons(int tagsNumber) {
+        Random random = new Random();
+        horizons.add(random.nextBoolean());
+        for (int index = 1; index < tagsNumber - 1; index++) {
+            makeProperHorizon(index, random.nextBoolean());
+        }
+    }
+
+    private void makeProperHorizon(int currentIndex, Boolean randomBoolean) {
+        if (!horizons.get(currentIndex - 1)) {
+            horizons.add(randomBoolean);
+            return;
+        }
+        horizons.add(false);
     }
 
     private void checkDuplicateHorizon(List<Boolean> horizon) {
-        for (int i = 0; i < horizon.size(); i++) {
-            checkOneDuplicationHorizon(horizon, i);
+        for (int index = 0; index < horizon.size() - 1; index++) {
+            checkOneDuplicationHorizon(horizon, index);
         }
     }
 
-    private void makeRandomBooleans(int playerNumber) {
-        for (int i = 0; i < playerNumber - 1; i++) {
-            horizon.add(makeProperBoolean(i));
+    private void checkOneDuplicationHorizon(List<Boolean> horizon, int index) {
+        if (horizon.get(index) && horizon.get(index + 1)) {
+            throw new IllegalArgumentException(HORIZON_LINE_DUPLICATION_ERROR);
         }
     }
 
-    private Boolean makeProperBoolean(int currentIndex) {
-        Random random = new Random();
-        if (currentIndex == 0) {
-            return random.nextBoolean();
-        }
-        if (!this.horizon.get(currentIndex - 1)) {
-            return random.nextBoolean();
-        }
-        return false;
-    }
-
-    private void checkOneDuplicationHorizon(List<Boolean> horizon, int i) {
-        if (horizon.get(i) && horizon.get(i + 1)) {
-            throw new IllegalArgumentException(HORIZON_DUPLICATION_ERROR);
-        }
+    public List<Boolean> getHorizon() {
+        return horizons;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(HEADER_HORIZON_LINE);
-        for (Boolean bool : this.horizon) {
-            sb.append(VERTICAL_LINE);
-            sb.append(toStringEachHorLine(bool));
+        for (Boolean horizon : horizons) {
+            sb.append(VERTICAL_LINE)
+                    .append(toStringEachHorLine(horizon));
         }
-        sb.append(VERTICAL_LINE + NEW_LINE);
+        sb.append(VERTICAL_LINE)
+                .append(NEW_LINE);
         return sb.toString();
     }
 
-    private String toStringEachHorLine(Boolean bool) {
-        String result = NO_HORIZON_LINE;
-        if (bool) {
-            result = HORIZON_LINE;
+    private String toStringEachHorLine(Boolean horizon) {
+        if (horizon) {
+            return HORIZON_LINE;
         }
-        return result;
+        return NO_HORIZON_LINE;
     }
 
-    public int moveRightOrLeft(int playerIndex) {
-        if (playerIndex > 0 && this.horizon.get(playerIndex - 1)) {
-            return --playerIndex;
+    public int getIndexAfterMovingHorizon(int index) {
+        if (index > 0 && horizons.get(index - 1)) {
+            return --index;
         }
-        if (playerIndex < horizon.size() && this.horizon.get(playerIndex)) {
-            return ++playerIndex;
+        if (index < horizons.size() && horizons.get(index)) {
+            return ++index;
         }
-        return playerIndex;
+        return index;
     }
 }

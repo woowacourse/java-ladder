@@ -27,17 +27,17 @@ public class LineTest {
     @Test
     void 왼쪽_시작_결과추출_테스트() {
         Line line = new Line(Arrays.asList(false, true));
-        assertThat(line.moveRightOrLeft(0)).isEqualTo(0);
+        assertThat(line.getIndexAfterMovingHorizon(0)).isEqualTo(0);
     }
 
     @Test
     void 오른쪽_시작_결과추출_테스트() {
         Line line = new Line(Arrays.asList(true, false));
-        assertThat(line.moveRightOrLeft(2)).isEqualTo(2);
+        assertThat(line.getIndexAfterMovingHorizon(2)).isEqualTo(2);
     }
     @Test
     void 가운데_시작_결과추출_테스트() {
         Line line = new Line(Arrays.asList(false, true));
-        assertThat(line.moveRightOrLeft(1)).isEqualTo(2);
+        assertThat(line.getIndexAfterMovingHorizon(1)).isEqualTo(2);
     }
 }

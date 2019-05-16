@@ -1,21 +1,18 @@
 package ladder.controller;
 
 import ladder.model.*;
-import ladder.model.frame.Input;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.function.Function;
-
 public class Main {
-    private static final String EXIT_CONDITION = "exit";
-    private static final String ALL_CONDITION = "all";
+    private static final String EXIT = "exit";
+    private static final String ALL = "all";
 
     public static void main(String[] args) {
-        Players players = getPlayers();
-        Results results = getResults(players.getPlayerNumber());
-        Floor floors = getFloor();
-        LadderGame ladderGame = new LadderGame(players, results, floors);
+        PlayerTags playerTags = getPlayerTags();
+        ResultTags resultTags = getResultTags(playerTags.getTagsNumber());
+        Floor floor = getFloor();
+        LadderGame ladderGame = new LadderGame(playerTags, resultTags, floor);
 
         OutputView.PrintLadderTitle();
         OutputView.PrintLadder(ladderGame);
@@ -23,21 +20,21 @@ public class Main {
         showResult(ladderGame);
     }
 
-    private static Players getPlayers() {
+    private static PlayerTags getPlayerTags() {
         try {
-            return new Players(InputView.inputPlayers());
+            return new PlayerTags(InputView.inputPlayers());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getPlayers();
+            return getPlayerTags();
         }
     }
 
-    private static Results getResults(int playerNumbers) {
+    private static ResultTags getResultTags(int tagsNumber) {
         try {
-            return new Results(InputView.inputResults(), playerNumbers);
+            return new ResultTags(InputView.inputResults(), tagsNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getResults(playerNumbers);
+            return getResultTags(tagsNumber);
         }
     }
 
@@ -52,36 +49,35 @@ public class Main {
 
     private static void showResult(LadderGame ladderGame) {
         try {
-            selectResult(ladderGame);
+            chooseResult(ladderGame);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             showResult(ladderGame);
         }
     }
 
-    private static void selectResult(LadderGame ladderGame) {
-        String select = "";
-        while (!select.equals(EXIT_CONDITION)) {   //select가 "exit"이 아닐 때까지 반복
-            select = InputView.inputSelect();      //select를 받음
-            checkNotAll(ladderGame, select);       //select가 "all"이 아닌지 검사 후 아니면 해당로직 실행
-            select = checkAll(ladderGame, select); //select가 "all"인지 검사 후 맞으면 해당로직 실행
+    private static void chooseResult(LadderGame ladderGame) {
+        String choice = "";
+        while (!choice.equals(EXIT)) {
+            choice = InputView.inputChoice();
+            chooseOne(ladderGame, choice);
+            choice = chooseAll(ladderGame, choice);
         }
     }
 
-    private static void checkNotAll(LadderGame ladderGame, String select) {
-        if (!select.equals(EXIT_CONDITION) && !select.equals(ALL_CONDITION)) {
+    private static void chooseOne(LadderGame ladderGame, String choice) {
+        if (!choice.equals(EXIT) && !choice.equals(ALL)) {
             OutputView.PrintResultTitle();
-            PlayerName selectName = new PlayerName(select);
-            OutputView.PrintResult(ladderGame.getOnePlayerResult(selectName));
+            OutputView.PrintResult(ladderGame.getOneResultByTag(new Tag(choice)));
         }
     }
 
-    private static String checkAll(LadderGame ladderGame, String select) {
-        if (select.equals(ALL_CONDITION)) {
+    private static String chooseAll(LadderGame ladderGame, String choice) {
+        if (choice.equals(ALL)) {
             OutputView.PrintResultTitle();
-            OutputView.PrintResult(ladderGame.getAllPlayerResult());
-            select = EXIT_CONDITION;
+            OutputView.PrintResult(ladderGame.getAllResults());
+            choice = EXIT;
         }
-        return select;
+        return choice;
     }
 }

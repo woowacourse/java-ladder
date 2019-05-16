@@ -1,28 +1,29 @@
 package ladder.model.frame;
 
+import ladder.model.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class NameTest {
+class TagTest {
     @Test
     void 길이_검사_0() {
         assertThrows(IllegalArgumentException.class, ()->{
-            new Name("");
+            new Tag("");
         });
     }
 
     @Test
     void 길이_검사_5초과() {
         assertThrows(IllegalArgumentException.class, ()->{
-            new Name("ABCDEF");
+            new Tag("ABCDEF");
         });
     }
 
     @Test
     void 공백포함_검사() {
         assertThrows(IllegalArgumentException.class, ()->{
-            new Name("ABC F");
+            new Tag("ABC F");
         });
     }
 }

@@ -26,7 +26,7 @@ public class InputView {
         return new Floor(scanner.nextLine());
     }
 
-    public static String inputSelect() {
+    public static String inputChoice() {
         System.out.println(INPUT_SELECT_RESULTS_MESSAGE);
         return scanner.nextLine();
     }
