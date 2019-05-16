@@ -13,7 +13,14 @@ public class Line {
 
     public Line(int countOfPerson) {
         points = new int[countOfPerson];
+        addPoints();
+    }
 
+    public Line(int[] points){
+        this.points = points;
+    }
+
+    private void addPoints() {
         points[0] = getRandomLineComponent();
         for (int i = 1; i < points.length; i++) {
             points[i] = compareBeforeComponent(i);
