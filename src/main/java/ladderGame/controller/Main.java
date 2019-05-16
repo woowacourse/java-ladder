@@ -2,40 +2,48 @@ package ladderGame.controller;
 
 import ladderGame.domain.LadderGame;
 import ladderGame.domain.Result;
+import ladderGame.domain.User;
+import ladderGame.util.StringUtil;
 import ladderGame.view.InputCheck;
 import ladderGame.view.InputView;
 import ladderGame.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        LadderGame ladderGame = createLadderGame();
-        String results;
-        Result result;
-        do {
-            results = InputView.inputResults();
-        } while (!InputCheck.checkResultSize(results, ladderGame.getUsers().size()));
-        result = new Result(results);
-        OutputView.outputNames(ladderGame.getUsers());
-        ladderGame.createLadder();
-        ladderGame.startLadderGame();
+        String names = InputView.inputNames();
+        List<User> users = createUser(names);
+
+        int height = InputView.inputLadderHeight();
+        LadderGame ladderGame =  new LadderGame(height);
+
+        String inputResults = InputView.inputResults();
+        List<String> results = StringUtil.splitComma(inputResults);
+
+        OutputView.outputNames(users);
+        ladderGame.createLadder(users);
         OutputView.outputLadder(ladderGame.getLadder());
-        OutputView.outputResult(result.getResults());
+        OutputView.outputResult(results);
+
+        ladderGame.startLadderGame(users);
+
         String name;
+
         do {
             name = InputView.inputNames1();
-            OutputView.output(name, ladderGame.getUsers(), result.getResults());
+            OutputView.output(name, users, results);
         } while (!name.equals("all"));
-        OutputView.outputAll(ladderGame.getUsers(), result.getResults());
+        OutputView.outputAll(users, results);
     }
 
-    private static LadderGame createLadderGame(){
-        String names = InputView.inputNames();
-        int height = InputView.inputLadderHeight();
-        try {
-            return new LadderGame(names, height);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return  createLadderGame();
+    private static List<User> createUser(String inputNames) {
+        List<User> users = new ArrayList<>();
+        List<String> names = StringUtil.splitComma(inputNames);
+        for (int i = 0; i < names.size(); i++) {
+            users.add(new User(names.get(i), i));
         }
+        return users;
     }
 }

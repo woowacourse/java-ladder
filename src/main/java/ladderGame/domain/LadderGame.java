@@ -1,19 +1,15 @@
 package ladderGame.domain;
 
-import ladderGame.util.StringUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
 
-    private List<User> users;
     private List<Floor> ladder = new ArrayList<>();
     private int height;
 
-    public LadderGame(String inputNames, int height) {
+    public LadderGame(int height) {
         validatePositiveNumber(height);
-        this.users = createUser(inputNames);
         this.height = height;
     }
 
@@ -23,35 +19,22 @@ public class LadderGame {
         }
     }
 
-    private List<User> createUser(String inputNames) {
-        List<User> users = new ArrayList<>();
-        List<String> names = StringUtil.splitComma(inputNames);
-        for (int i = 0; i < names.size(); i++) {
-            users.add(new User(names.get(i), i));
-        }
-        return users;
-    }
-
-    public void createLadder() {
+    public void createLadder(List<User> users) {
         for (int i = 0; i < height; i++) {
             ladder.add(new Floor(users.size()));
         }
     }
 
-    public void startLadderGame() {
+    public void startLadderGame(List<User> users) {
         for (Floor floor : ladder) {
-            canUserMove(floor);
+            canUserMove(floor, users);
         }
     }
 
-    private void canUserMove(Floor floor) {
+    private void canUserMove(Floor floor, List<User> users) {
         for (User user : users) {
             user.canMove(floor);
         }
-    }
-
-    public List<User> getUsers() {
-        return users;
     }
 
     public int getHeight() {
