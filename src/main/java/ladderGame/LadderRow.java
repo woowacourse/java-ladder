@@ -31,4 +31,13 @@ public class LadderRow {
     public DrawnLadderRow drawn() {
         return new DrawnLadderRow(new ArrayList<>(bridges));
     }
+
+
+    public long countBridges() {
+        return bridges.stream().filter((isDrawn) -> isDrawn).count();
+    }
+
+    public int getColumns() {
+        return bridges.size();
+    }
 }

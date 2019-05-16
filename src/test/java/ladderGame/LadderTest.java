@@ -111,4 +111,14 @@ public class LadderTest {
             assertThat(ladder.drawn()).isEqualTo(output);
         }
     }
+
+    @Test
+    void countBridges() {
+        Ladder ladder = new Ladder(Arrays.asList(
+                new LadderRow(Arrays.asList(false, true, false)),
+                new LadderRow(Arrays.asList(true, true, true))
+        ));
+
+        assertThat(ladder.countBridges()).isEqualTo(4);
+    }
 }

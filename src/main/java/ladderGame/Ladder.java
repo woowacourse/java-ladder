@@ -24,4 +24,16 @@ public class Ladder {
                 .map((ladderRow) -> ladderRow.drawn())
                 .collect(Collectors.toList()));
     }
+
+    public long countBridges() {
+        return ladderRows.stream().mapToLong((ladderRow) -> ladderRow.countBridges()).sum();
+    }
+
+    public int getRows() {
+        return ladderRows.size();
+    }
+
+    public int getColumns() {
+        return ladderRows.get(0).getColumns();
+    }
 }

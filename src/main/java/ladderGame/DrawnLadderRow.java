@@ -24,4 +24,12 @@ public class DrawnLadderRow {
     public int hashCode() {
         return Objects.hash(bridges);
     }
+
+    public int getColumns() {
+        return bridges.size();
+    }
+
+    public boolean isDrawn(int column) {
+        return bridges.get(column);
+    }
 }

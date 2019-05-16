@@ -22,4 +22,16 @@ public class DrawnLadder {
     public int hashCode() {
         return Objects.hash(drawnLadderRows);
     }
+
+    public int getRows() {
+        return drawnLadderRows.size();
+    }
+
+    public int getColumns() {
+        return drawnLadderRows.get(0).getColumns();
+    }
+
+    public boolean isDrawn(int row, int column) {
+        return drawnLadderRows.get(row).isDrawn(column);
+    }
 }

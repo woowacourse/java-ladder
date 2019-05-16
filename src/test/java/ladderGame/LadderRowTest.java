@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LadderRowTest {
 
@@ -50,7 +51,7 @@ public class LadderRowTest {
     }
 
     @Test
-    void Draw_올바른_위치() {
+    void draw_올바른_위치() {
         List<Boolean> bridges = Arrays.asList(false, false, false);
         List<Integer> inputs = Arrays.asList(0, bridges.size() - 1);
         List<DrawnLadderRow> outputs = Arrays.asList(
@@ -67,5 +68,13 @@ public class LadderRowTest {
             ladderRow.draw(input);
             assertThat(ladderRow.drawn()).isEqualTo(output);
         }
+    }
+
+    @Test
+    void countBridges_테스트() {
+        List<Boolean> bridges = Arrays.asList(false, true, false);
+        LadderRow ladderRow = new LadderRow(bridges);
+
+        assertThat(ladderRow.countBridges()).isEqualTo(1);
     }
 }
