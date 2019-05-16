@@ -8,8 +8,8 @@ public class Ladder {
 
     private List<LadderWidth> ladder = new ArrayList<>();
 
-    public Ladder(List<Player> players, LadderHeight height){
-        for (int i = 0; i < height.getHeight(); i++) {
+    public Ladder(LadderGamePlayers players, int height) {
+        for (int i = 0; i < height; i++) {
             ladder.add(new LadderWidth(players.size() - 1));
         }
     }

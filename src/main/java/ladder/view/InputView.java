@@ -1,7 +1,6 @@
 package ladder.view;
 
 import ladder.constant.MessageConstant;
-import ladder.model.LadderHeight;
 import ladder.model.Player;
 import ladder.validator.InputLadderHeightValidator;
 import ladder.validator.InputPlayerValidator;
@@ -26,13 +25,13 @@ public class InputView {
         return Arrays.stream(inputs).map(String::trim).map(Player::new).collect(Collectors.toList());
     }
 
-    public static LadderHeight makeLadderHeight() {
+    public static int makeLadderHeight() {
         System.out.println(MessageConstant.INPUT_LADDER_HEIGHT);
         return makeLadderHeight(scanner.nextLine());
     }
 
-    public static LadderHeight makeLadderHeight(String input) {
-        InputLadderHeightValidator.checkLadderHeightInputAccuracy(input);
-        return new LadderHeight(Integer.parseInt(input.trim()));
+    public static int makeLadderHeight(String input) {
+        InputLadderHeightValidator.checkLadderHeightInputAccuracy(input.trim());
+        return Integer.parseInt(input.trim());
     }
 }
