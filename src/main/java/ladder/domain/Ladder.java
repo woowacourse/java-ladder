@@ -24,9 +24,9 @@ public class Ladder {
         return rows.get(index);
     }
 
-    public void row(TempInput tempInput) {
+    public void row(RandomGenerator randomGenerator) {
         for (int i = 0; i < this.height; i++) {
-            rows.add(new LadderRow(this.width, tempInput).getRow());
+            rows.add(new LadderRow(this.width, randomGenerator).getRow());
         }
     }
 }

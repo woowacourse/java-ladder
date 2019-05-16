@@ -4,10 +4,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
+
+import static org.junit.Assert.assertEquals;
 
 public class LadderRowTest {
     LadderRow ladderRow;
@@ -61,24 +61,24 @@ public class LadderRowTest {
 
     @Test
     public void 사다리_만들기_테스트() {
-        ByteArrayInputStream input = new ByteArrayInputStream("1 1 0".getBytes());
-        System.setIn(input);
+        RandomGenerator randomGenerator = new RandomGenerator(Arrays.asList(1, 1, 1));
+        ladderRow.setRandomGenerator(randomGenerator);
         ladderRow.makeRow();
         assertEquals(Arrays.asList(1, -1, 1, -1, 0), ladderRow.status());
     }
 
     @Test
     public void 사다리_한줄_만들기_테스트() {
-        ByteArrayInputStream input = new ByteArrayInputStream("0 0 0 0 0".getBytes());
-        System.setIn(input);
+        RandomGenerator randomGenerator = new RandomGenerator(Arrays.asList(0, 0, 0, 0, 0));
+        ladderRow.setRandomGenerator(randomGenerator);
         ladderRow.makeRow();
         assertEquals(Arrays.asList(0, 0, 0, 0, 0), ladderRow.status());
     }
 
     @Test
     public void 사다리_한줄_만들기_테스트2() {
-        ByteArrayInputStream input = new ByteArrayInputStream("1 1 1 0 0".getBytes());
-        System.setIn(input);
+        RandomGenerator randomGenerator = new RandomGenerator(Arrays.asList(1, 1, 0));
+        ladderRow.setRandomGenerator(randomGenerator);
         ladderRow.makeRow();
         assertEquals(Arrays.asList(1, -1, 1, -1, 0), ladderRow.status());
     }

@@ -2,10 +2,9 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class LadderRow {
-    TempInput tempInput;
+    RandomGenerator randomGenerator;
     private List<Integer> row;
     private int width;
 
@@ -22,10 +21,10 @@ public class LadderRow {
         this.row = numbers;
     }
 
-    public LadderRow(int width, TempInput tempInput) {
+    public LadderRow(int width, RandomGenerator randomGenerator) {
         row = new ArrayList<>();
         this.width = width;
-        this.tempInput = tempInput;
+        this.randomGenerator = randomGenerator;
     }
 
 
@@ -63,14 +62,15 @@ public class LadderRow {
         this.width -= draw(getRandomFlag());
     }
 
-    private void setTempInput(TempInput temp) {
-        this.tempInput = temp;
+    public void setRandomGenerator(RandomGenerator randomGenerator) {
+        this.randomGenerator = randomGenerator;
     }
 
     private boolean getRandomFlag() {
-        Random random = new Random();
-//        String a = tempInput.getElement();
+//        Random random = new Random();
+//        String a = randomGenerator.getElement();
 //        return a.equals("1");
-        return random.nextInt(2) == 1;
+//        return random.nextInt(2) == 1;
+        return randomGenerator.getElement() == 1;
     }
 }
