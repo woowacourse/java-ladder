@@ -57,4 +57,16 @@ public class ValidatorUtils {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void checkParticipant(List<String> names, String participant) {
+        if (participant.length() == 0) {
+            System.err.println("입력이 올바르지 않습니다.");
+            throw new IllegalArgumentException();
+        }
+
+        if (!names.contains(participant) && !participant.equals("all")) {
+            System.err.println("해당 참가자가 없습니다.");
+            throw new IllegalArgumentException();
+        }
+    }
 }

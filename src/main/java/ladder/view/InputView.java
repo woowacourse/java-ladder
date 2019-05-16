@@ -42,4 +42,15 @@ public class InputView {
             return inputItems(numberOfPeople);
         }
     }
+
+    public static String inputParticipant(List<String> names) {
+        System.out.println("결과를 보고 싶은 사람은?");
+        try {
+            String participant = SCANNER.nextLine().trim();
+            ValidatorUtils.checkParticipant(names, participant);
+            return participant;
+        } catch (IllegalArgumentException e) {
+            return inputParticipant(names);
+        }
+    }
 }

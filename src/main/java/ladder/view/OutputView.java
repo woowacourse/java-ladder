@@ -4,6 +4,7 @@ import ladder.domain.Ladder;
 import ladder.domain.Line;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     public static void printNames(List<String> names) {
@@ -45,5 +46,16 @@ public class OutputView {
             System.out.printf("%6s", item);
         }
         System.out.println();
+    }
+
+    public static void printResult(Map<String, String> result, String participant) {
+        System.out.println("실행 결과");
+        if (participant.equals("all")) {
+            for (String key : result.keySet()) {
+                System.out.println(key + " : " + result.get(key));
+            }
+        } else {
+            System.out.println(participant + " : " + result.get(participant));
+        }
     }
 }
