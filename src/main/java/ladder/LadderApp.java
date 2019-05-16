@@ -6,12 +6,25 @@ import ladder.util.Util;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.Arrays;
+
 public class LadderApp {
+
     public static void main(String[] args) {
         String names = inputPlayerNames(InputView.inputPlayerNames());
+        String rewards = InputRewards(InputView.inputRewards(), names.split(",").length);
         int depth = inputLadderDepth(InputView.inputLadderDepth());
         Ladder ladder = new Ladder(names, depth);
         OutputView.outputLadder(ladder.getResultLadderNames(), ladder.getResultLadderLines());
+    }
+
+    private static String InputRewards(String inputRewards, int count) {
+        try {
+            return Rule.ruleInputReward(inputRewards, count);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return InputRewards(InputView.inputRewards(), count);
+        }
     }
 
     private static String inputPlayerNames(String names) {

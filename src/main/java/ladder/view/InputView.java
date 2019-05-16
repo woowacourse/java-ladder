@@ -21,4 +21,9 @@ public class InputView {
             return inputLadderDepth();
         }
     }
+
+    public static String inputRewards() {
+        System.out.println(Const.INPUT_REWARDS);
+        return SCANNER.nextLine();
+    }
 }

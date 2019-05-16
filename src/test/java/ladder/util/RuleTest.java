@@ -87,4 +87,13 @@ class RuleTest {
             Rule.ruleInputReward("1,2,3", 2);
         });
     }
+
+    @Test
+    void ruleInputReward_사이즈_확인() {
+        Rule rule = new Rule();
+        rule.
+        assertThrows(IllegalArgumentException.class, () -> {
+            Rule.ruleInputReward("1,2,3", 2);
+        });
+    }
 }
