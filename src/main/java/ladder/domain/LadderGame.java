@@ -6,7 +6,14 @@ public final class LadderGame {
     private final PlayerRewards playerRewards;
 
     public LadderGame(final int height, final GamePlayers gamePlayers, final PlayerRewards playerRewards) {
+        this(height, gamePlayers, playerRewards,
+                new LineRandomGenerator(gamePlayers.size(), height));
+    }
+
+    public LadderGame(final int height, final GamePlayers gamePlayers,
+                      final PlayerRewards playerRewards, LineGenerator lineGenerator) {
         validateSize(gamePlayers.size(), playerRewards.size());
+
         this.ladder = new Ladder(height, gamePlayers.size());
         this.gamePlayers = gamePlayers;
         this.playerRewards = playerRewards;
@@ -16,6 +23,10 @@ public final class LadderGame {
         if (countOfPlayers != countOfResults) {
             throw new IllegalArgumentException("사람의 수와 결과의 수가 다릅니다.");
         }
+    }
+
+    public void findPlayerReward() {
+
     }
 
     public Ladder getLadder() {
