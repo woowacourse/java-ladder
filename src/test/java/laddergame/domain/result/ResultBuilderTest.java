@@ -1,6 +1,5 @@
 package laddergame.domain.result;
 
-import laddergame.domain.result.ResultBuilder;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

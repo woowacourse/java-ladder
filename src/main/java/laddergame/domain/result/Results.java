@@ -1,6 +1,7 @@
 package laddergame.domain.result;
 
 import laddergame.domain.Constant;
+import laddergame.domain.player.Players;
 
 import java.util.List;
 import java.util.Objects;
@@ -10,6 +11,10 @@ public class Results {
 
     public Results(List<Result> results) {
         this.results = results;
+    }
+
+    public boolean matchPlayersCount(int playerCount) {
+        return (playerCount != results.size());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +35,16 @@ public class Ladder {
         try {
             ladder.get(row).connect(column);
         } catch (IndexOutOfBoundsException e) {
-            //throw new IllegalArgumentException("연결로를 추가할 수 없음 (테스트용)");
         } catch (IllegalArgumentException e) {
             // 왼쪽이나 오른쪽에 연결로가 중복될 떄
         }
+    }
+
+    public int findResultIndex(int startPosition) {
+        for (Line line : ladder) {
+            startPosition += line.findRoute(startPosition);
+        }
+        return startPosition;
     }
 
     public boolean isLinked(int row, int column) {
@@ -57,12 +63,5 @@ public class Ladder {
             stringBuilder.append("\n");
         }
         return stringBuilder.toString();
-    }
-
-    public int findResultIndex(int startPosition) {
-        for (Line line : ladder) {
-            startPosition += line.findRoute(startPosition);
-        }
-        return startPosition;
     }
 }

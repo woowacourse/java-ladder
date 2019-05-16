@@ -1,9 +1,8 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
 
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class LadderTest {
 
@@ -119,5 +118,20 @@ public class LadderTest {
         assertThat(ladder.findResultIndex(3)).isEqualTo(1);
         assertThat(ladder.findResultIndex(4)).isEqualTo(5);
         assertThat(ladder.findResultIndex(5)).isEqualTo(4);
+    }
+
+    @Test
+    public void 레2더_테스트_사다리의_높이가_3고_너비가_5일때_제대로_찾는지() {
+        Ladder ladder = new Ladder(6, 3);
+        ladder.connectBridge(1, 1);
+        ladder.connectBridge(2, 1);
+        ladder.connectBridge(3, 1);
+        ladder.connectBridge(5, 2);
+        //          |     |------|      |
+        //          |-----|      |------|
+        //          |     |      |------|
+        assertThat(ladder.findResultIndex(1)).isEqualTo(3);
+        assertThat(ladder.findResultIndex(2)).isEqualTo(1);
+        assertThat(ladder.findResultIndex(3)).isEqualTo(2);
     }
 }

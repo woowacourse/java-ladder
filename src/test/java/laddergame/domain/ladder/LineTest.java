@@ -1,7 +1,6 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
 
-import laddergame.domain.Line;
-import org.junit.jupiter.api.BeforeEach;
+import laddergame.domain.Constant;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

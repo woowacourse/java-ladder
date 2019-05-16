@@ -1,6 +1,5 @@
 package laddergame.domain.result;
 
-import laddergame.domain.result.Result;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

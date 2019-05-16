@@ -1,6 +1,5 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
 
-import laddergame.domain.LadderHeight;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

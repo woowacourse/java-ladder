@@ -1,4 +1,6 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
+
+import laddergame.domain.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
