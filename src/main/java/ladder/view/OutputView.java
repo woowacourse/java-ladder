@@ -15,13 +15,20 @@ public class OutputView {
 
         setPrintName(ladderGame, stringBuilder);
         setPrintLadder(ladderGame, stringBuilder);
+        setPrintResults(ladderGame, stringBuilder);
 
         System.out.println(stringBuilder.toString());
     }
 
     private static void setPrintName(LadderGame ladderGame, StringBuilder stringBuilder) {
         for (Member member : ladderGame.getMembers()) {
-            stringBuilder.append(makePrettyName(member.getName()) + SINGLE_BLANK);
+            stringBuilder.append(makePrettyName(member.getName())).append(SINGLE_BLANK);
+        }
+    }
+
+    private static void setPrintResults(LadderGame ladderGame, StringBuilder stringBuilder) {
+        for (String result : ladderGame.getResults()) {
+            stringBuilder.append(makePrettyName(result)).append(SINGLE_BLANK);
         }
     }
 
