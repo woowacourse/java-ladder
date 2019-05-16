@@ -24,26 +24,26 @@ public class LadderGame {
     private static final String NEW_LINE = "\n";
 
     private Ladder ladder;
-    private PlayerTags playerTags;
+    private PlayerTags players;
     private ResultTags results;
 
-    public LadderGame(PlayerTags playerTags, ResultTags results, Floor floor) {
-        this.playerTags = playerTags;
+    public LadderGame(PlayerTags players, ResultTags results, Floor floor) {
+        this.players = players;
         this.results = results;
-        ladder = new Ladder(floor, playerTags.size());
+        ladder = new Ladder(floor, players.size());
     }
 
     public String getOnePlayerResult(Tag tag) {
-        if (!this.playerTags.getNames().contains(tag)) {
+        if (!this.players.getNames().contains(tag)) {
             throw new IllegalArgumentException(GET_ONE_PLAYER_ERROR);
         }
-        int index = ladder.findOneResult(playerTags.indexOf(tag));
+        int index = ladder.getPlayerResult(players.indexOf(tag));
         return results.get(index).toString();
     }
 
     public String getAllPlayerResult() {
         StringBuilder sb = new StringBuilder();
-        for (Tag tag : playerTags.getNames()) {
+        for (Tag tag : players.getNames()) {
             sb.append(tag.toString() + " : " + this.getOnePlayerResult(tag) + "\n");
         }
         return sb.toString();
@@ -51,7 +51,7 @@ public class LadderGame {
 
     @Override
     public String toString() {
-        return playerTags.toString() + NEW_LINE
+        return players.toString() + NEW_LINE
                 + ladder.toString()
                 + results.toString();
     }

@@ -32,11 +32,11 @@ public abstract class Tags {
 
     protected Tags(String input) {
         tags = new ArrayList<>();
-        checkValidInput(input);
+        validInput(input);
         addNames(input);
     }
 
-    private void checkValidInput(String input) {
+    private void validInput(String input) {
         if(!input.matches(PLAYER_NAMES_REGEX)){
             throw new IllegalArgumentException(VALID_INPUT_ERROR);
         }
@@ -44,7 +44,7 @@ public abstract class Tags {
 
     public abstract void add(String name);
 
-    public void addNames(String input) {
+    protected void addNames(String input) {
         for (String name : input.split(DELIMITER)) {
             this.add(name);
         }

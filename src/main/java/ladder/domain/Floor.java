@@ -26,12 +26,12 @@ public class Floor {
     private int number;
 
     public Floor(String input) {
-        int number = checkValidType(input);
-        checkNatNum(number);
+        int number = validType(input);
+        validRange(number);
         this.number = number;
     }
 
-    private int checkValidType(String input) {
+    private int validType(String input) {
         int number;
         try {
             number = Integer.parseInt(input);
@@ -41,7 +41,7 @@ public class Floor {
         return number;
     }
 
-    private void checkNatNum(int number) {
+    private void validRange(int number) {
         if (number <= 0) {
             throw new IllegalArgumentException(NAT_NUM_EXCEPTION_MESSAGE);
         }

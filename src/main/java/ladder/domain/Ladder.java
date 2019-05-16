@@ -31,7 +31,7 @@ public class Ladder {
         }
     }
 
-    public int findOneResult(int playerIndex){
+    public int getPlayerResult(int playerIndex){
         for(Line line : ladder){
             playerIndex = moveVertical(line, playerIndex);
         }

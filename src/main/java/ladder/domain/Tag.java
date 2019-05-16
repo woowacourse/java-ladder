@@ -22,9 +22,9 @@ import java.util.Objects;
  * @version 1.0.0
  */
 public class Tag {
-    private static final String NAME_CONTAIN_SPACE_ERROR = "공백 포함 오류";
+    private static final String NAME_SPACE_ERROR = "빈 문자열 오류";
     private static final String NAME_LENGTH_ERROR = "길이 5 초과 오류";
-    private static final String EMPTY_NAME_ERROR = "공백 입력 불가 오류";
+    private static final String NAME_EMPTY_ERROR = "공백 포함 오류";
     private static final String WHITE_SPACE = " ";
     private static final int NAME_UPPER_BOUND = 5;
     private static final int NAME_LOWER_BOUND = 0;
@@ -32,9 +32,9 @@ public class Tag {
     private String name;
 
     public Tag(String name) {
-        checkEmptyName(name);
-        checkNameLength(name);
-        checkNameContainSpace(name);
+        checkEmpty(name);
+        checkLength(name);
+        checkSpace(name);
         this.name = name;
     }
 
@@ -42,21 +42,21 @@ public class Tag {
         return name;
     }
 
-    private void checkEmptyName(String name) {
+    private void checkEmpty(String name) {
         if (name.length() == NAME_LOWER_BOUND) {
-            throw new IllegalArgumentException(EMPTY_NAME_ERROR);
+            throw new IllegalArgumentException(NAME_EMPTY_ERROR);
         }
     }
 
-    private void checkNameLength(String name) {
+    private void checkLength(String name) {
         if (name.length() > NAME_UPPER_BOUND) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR);
         }
     }
 
-    private void checkNameContainSpace(String name) {
+    private void checkSpace(String name) {
         if(name.contains(WHITE_SPACE)){
-            throw new IllegalArgumentException(NAME_CONTAIN_SPACE_ERROR);
+            throw new IllegalArgumentException(NAME_SPACE_ERROR);
         }
     }
     
