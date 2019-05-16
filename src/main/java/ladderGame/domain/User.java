@@ -25,7 +25,7 @@ public class User {
         }
     }
 
-    public boolean canMove(Floor floor) {
+    public boolean move(Floor floor) {
         List<Boolean> stairs = floor.getStairs();
 
         return checkFirstLine(stairs) ||

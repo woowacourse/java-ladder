@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Result {
+public class LadderGameResult {
 
     private Map<String, String> resultMap;
 
-    public Result(List<String> result, List<User> users) {
+    public LadderGameResult(List<String> result, List<User> users) {
         this.resultMap = createResultMap(result, users);
     }
 

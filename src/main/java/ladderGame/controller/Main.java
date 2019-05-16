@@ -1,7 +1,7 @@
 package ladderGame.controller;
 
 import ladderGame.domain.LadderGame;
-import ladderGame.domain.Result;
+import ladderGame.domain.LadderGameResult;
 import ladderGame.domain.User;
 import ladderGame.util.StringUtil;
 import ladderGame.view.InputView;
@@ -27,10 +27,10 @@ public class Main {
         OutputView.outputLadder(ladderGame.getLadder());
         OutputView.outputResults(results);
 
-        Result result = new Result(results, users);
+        LadderGameResult ladderResult = new LadderGameResult(results, users);
         String name = InputView.inputName();
-        OutputView.outputResult(result.getResultByName(name));
-        OutputView.outputAll(result.getResultMap());
+        OutputView.outputResult(ladderResult.getResultByName(name));
+        OutputView.outputAll(ladderResult.getResultMap());
     }
 
     private static List<User> createUser(String inputNames) {

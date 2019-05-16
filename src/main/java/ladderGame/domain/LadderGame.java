@@ -27,13 +27,13 @@ public class LadderGame {
 
     public void startLadderGame(List<User> users) {
         for (Floor floor : ladder) {
-            canUserMove(floor, users);
+            floorMove(floor, users);
         }
     }
 
-    private void canUserMove(Floor floor, List<User> users) {
+    private void floorMove(Floor floor, List<User> users) {
         for (User user : users) {
-            user.canMove(floor);
+            user.move(floor);
         }
     }
 
