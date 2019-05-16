@@ -82,6 +82,4 @@ public class LadderGame {
         OutputView.printLadder(ladder);
         OutputView.printRewards(rewards);
     }
-
-
 }
