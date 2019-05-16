@@ -22,25 +22,43 @@
 #사다리 게임 테스트 목록
 -----
 * player
-    * 이름 길이 테스트 1 <= player.name <= 5
+    * [x] 이름 길이 테스트 1 <= player.name <= 5
         * "aaaaaa" -> 예외 던지기
         * "" -> 예외 던지기
         * "aaaaa" -> 객체 생성
-
-* drawResult
-    * 결과 길이 테스트 1 <= drawResult.result
+ 
+* DrawResult
+    * [x] 결과 길이 테스트 1 <= drawResult.result
         * "" -> 예외 던지기
 
-* Line
-    * 사람수가 0명 이하 일 때 테스트
-        * new Line(0) -> 예외던지기
-
 * Ladder
-    * 라인 수가 0 이하 일 떄 테스트
-        * new Line(1,0) -> 예외던지기
+    * [ ] 생성 시 들어온 라인들의 길이가 다를 때 테스트
+    * [ ] 라인 수가 0 이하 일 때 테스트  
+    //  사다리 타기 DrawLadder : make List<Record> log
+    * [ ] 예상대로 레코드를 남기는가?
+        * [[T,F], [F,T]] -> [[0,1,2],[1,0,2],[1,2,0]] 
     
+* Record
+    *
+
+* Line
+    * ~~사람수가 0명 이하 일 때 테스트~~
+        * ~~new Line(0) -> 예외던지기~~
+    // DrawLine : Record -> Record
+    * [x] 참인 points에 대해 위치를 잘 바꿔주는가 테스트
+        * [0,1,2], [T,T] -> 예외
+        * [0,1,2], [F,T] -> [0,2,1]
+        * [0,1,2], [T,F] -> [1,0,2]
+        * [0,1,2], [F,F] -> [0,1,2]
+                                
+* LadderGame
+    * 입력인자의 길이가 같은지 테스트
+        * 사람수 == 라인 길이 + 1 == 결과수(>1)
+    * play() -> GameResult
+        *
 * GameResult
-    * 동명이인_테스트
+    * [ ] 동명이인_테스트
+       
 
 
 
