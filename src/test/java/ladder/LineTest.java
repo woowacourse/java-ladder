@@ -2,7 +2,6 @@ package ladder;
 
 import ladder.model.Line;
 import ladder.model.Player;
-import ladder.model.Players;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

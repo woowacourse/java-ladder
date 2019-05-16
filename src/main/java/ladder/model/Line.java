@@ -68,13 +68,13 @@ public class Line {
         return this.points.get(index);
     }
 
-    public void moveOneLine(Players players) {
-        for (Player player : players.getAllPlayers()) {
+    void moveOneLine(Players players) {
+        for (Player player : players) {
             this.move(player);
         }
     }
 
-    private void move(Player player) {
+    public void move(Player player) {
         int position = player.getPosition();
         if (position > 0 && points.get(position - 1)) {
             player.moveLeft();

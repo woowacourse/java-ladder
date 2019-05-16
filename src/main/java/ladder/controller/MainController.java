@@ -12,14 +12,24 @@ public class MainController {
         String[] scannedNames = InputView.inputNames();
         String[] scannedLadderGameResult = InputView.inputLadderGameResult();
         int scannedHeight = InputView.inputLadderHeight();
-        String scannedDesiredResult = InputView.inputDesiredResult();
 
         Players players = new Players(scannedNames);
         Ladder ladder = new Ladder(scannedHeight, scannedNames.length);
-        LadderGameResult ladderGameResult = new LadderGameResult(scannedLadderGameResult,scannedNames.length);
+        LadderGameResult ladderGameResult = new LadderGameResult(scannedLadderGameResult, scannedNames.length);
         OutputView.printResultOfLadder(players, ladder, ladderGameResult);
-        LadderGame ladderGame=new LadderGame(players,ladder,ladderGameResult);
-        ladderGame.movePlayers();
-        System.out.println(ladderGame.getAllResult());
+
+        LadderGame ladderGame = new LadderGame(players, ladder, ladderGameResult);
+        ladderGame.playGame();
+
+        playQnA(ladderGame);
+    }
+
+    private static void playQnA(LadderGame ladderGame) {
+        String scannedDesiredResult = InputView.inputDesiredResult();
+        while (!scannedDesiredResult.equals("all")) {
+            OutputView.printResultOfExecution(ladderGame.getResultByName(scannedDesiredResult));
+            scannedDesiredResult = InputView.inputDesiredResult();
+        }
+        OutputView.printResultOfExecution(ladderGame.getAllResult());
     }
 }

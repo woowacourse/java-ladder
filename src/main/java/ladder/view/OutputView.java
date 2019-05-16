@@ -13,4 +13,8 @@ public class OutputView {
         System.out.println(ladderGameResult.toString());
     }
 
+    public static void printResultOfExecution(String executionResult){
+        System.out.println("실행 결과");
+        System.out.println(executionResult);
+    }
 }

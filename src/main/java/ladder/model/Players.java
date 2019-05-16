@@ -2,7 +2,7 @@ package ladder.model;
 
 import java.util.*;
 
-public class Players {
+public class Players implements Iterable<Player> {
     private static final int MIN_PLAYER_NUMBER = 2;
     private List<Player> players = new ArrayList<>();
 
@@ -14,10 +14,6 @@ public class Players {
             throw new IllegalArgumentException("중복된 이름이 있습니다.");
         }
         this.playersInit(names);
-    }
-
-    public List<Player> getAllPlayers() {
-        return players;
     }
 
     private boolean isDuplicatedName(String[] names) {
@@ -48,5 +44,10 @@ public class Players {
         StringBuilder stringBuilder = new StringBuilder();
         players.forEach(player -> stringBuilder.append(String.format("%-6s", player)));
         return stringBuilder.toString();
+    }
+
+    @Override
+    public Iterator<Player> iterator() {
+        return players.iterator();
     }
 }
