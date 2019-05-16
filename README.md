@@ -22,6 +22,10 @@
 4. Person
     - 사람의 이름을 저장하는 name
     - 사람의 이름은 5자 이내인지 검사
+5. Result
+    - 사다리 게임의 결과를 저장하는 results
+6. LadderGame
+    - 사다리 게임을 진행하는 기능
 
 ### Util
 1. NamesMaker
