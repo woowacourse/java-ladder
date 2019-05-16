@@ -23,8 +23,6 @@ public class ResultBuilder {
                 .collect(Collectors.toList());
 
         return new Results(results);
-
-
     }
 
     @Override

@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.result;
 
 import laddergame.domain.result.ResultBuilder;
 import laddergame.domain.result.Results;

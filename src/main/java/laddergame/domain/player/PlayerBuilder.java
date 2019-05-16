@@ -8,26 +8,28 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class PlayerMaker {
+public class PlayerBuilder {
     private final String names;
 
-    public PlayerMaker(final String names) {
+    public PlayerBuilder(final String names) {
         this.names = names;
     }
 
-    public List<Player> makePlayers() {
+    public Players makePlayers() {
         inputValidator.validateInput(names);
 
-        return Arrays.asList(names.split(Constant.COMMA)).stream()
+        List<Player> players = Arrays.asList(names.split(Constant.COMMA)).stream()
                 .map(Player::new)
                 .collect(Collectors.toList());
+
+        return new Players(players);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PlayerMaker)) return false;
-        PlayerMaker that = (PlayerMaker) o;
+        if (!(o instanceof PlayerBuilder)) return false;
+        PlayerBuilder that = (PlayerBuilder) o;
         return Objects.equals(names, that.names);
     }
 

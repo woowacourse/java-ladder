@@ -1,9 +1,8 @@
 package laddergame.view;
 
 import laddergame.domain.Ladder;
-import laddergame.domain.player.Player;
-
-import java.util.List;
+import laddergame.domain.player.Players;
+import laddergame.domain.result.Results;
 
 public class OutputView {
 
@@ -11,16 +10,16 @@ public class OutputView {
 
     }
 
-    public static void showResult(List<Player> players, Ladder ladder) {
+    public static void showPlayers(Players players){
         System.out.println("실행 결과");
-        showPlayers(players);
+        System.out.println(players);
+    }
+
+    public static void showLadder(Ladder ladder){
         System.out.println(ladder);
     }
 
-    private static void showPlayers(List<Player> players) {
-        for (Player player : players) {
-            System.out.print(player + " ");
-        }
-        System.out.println();
+    public static void showResult(Results results) {
+        System.out.println(results);
     }
 }
