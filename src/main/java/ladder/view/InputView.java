@@ -22,7 +22,7 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static String inputResult() {
+    public static String inputNameForResult() {
         System.out.println(UserOutput.DEMAND_PLAYER_NAME_FOR_RESULT.getOutputMessage());
         return scanner.nextLine();
     }
