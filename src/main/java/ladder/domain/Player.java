@@ -35,7 +35,7 @@ public class Player {
     }
 
     void goDown(final Line line) {
-        position += line.getDirection(position).getValue();
+        position += line.getDirection(position);
     }
 
     public String getName() {

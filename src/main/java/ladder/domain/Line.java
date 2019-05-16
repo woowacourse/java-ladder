@@ -5,6 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
+    static final int LEFT = -1;
+    static final int STRAIGHT = 0;
+    static final int RIGHT = 1;
+
     private final List<Boolean> points;
 
     public Line(final List<Boolean> points) {
@@ -19,14 +23,14 @@ public class Line {
         return Collections.indexOfSubList(points, Arrays.asList(true, true)) != -1;
     }
 
-    Direction getDirection(int position) {
+    int getDirection(int position) {
         if (position != 0 && points.get(position - 1)) {
-            return Direction.LEFT;
+            return LEFT;
         }
         if (position != points.size() && points.get(position)) {
-            return Direction.RIGHT;
+            return RIGHT;
         }
-        return Direction.STRAIGHT;
+        return STRAIGHT;
     }
 
     public List<Boolean> getPoints() {
