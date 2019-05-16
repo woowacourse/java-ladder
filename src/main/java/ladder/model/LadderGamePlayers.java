@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 public class LadderGamePlayers {
 
+    private static final int EXIST_VALUE = 1;
+
     private List<LadderPlayer> ladderPlayers;
 
     public LadderGamePlayers(List<LadderPlayer> players) {
@@ -21,5 +23,9 @@ public class LadderGamePlayers {
 
     public List<String> getAllPlayerNames() {
         return ladderPlayers.stream().map(LadderPlayer::getPlayerName).collect(Collectors.toList());
+    }
+
+    public boolean existName(String targetName) {
+        return ladderPlayers.stream().filter(ladderPlayer -> ladderPlayer.getPlayerName().equals(targetName)).count() == EXIST_VALUE;
     }
 }

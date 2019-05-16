@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
+    private static final String ENTER = "\n";
     private static final Scanner scanner = new Scanner(System.in);
     private static final String DELIMITER = ",";
 
@@ -28,7 +29,7 @@ public class InputView {
     }
 
     public static int makeLadderHeight() {
-        System.out.println(MessageConstant.INPUT_LADDER_HEIGHT);
+        System.out.println(ENTER + MessageConstant.INPUT_LADDER_HEIGHT);
         return makeLadderHeight(scanner.nextLine());
     }
 
@@ -38,12 +39,17 @@ public class InputView {
     }
 
     public static List<LadderGoal> makeLadderGoals(int numOfPlayers) {
-        System.out.println(MessageConstant.INPUT_LADDER_GOAL_NAME);
+        System.out.println(ENTER + MessageConstant.INPUT_LADDER_GOAL_NAME);
         return makeLadderGoals(scanner.nextLine().split(DELIMITER), numOfPlayers);
     }
 
     public static List<LadderGoal> makeLadderGoals(String[] inputs, int numOfPlayers) {
         InputLadderGoalValidator.checkLadderGoalInputAccuracy(inputs, numOfPlayers);
         return Arrays.stream(inputs).map(String::trim).map(LadderGoal::new).collect(Collectors.toList());
+    }
+
+    public static String findName(){
+        System.out.println(ENTER + MessageConstant.INPUT_FIND_NAME);
+        return scanner.nextLine();
     }
 }

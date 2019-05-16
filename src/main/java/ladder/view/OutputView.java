@@ -10,7 +10,7 @@ public class OutputView {
     public static final String ENTER = "\n";
 
     public static void showLadderGame(List<String> names, Ladder ladder, List<String> goalNames) {
-        System.out.println(MessageConstant.OUPUT_RESULT);
+        System.out.println(ENTER + MessageConstant.OUTPUT_LADDER_RESULT + ENTER);
         showPlayers(names);
         showLadder(ladder);
         showGoals(goalNames);
@@ -20,15 +20,22 @@ public class OutputView {
         for (String name : names) {
             System.out.print(name);
         }
+        System.out.println();
     }
 
     private static void showLadder(Ladder ladder) {
-        System.out.println(ENTER + ladder);
+        System.out.println(ladder);
     }
 
     private static void showGoals(List<String> goalNames) {
         for (String goal : goalNames) {
             System.out.print(goal);
         }
+        System.out.println();
+    }
+
+    public static void showFoundGameResult(String foundGoal){
+        System.out.println(ENTER + MessageConstant.OUTPUT_RESULT);
+        System.out.println(foundGoal);
     }
 }

@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.model.LadderGameResult;
 import ladder.model.LadderGoal;
 import ladder.model.LadderPlayer;
 import org.junit.jupiter.api.Test;
@@ -82,4 +83,5 @@ public class InputViewTest {
             InputView.makeLadderGoals(goalNames,4);
         });
     }
+
 }
