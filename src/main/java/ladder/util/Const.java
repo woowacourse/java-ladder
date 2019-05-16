@@ -13,4 +13,5 @@ public class Const {
     public static final String EX_PLAYER_COUNT = "참여자는 한명 이상이어야합니다.";
     public static final String LINE_STATE_FALSE = "     |";
     public static final String LINE_STATE_TRUE = "-----|";
+    public static final String RUN_EX_PLAYER_POSITION = "참여자가 사다리 위치를 벗어났습니다.";
 }

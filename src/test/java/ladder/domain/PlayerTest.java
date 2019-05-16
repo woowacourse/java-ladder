@@ -15,28 +15,28 @@ public class PlayerTest {
     @Test
     void 참여자_생성_이름_예외처리() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Player player = new Player("123456");
+            new Player("123456");
         });
     }
 
     @Test
     void 참여자_생성_이름_빈값인경우() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Player player = new Player("");
+            new Player("");
         });
     }
 
     @Test
     void 참여자_생성_이름_스페이스인경우() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Player player = new Player(" ");
+            new Player(" ");
         });
     }
 
     @Test
     void 참여자_생성_이름_null경우() {
         assertThrows(RuntimeException.class, () -> {
-            Player player = new Player(null);
+            new Player(null);
         });
     }
 
@@ -44,6 +44,13 @@ public class PlayerTest {
     void 참여자_위치_필드_추가() {
         Player player = new Player("abc", 1);
         assertThat(player).isEqualTo(new Player("abc", 1));
+    }
+
+    @Test
+    void 참여자_위치_필드_추가_0_예외() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Player("abv",-1);
+        });
     }
 
     @Test

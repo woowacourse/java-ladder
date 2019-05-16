@@ -37,7 +37,14 @@ public class Player {
      */
     public Player(String name, int position) {
         this.name = Rule.rulePlayerNameLength(name);
-        this.position = position;
+        this.position = checkPosition(position);
+    }
+
+    private int checkPosition(int position) {
+        if (position < Const.ZERO) {
+            throw new IllegalArgumentException(Const.RUN_EX_PLAYER_POSITION);
+        }
+        return position;
     }
 
     /**

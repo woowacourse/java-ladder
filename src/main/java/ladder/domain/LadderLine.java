@@ -40,6 +40,16 @@ public class LadderLine {
         return Const.LINE_STATE_FALSE;
     }
 
+    public int getNextPosition(int index) {
+        if (lineStates.get(index)) {
+            return -1;
+        }
+        if (index != lineStates.size() - 1 && lineStates.get(index + 1)) {
+            return +1;
+        }
+        return 0;
+    }
+
     boolean isMatchLineState(int i) {
         return this.lineStates.get(i);
     }
@@ -65,15 +75,5 @@ public class LadderLine {
     @Override
     public int hashCode() {
         return Objects.hash(playerCount);
-    }
-
-    public int getNextPosition(int index) {
-        if (lineStates.get(index)) {
-            return -1;
-        }
-        if (index != lineStates.size() - 1 && lineStates.get(index + 1)) {
-            return +1;
-        }
-        return 0;
     }
 }
