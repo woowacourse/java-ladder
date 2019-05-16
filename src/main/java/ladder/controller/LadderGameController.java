@@ -9,7 +9,8 @@ import java.util.List;
 public class LadderGameController {
     public void run() {
         GamePlayers gamePlayers = new GamePlayers(generatePlayers(inputNames()));
-        LadderGame ladderGame = new LadderGame(inputHeight(), gamePlayers);
+        PlayerRewards playerRewards = generateRewards(intputRewards());
+        LadderGame ladderGame = new LadderGame(inputHeight(), gamePlayers, playerRewards);
         OutputConsoleView.printLadderGame(ladderGame);
     }
 
@@ -23,5 +24,13 @@ public class LadderGameController {
 
     private int inputHeight() {
         return InputConsoleView.inputHeight();
+    }
+
+    private String intputRewards() {
+        return InputConsoleView.inputRewards();
+    }
+
+    private PlayerRewards generateRewards(String results) {
+        return new PlayerRewardsGenerator(results).generate();
     }
 }

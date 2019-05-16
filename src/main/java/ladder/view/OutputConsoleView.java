@@ -15,6 +15,7 @@ public class OutputConsoleView {
     public static void printLadderGame(LadderGame ladderGame) {
         printNames(ladderGame.getPlayers());
         printLadder(ladderGame.getLadder());
+        printRewards(ladderGame.getPlayerRewards());
     }
 
     private static void printNames(GamePlayers gamePlayers) {
@@ -57,5 +58,12 @@ public class OutputConsoleView {
     private static void printSubLines(StringBuilder sb, Boolean subLine) {
         sb.append(VERTICAL_LINE);
         sb.append(subLine ? SUB_LINE_TRUE : SUB_LINE_FALSE);
+    }
+
+    private static void printRewards(PlayerRewards results) {
+        for (int i = 0; i < results.size(); i++) {
+            System.out.print(results.getReward(i)+"   ");
+        }
+        System.out.println();
     }
 }

@@ -3,12 +3,12 @@ package ladder.domain;
 import java.util.Map;
 import java.util.Objects;
 
-public final class GameResult {
-    private final Map<Integer, String> results;
+public final class PlayerRewards {
+    private final Map<Integer, String> rewards;
 
-    public GameResult(final Map<Integer, String> results) {
-        validateSize(results);
-        this.results = results;
+    public PlayerRewards(final Map<Integer, String> rewards) {
+        validateSize(rewards);
+        this.rewards = rewards;
     }
 
     private void validateSize(Map<Integer, String> results) {
@@ -17,16 +17,24 @@ public final class GameResult {
         }
     }
 
+    public int size() {
+        return rewards.size();
+    }
+
+    public String getReward(int num) {
+        return rewards.get(num);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GameResult that = (GameResult) o;
-        return Objects.equals(results, that.results);
+        PlayerRewards that = (PlayerRewards) o;
+        return Objects.equals(rewards, that.rewards);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(results);
+        return Objects.hash(rewards);
     }
 }

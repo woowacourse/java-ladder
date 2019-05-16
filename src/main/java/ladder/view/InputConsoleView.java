@@ -12,4 +12,9 @@ public class InputConsoleView {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return new Scanner(System.in).nextInt();
     }
+
+    public static String inputRewards() {
+        System.out.println("실행 결과를 입력하세여. (결과를 쉼표(,)로 구분하세요)");
+        return new Scanner(System.in).nextLine();
+    }
 }
