@@ -11,10 +11,10 @@ public class Result {
     private Map<String, String> resultMap;
 
     public Result(List<String> result, List<User> users) {
-        this.resultMap = createRsultMap(result, users);
+        this.resultMap = createResultMap(result, users);
     }
 
-    private Map<String, String> createRsultMap(List<String> result, List<User> users) {
+    private Map<String, String> createResultMap(List<String> result, List<User> users) {
         Map<String, String> resultMap = new HashMap<>();
 
         for (User user : users) {
@@ -27,8 +27,8 @@ public class Result {
         return resultMap.get(name);
     }
 
-    public String getResultAll() {
-        return resultMap.toString();
+    public Map<String, String> getResultMap() {
+        return resultMap;
     }
 
 }

@@ -30,7 +30,7 @@ public class Main {
         Result result = new Result(results, users);
         String name = InputView.inputName();
         OutputView.outputResult(result.getResultByName(name));
-        OutputView.outputAll(users, results);
+        OutputView.outputAll(result.getResultMap());
     }
 
     private static List<User> createUser(String inputNames) {

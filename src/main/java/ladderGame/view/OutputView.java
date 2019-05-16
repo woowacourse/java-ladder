@@ -1,6 +1,7 @@
 package ladderGame.view;
 
 import java.util.List;
+import java.util.Map;
 
 import ladderGame.domain.Floor;
 import ladderGame.domain.User;
@@ -47,9 +48,10 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public static void outputAll(List<User> users, List<String> results) {
-        for (User user : users) {
-            System.out.println(user.getName() + " : " + results.get(user.getPosition()));
+    public static void outputAll(Map<String, String> resultMap) {
+        for(String key : resultMap.keySet()){
+            String value = resultMap.get(key);
+            System.out.println(key+" : "+value);
         }
     }
 }
