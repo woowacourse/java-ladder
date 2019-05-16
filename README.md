@@ -46,7 +46,7 @@
 ## 리팩토링
 - (계산기) PositiveNumber 클래스를 만들어 사다리 높이를 입력받는다.
 - ~~불필요한 공백 라인을 지운다.~~
-- Player의 name이 null 인지 체크한다.
+- ~~Player의 name이 null 인지 체크한다.~~
 - Player의 position 값을 검증한다.
 - Direction enum 을 쓰지 말고 구현한다.
 - (true,true), (true,false) 와 같이 두 개의 불리언 값을 객체로 만들면 어떨까?

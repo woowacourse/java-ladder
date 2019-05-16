@@ -14,4 +14,7 @@ public class PlayerTest {
     void 플레이어_이름_글자수_미만_테스트() {
         assertThrows(IllegalArgumentException.class, () -> new Player("", 0));
     }
+
+    @Test
+    void 플레이어_이름_널_테스트() { assertThrows(IllegalArgumentException.class, () -> new Player(null, 0)); }
 }

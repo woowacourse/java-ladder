@@ -10,9 +10,16 @@ public class Player {
     private int position;
 
     public Player(final String name, final int position) {
+        validateNameNotNull(name);
         this.name = name.trim();
         validateNameLength();
         this.position = position;
+    }
+
+    private void validateNameNotNull(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("이름은 널(null)일 수 없습니다.");
+        }
     }
 
     private void validateNameLength() {
