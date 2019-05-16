@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 public class LadderController {
     private static final String QUERY_TOKEN_DELIMITER = ",";
+    private static final String QUERY_ALL = "all";
 
     /**
      * @param participants participants list
@@ -84,7 +85,7 @@ public class LadderController {
         if (tokens.isEmpty()) {
             return false;
         }
-        return tokens.size() == 1 && tokens.get(0).toLowerCase().equals("all");
+        return tokens.size() == 1 && tokens.get(0).toLowerCase().equals(QUERY_ALL);
     }
 
     private static <D> boolean checkIfAllTokensMatch(LadderResult<String, D> result, List<String> tokens) {
