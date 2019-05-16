@@ -31,7 +31,6 @@ public class LadderGame {
 
     private static int getHeight() {
         try {
-
             return Integer.parseInt(InputView.inputHeight());
         } catch (NumberFormatException e) {
             System.out.println("숫자를 입력해야 합니다.");

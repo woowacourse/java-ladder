@@ -10,7 +10,7 @@ public class UserSetCrossbarGenerator implements CrossbarGenerator {
     }
 
     @Override
-    public Crossbars generateCrossbars() {
-        return new Crossbars(setCrossbars);
+    public Crosspoints generateCrossbars() {
+        return new Crosspoints(setCrossbars);
     }
 }

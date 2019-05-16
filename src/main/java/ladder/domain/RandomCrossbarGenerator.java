@@ -16,9 +16,9 @@ public class RandomCrossbarGenerator implements CrossbarGenerator {
     }
 
     @Override
-    public Crossbars generateCrossbars() {
+    public Crosspoints generateCrossbars() {
         setCrossbars();
-        return new Crossbars(crossbars);
+        return new Crosspoints(crossbars);
     }
 
     private void setCrossbars() {

@@ -4,26 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Crossbars {
+public class Crosspoints {
     private static final int FIRST_DUMMY_INDEX = 0;
     private static final int LAST_DUMMY_SPACE = 1;
     private static final int NEXT_INDEX = 1;
     private static final int MINIMUM_SIZE = 2;
 
-    private List<Boolean> crossbars;
     private List<Crosspoint> crosspoints = new ArrayList<>();
 
-    Crossbars(List<Boolean> crossbars) {
+    Crosspoints(List<Boolean> crossbars) {
         validateSize(crossbars);
         validateFirstAndLastAreDummy(crossbars);
-        this.crossbars = crossbars;
         for (int i = 0; i < crossbars.size() - 1; i++) {
             crosspoints.add(new Crosspoint(crossbars.get(i), crossbars.get(i + NEXT_INDEX)));
         }
-    }
-
-    public List<Boolean> getCrossbars() {
-        return crossbars;
     }
 
     private void validateSize(List<Boolean> crossbars) {
@@ -43,16 +37,25 @@ public class Crossbars {
                 .answerResultPositionOf(positionOfPlayer);
     }
 
+    public List<Boolean> getRightCrossbars() {
+        List<Boolean> rightCrossbars = new ArrayList<>();
+
+        for (Crosspoint crosspoint : crosspoints) {
+            rightCrossbars.add(crosspoint.hasRightCrossbar());
+        }
+        return rightCrossbars;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Crossbars crossbars1 = (Crossbars) o;
-        return Objects.equals(crossbars, crossbars1.crossbars);
+        Crosspoints that = (Crosspoints) o;
+        return Objects.equals(crosspoints, that.crosspoints);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(crossbars);
+        return Objects.hash(crosspoints);
     }
 }

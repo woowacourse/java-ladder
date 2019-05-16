@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class Crosspoint {
     private static final int ONE_STEP_LEFT = -1;
     private static final int ONE_STEP_RIGHT = 1;
@@ -20,5 +22,22 @@ public class Crosspoint {
 
     public int answerResultPositionOf(int positionOfPlayer) {
         return positionOfPlayer + movingVector;
+    }
+
+    public boolean hasRightCrossbar() {
+        return movingVector == ONE_STEP_RIGHT;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Crosspoint that = (Crosspoint) o;
+        return movingVector == that.movingVector;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(movingVector);
     }
 }

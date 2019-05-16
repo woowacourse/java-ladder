@@ -22,7 +22,7 @@
    * OutputView의 printCrossbars 리팩토링
    * Ladder에서 foreach getter사용하지 않고 하는 방법?
    * Ladder 클래스 field명 변경
-   * Ladddr Getter 이름 변경
+   * Ladder Getter 이름 변경
    * Ladder Game 클래스의 LAST_DMMY_SPACE 리네임
 + 2단계
    * 실행 결과를 입력 받아야합니다.
@@ -31,14 +31,13 @@
      - 공백, null을 입력받으면 안됩니다.
    * 결과를 보고 싶은 사람을 입력받으면 결과를 출력해줘야 합니다.
      - all을 입력하면 경우에는 전부 다 출력합니다.
-   * 이동 방향을 알려주는 corsspoints를 구현해야 합니다.
 
 ## Done
    * player 이름이 공백, null일 때 예외 처리
    * 입력받은 사람의 수에 따라서 crossbars를 만들어야 합니다.
      - crossbars에는 연속된 crossbar가 있어서는 안 됩니다.
    * 랜덤한 crossbar 리스트를 생성해 Crossbars 객체를 만들어주는 기능
-   * crossbars 리스트를 입력받아 Ladder를 생성합니다.
+   * crosspoints 리스트를 입력받아 Ladder를 생성합니다.
      - crossbars의 갯수는 1 이상이여야 합니다.
    * 참여할 사람 이름 길이는 최대 5글자까지 부여할 수 있습니다.
    * 참여할 사람 이름을 입력받아야 합니다.
@@ -47,6 +46,7 @@
    * crossbar는 '-' 5개로 구성되어 있습니다.
    * all이라는 이름은 존재하면 안됩니다.
    * crossbars가 한 칸을 지났을 때 바뀌는 위치를 알려주는 기능을 추가하였습니다.
+   * 이동 방향을 알려주는 corsspoints를 구현해야 합니다.
 
 
 ## 우아한테크코스 코드리뷰

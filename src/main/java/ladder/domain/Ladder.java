@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
-    private List<Crossbars> ladder = new ArrayList<>();
+    private List<Crosspoints> ladder = new ArrayList<>();
 
     public Ladder(int height, CrossbarGenerator crossbarGenerator) {
         validateHeight(height);
@@ -20,7 +20,7 @@ public class Ladder {
         }
     }
 
-    public List<Crossbars> getLadder() {
+    public List<Crosspoints> getLadder() {
         return ladder;
     }
 

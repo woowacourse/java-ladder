@@ -13,6 +13,6 @@ public class UserSetCrossbarGeneratorTest {
         List<Boolean> userSetCrossbars = Arrays.asList(false, true, false, true, false);
         UserSetCrossbarGenerator testGenerator = new UserSetCrossbarGenerator(userSetCrossbars);
 
-        assertThat(testGenerator.generateCrossbars()).isEqualTo(new Crossbars(userSetCrossbars));
+        assertThat(testGenerator.generateCrossbars()).isEqualTo(new Crosspoints(userSetCrossbars));
     }
 }
