@@ -1,138 +1,80 @@
 package ladder.domain;
 
-import ladder.util.Const;
-import ladder.util.Rule;
-import ladder.util.Util;
-
 import java.util.*;
 
+/**
+ * 사다리를 그려주는 클래스
+ * <br> 가로, 세로를 넣어준다.
+ * <br> Ladder ladder = new Ladder(5,4)
+ * <br> ladder.
+ */
 public class Ladder {
-    private List<Player> players;
-    private final List<String> reward;
-    private final int depth;
-    private List<LadderLine> ladderLines;
-    private Map<String, String> result;
+    List<LadderLine> ladder;
+    List<Integer> result;
 
-    public Ladder(String name) {
-        this(name, Const.MIN_LINE_COUNT);
+    /**
+     * 생성자
+     *
+     * @param row
+     * @param depth
+     */
+    public Ladder(int row, int depth) {
+        this.ladder = setLadder(row, depth);
+        this.result = setResult(row, depth);
     }
 
-    public Ladder(String name, int depth) {
-        this(name, name, depth);
+    /**
+     * 사다리 결과값 반환.
+     *
+     * @return
+     */
+    public List<Integer> getResult() {
+        return this.result;
     }
 
-    public Ladder(String name, String reward, int depth) {
-        this.players = regePlayers(name);
-        this.reward = regeReward(reward);
-        this.depth = Rule.ruleLadderDepthRange(depth);
-        this.ladderLines = setLadderLines();
-    }
-
-    private List<String> regeReward(String reward) {
-        List<String> rewards = Arrays.asList(Rule.ruleInputReward(reward, players.size()).split(","));
-        return rewards;
-    }
-
-    private List<Player> regePlayers(String name) {
-        List<Player> players = new ArrayList<>();
-        List<String> names = Arrays.asList(Rule.ruleInputPlayerNames(name).split(","));
-        for (int i = 0; i < names.size(); i++) {
-            players.add(new Player(names.get(i), i));
-        }
-        return players;
-    }
-
-    private List<LadderLine> setLadderLines() {
-        List<LadderLine> ladderLines = new ArrayList<>();
-        for (int i = 0; i < depth; i++) {
-            ladderLines.add(new LadderLine(players.size()));
-        }
-        return ladderLines;
-    }
-
-    public String getResultLadderLines() {
+    /**
+     * 사다리 모양 반환
+     *
+     * @return
+     */
+    public String getLadderShape() {
         StringJoiner stringJoiner = new StringJoiner("\n");
-        for (LadderLine line : ladderLines) {
-            stringJoiner.add(line.toString());
+        for (LadderLine ladderLine : ladder) {
+            stringJoiner.add(ladderLine.toString());
         }
         return stringJoiner.toString();
     }
 
-    public String getResultLadderNames() {
-        List<String> names = getNames();
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String name : names) {
-            stringBuilder.append(name);
-        }
-        return stringBuilder.toString();
-    }
-
-    public String getResultLadderRewards() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String s : reward) {
-            stringBuilder.append(Util.formatAlignLeft(s));
-        }
-        return stringBuilder.toString();
-    }
-
-    public String getResultLadderRewards(String name) {
-        if (name.equals("all")) {
-            return getResultAllRewards();
-        }
-        return result.get(name);
-    }
-
-    private String getResultAllRewards() {
-        StringJoiner stringJoiner = new StringJoiner("\n");
-        for (Map.Entry<String, String> stringStringEntry : result.entrySet()) {
-            stringJoiner.add(stringStringEntry.getKey() + " : " + stringStringEntry.getValue());
-        }
-        return stringJoiner.toString();
-    }
-
-    public void playRadder() {
+    private List<LadderLine> setLadder(int row, int depth) {
+        List<LadderLine> ladder = new LinkedList<>();
         for (int i = 0; i < depth; i++) {
-            moveRadderLIne(i);
+            ladder.add(new LadderLine(row));
         }
-        result = setLadderResult();
+        return ladder;
     }
 
-    private Map<String, String> setLadderResult() {
-        Map<String, String> result = new LinkedHashMap<>();
-        for (Player player : players) {
-            result.put(player.getName(),reward.get(player.getPosition()));
+    private List<Integer> setResult(int row, int depth) {
+        List<Integer> starter = setStater(row);
+        for (int i = 0; i < depth; i++) {
+            starter = moveRadderLIne(i, starter);
         }
-        return result;
+        return starter;
     }
 
-    private void moveRadderLIne(int depth) {
-        for (Player player : players) {
-            if (ladderLines.get(depth).getNextPosition(player.getPosition()) > Const.ZERO) {
-                player.moveRightPosition();
-                continue;
-            }
-            if (ladderLines.get(depth).getNextPosition(player.getPosition()) < Const.ZERO) {
-                player.moveLeftPosition();
-                continue;
-            }
+    private List<Integer> setStater(int row) {
+        List<Integer> stater = new ArrayList<>();
+        for (int i = 0; i < row; i++) {
+            stater.add(i);
         }
+        return stater;
     }
 
-    public int getPlayerPosition(String name) {
-        for (Player player : players) {
-            if (player.getName().equals(name)) {
-                return player.getPosition();
-            }
+    private List<Integer> moveRadderLIne(int depth, List<Integer> starter) {
+        for (int i = 0 ; i < starter.size() ; i++) {
+            int nowPosition = starter.get(i);
+            starter.set(i,nowPosition + ladder.get(depth).getNextPosition(nowPosition));
         }
-        throw new IllegalArgumentException("값이 잘못되었습니다.");
-    }
-
-    private List<String> getNames() {
-        List<String> names = new ArrayList<>();
-        for (Player player : players) {
-            names.add(Util.formatAlignRight(player.getName()));
-        }
-        return names;
+        return starter;
     }
 
     @Override
@@ -140,12 +82,12 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return depth == ladder.depth &&
-                Objects.equals(players, ladder.players);
+        return Objects.equals(this.ladder, ladder.ladder) &&
+                Objects.equals(result, ladder.result);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(players, depth);
+        return Objects.hash(ladder, result);
     }
 }

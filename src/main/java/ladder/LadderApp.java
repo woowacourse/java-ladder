@@ -1,12 +1,9 @@
 package ladder;
 
-import ladder.domain.Ladder;
+import ladder.domain.LadderResult;
 import ladder.util.Rule;
-import ladder.util.Util;
 import ladder.view.InputView;
 import ladder.view.OutputView;
-
-import java.util.Arrays;
 
 public class LadderApp {
 
@@ -14,28 +11,11 @@ public class LadderApp {
         String names = inputPlayerNames(InputView.inputPlayerNames());
         String rewards = InputRewards(InputView.inputRewards(), names.split(",").length);
         int depth = inputLadderDepth(InputView.inputLadderDepth());
-        Ladder ladder = new Ladder(names, rewards, depth);
-        ladder.playRadder();
-        OutputView.outputLadder(ladder.getResultLadderNames(), ladder.getResultLadderLines(), ladder.getResultLadderRewards());
-        OutputView.outputLadderReward(inputWantName(ladder.getResultLadderRewards(InputView.inputWantName()),ladder));
-    }
 
-    private static String inputWantName(String inputWantName, Ladder ladder) {
-        try {
-            return Rule.ruleInputWantName(inputWantName);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return inputWantName(ladder.getResultLadderRewards(InputView.inputWantName()), ladder);
-        }
-    }
+        LadderResult ladderResult = new LadderResult(names,rewards, depth);
 
-    private static String InputRewards(String inputRewards, int count) {
-        try {
-            return Rule.ruleInputReward(inputRewards, count);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return InputRewards(InputView.inputRewards(), count);
-        }
+        OutputView.outputLadder(names, ladderResult.getLadderShape(), rewards);
+        OutputView.outputLadderReward(inputWantName(ladderResult.getResultOfName(InputView.inputWantName()),ladderResult));
     }
 
     private static String inputPlayerNames(String names) {
@@ -53,6 +33,24 @@ public class LadderApp {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return inputLadderDepth(InputView.inputLadderDepth());
+        }
+    }
+
+    private static String InputRewards(String inputRewards, int count) {
+        try {
+            return Rule.ruleInputReward(inputRewards, count);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return InputRewards(InputView.inputRewards(), count);
+        }
+    }
+
+    private static String inputWantName(String inputWantName, LadderResult ladderResult) {
+        try {
+            return Rule.ruleInputWantName(inputWantName);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return inputWantName(ladderResult.getResultOfName(InputView.inputWantName()), ladderResult);
         }
     }
 }

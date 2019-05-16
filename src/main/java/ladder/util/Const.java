@@ -21,4 +21,5 @@ public class Const {
     public static final String INPUT_WANT_NAME = "결과를 보고 싶은 사람은?";
     public static final String EX_WANT_NAME = "없는 이름입니다.";
     public static final String OUTPUT_RESULT = "실행 결과";
+    public static final String LADDERRESULT_GET_RESULT_ALL = "all";
 }
