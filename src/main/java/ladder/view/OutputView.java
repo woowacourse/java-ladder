@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.Ladder;
 import ladder.domain.LadderRow;
 import ladder.domain.LadderRules;
+import ladder.domain.PlayerResult;
 
 import java.util.List;
 
@@ -47,5 +48,21 @@ public class OutputView {
             return "-----";
         }
         return "     ";
+    }
+
+    public String result(PlayerResult playerResult) {
+        return playerResult.reward();
+
+    }
+
+    public String result(List<PlayerResult> playerResults) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (PlayerResult playerResult : playerResults) {
+            stringBuilder.append(playerResult.name());
+            stringBuilder.append(" : ");
+            stringBuilder.append(playerResult.reward());
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
     }
 }

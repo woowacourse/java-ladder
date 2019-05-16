@@ -4,7 +4,7 @@ public class Player {
     private final String name;
     private final int position;
 
-    public Player(String name, int position) {
+    Player(final String name, final int position) {
         this.name = name;
         this.position = position;
     }
@@ -23,11 +23,11 @@ public class Player {
         return this.name.equals(another.name) && this.position == another.position;
     }
 
-    public String name() {
+    String name() {
         return this.name;
     }
 
-    public int position() {
+    int position() {
         return this.position;
     }
 }

@@ -5,13 +5,9 @@ import java.util.List;
 
 public class LadderRow {
     private static final int LAST_LINE = 1;
-    RandomGenerator randomGenerator;
+    private RandomGenerator randomGenerator;
     private List<Integer> row;
     private int width;
-
-    public LadderRow() {
-        this(0);
-    }
 
     public LadderRow(int width) {
         row = new ArrayList<>();
@@ -28,31 +24,15 @@ public class LadderRow {
         this.randomGenerator = randomGenerator;
     }
 
-
-    public int draw(boolean isDraw) {
-        if (isDraw) {
-            row.add(LadderRules.RIGHT.number());
-            row.add(LadderRules.LEFT.number());
-            return LadderRules.DRAW_MOVE.number();
-        }
-        row.add(LadderRules.SKIP.number());
-        return LadderRules.DRAW_SKIP.number();
-    }
-
-
-    public List<Integer> status() {
-        return row;
+    LadderRow getRow() {
+        makeRow();
+        return this;
     }
 
     public void makeRow() {
         while (this.width > 0) {
             makeLine();
         }
-    }
-
-    public LadderRow getRow() {
-        makeRow();
-        return this;
     }
 
     private void makeLine() {
@@ -63,15 +43,21 @@ public class LadderRow {
         this.width -= draw(getRandomFlag());
     }
 
-    public void setRandomGenerator(RandomGenerator randomGenerator) {
-        this.randomGenerator = randomGenerator;
+    private int draw(boolean isDraw) {
+        if (isDraw) {
+            row.add(LadderRules.RIGHT.number());
+            row.add(LadderRules.LEFT.number());
+            return LadderRules.DRAW_MOVE.number();
+        }
+        row.add(LadderRules.SKIP.number());
+        return LadderRules.DRAW_SKIP.number();
     }
 
     private boolean getRandomFlag() {
-//        Random random = new Random();
-//        String a = randomGenerator.getElement();
-//        return a.equals("1");
-//        return random.nextInt(2) == 1;
-        return randomGenerator.getElement() == LadderRules.RANDOM_DRAW.number();
+        return randomGenerator.number() == LadderRules.RANDOM_DRAW.number();
+    }
+
+    public List<Integer> status() {
+        return row;
     }
 }

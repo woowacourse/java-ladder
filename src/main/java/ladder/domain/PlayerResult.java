@@ -5,9 +5,17 @@ public class PlayerResult {
     private final String reward;
 
 
-    public PlayerResult(String name, String reward) {
+    public PlayerResult(final String name, final String reward) {
         this.name = name;
         this.reward = reward;
+    }
+
+    public String reward() {
+        return this.reward;
+    }
+
+    public String name() {
+        return this.name;
     }
 
     @Override

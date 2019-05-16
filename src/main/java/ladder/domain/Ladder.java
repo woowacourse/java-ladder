@@ -19,7 +19,7 @@ public class Ladder {
         row(randomGenerator);
     }
 
-    public LadderRow status(int index) {
+    LadderRow status(int index) {
         return rows.get(index);
     }
 
@@ -27,7 +27,7 @@ public class Ladder {
         return rows;
     }
 
-    public void row(RandomGenerator randomGenerator) {
+    void row(RandomGenerator randomGenerator) {
         for (int i = 0; i < this.height; i++) {
             rows.add(new LadderRow(this.width, randomGenerator).getRow());
         }

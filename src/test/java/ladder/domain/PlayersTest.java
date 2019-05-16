@@ -9,6 +9,18 @@ import static org.junit.Assert.assertEquals;
 
 public class PlayersTest {
 
+    @Test(expected = IllegalArgumentException.class)
+    public void 플레이어_필터_예외_테스트() {
+        Players players = new Players("a,b,c,d");
+        players.player("z");
+    }
+
+    @Test
+    public void 플레이어_필터_정상_테스트() {
+        Players players = new Players("a,b,c,d");
+        assertEquals(new Player("a", 0), players.player("a"));
+    }
+
     @Test
     public void 플레이어_생성_테스트() {
         Players players = new Players("a,b,c,d");

@@ -27,14 +27,6 @@ public class LadderResultTest {
         players = new Players("a,b,c,d");
     }
 
-
-    @Test
-    public void 결과_받기() {
-        LadderRewards rewards = new LadderRewards("꽝,5000,꽝,3000");
-        LadderResult ladderResult = new LadderResult(rewards);
-        assertEquals(rewards, ladderResult.reward());
-    }
-
     @Test
     public void 결과_확인() {
         PlayerResult playerResult = new PlayerResult("a", "꽝");

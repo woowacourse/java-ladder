@@ -14,10 +14,6 @@ public class LadderResult {
         this.rewards = reward;
     }
 
-    public LadderRewards reward() {
-        return rewards;
-    }
-
     public String run(Ladder ladder, int index) {
         List<LadderRow> rows = ladder.status();
         for (int j = 0; j < rows.size(); j++) {

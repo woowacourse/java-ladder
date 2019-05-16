@@ -8,7 +8,7 @@ public class RandomGenerator {
     private List<Integer> inputs;
     private int index;
 
-    public RandomGenerator() {
+    RandomGenerator() {
         index = 0;
     }
 
@@ -17,7 +17,7 @@ public class RandomGenerator {
         index = 0;
     }
 
-    public int getElement() {
+    int number() {
         if (inputs == null) {
             return new Random().nextInt(RANDOM_RANGE);
         }
