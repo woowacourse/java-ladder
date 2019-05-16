@@ -5,6 +5,7 @@ import ladder.domain.Ladder;
 import ladder.domain.Player;
 import ladder.domain.Result;
 import ladder.util.StringSplitUtils;
+import ladder.validator.Validator;
 import ladder.view.InputView;
 
 import java.util.*;

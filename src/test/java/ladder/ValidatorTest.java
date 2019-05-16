@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.Player;
+import ladder.validator.Validator;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

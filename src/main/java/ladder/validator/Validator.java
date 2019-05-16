@@ -1,4 +1,4 @@
-package ladder;
+package ladder.validator;
 
 import java.util.List;
 
