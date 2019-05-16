@@ -1,29 +1,46 @@
 package ladder.domain;
 
+import java.util.List;
+
 public class Player {
 	private String name;
-	private int initialPosition;
-	private int lastPosition;
+	private int position;
 
-	public Player(String name, int initialPosition, int lastPosition) {
+	public Player(String name, int position) {
 		this.name = name;
-		this.initialPosition = initialPosition;
-		this.lastPosition = lastPosition;
+		this.position = position;
 	}
 
-	public int getMyResult(Ladder ladder) {
-		return ladder.getLastPosition(initialPosition);
+	public String getName() {
+		return name;
 	}
 
-	public int getLastPosition() {
-		return lastPosition;
+	public int trymove(List<Boolean> points) {
+		if (position == 0) {
+			return moveRight();
+		}
+		if (position == points.size() - 1) {
+			return moveLeft();
+		}
+		if (points.get(position - 1)) {
+			return moveLeft();
+		}
+		return moveRight();
+	}
+
+	private int moveLeft() {
+		position --;
+		return position;
+	}
+
+	private int moveRight() {
+		position++;
+		return position;
 	}
 
 	public boolean matchName(String name) {
 		return this.name.equals(name);
 	}
 
-	public String getName() {
-		return name;
-	}
+
 }
