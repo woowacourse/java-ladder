@@ -25,8 +25,9 @@ public class LadderGame {
 
     private List<User> createUser(String inputNames) {
         List<User> users = new ArrayList<>();
-        for (String name : StringUtil.splitComma(inputNames)) {
-            users.add(new User(name));
+        List<String> names = StringUtil.splitComma(inputNames);
+        for (int i = 0; i < names.size(); i++) {
+            users.add(new User(names.get(i), i));
         }
         return users;
     }
@@ -34,6 +35,18 @@ public class LadderGame {
     public void createLadder() {
         for (int i = 0; i < height; i++) {
             ladder.add(new Floor(users.size()));
+        }
+    }
+
+    public void startLadderGame() {
+        for (Floor floor : ladder) {
+            canUserMove(floor);
+        }
+    }
+
+    private void canUserMove(Floor floor) {
+        for (User user : users) {
+            user.canMove(floor);
         }
     }
 
