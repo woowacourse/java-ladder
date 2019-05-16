@@ -62,21 +62,21 @@ public class Player {
      * @return position 위치
      */
     public int getPosition() {
-        return this.position;
+        return position;
     }
 
     /**
      * 사다리 번호 위치 왼쪽으로 이동
      */
     public void moveLeftPosition() {
-        --this.position;
+        --position;
     }
 
     /**
      * 사다리 번호 위치 오른쪽으로 이동
      */
     public void moveRightPosition() {
-        ++this.position;
+        ++position;
     }
 
     @Override

@@ -41,7 +41,7 @@ public class LadderLine {
     }
 
     public int getNextPosition(int index) {
-        if (lineStates.get(index)) {
+        if (index != 0 && lineStates.get(index)) {
             return -1;
         }
         if (index != lineStates.size() - 1 && lineStates.get(index + 1)) {
@@ -60,7 +60,6 @@ public class LadderLine {
         for (Boolean lineState : lineStates) {
             stringBuilder.append(getStateShape(lineState));
         }
-        stringBuilder.append("\n");
         return stringBuilder.toString();
     }
 

@@ -4,10 +4,7 @@ import ladder.util.Const;
 import ladder.util.Rule;
 import ladder.util.Util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Ladder {
     private List<Player> players;
@@ -31,15 +28,15 @@ public class Ladder {
     }
 
     private List<String> regeReward(String reward) {
-        List<String> rewards = Arrays.asList(Rule.ruleInputReward(reward,players.size()).split(","));
+        List<String> rewards = Arrays.asList(Rule.ruleInputReward(reward, players.size()).split(","));
         return rewards;
     }
 
     private List<Player> regePlayers(String name) {
         List<Player> players = new ArrayList<>();
         List<String> names = Arrays.asList(Rule.ruleInputPlayerNames(name).split(","));
-        for (String s : names) {
-            players.add(new Player(s));
+        for (int i = 0; i < names.size(); i++) {
+            players.add(new Player(names.get(i), i));
         }
         return players;
     }
@@ -53,11 +50,11 @@ public class Ladder {
     }
 
     public String getResultLadderLines() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringJoiner stringJoiner = new StringJoiner("\n");
         for (LadderLine line : ladderLines) {
-            stringBuilder.append(line);
+            stringJoiner.add(line.toString());
         }
-        return stringBuilder.toString();
+        return stringJoiner.toString();
     }
 
     public String getResultLadderNames() {
@@ -69,10 +66,46 @@ public class Ladder {
         return stringBuilder.toString();
     }
 
+    public String getResultLadderRewards() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String s : reward) {
+            stringBuilder.append(Util.formatAlignLeft(s));
+        }
+        return stringBuilder.toString();
+    }
+
+    public void playRadder() {
+        for (int i = 0; i < depth; i++) {
+            moveRadderLIne(i);
+        }
+    }
+
+    private void moveRadderLIne(int depth) {
+        for (Player player : players) {
+            if (ladderLines.get(depth).getNextPosition(player.getPosition()) > Const.ZERO) {
+                player.moveRightPosition();
+                continue;
+            }
+            if (ladderLines.get(depth).getNextPosition(player.getPosition()) < Const.ZERO) {
+                player.moveLeftPosition();
+                continue;
+            }
+        }
+    }
+
+    public int getPlayerPosition(String name) {
+        for (Player player : players) {
+            if (player.getName().equals(name)) {
+                return player.getPosition();
+            }
+        }
+        throw new IllegalArgumentException("값이 잘못되었습니다.");
+    }
+
     private List<String> getNames() {
         List<String> names = new ArrayList<>();
         for (Player player : players) {
-            names.add(Util.formatName(player.getName()));
+            names.add(Util.formatAlignRight(player.getName()));
         }
         return names;
     }

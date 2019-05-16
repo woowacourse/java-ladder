@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -16,7 +18,7 @@ public class LadderTest {
     void setUp() {
         names = " pobi, honux, crong, jk";
         depth = 5;
-        ladder = new Ladder(names,depth);
+        ladder = new Ladder(names, depth);
     }
 
     @Test
@@ -72,16 +74,36 @@ public class LadderTest {
 
     @Test
     void 사다리_객체_결과_예외처리() {
-        assertThrows(IllegalArgumentException.class, () ->{
+        assertThrows(IllegalArgumentException.class, () -> {
             new Ladder(names, "꽝,500000,꽝,3000", depth);
         });
     }
 
     @Test
     void 사다리_객체_결과_개수_예외처리() {
-        assertThrows(IllegalArgumentException.class, () ->{
+        assertThrows(IllegalArgumentException.class, () -> {
             new Ladder(names, "꽝,500000,꽝", depth);
         });
+    }
+
+    @Test
+    void 사다리_실행결과_출력() {
+        Ladder ladder = new Ladder(names, "꽝,50000,꽝,3000", depth);
+        System.out.println(ladder.getResultLadderNames());
+        System.out.println(ladder.getResultLadderLines());
+        System.out.println(ladder.getResultLadderRewards());
+    }
+
+    @Test
+    void 사다리_게임_실행해보기() {
+        Ladder ladder = new Ladder(names, "1000, 2000, 3000, 패스", 5);
+        ladder.playRadder();
+        System.out.println(ladder.getResultLadderNames());
+        System.out.println(ladder.getResultLadderLines());
+        System.out.println(ladder.getResultLadderRewards());
+        for (String name : Arrays.asList(names.replaceAll(" ", "").split(","))) {
+            System.out.println(name + " : " + ladder.getPlayerPosition(name));
+        }
     }
 
     @AfterEach
