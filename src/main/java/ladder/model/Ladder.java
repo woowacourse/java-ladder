@@ -9,7 +9,6 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final int width;
     private final List<Level> levels = new ArrayList<>();
-    private final List<Integer> mappingTable;
 
     public Ladder(int width, int height, Possible possibility) {
         if (width < 1 || height < 1) {
@@ -19,7 +18,16 @@ public class Ladder {
         for (int i = 0; i < height; i++) {
             levels.add(new Level(width - 1, possibility));
         }
-        mappingTable = processMappingTable();
+    }
+
+    public List<Player> apply(List<Player> players) {
+        final List<Integer> mappingTable = processMappingTable();
+        final List<String> rewards = players.stream().map(x -> x.getReward()).collect(Collectors.toList());
+        return Collections.unmodifiableList(new ArrayList<Player>() {{
+            for (int i = 0; i < players.size(); i++) {
+                add(new Player(players.get(i).getName(), rewards.get(mappingTable.indexOf(i))));
+            }
+        }});
     }
 
     private List<Integer> processMappingTable() {
@@ -38,13 +46,5 @@ public class Ladder {
 
     public List<Level> getLevels() {
         return levels;
-    }
-
-    public List<String> apply(List<String> sequence) {
-        List<String> result = new ArrayList<>();
-        for (int i = 0; i < sequence.size(); i++) {
-            result.add(sequence.get(mappingTable.indexOf(i)));
-        }
-        return result;
     }
 }

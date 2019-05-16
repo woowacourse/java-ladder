@@ -1,28 +1,21 @@
 package ladder.model;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Result implements Iterator {
-    private List<String> people = new ArrayList<>();
-    private List<String> rewards = new ArrayList<>();
+    private final List<Player> result;
     private int index = 0;
 
-    Result(List<Person> people, List<String> rewards, List<String> query) {
-        for (int i = 0; i < people.size(); i++) {
-            if (query.contains("all") || query.contains(people.get(i).toString())) {
-                this.people.add(people.get(i).toString());
-                this.rewards.add(rewards.get(i));
-            }
-        }
+    Result(List<Player> players, Ladder ladder, List<String> query) {
+        result = ladder.apply(players).stream().filter(x -> query.contains("all") || query.contains(x.getName())).collect(Collectors.toList());
     }
     public boolean hasNext() {
-        return index < people.size();
+        return index < result.size();
     }
 
-    public Map<String, String> next() {
-        return new HashMap<String, String>() {{
-            put(people.get(index), rewards.get(index));
-            index++;
-        }};
+    public Player next() {
+        return result.get(index++);
     }
 }

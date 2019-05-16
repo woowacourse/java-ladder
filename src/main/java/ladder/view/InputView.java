@@ -1,7 +1,5 @@
 package ladder.view;
 
-import ladder.model.Person;
-
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -11,10 +9,10 @@ public class InputView {
     private static String WRONG_INPUT_MESSAGE = "잘못된 입력입니다. 다시 입력해주세요.";
     private static Scanner input = new Scanner(System.in);
 
-    public static List<Person> inputNames() {
+    public static List<String> inputNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         try {
-            return filterInputs(input.nextLine()).stream().map(name -> new Person(name)).collect(Collectors.toList());
+            return filterInputs(input.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(WRONG_INPUT_MESSAGE);
             return inputNames();
