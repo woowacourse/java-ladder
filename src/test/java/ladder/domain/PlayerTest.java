@@ -1,11 +1,11 @@
-package ladder;
+package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class playerTest {
+class PlayerTest {
 
     @Test
     void 이름의_길이_5이하_테스트() {

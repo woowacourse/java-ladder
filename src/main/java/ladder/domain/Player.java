@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 public class Player {
     private final String name;
@@ -24,4 +24,5 @@ public class Player {
     public String getName() {
         return name;
     }
+
 }
