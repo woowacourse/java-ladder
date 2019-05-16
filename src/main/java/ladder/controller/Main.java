@@ -35,8 +35,8 @@ public class Main {
 
         LadderGame ladderGame = new LadderGame(playerTags, results, floors);
 
-        OutputView.resultLadderTitle();
-        OutputView.resultLadder(ladderGame);
+        OutputView.ladderTitle();
+        OutputView.ladderShape(ladderGame);
         showResult(ladderGame);
     }
 

@@ -25,11 +25,11 @@ public class OutputView {
     private static final String LADDER_TITLE = "사다리 결과";
     private static final String RESULT_TITLE = "실행 결과";
 
-    public static void resultLadderTitle() {
+    public static void ladderTitle() {
         System.out.println(LADDER_TITLE);
     }
 
-    public static void resultLadder(LadderGame ladderGame) {
+    public static void ladderShape(LadderGame ladderGame) {
         System.out.println(ladderGame.toString());
     }
 

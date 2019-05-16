@@ -35,11 +35,17 @@ public class Line {
 
     public Line(int playerNumber) {
         horizontal = new ArrayList<>();
-        makeRandomBooleans(playerNumber);
+        generateLine(playerNumber);
+    }
+
+    private void generateLine(int playerNumber) {
+        for (int i = 0; i < playerNumber - 1; i++) {
+            horizontal.add(getProperBoolean(i));
+        }
     }
 
     public Line(List<Boolean> horizontal) {
-        checkDuplicateHorizon(horizontal);
+        checkAdjacent(horizontal);
         this.horizontal = horizontal;
     }
 
@@ -47,40 +53,32 @@ public class Line {
         return this.horizontal;
     }
 
-    private void checkDuplicateHorizon(List<Boolean> horizon) {
-        for (int i = 0; i < horizon.size() - 1; i++) {
-            checkOneDuplicationHorizon(horizon, i);
+    private void checkAdjacent(List<Boolean> horizontal) {
+        for (int i = 0; i < horizontal.size() - 1; i++) {
+            validAdjacent(horizontal, i);
         }
     }
 
-    private void makeRandomBooleans(int playerNumber) {
-        for (int i = 0; i < playerNumber - 1; i++) {
-            horizontal.add(makeProperBoolean(i));
+    private void validAdjacent(List<Boolean> horizontal, int index) {
+        if (horizontal.get(index) && horizontal.get(index + 1)) {
+            throw new IllegalArgumentException(HORIZONTAL_DUPLICATION_ERROR);
         }
     }
 
-    private Boolean makeProperBoolean(int currentIndex) {
+
+    private Boolean getProperBoolean(int index) {
         Random random = new Random();
-        if (currentIndex == 0) {
+        if (index == 0) {
             return random.nextBoolean();
         }
-        if (!this.horizontal.get(currentIndex - 1)) {
+        if (!this.horizontal.get(index - 1)) {
             return random.nextBoolean();
         }
         return false;
     }
 
-    private void checkOneDuplicationHorizon(List<Boolean> horizon, int i) {
-        if (horizon.get(i) && horizon.get(i + 1)) {
-            throw new IllegalArgumentException(HORIZONTAL_DUPLICATION_ERROR);
-        }
-    }
     private String toStringEachHorLine(Boolean bool) {
-        String result = NO_HORIZONTAL_LINE;
-        if (bool) {
-            result = HORIZONTAL_LINE;
-        }
-        return result;
+        return bool ? HORIZONTAL_LINE : NO_HORIZONTAL_LINE;
     }
 
     public int moveHorizontal(int index) {
