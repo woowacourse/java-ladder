@@ -17,6 +17,10 @@ public final class GamePlayers {
         }
     }
 
+    public int size() {
+        return players.size();
+    }
+
     public List<Player> getPlayers() {
         return players;
     }

@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.GamePlayers;
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Player;
+import ladder.domain.*;
 
 import java.util.List;
 
@@ -15,7 +12,31 @@ public class OutputConsoleView {
     private static final String PADDING = " ";
     private static final int MAX_NAME_LENGTH = 5;
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadderGame(LadderGame ladderGame) {
+        printNames(ladderGame.getPlayers());
+        printLadder(ladderGame.getLadder());
+    }
+
+    private static void printNames(GamePlayers gamePlayers) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(PADDING);
+        for (Player player : gamePlayers.getPlayers()) {
+            sb.append(fillPadding(player.getName()));
+        }
+        System.out.println(sb.toString());
+    }
+
+    private static String fillPadding(String name) {
+        if (name.length() > MAX_NAME_LENGTH) {
+            return name;
+        }
+        if (name.length() % 2 == 1) {
+            return fillPadding(name + PADDING);
+        }
+        return fillPadding(PADDING + name);
+    }
+
+    private static void printLadder(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
         List<Line> lines = ladder.getLines();
 
@@ -36,25 +57,5 @@ public class OutputConsoleView {
     private static void printSubLines(StringBuilder sb, Boolean subLine) {
         sb.append(VERTICAL_LINE);
         sb.append(subLine ? SUB_LINE_TRUE : SUB_LINE_FALSE);
-    }
-
-
-    public static void printNames(GamePlayers gamePlayers) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(PADDING);
-        for (Player player : gamePlayers.getPlayers()) {
-            sb.append(fillPadding(player.getName()));
-        }
-        System.out.println(sb.toString());
-    }
-
-    private static String fillPadding(String name) {
-        if (name.length() > MAX_NAME_LENGTH) {
-            return name;
-        }
-        if (name.length() % 2 == 1) {
-            return fillPadding(name + PADDING);
-        }
-        return fillPadding(PADDING + name);
     }
 }
