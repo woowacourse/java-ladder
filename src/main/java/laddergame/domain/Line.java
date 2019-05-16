@@ -31,9 +31,23 @@ public class Line {
         return scaffolds;
     }
 
-    public int nextPoint(int point) {
-        return scaffolds.get(point) ? point + 1 : point;
+    public int moveNextPoint(int point) {
+        if (outOfPointRange(point)) {
+            throw new IllegalArgumentException("이동 범위를 벗어났습니다.");
+        }
+        if (scaffolds.get(point)) {
+            return point - 1;
+        }
+        if (scaffolds.get(point + 1)) {
+            return point + 1;
+        }
+        return point;
     }
+
+    private boolean outOfPointRange(int point) {
+        return (point < 0) || (point > scaffolds.size() - 2);
+    }
+
 
     @Override
     public boolean equals(Object o) {
