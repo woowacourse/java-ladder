@@ -36,6 +36,7 @@ public class OutputView {
 		for(Player player : players) {
 			System.out.printf(UserOutput.PRINT_FORM.getOutputMessage(), player.toString());
 		}
+		System.out.println();
 	}
 
 	public static void printResult(List<Result> results, String name) {
