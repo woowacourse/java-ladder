@@ -16,7 +16,7 @@ public class LadderGame {
         if (!this.players.getNames().contains(name)) {
             throw new IllegalArgumentException(GET_ONE_PLAYER_ERROR);
         }
-        int resultIndex = ladder.findOneResult(players.getPlayerIndex(name));
+        int resultIndex = ladder.findOneResult(players.indexOf(name));
         return results.get(resultIndex).toString();
     }
 
