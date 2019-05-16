@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Floor;
+import ladder.model.Floor;
 
 import java.util.Scanner;
 

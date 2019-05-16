@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.model;
 
 public class Floor {
     private static final String NAT_NUM_EXCEPTION_MESSAGE = "층 수 0이하 입력 오류";

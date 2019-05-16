@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.LadderGame;
+import ladder.model.LadderGame;
 
 public class OutputView {
     private static final String LADDER_TITLE_MESSAGE = "사다리 결과";

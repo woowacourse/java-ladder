@@ -1,8 +1,10 @@
-package ladder;
+package ladder.controller;
 
-import ladder.domain.*;
+import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
+
+import java.util.function.Function;
 
 public class Main {
     private static final String EXIT_CONDITION = "exit";
