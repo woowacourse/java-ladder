@@ -12,7 +12,8 @@
 
 package ladder.domain;
 
-import ladder.domain.frame.Tags;
+import ladder.domain.tag.Tag;
+import ladder.domain.tag.Tags;
 
 /**
  * Result 의 Tag 들을 저장하고 Result 전용 로직을 수행하기 위한 클래스

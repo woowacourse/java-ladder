@@ -14,6 +14,9 @@
 package ladder.controller;
 
 import ladder.domain.*;
+import ladder.domain.ladder.Floor;
+import ladder.domain.LadderGame;
+import ladder.domain.tag.Tag;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -29,11 +32,11 @@ public class Main {
     private static final String ALL_CONDITION = "all";
 
     public static void main(String[] args) {
-        PlayerTags playerTags = getPlayers();
-        ResultTags results = getResults(playerTags.size());
+        PlayerTags players = getPlayers();
+        ResultTags results = getResults(players.size());
         Floor floors = getFloor();
 
-        LadderGame ladderGame = new LadderGame(playerTags, results, floors);
+        LadderGame ladderGame = new LadderGame(players, results, floors);
 
         OutputView.ladderTitle();
         OutputView.ladderShape(ladderGame);
@@ -79,7 +82,7 @@ public class Main {
     private static void selectResult(LadderGame ladderGame) {
         String select = "";
         while (!select.equals(EXIT_CONDITION)) {
-            select = InputView.selectResult();
+            select = InputView.resultSelect();
             chooseOne(ladderGame, select);
             select = chooseAll(ladderGame, select);
         }

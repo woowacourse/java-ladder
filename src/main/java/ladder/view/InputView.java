@@ -44,7 +44,7 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static String selectResult() {
+    public static String resultSelect() {
         System.out.println(INPUT_SELECT_RESULTS);
         return scanner.nextLine();
     }

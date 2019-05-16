@@ -10,12 +10,10 @@
  * All right Reserved
  */
 
-package ladder.domain.frame;
+package ladder.domain.tag;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import ladder.domain.Tag;
 
 /**
  * Tags 에 관련된 공통 변수와 공통 로직을 수행하기 위한 abstract 클래스
@@ -44,7 +42,7 @@ public abstract class Tags {
 
     public abstract void add(String name);
 
-    protected void addNames(String input) {
+    private void addNames(String input) {
         for (String name : input.split(DELIMITER)) {
             this.add(name);
         }

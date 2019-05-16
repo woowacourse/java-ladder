@@ -10,7 +10,7 @@
  * All right Reserved
  */
 
-package ladder.domain;
+package ladder.domain.tag;
 
 import java.util.Objects;
 
@@ -38,7 +38,7 @@ public class Tag {
         this.name = name;
     }
 
-    public String getName() {
+    private String getName() {
         return name;
     }
 

@@ -10,7 +10,7 @@
  * All right Reserved
  */
 
-package ladder.domain;
+package ladder.domain.ladder;
 
 /**
  * 사다리 높이를 위한 클래스
@@ -23,22 +23,24 @@ public class Floor {
     private static final String NAT_NUM_EXCEPTION_MESSAGE = "층 수 0이하 입력 오류";
     private static final String VALID_TYPE_EXCEPTION_MESSAGE = "층 수 입력 형식 오류";
 
-    private int number;
+    private int floor;
 
     public Floor(String input) {
         int number = validType(input);
         validRange(number);
-        this.number = number;
+        this.floor = number;
+    }
+
+    int getFloor() {
+        return floor;
     }
 
     private int validType(String input) {
-        int number;
         try {
-            number = Integer.parseInt(input);
+            return Integer.parseInt(input);
         } catch (Exception e) {
             throw new IllegalArgumentException(VALID_TYPE_EXCEPTION_MESSAGE);
         }
-        return number;
     }
 
     private void validRange(int number) {
@@ -47,7 +49,4 @@ public class Floor {
         }
     }
 
-    public int getNumber() {
-        return number;
-    }
 }

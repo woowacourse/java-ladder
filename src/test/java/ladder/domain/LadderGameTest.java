@@ -2,6 +2,9 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import ladder.domain.ladder.Floor;
+import ladder.domain.tag.Tag;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderGameTest {

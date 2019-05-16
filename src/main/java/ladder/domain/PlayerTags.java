@@ -14,7 +14,8 @@ package ladder.domain;
 
 import java.util.List;
 
-import ladder.domain.frame.Tags;
+import ladder.domain.tag.Tag;
+import ladder.domain.tag.Tags;
 
 /**
  * Player 의 Tag 들을 저장하고 Player 전용 로직을 수행하기 위한 클래스

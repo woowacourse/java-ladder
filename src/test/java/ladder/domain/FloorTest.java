@@ -2,6 +2,8 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import ladder.domain.ladder.Floor;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class FloorTest {

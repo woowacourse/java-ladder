@@ -10,7 +10,7 @@
  * All right Reserved
  */
 
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class Ladder {
     private List<Line> ladder = new ArrayList<>();
 
     public Ladder(Floor floor, int playerNumber) {
-        for (int i = 0; i < floor.getNumber(); i++) {
+        for (int i = 0; i < floor.getFloor(); i++) {
             ladder.add(new Line(playerNumber));
         }
     }

@@ -10,7 +10,7 @@
  * All right Reserved
  */
 
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,8 +111,8 @@ public class Line {
         StringBuilder sb = new StringBuilder();
         sb.append(HEADER_HORIZONTAL_LINE);
         for (Boolean bool : this.horizontal) {
-            sb.append(VERTICAL_LINE);
-            sb.append(toStringEachHorLine(bool));
+            sb.append(VERTICAL_LINE)
+                    .append(toStringEachHorLine(bool));
         }
         sb.append(VERTICAL_LINE + NEW_LINE);
         return sb.toString();

@@ -12,6 +12,10 @@
 
 package ladder.domain;
 
+import ladder.domain.ladder.Floor;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.tag.Tag;
+
 /**
  * 사다리 게임에 관련된 변수와 로직을 수행하는 클래스
  *
@@ -21,6 +25,7 @@ package ladder.domain;
  */
 public class LadderGame {
     private static final String GET_ONE_PLAYER_ERROR = "일치하는 플레이어 이름이 없습니다.";
+    private static final String JOIN_NAME_RESULT = " : ";
     private static final String NEW_LINE = "\n";
 
     private Ladder ladder;
@@ -44,7 +49,10 @@ public class LadderGame {
     public String getAllPlayerResult() {
         StringBuilder sb = new StringBuilder();
         for (Tag tag : players.getNames()) {
-            sb.append(tag.toString() + " : " + this.getOnePlayerResult(tag) + "\n");
+            sb.append(tag.toString())
+                    .append(JOIN_NAME_RESULT)
+                    .append(this.getOnePlayerResult(tag))
+                    .append(NEW_LINE);
         }
         return sb.toString();
     }

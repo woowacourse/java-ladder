@@ -2,6 +2,8 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import ladder.domain.tag.Tag;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TagTest {
