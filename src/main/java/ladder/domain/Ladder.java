@@ -14,7 +14,7 @@ public class Ladder {
 
     public int findOneResult(int playerIndex){
         for(Line line : floors){
-            moveDown(line, playerIndex);
+            playerIndex = moveDown(line, playerIndex);
         }
         return playerIndex;
     }

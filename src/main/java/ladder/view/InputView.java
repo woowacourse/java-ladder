@@ -23,7 +23,7 @@ public class InputView {
     }
 
     public static String inputSelectResultMessage() {
-        System.out.println("결과를 보고 싶은 사람은?");
+        System.out.println("결과를 보고 싶은 사람은? (종료를 원하시면 exit을 입력하세요)");
         return scanner.nextLine();
     }
 }

@@ -5,23 +5,23 @@ import java.util.List;
 
 public class Results {
     private static final String DELIMITER = ",";
-    private static final String VALID_INPUT_ERROR = "플레이어 이름들 입력 형식 오류";
+    private static final String VALID_INPUT_ERROR = "결과명들 입력 형식 오류";
+    private static final String PLAYERS_RESULTS_NUMBER_ERROR = "플레이어수와 결과수가 다릅니다.";
     private static final String RESULTS_INPUT_REGEX = "^([^,]+)(,[^,]+)*$";
 
     private List<ResultName> resultNames;
 
-    public Results(String input) {
+    public Results(String input, int playerNumbers) {
         resultNames = new ArrayList<>();
         checkValidInput(input);
         addResultNames(input);
+        checkValidNumbers(playerNumbers);
     }
 
-    public List<ResultName> getResultNames() {
-        return resultNames;
-    }
-
-    public int getResultNumber() {
-        return resultNames.size();
+    private void checkValidNumbers(int playerNumbers) {
+        if (resultNames.size() != playerNumbers) {
+            throw new IllegalArgumentException(PLAYERS_RESULTS_NUMBER_ERROR);
+        }
     }
 
     public ResultName getResultName(int index) {
