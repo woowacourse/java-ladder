@@ -16,9 +16,9 @@ public class LadderTest {
             .withHeight(4)
             .withGenerator(new TestBooleanGenerator(Arrays.asList(true, false, true, false, false, true, false, false)))
             .build().getResult();
-        assertThat(result.matchResult("pobi")).isEqualTo(0);
-        assertThat(result.matchResult("crong")).isEqualTo(2);
-        assertThat(result.matchResult("honux")).isEqualTo(1);
+        assertThat(result.matchResult("pobi")).isEqualTo(new MatchPair<>("pobi", 0));
+        assertThat(result.matchResult("crong")).isEqualTo(new MatchPair<>("crong", 2));
+        assertThat(result.matchResult("honux")).isEqualTo(new MatchPair<>("honux", 1));
     }
 
 }

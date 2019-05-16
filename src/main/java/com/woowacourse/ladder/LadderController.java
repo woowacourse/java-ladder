@@ -11,6 +11,17 @@ import java.util.stream.Collectors;
 public class LadderController {
     private static final String QUERY_TOKEN_DELIMITER = ",";
 
+    /**
+     * @param participants participants list
+     * @param destinations destinations list
+     * @param height       height of the ladder
+     * @param <P>          type of participants
+     * @param <D>          type of destinations
+     * @return
+     * @throws NullPointerException     if one or more of the arguments are null
+     * @throws IllegalStateException    if the participants list or destinations list is empty
+     * @throws IllegalArgumentException if each size of participant list and destinations list is not equal, or height is less than zero or equal.
+     */
     public static <P, D> Ladder<P, D> createLadder(List<P> participants, List<D> destinations, int height) {
         checkAndThrowIfArgumentsInvalid(participants, destinations, height);
         return new LadderBuilder<P, D>()
@@ -30,10 +41,10 @@ public class LadderController {
 
     private static <P, D> void checkAndThrowIfListInvalid(List<P> participants, List<D> destination) {
         if (participants == null || destination == null) {
-            throw new IllegalArgumentException("Null is included in arguments");
+            throw new NullPointerException("Null is included in arguments");
         }
         if (participants.isEmpty() || destination.isEmpty()) {
-            throw new IllegalArgumentException("Participants and destination lists cannot be empty");
+            throw new IllegalStateException("Participants and destination lists cannot be empty");
         }
         if (participants.size() != destination.size()) {
             throw new IllegalArgumentException("Sizes of participants list and destination list must be same");
@@ -55,14 +66,18 @@ public class LadderController {
                 .collect(Collectors.toList());
         }
         if (checkIfAllTokensMatch(result, tokens)) {
-            if (tokens.size() == 1) {
-                return Collections.singletonList(result.matchResult(tokens.get(0)));
-            }
-            return tokens.stream()
-                .map(result::matchResult)
-                .collect(Collectors.toList());
+            return getMatchPairs(result, tokens);
         }
         throw new IllegalArgumentException("Query cannot be handled");
+    }
+
+    private static <D> List<MatchPair<String, D>> getMatchPairs(LadderResult<String, D> result, List<String> tokens) {
+        if (tokens.size() == 1) {
+            return Collections.singletonList(result.matchResult(tokens.get(0)));
+        }
+        return tokens.stream()
+            .map(result::matchResult)
+            .collect(Collectors.toList());
     }
 
     private static boolean checkIfShouldPrintAllResult(List<String> tokens) {

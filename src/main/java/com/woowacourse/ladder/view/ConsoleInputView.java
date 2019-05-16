@@ -3,7 +3,6 @@ package com.woowacourse.ladder.view;
 import com.woowacourse.ladder.interfaces.InputView;
 
 import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -43,18 +42,16 @@ public class ConsoleInputView implements InputView {
         String promptText = "결과를 보고 싶은 사람은?";
         Scanner scanner = new Scanner(System.in);
         System.out.println(promptText);
-        String query = scanner.nextLine();
-        // TODO: Error handling is removed, view must provide other error handling methods.
-        return query;
+        return scanner.nextLine();
     }
 
     @Override
     public int promptLadderHeight() {
-        String promptText = "최대 사다리 높이는  몇개인가요?";
+        String promptText = "최대 사다리 높이는 몇개인가요?";
         Scanner scanner = new Scanner(System.in);
         System.out.println(promptText);
         String heightString = scanner.nextLine().trim();
-        while(!isValidHeight(heightString)) {
+        while (!isValidHeight(heightString)) {
             System.out.println("잘못된 입력입니다");
             System.out.println(promptText);
             heightString = scanner.nextLine();

@@ -1,7 +1,7 @@
 package com.woowacourse.ladder.view;
 
 import com.woowacourse.ladder.domain.Ladder;
-import com.woowacourse.ladder.domain.LadderResult;
+import com.woowacourse.ladder.domain.LadderRow;
 import com.woowacourse.ladder.domain.MatchPair;
 import com.woowacourse.ladder.interfaces.OutputView;
 
@@ -16,23 +16,27 @@ public class ConsoleOutputView implements OutputView {
             System.out.printf("%-6s ", p);
         });
         System.out.println();
-        ladder.forEachRows(r -> {
-            System.out.print("   |");
-            String rowString = r.getColumnStream()
-                .map(c -> {
-                    if (c) {
-                        return "-----";
-                    }
-                    return "     ";
-                })
-                .collect(Collectors.joining("|"));
-            System.out.print(rowString);
-            System.out.println("|");
-        });
+        ladder.forEachRows(this::forEachRow);
         ladder.forEachDestinations(p -> {
             System.out.printf("%-6s ", p);
         });
         System.out.println();
+    }
+
+    private void forEachRow(LadderRow<String> r) {
+        System.out.print("   |");
+        String rowString = r.getColumnStream()
+            .map(this::forEachColumns)
+            .collect(Collectors.joining("|"));
+        System.out.print(rowString);
+        System.out.println("|");
+    }
+
+    private String forEachColumns(Boolean b) {
+        if (b) {
+            return "-----";
+        }
+        return "     ";
     }
 
     @Override
@@ -45,5 +49,10 @@ public class ConsoleOutputView implements OutputView {
         pairs.forEach(p -> {
             System.out.println(String.format("%s : %s", p.getParticipant(), p.getDestination()));
         });
+    }
+
+    @Override
+    public void printError(String message) {
+        System.out.println(message);
     }
 }
