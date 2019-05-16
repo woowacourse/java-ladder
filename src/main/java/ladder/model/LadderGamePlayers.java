@@ -18,4 +18,8 @@ public class LadderGamePlayers {
     public int size() {
         return ladderPlayers.size();
     }
+
+    public List<String> getAllPlayerNames() {
+        return ladderPlayers.stream().map(LadderPlayer::getPlayerName).collect(Collectors.toList());
+    }
 }

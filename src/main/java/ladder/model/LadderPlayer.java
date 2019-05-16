@@ -13,7 +13,7 @@ public class LadderPlayer {
         this.name = PlayerValidator.validatedName(name);
     }
 
-    public String getName() {
+    public String getPlayerName() {
         return name;
     }
 

@@ -15,7 +15,7 @@ public class LadderPlayerTest {
 
     @Test
     void 이름이_객체에_잘들어가는_경우() {
-        assertThat(new LadderPlayer("pobi").getName()).isEqualTo("pobi");
+        assertThat(new LadderPlayer("pobi").getPlayerName()).isEqualTo("pobi");
     }
 
     @Test

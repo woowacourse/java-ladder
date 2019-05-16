@@ -14,9 +14,9 @@ public class InputViewTest {
     void 구분자를_포함한_이름들을_입력받아서_LadderPlayer_객체들을_반환하는_메소드_테스트() {
         String[] names = {"red", "blue", "green"};
         List<LadderPlayer> players = InputView.makeLadderPlayers(names);
-        assertThat(players.get(0).getName()).isEqualTo("red");
-        assertThat(players.get(1).getName()).isEqualTo("blue");
-        assertThat(players.get(2).getName()).isEqualTo("green");
+        assertThat(players.get(0).getPlayerName()).isEqualTo("red");
+        assertThat(players.get(1).getPlayerName()).isEqualTo("blue");
+        assertThat(players.get(2).getPlayerName()).isEqualTo("green");
     }
 
     @Test

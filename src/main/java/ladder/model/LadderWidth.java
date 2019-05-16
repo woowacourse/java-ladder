@@ -15,6 +15,7 @@ public class LadderWidth {
     private List<Boolean> crossbars;
     private int maxLenOfGoalNames;
 
+    // test 생성자
     public LadderWidth(List<Boolean> crossbars) {
         this.crossbars = crossbars;
     }
@@ -36,6 +37,10 @@ public class LadderWidth {
 
     private boolean generateRandom(boolean index) {
         return !index && new Random().nextBoolean();
+    }
+
+    public boolean hasCrossbar(int column) {
+        return crossbars.get(column);
     }
 
     private String createCrossbar(String mark){

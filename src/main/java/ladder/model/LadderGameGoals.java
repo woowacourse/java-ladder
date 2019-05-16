@@ -23,4 +23,7 @@ public class LadderGameGoals {
         return goals.stream().map(goal -> goal.getAlignedGoalName(getMaxLenOfGoalNames())).collect(Collectors.toList());
     }
 
+    public List<String> getAllGoalNames() {
+        return goals.stream().map(LadderGoal::getGoalName).collect(Collectors.toList());
+    }
 }
