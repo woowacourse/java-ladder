@@ -16,7 +16,7 @@ public class Line {
         addPoints();
     }
 
-    public Line(int[] points){
+    public Line(int[] points) {
         this.points = points;
     }
 

@@ -24,7 +24,7 @@ public class InputView {
         }
     }
 
-    public static String inputPrize(){
+    public static String inputPrize() {
         System.out.println(GAME_PRIZE_INPUT_MGS);
         try {
             String prizes = SCANNER.nextLine();

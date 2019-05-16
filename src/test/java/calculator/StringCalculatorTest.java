@@ -31,7 +31,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void 문자열_더하기(){
+    void 문자열_더하기() {
         assertThat(stringCalculator.add("1:2")).isEqualTo(3);
     }
 
@@ -48,7 +48,7 @@ public class StringCalculatorTest {
     @Test
     void 커스텀_기준으로_나누기() {
         String temp = "1,2:3";
-        assertThat(stringCalculator.splitBySeparator(temp)).contains(1,2,3);
+        assertThat(stringCalculator.splitBySeparator(temp)).contains(1, 2, 3);
     }
 
 }

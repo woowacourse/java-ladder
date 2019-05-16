@@ -16,7 +16,7 @@ public class CustomSeparatorGroupTest {
 
     @Test
     void 생성자() {
-        assertThat(customSeparatorGroup.getCustomSeparators()).contains( new CustomSeparator(","),new CustomSeparator(":"));
+        assertThat(customSeparatorGroup.getCustomSeparators()).contains(new CustomSeparator(","), new CustomSeparator(":"));
     }
 
     @Test
