@@ -4,9 +4,7 @@ import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import javax.xml.transform.Result;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 public class LadderGame {
@@ -18,11 +16,24 @@ public class LadderGame {
         CrossbarGenerator randomCrossbarGenerator = new RandomCrossbarGenerator(players.size() + LAST_DUMMY_SPACE);
         Ladder ladder = getLadderBy(randomCrossbarGenerator);
 
-        OutputView.showPlayersAndLadder(players, ladder);
+        OutputView.showPlayersAndLadder(players, ladder, resultItems);
 
-//        LadderingResult ladderingResult = ladder.startLadderGame(players, resultItems);
-//        OutputView.showladderingResult(ladderingResult);
+        HashMap<String, ResultItem> ladderingResult = ladder.startLadderGame(players, resultItems);
+
+        while(true) {
+            showLadderingResult(ladderingResult);
+        }
     }
+
+    private static void showLadderingResult(HashMap<String, ResultItem> ladderingResult) {
+        try {
+            OutputView.showladderingResult(ladderingResult);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            showLadderingResult(ladderingResult);
+        }
+    }
+
 
     private static ResultItems getResultItemsof(int numberOfPlayers) {
         List<String> resultNames;

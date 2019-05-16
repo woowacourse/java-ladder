@@ -35,7 +35,7 @@ public class Ladder {
         return Objects.hash(ladder);
     }
 
-    public HashMap<Player, ResultItem> startLadderGame(PlayerGroup players, ResultItems resultItems) {
+    public HashMap<String, ResultItem> startLadderGame(PlayerGroup players, ResultItems resultItems) {
         for (Crosspoints crosspoints : ladder) {
             players.changePositionBy(crosspoints);
         }

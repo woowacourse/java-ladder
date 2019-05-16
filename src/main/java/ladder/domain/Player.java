@@ -23,6 +23,10 @@ public class Player {
         return position;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void nullCheck(String name) {
         if (name == null) {
             throw new IllegalArgumentException("이름에는 null이 입력될 수 없습니다.");
@@ -69,5 +73,4 @@ public class Player {
     public int hashCode() {
         return Objects.hash(name);
     }
-
 }

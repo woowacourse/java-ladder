@@ -14,11 +14,11 @@ public class ResultItems {
         }
     }
 
-    public HashMap<Player, ResultItem> makeLaddringResult(PlayerGroup players) {
-        HashMap<Player, ResultItem> ladderingResult = new LinkedHashMap<>();
+    public HashMap<String, ResultItem> makeLaddringResult(PlayerGroup players) {
+        HashMap<String, ResultItem> ladderingResult = new LinkedHashMap<>();
 
         for (Player player : players.getPlayers()) {
-            ladderingResult.put(player, resultItems.get(player.getPosition()));
+            ladderingResult.put(player.getName(), resultItems.get(player.getPosition()));
         }
 
         return ladderingResult;
@@ -35,5 +35,9 @@ public class ResultItems {
     @Override
     public int hashCode() {
         return Objects.hash(resultItems);
+    }
+
+    public List<ResultItem> getResultItems() {
+        return resultItems;
     }
 }

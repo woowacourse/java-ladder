@@ -25,11 +25,11 @@
    * Ladder Getter 이름 변경
    * Ladder Game 클래스의 LAST_DMMY_SPACE 리네임
 + 2단계
-   * 결과를 보고 싶은 사람을 입력받으면 결과를 출력해줘야 합니다.
-     - all을 입력하면 경우에는 전부 다 출력합니다.
    * Player, ResultItem 중복
    * InputView 메소드 기능 중복(player,item)
    * 사다리결과 만드는 기능에서 getter 빼는 방법 생각
+   * Player equals()가 position도 포함하도록 처리
+   * 출력에 getter을 안쓰려면??
 
 ## Done
    * player 이름이 공백, null일 때 예외 처리
@@ -50,7 +50,8 @@
      - 실행 결과의 길이는 최대 5입니다.
      - 실행 결과들의 개수는 player의 수와 동일해야 합니다.
      - 공백, null을 입력받으면 안됩니다.   
-
+   * 결과를 보고 싶은 사람을 입력받으면 결과를 출력해줘야 합니다.
+     - all을 입력하면 경우에는 전부 다 출력합니다.
 
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)

@@ -47,13 +47,13 @@ public class LadderTest {
         PlayerGroup players = new PlayerGroup(Arrays.asList("a", "b"));
         ResultItems resultItems = new ResultItems(Arrays.asList("1", "2"), players.size());
 
-        HashMap<Player, ResultItem> expectedLadderingResult = new LinkedHashMap<>();
-        expectedLadderingResult.put(playerB, resultItem1);
-        expectedLadderingResult.put(playerA, resultItem2);
+        HashMap<String, ResultItem> expectedLadderingResult = new LinkedHashMap<>();
+        expectedLadderingResult.put("b", resultItem1);
+        expectedLadderingResult.put("a", resultItem2);
 
-        HashMap<Player, ResultItem> ladderingResult = ladder.startLadderGame(players, resultItems);
+        HashMap<String, ResultItem> ladderingResult = ladder.startLadderGame(players, resultItems);
 
-        assertThat(ladderingResult.get(playerA)).isEqualTo(resultItem2);
-        assertThat(ladderingResult.get(playerB)).isEqualTo(resultItem1);
+        assertThat(ladderingResult.get("a")).isEqualTo(resultItem2);
+        assertThat(ladderingResult.get("b")).isEqualTo(resultItem1);
     }
 }
