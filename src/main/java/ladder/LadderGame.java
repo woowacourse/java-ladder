@@ -8,14 +8,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LadderGame {
-	public Ladder run() {
-		List<String> names = getPersonNames();
-		int ladderHeight = getLadderHeight();
-
+	public static Ladder run(List<String> names, int ladderHeight) {
 		return new Ladder(names.size(), ladderHeight);
 	}
 
-	private static List<String> getPersonNames() {
+	public static List<String> getPersonNames() {
 		String names;
 
 		try {
@@ -28,7 +25,7 @@ public class LadderGame {
 		}
 	}
 
-	private static int getLadderHeight() {
+	public static int getLadderHeight() {
 		String height;
 
 		try {

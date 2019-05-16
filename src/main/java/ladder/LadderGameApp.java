@@ -1,10 +1,14 @@
 package ladder;
 
+import java.util.List;
+
 import ladder.view.OutputView;
 
 public class LadderGameApp {
 	public static void main(String[] args) {
-		LadderGame ladderGame = new LadderGame();
-		OutputView.printLadder(ladderGame.run());
+		List<String> names = LadderGame.getPersonNames();
+		int ladderHeight = LadderGame.getLadderHeight();
+
+		OutputView.printNames(names);
 	}
 }
