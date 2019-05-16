@@ -20,20 +20,23 @@ public class LadderGame {
     }
 
     public String getOnePlayerResult(PlayerName playerName) {
+        if(!this.players.getPlayerNames().contains(playerName)){
+            throw new IllegalArgumentException("일치하는 플레이어 이름이 없습니다.");
+        }
         int resultIndex = ladder.findOneResult(players.getPlayerIndex(playerName));
-        return results.getResultName(resultIndex).toString();
+        return results.getResultName(resultIndex).toString().trim();
     }
 
     public String getAllPlayerResult() {
         StringBuilder sb = new StringBuilder();
         for(PlayerName playerName : players.getPlayerNames()) {
-            sb.append(playerName.toString() + " : " + this.getOnePlayerResult(playerName));
+            sb.append(playerName.toString().trim() + " : " + this.getOnePlayerResult(playerName).trim() + "\n");
         }
         return sb.toString();
     }
 
     @Override
     public String toString() {
-        return players.toString() + "\n" + ladder.toString();
+        return players.toString() + "\n" + ladder.toString() + results.toString() + "\n";
     }
 }

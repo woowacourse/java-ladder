@@ -19,6 +19,7 @@ public class Line {
     }
 
     public Line(List<Boolean> horizon) {
+        checkDuplicateHorizon(horizon);
         this.horizon = horizon;
     }
 
@@ -26,7 +27,19 @@ public class Line {
         return this.horizon;
     }
 
-    private void makeRandomBooleans(int playerNumber){
+    private void checkDuplicateHorizon(List<Boolean> horizon) {
+        for (int i = 0; i < horizon.size(); i++) {
+            checkOneDuplicationHorizon(horizon, i);
+        }
+    }
+
+    private void checkOneDuplicationHorizon(List<Boolean> horizon, int i) {
+        if (horizon.get(i) && horizon.get(i + 1)) {
+            throw new IllegalArgumentException("가로선 중복 오류");
+        }
+    }
+
+    private void makeRandomBooleans(int playerNumber) {
         for (int i = 0; i < playerNumber - 1; i++) {
             horizon.add(makeProperBoolean(i));
         }
@@ -51,7 +64,7 @@ public class Line {
             sb.append(VERTICAL_LINE);
             sb.append(toStringEachHorLine(bool));
         }
-        sb.append(VERTICAL_LINE+NEW_LINE);
+        sb.append(VERTICAL_LINE + NEW_LINE);
         return sb.toString();
     }
 
@@ -64,10 +77,10 @@ public class Line {
     }
 
     public int moveRightOrLeft(int playerIndex) {
-        if(playerIndex > 0 && this.horizon.get(playerIndex -1)) {
+        if (playerIndex > 0 && this.horizon.get(playerIndex - 1)) {
             return --playerIndex;
         }
-        if(playerIndex < horizon.size() &&this.horizon.get(playerIndex)){
+        if (playerIndex < horizon.size() && this.horizon.get(playerIndex)) {
             return ++playerIndex;
         }
         return playerIndex;

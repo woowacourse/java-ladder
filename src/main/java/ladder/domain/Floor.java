@@ -13,7 +13,7 @@ public class Floor {
     }
 
     private void checkNatNum(int number) {
-        if (number < 0) {
+        if (number <= 0) {
             throw new IllegalArgumentException(NAT_NUM_EXCEPTION_MESSAGE);
         }
     }
