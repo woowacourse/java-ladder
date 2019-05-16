@@ -9,7 +9,6 @@ import view.OutputView;
 public class Main {
     public static void main(String[] args) {
         LadderGame ladderGame = createLadderGame();
-
         String results;
         Result result;
         do {
