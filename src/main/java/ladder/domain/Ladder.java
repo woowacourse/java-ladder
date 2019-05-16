@@ -9,7 +9,11 @@ public class Ladder {
 
     public Ladder(String[] names, int height) {
         this.names = names;
-        lines = new ArrayList<>();
+        this.lines = new ArrayList<>();
+        addLines(names, height);
+    }
+
+    private void addLines(String[] names, int height) {
         for (int i = 0; i < height; i++) {
             lines.add(new Line(names.length));
         }
