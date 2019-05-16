@@ -1,9 +1,6 @@
 package ladder;
 
-import ladder.domain.CrossbarGenerator;
-import ladder.domain.Ladder;
-import ladder.domain.PlayerGroup;
-import ladder.domain.RandomCrossbarGenerator;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -14,10 +11,23 @@ public class LadderGame {
 
     public static void main(String[] args) {
         PlayerGroup players = getPlayers();
+        ResultItems resultItems = getResultItemsof(players.size());
         CrossbarGenerator randomCrossbarGenerator = new RandomCrossbarGenerator(players.size() + LAST_DUMMY_SPACE);
         Ladder ladder = getLadderBy(randomCrossbarGenerator);
 
         OutputView.showPlayersAndLadder(players, ladder);
+    }
+
+    private static ResultItems getResultItemsof(int numberOfPlayers) {
+        List<String> resultNames;
+
+        try {
+            resultNames = InputView.inputResultName();
+            return new ResultItems(resultNames, numberOfPlayers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getResultItemsof(numberOfPlayers);
+        }
     }
 
     private static Ladder getLadderBy(CrossbarGenerator crossbarGenerator) {

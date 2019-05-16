@@ -17,4 +17,10 @@ public class InputView {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return SCANNER.nextLine();
     }
+
+    public static List<String> inputResultName(){
+        System.out.println("실행 결과를 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        String resultNames = SCANNER.nextLine();
+        return Arrays.asList(resultNames.split(","));
+    }
 }
