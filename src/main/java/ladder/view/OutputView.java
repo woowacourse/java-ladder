@@ -2,27 +2,26 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.domain.Line;
+import ladder.domain.UserOutput;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
-    private static final String LADDER_STEP = "-----";
-    private static final String LADDER_SPACE = "     ";
+	public static void printLadder(Ladder ladder) {
+		for (Line line : ladder.getLines()) {
+			printLine(line);
+		}
+	}
 
-    public static void printLadder(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
-            printLine(line);
-        }
-    }
+	private static void printLine(Line line) {
+		List<String> steps = new ArrayList<>();
 
-    private static void printLine(Line line) {
-        List<String> steps = new ArrayList<>();
+		for (boolean point : line.getPoints()) {
+			steps.add((point) ? UserOutput.LADDER_STEP.getOutputMessage() : UserOutput.LADDER_SPACE.getOutputMessage());
+		}
 
-        for(boolean point : line.getPoints()) {
-            steps.add((point) ? LADDER_STEP : LADDER_SPACE);
-        }
-
-        System.out.println("|" + String.join("|", steps) + "|");
-    }
+		System.out.println(UserOutput.LADDER_LINE.getOutputMessage()+
+				String.join(UserOutput.LADDER_LINE.getOutputMessage(), steps) + UserOutput.LADDER_LINE.getOutputMessage());
+	}
 }
