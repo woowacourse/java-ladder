@@ -1,7 +1,5 @@
 package ladder.model;
 
-import ladder.model.Member;
-import ladder.model.Members;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

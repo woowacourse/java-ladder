@@ -5,34 +5,51 @@ import ladder.model.Member;
 import ladder.model.Row;
 
 public class OutputView {
+
+    private static final String SINGLE_BLANK = " ";
+    private static final String NEW_LINE = "\n";
+    private static final int MAX_NAME_LENGTH = 5;
+
     public static void printLadder(LadderGame ladderGame) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Member member : ladderGame.getMembers()) {
-            stringBuilder.append(makePrettyName(member.getName()) + " ");
-        }
-        stringBuilder.append("\n");
-        for (Row row : ladderGame.getLadder()){
-            stringBuilder.append(row.toString() + "\n");
-        }
+
+        setPrintName(ladderGame, stringBuilder);
+        setPrintLadder(ladderGame, stringBuilder);
+
         System.out.println(stringBuilder.toString());
+    }
+
+    private static void setPrintName(LadderGame ladderGame, StringBuilder stringBuilder) {
+        for (Member member : ladderGame.getMembers()) {
+            stringBuilder.append(makePrettyName(member.getName()) + SINGLE_BLANK);
+        }
     }
 
     private static String makePrettyName(String name){
         StringBuilder stringBuilder = new StringBuilder();
-        int blankLength = 5 - name.length();
+        int blankLength = MAX_NAME_LENGTH - name.length();
         stringBuilder.append(name);
+
         for (int i = 1; i <= blankLength; i++){
             addBlank(stringBuilder, i);
         }
+
         return stringBuilder.toString();
     }
 
-    private static void addBlank(StringBuilder stringBuilder, int i) {
-        if (i % 2 == 0){
-            stringBuilder.append(" ");
+    private static void addBlank(StringBuilder stringBuilder, int index) {
+        if (index % 2 == 0){
+            stringBuilder.append(SINGLE_BLANK);
         }
-        if (i % 2 == 1){
-            stringBuilder.insert(0, " ");
+        if (index % 2 == 1){
+            stringBuilder.insert(0, SINGLE_BLANK);
+        }
+    }
+
+    private static void setPrintLadder(LadderGame ladderGame, StringBuilder stringBuilder) {
+        stringBuilder.append(NEW_LINE);
+        for (Row row : ladderGame.getLadder()){
+            stringBuilder.append(row.toString() + NEW_LINE);
         }
     }
 }

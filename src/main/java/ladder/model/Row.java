@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Row {
+    private static final int LINE = 1;
+    private static final int MAX_BOUNDARY = 2;
+    private static final String VERTICAL_LINE = "|";
+    private static final String LINKED_LINE = "-----";
+    private static final String NONE_LINKED_LINE = "     ";
+    private static final String DOUBLE_BLANK = "  ";
+
     private List<Boolean> lines;
 
     public Row(int countOfMember) {
@@ -17,11 +24,11 @@ public class Row {
     }
 
     private boolean booleanGenerator(int random, boolean prevStatus) {
-        return !prevStatus && random == 1;
+        return !prevStatus && random == LINE;
     }
 
     private int randomValueGenerator() {
-        return (int) (Math.random() * 2);
+        return (int) (Math.random() * MAX_BOUNDARY);
     }
 
     public int getLineSize() {
@@ -30,7 +37,7 @@ public class Row {
 
     public boolean checkDoubleDraw() {
         for (int i = 0; i < lines.size() - 1; i++) {
-            if (lines.get(i) && lines.get(i+1)) {
+            if (lines.get(i) && lines.get(i + 1)) {
                 return true;
             }
         }
@@ -39,18 +46,18 @@ public class Row {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("  ");
+        StringBuilder stringBuilder = new StringBuilder(DOUBLE_BLANK);
         for (Boolean line : lines) {
             stringBuilder.append(isLinked(line));
         }
-        stringBuilder.append("|");
+        stringBuilder.append(VERTICAL_LINE);
         return stringBuilder.toString();
     }
 
     private String isLinked(boolean line) {
-        if (line){
-            return "|-----";
+        if (line) {
+            return VERTICAL_LINE + LINKED_LINE;
         }
-        return "|     ";
+        return VERTICAL_LINE + NONE_LINKED_LINE;
     }
 }

@@ -1,11 +1,11 @@
 package ladder.model;
 
-import ladder.model.LadderValidator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LadderValidatorTest {
+
     @Test
     void 높이가_0인_경우() {
         assertThrows(IllegalArgumentException.class, () -> {
