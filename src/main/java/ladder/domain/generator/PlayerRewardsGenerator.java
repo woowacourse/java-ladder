@@ -10,7 +10,7 @@ public final class PlayerRewardsGenerator {
 
     private final String input;
 
-    public PlayerRewardsGenerator(String input) {
+    public  PlayerRewardsGenerator(String input) {
         this.input = input;
     }
 

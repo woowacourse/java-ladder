@@ -40,6 +40,25 @@ public final class Line {
         }
     }
 
+    public int move(int index) {
+        if (isLeft(index)) {
+            return -1;
+        }
+        if (isRight(index)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    private boolean isLeft(int index) {
+        return index > 0 && subLines.get(index - 1);
+    }
+
+    private boolean isRight(int index) {
+        return index < subLines.size() && subLines.get(index);
+    }
+
+
     public List<Boolean> getSubLines() {
         return subLines;
     }

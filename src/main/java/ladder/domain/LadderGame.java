@@ -17,7 +17,7 @@ public final class LadderGame {
                       final PlayerRewards playerRewards, LineGenerator lineGenerator) {
         validateSize(gamePlayers.size(), playerRewards.size());
 
-        this.ladder = new Ladder(height, gamePlayers.size());
+        this.ladder = new Ladder(height, gamePlayers.size(), lineGenerator);
         this.gamePlayers = gamePlayers;
         this.playerRewards = playerRewards;
     }
@@ -28,8 +28,16 @@ public final class LadderGame {
         }
     }
 
-    public void findPlayerReward() {
+    public String findPlayerReward(String name) {
+        int index = gamePlayers.index(name);
+        if (index == -1) {
+            throw new IllegalArgumentException("없는 사용자 이름입니다.");
+        }
 
+        for (Line line : ladder.getLines()) {
+            index += line.move(index);
+        }
+        return playerRewards.getReward(index);
     }
 
     public Ladder getLadder() {
