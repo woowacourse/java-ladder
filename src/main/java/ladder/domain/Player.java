@@ -29,7 +29,7 @@ public class Player {
         if (points.get(position - 1)) {
             return moveLeft();
         }
-        return moveRight();
+        return (points.get(position) ? moveRight() : position);
     }
 
     private int moveLeft() {
