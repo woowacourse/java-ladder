@@ -23,7 +23,7 @@ public class LadderGame {
 		return new LadderGameResult(gameResult);
 	}
 
-	public Ladder generatreLadder(final int ladderHeight) {
+	public Ladder generateLadder(final int ladderHeight) {
 		ladder = new Ladder(players.size(), ladderHeight);
 		return ladder;
 	}

@@ -19,7 +19,7 @@ public class LadderGameApp {
 		LadderGame ladderGame = new LadderGame(playerNames);
 
 		OutputView.printPlayerNames(playerNames);
-		OutputView.printLadder(ladderGame.generatreLadder(ladderHeight));
+		OutputView.printLadder(ladderGame.generateLadder(ladderHeight));
 		OutputView.printLadderValues(gameReward);
 
 		LadderGameResult ladderGameResult = ladderGame.run(gameReward);
