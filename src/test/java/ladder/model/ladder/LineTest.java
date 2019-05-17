@@ -23,7 +23,7 @@ public class LineTest {
     /*사다리게임 각 층(라인)에 대한 테스트     */
     @Test
     void 중복_가로줄_검사_get() {
-        List<Boolean> line = (new Line(5)).getHorizon();
+        List<Boolean> line = (new Line(5)).getHorizons();
         for (int i = 0; i < line.size() - 1; i++) {
             assertThat(line.get(i) && line.get(i + 1)).isEqualTo(false);
         }

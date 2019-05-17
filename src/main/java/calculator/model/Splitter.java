@@ -14,7 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @version 1.1 2019년 05년 16일
+ * @version 1.0 2019년 05년 16일
  * @author 김효건
  */
 public class Splitter {

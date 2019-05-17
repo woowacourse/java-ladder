@@ -36,10 +36,6 @@ public class PlayerTags extends Tags {
         }
     }
 
-    public List<Tag> getTags() {
-        return tags;
-    }
-
     public int getTagsNumber() {
         return tags.size();
     }

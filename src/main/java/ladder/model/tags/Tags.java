@@ -23,6 +23,10 @@ public abstract class Tags {
 
     protected List<Tag> tags;
 
+    public List<Tag> getTags() {
+        return tags;
+    }
+
     protected Tags(String input) {
         tags = new ArrayList<>();
         checkValidInput(input);
@@ -35,13 +39,4 @@ public abstract class Tags {
     }
 
     protected abstract void addTags(String tag);
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Tag tag : tags) {
-            sb.append(String.format("%6s", tag.getValue()));
-        }
-        return sb.toString();
-    }
 }

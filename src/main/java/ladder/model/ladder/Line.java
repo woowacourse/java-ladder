@@ -16,14 +16,13 @@ import java.util.Random;
  */
 public class Line {
     /*사다리게임의 각 층(라인)에 대한 클래스*/
-    private static final String HEADER_HORIZON_LINE = "   ";
-    private static final String VERTICAL_LINE = "|";
-    private static final String NEW_LINE = "\n";
-    private static final String NO_HORIZON_LINE = "     ";
-    private static final String HORIZON_LINE = "-----";
     private static final String HORIZON_LINE_DUPLICATION_ERROR = "가로선 중복 오류";
 
     private List<Boolean> horizons;
+
+    public List<Boolean> getHorizons() {
+        return horizons;
+    }
 
     public Line(int tagsNumber) {
         horizons = new ArrayList<>();
@@ -61,30 +60,6 @@ public class Line {
         if (horizon.get(index) && horizon.get(index + 1)) {
             throw new IllegalArgumentException(HORIZON_LINE_DUPLICATION_ERROR);
         }
-    }
-
-    public List<Boolean> getHorizon() {
-        return horizons;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(HEADER_HORIZON_LINE);
-        for (Boolean horizon : horizons) {
-            sb.append(VERTICAL_LINE)
-                    .append(toStringEachHorLine(horizon));
-        }
-        sb.append(VERTICAL_LINE)
-                .append(NEW_LINE);
-        return sb.toString();
-    }
-
-    private String toStringEachHorLine(Boolean horizon) {
-        if (horizon) {
-            return HORIZON_LINE;
-        }
-        return NO_HORIZON_LINE;
     }
 
     public int getIndexAfterMovingHorizon(int index) {

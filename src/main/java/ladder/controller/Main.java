@@ -7,7 +7,7 @@
 
 package ladder.controller;
 
-import ladder.model.*;
+import ladder.model.game.LadderGame;
 import ladder.model.ladder.Floor;
 import ladder.model.tags.PlayerTags;
 import ladder.model.tags.ResultTags;
@@ -31,7 +31,7 @@ public class Main {
         LadderGame ladderGame = new LadderGame(playerTags, resultTags, floor);
 
         OutputView.PrintLadderTitle();
-        OutputView.PrintLadder(ladderGame);
+        OutputView.PrintTagsAndLadder(ladderGame);
 
         showResult(ladderGame);
     }
@@ -84,14 +84,14 @@ public class Main {
     private static void chooseOne(LadderGame ladderGame, String choice) {
         if (!choice.equals(EXIT) && !choice.equals(ALL)) {
             OutputView.PrintResultTitle();
-            OutputView.PrintResult(ladderGame.getOneResultByTag(new Tag(choice)));
+            OutputView.PrintOneResult(ladderGame.getOneResultByTag(new Tag(choice)));
         }
     }
 
     private static String chooseAll(LadderGame ladderGame, String choice) {
         if (choice.equals(ALL)) {
             OutputView.PrintResultTitle();
-            OutputView.PrintResult(ladderGame.getAllResults());
+            OutputView.PrintAllResult(ladderGame.getAllResults());
             choice = EXIT;
         }
         return choice;
