@@ -12,7 +12,11 @@ public class Line {
     }
 
     public void updateRowLines() {
-        rowLines.add(!rowLines.get(rowLines.size() - 1) && lineCreate.checkLine());
+        rowLines.add(rowLines.size()!=0 && isEmptyLine() && lineCreate.checkLine());
+    }
+
+    private boolean isEmptyLine() {
+        return !rowLines.get(rowLines.size() - 1);
     }
 
     public ArrayList<Boolean> getRowLines() {

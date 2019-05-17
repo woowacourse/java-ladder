@@ -1,16 +1,15 @@
 package ladder.Controller;
 
+import jdk.internal.util.xml.impl.Input;
 import ladder.View.OutputView;
-import ladder.domain.InputModel;
+import ladder.domain.*;
 import ladder.View.InputView;
-import ladder.domain.Ladder;
-import ladder.domain.Line;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGameManager {
-    private List<String> players;
+    private List<Player> players;
     private List<Line> createdLadder;
 
     public LadderGameManager() {
@@ -20,17 +19,21 @@ public class LadderGameManager {
 
     public void start() {
         InputModel inputModel = new InputModel();
-        players = inputModel.getValidNames(InputView.getNames());
+        List<String> names = inputModel.getValidNames(InputView.getNames());
+
+        PlayerManager playerManager = new PlayerManager(names);
+        players = playerManager.getPlayers();
+
         int ladderHeight = inputModel.getValidLadderHeight(InputView.getLadderHeight());
 
-        Ladder ladder = new Ladder(players.size(), ladderHeight);
+        Ladder ladder = new Ladder(names.size(), ladderHeight);
         createdLadder = ladder.getLadder();
 
         output();
     }
 
     private void output() {
-        OutputView.printResult(players);
+        OutputView.printLadderResult(players);
         for ( Line line : createdLadder) {
             OutputView.printLadder(line);
         }
