@@ -86,16 +86,44 @@ public class LadderGame {
         }
     }
 
-    public static String getNameForResult(List<String> names) {
-        String name;
+    public static List<Player> lookUpResult() {
+        String input;
+
+        do {
+            input = getNameForResult(names);
+            return getPlayersForResult(input);
+        } while (!input.equals("all"));
+    }
+
+    private static String getNameForResult(List<String> names) {
+        String input;
 
         try {
-            name = InputView.inputNameForResult();
-            Validator.checkNameForResult(names, name);
-            return name;
+            input = InputView.inputNameForResult();
+            Validator.checkNameForResult(names, input);
+            return input;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return getNameForResult(names);
         }
+    }
+
+    private static List<Player> getPlayersForResult(String input) {
+	    if (input.equals("all")) {
+	        return players;
+        }
+	    return findPlayer(input);
+    }
+
+    private static List<Player> findPlayer(String name) {
+        List<Player> foundresult = new ArrayList<>();
+
+	    for (Player player : players) {
+            if (player.matchName(name)) {
+                foundresult.add(player);
+                break;
+            }
+        }
+	    return foundresult;
     }
 }
