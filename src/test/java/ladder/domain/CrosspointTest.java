@@ -39,9 +39,9 @@ public class CrosspointTest {
 
     @Test
     void 오른쪽_Crossbar가_있으면_true를_리턴해주고_없으면_false를_리턴해주는지_테스트() {
-        assertThat(testpoint1.hasRightCrossbar()).isTrue();
-        assertThat(testpoint2.hasRightCrossbar()).isFalse();
-        assertThat(testpoint3.hasRightCrossbar()).isFalse();
+        assertThat(testpoint1.hasRightSideCrossbar()).isTrue();
+        assertThat(testpoint2.hasRightSideCrossbar()).isFalse();
+        assertThat(testpoint3.hasRightSideCrossbar()).isFalse();
 
     }
 }

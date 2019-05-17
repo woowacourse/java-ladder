@@ -20,7 +20,7 @@ public class OutputView {
 
     private static void printLadder(Ladder ladder) {
         for (Crosspoints crosspoints : ladder.getLadder()) {
-            printCrosspoints(crosspoints);
+            printCrossbars(crosspoints);
             System.out.println();
         }
 
@@ -30,8 +30,8 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printCrosspoints(Crosspoints crosspoints) {
-        for (Boolean rightCrossbar : crosspoints.getRightCrossbars()) {
+    private static void printCrossbars(Crosspoints crosspoints) {
+        for (Boolean rightCrossbar : crosspoints.getRightSideCrossbars()) {
             if (rightCrossbar) {
                 System.out.print("|-----");
                 continue;

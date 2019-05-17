@@ -41,7 +41,7 @@ public class Player {
 
     private void validateNameLength(String name) {
         if ((name.length() > MAXIMUM_NAME_LENGTH) || (name.length() < MINIMUM_NANE_LENGTH)) {
-            throw new IllegalArgumentException("이름의 길이는 5자 이하여야 합니다.");
+            throw new IllegalArgumentException("이름의 길이는 1자 이상, 5자 이하여야 합니다.");
         }
     }
 

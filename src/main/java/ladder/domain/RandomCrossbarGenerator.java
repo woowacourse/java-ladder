@@ -32,7 +32,7 @@ public class RandomCrossbarGenerator implements CrossbarGenerator {
     private void addRandomCrossbars() {
         boolean lastAdded = false;
 
-        while (crossbars.size() <= numberOfCrossbar - DUMMY_SIZE) {
+        while (crossbars.size() <= (numberOfCrossbar - DUMMY_SIZE)) {
             boolean bool = generateRandomBoolean();
             lastAdded = bool && !lastAdded;
             crossbars.add(lastAdded);

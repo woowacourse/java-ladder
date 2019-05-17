@@ -8,7 +8,6 @@ public class PlayerGroup {
     public PlayerGroup(List<String> playerNames) {
         for (int position = 0; position < playerNames.size(); position++) {
             players.add(new Player(playerNames.get(position), position));
-
         }
         checkDuplication(players.size(), playerNames.size());
     }
@@ -17,6 +16,19 @@ public class PlayerGroup {
         if (numberOfUniqueNames != numberOfPlayer) {
             throw new IllegalArgumentException("중복된 이름은 입력할 수 없습니다.");
         }
+    }
+
+    public Set<Player> getPlayers() {
+        return players;
+    }
+
+    public Map<String, ResultItem> findLadderingResult(Ladder ladder) {
+        Map<String, ResultItem> ladderingResult = new LinkedHashMap<>();
+
+        for (Player player : players) {
+            ladderingResult.putAll(player.stepDown(ladder));
+        }
+        return ladderingResult;
     }
 
     public int size() {
@@ -34,18 +46,5 @@ public class PlayerGroup {
     @Override
     public int hashCode() {
         return Objects.hash(players);
-    }
-
-    public Set<Player> getPlayers() {
-        return players;
-    }
-
-    public Map<String, ResultItem> findLadderingResult(Ladder ladder) {
-        Map<String, ResultItem> ladderingResult = new LinkedHashMap<>();
-        for (Player player : players) {
-            ladderingResult.putAll(player.stepDown(ladder));
-        }
-
-        return ladderingResult;
     }
 }

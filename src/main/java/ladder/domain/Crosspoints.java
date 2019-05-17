@@ -37,11 +37,11 @@ public class Crosspoints {
                 .answerResultPositionOf(positionOfPlayer);
     }
 
-    public List<Boolean> getRightCrossbars() {
+    public List<Boolean> getRightSideCrossbars() {
         List<Boolean> rightCrossbars = new ArrayList<>();
 
         for (Crosspoint crosspoint : crosspoints) {
-            rightCrossbars.add(crosspoint.hasRightCrossbar());
+            rightCrossbars.add(crosspoint.hasRightSideCrossbar());
         }
         return rightCrossbars;
     }

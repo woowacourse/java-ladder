@@ -4,13 +4,13 @@ import java.util.Objects;
 
 public class ResultItem {
     private static final int MAXIMUM_NAME_LENGTH = 5;
-    private static final int MINIMUM_NANE_LENGTH = 1;
+    private static final int MINIMUM_NAME_LENGTH = 1;
 
     private final String itemName;
 
     public ResultItem(String itemName) {
         nullCheck(itemName);
-        this.itemName = getTrimed(itemName);
+        this.itemName = getTrimmed(itemName);
     }
 
     private void nullCheck(String name) {
@@ -19,14 +19,14 @@ public class ResultItem {
         }
     }
 
-    private String getTrimed(String name) {
+    private String getTrimmed(String name) {
         name = name.trim();
-        vaildateNameLength(name);
+        validateNameLength(name);
         return name;
     }
 
-    private void vaildateNameLength(String name) {
-        if ((name.length() > MAXIMUM_NAME_LENGTH) || (name.length() < MINIMUM_NANE_LENGTH)) {
+    private void validateNameLength(String name) {
+        if ((name.length() > MAXIMUM_NAME_LENGTH) || (name.length() < MINIMUM_NAME_LENGTH)) {
             throw new IllegalArgumentException("당첨 항목의 길이는 5자 이하여야 합니다.");
         }
     }
