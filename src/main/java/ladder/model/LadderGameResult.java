@@ -1,71 +1,81 @@
 package ladder.model;
 
 import ladder.constant.MessageConstant;
-import ladder.validator.LadderGameResultValidator;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LadderGameResult {
-
-    private static final int START_VALUE = 0;
-    private static final String COLON = " : ";
-    private static final String ENTER = "\n";
-
+    private static final int START_VALUE_FOR_RECURSIVE = 0;
+    private static final String COLON_WITH_SPACE = " : ";
+    private static final String NEW_LINE = "\n";
+    private final Ladder ladder;
     private Map<String, String> gameResults = new LinkedHashMap<>();
-    private List<String> playerNames;
-    private List<String> goalNames;
 
-    public LadderGameResult(LadderGamePlayers players, Ladder ladder, LadderGameGoals goals) {
-        this.playerNames = players.getAllPlayerNames();
-        this.goalNames = goals.getAllGoalNames();
+    public LadderGameResult(final LadderGamePlayers players, final Ladder ladder, final LadderGameGoals goals) {
+        this.ladder = ladder;
+        initGameResults(players.getAllPlayerNames(), goals.getAllGoalNames());
 
-        initGameResults();
-
-        generateGameResults(ladder, START_VALUE);
+        generateGameResults(START_VALUE_FOR_RECURSIVE);
     }
 
-    private void initGameResults() {
+    private void initGameResults(List<String> playerNames, List<String> goalNames) {
         for (int i = 0; i < playerNames.size(); i++) {
             gameResults.put(playerNames.get(i), goalNames.get(i));
         }
     }
 
-    private void generateGameResults(Ladder ladder, int line) {
+    private void generateGameResults(int line) {
         if (line == ladder.size()) {
             return;
         }
-        generateGameResultsByLine(ladder, line, START_VALUE);
-        generateGameResults(ladder, line + 1);
+        generateGameResultsByLine(line, START_VALUE_FOR_RECURSIVE);
+        generateGameResults(line + 1);
     }
 
-    private void generateGameResultsByLine(Ladder ladder, int line, int crossbarIdx) {
-        if (crossbarIdx == playerNames.size() - 1) {
+    private void generateGameResultsByLine(int line, int crossbarIdx) {
+        if (crossbarIdx == gameResults.keySet().size() - 1) {
             return;
         }
-        swapGoals(ladder, line, crossbarIdx);
-        generateGameResultsByLine(ladder, line, crossbarIdx + 1);
+        swapGoals(line, crossbarIdx);
+        generateGameResultsByLine(line, crossbarIdx + 1);
     }
 
-    private void swapGoals(Ladder ladder, int line, int crossbarIdx) {
+    private void swapGoals(int line, int crossbarIdx) {
         if (ladder.hasCrossbar(crossbarIdx, line)) {
-            String value = gameResults.get(playerNames.get(crossbarIdx));
-            gameResults.replace(playerNames.get(crossbarIdx), gameResults.get(playerNames.get(crossbarIdx + 1)));
-            gameResults.replace(playerNames.get(crossbarIdx + 1), value);
+            List<String> keys = getPlayerNames();
+
+            String key = keys.get(crossbarIdx);
+            String nextKey = keys.get(crossbarIdx + 1);
+            String value = gameResults.get(key);
+            gameResults.replace(key, gameResults.get(nextKey));
+            gameResults.replace(nextKey, value);
         }
     }
 
-    public String match(String targetPlayer) {
-        return LadderGameResultValidator.checMatchPlayerAndGoal(gameResults.get(targetPlayer));
+    private List<String> getPlayerNames() {
+        return new ArrayList<>(gameResults.keySet());
+    }
+
+    public String matchGoalWith(String targetPlayerName) {
+        if (gameResults.containsKey(targetPlayerName)) {
+            return gameResults.get(targetPlayerName);
+        }
+        throw new IllegalArgumentException(MessageConstant.ERROR_PLAYER_NOT_EXIST);
     }
 
     @Override
     public String toString() {
+        List<String> keys = getPlayerNames();
+
         StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0 ; i < gameResults.size() ; i++){
-            stringBuilder.append(playerNames.get(i)).append(COLON).append(gameResults.get(playerNames.get(i))).append(ENTER);
+        for (int i = 0; i < gameResults.size(); i++) {
+            stringBuilder.append(keys.get(i))
+                    .append(COLON_WITH_SPACE)
+                    .append(gameResults.get(keys.get(i)))
+                    .append(NEW_LINE);
         }
         return stringBuilder.toString();
     }

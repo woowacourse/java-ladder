@@ -6,19 +6,21 @@ import ladder.model.Ladder;
 import java.util.List;
 
 public class OutputView {
-
-    public static final String ENTER = "\n";
-
-    public static void showLadderGame(List<String> names, Ladder ladder, List<String> goalNames) {
-        System.out.println(ENTER + MessageConstant.OUTPUT_LADDER_RESULT + ENTER);
-        showPlayers(names);
-        showLadder(ladder);
-        showGoals(goalNames);
+    private OutputView() {
     }
 
-    private static void showPlayers(List<String> names) {
-        for (String name : names) {
-            System.out.print(name);
+    private static final String NEW_LINE = "\n";
+
+    public static void showLadderGame(List<String> names, Ladder ladder, List<String> goalNames) {
+        System.out.println(NEW_LINE + MessageConstant.OUTPUT_LADDER_GAME_RESULT + NEW_LINE);
+        showLadderPlayers(names);
+        showLadder(ladder);
+        showLadderGoals(goalNames);
+    }
+
+    private static void showLadderPlayers(List<String> playerNames) {
+        for (String playerName : playerNames) {
+            System.out.print(playerName);
         }
         System.out.println();
     }
@@ -27,18 +29,17 @@ public class OutputView {
         System.out.println(ladder);
     }
 
-    private static void showGoals(List<String> goalNames) {
-        for (String goal : goalNames) {
-            System.out.print(goal);
+    private static void showLadderGoals(List<String> goalNames) {
+        for (String goalName : goalNames) {
+            System.out.print(goalName);
         }
         System.out.println();
     }
 
-    public static void showGameResult(String foundGoal){
-        if(foundGoal != null){
-            System.out.println(ENTER + MessageConstant.OUTPUT_RESULT);
-            System.out.println(foundGoal);
+    public static void showMatchingResult(String targetResult) {
+        if (targetResult != null) {
+            System.out.println(NEW_LINE + MessageConstant.OUTPUT_ACTION_RESULT);
+            System.out.println(targetResult);
         }
     }
-
 }

@@ -11,7 +11,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGameResultTest {
-
     private LadderGameResult ladderGameResult;
 
     @BeforeEach
@@ -28,11 +27,11 @@ public class LadderGameResultTest {
         goals.add(new LadderGoal("three"));
         goals.add(new LadderGoal("four"));
 
-        List<LadderWidth> ladders = new ArrayList<>();
-        ladders.add(new LadderWidth(new ArrayList<>(Arrays.asList(true,false,true))));
-        ladders.add(new LadderWidth(new ArrayList<>(Arrays.asList(false,false,true))));
-        ladders.add(new LadderWidth(new ArrayList<>(Arrays.asList(true,false,false))));
-        ladders.add(new LadderWidth(new ArrayList<>(Arrays.asList(false,true,false))));
+        List<LadderLine> ladders = new ArrayList<>();
+        ladders.add(new LadderLine(new ArrayList<>(Arrays.asList(true, false, true))));
+        ladders.add(new LadderLine(new ArrayList<>(Arrays.asList(false, false, true))));
+        ladders.add(new LadderLine(new ArrayList<>(Arrays.asList(true, false, false))));
+        ladders.add(new LadderLine(new ArrayList<>(Arrays.asList(false, true, false))));
 
         Ladder ladder = new Ladder(ladders);
 
@@ -40,15 +39,15 @@ public class LadderGameResultTest {
     }
 
     @Test
-    void 사다리게임_결과가_잘나오는지_테스트() {
-        assertThat(ladderGameResult.match("red")).isEqualTo("one");
-        assertThat(ladderGameResult.match("blue")).isEqualTo("three");
-        assertThat(ladderGameResult.match("green")).isEqualTo("two");
-        assertThat(ladderGameResult.match("black")).isEqualTo("four");
+    void 사다리게임_결과가_올바르게_나오는지_테스트() {
+        assertThat(ladderGameResult.matchGoalWith("red")).isEqualTo("one");
+        assertThat(ladderGameResult.matchGoalWith("blue")).isEqualTo("three");
+        assertThat(ladderGameResult.matchGoalWith("green")).isEqualTo("two");
+        assertThat(ladderGameResult.matchGoalWith("black")).isEqualTo("four");
     }
 
     @Test
-    void all을_입력받으면_전체_결과_출력_테스트() {
+    void 전체_결과를_반환하는_toString_메소드_테스트() {
         assertThat(ladderGameResult.toString()).isEqualTo("red : one\nblue : three\ngreen : two\nblack : four\n");
     }
 

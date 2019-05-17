@@ -5,22 +5,22 @@ import ladder.validator.LadderGoalValidator;
 import java.util.Objects;
 
 public class LadderGoal {
+    public static final int MAX_LENGTH_OF_GOAL_NAME = 5;
+    private static final String FORMAT_OF_ALIGNED_GOAL_NAME = "%-" + MAX_LENGTH_OF_GOAL_NAME + "s";
+    private static final String BLANK_FOR_ALIGNMENT_ON_LADDER = " ";
+    private final String goalName;
 
-    private static final String STANDARD_FORMAT_FIRST_INDEX = "%-";
-    private static final String STANDARD_FORMAT_SECOND_INDEX = "s";
-
-    private String goalName;
-
-    public LadderGoal(String goalName) {
-        this.goalName = LadderGoalValidator.validatedGoalName(goalName);
+    public LadderGoal(final String goalName) {
+        LadderGoalValidator.checkAccuracyOfGoalName(goalName);
+        this.goalName = goalName.trim();
     }
 
     public String getGoalName() {
         return goalName;
     }
 
-    public String getAlignedGoalName(int maxLenOfGoalNames) {
-        return String.format(STANDARD_FORMAT_FIRST_INDEX + (maxLenOfGoalNames + 1) + STANDARD_FORMAT_SECOND_INDEX, goalName);
+    String getAlignedGoalName() {
+        return String.format(FORMAT_OF_ALIGNED_GOAL_NAME, goalName) + BLANK_FOR_ALIGNMENT_ON_LADDER;
     }
 
     @Override

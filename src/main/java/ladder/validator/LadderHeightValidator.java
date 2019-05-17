@@ -4,19 +4,21 @@ import ladder.constant.MessageConstant;
 
 import java.util.regex.Pattern;
 
-public class InputLadderHeightValidator {
+public class LadderHeightValidator {
+    private LadderHeightValidator() {
+    }
 
     public static final int MIN_HEIGHT = 1;
 
-    public static void checkLadderHeightInputAccuracy(String input) {
+    public static void checkAccuracyOfUserInput(String input) {
         if (isHeightEmpty(input)) {
-            throw new IllegalArgumentException(MessageConstant.ERROR_HAS_VALUE_EMPTY);
+            throw new IllegalArgumentException(MessageConstant.ERROR_EMPTY_VALUE);
         }
         if (!isIntegerNumber(input.trim())) {
             throw new NumberFormatException(MessageConstant.ERROR_NOT_INTEGER);
         }
         if (Integer.parseInt(input.trim()) < MIN_HEIGHT) {
-            throw new IllegalArgumentException(MessageConstant.ERROR_LOWER_MIN_HEIGHT);
+            throw new IllegalArgumentException(MessageConstant.ERROR_BELOW_HEIGHT);
         }
     }
 

@@ -5,30 +5,31 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Ladder {
+    private static final String NEW_LINE = "\n";
+    private final List<LadderLine> lines;
 
-    private List<LadderWidth> lines = new ArrayList<>();
-
-    // test 코드
-    public Ladder(List<LadderWidth> lines) {
+    public Ladder(List<LadderLine> lines) {
         this.lines = lines;
     }
 
-    public Ladder(LadderGamePlayers players, int height, int maxLenOfGoalNames) {
+    public Ladder(LadderGamePlayers players, int height) {
+        List<LadderLine> createdLines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new LadderWidth(players.size() - 1, maxLenOfGoalNames));
+            createdLines.add(new LadderLine(players.size() - 1));
         }
+        this.lines = createdLines;
     }
 
-    public boolean hasCrossbar(int column, int row) {
+    boolean hasCrossbar(int column, int row) {
         return lines.get(row).hasCrossbar(column);
     }
 
-    public int size() {
+    int size() {
         return lines.size();
     }
 
     @Override
     public String toString() {
-        return lines.stream().map(LadderWidth::toString).collect(Collectors.joining("\n"));
+        return lines.stream().map(LadderLine::toString).collect(Collectors.joining(NEW_LINE));
     }
 }

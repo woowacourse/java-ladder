@@ -1,26 +1,26 @@
 package ladder.model;
 
-import ladder.validator.PlayerValidator;
+import ladder.validator.LadderPlayerValidator;
 
 import java.util.Objects;
 
 public class LadderPlayer {
+    public static final int MAX_LENGTH_OF_NAME = 5;
+    private static final String FORMAT_OF_ALIGNED_NAME = "%-" + MAX_LENGTH_OF_NAME + "s";
+    private static final String BLANK_FOR_ALIGNMENT_ON_LADDER = " ";
+    private final String name;
 
-    private static final String STANDARD_FORMAT_FIRST_INDEX = "%-";
-    private static final String STANDARD_FORMAT_SECOND_INDEX = "s";
-
-    private String name;
-
-    public LadderPlayer(String name) {
-        this.name = PlayerValidator.validatedName(name);
+    public LadderPlayer(final String name) {
+        LadderPlayerValidator.checkAccuracyOfName(name);
+        this.name = name.trim();
     }
 
-    public String getPlayerName() {
+    public String getName() {
         return name;
     }
 
-    public String getAlignedName(int maxLenOfGoalNames) {
-        return String.format(STANDARD_FORMAT_FIRST_INDEX + (maxLenOfGoalNames + 1) + STANDARD_FORMAT_SECOND_INDEX, name);
+    String getAlignedName() {
+        return String.format(FORMAT_OF_ALIGNED_NAME, name) + BLANK_FOR_ALIGNMENT_ON_LADDER;
     }
 
     @Override

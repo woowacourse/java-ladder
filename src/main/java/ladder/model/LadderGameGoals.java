@@ -5,22 +5,14 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class LadderGameGoals {
+    private final List<LadderGoal> goals;
 
-    private List<LadderGoal> goals;
-
-    public LadderGameGoals(List<LadderGoal> goals) {
+    public LadderGameGoals(final List<LadderGoal> goals) {
         this.goals = goals;
     }
 
-    public int getMaxLenOfGoalNames(){
-        return goals.stream().map(LadderGoal::getGoalName)
-                .map(String::length)
-                .max(Integer::compareTo)
-                .orElseThrow(NoSuchElementException::new);
-    }
-
     public List<String> getAlignedGoalNames() {
-        return goals.stream().map(goal -> goal.getAlignedGoalName(getMaxLenOfGoalNames())).collect(Collectors.toList());
+        return goals.stream().map(LadderGoal::getAlignedGoalName).collect(Collectors.toList());
     }
 
     public List<String> getAllGoalNames() {

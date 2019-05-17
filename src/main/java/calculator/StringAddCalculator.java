@@ -1,14 +1,12 @@
 package calculator;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class StringAddCalculator {
+    private static final Scanner SCANNER = new Scanner(System.in);
     private static final String DEFAULT_DELIMITER = "[,:]";
     private static final String INTEGER_REGEX = "^[0-9]$";
 
@@ -39,7 +37,7 @@ public class StringAddCalculator {
     }
 
     private String checkDelimiterType(String delimiter) {
-        if(Pattern.matches(INTEGER_REGEX, delimiter)){
+        if (Pattern.matches(INTEGER_REGEX, delimiter)) {
             throw new IllegalArgumentException("구분자는 숫자가 될수 없습니다.");
         }
 
@@ -47,15 +45,20 @@ public class StringAddCalculator {
     }
 
     private int sumResult(String[] texts) {
-        try{
-            return Arrays.stream(texts).mapToInt(Integer::parseInt).filter(i -> {
-                if (i < 0) {
-                    throw new RuntimeException("음수는 입력값이 될 수 없습니다.");
+        try {
+            return Arrays.stream(texts).mapToInt(Integer::parseInt).filter(number -> {
+                if (number < 0) {
+                    throw new IllegalArgumentException("음수는 입력값이 될 수 없습니다.");
                 }
                 return true;
             }).sum();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("올바른 입력값이 아닙니다.");
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("식을 입력하세요.");
+        System.out.println(new StringAddCalculator().add(SCANNER.nextLine()));
     }
 }
