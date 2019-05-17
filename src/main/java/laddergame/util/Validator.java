@@ -29,4 +29,10 @@ public class Validator {
             throw new IllegalArgumentException("이름은 all이 될 수 없습니다");
         }
     }
+
+    public static void checkEndsWithComma(String names) {
+        if (names.endsWith(",")) {
+            throw new IllegalArgumentException("입력값이 잘못되었습니다!");
+        }
+    }
 }

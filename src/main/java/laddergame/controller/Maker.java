@@ -3,7 +3,7 @@ package laddergame.controller;
 import laddergame.domain.Tags;
 import laddergame.util.InputView;
 import laddergame.util.OutputView;
-import laddergame.util.Spliter;
+import laddergame.util.Splitter;
 import laddergame.util.Validator;
 
 import java.util.List;
@@ -15,10 +15,12 @@ public class Maker {
     public static Tags makeMembers() {
         try {
             OutputView.outputMessage(INPUT_MEMBERS);
-            List<String> names = Spliter.splitByComma(InputView.inputNames());
+            String inputNames = InputView.inputNames();
+            Validator.checkEndsWithComma(inputNames);
+            List<String> names = Splitter.splitByComma(inputNames);
             Validator.checkEmptyTag(names);
             Validator.checkDuplicateNames(names);
-            names.forEach(Validator::nameIsAll);
+            names.forEach(Validator::checkNameIsAll);
             return new Tags(names);
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -29,7 +31,9 @@ public class Maker {
     public static Tags makePrizes(int size) {
         try {
             OutputView.outputMessage(INPUT_PRIZES);
-            List<String> names = Spliter.splitByComma(InputView.inputNames());
+            String inputNames = InputView.inputNames();
+            Validator.checkEndsWithComma(inputNames);
+            List<String> names = Splitter.splitByComma(inputNames);
             Validator.checkEmptyTag(names);
             Validator.checkEqualSize(size, names.size());
             return new Tags(names);
