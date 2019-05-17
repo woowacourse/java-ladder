@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class LineGenerator {
+class LineGenerator {
 
     private static final Random random = new Random();
 

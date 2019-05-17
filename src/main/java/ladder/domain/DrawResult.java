@@ -13,4 +13,8 @@ public class DrawResult {
             throw new IllegalArgumentException();
         }
     }
+
+    public String getResult() {
+        return result;
+    }
 }

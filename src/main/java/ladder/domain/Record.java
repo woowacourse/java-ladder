@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Record {
     private List<Integer> indices;
@@ -9,11 +10,20 @@ public class Record {
         this.indices = indices;
     }
 
-//    Record(Record record){
-//        this(record.getIndices());
-//    }
-
     List<Integer> getIndices(){
         return indices;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Record record = (Record) o;
+        return Objects.equals(indices, record.indices);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(indices);
     }
 }

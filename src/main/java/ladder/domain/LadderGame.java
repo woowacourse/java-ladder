@@ -44,7 +44,7 @@ public class LadderGame {
         }
     }
 
-    String drawResult(String message){
+    public String drawResult(String message){
         return gameResult.getResult(message);
     }
 
