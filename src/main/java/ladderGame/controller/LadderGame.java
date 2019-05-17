@@ -1,5 +1,7 @@
-package ladderGame;
+package ladderGame.controller;
 
+import ladderGame.dto.DrawnLadder;
+import ladderGame.model.ladder.*;
 import ladderGame.view.InputView;
 import ladderGame.view.OutputView;
 

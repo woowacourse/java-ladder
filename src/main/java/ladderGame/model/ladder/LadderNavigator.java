@@ -1,4 +1,5 @@
-package ladderGame;
+package ladderGame.model.ladder;
+import ladderGame.dto.*;
 
 public class LadderNavigator {
     public static int navigate(DrawnLadder drawnLadder, int fromColumn) {

@@ -1,5 +1,9 @@
-package ladderGame;
+package ladderGame.model.ladder;
 
+import ladderGame.model.ladder.Ladder;
+import ladderGame.model.ladder.LadderDrawer;
+import ladderGame.model.ladder.LadderFactory;
+import ladderGame.model.ladder.LadderRowFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

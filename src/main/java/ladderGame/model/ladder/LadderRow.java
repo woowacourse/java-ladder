@@ -1,4 +1,6 @@
-package ladderGame;
+package ladderGame.model.ladder;
+
+import ladderGame.dto.DrawnLadderRow;
 
 import java.util.ArrayList;
 import java.util.List;

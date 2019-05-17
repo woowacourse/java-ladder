@@ -1,6 +1,5 @@
-package ladderGame;
+package ladderGame.dto;
 
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Objects;
 

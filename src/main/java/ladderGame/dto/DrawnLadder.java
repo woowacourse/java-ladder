@@ -1,4 +1,4 @@
-package ladderGame;
+package ladderGame.dto;
 
 import java.util.List;
 import java.util.Objects;

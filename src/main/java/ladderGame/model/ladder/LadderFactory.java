@@ -1,4 +1,4 @@
-package ladderGame;
+package ladderGame.model.ladder;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

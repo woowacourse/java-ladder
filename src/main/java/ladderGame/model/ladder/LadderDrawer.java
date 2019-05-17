@@ -1,4 +1,6 @@
-package ladderGame;
+package ladderGame.model.ladder;
+
+import ladderGame.model.ladder.Ladder;
 
 import java.util.Random;
 

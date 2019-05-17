@@ -1,5 +1,9 @@
-package ladderGame;
+package ladderGame.model.ladder;
 
+import ladderGame.dto.DrawnLadder;
+import ladderGame.dto.DrawnLadderRow;
+import ladderGame.model.ladder.Ladder;
+import ladderGame.model.ladder.LadderRow;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

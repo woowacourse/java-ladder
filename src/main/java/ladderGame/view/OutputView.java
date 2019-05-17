@@ -1,6 +1,5 @@
 package ladderGame.view;
-
-import ladderGame.DrawnLadder;
+import ladderGame.dto.DrawnLadder;
 
 public class OutputView {
     private static final String EMPTY = "     ";

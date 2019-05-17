@@ -1,8 +1,10 @@
-package ladderGame;
+package ladderGame.model.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import ladderGame.dto.*;
 
 public class Ladder {
     private List<LadderRow> ladderRows;
