@@ -20,6 +20,10 @@ public class Direction {
         if (left) {
             return -1;
         }
+
+        if (current) {
+            return 1;
+        }
         return 0;
     }
 }

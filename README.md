@@ -74,5 +74,5 @@
 2. Player가 어디로 움직여야할 지 알려주는 Direction 객체를 생성한다.
     - ~~왼쪽과 현재가 동시에 true일 수 없다.~~
     - ~~(true, false) -> -1~~
-    - (false, true) -> 1
+    - ~~(false, true) -> 1~~
     - (false, false) -> 0

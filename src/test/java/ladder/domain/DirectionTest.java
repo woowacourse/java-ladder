@@ -14,8 +14,14 @@ public class DirectionTest {
     }
 
     @Test
-    void LeftTest() {
+    void leftTest() {
         Direction left = new Direction(true, false);
         assertThat(left.move()).isEqualTo(-1);
+    }
+
+    @Test
+        void rightTest() {
+        Direction right = new Direction(false, true);
+        assertThat(right.move()).isEqualTo(1);
     }
 }
