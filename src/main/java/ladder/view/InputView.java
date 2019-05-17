@@ -24,8 +24,13 @@ public class InputView {
     }
 
     public static List<LadderPlayer> makeLadderPlayers(String[] inputs) {
-        InputPlayerValidator.checkPlayerInputAccuracy(inputs);
-        return Arrays.stream(inputs).map(String::trim).map(LadderPlayer::new).collect(Collectors.toList());
+        try {
+            InputPlayerValidator.checkPlayerInputAccuracy(inputs);
+            return Arrays.stream(inputs).map(String::trim).map(LadderPlayer::new).collect(Collectors.toList());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return makeLadderPlayers();
+        }
     }
 
     public static int makeLadderHeight() {
@@ -34,8 +39,14 @@ public class InputView {
     }
 
     public static int makeLadderHeight(String input) {
-        InputLadderHeightValidator.checkLadderHeightInputAccuracy(input);
-        return Integer.parseInt(input.trim());
+        try{
+            InputLadderHeightValidator.checkLadderHeightInputAccuracy(input);
+            return Integer.parseInt(input.trim());
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return makeLadderHeight();
+        }
+
     }
 
     public static List<LadderGoal> makeLadderGoals(int numOfPlayers) {
@@ -44,8 +55,14 @@ public class InputView {
     }
 
     public static List<LadderGoal> makeLadderGoals(String[] inputs, int numOfPlayers) {
-        InputLadderGoalValidator.checkLadderGoalInputAccuracy(inputs, numOfPlayers);
-        return Arrays.stream(inputs).map(String::trim).map(LadderGoal::new).collect(Collectors.toList());
+        try{
+            InputLadderGoalValidator.checkLadderGoalInputAccuracy(inputs, numOfPlayers);
+            return Arrays.stream(inputs).map(String::trim).map(LadderGoal::new).collect(Collectors.toList());
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return makeLadderGoals(numOfPlayers);
+        }
+
     }
 
     public static String findName(){

@@ -1,6 +1,5 @@
 package ladder.controller;
 
-import ladder.constant.MessageConstant;
 import ladder.model.Ladder;
 import ladder.model.LadderGameGoals;
 import ladder.model.LadderGamePlayers;
@@ -10,29 +9,39 @@ import ladder.view.OutputView;
 
 public class LadderGameController {
 
-    LadderGamePlayers players;
-    LadderGameGoals goals;
-    Ladder ladder;
-
     public void run() {
-        players = new LadderGamePlayers(InputView.makeLadderPlayers());
-        goals = new LadderGameGoals(InputView.makeLadderGoals(players.size()));
-        ladder = new Ladder(players, InputView.makeLadderHeight(), goals.getMaxLenOfGoalNames());
+        LadderGamePlayers players = new LadderGamePlayers(InputView.makeLadderPlayers());
+        LadderGameGoals goals = new LadderGameGoals(InputView.makeLadderGoals(players.size()));
+        Ladder ladder = new Ladder(players, InputView.makeLadderHeight(), goals.getMaxLenOfGoalNames());
 
         OutputView.showLadderGame(players.getAlignedNames(goals.getMaxLenOfGoalNames()), ladder, goals.getAlignedGoalNames());
-        LadderGameResult ladderGameResult = new LadderGameResult(players,ladder,goals);
+        LadderGameResult ladderGameResult = new LadderGameResult(players, ladder, goals);
 
-        String foundName = InputView.findName();
-        if(foundName.equals("all")){
-            OutputView.showGameResult(ladderGameResult.toString());
-        }
-        if(!players.existName(foundName)){
-            throw new IllegalArgumentException(MessageConstant.ERROR_PLAYER_NOT_EXIST);
-        }
-
-        OutputView.showGameResult(ladderGameResult.match(foundName));
-
+        findMatching(ladderGameResult);
     }
 
+    private void findMatching(LadderGameResult ladderGameResult) {
+        String foundName = InputView.findName();
+        while (!foundName.equals("exit")) {
+            showGameResults(ladderGameResult, foundName);
+            foundName = InputView.findName();
+        }
+    }
 
+    private void showGameResults(LadderGameResult ladderGameResult, String foundName) {
+        if (foundName.equals("all")) {
+            OutputView.showGameResult(ladderGameResult.toString());
+            return;
+        }
+        OutputView.showGameResult(matchGameResult(ladderGameResult, foundName));
+    }
+
+    private String matchGameResult(LadderGameResult ladderGameResult, String foundName) {
+        try {
+            return ladderGameResult.match(foundName);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }

@@ -35,8 +35,10 @@ public class OutputView {
     }
 
     public static void showGameResult(String foundGoal){
-        System.out.println(ENTER + MessageConstant.OUTPUT_RESULT);
-        System.out.println(foundGoal);
+        if(foundGoal != null){
+            System.out.println(ENTER + MessageConstant.OUTPUT_RESULT);
+            System.out.println(foundGoal);
+        }
     }
 
 }

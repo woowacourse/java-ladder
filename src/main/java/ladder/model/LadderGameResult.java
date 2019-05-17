@@ -1,6 +1,10 @@
 package ladder.model;
 
+import ladder.constant.MessageConstant;
+import ladder.validator.LadderGameResultValidator;
+
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +14,7 @@ public class LadderGameResult {
     private static final String COLON = " : ";
     private static final String ENTER = "\n";
 
-    private Map<String, String> gameResults = new HashMap<>();
+    private Map<String, String> gameResults = new LinkedHashMap<>();
     private List<String> playerNames;
     private List<String> goalNames;
 
@@ -54,7 +58,7 @@ public class LadderGameResult {
     }
 
     public String match(String targetPlayer) {
-        return gameResults.get(targetPlayer);
+        return LadderGameResultValidator.checMatchPlayerAndGoal(gameResults.get(targetPlayer));
     }
 
     @Override
