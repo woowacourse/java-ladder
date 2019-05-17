@@ -4,7 +4,6 @@ public class PlayerResult {
     private final String name;
     private final String reward;
 
-
     public PlayerResult(final String name, final String reward) {
         this.name = name;
         this.reward = reward;
