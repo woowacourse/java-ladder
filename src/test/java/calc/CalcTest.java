@@ -16,12 +16,8 @@ class CalcTest {
     }
 
     @Test
-    void blankTestA() {
+    void blankTest() {
         assertThat(Calc.sum(" ")).isEqualTo(0);
-    }
-
-    @Test
-    void blankTestB() {
         assertThat(Calc.sum("   ")).isEqualTo(0);
     }
 
@@ -54,6 +50,7 @@ class CalcTest {
 
     @Test
     void wrongInputTest() {
-        assertThatIllegalArgumentException().isThrownBy(() -> Calc.sum(" a"));
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Calc.sum(" a"));
     }
 }
