@@ -29,6 +29,6 @@ class ValidatorTest {
     @Test
     void checkNameIsAll() {
         assertThrows(IllegalArgumentException.class, () ->
-                Validator.nameIsAll("all"));
+                Validator.checkNameIsAll("all"));
     }
 }

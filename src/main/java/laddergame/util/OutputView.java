@@ -21,12 +21,12 @@ public class OutputView {
     private static void outputTag(List<String> names) {
         StringBuilder namesView = new StringBuilder();
         for (String name : names) {
-            namesView.append(makeNameToSevenLength(name));
+            namesView.append(makeNameView(name));
         }
         System.out.println(namesView);
     }
 
-    private static StringBuilder makeNameToSevenLength(String name) {
+    private static StringBuilder makeNameView(String name) {
         StringBuilder nameView = new StringBuilder("       ");
         int nameStart = 3 - name.length() / 2;
         int nameEnd = nameStart + name.length();
@@ -39,24 +39,24 @@ public class OutputView {
         StringBuilder ladderView = new StringBuilder();
         int height = ladder.getHeight();
         for (int i = 0; i < height; i++) {
-            ladderView.append(outputLine(ladder, i));
+            ladderView.append(makeLineView(ladder, i));
         }
         System.out.print(ladderView);
     }
 
-    private static StringBuilder outputLine(Ladder ladder, int index) {
+    private static StringBuilder makeLineView(Ladder ladder, int index) {
         StringBuilder lineView = new StringBuilder();
         List<String> scaffoldsView = new ArrayList<>();
 
         for (Boolean scaffold : ladder.getLine(index).getScaffolds()) {
-            scaffoldsView.add(outputScaffold(scaffold));
+            scaffoldsView.add(makeScaffoldView(scaffold));
         }
         lineView.append(String.join("|", scaffoldsView).substring(3));
         lineView.append("\n");
         return lineView;
     }
 
-    private static String outputScaffold(Boolean scaffold) {
+    private static String makeScaffoldView(Boolean scaffold) {
         return scaffold ? "------" : "      ";
     }
 
