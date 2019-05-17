@@ -1,18 +1,17 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LadderGameProcessor {
+public class GameProcessor {
     private List<Player> players;
 
-    public LadderGameProcessor(List<Player> inputs) {
+    public GameProcessor(List<Player> inputs) {
         this.players = inputs;
 
     }
 
-    public List<Player> doGame(List<List<Boolean>> instructions) {
+    public List<Player> processGame(List<List<Boolean>> instructions) {
 
         for (int i = 0; i < instructions.size(); i++) {
             switchPosition(instructions.get(i));

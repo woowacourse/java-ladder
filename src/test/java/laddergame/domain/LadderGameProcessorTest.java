@@ -13,10 +13,10 @@ public class LadderGameProcessorTest {
     void 스위치_매써드_테스트() {
         List<Player> inputs = Arrays.asList(new Player("a"), new Player("b"), new Player("c"), new Player("d"));
 
-        LadderGameProcessor processor = new LadderGameProcessor(inputs);
+        GameProcessor processor = new GameProcessor(inputs);
         List<List<Boolean>> instructions = Arrays.asList(Arrays.asList(true, false, true), Arrays.asList(false, false, true));
 
-        assertThat(processor.doGame(instructions)).isEqualTo(Arrays.asList(new Player("b"), new Player("a"), new Player("c"), new Player("d")));
+        assertThat(processor.processGame(instructions)).isEqualTo(Arrays.asList(new Player("b"), new Player("a"), new Player("c"), new Player("d")));
 
     }
 }

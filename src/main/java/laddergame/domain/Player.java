@@ -25,4 +25,8 @@ public class Player {
     public String toString() {
         return this.name;
     }
+
+    public boolean contains(String name) {
+        return this.name.equals(name);
+    }
 }

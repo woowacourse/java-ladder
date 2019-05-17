@@ -10,8 +10,8 @@ public class PrizesGenerator {
         PrizesValidator.checkConditions(inputs, numOfPlayers);
 
         List<Prize> prizes = new ArrayList<>();
-        for (String prize : inputs) {
-            prizes.add(new Prize(prize));
+        for (String name : inputs) {
+            prizes.add(new Prize(name));
         }
 
         return prizes;

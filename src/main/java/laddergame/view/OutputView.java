@@ -2,6 +2,7 @@ package laddergame.view;
 
 import laddergame.domain.Ladder;
 import laddergame.domain.Player;
+import laddergame.domain.Prize;
 
 import java.util.List;
 
@@ -14,8 +15,19 @@ public class OutputView {
             stringBuilder.append(String.format("%6s", player));
             //System.out.printf("%6s", player.toString() + "\n");
         }
-        stringBuilder.append("\n").append(ladder).append("\n");
+        stringBuilder.append("\n").append(ladder);
 
         System.out.println(stringBuilder.toString());
+    }
+
+    public static void printPrizes(List<Prize> prizes) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Prize prize : prizes) {
+            stringBuilder.append(String.format("%6s", prize));
+        }
+
+        System.out.println(stringBuilder.toString());
+
     }
 }

@@ -12,13 +12,15 @@ public class LadderGame {
         List<Player> players = getPlayers();
         Ladder ladder = getLadder(players.size());
         List<Prize> prizes = getPrizes(players.size());
-        //게임실행
-        LadderGameProcessor processor = new LadderGameProcessor(players);
-        processor.doGame(ladder.getLadderMap());
-
-
         OutputView.printLadder(players, ladder);
+        OutputView.printPrizes(prizes);
 
+        //게임실행
+        GameProcessor processor = new GameProcessor(players);
+        processor.processGame(ladder.getLadderMap());
+
+        //결과보여주기
+        //결과를 보고 싶은 사람은? 이름또는 all
 
     }
 
