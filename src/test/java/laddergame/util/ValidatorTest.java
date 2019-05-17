@@ -10,25 +10,37 @@ import static org.junit.jupiter.api.Assertions.*;
 class ValidatorTest {
 
     @Test
-    void checkEmptyTag() {
-        assertThrows(IllegalArgumentException.class, () -> Validator.checkEmptyTag(new ArrayList<>()));
+    void 콤마로_끝나면_예외를_던지는지_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validator.checkEndsWithComma("a,,,,");
+        });
     }
 
     @Test
-    void checkDuplicateNames() {
-        assertThrows(IllegalArgumentException.class, () ->
-                Validator.checkDuplicateNames(Arrays.asList("a","a")));
+    void 빈_리스트를_입력할때_예외를_던지는지_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validator.checkMemberNames(new ArrayList<>());
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validator.checkPrizesName(new ArrayList<>(), 1);
+        });
     }
 
     @Test
-    void checkEqualSize() {
+    void Members는_이름이_중복될때_예외를_던지는지_테스트() {
         assertThrows(IllegalArgumentException.class, () ->
-                Validator.checkEqualSize(1,2));
+                Validator.checkMemberNames(Arrays.asList("a", "a")));
     }
 
     @Test
-    void checkNameIsAll() {
+    void Members에_all_이라는_이름이_있으면_예외인지_테스트() {
         assertThrows(IllegalArgumentException.class, () ->
-                Validator.checkNameIsAll("all"));
+                Validator.checkMemberNames(Arrays.asList("all", "gogo")));
+    }
+
+    @Test
+    void Members와_Prizes는_개수가_같아야함() {
+        assertThrows(IllegalArgumentException.class, () ->
+                Validator.checkPrizesName(Arrays.asList("go", "singsing"), 3));
     }
 }
