@@ -36,7 +36,7 @@ public class OutputView {
     private static void printPlayers(List<Player> players) {
         for (Player player : players) {
             stringBuilder.append(printInterval(player.getName().length()));
-            stringBuilder.append(player);
+            stringBuilder.append(player.getName());
         }
     }
 

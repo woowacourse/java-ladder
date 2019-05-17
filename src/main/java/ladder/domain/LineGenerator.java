@@ -9,7 +9,6 @@ class LineGenerator {
     LineGenerator(LineCreate lineCreate) {
         this.lineCreate = lineCreate;
         rowLines = new ArrayList<>();
-
     }
 
     Line drawLine(int width) {

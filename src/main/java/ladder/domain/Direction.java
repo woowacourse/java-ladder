@@ -3,8 +3,9 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Direction {
-    private final boolean left;
-    private final boolean current;
+    public boolean left;
+    public boolean current;
+
     public Direction(boolean left, boolean current) {
         this.left = left;
         this.current = current;
@@ -22,6 +23,10 @@ public class Direction {
 
     public Direction next(boolean nextCurrent) {
         return new Direction(this.current,nextCurrent);
+    }
+
+    public Direction pre(boolean beforeCurrent) {
+        return new Direction(beforeCurrent,this.current);
     }
 
     @Override

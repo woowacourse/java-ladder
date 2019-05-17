@@ -28,7 +28,13 @@ public class DirectionTest {
     void move_next() {
         Direction direction = new Direction(false,false);
         assertThat(direction.next(true)).isEqualTo(new Direction(false,true));
-
     }
+
+    @Test
+    void move_before() {
+        Direction direction = new Direction(true,false);
+        assertThat(direction.pre(true)).isEqualTo(new Direction(true,false));
+    }
+
 
 }
