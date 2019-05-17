@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
-
     private final List<Row> ladder = new ArrayList<>();
     private final List<Member> members;
     private final List<String> results;
@@ -51,5 +50,26 @@ public class LadderGame {
 
     public int getLadderHeight() {
         return ladder.size();
+    }
+
+    public EndResult excuteGame() {
+        for (Row row : ladder) {
+            for (int i = 0; i < row.getLineSize(); i++) {
+                for (Member member : members) {
+                    member.move(row.isLinked(i), i);
+                }
+            }
+        }
+        return makeResult();
+    }
+
+    private EndResult makeResult() {
+        List<Result> finalResults = new ArrayList<>();
+
+        for (Member member : members) {
+            finalResults.add(new Result(results.get(member.getPosition()), member.getName()));
+        }
+
+        return new EndResult(finalResults);
     }
 }

@@ -8,8 +8,8 @@ public class Members {
     public static List<Member> generateMembers(String[] names) {
         List<Member> members = new ArrayList<>();
 
-        for (String name : names) {
-            members.add(new Member(name));
+        for (int i = 0; i < names.length; i++) {
+            members.add(new Member(names[i], i));
         }
 
         return members;

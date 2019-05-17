@@ -15,7 +15,7 @@ public class Row {
     public Row(int[] linked){
         lines = new ArrayList<>();
 
-        lines.add(linked[0], false);
+        lines.add(booleanGenerator(linked[0], false));
 
         for (int i = 1; i < linked.length; i++) {
             lines.add(booleanGenerator(linked[i], lines.get(i - 1)));
@@ -37,6 +37,10 @@ public class Row {
             }
         }
         return false;
+    }
+
+    public boolean isLinked(int lineIndex) {
+        return lines.get(lineIndex);
     }
 
     @Override

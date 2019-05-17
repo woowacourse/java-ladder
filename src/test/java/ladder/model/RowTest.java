@@ -11,7 +11,7 @@ public class RowTest {
 
     @BeforeEach
     void setUp() {
-        row = new Row(4);
+        row = new Row(new int[]{1, 1, 0});
     }
 
     @Test
