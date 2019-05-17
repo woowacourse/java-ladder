@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Floor {
-    private List<Boolean> states = new ArrayList<>();
+    private final List<Boolean> states = new ArrayList<>();
 
     public Floor(int width) {
         makeStairs(width);

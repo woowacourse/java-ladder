@@ -1,14 +1,11 @@
 package ladderGame.domain;
 
-import ladderGame.util.StringUtil;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LadderGameResult {
-
-    private Map<String, String> resultMap;
+    private final Map<String, String> resultMap;
 
     public LadderGameResult(List<String> result, List<User> users) {
         this.resultMap = createResultMap(result, users);

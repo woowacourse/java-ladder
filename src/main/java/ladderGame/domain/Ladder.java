@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-
     private final List<Floor> floors;
 
     public Ladder(int height, int userSize) {
