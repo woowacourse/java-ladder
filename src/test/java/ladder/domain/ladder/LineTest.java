@@ -29,6 +29,20 @@ public class LineTest {
         List<Boolean> testRandomInput = Arrays.asList(false, false, false, false, false);
         assertThat(line.getPoints()).isEqualTo(testRandomInput);
     }
+
+    @Test
+    public void 다음포인트인덱스얻기() {
+        Line line = new Line(5, new ForcedTrueRule());
+        assertThat(line.move(0)).isEqualTo(1);
+        assertThat(line.move(1)).isEqualTo(0);
+    }
+
+    @Test
+    public void 다음포인트인덱스얻기2() {
+        Line line = new Line(5, new ForcedFalseRule());
+        assertThat(line.move(0)).isEqualTo(0);
+        assertThat(line.move(1)).isEqualTo(1);
+    }
 }
 
 class ForcedTrueRule implements LadderRule {
