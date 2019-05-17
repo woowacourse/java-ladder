@@ -8,29 +8,22 @@ import java.util.List;
 public class Ladder {
     private static final int MIN_WIDTH = 2;
     private static final int MIN_HEIGHT = 1;
-    private final int width;
-    private final int height;
-    private List<LadderRow> rows = new ArrayList<>();
+    private List<LadderRow> rows;
 
-    public Ladder(final int width, final int height) {
-        valid(width, height);
-        this.width = width;
-        this.height = height;
+    public Ladder() {
+        rows = new ArrayList<>();
     }
 
-    public Ladder(int width, String inputHeight) {
+    public Ladder init(int width, String inputHeight) {
         int height;
         try {
             height = Integer.parseInt(inputHeight);
-            valid(width, height);
-            this.width = width;
-            this.height = height;
-
+            make(width, height);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ConsoleMessages.ERR_NUMBER_FORMAT.message());
         }
+        return this;
     }
-
 
     private void valid(int width, int height) {
         if (width < MIN_WIDTH || height < MIN_HEIGHT) {
@@ -38,9 +31,10 @@ public class Ladder {
         }
     }
 
-    public void make() {
+    public void make(int width, int height) {
+        valid(width, height);
         RandomGenerator randomGenerator = new RandomGenerator();
-        make(randomGenerator);
+        make(randomGenerator, width, height);
     }
 
     LadderRow status(int index) {
@@ -51,9 +45,11 @@ public class Ladder {
         return rows;
     }
 
-    void make(RandomGenerator randomGenerator) {
-        for (int i = 0; i < this.height; i++) {
-            rows.add(new LadderRow(this.width, randomGenerator).getRow());
+    Ladder make(RandomGenerator randomGenerator, int width, int height) {
+        valid(width, height);
+        for (int i = 0; i < height; i++) {
+            rows.add(new LadderRow(width, randomGenerator).getRow());
         }
+        return this;
     }
 }
