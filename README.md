@@ -18,3 +18,5 @@ boolean 값을 담을 List
 - move (row의 index, true / false)
 
 ## output
+- 사다리 결과 출력
+- 최종 결과 출력
