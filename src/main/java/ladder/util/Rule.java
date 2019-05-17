@@ -19,6 +19,7 @@ public class Rule {
      * 규칙 : 이름은 5글자 이하
      * <br> 규칙 : 사용자는 1명 이상
      * <br> 규칙 : 중복 허용 불가
+     * <br> 규칙 : 이름이 all이면 안됨(Const.LADDERRESULT_GET_RESULT_ALL)
      *
      * @param inputNames 입력받은 사용자 이름들
      * @return inputNames
@@ -31,6 +32,7 @@ public class Rule {
         );
         for (String name : rulePlayerDuple(names)) {
             rulePlayerNameLength(name);
+            rulePlayerNameCheckAll(name);
         }
         return inputNames;
     }
@@ -61,6 +63,21 @@ public class Rule {
     public static String rulePlayerNameLength(String name) {
         if (StringUtils.isBlank(name) || name.length() > Const.MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(Const.EX_NAME);
+        }
+        return name;
+    }
+
+    /**
+     * 규칙 : 이름은 all이면 안된다.
+     * <br> 기준 : Const.
+     *
+     * @param name 이름 하나
+     * @return name
+     * @throws IllegalArgumentException Const.LADDERRESULT_GET_RESULT_ALL
+     */
+    private static String rulePlayerNameCheckAll(String name) {
+        if (name.equals(Const.LADDERRESULT_GET_RESULT_ALL)) {
+            throw new IllegalArgumentException(Const.EX_NAME_ALL);
         }
         return name;
     }
@@ -155,6 +172,7 @@ public class Rule {
         }
         return inputNames;
     }
+
 
     /**
      * 없는 이름이면 안됨

@@ -101,4 +101,11 @@ class RuleTest {
             Rule.ruleInputPlayerNames("1,2,3,2");
         });
     }
+
+    @Test
+    void ruleInputPlayerNames_all이름_확인() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Rule.ruleInputPlayerNames(" all , hee, hi");
+        });
+    }
 }
