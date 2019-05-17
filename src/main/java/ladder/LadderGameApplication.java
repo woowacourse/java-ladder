@@ -8,6 +8,7 @@ import ladder.view.OutputView;
 public class LadderGameApplication {
 
     private static final String STOP_MESSAGE = "all";
+    private static final String BLANK = "";
 
     public static void main(String[] args) {
         String[] names = InputView.getNames();
@@ -20,7 +21,7 @@ public class LadderGameApplication {
 
         OutputView.printLadder(ladderGame.toString());
 
-        String message = "";
+        String message = BLANK;
         while (!message.equals(STOP_MESSAGE)) {
             message = InputView.getResult();
             OutputView.printResult(ladderGame.drawResult(message));
