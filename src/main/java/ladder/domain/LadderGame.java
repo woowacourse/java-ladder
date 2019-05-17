@@ -5,9 +5,6 @@ import java.util.Map;
 
 public class LadderGame {
 
-    private static final int RIGHT = 1;
-    private static final int LEFT = 2;
-    private static final int STRAIGHT = 0;
     private static final int MOVEMENT = 1;
 
     private final Ladder ladder;
@@ -34,20 +31,20 @@ public class LadderGame {
 
     private int getUserResult(int index) {
         for (Line line : ladder.getLines()) {
-            int[] points = line.getPoints();
+            Direction[] points = line.getPoints();
             index += judgeLeftOrRightOrStraight(points[index]);
         }
         return index;
     }
 
-    private int judgeLeftOrRightOrStraight(int point) {
-        if (point == RIGHT) {
+    private int judgeLeftOrRightOrStraight(Direction direction) {
+        if (direction == Direction.RIGHT) {
             return MOVEMENT;
         }
-        if (point == LEFT) {
+        if (direction == Direction.LEFT) {
             return -MOVEMENT;
         }
-        return STRAIGHT;
+        return Direction.STRAIGHT.getDirection();
     }
 
     public String[] getNames() {

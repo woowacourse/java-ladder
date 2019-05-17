@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderGame;
-import ladder.domain.LadderGameResult;
-import ladder.domain.Line;
+import ladder.domain.*;
 
 import java.util.Map;
 
@@ -21,9 +18,11 @@ public class OutputView {
     public static void printLadderGame(LadderGame ladderGame) {
         System.out.println(GAME_LADDER_RESULT_MSG);
         String[] names = ladderGame.getNames();
-        String[] prizes = ladderGame.getPrizes();
         printLadderGameComponent(names);
+
         printLadder(ladderGame.getLadder());
+
+        String[] prizes = ladderGame.getPrizes();
         printLadderGameComponent(prizes);
     }
 
@@ -41,14 +40,14 @@ public class OutputView {
     }
 
     private static void printLine(Line line) {
-        for (int point : line.getPoints()) {
-            printLineComponent(point);
+        for (Direction direction : line.getPoints()) {
+            printLineComponent(direction);
         }
         System.out.println();
     }
 
-    private static void printLineComponent(int point) {
-        if (point == 1) {
+    private static void printLineComponent(Direction direction) {
+        if (direction == Direction.RIGHT) {
             System.out.print(LINE_COMPONENT);
             return;
         }
@@ -58,12 +57,12 @@ public class OutputView {
 
     public static void printLadderGameResult(LadderGameResult ladderGameResult, String name) {
         System.out.println(GAME_START_RESULT_MSG);
-        Map<String, String> map = ladderGameResult.getNameToPrize();
+        Map<String, String> matchedUserToPrize = ladderGameResult.getNameToPrize();
         if (name.equals(ALL_USER)) {
-            printUsersResult(map);
+            printUsersResult(matchedUserToPrize);
             return;
         }
-        System.out.println(map.get(name));
+        System.out.println(matchedUserToPrize.get(name));
     }
 
     private static void printUsersResult(Map<String, String> map) {
