@@ -13,6 +13,7 @@ public class OutputView {
     public void print(LadderRow row) {
         System.out.println(ConsoleMessages.OUTPUT_LADDER.message());
         System.out.println(line(row));
+        System.out.println();
     }
 
 
@@ -62,11 +63,15 @@ public class OutputView {
     }
 
     public void print(PlayerResult playerResult) {
+        System.out.println(ConsoleMessages.OUTPUT_RESULT.message());
         System.out.println(result(playerResult));
+        System.out.println();
     }
 
     public void print(List<PlayerResult> playerResults) {
+        System.out.println(ConsoleMessages.OUTPUT_RESULT.message());
         System.out.println(result(playerResults));
+        System.out.println();
     }
 
     public void print(Players players, Ladder ladder, LadderRewards ladderRewards) {

@@ -22,9 +22,8 @@ public class LadderResult {
 
     public PlayerResult result(Ladder ladder, Player player) {
         int index = player.position();
-        PlayerResult result = new PlayerResult(player.name(), result(ladder, index));
 
-        return result;
+        return new PlayerResult(player.name(), result(ladder, index));
     }
 
     public List<PlayerResult> result(Ladder ladder, Players players) {

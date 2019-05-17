@@ -19,14 +19,14 @@ public class InputView {
     }
 
     public String readReward() {
-        System.out.println("reward");
+        System.out.println(ConsoleMessages.INPUT_REWARD.message());
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
 
     public String readPlayer() {
-        System.out.println("플");
+        System.out.println(ConsoleMessages.INPUT_PLAYER.message());
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }

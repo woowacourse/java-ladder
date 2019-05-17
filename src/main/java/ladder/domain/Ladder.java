@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.view.ConsoleMessages;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,14 +27,14 @@ public class Ladder {
             this.height = height;
 
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ConsoleMessages.ERR_NUMBER_FORMAT.message());
         }
     }
 
 
     private void valid(int width, int height) {
         if (width < MIN_WIDTH || height < MIN_HEIGHT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ConsoleMessages.ERR_LADDER_RANGE.message());
         }
     }
 

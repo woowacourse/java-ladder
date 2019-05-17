@@ -26,7 +26,7 @@ public class LadderMain {
 
     private static void play() {
         String name = inputView.readPlayer();
-        if (name.equals("all")) {
+        if (name.equals(Players.FINISH_COMMAND)) {
             outputView.print(ladderResult.result(ladder, players));
             return;
         }

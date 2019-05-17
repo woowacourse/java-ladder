@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.view.ConsoleMessages;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,14 +16,14 @@ public class LadderRewards {
                 .map(reward -> {
                     reward = reward.trim();
                     if (reward.isEmpty()) {
-                        throw new IllegalArgumentException();
+                        throw new IllegalArgumentException(ConsoleMessages.ERR_BLANK.message());
                     }
                     return reward;
                 })
                 .collect(Collectors.toList());
 
         if (rewards.size() != width) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ConsoleMessages.ERR_REWARD_COUNT.message());
         }
     }
 
