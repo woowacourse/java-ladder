@@ -1,20 +1,48 @@
 package ladder.domain;
 
 import ladder.util.Const;
-import ladder.util.Rule;
 import ladder.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * 사다리 가로 줄 하나를 만드는 클래스
+ * <br> LadderLine ladderLine = new LadderLine(row)
+ * <br> ladderLine.getNextPosition(index)
+ *
+ * @author heebg, hyojaekim
+ * @version 1.0 2019-05-16
+ */
 public class LadderLine {
     private final int playerCount;
     private List<Boolean> lineStates;
 
+    /**
+     * 생성자. 가로 길이를 입력한다.
+     *
+     * @param playerCount 가로 길이
+     */
     public LadderLine(int playerCount) {
         this.playerCount = Rule.rulePlayerCountSize(playerCount);
         this.lineStates = setLineStates();
+    }
+
+    /**
+     * 해당 라인을 실행 한 이후 인덱스를 반환
+     *
+     * @param index 실행할 인덱스
+     * @return index
+     */
+    public int getNextPosition(int index) {
+        if (index != 0 && lineStates.get(index)) {
+            return -1;
+        }
+        if (index != lineStates.size() - 1 && lineStates.get(index + 1)) {
+            return +1;
+        }
+        return 0;
     }
 
     private List<Boolean> setLineStates() {
@@ -38,16 +66,6 @@ public class LadderLine {
             return Const.LINE_STATE_TRUE;
         }
         return Const.LINE_STATE_FALSE;
-    }
-
-    public int getNextPosition(int index) {
-        if (index != 0 && lineStates.get(index)) {
-            return -1;
-        }
-        if (index != lineStates.size() - 1 && lineStates.get(index + 1)) {
-            return +1;
-        }
-        return 0;
     }
 
     boolean isMatchLineState(int i) {

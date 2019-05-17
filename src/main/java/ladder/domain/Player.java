@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.util.Rule;
-
 import java.util.Objects;
 
 /**

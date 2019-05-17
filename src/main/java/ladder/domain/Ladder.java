@@ -7,6 +7,9 @@ import java.util.*;
  * <br> 가로, 세로를 넣어준다.
  * <br> Ladder ladder = new Ladder(5,4)
  * <br> ladder.
+ *
+ * @author heebg, hyojaekim
+ * @version 1.0 2019-05-16
  */
 public class Ladder {
     List<LadderLine> ladder;
@@ -70,9 +73,9 @@ public class Ladder {
     }
 
     private List<Integer> moveRadderLIne(int depth, List<Integer> starter) {
-        for (int i = 0 ; i < starter.size() ; i++) {
+        for (int i = 0; i < starter.size(); i++) {
             int nowPosition = starter.get(i);
-            starter.set(i,nowPosition + ladder.get(depth).getNextPosition(nowPosition));
+            starter.set(i, nowPosition + ladder.get(depth).getNextPosition(nowPosition));
         }
         return starter;
     }

@@ -1,5 +1,6 @@
-package ladder.util;
+package ladder.domain;
 
+import ladder.util.Const;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
@@ -26,7 +27,7 @@ public class Rule {
      * @throws IllegalArgumentException
      */
     public static String ruleInputPlayerNames(String inputNames) {
-        inputNames = inputNames.replaceAll(" ","");
+        inputNames = inputNames.replaceAll(" ", "");
         List<String> names = rulePlayerCountSize(
                 Arrays.asList(inputNames.split(","))
         );
@@ -130,13 +131,13 @@ public class Rule {
     /**
      * 규칙 : 실행 결과는 참여자 수와 같아야하며 각 결과는 5글자 이하여야한다
      *
-     * @param reward 입력받은 실행 결과
+     * @param reward      입력받은 실행 결과
      * @param playerCount 참여자 수
      * @return reward
      * @throws IllegalArgumentException
      */
     public static String ruleInputReward(String reward, int playerCount) {
-        reward = reward.replaceAll(" ","");
+        reward = reward.replaceAll(" ", "");
         List<String> rewards = Arrays.asList(ruleRewardRange(reward).split(","));
         ruleRewardSize(rewards.size() != playerCount);
 
@@ -176,6 +177,7 @@ public class Rule {
 
     /**
      * 없는 이름이면 안됨
+     *
      * @param inputWantName
      * @return
      */

@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import ladder.util.Const;
-import ladder.util.Rule;
 
 import java.util.*;
 
@@ -11,7 +10,7 @@ import java.util.*;
  * <br> radderResult.getResultOfName("pobi")
  * <br> radderResult.getResultOfName("all")
  *
- * @author heebg
+ * @author heebg, hyojaekim
  * @version 1.0 2019-05-16
  */
 public class LadderResult {
@@ -27,18 +26,40 @@ public class LadderResult {
      */
     public LadderResult(String names, String rewards, int depth) {
         names = Rule.ruleInputPlayerNames(names);
-        rewards = Rule.ruleInputReward(rewards,names.split(",").length);
+        rewards = Rule.ruleInputReward(rewards, names.split(",").length);
         depth = Rule.ruleLadderDepthRange(depth);
 
-        this.ladder = new Ladder(setPlayers(names).size(),depth);
-        this.result = setResult(setPlayers(names),Arrays.asList(rewards.split(",")),depth);
+        this.ladder = new Ladder(setPlayers(names).size(), depth);
+        this.result = setResult(setPlayers(names), Arrays.asList(rewards.split(",")), depth);
+    }
+
+    /**
+     * 이름의 결과값 반환
+     *
+     * @param name
+     * @return
+     */
+    public String getResultOfName(String name) {
+        if (name.equals(Const.LADDERRESULT_GET_RESULT_ALL)) {
+            return getResultOfAllName();
+        }
+        return result.get(name);
+    }
+
+    /**
+     * 사다리 모양 출력
+     *
+     * @return
+     */
+    public String getLadderShape() {
+        return ladder.getLadderShape();
     }
 
     private Map<String, String> setResult(List<Player> players, List<String> rewards, int depth) {
         Map<String, String> result = new HashMap<>();
         List<Integer> initResult = ladder.getResult();
         for (int i = 0; i < players.size(); i++) {
-            result.put(players.get(i).getName(),rewards.get(initResult.get(i)));
+            result.put(players.get(i).getName(), rewards.get(initResult.get(i)));
         }
         return result;
     }
@@ -52,34 +73,12 @@ public class LadderResult {
         return players;
     }
 
-    /**
-     * 이름의 결과값 반환
-     * @param name
-     * @return
-     */
-    public String getResultOfName(String name) {
-        if (name.equals(Const.LADDERRESULT_GET_RESULT_ALL)) {
-            return getResultOfAllName();
-        }
-        return result.get(name);
-    }
-
-
     private String getResultOfAllName() {
         StringJoiner stringJoiner = new StringJoiner("\n");
         for (Map.Entry<String, String> entry : result.entrySet()) {
             stringJoiner.add(entry.getKey() + " : " + entry.getValue());
         }
         return stringJoiner.toString();
-    }
-
-    /**
-     * 사다리 모양 출력
-     *
-     * @return
-     */
-    public String getLadderShape() {
-        return ladder.getLadderShape();
     }
 
     @Override

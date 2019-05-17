@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.LadderResult;
-import ladder.util.Rule;
+import ladder.domain.Rule;
 import ladder.util.Util;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -13,10 +13,10 @@ public class LadderApp {
         String rewards = InputRewards(InputView.inputRewards(), names.split(",").length);
         int depth = inputLadderDepth(InputView.inputLadderDepth());
 
-        LadderResult ladderResult = new LadderResult(names,rewards, depth);
+        LadderResult ladderResult = new LadderResult(names, rewards, depth);
 
         OutputView.outputLadder(Util.formatAlignRight(names), ladderResult.getLadderShape(), Util.formatAlignRight(rewards));
-        OutputView.outputLadderReward(inputWantName(ladderResult.getResultOfName(InputView.inputWantName()),ladderResult));
+        OutputView.outputLadderReward(inputWantName(ladderResult.getResultOfName(InputView.inputWantName()), ladderResult));
     }
 
     private static String inputPlayerNames(String names) {
