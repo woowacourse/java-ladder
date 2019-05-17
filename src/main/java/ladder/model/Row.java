@@ -12,7 +12,7 @@ public class Row {
 
     private List<Boolean> lines;
 
-    public Row(int[] linked){
+    public Row(int[] linked) {
         lines = new ArrayList<>();
 
         lines.add(booleanGenerator(linked[0], false));
@@ -31,15 +31,14 @@ public class Row {
     }
 
     public boolean checkDoubleDraw() {
-        for (int i = 0; i < lines.size() - 1; i++) {
-            if (lines.get(i) && lines.get(i + 1)) {
-                return true;
-            }
+        int i = 0;
+        while (i < lines.size() - 1 && !(lines.get(i) && lines.get(i + 1))) {
+            i++;
         }
-        return false;
+        return i == lines.size();
     }
 
-    public boolean isLinked(int lineIndex) {
+    boolean isLinked(int lineIndex) {
         return lines.get(lineIndex);
     }
 
