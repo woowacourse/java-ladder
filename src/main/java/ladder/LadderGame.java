@@ -9,11 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 public class LadderGame {
-    private static final int LAST_DUMMY_SPACE = 1;
-
     public static void main(String[] args) {
         PlayerGroup players = getPlayers();
-        CrossbarGenerator randomCrossbarGenerator = new RandomCrossbarGenerator(players.size() + LAST_DUMMY_SPACE);
+        CrossbarGenerator randomCrossbarGenerator = new RandomCrossbarGenerator(players.size());
         Ladder ladder = getLadderBy(getResultItems(), randomCrossbarGenerator);
         Map<String, ResultItem> ladderingResult = players.findLadderingResult(ladder);
 

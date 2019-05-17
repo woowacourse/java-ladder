@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RandomCrossbarGenerator implements CrossbarGenerator {
-    private static final Double RATE_OF_EMPTY_CROSSBAR = 0.5;
+    private static final int LAST_DUMMY_SPACE = 1;
     private static final int DUMMY_SIZE = 2;
     private static final boolean DUMMY_CROSSBAR = false;
+    private static final Double RATE_OF_EMPTY_CROSSBAR = 0.5;
 
     private int numberOfCrossbar;
     private List<Boolean> crossbars;
 
-    public RandomCrossbarGenerator(int numberOfCrossbar) {
-        this.numberOfCrossbar = numberOfCrossbar;
+    public RandomCrossbarGenerator(int numberOfPlayer) {
+        this.numberOfCrossbar = numberOfPlayer + LAST_DUMMY_SPACE;
     }
 
     @Override
