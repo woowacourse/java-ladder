@@ -1,12 +1,10 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.Constant;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private List<Point> line;
+    private final List<Point> line;
 
     public Line(int width) {
         line = new ArrayList<>();
@@ -49,6 +47,20 @@ public class Line {
         return line.get(column).hasBridge();
     }
 
+    public Direction findRoute(int startPosition) {
+        if (checkLeft(startPosition)) {
+            return Direction.left();
+        }
+        if (checkRight(startPosition - 1)) {
+            return Direction.right();
+        }
+        return Direction.keep();
+    }
+
+    public int getWidth() {
+        return (line.size() - 1);
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -57,15 +69,5 @@ public class Line {
             stringBuilder.append("|");
         }
         return stringBuilder.toString();
-    }
-
-    public int findRoute(int startPosition) {
-        if(checkLeft(startPosition)){
-            return Constant.LEFT_MOVE;
-        }
-        if(checkRight(startPosition-1)){
-            return Constant.RIGHT_MOVE;
-        }
-        return Constant.NOT_MOVE;
     }
 }

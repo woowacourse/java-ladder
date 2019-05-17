@@ -6,26 +6,23 @@ import java.util.List;
 import java.util.Random;
 
 public class Ladder {
-    // TODO 인스턴스 필드의 갯수를 줄이는 부분을 고민해볼 것
-    private final int height;            // 행
-    private final int width;            // 렬
+
     private List<Line> ladder;
 
     public Ladder(int height, int width) {
-        this.height = height;
-        this.width = width;
         ladder = new ArrayList<>();
 
-        // TODO 인덱스 접근 범위 고민 : 0 || 1로 시작
         for (int i = 0; i <= height; i++) {
             ladder.add(new Line(width));
         }
     }
 
     public void connectBridgesRandomly(int count) {
+        int height = ladder.size() - 1;
+        int width = ladder.get(0).getWidth();
         for (int i = 0; i < count; i++) {
             int randomRow = new Random().nextInt(height) + 1;
-            int randomCol = (int) (Math.random() * (width - 1)) + 1;
+            int randomCol = (int) (Math.random() * width) + 1;
 
             connectBridge(randomRow, randomCol);
         }
@@ -40,9 +37,9 @@ public class Ladder {
         }
     }
 
-    public int findResultIndex(int startPosition) {
+    public int findDestinationPosition(int startPosition) {
         for (Line line : ladder) {
-            startPosition += line.findRoute(startPosition);
+            startPosition += line.findRoute(startPosition).move();
         }
         return startPosition;
     }

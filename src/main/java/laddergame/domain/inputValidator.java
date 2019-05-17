@@ -1,6 +1,5 @@
 package laddergame.domain;
 
-import laddergame.domain.Constant;
 import org.apache.commons.lang3.StringUtils;
 
 public class inputValidator {

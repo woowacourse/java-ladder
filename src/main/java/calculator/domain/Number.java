@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Number {
     private final int number;
 
-    public Number(String number){
+    public Number(String number) {
         this.number = parseNumber(number);
         if (this.number < 0) {
             throw new RuntimeException("0 이상의 정수를 입력하세요");
@@ -20,6 +20,10 @@ public class Number {
         }
     }
 
+    int getNumber() {
+        return this.number;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,9 +35,5 @@ public class Number {
     @Override
     public int hashCode() {
         return Objects.hash(number);
-    }
-
-    int getNumber() {
-        return this.number;
     }
 }

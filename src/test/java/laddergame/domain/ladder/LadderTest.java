@@ -59,18 +59,18 @@ public class LadderTest {
     @Test
     public void 레더_테스트_사다리의_너비가_1일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(1, 1);
-        assertThat(ladder.findResultIndex(1)).isEqualTo(1);
+        assertThat(ladder.findDestinationPosition(1)).isEqualTo(1);
 
         ladder = new Ladder(2, 1);
-        assertThat(ladder.findResultIndex(1)).isEqualTo(1);
+        assertThat(ladder.findDestinationPosition(1)).isEqualTo(1);
     }
 
     @Test
     public void 레더_테스트_사다리의_너비가_2일때_제대로_찾는지() {
         Ladder ladder = new Ladder(1, 2);
         ladder.connectBridge(1, 1);
-        assertThat(ladder.findResultIndex(1)).isEqualTo(2);
-        assertThat(ladder.findResultIndex(2)).isEqualTo(1);
+        assertThat(ladder.findDestinationPosition(1)).isEqualTo(2);
+        assertThat(ladder.findDestinationPosition(2)).isEqualTo(1);
     }
 
     @Test
@@ -79,11 +79,11 @@ public class LadderTest {
         ladder.connectBridge(1, 2);
         ladder.connectBridge(1, 4);
         //          |    |-----|   |-----|
-        assertThat(ladder.findResultIndex(1)).isEqualTo(1);
-        assertThat(ladder.findResultIndex(2)).isEqualTo(3);
-        assertThat(ladder.findResultIndex(3)).isEqualTo(2);
-        assertThat(ladder.findResultIndex(4)).isEqualTo(5);
-        assertThat(ladder.findResultIndex(5)).isEqualTo(4);
+        assertThat(ladder.findDestinationPosition(1)).isEqualTo(1);
+        assertThat(ladder.findDestinationPosition(2)).isEqualTo(3);
+        assertThat(ladder.findDestinationPosition(3)).isEqualTo(2);
+        assertThat(ladder.findDestinationPosition(4)).isEqualTo(5);
+        assertThat(ladder.findDestinationPosition(5)).isEqualTo(4);
     }
 
     @Test
@@ -95,29 +95,30 @@ public class LadderTest {
         ladder.connectBridge(2, 3);
         //          |     |------|      |------|
         //          |-----|      |------|      |
-        assertThat(ladder.findResultIndex(1)).isEqualTo(2);
-        assertThat(ladder.findResultIndex(2)).isEqualTo(4);
-        assertThat(ladder.findResultIndex(3)).isEqualTo(1);
-        assertThat(ladder.findResultIndex(4)).isEqualTo(5);
-        assertThat(ladder.findResultIndex(5)).isEqualTo(3);
+        assertThat(ladder.findDestinationPosition(1)).isEqualTo(2);
+        assertThat(ladder.findDestinationPosition(2)).isEqualTo(4);
+        assertThat(ladder.findDestinationPosition(3)).isEqualTo(1);
+        assertThat(ladder.findDestinationPosition(4)).isEqualTo(5);
+        assertThat(ladder.findDestinationPosition(5)).isEqualTo(3);
     }
 
     @Test
     public void 레더_테스트_사다리의_높이가_3고_너비가_5일때_제대로_찾는지() {
         Ladder ladder = new Ladder(3, 5);
         ladder.connectBridge(1, 2);
-        ladder.connectBridge(1, 4);;
+        ladder.connectBridge(1, 4);
+        ;
         ladder.connectBridge(2, 1);
         ladder.connectBridge(2, 3);
         ladder.connectBridge(3, 3);
         //          |     |------|      |------|
         //          |-----|      |------|      |
         //          |     |      |------|      |
-        assertThat(ladder.findResultIndex(1)).isEqualTo(2);
-        assertThat(ladder.findResultIndex(2)).isEqualTo(3);
-        assertThat(ladder.findResultIndex(3)).isEqualTo(1);
-        assertThat(ladder.findResultIndex(4)).isEqualTo(5);
-        assertThat(ladder.findResultIndex(5)).isEqualTo(4);
+        assertThat(ladder.findDestinationPosition(1)).isEqualTo(2);
+        assertThat(ladder.findDestinationPosition(2)).isEqualTo(3);
+        assertThat(ladder.findDestinationPosition(3)).isEqualTo(1);
+        assertThat(ladder.findDestinationPosition(4)).isEqualTo(5);
+        assertThat(ladder.findDestinationPosition(5)).isEqualTo(4);
     }
 
     @Test
@@ -130,8 +131,8 @@ public class LadderTest {
         //          |     |------|      |
         //          |-----|      |------|
         //          |     |      |------|
-        assertThat(ladder.findResultIndex(1)).isEqualTo(3);
-        assertThat(ladder.findResultIndex(2)).isEqualTo(1);
-        assertThat(ladder.findResultIndex(3)).isEqualTo(2);
+        assertThat(ladder.findDestinationPosition(1)).isEqualTo(3);
+        assertThat(ladder.findDestinationPosition(2)).isEqualTo(1);
+        assertThat(ladder.findDestinationPosition(3)).isEqualTo(2);
     }
 }

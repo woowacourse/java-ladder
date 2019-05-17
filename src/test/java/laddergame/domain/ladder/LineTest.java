@@ -11,18 +11,18 @@ public class LineTest {
     @Test
     public void 라인의_너비가_1일때() {
         line = new Line(1);
-        assertThat(line.findRoute(1)).isEqualTo(Constant.NOT_MOVE);
+        assertThat(line.findRoute(1)).isEqualTo(Direction.keep());
     }
 
     @Test
     public void 라인의_너비가_2일때() {
         line = new Line(2);
-        assertThat(line.findRoute(1)).isEqualTo(Constant.NOT_MOVE);
-        assertThat(line.findRoute(2)).isEqualTo(Constant.NOT_MOVE);
+        assertThat(line.findRoute(1)).isEqualTo(Direction.keep());
+        assertThat(line.findRoute(2)).isEqualTo(Direction.keep());
 
         line.connect(1);
         //          |------|
-        assertThat(line.findRoute(1)).isEqualTo(Constant.RIGHT_MOVE);
-        assertThat(line.findRoute(2)).isEqualTo(Constant.LEFT_MOVE);
+        assertThat(line.findRoute(1)).isEqualTo(Direction.right());
+        assertThat(line.findRoute(2)).isEqualTo(Direction.left());
     }
 }
