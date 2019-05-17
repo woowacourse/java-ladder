@@ -3,10 +3,7 @@ package ladderGame.view;
 import java.util.List;
 import java.util.Map;
 
-import ladderGame.domain.Floor;
-import ladderGame.domain.Ladder;
-import ladderGame.domain.LadderGame;
-import ladderGame.domain.User;
+import ladderGame.domain.*;
 
 public class OutputView {
     public static void outputNames(List<User> users) {
@@ -19,16 +16,15 @@ public class OutputView {
     public static void outputLadder(List<Floor> ladder) {
         for (Floor floor : ladder) {
             outputFloor(floor);
+            System.out.println();
         }
     }
 
     private static void outputFloor(Floor floor) {
-        for (boolean isStair : floor.getStairs()) {
+        for (Point point : floor.getPoints()) {
             System.out.print("|");
-            outputStair(isStair);
+            outputStair(point.isHasRight());
         }
-        System.out.println("|");
-
     }
 
     private static void outputStair(boolean isStair) {

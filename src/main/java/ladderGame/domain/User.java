@@ -25,47 +25,6 @@ public class User {
         }
     }
 
-    public boolean move(Floor floor) {
-        List<Boolean> stairs = floor.getStairs();
-
-        return checkFirstLine(stairs) ||
-                checkLastLine(stairs.size(), stairs) ||
-                checkLeft(stairs) ||
-                checkRight(stairs);
-    }
-
-    private boolean checkLastLine(int size, List<Boolean> stairs) {
-        if (position == size) {
-            checkLeft(stairs);
-            return true;
-        }
-        return false;
-    }
-
-    private boolean checkFirstLine(List<Boolean> stairs) {
-        if (position == 0) {
-            checkRight(stairs);
-            return true;
-        }
-        return false;
-    }
-
-    private boolean checkLeft(List<Boolean> stairs) {
-        if (stairs.get(position - 1)) {
-            moveLeft();
-            return true;
-        }
-        return false;
-    }
-
-    private boolean checkRight(List<Boolean> stairs) {
-        if (stairs.get(position)) {
-            moveRight();
-            return true;
-        }
-        return false;
-    }
-
     private void moveLeft() {
         position--;
     }

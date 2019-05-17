@@ -8,7 +8,7 @@ public class Ladder {
 
     public Ladder(int height, int userSize) {
         validatePositiveNumber(height);
-        floors = createLadder(userSize - 1, height);
+        floors = createLadder(userSize, height);
     }
 
     private void validatePositiveNumber(int height) {

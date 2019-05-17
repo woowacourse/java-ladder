@@ -6,38 +6,29 @@ import java.util.List;
 import java.util.Random;
 
 public class Floor {
-    private final List<Boolean> states = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
 
     public Floor(int width) {
-        makeStairs(width);
+        makePoints(width);
     }
 
-    private void makeStairs(int width) {
-        for (int widthNum = 0; widthNum < width; widthNum++) {
-            states.add(createStair());
-            checkSector(widthNum);
+    private void makePoints(int width) {
+        points.add(Point.pointFirst(createState()));
+        while (points.size() != width - 1) {
+            Point prePoint = points.get(points.size()-1);
+            points.add(prePoint.nextPoint(createState()));
         }
+        points.add(points.get(points.size()-1).nextPointLast(createState()));
     }
 
-    private void checkSector(int widthNum) {
-        if (widthNum > 0) {
-            replaceStair(widthNum);
-        }
-    }
-
-    private void replaceStair(int sectorNum) {
-        if (states.get(sectorNum - 1)) {
-            states.set(sectorNum, false);
-        }
-    }
-
-    private boolean createStair() {
+    private boolean createState() {
         Random random = new Random();
         return random.nextBoolean();
     }
 
-    public List<Boolean> getStairs() {
-        return states;
+
+    public List<Point> getPoints() {
+        return points;
     }
 
     @Override
@@ -45,11 +36,11 @@ public class Floor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Floor floor = (Floor) o;
-        return states == floor.states;
+        return Objects.equals(points, floor.points);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(states);
+        return Objects.hash(points);
     }
 }

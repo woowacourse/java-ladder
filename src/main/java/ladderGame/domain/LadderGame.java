@@ -17,7 +17,7 @@ public class LadderGame {
 
     private void floorMove(Floor floor, List<User> users) {
         for (User user : users) {
-            user.move(floor);
+            //user.move(floor);
         }
     }
 }
