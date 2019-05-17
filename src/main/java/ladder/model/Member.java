@@ -3,12 +3,23 @@ package ladder.model;
 import java.util.Objects;
 
 public class Member {
+    private static final int CHECK_LEFT_POSITION = 1;
     private final String name;
     private int position;
 
     public Member(String name, int position) {
         this.name = name;
         this.position = position;
+    }
+
+    public void move(boolean isLinked, int lineIndex) {
+        if (isLinked && (lineIndex == position)) {
+            this.position++;
+            return;
+        }
+        if (isLinked && (lineIndex + CHECK_LEFT_POSITION == position)) {
+            this.position--;
+        }
     }
 
     public String getName() {
@@ -30,15 +41,5 @@ public class Member {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    public void move(boolean isLinked, int lineIndex) {
-        if (isLinked && (lineIndex == position)){
-            this.position++;
-            return;
-        }
-        if (isLinked && (lineIndex + 1 == position)){
-            this.position--;
-        }
     }
 }
