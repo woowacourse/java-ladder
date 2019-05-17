@@ -1,18 +1,12 @@
 package ladder.domain;
 
+import ladder.utils.RandomValueUtils;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Line {
-    private static final int CONNECT_CONDITION = 5;
-
     private ArrayList<Boolean> points = new ArrayList<>();
-
-    public Line(final int numberOfPeople) {
-        for (int i = 0; i < numberOfPeople; i++) {
-            points.add(false);
-        }
-    }
 
     public boolean isAvailableToConnect(int point) {
         if (point == points.size() - 1) {
@@ -30,10 +24,25 @@ public class Line {
         return points.get(point);
     }
 
-    public void connect(int point, int number) {
-        if (number >= CONNECT_CONDITION) {
-            points.set(point, true);
+    public void connect(int point) {
+        if (checkFirst(point)) return;
+
+        if (point == points.size() - 1 || isConnected(point - 1)) {
+            points.add(false);
+            return;
         }
+
+        points.add(RandomValueUtils.generate());
+    }
+
+    private boolean checkFirst(int point) {
+        if (point == 0) {
+            points.add(RandomValueUtils.generate());
+
+            return true;
+        }
+
+        return false;
     }
 
     public int getNumberOfPeople() {

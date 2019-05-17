@@ -12,7 +12,7 @@ public class LineTest {
 
     @BeforeEach
     public void setUp() {
-        line = new Line(5);
+//        line = new Line(5);
         point1 = 1;
         point2 = 4;
     }
@@ -30,14 +30,14 @@ public class LineTest {
     @Test
     public void 사다리_잘_그리는지_확인() {
         assertThat(line.isConnected(point1)).isFalse();
-        line.connect(point1, 4);
+//        line.connect(point1, 4);
         assertThat(line.isConnected(point1)).isTrue();
     }
 
     @Test
     void 사다리_그리지_말아야_할_때_안_그리는지_확인() {
         assertThat(line.isConnected(point1)).isFalse();
-        line.connect(point1, 3);
+//        line.connect(point1, 3);
         assertThat(line.isConnected(point1)).isFalse();
     }
 }

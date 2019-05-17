@@ -14,7 +14,8 @@ public class LadderGameTest {
     public void playTest() {
         List<String> names = Arrays.asList("done", "cony", "pobi");
         List<String> items = Arrays.asList("꽝", "10000", "꽝");
-        Ladder ladder = LadderGenerator.generate(3, 3);
+        LadderBuilder ladderBuilder = new LadderBuilder();
+        Ladder ladder = ladderBuilder.build(3, 3);
 
         Map<String, String> result = LadderGame.play(ladder, names, items);
         Map<String, String> result2 = new HashMap<>();

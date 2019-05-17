@@ -13,7 +13,7 @@ public class InputView {
     public static List<String> inputNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요.)");
         try {
-            List<String> names = new ArrayList<>(Arrays.asList(SCANNER.nextLine().trim().split(",")));
+            List<String> names = splitInput(SCANNER.nextLine());
             ValidatorUtils.checkNames(names);
             return new ArrayList<>(names);
         } catch (IllegalArgumentException e) {
@@ -35,7 +35,7 @@ public class InputView {
     public static List<String> inputItems(int numberOfPeople) {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         try {
-            List<String> items = new ArrayList<>(Arrays.asList(SCANNER.nextLine().trim().split(",")));
+            List<String> items = splitInput(SCANNER.nextLine());
             ValidatorUtils.checkItems(items, numberOfPeople);
             return new ArrayList<>(items);
         } catch (IllegalArgumentException e) {
@@ -52,5 +52,9 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             return inputParticipant(names);
         }
+    }
+
+    private static List<String> splitInput(String input) {
+        return new ArrayList<>(Arrays.asList(input.trim().split(",")));
     }
 }

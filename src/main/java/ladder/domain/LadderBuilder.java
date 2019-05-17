@@ -1,17 +1,21 @@
 package ladder.domain;
 
-public class LadderBuilder {
-    private static final int RANDOM_NUMBER_RANGE = 10;
+import java.util.ArrayList;
+import java.util.List;
 
+public class LadderBuilder {
     private Ladder ladder;
 
-    public LadderBuilder(Ladder ladder) {
-        this.ladder = ladder;
-    }
+    public Ladder build(int height, int numberOfPeople) {
 
-    public Ladder build() {
-        int height = ladder.getHeight();
-        int numberOfPeople = ladder.getNumberOfPeople();
+        List<Line> lines = new ArrayList<>();
+
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line());
+        }
+
+        ladder = new Ladder(lines);
+
 
         for (int row = 0; row < height; row++) {
             roundLine(numberOfPeople, row);
@@ -22,17 +26,7 @@ public class LadderBuilder {
 
     private void roundLine(int numberOfPeople, int row) {
         for (int column = 0; column < numberOfPeople; column++) {
-            isAvailableToConnect(row, column);
+            ladder.connect(row, column);
         }
-    }
-
-    private void isAvailableToConnect(int row, int column) {
-        if (ladder.isAvailableToConnect(row, column)) {
-            ladder.connect(row, column, makeRandomNumber());
-        }
-    }
-
-    private int makeRandomNumber() {
-        return (int) (Math.random() * RANDOM_NUMBER_RANGE);
     }
 }

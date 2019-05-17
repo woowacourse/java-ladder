@@ -48,14 +48,14 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printResult(Map<String, String> result, String participant) {
+    public static void printResult(List<String> names, List<String> result, String participant) {
         System.out.println("실행 결과");
         if (participant.equals("all")) {
-            for (String key : result.keySet()) {
-                System.out.println(key + " : " + result.get(key));
+            for (int i = 0; i < names.size(); i++) {
+                System.out.println(names.get(i) + " : " + result.get(i));
             }
         } else {
-            System.out.println(participant + " : " + result.get(participant));
+            System.out.println(participant + " : " + result.get(names.indexOf(participant)));
         }
     }
 }
