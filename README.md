@@ -80,5 +80,5 @@
     - ~~direction의 생성자를 private으로 만들고, first() 메서드로만 인스턴스를 생성할 수 있도록 강제한다.~~
 3. Position을 인스턴스 변수로 갖는 Player 클래스를 작성한다.
     - ~~Player는 자신의 Position과 인자로 받은 Direction을 이용하여 움직일 수 있다.~~
-    - Player는 이름을 갖는다.
+    - ~~Player는 이름을 갖는다.~~
 4. Direction의 리스트만을 인스턴스변수로 갖는 일급클래스인 Line 클래스를 작성한다.
