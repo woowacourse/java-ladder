@@ -41,7 +41,9 @@ public class TextCalculator {
     }
 
     private List<String> textTokenizer(String text) {
-        return Arrays.asList(extractCustomDelimiters(text).split(getSplitDelimiter()));
+        String numbers = extractCustomDelimiters(text);
+        Pattern pattern = Pattern.compile(Pattern.quote(getSplitDelimiter()));
+        return Arrays.asList(pattern.split(numbers));
     }
 
     private String extractCustomDelimiters(String text) {
