@@ -1,5 +1,9 @@
 package ladder.model;
 
+import ladder.model.Coin.Always;
+import ladder.model.Coin.EvenOnly;
+import ladder.model.Coin.Never;
+import ladder.model.Coin.OddOnly;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

@@ -71,7 +71,7 @@ public class OutputView {
         }
         while (result.hasNext()) {
             Player player = result.next();
-            System.out.println(player.getName() + " : " + player.getReward());
+            System.out.println(player);
         }
         return true;
     }

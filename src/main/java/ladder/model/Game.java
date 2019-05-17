@@ -1,11 +1,14 @@
 package ladder.model;
 
+import ladder.model.Coin.Half;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Game {
-    private static String NIL = "꽝";
+    public static String NIL = "꽝";
 
     private final List<Player> players;
     private final Ladder ladder;
@@ -20,7 +23,15 @@ public class Game {
             players.add(new Player(names.get(i), rewards.get(i)));
         }
         this.players = Collections.unmodifiableList(players);
-        ladder = new Ladder(names.size(), height, new Coin());
+        ladder = new Ladder(names.size(), height, new Half());
+    }
+
+    public Game(List<Player> players, int height) {
+        this(
+            players.stream().map(x -> x.getName()).collect(Collectors.toList()),
+            players.stream().map(x -> x.getReward()).collect(Collectors.toList()),
+            height
+        );
     }
 
     private static void adjustInputs(List<String> names, List<String> rewards) {

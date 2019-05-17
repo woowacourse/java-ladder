@@ -9,7 +9,7 @@ public class Player {
 
     public Player(String name, String reward) {
         name = name.trim();
-        if (name.length() < NAME_MIN_LENGTH || name.length() > NAME_MAX_LENGTH || name.equals("") || name.equals(" ")) {
+        if (name.length() < NAME_MIN_LENGTH || name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException();
         }
         this.name = name;
@@ -22,5 +22,10 @@ public class Player {
 
     public String getReward() {
         return reward;
+    }
+
+    @Override
+    public String toString() {
+        return name + " : " + reward;
     }
 }

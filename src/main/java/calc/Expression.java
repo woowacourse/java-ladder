@@ -8,7 +8,7 @@ public class Expression {
     private static final String CUSTOM_DELIMITER_EXTRACTOR = "//|\n";
 
     public static List<Integer> getTokens(String input) {
-        if (input == null || input.trim().equals("") || input.trim().equals(" ")) {
+        if (input == null || input.trim().length() == 0) {
             return Arrays.asList(0);
         }
         return validate(parse(tokenize(input)));

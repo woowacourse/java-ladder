@@ -1,5 +1,7 @@
 package ladder.model;
 
+import ladder.model.Coin.Coin;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,7 +12,7 @@ public class Ladder {
     private final List<Level> levels;
     private final List<Integer> mappingTable;
 
-    public Ladder(int width, int height, Possible possibility) {
+    public Ladder(int width, int height, Coin possibility) {
         if (width < 1 || height < 1) {
             throw new IllegalArgumentException();
         }

@@ -52,7 +52,7 @@ public class InputView {
 
     private static List<String> filterInputs(String input) {
         List<String> tokens = Stream.of(input.split(",")).map(x -> x.trim())
-            .filter(x -> !x.equals("") && !x.equals(" "))
+            .filter(x -> x.length() != 0)
             .collect(Collectors.toList());
         if (tokens.isEmpty()) {
             throw new IllegalArgumentException();
