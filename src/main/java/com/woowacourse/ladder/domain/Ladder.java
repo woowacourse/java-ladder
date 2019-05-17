@@ -1,52 +1,42 @@
 package com.woowacourse.ladder.domain;
 
-import com.woowacourse.ladder.interfaces.BooleanGenerator;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class Ladder {
-    private List<LadderRow> rows;
+    private final LadderState state;
 
-    public Ladder(int numOfParticipants, int height, BooleanGenerator booleanGenerator) {
-        rows = new ArrayList<>();
-        createRowsAndExplore(numOfParticipants, height, booleanGenerator);
+    public Ladder(LadderState ladderState) {
+        this.state = ladderState;
     }
 
-    private void createRowsAndExplore(int numOfParticipants, int height, BooleanGenerator booleanGenerator) {
-        // height 만큼의 Row 생성
-        for (int i = 0; i < height; i++) {
-            // 각 Row는 numOfParticipants - 1 크기의 Boolean 리스트를 가짐
-            rows.add(new LadderRow(numOfParticipants - 1, booleanGenerator));
-        }
-    }
-
-    /**
-     * 생성된 사다리에 인자로 명시된 참가자와 목적지 그룹을 매치한 결과를 생성
-     * @param participants 참가자 리스트
-     * @param destinations 목적지 리스트
-     * @return 사다리 매치 결과
-     */
     public LadderResult explore(List<String> participants, List<String> destinations) {
-        ParticipantGroup result = new ParticipantGroup(participants);
-        for (LadderRow row : rows) {
-            result = row.swapNames(result);
+        assertListSizeMatch(participants, destinations);
+        List<String> participantsToSwap = new ArrayList<>(participants);
+        List<List<Boolean>> matrix = state.getBooleanMatrix();
+        for (int i = 0; i < matrix.size(); i++) {
+            swapWithRow(participantsToSwap, matrix.get(i));
         }
 
-        return new LadderResult(result, new DestinationGroup(destinations));
+        return new LadderResult(participantsToSwap, destinations);
     }
 
-    public void forEachRows(Consumer<LadderRow> consumer) {
-        rows.forEach(consumer);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (LadderRow row : rows) {
-            sb.append(row).append('\n');
+    private void swapWithRow(List<String> participantsToSwap, List<Boolean> row) {
+        for (int j = 0; j < row.size(); j++) {
+            checkAndSwap(participantsToSwap, row, j);
         }
-        return sb.toString();
+    }
+
+    private void checkAndSwap(List<String> participantsToSwap, List<Boolean> row, int j) {
+        if(row.get(j)) {
+            Collections.swap(participantsToSwap, j, j + 1);
+        }
+    }
+
+    private void assertListSizeMatch(List<String> participants, List<String> destinations) {
+        if (participants.size() != destinations.size() || participants.size() - 1 != state.getBooleanMatrix().get(0).size()) {
+            throw new IllegalArgumentException(String.format("Sizes of participants and destinations are not equal: [%d, %d]", participants.size(), destinations.size()));
+        }
     }
 }

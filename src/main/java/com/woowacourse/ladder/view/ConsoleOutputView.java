@@ -8,22 +8,23 @@ import java.util.stream.Collectors;
 
 public class ConsoleOutputView implements OutputView {
     @Override
-    public void printLadder(Ladder ladder, List<String> participants, List<String> destinations) {
+    public void printLadder(LadderState ladderState, List<String> participants, List<String> destinations) {
         System.out.print("");
         participants.forEach(p -> {
             System.out.printf("%-6s ", p);
         });
         System.out.println();
-        ladder.forEachRows(this::forEachRow);
+        ladderState.getBooleanMatrix().forEach(this::forEachRow);
         destinations.forEach(p -> {
             System.out.printf("%-6s ", p);
         });
         System.out.println();
     }
 
-    private void forEachRow(LadderRow r) {
+    private void forEachRow(List<Boolean> rowBooleanState) {
         System.out.print("   |");
-        String rowString = r.getColumnStream()
+        String rowString = rowBooleanState
+            .stream()
             .map(this::forEachColumns)
             .collect(Collectors.joining("|"));
         System.out.print(rowString);
