@@ -52,6 +52,11 @@ public class TextCalculatorTest {
     }
 
     @Test
+    void 정규표현식특수문자커스텀구분자1() {
+        assertThat(new TextCalculator().calculate("//$\n1$2,3")).isEqualTo(0);
+    }
+
+    @Test
     void 음수입력1() {
         assertThrows(IllegalArgumentException.class, () -> {
             new TextCalculator().calculate("-2");
@@ -76,13 +81,6 @@ public class TextCalculatorTest {
     void 금지된커스텀구분자() {
         assertThrows(IllegalArgumentException.class, () -> {
             new TextCalculator().calculate("//-\n1!2,3");
-        });
-    }
-
-    @Test
-    void 금지된커스텀구분자1() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new TextCalculator().calculate("//$\n1$2,3");
         });
     }
 }
