@@ -10,16 +10,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RandomGeneratorTest {
     @Test
-    void 이전_값이_True이면_False_반환() {
-        assertFalse(RandomGenerator.getRandomBoolean(true));
+    void 이전_값이_True인_경우_False_반환() {
+        assertFalse(RandomGenerator.getNextValue(true));
     }
 
     @Test
-    void 이전_값이_False이면_랜덤_반환() {
+    void 이전_값이_False인_경우_랜덤_반환() {
         List<Boolean> booleans = new ArrayList<>();
 
         for (int i = 0; i < 100; ++i) {
-            booleans.add(RandomGenerator.getRandomBoolean(false));
+            booleans.add(RandomGenerator.getNextValue(false));
         }
 
         assertTrue((booleans.contains(true)) && (booleans.contains(false)));
