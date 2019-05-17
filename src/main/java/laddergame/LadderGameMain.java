@@ -2,10 +2,10 @@ package laddergame;
 
 import laddergame.controller.LadderGameController;
 
-public class Main {
+public class LadderGameMain {
     public static void main(String[] args) {
         LadderGameController ladderGameController = new LadderGameController();
-        ladderGameController.printLadderScreen();
-        ladderGameController.proceedGame();
+        ladderGameController.printLadder();
+        ladderGameController.playGame();
     }
 }

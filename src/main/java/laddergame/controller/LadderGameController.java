@@ -1,5 +1,6 @@
 package laddergame.controller;
 
+import laddergame.domain.Constant;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.player.PlayerBuilder;
@@ -19,14 +20,22 @@ public class LadderGameController {
         init();
     }
 
+    public void playGame() {
+        String command;
+        do {
+            command = InputView.inputCommand();
+            printResult(command);
+        } while (!command.equals(Constant.COMMAND_ALL));
+        OutputView.showAllResult(this.players, this.results, this.ladder);
+    }
+
     private void init() {
         this.players = setPlayers();
         this.results = setResults(players);
         LadderHeight ladderHeight = setLadderHeight();
-        this.ladder = new Ladder(ladderHeight.getLadderHeight(), players.getTotalPlayers());
-        this.ladder.connectBridgesRandomly(100);
+        this.ladder = new Ladder(ladderHeight.getLadderHeight(), players.getPlayersSize());
+        this.ladder.connectBridgesRandomly(Constant.CONNECTING_BRIDGE_TRIAL_COUNT);
     }
-
 
     private Players setPlayers() {
         try {
@@ -39,15 +48,14 @@ public class LadderGameController {
 
     private Results setResults(Players players) {
         try {
-            Results results = new ResultBuilder(InputView.inputResults()).makeResults();
-            checkPlayersWithResults(players, results);
+            Results results = new ResultBuilder(InputView.inputResults()).buildResults();
+            checkCountOfResultsWithPlayers(players, results);
             return results;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return setResults(players);
         }
     }
-
 
     private LadderHeight setLadderHeight() {
         try {
@@ -58,36 +66,23 @@ public class LadderGameController {
         }
     }
 
-    private void checkPlayersWithResults(Players players, Results results) {
-        if (results.matchPlayersCount(players.getTotalPlayers())) {
+    private void checkCountOfResultsWithPlayers(Players players, Results results) {
+        if (results.isEqualToPlayersCount(players.getPlayersSize())) {
             throw new IllegalArgumentException("개수가 같아야됩니다(플레이어, 결과)");
         }
     }
 
-    public void printLadderScreen() {
+    private void printResult(String command){
+        try {
+            OutputView.showResult(results.getResult(ladder.findIndexOfResult(players.getIndexOfName(command))));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void printLadder() {
         OutputView.showPlayers(this.players);
         OutputView.showLadder(this.ladder);
         OutputView.showResults(this.results);
-    }
-
-    public void proceedGame() {
-        String command;
-        do {
-            command = InputView.inputCommand();
-        } while (proceedWithCommand(command));
-        OutputView.showAllResult(this.players, this.results, this.ladder);
-    }
-
-    private boolean proceedWithCommand(String command) {
-        try {
-            if (command.equals("all")) {
-                return false;
-            }
-            OutputView.showResult(results.getResult(ladder.findResultIndex(players.getIndexOfName(command) + 1) - 1));
-            return true;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return true;
-        }
     }
 }

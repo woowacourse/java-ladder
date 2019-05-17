@@ -1,7 +1,6 @@
 package laddergame.domain.ladder;
 
 public class Point {
-	// TODO Point의 이름을 변경하는 것 고려
 	private final boolean bridge;
 
 	public Point(boolean bridge) {

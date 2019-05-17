@@ -13,8 +13,12 @@ public class Results {
         this.results = results;
     }
 
-    public boolean matchPlayersCount(int playerCount) {
+    public boolean isEqualToPlayersCount(int playerCount) {
         return (playerCount != results.size());
+    }
+
+    public Result getResult(int index) {
+        return this.results.get(index);
     }
 
     @Override
@@ -38,9 +42,5 @@ public class Results {
             stringBuilder.append(" ");
         }
         return stringBuilder.toString();
-    }
-
-    public Result getResult(int index) {
-        return this.results.get(index);
     }
 }

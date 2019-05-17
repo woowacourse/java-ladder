@@ -16,37 +16,39 @@ public class Line {
     }
 
     public void connect(int column) {
-        if (!checkRight(column) && !checkLeft(column)) {
+        if (!hasBridgeAtRightSide(column) && !hasBridgeAtLeftSide(column)) {
             line.set(column, new Point(true));
         }
     }
 
-    private boolean checkRight(int column) {
+    private boolean hasBridgeAtRightSide(int column) {
         try {
-            return checkRightBridge(column);
+            return line.get(column + 1).hasBridge();
         } catch (IndexOutOfBoundsException e) {
             return false;
         }
     }
 
-    private boolean checkLeft(int column) {
+    private boolean hasBridgeAtLeftSide(int column) {
         try {
-            return checkLeftBridge(column);
+            return line.get(column - 1).hasBridge();
         } catch (IndexOutOfBoundsException e) {
             return false;
         }
-    }
-
-    private boolean checkRightBridge(int column) {
-        return (line.get(column + 1).hasBridge());
-    }
-
-    private boolean checkLeftBridge(int column) {
-        return (line.get(column - 1).hasBridge());
     }
 
     public boolean isLinked(int column) {
         return line.get(column).hasBridge();
+    }
+
+    public int findRoute(int startPosition) {
+        if (hasBridgeAtLeftSide(startPosition + 1)) {
+            return Constant.LEFT_MOVE;
+        }
+        if (hasBridgeAtRightSide(startPosition)) {
+            return Constant.RIGHT_MOVE;
+        }
+        return Constant.NOT_MOVE;
     }
 
     @Override
@@ -57,15 +59,5 @@ public class Line {
             stringBuilder.append("|");
         }
         return stringBuilder.toString();
-    }
-
-    public int findRoute(int startPosition) {
-        if(checkLeft(startPosition)){
-            return Constant.LEFT_MOVE;
-        }
-        if(checkRight(startPosition-1)){
-            return Constant.RIGHT_MOVE;
-        }
-        return Constant.NOT_MOVE;
     }
 }

@@ -29,7 +29,7 @@ public class PlayersTest {
 
     @Test
     public void 총_플레이어의_인원을_제대로_반환하는지_검사() {
-        assertThat(players.getTotalPlayers()).isEqualTo(3);
+        assertThat(players.getPlayersSize()).isEqualTo(3);
     }
 
     @Test

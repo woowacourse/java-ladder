@@ -12,12 +12,12 @@ public class ResultsTest {
     @BeforeEach
     void setUp() {
         resultBuilder = new ResultBuilder("꽝,3000,5000,꽝");
-        results = resultBuilder.makeResults();
+        results = resultBuilder.buildResults();
     }
 
     @Test
     public void 객체_생성() {
-        assertThat(results).isEqualTo(resultBuilder.makeResults());
+        assertThat(results).isEqualTo(resultBuilder.buildResults());
     }
 
     @Test

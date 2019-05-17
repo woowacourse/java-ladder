@@ -15,7 +15,7 @@ public class ResultBuilder {
         this.result = result;
     }
 
-    public Results makeResults() {
+    public Results buildResults() {
         inputValidator.validateInput(result);
 
         List<Result> results =  Arrays.asList(result.split(Constant.COMMA)).stream()

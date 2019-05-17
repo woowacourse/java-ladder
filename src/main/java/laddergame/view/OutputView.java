@@ -34,9 +34,9 @@ public class OutputView {
     }
 
     public static void showAllResult(Players players, Results results, Ladder ladder) {
-        for (int i = 0; i < players.getTotalPlayers(); i++) {
+        for (int i = 0; i < players.getPlayersSize(); i++) {
             System.out.print(players.getNameOfIndex(i));
-            System.out.println("\t:\t" + results.getResult(ladder.findResultIndex(i + 1) - 1));
+            System.out.println("\t:\t" + results.getResult(ladder.findIndexOfResult(i)));
         }
     }
 }
