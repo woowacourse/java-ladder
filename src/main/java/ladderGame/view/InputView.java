@@ -1,6 +1,7 @@
 package ladderGame.view;
 
 import ladderGame.model.input.PlayerNamesInput;
+import ladderGame.model.input.RowInput;
 
 import java.util.List;
 import java.util.Scanner;
@@ -10,6 +11,7 @@ public class InputView {
     private static final String STRING_SEPERATOR = ",";
     private static final String ASK_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String ASK_RESULTS ="실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String ASK_ROWS = "최대 사다리 높이는 몇 개인가요?";
 
     public static List<String> readNames() {
         System.out.println(ASK_NAMES);
@@ -29,8 +31,14 @@ public class InputView {
     }
 
     public static int readRows() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return Integer.parseInt(scanner.nextLine());
+        System.out.println(ASK_ROWS);
+        try {
+            RowInput rowInput = new RowInput(scanner.nextLine());
+            return rowInput.getRow();
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+            return readRows();
+        }
     }
 
     public static String readName() {

@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LadderNavigatorTest {
 
     @Test
-    void navigate_다리없음() {
+    void navigate_다리없는_사다리() {
         DrawnLadder drawnLadder = new DrawnLadder(Arrays.asList(
                 new DrawnLadderRow(Arrays.asList(false, false)),
                 new DrawnLadderRow(Arrays.asList(false, false)),
@@ -30,7 +30,7 @@ class LadderNavigatorTest {
     }
 
     @Test
-    void navigate_다리있음() {
+    void navigate_다리있는_사다리() {
         DrawnLadder drawnLadder = new DrawnLadder(Arrays.asList(
                 new DrawnLadderRow(Arrays.asList(true, false)),
                 new DrawnLadderRow(Arrays.asList(false, true)),
@@ -47,7 +47,7 @@ class LadderNavigatorTest {
     }
 
     @Test
-    void navigate_다리많이있음() {
+    void navigate_다리많이있는_사다리() {
                 //        |     |     |     |-----|
                 //        |     |-----|     |-----|
                 //        |-----|     |-----|     |

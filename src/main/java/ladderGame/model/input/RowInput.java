@@ -10,4 +10,8 @@ public class RowInput {
         }
         this.row = row;
     }
+
+    public int getRow() {
+        return this.row;
+    }
 }
