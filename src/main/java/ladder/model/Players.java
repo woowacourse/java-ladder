@@ -1,6 +1,7 @@
 package ladder.model;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Players implements Iterable<Player> {
     private static final int MIN_PLAYER_NUMBER = 2;
@@ -14,17 +15,12 @@ public class Players implements Iterable<Player> {
         if (this.isDuplicatedName(names)) {
             throw new IllegalArgumentException("중복된 이름이 있습니다.");
         }
-        this.playersInit(names);
+
+        IntStream.range(0, names.length).forEach(i -> players.add(new Player(names[i], i)));
     }
 
     private boolean isDuplicatedName(String[] names) {
         return names.length != new HashSet<>(Arrays.asList(names)).size();
-    }
-
-    private void playersInit(String[] names) {
-        for (int i = 0; i < names.length; i++) {
-            players.add(new Player(names[i], i));
-        }
     }
 
     public boolean isContains(String name) {

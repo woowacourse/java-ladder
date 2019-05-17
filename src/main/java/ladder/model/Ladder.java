@@ -1,7 +1,14 @@
 package ladder.model;
 
+import java.io.SequenceInputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.IntConsumer;
+import java.util.function.Supplier;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;
@@ -14,13 +21,7 @@ public class Ladder {
             throw new IllegalArgumentException("높이는 1 이상의 정수이어야 합니다.");
         }
         this.height = height;
-        linesInit(countOfPlayer);
-    }
-
-    private void linesInit(int countOfPlayer) {
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(countOfPlayer));
-        }
+        IntStream.range(0, height).forEach(i -> lines.add(new Line(countOfPlayer)));
     }
 
     private boolean isValidHeight(int height) {
