@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PlayersTest {
     @BeforeEach
     void setup() {
-        Position.MAX = 2;
+        Players.NUM_OF_PLAYERS = 3;
     }
 
     @Test

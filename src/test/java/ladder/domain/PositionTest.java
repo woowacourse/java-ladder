@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class PositionTest {
     @BeforeEach
     void setup() {
-        Position.MAX = 2;  // Let's assume that the number of players is 3
+        Players.NUM_OF_PLAYERS = 3;
     }
 
     @Test

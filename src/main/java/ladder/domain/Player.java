@@ -10,15 +10,22 @@ public class Player {
     private final Position position;
 
     public Player(String name, Position position) {
-        validateNameNull(name);
+        validateNotNull(name);
+        validateNotNull(position);
         validateNameLength(name);
         this.name = name;
         this.position = position;
     }
 
-    private void validateNameNull(String name) {
+    private void validateNotNull(String name) {
         if (name == null) {
             throw new IllegalArgumentException("플레이어 이름은 null일 수 없습니다.");
+        }
+    }
+
+    private void validateNotNull(Position position) {
+        if (position == null) {
+            throw new IllegalArgumentException("플레이어 위치는 null일 수 없습니다.");
         }
     }
 

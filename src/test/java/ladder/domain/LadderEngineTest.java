@@ -14,7 +14,7 @@ public class LadderEngineTest {
 
     @BeforeEach
     void setup() {
-        Position.MAX = 2;
+        Players.NUM_OF_PLAYERS = 3;
 
         Point first = Point.first(true);
         Point next = first.next(false);

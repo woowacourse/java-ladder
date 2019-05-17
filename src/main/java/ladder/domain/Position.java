@@ -3,12 +3,11 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Position {
-    public static int MAX;
     public final int position;
 
     public Position(int position) {
         validateBiggerThanZero(position);
-        validateNotBiggerThanMax(position);
+        validateNotBiggerThanNumOfPlayers(position);
         this.position = position;
     }
 
@@ -18,8 +17,8 @@ public class Position {
         }
     }
 
-    private void validateNotBiggerThanMax(int position) {
-        if (position > MAX) {
+    private void validateNotBiggerThanNumOfPlayers(int position) {
+        if (position >= Players.NUM_OF_PLAYERS) {
             throw new IllegalArgumentException("플레이어의 위치는 플레이어 수보다 작아야합니다.");
         }
     }

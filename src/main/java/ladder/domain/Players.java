@@ -5,10 +5,26 @@ import java.util.List;
 import java.util.Objects;
 
 public class Players {
+    static int NUM_OF_PLAYERS;
+
     private final List<Player> players;
 
     public Players(List<Player> players) {
+        validateNotNull(players);
+        validateNumOfPlayers(players);
         this.players = players;
+    }
+
+    private void validateNotNull(List<Player> players) {
+        if (players == null || players.contains(null)) {
+            throw new IllegalArgumentException("플레이어 리스트가 null 입니다.");
+        }
+    }
+
+    private void validateNumOfPlayers(List<Player> players) {
+        if (players.size() != NUM_OF_PLAYERS) {
+            throw new IllegalArgumentException("플레이어 수가 적절하지 않습니다.");
+        }
     }
 
     public Players goDown(Line line) {

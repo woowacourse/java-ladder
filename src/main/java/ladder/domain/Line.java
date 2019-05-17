@@ -6,7 +6,21 @@ public class Line {
     private final List<Point> points;
 
     public Line(List<Point> points) {
+        validateNotNull(points);
+        validateNumOfPoints(points);
         this.points = points;
+    }
+
+    private void validateNotNull(List<Point> points) {
+        if (points == null || points.contains(null)) {
+            throw new IllegalArgumentException("포인트 리스트가 null 입니다.");
+        }
+    }
+
+    private void validateNumOfPoints(List<Point> points) {
+        if (points.size() != Players.NUM_OF_PLAYERS) {
+            throw new IllegalArgumentException("라인의 포인트 수는 플레이어 수와 같아야합니다.");
+        }
     }
 
     public Point getPoint(Position position) {
