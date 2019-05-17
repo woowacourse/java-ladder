@@ -20,8 +20,6 @@ public class EndResult {
     }
 
     public List<Result> getAllResult() {
-        List<Result> allResult = new ArrayList<>();
-        allResult.addAll(results);
-        return allResult;
+        return new ArrayList<>(results);
     }
 }
