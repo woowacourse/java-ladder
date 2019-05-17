@@ -2,13 +2,17 @@ package ladder.view;
 
 import ladder.model.LadderGame;
 import ladder.model.Member;
+import ladder.model.Result;
 import ladder.model.Row;
+
+import java.util.List;
 
 public class OutputView {
 
     private static final String SINGLE_BLANK = " ";
     private static final String NEW_LINE = "\n";
     private static final int MAX_NAME_LENGTH = 5;
+    private static final String GAME_RESULT = "실행 결과";
 
     public static void printLadder(LadderGame ladderGame) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -58,5 +62,15 @@ public class OutputView {
         for (Row row : ladderGame.getLadder()){
             stringBuilder.append(row.toString() + NEW_LINE);
         }
+    }
+
+    public static void printMemberResult(Result result) {
+        System.out.println(GAME_RESULT);
+        System.out.println(result);
+    }
+
+    public static void allPrintResult(List<Result> results) {
+        System.out.println(GAME_RESULT);
+        results.forEach(System.out::println);
     }
 }
