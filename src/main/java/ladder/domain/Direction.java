@@ -14,6 +14,12 @@ public class Direction {
         this.current = current;
     }
 
+    private void validateNotConsecutiveTrue(boolean left, boolean current) {
+        if (left && current) {
+            throw new IllegalArgumentException("사다리 선이 가로로 연속적일 수 없습니다.");
+        }
+    }
+
     public static Direction first(boolean current) {
         return new Direction(false, current);
     }
@@ -24,12 +30,6 @@ public class Direction {
 
     public Direction last() {
         return new Direction(current, false);
-    }
-
-    private void validateNotConsecutiveTrue(boolean left, boolean current) {
-        if (left && current) {
-            throw new IllegalArgumentException("사다리 선이 가로로 연속적일 수 없습니다.");
-        }
     }
 
     public int move() {
