@@ -1,6 +1,8 @@
 package ladder.controller;
 
 import ladder.domain.*;
+import ladder.domain.generator.PlayerGenerator;
+import ladder.domain.generator.PlayerRewardsGenerator;
 import ladder.view.InputConsoleView;
 import ladder.view.OutputConsoleView;
 

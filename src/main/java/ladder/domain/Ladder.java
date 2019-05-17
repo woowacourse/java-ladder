@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.domain.generator.LineGenerator;
+import ladder.domain.generator.LineRandomGenerator;
+
 import java.util.List;
 
 public final class Ladder {

@@ -1,5 +1,7 @@
-package ladder.domain;
+package ladder.domain.generator;
 
+import ladder.domain.PlayerRewards;
+import ladder.domain.generator.PlayerRewardsGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

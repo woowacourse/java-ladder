@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.domain.generator.SubLineGenerator;
+import ladder.domain.generator.SubLineRandomGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.domain.generator.LineGenerator;
+import ladder.domain.generator.LineRandomGenerator;
+
 public final class LadderGame {
     private final Ladder ladder;
     private final GamePlayers gamePlayers;

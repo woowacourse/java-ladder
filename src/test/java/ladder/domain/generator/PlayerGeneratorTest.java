@@ -1,5 +1,7 @@
-package ladder.domain;
+package ladder.domain.generator;
 
+import ladder.domain.Player;
+import ladder.domain.generator.PlayerGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
