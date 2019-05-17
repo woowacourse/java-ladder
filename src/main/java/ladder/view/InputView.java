@@ -42,7 +42,12 @@ public class InputView {
 
     public static List<String> inputCandidates() {
         System.out.println("\n결과를 보고 싶은 사람은?");
-        return filterInputs(input.nextLine());
+        try {
+            return filterInputs(input.nextLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(WRONG_INPUT_MESSAGE);
+            return inputCandidates();
+        }
     }
 
     private static List<String> filterInputs(String input) {

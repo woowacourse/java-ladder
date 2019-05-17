@@ -1,12 +1,13 @@
 package ladder.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Game {
     private static String NIL = "꽝";
 
-    private final List<Player> players = new ArrayList<>();
+    private final List<Player> players;
     private final Ladder ladder;
 
     public Game(List<String> names, List<String> rewards, int height) {
@@ -14,9 +15,11 @@ public class Game {
             throw new IllegalArgumentException();
         }
         adjustInputs(names, rewards);
+        List<Player> players = new ArrayList<>();
         for (int i = 0; i < names.size(); i++) {
             players.add(new Player(names.get(i), rewards.get(i)));
         }
+        this.players = Collections.unmodifiableList(players);
         ladder = new Ladder(names.size(), height, new Coin());
     }
 

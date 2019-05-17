@@ -9,25 +9,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LevelTest {
     @Test
     void levelCreateTestNeverDraw() {
-        Possible never = new Never();
-        assertThat(new Level(4, never).getVerticalLines()).isEqualTo(Arrays.asList());
+        assertThat(new Level(4, new Never()).getVerticalLines()).isEqualTo(Arrays.asList());
     }
 
     @Test
     void levelCreateTestAlwaysDraw() {
-        Possible always = new Always();
-        assertThat(new Level(11, always).getVerticalLines()).isEqualTo(Arrays.asList(0, 2, 4, 6, 8, 10));
+        assertThat(new Level(11, new Always()).getVerticalLines()).isEqualTo(Arrays.asList(0, 2, 4, 6, 8, 10));
     }
 
     @Test
     void levelCreateTestDrawOdd() {
-        Possible oddOnly = new OddOnly();
-        assertThat(new Level(13, oddOnly).getVerticalLines()).isEqualTo(Arrays.asList(0, 3, 6, 9, 12));
+        assertThat(new Level(13, new OddOnly()).getVerticalLines()).isEqualTo(Arrays.asList(0, 3, 6, 9, 12));
     }
 
     @Test
     void levelCreateTestDrawEven() {
-        Possible evenOnly = new EvenOnly();
-        assertThat(new Level(23, evenOnly).getVerticalLines()).isEqualTo(Arrays.asList(1, 4, 7, 10, 13, 16, 19, 22));
+        assertThat(new Level(23, new EvenOnly()).getVerticalLines()).isEqualTo(Arrays.asList(1, 4, 7, 10, 13, 16, 19, 22));
     }
 }

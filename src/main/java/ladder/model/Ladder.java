@@ -7,17 +7,19 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<Level> levels = new ArrayList<>();
+    private final List<Level> levels;
     private final List<Integer> mappingTable;
 
     public Ladder(int width, int height, Possible possibility) {
         if (width < 1 || height < 1) {
             throw new IllegalArgumentException();
         }
+        final List<Level> levels = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             levels.add(new Level(width - 1, possibility));
         }
-        mappingTable = processMappingTable(width - 1);
+        this.levels = Collections.unmodifiableList(levels);
+        mappingTable = processMappingTable(width);
     }
 
     public List<Player> apply(List<Player> players) {
@@ -33,7 +35,7 @@ public class Ladder {
     }
 
     private List<Integer> processMappingTable(int width) {
-        List<Integer> table = IntStream.rangeClosed(0, width).boxed().collect(Collectors.toList());
+        final List<Integer> table = IntStream.range(0, width).boxed().collect(Collectors.toList());
         levels.forEach(level -> level.getVerticalLines().forEach(line -> Collections.swap(table, line, line + 1)));
         return Collections.unmodifiableList(table);
     }
