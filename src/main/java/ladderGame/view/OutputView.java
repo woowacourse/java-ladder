@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import ladderGame.domain.Floor;
+import ladderGame.domain.Ladder;
 import ladderGame.domain.LadderGame;
 import ladderGame.domain.User;
 
@@ -56,9 +57,9 @@ public class OutputView {
         }
     }
 
-    public static void printLadderUI(List<User> users, LadderGame ladderGame, LadderGame ladderGame1, List<String> results) {
+    public static void printLadderUI(List<User> users, Ladder ladder, List<String> results) {
         outputNames(users);
-        outputLadder(ladderGame.getLadder());
+        outputLadder(ladder.getFloors());
         outputResults(results);
     }
 }
