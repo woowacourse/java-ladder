@@ -31,16 +31,7 @@ public final class GamePlayers {
         }
     }
 
-    public int index(String name) {
-        for (int i = 0; i < players.size(); i++) {
-            if (players.get(i).getName().equals(name)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public String getPlayerName(int index) {
+    String getPlayerName(int index) {
         return players.get(index).getName();
     }
 

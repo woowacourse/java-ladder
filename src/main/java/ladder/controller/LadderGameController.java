@@ -15,9 +15,8 @@ public class LadderGameController {
         Ladder ladder = new Ladder(inputHeight(), gamePlayers.size());
         GameResult gameResult = new GameResult(ladder, gamePlayers, playerRewards);
 
-
         OutputConsoleView.printLadderGame(ladder, gamePlayers, playerRewards);
-        String name = "";
+        String name;
         while (!(name = InputConsoleView.inputResultName()).equals("all")) {
             OutputConsoleView.printResult(gameResult, name);
         }

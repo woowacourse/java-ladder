@@ -46,7 +46,7 @@ public class OutputConsoleView {
         for (Line line : lines) {
             printLine(sb, line);
         }
-        System.out.println(sb.toString());
+        System.out.print(sb.toString());
     }
 
     private static void printLine(StringBuilder sb, Line line) {
@@ -63,10 +63,12 @@ public class OutputConsoleView {
     }
 
     private static void printRewards(PlayerRewards results) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(PADDING);
         for (int i = 0; i < results.size(); i++) {
-            System.out.print(results.getReward(i) + "   ");
+            sb.append(fillPadding(results.getReward(i)));
         }
-        System.out.println();
+        System.out.println(sb.toString());
     }
 
     public static void printResult(GameResult gameResult, String playerName) {

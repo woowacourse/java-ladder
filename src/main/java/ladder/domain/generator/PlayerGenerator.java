@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public final class PlayerGenerator {
-    public static final String DELIMITER = ",";
+    private static final String DELIMITER = ",";
 
     private final String playerNames;
 
