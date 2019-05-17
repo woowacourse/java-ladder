@@ -25,4 +25,18 @@ public class PlayerGroupTest {
     void 중복된_이름이_입력되었을_떄_예외를_던지는지_테스트() {
         assertThrows(IllegalArgumentException.class, () -> new PlayerGroup(Arrays.asList("a", "c", "c")));
     }
+
+    @Test
+    void 모든_플레이어의_결과가_HashMap으로_잘_나오는지_테스트() {
+        List<Boolean> userSetCroossbar = Arrays.asList(false, true, false);
+        List<ResultItem> resultItems = Arrays.asList(new ResultItem("a"), new ResultItem("b"));
+        Ladder testLadder = new Ladder(1, resultItems,
+                new UserSetCrossbarGenerator(userSetCroossbar));
+        List<String> playerNames = Arrays.asList("van,deock".split(","));
+        PlayerGroup players = new PlayerGroup(playerNames);
+
+        assertThat(players.findLadderingResult(testLadder).get("van")).isEqualTo(new ResultItem("b"));
+        assertThat(players.findLadderingResult(testLadder).get("deock")).isEqualTo(new ResultItem("a"));
+
+    }
 }

@@ -6,8 +6,9 @@ public class PlayerGroup {
     private Set<Player> players = new LinkedHashSet<>();
 
     public PlayerGroup(List<String> playerNames) {
-        for (String playerName : playerNames) {
-            players.add(new Player(playerName));
+        for (int position = 0; position < playerNames.size(); position++) {
+            players.add(new Player(playerNames.get(position), position));
+
         }
         checkDuplication(players.size(), playerNames.size());
     }
@@ -37,5 +38,14 @@ public class PlayerGroup {
 
     public Set<Player> getPlayers() {
         return players;
+    }
+
+    public Map<String, ResultItem> findLadderingResult(Ladder ladder) {
+        Map<String, ResultItem> ladderingResult = new LinkedHashMap<>();
+        for (Player player : players) {
+            ladderingResult.putAll(player.stepDown(ladder));
+        }
+
+        return ladderingResult;
     }
 }
