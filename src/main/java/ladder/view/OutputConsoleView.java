@@ -69,8 +69,11 @@ public class OutputConsoleView {
     }
 
     public static void printResult(GameResult gameResult, String playerName) {
-        String result = gameResult.get(playerName);
         System.out.println("실행 결과");
+        String result = gameResult.get(playerName);
+        if(result == null){
+            result = "없는 사용자입니다.";
+        }
         System.out.println(result);
     }
 
