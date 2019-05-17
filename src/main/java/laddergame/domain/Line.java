@@ -48,7 +48,6 @@ public class Line {
         return (point < 0) || (point > scaffolds.size() - 2);
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

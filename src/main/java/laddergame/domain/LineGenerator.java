@@ -1,5 +1,8 @@
 package laddergame.domain;
 
+import laddergame.domain.Line;
+import laddergame.domain.rule.Rule;
+
 public class LineGenerator {
     public static Line lineGenerate(int numberOfPerson, Rule rule) {
         final int numberOfInterval = numberOfPerson - 1;

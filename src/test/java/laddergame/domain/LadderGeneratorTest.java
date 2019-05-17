@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.domain.rule.AlwaysCreateRule;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ class LadderGeneratorTest {
     @Test
     void 라인이_제대로_추가되었는지_확인() {
         int height = 5;
-        Ladder ladder = LadderGenerator.generateLadder(height, 2, new AlwaysCreate());
+        Ladder ladder = LadderGenerator.generateLadder(height, 2, new AlwaysCreateRule());
         Line line = new Line(new ArrayList<>(Arrays.asList(false, true, false)));
         List<Line> lines = new ArrayList<>(Arrays.asList(line, line, line, line, line));
 
