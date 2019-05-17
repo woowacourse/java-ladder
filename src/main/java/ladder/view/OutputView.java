@@ -65,8 +65,18 @@ public class OutputView {
         System.out.println(result(playerResult));
     }
 
+    public void print(List<PlayerResult> playerResults) {
+        System.out.println(result(playerResults));
+    }
+
     public void print(Players players, Ladder ladder, LadderRewards ladderRewards) {
         System.out.println(ConsoleMessages.OUTPUT_LADDER.message());
+        printPlayers(players);
+        print(ladder);
+        printRewards(ladderRewards);
+    }
+
+    private void printPlayers(Players players) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Player player : players.list()) {
             stringBuilder.append(String.format("%6s", player.name()));
@@ -74,8 +84,10 @@ public class OutputView {
         }
 
         System.out.println(stringBuilder.toString());
-        print(ladder);
-        stringBuilder.setLength(0);
+    }
+
+    private void printRewards(LadderRewards ladderRewards) {
+        StringBuilder stringBuilder = new StringBuilder();
         for (String reward : ladderRewards.reward()) {
             stringBuilder.append(String.format("%6s", reward));
             stringBuilder.append(" ");

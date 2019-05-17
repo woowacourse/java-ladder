@@ -30,25 +30,25 @@ public class LadderResultTest {
     @Test
     public void 결과_확인() {
         PlayerResult playerResult = new PlayerResult("a", "꽝");
-        assertEquals(playerResult, ladderResult.run(ladder, players.player("a")));
+        assertEquals(playerResult, ladderResult.result(ladder, players.player("a")));
     }
 
     @Test
     public void 결과_확인2() {
         PlayerResult playerResult = new PlayerResult("b", "꽝");
-        assertEquals(playerResult, ladderResult.run(ladder, players.player("b")));
+        assertEquals(playerResult, ladderResult.result(ladder, players.player("b")));
     }
 
     @Test
     public void 결과_확인3() {
         PlayerResult playerResult = new PlayerResult("c", "3000");
-        assertEquals(playerResult, ladderResult.run(ladder, players.player("c")));
+        assertEquals(playerResult, ladderResult.result(ladder, players.player("c")));
     }
 
     @Test
     public void 결과_확인4() {
         PlayerResult playerResult = new PlayerResult("d", "5000");
-        assertEquals(playerResult, ladderResult.run(ladder, players.player("d")));
+        assertEquals(playerResult, ladderResult.result(ladder, players.player("d")));
     }
 
     @Test
@@ -60,6 +60,6 @@ public class LadderResultTest {
         expect.add(new PlayerResult("c", "3000"));
         expect.add(new PlayerResult("d", "5000"));
 
-        assertEquals(expect, ladderResult.run(ladder, players));
+        assertEquals(expect, ladderResult.result(ladder, players));
     }
 }

@@ -10,7 +10,7 @@ public class LadderResult {
         this.rewards = reward;
     }
 
-    public String run(Ladder ladder, int index) {
+    public String result(Ladder ladder, int index) {
         List<LadderRow> rows = ladder.status();
         for (int j = 0; j < rows.size(); j++) {
             List<Integer> currentLines = rows.get(j).status();
@@ -20,18 +20,18 @@ public class LadderResult {
         return rewards.reward(index);
     }
 
-    public PlayerResult run(Ladder ladder, Player player) {
+    public PlayerResult result(Ladder ladder, Player player) {
         int index = player.position();
-        PlayerResult result = new PlayerResult(player.name(), run(ladder, index));
+        PlayerResult result = new PlayerResult(player.name(), result(ladder, index));
 
         return result;
     }
 
-    public List<PlayerResult> run(Ladder ladder, Players players) {
+    public List<PlayerResult> result(Ladder ladder, Players players) {
         List<PlayerResult> resultAll = new ArrayList<>();
 
         for (Player player : players.list()) {
-            resultAll.add(run(ladder, player));
+            resultAll.add(result(ladder, player));
         }
         return resultAll;
     }
