@@ -18,7 +18,7 @@ public class LineTest {
         Point first = Point.first(true);
         Point next = first.next(false);
         Line line = new Line(Arrays.asList(first, next, next.last()));
-        Point left = line.getDirection(new Position(0));
+        Point left = line.getPoint(new Position(0));
         assertThat(left.move()).isEqualTo(Point.RIGHT);
     }
 
@@ -27,7 +27,7 @@ public class LineTest {
         Point first = Point.first(true);
         Point next = first.next(false);
         Line line = new Line(Arrays.asList(first, next, next.last()));
-        Point left = line.getDirection(new Position(1));
+        Point left = line.getPoint(new Position(1));
         assertThat(left.move()).isEqualTo(Point.LEFT);
     }
 
@@ -36,7 +36,7 @@ public class LineTest {
         Point first = Point.first(true);
         Point next = first.next(false);
         Line line = new Line(Arrays.asList(first, next, next.last()));
-        Point left = line.getDirection(new Position(2));
+        Point left = line.getPoint(new Position(2));
         assertThat(left.move()).isEqualTo(Point.STRAIGHT);
     }
 }

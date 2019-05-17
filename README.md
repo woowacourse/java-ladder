@@ -91,5 +91,6 @@
     - ~~getNextLine() 을 통해 다음 순서의 Line을 반환한다.~~
 - 사다리 게임의 로직을 담당하는 LadderEngine 클래스를 작성한다.
     - ~~Ladder와 Player를 입력으로 받으면 사다리 이동 후 Player 리스트를 리턴한다.~~
+- Direction 클래스를 Point 클래스로 리네이밍한다.
 - 사다리를 임의로 생성하는 RandomLadderGenerator 클래스를 작성한다.
     - numOfPlayers 와 height 를 생성자 파라미터로 받아서 그에 맞는 타당한 사다리를 생성한다.

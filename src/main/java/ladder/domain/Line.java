@@ -9,7 +9,7 @@ public class Line {
         this.points = points;
     }
 
-    public Point getDirection(Position position) {
+    public Point getPoint(Position position) {
         return points.get(position.getValue());
     }
 

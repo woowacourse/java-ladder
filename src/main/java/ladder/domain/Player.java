@@ -29,7 +29,7 @@ public class Player {
     }
 
     public Player moveOn(Line line) {
-        Point point = line.getDirection(position);
+        Point point = line.getPoint(position);
         Position newPosition = new Position(position.getValue() + point.move());
         return new Player(name, newPosition);
     }
