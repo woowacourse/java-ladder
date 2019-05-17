@@ -5,13 +5,14 @@ import java.util.Random;
 public class Line {
     private static final int RANDOM_FACTOR = 2;
     private static final int BEFORE = 1;
+    private static final int MIN_PLAYS_LENGTH = 1;
 
     private Direction[] points;
 
     public Line(int countOfPerson) {
         points = new Direction[countOfPerson];
         addPoints();
-    }   
+    }
 
     public Line(Direction[] points) {
         this.points = points;
@@ -25,7 +26,7 @@ public class Line {
     }
 
     private Direction addFirstComponent() {
-        if (points.length == 1) {
+        if (points.length == MIN_PLAYS_LENGTH) {
             return Direction.STRAIGHT;
         }
         return Direction.valueOf(getRandomLineComponent());

@@ -1,8 +1,9 @@
 package ladder.utils;
 
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class InputValidator {
     private static final String DUPLICATE_NAME_MSG = "중복된 이름이 있습니다. 입력한 값 : ";
@@ -46,11 +47,8 @@ public class InputValidator {
     }
 
     private static Set<String> handleDuplicateName(String[] components) {
-        Set<String> notDuplicateComponents = new HashSet<>();
-        for (int i = 0; i < components.length; i++) {
-            notDuplicateComponents.add(components[i]);
-        }
-        return notDuplicateComponents;
+        return Arrays.stream(components)
+                .collect(Collectors.toSet());
     }
 
     private static String[] splitComponent(String component) {

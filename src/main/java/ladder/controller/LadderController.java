@@ -1,26 +1,28 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderGame;
-import ladder.domain.LadderGameResult;
-import ladder.domain.Player;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderController {
 
     private static final String SPLIT_SEPARATOR = ",";
 
     public static void main(String[] args) {
-        String[] names = inputComponent(InputView.inputNames());
-        String[] prizes = inputComponent(InputView.inputPrize());
+        String[] unrefinedNames = inputComponent(InputView.inputNames());
+        List<Player> players = addPlayer(unrefinedNames);
+
+        String[] unrefinedPrizes = inputComponent(InputView.inputPrize());
+        List<Prize> prizes = addPrize(unrefinedPrizes);
+
         int height = InputView.inputHeight();
 
-        List<Player> players = addPlayer(names);
-        Ladder ladder = new Ladder(names.length, height);
+        Ladder ladder = new Ladder(unrefinedNames.length, height);
 
         LadderGame ladderGame = new LadderGame(ladder, players, prizes);
         OutputView.printLadderGame(ladderGame);
@@ -42,11 +44,15 @@ public class LadderController {
     }
 
     private static List<Player> addPlayer(String[] names) {
-        List<Player> players = new ArrayList<>();
-        for (String name : names) {
-            players.add(new Player(name));
-        }
-        return players;
+        return Arrays.stream(names)
+                .map(Player::new)
+                .collect(Collectors.toList());
+    }
+
+    private static List<Prize> addPrize(String[] prizes) {
+        return Arrays.stream(prizes)
+                .map(Prize::new)
+                .collect(Collectors.toList());
     }
 
     public static String[] splitNames(String names) {

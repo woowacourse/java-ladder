@@ -3,6 +3,8 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Player {
+    private static final int MAX_LENGTH = 5;
+
     private String name;
 
     public Player(String name) {
@@ -22,7 +24,7 @@ public class Player {
     }
 
     private void checkWrongLength(String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
