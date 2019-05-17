@@ -25,14 +25,11 @@ public class User {
         }
     }
 
-    private void moveLeft() {
-        position--;
+    public int movePosition(int distance) {
+        this.position += distance;
+        return position;
     }
 
-    private void moveRight() {
-        position++;
-    }
-    
     public String getName() {
         return name;
     }

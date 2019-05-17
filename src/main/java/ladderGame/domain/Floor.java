@@ -15,10 +15,10 @@ public class Floor {
     private void makePoints(int width) {
         points.add(Point.pointFirst(createState()));
         while (points.size() != width - 1) {
-            Point prePoint = points.get(points.size()-1);
+            Point prePoint = points.get(points.size() - 1);
             points.add(prePoint.nextPoint(createState()));
         }
-        points.add(points.get(points.size()-1).nextPointLast(createState()));
+        points.add(points.get(points.size() - 1).nextPointLast());
     }
 
     private boolean createState() {
@@ -26,6 +26,9 @@ public class Floor {
         return random.nextBoolean();
     }
 
+    public Point getPointByPosition(int position) {
+        return points.get(position);
+    }
 
     public List<Point> getPoints() {
         return points;

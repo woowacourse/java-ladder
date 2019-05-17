@@ -13,11 +13,11 @@ public class Point {
         return new Point(false, hasRight);
     }
 
-    public Point nextPointLast(boolean nextRight) {
+    public Point nextPointLast() {
         if (hasRight) {
-            return new Point(false, false);
+            return new Point(true, false);
         }
-        return new Point(nextRight, false);
+        return new Point(false, false);
     }
 
     public Point nextPoint(boolean nextRight) {
