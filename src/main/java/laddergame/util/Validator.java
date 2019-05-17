@@ -35,4 +35,10 @@ public class Validator {
             throw new IllegalArgumentException("입력값이 잘못되었습니다!");
         }
     }
+
+    public static void checkLadderHeight(int height) {
+        if (height < 1) {
+            throw new IllegalArgumentException("1이상의 높이를 입력해 주세요!");
+        }
+    }
 }

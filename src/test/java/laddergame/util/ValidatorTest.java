@@ -31,4 +31,10 @@ class ValidatorTest {
         assertThrows(IllegalArgumentException.class, () ->
                 Validator.checkNameIsAll("all"));
     }
+
+    @Test
+    void checkLadderHeight() {
+        assertThrows(IllegalArgumentException.class, () ->
+                Validator.checkLadderHeight(0));
+    }
 }
