@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PlayerNamesInput {
     private static final String SEPERATOR = ",";
-    private final String input;
+    private final List<String> names;
 
     public PlayerNamesInput(String input) throws Exception {
         input = input.replace(" ", "");
@@ -16,7 +16,7 @@ public class PlayerNamesInput {
             checkLength(name);
         }
         checkRepetition(names);
-        this.input = input;
+        this.names = names;
     }
 
     private void checkLength(String name) throws Exception {
@@ -34,6 +34,6 @@ public class PlayerNamesInput {
     }
 
     public List<String> getNames() {
-        return Arrays.asList(input.split(SEPERATOR));
+        return names;
     }
 }

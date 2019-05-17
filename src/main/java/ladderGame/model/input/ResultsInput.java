@@ -5,17 +5,17 @@ import java.util.List;
 
 public class ResultsInput {
     private static final String SEPERATOR = ",";
-    private final String input;
+    private final List<String> results;
 
     public ResultsInput(String input, PlayerNamesInput playerNamesInput) throws Exception {
         input = input.replace(" ", "");
-        List<String> names = Arrays.asList(input.split(SEPERATOR));
-        for (String name : names
+        List<String> results = Arrays.asList(input.split(SEPERATOR));
+        for (String result : results
         ) {
-            checkLength(name);
+            checkLength(result);
         }
-        compareNamesAndResultsSize(playerNamesInput, names);
-        this.input = input;
+        compareNamesAndResultsSize(playerNamesInput, results);
+        this.results = results;
     }
 
     private void compareNamesAndResultsSize(PlayerNamesInput playerNamesInput, List<String> names) throws Exception {
@@ -29,6 +29,10 @@ public class ResultsInput {
         if (nameLength > 5 || nameLength < 1) {
             throw new Exception("이름 길이는 1이상 5이하여야 합니다.");
         }
+    }
+
+    public List<String> getResults() {
+        return results;
     }
 
 }
