@@ -1,16 +1,20 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-	private final List<Boolean> points = new ArrayList<>();
+	private final List<Boolean> points;
 
-	public Line(int countOfPerson) {
-		points.add(RandomGenerator.getRandomBoolean());
+	public Line(List<Boolean> points) {
+		validatePoints(points);
+		this.points = points;
+	}
 
-		for (int i = 1; i < countOfPerson - 1; ++i) {
-			points.add(RandomGenerator.getRandomBoolean(points.get(i - 1)));
+	private void validatePoints(List<Boolean> points) {
+		for (int i = 0; i < points.size() - 2; i++) {
+			if(points.get(i) == true && points.get(i+1) == true){
+				throw new IllegalArgumentException();
+			}
 		}
 	}
 
@@ -28,5 +32,9 @@ public class Line {
 		}
 
 		return (points.get(position - 1) ? position - 1 : position + 1);
+	}
+
+	public List<Boolean> getPoints() {
+		return this.points;
 	}
 }
