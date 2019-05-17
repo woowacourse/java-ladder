@@ -1,6 +1,10 @@
 package ladder.domain;
 
 public class Direction {
+    static final int LEFT = -1;
+    static final int STRAIGHT = 0;
+    static final int RIGHT = 1;
+
     private final boolean left;
     private final boolean current;
 
@@ -8,6 +12,14 @@ public class Direction {
         validateNotConsecutiveTrue(left, current);
         this.left = left;
         this.current = current;
+    }
+
+    public static Direction first(boolean current) {
+        return new Direction(false, current);
+    }
+
+    public Direction last() {
+        return new Direction(current, false);
     }
 
     private void validateNotConsecutiveTrue(boolean left, boolean current) {
@@ -18,12 +30,12 @@ public class Direction {
 
     public int move() {
         if (left) {
-            return -1;
+            return LEFT;
         }
 
         if (current) {
-            return 1;
+            return RIGHT;
         }
-        return 0;
+        return STRAIGHT;
     }
 }

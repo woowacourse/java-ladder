@@ -16,12 +16,34 @@ public class DirectionTest {
     @Test
     void leftTest() {
         Direction left = new Direction(true, false);
-        assertThat(left.move()).isEqualTo(-1);
+        assertThat(left.move()).isEqualTo(Direction.LEFT);
     }
 
     @Test
-        void rightTest() {
+    void rightTest() {
         Direction right = new Direction(false, true);
-        assertThat(right.move()).isEqualTo(1);
+        assertThat(right.move()).isEqualTo(Direction.RIGHT);
+    }
+
+    @Test
+    void straightTest() {
+        Direction straight = new Direction(false, false);
+        assertThat(straight.move()).isEqualTo(Direction.STRAIGHT);
+    }
+
+    @Test
+    void firstNoLeftTest() {
+        Direction first = Direction.first(true);
+        assertThat(first.move()).isNotEqualTo(Direction.LEFT);
+        first = Direction.first(false);
+        assertThat(first.move()).isNotEqualTo(Direction.LEFT);
+    }
+
+    @Test
+    void lastNoRightTest() {
+        Direction direction = Direction.first(true);
+        assertThat(direction.last().move()).isNotEqualTo(Direction.RIGHT);
+        direction = Direction.first(false);
+        assertThat(direction.last().move()).isNotEqualTo(Direction.RIGHT);
     }
 }
