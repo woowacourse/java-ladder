@@ -24,8 +24,10 @@ class LadderGameTest {
     /*사다리 게임을 진행에 대한 테스트*/
     @Test
     void 찾을_플레이어_존재_검사() {
+        String[] inputPlayers = {"pobi","coogi","luffy"};
+        String[] inputResults = {"1","2","3"};
         assertThrows(IllegalArgumentException.class, ()->{
-            (new LadderGame(new PlayerTags("pobi,coogi,luffy"),new ResultTags("1,2,3",3),new Floor("3")))
+            (new LadderGame(new PlayerTags(inputPlayers),new ResultTags(inputResults,3),new Floor("3")))
                     .getOneResultByTag(new Tag("jason"));
         });
     }
