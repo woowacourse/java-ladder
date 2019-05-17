@@ -5,17 +5,18 @@ import java.util.*;
 public class Player {
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final int MINIMUM_NANE_LENGTH = 1;
-    private static final String SHOW_ALL_COMMAND = "all";
+    private static final String FORBIDDEN_NAME = "all";
+
     private final String name;
     private int position;
 
-    public Player(final String name) {
+    Player(final String name) {
         this(name, 0);
     }
 
-    public Player(String name, int position) {
+    Player(String name, int position) {
         nullCheck(name);
-        this.name = getTrimed(name);
+        this.name = getTrimmed(name);
         this.position = position;
     }
 
@@ -25,30 +26,29 @@ public class Player {
         }
     }
 
-    private String getTrimed(String name) {
+    private String getTrimmed(String name) {
         name = name.trim();
-        vaildateCommandName(name);
-        vaildateNameLength(name);
+        validateCommandName(name);
+        validateNameLength(name);
         return name;
     }
 
-    private void vaildateCommandName(String name) {
-        if (name.equals(SHOW_ALL_COMMAND)) {
+    private void validateCommandName(String name) {
+        if (name.equals(FORBIDDEN_NAME)) {
             throw new IllegalArgumentException("이름에는 all이 입력될 수 없습니다.");
         }
     }
 
-    private void vaildateNameLength(String name) {
+    private void validateNameLength(String name) {
         if ((name.length() > MAXIMUM_NAME_LENGTH) || (name.length() < MINIMUM_NANE_LENGTH)) {
             throw new IllegalArgumentException("이름의 길이는 5자 이하여야 합니다.");
         }
     }
 
-    public Map<String, ResultItem> stepDown(Ladder ladder) {
+    Map<String, ResultItem> stepDown(Ladder ladder) {
         Map<String, ResultItem> ladderingResult = new LinkedHashMap<>();
-        ResultItem resultItem = ladder.answerResult(position);
 
-        ladderingResult.put(name, resultItem);
+        ladderingResult.put(name, ladder.answerResult(position));
         return ladderingResult;
     }
 
@@ -69,5 +69,4 @@ public class Player {
     public int hashCode() {
         return Objects.hash(name);
     }
-
 }
