@@ -39,11 +39,5 @@
         * 이름 리스트에 없는 경우
         * all 일 경우 
 
-
-## TODO
-
-* 
-
-
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)

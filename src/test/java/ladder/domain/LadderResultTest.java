@@ -26,6 +26,4 @@ public class LadderResultTest {
         assertThat(ladderResult.matchResult("woni")).isEqualTo("꽝");
         assertThat(ladderResult.matchResult("all")).isEqualTo("pobi : 꽝\nbrown : 5000\nwoni : 꽝\n");
     }
-
-
 }

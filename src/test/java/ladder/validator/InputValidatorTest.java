@@ -10,35 +10,34 @@ class InputValidatorTest {
     @Test
     void isEmpty() {
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.isEmpty(null);
+            InputValidator.checkValidName(null);
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.isEmpty("");
+            InputValidator.checkValidName("");
         });
     }
 
     @Test
     void 띄어쓰기가_있는_이름() {
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.hasSpace("   ");
+            InputValidator.checkValidName("   ");
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.hasSpace("P O B I");
+            InputValidator.checkValidName("P O B I");
         });
     }
 
     @Test
     void 입력_다섯글자_초과() {
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.isOverMaxInputLimit("AAAAAA");
+            InputValidator.checkValidName("AAAAAA");
         });
     }
 
     @Test
     void 중복이름_존재() {
-        String[] name = {"Buddy", "Buddy"};
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.isDuplicate(name);
+            InputValidator.checkValidName("Buddy,Buddy");
         });
     }
 
@@ -46,14 +45,14 @@ class InputValidatorTest {
     void 이름_all() {
         String name = "all";
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.nameEqualAll(name);
+            InputValidator.checkValidName(name);
         });
     }
 
     @Test
     void 콤마로끝() {
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.checkLastIndex("pobi,brown,");
+            InputValidator.checkValidName("pobi,brown,");
         });
     }
 
@@ -67,9 +66,8 @@ class InputValidatorTest {
     @Test
     void 실행결과수_이름수_불일치() {
         String[] names = {"pobi", "brown", "buddy"};
-        String[] results = {"꽝", "5000", "5000", "꽝"};
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.isSameLength(names, results);
+            InputValidator.checkValidResultCandidate(Arrays.asList(names), "꽝,5000,5000,꽝");
         });
     }
 

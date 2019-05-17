@@ -3,14 +3,14 @@ package ladder.domain;
 import java.util.List;
 import java.util.Objects;
 
-class Line {
+public class Line {
     private final List<Boolean> points;
 
     Line(List<Boolean> points) {
         this.points = points;
     }
 
-    String makeLine() {
+    public String makeLine() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < points.size() - 1; i++) {
             sb.append(makeRow(i));

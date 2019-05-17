@@ -3,7 +3,7 @@ package ladder.util;
 import java.util.List;
 
 public class OutputHelper {
-    static String generateOutputText(List<String> outputs) {
+    public static String generateOutputText(List<String> outputs) {
         StringBuilder sb = new StringBuilder();
 
         for (String name : outputs) {
@@ -14,10 +14,10 @@ public class OutputHelper {
 
     private static String makeName(String output) {
         StringBuilder sb = new StringBuilder();
-        sb.append(output);
-        for(int i = 0; i< 6 - output.length(); i++){
+        for (int i = 0; i < 6 - output.length(); i++) {
             sb.append(" ");
         }
+        sb.append(output);
         return sb.toString();
     }
 }

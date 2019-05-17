@@ -8,7 +8,7 @@ public class LadderResult {
     public LadderResult(List<Integer> allResult, List<String> names, List<String> resultCandidate) {
         for (int i = 0; i < allResult.size(); i++) {
             String name = names.get(i);
-            String result = resultCandidate.get(allResult.get(i));
+            String result = resultCandidate.get(allResult.get(i) - 1);
             nameToResult.put(name, result);
         }
     }
