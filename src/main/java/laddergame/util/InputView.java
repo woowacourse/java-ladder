@@ -1,7 +1,5 @@
 package laddergame.util;
 
-import laddergame.domain.Tags;
-
 import java.util.List;
 import java.util.Scanner;
 
