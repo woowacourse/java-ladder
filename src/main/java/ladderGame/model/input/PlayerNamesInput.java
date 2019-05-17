@@ -1,23 +1,39 @@
 package ladderGame.model.input;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class PlayerNamesInput {
     private static final String SEPERATOR = ",";
+    String input;
 
     public PlayerNamesInput(String input) throws Exception {
-        List<String> names = Arrays.asList(trimSpaces(input).split(SEPERATOR));
+        input = input.replace(" ", "");
+        List<String> names = Arrays.asList(input.split(SEPERATOR));
         for (String name : names
-             ) {
-            int nameLength = name.length();
-            if (nameLength > 5 || nameLength < 1) {
-                throw new Exception("이름 길이는 1이상 5이하여야 합니다.");
-            }
+        ) {
+            checkLength(name);
+        }
+        checkRepetition(names);
+        this.input = input;
+    }
+
+    private void checkLength(String name) throws Exception {
+        int nameLength = name.length();
+        if (nameLength > 5 || nameLength < 1) {
+            throw new Exception("이름 길이는 1이상 5이하여야 합니다.");
         }
     }
 
-    private String trimSpaces(String input) {
-        return input.replace(" ", "");
+    private void checkRepetition(List<String> names) throws Exception {
+        HashSet<String> namesWithOutRepetition = new HashSet<>(names);
+        if (names.size() != namesWithOutRepetition.size()) {
+            throw new Exception("중복된 이름이 존재합니다.");
+        }
+    }
+
+    public List<String> getNames() {
+        return Arrays.asList(input.split(SEPERATOR));
     }
 }

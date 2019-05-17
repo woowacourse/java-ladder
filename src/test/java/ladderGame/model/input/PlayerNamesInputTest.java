@@ -24,4 +24,12 @@ public class PlayerNamesInputTest {
             new PlayerNamesInput("");
         });
     }
+
+    @Test
+    void 중복된_이름이_있는_입력() {
+        String input = "pobi, pobi, god";
+        assertThrows(Exception.class, () -> {
+            new PlayerNamesInput(input);
+        });
+    }
 }
