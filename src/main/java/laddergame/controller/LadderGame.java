@@ -4,14 +4,18 @@ import laddergame.domain.*;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
-import java.util.InputMismatchException;
 import java.util.List;
 
 public class LadderGame {
     public void play() {
+        //인풋받기
         List<Player> players = getPlayers();
         Ladder ladder = getLadder(players.size());
         List<Prize> prizes = getPrizes(players.size());
+        //게임실행
+        LadderGameProcessor processor = new LadderGameProcessor(players);
+        processor.doGame(ladder.getLadderMap());
+
 
         OutputView.printLadder(players, ladder);
 

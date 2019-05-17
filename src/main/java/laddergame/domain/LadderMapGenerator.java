@@ -8,7 +8,7 @@ public class LadderMapGenerator {
         ArrayList<List<Boolean>> ladderMap = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            ladderMap.add(LIneGenerator.makeLine(width));
+            ladderMap.add(LineGenerator.makeLine(width));
         }
 
         return ladderMap;

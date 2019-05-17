@@ -15,7 +15,15 @@ public class Ladder {
         this.width = width;
         this.height = height;
 
-        ladderMap = LadderMapGenerator.fillLadderMap(width, height);
+        ladderMap = makeLadder(width, height);
+    }
+
+    private ArrayList<List<Boolean>> makeLadder(int width, int height) {
+        return LadderMapGenerator.fillLadderMap(width, height);
+    }
+
+    public ArrayList<List<Boolean>> getLadderMap() {
+        return this.ladderMap;
     }
 
     @Override
@@ -38,7 +46,6 @@ public class Ladder {
         StringBuilder sb = new StringBuilder();
 
         for (int y = 0; y < height; y++) {
-            sb.append("     |");
             toStringLine(sb, y);
         }
 
@@ -46,6 +53,7 @@ public class Ladder {
     }
 
     private void toStringLine(StringBuilder sb, int y) {
+        sb.append("     |");
         for (int x = 0; x < width - 1; x++) {
             sb.append(ladderMap.get(y).get(x) ? "-----|" : "     |");
         }

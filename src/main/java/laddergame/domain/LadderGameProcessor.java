@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,13 +12,23 @@ public class LadderGameProcessor {
 
     }
 
-    public List<Player> switchPosition(List<Boolean> instructions) {
-        for (int i = 0; i < instructions.size(); i++) {
-            if (instructions.get(i)) {
-                Collections.swap(players, i, i+1);
-            }
-        }
+    public List<Player> doGame(List<List<Boolean>> instructions) {
 
+        for (int i = 0; i < instructions.size(); i++) {
+            switchPosition(instructions.get(i));
+        }
         return players;
+    }
+
+    private void switchPosition(List<Boolean> line) {
+        for (int i = 0; i < line.size(); i++) {
+            swap(line, i);
+        }
+    }
+
+    private void swap(List<Boolean> line, int position) {
+        if (line.get(position)) {
+            Collections.swap(players, position, position + 1);
+        }
     }
 }
