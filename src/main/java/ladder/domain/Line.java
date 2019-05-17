@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Line {
     private final List<Boolean> points;
 
-    Line(List<Boolean> points) {
+    Line(final List<Boolean> points) {
         this.points = points;
     }
 
@@ -15,7 +15,7 @@ public class Line {
         for (int i = 0; i < points.size() - 1; i++) {
             sb.append(makeRow(i));
         }
-        return sb.toString();
+        return sb.toString() + "\n";
     }
 
     private String makeRow(int index) {

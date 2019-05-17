@@ -1,43 +1,39 @@
 package ladder.domain;
 
-import java.util.*;
+import java.util.List;
 
-public class LadderResult {
+import java.util.LinkedHashMap;
+import java.util.Objects;
+
+public class ResultProcessor {
     private final LinkedHashMap<String, String> nameToResult = new LinkedHashMap<>();
 
-    public LadderResult(List<Integer> allResult, List<String> names, List<String> resultCandidate) {
+    ResultProcessor(List<Integer> allResult, Person person, Result result) {
         for (int i = 0; i < allResult.size(); i++) {
-            String name = names.get(i);
-            String result = resultCandidate.get(allResult.get(i) - 1);
-            nameToResult.put(name, result);
+            nameToResult.put(person.getName(i), result.getResult(allResult.get(i) - 1));
         }
     }
 
-    public String matchResult(String requestedName) {
+    public String getResult(String requestedName) {
         if (requestedName.equals("all")) {
-            return makeAllResult();
+            return getAllResults();
         }
         return nameToResult.get(requestedName);
     }
 
-    private String makeAllResult() {
+    private String getAllResults() {
         StringBuilder sb = new StringBuilder();
-
         for (String name : nameToResult.keySet()) {
-            sb.append(makeResult(name));
+            sb.append(name + " : " + nameToResult.get(name) + "\n");
         }
         return sb.toString();
-    }
-
-    private String makeResult(String name) {
-        return name + " : " + nameToResult.get(name) + "\n";
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderResult that = (LadderResult) o;
+        ResultProcessor that = (ResultProcessor) o;
         return Objects.equals(nameToResult, that.nameToResult);
     }
 

@@ -1,8 +1,8 @@
 package ladder.validator;
 
+import ladder.domain.Person;
 import ladder.util.InputHelper;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -65,34 +65,36 @@ public class InputValidator {
         }
     }
 
-    public static List<String> checkValidResultCandidate(List<String> names, String inputs) {
+    public static List<String> checkResult(int countOfPerson, String inputs) {
         isEmpty(inputs);
         hasSpace(inputs);
         checkLastIndex(inputs);
-        List<String> resultCandidate = InputHelper.splitNames(inputs);
-        isSameLength(names, resultCandidate);
-        for (String candidate : resultCandidate) {
-            isOverMaxInputLimit(candidate);
+        List<String> results = InputHelper.splitNames(inputs);
+        isSameLength(countOfPerson, results);
+        for (String result : results) {
+            isOverMaxInputLimit(result);
         }
-        return resultCandidate;
+        return results;
     }
 
-    private static void isSameLength(List<String> names, List<String> results) {
-        if (names.size() != results.size()) {
-            throw new IllegalArgumentException(String.format(NOT_EQUAL_COUNT_MESSAGE, names.size()));
+    private static void isSameLength(int countOfPerson, List<String> results) {
+        if (countOfPerson != results.size()) {
+            throw new IllegalArgumentException(String.format(NOT_EQUAL_COUNT_MESSAGE, countOfPerson));
         }
     }
 
-    public static void isNotContainName(List<String> names, String resultName) {
-        if (!resultName.equals("all") && !names.contains(resultName)) {
+    public static String isNotContainName(Person person, String requestedName) {
+        if (!requestedName.equals("all") && !person.findName(requestedName)) {
             throw new IllegalArgumentException(NOT_CONTAIN_NAME_MESSAGE);
         }
+        return requestedName;
     }
 
-    public static void isLowerLimit(int height) {
+    public static int isLowerLimit(int height) {
         if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException(OVER_HEIGHT_MESSAGE);
         }
+        return height;
     }
 }
 

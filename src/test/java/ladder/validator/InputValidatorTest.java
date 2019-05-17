@@ -1,5 +1,6 @@
 package ladder.validator;
 
+import ladder.domain.Person;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -67,7 +68,7 @@ class InputValidatorTest {
     void 실행결과수_이름수_불일치() {
         String[] names = {"pobi", "brown", "buddy"};
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.checkValidResultCandidate(Arrays.asList(names), "꽝,5000,5000,꽝");
+            InputValidator.checkResult(names.length, "꽝,5000,5000,꽝");
         });
     }
 
@@ -75,7 +76,7 @@ class InputValidatorTest {
     void 초기이름에_미포함_결과이름_요청() {
         String[] names = {"pobi", "brown", "buddy"};
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.isNotContainName(Arrays.asList(names), "woni");
+            InputValidator.isNotContainName(new Person(Arrays.asList(names)), "woni");
         });
     }
 }

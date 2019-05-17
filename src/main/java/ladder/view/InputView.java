@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.Person;
 import ladder.validator.InputValidator;
 
 import java.util.List;
@@ -12,12 +13,11 @@ public class InputView {
     private static final String FIND_RESULT_NAME_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static String inputNames() {
+    public static List<String> inputNames() {
         try {
             System.out.println(INPUT_NAME_MESSAGE);
             String inputName = SCANNER.nextLine();
-            InputValidator.checkValidName(inputName);
-            return inputName;
+            return InputValidator.checkValidName(inputName);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputNames();
@@ -28,8 +28,7 @@ public class InputView {
         try {
             System.out.println(INPUT_HEIGHT_MESSAGE);
             int height = Integer.parseInt(SCANNER.nextLine());
-            InputValidator.isLowerLimit(height);
-            return height;
+            return InputValidator.isLowerLimit(height);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputHeight();
@@ -37,26 +36,24 @@ public class InputView {
 
     }
 
-    public static String inputResultAll(List<String> names) {
+    public static List<String> inputResultAll(int countOfPerson) {
         try {
             System.out.println(INPUT_RESULT_MESSAGE);
-            String resultCandidate = SCANNER.nextLine();
-            InputValidator.checkValidResultCandidate(names, resultCandidate);
-            return resultCandidate;
+            String results = SCANNER.nextLine();
+            return InputValidator.checkResult(countOfPerson, results);
         } catch (IllegalArgumentException e) {
-            return inputResultAll(names);
+            return inputResultAll(countOfPerson);
         }
     }
 
-    public static String findResultName(List<String> names) {
+    public static String findResultName(Person person) {
         try {
             System.out.println(FIND_RESULT_NAME_MESSAGE);
             String requestedName = SCANNER.nextLine();
-            InputValidator.isNotContainName(names, requestedName);
-            return requestedName;
+            return InputValidator.isNotContainName(person, requestedName);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return findResultName(names);
+            return findResultName(person);
         }
     }
 }
