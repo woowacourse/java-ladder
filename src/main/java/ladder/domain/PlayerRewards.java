@@ -21,8 +21,8 @@ public final class PlayerRewards {
         return rewards.size();
     }
 
-    public String getReward(int num) {
-        return rewards.get(num);
+    public String getReward(int index) {
+        return rewards.get(index);
     }
 
     @Override

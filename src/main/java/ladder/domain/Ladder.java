@@ -37,6 +37,13 @@ public final class Ladder {
         }
     }
 
+    public int moveLadder(int position) {
+        for (Line line : lines) {
+            position += line.move(position);
+        }
+        return position;
+    }
+
     public List<Line> getLines() {
         return lines;
     }

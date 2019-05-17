@@ -25,7 +25,9 @@ public final class GamePlayers {
         }
         return -1;
     }
-
+    public String getPlayerName(int index){
+        return players.get(index).getName();
+    }
     public int size() {
         return players.size();
     }

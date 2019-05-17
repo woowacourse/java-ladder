@@ -2,6 +2,10 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LadderTest {
@@ -9,7 +13,7 @@ public class LadderTest {
     void 높이_유효성_테스트() {
         int countOfPlayers = 5;
         int height = 0;
-        assertThrows(IllegalArgumentException.class, ()->{
+        assertThrows(IllegalArgumentException.class, () -> {
             new Ladder(height, countOfPlayers);
         });
     }
@@ -18,8 +22,21 @@ public class LadderTest {
     void 사람_수_테스트() {
         int countOfPlayers = 0;
         int height = 5;
-        assertThrows(IllegalArgumentException.class, ()->{
+        assertThrows(IllegalArgumentException.class, () -> {
             new Ladder(height, countOfPlayers);
         });
+    }
+
+    @Test
+    void 사다리_게임_진행() {
+        List<Boolean> line1 = Arrays.asList(false, true);
+        List<Boolean> line2 = Arrays.asList(true, false);
+
+        List<Line> lines = Arrays.asList(new Line(line1.size(), () -> line1), new Line(line2.size(), () -> line2));
+
+//        LadderGame ladderGame = new LadderGame(2, gamePlayers, playerRewards, () -> lines);
+        Ladder ladder = new Ladder(3, 3, () -> lines);
+
+        assertThat(ladder.moveLadder(0)).isEqualTo(1);
     }
 }
