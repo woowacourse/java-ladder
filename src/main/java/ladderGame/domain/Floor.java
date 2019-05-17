@@ -6,30 +6,28 @@ import java.util.List;
 import java.util.Random;
 
 public class Floor {
-    private final static int INIT_SECTOR_NUMBER = 0;
+    private List<Boolean> states = new ArrayList<>();
 
-    private List<Boolean> stairs = new ArrayList<>();
-
-    public Floor(int floorSize) {
-        makeStairs(floorSize);
+    public Floor(int width) {
+        makeStairs(width);
     }
 
-    private void makeStairs(int sector) {
-        for (int sectorNum = INIT_SECTOR_NUMBER; sectorNum < sector; sectorNum++) {
-            stairs.add(createStair());
-            checkSector(sectorNum);
+    private void makeStairs(int width) {
+        for (int widthNum = 0; widthNum < width; widthNum++) {
+            states.add(createStair());
+            checkSector(widthNum);
         }
     }
 
-    private void checkSector(int sectorNum) {
-        if (sectorNum > INIT_SECTOR_NUMBER) {
-            replaceStair(sectorNum);
+    private void checkSector(int widthNum) {
+        if (widthNum > 0) {
+            replaceStair(widthNum);
         }
     }
 
     private void replaceStair(int sectorNum) {
-        if (stairs.get(sectorNum - 1)) {
-            stairs.set(sectorNum, false);
+        if (states.get(sectorNum - 1)) {
+            states.set(sectorNum, false);
         }
     }
 
@@ -39,7 +37,7 @@ public class Floor {
     }
 
     public List<Boolean> getStairs() {
-        return stairs;
+        return states;
     }
 
     @Override
@@ -47,11 +45,11 @@ public class Floor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Floor floor = (Floor) o;
-        return stairs == floor.stairs;
+        return states == floor.states;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(stairs);
+        return Objects.hash(states);
     }
 }
