@@ -1,12 +1,12 @@
 package ladderGame;
 
-public class XXX {
-    public static int YYY(DrawnLadder drawnLadder, int fromColumn) {
+public class LadderNavigator {
+    public static int navigate(DrawnLadder drawnLadder, int fromColumn) {
         int rows = drawnLadder.getRows();
         int toColumn = fromColumn;
 
         for (int row = 0; row < rows; row++) {
-            toColumn = getToColumn(drawnLadder, toColumn, row);
+            toColumn = getToColumn(drawnLadder, row, toColumn);
         }
         return toColumn;
     }
@@ -27,7 +27,7 @@ public class XXX {
     }
 
     private static boolean hasToMoveRight(DrawnLadder drawnLadder, int row, int column) {
-        int columns = drawnLadder.getColumns();
-        return column < columns && drawnLadder.isDrawn(row, column);
+        int columns = drawnLadder.getColumns() + 1;
+        return (column + 1) < columns && drawnLadder.isDrawn(row, column);
     }
 }

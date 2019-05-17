@@ -6,12 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-class XXXTest {
+class LadderNavigatorTest {
 
     @Test
-    void YYY_다리없음() {
+    void navigate_다리없음() {
         DrawnLadder drawnLadder = new DrawnLadder(Arrays.asList(
                 new DrawnLadderRow(Arrays.asList(false, false)),
                 new DrawnLadderRow(Arrays.asList(false, false)),
@@ -23,12 +22,12 @@ class XXXTest {
         for (int i = 0; i < inputs.size(); i++) {
             int input = inputs.get(i);
             int output = outputs.get(i);
-            assertThat(XXX.YYY(drawnLadder, input)).isEqualTo(output);
+            assertThat(LadderNavigator.navigate(drawnLadder, input)).isEqualTo(output);
         }
     }
 
     @Test
-    void YYY_다리있음() {
+    void navigate_다리있음() {
         DrawnLadder drawnLadder = new DrawnLadder(Arrays.asList(
                 new DrawnLadderRow(Arrays.asList(true, false)),
                 new DrawnLadderRow(Arrays.asList(false, true)),
@@ -40,12 +39,12 @@ class XXXTest {
         for (int i = 0; i < inputs.size(); i++) {
             int input = inputs.get(i);
             int output = outputs.get(i);
-            assertThat(XXX.YYY(drawnLadder, input)).isEqualTo(output);
+            assertThat(LadderNavigator.navigate(drawnLadder, input)).isEqualTo(output);
         }
     }
 
     @Test
-    void YYY_다리많이있음() {
+    void navigate_다리많이있음() {
                 //        |     |     |     |-----|
                 //        |     |-----|     |-----|
                 //        |-----|     |-----|     |
@@ -67,7 +66,7 @@ class XXXTest {
         for (int i = 0; i < inputs.size(); i++) {
             int input = inputs.get(i);
             int output = outputs.get(i);
-            assertThat(XXX.YYY(drawnLadder, input)).isEqualTo(output);
+            assertThat(LadderNavigator.navigate(drawnLadder, input)).isEqualTo(output);
         }
     }
 
