@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,13 +12,34 @@ public class Members {
     private List<String> people;
 
     public Members(List<String> names) {
-        if (hasDuplicateName(names)) {
+        checkEmptyNames(names);
+        for (String name : names) {
+            checkName(name);
+        }
+        checkDuplicateNames(names);
+        this.people = names;
+    }
+
+    private void checkEmptyNames(List<String> names) {
+        if (names.isEmpty()) {
+            throw new IllegalArgumentException("이름이 존재하지 않습니다!");
+        }
+    }
+
+    private void checkDuplicateNames(List<String> names) {
+        Set<String> nonDuplicateNames = new HashSet<>(names);
+        if (names.size() != nonDuplicateNames.size()) {
             throw new IllegalArgumentException("중복된 이름은 불가능합니다.");
         }
-        for (String name : names) {
-            checkNameLengthBound(name);
+    }
+
+    private void checkName(String name) {
+        if (StringUtils.isBlank(name)) {
+            throw new IllegalArgumentException("입력값이 잘못되었습니다!");
         }
-        this.people = names;
+        if (name.length() > NAME_LENGTH_BOUND) {
+            throw new IllegalArgumentException("이름은 5자 이내여야 합니다.");
+        }
     }
 
     public String getMember(int index) {
@@ -29,16 +52,5 @@ public class Members {
 
     public List<String> getMembers() {
         return people;
-    }
-
-    private boolean hasDuplicateName(List<String> names) {
-        Set<String> nonDuplicateNames = new HashSet<>(names);
-        return names.size() != nonDuplicateNames.size();
-    }
-
-    private void checkNameLengthBound(String name) {
-        if (name.length() > NAME_LENGTH_BOUND) {
-            throw new IllegalArgumentException("이름은 5자 이내여야 합니다.");
-        }
     }
 }

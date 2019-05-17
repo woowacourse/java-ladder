@@ -14,24 +14,20 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> inputMembers() {
+    public static String inputMembers() {
         try {
             System.out.println(INPUT_MEMBERS);
-            return Arrays.stream(scanner.nextLine().split(","))
-                    .map(String::trim)
-                    .collect(Collectors.toList());
+            return scanner.nextLine();
         } catch (Exception e) {
             System.err.println(ERROR_MESSAGE);
             return inputMembers();
         }
     }
 
-    public static List<String> inputPrizes() {
+    public static String inputPrizes() {
         try {
             System.out.println(INPUT_PRIZES);
-            return Arrays.stream(scanner.nextLine().split(","))
-                    .map(String::trim)
-                    .collect(Collectors.toList());
+            return scanner.nextLine();
         } catch (Exception e) {
             System.err.println(ERROR_MESSAGE);
             return inputPrizes();
