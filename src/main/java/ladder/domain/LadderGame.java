@@ -10,9 +10,9 @@ public class LadderGame {
 
     private final Ladder ladder;
     private final List<Player> players;
-    private final String[] prizes;
+    private final List<Prize> prizes;
 
-    public LadderGame(Ladder ladder, List<Player> players, String[] prizes) {
+    public LadderGame(Ladder ladder, List<Player> players, List<Prize> prizes) {
         this.ladder = ladder;
         this.players = players;
         this.prizes = prizes;
@@ -23,22 +23,27 @@ public class LadderGame {
         for (int i = 0; i < players.size(); i++) {
             result[getUserResult(i)] = i;
         }
-        Map<Player, String> nameToPrize = new HashMap<>();
-        for (int i = 0; i < result.length; i++) {
-            nameToPrize.put(players.get(result[i]), prizes[i]);
-        }
-        return new LadderGameResult(nameToPrize);
+        return new LadderGameResult(getNameToPrize(result));
     }
 
     private int getUserResult(int index) {
         for (Line line : ladder.getLines()) {
             Direction[] points = line.getPoints();
-            index += judgeLeftOrRightOrStraight(points[index]);
+            index += judgeDirection(points[index]);
         }
         return index;
     }
 
-    private int judgeLeftOrRightOrStraight(Direction direction) {
+    private Map<Player, Prize> getNameToPrize(int[] result) {
+        Map<Player, Prize> nameToPrize = new HashMap<>();
+        for (int i = 0; i < result.length; i++) {
+            nameToPrize.put(players.get(result[i]), prizes.get(i));
+        }
+
+        return nameToPrize;
+    }
+
+    private int judgeDirection(Direction direction) {
         if (direction == Direction.RIGHT) {
             return MOVEMENT;
         }
@@ -52,7 +57,7 @@ public class LadderGame {
         return players;
     }
 
-    public String[] getPrizes() {
+    public List<Prize> getPrizes() {
         return this.prizes;
     }
 
