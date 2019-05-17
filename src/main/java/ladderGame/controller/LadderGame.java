@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 
 public class LadderGame {
     private static String[] results;
-    private static String[] names;
+    private static List<String> names;
 
     public static void main(String[] args) {
         names = InputView.readNames();
@@ -21,7 +21,7 @@ public class LadderGame {
         results = InputView.readResults();
 
         LadderFactory ladderFactory = new LadderFactory(new LadderRowFactory());
-        Ladder ladder = ladderFactory.newInstance(rows, names.length - 1 );
+        Ladder ladder = ladderFactory.newInstance(rows, names.size() - 1 );
 
         System.out.println("실행결과");
         LadderDrawer ladderDrawer = new LadderDrawer();
@@ -46,7 +46,7 @@ public class LadderGame {
 
         List<Integer> fromColumns = new ArrayList<>();
         if (name.equals("all")) {
-            fromColumns = IntStream.range(0, names.length).boxed().collect(Collectors.toList());
+            fromColumns = IntStream.range(0, names.size()).boxed().collect(Collectors.toList());
         } else {
             fromColumns.add(Arrays.asList(names).indexOf(name));
         }
@@ -54,7 +54,7 @@ public class LadderGame {
         System.out.println("실행 결과");
 
         for (Integer fromColumn : fromColumns) {
-            System.out.println(names[fromColumn] + " : " + results[LadderNavigator.navigate(drawnLadder, fromColumn)]);
+            System.out.println(names.get(fromColumn) + " : " + results[LadderNavigator.navigate(drawnLadder, fromColumn)]);
         }
     }
 }

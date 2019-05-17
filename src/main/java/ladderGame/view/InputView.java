@@ -1,5 +1,8 @@
 package ladderGame.view;
 
+import ladderGame.model.input.PlayerNamesInput;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -8,10 +11,15 @@ public class InputView {
     private static final String ASK_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String ASK_RESULTS ="실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
 
-    public static String[] readNames() {
+    public static List<String> readNames() {
         System.out.println(ASK_NAMES);
-        String input = scanner.nextLine();
-        return input.split(STRING_SEPERATOR);
+        try {
+            PlayerNamesInput playerNamesInput = new PlayerNamesInput(scanner.nextLine());
+            return playerNamesInput.getNames();
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+            return readNames();
+        }
     }
 
     public static String[] readResults() {

@@ -1,6 +1,8 @@
 package ladderGame.view;
 import ladderGame.dto.DrawnLadder;
 
+import java.util.List;
+
 public class OutputView {
     private static final String EMPTY = "     ";
     private static final String FILLED = "-----";
@@ -21,7 +23,7 @@ public class OutputView {
 
     }
 
-    public static void printNames(String[] names) {
+    public static void printNames(List<String> names) {
         for (String name : names) {
             System.out.printf("%6s", name);
         }

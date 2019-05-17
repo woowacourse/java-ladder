@@ -32,4 +32,12 @@ public class PlayerNamesInputTest {
             new PlayerNamesInput(input);
         });
     }
+
+    @Test
+    void 빈_이름이_존재하는_입력() {
+        String input = "pobi, , god";
+        assertThrows(Exception.class, () -> {
+            new PlayerNamesInput(input);
+        });
+    }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PlayerNamesInput {
     private static final String SEPERATOR = ",";
-    String input;
+    private final String input;
 
     public PlayerNamesInput(String input) throws Exception {
         input = input.replace(" ", "");
