@@ -4,13 +4,15 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
+    private static final String LADDER_TRUE = "-----|";
+    private static final String LADDER_FALSE = "     |";
     private final List<Boolean> points;
 
     Line(final List<Boolean> points) {
         this.points = points;
     }
 
-    public String makeLine() {
+    String makeLine() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < points.size() - 1; i++) {
             sb.append(makeRow(i));
@@ -20,9 +22,9 @@ public class Line {
 
     private String makeRow(int index) {
         if (points.get(index)) {
-            return "-----|";
+            return LADDER_TRUE;
         }
-        return "     |";
+        return LADDER_FALSE;
     }
 
     int move(int index) {

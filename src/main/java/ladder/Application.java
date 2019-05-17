@@ -5,22 +5,21 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class Application {
+    private static final String ALL = "all";
     private static Person person;
     private static Result result;
     private static int height;
-    private static LadderGame ladderGame;
-    private static ResultProcessor resultProcessor;
 
     public static void main(String[] args) {
         receiveInput();
-        ladderGame = new LadderGame(LadderGame.generateAllPoints(height, person.getCountOfPerson()));
+        LadderGame ladderGame = new LadderGame(LadderGame.generateAllPoints(height, person.getCountOfPerson()));
         OutputView.printLadder(ladderGame, person, result);
-        resultProcessor = ladderGame.generateAllResults(person, result);
+        ResultProcessor resultProcessor = ladderGame.generateAllResults(person, result);
         String requestedName;
         do {
             requestedName = InputView.findResultName(person);
             OutputView.printLadderResult(resultProcessor.getResult(requestedName));
-        } while (!requestedName.equals("all"));
+        } while (!requestedName.equals(ALL));
     }
 
     private static void receiveInput() {

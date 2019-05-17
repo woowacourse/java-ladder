@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Objects;
 
 public class ResultProcessor {
+    private static final String FOR_ALL_RESULT = "all";
     private final LinkedHashMap<String, String> nameToResult = new LinkedHashMap<>();
 
     ResultProcessor(List<Integer> allResult, Person person, Result result) {
@@ -15,7 +16,7 @@ public class ResultProcessor {
     }
 
     public String getResult(String requestedName) {
-        if (requestedName.equals("all")) {
+        if (requestedName.equals(FOR_ALL_RESULT)) {
             return getAllResults();
         }
         return nameToResult.get(requestedName);

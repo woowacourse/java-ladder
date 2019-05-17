@@ -14,6 +14,7 @@ public class InputValidator {
     private static final String NOT_EQUAL_COUNT_MESSAGE = "결과의 개수는 %d개가 필요합니다.";
     private static final String NOT_ALLOW_ALL_MESSAGE = "이름 all은 허용하지 않습니다.";
     private static final String NOT_CONTAIN_NAME_MESSAGE = "없는 이름입니다.";
+    private static final String ALL = "all";
 
     public static List<String> checkValidName(String inputs) {
         isEmpty(inputs);
@@ -53,7 +54,7 @@ public class InputValidator {
     }
 
     private static void nameEqualAll(String name) {
-        if (name.equals("all")) {
+        if (name.equals(ALL)) {
             throw new IllegalArgumentException(NOT_ALLOW_ALL_MESSAGE);
         }
     }
@@ -84,7 +85,7 @@ public class InputValidator {
     }
 
     public static String isNotContainName(Person person, String requestedName) {
-        if (!requestedName.equals("all") && !person.findName(requestedName)) {
+        if (!requestedName.equals(ALL) && !person.findName(requestedName)) {
             throw new IllegalArgumentException(NOT_CONTAIN_NAME_MESSAGE);
         }
         return requestedName;
