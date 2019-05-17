@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.controller.LineGenerator;
 import laddergame.controller.rule.AlwaysCreateRule;
 import org.junit.jupiter.api.Test;
 

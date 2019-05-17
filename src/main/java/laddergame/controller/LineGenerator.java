@@ -1,6 +1,7 @@
-package laddergame.domain;
+package laddergame.controller;
 
 import laddergame.controller.rule.Rule;
+import laddergame.domain.Line;
 
 public class LineGenerator {
     public static Line lineGenerate(int numberOfPerson, Rule rule) {

@@ -1,6 +1,7 @@
-package laddergame.domain;
+package laddergame.controller;
 
 import laddergame.controller.rule.Rule;
+import laddergame.domain.Ladder;
 
 public class LadderGenerator {
     public static Ladder generateLadder(int height, int numberOfPerson, Rule rule) {
