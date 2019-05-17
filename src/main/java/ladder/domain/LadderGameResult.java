@@ -6,11 +6,12 @@ import ladder.domain.participant.ParticipantGroup;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class LadderGameResult {
-    private HashMap<Participant, String> gameResult = new LinkedHashMap<>();
+    private Map<Participant, String> gameResult = new LinkedHashMap<>();
     private boolean isEnd = false;
 
     public LadderGameResult(ParticipantGroup participantGroup, Rewards rewards, List<Integer> ranking) {

@@ -22,10 +22,10 @@ public class LadderGame {
     }
 
     public LadderGameResult getGameResult() {
-        return new LadderGameResult(participantGroup, rewards, makeLadderResult());
+        return new LadderGameResult(participantGroup, rewards, play());
     }
 
-    public List<Integer> makeLadderResult() {
+    public List<Integer> play() {
         List<Integer> order = new ArrayList<>();
         for (int i = 0; i < participantGroup.getSize(); i++) {
             order.add(ladder.getEndPoint(i));

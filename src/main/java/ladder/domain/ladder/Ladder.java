@@ -27,8 +27,11 @@ public class Ladder {
     }
 
     private void validateLadderSize(int ladderHeight, int ladderWidth) {
-        if (ladderHeight < MIN_LADDER_HEIGHT || ladderWidth < MIN_LADDER_WIDTH) {
-            throw new IllegalArgumentException();
+        if (ladderHeight < MIN_LADDER_HEIGHT) {
+            throw new IllegalArgumentException("사다리 높이는 " + MIN_LADDER_HEIGHT + " 이상입니다.");
+        }
+        if (ladderWidth < MIN_LADDER_WIDTH) {
+            throw new IllegalArgumentException("사다리의 폭은 " + MIN_LADDER_WIDTH + " 이상입니다.");
         }
     }
 

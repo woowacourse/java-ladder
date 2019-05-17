@@ -1,5 +1,6 @@
 package ladder.domain.ladder.line;
 
+import ladder.domain.ladder.Point;
 import ladder.domain.rule.LadderRule;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.List;
 
 public class Line {
     private final List<Boolean> points = new ArrayList<>();
+    //private final List<Point> points = new ArrayList<>();
 
     public Line(int width, LadderRule rule) {
         generatePoints(width, rule);
