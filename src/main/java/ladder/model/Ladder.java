@@ -38,7 +38,7 @@ public class Ladder {
 
     private List<Integer> processMappingTable(int width) {
         final List<Integer> table = IntStream.range(0, width).boxed().collect(Collectors.toList());
-        levels.forEach(level -> level.getVerticalLines().forEach(line -> Collections.swap(table, line, line + 1)));
+        levels.forEach(level -> level.getLines().forEach(line -> Collections.swap(table, line, line + 1)));
         return Collections.unmodifiableList(table);
     }
 

@@ -38,16 +38,21 @@ public class OutputView {
     private static void printLadder(Ladder ladder, int maxLength, int offset) {
         final int initialSpace = (maxLength - VERT_LINE.length()) / 2 + MIN_SPACE;
         final int space = maxLength - VERT_LINE.length() + 2 * MIN_SPACE;
-        ladder.getLevels().forEach(level -> printLevel(level, initialSpace, space, ladder.getWidth(), offset));
+        ladder.getLevels().forEach(level -> {
+            final String leftPadding = repeatChar(BLANK, initialSpace);
+            final String result = leftPadding + VERT_LINE + printLevel(level.getLines(), ladder.getWidth(), space);
+            System.out.println(result.substring(offset));
+        });
     }
 
-    private static void printLevel(Level level, int initialSpace, int space, int width, int offset) {
-        StringBuilder result = new StringBuilder(repeatChar(BLANK, initialSpace) + VERT_LINE);
+    private static String printLevel(List<Integer> lines, int width, int space) {
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < width - 1; i++) {
-            result.append(drawHorizontalLine(level.getVerticalLines().contains(i), space) + VERT_LINE);
+            result.append(drawHorizontalLine(lines.contains(i), space) + VERT_LINE);
         }
-        System.out.println(result.toString().substring(offset));
+        return result.toString();
     }
+
     private static String drawHorizontalLine(boolean exists, int width) {
         if (exists) {
             return repeatChar(HORIZ_LINE, width);

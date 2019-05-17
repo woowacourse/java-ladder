@@ -16,7 +16,7 @@ class LadderTest {
     void initTestA() {
         Ladder ladderA = new Ladder(10, 6, new Always());
         ladderA.getLevels().forEach(l ->
-            assertThat(new Level(ladderA.getWidth() - 1, new Always()).getVerticalLines()).isEqualTo(l.getVerticalLines())
+            assertThat(new Level(ladderA.getWidth() - 1, new Always()).getLines()).isEqualTo(l.getLines())
         );
     }
 
@@ -24,7 +24,7 @@ class LadderTest {
     void initTestN() {
         Ladder ladderN = new Ladder(11, 7, new Never());
         ladderN.getLevels().forEach(l ->
-            assertThat(new Level(ladderN.getWidth() - 1, new Never()).getVerticalLines()).isEqualTo(l.getVerticalLines())
+            assertThat(new Level(ladderN.getWidth() - 1, new Never()).getLines()).isEqualTo(l.getLines())
         );
     }
 
@@ -33,7 +33,7 @@ class LadderTest {
         OddOnly odd = new OddOnly();
         Ladder ladderO = new Ladder(7, 123, new OddOnly());
         ladderO.getLevels().forEach(l ->
-            assertThat(new Level(ladderO.getWidth() - 1, odd).getVerticalLines()).isEqualTo(l.getVerticalLines())
+            assertThat(new Level(ladderO.getWidth() - 1, odd).getLines()).isEqualTo(l.getLines())
         );
     }
 
@@ -42,7 +42,7 @@ class LadderTest {
         EvenOnly even = new EvenOnly();
         Ladder ladderE = new Ladder(117, 2, new EvenOnly());
         ladderE.getLevels().forEach(l ->
-            assertThat(new Level(ladderE.getWidth() - 1, even).getVerticalLines()).isEqualTo(l.getVerticalLines())
+            assertThat(new Level(ladderE.getWidth() - 1, even).getLines()).isEqualTo(l.getLines())
         );
     }
 
