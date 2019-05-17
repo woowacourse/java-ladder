@@ -13,11 +13,10 @@ public class LadderTest {
     }
 
     @Test
-    public void 사다리에서_이웃한_연결로를_추가할_때_예외발생하는지_검사() {
+    public void 연속된_연결로를_추가할때_검사_4X4사다리() {
         Ladder ladder = new Ladder(4, 4);
         ladder.connectBridge(1, 2);
         ladder.connectBridge(2, 1);
-
         ladder.connectBridge(1, 1);
         ladder.connectBridge(1, 3);
 
@@ -30,34 +29,37 @@ public class LadderTest {
     }
 
     @Test
-    public void 레더_테스트2() {
+    public void 연속된_연결로를_추가할때_추가가_안되는지_검사_1X2사다리() {
         Ladder ladder = new Ladder(1, 2);
         ladder.connectBridge(1, 1);
+
         assertThat(ladder.isLinked(1, 1)).isTrue();
     }
 
     @Test
-    public void 레더_테스트3() {
+    public void 레더_테스트_2X2크기일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(2, 2);
         ladder.connectBridge(1, 1);
         ladder.connectBridge(2, 1);
+
         assertThat(ladder.isLinked(1, 1)).isTrue();
         assertThat(ladder.isLinked(2, 1)).isTrue();
     }
 
     @Test
-    public void 레더_테스트4() {
+    public void 레더_테스트_3X3크기일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(3, 3);
         ladder.connectBridge(1, 1);
         ladder.connectBridge(2, 1);
         ladder.connectBridge(3, 2);
+
         assertThat(ladder.isLinked(1, 1)).isTrue();
         assertThat(ladder.isLinked(2, 1)).isTrue();
         assertThat(ladder.isLinked(3, 2)).isTrue();
     }
 
     @Test
-    public void 레더_테스트_사다리의_너비가_1일때_경로를_제대로_찾는지() {
+    public void 레더_테스트_1X1크기일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(1, 1);
         assertThat(ladder.findDestinationPosition(1)).isEqualTo(1);
 
@@ -66,19 +68,20 @@ public class LadderTest {
     }
 
     @Test
-    public void 레더_테스트_사다리의_너비가_2일때_제대로_찾는지() {
+    public void 레더_테스트_1X2크기일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(1, 2);
         ladder.connectBridge(1, 1);
+
         assertThat(ladder.findDestinationPosition(1)).isEqualTo(2);
         assertThat(ladder.findDestinationPosition(2)).isEqualTo(1);
     }
 
     @Test
-    public void 레더_테스트_사다리의_너비가_5일때_제대로_찾는지() {
+    public void 레더_테스트_1X5크기일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(1, 5);
         ladder.connectBridge(1, 2);
         ladder.connectBridge(1, 4);
-        //          |    |-----|   |-----|
+
         assertThat(ladder.findDestinationPosition(1)).isEqualTo(1);
         assertThat(ladder.findDestinationPosition(2)).isEqualTo(3);
         assertThat(ladder.findDestinationPosition(3)).isEqualTo(2);
@@ -87,14 +90,13 @@ public class LadderTest {
     }
 
     @Test
-    public void 레더_테스트_사다리의_높이가_2고_너비가_5일때_제대로_찾는지() {
+    public void 레더_테스트_2X5크기일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(2, 5);
         ladder.connectBridge(1, 2);
         ladder.connectBridge(1, 4);
         ladder.connectBridge(2, 1);
         ladder.connectBridge(2, 3);
-        //          |     |------|      |------|
-        //          |-----|      |------|      |
+
         assertThat(ladder.findDestinationPosition(1)).isEqualTo(2);
         assertThat(ladder.findDestinationPosition(2)).isEqualTo(4);
         assertThat(ladder.findDestinationPosition(3)).isEqualTo(1);
@@ -103,17 +105,14 @@ public class LadderTest {
     }
 
     @Test
-    public void 레더_테스트_사다리의_높이가_3고_너비가_5일때_제대로_찾는지() {
+    public void 레더_테스트_3X5크기일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(3, 5);
         ladder.connectBridge(1, 2);
         ladder.connectBridge(1, 4);
-        ;
         ladder.connectBridge(2, 1);
         ladder.connectBridge(2, 3);
         ladder.connectBridge(3, 3);
-        //          |     |------|      |------|
-        //          |-----|      |------|      |
-        //          |     |      |------|      |
+
         assertThat(ladder.findDestinationPosition(1)).isEqualTo(2);
         assertThat(ladder.findDestinationPosition(2)).isEqualTo(3);
         assertThat(ladder.findDestinationPosition(3)).isEqualTo(1);
@@ -122,15 +121,13 @@ public class LadderTest {
     }
 
     @Test
-    public void 레2더_테스트_사다리의_높이가_3고_너비가_5일때_제대로_찾는지() {
+    public void 레더_테스트_6X3크기일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(6, 3);
         ladder.connectBridge(1, 1);
         ladder.connectBridge(2, 1);
         ladder.connectBridge(3, 1);
         ladder.connectBridge(5, 2);
-        //          |     |------|      |
-        //          |-----|      |------|
-        //          |     |      |------|
+
         assertThat(ladder.findDestinationPosition(1)).isEqualTo(3);
         assertThat(ladder.findDestinationPosition(2)).isEqualTo(1);
         assertThat(ladder.findDestinationPosition(3)).isEqualTo(2);
