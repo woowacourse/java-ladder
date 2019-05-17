@@ -4,7 +4,6 @@ package ladder.domain;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,8 +21,7 @@ public class LadderResultTest {
         ladderRewards = new LadderRewards("꽝,5000,꽝,3000", 4);
         ladderResult = new LadderResult(ladderRewards);
         randomGenerator = new RandomGenerator(Arrays.asList(1, 1, 0, 1));
-        ladder = new Ladder(4, 2);
-        ladder.make(randomGenerator);
+        ladder = new Ladder().make(randomGenerator, 4, 2);
         players = new Players("a,b,c,d");
     }
 
@@ -54,12 +52,11 @@ public class LadderResultTest {
     @Test
     public void 전체_결과_확인() {
 
-        List<PlayerResult> expect = new ArrayList<>();
-        expect.add(new PlayerResult("a", "꽝"));
-        expect.add(new PlayerResult("b", "꽝"));
-        expect.add(new PlayerResult("c", "3000"));
-        expect.add(new PlayerResult("d", "5000"));
-
+        List<PlayerResult> expect = Arrays.asList(
+                new PlayerResult("a", "꽝"),
+                new PlayerResult("b", "꽝"),
+                new PlayerResult("c", "3000"),
+                new PlayerResult("d", "5000"));
         assertEquals(expect, ladderResult.result(ladder, players));
     }
 }

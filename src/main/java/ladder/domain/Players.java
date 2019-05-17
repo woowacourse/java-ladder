@@ -34,15 +34,6 @@ public class Players {
         players = IntStream.range(0, names.size())
                 .mapToObj(i -> {
                     String name = names.get(i).trim();
-                    if (name.isEmpty()) {
-                        throw new IllegalArgumentException(ConsoleMessages.ERR_BLANK.message());
-                    }
-                    if (name.length() > 5) {
-                        throw new IllegalArgumentException(ConsoleMessages.ERR_NAME_LENGTH.message());
-                    }
-                    if (name.equals(FINISH_COMMAND)) {
-                        throw new IllegalArgumentException(ConsoleMessages.ERR_ILLEGAL_NAME.message());
-                    }
                     return new Player(name, i);
                 })
                 .collect(Collectors.toList());

@@ -24,6 +24,17 @@ public class LadderMain {
 
     }
 
+    private static void ready() {
+        inputView = new InputView();
+        outputView = new OutputView();
+
+        createPlayers();
+        createRewards();
+        createLadder();
+
+        show();
+    }
+
     private static void play() {
         String name = inputView.readPlayer();
         if (name.equals(Players.FINISH_COMMAND)) {
@@ -39,25 +50,13 @@ public class LadderMain {
         }
     }
 
-    private static void ready() {
-        inputView = new InputView();
-        outputView = new OutputView();
-
-        createPlayers();
-        createRewards();
-        createLadder();
-
-        show();
-    }
-
     private static void show() {
         outputView.print(players, ladder, ladderRewards);
     }
 
     private static void createLadder() {
         try {
-            ladder = new Ladder(players.count(), inputView.readHeight());
-            ladder.make();
+            ladder = new Ladder().init(players.count(), inputView.readHeight());
             ladderResult = new LadderResult(ladderRewards);
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
