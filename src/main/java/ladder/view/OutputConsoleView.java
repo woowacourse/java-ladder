@@ -12,6 +12,7 @@ public class OutputConsoleView {
     private static final String SUB_LINE_FALSE = "     ";
     private static final String PADDING = " ";
     private static final int MAX_NAME_LENGTH = 5;
+    private static final String ILLEGAL_NAME = "없는 사용자입니다.";
 
     public static void printLadderGame(Ladder ladder, GamePlayers gamePlayers, PlayerRewards playerRewards) {
         printNames(gamePlayers);
@@ -71,8 +72,8 @@ public class OutputConsoleView {
     public static void printResult(GameResult gameResult, String playerName) {
         System.out.println("실행 결과");
         String result = gameResult.get(playerName);
-        if(result == null){
-            result = "없는 사용자입니다.";
+        if (result == null) {
+            result = ILLEGAL_NAME;
         }
         System.out.println(result);
     }
