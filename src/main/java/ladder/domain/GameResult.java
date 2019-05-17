@@ -33,7 +33,8 @@ public class GameResult {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        results.keySet().forEach(player -> stringBuilder.append(player.getName())
+        results.keySet()
+                .forEach(player -> stringBuilder.append(player.getName())
                         .append(DELIMITER)
                         .append(results.get(player).getResult())
                         .append(NEXT_LINE));

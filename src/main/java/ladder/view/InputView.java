@@ -9,12 +9,12 @@ public class InputView {
 
     public static String[] getNames() {
         System.out.println(GET_NAME_MESSAGE);
-        return scanner.nextLine().split(",");
+        return scanner.nextLine().split(DELIMITER);
     }
 
     public static String[] getDrawResults() {
         System.out.println(GET_DRAW_RESULT_MESSAGE);
-        return scanner.nextLine().split(",");
+        return scanner.nextLine().split(DELIMITER);
     }
 
     public static int getCountOfLines() {

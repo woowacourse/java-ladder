@@ -21,17 +21,22 @@ public class Line {
         List<Integer> beforeRecord = record.getIndices();
         int size = beforeRecord.size();
         checkSize(size);
-        List<Boolean> tempPoints = new ArrayList<>(points);
+        List<Boolean> tempPoints = initialTemp(points);
         List<Integer> afterRecord = new ArrayList<>(Arrays.asList(new Integer[size]));
-
-        tempPoints.add(LEFT_END, false);
-        tempPoints.add(tempPoints.size(), false);
 
         for (int i = 0; i < size; i++) {
             afterRecord.set(move(tempPoints.get(i), i, tempPoints.get(i + 1)), beforeRecord.get(i));
         }
 
         return new Record(afterRecord);
+    }
+
+    private ArrayList<Boolean> initialTemp(List<Boolean> original){
+        ArrayList<Boolean> tempPoints = new ArrayList<>(original);
+        tempPoints.add(LEFT_END, false);
+        tempPoints.add(tempPoints.size(), false);
+
+        return tempPoints;
     }
 
     private void checkSize(int size) {

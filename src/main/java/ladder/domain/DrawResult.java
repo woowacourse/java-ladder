@@ -1,7 +1,5 @@
 package ladder.domain;
 
-
-
 public class DrawResult {
     private static final String BLANK = "";
 
