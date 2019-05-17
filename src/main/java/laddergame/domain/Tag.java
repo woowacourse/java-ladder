@@ -1,7 +1,5 @@
 package laddergame.domain;
 
-import org.apache.commons.lang3.StringUtils;
-
 public class Tag {
     private static final int TAG_LENGTH_BOUND = 5;
 
@@ -17,7 +15,7 @@ public class Tag {
     }
 
     private void checkTag(String tag) {
-        if (StringUtils.isBlank(tag)) {
+        if (tag == null || tag.equals("")) {
             throw new IllegalArgumentException("입력값이 잘못되었습니다!");
         }
         if (tag.length() > TAG_LENGTH_BOUND) {
