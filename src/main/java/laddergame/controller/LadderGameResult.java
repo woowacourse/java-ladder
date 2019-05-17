@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.controller;
 
 import java.util.Map;
 

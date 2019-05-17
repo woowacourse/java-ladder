@@ -35,4 +35,10 @@ public class Validator {
             throw new IllegalArgumentException("입력값이 잘못되었습니다!");
         }
     }
+
+    public static void checkHeightIsPositive(int height) {
+        if (height < 1) {
+            throw new IllegalArgumentException("높이는 1보다 작을 수 없습니다!");
+        }
+    }
 }

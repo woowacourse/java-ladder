@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.domain.rule.AlwaysCreateRule;
+import laddergame.controller.rule.AlwaysCreateRule;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

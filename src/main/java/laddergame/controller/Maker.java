@@ -35,11 +35,22 @@ public class Maker {
             Validator.checkEndsWithComma(inputNames);
             List<String> names = Splitter.splitByComma(inputNames);
             Validator.checkEmptyTag(names);
-            Validator.checkEqualSize(size, names.size());
+            Validator.checkEqualSize(names.size(), size);
             return new Tags(names);
         } catch (Exception e) {
             System.err.println(e.getMessage());
             return makePrizes(size);
+        }
+    }
+
+    public static int makeHeight() {
+        try {
+            int height = InputView.inputHeight();
+            Validator.checkHeightIsPositive(height);
+            return height;
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+            return makeHeight();
         }
     }
 }
