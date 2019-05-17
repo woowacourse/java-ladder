@@ -20,7 +20,7 @@ public class LineGenerator {
         randomBooleanList.add(random.nextBoolean());
 
         for (int i = 1; i < length; i++) {
-            randomBooleanList.add(getNextBoolean(randomBooleanList.get(i)));
+            randomBooleanList.add(getNextBoolean(randomBooleanList.get(i - 1)));
         }
 
         return randomBooleanList;
