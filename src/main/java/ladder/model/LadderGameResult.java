@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LadderGameResult {
+    private static final String NAME_SPACE_FORMAT = "%-6s";
     private List<String> ladderGameResults;
 
     public LadderGameResult(String[] inputLadderGameResults, int countOfPlayer) {
@@ -21,7 +22,7 @@ public class LadderGameResult {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        ladderGameResults.forEach(result -> stringBuilder.append(String.format("%-6s", result)));
+        ladderGameResults.forEach(result -> stringBuilder.append(String.format(NAME_SPACE_FORMAT, result)));
         return stringBuilder.toString();
     }
 }

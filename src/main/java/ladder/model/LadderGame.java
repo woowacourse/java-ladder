@@ -2,6 +2,7 @@ package ladder.model;
 
 public class LadderGame {
     private static final String NEW_LINE = "\n";
+    private static final String COLON = " : ";
     private Players players;
     private Ladder ladder;
     private LadderGameResult ladderGameResult;
@@ -22,7 +23,7 @@ public class LadderGame {
     public String getAllResult() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Player player : this.players) {
-            stringBuilder.append(player.getName()).append(" : ").append(this.getResultByName(player.getName())).append(NEW_LINE);
+            stringBuilder.append(player.getName()).append(COLON).append(this.getResultByName(player.getName())).append(NEW_LINE);
         }
         return stringBuilder.toString();
     }

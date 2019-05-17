@@ -11,13 +11,14 @@ import java.util.stream.Collectors;
 
 public class StringCalculator {
     private static final String DELIMITER_REGEX = "[,:]";
+    private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
     private List<Integer> numbers = new ArrayList<>();
 
     public StringCalculator(String formula) {
         if (StringUtils.isBlank(formula)) {
             numbers.add(0);
         }
-        if (isCustomDelimiter(formula)) {
+        if (hasCustomDelimiter(formula)) {
             numbers = getNumbersByCustomDelimiter(formula);
         }
         if (numbers.isEmpty()) {
@@ -31,7 +32,7 @@ public class StringCalculator {
     }
 
     private List<Integer> getNumbersByCustomDelimiter(String formula) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(formula);
+        Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(formula);
         m.find();
         String customDelimiter = m.group(1);
         return Arrays.stream(m.group(2).split(customDelimiter))
@@ -43,7 +44,7 @@ public class StringCalculator {
         return numbers.stream().reduce(0, Integer::sum);
     }
 
-    private boolean isCustomDelimiter(String formula) {
-        return (formula != null) && (Pattern.compile("//(.)\n(.*)").matcher(formula).find());
+    private boolean hasCustomDelimiter(String formula) {
+        return (Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(formula).find());
     }
 }

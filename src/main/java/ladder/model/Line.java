@@ -32,12 +32,8 @@ public class Line {
         return false;
     }
 
-    public int lineSize() {
-        return this.points.size();
-    }
-
     public void checkPointsValid() {
-        for (int i = 1; i < this.lineSize(); i++) {
+        for (int i = 1, length = points.size(); i < length; i++) {
             checkContinued(i - 1, i);
         }
     }
@@ -46,15 +42,6 @@ public class Line {
         if (this.points.get(left) && this.points.get(right)) {
             throw new IllegalArgumentException("이어지는 가로라인 발생");
         }
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder(VERTICAL_LINE);
-        for (int i = 0; i < lineSize(); i++) {
-            stringBuilder.append(getOne(i)).append(VERTICAL_LINE);
-        }
-        return stringBuilder.toString();
     }
 
     private String getOne(int pointIndex) {
@@ -82,5 +69,14 @@ public class Line {
         if (position < points.size() && points.get(position)) {
             player.moveRight();
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder(VERTICAL_LINE);
+        for (int i = 0, length = points.size(); i < length; i++) {
+            stringBuilder.append(getOne(i)).append(VERTICAL_LINE);
+        }
+        return stringBuilder.toString();
     }
 }

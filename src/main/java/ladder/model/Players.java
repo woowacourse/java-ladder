@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Players implements Iterable<Player> {
     private static final int MIN_PLAYER_NUMBER = 2;
+    private static final String NAME_SPACE_FORMAT = "%-6s";
     private List<Player> players = new ArrayList<>();
 
     public Players(String[] names) {
@@ -42,7 +43,7 @@ public class Players implements Iterable<Player> {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        players.forEach(player -> stringBuilder.append(String.format("%-6s", player)));
+        players.forEach(player -> stringBuilder.append(String.format(NAME_SPACE_FORMAT, player)));
         return stringBuilder.toString();
     }
 

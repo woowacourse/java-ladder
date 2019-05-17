@@ -7,10 +7,14 @@ import ladder.model.Players;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.Arrays;
+
 public class MainController {
+    private static final String ALL_PLAYERS = "all";
+
     public static void main(String[] args) {
-        String[] scannedNames = InputView.inputNames();
-        String[] scannedLadderGameResult = InputView.inputLadderGameResult();
+        String[] scannedNames = Arrays.stream(InputView.inputNames()).map(String::trim).toArray(String[]::new);
+        String[] scannedLadderGameResult = Arrays.stream(InputView.inputLadderGameResult()).map(String::trim).toArray(String[]::new);
         int scannedHeight = InputView.inputLadderHeight();
 
         Players players = new Players(scannedNames);
@@ -25,8 +29,8 @@ public class MainController {
     }
 
     private static void playQnA(LadderGame ladderGame) {
-        String scannedDesiredResult = InputView.inputDesiredResult();
-        while (!scannedDesiredResult.equals("all")) {
+        String scannedDesiredResult = InputView.inputDesiredResult().trim();
+        while (!scannedDesiredResult.equals(ALL_PLAYERS)) {
             OutputView.printResultOfExecution(ladderGame.getResultByName(scannedDesiredResult));
             scannedDesiredResult = InputView.inputDesiredResult();
         }
