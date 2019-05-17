@@ -14,8 +14,8 @@ public class PlayerTest {
     @BeforeEach
     void setup() {
         Position.MAX = 2;
-        Direction first = Direction.first(true);
-        Direction next = first.next(false);
+        Point first = Point.first(true);
+        Point next = first.next(false);
         line = new Line(Arrays.asList(first, next, next.last()));
     }
 

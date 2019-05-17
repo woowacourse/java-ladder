@@ -3,20 +3,20 @@ package ladder.domain;
 import java.util.List;
 
 public class Line {
-    private final List<Direction> directions;
+    private final List<Point> points;
 
-    public Line(List<Direction> directions) {
-        this.directions = directions;
+    public Line(List<Point> points) {
+        this.points = points;
     }
 
-    public Direction getDirection(Position position) {
-        return directions.get(position.getValue());
+    public Point getDirection(Position position) {
+        return points.get(position.getValue());
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "directions=" + directions +
+                "points=" + points +
                 '}';
     }
 }

@@ -16,11 +16,11 @@ public class LadderEngineTest {
     void setup() {
         Position.MAX = 2;
 
-        Direction first = Direction.first(true);
-        Direction next = first.next(false);
+        Point first = Point.first(true);
+        Point next = first.next(false);
         Line line1 = new Line(Arrays.asList(first, next, next.last()));
 
-        first = Direction.first(false);
+        first = Point.first(false);
         next = first.next(true);
         Line line2 = new Line(Arrays.asList(first, next, next.last()));
 

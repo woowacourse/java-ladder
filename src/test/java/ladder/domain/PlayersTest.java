@@ -18,8 +18,8 @@ public class PlayersTest {
     void goDownTest() {
         List<Player> p = Arrays.asList(new Player("pobi", new Position(0)), new Player("crong", new Position(1)), new Player("honux", new Position(2)));
         Players players = new Players(p);
-        Direction first = Direction.first(true);
-        Direction next = first.next(false);
+        Point first = Point.first(true);
+        Point next = first.next(false);
         Line line = new Line(Arrays.asList(first, next, next.last()));
         p = Arrays.asList(new Player("pobi", new Position(1)), new Player("crong", new Position(0)), new Player("honux", new Position(2)));
         Players movedPlayers = new Players(p);

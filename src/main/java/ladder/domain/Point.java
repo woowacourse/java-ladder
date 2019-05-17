@@ -1,6 +1,6 @@
 package ladder.domain;
 
-public class Direction {
+public class Point {
     static final int LEFT = -1;
     static final int STRAIGHT = 0;
     static final int RIGHT = 1;
@@ -8,7 +8,7 @@ public class Direction {
     private final boolean left;
     private final boolean current;
 
-    private Direction(boolean left, boolean current) {
+    private Point(boolean left, boolean current) {
         validateNotConsecutiveTrue(left, current);
         this.left = left;
         this.current = current;
@@ -20,16 +20,16 @@ public class Direction {
         }
     }
 
-    public static Direction first(boolean current) {
-        return new Direction(false, current);
+    public static Point first(boolean current) {
+        return new Point(false, current);
     }
 
-    public Direction next(boolean right) {
-        return new Direction(this.current, right);
+    public Point next(boolean right) {
+        return new Point(this.current, right);
     }
 
-    public Direction last() {
-        return new Direction(current, false);
+    public Point last() {
+        return new Point(current, false);
     }
 
     public int move() {
@@ -45,7 +45,7 @@ public class Direction {
 
     @Override
     public String toString() {
-        return "Direction{" +
+        return "Point{" +
                 "left=" + left +
                 ", current=" + current +
                 '}';

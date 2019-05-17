@@ -15,28 +15,28 @@ public class LineTest {
 
     @Test
     void firstDirectionTest() {
-        Direction first = Direction.first(true);
-        Direction next = first.next(false);
+        Point first = Point.first(true);
+        Point next = first.next(false);
         Line line = new Line(Arrays.asList(first, next, next.last()));
-        Direction left = line.getDirection(new Position(0));
-        assertThat(left.move()).isEqualTo(Direction.RIGHT);
+        Point left = line.getDirection(new Position(0));
+        assertThat(left.move()).isEqualTo(Point.RIGHT);
     }
 
     @Test
     void midDirectionTest() {
-        Direction first = Direction.first(true);
-        Direction next = first.next(false);
+        Point first = Point.first(true);
+        Point next = first.next(false);
         Line line = new Line(Arrays.asList(first, next, next.last()));
-        Direction left = line.getDirection(new Position(1));
-        assertThat(left.move()).isEqualTo(Direction.LEFT);
+        Point left = line.getDirection(new Position(1));
+        assertThat(left.move()).isEqualTo(Point.LEFT);
     }
 
     @Test
     void lastDirectionTest() {
-        Direction first = Direction.first(true);
-        Direction next = first.next(false);
+        Point first = Point.first(true);
+        Point next = first.next(false);
         Line line = new Line(Arrays.asList(first, next, next.last()));
-        Direction left = line.getDirection(new Position(2));
-        assertThat(left.move()).isEqualTo(Direction.STRAIGHT);
+        Point left = line.getDirection(new Position(2));
+        assertThat(left.move()).isEqualTo(Point.STRAIGHT);
     }
 }
