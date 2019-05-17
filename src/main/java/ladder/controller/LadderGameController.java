@@ -11,9 +11,17 @@ import java.util.List;
 public class LadderGameController {
     public void run() {
         GamePlayers gamePlayers = new GamePlayers(generatePlayers(inputNames()));
-        PlayerRewards playerRewards = generateRewards(intputRewards());
-        LadderGame ladderGame = new LadderGame(inputHeight(), gamePlayers, playerRewards);
-        OutputConsoleView.printLadderGame(ladderGame);
+        PlayerRewards playerRewards = generateRewards(inputRewards());
+        Ladder ladder = new Ladder(inputHeight(), gamePlayers.size());
+        GameResult gameResult = new GameResult(ladder, gamePlayers, playerRewards);
+
+
+        OutputConsoleView.printLadderGame(ladder, gamePlayers, playerRewards);
+        String name = "";
+        while (!(name = InputConsoleView.inputResultName()).equals("all")) {
+            OutputConsoleView.printResult(gameResult, name);
+        }
+        OutputConsoleView.printResult(gameResult);
     }
 
     private List<Player> generatePlayers(String names) {
@@ -28,7 +36,7 @@ public class LadderGameController {
         return InputConsoleView.inputHeight();
     }
 
-    private String intputRewards() {
+    private String inputRewards() {
         return InputConsoleView.inputRewards();
     }
 

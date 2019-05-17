@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputConsoleView {
     private static final String THREE_TAB = "   ";
@@ -12,10 +13,10 @@ public class OutputConsoleView {
     private static final String PADDING = " ";
     private static final int MAX_NAME_LENGTH = 5;
 
-    public static void printLadderGame(LadderGame ladderGame) {
-        printNames(ladderGame.getPlayers());
-        printLadder(ladderGame.getLadder());
-        printRewards(ladderGame.getPlayerRewards());
+    public static void printLadderGame(Ladder ladder, GamePlayers gamePlayers, PlayerRewards playerRewards) {
+        printNames(gamePlayers);
+        printLadder(ladder);
+        printRewards(playerRewards);
     }
 
     private static void printNames(GamePlayers gamePlayers) {
@@ -62,8 +63,22 @@ public class OutputConsoleView {
 
     private static void printRewards(PlayerRewards results) {
         for (int i = 0; i < results.size(); i++) {
-            System.out.print(results.getReward(i)+"   ");
+            System.out.print(results.getReward(i) + "   ");
         }
         System.out.println();
+    }
+
+    public static void printResult(GameResult gameResult, String playerName) {
+        String result = gameResult.get(playerName);
+        System.out.println("실행 결과");
+        System.out.println(result);
+    }
+
+    public static void printResult(GameResult gameResult) {
+        Map<String, String> results = gameResult.getAll();
+        System.out.println("실행 결과");
+        results.forEach((k, v) -> {
+            System.out.println(k + " : " + v);
+        });
     }
 }
