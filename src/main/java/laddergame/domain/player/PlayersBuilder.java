@@ -1,7 +1,8 @@
 package laddergame.domain.player;
 
+import laddergame.ValidateBuilder;
+import laddergame.domain.BuilderObject;
 import laddergame.domain.Constant;
-import laddergame.domain.inputValidator;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -9,16 +10,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class PlayersBuilder {
+public class PlayersBuilder extends ValidateBuilder {
     private final String names;
 
     public PlayersBuilder(final String names) {
         this.names = names;
     }
 
-    public Players buildPlayers() {
-        inputValidator.validateInput(names);
-
+    @Override
+    public BuilderObject build() {
+        validate(names);
         List<Player> players = Arrays.asList(names.split(Constant.COMMA)).stream()
                 .map(String::trim)
                 .map(Player::new)

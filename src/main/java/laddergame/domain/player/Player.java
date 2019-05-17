@@ -1,5 +1,6 @@
 package laddergame.domain.player;
 
+import laddergame.domain.BuilderObject;
 import laddergame.domain.Constant;
 import org.apache.commons.lang3.StringUtils;
 

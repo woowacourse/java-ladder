@@ -1,30 +1,39 @@
 package laddergame.domain.player;
 
+import laddergame.domain.BuilderObject;
 import laddergame.domain.Constant;
 
 import java.util.List;
 import java.util.Objects;
 
-public class Players {
+public class Players implements BuilderObject {
     private final List<Player> players;
 
     public Players(List<Player> players) {
         this.players = players;
     }
 
-    public int getNumberOfPlayers() {
+    @Override
+    public int getCount() {
         return players.size();
     }
 
+    @Override
     public int getIndexOfName(String name) {
-        if(!players.contains(new Player(name))){
+        if (!players.contains(new Player(name))) {
             throw new IllegalArgumentException("존재하지않는 이름입니다.");
         }
         return (players.indexOf(new Player(name)) + 1);
     }
 
+    @Override
     public String getNameOfIndex(int index) {
         return players.get(index - 1).getName();
+    }
+
+    @Override
+    public boolean isCountsEqual() {
+        return false;
     }
 
     @Override

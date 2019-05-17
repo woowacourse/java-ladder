@@ -5,50 +5,50 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-class DestinationBuilderTest {
+class RewardBuilderTest {
 
     @Test
     public void 객제_생성_검사() {
-        DestinationsBuilder playerMaker = new DestinationsBuilder("pobi,crong");
-        assertThat(playerMaker).isEqualTo(new DestinationsBuilder("pobi,crong"));
+        RewardsBuilder playerMaker = new RewardsBuilder("pobi,crong");
+        assertThat(playerMaker).isEqualTo(new RewardsBuilder("pobi,crong"));
     }
 
     @Test
     public void 공백이_입력되어있을때_검사() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new DestinationsBuilder(" ").buildDestinations();
+            new RewardsBuilder(" ").buildDestinations();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new DestinationsBuilder("").buildDestinations();
+            new RewardsBuilder("").buildDestinations();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new DestinationsBuilder(null).buildDestinations();
+            new RewardsBuilder(null).buildDestinations();
         });
     }
 
     @Test
     public void 이름목록에_스페이스가_포함되어있을때_검사() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new DestinationsBuilder(" ,pobi,honux,crong,jk").buildDestinations();
+            new RewardsBuilder(" ,pobi,honux,crong,jk").buildDestinations();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new DestinationsBuilder("pobi,honux,crong,jk, ").buildDestinations();
+            new RewardsBuilder("pobi,honux,crong,jk, ").buildDestinations();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new DestinationsBuilder("pobi,honux, ,crong,jk").buildDestinations();
+            new RewardsBuilder("pobi,honux, ,crong,jk").buildDestinations();
         });
     }
 
     @Test
     public void 이름목록에_공백이_포함되어있을때_검사() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new DestinationsBuilder(",pobi,honux,crong,jk").buildDestinations();
+            new RewardsBuilder(",pobi,honux,crong,jk").buildDestinations();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new DestinationsBuilder("pobi,honux,crong,jk,").buildDestinations();
+            new RewardsBuilder("pobi,honux,crong,jk,").buildDestinations();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new DestinationsBuilder("pobi,honux,,crong,jk,").buildDestinations();
+            new RewardsBuilder("pobi,honux,,crong,jk,").buildDestinations();
         });
     }
 }
