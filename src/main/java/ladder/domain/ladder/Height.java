@@ -1,5 +1,5 @@
 /*
- * @(#)Floor.java
+ * @(#)Height.java
  *
  * v 1.0.0
  *
@@ -19,13 +19,13 @@ package ladder.domain.ladder;
  * @author men7627
  * @version 1.0.0
  */
-public class Floor {
+public class Height {
     private static final String NAT_NUM_EXCEPTION_MESSAGE = "층 수 0이하 입력 오류";
     private static final String VALID_TYPE_EXCEPTION_MESSAGE = "층 수 입력 형식 오류";
 
     private int floor;
 
-    public Floor(String input) {
+    public Height(String input) {
         int number = validType(input);
         validRange(number);
         this.floor = number;

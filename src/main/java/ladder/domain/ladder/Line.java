@@ -81,29 +81,30 @@ public class Line {
         return bool ? HORIZONTAL_LINE : NO_HORIZONTAL_LINE;
     }
 
-    public int moveHorizontal(int index) {
-        if (canMoveLeft(index)) {
-            return moveLeft(index);
+    public int moveHorizontal(int position) {
+        if (canMoveLeft(position)) {
+            return moveLeft(position);
         }
-        if (canMoveRight(index)) {
-            return moveRight(index);
+        if (canMoveRight(position)) {
+            return moveRight(position);
         }
-        return index;
-    }
-    private boolean canMoveLeft(int index) {
-        return index > 0 && this.horizontal.get(index - 1);
+        return position;
     }
 
-    private int moveLeft(int index) {
-        return index - 1;
+    private boolean canMoveLeft(int position) {
+        return position > 0 && this.horizontal.get(position - 1);
     }
 
-    private boolean canMoveRight(int index) {
-        return index < horizontal.size() && this.horizontal.get(index);
+    private int moveLeft(int position) {
+        return position - 1;
     }
 
-    private int moveRight(int index) {
-        return index + 1;
+    private boolean canMoveRight(int position) {
+        return position < horizontal.size() && this.horizontal.get(position);
+    }
+
+    private int moveRight(int position) {
+        return position + 1;
     }
 
     @Override

@@ -12,7 +12,7 @@
 
 package ladder.domain;
 
-import ladder.domain.ladder.Floor;
+import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.tag.Tag;
 
@@ -32,10 +32,10 @@ public class LadderGame {
     private PlayerTags players;
     private ResultTags results;
 
-    public LadderGame(PlayerTags players, ResultTags results, Floor floor) {
+    public LadderGame(PlayerTags players, ResultTags results, Height height) {
         this.players = players;
         this.results = results;
-        ladder = new Ladder(floor, players.size());
+        ladder = new Ladder(height, players.size());
     }
 
     public String getOnePlayerResult(Tag tag) {

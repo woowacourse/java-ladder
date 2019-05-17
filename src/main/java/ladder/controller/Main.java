@@ -14,7 +14,7 @@
 package ladder.controller;
 
 import ladder.domain.*;
-import ladder.domain.ladder.Floor;
+import ladder.domain.ladder.Height;
 import ladder.domain.LadderGame;
 import ladder.domain.tag.Tag;
 import ladder.view.InputView;
@@ -34,7 +34,7 @@ public class Main {
     public static void main(String[] args) {
         PlayerTags players = getPlayers();
         ResultTags results = getResults(players.size());
-        Floor floors = getFloor();
+        Height floors = getFloor();
 
         LadderGame ladderGame = new LadderGame(players, results, floors);
 
@@ -61,12 +61,12 @@ public class Main {
         }
     }
 
-    private static Floor getFloor() {
+    private static Height getFloor() {
         try {
-            return new Floor(InputView.floors());
+            return new Height(InputView.floors());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return new Floor(InputView.floors());
+            return new Height(InputView.floors());
         }
     }
 
