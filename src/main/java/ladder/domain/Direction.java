@@ -8,7 +8,7 @@ public class Direction {
     private final boolean left;
     private final boolean current;
 
-    public Direction(boolean left, boolean current) {
+    private Direction(boolean left, boolean current) {
         validateNotConsecutiveTrue(left, current);
         this.left = left;
         this.current = current;
@@ -16,6 +16,10 @@ public class Direction {
 
     public static Direction first(boolean current) {
         return new Direction(false, current);
+    }
+
+    public Direction next(boolean right) {
+        return new Direction(this.current, right);
     }
 
     public Direction last() {

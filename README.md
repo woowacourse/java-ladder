@@ -68,13 +68,17 @@
     
     
 ## To-do-list
-1. Player의 현재 위치를 나타내는 Position 객체를 생성한다.
+1. Player의 현재 위치를 나타내는 Position 클래스를 작성한다.
     - ~~현재 위치는 0 이상이어야한다.~~
     - ~~현재 위치는 전체 플레이어 수보다 작아야한다.~~
-2. Player가 어디로 움직여야할 지 알려주는 Direction 객체를 생성한다.
+2. Player가 어디로 움직여야할 지 알려주는 Direction 클래스를 작성한다.
     - ~~왼쪽과 현재가 동시에 true일 수 없다.~~
     - ~~(true, false) -> -1~~
     - ~~(false, true) -> 1~~
     - ~~(false, false) -> 0~~
     - ~~첫 번째 플레이어는 왼쪽으로 움직일 수 없고, 마지막 플레이어는 오른쪽으로 움직일 수 없다.~~
-    - direction의 생성자를 private으로 만들고, first() 메서드로만 인스턴스를 생성할 수 있도록 강제한다.
+    - ~~direction의 생성자를 private으로 만들고, first() 메서드로만 인스턴스를 생성할 수 있도록 강제한다.~~
+3. Position을 인스턴스 변수로 갖는 Player 클래스를 작성한다.
+    - ~~Player는 자신의 Position과 인자로 받은 Direction을 이용하여 움직일 수 있다.~~
+    - Player는 이름을 갖는다.
+4. Direction의 리스트만을 인스턴스변수로 갖는 일급클래스인 Line 클래스를 작성한다.

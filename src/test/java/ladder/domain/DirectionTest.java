@@ -9,25 +9,29 @@ public class DirectionTest {
     @Test
     void consecutiveTrueTest() {
         assertThrows(RuntimeException.class, () -> {
-            new Direction(true, true);
+            Direction first = Direction.first(true);
+            first.next(true);
         });
     }
 
     @Test
     void leftTest() {
-        Direction left = new Direction(true, false);
+        Direction first = Direction.first(true);
+        Direction left = first.next(false);
         assertThat(left.move()).isEqualTo(Direction.LEFT);
     }
 
     @Test
     void rightTest() {
-        Direction right = new Direction(false, true);
+        Direction first = Direction.first(false);
+        Direction right = first.next(true);
         assertThat(right.move()).isEqualTo(Direction.RIGHT);
     }
 
     @Test
     void straightTest() {
-        Direction straight = new Direction(false, false);
+        Direction first = Direction.first(false);
+        Direction straight = first.next(false);
         assertThat(straight.move()).isEqualTo(Direction.STRAIGHT);
     }
 
