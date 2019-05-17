@@ -25,6 +25,9 @@ public class Tag {
     private static final String NAME_SPACE_ERROR = "빈 문자열 오류";
     private static final String NAME_LENGTH_ERROR = "길이 5 초과 오류";
     private static final String NAME_EMPTY_ERROR = "공백 포함 오류";
+    private static final String NAME_COMMAND_ERROR = "exit 과 all 은 사용할 수 없는 이름";
+    private static final String COMMAND_EXIT = "exit";
+    private static final String COMMAND_ALL = "all";
     private static final String WHITE_SPACE = " ";
     private static final int NAME_UPPER_BOUND = 5;
     private static final int NAME_LOWER_BOUND = 0;
@@ -35,6 +38,7 @@ public class Tag {
         checkEmpty(name);
         checkLength(name);
         checkSpace(name);
+        checkCommand(name);
         this.name = name;
     }
 
@@ -57,6 +61,12 @@ public class Tag {
     private void checkSpace(String name) {
         if(name.contains(WHITE_SPACE)){
             throw new IllegalArgumentException(NAME_SPACE_ERROR);
+        }
+    }
+
+    private void checkCommand(String name) {
+        if (name.equals(COMMAND_EXIT) || name.equals(COMMAND_ALL)) {
+            throw new IllegalArgumentException(NAME_COMMAND_ERROR);
         }
     }
     

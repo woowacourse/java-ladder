@@ -72,14 +72,14 @@ public class Main {
 
     private static void showResult(LadderGame ladderGame) {
         try {
-            selectResult(ladderGame);
+            chooseResult(ladderGame);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             showResult(ladderGame);
         }
     }
 
-    private static void selectResult(LadderGame ladderGame) {
+    private static void chooseResult(LadderGame ladderGame) {
         String select = "";
         while (!select.equals(EXIT_CONDITION)) {
             select = InputView.resultSelect();
