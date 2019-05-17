@@ -69,10 +69,6 @@ public class Main {
     private static void printResult(LadderGameResult ladderResult) {
         while (true) {
             String name = InputView.inputName();
-            if (name.equals("all")) {
-                OutputView.outputAll(ladderResult.getResultMap());
-                break;
-            }
             OutputView.outputResult(ladderResult.getResultByName(name));
         }
     }

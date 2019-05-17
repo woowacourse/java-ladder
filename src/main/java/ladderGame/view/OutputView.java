@@ -19,7 +19,6 @@ public class OutputView {
     public static void outputLadder(List<Floor> ladder) {
         for (Floor floor : ladder) {
             outputFloor(floor);
-            System.out.println("|");
         }
     }
 
@@ -28,6 +27,8 @@ public class OutputView {
             System.out.print("|");
             outputStair(isStair);
         }
+        System.out.println("|");
+
     }
 
     private static void outputStair(boolean isStair) {
@@ -48,13 +49,6 @@ public class OutputView {
 
     public static void outputResult(String result) {
         System.out.println(result);
-    }
-
-    public static void outputAll(Map<String, String> resultMap) {
-        for(String key : resultMap.keySet()){
-            String value = resultMap.get(key);
-            System.out.println(key+" : "+value);
-        }
     }
 
     public static void printLadderUI(List<User> users, Ladder ladder, List<String> results) {
