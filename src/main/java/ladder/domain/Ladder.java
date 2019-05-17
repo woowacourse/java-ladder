@@ -1,21 +1,12 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final List<Line> lines = new ArrayList<>();
+    private List<Line> lines;
 
-    public Ladder(int countOfPerson, int height) {
-        LineGenerator lineGenerator = new LineGenerator(countOfPerson);
-
-        if(countOfPerson <= 0 || height <= 0) {
-            throw new IllegalArgumentException(UserOutput.VIOLATE_PLAYER_NAME.getOutputMessage());
-        }
-
-        for (int i = 0; i < height; i++) {
-            lines.add(lineGenerator.createLine());
-        }
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     public int getLastPosition(int playerPosition) {

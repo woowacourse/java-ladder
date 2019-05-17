@@ -6,14 +6,13 @@ import ladder.domain.Ladder;
 import ladder.domain.LadderGameResult;
 
 public class LadderGame {
-	private Ladder ladder;
 	private List<String> players;
 
 	public LadderGame(List<String> players) {
 		this.players = players;
 	}
 
-	public LadderGameResult run(List<String> gameReward) {
+	public LadderGameResult run(List<String> gameReward, Ladder ladder) {
 		Map<String, String> gameResult = new LinkedHashMap<>();
 
 		for(int i=0; i<players.size(); ++i) {
@@ -22,10 +21,4 @@ public class LadderGame {
 
 		return new LadderGameResult(gameResult);
 	}
-
-	public Ladder generateLadder(final int ladderHeight) {
-		ladder = new Ladder(players.size(), ladderHeight);
-		return ladder;
-	}
-
 }
