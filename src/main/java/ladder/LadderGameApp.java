@@ -11,7 +11,7 @@ public class LadderGameApp {
         LadderGameBoard board = LadderGame.generateGameBoard();
 		OutputView.printLadderGameBoard(board);
 
-		LadderGame.matchPlayerAndResult(players);
+		LadderGame.executeLadderGame();
 
 		String name;
 		do {

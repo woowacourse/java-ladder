@@ -14,7 +14,8 @@ public class LadderGame {
 	private static List<String> names;
 	private static List<String> results;
 	private static int height;
-	private static List<Player> players;
+
+	private static List<Player> players = new ArrayList<>();;
 
 	public static LadderGameBoard generateGameBoard() {
 		names = getPersonNames();
@@ -64,8 +65,12 @@ public class LadderGame {
 		}
 	}
 
-	public static List<Player> generatePlayers(List<String> names) {
-	    players = new ArrayList<>();
+	public static void executeLadderGame() {
+	    List<Player> players = generatePlayers(names);
+	    movePlayers(players);
+    }
+
+	private static List<Player> generatePlayers(List<String> names) {
 		int position = 0;
 
 		for(String name : names) {
@@ -75,22 +80,22 @@ public class LadderGame {
 		return players;
 	}
 
-	public static String getNameForResult(List<String> names) {
-		String name;
-
-		try {
-			name = InputView.inputNameForResult();
-			Validator.checkNameForResult(names, name);
-			return name;
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return getNameForResult(names);
-		}
-	}
-
-	public static void matchPlayerAndResult(List<Player> players) {
+	private static void movePlayers(List<Player> players) {
 	    for (Player player : players) {
             ladder.goDownLadder(player);
+        }
+    }
+
+    public static String getNameForResult(List<String> names) {
+        String name;
+
+        try {
+            name = InputView.inputNameForResult();
+            Validator.checkNameForResult(names, name);
+            return name;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return getNameForResult(names);
         }
     }
 }
