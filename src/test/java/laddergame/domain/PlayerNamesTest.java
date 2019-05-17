@@ -18,41 +18,41 @@ public class PlayerNamesTest {
 
     @Test
     void 널일때예외처리되는지테스트() {
-        assertThrows(IllegalArgumentException.class, ()->
+        assertThrows(IllegalArgumentException.class, () ->
                 PlayerNames.makeNames(null));
     }
 
     @Test
     void 엠티쓰트링일때테스트() {
-        assertThrows(IllegalArgumentException.class, ()->
+        assertThrows(IllegalArgumentException.class, () ->
                 PlayerNames.makeNames(""));
     }
 
     @Test
     void 중복하는_이름이_존재할때_예외테스트() {
-        assertThrows(IllegalArgumentException.class, ()->
+        assertThrows(IllegalArgumentException.class, () ->
                 PlayerNames.makeNames("a,a,b"));
     }
 
     @Test
     void 이름에_빈칸이_있을때_예외테스트() {
-        assertThrows(IllegalArgumentException.class, ()->
+        assertThrows(IllegalArgumentException.class, () ->
                 PlayerNames.makeNames("a,,,b"));
     }
 
     @Test
     void 이름에_공백문자만_있을때_예외테스트() {
-        assertThrows(IllegalArgumentException.class, ()->
+        assertThrows(IllegalArgumentException.class, () ->
                 PlayerNames.makeNames("a, ,b"));
-        assertThrows(IllegalArgumentException.class, ()->
+        assertThrows(IllegalArgumentException.class, () ->
                 PlayerNames.makeNames("a,  ,b"));
     }
 
     @Test
     void 이름의길이가적합하지않을때() {
-        assertThrows(IllegalArgumentException.class, ()->
+        assertThrows(IllegalArgumentException.class, () ->
                 PlayerNames.makeNames("a,b,aadsfsdfsadfadf"));
-        assertThrows(IllegalArgumentException.class, ()->
+        assertThrows(IllegalArgumentException.class, () ->
                 PlayerNames.makeNames("a,,b"));
     }
 

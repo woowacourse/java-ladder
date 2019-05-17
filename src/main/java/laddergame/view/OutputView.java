@@ -27,7 +27,6 @@ public class OutputView {
         }
 
         System.out.println(stringBuilder.toString());
-
     }
 
     public static void printResult(String result) {

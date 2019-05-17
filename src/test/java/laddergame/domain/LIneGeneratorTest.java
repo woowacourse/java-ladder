@@ -13,10 +13,14 @@ public class LIneGeneratorTest {
         boolean preValue = false;
 
         for (int i = 0; i < line.size(); i++) {
-            if (preValue) {
-                assertThat(line.get(i)).isFalse();
-            }
+            isPreValue(line, preValue, i);
             preValue = line.get(i);
+        }
+    }
+
+    private void isPreValue(List<Boolean> line, boolean preValue, int i) {
+        if (preValue) {
+            assertThat(line.get(i)).isFalse();
         }
     }
 }

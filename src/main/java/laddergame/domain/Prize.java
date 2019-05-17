@@ -1,12 +1,9 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 public class Prize {
-    String prize;
+    private String prize;
 
     Prize(String input) {
         this.prize = input;
