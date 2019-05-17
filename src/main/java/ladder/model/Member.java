@@ -12,14 +12,8 @@ public class Member {
         this.position = position;
     }
 
-    public void move(boolean isLinked, int lineIndex) {
-        if (isLinked && (lineIndex == position)) {
-            this.position++;
-            return;
-        }
-        if (isLinked && (lineIndex + CHECK_LEFT_POSITION == position)) {
-            this.position--;
-        }
+    public void move(int movePosition) {
+        this.position = movePosition;
     }
 
     public String getName() {

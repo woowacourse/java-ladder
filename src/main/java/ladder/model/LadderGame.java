@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
+    private static final int MAX_BOUNDARY = 2;
     private final List<Row> ladder = new ArrayList<>();
     private final List<Member> members;
     private final List<String> results;
@@ -30,10 +31,25 @@ public class LadderGame {
         int[] linkedStatus = new int[countOfMembers - 1];
 
         for (int i = 0; i < linkedStatus.length; i++) {
-            linkedStatus[i] = (int) (Math.random() * 2);
+            linkedStatus[i] = (int) (Math.random() * MAX_BOUNDARY);
         }
 
         return linkedStatus;
+    }
+
+    public EndResult excuteGame() {
+        ladder.forEach(row -> members.forEach(member -> member.move(row.move(member.getPosition()))));
+        return makeResult();
+    }
+
+    private EndResult makeResult() {
+        List<Result> finalResults = new ArrayList<>();
+
+        for (Member member : members) {
+            finalResults.add(new Result(results.get(member.getPosition()), member.getName()));
+        }
+
+        return new EndResult(finalResults);
     }
 
     public List<Row> getLadder() {
@@ -50,26 +66,5 @@ public class LadderGame {
 
     public int getLadderHeight() {
         return ladder.size();
-    }
-
-    public EndResult excuteGame() {
-        for (Row row : ladder) {
-            for (int i = 0; i < row.getLineSize(); i++) {
-                for (Member member : members) {
-                    member.move(row.isLinked(i), i);
-                }
-            }
-        }
-        return makeResult();
-    }
-
-    private EndResult makeResult() {
-        List<Result> finalResults = new ArrayList<>();
-
-        for (Member member : members) {
-            finalResults.add(new Result(results.get(member.getPosition()), member.getName()));
-        }
-
-        return new EndResult(finalResults);
     }
 }

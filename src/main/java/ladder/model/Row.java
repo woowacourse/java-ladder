@@ -9,6 +9,8 @@ public class Row {
     private static final String LINKED_LINE = "-----";
     private static final String NONE_LINKED_LINE = "     ";
     private static final String DOUBLE_BLANK = "  ";
+    private static final int MOVE = 1;
+    private static final int PREV = 1;
 
     private List<Boolean> lines;
 
@@ -18,7 +20,7 @@ public class Row {
         lines.add(booleanGenerator(linked[0], false));
 
         for (int i = 1; i < linked.length; i++) {
-            lines.add(booleanGenerator(linked[i], lines.get(i - 1)));
+            lines.add(booleanGenerator(linked[i], lines.get(i - PREV)));
         }
     }
 
@@ -26,20 +28,29 @@ public class Row {
         return !prevStatus && random == LINE;
     }
 
-    public int getLineSize() {
-        return lines.size();
-    }
-
     public boolean checkDoubleDraw() {
         int i = 0;
+
         while (i < lines.size() - 1 && !(lines.get(i) && lines.get(i + 1))) {
             i++;
         }
+
         return i == lines.size();
     }
 
-    boolean isLinked(int lineIndex) {
-        return lines.get(lineIndex);
+    public int move(int position) {
+        if (position < lines.size() && lines.get(position)) {
+            return position + MOVE;
+        }
+
+        if (position > 0 && lines.get(position - PREV)) {
+            return position - MOVE;
+        }
+        return position;
+    }
+
+    public int getLineSize() {
+        return lines.size();
     }
 
     @Override
