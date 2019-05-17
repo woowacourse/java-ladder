@@ -28,7 +28,8 @@ public class Player {
         }
     }
 
-    public Player move(Direction direction) {
+    public Player moveOn(Line line) {
+        Direction direction = line.getDirection(position);
         Position newPosition = new Position(position.getValue() + direction.move());
         return new Player(name, newPosition);
     }
@@ -46,4 +47,5 @@ public class Player {
     public int hashCode() {
         return Objects.hash(name, position);
     }
+
 }

@@ -79,9 +79,14 @@
     - ~~첫 번째 플레이어는 왼쪽으로 움직일 수 없고, 마지막 플레이어는 오른쪽으로 움직일 수 없다.~~
     - ~~direction의 생성자를 private으로 만들고, first() 메서드로만 인스턴스를 생성할 수 있도록 강제한다.~~
 3. Position을 인스턴스 변수로 갖는 Player 클래스를 작성한다.
-    - ~~Player는 자신의 Position과 인자로 받은 Direction을 이용하여 움직일 수 있다.~~
+    - ~~Player는 자신의 Position과 인자로 받은 Line을 이용하여 움직일 수 있다.~~
     - ~~Player는 이름을 갖는다.~~
     - ~~Player 이름은 한 글자 이상 5글자 이하이어야 하고 null일 수 없다.~~
 4. Direction의 리스트만을 인스턴스변수로 갖는 일급클래스인 Line 클래스를 작성한다.
     - ~~Position을 인자로 받고 해당하는 Direction을 반환한다.~~
-5. Line의 리스트만을 인스턴스변수로 갖는 일급클래스인 Ladder 클래스를 작성한다. 
+5. Player의 리스트만을 인스턴스변수로 갖는 일급클래스인 Players 클래스를 작성한다.
+    - Line을 입력받아 player들을 사다리에서 한 라인 내려가도록 만든다.
+6. Line의 리스트만을 인스턴스변수로 갖는 일급클래스인 Ladder 클래스를 작성한다.
+    - getNextLine() 을 통해 다음 순서의 Line을 반환한다.
+7. 사다리 게임의 로직을 담당하는 LadderEngine 클래스를 작성한다.
+    - Ladder와 Player를 입력으로 받으면 사다리 이동 후 Player 리스트를 리턴한다. 
