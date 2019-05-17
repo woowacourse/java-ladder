@@ -1,8 +1,6 @@
 package ladder;
 
-import ladder.model.LadderGame;
-import ladder.model.Member;
-import ladder.model.Members;
+import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -13,7 +11,8 @@ public class AppController {
 
     public void play(){
         LadderGame ladderGame = initGame();
-        playGame(ladderGame);
+        EndResult results = playGame(ladderGame);
+        endGame(results);
     }
 
     private LadderGame initGame() {
@@ -25,7 +24,17 @@ public class AppController {
         return new LadderGame(members, ladderHeight, results);
     }
 
-    private void playGame(LadderGame ladderGame){
+    private EndResult playGame(LadderGame ladderGame){
         OutputView.printLadder(ladderGame);
+        return ladderGame.excuteGame();
+    }
+
+    private void endGame(EndResult results) {
+        String name = InputView.inputGetMemberResult();
+        if (name.equals("all")) {
+            OutputView.allPrintResult(results.getAllResult());
+            return;
+        }
+        OutputView.printMemberResult(results.getMemberResult(name));
     }
 }
