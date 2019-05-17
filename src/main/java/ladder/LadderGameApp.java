@@ -3,7 +3,9 @@ package ladder;
 import java.util.Arrays;
 import java.util.List;
 
+import ladder.domain.Ladder;
 import ladder.domain.LadderGameResult;
+import ladder.domain.LadderGenerator;
 import ladder.domain.UserOutput;
 import ladder.util.StringSplitUtils;
 import ladder.validator.Validator;
@@ -15,15 +17,20 @@ public class LadderGameApp {
 		List<String> playerNames = getPersonNames();
 		List<String> gameReward = getGameReward(playerNames);
 		int ladderHeight = getLadderHeight();
+		Ladder ladder = LadderGenerator.generateLadder(playerNames.size(), ladderHeight);
 
 		LadderGame ladderGame = new LadderGame(playerNames);
 
 		OutputView.printPlayerNames(playerNames);
-		OutputView.printLadder(ladderGame.generateLadder(ladderHeight));
+		OutputView.printLadder(ladder);
 		OutputView.printLadderValues(gameReward);
 
-		LadderGameResult ladderGameResult = ladderGame.run(gameReward);
+		LadderGameResult ladderGameResult = ladderGame.run(gameReward, ladder);
 
+		getPersonNameForGameResult(ladderGameResult);
+	}
+
+	public static void getPersonNameForGameResult(LadderGameResult ladderGameResult) {
 		String name;
 		do {
 			name = InputView.inputResult();
