@@ -32,4 +32,11 @@ public class OutputView {
         showMessageOfExecution();
         System.out.println(result);
     }
+
+    public static void showAllResult(Players players, Results results, Ladder ladder) {
+        for (int i = 0; i < players.getTotalPlayers(); i++) {
+            System.out.print(players.getNameOfIndex(i));
+            System.out.println("\t:\t" + results.getResult(ladder.findResultIndex(i + 1) - 1));
+        }
+    }
 }
