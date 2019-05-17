@@ -1,12 +1,19 @@
 package ladder.domain;
 
+import ladder.utils.InputValidator;
+
 import java.util.Objects;
 
 public class Player {
     private String name;
 
     public Player(String name) {
-        this.name = name;
+        try {
+            InputValidator.checkValidComponent(name);
+            this.name = name;
+        }catch (IllegalArgumentException e){
+            e.getMessage();
+        }
     }
 
     public String getName() {
