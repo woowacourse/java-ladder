@@ -6,11 +6,27 @@ import java.util.Objects;
 
 public class Ladder {
     private List<Crosspoints> ladder = new ArrayList<>();
+    private List<ResultItem> resultItems;
 
     public Ladder(int height, CrossbarGenerator crossbarGenerator) {
         validateHeight(height);
         for (int i = 0; i < height; i++) {
             ladder.add(crossbarGenerator.generateCrossbars());
+        }
+    }
+
+    public Ladder(int height, List<ResultItem> resultItems, CrossbarGenerator crossbarGenerator) {
+        validateHeight(height);
+        for (int i = 0; i < height; i++) {
+            ladder.add(crossbarGenerator.generateCrossbars());
+        }
+        validateNumberOfResultItems(resultItems.size());
+        this.resultItems = resultItems;
+    }
+
+    private void validateNumberOfResultItems(int numberOfResultItems) {
+        if(numberOfResultItems != ladder.get(0).width()){
+            throw new IllegalArgumentException("당첨 상품의 수는 플레이어의 수와 같아야 합니다.");
         }
     }
 
@@ -22,6 +38,16 @@ public class Ladder {
 
     public List<Crosspoints> getLadder() {
         return ladder;
+    }
+
+    public ResultItem answerResult(int playerPosition) {
+        int currentPosition = playerPosition;
+
+        for (Crosspoints crosspoints : ladder) {
+            currentPosition = crosspoints.answerResultIndexOf(currentPosition);
+        }
+
+        return resultItems.get(currentPosition);
     }
 
     @Override

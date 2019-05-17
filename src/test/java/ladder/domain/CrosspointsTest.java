@@ -47,4 +47,11 @@ public class CrosspointsTest {
         assertThat(crosspoints.answerResultIndexOf(1)).isEqualTo(2);
         assertThat(crosspoints.answerResultIndexOf(2)).isEqualTo(1);
     }
+
+    @Test
+    void CrossPoints의_사이즈를_잘_반환해_주는지_테스트() {
+        List<Boolean> crossbars = Arrays.asList(false, true, false);
+
+        assertThat(new Crosspoints(crossbars).width()).isEqualTo(2);
+    }
 }

@@ -4,21 +4,30 @@ import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
     private static final int LAST_DUMMY_SPACE = 1;
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         PlayerGroup players = getPlayers();
-        ResultItems resultItems = getResultItemsof(players.size());
         CrossbarGenerator randomCrossbarGenerator = new RandomCrossbarGenerator(players.size() + LAST_DUMMY_SPACE);
         Ladder ladder = getLadderBy(randomCrossbarGenerator);
 
         OutputView.showPlayersAndLadder(players, ladder);
+    }*/
+
+    public static void main(String[] args) {
+        PlayerGroup players = getPlayers();
+        CrossbarGenerator randomCrossbarGenerator = new RandomCrossbarGenerator(players.size() + LAST_DUMMY_SPACE);
+        Ladder ladder = getLadderBy(getResultItems(), randomCrossbarGenerator);
+
+        OutputView.showPlayersAndLadder(players, ladder);
+      //  players.makeLadderResultBy(ladder);
     }
 
-    private static ResultItems getResultItemsof(int numberOfPlayers) {
+/*    private static ResultItems getResultItems(int numberOfPlayers) {
         List<String> resultNames;
 
         try {
@@ -26,16 +35,37 @@ public class LadderGame {
             return new ResultItems(resultNames, numberOfPlayers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getResultItemsof(numberOfPlayers);
+            return getResultItems(numberOfPlayers);
+        }
+    }*/
+
+    private static List<ResultItem> getResultItems() {
+        List<String> resultNames;
+
+        try {
+            resultNames = InputView.inputResultName();
+            return createResultItems(resultNames);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getResultItems();
         }
     }
 
-    private static Ladder getLadderBy(CrossbarGenerator crossbarGenerator) {
+    private static List<ResultItem> createResultItems(List<String> resultNames) {
+        List<ResultItem> resultItems = new ArrayList<>();
+
+        for (String resultName : resultNames) {
+            resultItems.add(new ResultItem(resultName));
+        }
+        return resultItems;
+    }
+
+    private static Ladder getLadderBy(List<ResultItem> resultItems, CrossbarGenerator crossbarGenerator) {
         try {
-            return new Ladder(getHeight(), crossbarGenerator);
+            return new Ladder(getHeight(), resultItems, crossbarGenerator);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getLadderBy(crossbarGenerator);
+            return getLadderBy(getResultItems(), crossbarGenerator);
         }
     }
 
