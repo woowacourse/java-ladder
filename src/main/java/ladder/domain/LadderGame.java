@@ -7,16 +7,20 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGame {
+    private static final String NEXT_LINE = "\n";
+    private static final String DEFALT_LENGTH_FORMAT = "%-6s";
+
     private List<Player> players;
     private List<DrawResult> drawResults;
     private Ladder ladder;
     private List<Record> log;
     private GameResult gameResult;
 
-    public LadderGame(List<Player> players, List<DrawResult> drawResults, Ladder ladder) {
-        checkCount(players.size(), drawResults.size());
-        this.players = players;
-        this.drawResults = drawResults;
+    public LadderGame(String[] names, String[] drawResults, Ladder ladder) {
+        checkCount(names.length, drawResults.length);
+
+        this.players = Arrays.stream(names).map(Player::new).collect(Collectors.toList());;
+        this.drawResults = Arrays.stream(drawResults).map(DrawResult::new).collect(Collectors.toList());
         this.ladder = ladder;
         log = new ArrayList<>();
         gameResult = new GameResult();
@@ -33,7 +37,6 @@ public class LadderGame {
         ladder.drawLadder(log);
 
         makeGameResult();
-
     }
 
     private void makeGameResult() {
@@ -50,8 +53,8 @@ public class LadderGame {
 
     @Override
     public String toString() {
-        return players.stream().map(player -> String.format("%-6s", player.getName())).collect(Collectors.joining()) + "\n"
-                + ladder.toString() + "\n"
-                + drawResults.stream().map(drawResult -> String.format("%-6s", drawResult.getResult())).collect(Collectors.joining());
+        return players.stream().map(player -> String.format(DEFALT_LENGTH_FORMAT, player.getName())).collect(Collectors.joining()) + NEXT_LINE
+                + ladder.toString() + NEXT_LINE
+                + drawResults.stream().map(drawResult -> String.format(DEFALT_LENGTH_FORMAT, drawResult.getResult())).collect(Collectors.joining());
     }
 }

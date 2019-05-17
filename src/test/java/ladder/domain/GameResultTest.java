@@ -5,20 +5,29 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GameResultTest {
-    GameResult gameResult;
+class GameResultTest {
+    private GameResult gameResult;
 
     @BeforeEach
     void setUp() {
         gameResult = new GameResult();
-    }
-
-    @Test
-    void 동명이인_테스트() {
-        Player testPlayer = new Player("aa");
+        Player testPlayer = new Player("aaa");
         DrawResult testDrawResult = new DrawResult("5000");
         gameResult.addGameResult(testPlayer, testDrawResult);
         gameResult.addGameResult(new Player("aa"), new DrawResult("100"));
-        assertThat(gameResult.getResult(testPlayer)).isEqualTo(testDrawResult);
     }
+
+    @Test
+    void 전체_결과_출력_테스트() {
+        assertThat(gameResult.getResult("all")).isEqualTo("aaa : 5000\n" +
+                                                            "aa : 100");
+    }
+
+    @Test
+    void 플레이어_결과_출력_테스트() {
+        assertThat(gameResult.getResult("aaa")).isEqualTo("5000");
+    }
+
+
+
 }

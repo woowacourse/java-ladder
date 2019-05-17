@@ -27,6 +27,6 @@ class LineGenerator {
     }
 
     private boolean getNextBoolean(boolean before) {
-        return before ? false : new Random().nextBoolean();
+        return !before && new Random().nextBoolean();
     }
 }

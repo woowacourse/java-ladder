@@ -1,6 +1,10 @@
 package ladder.domain;
 
+
+
 public class DrawResult {
+    private static final String BLANK = "";
+
     private final String result;
 
     public DrawResult(String result) {
@@ -9,12 +13,12 @@ public class DrawResult {
     }
 
     private void checkBlank(String result) {
-        if (result.equals("")) {
+        if (result.equals(BLANK)) {
             throw new IllegalArgumentException();
         }
     }
 
-    public String getResult() {
+    String getResult() {
         return result;
     }
 }

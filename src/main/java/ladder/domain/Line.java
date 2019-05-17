@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
+    private static final int LEFT_END = 0;
+    private static final String CROSS_BAR = "-----|";
+    private static final String UNCROSS_BAR = "     |";
+    private static final String DEFAULT_BAR = "|";
+
     private List<Boolean> points;
 
     public Line(List<Boolean> points) {
@@ -19,7 +24,7 @@ public class Line {
         List<Boolean> tempPoints = new ArrayList<>(points);
         List<Integer> afterRecord = new ArrayList<>(Arrays.asList(new Integer[size]));
 
-        tempPoints.add(0, false);
+        tempPoints.add(LEFT_END, false);
         tempPoints.add(tempPoints.size(), false);
 
         for (int i = 0; i < size; i++) {
@@ -49,8 +54,6 @@ public class Line {
     }
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("|");
-        stringBuilder.append(this.points.stream().map(point -> point ? "-----|" : "     |").collect(Collectors.joining()));
-        return stringBuilder.toString();
+        return DEFAULT_BAR + this.points.stream().map(point -> point ? CROSS_BAR : UNCROSS_BAR).collect(Collectors.joining());
     }
 }
