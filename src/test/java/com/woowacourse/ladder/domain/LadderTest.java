@@ -1,30 +1,32 @@
 package com.woowacourse.ladder.domain;
 
+import com.woowacourse.ladder.domain.Ladder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 public class LadderTest {
-    List<Boolean> bools;
+
 
     @BeforeEach
     void setUp() {
-        bools = Arrays.asList(true, false, true, false);
+        HashMap<Integer,List<Boolean>> map = new HashMap<>();
+        map.put(0,Arrays.asList(true,false,true,false));
+        map.put(1,Arrays.asList(false,true,false,true));
+        map.put(2,Arrays.asList(true,false,true,false));
+        map.put(3,Arrays.asList(false,true,false,true));
+      //  ladder = PartGenerator.generateLadder(5,4,map);
     }
 
     @Test
-    void create_Points메소드_테스트() {
-        Ladder ladder = new Ladder();
-        assertThat(ladder.createPoints(bools).size()).isEqualTo(5);
-    }
-
-    @Test
-    void create_Directions메소드_테스트() {
-        Ladder ladder = new Ladder();
-        assertThat(ladder.createDirections(bools).size()).isEqualTo(5);
+    void stripeLadder_메소드_테스트() {
+        /*assertThat(ladder.stripeLadder(0)).isEqualTo(4);
+        assertThat(ladder.stripeLadder(1)).isEqualTo(2);
+        assertThat(ladder.stripeLadder(2)).isEqualTo(3);
+        assertThat(ladder.stripeLadder(3)).isEqualTo(0);
+        assertThat(ladder.stripeLadder(4)).isEqualTo(1);*/
     }
 }

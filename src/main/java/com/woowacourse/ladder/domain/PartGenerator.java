@@ -1,25 +1,9 @@
-package com.woowacourse.ladder;
-
-import javafx.beans.binding.BooleanBinding;
+package com.woowacourse.ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class PartGenerator {
-
-    PartGenerator() {
-
-    }
-
-    public static List<Point> generatePoints(List<Boolean> booleans) {
-        List<Point> points = new ArrayList<>();
-        for (int i = 0; i <= booleans.size(); i++) {
-            points.add(new Point(i, 1000));
-        }
-        return points;
-    }
 
     public static List<Direction> generateDirections(List<Boolean> booleans) {
         List<Direction> directions = new ArrayList<>();
@@ -33,10 +17,6 @@ public class PartGenerator {
         return directions;
     }
 
-    public static Point generatePoint(int order) {
-        return new Point(order, 1000);
-    }
-
     public static Ladder generateLadder(int width, int height) {
         List<Line> lines = generateLines(width, height);
         return new Ladder(lines, width);
@@ -46,15 +26,14 @@ public class PartGenerator {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             List<Boolean> booleans = PartGenerator.generateBoolList(width);
-            List<Point> points = PartGenerator.generatePoints(booleans);
             List<Direction> directions = PartGenerator.generateDirections(booleans);
-            lines.add(PartGenerator.generateLine(booleans, points, directions));
+            lines.add(PartGenerator.generateLine(booleans,directions));
         }
         return lines;
     }
 
-    public static Line generateLine(List<Boolean> booleans, List<Point> points, List<Direction> directions) {
-        return new Line(booleans, points, directions);
+    public static Line generateLine(List<Boolean> booleans, List<Direction> directions) {
+        return new Line(booleans, directions);
     }
 
     public static Result generateResult(String name, String result) {

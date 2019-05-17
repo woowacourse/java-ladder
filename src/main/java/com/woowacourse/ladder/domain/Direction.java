@@ -11,6 +11,16 @@ public class Direction {
         this.right = right;
     }
 
+    public int move() {
+        if (this.right) {
+            return 1;
+        }
+        if (this.left) {
+            return -1;
+        }
+        return 0;
+    }
+
     public static Direction first(boolean right) {
         return new Direction(false, right);
     }
@@ -24,16 +34,6 @@ public class Direction {
 
     public static Direction last(boolean left) {
         return new Direction(left, false);
-    }
-
-    public int move() {
-        if (this.right) {
-            return 1;
-        }
-        if (this.left) {
-            return -1;
-        }
-        return 0;
     }
 
     @Override

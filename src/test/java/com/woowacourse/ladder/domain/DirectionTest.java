@@ -1,16 +1,12 @@
 package com.woowacourse.ladder.domain;
 
+import com.woowacourse.ladder.domain.Direction;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class DirectionTest {
-    Direction direction;
-    @Test
-    void creat() {
-        direction =  new Direction(true,false);
-    }
 
     @Test
     void 처음direction을_생성하는_테스트() {

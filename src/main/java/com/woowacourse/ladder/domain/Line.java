@@ -1,24 +1,20 @@
 package com.woowacourse.ladder.domain;
 
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class Line {
     private final List<Boolean> bridges;
-    private final List<Point> points;
     private final List<Direction> directions;
 
-    public Line(List<Boolean> bridges, List<Point> points, List<Direction> directions) {
+    public Line(List<Boolean> bridges, List<Direction> directions) {
         this.bridges = bridges;
-        this.points = points;
         this.directions = directions;
     }
 
-    public static Point createPoint(int order) {
-        return new Point(order, 1000);
+    public int requestNextDestination(int index) {
+        index += this.directions.get(index).move();
+        return index;
     }
 
     @Override
@@ -32,10 +28,6 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(bridges);
-    }
-
-    public Direction creatDirection(boolean left, boolean right) {
-        return new Direction(left,right);
     }
 
     public List<Boolean> getBridges() {

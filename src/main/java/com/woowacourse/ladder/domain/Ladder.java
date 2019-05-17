@@ -4,26 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
+    private final List<Line> lines;
+    private final int width;
 
-    public List<Point> createPoints(List<Boolean> booleans) {
-        List<Point> points = new ArrayList<>();
-        for (int i = 0; i <= booleans.size() ; i++) {
-            points.add(new Point(i, 1000));
-        }
-        return points;
+    public Ladder(List<Line> lines, final int width) {
+        this.lines = lines;
+        this.width = width;
     }
 
-    public List<Direction> createDirections(List<Boolean> booleans) {
-        List<Direction> directions = new ArrayList<>();
+    public List<Line> getLines() {
+        return lines;
+    }
 
-        for (int i = 0; i < booleans.size() - 1; i++) {
-            if (i == 0) {
-                directions.add(Direction.first(booleans.get(i)));
-            }
-            directions.add(Direction.middle(booleans.get(i), booleans.get(i + 1)));
+    public List<Integer> stripeAllLader() {
+        List<Integer> resultPositions = new ArrayList<>();
+        for (int i = 0; i < width; i++) {
+            resultPositions.add(stripeLadder(i));
         }
-        directions.add(Direction.last(booleans.get(booleans.size() - 1)));
-        return directions;
+        return resultPositions;
+    }
+
+    public int stripeLadder(int playerIndex) {
+        int playerPosition = playerIndex;
+
+        for (int i = 0; i < lines.size(); i++) {
+            playerPosition = lines.get(i).requestNextDestination(playerPosition);
+        }
+
+        return playerPosition;
     }
 }
 

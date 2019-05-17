@@ -1,9 +1,9 @@
 package com.woowacourse.ladder.view;
 
-import com.woowacourse.ladder.Height;
-import com.woowacourse.ladder.InputValidator;
-import com.woowacourse.ladder.PlayerList;
-import com.woowacourse.ladder.ResultList;
+import com.woowacourse.ladder.domain.Height;
+import com.woowacourse.ladder.domain.PlayerList;
+import com.woowacourse.ladder.domain.ResultItems;
+import com.woowacourse.ladder.domain.ResultQuery;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,19 +19,21 @@ public class InputVIew {
         try {
             return new PlayerList(names);
         } catch (IllegalArgumentException e) {
+            System.out.println("올바른 사람 이름을 입력하세요.(all이란 이름은 금지입니다.)");
             return promptPlayerNames();
         }
     }
 
-    public static ResultList promptExecuteResults() {
+    public static ResultItems promptExecuteResults(PlayerList playerList) {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         Scanner scanner = new Scanner(System.in);
         List<String> results = Arrays.asList(scanner.nextLine().split(","));
 
         try {
-            return new ResultList(results);
+            return new ResultItems(results,playerList);
         } catch (IllegalArgumentException e) {
-            return promptExecuteResults();
+            System.out.println("올바른 실행결과를 입력해주세요.");
+            return promptExecuteResults(playerList);
         }
     }
 
@@ -43,7 +45,21 @@ public class InputVIew {
         try {
             return new Height(height);
         } catch (IllegalArgumentException e) {
+            System.out.println("올바른 사다리 높이를 입력해주세요.");
             return promptHeight();
+        }
+    }
+
+    public static ResultQuery promptResultQuery(PlayerList playerList) {
+        System.out.println("결과를 보고 싶은 사람은?");
+        Scanner scanner = new Scanner(System.in);
+        String resultQuery = scanner.nextLine();
+
+        try {
+            return new ResultQuery(resultQuery,playerList);
+        }catch (IllegalArgumentException e){
+            System.out.println("결과를 보고 싶은 사람을 올바르게 입력해주세요.");
+            return promptResultQuery(playerList);
         }
     }
 }
