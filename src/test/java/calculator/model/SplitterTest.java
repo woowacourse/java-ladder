@@ -7,7 +7,6 @@
 
 package calculator.model;
 
-import calculator.constants.Constants;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -43,13 +42,14 @@ class SplitterTest {
 
     @Test
     void 디폴트_구분자_추출() {
-        assertThat(new Splitter("1,2:3").getDelimiter()).isEqualTo(Constants.DEFAULT_DELIMITER);
+        assertThat(new Splitter("1,2:3").getDelimiter()).isEqualTo(":|,");
     }
 
     @Test
     void 커스텀_구분자_추출() {
         assertThat(new Splitter("//;\n1;2;3").getDelimiter()).isEqualTo(";");
     }
+    
     @Test
     void 디폴트_커스텀_둘_다_아닌경우() {
         assertThrows(Exception.class, () -> {
