@@ -15,6 +15,24 @@ public class RowTest {
     }
 
     @Test
+    void 좌측_이동() {
+        int result = row.move(1);
+        assertThat(result).isEqualTo(0);
+    }
+
+    @Test
+    void 우측_이동() {
+        int result = row.move(0);
+        assertThat(result).isEqualTo(1);
+    }
+
+    @Test
+    void 정지() {
+        int result = row.move(2);
+        assertThat(result).isEqualTo(2);
+    }
+
+
     void Row_생성_확인() {
         assertThat(row.getLineSize()).isEqualTo(3);
     }

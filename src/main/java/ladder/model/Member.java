@@ -3,7 +3,6 @@ package ladder.model;
 import java.util.Objects;
 
 public class Member {
-    private static final int CHECK_LEFT_POSITION = 1;
     private final String name;
     private int position;
 
