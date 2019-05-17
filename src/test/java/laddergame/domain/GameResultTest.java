@@ -16,11 +16,13 @@ public class GameResultTest {
         List<Prize> testList2 = Arrays.asList(new Prize("win"), new Prize("win"), new Prize("lose"));
         String input = "JM";
 
-        assertThrows(IllegalArgumentException.class, () -> GameResult.makeResult(testList, testList2, input));
+        GameResult gameResult = new GameResult();
+        gameResult.makeResult(testList, testList2);
+        assertThrows(IllegalArgumentException.class, () -> gameResult.getResult(testList, input));
     }
 
     @Test
-    void 결과_출력_제대로하는지_테스트() {
+    void 결과_출력에_특정플레이어를_입력했을때_제대로하는지_테스트() {
         List<Player> inputPlayers = Arrays.asList(new Player("a"), new Player("b"), new Player("c"), new Player("d"));
         List<Prize> inputPrizes = Arrays.asList(new Prize("win"), new Prize("win"), new Prize("lose"), new Prize("lose"));
 
@@ -28,9 +30,23 @@ public class GameResultTest {
         List<List<Boolean>> instructions = Arrays.asList(Arrays.asList(true, false, true), Arrays.asList(false, false, true));
         processor.processGame(instructions);
 
-        String result = GameResult.makeResult(inputPlayers, inputPrizes, "all");
-        assertThat(result).isEqualTo("b : win");
+        GameResult gameResult = new GameResult();
+        gameResult.makeResult(inputPlayers, inputPrizes);
+        assertThat(gameResult.getResult(inputPlayers, "a")).isEqualTo("a : win\n");
+        assertThat(gameResult.getResult(inputPlayers, "c")).isEqualTo("c : lose\n");
+    }
 
-       // assertThat(processor.processGame(instructions)).isEqualTo(Arrays.asList(new Player("b"), new Player("a"), new Player("c"), new Player("d")));
+    @Test
+    void 결과_출력이_all일때_제대로하는지_테스트() {
+        List<Player> inputPlayers = Arrays.asList(new Player("a"), new Player("b"), new Player("c"), new Player("d"));
+        List<Prize> inputPrizes = Arrays.asList(new Prize("win"), new Prize("win"), new Prize("lose"), new Prize("lose"));
+
+        GameProcessor processor = new GameProcessor(inputPlayers);
+        List<List<Boolean>> instructions = Arrays.asList(Arrays.asList(true, false, true), Arrays.asList(false, false, true));
+        processor.processGame(instructions);
+
+        GameResult gameResult = new GameResult();
+        gameResult.makeResult(inputPlayers, inputPrizes);
+        assertThat(gameResult.getResult(inputPlayers, "all")).isEqualTo("b : win\na : win\nc : lose\nd : lose\n");
     }
 }
