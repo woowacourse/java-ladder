@@ -38,5 +38,12 @@ public class PlayerTest {
             new Player("");
         });
     }
+
+    @Test
+    void 이름_all_검사() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Player("all");
+        });
+    }
 }
 

@@ -24,6 +24,9 @@ public final class Player {
         if (name.length() > NAME_LENGTH_CONDITION) {
             throw new IllegalArgumentException("이름은 " + NAME_LENGTH_CONDITION + "글자 이하로 입력해주세요.");
         }
+        if (name.equals("all")) {
+            throw new IllegalArgumentException("이름은 all 이 될 수 없습니다.");
+        }
     }
 
     private String trimName(String name) {
