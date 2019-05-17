@@ -20,4 +20,9 @@ public class InputValidatorTest {
     void 중복된_이름_체크() {
         assertThatThrownBy(() -> InputValidator.checkValidNames("pobi,pobi")).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 이름으로_받지_말아야_할_값_체크(){
+        assertThatThrownBy(()-> InputValidator.checkValidNames("all")).isInstanceOf(IllegalArgumentException.class);
+    }
 }
