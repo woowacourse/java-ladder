@@ -1,13 +1,12 @@
 package stringcalculator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StringCalculator {
     private List<Integer> numbers;
 
     public StringCalculator(String formula) {
-        numbers = DelimiterType.findDelimiterType(formula).getSeparatedNumbers(formula);
+        numbers = DelimiterType.findDelimiterType(formula).separateString(formula);
         checkNegativeNumber(numbers);
     }
 

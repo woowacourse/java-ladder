@@ -13,26 +13,22 @@ public class MainController {
     private static final String ALL_PLAYERS = "all";
 
     public static void main(String[] args) {
-        String[] scannedNames = Arrays.stream(InputView.inputNames()).map(String::trim).toArray(String[]::new);
-        String[] scannedLadderGameResult = Arrays.stream(InputView.inputLadderGameResult()).map(String::trim).toArray(String[]::new);
-        int scannedHeight = InputView.inputLadderHeight();
+        String[] names = Arrays.stream(InputView.inputNames()).map(String::trim).toArray(String[]::new);
+        String[] gameResults = Arrays.stream(InputView.inputLadderGameResult()).map(String::trim).toArray(String[]::new);
+        int height = InputView.inputLadderHeight();
 
-        Players players = new Players(scannedNames);
-        Ladder ladder = new Ladder(scannedHeight, scannedNames.length);
-        LadderGameResult ladderGameResult = new LadderGameResult(scannedLadderGameResult, scannedNames.length);
+        Players players = new Players(names);
+        Ladder ladder = new Ladder(height, names.length);
+        LadderGameResult ladderGameResult = new LadderGameResult(gameResults, names.length);
         OutputView.printResultOfLadder(players, ladder, ladderGameResult);
 
         LadderGame ladderGame = new LadderGame(players, ladder, ladderGameResult);
         ladderGame.playGame();
 
-        playQnA(ladderGame);
-    }
-
-    private static void playQnA(LadderGame ladderGame) {
-        String scannedDesiredResult = InputView.inputDesiredResult().trim();
-        while (!scannedDesiredResult.equals(ALL_PLAYERS)) {
-            OutputView.printResultOfExecution(ladderGame.getResultByName(scannedDesiredResult));
-            scannedDesiredResult = InputView.inputDesiredResult();
+        String desiredResult = InputView.inputDesiredResult().trim();
+        while (!desiredResult.equals(ALL_PLAYERS)) {
+            OutputView.printResultOfExecution(ladderGame.getResultByName(desiredResult));
+            desiredResult = InputView.inputDesiredResult();
         }
         OutputView.printResultOfExecution(ladderGame.getAllResult());
     }

@@ -32,12 +32,11 @@ public class Players implements Iterable<Player> {
     }
 
     int getPositionByName(String name) {
-        for (Player player : players) {
-            if (player.getName().equals(name)) {
-                return player.getPosition();
-            }
-        }
-        throw new IllegalArgumentException("없는 이름의 플레이어");
+        return players.stream()
+                .filter(player -> player.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("없는 이름의 플레이어"))
+                .getPosition();
     }
 
     @Override

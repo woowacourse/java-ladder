@@ -17,7 +17,7 @@ public enum DelimiterType {
         }
 
         @Override
-        List<Integer> getSeparatedNumbers(String formula) {
+        List<Integer> separateString(String formula) {
             List<Integer> separatedNumbers = new ArrayList<Integer>();
             separatedNumbers.add(0);
             return separatedNumbers;
@@ -30,7 +30,7 @@ public enum DelimiterType {
         }
 
         @Override
-        List<Integer> getSeparatedNumbers(String formula) {
+        List<Integer> separateString(String formula) {
             Matcher matcher = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(formula);
             matcher.find();
             String customDelimiter = matcher.group(1);
@@ -46,7 +46,7 @@ public enum DelimiterType {
         }
 
         @Override
-        List<Integer> getSeparatedNumbers(String formula) {
+        List<Integer> separateString(String formula) {
             return Arrays.stream(formula.split(BASIC_DELIMITER_REGEX))
                     .map(number -> Integer.parseInt(number.trim()))
                     .collect(Collectors.toList());
@@ -57,7 +57,7 @@ public enum DelimiterType {
     private static final String BASIC_DELIMITER_REGEX = ",|:";
 
     abstract boolean matchDelimiterType(String formula);
-    abstract List<Integer> getSeparatedNumbers(String formula);
+    abstract List<Integer> separateString(String formula);
 
     public static DelimiterType findDelimiterType(String formula){
         return Arrays.stream(DelimiterType.values()).filter(delimiterType -> delimiterType.matchDelimiterType(formula)).findFirst()
