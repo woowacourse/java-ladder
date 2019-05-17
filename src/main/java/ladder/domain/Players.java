@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
-    public static final String FINISH_COMMAND = "all";
     private List<Player> players = new ArrayList<>();
 
     public Players(String inputName) {
