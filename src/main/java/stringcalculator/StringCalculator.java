@@ -1,50 +1,23 @@
 package stringcalculator;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class StringCalculator {
-    private static final String DELIMITER_REGEX = "[,:]";
-    private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
-    private List<Integer> numbers = new ArrayList<>();
+    private List<Integer> numbers;
 
     public StringCalculator(String formula) {
-        if (StringUtils.isBlank(formula)) {
-            numbers.add(0);
-        }
-        if (hasCustomDelimiter(formula)) {
-            numbers = getNumbersByCustomDelimiter(formula);
-        }
-        if (numbers.isEmpty()) {
-            numbers = Arrays.stream(formula.split(DELIMITER_REGEX))
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-        }
-        if (numbers.isEmpty() || numbers.stream().anyMatch(number -> number < 0)) {
-            throw new RuntimeException("잘못된 문자열입니다.");
-        }
+        numbers = DelimiterType.findDelimiterType(formula).getSeparatedNumbers(formula);
+        checkNegativeNumber(numbers);
     }
 
-    private List<Integer> getNumbersByCustomDelimiter(String formula) {
-        Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(formula);
-        m.find();
-        String customDelimiter = m.group(1);
-        return Arrays.stream(m.group(2).split(customDelimiter))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-    }
-
-    public int calculate() {
+    public int addAll() {
         return numbers.stream().reduce(0, Integer::sum);
     }
 
-    private boolean hasCustomDelimiter(String formula) {
-        return (Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(formula).find());
+    private void checkNegativeNumber(List<Integer> numbers){
+        if(numbers.stream().anyMatch(number -> number < 0)){
+            throw new IllegalArgumentException("음수는 입력받을 수 없습니다.");
+        }
     }
 }
