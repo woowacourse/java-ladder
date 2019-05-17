@@ -16,11 +16,11 @@ public class Expression {
 
     private static List<String> tokenize(String input) {
         String delimiter = ",|:";
-        String[] temp = input.split(CUSTOM_DELIMITER_EXTRACTOR);
-        if (temp.length != 1) {
-            delimiter += "|" + temp[1];
+        List<String> parts = Arrays.asList(input.split(CUSTOM_DELIMITER_EXTRACTOR));
+        if (parts.size() != 1) {
+            delimiter += "|" + parts.get(1);
         }
-        String expression = temp[temp.length - 1];
+        String expression = parts.get(parts.size() - 1);
         return Arrays.asList(expression.split(delimiter));
     }
 

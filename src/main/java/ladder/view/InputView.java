@@ -33,10 +33,7 @@ public class InputView {
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
         try {
             final int height = Integer.parseInt(input.nextLine().trim());
-            if (height < 1) {
-                throw new IllegalArgumentException();
-            }
-            return height;
+            return height > 0 ? height : 1;
         } catch (IllegalArgumentException e) {
             System.out.println(WRONG_INPUT_MESSAGE);
             return inputHeight();
@@ -49,7 +46,9 @@ public class InputView {
     }
 
     private static List<String> filterInputs(String input) {
-        List<String> tokens = Stream.of(input.split(",")).map(x -> x.trim()).filter(x -> !x.equals("") && !x.equals(" ")).collect(Collectors.toList());
+        List<String> tokens = Stream.of(input.split(",")).map(x -> x.trim())
+            .filter(x -> !x.equals("") && !x.equals(" "))
+            .collect(Collectors.toList());
         if (tokens.isEmpty()) {
             throw new IllegalArgumentException();
         }
