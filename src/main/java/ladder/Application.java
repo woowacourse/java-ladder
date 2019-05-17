@@ -6,6 +6,7 @@ import ladder.view.OutputView;
 
 public class Application {
     private static final String ALL = "all";
+
     private static Person person;
     private static Result result;
     private static int height;

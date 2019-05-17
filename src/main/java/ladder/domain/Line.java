@@ -6,6 +6,7 @@ import java.util.Objects;
 public class Line {
     private static final String LADDER_TRUE = "-----|";
     private static final String LADDER_FALSE = "     |";
+
     private final List<Boolean> points;
 
     Line(final List<Boolean> points) {

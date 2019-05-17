@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Person {
     private static final int NAME_MAX_LENGTH = 6;
+
     private final List<String> names;
 
     public Person(List<String> names) {

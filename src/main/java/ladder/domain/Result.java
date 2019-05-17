@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Result {
     private static final int RESULT_MAX_LENGTH = 6;
+
     private final List<String> results;
 
     public Result(List<String> results) {

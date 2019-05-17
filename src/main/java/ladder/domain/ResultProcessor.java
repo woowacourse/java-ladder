@@ -7,6 +7,7 @@ import java.util.Objects;
 
 public class ResultProcessor {
     private static final String FOR_ALL_RESULT = "all";
+
     private final LinkedHashMap<String, String> nameToResult = new LinkedHashMap<>();
 
     ResultProcessor(List<Integer> allResult, Person person, Result result) {

@@ -29,19 +29,19 @@ public class LadderGame {
         return points;
     }
 
-    private int generateResult(int index) {
-        for (Line line : ladder) {
-            index = line.move(index);
-        }
-        return index;
-    }
-
     public ResultProcessor generateAllResults(Person person, Result result) {
         List<Integer> resultIndex = new ArrayList<>();
         for (int i = 0; i < person.getCountOfPerson(); i++) {
             resultIndex.add(generateResult(i + 1));
         }
         return new ResultProcessor(resultIndex, person, result);
+    }
+
+    private int generateResult(int index) {
+        for (Line line : ladder) {
+            index = line.move(index);
+        }
+        return index;
     }
 
     @Override
