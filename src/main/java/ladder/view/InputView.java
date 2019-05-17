@@ -1,7 +1,7 @@
 package ladder.view;
 
-import ladder.model.MemberGenerator;
-import ladder.model.MemberValidator;
+import ladder.model.generator.MemberGenerator;
+import ladder.model.validator.MemberValidator;
 
 import java.util.Scanner;
 
@@ -17,7 +17,7 @@ public class InputView {
         String inputText = scanner.nextLine().trim();
         try {
             MemberValidator.checkSeparator(inputText);
-            String[] inputs = MemberGenerator.splitByComma(inputText);
+            String[] inputs = MemberGenerator.refineNames(inputText);
             MemberValidator.checkNamesLength(inputs);
             return inputs;
         } catch (IllegalArgumentException e) {
@@ -30,7 +30,7 @@ public class InputView {
         String inputText = scanner.nextLine().trim();
         try {
             MemberValidator.checkSeparator(inputText);
-            String[] inputs = MemberGenerator.splitByComma(inputText);
+            String[] inputs = MemberGenerator.refineNames(inputText);
             MemberValidator.checkNamesLength(inputs);
             MemberValidator.checkMemberCount(inputs.length, countOfMember);
             return inputs;

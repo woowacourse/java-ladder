@@ -37,7 +37,7 @@ public class LadderGame {
         return linkedStatus;
     }
 
-    public EndResult excuteGame() {
+    public EndResult executeGame() {
         ladder.forEach(row -> members.forEach(member -> member.move(row.move(member.getPosition()))));
         return makeResult();
     }

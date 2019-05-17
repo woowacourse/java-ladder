@@ -1,5 +1,6 @@
 package ladder.model;
 
+import ladder.model.validator.LadderValidator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

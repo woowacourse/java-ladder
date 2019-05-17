@@ -1,5 +1,6 @@
 package ladder.model;
 
+import ladder.model.generator.MemberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,7 @@ public class LadderGameTest {
     @BeforeEach
     void setUp() {
         String[] names = {"pobi", "hunux", "jk", "crong"};
-        List<Member> member = Members.generateMembers(names);
+        List<Member> member = MemberGenerator.generateMembers(names);
         List<String> results = Arrays.asList("꽝", "5000", "꽝", "3000");
         int [][] linkedStatus = {
                 {1, 0, 1},
