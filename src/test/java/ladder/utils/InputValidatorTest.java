@@ -18,6 +18,6 @@ public class InputValidatorTest {
 
     @Test
     void 중복된_이름_체크() {
-        assertThatThrownBy(() -> InputValidator.checkValidComponent("pobi,pobi")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> InputValidator.checkValidNames("pobi,pobi")).isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -1,18 +1,29 @@
 package ladder.domain;
 
-import ladder.utils.InputValidator;
-
 import java.util.Objects;
 
 public class Player {
     private String name;
 
     public Player(String name) {
-        try {
-            InputValidator.checkValidComponent(name);
-            this.name = name;
-        }catch (IllegalArgumentException e){
-            e.getMessage();
+        checkValidName(name);
+        this.name = name;
+    }
+
+    private void checkValidName(String name) {
+        checkBlankOrNull(name);
+        checkWrongLength(name);
+    }
+
+    private void checkBlankOrNull(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void checkWrongLength(String name) {
+        if (name.length() > 5) {
+            throw new IllegalArgumentException();
         }
     }
 

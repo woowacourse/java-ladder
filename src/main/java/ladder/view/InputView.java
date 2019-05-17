@@ -16,7 +16,7 @@ public class InputView {
         System.out.println(GAME_USER_NAME_INPUT_MSG);
         try {
             String names = SCANNER.nextLine();
-            InputValidator.checkValidComponent(names);
+            InputValidator.checkValidNames(names);
             return names;
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
