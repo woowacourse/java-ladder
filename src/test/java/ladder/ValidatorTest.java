@@ -42,4 +42,22 @@ public class ValidatorTest {
 		List<String> results = Arrays.asList("꽝", "100", "500");
 		assertThrows(IllegalArgumentException.class, () -> Validator.checkNumberOfResult(names, results));
 	}
+
+	@Test
+	void 입력한_이름이_참가자_이름_중_하나인_경우() {
+		List<String> names = Arrays.asList("pobi", "crong", "jk", "honux");
+		assertDoesNotThrow(() -> Validator.checkNameForResult(names, "pobi"));
+	}
+
+	@Test
+	void 입력한_이름이_all인_경우() {
+		List<String> names = Arrays.asList("pobi", "crong", "jk", "honux");
+		assertDoesNotThrow(() -> Validator.checkNameForResult(names, "all"));
+	}
+
+	@Test
+	void 입력한_이름이_참가자_이름도_all도_아닌_경우_예외_반환() {
+		List<String> names = Arrays.asList("pobi", "crong", "jk");
+		assertThrows(IllegalArgumentException.class, () -> Validator.checkNameForResult(names, "honux"));
+	}
 }

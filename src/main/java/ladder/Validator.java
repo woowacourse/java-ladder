@@ -28,4 +28,10 @@ public class Validator {
 			throw new IllegalArgumentException(UserOutput.VIOLATE_GAME_RESULTS.getOutputMessage());
 		}
 	}
+
+	public static void checkNameForResult(List<String> names, String name) {
+		if (!(name.equals("all")) && (!names.contains(name))) {
+			throw new IllegalArgumentException(UserOutput.VIOLATE_PLAYER_NAME_FOR_RESULT.getOutputMessage());
+		}
+	}
 }

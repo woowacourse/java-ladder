@@ -3,7 +3,6 @@ package ladder;
 import java.util.List;
 
 import ladder.domain.Player;
-import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderGameApp {
@@ -22,10 +21,9 @@ public class LadderGameApp {
 
 		String name;
 		do {
-			name = InputView.inputNameForResult();
-			OutputView.printResult(name, players, gameResults);
-		}
-		while (!name.equals("all"));
+            name = LadderGame.getNameForResult(names);
+		} while (!name.equals("all"));
+        OutputView.printResult(name, players, gameResults);
 	}
 }
 

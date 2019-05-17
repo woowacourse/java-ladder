@@ -66,6 +66,19 @@ public class LadderGame {
 		return list;
 	}
 
+	public static String getNameForResult(List<String> names) {
+		String name;
+
+		try {
+			name = InputView.inputNameForResult();
+			Validator.checkNameForResult(names, name);
+			return name;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return getNameForResult(names);
+		}
+	}
+
 	public static void matchPlayerAndResult(List<Player> players) {
 	    for (Player player : players) {
             ladder.goDownLadder(player);
