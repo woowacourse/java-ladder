@@ -11,18 +11,17 @@ public class ResultsInputTest {
         PlayerNamesInput playerNamesInput = new PlayerNamesInput("pobi,me,you");
 
         assertThrows(Exception.class, () -> {
-            new ResultsInput(input);
+            new ResultsInput(input, playerNamesInput);
         });
     }
 
-    @Test
-    void 빈_입력_또는_null() {
-        assertThrows(Exception.class, () -> {
-            new ResultsInput(null);
-        });
 
+    @Test
+    void 이름들_입력보다_많은_결과들_입력() throws Exception {
+        String input = "꽝, 고싱, 고고싱";
+        PlayerNamesInput playerNamesInput = new PlayerNamesInput("pobi,me");
         assertThrows(Exception.class, () -> {
-            new ResultsInput("");
+            new ResultsInput(input, playerNamesInput);
         });
     }
 
