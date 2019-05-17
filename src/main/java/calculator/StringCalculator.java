@@ -1,44 +1,44 @@
 package calculator;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-
-    public static int addAll(String string) {
-        if (isBlank(string)) {
+    public static int addValues(String inputText) {
+        if (isBlank(inputText)) {
             return 0;
         }
-
-        return sum(Numbers.toInts(getStrings(string)));
+        return sum(Numbers.parseIntegerList(splitDelimiter(inputText)));
     }
 
     private static boolean isBlank(String string) {
         return string == null || string.isEmpty();
     }
 
-    private static int sum(int[] numbers) {
+    private static int sum(List<Integer> numbers) {
         int sum = 0;
 
-        for (int value : numbers) {
-            sum += value;
+        for (int number : numbers) {
+            sum += number;
         }
-
         return sum;
     }
 
-    private static String[] getStrings(String text) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
+    private static String[] splitDelimiter(String inputText) {
+        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(inputText);
+        String[] values = splitCustomDelimiter(matcher);
 
-        if (m.find()) {
-            String customDelimiter = m.group(1);
-            String[] tokens = m.group(2).split(customDelimiter);
-
-            return tokens;
+        if (values != null) {
+            return values;
         }
-
-        return text.split(",|:");
+        return inputText.split(",|:");
     }
 
-
+    private static String[] splitCustomDelimiter(Matcher matcher) {
+        if (matcher.find()) {
+            return matcher.group(2).split(matcher.group(1));
+        }
+        return null;
+    }
 }
