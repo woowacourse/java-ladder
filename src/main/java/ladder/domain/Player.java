@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import java.util.Objects;
+import java.util.*;
 
 public class Player {
     private static final int MAXIMUM_NAME_LENGTH = 5;
@@ -13,18 +13,10 @@ public class Player {
         this(name, 0);
     }
 
-    public Player(final String name, int position) {
+    public Player(String name, int position) {
         nullCheck(name);
         this.name = getTrimed(name);
         this.position = position;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
-    public String getName() {
-        return name;
     }
 
     private void nullCheck(String name) {
@@ -52,8 +44,12 @@ public class Player {
         }
     }
 
-    public void stepDown(Crosspoints crosspoints) {
-        position = crosspoints.answerResultIndexOf(position);
+    public Map<String, ResultItem> stepDown(Ladder ladder) {
+        Map<String, ResultItem> ladderingResult = new LinkedHashMap<>();
+        ResultItem resultItem = ladder.answerResult(position);
+
+        ladderingResult.put(name, resultItem);
+        return ladderingResult;
     }
 
     @Override
@@ -73,4 +69,5 @@ public class Player {
     public int hashCode() {
         return Objects.hash(name);
     }
+
 }

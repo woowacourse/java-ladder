@@ -4,8 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,16 +12,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class LadderTest {
     Crosspoints crosspoints1;
     Crosspoints crosspoints2;
+    List<Boolean> userSetCroossbar;
 
     @BeforeEach
     void setUp() {
         crosspoints1 = new Crosspoints(Arrays.asList(false, false));
         crosspoints2 = new Crosspoints(Arrays.asList(false, true, false));
+        userSetCroossbar = Arrays.asList(false, true, false);
     }
 
     @Test
     void Ladder가_제대로_생성되는지_테스트() {
-        List<Boolean> userSetCroossbar = Arrays.asList(false, true, false);
 
         assertThat(new Ladder(3, new UserSetCrossbarGenerator(userSetCroossbar)))
                 .isEqualTo(new Ladder(3, new UserSetCrossbarGenerator(userSetCroossbar)));
@@ -35,25 +34,12 @@ public class LadderTest {
     }
 
     @Test
-    void Ladder가_제대로_된_Laddring_결과를_리턴해주는지_테스트() {
-        Ladder ladder = new Ladder(1, new UserSetCrossbarGenerator(Arrays.asList(false, true, false)));
+    void 플레이어_위치를_입력받아_결과를_제대로_알려주는지_테스트() {
+        List<ResultItem> resultItems = Arrays.asList(new ResultItem("a"), new ResultItem("b"));
+        Ladder testLadder = new Ladder(1, resultItems,
+                new UserSetCrossbarGenerator(userSetCroossbar));
 
-        Player playerA = new Player("a");
-        Player playerB = new Player("b");
-
-        ResultItem resultItem1 = new ResultItem("1");
-        ResultItem resultItem2 = new ResultItem("2");
-
-        PlayerGroup players = new PlayerGroup(Arrays.asList("a", "b"));
-        ResultItems resultItems = new ResultItems(Arrays.asList("1", "2"), players.size());
-
-        HashMap<String, ResultItem> expectedLadderingResult = new LinkedHashMap<>();
-        expectedLadderingResult.put("b", resultItem1);
-        expectedLadderingResult.put("a", resultItem2);
-
-        HashMap<String, ResultItem> ladderingResult = ladder.startLadderGame(players, resultItems);
-
-        assertThat(ladderingResult.get("a")).isEqualTo(resultItem2);
-        assertThat(ladderingResult.get("b")).isEqualTo(resultItem1);
+        assertThat(testLadder.answerResult(0)).isEqualTo(new ResultItem("b"));
+        assertThat(testLadder.answerResult(1)).isEqualTo(new ResultItem("a"));
     }
 }

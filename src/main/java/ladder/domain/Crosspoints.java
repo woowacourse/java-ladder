@@ -46,6 +46,10 @@ public class Crosspoints {
         return rightCrossbars;
     }
 
+    public int width() {
+        return crosspoints.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

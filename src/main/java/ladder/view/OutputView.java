@@ -2,22 +2,29 @@ package ladder.view;
 
 import ladder.domain.*;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class OutputView {
-    public static void showPlayersAndLadder(PlayerGroup players, Ladder ladder, ResultItems resultItems) {
+    public static void showPlayersAndLadder(PlayerGroup players, Ladder ladder) {
         System.out.println("실행 결과\n");
+        printPlayerNames(players);
+        printLadder(ladder);
+    }
+
+    private static void printPlayerNames(PlayerGroup players) {
         for (Player player : players.getPlayers()) {
             System.out.print(String.format("%-6s", player));
         }
         System.out.println();
+    }
 
+    private static void printLadder(Ladder ladder) {
         for (Crosspoints crosspoints : ladder.getLadder()) {
             printCrosspoints(crosspoints);
             System.out.println();
         }
 
-        for (ResultItem resultItem : resultItems.getResultItems()) {
+        for (ResultItem resultItem : ladder.getResultItems()) {
             System.out.print(String.format("%-6s", resultItem));
         }
         System.out.println();
@@ -33,20 +40,23 @@ public class OutputView {
         }
     }
 
-    public static void showladderingResult(HashMap<String, ResultItem> ladderingResult) {
-        String playerNameToShowResult = InputView.inputPlayerNameToShowResult();
-
-        if (!ladderingResult.keySet().contains(playerNameToShowResult)) {
-            throw new IllegalArgumentException("존재하지 않는 플레이어입니다.");
-        }
-
-        if (playerNameToShowResult.equals("all")) {
-            for (String playerName : ladderingResult.keySet()) {
-                System.out.println(playerName + " : " + ladderingResult.get(playerName));
-            }
+    public static void showResultOf(String playerName, Map<String, ResultItem> ladderingResult) {
+        System.out.println("실행 결과");
+        if (playerName.equals("all")) {
+            showAllResultOf(ladderingResult);
             return;
         }
 
-        System.out.println(ladderingResult.get(playerNameToShowResult));
+        if (!ladderingResult.containsKey(playerName)) {
+            throw new IllegalArgumentException("존재하지 않는 플레이어입니다.");
+        }
+
+        System.out.println(ladderingResult.get(playerName));
+    }
+
+    private static void showAllResultOf(Map<String, ResultItem> ladderingResult) {
+        for (String playerName : ladderingResult.keySet()) {
+            System.out.println(playerName + " : " + ladderingResult.get(playerName));
+        }
     }
 }
