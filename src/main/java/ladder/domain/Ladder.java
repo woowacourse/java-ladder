@@ -62,4 +62,8 @@ public class Ladder {
     public int hashCode() {
         return Objects.hash(ladder);
     }
+
+    public List<ResultItem> getResultItems() {
+        return resultItems;
+    }
 }

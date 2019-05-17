@@ -5,7 +5,6 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +18,17 @@ public class LadderGame {
         Map<String, ResultItem> ladderingResult = players.findLadderingResult(ladder);
 
         OutputView.showPlayersAndLadder(players, ladder);
+        show(ladderingResult);
+    }
+
+    private static void show(Map<String, ResultItem> ladderingResult) {
+        try {
+            String playerName = InputView.inputPlayerNameToShowResult();
+            OutputView.showResultOf(playerName, ladderingResult);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+        show(ladderingResult);
     }
 
     private static List<ResultItem> getResultItems() {
