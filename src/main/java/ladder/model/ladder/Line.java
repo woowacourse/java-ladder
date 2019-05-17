@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * @version 1.0 2019년 05년 16일
  * @author 김효건
+ * @version 1.0 2019년 05년 16일
  */
 public class Line {
     /*사다리게임의 각 층(라인)에 대한 클래스*/

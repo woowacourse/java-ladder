@@ -8,8 +8,8 @@
 package ladder.model.ladder;
 
 /**
- * @version 1.0 2019년 05년 16일
  * @author 김효건
+ * @version 1.0 2019년 05년 16일
  */
 public class Floor {
     /*사다리게임의 층수에 대한 클래스*/

@@ -10,21 +10,21 @@ package ladder.model.tags;
 import java.util.List;
 
 /**
- * @version 1.0 2019년 05년 16일
  * @author 김효건
+ * @version 1.0 2019년 05년 16일
  */
 public class PlayerTags extends Tags {
     /*사다리게임의 플레이어 태그 그룹에 대한 클래스*/
     private static final String DUPLICATE_TAG_ERROR = "중복 이름 오류";
 
-    public PlayerTags(String input) {
-        super(input);
+    public PlayerTags(String[] input) {
+        super();
         addTags(input);
     }
 
     @Override
-    protected void addTags(String input) {
-        for (String tag : input.split(DELIMITER)) {
+    protected void addTags(String[] input) {
+        for (String tag : input) {
             checkDuplicateName(tag);
             tags.add(new Tag(tag));
         }

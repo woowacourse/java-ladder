@@ -8,7 +8,7 @@ import java.util.Map;
 public class GameResult {
     private Map<Tag, Tag> mappingResult = new LinkedHashMap<>();
 
-    public void addResult(Tag inTag, Tag outTag){
+    public void addResult(Tag inTag, Tag outTag) {
         mappingResult.put(inTag, outTag);
     }
 

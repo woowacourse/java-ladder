@@ -12,31 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @version 1.0 2019년 05년 16일
  * @author 김효건
+ * @version 1.0 2019년 05년 16일
  */
 public abstract class Tags {
     /*사다리게임의 태그그룹에 대한 추상클래스*/
-    private static final String NOT_VALID_INPUT_ERROR = "입력 형식 오류";
-    private static final String INPUT_REGEX = "^([^,]+)(,[^,]+)*$";
     protected static final String DELIMITER = ",";
 
     protected List<Tag> tags;
+
+    protected Tags() {
+        tags = new ArrayList<>();
+    }
 
     public List<Tag> getTags() {
         return tags;
     }
 
-    protected Tags(String input) {
-        tags = new ArrayList<>();
-        checkValidInput(input);
-    }
-
-    private void checkValidInput(String input) {
-        if (!input.matches(INPUT_REGEX)) {
-            throw new IllegalArgumentException(NOT_VALID_INPUT_ERROR);
-        }
-    }
-
-    protected abstract void addTags(String tag);
+    protected abstract void addTags(String[] input);
 }

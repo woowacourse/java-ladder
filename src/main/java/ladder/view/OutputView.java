@@ -40,7 +40,7 @@ public class OutputView {
 
     public static void PrintAllResult(GameResult gameResult) {
         StringBuilder sb = new StringBuilder();
-        for(Tag inTag : gameResult.getMappingResult().keySet()){
+        for (Tag inTag : gameResult.getMappingResult().keySet()) {
             sb.append(inTag.getValue())
                     .append(SPACE_COLON_SPACE)
                     .append(gameResult.getMappingResult().get(inTag).getValue())
