@@ -15,4 +15,11 @@ public class Direction {
             throw new IllegalArgumentException("사다리 선이 가로로 연속적일 수 없습니다.");
         }
     }
+
+    public int move() {
+        if (left) {
+            return -1;
+        }
+        return 0;
+    }
 }
