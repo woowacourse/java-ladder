@@ -20,11 +20,11 @@ public class LadderGameResultTest {
                 new Player("ddungi")));
         String[] prizes = {"1000", "2000", "3000", "4000", "꽝"};
         List<Line> lines = new ArrayList<>(Arrays.asList(
-                new Line(new int[]{1, 2, 1, 2, 0}),
-                new Line(new int[]{1, 2, 1, 2, 0}),
-                new Line(new int[]{0, 1, 2, 1, 2}),
-                new Line(new int[]{0, 1, 2, 1, 2}),
-                new Line(new int[]{0, 0, 1, 2, 0})));
+                new Line(new Direction[]{Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT, Direction.STRAIGHT}),
+                new Line(new Direction[]{Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT, Direction.STRAIGHT}),
+                new Line(new Direction[]{Direction.STRAIGHT, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT}),
+                new Line(new Direction[]{Direction.STRAIGHT, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT}),
+                new Line(new Direction[]{Direction.STRAIGHT, Direction.STRAIGHT, Direction.RIGHT, Direction.LEFT, Direction.STRAIGHT})));
 
         Ladder ladder = new Ladder(lines);
         LadderGame ladderGame = new LadderGame(ladder, players, prizes);
