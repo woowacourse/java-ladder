@@ -42,4 +42,12 @@ public class Direction {
         }
         return STRAIGHT;
     }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "left=" + left +
+                ", current=" + current +
+                '}';
+    }
 }

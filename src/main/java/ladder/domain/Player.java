@@ -48,4 +48,11 @@ public class Player {
         return Objects.hash(name, position);
     }
 
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", position=" + position +
+                '}';
+    }
 }

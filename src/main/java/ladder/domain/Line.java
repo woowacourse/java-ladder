@@ -12,4 +12,11 @@ public class Line {
     public Direction getDirection(Position position) {
         return directions.get(position.getValue());
     }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "directions=" + directions +
+                '}';
+    }
 }
