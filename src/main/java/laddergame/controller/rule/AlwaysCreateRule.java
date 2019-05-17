@@ -1,4 +1,4 @@
-package laddergame.domain.rule;
+package laddergame.controller.rule;
 
 public class AlwaysCreateRule implements Rule {
     @Override
