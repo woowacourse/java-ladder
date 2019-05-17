@@ -1,24 +1,37 @@
-package com.woowacourse.ladder;
+package com.woowacourse.ladder.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class InputValidator {
     private static final int MAX_NAME_LENGTH = 5;
-    public static boolean isValidInput(List<String> asList) {
-        return asList.stream().map(s -> s.trim())
-            .filter(InputValidator::checkIfEmptyString)
-            .filter(InputValidator::checkLength)
-            .collect(Collectors.toList()).size() == asList.size();
+    private static final String BANNED_NAME = "all";
+
+    public static boolean isValidNamesInput(List<String> asList) {
+        return asList.stream().map(String::trim)
+                .filter(InputValidator::isNotEmptyString)
+                .filter(InputValidator::checkLength)
+                .filter(InputValidator::isNotAll)
+                .count() == asList.size();
     }
 
-    private static boolean checkIfEmptyString(final String name) {
+    public static boolean isNotAll(String s) {
+        return !s.toLowerCase().equals(BANNED_NAME);
+    }
+
+    public static boolean isNotEmptyString(final String name) {
         return !name.isEmpty();
     }
 
     private static boolean checkLength(final String name) {
-        return name.length() > MAX_NAME_LENGTH;
+        return name.length() <= MAX_NAME_LENGTH;
     }
 
-
+    public static boolean isValidDestinationsInput(List<String> expectedResults) {
+        return expectedResults.stream()
+                .map(String::trim)
+                .filter(InputValidator::checkLength)
+                .filter(InputValidator::isNotEmptyString)
+                .count() == expectedResults.size();
+    }
 }
