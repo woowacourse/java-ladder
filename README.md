@@ -66,3 +66,7 @@
 - (true,true), (true,false) 와 같이 두 개의 불리언 값을 객체로 만들면 어떨까?
 - Line 에서 getDirection 으로 나아갈 방향을 찾는 것보다 이러한 역할을 하는 객체를 만들어라.
     
+    
+## To-do-list
+1. Player의 현재 위치를 나타내는 Position 객체를 생성한다.
+    - 현재 위치는 0 이상이고 Player 수보다 작아야한다.
