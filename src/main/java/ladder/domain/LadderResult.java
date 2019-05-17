@@ -10,12 +10,18 @@ public class LadderResult {
         this.rewards = reward;
     }
 
-    public String result(Ladder ladder, int index) {
-        List<LadderRow> rows = ladder.status();
-        for (int j = 0; j < rows.size(); j++) {
-            List<Integer> currentLines = rows.get(j).status();
-            index += currentLines.get(index);
-        }
+    public String result(Ladder ladder, int position) {
+//        Stack<Integer> t = new Stack<>();
+//        t.push(position);
+//        ladder.status().forEach(row -> {
+//            int index = t.pop();
+//            t.push(index + row.status().get(index));
+//        });
+
+        int index = ladder.status().stream()
+                .reduce(position,
+                        (accumulator, ladderRow) -> accumulator + ladderRow.status().get(accumulator),
+                        (accumulator, element) -> accumulator + element);
 
         return rewards.reward(index);
     }
