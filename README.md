@@ -17,17 +17,6 @@
 
 
 # 사다리 게임
-## To-do   
-+ 1단계
-   * OutputView의 printCrossbars 리팩토링
-   * Ladder에서 foreach getter사용하지 않고 하는 방법?
-   * Ladder 클래스 field명 변경
-   * Ladder Getter 이름 변경
-   * Ladder Game 클래스의 LAST_DMMY_SPACE 리네임
-+ 2단계
-   * Player, ResultItem 중복
-   * InputView 메소드 기능 중복(player,item)
-
 ## Done
    * player 이름이 공백, null일 때 예외 처리
    * 입력받은 사람의 수에 따라서 crossbars를 만들어야 합니다.
@@ -49,7 +38,8 @@
      - 공백, null을 입력받으면 안됩니다.   
    * 결과를 보고 싶은 사람을 입력받으면 결과를 출력해줘야 합니다.
      - all을 입력하면 경우에는 전부 다 출력합니다.
-
+   * InputView 메소드 기능 중복(player,item)
+   * Ladder Game 클래스의 LAST_DUMMY_SPACE 리네임
 
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)

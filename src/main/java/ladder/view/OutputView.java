@@ -19,7 +19,7 @@ public class OutputView {
     }
 
     private static void printLadder(Ladder ladder) {
-        for (Crosspoints crosspoints : ladder.getLadder()) {
+        for (Crosspoints crosspoints : ladder.getLadderRows()) {
             printCrossbars(crosspoints);
             System.out.println();
         }
