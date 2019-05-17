@@ -47,6 +47,6 @@ public class GameResult {
             isNamePresent = players.get(i).contains(input);
         }
 
-        if (!isNamePresent) { throw new IllegalArgumentException(); }
+        if (!isNamePresent) { throw new IllegalArgumentException("일치하는 플레이어의 이름이 존재하지 않습니다."); }
     }
 }

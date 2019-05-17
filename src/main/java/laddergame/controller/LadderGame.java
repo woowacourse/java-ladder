@@ -8,20 +8,35 @@ import java.util.List;
 
 public class LadderGame {
     public void play() {
-        //인풋받기
         List<Player> players = getPlayers();
         Ladder ladder = getLadder(players.size());
         List<Prize> prizes = getPrizes(players.size());
         OutputView.printLadder(players, ladder);
         OutputView.printPrizes(prizes);
 
-        //게임실행
         GameProcessor processor = new GameProcessor(players);
         processor.processGame(ladder.getLadderMap());
 
-        //결과보여주기
-        //결과를 보고 싶은 사람은? 이름또는 all
+        keepAsk(players, prizes);
+    }
 
+    private String keepAsk(List<Player> players, List<Prize> prizes) {
+        while (true) {
+            String result = makeResults(players, prizes);
+            OutputView.printResult(result);
+        }
+    }
+
+    private String makeResults(List<Player> players, List<Prize> prizes) {
+        try {
+            String input = InputView.askResult();
+            GameResult gameResult = new GameResult();
+            gameResult.makeResult(players, prizes);
+            return gameResult.getResult(players,input);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return makeResults(players, prizes);
+        }
     }
 
     private List<Prize> getPrizes(int numOfPlayers) {

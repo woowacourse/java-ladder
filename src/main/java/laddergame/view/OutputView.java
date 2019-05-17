@@ -13,7 +13,6 @@ public class OutputView {
 
         for (Player player : players) {
             stringBuilder.append(String.format("%6s", player));
-            //System.out.printf("%6s", player.toString() + "\n");
         }
         stringBuilder.append("\n").append(ladder);
 
@@ -29,5 +28,10 @@ public class OutputView {
 
         System.out.println(stringBuilder.toString());
 
+    }
+
+    public static void printResult(String result) {
+        System.out.println("실행 결과");
+        System.out.println(result);
     }
 }
