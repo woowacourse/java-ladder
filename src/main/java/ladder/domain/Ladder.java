@@ -12,10 +12,6 @@ public class Ladder {
         }
     }
 
-    public List<Line> getLines() {
-        return this.lines;
-    }
-
     public Player goDownLadder(Player player) {
         for (Line line : lines) {
             line.getNextPositon(player);

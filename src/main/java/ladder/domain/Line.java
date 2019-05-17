@@ -18,10 +18,6 @@ public class Line {
 		}
 	}
 
-	public List<Boolean> getPoints() {
-		return this.points;
-	}
-
 	public int getNextPositon(Player player) {
 		return player.trymove(points);
 	}
