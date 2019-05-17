@@ -43,15 +43,19 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void output(String name, List<User> users, List<String> results) {
+    public static void outputSelectResult(String name, List<User> users, List<String> results) {
         for (User user : users) {
-            if (name.equals(user.getName())) {
-                System.out.println(results.get(user.getPosition()));
-            }
+            outputIndividualResult(name, results, user);
         }
     }
 
-    public static void outputAll(List<User> users, List<String> results) {
+    private static void outputIndividualResult(String name, List<String> results, User user) {
+        if (name.equals(user.getName())) {
+            System.out.println(results.get(user.getPosition()));
+        }
+    }
+
+    public static void outputAllResult(List<User> users, List<String> results) {
         for (User user : users) {
             System.out.println(user.getName() + " : " + results.get(user.getPosition()));
         }

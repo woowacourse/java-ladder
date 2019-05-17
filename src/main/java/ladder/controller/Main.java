@@ -2,40 +2,32 @@ package ladder.controller;
 
 import ladder.domain.LadderGame;
 import ladder.domain.Result;
+import ladder.domain.User;
 import ladder.view.InputCheck;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        LadderGame ladderGame = createLadderGame();
-        String results;
-        Result result;
-        do {
-            results = InputView.inputResults();
-        } while (!InputCheck.checkResultSize(results, ladderGame.getUsers().size()));
-        result = new Result(results);
-        OutputView.outputNames(ladderGame.getUsers());
+        LadderGame ladderGame = new LadderGame(
+                InputView.inputNames(), InputView.inputLadderHeight());
+        List<User> users = ladderGame.getUsers();
+        Result result = new Result(InputView.inputResults(), users.size());
+        List<String> results = result.getResults();
         ladderGame.createLadder();
         ladderGame.startLadderGame();
+
+        OutputView.outputNames(users);
         OutputView.outputLadder(ladderGame.getLadder());
-        OutputView.outputResult(result.getResults());
+        OutputView.outputResult(results);
+
         String name;
         do {
-            name = InputView.inputNames1();
-            OutputView.output(name, ladderGame.getUsers(), result.getResults());
+            name = InputView.inputName();
+            OutputView.outputSelectResult(name, users, results);
         } while (!name.equals("all"));
-        OutputView.outputAll(ladderGame.getUsers(), result.getResults());
-    }
-
-    private static LadderGame createLadderGame(){
-        String names = InputView.inputNames();
-        int height = InputView.inputLadderHeight();
-        try {
-            return new LadderGame(names, height);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return  createLadderGame();
-        }
+        OutputView.outputAllResult(users, results);
     }
 }
