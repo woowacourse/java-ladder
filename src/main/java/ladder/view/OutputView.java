@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.LadderGame;
 import ladder.domain.*;
 
 import java.util.List;
@@ -18,19 +19,12 @@ public class OutputView {
         System.out.println();
     }
 
-	public static void printResult(String name, List<Player> players, List<String> result) {
-		if(name.equals("all")) {
-			for(Player player : players) {
-				System.out.println(player.getName() + " : " + result.get(player.getPosition()));
-			}
-			return;
-		}
+	public static void printResult(List<Player> players) {
+		System.out.println("실행결과");
 
-		for(Player player : players) {
-			if(player.matchName(name)) {
-				System.out.println("실행결과 \n" + result.get(player.getPosition()));
-				break;
-			}
+		for (Player player : players) {
+			String result = LadderGame.getResults().get(player.getPosition());
+			System.out.println(player.getName() + " : " + result);
 		}
 	}
 }

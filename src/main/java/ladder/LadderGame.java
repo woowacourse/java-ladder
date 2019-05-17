@@ -17,6 +17,10 @@ public class LadderGame {
 
 	private static List<Player> players = new ArrayList<>();;
 
+	public static List<String> getResults() {
+	    return results;
+    }
+
 	public static LadderGameBoard generateGameBoard() {
 		names = getPersonNames();
 		results = getGameResult(names);
@@ -87,12 +91,9 @@ public class LadderGame {
     }
 
     public static List<Player> lookUpResult() {
-        String input;
+        String input = getNameForResult(names);
 
-        do {
-            input = getNameForResult(names);
-            return getPlayersForResult(input);
-        } while (!input.equals("all"));
+        return getPlayersForResult(input);
     }
 
     private static String getNameForResult(List<String> names) {
@@ -109,6 +110,9 @@ public class LadderGame {
     }
 
     private static List<Player> getPlayersForResult(String input) {
+	    if (input.equals("종료")) {
+	        return new ArrayList<>();
+        }
 	    if (input.equals("all")) {
 	        return players;
         }

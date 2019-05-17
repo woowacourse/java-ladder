@@ -13,8 +13,13 @@ public class LadderGameApp {
 
 		LadderGame.executeLadderGame();
 
-		List<Player> foundPlayers = LadderGame.lookUpResult();
-		OutputView.printResult(foundPlayers);
+        List<Player> foundPlayers;
+
+		do {
+            foundPlayers = LadderGame.lookUpResult();
+            OutputView.printResult(foundPlayers);
+        } while (foundPlayers.size() == 0);
+
 	}
 }
 
