@@ -2,20 +2,14 @@ package ladder;
 
 import java.util.List;
 
+import ladder.domain.LadderGameBoard;
 import ladder.domain.Player;
 import ladder.view.OutputView;
 
 public class LadderGameApp {
 	public static void main(String[] args) {
-		List<String> names = LadderGame.getPersonNames();
-		List<String> gameResults = LadderGame.getGameResult(names);
-		int ladderHeight = LadderGame.getLadderHeight();
-
-		OutputView.printLadderValues(names);
-		OutputView.printLadder(LadderGame.generatreLadder(names, ladderHeight));
-		OutputView.printLadderValues(gameResults);
-
-		List<Player> players = LadderGame.generatePlayers(names);
+        LadderGameBoard board = LadderGame.generateGameBoard();
+		OutputView.printLadderGameBoard(board);
 
 		LadderGame.matchPlayerAndResult(players);
 

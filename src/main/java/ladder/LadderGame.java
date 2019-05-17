@@ -2,6 +2,7 @@ package ladder;
 
 
 import ladder.domain.Ladder;
+import ladder.domain.LadderGameBoard;
 import ladder.domain.Player;
 import ladder.util.StringSplitUtils;
 import ladder.view.InputView;
@@ -10,14 +11,21 @@ import java.util.*;
 
 public class LadderGame {
 	private static Ladder ladder;
-	private static List<Player> list = new ArrayList<>();
+	private static List<String> names;
+	private static List<String> results;
+	private static int height;
+	private static List<Player> players;
 
-	public static Ladder generatreLadder(List<String> names, int ladderHeight) {
-		ladder = new Ladder(names.size(), ladderHeight);
-		return ladder;
+	public static LadderGameBoard generateGameBoard() {
+		names = getPersonNames();
+		results = getGameResult(names);
+		height = getLadderHeight();
+		ladder = new Ladder(results.size(), height);
+
+		return new LadderGameBoard(names, results, ladder);
 	}
 
-	public static List<String> getPersonNames() {
+	private static List<String> getPersonNames() {
 		String names;
 
 		try {
@@ -30,7 +38,7 @@ public class LadderGame {
 		}
 	}
 
-	public static int getLadderHeight() {
+	private static int getLadderHeight() {
 		String height;
 
 		try {
@@ -43,7 +51,7 @@ public class LadderGame {
 		}
 	}
 
-	public static List<String> getGameResult(List<String> names) {
+	private static List<String> getGameResult(List<String> names) {
 		String result;
 
 		try {
@@ -57,13 +65,14 @@ public class LadderGame {
 	}
 
 	public static List<Player> generatePlayers(List<String> names) {
+	    players = new ArrayList<>();
 		int position = 0;
 
 		for(String name : names) {
-			list.add(new Player(name, position));
+			players.add(new Player(name, position));
 			position ++;
 		}
-		return list;
+		return players;
 	}
 
 	public static String getNameForResult(List<String> names) {
