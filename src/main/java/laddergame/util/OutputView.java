@@ -1,20 +1,21 @@
 package laddergame.util;
 
-import laddergame.domain.Ladder;
-import laddergame.domain.LadderGameResult;
-import laddergame.domain.Members;
-import laddergame.domain.Prizes;
+import laddergame.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    public static void outputLadderGame(Members members, Ladder ladder, Prizes prizes) {
+    public static void outputMessage(String message) {
+        System.out.println(message);
+    }
+
+    public static void outputLadderGame(Tags members, Ladder ladder, Tags prizes) {
         System.out.println("사다리 결과");
-        outputTag(members.getMembers());
+        outputTag(members.getTagsName());
         outputLadder(ladder);
-        outputTag(prizes.getPrizes());
+        outputTag(prizes.getTagsName());
     }
 
     private static void outputTag(List<String> names) {

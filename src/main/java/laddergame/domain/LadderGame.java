@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LadderGame {
-    public static LadderGameResult startGame(Members members, Ladder ladder, Prizes prizes) {
+    public static LadderGameResult startGame(Tags members, Ladder ladder, Tags prizes) {
         Map<String, String> result = new HashMap<>();
         for (int i = 0; i < members.size(); i++) {
-            result.put(members.getMember(i), prizes.getPrize(ladder.takeLadder(i)));
+            result.put(members.getTagName(i), prizes.getTagName(ladder.takeLadder(i)));
         }
         return new LadderGameResult(result);
     }
