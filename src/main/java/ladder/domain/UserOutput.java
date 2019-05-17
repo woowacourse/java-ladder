@@ -1,9 +1,6 @@
 package ladder.domain;
 
 public enum UserOutput {
-	LADDER_STEP("-----"),
-	LADDER_SPACE("     "),
-	LADDER_LINE("|"),
 	DEMAND_PLAYER_NAMES("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"),
 	DEMAND_LADDER_HEIGHT("최대 사다리 높이는 얼마인가요?"),
 	DEMAND_GAME_RESULTS("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"),

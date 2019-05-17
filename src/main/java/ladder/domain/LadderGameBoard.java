@@ -13,4 +13,16 @@ public class LadderGameBoard {
         this.results = results;
         this.ladder = ladder;
     }
+
+    public List<String> getNames() {
+        return names;
+    }
+
+    public List<String> getResults() {
+        return results;
+    }
+
+    public Ladder getLadder() {
+        return ladder;
+    }
 }

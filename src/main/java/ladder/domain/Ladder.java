@@ -22,4 +22,14 @@ public class Ladder {
         }
         return player;
     }
+
+    @Override
+    public String toString() {
+        List<String> ladderElements = new ArrayList<>();
+
+        for (Line line : lines) {
+            ladderElements.add(line.toString());
+        }
+        return String.join("\n", ladderElements);
+    }
 }
