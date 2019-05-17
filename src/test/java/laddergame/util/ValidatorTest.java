@@ -25,4 +25,10 @@ class ValidatorTest {
         assertThrows(IllegalArgumentException.class, () ->
                 Validator.checkEqualSize(1,2));
     }
+
+    @Test
+    void checkNameIsAll() {
+        assertThrows(IllegalArgumentException.class, () ->
+                Validator.nameIsAll("all"));
+    }
 }

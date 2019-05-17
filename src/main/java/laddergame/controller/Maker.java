@@ -18,6 +18,7 @@ public class Maker {
             List<String> names = Spliter.splitByComma(InputView.inputNames());
             Validator.checkEmptyTag(names);
             Validator.checkDuplicateNames(names);
+            names.forEach(Validator::nameIsAll);
             return new Tags(names);
         } catch (Exception e) {
             System.err.println(e.getMessage());

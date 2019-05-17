@@ -23,4 +23,10 @@ public class Validator {
             throw new IllegalArgumentException("참여할 사람과 실행 결과의 개수는 같아야 합니다.");
         }
     }
+
+    public static void nameIsAll(String name) {
+        if (name.equals("all")) {
+            throw new IllegalArgumentException("이름은 all이 될 수 없습니다");
+        }
+    }
 }
