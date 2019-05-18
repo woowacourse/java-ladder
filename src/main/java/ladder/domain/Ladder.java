@@ -48,7 +48,7 @@ public class Ladder {
     Ladder make(RandomGenerator randomGenerator, int width, int height) {
         valid(width, height);
         for (int i = 0; i < height; i++) {
-            rows.add(new LadderRow(width, randomGenerator).getRow());
+            rows.add(new LadderRow().row(width));
         }
         return this;
     }

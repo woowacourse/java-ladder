@@ -5,56 +5,50 @@ import java.util.List;
 
 public class LadderRow {
     private static final int LAST_LINE = 1;
+    private static final int RANDOM_DRAW_NUMBER = 1;
     private RandomGenerator randomGenerator;
     private List<Integer> row;
-    private int width;
 
-    public LadderRow(int width) {
+    public LadderRow() {
         row = new ArrayList<>();
-        this.width = width;
     }
 
     public LadderRow(List<Integer> numbers) {
         this.row = numbers;
     }
 
-    public LadderRow(int width, RandomGenerator randomGenerator) {
-        row = new ArrayList<>();
-        this.width = width;
+    public LadderRow manual(int width, RandomGenerator randomGenerator) {
         this.randomGenerator = randomGenerator;
-    }
-
-    LadderRow getRow() {
-        makeRow();
+        row(width);
         return this;
     }
 
-    public void makeRow() {
-        while (this.width > 0) {
+    LadderRow row(int width) {
+        while (width - row.size() > LAST_LINE) {
             makeLine();
         }
+        draw(false);
+        return this;
     }
 
     private void makeLine() {
-        if (this.width == LAST_LINE) {
-            this.width -= draw(false);
-            return;
+        if (this.randomGenerator == null) {
+            this.randomGenerator = new RandomGenerator();
         }
-        this.width -= draw(getRandomFlag());
+        draw(getRandomFlag());
     }
 
-    private int draw(boolean isDraw) {
+    private void draw(boolean isDraw) {
         if (isDraw) {
             row.add(LadderRules.RIGHT.number());
             row.add(LadderRules.LEFT.number());
-            return LadderRules.DRAW_MOVE.number();
+            return;
         }
         row.add(LadderRules.SKIP.number());
-        return LadderRules.DRAW_SKIP.number();
     }
 
     private boolean getRandomFlag() {
-        return randomGenerator.number() == LadderRules.RANDOM_DRAW.number();
+        return randomGenerator.number() == RANDOM_DRAW_NUMBER;
     }
 
     public List<Integer> status() {
