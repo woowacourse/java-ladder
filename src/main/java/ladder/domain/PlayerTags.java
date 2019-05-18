@@ -30,6 +30,13 @@ public class PlayerTags extends Tags {
 
     public PlayerTags(String input) {
         super(input);
+        validPlayerNumber(this.tags.size());
+    }
+
+    private void validPlayerNumber(int playerNumber) {
+        if (playerNumber <= 1) {
+            throw new IllegalArgumentException("플레이어 수는 최소 2명");
+        }
     }
 
     public List<Tag> getNames() {
@@ -44,15 +51,15 @@ public class PlayerTags extends Tags {
         return this.tags.indexOf(tag);
     }
 
-    private void checkDuplicateName(String name) {
-        if (tags.contains(new Tag(name))) {
-            throw new IllegalArgumentException(DUPLICATE_NAME_ERROR);
-        }
-    }
-
     @Override
     public void add(String name) {
         checkDuplicateName(name);
         this.tags.add(new Tag(name));
+    }
+
+    private void checkDuplicateName(String name) {
+        if (tags.contains(new Tag(name))) {
+            throw new IllegalArgumentException(DUPLICATE_NAME_ERROR);
+        }
     }
 }

@@ -23,9 +23,10 @@ import java.util.List;
  * @version 1.0.0
  */
 public class Ladder {
-    private List<Line> ladder = new ArrayList<>();
+    private List<Line> ladder;
 
     public Ladder(Height height, int playerNumber) {
+        ladder = new ArrayList<>();
         for (int i = 0; i < height.getFloor(); i++) {
             ladder.add(new Line(playerNumber));
         }

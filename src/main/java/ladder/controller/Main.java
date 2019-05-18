@@ -48,7 +48,7 @@ public class Main {
             return new PlayerTags(InputView.players());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return new PlayerTags(InputView.players());
+            return getPlayers();
         }
     }
 
@@ -57,7 +57,7 @@ public class Main {
             return new ResultTags(InputView.results(), playerNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return new ResultTags(InputView.results(), playerNumbers);
+            return getResults(playerNumbers);
         }
     }
 
@@ -66,7 +66,7 @@ public class Main {
             return new Height(InputView.floors());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return new Height(InputView.floors());
+            return getFloor();
         }
     }
 
