@@ -60,4 +60,19 @@ public class DirectionTest {
         direction = Direction.of(FALSE, FALSE).next(FALSE);
         assertThat(direction).isEqualTo(new Direction(FALSE, FALSE));
     }
+
+    @Test
+    void 왼쪽으로_움직이는_경우() {
+        assertThat(Direction.of(TRUE, FALSE).move()).isEqualTo(-1);
+    }
+
+    @Test
+    void 오른쪽으로_움직이는_경우() {
+        assertThat(Direction.of(FALSE, TRUE).move()).isEqualTo(1);
+    }
+
+    @Test
+    void 움직이지_앟는_경우() {
+        assertThat(Direction.of(FALSE, FALSE).move()).isEqualTo(0);
+    }
 }

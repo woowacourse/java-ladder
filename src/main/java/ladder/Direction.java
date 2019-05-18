@@ -37,6 +37,16 @@ public class Direction {
         return new Direction(hasLeft, false);
     }
 
+    public int move() {
+        if (hasLeft) {
+            return -1;
+        }
+        if (hasRight) {
+            return 1;
+        }
+        return 0;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
