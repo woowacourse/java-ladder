@@ -22,6 +22,7 @@ package ladder.domain.ladder;
 public class Height {
     private static final String NAT_NUM_EXCEPTION_MESSAGE = "층 수 0이하 입력 오류";
     private static final String VALID_TYPE_EXCEPTION_MESSAGE = "층 수 입력 형식 오류";
+    private static final int MINIMUM_RANGE = 0;
 
     private int floor;
 
@@ -44,7 +45,7 @@ public class Height {
     }
 
     private void validRange(int number) {
-        if (number <= 0) {
+        if (number <= MINIMUM_RANGE) {
             throw new IllegalArgumentException(NAT_NUM_EXCEPTION_MESSAGE);
         }
     }
