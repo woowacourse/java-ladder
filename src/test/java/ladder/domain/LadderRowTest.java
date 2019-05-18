@@ -19,7 +19,7 @@ public class LadderRowTest {
     public void 사다리_한줄_긋기_1칸남음() {
 
         for (int i = 0; i < 1000; i++) {
-            assertEquals(Arrays.asList(LadderLineTest.line(0)), new LadderRow().make(1).status());
+            assertEquals(Arrays.asList(LadderLineTest.line(0)), new LadderRow().manual(1, new RandomGenerator()).status());
         }
     }
 
