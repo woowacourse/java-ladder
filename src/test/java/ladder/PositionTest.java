@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PositionTest {
     private final static int MAX = 5;
+    private final static boolean TRUE = true;
+    private final static boolean FALSE = false;
 
     @Test
     void 각_포지션_생성() {
@@ -26,5 +28,26 @@ public class PositionTest {
         assertThrows(IllegalArgumentException.class, () -> {
             new Position(MAX, MAX);
         });
+    }
+
+    @Test
+    void 왼쪽으로_움직일_경우() {
+        Position position = new Position(1, MAX);
+        position.move(Direction.of(TRUE, FALSE));
+        assertThat(position).isEqualTo(new Position(0, MAX));
+    }
+
+    @Test
+    void 오른쪽으로_움직일_경우() {
+        Position position = new Position(1, MAX);
+        position.move(Direction.of(FALSE, TRUE));
+        assertThat(position).isEqualTo(new Position(2, MAX));
+    }
+
+    @Test
+    void 움직이지_않을_경우() {
+        Position position = new Position(1, MAX);
+        position.move(Direction.of(FALSE, FALSE));
+        assertThat(position).isEqualTo(new Position(1, MAX));
     }
 }

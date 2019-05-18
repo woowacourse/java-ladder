@@ -25,6 +25,10 @@ public class Position {
         }
     }
 
+    public void move(Direction direction) {
+        position = position + direction.move();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
