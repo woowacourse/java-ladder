@@ -4,6 +4,11 @@
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
     
+#todo
+ * [예외] 중복된 참가자가 있을 경우 예외 반환하기
+ * [예외] 참가자의 수가 2명 미만일 때 예외 반환하기
+ * [예외] 사다리의 높이가 1이하일 경우 예외 반환하기
+   
 # done
 < 사다리 게임 >
 1. 기능 요구 사항
