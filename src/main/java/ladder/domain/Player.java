@@ -8,9 +8,16 @@ public class Player {
 	private String playerName;
 
 	public Player(String playerName) {
+		validateNamesLength(playerName);
 		validateWordAllInPlayerName(playerName);
 		validateNameEmpty(playerName);
 		this.playerName = playerName;
+	}
+
+	private void validateNamesLength(String playerName) {
+		if (playerName.length() > 5) {
+			throw new IllegalArgumentException(UserOutput.VIOLATE_PLAYER_NAMES.getOutputMessage());
+		}
 	}
 
 	private void validateWordAllInPlayerName(String playerName) {

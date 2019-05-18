@@ -59,7 +59,7 @@ public class LadderGameApp {
 
 	public static Ladder generateLadder(int numberOfPlayers) {
 		try {
-			return LadderGenerator.generateLadder(numberOfPlayers, InputView.inputHeight());
+			return Ladder.generateLadder(numberOfPlayers, InputView.inputHeight());
 		} catch (Exception e) {
 			return generateLadder(numberOfPlayers);
 		}
