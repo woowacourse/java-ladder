@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
+    private static final String DELIMITER = ",";
     private List<Player> players = new ArrayList<>();
 
     public Players(String inputName) {
@@ -18,7 +19,7 @@ public class Players {
     }
 
     private List<String> validName(String inputName) {
-        List<String> names = Arrays.asList(inputName.split(","));
+        List<String> names = Arrays.asList(inputName.split(DELIMITER));
         if (names.size() < 2) {
             throw new IllegalArgumentException(ConsoleMessages.ERR_LADDER_RANGE.message());
         }

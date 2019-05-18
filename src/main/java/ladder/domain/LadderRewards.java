@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderRewards {
+    private static final String DELIMITER = ",";
     private List<String> rewards;
 
     public LadderRewards(String text, int width) {
 //        this.rewards =
 //        Arrays.asList(text.split(",")).
-        rewards = Arrays.stream(text.split(","))
+        rewards = Arrays.stream(text.split(DELIMITER))
                 .map(reward -> {
                     reward = reward.trim();
                     if (reward.isEmpty()) {
