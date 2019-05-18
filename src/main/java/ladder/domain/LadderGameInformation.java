@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -8,18 +9,11 @@ public class LadderGameInformation {
 	private final List<Reward> rewards;
 
 	public LadderGameInformation(List<Player> players, List<Reward> rewards) {
-		validateNamesLength(players);
 		validateOverlapPlayers(players);
 		validatePlayersNumber(players);
 		validateGameInformation(players, rewards);
 		this.players = players;
 		this.rewards = rewards;
-	}
-
-	public void validateNamesLength(List<Player> players) {
-		if (players.stream().anyMatch(name -> name.toString().length() > 5)) {
-			throw new IllegalArgumentException(UserOutput.VIOLATE_PLAYER_NAMES.getOutputMessage());
-		}
 	}
 
 	private void validateOverlapPlayers(List<Player> players) {
@@ -41,10 +35,10 @@ public class LadderGameInformation {
 	}
 
 	public List<Player> getPlayers() {
-		return players;
+		return Collections.unmodifiableList(players);
 	}
 
 	public List<Reward> getRewards() {
-		return rewards;
+		return Collections.unmodifiableList(rewards);
 	}
 }
