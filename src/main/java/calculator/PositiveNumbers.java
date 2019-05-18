@@ -10,6 +10,7 @@ public class PositiveNumbers {
     }
 
     public Positive sum() {
-        return new Positive(positives.stream().mapToInt(Positive::getNumber).sum());
+        return new Positive(positives.stream()
+                .mapToInt(Positive::getNumber).sum());
     }
 }

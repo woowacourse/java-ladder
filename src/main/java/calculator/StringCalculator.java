@@ -1,7 +1,5 @@
 package calculator;
 
-import javafx.geometry.Pos;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,10 +12,10 @@ public class StringCalculator {
 
     private static final String AFTER_SEPARATOR = "//";
 
-    private CustomSeparatorGroup customSeparatorGroup;
+    private CustomSeparators customSeparators;
 
-    StringCalculator() {
-        customSeparatorGroup = new CustomSeparatorGroup();
+    public StringCalculator() {
+        customSeparators = new CustomSeparators();
     }
 
     public CustomSeparator createCustomSeparator(String input) {
@@ -35,20 +33,18 @@ public class StringCalculator {
     }
 
     public int[] splitBySeparator(String expression) {
-        String[] temp = expression.split(customSeparatorGroup.combineSeparatorToRegex());
-        int[] result = new int[temp.length];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = Integer.parseInt(temp[i]);
-        }
-        return result;
+        String[] numbers = expression.split(customSeparators.combineSeparatorToRegex());
+        return Arrays.stream(numbers)
+                .mapToInt(Integer::parseInt)
+                .toArray();
     }
 
     public String[] splitByEnter(String input) {
-        return input.split(NEW_LINE, 2);
+        return input.split(NEW_LINE, SPLIT_BOUNDARY);
     }
 
     public Positive add(String input) {
-        if (isBlankOrNull(input)) {
+        if (isBlank(input)) {
             return new Positive(0);
         }
         String[] temp = splitByEnter(input);
@@ -64,15 +60,15 @@ public class StringCalculator {
                 .collect(Collectors.toList());
     }
 
-    private int[] splitExpression(String[] temp) {
-        if (temp.length == 1) {
-            return splitBySeparator(temp[0]);
+    private int[] splitExpression(String[] expression) {
+        if (expression.length == 1) {
+            return splitBySeparator(expression[0]);
         }
-        customSeparatorGroup.addCustomSeparator(createCustomSeparator(temp[0]));
-        return splitBySeparator(temp[1]);
+        customSeparators.addCustomSeparator(createCustomSeparator(expression[0]));
+        return splitBySeparator(expression[1]);
     }
 
-    private boolean isBlankOrNull(String input) {
+    private boolean isBlank(String input) {
         return input == null || input.isEmpty();
     }
 }
