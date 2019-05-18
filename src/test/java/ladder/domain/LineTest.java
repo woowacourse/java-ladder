@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DirectionsTest {
+public class LineTest {
     @Test
     void 생성되는_direction_수() {
-        Directions directions = new Directions(8);
+        Line directions = new Line(8);
         assertThat(directions.getDirections().size()).isEqualTo(8);
     }
 }

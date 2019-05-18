@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Directions {
+public class Line {
     private static final int RANDOM_RANGE = 2;
     private static final int ONE_PLAYER = 1;
 
     private final List<Direction> directions;
 
-    public Directions(int numberOfPlayers) {
+    public Line(int numberOfPlayers) {
         directions = new ArrayList<>();
         init(numberOfPlayers);
     }
