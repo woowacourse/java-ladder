@@ -1,10 +1,10 @@
 package ladder.domain;
 
-public class LadderEngine {
+public class Engine {
     private Players players;
     private final Ladder ladder;
 
-    public LadderEngine(Ladder ladder, Players playersBeforeGame) {
+    public Engine(Ladder ladder, Players playersBeforeGame) {
         validateNotNull(ladder);
         validateNotNull(playersBeforeGame);
         this.ladder = ladder;

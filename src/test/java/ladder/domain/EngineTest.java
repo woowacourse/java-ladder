@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderEngineTest {
+public class EngineTest {
     private Ladder ladder;
     private Players playersBeforeGame, playersAfterGame;
 
@@ -35,7 +35,7 @@ public class LadderEngineTest {
 
     @Test
     void playLadderGameTest() {
-        LadderEngine ladderEngine = new LadderEngine(ladder, playersBeforeGame);
-        assertThat(ladderEngine.playLadderGame()).isEqualTo(playersAfterGame);
+        Engine engine = new Engine(ladder, playersBeforeGame);
+        assertThat(engine.playLadderGame()).isEqualTo(playersAfterGame);
     }
 }
