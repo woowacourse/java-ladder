@@ -43,14 +43,16 @@ public class StringAddCalculator {
 
     private int sumResult(String[] texts) {
         try{
-            return Arrays.stream(texts).mapToInt(Integer::parseInt).filter(i -> {
-                if (i < 0) {
-                    throw new RuntimeException("음수는 입력값이 될 수 없습니다.");
-                }
-                return true;
-            }).sum();
+            return Arrays.stream(texts).mapToInt(Integer::parseInt).filter(this::checkNegativeNumber).sum();
         }catch (IllegalArgumentException e){
             throw new IllegalArgumentException("올바른 입력값이 아닙니다.");
         }
+    }
+
+    private boolean checkNegativeNumber(int number) {
+        if (number < 0) {
+            throw new RuntimeException("음수는 입력값이 될 수 없습니다.");
+        }
+        return true;
     }
 }
