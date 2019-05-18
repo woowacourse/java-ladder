@@ -27,8 +27,9 @@ class ValidatorTest {
     }
 
     @Test
-    void checkEmptyTag() {
-        assertThrows(IllegalArgumentException.class, () -> Validator.checkEmptyNames(new ArrayList<>()));
+    void checkNumberOfNames() {
+        assertThrows(IllegalArgumentException.class, () ->
+                Validator.checkNumberOfNames(new ArrayList<>(), 2));
     }
 
     @Test
