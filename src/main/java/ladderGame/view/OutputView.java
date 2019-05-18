@@ -6,28 +6,28 @@ import java.util.Map;
 import ladderGame.domain.*;
 
 public class OutputView {
-    public static void outputNames(List<User> users) {
+    public static void printNames(List<User> users) {
         for (User user : users) {
             System.out.printf("%-6s", user.getName());
         }
         System.out.println();
     }
 
-    public static void outputLadder(List<Floor> ladder) {
+    public static void printLadder(List<Floor> ladder) {
         for (Floor floor : ladder) {
-            outputFloor(floor);
+            printFloor(floor);
             System.out.println();
         }
     }
 
-    private static void outputFloor(Floor floor) {
+    private static void printFloor(Floor floor) {
         for (Point point : floor.getPoints()) {
             System.out.print("|");
-            outputStair(point.isHasRight());
+            printPoint(point.isHasRight());
         }
     }
 
-    private static void outputStair(boolean isStair) {
+    private static void printPoint(boolean isStair) {
         if (isStair) {
             System.out.print("-----");
         }
@@ -36,20 +36,27 @@ public class OutputView {
         }
     }
 
-    public static void outputResults(List<String> results) {
+    public static void printResults(List<String> results) {
         for (String result : results) {
             System.out.printf("%-6s", result);
         }
         System.out.println();
     }
 
-    public static void outputResult(String result) {
+    public static void printResult(String result) {
         System.out.println(result);
     }
 
     public static void printLadderUI(List<User> users, Ladder ladder, List<String> results) {
-        outputNames(users);
-        outputLadder(ladder.getFloors());
-        outputResults(results);
+        printNames(users);
+        printLadder(ladder.getFloors());
+        printResults(results);
+    }
+
+    public static void printResultAll(Map<String, String> resultMap) {
+        for (String key : resultMap.keySet()) {
+            String value = resultMap.get(key);
+            System.out.println(key + " : " + value);
+        }
     }
 }

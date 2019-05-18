@@ -22,21 +22,7 @@ public class LadderGameResult {
     }
 
     public String getResultByName(String name) {
-        if (name.equals("all")) {
-            return getResultAll();
-        }
-
         return resultMap.get(name);
-    }
-
-    private String getResultAll() {
-        StringBuffer buffer = new StringBuffer();
-
-        for(String key : resultMap.keySet()){
-            String value = resultMap.get(key);
-            buffer.append(key).append(":").append(value).append("\n");
-        }
-        return buffer.toString();
     }
 
     public Map<String, String> getResultMap() {
