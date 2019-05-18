@@ -26,19 +26,19 @@ public class OutputView {
     }
 
     public String line(LadderRow row) {
-        List<Integer> info = row.status();
+        List<LadderLine> lines = row.status();
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("   ");
-        for (int i = 0; i < info.size() - 1; i++) {
-            stringBuilder.append("|").append((mark(info.get(i))));
+        for (int i = 0; i < lines.size() - 1; i++) {
+            stringBuilder.append("|").append((mark(lines.get(i))));
         }
         stringBuilder.append("|");
         return stringBuilder.toString();
     }
 
 
-    private String mark(Integer number) {
-        if (number == LadderRules.RIGHT.number()) {
+    private String mark(LadderLine line) {
+        if (line.direction() == LadderRules.RIGHT) {
             return "-----";
         }
         return "     ";

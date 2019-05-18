@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.LadderLineTest;
 import ladder.domain.LadderRow;
 import ladder.domain.PlayerResult;
 import org.junit.Test;
@@ -16,7 +17,9 @@ public class OutputViewTest {
     public void 사다리_한줄_출력_문자열() {
 
         OutputView view = new OutputView();
-        LadderRow row = new LadderRow(Arrays.asList(1, -1, 0, 1, -1));
+        LadderRow row = new LadderRow(Arrays.asList(LadderLineTest.line(1),
+                LadderLineTest.line(-1), LadderLineTest.line(0),
+                LadderLineTest.line(1), LadderLineTest.line(-1)));
         view.print(row);
         assertEquals("   |-----|     |     |-----|", view.line(row));
 
@@ -25,7 +28,9 @@ public class OutputViewTest {
     @Test
     public void 사다리_한줄_출력_문자열2() {
         OutputView view = new OutputView();
-        LadderRow row = new LadderRow(Arrays.asList(0, 0, 0, 0, 0));
+        LadderRow row = new LadderRow(Arrays.asList(LadderLineTest.line(0),
+                LadderLineTest.line(0), LadderLineTest.line(0),
+                LadderLineTest.line(0), LadderLineTest.line(0)));
         view.print(row);
         assertEquals("   |     |     |     |     |", view.line(row));
 

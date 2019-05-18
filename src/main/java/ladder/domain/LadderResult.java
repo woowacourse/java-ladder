@@ -24,7 +24,7 @@ public class LadderResult {
 
         int index = ladder.rows().stream()
                 .reduce(position,
-                        (accumulator, ladderRow) -> accumulator + ladderRow.status().get(accumulator),
+                        (accumulator, ladderRow) -> accumulator + ladderRow.status().get(accumulator).position(),
                         (accumulator, element) -> accumulator + element);
 
         return rewards.reward(index);
