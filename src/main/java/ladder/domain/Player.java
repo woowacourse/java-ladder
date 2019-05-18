@@ -45,6 +45,4 @@ public class Player {
     public boolean matchName(String name) {
         return this.name.equals(name);
     }
-
-
 }
