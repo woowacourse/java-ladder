@@ -23,4 +23,8 @@ public enum Direction {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않은 Direction 입니다."));
     }
+
+    public static boolean isRight(Direction prevDirection){
+        return prevDirection == Direction.RIGHT;
+    }
 }
