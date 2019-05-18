@@ -12,14 +12,13 @@ import static org.junit.Assert.assertEquals;
 
 public class OutputViewTest {
 
-
     @Test
     public void 사다리_한줄_출력_문자열() {
 
         OutputView view = new OutputView();
         LadderRow row = new LadderRow(Arrays.asList(1, -1, 0, 1, -1));
         view.print(row);
-        assertEquals("|-----|     |     |-----|", view.line(row));
+        assertEquals("   |-----|     |     |-----|", view.line(row));
 
     }
 
@@ -28,7 +27,7 @@ public class OutputViewTest {
         OutputView view = new OutputView();
         LadderRow row = new LadderRow(Arrays.asList(0, 0, 0, 0, 0));
         view.print(row);
-        assertEquals("|     |     |     |     |", view.line(row));
+        assertEquals("   |     |     |     |     |", view.line(row));
 
     }
 

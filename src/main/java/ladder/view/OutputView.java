@@ -18,7 +18,7 @@ public class OutputView {
 
 
     public void print(Ladder ladder) {
-        List<LadderRow> rows = ladder.status();
+        List<LadderRow> rows = ladder.rows();
         for (int i = 0; i < rows.size(); i++) {
             System.out.println(line(rows.get(i)));
         }
@@ -30,9 +30,7 @@ public class OutputView {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("   ");
         for (int i = 0; i < info.size() - 1; i++) {
-            stringBuilder.append("|");
-            stringBuilder.append(mark(info.get(i)));
-
+            stringBuilder.append("|").append((mark(info.get(i))));
         }
         stringBuilder.append("|");
         return stringBuilder.toString();
@@ -54,10 +52,7 @@ public class OutputView {
     public String result(List<PlayerResult> playerResults) {
         StringBuilder stringBuilder = new StringBuilder();
         for (PlayerResult playerResult : playerResults) {
-            stringBuilder.append(playerResult.name());
-            stringBuilder.append(" : ");
-            stringBuilder.append(playerResult.reward());
-            stringBuilder.append("\n");
+            stringBuilder.append(playerResult.name()).append(" : ").append(playerResult.reward()).append("\n");
         }
         return stringBuilder.toString();
     }
