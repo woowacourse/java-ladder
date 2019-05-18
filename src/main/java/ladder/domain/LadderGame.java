@@ -35,12 +35,11 @@ public class LadderGame {
     }
 
     private Map<Player, Prize> getNameToPrize(int[] result) {
-        Map<Player, Prize> nameToPrize = new HashMap<>();
+        Map<Player, Prize> playerToPrize = new HashMap<>();
         for (int i = 0; i < result.length; i++) {
-            nameToPrize.put(players.get(result[i]), prizes.get(i));
+            playerToPrize.put(players.get(result[i]), prizes.get(i));
         }
-
-        return nameToPrize;
+        return playerToPrize;
     }
 
     private int judgeDirection(Direction direction) {
