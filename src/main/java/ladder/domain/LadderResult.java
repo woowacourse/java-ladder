@@ -10,26 +10,24 @@ public class LadderResult {
         this.rewards = reward;
     }
 
-    public String result(Ladder ladder, int position) {
+    public PlayerResult result(Ladder ladder, Player player) {
+        return new PlayerResult(player.name(), result(ladder, player.position()));
+    }
+
+    private String result(Ladder ladder, int position) {
 //        Stack<Integer> t = new Stack<>();
 //        t.push(position);
-//        ladder.status().forEach(row -> {
+//        ladder.rows().forEach(rows -> {
 //            int index = t.pop();
-//            t.push(index + row.status().get(index));
+//            t.push(index + rows.rows().get(index));
 //        });
 
-        int index = ladder.status().stream()
+        int index = ladder.rows().stream()
                 .reduce(position,
                         (accumulator, ladderRow) -> accumulator + ladderRow.status().get(accumulator),
                         (accumulator, element) -> accumulator + element);
 
         return rewards.reward(index);
-    }
-
-    public PlayerResult result(Ladder ladder, Player player) {
-        int index = player.position();
-
-        return new PlayerResult(player.name(), result(ladder, index));
     }
 
     public List<PlayerResult> result(Ladder ladder, Players players) {
