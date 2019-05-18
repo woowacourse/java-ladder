@@ -53,7 +53,7 @@ public class TextCalculatorTest {
 
     @Test
     void 정규표현식특수문자커스텀구분자1() {
-        assertThat(new TextCalculator().calculate("//$\n1$2,3")).isEqualTo(0);
+        assertThat(new TextCalculator().calculate("//$\n1$2,3")).isEqualTo(6);
     }
 
     @Test

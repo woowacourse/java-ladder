@@ -1,13 +1,14 @@
-package ladder.domain;
+package ladder.domain.reward;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Rewards {
-    private final List<String> rewards;
+public class RewardGroup {
+    private final List<Reward> rewards = new ArrayList<>();
 
-    public Rewards(final List<String> rewards, int size) {
+    public RewardGroup(final List<String> rewards, int size) {
         validateRewardsSize(rewards, size);
-        this.rewards = rewards;
+        rewards.stream().forEach(x -> this.rewards.add(new Reward(x)));
     }
 
     private void validateRewardsSize(List<String> rewards, int size) {
@@ -16,11 +17,11 @@ public class Rewards {
         }
     }
 
-    public String getNthReward(int index) {
+    public Reward getNthReward(int index) {
         return rewards.get(index);
     }
 
-    public List<String> getRewardList() {
+    public List<Reward> getRewardList() {
         return rewards;
     }
 }

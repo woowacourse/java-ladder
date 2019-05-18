@@ -1,9 +1,10 @@
 package ladder.view;
 
 import ladder.domain.LadderGameResult;
-import ladder.domain.Rewards;
+import ladder.domain.reward.RewardGroup;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.line.LineDTO;
+import ladder.domain.ladder.PointDTO;
+import ladder.domain.ladder.Line;
 import ladder.domain.participant.ParticipantGroup;
 
 import java.util.List;
@@ -14,16 +15,17 @@ public class OutputView {
     private static final String HORIZONTAL_LINE = "|";
     private static final int NAME_CONTAINER_WIDTH = 6;
 
-    public static void printLadderResult(ParticipantGroup participantGroup, Ladder ladder, Rewards rewards) {
+    public static void printLadderResult(ParticipantGroup participantGroup, Ladder ladder, RewardGroup rewards) {
         System.out.println("\n사다리 결과\n");
-        drawName(participantGroup.getNames());
+        drawParticipants(participantGroup);
         drawLadder(ladder);
         drawRewards(rewards);
         System.out.println();
     }
 
-    private static void drawName(List<String> names) {
-        names.stream().forEach(name -> System.out.println(name + nameBlank(name.length())));
+    private static void drawParticipants(ParticipantGroup participants) {
+        participants.getParticipantList().stream()
+                .forEach(x -> System.out.print(x.toString() + nameBlank(x.toString().length())));
         System.out.println();
     }
 
@@ -36,34 +38,42 @@ public class OutputView {
     }
 
     public static void drawLadder(Ladder ladder) {
-        for (LineDTO lineDTO : ladder.getLineDTO()) {
-            drawLine(lineDTO);
+        for (Line line : ladder.getLines()) {
+            drawLine(line);
             System.out.println();
         }
     }
 
-    private static void drawLine(LineDTO lineDTO) {
-        for (Boolean t : lineDTO.getPoints()) {
+    private static void drawLine(Line line) {
+        for (PointDTO pointDTO : line.getPointDTO()) {
             System.out.print(HORIZONTAL_LINE);
-            lineOrEmpty(t);
+            lineOrEmpty(pointDTO.getRight());
         }
     }
 
-    private static void lineOrEmpty(boolean isPoint) {
-        if (isPoint) System.out.print(VERTICAL_LINE);
-        else System.out.print(VERTICAL_EMPTY);
+    private static void lineOrEmpty(boolean haveLine) {
+        if (haveLine) {
+            System.out.print(VERTICAL_LINE);
+            return;
+        }
+        System.out.print(VERTICAL_EMPTY);
     }
 
-    private static void drawRewards(Rewards rewards) {
-        rewards.getRewardList().stream().forEach(x -> System.out.print(x + nameBlank(x.length())));
+    private static void drawRewards(RewardGroup rewards) {
+        rewards.getRewardList().stream()
+                .forEach(x -> System.out.print(x.toString() + nameBlank(x.toString().length())));
         System.out.println();
     }
 
     public static void printGameResult(LadderGameResult ladderGameResult) {
         List<String> names = InputView.inputResultNames();
         System.out.println("\n실행 결과");
-        ladderGameResult.getResult(names).entrySet().stream()
-                .forEach(entry -> printResult(entry.getKey(), entry.getValue()));
+        try {
+            ladderGameResult.getResult(names).entrySet().stream()
+                    .forEach(entry -> printResult(entry.getKey(), entry.getValue()));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println();
     }
 

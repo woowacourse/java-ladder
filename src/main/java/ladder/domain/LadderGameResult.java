@@ -2,6 +2,8 @@ package ladder.domain;
 
 import ladder.domain.participant.Participant;
 import ladder.domain.participant.ParticipantGroup;
+import ladder.domain.reward.Reward;
+import ladder.domain.reward.RewardGroup;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -11,13 +13,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class LadderGameResult {
-    private Map<Participant, String> gameResult = new LinkedHashMap<>();
-    private boolean isEnd = false;
+    private Map<Participant, Reward> gameResult = new LinkedHashMap<>();
+    private boolean isEnd;
 
-    public LadderGameResult(ParticipantGroup participantGroup, Rewards rewards, List<Integer> ranking) {
+    public LadderGameResult(ParticipantGroup participantGroup, RewardGroup rewards, List<Integer> ranking) {
         for (Participant participant : participantGroup.getParticipantList()) {
-            gameResult.put(participant, rewards.getNthReward(ranking.get(participantGroup.getOrder(participant))));
+            gameResult.put(participant, rewards.getNthReward(ranking.get(participantGroup.orderOf(participant))));
         }
+        isEnd =  false;
     }
 
     private Participant findParticipant(String name) {
@@ -27,13 +30,14 @@ public class LadderGameResult {
         if (participant.isPresent()) {
             return participant.get();
         }
+        System.out.println(name);
         throw new IllegalArgumentException("등록되지 않은 참가자 입니다.");
     }
 
     public HashMap<String, String> getResult(List<String> names) {
         names = checkInput(names);
         LinkedHashMap<String, String> gameResult = new LinkedHashMap<>();
-        names.stream().forEach(name -> gameResult.put(name, this.gameResult.get(findParticipant(name))));
+        names.stream().forEach(name -> gameResult.put(name, this.gameResult.get(findParticipant(name)).toString()));
         return gameResult;
     }
 

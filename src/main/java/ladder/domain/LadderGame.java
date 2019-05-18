@@ -1,20 +1,23 @@
 package ladder.domain;
 
+import ladder.domain.ladder.LadderGenerator;
 import ladder.domain.participant.ParticipantGroup;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.reward.RewardGroup;
+import ladder.domain.rule.RandomPointLadderRule;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
     private final ParticipantGroup participantGroup;
-    private final Rewards rewards;
+    private final RewardGroup rewards;
     private final Ladder ladder;
 
-    public LadderGame(final ParticipantGroup participants, final Rewards rewards, int ladderHeight) {
+    public LadderGame(final ParticipantGroup participants, final RewardGroup rewards, int ladderHeight) {
         this.participantGroup = participants;
         this.rewards = rewards;
-        this.ladder = new Ladder(ladderHeight, participantGroup.getSize());
+        this.ladder = LadderGenerator.generate(participants.getSize(), ladderHeight, new RandomPointLadderRule());
     }
 
     public Ladder getLadder() {
@@ -25,7 +28,7 @@ public class LadderGame {
         return new LadderGameResult(participantGroup, rewards, play());
     }
 
-    public List<Integer> play() {
+    private List<Integer> play() {
         List<Integer> order = new ArrayList<>();
         for (int i = 0; i < participantGroup.getSize(); i++) {
             order.add(ladder.getEndPoint(i));

@@ -1,42 +1,26 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.line.Line;
-import ladder.domain.ladder.line.LineDTO;
-import ladder.domain.rule.LadderRule;
-import ladder.domain.rule.RandomPointLadderRule;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;
-    private static final int MIN_LADDER_WIDTH = 2;
 
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
-    public Ladder(int ladderHeight, int ladderWidth) {
-        this(ladderHeight, ladderWidth, new RandomPointLadderRule());
+    public Ladder(List<Line> lines) {
+        validateLadder(lines);
+        this.lines = lines;
     }
 
-    public Ladder(int ladderHeight, int ladderWidth, LadderRule rule) {
-        validateLadderSize(ladderHeight, ladderWidth);
-        for (int i = 0; i < ladderHeight; i++) {
-            lines.add(new Line(ladderWidth, rule));
-        }
-    }
-
-    private void validateLadderSize(int ladderHeight, int ladderWidth) {
-        if (ladderHeight < MIN_LADDER_HEIGHT) {
+    private void validateLadder(List<Line> lines) {
+        if (lines.size() < MIN_LADDER_HEIGHT) {
             throw new IllegalArgumentException("사다리 높이는 " + MIN_LADDER_HEIGHT + " 이상입니다.");
         }
-        if (ladderWidth < MIN_LADDER_WIDTH) {
-            throw new IllegalArgumentException("사다리의 폭은 " + MIN_LADDER_WIDTH + " 이상입니다.");
+        int firstLineLength = lines.get(0).width();
+        if (lines.stream().anyMatch(x -> x.width() != firstLineLength)) {
+            throw new IllegalArgumentException("사다리 형태가 아닙니다.");
         }
-    }
-
-    public List<LineDTO> getLineDTO() {
-        return lines.stream().map(LineDTO::new).collect(Collectors.toList());
     }
 
     public int getEndPoint(int index) {
@@ -45,5 +29,22 @@ public class Ladder {
             endPoint = line.move(endPoint);
         }
         return endPoint;
+    }
+
+    public List<Line> getLines() {
+        return lines;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladder ladder = (Ladder) o;
+        return lines.equals(ladder.lines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lines);
     }
 }

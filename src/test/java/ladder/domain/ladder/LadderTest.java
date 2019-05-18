@@ -1,11 +1,12 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.line.LineDTO;
 import ladder.domain.rule.LadderRule;
+import ladder.domain.rule.RandomPointLadderRule;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -13,44 +14,53 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class LadderTest {
     int countPerson;
     int ladderHeight;
-    List<LineDTO> lines;
+    Ladder ladder;
 
     @BeforeEach
     public void setup() {
         countPerson = 3;
         ladderHeight = 5;
-        lines = new Ladder(ladderHeight, countPerson).getLineDTO();
+        ladder = LadderGenerator.generate(countPerson, ladderHeight, new RandomPointLadderRule());
     }
 
     @Test
     public void 사다리생성확인() {
-        assertThat(lines.size()).isEqualTo(ladderHeight);
+        assertThat(ladder.getLines().size()).isEqualTo(ladderHeight);
     }
 
     @Test
     public void 라인너비주입확인() {
-        for (int i = 0; i < lines.size(); i++) {
-            assertThat(lines.get(i).getPoints().size()).isEqualTo(countPerson);
+        for (Line line : ladder.getLines()) {
+            assertThat(line.getPointDTO().size()).isEqualTo(countPerson);
         }
     }
 
     @Test
     public void 최소높이테스트() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Ladder(0, 100);
+            new Ladder(Arrays.asList());
+        });
+    }
+
+    @Test
+    public void 길이가다른라인구성테스트() {
+        Line line1 = new Line(Arrays.asList(new Point(0, false, false), new Point(1, false, true)));
+        Line line2 = new Line(Arrays.asList(new Point(0, false, false), new Point(1, false, true), new Point(2, true, true)));
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Ladder(Arrays.asList(line1, line2));
         });
     }
 
     @Test
     public void 도착점찾기모두True() {
-        int i = 0;
-        Ladder ladder = new Ladder(5, 2, new ForcedTrueRule());
+        Ladder ladder = LadderGenerator.generate(3, 3, new ForcedTrueRule());
         assertThat(ladder.getEndPoint(0)).isEqualTo(1);
     }
 
     @Test
     public void 도착점찾기모두교차() {
-        Ladder ladder = new Ladder(3, 4, new ForcedRule());
+        Ladder ladder = LadderGenerator.generate(4, 3, new ForcedRule());
         assertThat(ladder.getEndPoint(0)).isEqualTo(3);
         assertThat(ladder.getEndPoint(1)).isEqualTo(1);
         assertThat(ladder.getEndPoint(2)).isEqualTo(2);
@@ -63,6 +73,6 @@ class ForcedRule implements LadderRule {
     @Override
     public boolean isAvailablePoint() {
         num++;
-        return num != 3;
+        return num != 5;
     }
 }

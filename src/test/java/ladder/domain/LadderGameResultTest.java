@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.participant.ParticipantGroup;
+import ladder.domain.reward.RewardGroup;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,7 @@ class LadderGameResultTest {
     @BeforeEach
     public void setup() {
         ParticipantGroup participants = new ParticipantGroup(Arrays.asList("a", "b", "c"));
-        Rewards rewards = new Rewards(Arrays.asList("1", "2", "3"), 3);
+        RewardGroup rewards = new RewardGroup(Arrays.asList("1", "2", "3"), 3);
         List<Integer> ladderNumbers = Arrays.asList(1, 2, 0);
         ladderGameResult = new LadderGameResult(participants, rewards, ladderNumbers);
     }
@@ -42,15 +43,15 @@ class LadderGameResultTest {
         multiResult.put("a", "2");
         multiResult.put("b", "3");
         multiResult.put("c", "1");
-        assertThat(ladderGameResult.getResult(Arrays.asList("l"))).isEqualTo(multiResult);
+        assertThat(ladderGameResult.getResult(Arrays.asList("all"))).isEqualTo(multiResult);
         assertThat(ladderGameResult.getResult(Arrays.asList("All"))).isEqualTo(multiResult);
         assertThat(ladderGameResult.getResult(Arrays.asList("aLl"))).isEqualTo(multiResult);
     }
 
     @Test
     public void All입력시종료() {
-        assertThat(ladderGameResult.isEnd()).isTrue();
-        ladderGameResult.getResult(Arrays.asList("All"));
         assertThat(ladderGameResult.isEnd()).isFalse();
+        ladderGameResult.getResult(Arrays.asList("All"));
+        assertThat(ladderGameResult.isEnd()).isTrue();
     }
 }
