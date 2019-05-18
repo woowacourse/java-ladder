@@ -41,10 +41,8 @@ public class OutputView {
 
 	public static void printResult(LadderGameResult ladderGameResult, String name) {
 		if (name.equals(UserOutput.PRINT_ALL_PLAYER.getOutputMessage())) {
-			// TODO : depth 2 줄이기.
-			for (Player playerName : ladderGameResult.getAllPlayerNames()) {
-				System.out.println(playerName + " : " + ladderGameResult.getReward(playerName));
-			}
+			ladderGameResult.getAllPlayerNames().stream()
+							.forEach(playerName -> System.out.println(playerName + " : " + ladderGameResult.getReward(playerName)));
 			return;
 		}
 
