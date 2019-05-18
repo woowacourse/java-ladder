@@ -71,7 +71,7 @@ public class ParticipantGroup {
         sb.append(participants.stream()
             .map(Participant::toString)
             .collect(Collectors.joining(", \n")))
-        .append("\n ]");
+            .append("\n ]");
         return sb.toString();
     }
 }

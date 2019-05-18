@@ -35,7 +35,7 @@ public class OutputView {
         assertLists(participants, destinations);
 
         System.out.println("실행 결과");
-        for(int i = 0; i < participants.size(); i++) {
+        for (int i = 0; i < participants.size(); i++) {
             System.out.printf("%s : %s\n", participants.get(i), destinations.get(i));
         }
     }

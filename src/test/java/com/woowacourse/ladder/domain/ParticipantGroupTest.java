@@ -10,7 +10,7 @@ public class ParticipantGroupTest {
     @Test
     void create() {
         assertThat(new ParticipantGroup("pobi, crong, jk"))
-        .isEqualTo(new ParticipantGroup("pobi,crong,jk"));
+            .isEqualTo(new ParticipantGroup("pobi,crong,jk"));
     }
 
     @Test

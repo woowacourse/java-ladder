@@ -27,7 +27,7 @@ public class DestinationTest {
     @Test
     void createWithOverLengthString() {
         assertThrows(IllegalArgumentException.class, () -> {
-           new Destination("thesix");
+            new Destination("thesix");
         });
     }
 }

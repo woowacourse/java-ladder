@@ -58,7 +58,7 @@ public class AppMain {
     private static DestinationGroup tryCreateDestinationGroup() {
         try {
             return new DestinationGroup(InputView.promptResults());
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printError("올바르지 않은 결과 입력입니다.");
         }
         return null;
@@ -66,7 +66,7 @@ public class AppMain {
 
     private static LadderHeight getLadderHeight() {
         LadderHeight height = tryGetLadderHeight();
-        while(height == null) {
+        while (height == null) {
             height = tryGetLadderHeight();
         }
         return height;

@@ -2,7 +2,7 @@ package com.woowacourse.ladder.domain;
 
 import java.util.List;
 
-public class TestBooleanGenerator implements  BooleanGenerator{
+public class TestBooleanGenerator implements BooleanGenerator {
 
     private final List<Boolean> booleans;
     private int current;
