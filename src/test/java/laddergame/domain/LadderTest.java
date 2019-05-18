@@ -18,7 +18,7 @@ class LadderTest {
 
     @Test
     void 사다리를_타고_제대로_내려가는지_확인() {
-        Ladder ladder = LadderGenerator.generateLadder(5, 2, new AlwaysCreateRule());
+        Ladder ladder = LadderGenerator.generateLadder(2, 5, new AlwaysCreateRule());
 
         assertThat(ladder.takeLadder(0)).isEqualTo(1);
         assertThat(ladder.takeLadder(1)).isEqualTo(0);

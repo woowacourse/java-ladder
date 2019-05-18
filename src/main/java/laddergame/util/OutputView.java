@@ -5,20 +5,30 @@ import laddergame.domain.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OutputView {
     public static void outputMessage(String message) {
         System.out.println(message);
     }
 
-    public static void outputLadderGame(Tags members, Ladder ladder, Tags prizes) {
+    public static void outputLadderGame(LadderGame ladderGame) {
+        List<String> playerNames = ladderGame.getPlayers()
+                .stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
+        List<String> rewardNames = ladderGame.getRewards()
+                .stream()
+                .map(Reward::getName)
+                .collect(Collectors.toList());
+
         System.out.println("사다리 결과");
-        outputTag(members.getTagsName());
-        outputLadder(ladder);
-        outputTag(prizes.getTagsName());
+        outputNames(playerNames);
+        outputLadder(ladderGame.getLadder());
+        outputNames(rewardNames);
     }
 
-    private static void outputTag(List<String> names) {
+    private static void outputNames(List<String> names) {
         StringBuilder namesView = new StringBuilder();
         for (String name : names) {
             namesView.append(makeNameView(name));
@@ -60,20 +70,23 @@ public class OutputView {
         return scaffold ? "------" : "      ";
     }
 
-    public static void outputLadderGameResult(String person, LadderGameResult ladderGameResult) {
+    public static void outputLadderGameResult(String name, LadderGameResult ladderGameResult) {
         System.out.println("실행 결과");
-        if (person.equals("all")) {
-            outputAllResult(ladderGameResult.allPrizes());
+        if (name.equals("all")) {
+            outputAllResult(ladderGameResult.allResult());
             return;
         }
-        System.out.println(ladderGameResult.prize(person));
+        System.out.println(ladderGameResult.result(name).getName());
     }
 
-    private static void outputAllResult(Map<String, String> allPrizes) {
-        StringBuilder result = new StringBuilder();
-        for (String person : allPrizes.keySet()) {
-            result.append(person).append(" : ").append(allPrizes.get(person)).append('\n');
+    private static void outputAllResult(Map<Player, Reward> results) {
+        StringBuilder outputResult = new StringBuilder();
+        for (Player player : results.keySet()) {
+            outputResult.append(player.getName())
+                    .append(" : ")
+                    .append(results.get(player).getName())
+                    .append('\n');
         }
-        System.out.print(result);
+        System.out.print(outputResult);
     }
 }

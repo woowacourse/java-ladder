@@ -8,6 +8,23 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ValidatorTest {
+    @Test
+    void checkNullName() {
+        assertThrows(IllegalArgumentException.class, () ->
+                Validator.checkBlankName(null));
+    }
+
+    @Test
+    void checkBlankName() {
+        assertThrows(IllegalArgumentException.class, () ->
+                Validator.checkBlankName(""));
+    }
+
+    @Test
+    void checkNameLength() {
+        assertThrows(IllegalArgumentException.class, () ->
+                Validator.checkNameLength("abcd",3));
+    }
 
     @Test
     void checkEmptyTag() {

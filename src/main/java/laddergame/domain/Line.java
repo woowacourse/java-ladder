@@ -60,11 +60,4 @@ public class Line {
     public int hashCode() {
         return Objects.hash(scaffolds);
     }
-
-    @Override
-    public String toString() {
-        return "Line{" +
-                "scaffolds=" + scaffolds +
-                '}';
-    }
 }

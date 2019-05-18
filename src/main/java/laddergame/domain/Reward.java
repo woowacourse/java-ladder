@@ -12,4 +12,8 @@ public class Reward {
         Validator.checkNameLength(name, MAX_NAME_LENGTH);
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
 }
