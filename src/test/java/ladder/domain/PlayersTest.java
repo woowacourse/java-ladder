@@ -23,4 +23,10 @@ public class PlayersTest {
     void players가_null인_경우() {
         assertThatThrownBy(() -> new Players(null)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 중복되는_players가_존재할_경우() {
+        String[] playerNames = {"pobi", "denis", "pobi"};
+        assertThatThrownBy(() -> new Players(playerNames)).isInstanceOf(IllegalArgumentException.class);
+    }
 }
