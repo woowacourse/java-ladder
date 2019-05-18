@@ -9,6 +9,7 @@ public enum UserOutput {
 	DEMAND_GAME_RESULTS("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"),
 	DEMAND_PLAYER_NAME_FOR_RESULT("결과를 보고 싶은 사람은?"),
 	VIOLATE_PLAYER_NAMES("참가자 이름을 5글자 이내로 입력해주세요."),
+	VIOLATE_PLAYER_NAME_ALL("참가자 이름에 all은 들어갈 수 없습니다."),
 	VIOLATE_LADDER_HEIGHT("사다리의 높이를 숫자로 입력해주세요."),
 	VIOLATE_PLAYER_NAME("잘못된 입력입니다."),
 	VIOLATE_GAME_RESULTS("결과 값의 수가 참가자 수와 다릅니다."),

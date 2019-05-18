@@ -15,7 +15,12 @@ public class ValidatorTest {
 
 	@Test
 	void 글자수_5자_초과인_값이_있을_경우_예외_반환() {
-		assertThrows(IllegalArgumentException.class, () -> Validator.validateNamesLength(Arrays.asList("pobicrong", "crong")));
+		assertThrows(IllegalArgumentException.class, () -> Validator.validatePlayerNameAll(Arrays.asList("pobicrong", "crong")));
+	}
+
+	@Test
+	void 참가자_이름이_all인_경우_예외_반환() {
+		assertThrows(IllegalArgumentException.class, () -> Validator.validateNamesLength(Arrays.asList("pobicrong", "crong", "all")));
 	}
 
 	@Test
@@ -26,19 +31,5 @@ public class ValidatorTest {
 	@Test
 	void 사다리_높이값이_숫자가_아닌_경우_예외_반환() {
 		assertThrows(NumberFormatException.class, () -> Validator.validateNumber("a"));
-	}
-
-	@Test
-	void 결과_수가_참가자_수와_같을_경우() {
-		List<String> players = Arrays.asList("pobi", "crong", "jk");
-		List<String> results = Arrays.asList("꽝", "100", "500");
-		assertDoesNotThrow(() -> Validator.compareLength(players, results));
-	}
-
-	@Test
-	void 결과_수가_참가자_수와_다를_경우_예외_반환() {
-		List<String> players = Arrays.asList("pobi", "crong");
-		List<String> results = Arrays.asList("꽝", "100", "500");
-		assertThrows(IllegalArgumentException.class, () -> Validator.compareLength(players, results));
 	}
 }
