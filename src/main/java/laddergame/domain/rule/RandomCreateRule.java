@@ -1,10 +1,10 @@
 package laddergame.domain.rule;
 
-import laddergame.util.RandomGenerator;
+import java.util.Random;
 
 public class RandomCreateRule implements Rule {
     @Override
     public boolean canCreate() {
-        return RandomGenerator.makeTrueOrFalse();
+        return new Random().nextBoolean();
     }
 }
