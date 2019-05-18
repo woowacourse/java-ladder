@@ -8,8 +8,4 @@ public class RandomGenerator {
 	public static boolean getNextValue() {
 		return random.nextBoolean();
 	}
-
-	public static boolean getNextValue(Boolean previousValue) {
-		return (previousValue)? false : random.nextBoolean();
-	}
 }
