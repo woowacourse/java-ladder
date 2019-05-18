@@ -14,7 +14,7 @@ public class LadderTest {
         Ladder ladder = new Ladder().make(randomGenerator, 5, 2);
 
         LadderRow ladderRow = new LadderRow(Arrays.asList(0, 0, 0, 0, 0));
-        assertEquals(ladderRow.status(), ladder.status(0).status());
+        assertEquals(ladderRow.status(), ladder.rows(0).status());
     }
 
     @Test
@@ -24,7 +24,7 @@ public class LadderTest {
         Ladder ladder = new Ladder().make(randomGenerator, 5, 2);
 
         LadderRow ladderRow = new LadderRow(Arrays.asList(1, -1, 1, -1, 0));
-        assertEquals(ladderRow.status(), ladder.status(1).status());
+        assertEquals(ladderRow.status(), ladder.rows(1).status());
     }
 
     @Test(expected = IllegalArgumentException.class)

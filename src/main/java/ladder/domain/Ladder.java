@@ -37,18 +37,22 @@ public class Ladder {
         make(randomGenerator, width, height);
     }
 
-    LadderRow status(int index) {
-        return rows.get(index);
+    LadderRow rows(int index) {
+        try {
+            return rows.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    public List<LadderRow> status() {
+    public List<LadderRow> rows() {
         return rows;
     }
 
     Ladder make(RandomGenerator randomGenerator, int width, int height) {
         valid(width, height);
         for (int i = 0; i < height; i++) {
-            rows.add(new LadderRow().row(width));
+            rows.add(new LadderRow().manual(width, randomGenerator));
         }
         return this;
     }
