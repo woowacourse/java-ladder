@@ -9,7 +9,7 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines) {
+    Ladder(List<Line> lines) {
         validateLadder(lines);
         this.lines = Collections.unmodifiableList(lines);
     }

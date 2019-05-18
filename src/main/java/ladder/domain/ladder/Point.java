@@ -2,7 +2,7 @@ package ladder.domain.ladder;
 
 import java.util.Objects;
 
-public class Point {
+class Point {
     private final Direction direction;
     private final int position;
 
@@ -11,15 +11,11 @@ public class Point {
         this.direction = direction;
     }
 
-    public static Point firstPoint(boolean tmp) {
+    static Point firstPoint(boolean tmp) {
         return new Point(0, Direction.firstDirection(tmp));
     }
 
-    public static Point of(int position, Direction direction) {
-        return new Point(position, direction);
-    }
-
-    public Point nextPoint(int maxPosition, boolean tmp) {
+    Point nextPoint(int maxPosition, boolean tmp) {
         if (maxPosition > position + 1) {
             return new Point(position + 1, direction.nextDirection(tmp));
         }
@@ -29,15 +25,16 @@ public class Point {
         throw new IllegalArgumentException();
     }
 
-    public int nextPointPosition() {
+    static Point of(int position, Direction direction) {
+        return new Point(position, direction);
+    }
+
+    int nextPointPosition() {
         return position + direction.move();
     }
 
-    public boolean isRightDirection() {
-        if (direction.equals(Direction.of(false, true))) {
-            return true;
-        }
-        return false;
+    boolean isRightDirection() {
+        return direction.equals(Direction.of(false, true));
     }
 
     @Override

@@ -2,7 +2,7 @@ package ladder.domain.ladder;
 
 import java.util.Objects;
 
-public class Direction {
+class Direction {
     private boolean left;
     private boolean right;
 
@@ -14,23 +14,23 @@ public class Direction {
         this.right = right;
     }
 
-    public static Direction firstDirection(boolean tmp) {
+    static Direction firstDirection(boolean tmp) {
         return new Direction(false, tmp);
     }
 
-    public static Direction of(boolean left, boolean right) {
+    static Direction of(boolean left, boolean right) {
         return new Direction(left, right);
     }
 
-    public Direction nextDirection(boolean injectionValue) {
+    Direction nextDirection(boolean injectionValue) {
         return new Direction(right, (!right && injectionValue));
     }
 
-    public Direction lastDirection() {
+    Direction lastDirection() {
         return new Direction(right, false);
     }
 
-    public int move() {
+    int move() {
         if (left) {
             return -1;
         }

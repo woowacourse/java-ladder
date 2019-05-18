@@ -6,7 +6,7 @@ public class Participant {
 
     private final String name;
 
-    public Participant(final String name) {
+    Participant(final String name) {
         validateNameLength(name);
         validateForbiddenName(name);
         this.name = name;

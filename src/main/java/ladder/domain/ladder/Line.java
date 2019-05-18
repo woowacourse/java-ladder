@@ -10,7 +10,7 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(List<Point> points) {
+    Line(List<Point> points) {
         validateLineWidth(points.size());
         this.points = Collections.unmodifiableList(points);
     }
@@ -21,7 +21,7 @@ public class Line {
         }
     }
 
-    public int move(int point) {
+    int move(int point) {
         return points.get(point).nextPointPosition();
     }
 
@@ -29,7 +29,7 @@ public class Line {
         return points.stream().map(PointDTO::new).collect(Collectors.toList());
     }
 
-    public int width() {
+    int width() {
         return points.size();
     }
 
