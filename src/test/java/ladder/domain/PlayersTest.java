@@ -16,12 +16,12 @@ public class PlayersTest {
 
     @Test
     void goDownTest() {
-        List<Player> p = Arrays.asList(new Player("pobi", new Position(0)), new Player("crong", new Position(1)), new Player("honux", new Position(2)));
+        List<Player> p = Arrays.asList(new Player(new PlayerName("pobi"), new Position(0)), new Player(new PlayerName("crong"), new Position(1)), new Player(new PlayerName("honux"), new Position(2)));
         Players players = new Players(p);
         Point first = Point.first(true);
         Point next = first.next(false);
         Line line = new Line(Arrays.asList(first, next, next.last()));
-        p = Arrays.asList(new Player("pobi", new Position(1)), new Player("crong", new Position(0)), new Player("honux", new Position(2)));
+        p = Arrays.asList(new Player(new PlayerName("pobi"), new Position(1)), new Player(new PlayerName("crong"), new Position(0)), new Player(new PlayerName("honux"), new Position(2)));
         Players movedPlayers = new Players(p);
         assertThat(players.goDown(line)).isEqualTo(movedPlayers);
     }
