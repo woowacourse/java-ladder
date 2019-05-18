@@ -1,9 +1,6 @@
 package ladderGame.domain;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Floor {
     private final List<Point> points = new ArrayList<>();
@@ -31,7 +28,7 @@ public class Floor {
     }
 
     public List<Point> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 
     @Override
