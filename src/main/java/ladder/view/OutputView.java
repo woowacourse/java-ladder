@@ -15,8 +15,8 @@ public class OutputView {
 	private static void printLine(Line line) {
 		List<String> steps = new ArrayList<>();
 
-		for (boolean point : line.getPoints()) {
-			steps.add((point) ? UserOutput.LADDER_STEP.getOutputMessage()
+		for (int i = 0; i < line.getPoints().size() - 1; i++) {
+			steps.add((line.getPoints().get(i).canGoRight()) ? UserOutput.LADDER_STEP.getOutputMessage()
 					: UserOutput.LADDER_SPACE.getOutputMessage());
 		}
 

@@ -36,12 +36,15 @@ public class LadderGenerator {
 	}
 
 	public static Line createLine(int countOfPerson) {
-		List<Boolean> points = new ArrayList<>();
+		List<Point> points = new ArrayList<>();
 
-		points.add(RandomGenerator.getNextValue());
+		points.add(Point.first());
+
 		for (int i = 1; i < countOfPerson - 1; i++) {
-			points.add(RandomGenerator.getNextValue(points.get(i - 1)));
+			points.add(Point.next(points.get(i-1).canGoRight()));
 		}
+		points.add(Point.last(points.get(countOfPerson-2).canGoRight()));
+
 		return new Line(points);
 	}
 }

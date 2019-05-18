@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -14,10 +15,10 @@ class LadderTest {
 
 	@BeforeEach
 	void init() {
-		List<Boolean> points = new ArrayList<>();
-		for (int i = 0; i < countOfNumber; ++i) {
-			points.add((i % 2 == 0) ? true : false);
-		}
+		List<Point> points = new ArrayList<>(Arrays.asList(new Point(false, true),
+				new Point(true, false), new Point(false, true),
+				new Point(true, false),
+				new Point(false, false)));
 
 		List<Line> lines = new ArrayList<>();
 		for (int i = 0; i < 3; ++i) {
@@ -29,7 +30,7 @@ class LadderTest {
 
 	@Test
 	void 참가자의_처음_위치에_따라_마지막_위치_반환() {
-		int[] playerLastPosition = {1, 0, 3, 2, 5};
+		int[] playerLastPosition = {1, 0, 3, 2, 4};
 
 		for (int i = 0; i < countOfNumber; ++i) {
 			assertEquals(ladder.getLastPosition(i), playerLastPosition[i]);

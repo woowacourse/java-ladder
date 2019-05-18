@@ -11,9 +11,8 @@ public class Ladder {
 
     public int getLastPosition(int playerPosition) {
         int lastPosition = playerPosition;
-
         for (Line line : lines) {
-            lastPosition = line.getNextPositon(lastPosition);
+            lastPosition = line.getNextPosition(lastPosition);
         }
 
         return lastPosition;
