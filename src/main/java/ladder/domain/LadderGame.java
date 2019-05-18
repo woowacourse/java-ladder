@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
-    private static final int BOUNDARY_CHECK = 1;
+    private static final int LEFT_BOUNDARY_CHECK = 1;
 
-    public static List<Integer> play(Ladder ladder) {
+    public static LadderResult play(Ladder ladder) {
         List<Integer> result = new ArrayList<>();
         int numberOfPeople = ladder.getNumberOfPeople();
 
@@ -14,7 +14,7 @@ public class LadderGame {
             result.add(decidePosition(ladder, i));
         }
 
-        return result;
+        return new LadderResult(result);
     }
 
     private static int decidePosition(Ladder ladder, int column) {
@@ -32,7 +32,7 @@ public class LadderGame {
         if (column < ladder.getNumberOfPeople() - 1 && ladder.getLine(row).isConnected(column)) {
             return column + 1;
         }
-        if (column >= BOUNDARY_CHECK && ladder.getLine(row).isConnected(column - 1)) {
+        if (column >= LEFT_BOUNDARY_CHECK && ladder.getLine(row).isConnected(column - 1)) {
             return column - 1;
         }
 

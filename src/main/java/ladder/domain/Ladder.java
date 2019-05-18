@@ -10,8 +10,8 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public void connect(int lineNumber, int point) { // 사다리 연결 가능한 위치에 랜덤넘버 보내서 그리게 함
-        lines.get(lineNumber).connect(point);
+    public void connect(LadderBuildingStrategy strategy, int lineNumber, int point) {
+        lines.get(lineNumber).connect(strategy, point);
     }
 
     public Line getLine(int lineNumber) {

@@ -1,14 +1,31 @@
 package ladder.domain;
 
-import ladder.utils.RandomValueUtils;
-
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private ArrayList<Boolean> points = new ArrayList<>();
+    private List<Boolean> points = new ArrayList<>();
 
-    public boolean isAvailableToConnect(int point) {
+    public boolean isConnected(int point) {
+        if (point >= points.size()) {
+            return false;
+        }
+
+        return points.get(point);
+    }
+
+    public void connect(LadderBuildingStrategy strategy, int point) {
+        if (!isAvailableToConnect(point)) {
+            points.add(false);
+
+            return;
+        }
+
+        points.add(strategy.generate());
+    }
+
+    private boolean isAvailableToConnect(int point) {
         if (point == points.size() - 1) {
             return false;
         }
@@ -18,31 +35,6 @@ public class Line {
         }
 
         return !isConnected(point - 1);
-    }
-
-    public boolean isConnected(int point) {
-        return points.get(point);
-    }
-
-    public void connect(int point) {
-        if (checkFirst(point)) return;
-
-        if (point == points.size() - 1 || isConnected(point - 1)) {
-            points.add(false);
-            return;
-        }
-
-        points.add(RandomValueUtils.generate());
-    }
-
-    private boolean checkFirst(int point) {
-        if (point == 0) {
-            points.add(RandomValueUtils.generate());
-
-            return true;
-        }
-
-        return false;
     }
 
     public int getNumberOfPeople() {
