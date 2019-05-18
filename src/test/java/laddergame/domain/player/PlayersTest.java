@@ -29,18 +29,13 @@ public class PlayersTest {
 
     @Test
     public void 총_플레이어의_인원을_제대로_반환하는지_검사() {
-        assertThat(players.getNumberOfPlayers()).isEqualTo(3);
+        assertThat(players.getSize()).isEqualTo(3);
     }
 
-    @Test
-    public void 이름으로_인덱스를_제대로_반환하는지() {
-        assertThat(players.getIndexOfName("pobi")).isEqualTo(1);
-    }
-
-    @Test
-    public void 이름이_존재하지_않을_때_예외를_발생시키는지() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            players.getIndexOfName("water");
-        });
-    }
+//    @Test
+//    public void 이름이_존재하지_않을_때_예외를_발생시키는지() {
+//        assertThrows(IllegalArgumentException.class, () -> {
+//            players.getIndexOfName("water");
+//        });
+//    }
 }

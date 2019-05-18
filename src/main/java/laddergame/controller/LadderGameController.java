@@ -1,21 +1,22 @@
 package laddergame.controller;
 
-import laddergame.domain.BuilderObject;
+import laddergame.BuilderObject;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
-import laddergame.domain.player.Player;
 import laddergame.domain.player.PlayersBuilder;
-import laddergame.domain.player.Players;
-import laddergame.domain.result.RewardsBuilder;
-import laddergame.domain.result.Rewards;
+import laddergame.domain.result.GameResult;
+import laddergame.domain.reward.RewardsBuilder;
+import laddergame.domain.reward.Rewards;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
 public class LadderGameController {
 
-    private Players players;
-    private Rewards rewards;
+    private BuilderObject players;
+    private BuilderObject rewards;
     private Ladder ladder;
+    // TODO 멤버 변수 지울방법 무조건 찾아볼 것
+    private GameResult tempGameResult;
 
     public LadderGameController() {
         init();
@@ -23,32 +24,33 @@ public class LadderGameController {
 
     private void init() {
         this.players = assignPlayers();
-        this.rewards = assignResults(players);
+        this.rewards = assignRewards(players);
         LadderHeight ladderHeight = assignLadderHeight();
-        this.ladder = new Ladder(ladderHeight.getLadderHeight(), players.getNumberOfPlayers());
-        this.ladder.connectBridgesRandomly(ladderHeight.getLadderHeight() * players.getNumberOfPlayers());
+        this.ladder = new Ladder(ladderHeight.getLadderHeight(), players.getSize());
+        this.ladder.connectBridgesRandomly(ladderHeight.getLadderHeight() * players.getSize());
+        this.tempGameResult = GameResult.of(this.players, this.rewards, this.ladder);
     }
 
 
-    private Players assignPlayers() {
+    private BuilderObject assignPlayers() {
         PlayersBuilder playersBuilder = new PlayersBuilder(InputView.inputPlayers());
         try {
-            return (Players) playersBuilder.build();
+            return playersBuilder.createElement();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return assignPlayers();
         }
     }
 
-    private BuilderObject assignResults(Players players) {
+    private BuilderObject assignRewards(BuilderObject players) throws IllegalArgumentException {
         RewardsBuilder rewardsBuilder = new RewardsBuilder(InputView.inputPlayers());
         try {
-            Rewards rewards = (Rewards) rewardsBuilder.build();
-            checkPlayersWithResults(players, rewards);
+            Rewards rewards = (Rewards) rewardsBuilder.createElement();
+            checkPlayersWithRewards(players, rewards);
             return rewards;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return assignResults(players);
+            return assignRewards(players);
         }
     }
 
@@ -62,16 +64,16 @@ public class LadderGameController {
         }
     }
 
-    private void checkPlayersWithResults(BuilderObject players, BuilderObject rewards) {
-        if (rewards.matchPlayersCount(players.getNumberOfPlayers())) {
-            throw new IllegalArgumentException("개수가 같아야됩니다(플레이어, 결과)");
+    private void checkPlayersWithRewards(BuilderObject players, BuilderObject rewards) {
+        if (!rewards.isSizeEqual(players)) {
+            throw new IllegalArgumentException("결과를 참여자와 같은 개수로 입력하세요");
         }
     }
 
     public void printLadderScreen() {
         OutputView.showPlayers(this.players);
         OutputView.showLadder(this.ladder);
-        OutputView.showDestinations(this.rewards);
+        OutputView.showRewards(this.rewards);
     }
 
     public void proceedGame() {
@@ -79,7 +81,8 @@ public class LadderGameController {
         do {
             command = InputView.inputCommand();
         } while (proceedWithCommand(command));
-        OutputView.showAllResult(this.players, this.rewards, this.ladder);
+        // 종료시
+        OutputView.showAllResult(this.tempGameResult.getAllGameResultFormat());
     }
 
     private boolean proceedWithCommand(String command) {
@@ -87,12 +90,11 @@ public class LadderGameController {
             if (command.equals("all")) {
                 return false;
             }
-            OutputView.showResult(rewards.getDestination
-                    (ladder.findDestinationPosition(players.getIndexOfName(command))));
+            OutputView.showResult(this.tempGameResult.getGameResultFormat(command));
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return true;
+            return true;    // 반복
         }
     }
 }

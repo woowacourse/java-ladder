@@ -1,9 +1,10 @@
 package laddergame.view;
 
+import laddergame.BuilderObject;
 import laddergame.domain.ladder.Ladder;
-import laddergame.domain.player.Players;
-import laddergame.domain.result.Reward;
-import laddergame.domain.result.Rewards;
+import laddergame.domain.result.GameResultFormat;
+
+import java.util.List;
 
 public class OutputView {
 
@@ -15,7 +16,7 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public static void showPlayers(Players players) {
+    public static void showPlayers(BuilderObject players) {
         showMessageOfExecution();
         System.out.println(players);
     }
@@ -24,19 +25,17 @@ public class OutputView {
         System.out.println(ladder);
     }
 
-    public static void showDestinations(Rewards rewards) {
+    public static void showRewards(BuilderObject rewards) {
         System.out.println(rewards);
     }
 
-    public static void showResult(Reward result) {
-        showMessageOfExecution();
-        System.out.println(result);
+    public static void showAllResult(List<GameResultFormat> gameResult) {
+        for (GameResultFormat gameResultFormat : gameResult) {
+            showResult(gameResultFormat);
+        }
     }
 
-    public static void showAllResult(Players players, Rewards rewards, Ladder ladder) {
-        for (int i = 1; i <= players.getNumberOfPlayers(); i++) {
-            System.out.print(players.getNameOfIndex(i));
-            System.out.println("\t:\t" + rewards.getDestination(ladder.findDestinationPosition(i)));
-        }
+    public static void showResult(GameResultFormat gameResultFormat) {
+        System.out.println(gameResultFormat);
     }
 }

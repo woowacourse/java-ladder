@@ -1,8 +1,7 @@
-package laddergame.domain.result;
+package laddergame.domain.reward;
 
+import laddergame.BuilderObject;
 import laddergame.ValidateBuilder;
-import laddergame.domain.BuilderObject;
-import laddergame.domain.Constant;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,16 +9,16 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class RewardsBuilder extends ValidateBuilder {
-    private String names;
+    private final String names;
 
-    public RewardsBuilder(String names) {
+    public RewardsBuilder(final String names) {
         this.names = names;
     }
 
     @Override
-    public BuilderObject build() {
-        validate(names);
-        List<Reward> rewards = Arrays.asList(names.split(Constant.COMMA)).stream()
+    public BuilderObject createElement() {
+        validate(this.names);
+        List<Reward> rewards = Arrays.asList(this.names.split(this.DELIMITER)).stream()
                 .map(String::trim)
                 .map(Reward::new)
                 .collect(Collectors.toList());

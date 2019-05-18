@@ -1,4 +1,4 @@
-package laddergame.domain.result;
+package laddergame.domain.reward;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

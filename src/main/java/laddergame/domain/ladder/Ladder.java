@@ -37,7 +37,7 @@ public class Ladder {
         }
     }
 
-    public int findDestinationPosition(int startPosition) {
+    public int findDestination(int startPosition) {
         for (Line line : ladder) {
             startPosition += line.findRoute(startPosition).move();
         }

@@ -1,6 +1,6 @@
-package laddergame.domain.result;
+package laddergame.domain.reward;
 
-import laddergame.domain.BuilderObject;
+import laddergame.BuilderObject;
 import laddergame.domain.Constant;
 
 import java.util.List;
@@ -14,22 +14,17 @@ public class Rewards implements BuilderObject {
     }
 
     @Override
-    public int getIndexOfName(String name) {
-        return 0;
-    }
-
-    @Override
     public String getNameOfIndex(int index) {
-        return null;
+        return rewards.get(index - 1).getName();
     }
 
     @Override
-    public boolean isCountsEqual() {
-        return false;
+    public boolean isSizeEqual(BuilderObject other) {
+        return (this.rewards.size() == other.getSize());
     }
 
     @Override
-    public int getCount() {
+    public int getSize() {
         return 0;
     }
 
@@ -50,7 +45,7 @@ public class Rewards implements BuilderObject {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Reward reward : rewards) {
-            stringBuilder.append(String.format("%-" + Constant.BOUND_OF_NAME_LENGTH + "s", reward));
+            stringBuilder.append(String.format("%-" + reward.BOUND_OF_NAME_LENGTH + "s", reward));
             stringBuilder.append(" ");
         }
         return stringBuilder.toString();

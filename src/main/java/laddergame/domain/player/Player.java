@@ -1,12 +1,12 @@
 package laddergame.domain.player;
 
-import laddergame.domain.BuilderObject;
 import laddergame.domain.Constant;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
 
 public class Player {
+    public static final int BOUND_OF_NAME_LENGTH = 5;
 
     private final String name;
 
@@ -23,7 +23,7 @@ public class Player {
     }
 
     private void checkName(String name) {
-        if (name.length() > Constant.BOUND_OF_NAME_LENGTH) {
+        if (name.length() > this.BOUND_OF_NAME_LENGTH) {
             throw new IllegalArgumentException("이름의 길이가 5자 초과했습니다");
         }
     }
