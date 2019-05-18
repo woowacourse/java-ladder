@@ -16,6 +16,7 @@ public class LadderGame {
     public LadderGame(List<String> playerNames, List<String> rewardsNames, int height, Rule rule) {
         Validator.checkEqualSize(playerNames.size(), rewardsNames.size());
         Validator.checkDuplicateNames(playerNames);
+        Validator.checkLadderHeight(height);
 
         players = playerNames.stream()
                 .map(Player::new)

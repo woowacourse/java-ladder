@@ -41,9 +41,7 @@ public class InputView {
     public static int inputHeight() {
         try {
             System.out.println(INPUT_HEIGHT);
-            int height = Integer.valueOf(scanner.nextLine());
-            Validator.checkLadderHeight(height);
-            return height;
+            return Integer.valueOf(scanner.nextLine());
         } catch (Exception e) {
             System.err.println(e.getMessage());
             return inputHeight();
