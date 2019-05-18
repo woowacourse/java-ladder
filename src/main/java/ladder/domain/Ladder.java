@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,16 +11,37 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public boolean isAvailableToConnect(int lineNumber, int point) { // 몇행 몇열이 사다리 연결 가능한지 확인해서 리턴
-        return lines.get(lineNumber).isAvailableToConnect(point);
+    public Line getLine(int lineIndex) {
+        return lines.get(lineIndex);
+    }
+    
+    public List<Integer> play() {
+        List<Integer> ladderResult = new ArrayList<>();
+
+        for (int i = 0; i < getNumberOfPeople(); i++) {
+            int index = i;
+            ladderResult.add(playOneRound(index));
+        }
+        
+        return ladderResult;
     }
 
-    public void connect(int lineNumber, int point, int randomNumber) { // 사다리 연결 가능한 위치에 랜덤넘버 보내서 그리게 함
-        lines.get(lineNumber).connect(point, randomNumber);
+    private int playOneRound(int index) {
+        for (int j = 0; j < lines.size(); j++) {
+            Line line = lines.get(j);
+            index = moveIndex(line, index);
+        }
+        return index;
     }
 
-    public Line getLine(int lineNumber) {
-        return lines.get(lineNumber);
+    private int moveIndex(Line line, int index) {
+        if (index == 0) {
+            return (line.isConnected(index)) ? index + 1 : index;
+        }
+        if (line.isConnected(index - 1)) return index - 1;
+        if (line.isConnected(index)) return index + 1;
+
+        return index;
     }
 
     public int getHeight() {

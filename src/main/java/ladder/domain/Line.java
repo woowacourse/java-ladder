@@ -1,39 +1,17 @@
 package ladder.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private static final int CONNECT_CONDITION = 5;
+    private List<Boolean> points;
 
-    private ArrayList<Boolean> points = new ArrayList<>();
-
-    public Line(final int numberOfPeople) {
-        for (int i = 0; i < numberOfPeople; i++) {
-            points.add(false);
-        }
-    }
-
-    public boolean isAvailableToConnect(int point) {
-        if (point == points.size() - 1) {
-            return false;
-        }
-
-        if (point == 0) {
-            return true;
-        }
-
-        return !isConnected(point - 1);
+    public Line(List<Boolean> points) {
+        this.points = points;
     }
 
     public boolean isConnected(int point) {
         return points.get(point);
-    }
-
-    public void connect(int point, int number) {
-        if (number >= CONNECT_CONDITION) {
-            points.set(point, true);
-        }
     }
 
     public int getNumberOfPeople() {
