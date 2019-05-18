@@ -2,9 +2,33 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class RandomLadderGeneratorTest {
+
     @Test
-    void ladderGenerationTest() {
-        //RandomLadderGenerator
+    void generateLadderWithOnePlayerTest() {
+        Players.NUM_OF_PLAYERS = 1;
+        assertThrows(RuntimeException.class, () -> RandomLadderGenerator.generate(1, 2));
+    }
+
+    @Test
+    void generateLadderWithTwoPlayersTest() {
+        Players.NUM_OF_PLAYERS = 2;
+        System.out.println("Test of two players ladder");
+        Ladder ladder = RandomLadderGenerator.generate(2, 2);
+        while(ladder.hasNextLine()) {
+            System.out.println(ladder.getNextLine());
+        }
+    }
+
+    @Test
+    void generateLadderWithThreePlayersTest() {
+        Players.NUM_OF_PLAYERS = 3;
+        System.out.println("Test of three players ladder");
+        Ladder ladder = RandomLadderGenerator.generate(3, 2);
+        while(ladder.hasNextLine()) {
+            System.out.println(ladder.getNextLine());
+        }
     }
 }

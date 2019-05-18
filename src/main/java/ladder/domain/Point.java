@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.util.RandomBooleanGenerator;
+
 public class Point {
     static final int LEFT = -1;
     static final int STRAIGHT = 0;
@@ -43,6 +45,10 @@ public class Point {
         return STRAIGHT;
     }
 
+    public boolean getCurrent() {
+        return current;
+    }
+
     @Override
     public String toString() {
         return "Point{" +
@@ -50,4 +56,5 @@ public class Point {
                 ", current=" + current +
                 '}';
     }
+
 }

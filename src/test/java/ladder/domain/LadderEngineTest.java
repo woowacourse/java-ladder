@@ -24,7 +24,7 @@ public class LadderEngineTest {
         next = first.next(true);
         Line line2 = new Line(Arrays.asList(first, next, next.last()));
 
-        ladder = new Ladder(Arrays.asList(line1, line2));
+        ladder = new Ladder(Arrays.asList(line1, line2), 2);
 
         List<Player> players = Arrays.asList(new Player("pobi", new Position(0)), new Player("crong", new Position(1)), new Player("honux", new Position(2)));
         playersBeforeGame = new Players(players);
