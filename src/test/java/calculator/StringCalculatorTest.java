@@ -17,22 +17,22 @@ public class StringCalculatorTest {
 
     @Test
     void 문자열_더하기_커스텀() {
-        assertThat(stringCalculator.add("//;\n1;2;3")).isEqualTo(6);
+        assertThat(stringCalculator.add("//;\n1;2;3")).isEqualTo(new Positive(6));
     }
 
     @Test
     void 문자열_더하기_한_개() {
-        assertThat(stringCalculator.add("1")).isEqualTo(1);
+        assertThat(stringCalculator.add("1")).isEqualTo(new Positive(1));
     }
 
     @Test
     void 문자열_더하기_빈칸() {
-        assertThat(stringCalculator.add("")).isEqualTo(0);
+        assertThat(stringCalculator.add("")).isEqualTo(new Positive(0));
     }
 
     @Test
     void 문자열_더하기() {
-        assertThat(stringCalculator.add("1:2")).isEqualTo(3);
+        assertThat(stringCalculator.add("1:2")).isEqualTo(new Positive(3));
     }
 
     @Test

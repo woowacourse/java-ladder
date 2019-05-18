@@ -5,19 +5,22 @@ import java.util.regex.Pattern;
 
 public class CustomSeparator {
 
+    private static final String SEPARATOR_REGEX = "([0-9]){1,}";
+
     private final String separator;
 
     public CustomSeparator(final String separator) {
-        if(separator == null){
+        if (separator == null || separator.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        if(separator.length() != 1){
-            throw new IllegalArgumentException();
-        }
-        if(Pattern.matches("([0-9]){1,}",separator)){
+        if (Pattern.matches(SEPARATOR_REGEX, separator)) {
             throw new IllegalArgumentException();
         }
         this.separator = separator;
+    }
+
+    public String getSeparator() {
+        return separator;
     }
 
     @Override
@@ -26,10 +29,6 @@ public class CustomSeparator {
         if (o == null || getClass() != o.getClass()) return false;
         CustomSeparator that = (CustomSeparator) o;
         return Objects.equals(separator, that.separator);
-    }
-
-    public String getSeparator() {
-        return separator;
     }
 
     @Override

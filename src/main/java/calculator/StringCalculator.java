@@ -1,9 +1,16 @@
 package calculator;
 
+import javafx.geometry.Pos;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class StringCalculator {
     private static final int SPLIT_BOUNDARY = 2;
     private static final int SEPARATOR_LENGTH = 1;
     private static final int SEPARATOR = 1;
+    private static final String NEW_LINE = "\n";
 
     private static final String AFTER_SEPARATOR = "//";
 
@@ -37,14 +44,24 @@ public class StringCalculator {
     }
 
     public String[] splitByEnter(String input) {
-        return input.split("\n", 2);
+        return input.split(NEW_LINE, 2);
     }
 
-    public int add(String input) {
-        if (isBlankOrNull(input)) return 0;
+    public Positive add(String input) {
+        if (isBlankOrNull(input)) {
+            return new Positive(0);
+        }
         String[] temp = splitByEnter(input);
         int[] expression = splitExpression(temp);
-        return sum(expression);
+
+        PositiveNumbers positiveNumbers = new PositiveNumbers(convertPositive(expression));
+        return positiveNumbers.sum();
+    }
+
+    private List<Positive> convertPositive(int[] expression) {
+        return Arrays.stream(expression)
+                .mapToObj(Positive::new)
+                .collect(Collectors.toList());
     }
 
     private int[] splitExpression(String[] temp) {
@@ -56,21 +73,6 @@ public class StringCalculator {
     }
 
     private boolean isBlankOrNull(String input) {
-        return input.isEmpty() || input == null;
-    }
-
-    private int sum(int[] expression) {
-        int sum = 0;
-        for (int i = 0; i < expression.length; i++) {
-            isNegative(expression[i]);
-            sum += expression[i];
-        }
-        return sum;
-    }
-
-    private void isNegative(int i) {
-        if (i < 0) {
-            throw new RuntimeException();
-        }
+        return input == null || input.isEmpty();
     }
 }
