@@ -13,8 +13,7 @@ public class LadderGameApp {
 	public static void main(String[] args) {
 		LadderGameInformation ladderGameInformation = getLadderGameInformation();
 
-		Ladder ladder = LadderGenerator.generateLadder(ladderGameInformation.getPlayers().size(), getLadderHeight());
-
+		Ladder ladder = generateLadder(ladderGameInformation.getPlayers().size());
 		OutputView.printPlayerNames(ladderGameInformation.getPlayers());
 		OutputView.printLadder(ladder);
 		OutputView.printLadderValues(ladderGameInformation.getRewards());
@@ -56,21 +55,16 @@ public class LadderGameApp {
 		}
 	}
 
-	public static int getLadderHeight() {
-		String height;
-
-		try {
-			height = InputView.inputHeight();
-			Validator.validateNumber(height);
-			return Integer.parseInt(height);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return getLadderHeight();
-		}
-	}
-
 	public static List<String> getGameReward() {
 		return Arrays.asList(InputView.inputResults().split(","));
+	}
+
+	public static Ladder generateLadder(int numberOfPlayers) {
+		try {
+			return LadderGenerator.generateLadder(numberOfPlayers, InputView.inputHeight());
+		} catch (Exception e) {
+			return generateLadder(numberOfPlayers);
+		}
 	}
 }
 

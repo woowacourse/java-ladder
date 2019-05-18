@@ -4,11 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGenerator {
-	public static Ladder generateLadder(int countOfPerson, int ladderHegiht) {
-		if (countOfPerson <= 0 || ladderHegiht <= 0) {
-			throw new IllegalArgumentException(UserOutput.VIOLATE_PLAYER_NAME.getOutputMessage());
+	public static Ladder generateLadder(int countOfPerson, String ladderHeight) {
+		validateCountOfPerson(countOfPerson);
+		validateLadderHeight(ladderHeight);
+		return createLadder(countOfPerson, Integer.parseInt(ladderHeight));
+	}
+
+	private static void validateCountOfPerson(int countOfPerson) {
+		if(countOfPerson < 2) {
+			throw new IllegalArgumentException(UserOutput.VIOLATE_NUMBER_OF_PLAYERS.getOutputMessage());
 		}
-		return createLadder(countOfPerson, ladderHegiht);
+	}
+
+	private static void validateLadderHeight(String ladderHeight) {
+		if(!ladderHeight.matches(UserOutput.REGEX_FOR_NUMBER.getOutputMessage())) {
+			throw new IllegalArgumentException(UserOutput.VIOLATE_LADDER_HEIGHT.getOutputMessage());
+		}
+
+		if(Integer.parseInt(ladderHeight) <= 1) {
+			throw new IllegalArgumentException(UserOutput.VIOLATE_LADDER_HEIGHT_LESS_THAN_TWO.getOutputMessage());
+		}
 	}
 
 	private static Ladder createLadder(int countOfPerson, int ladderHegiht) {
