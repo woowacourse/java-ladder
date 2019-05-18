@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.util.RandomHelper;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,21 +10,12 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public static List<Line> generateAllPoints(int height, int countOfPerson) {
+    public static List<Line> generateLadder(int height, int countOfPerson) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(generatePoints(countOfPerson)));
+            lines.add(new Line(Line.generatePoints(countOfPerson)));
         }
         return lines;
-    }
-
-    private static List<Boolean> generatePoints(int countOfPerson) {
-        List<Boolean> points = new ArrayList<>();
-        for (int j = 0; j < countOfPerson; j++) {
-            points.add(RandomHelper.randomPoint(points, countOfPerson));
-        }
-        points.add(false);
-        return points;
     }
 
     private int generateResult(int index) {

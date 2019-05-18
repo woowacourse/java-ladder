@@ -1,16 +1,33 @@
 package ladder.domain;
 
-import java.util.List;
-import java.util.Objects;
+import ladder.util.RandomHelper;
 
-public class Line {
+import java.util.*;
+
+class Line {
     private final List<Boolean> points;
 
     Line(final List<Boolean> points) {
+        if(isConsecutive(points)){
+            throw new IllegalArgumentException("연속된 true는 허용되지 않습니다.");
+        }
         this.points = points;
     }
 
-    public String makeLine() {
+    private boolean isConsecutive(List<Boolean> points) {
+        return Collections.indexOfSubList(points,Arrays.asList(true,true)) != -1;
+    }
+
+    static List<Boolean> generatePoints(int countOfPerson) {
+        List<Boolean> points = new ArrayList<>();
+        for (int j = 0; j < countOfPerson; j++) {
+            points.add(RandomHelper.randomPoint(points, countOfPerson));
+        }
+        points.add(false);
+        return points;
+    }
+
+    String makeLine() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < points.size() - 1; i++) {
             sb.append(makeRow(i));
@@ -34,21 +51,6 @@ public class Line {
         }
         return index;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
-        return Objects.equals(points, line.points);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(points);
-    }
-
-
 }
 
 
