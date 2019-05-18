@@ -1,52 +1,51 @@
 package com.woowacourse.laddergame.service;
 
 import com.woowacourse.laddergame.domain.*;
-import com.woowacourse.laddergame.domain.vo.LadderDto;
-import com.woowacourse.laddergame.domain.vo.LadderResultDto;
-import com.woowacourse.laddergame.domain.vo.MadeLadderVO;
-import com.woowacourse.laddergame.domain.vo.WinnerVO;
+import com.woowacourse.laddergame.domain.dto.LadderDto;
+import com.woowacourse.laddergame.domain.dto.LadderGameResultDto;
+import com.woowacourse.laddergame.domain.vo.*;
 import com.woowacourse.laddergame.util.NaturalNumber;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-
 public class LadderGameService {
-    // TODO 분리
-    public LadderResultDto play(LadderDto ladderDto) {
-        // 사다리 초기화
+    public LadderGameResultDto request(LadderDto ladderDto) {
+        Players players = createPlayers(ladderDto.getPlayerNamesVo());
+        Results results = createResults(ladderDto.getLadderResultsVo());
+        Ladder ladder = createLadder(ladderDto.getHeightVo(), ladderDto.getPlayerNamesVo());
+
+        LadderGameResultDto ladderGameResultDto = new LadderGameResultDto();
+        ladderGameResultDto.setMadeLadderVO(new MadeLadderVO(players, ladder, results));
+        ladderGameResultDto.setLadderGameResultVo(playLadderGame(players, ladder, results));
+
+        return ladderGameResultDto;
+    }
+
+    private LadderGameResultVo playLadderGame(Players players, Ladder ladder, Results results) {
+        LadderGame ladderGame = new LadderGame(players, ladder, results);
+        return ladderGame.run();
+    }
+
+    private Ladder createLadder(HeightVo heightVo, PlayerNamesVo playerNamesVo) {
+        NaturalNumber height = new NaturalNumber(heightVo.getHeight());
+        NaturalNumber countOfPerson = new NaturalNumber(playerNamesVo.size());
+        BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
+
+        return LadderGenerator.generateLadder(height, countOfPerson, booleanGenerator);
+    }
+
+    private Players createPlayers(PlayerNamesVo playerNamesVo) {
         Players players = new Players();
-        Results results = new Results();
-        String[] playerNames = ladderDto.getNames().split(",");
-        String[] resultList = ladderDto.getResult().split(",");
-
-        for (String playerName: playerNames) {
-            players.add(new Player(playerName));
+        for (String name : playerNamesVo.getPlayerNames()) {
+            players.add(new Player(name));
         }
+        return players;
+    }
 
-        for (String result : resultList) {
+    private Results createResults(LadderResultsVo ladderResultsVo) {
+        Results results = new Results();
+        for (String result : ladderResultsVo.getLadderResults()) {
             results.add(new Result(result));
         }
-
-        int height = ladderDto.getHeight();
-        int countOfPerson = playerNames.length;
-
-        BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
-        Ladder ladder = LadderGenerator.generateLadder(new NaturalNumber(height), new NaturalNumber(countOfPerson), booleanGenerator);
-
-        // play
-        HashMap<String, String> winners = new LinkedHashMap<>();
-
-        for (String playerName : playerNames) {
-            int resultNo = ladder.takeLadder(new NaturalNumber(players.getPlayerNo(playerName)));
-            Result result = results.get(new NaturalNumber(resultNo));
-            winners.put(playerName, result.getResult());
-        }
-
-        LadderResultDto ladderResultDto = new LadderResultDto();
-        ladderResultDto.setWinnerVO(new WinnerVO(winners));
-        ladderResultDto.setMadeLadderVO(new MadeLadderVO(players, ladder, results));
-
-        return ladderResultDto;
+        return results;
     }
 }
 

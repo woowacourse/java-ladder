@@ -16,26 +16,6 @@ public class MadeLadderVO {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        MadeLadderVO that = (MadeLadderVO) o;
-
-        if (players != null ? !players.equals(that.players) : that.players != null) return false;
-        if (ladder != null ? !ladder.equals(that.ladder) : that.ladder != null) return false;
-        return results != null ? results.equals(that.results) : that.results == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = players != null ? players.hashCode() : 0;
-        result = 31 * result + (ladder != null ? ladder.hashCode() : 0);
-        result = 31 * result + (results != null ? results.hashCode() : 0);
-        return result;
-    }
-
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(players.toString()).append("\n");

@@ -1,5 +1,7 @@
 package com.woowacourse.laddergame.domain;
 
+import com.woowacourse.laddergame.util.NaturalNumber;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,21 +23,16 @@ public class Players {
         return players.contains(player);
     }
 
-    public boolean isContains(String name) {
-        return players.contains(new Player(name));
-    }
-
     public int getPlayerNo(String name) {
-        // 사다리의 번호는 1부터 시작한다
         return players.indexOf(new Player(name)) + 1;
     }
 
-    public List<String> getPlayerNames() {
-        List<String> playerNames = new ArrayList<>();
-        for (Player player : players) {
-            playerNames.add(player.getName());
-        }
-        return playerNames;
+    public Player get(NaturalNumber playerNo) {
+        return players.get(playerNo.convertIndex());
+    }
+
+    public int size() {
+        return players.size();
     }
 
     @Override
