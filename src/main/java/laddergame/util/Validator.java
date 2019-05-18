@@ -37,7 +37,7 @@ public class Validator {
     }
 
     public static void checkNameIsAll(String name) {
-        if (name.equals("all")) {
+        if ("all".equals(name)) {
             throw new IllegalArgumentException("이름은 all이 될 수 없습니다");
         }
     }

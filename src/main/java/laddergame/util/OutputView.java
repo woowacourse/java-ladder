@@ -55,14 +55,14 @@ public class OutputView {
     }
 
     private static StringBuilder makeLineView(Ladder ladder, int index) {
-        StringBuilder lineView = new StringBuilder();
+        StringBuilder lineView = new StringBuilder("   |");
         List<String> scaffoldsView = new ArrayList<>();
 
-        for (Boolean scaffold : ladder.getLine(index).getScaffolds()) {
+        for (Boolean scaffold: ladder.getLine(index).getScaffolds()) {
             scaffoldsView.add(makeScaffoldView(scaffold));
         }
-        lineView.append(String.join("|", scaffoldsView).substring(3));
-        lineView.append("\n");
+        lineView.append(String.join("|", scaffoldsView));
+        lineView.append("|\n");
         return lineView;
     }
 

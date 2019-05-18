@@ -7,51 +7,44 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private List<Boolean> scaffolds;
+    private List<Point> points;
 
-    public Line(List<Boolean> scaffolds) {
-        this.scaffolds = scaffolds;
+    public Line(List<Point> points) {
+        this.points = points;
     }
 
-    public Line(int numberOfPlayer, Rule rule) {
-        scaffolds = new ArrayList<>();
-        for (int i = 0; i < numberOfPlayer + 1; i++) {
-            scaffolds.add(false);
+    public Line(int numberOfPoints, Rule rule) {
+        if (numberOfPoints < 2) {
+            throw new IllegalArgumentException("2개 이상의 포인트가 필요합니다.");
         }
-        for (int i = 1; i < scaffolds.size() - 1; i++) {
-            generateScaffold(i, rule);
-        }
-    }
+        points = new ArrayList<>();
 
-    private void generateScaffold(int index, Rule rule) {
-        if (canAddScaffold(index) && rule.canCreate()) {
-            scaffolds.set(index, true);
+        Point point =  Point.first(rule);
+        points.add(point);
+        for (int i = 1; i < numberOfPoints - 1; i++) {
+            point = point.next(rule);
+            points.add(point);
         }
-    }
-
-    public Boolean canAddScaffold(int index) {
-        return !(scaffolds.get(index + 1) || scaffolds.get(index - 1));
+        points.add(point.last());
     }
 
     public List<Boolean> getScaffolds() {
+        List<Boolean> scaffolds = new ArrayList<>();
+        for (int i = 0; i < points.size() - 1; i++) {
+            scaffolds.add(points.get(i).canMoveRight());
+        }
         return scaffolds;
     }
 
-    public int moveNextPoint(int point) {
-        if (outOfPointRange(point)) {
+    public int moveNextPoint(int position) {
+        if (outOfPointRange(position)) {
             throw new IllegalArgumentException("이동 범위를 벗어났습니다.");
         }
-        if (scaffolds.get(point)) {
-            return point - 1;
-        }
-        if (scaffolds.get(point + 1)) {
-            return point + 1;
-        }
-        return point;
+        return points.get(position).move(position);
     }
 
-    private boolean outOfPointRange(int point) {
-        return (point < 0) || (point > scaffolds.size() - 2);
+    private boolean outOfPointRange(int position) {
+        return (position < 0) || (position > points.size() - 1);
     }
 
     @Override
@@ -59,11 +52,11 @@ public class Line {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Line line = (Line) o;
-        return Objects.equals(scaffolds, line.scaffolds);
+        return Objects.equals(points, line.points);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(scaffolds);
+        return Objects.hash(points);
     }
 }

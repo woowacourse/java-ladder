@@ -13,7 +13,9 @@ class LadderTest {
     @Test
     void 사다리가_제대로_생성되었는지_확인() {
         Ladder ladder = new Ladder(2, 5, new AlwaysCreateRule());
-        Line line = new Line(new ArrayList<>(Arrays.asList(false, true, false)));
+        Line line = new Line(Arrays.asList(
+                new Point(false, true),
+                new Point(true, false)));
         List<Line> lines = new ArrayList<>(Arrays.asList(line, line, line, line, line));
 
         assertThat(ladder).isEqualTo(new Ladder(lines));
