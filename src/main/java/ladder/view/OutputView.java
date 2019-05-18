@@ -25,15 +25,15 @@ public class OutputView {
 				+ UserOutput.LADDER_LINE.getOutputMessage());
 	}
 
-	public static void printLadderValues(List<String> values) {
-		for (String value : values) {
-			System.out.printf(UserOutput.PRINT_FORM.getOutputMessage(), value);
+	public static void printLadderValues(List<Reward> rewards) {
+		for (Reward reward : rewards) {
+			System.out.printf(UserOutput.PRINT_FORM.getOutputMessage(), reward);
 		}
 		System.out.println();
 	}
 
-	public static void printPlayerNames(List<String> players) {
-		for (String player : players) {
+	public static void printPlayerNames(List<Player> players) {
+		for (Player player : players) {
 			System.out.printf(UserOutput.PRINT_FORM.getOutputMessage(), player);
 		}
 		System.out.println();
@@ -42,13 +42,13 @@ public class OutputView {
 	public static void printResult(LadderGameResult ladderGameResult, String name) {
 		if (name.equals(UserOutput.PRINT_ALL_PLAYER.getOutputMessage())) {
 			// TODO : depth 2 줄이기.
-			for (String playerName : ladderGameResult.getAllPlayerNames()) {
+			for (Player playerName : ladderGameResult.getAllPlayerNames()) {
 				System.out.println(playerName + " : " + ladderGameResult.getReward(playerName));
 			}
 			return;
 		}
 
-		String playerReward = ladderGameResult.getReward(name);
+		Reward playerReward = ladderGameResult.getReward(new Player(name));
 		if (playerReward != null) {
 			System.out.println(name + " : " + playerReward);
 		}

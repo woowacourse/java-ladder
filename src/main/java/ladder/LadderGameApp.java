@@ -1,6 +1,6 @@
 package ladder;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import ladder.domain.*;
@@ -40,17 +40,21 @@ public class LadderGameApp {
 		while (!name.equals(UserOutput.FINISH_LADDER_GAME.getOutputMessage()));
 	}
 
-	public static List<String> getPersonNames() {
+	public static List<Player> getPersonNames() {
 		try {
-			return StringSplitUtils.splitString(InputView.inputNames());
+			List<Player> players = new ArrayList<>();
+			StringSplitUtils.splitString(InputView.inputNames()).forEach(name -> players.add(new Player(name)));
+			return players;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return getPersonNames();
 		}
 	}
 
-	public static List<String> getGameReward() {
-		return Arrays.asList(InputView.inputResults().split(","));
+	public static List<Reward> getGameReward() {
+		List<Reward> rewards = new ArrayList<>();
+		StringSplitUtils.splitString(InputView.inputResults()).forEach(reward -> rewards.add(new Reward(reward)));
+		return rewards;
 	}
 
 	public static Ladder generateLadder(int numberOfPlayers) {

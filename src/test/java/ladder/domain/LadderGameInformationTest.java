@@ -11,18 +11,19 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LadderGameInformationTest {
-	private List<String> players;
-	private List<String> rewards;
+	private List<Player> players;
+	private List<Reward> rewards;
 
 	@BeforeEach
 	void init() {
-		this.players = new ArrayList<>(Arrays.asList("pobi", "jason", "woni", "cu", "brown"));
-		this.rewards = new ArrayList<>(Arrays.asList("꽝", "1000", "3000", "당첨"));
+		this.players = new ArrayList<>(Arrays.asList(new Player("pobi"), new Player("jason"),
+				new Player("woni"), new Player("cu"), new Player("brown")));
+		this.rewards = new ArrayList<>(Arrays.asList(new Reward("꽝"), new Reward("1000"), new Reward("3000"), new Reward("당첨")));
 	}
 
 	@Test
 	void 정상_입력() {
-		this.rewards.add("꽝");
+		this.rewards.add(new Reward("꽝"));
 		assertDoesNotThrow(() -> new LadderGameInformation(players, rewards));
 	}
 
@@ -33,33 +34,29 @@ class LadderGameInformationTest {
 
 	@Test
 	void 중복되는_이름의_참가자가_존재할_때_예외_반환() {
-		this.players.add("pobi");
+		this.players.add(new Player("pobi"));
 		assertThrows(IllegalArgumentException.class, () -> new LadderGameInformation(players, rewards));
 	}
 
 	@Test
 	void 참가자의_수가_2명_미만일_때_예외_반환() {
-		this.players.removeAll(Arrays.asList("pobi", "jason", "cu", "woni"));
-		this.rewards.removeAll(Arrays.asList("꽝", "1000", "3000"));
+		this.players.removeAll(Arrays.asList(new Player("pobi"), new Player("jason"),
+				new Player("cu"), new Player("woni")));
+		this.rewards.removeAll(Arrays.asList(new Reward("꽝"), new Reward("1000"), new Reward("3000")));
 		assertThrows(IllegalArgumentException.class, () -> new LadderGameInformation(players, rewards));
 	}
 
 	@Test
 	void 참가자의_수가_2명_이상일_때() {
-		this.players.removeAll(Arrays.asList("pobi", "jason", "cu"));
-		this.rewards.removeAll(Arrays.asList("3000", "1000"));
+		this.players.removeAll(Arrays.asList(new Player("pobi"), new Player("jason"),
+				new Player("cu")));
+		this.rewards.removeAll(Arrays.asList(new Reward("1000"), new Reward("3000")));
 		assertDoesNotThrow(() -> new LadderGameInformation(players, rewards));
 	}
 
 	@Test
-	void 참가자_이름이_all인_경우_예외_반환() {
-		this.players.add("all");
-		assertThrows(IllegalArgumentException.class, () -> new LadderGameInformation(players, rewards));
-	}
-
-	@Test
 	void 글자수_5자_초과인_값이_있을_경우_예외_반환() {
-		this.players.add("abcdef");
+		this.players.add(new Player("abcdef"));
 		assertThrows(IllegalArgumentException.class, () -> new LadderGameInformation(players, rewards));
 	}
 }

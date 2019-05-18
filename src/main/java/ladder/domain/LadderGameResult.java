@@ -4,17 +4,17 @@ import java.util.Map;
 import java.util.Set;
 
 public class LadderGameResult {
-	private final Map<String, String> gameResult;
+	private final Map<Player, Reward> gameResult;
 
-	public LadderGameResult(Map<String, String> gameResult) {
+	public LadderGameResult(Map<Player, Reward> gameResult) {
 		this.gameResult = gameResult;
 	}
 
-	public String getReward(String playerName) {
+	public Reward getReward(Player playerName) {
 		return gameResult.get(playerName);
 	}
 
-	public Set<String> getAllPlayerNames() {
+	public Set<Player> getAllPlayerNames() {
 		return gameResult.keySet();
 	}
 }

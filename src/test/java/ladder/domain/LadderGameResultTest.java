@@ -9,14 +9,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LadderGameResultTest {
 	private LadderGameResult ladderGameResult;
-	private List<String> players;
-	private List<String> reward;
+	private List<Player> players;
+	private List<Reward> reward;
 
 	@BeforeEach
 	void init() {
-		Map<String, String> result = new LinkedHashMap<>();
-		players = Arrays.asList("pobi", "tobi", "tiber");
-		reward = Arrays.asList("꽝", "당첨", "1000");
+		Map<Player, Reward> result = new LinkedHashMap<>();
+		players = Arrays.asList(new Player("pobi"), new Player("tobi"), new Player("tiber"));
+		reward = Arrays.asList(new Reward("꽝"), new Reward("당첨"), new Reward("1000"));
 
 		for (int i = 0; i < players.size() ; i++) {
 			result.put(players.get(i), reward.get(i));
@@ -34,7 +34,7 @@ class LadderGameResultTest {
 
 	@Test
 	void 모든_참가자의_이름_반환하기() {
-		Set<String> rewards = ladderGameResult.getAllPlayerNames();
+		Set<Player> rewards = ladderGameResult.getAllPlayerNames();
 		rewards.removeAll(players);
 		assertEquals(rewards.size(), 0);
 	}
