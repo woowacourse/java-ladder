@@ -43,16 +43,6 @@ public class LadderTest {
     }
 
     @Test
-    public void 길이가다른라인구성테스트() {
-        Line line1 = new Line(Arrays.asList(new Point(0, false, false), new Point(1, false, true)));
-        Line line2 = new Line(Arrays.asList(new Point(0, false, false), new Point(1, false, true), new Point(2, true, true)));
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Ladder(Arrays.asList(line1, line2));
-        });
-    }
-
-    @Test
     public void 도착점찾기모두True() {
         Ladder ladder = LadderGenerator.generate(3, 3, new ForcedTrueRule());
         assertThat(ladder.getEndPoint(0)).isEqualTo(1);

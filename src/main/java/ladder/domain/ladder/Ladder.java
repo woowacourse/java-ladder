@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,7 +11,7 @@ public class Ladder {
 
     public Ladder(List<Line> lines) {
         validateLadder(lines);
-        this.lines = lines;
+        this.lines = Collections.unmodifiableList(lines);
     }
 
     private void validateLadder(List<Line> lines) {

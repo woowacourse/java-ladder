@@ -8,9 +8,9 @@ import java.util.List;
 public class LineGenerator {
     public static Line generate(int lineWidth, LadderRule rule) {
         List<Point> points = new ArrayList<>();
-        points.add(new Point(0, false, rule.isAvailablePoint()));
-        for (int i = 1; i < lineWidth; i++) {
-            points.add(new Point(points.get(i - 1), lineWidth - 1, rule.isAvailablePoint()));
+        points.add(Point.firstPoint(rule.isAvailablePoint()));
+        for (int i = 0; i < lineWidth - 1; i++) {
+            points.add(points.get(i).nextPoint(lineWidth - 1, rule.isAvailablePoint()));
         }
         return new Line(points);
     }

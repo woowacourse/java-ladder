@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -11,7 +12,7 @@ public class Line {
 
     public Line(List<Point> points) {
         validateLineWidth(points.size());
-        this.points = points;
+        this.points = Collections.unmodifiableList(points);
     }
 
     private void validateLineWidth(int width) {
@@ -37,7 +38,6 @@ public class Line {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Line line = (Line) o;
-        System.out.println("1 : " + points.equals(line.points));
         return points.equals(line.points);
     }
 

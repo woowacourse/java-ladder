@@ -3,18 +3,18 @@ package ladder.domain.ladder;
 import java.util.Objects;
 
 public class PointDTO {
-    private boolean right;
+    private boolean haveRight;
 
-    public PointDTO(boolean right) {
-        this.right = right;
+    public PointDTO(boolean haveRight) {
+        this.haveRight = haveRight;
     }
 
     public PointDTO(Point point) {
-        this(point.getRight());
+        this(point.isRightDirection());
     }
 
     public boolean getRight() {
-        return right;
+        return haveRight;
     }
 
     @Override
@@ -22,11 +22,11 @@ public class PointDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PointDTO pointDTO = (PointDTO) o;
-        return right == pointDTO.right;
+        return haveRight == pointDTO.haveRight;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(right);
+        return Objects.hash(haveRight);
     }
 }
