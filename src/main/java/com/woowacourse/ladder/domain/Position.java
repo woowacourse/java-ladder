@@ -1,5 +1,6 @@
 package com.woowacourse.ladder.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Position {
@@ -13,6 +14,23 @@ public class Position {
         }
         this.current = current;
         this.max = max;
+    }
+
+    public Position move(Direction direction) {
+        int movedPosition = current + direction.getPositionToMove();
+        if (movedPosition < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        return new Position(movedPosition, max);
+    }
+
+    public Position moveMatch(List<Direction> directions) {
+        return move(directions.get(current));
+    }
+
+    public String getMatch(List<String> asList) {
+        return asList.get(current);
     }
 
     @Override
@@ -29,12 +47,8 @@ public class Position {
         return Objects.hash(current, max);
     }
 
-    public Position move(Direction direction) {
-        int movedPosition = current + direction.getPositionToMove();
-        if (movedPosition < 0) {
-            throw new IllegalArgumentException();
-        }
-
-        return new Position(movedPosition, max);
+    @Override
+    public String toString() {
+        return String.format("Position { current: %d }", current);
     }
 }

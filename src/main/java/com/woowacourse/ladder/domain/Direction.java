@@ -42,4 +42,12 @@ public enum Direction {
         }
         return directions.get(0);
     }
+
+    public static Direction first(boolean canGoRight) {
+        return valueOf(false, canGoRight);
+    }
+
+    public Direction nextLast() {
+        return next(false);
+    }
 }
