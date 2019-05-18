@@ -16,6 +16,7 @@ public class OutputView {
     private static final String LINE_COMPONENT = "|------";
     private static final String NONE_LINE_COMPONENT = "|      ";
     private static final String PRINT_FORMAT = "%-7s";
+    private static final String PLAYER_NOT_EXIST = "참여하지 않은 사용자 입니다.";
 
 
     public static void printLadderGame(LadderGame ladderGame) {
@@ -60,16 +61,21 @@ public class OutputView {
 
     public static void printLadderGameResult(LadderGameResult ladderGameResult, String name) {
         System.out.println(GAME_START_RESULT_MSG);
-        Map<Player, Prize> matchedUserToPrize = ladderGameResult.getNameToPrize();
+        Map<Player, Prize> matchedPlayerToPrize = ladderGameResult.getNameToPrize();
         if (name.equals(ALL_USER)) {
-            printUsersResult(matchedUserToPrize);
+            printUsersResult(matchedPlayerToPrize);
             return;
         }
-        System.out.println(matchedUserToPrize.get(new Player(name)).getPrizeName());
+        Player player = new Player(name);
+        if (matchedPlayerToPrize.keySet().contains(player)) {
+            System.out.println(matchedPlayerToPrize.get(player).getPrizeName());
+            return;
+        }
+        System.err.println(PLAYER_NOT_EXIST);
     }
 
-    private static void printUsersResult(Map<Player, Prize> matchedUserToPrize) {
-        matchedUserToPrize.keySet()
-                .forEach(key -> System.out.println(key.getName() + COLON + matchedUserToPrize.get(key).getPrizeName()));
+    private static void printUsersResult(Map<Player, Prize> matchedPlayerToPrize) {
+        matchedPlayerToPrize.keySet()
+                .forEach(key -> System.out.println(key.getName() + COLON + matchedPlayerToPrize.get(key).getPrizeName()));
     }
 }
