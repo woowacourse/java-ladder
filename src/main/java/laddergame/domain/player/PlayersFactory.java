@@ -1,8 +1,7 @@
 package laddergame.domain.player;
 
-import laddergame.ValidateBuilder;
-import laddergame.BuilderObject;
-import laddergame.domain.Constant;
+import laddergame.AllowDuplicateNamesFactory;
+import laddergame.NameList;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -10,15 +9,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class PlayersBuilder extends ValidateBuilder {
+public class PlayersFactory extends AllowDuplicateNamesFactory {
     private final String names;
 
-    public PlayersBuilder(final String names) {
+    public PlayersFactory(final String names) {
         this.names = names;
     }
 
     @Override
-    public BuilderObject createElement() throws IllegalArgumentException {
+    public NameList create() throws IllegalArgumentException {
         validate(names);
         List<Player> players = Arrays.asList(names.split(this.DELIMITER)).stream()
                 .map(String::trim)
@@ -31,15 +30,15 @@ public class PlayersBuilder extends ValidateBuilder {
 
     private void checkDuplication(List<Player> players) throws IllegalArgumentException {
         if (new HashSet<>(players).size() != players.size()) {
-            throw new IllegalArgumentException("중복된 이름이 있습니다.");
+            throw new IllegalArgumentException("중복된 이름이 존재합니다");
         }
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PlayersBuilder)) return false;
-        PlayersBuilder that = (PlayersBuilder) o;
+        if (!(o instanceof PlayersFactory)) return false;
+        PlayersFactory that = (PlayersFactory) o;
         return Objects.equals(names, that.names);
     }
 

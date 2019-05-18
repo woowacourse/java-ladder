@@ -1,19 +1,19 @@
 package laddergame.domain.reward;
 
-import laddergame.BuilderObject;
+import laddergame.NameList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RewardsTest {
-    private BuilderObject rewards;
-    RewardsBuilder rewardsBuilder;
+    private NameList rewards;
+    RewardsFactory rewardsFactory;
 
     @BeforeEach
     void setUp() {
-        rewardsBuilder = new RewardsBuilder("꽝,3000,5000,꽝");
-        rewards = rewardsBuilder.createElement();
+        rewardsFactory = new RewardsFactory("꽝,3000,5000,꽝");
+        rewards = rewardsFactory.create();
     }
 
     @Test

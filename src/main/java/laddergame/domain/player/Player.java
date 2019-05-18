@@ -1,6 +1,5 @@
 package laddergame.domain.player;
 
-import laddergame.domain.Constant;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;

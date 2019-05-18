@@ -1,6 +1,6 @@
 package laddergame.view;
 
-import laddergame.BuilderObject;
+import laddergame.NameList;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.result.GameResultFormat;
 
@@ -16,7 +16,7 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public static void showPlayers(BuilderObject players) {
+    public static void showPlayers(NameList players) {
         showMessageOfExecution();
         System.out.println(players);
     }
@@ -25,7 +25,7 @@ public class OutputView {
         System.out.println(ladder);
     }
 
-    public static void showRewards(BuilderObject rewards) {
+    public static void showRewards(NameList rewards) {
         System.out.println(rewards);
     }
 

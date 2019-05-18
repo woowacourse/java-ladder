@@ -1,22 +1,22 @@
 package laddergame.domain.reward;
 
-import laddergame.BuilderObject;
-import laddergame.ValidateBuilder;
+import laddergame.NameList;
+import laddergame.AllowDuplicateNamesFactory;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class RewardsBuilder extends ValidateBuilder {
+public class RewardsFactory extends AllowDuplicateNamesFactory {
     private final String names;
 
-    public RewardsBuilder(final String names) {
+    public RewardsFactory(final String names) {
         this.names = names;
     }
 
     @Override
-    public BuilderObject createElement() {
+    public NameList create() {
         validate(this.names);
         List<Reward> rewards = Arrays.asList(this.names.split(this.DELIMITER)).stream()
                 .map(String::trim)
@@ -29,8 +29,8 @@ public class RewardsBuilder extends ValidateBuilder {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof RewardsBuilder)) return false;
-        RewardsBuilder that = (RewardsBuilder) o;
+        if (!(o instanceof RewardsFactory)) return false;
+        RewardsFactory that = (RewardsFactory) o;
         return Objects.equals(names, that.names);
     }
 

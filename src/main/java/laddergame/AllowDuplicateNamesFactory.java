@@ -2,7 +2,7 @@ package laddergame;
 
 import org.apache.commons.lang3.StringUtils;
 
-public abstract class ValidateBuilder implements ElementFactory {
+public abstract class AllowDuplicateNamesFactory implements NamesFactory {
 
     protected void validate(String names) {
         checkBlank(names);

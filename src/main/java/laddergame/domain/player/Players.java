@@ -1,12 +1,11 @@
 package laddergame.domain.player;
 
-import laddergame.BuilderObject;
-import laddergame.domain.Constant;
+import laddergame.NameList;
 
 import java.util.List;
 import java.util.Objects;
 
-public class Players implements BuilderObject {
+public class Players implements NameList {
     private final List<Player> players;
 
     public Players(List<Player> players) {
@@ -19,7 +18,7 @@ public class Players implements BuilderObject {
     }
 
     @Override
-    public boolean isSizeEqual(BuilderObject other) {
+    public boolean isSizeEqual(NameList other) {
         return (this.players.size() == other.getSize());
     }
 

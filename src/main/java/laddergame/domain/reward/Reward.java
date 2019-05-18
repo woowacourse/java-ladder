@@ -9,7 +9,7 @@ public class Reward {
 
     private final String reward;
 
-    public Reward(String reward) {
+    public Reward(String reward) throws IllegalArgumentException {
         if (StringUtils.isBlank(reward)) {
             throw new IllegalArgumentException("공백을 입력하였습니다");
         }
