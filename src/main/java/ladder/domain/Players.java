@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static ladder.util.NotNullValidator.validateNotNull;
+
 public class Players {
     static int NUM_OF_PLAYERS;
 
@@ -13,12 +15,6 @@ public class Players {
         validateNotNull(players);
         validateNumOfPlayers(players);
         this.players = players;
-    }
-
-    private void validateNotNull(List<Player> players) {
-        if (players == null || players.contains(null)) {
-            throw new IllegalArgumentException("플레이어 리스트가 null 입니다.");
-        }
     }
 
     private void validateNumOfPlayers(List<Player> players) {
@@ -34,6 +30,10 @@ public class Players {
             movedPlayers.add(player.moveOn(line));
         }
         return new Players(movedPlayers);
+    }
+
+    public Player getPlayer(int index) {
+        return players.get(index);
     }
 
     @Override

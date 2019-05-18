@@ -2,6 +2,8 @@ package ladder.domain;
 
 import java.util.Map;
 
+import static ladder.util.NotNullValidator.validateNotNull;
+
 public class Results {
     private final Map<PlayerName, Reward> results;
 
@@ -17,16 +19,14 @@ public class Results {
         }
     }
 
-    private void validateNotNull(Map<PlayerName, Reward> results) {
-        if (results == null) {
-            throw new IllegalArgumentException("사다리 게임 결과는 null일 수 없습니다.");
-        }
-    }
-
     public Reward getRewardOf(PlayerName name) {
         if (results.containsKey(name)) {
             return results.get(name);
         }
         throw new IllegalArgumentException("존재하지 않는 플레이어 이름입니다.");
+    }
+
+    public Map<PlayerName, Reward> getResults() {
+        return results;
     }
 }

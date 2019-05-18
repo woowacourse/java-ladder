@@ -2,6 +2,8 @@ package ladder.domain;
 
 import java.util.Objects;
 
+import static ladder.util.NotNullValidator.validateNotNull;
+
 public class PlayerName {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_NAME_LENGTH = 1;
@@ -12,12 +14,6 @@ public class PlayerName {
         validateNotNull(name);
         validateNameLength(name);
         this.name = name;
-    }
-
-    private void validateNotNull(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException("플레이어의 이름은 null일 수 없습니다.");
-        }
     }
 
     private void validateNameLength(String name) {

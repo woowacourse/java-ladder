@@ -2,6 +2,8 @@ package ladder.domain;
 
 import java.util.Objects;
 
+import static ladder.util.NotNullValidator.validateNotNull;
+
 public class Player {
     private final PlayerName name;
     private final Position position;
@@ -11,18 +13,6 @@ public class Player {
         validateNotNull(name);
         this.name = name;
         this.position = position;
-    }
-
-    private void validateNotNull(PlayerName name) {
-        if (name == null) {
-            throw new IllegalArgumentException("플레이어 이름은 null일 수 없습니다.");
-        }
-    }
-
-    private void validateNotNull(Position position) {
-        if (position == null) {
-            throw new IllegalArgumentException("플레이어 위치는 null일 수 없습니다.");
-        }
     }
 
     public Player moveOn(Line line) {
@@ -51,5 +41,13 @@ public class Player {
                 "name=" + name +
                 ", position=" + position +
                 '}';
+    }
+
+    public PlayerName getName() {
+        return name;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 }

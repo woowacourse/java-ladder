@@ -2,6 +2,8 @@ package ladder.domain;
 
 import java.util.List;
 
+import static ladder.util.NotNullValidator.validateNotNull;
+
 public class Ladder {
     private final List<Line> lines;
     private int index = 0;
@@ -10,12 +12,6 @@ public class Ladder {
         validateNotNull(lines);
         validateNumOfLines(lines, height);
         this.lines = lines;
-    }
-
-    private void validateNotNull(List<Line> lines) {
-        if (lines == null || lines.contains(null)) {
-            throw new IllegalArgumentException("라인 리스트가 null 입니다.");
-        }
     }
 
     private void validateNumOfLines(List<Line> lines, int height) {

@@ -2,6 +2,8 @@ package ladder.domain;
 
 import java.util.List;
 
+import static ladder.util.NotNullValidator.validateNotNull;
+
 public class Rewards {
     private final List<Reward> rewards;
 
@@ -17,9 +19,7 @@ public class Rewards {
         }
     }
 
-    private void validateNotNull(List<Reward> rewards) {
-        if (rewards == null) {
-            throw new IllegalArgumentException("보상의 리스트는 null일 수 없습니다.");
-        }
+    public Reward getReward(int index) {
+        return rewards.get(index);
     }
 }
