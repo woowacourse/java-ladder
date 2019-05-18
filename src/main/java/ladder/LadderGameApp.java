@@ -3,10 +3,7 @@ package ladder;
 import java.util.Arrays;
 import java.util.List;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderGameResult;
-import ladder.domain.LadderGenerator;
-import ladder.domain.UserOutput;
+import ladder.domain.*;
 import ladder.util.StringSplitUtils;
 import ladder.validator.Validator;
 import ladder.view.InputView;
@@ -14,20 +11,26 @@ import ladder.view.OutputView;
 
 public class LadderGameApp {
 	public static void main(String[] args) {
-		List<String> playerNames = getPersonNames();
-		List<String> gameReward = getGameReward(playerNames);
-		int ladderHeight = getLadderHeight();
-		Ladder ladder = LadderGenerator.generateLadder(playerNames.size(), ladderHeight);
+		LadderGameInformation ladderGameInformation = getLadderGameInformation();
 
-		LadderGame ladderGame = new LadderGame(playerNames);
+		Ladder ladder = LadderGenerator.generateLadder(ladderGameInformation.getPlayers().size(), getLadderHeight());
 
-		OutputView.printPlayerNames(playerNames);
+		OutputView.printPlayerNames(ladderGameInformation.getPlayers());
 		OutputView.printLadder(ladder);
-		OutputView.printLadderValues(gameReward);
+		OutputView.printLadderValues(ladderGameInformation.getRewards());
 
-		LadderGameResult ladderGameResult = ladderGame.run(gameReward, ladder);
+		LadderGameResult ladderGameResult = LadderGame.run(ladderGameInformation, ladder);
 
 		getPersonNameForGameResult(ladderGameResult);
+	}
+
+	public static LadderGameInformation getLadderGameInformation() {
+		try {
+			return new LadderGameInformation(getPersonNames(), getGameReward());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return getLadderGameInformation();
+		}
 	}
 
 	public static void getPersonNameForGameResult(LadderGameResult ladderGameResult) {
@@ -40,12 +43,13 @@ public class LadderGameApp {
 	}
 
 	public static List<String> getPersonNames() {
-		String names;
+		List<String> names;
 
 		try {
-			names = InputView.inputNames();
-			Validator.validateNamesLength(StringSplitUtils.splitString(names));
-			return Arrays.asList(names.split(","));
+			names = StringSplitUtils.splitString(InputView.inputNames());
+			Validator.validatePlayerNameAll(names);
+			Validator.validateNamesLength(names);
+			return names;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return getPersonNames();
@@ -65,17 +69,8 @@ public class LadderGameApp {
 		}
 	}
 
-	public static List<String> getGameReward(List<String> players) {
-		String result;
-
-		try {
-			result = InputView.inputResults();
-			Validator.compareLength(players, StringSplitUtils.splitString(result));
-			return Arrays.asList(result.split(","));
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return getGameReward(players);
-		}
+	public static List<String> getGameReward() {
+		return Arrays.asList(InputView.inputResults().split(","));
 	}
 }
 

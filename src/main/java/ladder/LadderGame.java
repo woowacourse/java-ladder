@@ -3,20 +3,16 @@ package ladder;
 import java.util.*;
 
 import ladder.domain.Ladder;
+import ladder.domain.LadderGameInformation;
 import ladder.domain.LadderGameResult;
 
 public class LadderGame {
-	private List<String> players;
-
-	public LadderGame(List<String> players) {
-		this.players = players;
-	}
-
-	public LadderGameResult run(List<String> gameReward, Ladder ladder) {
+	public static LadderGameResult run(LadderGameInformation ladderGameInformation, Ladder ladder) {
 		Map<String, String> gameResult = new LinkedHashMap<>();
+		List<String> players = ladderGameInformation.getPlayers();
 
-		for(int i=0; i<players.size(); ++i) {
-			gameResult.put(players.get(i), gameReward.get(ladder.getLastPosition(i)));
+		for (int i = 0; i < players.size(); ++i) {
+			gameResult.put(players.get(i), ladderGameInformation.getRewards().get(ladder.getLastPosition(i)));
 		}
 
 		return new LadderGameResult(gameResult);
