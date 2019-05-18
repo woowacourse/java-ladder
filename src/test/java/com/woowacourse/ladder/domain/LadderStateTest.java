@@ -12,7 +12,7 @@ public class LadderStateTest {
 
     @Test
     void create() {
-        LadderState state = new LadderState(3, 3, new TestBooleanGenerator(Arrays.asList(true, false, false, true, true, false)));
+        LadderState state = new LadderState(3, new LadderHeight(3), new TestBooleanGenerator(Arrays.asList(true, false, false, true, true, false)));
         List<LadderState.LadderRow> rows = new ArrayList<>();
         state.forEachRows(rows::add);
         assertThat(rows.get(0).getDirections()).containsExactly(Direction.RIGHT, Direction.LEFT, Direction.DOWN);
@@ -24,7 +24,7 @@ public class LadderStateTest {
     void createWithRandomGenerator() {
         // Direction.valueOf(true, true) 예외가 발생하는지 확인
         for (int i = 0; i < 1000; i++) {
-            new LadderState(3, 3, new RandomBooleanGenerator());
+            new LadderState(3, new LadderHeight(3), new RandomBooleanGenerator());
         }
     }
 }

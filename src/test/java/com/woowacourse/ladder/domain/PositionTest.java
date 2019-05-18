@@ -52,6 +52,6 @@ public class PositionTest {
 
     @Test
     void getMatch() {
-        assertThat(new Position(1, 3).getMatch(Arrays.asList("1등", "2등", "3등"))).isEqualTo("2등");
+        assertThat(new Position(1, 3).getMatchDestination(new DestinationGroup("1등, 2등, 3등"))).isEqualTo(new Destination("2등"));
     }
 }

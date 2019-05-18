@@ -7,9 +7,9 @@ import java.util.function.Consumer;
 public class LadderState {
     private List<LadderRow> rows;
 
-    public LadderState(int numOfParticipants, int height, BooleanGenerator booleanGenerator) {
+    public LadderState(int numOfParticipants, LadderHeight height, BooleanGenerator booleanGenerator) {
         rows = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < height.get(); i++) {
             rows.add(new LadderRow(numOfParticipants, booleanGenerator));
         }
     }

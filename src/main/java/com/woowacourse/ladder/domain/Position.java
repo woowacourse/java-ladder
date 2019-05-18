@@ -29,8 +29,8 @@ public class Position {
         return move(directions.get(current));
     }
 
-    public String getMatch(List<String> asList) {
-        return asList.get(current);
+    public Destination getMatchDestination(DestinationGroup destinations) {
+        return destinations.get(current);
     }
 
     @Override
