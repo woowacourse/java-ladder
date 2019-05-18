@@ -17,6 +17,7 @@ public enum UserOutput {
 	VIOLATE_PLAYER_NAME("잘못된 입력입니다."),
 	VIOLATE_GAME_RESULTS("참가자 수와 실행 결과의 수가 다릅니다."),
 	VIOLATE_POINTS("잘못된 포인트 값 입니다."),
+	FINISH_LADDER_GAME("exit"),
 	PRINT_FORM("%-6s"),
 	PRINT_ALL_PLAYER("all"),
 	REGEX_FOR_NUMBER("[0-9][1-9]*");

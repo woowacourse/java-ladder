@@ -37,7 +37,7 @@ public class LadderGameApp {
 			name = InputView.inputResult();
 			OutputView.printResult(ladderGameResult, name);
 		}
-		while (!name.equals(UserOutput.PRINT_ALL_PLAYER.getOutputMessage()));
+		while (!name.equals(UserOutput.FINISH_LADDER_GAME.getOutputMessage()));
 	}
 
 	public static List<String> getPersonNames() {
