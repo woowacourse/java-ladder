@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class LadderGameInformation {
 	private final List<String> players;
@@ -10,7 +11,7 @@ public class LadderGameInformation {
 	public LadderGameInformation(List<String> players, List<String> rewards) {
 		validatePlayerNameAll(players);
 		validateNamesLength(players);
-		validateOverlapPlayers(players);
+		validateOverlapPlayers(new HashSet(players));
 		validatePlayersNumber(players);
 		validateGameInformation(players, rewards);
 		this.players = players;
@@ -29,8 +30,8 @@ public class LadderGameInformation {
 		}
 	}
 
-	private void validateOverlapPlayers(List<String> players) {
-		if (new HashSet<>(players).size() != players.size()) {
+	private void validateOverlapPlayers(Set players) {
+		if (players.size() != this.players.size()) {
 			throw new IllegalArgumentException(UserOutput.VIOLATE_PLAYER_OVERLAP_NAMES.getOutputMessage());
 		}
 	}
