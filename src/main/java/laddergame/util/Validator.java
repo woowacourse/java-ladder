@@ -23,7 +23,7 @@ public class Validator {
         }
     }
 
-    public static void checkEmptyTag(List<String> names) {
+    public static void checkEmptyNames(List<String> names) {
         if (names.isEmpty()) {
             throw new IllegalArgumentException("이름이 존재하지 않습니다!");
         }

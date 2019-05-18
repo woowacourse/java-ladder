@@ -14,6 +14,7 @@ public class LadderGame {
     private List<Reward> rewards;
 
     public LadderGame(List<String> playerNames, List<String> rewardsNames, int height, Rule rule) {
+        Validator.checkEmptyNames(playerNames);
         Validator.checkEqualSize(playerNames.size(), rewardsNames.size());
         Validator.checkDuplicateNames(playerNames);
         Validator.checkLadderHeight(height);
@@ -24,7 +25,7 @@ public class LadderGame {
         rewards = rewardsNames.stream()
                 .map(Reward::new)
                 .collect(Collectors.toList());
-        ladder = LadderGenerator.generateLadder(playerNames.size(), height, rule);
+        ladder = new Ladder(players.size(), height, rule);
     }
 
     public Ladder getLadder() {

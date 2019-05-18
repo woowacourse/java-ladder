@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.domain.rule.Rule;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -11,20 +13,24 @@ public class Line {
         this.scaffolds = scaffolds;
     }
 
-    public Line(int numberOfPerson) {
-        List<Boolean> scaffolds = new ArrayList<>();
-        for (int i = 0; i < numberOfPerson + 1; i++) {
+    public Line(int numberOfPlayer, Rule rule) {
+        scaffolds = new ArrayList<>();
+        for (int i = 0; i < numberOfPlayer + 1; i++) {
             scaffolds.add(false);
         }
-        this.scaffolds = scaffolds;
+        for (int i = 1; i < scaffolds.size() - 1; i++) {
+            generateScaffold(i, rule);
+        }
+    }
+
+    private void generateScaffold(int index, Rule rule) {
+        if (canAddScaffold(index) && rule.canCreate()) {
+            scaffolds.set(index, true);
+        }
     }
 
     public Boolean canAddScaffold(int index) {
         return !(scaffolds.get(index + 1) || scaffolds.get(index - 1));
-    }
-
-    public void addScaffold(int index) {
-        scaffolds.set(index, true);
     }
 
     public List<Boolean> getScaffolds() {

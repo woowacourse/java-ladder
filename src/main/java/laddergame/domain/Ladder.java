@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.domain.rule.Rule;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -7,16 +9,15 @@ import java.util.Objects;
 public class Ladder {
     private List<Line> lines;
 
-    public Ladder() {
-        this.lines = new ArrayList<>();
-    }
-
     public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
-    public boolean addLines(Line line) {
-        return lines.add(line);
+    public Ladder(int numberOfPlayer, int height, Rule rule) {
+        this.lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(numberOfPlayer, rule));
+        }
     }
 
     public int getHeight() {
