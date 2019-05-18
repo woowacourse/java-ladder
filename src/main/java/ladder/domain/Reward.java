@@ -1,12 +1,12 @@
 package ladder.domain;
 
-public class RewardName {
+public class Reward {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_NAME_LENGTH = 1;
 
     private final String name;
 
-    public RewardName(String name) {
+    public Reward(String name) {
         validateNotNull(name);
         validateNameLength(name);
         this.name = name;

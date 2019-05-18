@@ -100,13 +100,17 @@
     - 뭔가 마음에 안 듬
     
 - PlayerName, RewardName 클래스 작성
+
+- RewardName 클래스 제거, 불필요하다고 생각됨
     
 - Reward 클래스 작성
-    - 보상은 null일 수 없다.
-    - 보상은 한 글자 이상, 다섯 글자 이하여야 한다.
-- Reward의 리스트만을 인스턴스변수로 갖는 일급컬렉션인 Rewards 클래스를 작성한다.
-- Players 와 Rewards를 인자로 받고, Map<String, String>을 인스턴스변수로 갖는 Result 클래스를 작성한다.
-    - Result 클래스는 
+    - ~~보상은 null일 수 없다.~~
+    - ~~보상은 한 글자 이상, 다섯 글자 이하여야 한다.~~
+- **Reward의 리스트만을 인스턴스변수로 갖는 일급컬렉션인 Rewards 클래스를 작성한다.**
+- Players와 Rewards를 인자로 받는 QueryProcessor 클래스를 작성한다.
+    - PlayerName 과 Reward로 구성된 맵인 Result를 인스턴스변수로 갖는다. (더 이상 포지션은 의미가 없다.)
+    - 플레이어의 이름을 받으면 그 플레이어가 받을 보상을 반환한다.
+    - "all"을 받으면 Result를 반환한다.
 
 - 사용자로부터 플레이어의 이름들을 입력받는 메서드 작성
 - 사용자로부터 사다리의 높이를 입력받는 메서드 작성
