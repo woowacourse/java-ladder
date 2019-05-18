@@ -5,7 +5,7 @@ import java.util.Arrays;
 public enum Direction {
     STRAIGHT(0),
     RIGHT(1),
-    LEFT(2);
+    LEFT(-1);
 
     private int direction;
 
@@ -25,6 +25,6 @@ public enum Direction {
     }
 
     public static boolean isRight(Direction prevDirection){
-        return prevDirection == Direction.RIGHT;
+        return prevDirection == RIGHT;
     }
 }
