@@ -90,17 +90,18 @@ public class LadderGame {
         }
     }
 
-    public static List<Player> lookUpResult() {
-        String input = getNameForResult(names);
-
-        return getPlayersForResult(input);
-    }
+	public static String getNameForLookup() {
+		return getNameForResult(names);
+	}
 
     private static String getNameForResult(List<String> names) {
-        String input;
+        String input = InputView.inputNameForResult();
+
+        if (input.equals("종료")) {
+        	return "종료";
+		}
 
         try {
-            input = InputView.inputNameForResult();
             Validator.checkNameForResult(names, input);
             return input;
         } catch (Exception e) {
@@ -109,15 +110,12 @@ public class LadderGame {
         }
     }
 
-    private static List<Player> getPlayersForResult(String input) {
-	    if (input.equals("종료")) {
-	        return new ArrayList<>();
-        }
-	    if (input.equals("all")) {
-	        return players;
-        }
-	    return findPlayer(input);
-    }
+	public static List<Player> lookUpResult(String input) {
+		if ((input.equals("all"))|(input.equals("종료"))) {
+			return players;
+		}
+		return findPlayer(input);
+	}
 
     private static List<Player> findPlayer(String name) {
         List<Player> foundresult = new ArrayList<>();

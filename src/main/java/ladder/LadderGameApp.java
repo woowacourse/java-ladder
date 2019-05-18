@@ -13,13 +13,16 @@ public class LadderGameApp {
 
 		LadderGame.executeLadderGame();
 
-        List<Player> foundPlayers;
+        String inputName;
+		List<Player> foundPlayers;
 
 		do {
-            foundPlayers = LadderGame.lookUpResult();
+			inputName = LadderGame.getNameForLookup();
+            foundPlayers = LadderGame.lookUpResult(inputName);
             OutputView.printResult(foundPlayers);
-        } while (foundPlayers.size() == 0);
+        } while (!inputName.equals("종료"));
 
+		OutputView.printEnd();
 	}
 }
 
