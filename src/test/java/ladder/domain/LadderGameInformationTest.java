@@ -21,14 +21,14 @@ class LadderGameInformationTest {
 	}
 
 	@Test
-	void 참가자의_수와_게임보상의_수가_다른_경우_예외_반환() {
-		assertThrows(IllegalArgumentException.class, () -> new LadderGameInformation(players, rewards));
+	void 정상_입력() {
+		this.rewards.add("꽝");
+		assertDoesNotThrow(() -> new LadderGameInformation(players, rewards));
 	}
 
 	@Test
-	void 참가자의_수와_게임보상의_수가_같은_경우() {
-		this.rewards.add("꽝");
-		assertDoesNotThrow(() -> new LadderGameInformation(players, rewards));
+	void 참가자의_수와_게임보상의_수가_다른_경우_예외_반환() {
+		assertThrows(IllegalArgumentException.class, () -> new LadderGameInformation(players, rewards));
 	}
 
 	@Test
@@ -49,5 +49,17 @@ class LadderGameInformationTest {
 		this.players.removeAll(Arrays.asList("pobi", "jason", "cu"));
 		this.rewards.removeAll(Arrays.asList("3000", "1000"));
 		assertDoesNotThrow(() -> new LadderGameInformation(players, rewards));
+	}
+
+	@Test
+	void 참가자_이름이_all인_경우_예외_반환() {
+		this.players.add("all");
+		assertThrows(IllegalArgumentException.class, () -> new LadderGameInformation(players, rewards));
+	}
+
+	@Test
+	void 글자수_5자_초과인_값이_있을_경우_예외_반환() {
+		this.players.add("abcdef");
+		assertThrows(IllegalArgumentException.class, () -> new LadderGameInformation(players, rewards));
 	}
 }

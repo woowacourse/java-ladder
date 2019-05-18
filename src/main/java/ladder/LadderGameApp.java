@@ -5,7 +5,6 @@ import java.util.List;
 
 import ladder.domain.*;
 import ladder.util.StringSplitUtils;
-import ladder.validator.Validator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -42,13 +41,8 @@ public class LadderGameApp {
 	}
 
 	public static List<String> getPersonNames() {
-		List<String> names;
-
 		try {
-			names = StringSplitUtils.splitString(InputView.inputNames());
-			Validator.validatePlayerNameAll(names);
-			Validator.validateNamesLength(names);
-			return names;
+			return StringSplitUtils.splitString(InputView.inputNames());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return getPersonNames();

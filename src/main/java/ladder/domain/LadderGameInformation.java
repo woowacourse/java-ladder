@@ -8,11 +8,25 @@ public class LadderGameInformation {
 	private final List<String> rewards;
 
 	public LadderGameInformation(List<String> players, List<String> rewards) {
+		validatePlayerNameAll(players);
+		validateNamesLength(players);
 		validateOverlapPlayers(players);
 		validatePlayersNumber(players);
 		validateGameInformation(players, rewards);
 		this.players = players;
 		this.rewards = rewards;
+	}
+
+	public void validateNamesLength(List<String> names) {
+		if (!names.stream().allMatch(name -> name.length() <= 5)) {
+			throw new IllegalArgumentException(UserOutput.VIOLATE_PLAYER_NAMES.getOutputMessage());
+		}
+	}
+
+	public void validatePlayerNameAll(List<String> names) {
+		if(names.stream().anyMatch(name -> name.equals(UserOutput.PRINT_ALL_PLAYER.getOutputMessage()))) {
+			throw new IllegalArgumentException(UserOutput.VIOLATE_PLAYER_NAME_ALL.getOutputMessage());
+		}
 	}
 
 	private void validateOverlapPlayers(List<String> players) {
