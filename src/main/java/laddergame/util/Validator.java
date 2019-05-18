@@ -23,9 +23,9 @@ public class Validator {
         }
     }
 
-    public static void checkEmptyNames(List<String> names) {
-        if (names.isEmpty()) {
-            throw new IllegalArgumentException("이름이 존재하지 않습니다!");
+    public static void checkNumberOfNames(List<String> names, int min) {
+        if (names.size() < min) {
+            throw new IllegalArgumentException("두 사람이상이여야 게임이 가능합니다.");
         }
     }
 

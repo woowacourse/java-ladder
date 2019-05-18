@@ -9,12 +9,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderGame {
+    private static final int MIN_PLAYER = 2;
+
     private Ladder ladder;
     private List<Player> players;
     private List<Reward> rewards;
 
     public LadderGame(List<String> playerNames, List<String> rewardsNames, int height, Rule rule) {
-        Validator.checkEmptyNames(playerNames);
+        Validator.checkNumberOfNames(playerNames, MIN_PLAYER);
         Validator.checkEqualSize(playerNames.size(), rewardsNames.size());
         Validator.checkDuplicateNames(playerNames);
         Validator.checkLadderHeight(height);
