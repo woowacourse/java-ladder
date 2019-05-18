@@ -1,9 +1,9 @@
-package ladder.constant;
+package ladder;
 
 import ladder.validator.InputLadderHeightValidator;
 import ladder.validator.PlayerValidator;
 
-public class MessageConstant {
+public class MessageCollection {
 
     public static final String INPUT_PLAYER_NAME = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요.)";
     public static final String INPUT_LADDER_GOAL_NAME = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요.)";

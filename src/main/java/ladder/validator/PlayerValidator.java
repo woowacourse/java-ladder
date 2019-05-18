@@ -1,6 +1,6 @@
 package ladder.validator;
 
-import ladder.constant.MessageConstant;
+import ladder.MessageCollection;
 
 public class PlayerValidator {
 
@@ -8,10 +8,10 @@ public class PlayerValidator {
 
     public static String validatedName(String name) {
         if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException(MessageConstant.ERROR_HAS_VALUE_EMPTY);
+            throw new IllegalArgumentException(MessageCollection.ERROR_HAS_VALUE_EMPTY);
         }
         if (name.trim().length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(MessageConstant.ERROR_OVERLENGTH);
+            throw new IllegalArgumentException(MessageCollection.ERROR_OVERLENGTH);
         }
         return name.trim();
     }

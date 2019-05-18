@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.constant.MessageConstant;
+import ladder.MessageCollection;
 import ladder.model.Ladder;
 
 import java.util.List;
@@ -10,7 +10,7 @@ public class OutputView {
     public static final String ENTER = "\n";
 
     public static void showLadderGame(List<String> names, Ladder ladder, List<String> goalNames) {
-        System.out.println(ENTER + MessageConstant.OUTPUT_LADDER_RESULT + ENTER);
+        System.out.println(ENTER + MessageCollection.OUTPUT_LADDER_RESULT + ENTER);
         showPlayers(names);
         showLadder(ladder);
         showGoals(goalNames);
@@ -36,7 +36,7 @@ public class OutputView {
 
     public static void showGameResult(String foundGoal){
         if(foundGoal != null){
-            System.out.println(ENTER + MessageConstant.OUTPUT_RESULT);
+            System.out.println(ENTER + MessageCollection.OUTPUT_RESULT);
             System.out.println(foundGoal);
         }
     }

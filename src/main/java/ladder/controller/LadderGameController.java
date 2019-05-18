@@ -9,6 +9,9 @@ import ladder.view.OutputView;
 
 public class LadderGameController {
 
+    private static final String PROGRAM_EXIT = "exit";
+    private static final String SHOW_RESULT_All = "all";
+
     public void run() {
         LadderGamePlayers players = new LadderGamePlayers(InputView.makeLadderPlayers());
         LadderGameGoals goals = new LadderGameGoals(InputView.makeLadderGoals(players.size()));
@@ -22,14 +25,14 @@ public class LadderGameController {
 
     private void findMatching(LadderGameResult ladderGameResult) {
         String foundName = InputView.findName();
-        while (!foundName.equals("exit")) {
+        while (!foundName.equals(PROGRAM_EXIT)) {
             showGameResults(ladderGameResult, foundName);
             foundName = InputView.findName();
         }
     }
 
     private void showGameResults(LadderGameResult ladderGameResult, String foundName) {
-        if (foundName.equals("all")) {
+        if (foundName.equals(SHOW_RESULT_All)) {
             OutputView.showGameResult(ladderGameResult.toString());
             return;
         }

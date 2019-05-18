@@ -1,6 +1,6 @@
 package ladder.validator;
 
-import ladder.constant.MessageConstant;
+import ladder.MessageCollection;
 
 import java.util.regex.Pattern;
 
@@ -10,13 +10,13 @@ public class InputLadderHeightValidator {
 
     public static void checkLadderHeightInputAccuracy(String input) {
         if (isHeightEmpty(input)) {
-            throw new IllegalArgumentException(MessageConstant.ERROR_HAS_VALUE_EMPTY);
+            throw new IllegalArgumentException(MessageCollection.ERROR_HAS_VALUE_EMPTY);
         }
         if (!isIntegerNumber(input.trim())) {
-            throw new NumberFormatException(MessageConstant.ERROR_NOT_INTEGER);
+            throw new NumberFormatException(MessageCollection.ERROR_NOT_INTEGER);
         }
         if (Integer.parseInt(input.trim()) < MIN_HEIGHT) {
-            throw new IllegalArgumentException(MessageConstant.ERROR_LOWER_MIN_HEIGHT);
+            throw new IllegalArgumentException(MessageCollection.ERROR_LOWER_MIN_HEIGHT);
         }
     }
 

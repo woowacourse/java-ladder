@@ -1,6 +1,6 @@
 package ladder.validator;
 
-import ladder.constant.MessageConstant;
+import ladder.MessageCollection;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -9,10 +9,10 @@ import java.util.Set;
 public class InputLadderGoalValidator {
     public static void checkLadderGoalInputAccuracy(String[] inputs, int numOfPlayers) {
         if (!isMatchPlayersAndGoals(inputs, numOfPlayers)) {
-            throw new IllegalArgumentException(MessageConstant.ERROR_MISMATCH_PLAYERS_AND_GOALS);
+            throw new IllegalArgumentException(MessageCollection.ERROR_MISMATCH_PLAYERS_AND_GOALS);
         }
         if(isOverlapLadderGoal(inputs)){
-            throw new IllegalArgumentException(MessageConstant.ERROR_OVERLAP_GOAL_NAME);
+            throw new IllegalArgumentException(MessageCollection.ERROR_OVERLAP_GOAL_NAME);
         }
     }
 

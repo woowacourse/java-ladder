@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.constant.MessageConstant;
+import ladder.MessageCollection;
 import ladder.model.LadderGoal;
 import ladder.model.LadderPlayer;
 import ladder.validator.InputLadderGoalValidator;
@@ -19,7 +19,7 @@ public class InputView {
     private static final String DELIMITER = ",";
 
     public static List<LadderPlayer> makeLadderPlayers() {
-        System.out.println(MessageConstant.INPUT_PLAYER_NAME);
+        System.out.println(MessageCollection.INPUT_PLAYER_NAME);
         return makeLadderPlayers(scanner.nextLine().split(DELIMITER));
     }
 
@@ -34,7 +34,7 @@ public class InputView {
     }
 
     public static int makeLadderHeight() {
-        System.out.println(ENTER + MessageConstant.INPUT_LADDER_HEIGHT);
+        System.out.println(ENTER + MessageCollection.INPUT_LADDER_HEIGHT);
         return makeLadderHeight(scanner.nextLine());
     }
 
@@ -50,7 +50,7 @@ public class InputView {
     }
 
     public static List<LadderGoal> makeLadderGoals(int numOfPlayers) {
-        System.out.println(ENTER + MessageConstant.INPUT_LADDER_GOAL_NAME);
+        System.out.println(ENTER + MessageCollection.INPUT_LADDER_GOAL_NAME);
         return makeLadderGoals(scanner.nextLine().split(DELIMITER), numOfPlayers);
     }
 
@@ -66,7 +66,7 @@ public class InputView {
     }
 
     public static String findName(){
-        System.out.println(ENTER + MessageConstant.INPUT_FIND_NAME);
+        System.out.println(ENTER + MessageCollection.INPUT_FIND_NAME);
         return scanner.nextLine();
     }
 }

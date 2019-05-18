@@ -1,6 +1,6 @@
 package ladder.validator;
 
-import ladder.constant.MessageConstant;
+import ladder.MessageCollection;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -10,11 +10,11 @@ public class InputPlayerValidator {
 
     public static void checkPlayerInputAccuracy(String[] inputs) {
         if (isOnePlayer(inputs)) {
-            throw new IllegalArgumentException(MessageConstant.ERROR_ONE_PLAYER);
+            throw new IllegalArgumentException(MessageCollection.ERROR_ONE_PLAYER);
         }
 
         if (isOverlapPlayer(inputs)) {
-            throw new IllegalArgumentException(MessageConstant.ERROR_OVERLAP_PLAYERS);
+            throw new IllegalArgumentException(MessageCollection.ERROR_OVERLAP_PLAYERS);
         }
     }
 
