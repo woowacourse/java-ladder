@@ -1,4 +1,4 @@
-package com.woowacourse.laddergame.domain.vo;
+package com.woowacourse.laddergame.domain.dto;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

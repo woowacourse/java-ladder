@@ -1,5 +1,6 @@
-package com.woowacourse.laddergame.domain.vo;
+package com.woowacourse.laddergame.domain.dto;
 
+import com.woowacourse.laddergame.domain.dto.ResultNameDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

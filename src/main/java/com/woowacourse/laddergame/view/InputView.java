@@ -1,7 +1,10 @@
 package com.woowacourse.laddergame.view;
 
-import com.woowacourse.laddergame.domain.vo.LadderDto;
-import com.woowacourse.laddergame.domain.vo.ResultNameDto;
+import com.woowacourse.laddergame.domain.dto.LadderDto;
+import com.woowacourse.laddergame.domain.vo.HeightVo;
+import com.woowacourse.laddergame.domain.vo.LadderResultsVo;
+import com.woowacourse.laddergame.domain.vo.PlayerNamesVo;
+import com.woowacourse.laddergame.domain.dto.ResultNameDto;
 
 import java.util.Scanner;
 
@@ -11,7 +14,7 @@ public class InputView {
     public static LadderDto inputPlayerNames(LadderDto ladderDto) {
         try {
             System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-            ladderDto.setNames(scanner.nextLine());
+            ladderDto.setPlayerNamesVo(new PlayerNamesVo(scanner.nextLine()));
             return ladderDto;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -23,7 +26,7 @@ public class InputView {
     public static LadderDto inputGameResult(LadderDto ladderDto) {
         try {
             System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-            ladderDto.setResult(scanner.nextLine());
+            ladderDto.setLadderResultsVo(new LadderResultsVo(scanner.nextLine()));
             return ladderDto;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -34,7 +37,7 @@ public class InputView {
     public static LadderDto inputHeight(LadderDto ladderDto) {
         try {
             System.out.println("최대 사다리 높이는 몇 개인가요?");
-            ladderDto.setHeight(scanner.nextLine());
+            ladderDto.setHeightVo(new HeightVo(scanner.nextLine()));
             return ladderDto;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
