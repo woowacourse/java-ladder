@@ -16,7 +16,7 @@ class LadderGameInformationTest {
 
 	@BeforeEach
 	void init() {
-		this.players = Arrays.asList("pobi", "jason", "woni", "cu", "brown");
+		this.players = new ArrayList<>(Arrays.asList("pobi", "jason", "woni", "cu", "brown"));
 		this.rewards = new ArrayList<>(Arrays.asList("꽝", "1000", "3000", "당첨"));
 	}
 
@@ -29,5 +29,11 @@ class LadderGameInformationTest {
 	void 참가자의_수와_게임보상의_수가_같은_경우() {
 		this.rewards.add("꽝");
 		assertDoesNotThrow(() -> new LadderGameInformation(players, rewards));
+	}
+
+	@Test
+	void 중복되는_이름의_참가자가_존재할_때_예외_반환() {
+		this.players.add("pobi");
+		assertThrows(IllegalArgumentException.class, () -> new LadderGameInformation(players, rewards));
 	}
 }
