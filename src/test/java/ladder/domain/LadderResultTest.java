@@ -10,17 +10,15 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class LadderResultTest {
-    private LadderRewards ladderRewards;
     private LadderResult ladderResult;
     private Ladder ladder;
     private Players players;
-    private RandomGenerator randomGenerator;
 
     @Before
     public void setLadderGame() {
-        ladderRewards = new LadderRewards("꽝,5000,꽝,3000", 4);
+        LadderRewards ladderRewards = new LadderRewards("꽝,5000,꽝,3000", 4);
         ladderResult = new LadderResult(ladderRewards);
-        randomGenerator = new RandomGenerator(Arrays.asList(1, 1, 0, 1));
+        RandomGenerator randomGenerator = new RandomGenerator(Arrays.asList(1, 1, 0, 1));
         ladder = new Ladder().make(randomGenerator, 4, 2);
         players = new Players("a,b,c,d");
     }
