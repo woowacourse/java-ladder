@@ -5,6 +5,18 @@ import java.util.List;
 import java.util.Set;
 
 public class Validator {
+    public static void checkBlankName(String name) {
+        if (name == null || name.length() == 0) {
+            throw new IllegalArgumentException("빈 이름이 입력되었습니다.");
+        }
+    }
+
+    public static void checkNameLength(String name, int length) {
+        if (name.length() > length) {
+            throw new IllegalArgumentException("길이 제한을 벗어났습니다.");
+        }
+    }
+
     public static void checkEmptyTag(List<String> names) {
         if (names.isEmpty()) {
             throw new IllegalArgumentException("이름이 존재하지 않습니다!");
