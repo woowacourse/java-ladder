@@ -9,7 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringAddCalculatorTest {
-    StringAddCalculator stringAddCalculator;
+
+    private StringAddCalculator stringAddCalculator;
 
     @BeforeEach
     void setUp() {

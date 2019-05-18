@@ -1,31 +1,26 @@
 package calculator;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class StringAddCalculator {
     private static final String DEFAULT_DELIMITER = "[,:]";
     private static final String INTEGER_REGEX = "^[0-9]$";
+    private static final String MAKE_CUSTOM_DELIMTER = "//(.)\n(.*)";
 
     int add(String text) {
-        if (isTextEmpty(text)) {
+        if (StringUtils.isEmpty(text)) {
             return 0;
         }
         text = text.trim();
 
-        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
+        Matcher matcher = Pattern.compile(MAKE_CUSTOM_DELIMTER).matcher(text);
         String[] texts = getTexts(matcher, text);
 
         return sumResult(texts);
-    }
-
-    private boolean isTextEmpty(String text) {
-        return text == null || text.trim().isEmpty();
     }
 
     private String[] getTexts(Matcher matcher, String text) {
