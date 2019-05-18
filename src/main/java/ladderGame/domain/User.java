@@ -15,7 +15,7 @@ public class User {
 
     private void validateNameBlank(String name) {
         if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("생성자를 생성할 수 없습니다.");
+            throw new IllegalArgumentException("이름을 1자 이상 입력하세요.");
         }
     }
 
