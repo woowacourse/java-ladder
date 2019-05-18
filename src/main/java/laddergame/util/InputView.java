@@ -10,7 +10,6 @@ public class InputView {
     private static final String INPUT_REWARD_NAMES = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String INPUT_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final String INPUT_WANT_RESULT = "결과를 보고 싶은 사람은?";
-    private static final String ERROR_MESSAGE = "잘못된 입력입니다!";
     private static final String SEPARATOR = ",";
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -33,7 +32,7 @@ public class InputView {
                     .map(String::trim)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            System.err.println(ERROR_MESSAGE);
+            OutputView.outputErrorMessage(e.getMessage());
             return inputPlayerNames();
         }
     }
@@ -43,7 +42,7 @@ public class InputView {
             System.out.println(INPUT_HEIGHT);
             return Integer.valueOf(scanner.nextLine());
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            OutputView.outputErrorMessage(e.getMessage());
             return inputHeight();
         }
     }

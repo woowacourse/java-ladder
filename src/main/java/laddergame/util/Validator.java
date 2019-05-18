@@ -19,7 +19,7 @@ public class Validator {
 
     public static void checkEqualSize(int size, int anotherSize) {
         if (size != anotherSize) {
-            throw new IllegalArgumentException("개수가 다릅니다.");
+            throw new IllegalArgumentException("참여할 사람과 실행 결과의 수가 다릅니다.");
         }
     }
 

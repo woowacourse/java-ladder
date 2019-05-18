@@ -7,16 +7,20 @@ import laddergame.util.OutputView;
 
 public class LadderGameApplication {
     public static void main(String[] args) {
-        LadderGame ladderGame = new LadderGame(
-                InputView.inputPlayerNames(),
-                InputView.inputRewardNames(),
-                InputView.inputHeight(),
-                new RandomCreateRule());
+        try {
+            LadderGame ladderGame = new LadderGame(
+                    InputView.inputPlayerNames(),
+                    InputView.inputRewardNames(),
+                    InputView.inputHeight(),
+                    new RandomCreateRule());
 
-        OutputView.outputLadderGame(ladderGame);
+            OutputView.outputLadderGame(ladderGame);
 
-        LadderGameResult ladderGameResult = ladderGame.startGame();
+            LadderGameResult ladderGameResult = ladderGame.startGame();
 
-        OutputView.outputLadderGameResult(InputView.inputWantResult(), ladderGameResult);
+            OutputView.outputLadderGameResult(InputView.inputWantResult(), ladderGameResult);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 }

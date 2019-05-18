@@ -72,7 +72,7 @@ public class OutputView {
 
     public static void outputLadderGameResult(String name, LadderGameResult ladderGameResult) {
         System.out.println("실행 결과");
-        if (name.equals("all")) {
+        if ("all".equals(name)) {
             outputAllResult(ladderGameResult.allResult());
             return;
         }
@@ -88,5 +88,12 @@ public class OutputView {
                     .append('\n');
         }
         System.out.print(outputResult);
+    }
+
+    public static void outputErrorMessage(String message) {
+        if (message == null) {
+            message = "에러가 발생했습니다.";
+        }
+        System.err.println(message);
     }
 }
