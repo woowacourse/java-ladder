@@ -36,4 +36,18 @@ class LadderGameInformationTest {
 		this.players.add("pobi");
 		assertThrows(IllegalArgumentException.class, () -> new LadderGameInformation(players, rewards));
 	}
+
+	@Test
+	void 참가자의_수가_2명_미만일_때_예외_반환() {
+		this.players.removeAll(Arrays.asList("pobi", "jason", "cu", "woni"));
+		this.rewards.removeAll(Arrays.asList("꽝", "1000", "3000"));
+		assertThrows(IllegalArgumentException.class, () -> new LadderGameInformation(players, rewards));
+	}
+
+	@Test
+	void 참가자의_수가_2명_이상일_때() {
+		this.players.removeAll(Arrays.asList("pobi", "jason", "cu"));
+		this.rewards.removeAll(Arrays.asList("3000", "1000"));
+		assertDoesNotThrow(() -> new LadderGameInformation(players, rewards));
+	}
 }
