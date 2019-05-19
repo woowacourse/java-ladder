@@ -4,13 +4,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+    private static final int INIT_SUM = 0;
 
     public static int addAll(String string) {
         if (isBlank(string)) {
             return 0;
         }
 
-        return sum(Numbers.toInts(getStrings(string)));
+        return sum(Numbers.toInts(parseStrings(string)));
     }
 
     private static boolean isBlank(String string) {
@@ -18,7 +19,7 @@ public class StringCalculator {
     }
 
     private static int sum(int[] numbers) {
-        int sum = 0;
+        int sum = INIT_SUM;
 
         for (int value : numbers) {
             sum += value;
@@ -27,7 +28,7 @@ public class StringCalculator {
         return sum;
     }
 
-    private static String[] getStrings(String text) {
+    private static String[] parseStrings(String text) {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
 
         if (m.find()) {
