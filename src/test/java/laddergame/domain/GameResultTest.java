@@ -26,8 +26,11 @@ public class GameResultTest {
         List<Player> inputPlayers = Arrays.asList(new Player("a"), new Player("b"), new Player("c"), new Player("d"));
         List<Prize> inputPrizes = Arrays.asList(new Prize("win"), new Prize("win"), new Prize("lose"), new Prize("lose"));
         GameProcessor processor = new GameProcessor(inputPlayers);
-        List<List<Boolean>> instructions = Arrays.asList(Arrays.asList(true, false, true), Arrays.asList(false, false, true));
-        processor.processGame(instructions);
+        List<Line> ladder = Arrays.asList(
+                new Line(Arrays.asList(true, false, true)),
+                new Line(Arrays.asList(false, false, true))
+        );
+        processor.processGame(ladder);
 
         GameResult gameResult = new GameResult();
         gameResult.makeResult(inputPlayers, inputPrizes);
@@ -41,8 +44,11 @@ public class GameResultTest {
         List<Prize> inputPrizes = Arrays.asList(new Prize("win"), new Prize("win"), new Prize("lose"), new Prize("lose"));
 
         GameProcessor processor = new GameProcessor(inputPlayers);
-        List<List<Boolean>> instructions = Arrays.asList(Arrays.asList(true, false, true), Arrays.asList(false, false, true));
-        processor.processGame(instructions);
+        List<Line> ladder = Arrays.asList(
+                new Line(Arrays.asList(true, false, true)),
+                new Line(Arrays.asList(false, false, true))
+        );
+        processor.processGame(ladder);
 
         GameResult gameResult = new GameResult();
         gameResult.makeResult(inputPlayers, inputPrizes);

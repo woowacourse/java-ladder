@@ -26,7 +26,7 @@ public class Player {
         return this.name;
     }
 
-    public boolean contains(String name) {
+    public boolean hasSameName(String name) {
         return this.name.equals(name);
     }
 }

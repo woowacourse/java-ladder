@@ -4,6 +4,7 @@ import laddergame.domain.*;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class LadderGame {
@@ -15,7 +16,7 @@ public class LadderGame {
         OutputView.printPrizes(prizes);
 
         GameProcessor processor = new GameProcessor(players);
-        processor.processGame(ladder.getLadderMap());
+        processor.processGame(ladder.getLadder());
 
         keepAsk(players, prizes);
     }
@@ -33,7 +34,7 @@ public class LadderGame {
             GameResult gameResult = new GameResult();
             gameResult.makeResult(players, prizes);
             return gameResult.getResult(players,input);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return makeResults(players, prizes);
         }

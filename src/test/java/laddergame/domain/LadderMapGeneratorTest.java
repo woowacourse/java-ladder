@@ -13,11 +13,11 @@ public class LadderMapGeneratorTest {
 
     @Test
     void ladderMap의_사이즈확인_테스트() {
-        ArrayList<List<Boolean>> ladderMap = LadderMapGenerator.fillLadderMap(4, 5);
+        List<Line> ladderMap = LadderMapGenerator.fillLadder(4, 5);
         boolean isValid = (ladderMap.size() == HEIGHT);
 
         for (int i = 0; i < ladderMap.size() && isValid; i++) {
-            isValid = (ladderMap.get(i).size() == WIDTH - 1);
+            isValid = (ladderMap.get(i).getWidth() == WIDTH - 1);
         }
 
         assertThat(isValid).isTrue();

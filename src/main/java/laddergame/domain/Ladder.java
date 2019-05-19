@@ -1,65 +1,46 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
-    private ArrayList<List<Boolean>> ladderMap = new ArrayList<>();
-    private final int width;
-    private final int height;
+    private final List<Line> ladder;
 
     public Ladder(final int width, final int height) {
         LadderValidator.checkConditionsForLadder(height);
 
-        this.width = width;
-        this.height = height;
-
-        ladderMap = makeLadder(width, height);
+        ladder = makeLadder(width, height);
     }
 
-    private ArrayList<List<Boolean>> makeLadder(int width, int height) {
-        return LadderMapGenerator.fillLadderMap(width, height);
+    private List<Line> makeLadder(int width, int height) {
+        return LadderMapGenerator.fillLadder(width, height);
     }
 
-    public ArrayList<List<Boolean>> getLadderMap() {
-        return this.ladderMap;
+    public List<Line> getLadder() {
+        return this.ladder;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
-        return width == ladder.width &&
-                height == ladder.height &&
-                Objects.equals(ladderMap, ladder.ladderMap);
+        Ladder ladder1 = (Ladder) o;
+        return Objects.equals(ladder, ladder1.ladder);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladderMap, width, height);
+        return Objects.hash(ladder);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        for (int y = 0; y < height; y++) {
-            sb.append(toStringLine(sb, y));
+        for (int i = 0; i < ladder.size(); i++) {
+            sb.append(ladder.get(i));
         }
 
         return sb.toString();
-    }
-
-    private StringBuilder toStringLine(StringBuilder sb, int y) {
-        StringBuilder stringBuilder = new StringBuilder("     |");
-
-        for (int x = 0; x < width - 1; x++) {
-            sb.append(ladderMap.get(y).get(x) ? "-----|" : "     |");
-        }
-        sb.append("\n");
-
-        return stringBuilder;
     }
 }

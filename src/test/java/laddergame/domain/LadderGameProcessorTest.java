@@ -14,9 +14,12 @@ public class LadderGameProcessorTest {
         List<Player> inputs = Arrays.asList(new Player("a"), new Player("b"), new Player("c"), new Player("d"));
 
         GameProcessor processor = new GameProcessor(inputs);
-        List<List<Boolean>> instructions = Arrays.asList(Arrays.asList(true, false, true), Arrays.asList(false, false, true));
+        List<Line> ladder = Arrays.asList(
+                new Line(Arrays.asList(true, false, true)),
+                new Line(Arrays.asList(false, false, true))
+        );
 
-        assertThat(processor.processGame(instructions)).isEqualTo(Arrays.asList(new Player("b"), new Player("a"), new Player("c"), new Player("d")));
+        assertThat(processor.processGame(ladder)).isEqualTo(Arrays.asList(new Player("b"), new Player("a"), new Player("c"), new Player("d")));
 
     }
 }

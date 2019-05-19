@@ -8,25 +8,24 @@ public class GameProcessor {
 
     public GameProcessor(List<Player> inputs) {
         this.players = inputs;
-
     }
 
-    public List<Player> processGame(List<List<Boolean>> instructions) {
+    public List<Player> processGame(List<Line> ladder) {
 
-        for (int i = 0; i < instructions.size(); i++) {
-            switchPosition(instructions.get(i));
+        for (int i = 0; i < ladder.size(); i++) {
+            switchPosition(ladder.get(i));
         }
         return players;
     }
 
-    private void switchPosition(List<Boolean> line) {
-        for (int i = 0; i < line.size(); i++) {
+    private void switchPosition(Line line) {
+        for (int i = 0; i < line.getWidth(); i++) {
             swap(line, i);
         }
     }
 
-    private void swap(List<Boolean> line, int position) {
-        if (line.get(position)) {
+    private void swap(Line line, int position) {
+        if (line.getHandle(position)) {
             Collections.swap(players, position, position + 1);
         }
     }

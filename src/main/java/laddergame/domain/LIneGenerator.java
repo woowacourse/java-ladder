@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class LineGenerator {
-    protected static List<Boolean> makeLine(int width) {
+    protected static Line makeLine(int width) {
         List<Boolean> line = new ArrayList<>();
 
         line.add(getConnectableValue(false));
@@ -13,7 +13,7 @@ public class LineGenerator {
             line.add(getConnectableValue(line.get(i-1)));
         }
 
-        return line;
+        return new Line(line);
     }
 
     private static boolean getConnectableValue(boolean preValue) {

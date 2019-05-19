@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderMapGenerator {
-    static ArrayList<List<Boolean>> fillLadderMap(int width, int height) {
-        ArrayList<List<Boolean>> ladderMap = new ArrayList<>();
+    static List<Line> fillLadder(int width, int height) {
+        List<Line> ladder = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            ladderMap.add(LineGenerator.makeLine(width));
+            ladder.add(LineGenerator.makeLine(width));
         }
 
-        return ladderMap;
+        return ladder;
     }
 }
