@@ -1,17 +1,18 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class Record {
+class Record {
     private List<Integer> indices;
 
-    Record(List<Integer> indices){
+    Record(List<Integer> indices) {
         this.indices = indices;
     }
 
-    List<Integer> getIndices(){
-        return indices;
+    List<Integer> getIndices() {
+        return Collections.unmodifiableList(indices);
     }
 
     @Override

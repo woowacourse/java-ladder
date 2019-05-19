@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LadderGameRewards {
+class LadderGameRewards {
     private static final String DEFALT_LENGTH_FORMAT = "%-6s";
 
     private List<Reward> rewards;

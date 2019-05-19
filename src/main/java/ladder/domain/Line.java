@@ -7,9 +7,6 @@ import java.util.stream.Collectors;
 
 public class Line {
     private static final int LEFT_END = 0;
-    private static final String CROSS_BAR = "-----|";
-    private static final String UNCROSS_BAR = "     |";
-    private static final String DEFAULT_BAR = "|";
 
     private List<Boolean> points;
 
@@ -54,6 +51,6 @@ public class Line {
     }
     @Override
     public String toString() {
-        return DEFAULT_BAR + this.points.stream().map(point -> point ? CROSS_BAR : UNCROSS_BAR).collect(Collectors.joining());
+        return "|" + this.points.stream().map(point -> point ? "-----|" : "     |").collect(Collectors.joining());
     }
 }

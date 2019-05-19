@@ -28,6 +28,4 @@ class GameResultTest {
         assertThat(gameResult.getResult("aaa")).isEqualTo("5000");
     }
 
-
-
 }

@@ -1,14 +1,12 @@
 package ladder.domain;
 
-
-
-public class Reward {
+class Reward {
     private static final String BLANK = "";
     private static final int MAX_REWARD_LENGTH = 5;
 
     private final String result;
 
-    public Reward(String result) {
+    Reward(String result) {
         validReward(result);
         this.result = result;
     }
