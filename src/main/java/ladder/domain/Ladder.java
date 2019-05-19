@@ -41,6 +41,7 @@ public final class Ladder {
     }
 
     public Map<String, String> play(final GamePlayers gamePlayers, final PlayerRewards playerRewards) {
+        validate(gamePlayers.size(), playerRewards.size());
         Map<String, String> result = new HashMap<>(gamePlayers.size());
 
         for (final Player player : gamePlayers.getPlayers()) {
@@ -52,5 +53,11 @@ public final class Ladder {
         }
 
         return result;
+    }
+
+    private void validate(final int playersSize, final int rewardsSize) {
+        if (playersSize != rewardsSize){
+            throw new IllegalArgumentException("사람 수와 결과의 수가 다릅니다.");
+        }
     }
 }
