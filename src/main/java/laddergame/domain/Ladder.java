@@ -1,19 +1,22 @@
 package laddergame.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
-    private final List<Line> ladder;
+    private final List<Line> ladder = new ArrayList<>();
 
     public Ladder(final int width, final int height) {
         LadderValidator.checkConditionsForLadder(height);
 
-        ladder = makeLadder(width, height);
+        makeLadder(width, height);
     }
 
-    private List<Line> makeLadder(int width, int height) {
-        return LadderMapGenerator.fillLadder(width, height);
+    private void makeLadder(int width, int height) {
+        for (int i = 0; i < height; i++) {
+            ladder.add(LineGenerator.makeLine(width));
+        }
     }
 
     public List<Line> getLadder() {

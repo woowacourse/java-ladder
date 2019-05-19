@@ -6,11 +6,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LadderTest {
-    Ladder ladder;
 
     @Test
     void 사다리객체가_제대로_만들어지는지_테스트() {
-        assertThat(ladder).isEqualTo(new Ladder(4, 5));
+        assertThat(new Ladder(4, 5)).isEqualTo(new Ladder(4, 5));
     }
 
     @Test
