@@ -10,7 +10,7 @@ public class Height {
     public Height(String height) {
         try {
             this.height = Integer.parseInt(height);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ConsoleMessages.ERR_NUMBER_FORMAT.message());
         }
         valid();

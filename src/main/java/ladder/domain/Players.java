@@ -14,7 +14,7 @@ public class Players {
     }
 
     private List<String> valid(List<String> names) {
-        if(names.size() == 0) {
+        if (names.size() == 0) {
             throw new IllegalArgumentException(ConsoleMessages.ERR_BLANK.message());
         }
         if (names.size() < 2) {
@@ -30,7 +30,6 @@ public class Players {
     private void generatePlayer(List<String> names) {
         players = IntStream.range(0, names.size())
                 .mapToObj(i -> {
-                    //String name = names.get(i).trim();
                     return new Player(names.get(i), i);
                 })
                 .collect(Collectors.toList());

@@ -8,10 +8,10 @@ public class LadderRewards {
     private List<String> rewards;
 
     public LadderRewards(List<String> inputRewards, int width) {
-        if(inputRewards.size() == 0) {
+        if (inputRewards.size() == 0) {
             throw new IllegalArgumentException(ConsoleMessages.ERR_BLANK.message());
         }
-        if(inputRewards.contains("")) {
+        if (inputRewards.contains("")) {
             throw new IllegalArgumentException(ConsoleMessages.ERR_BLANK.message());
         }
         if (inputRewards.size() != width) {
