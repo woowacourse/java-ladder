@@ -7,19 +7,16 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
-    public static final String FINISH_COMMAND = "all";
     private List<Player> players = new ArrayList<>();
 
-    public Players(String inputName) {
-        inputName = inputName.trim();
-        if (inputName.equals("")) {
-            throw new IllegalArgumentException(ConsoleMessages.ERR_BLANK.message());
-        }
-        generatePlayer(validName(inputName));
+    public Players(List<String> names) {
+        generatePlayer(valid(names));
     }
 
-    private List<String> validName(String inputName) {
-        List<String> names = Arrays.asList(inputName.split(","));
+    private List<String> valid(List<String> names) {
+        if(names.size() == 0) {
+            throw new IllegalArgumentException(ConsoleMessages.ERR_BLANK.message());
+        }
         if (names.size() < 2) {
             throw new IllegalArgumentException(ConsoleMessages.ERR_LADDER_RANGE.message());
         }
@@ -33,17 +30,8 @@ public class Players {
     private void generatePlayer(List<String> names) {
         players = IntStream.range(0, names.size())
                 .mapToObj(i -> {
-                    String name = names.get(i).trim();
-                    if (name.isEmpty()) {
-                        throw new IllegalArgumentException(ConsoleMessages.ERR_BLANK.message());
-                    }
-                    if (name.length() > 5) {
-                        throw new IllegalArgumentException(ConsoleMessages.ERR_NAME_LENGTH.message());
-                    }
-                    if (name.equals(FINISH_COMMAND)) {
-                        throw new IllegalArgumentException(ConsoleMessages.ERR_ILLEGAL_NAME.message());
-                    }
-                    return new Player(name, i);
+                    //String name = names.get(i).trim();
+                    return new Player(names.get(i), i);
                 })
                 .collect(Collectors.toList());
     }

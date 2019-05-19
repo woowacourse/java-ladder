@@ -1,9 +1,6 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderResult;
-import ladder.domain.LadderRewards;
-import ladder.domain.Players;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -12,16 +9,32 @@ public class LadderMain {
     private static Ladder ladder;
     private static LadderRewards ladderRewards;
     private static LadderResult ladderResult;
-
-
+    
     public static void main(String[] args) {
         ready();
         play();
     }
 
+    private static void createPlayers() {
+        try {
+            players = new Players(InputView.readName());
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+            createPlayers();
+        }
+    }
+
+    private static void ready() {
+        createPlayers();
+        createRewards();
+        createLadder();
+
+        show();
+    }
+
     private static void play() {
         String name = InputView.readPlayer();
-        if (name.equals(Players.FINISH_COMMAND)) {
+        if (name.equals(Player.FINISH_COMMAND)) {
             OutputView.print(ladderResult.result(ladder, players));
             return;
         }
@@ -32,14 +45,6 @@ public class LadderMain {
             System.err.println(e.getMessage());
             play();
         }
-    }
-
-    private static void ready() {
-        createPlayers();
-        createRewards();
-        createLadder();
-
-        show();
     }
 
     private static void show() {
@@ -63,15 +68,5 @@ public class LadderMain {
             System.err.println(e.getMessage());
             createRewards();
         }
-    }
-
-    private static void createPlayers() {
-        try {
-            players = new Players(InputView.readName());
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
-            createPlayers();
-        }
-
     }
 }

@@ -23,7 +23,7 @@ public class LadderResultTest {
         ladderResult = new LadderResult(ladderRewards);
         randomGenerator = new RandomGenerator(Arrays.asList(1, 1, 0, 1));
         ladder = new Ladder(4, 2, randomGenerator);
-        players = new Players("a,b,c,d");
+        players = new Players(Arrays.asList("a", "b", "c", "d"));
     }
 
     @Test

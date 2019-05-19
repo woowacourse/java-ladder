@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Players;
+import ladder.domain.Player;
 
 public enum ConsoleMessages {
     INPUT_NAME("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"),
@@ -14,7 +14,7 @@ public enum ConsoleMessages {
     ERR_BLANK("공백을 입력할 수 없습니다."),
     ERR_REWARD_COUNT("플레이어와 보상의 수가 맞지 않습니다."),
     ERR_NAME_LENGTH("플레이어 이름은 최대 5글자 입니다."),
-    ERR_ILLEGAL_NAME("플레이어 이름에 " + Players.FINISH_COMMAND + "를 사용할 수 없습니다."),
+    ERR_ILLEGAL_NAME("플레이어 이름에 " + Player.FINISH_COMMAND + "를 사용할 수 없습니다."),
     ERR_NO_EXIST("일치하는 플레이어가 없습니다."),
     ERR_DUPLICATE("플레이어 이름을 중복 입력할 수 없습니다.");
 

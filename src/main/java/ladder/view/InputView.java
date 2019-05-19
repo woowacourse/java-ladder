@@ -1,13 +1,15 @@
 package ladder.view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
 
-    public static String readName() {
+    public static List<String> readName() {
         System.out.println(ConsoleMessages.INPUT_NAME.message());
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        return Arrays.asList(scanner.nextLine().split(","));
     }
 
     public static String readHeight() {
