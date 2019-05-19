@@ -48,6 +48,11 @@ class LadderResultTest {
 
     @Test
     void 이름_전부_가져오기() {
-        assertThat(ladderResult.matchItem("all")).isEqualTo(result);
+        StringBuilder sb = new StringBuilder();
+        sb.append("pobi : star\n");
+        sb.append("hello : 2000\n");
+        sb.append("mynam : pass\n");
+        sb.append("is : 1000");
+        assertThat(ladderResult.matchItem("all")).isEqualTo(sb.toString());
     }
 }
