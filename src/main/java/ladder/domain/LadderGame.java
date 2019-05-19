@@ -10,10 +10,10 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public static LadderGame generateLadder(int height, int countOfPerson) {
+    public static LadderGame generateLadder(Height height, Person person) {
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(Line.generatePoints(countOfPerson)));
+        for (int i = 0; i < height.getHeight(); i++) {
+            lines.add(new Line(Line.generatePoints(person.getCountOfPerson())));
         }
         return new LadderGame(lines);
     }

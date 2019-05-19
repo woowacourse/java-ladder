@@ -13,7 +13,7 @@ public class Application {
 
     public static void main(String[] args) {
         receiveInput();
-        ladderGame = LadderGame.generateLadder(height.getHeight(), person.getCountOfPerson());
+        ladderGame = LadderGame.generateLadder(height, person);
         OutputView.printLadder(ladderGame, person, result);
         gameResult = ladderGame.generateAllResults(person, result);
         String requestedName;
