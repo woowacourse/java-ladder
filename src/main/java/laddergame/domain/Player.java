@@ -14,8 +14,8 @@ public class Player {
         return name;
     }
 
-    public boolean contains(String name) {
-        return this.name.equals(name);
+    public boolean isPresent(String name) {
+        return this.name.getName().equals(name);
     }
 
     @Override

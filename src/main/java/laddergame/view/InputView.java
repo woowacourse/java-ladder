@@ -1,5 +1,7 @@
 package laddergame.view;
 
+import laddergame.domain.GameResult;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -20,7 +22,7 @@ public class InputView {
         return reader.nextLine();
     }
 
-    public static String askResult() {
+    public static String askRequest() {
         System.out.println("결과를 보고 싶은 사람은 ?");
         return reader.nextLine();
     }

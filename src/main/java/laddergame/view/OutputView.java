@@ -50,7 +50,7 @@ public class OutputView {
         System.out.println(stringBuilder.toString());
     }
 
-    public static void printResult(String result) {
+    public static void printResult(GameResult result) {
         System.out.println("실행 결과");
         System.out.println(result);
     }

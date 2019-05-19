@@ -21,8 +21,6 @@ public class LadderGame {
          */
 
         ladder.makeThePlayersClimbDownTheLadder(players);
-
-
         promptUserForRequest(players, prizes);
     }
 
@@ -57,18 +55,18 @@ public class LadderGame {
 
     private String promptUserForRequest(Players players, Prizes prizes) {
         while (true) {
-            String result = makeResults(players, prizes);
+            GameResult result = generateGameResult(players, prizes);
             OutputView.printResult(result);
         }
     }
 
-    private void makeResults(Players players, Prizes prizes) {
+    private GameResult generateGameResult(Players players, Prizes prizes) {
         try {
-            String input = InputView.askResult();
-            GameResult gameResult = new GameResult(input, Players, Prizes);
+            String request = InputView.askRequest();
+            return new GameResult(request, players, prizes);
         } catch (Exception e) {
-            e.printStackTrace();
-            return makeResults(players, prizes);
+            System.out.println("일치하는 이름이 없습니다!");
+            return generateGameResult(players, prizes);
         }
     }
 
