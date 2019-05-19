@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Objects;
 
 public class GameResult {
+    private static String NOT_CONTAIN_NAME_MESSAGE = "없는 이름입니다.";
     private final LinkedHashMap<String, String> nameToResult = new LinkedHashMap<>();
 
     GameResult(List<Integer> allResult, Person person, Result result) {
@@ -14,11 +15,18 @@ public class GameResult {
         }
     }
 
-    public String getResult(String requestedName) {
+    public String getResult(String requestedName,Person person) {
+        isNotContainName(person,requestedName);
         if (requestedName.equals("all")) {
             return getAllResults();
         }
         return nameToResult.get(requestedName);
+    }
+
+    private void isNotContainName(Person person, String requestedName) {
+        if (!requestedName.equals("all") && !person.findName(requestedName)) {
+            throw new IllegalArgumentException(NOT_CONTAIN_NAME_MESSAGE);
+        }
     }
 
     private String getAllResults() {

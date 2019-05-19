@@ -19,7 +19,7 @@ public class Application {
         String requestedName;
         do {
             requestedName = InputView.findResultName(person);
-            OutputView.printLadderResult(gameResult.getResult(requestedName));
+            OutputView.printLadderResult(gameResult.getResult(requestedName,person));
         } while (!requestedName.equals("all"));
     }
 
