@@ -8,8 +8,6 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderMain {
-    private static InputView inputView;
-    private static OutputView outputView;
     private static Players players;
     private static Ladder ladder;
     private static LadderRewards ladderRewards;
@@ -22,13 +20,13 @@ public class LadderMain {
     }
 
     private static void play() {
-        String name = inputView.readPlayer();
+        String name = InputView.readPlayer();
         if (name.equals(Players.FINISH_COMMAND)) {
-            outputView.print(ladderResult.result(ladder, players));
+            OutputView.print(ladderResult.result(ladder, players));
             return;
         }
         try {
-            outputView.print(ladderResult.result(ladder, players.player(name)));
+            OutputView.print(ladderResult.result(ladder, players.player(name)));
             play();
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
@@ -37,9 +35,6 @@ public class LadderMain {
     }
 
     private static void ready() {
-        inputView = new InputView();
-        outputView = new OutputView();
-
         createPlayers();
         createRewards();
         createLadder();
@@ -48,12 +43,12 @@ public class LadderMain {
     }
 
     private static void show() {
-        outputView.print(players, ladder, ladderRewards);
+        OutputView.print(players, ladder, ladderRewards);
     }
 
     private static void createLadder() {
         try {
-            ladder = new Ladder(players.count(), inputView.readHeight());
+            ladder = new Ladder(players.count(), InputView.readHeight());
             ladder.make();
             ladderResult = new LadderResult(ladderRewards);
         } catch (IllegalArgumentException e) {
@@ -64,7 +59,7 @@ public class LadderMain {
 
     private static void createRewards() {
         try {
-            ladderRewards = new LadderRewards(inputView.readReward(), players.count());
+            ladderRewards = new LadderRewards(InputView.readReward(), players.count());
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
             createRewards();
@@ -73,7 +68,7 @@ public class LadderMain {
 
     private static void createPlayers() {
         try {
-            players = new Players(inputView.readName());
+            players = new Players(InputView.readName());
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
             createPlayers();
