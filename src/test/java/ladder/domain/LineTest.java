@@ -1,26 +1,28 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
+    private List<Direction> answerLine;
 
-    @Test
-    void 그리는_경우() {
-        Line line1 = new Line(new ArrayList<>(Collections.singletonList(false)), new AlwaysTrueCreateLine());
-        line1.updateRowLines();
-        assertThat(line1.getRowLines()).isEqualTo(new ArrayList<>(Arrays.asList(false, true)));
+    @BeforeEach
+    void setUp() {
+        Direction false_false = new Direction(false, false);
+        Direction false_true = new Direction(false, true);
+        Direction true_false = new Direction(true, false);
+        answerLine = new ArrayList<>(Arrays.asList(false_true, true_false, false_false));
     }
 
     @Test
-    void 그리지_않는_경우() {
-        Line line2 = new Line(new ArrayList<>(Collections.singletonList(true)), new AlwaysTrueCreateLine());
-        line2.updateRowLines();
-        assertThat(line2.getRowLines()).isEqualTo(new ArrayList<>(Arrays.asList(true, false)));
+    void create_Line() {
+        Line line = new Line(3);
+        assertThat(line.createLine(new AlwaysTrue())).isEqualTo(answerLine);
     }
 }

@@ -3,30 +3,52 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Direction {
-    public boolean left;
-    public boolean current;
+    private static final int LEFT_MOVE = -1;
+    private static final int NONE_MOVE = 0;
+    private static final int RIGHT_MOVE = 1;
+
+    private final boolean left;
+    private final boolean current;
 
     public Direction(boolean left, boolean current) {
+        if (left && current) {
+            throw new IllegalArgumentException();
+        }
+
         this.left = left;
         this.current = current;
     }
 
     public int move() {
         if (this.left) {
-            return -1;
+            return LEFT_MOVE;
         }
+
         if (this.current) {
-            return 1;
+            return RIGHT_MOVE;
         }
-        return 0;
+
+        return NONE_MOVE;
     }
 
     public Direction next(boolean nextCurrent) {
-        return new Direction(this.current,nextCurrent);
+        return new Direction(this.current, nextCurrent);
     }
 
-    public Direction pre(boolean beforeCurrent) {
-        return new Direction(beforeCurrent,this.current);
+    public Direction next(RandomValueGenerator randomValueGenerator) {
+        if (this.current) {
+            return next(false);
+        }
+
+        return next(randomValueGenerator.generate());
+    }
+
+    public static Direction first(RandomValueGenerator randomValueGenerator) {
+        return new Direction(false, randomValueGenerator.generate());
+    }
+
+    public Direction last() {
+        return new Direction(this.current, false);
     }
 
     @Override
