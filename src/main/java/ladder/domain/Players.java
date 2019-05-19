@@ -7,7 +7,8 @@ import java.util.Objects;
 import static ladder.util.NotNullValidator.validateNotNull;
 
 public class Players {
-    static int NUM_OF_PLAYERS;
+    static int MIN_NUM_OF_PLAYERS = 2;
+    public static int NUM_OF_PLAYERS;
 
     private final List<Player> players;
 
@@ -18,7 +19,7 @@ public class Players {
     }
 
     private void validateNumOfPlayers(List<Player> players) {
-        if (players.size() != NUM_OF_PLAYERS) {
+        if (players.size() != NUM_OF_PLAYERS || NUM_OF_PLAYERS < MIN_NUM_OF_PLAYERS) {
             throw new IllegalArgumentException("플레이어 수가 적절하지 않습니다.");
         }
     }
