@@ -7,25 +7,24 @@ import java.util.HashSet;
 import java.util.List;
 
 public class InputValidator {
-    private static final int MIN_HEIGHT = 1;
     private static final String EXCEPTION_MESSAGE = "양식에 맞게 입력해 주세요.";
     private static final String DUPLICATED_MESSAGE = "중복된 이름은 허용하지 않습니다.";
     private static final String NOT_EQUAL_COUNT_MESSAGE = "결과의 개수는 %d개가 필요합니다.";
     private static final String NOT_ALLOW_ALL_MESSAGE = "이름 all은 허용하지 않습니다.";
     private static final String NOT_CONTAIN_NAME_MESSAGE = "없는 이름입니다.";
 
-    public static List<String> checkValidName(String inputs) {
-        isEmpty(inputs);
-        hasSpace(inputs);
-        checkLastIndex(inputs);
-        List<String> names = InputHelper.splitNames(inputs);
-        for (String name : names) {
-            isOverMaxInputLimit(name);
-            nameEqualAll(name);
-        }
-        isDuplicate(names);
-        return names;
-    }
+//    public static List<String> checkValidName(String inputs) {
+//        isEmpty(inputs);
+//        hasSpace(inputs);
+//        checkLastIndex(inputs);
+//        List<String> names = InputHelper.splitNames(inputs);
+//        for (String name : names) {
+//            isOverMaxInputLimit(name);
+//            nameEqualAll(name);
+//        }
+//        isDuplicate(names);
+//        return names;
+//    }
 
     public static List<String> checkResult(int countOfPerson, String inputs) {
         isEmpty(inputs);

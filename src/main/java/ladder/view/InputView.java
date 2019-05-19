@@ -14,11 +14,11 @@ public class InputView {
     private static final String FIND_RESULT_NAME_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static List<String> inputNames() {
+    public static Person inputNames() {
         try {
             System.out.println(INPUT_NAME_MESSAGE);
             String inputName = SCANNER.nextLine();
-            return InputValidator.checkValidName(inputName);
+            return new Person(inputName);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputNames();
