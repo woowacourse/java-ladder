@@ -63,8 +63,20 @@ public class Ladder {
     private void toStringLine(StringBuilder sb, int y) {
         sb.append("     |");
         for (int x = 0; x < width - 1; x++) {
-            sb.append(ladderMap.get(y).get(x) ? "-----|" : "     |");
+            sb.append(ladderInformationAsTrueFalse.get(y).getBooleanValue(x) ? "-----|" : "     |");
         }
         sb.append("\n");
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public List<Line> getLadderInformationAsTrueFalse() {
+        return ladderInformationAsTrueFalse;
     }
 }

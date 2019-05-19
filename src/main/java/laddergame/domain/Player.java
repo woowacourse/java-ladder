@@ -9,6 +9,10 @@ public class Player {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public boolean contains(String name) {
         return this.name.equals(name);
     }

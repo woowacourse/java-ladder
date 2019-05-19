@@ -12,7 +12,7 @@ public class LadderGame {
         Ladder ladder = generateLadder(players.getPeopleCount());
         Prizes prizes = generatePrizes(players.getPeopleCount());
         //List<Prize> prizes = getPrizes(players.size());
-        OutputView.printLadder(players, ladder);
+        OutputView.printPlayersAndLadder(players, ladder);
         OutputView.printPrizes(prizes);
 
         GameProcessor processor = new GameProcessor(players);

@@ -21,4 +21,7 @@ public class Line {
         return new Random().nextBoolean();
     }
 
+    public boolean getBooleanValue(int x) {
+        return line.get(x);
+    }
 }

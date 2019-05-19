@@ -19,4 +19,8 @@ public class Players {
     public int getPeopleCount() {
         return players.size();
     }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
 }

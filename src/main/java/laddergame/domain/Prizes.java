@@ -12,4 +12,8 @@ public class Prizes {
             this.prizes.add(new Prize(currentPrize));
         }
     }
+
+    public List<Prize> getPrizes() {
+        return prizes;
+    }
 }

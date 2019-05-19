@@ -1,28 +1,49 @@
 package laddergame.view;
 
-import laddergame.domain.Ladder;
-import laddergame.domain.Player;
-import laddergame.domain.Prize;
+import laddergame.domain.*;
 
-import java.util.List;
+import java.util.*;
 
 public class OutputView {
 
-    public static void printLadder(List<Player> players, Ladder ladder) {
+    public static void printPlayersAndLadder(Players players, Ladder ladder) {
+        printPlayers(players);
+        printLadder(ladder);
+    }
+
+    private static void printPlayers(Players players) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (Player player : players) {
-            stringBuilder.append(String.format("%6s", player));
+        for (Player player : players.getPlayers()) {
+            stringBuilder.append(String.format("%6s", player.getName()));
         }
-        stringBuilder.append("\n").append(ladder);
+        stringBuilder.append("\n");
 
         System.out.println(stringBuilder.toString());
     }
 
-    public static void printPrizes(List<Prize> prizes) {
+    public static void printLadder(Ladder ladder) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int y = 0; y < ladder.getHeight(); y++) {
+            appendHandle(sb, y, ladder);
+        }
+
+        System.out.println(sb.toString());
+    }
+
+    private static void appendHandle(StringBuilder sb, int y, Ladder ladder) {
+        sb.append("     |");
+        for (int x = 0; x < ladder.getWidth() - 1; x++) {
+            sb.append(ladder.getLadderInformationAsTrueFalse().get(y).getBooleanValue(x) ? "-----|" : "     |");
+        }
+        sb.append("\n");
+    }
+
+    public static void printPrizes(Prizes prizes) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (Prize prize : prizes) {
+        for (Prize prize : prizes.getPrizes()) {
             stringBuilder.append(String.format("%6s", prize));
         }
 
