@@ -18,4 +18,11 @@ public class LadderHeight {
     public int getHeight() {
         return height;
     }
+
+    @Override
+    public String toString() {
+        return "LadderHeight{" +
+                "height=" + height +
+                '}';
+    }
 }

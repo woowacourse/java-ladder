@@ -50,4 +50,24 @@ public class InputView {
         }
         return new Rewards(rewards);
     }
+
+    public static LadderHeight getLadderHeight() {
+        try {
+            System.out.println("최대 사다리 높이는 몇 개인가요?");
+            String userInput = SCANNER.nextLine();
+            return inputToLadderHeight(userInput);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return getLadderHeight();
+        }
+    }
+
+    private static LadderHeight inputToLadderHeight(String inputInteger) {
+        try {
+            Integer.parseInt(inputInteger);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("올바른 정수 입력이 아닙니다.");
+        }
+        return new LadderHeight(Integer.parseInt(inputInteger));
+    }
 }
