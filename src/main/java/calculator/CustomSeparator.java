@@ -8,14 +8,11 @@ public class CustomSeparator {
     private final String separator;
 
     public CustomSeparator(final String separator) {
-        if(separator == null){
-            throw new IllegalArgumentException();
+        if (separator == null || separator.isEmpty()) {
+            throw new IllegalArgumentException("커스텀 구분자를 넣어주세요.");
         }
-        if(separator.length() != 1){
-            throw new IllegalArgumentException();
-        }
-        if(Pattern.matches("([0-9]){1,}",separator)){
-            throw new IllegalArgumentException();
+        if (Pattern.matches("([0-9])+", separator)) {
+            throw new IllegalArgumentException("커스텀 구분자는 숫자 이외의 문자여야 합니다.");
         }
         this.separator = separator;
     }
