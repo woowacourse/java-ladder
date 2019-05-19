@@ -1,13 +1,12 @@
 package ladder.util;
 
-import ladder.domain.LadderGame;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RandomHelperTest {
+class RandomHelperTest {
     @Test
     void 사람이한명() {
         assertThat(RandomHelper.randomPoint(Arrays.asList(false, false), 1)).isFalse();
@@ -17,4 +16,5 @@ public class RandomHelperTest {
     void 이전값이_True() {
         assertThat(RandomHelper.randomPoint(Arrays.asList(false, true), 3)).isFalse();
     }
+
 }

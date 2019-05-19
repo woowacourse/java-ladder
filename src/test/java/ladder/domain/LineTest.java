@@ -2,28 +2,26 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class LineTest {
+class LineTest {
     @Test
-    void 생성자확인() {
-        Line line = new Line(Arrays.asList(false, true, false));
-        assertThat(line).isEqualTo(new Line(Arrays.asList(false, true, false)));
-    }
-
-    @Test
-    void 한사람_생성자_확인() {
-        Line line = new Line(Arrays.asList(false));
-        assertThat(line).isEqualTo(new Line(Arrays.asList(false)));
+    void 연속_true_확인() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Line(Arrays.asList(false, true, true, false));
+        });
     }
 
     @Test
     void 라인_출력() {
         Line line = new Line(Arrays.asList(false, true, false, true, false));
         assertThat(line.makeLine()).isEqualTo("     |-----|     |-----|\n");
-
     }
 
     @Test
