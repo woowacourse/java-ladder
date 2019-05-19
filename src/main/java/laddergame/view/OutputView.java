@@ -15,7 +15,7 @@ public class OutputView {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (Player player : players.getPlayers()) {
-            stringBuilder.append(String.format("%6s", player.getName()));
+            stringBuilder.append(String.format("%6s", player.getName().getName()));
         }
         stringBuilder.append("\n");
 
@@ -51,7 +51,28 @@ public class OutputView {
     }
 
     public static void printResult(GameResult result) {
-        System.out.println("실행 결과");
-        System.out.println(result);
+        if (result.isRequestAll()) {
+            printAllResults(result);
+            return;
+        }
+        printRequestedResult(result);
+    }
+
+    private static void printRequestedResult(GameResult result) {
+        int index = 0;
+
+        while (index < result.getResultsSize() && !result.isMatch(index)) {
+            index++;
+        }
+
+        System.out.println(result.getResults().get(index));
+    }
+
+    private static void printAllResults(GameResult result) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String currentResult : result.getResults()) {
+            stringBuilder.append(currentResult);
+        }
+        System.out.println(stringBuilder.toString());
     }
 }

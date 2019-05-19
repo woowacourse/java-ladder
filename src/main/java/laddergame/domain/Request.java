@@ -18,4 +18,8 @@ public class Request {
 
         if (!isNamePresent) { throw new IllegalArgumentException("일치하는 플레이어의 이름이 존재하지 않습니다."); }
     }
+
+    public String getRequest() {
+        return this.request;
+    }
 }

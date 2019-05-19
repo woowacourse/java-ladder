@@ -12,41 +12,24 @@ public class GameResult {
         this.request = wrappedRequest;
 
         for (int i = 0; i < players.getPlayers().size(); i++) {
-            results.add(players.getPlayers().get(i) + " : " + prizes.getPrizes().get(i) + "\n");
+            results.add(players.getPlayers().get(i).getName().getName() + " : " + prizes.getPrizes().get(i) + "\n");
         }
     }
 
-    public String getResult(List<Player> players, String name) {
-        validateExistedInputException(players, name);
-
-        if (name.equals("all")) {
-            return getAllResult();
-        }
-        return getRequestedResult(name);
+    public boolean isRequestAll() {
+        return this.request.getRequest().equals("all");
     }
 
-    private String getRequestedResult(String name) {
-        int index = 0;
-
-        while (index < results.size() && !results.get(index).startsWith(name + " : ")) {
-            index++;
-        }
-
-        return results.get(index);
+    public List<String> getResults() {
+        return results;
     }
 
-    private String getAllResult() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String result : results) {
-            stringBuilder.append(result);
-        }
-        return stringBuilder.toString();
+    public int getResultsSize() {
+        return results.size();
     }
 
-    public void makeResult(List<Player> players, List<Prize> prizes) {
-        for (int i = 0; i < players.size(); i++) {
-            results.add(players.get(i) + " : " + prizes.get(i) + "\n");
-        }
+    public boolean isMatch(int index) {
+        return results.get(index).startsWith(request.getRequest() + " : ");
     }
 
 }
