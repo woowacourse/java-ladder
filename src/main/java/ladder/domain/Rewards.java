@@ -23,10 +23,15 @@ public class Rewards {
         return rewards.get(index);
     }
 
+    public List<Reward> getRewards() {
+        return rewards;
+    }
+
     @Override
     public String toString() {
         return "Rewards{" +
                 "rewards=" + rewards +
                 '}';
     }
+
 }

@@ -38,4 +38,11 @@ public class OutputView {
         }
         System.out.print("     ");
     }
+
+    public static void printRewards(Rewards rewards) {
+        for (Reward reward : rewards.getRewards()) {
+            System.out.printf("%s ", StringUtils.center(reward.getName(), PADDING_WIDTH));
+        }
+        System.out.println("\n");
+    }
 }

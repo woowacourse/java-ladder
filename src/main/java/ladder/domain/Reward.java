@@ -41,4 +41,8 @@ public class Reward {
                 "name='" + name + '\'' +
                 '}';
     }
+
+    public String getName() {
+        return name;
+    }
 }
