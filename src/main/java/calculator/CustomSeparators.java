@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class CustomSeparatorGroup {
+public class CustomSeparators {
 
     private Set<CustomSeparator> customSeparators;
 
-    CustomSeparatorGroup() {
+    CustomSeparators() {
         customSeparators = new HashSet<>();
         customSeparators.add(new CustomSeparator(","));
         customSeparators.add(new CustomSeparator(":"));
