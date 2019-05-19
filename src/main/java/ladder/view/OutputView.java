@@ -18,7 +18,6 @@ public class OutputView {
         for (int i = 0; i < rows.size(); i++) {
             System.out.println(line(rows.get(i)));
         }
-
     }
 
     public static String line(LadderRow row) {
