@@ -24,7 +24,7 @@ public class LadderGame {
     private static Prizes generatePrizes(int width) {
         try {
             String prizes = InputView.askPrizes();
-            return new Prizes(width,prizes);
+            return new Prizes(width, prizes);
         } catch (Exception e) {
             return generatePrizes(width);
         }
