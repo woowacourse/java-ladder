@@ -10,7 +10,7 @@ public final class Line {
         this.directions = directions;
     }
 
-    public int move(int position){
+    public int move(int position) {
         return directions.get(position).move();
     }
 

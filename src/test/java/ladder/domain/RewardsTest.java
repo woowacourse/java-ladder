@@ -11,8 +11,8 @@ public class RewardsTest {
     @Test
     void 사이즈0_체크() {
         Map<Integer, String> input = new HashMap<>();
-        assertThrows(IllegalArgumentException.class,()->{
-           new Rewards(input);
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Rewards(input);
         });
     }
 }

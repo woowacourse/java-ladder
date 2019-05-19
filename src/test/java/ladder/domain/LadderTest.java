@@ -50,7 +50,7 @@ public class LadderTest {
     @Test
     public void 플레이어와_결과_size_다름_검사() {
         rewards = new RewardsGenerator("꽝, 5000, 3000, 5000").generate();
-        assertThrows(IllegalArgumentException.class, ()->{
+        assertThrows(IllegalArgumentException.class, () -> {
             Map<String, String> result = ladder.play(players, rewards);
         });
     }

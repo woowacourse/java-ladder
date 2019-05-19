@@ -17,7 +17,7 @@ public class PlayersGeneratorTest {
         List<String> playerNames = Arrays.asList(input.split(PlayersGenerator.DELIMITER));
         List<Player> players = new ArrayList<>();
         for (String name : playerNames) {
-            players.add(new Player(name,1));
+            players.add(new Player(name, 1));
         }
         Players expected = new Players(players);
 

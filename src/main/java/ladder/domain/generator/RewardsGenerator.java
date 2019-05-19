@@ -20,7 +20,6 @@ public final class RewardsGenerator {
         for (String in : input.split(DELIMITER)) {
             map.put(index++, in.trim());
         }
-
         return new Rewards(map);
     }
 }

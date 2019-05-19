@@ -32,14 +32,14 @@ public class DirectionTest {
 
     @Test
     void 마지막() {
-        Direction last = Direction.of(false,false).last();
+        Direction last = Direction.of(false, false).last();
         assertThat(last).isEqualTo(Direction.of(false, false));
     }
 
     @Test
     void 다음() {
         Direction next = Direction.of(true, false).next(true);
-        assertThat(next).isEqualTo(Direction.of(false,true));
+        assertThat(next).isEqualTo(Direction.of(false, true));
     }
 
     @Test

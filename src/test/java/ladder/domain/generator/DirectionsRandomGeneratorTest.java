@@ -13,7 +13,7 @@ class DirectionsRandomGeneratorTest {
 
     @BeforeEach
     void setUp() {
-         actual = new DirectionsRandomGenerator(3).generate();
+        actual = new DirectionsRandomGenerator(3).generate();
     }
 
     @Test
