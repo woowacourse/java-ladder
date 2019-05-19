@@ -1,27 +1,26 @@
 package ladder.domain.generator;
 
 import ladder.domain.Player;
+import ladder.domain.Players;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public final class PlayerGenerator {
+public final class PlayersGenerator {
     protected static final String DELIMITER = ",";
 
     private final String playerNames;
 
-    public PlayerGenerator(final String playerNames) {
+    public PlayersGenerator(final String playerNames) {
         this.playerNames = playerNames;
     }
 
-    public List<Player> generate() {
+    public Players generate() {
         List<Player> players = new ArrayList<>();
         String[] names = playerNames.split(DELIMITER);
         for (int i = 0; i < names.length; i++) {
             players.add(new Player(names[i], i));
         }
-        return players;
+        return new Players(players);
     }
 }

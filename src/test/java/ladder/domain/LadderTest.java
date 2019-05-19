@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.generator.PlayerGenerator;
+import ladder.domain.generator.PlayersGenerator;
 import ladder.domain.generator.RewardsGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ public class LadderTest {
 
     @BeforeEach
     void setUp() {
-        players = new Players(new PlayerGenerator("pobi,crong,honux").generate());
+        players = new PlayersGenerator("pobi,crong,honux").generate();
         rewards = new RewardsGenerator("꽝, 5000, 3000").generate();
         List<Direction> directions = Arrays.asList(
                 Direction.first(true),
