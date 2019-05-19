@@ -45,18 +45,22 @@ public class GameData {
         return members.get(index).toString();
     }
 
-
     private List<Member> makeMembers(String[] names) {
         List<Member> memberGroup = new ArrayList<>();
 
-        if (hasDuplicateName(names)) {
-            throw new IllegalArgumentException(MessageContants.ERROR_DUPLICATE_NAME);
-        }
+        validateName(names);
+
         for (String name : names) {
             memberGroup.add(new Member(name));
         }
 
         return memberGroup;
+    }
+
+    private void validateName(String[] names) {
+        if (hasDuplicateName(names)) {
+            throw new IllegalArgumentException(MessageContants.ERROR_DUPLICATE_NAME);
+        }
     }
 
     private List<Goal> makeGoal(String[] results) {

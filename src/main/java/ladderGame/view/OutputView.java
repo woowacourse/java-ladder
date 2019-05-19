@@ -8,10 +8,8 @@ import java.util.List;
 public class OutputView {
     public static void printLadder(GameData gameData, Ladder ladder) {
         printMember(gameData);
-        System.out.println();
         printRowAndColumn(gameData, ladder);
         printGoal(gameData);
-        System.out.println();
     }
 
     public static void printResult(String result) {
@@ -28,14 +26,18 @@ public class OutputView {
 
     private static void printMember(GameData gameData) {
         for (Member member : gameData.getMembers()) {
-            System.out.printf("%6s", member.getName());
+            System.out.print(String.format(MessageContants.RESULT_FORMAT, member.getName()));
         }
+
+        System.out.println();
     }
 
     private static void printGoal(GameData gameData) {
         for (Goal goal : gameData.getGoals()) {
-            System.out.printf("%6s", goal.getPlayResult());
+            System.out.printf(String.format(MessageContants.RESULT_FORMAT, goal.getPlayResult()));
         }
+
+        System.out.println();
     }
 
     private static void printRowAndColumn(GameData gameData, Ladder ladder) {
@@ -53,11 +55,11 @@ public class OutputView {
         }
     }
 
-    private static void printRow(Line line, int i) {
-        if (line.isConnected(i)) {
+    private static void printRow(Line line, int index) {
+        if (line.isConnected(index)) {
             System.out.print(MessageContants.MESSAGE_ROW);
         }
-        if (!line.isConnected(i)) {
+        if (!line.isConnected(index)) {
             System.out.print(MessageContants.MESSAGE_BLANK);
         }
     }
