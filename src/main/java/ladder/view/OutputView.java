@@ -45,4 +45,10 @@ public class OutputView {
                 .collect(Collectors.joining(CONNECTOR));
         System.out.println(joinedReward);
     }
+
+    public static void printLadderGameResult(LadderGameResult ladderGameResult){
+        for (Player player : ladderGameResult.getLadderGameResult().keySet()){
+            System.out.println(player.getName() + " : " + ladderGameResult.getLadderGameResult().get(player).getReward());
+        }
+    }
 }
