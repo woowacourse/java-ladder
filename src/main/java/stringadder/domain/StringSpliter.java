@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringSpliter {
-    private static final String CUSTOM_SEPARATOR_PICKER = "//|\n";
-    private static final int NUMBER_STRING_POSITION = 2;
-    private static final int ADDITIONAL_SEPARATOR_POSITION = 1;
+    private static final int END_ADDITIONAL_SEPARATOR_POSITION = 1;
+    private static final int START_ADDITIONAL_SEPARATOR_POSITION = 2;
+    private static final String ADDITINAL_SEPARATOR_PATEERN = "//.*\\n";
     private List<String> seperators = new ArrayList<>(Arrays.asList(",", ":"));
 
     public StringSpliter(List<String> seperators) {
@@ -25,15 +27,14 @@ public class StringSpliter {
     }
 
     String setAdditionalSeparatorsFrom(String input) {
-        try {
-            seperators.add(input.split(CUSTOM_SEPARATOR_PICKER)[ADDITIONAL_SEPARATOR_POSITION]);
-            return input.split(CUSTOM_SEPARATOR_PICKER)[NUMBER_STRING_POSITION];
-        } catch (Exception e) {
-            if(input.split(CUSTOM_SEPARATOR_PICKER).length == 1) {  //앞에 커스텀구분자가 없는경우
-                return input;
-            }
-            return "";
+        Pattern pattern = Pattern.compile(ADDITINAL_SEPARATOR_PATEERN);
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            seperators.add(input.substring(matcher.start() + START_ADDITIONAL_SEPARATOR_POSITION,
+                    matcher.end() - END_ADDITIONAL_SEPARATOR_POSITION));
+            input = input.substring(matcher.end());
         }
+        return input;
     }
 
     @Override

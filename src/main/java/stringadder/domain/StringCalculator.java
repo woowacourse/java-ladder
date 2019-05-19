@@ -7,7 +7,7 @@ public class StringCalculator {
         StringSpliter stringSpliter = new StringSpliter();
         String numberString = stringSpliter.setAdditionalSeparatorsFrom(input);
         List<String> numbersBeforeConvert = stringSpliter.splitBySeparators(numberString);
-        List<Integer> numbers = Converter.convert(numbersBeforeConvert);
+        List<Integer> numbers = IntegerConverter.convert(numbersBeforeConvert);
         return IntegerAdder.add(numbers);
     }
 }

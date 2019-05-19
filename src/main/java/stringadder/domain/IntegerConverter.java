@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Converter {
+public class IntegerConverter {
     private static final int NUMBER_BOUND = 0;
     public static List<Integer> convert(List<String> input) {
         List<Integer> converted = new ArrayList<>();

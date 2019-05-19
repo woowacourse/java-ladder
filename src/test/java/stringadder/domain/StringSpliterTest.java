@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 
 public class StringSpliterTest {
     StringSpliter testStringSpliter;
@@ -88,5 +89,12 @@ public class StringSpliterTest {
         testStringSpliter = new StringSpliter(Arrays.asList("&"));
 
         assertThat(testStringSpliter.splitBySeparators(numbersWithSeparator)).isEqualTo(expected);
+    }
+
+
+    @Test
+    void 커스텀_구분자_정규표현식_테스트() {
+        String input = "//a\n1a2a3";
+        assertThat(testStringSpliter.setAdditionalSeparatorsFrom(input)).isEqualTo("1a2a3");
     }
 }
