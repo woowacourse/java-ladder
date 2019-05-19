@@ -1,6 +1,7 @@
 package ladderGame.view;
 
 import ladderGame.domain.Ladder;
+import ladderGame.domain.Reward;
 import ladderGame.domain.User;
 import ladderGame.util.StringUtil;
 
@@ -36,14 +37,25 @@ public class InputView {
         return users;
     }
 
-    public static List<String> createResults(int userSize) {
-        String inputResults = InputView.inputResults();
-        List<String> results = StringUtil.splitComma(inputResults);
+    public static List<Reward> createResults(int userSize) {
+        List<String> results= StringUtil.splitComma(InputView.inputResults());
+
         if (results.size() != userSize) {
             System.out.println("결과와 참여자의 수는 같아야합니다");
             return createResults(userSize);
         }
-        return results;
+
+        return createRewardList(results);
+    }
+
+    private static List<Reward> createRewardList(List<String> results) {
+        List<Reward> rewards = new ArrayList<>();
+
+        for (String result : results) {
+            rewards.add(new Reward(result));
+        }
+
+        return rewards;
     }
 
     private static String inputResults() {

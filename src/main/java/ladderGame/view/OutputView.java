@@ -36,9 +36,9 @@ public class OutputView {
         }
     }
 
-    public static void printResults(List<String> results) {
-        for (String result : results) {
-            System.out.printf("%-6s", result);
+    public static void printResults(List<Reward> rewards) {
+        for (Reward reward : rewards) {
+            System.out.printf("%-6s", reward);
         }
         System.out.println();
     }
@@ -47,10 +47,10 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public static void printLadderUI(List<User> users, Ladder ladder, List<String> results) {
+    public static void printLadderUI(List<User> users, Ladder ladder, List<Reward> rewards) {
         printNames(users);
         printLadder(ladder.getFloors());
-        printResults(results);
+        printResults(rewards);
     }
 
     public static void printResultAll(Map<UserName, Reward> resultMap) {

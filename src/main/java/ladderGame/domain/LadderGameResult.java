@@ -7,17 +7,16 @@ import java.util.Map;
 public class LadderGameResult {
     private final Map<UserName, Reward> resultMap;
 
-    public LadderGameResult(List<String> result, List<User> users) {
-        this.resultMap = createResultMap(result, users);
+    public LadderGameResult(List<Reward> rewards, List<User> users) {
+        this.resultMap = createResultMap(rewards, users);
     }
 
-    private Map<UserName, Reward> createResultMap(List<String> result, List<User> users) {
+    private Map<UserName, Reward> createResultMap(List<Reward> result, List<User> users) {
         Map<UserName, Reward> resultMap = new HashMap<>();
 
         for (User user : users) {
-            UserName userName = new UserName(user.getName());
-            Reward reward = new Reward(result.get(user.getPosition()));
-            resultMap.put(userName, reward);
+            Reward reward = result.get(user.getPosition());
+            resultMap.put(user.getName(), reward);
         }
 
         return resultMap;

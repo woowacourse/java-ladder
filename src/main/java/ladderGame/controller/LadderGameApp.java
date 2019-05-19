@@ -1,9 +1,6 @@
 package ladderGame.controller;
 
-import ladderGame.domain.Ladder;
-import ladderGame.domain.LadderGame;
-import ladderGame.domain.LadderGameResult;
-import ladderGame.domain.User;
+import ladderGame.domain.*;
 import ladderGame.view.InputView;
 import ladderGame.view.OutputView;
 
@@ -14,15 +11,15 @@ public class LadderGameApp {
 
     public static void main(String[] args) {
         List<User> users = InputView.createUsers();
-        List<String> results = InputView.createResults(users.size());
+        List<Reward> rewards = InputView.createResults(users.size());
         Ladder ladder = InputView.createLadder(users.size());
 
         LadderGame ladderGame = new LadderGame(ladder);
         ladderGame.startLadderGame(users);
 
-        OutputView.printLadderUI(users, ladder, results);
+        OutputView.printLadderUI(users, ladder, rewards);
 
-        LadderGameResult ladderResult = new LadderGameResult(results, users);
+        LadderGameResult ladderResult = new LadderGameResult(rewards, users);
         printResult(ladderResult);
     }
 
