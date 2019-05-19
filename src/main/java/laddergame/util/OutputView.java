@@ -49,8 +49,8 @@ public class OutputView {
         for (Boolean scaffold : ladder.getLine(index).getScaffolds()) {
             scaffoldsView.add(makeScaffoldView(scaffold));
         }
-        lineView.append(String.join("|", scaffoldsView).substring(3));
-        lineView.append("\n");
+        lineView.append(String.join("|", scaffoldsView).substring(3))
+                .append("\n");
         return lineView;
     }
 
@@ -60,7 +60,7 @@ public class OutputView {
 
     public static void outputLadderGameResult(String person, LadderGameResult ladderGameResult) {
         System.out.println("실행 결과");
-        if (person.equals("all")) {
+        if ("all".equals(person)) {
             outputAllResult(ladderGameResult.allPrizes());
             return;
         }
@@ -70,7 +70,10 @@ public class OutputView {
     private static void outputAllResult(Map<String, String> allPrizes) {
         StringBuilder result = new StringBuilder();
         for (String person : allPrizes.keySet()) {
-            result.append(person).append(" : ").append(allPrizes.get(person)).append('\n');
+            result.append(person)
+                    .append(" : ")
+                    .append(allPrizes.get(person))
+                    .append('\n');
         }
         System.out.print(result);
     }
