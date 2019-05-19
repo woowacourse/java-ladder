@@ -9,7 +9,7 @@ public class Participant {
 
     private final String name;
 
-    public Participant(String name) {
+    Participant(String name) {
         Optional<String> maybeName = Optional.of(name);
         this.name = maybeName
             .map(String::trim)

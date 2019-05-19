@@ -13,7 +13,8 @@ public class ParticipantGroup {
     private final List<Participant> participants;
 
     public ParticipantGroup(String commaSeparatedNames) {
-        List<String> splitted = Arrays.asList(commaSeparatedNames.trim().split(NAME_DELIMITER));
+        checkIfConsecutiveDelimiter(commaSeparatedNames);
+        List<String> splitted = Arrays.asList(commaSeparatedNames.split(NAME_DELIMITER));
         List<Participant> sanitized = sanitize(splitted);
 
         if (sanitized.size() != splitted.size() ||
@@ -25,14 +26,21 @@ public class ParticipantGroup {
         participants = sanitized;
     }
 
-    private boolean checkIfIncludeDuplicateItem(List<Participant> participants) {
-        return new HashSet<>(participants).size() != participants.size();
+    private void checkIfConsecutiveDelimiter(String commaSeparatedNames) {
+        if (commaSeparatedNames.contains(",,")) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private List<Participant> sanitize(List<String> splittedNames) {
         return splittedNames.stream()
+            .map(String::trim)
             .map(Participant::new)
             .collect(Collectors.toList());
+    }
+
+    private boolean checkIfIncludeDuplicateItem(List<Participant> participants) {
+        return new HashSet<>(participants).size() != participants.size();
     }
 
     public void forEachParticipants(Consumer<Participant> participantsConsumer) {

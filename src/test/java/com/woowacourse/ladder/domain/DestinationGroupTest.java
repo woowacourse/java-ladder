@@ -19,4 +19,11 @@ public class DestinationGroupTest {
             new DestinationGroup(",,");
         });
     }
+
+    @Test
+    void createIncludeEmpty() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new DestinationGroup("1st,,");
+        });
+    }
 }

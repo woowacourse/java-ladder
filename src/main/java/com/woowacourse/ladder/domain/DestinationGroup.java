@@ -10,15 +10,22 @@ public class DestinationGroup {
 
     private final List<Destination> destinations;
 
-    public DestinationGroup(String s) {
-        List<Destination> sanitized = Stream.of(s.split(","))
+    public DestinationGroup(String destinations) {
+        checkIfConsecutiveDelimiter(destinations);
+        List<Destination> sanitized = Stream.of(destinations.split(","))
             .map(Destination::new)
             .collect(Collectors.toList());
 
         if (sanitized.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        destinations = sanitized;
+        this.destinations = sanitized;
+    }
+
+    private void checkIfConsecutiveDelimiter(String commaSeparatedDestinations) {
+        if (commaSeparatedDestinations.contains(",,")) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public Destination get(int index) {

@@ -24,4 +24,10 @@ public class DirectionTest {
     void moveDown() {
         assertThat(Direction.DOWN.getPositionToMove()).isEqualTo(0);
     }
+
+    @Test
+    void matchState() {
+        assertThat(Direction.DOWN.matchState(false, false)).isTrue();
+        assertThat(Direction.LEFT.matchState(false, true)).isFalse();
+    }
 }

@@ -1,9 +1,6 @@
 package com.woowacourse.ladder.view;
 
-import com.woowacourse.ladder.domain.DestinationGroup;
-import com.woowacourse.ladder.domain.Direction;
-import com.woowacourse.ladder.domain.LadderState;
-import com.woowacourse.ladder.domain.ParticipantGroup;
+import com.woowacourse.ladder.domain.*;
 
 import java.util.List;
 
@@ -26,24 +23,31 @@ public class OutputView {
         System.out.println("|");
     }
 
-    public static void printSingleResult(String result) {
+    public static void printResult(ResultPair result) {
+        if (result.size() == 1) {
+            result.forEachPair((p, d) -> printSingleResult(d.toString()));
+            return;
+        }
+
+        OutputView.printMultipleResult(result);
+    }
+
+    private static void printSingleResult(String result) {
         System.out.println("실행 결과");
         System.out.println(result);
     }
 
-    public static void printMultipleResult(List<String> participants, List<String> destinations) {
-        assertLists(participants, destinations);
+    private static void printMultipleResult(ResultPair result) {
+        assertNotNull(result);
 
         System.out.println("실행 결과");
-        for (int i = 0; i < participants.size(); i++) {
-            System.out.printf("%s : %s\n", participants.get(i), destinations.get(i));
-        }
+        result.forEachPair((p, d) -> {
+            System.out.printf("%s : %s\n", p, d);
+        });
     }
 
-    private static void assertLists(List<String> participants, List<String> destinations) {
-        if (participants == null || destinations == null ||
-            participants.isEmpty() || destinations.isEmpty() ||
-            participants.size() != destinations.size()) {
+    private static void assertNotNull(ResultPair result) {
+        if (result == null) {
             throw new IllegalArgumentException();
         }
     }

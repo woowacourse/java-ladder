@@ -35,7 +35,7 @@ public enum Direction {
 
     public static Direction valueOf(boolean canGoLeft, boolean canGoRight) {
         List<Direction> directions = Arrays.stream(values())
-            .filter(d -> d.canGoLeft == canGoLeft && d.canGoRight == canGoRight)
+            .filter(d -> d.matchState(canGoLeft, canGoRight))
             .collect(Collectors.toList());
         if (directions.size() == 0) {
             throw new IllegalArgumentException("No match direction");
@@ -49,5 +49,9 @@ public enum Direction {
 
     public Direction nextLast() {
         return next(false);
+    }
+
+    public boolean matchState(boolean canGoLeft, boolean canGoRight) {
+        return this.canGoLeft == canGoLeft && this.canGoRight == canGoRight;
     }
 }

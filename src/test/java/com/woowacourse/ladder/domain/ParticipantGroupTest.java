@@ -21,6 +21,13 @@ public class ParticipantGroupTest {
     }
 
     @Test
+    void createIncludeEmpty() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new ParticipantGroup("pobi,,");
+        });
+    }
+
+    @Test
     void contains() {
         ParticipantGroup pg = new ParticipantGroup("pobi, crong, jk, honux");
         assertThat(pg.contains(new ParticipantGroup("pobi, honux"))).isTrue();

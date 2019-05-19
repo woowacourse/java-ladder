@@ -37,4 +37,9 @@ public class ParticipantTest {
             new Participant("thesix");
         });
     }
+
+    @Test
+    void test() {
+        assertThat("pobi, ,".split(",")[1].trim()).isEqualTo("");
+    }
 }

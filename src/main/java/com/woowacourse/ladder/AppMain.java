@@ -4,10 +4,6 @@ import com.woowacourse.ladder.domain.*;
 import com.woowacourse.ladder.view.InputView;
 import com.woowacourse.ladder.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class AppMain {
     private static final String QUERY_ALL = "all";
 
@@ -91,16 +87,14 @@ public class AppMain {
 
     private static void handleQuery(String query, ParticipantGroup participants, DestinationGroup destinations, LadderState state) {
         ParticipantGroup participantsToPrint = getParticipantsToPrint(query, participants);
-        List<Participant> participantListToPrint = new ArrayList<>();
-        List<Destination> destinationsToPrint = new ArrayList<>();
+        ResultPair resultPairs = new ResultPair();
 
         participantsToPrint.forEachParticipants(p -> {
-            participantListToPrint.add(p);
             Position pos = new Position(participants.positionOf(p), participants.size());
-            destinationsToPrint.add(Ladder.match(pos, state).getMatchDestination(destinations));
+            resultPairs.addPair(p, Ladder.match(pos, state).getMatchDestination(destinations));
         });
 
-        printResult(participantListToPrint, destinationsToPrint);
+        OutputView.printResult(resultPairs);
     }
 
     private static ParticipantGroup getParticipantsToPrint(String query, ParticipantGroup allParticipants) {
@@ -119,19 +113,5 @@ public class AppMain {
         return query.trim().toLowerCase().equals(QUERY_ALL);
     }
 
-    private static void printResult(List<Participant> participants, List<Destination> destinations) {
-        if (participants.size() == 1) {
-            OutputView.printSingleResult(destinations.get(0).toString());
-            return;
-        }
 
-        OutputView.printMultipleResult(
-            participants.stream()
-                .map(Participant::toString)
-                .collect(Collectors.toList()),
-            destinations.stream()
-                .map(Destination::toString)
-                .collect(Collectors.toList())
-        );
-    }
 }
