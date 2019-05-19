@@ -23,6 +23,7 @@ class LineTest {
     @Test
     void create_Line() {
         Line line = new Line(3);
-        assertThat(line.createLine(new AlwaysTrue())).isEqualTo(answerLine);
+        line.createLine(new AlwaysTrue());
+        assertThat(line.getLine()).isEqualTo(answerLine);
     }
 }

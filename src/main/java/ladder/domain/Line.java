@@ -14,15 +14,13 @@ public class Line {
         this.verticalLineCount = verticalLineCount;
     }
 
-    public List<Direction> createLine(RandomValueGenerator randomValueGenerator) {
+    public void createLine(RandomValueGenerator randomValueGenerator) {
         line = new ArrayList<>();
         line.add(firstDirection(randomValueGenerator));
         for (int i = 0; i < verticalLineCount - EXCEPT_FIRST_AND_LAST; i++) {
             line.add(line.get(i).next(randomValueGenerator));
         }
         line.add(lastDirection());
-
-        return line;
     }
 
     private Direction firstDirection(RandomValueGenerator randomValueGenerator) {
@@ -44,5 +42,9 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(line);
+    }
+
+    public List<Direction> getLine() {
+        return line;
     }
 }
