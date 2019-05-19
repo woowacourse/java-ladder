@@ -37,6 +37,14 @@ public class Players {
         return players.get(index);
     }
 
+    public List<PlayerName> getPlayerNames() {
+        List<PlayerName> names = new ArrayList<>();
+        for (Player player : players) {
+            names.add(player.getName());
+        }
+        return names;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
