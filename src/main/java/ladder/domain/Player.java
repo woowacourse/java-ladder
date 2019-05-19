@@ -22,12 +22,13 @@ public class Player {
     public void move(int playerSize) {
         int nextCurrent = direction.move();
         if (nextCurrent == -1 && this.position > 0) { // left
-            this.position --;
+            this.position--;
+            return;
         }
-        else if(nextCurrent == 1 && this.position < playerSize ) { // right
-            this.position ++;
+        if (nextCurrent == 1 && this.position < playerSize) { // right
+            this.position++;
+            return;
         }
-
     }
 
 }

@@ -6,6 +6,7 @@ import ladder.domain.Player;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class OutputView {
     private static final String OUTPUT_LADDER_RESULT = "사다리 결과";
@@ -14,6 +15,7 @@ public class OutputView {
     private static final String EMPTY_LINE = "     ";
     private static final String NAME_INTERVAL = " ";
     private static final String COL_LINE = "|";
+    private static final String COLON = " : ";
     private static final String OUTPUT_PLAYER_RESULT = "실행 결과";
 
     private static StringBuilder stringBuilder;
@@ -64,44 +66,43 @@ public class OutputView {
         return stringBuilder;
     }
 
-    public static void printMatchedExecuteResult(Map<Integer,Player> players, String playerForResult, List<String> executeResult) {
+    public static void printMatchedExecuteResult(Map<Integer, Player> players, String playerForResult, List<String> executeResult) {
         stringBuilder = new StringBuilder();
-        stringBuilder.append(OUTPUT_PLAYER_RESULT+"\n");
+        stringBuilder.append(OUTPUT_PLAYER_RESULT + "\n");
 
         if (playerForResult.equals("all")) {
-            outputAllPlayerResult(players,executeResult);
+            outputAllPlayerResult(players, executeResult);
             return;
         }
-        outputPlayerResult(players,playerForResult,executeResult);
+        outputPlayerResult(players, playerForResult, executeResult);
 
     }
 
-    private static void outputAllPlayerResult(Map<Integer,Player> players,List<String> executeResult) {
-        Iterator<Integer> iterator  = players.keySet().iterator();
-        while(iterator.hasNext()) {
+    private static void outputAllPlayerResult(Map<Integer, Player> players, List<String> executeResult) {
+        Iterator<Integer> iterator = players.keySet().iterator();
+        while (iterator.hasNext()) {
             Player player = players.get(iterator.next());
-            stringBuilder.append(player.getName() +" : ");
-            stringBuilder.append(executeResult.get(player.getPosition())+"\n");
+            stringBuilder.append(player.getName() + COLON);
+            stringBuilder.append(executeResult.get(player.getPosition()) + "\n");
         }
         System.out.println(stringBuilder.toString());
     }
 
-    private static void outputPlayerResult(Map<Integer,Player> players,String playerForResult,List<String> executeResult) {
-        Iterator<Integer> iterator  = players.keySet().iterator();
-        boolean findResult = false;
-
-        while(iterator.hasNext() && !findResult) {
+    private static void outputPlayerResult(Map<Integer, Player> players, String playerForResult, List<String> executeResult) {
+        Iterator<Integer> iterator = players.keySet().iterator();
+        AtomicBoolean findResult = new AtomicBoolean(false);
+        while (iterator.hasNext() && !findResult.get()) {
             Player player = players.get(iterator.next());
-            findResult = checkContainsPlayer(player , playerForResult, executeResult);
+            findResult.set(checkContainsPlayer(player, playerForResult, executeResult));
         }
 
         System.out.println(stringBuilder.toString());
     }
 
-    private static boolean checkContainsPlayer(Player player, String playerForResult,List<String> executeResult) {
+    private static boolean checkContainsPlayer(Player player, String playerForResult, List<String> executeResult) {
         if (playerForResult.contains(player.getName())) {
-            stringBuilder.append(player.getName() +" : ");
-            stringBuilder.append(executeResult.get(player.getPosition())+"\n");
+            stringBuilder.append(player.getName() + COLON);
+            stringBuilder.append(executeResult.get(player.getPosition()) + "\n");
             return true;
         }
         return false;

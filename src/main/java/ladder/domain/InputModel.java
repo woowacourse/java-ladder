@@ -31,14 +31,14 @@ public class InputModel {
         return names;
     }
 
-    public List<String> getValidExecuteResult(String executeResult,int countOfName) {
+    public List<String> getValidExecuteResult(String executeResult, int countOfName) {
         checkBlankInput(executeResult);
-        return checkValidExecuteResult(Arrays.asList(split(executeResult)),countOfName);
+        return checkValidExecuteResult(Arrays.asList(split(executeResult)), countOfName);
     }
 
     private List<String> checkValidExecuteResult(List<String> executeResult, int countOfName) {
         checkEmpty(executeResult);
-        checkExecuteResultLength(executeResult,countOfName);
+        checkExecuteResultLength(executeResult, countOfName);
 
         return executeResult;
     }
@@ -66,7 +66,7 @@ public class InputModel {
         }
     }
 
-    private void checkExecuteResultLength(List<String> executeResult,int countOfName) {
+    private void checkExecuteResultLength(List<String> executeResult, int countOfName) {
         if (executeResult.size() != countOfName) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
@@ -80,29 +80,29 @@ public class InputModel {
         return number;
     }
 
-    public String getPlayerForResult(List<String> names,String player) {
-        return checkValidPlayer(names,player);
+    public String getPlayerForResult(List<String> names, String player) {
+        return checkValidPlayer(names, player);
     }
 
-    private String checkValidPlayer(List<String> names,String player) {
+    private String checkValidPlayer(List<String> names, String player) {
         checkPlayerEmpty(player);
         if (player.equals("all")) {
-           return player;
+            return player;
         }
 
         Set<String> matchNames = new HashSet<>(names);
-        checkMatchedName(matchNames,player);
+        checkMatchedName(matchNames, player);
 
         return player;
     }
 
     private void checkPlayerEmpty(String name) {
-        if(name.equals("")) {
+        if (name.equals("")) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
 
-    private void checkMatchedName(Set<String> matchNames,String player) {
+    private void checkMatchedName(Set<String> matchNames, String player) {
         if (!matchNames.contains(player)) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
