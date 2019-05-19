@@ -1,12 +1,12 @@
 package laddergame.domain;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class PlayerNamesValidator {
-    static void checkConditions(String input, List<String> names) {
-        checkEmptyName(input);
+    static void checkConditions(String playersNames) {
+        checkEmptyName(playersNames);
+        List<String> names = new ArrayList<>(Arrays.asList(playersNames.split(",")));
         checkNameLength(names);
         checkDuplicatedName(names);
     }

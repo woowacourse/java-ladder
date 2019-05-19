@@ -8,8 +8,8 @@ import java.util.List;
 
 public class LadderGame {
     public void play() {
-        List<Player> players = getPlayers();
-        Ladder ladder = getLadder(players.size());
+        Players players = generatePlayers();
+        Ladder ladder = getLadder(players.getPeopleCount());
         List<Prize> prizes = getPrizes(players.size());
         OutputView.printLadder(players, ladder);
         OutputView.printPrizes(prizes);
@@ -19,6 +19,42 @@ public class LadderGame {
 
         keepAsk(players, prizes);
     }
+
+
+    /*
+
+    private static Ladder getLadder(int width) {
+        try {
+            int height = InputView.askHeight();
+            return new Ladder(width, height);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return getLadder(width);
+        }
+    }
+
+     */
+
+    private static Players generatePlayers() {
+        try {
+            String playersNames = InputView.askPlayersNames();
+            return new Players(playersNames);
+        } catch (Exception e) {
+            return generatePlayers();
+        }
+
+    }
+    /*
+    private static List<Player> getPlayers() {
+        try {
+            String input = InputView.askUserNames();
+            return PlayersGenerator.createPlayers(input);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return getPlayers();
+        }
+    }
+     */
 
     private String keepAsk(List<Player> players, List<Prize> prizes) {
         while (true) {
@@ -46,26 +82,6 @@ public class LadderGame {
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return getPrizes(numOfPlayers);
-        }
-    }
-
-    private static List<Player> getPlayers() {
-        try {
-            String input = InputView.askUserNames();
-            return PlayersGenerator.createPlayers(input);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return getPlayers();
-        }
-    }
-
-    private static Ladder getLadder(int width) {
-        try {
-            int height = InputView.askHeight();
-            return new Ladder(width, height);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return getLadder(width);
         }
     }
 }
