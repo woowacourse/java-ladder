@@ -14,6 +14,10 @@ public final class Line {
         return directions.get(position).move();
     }
 
+    public List<Direction> getDirections() {
+        return directions;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

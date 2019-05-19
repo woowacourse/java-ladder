@@ -47,6 +47,10 @@ public class Direction {
         return MOVE_STRAIGHT;
     }
 
+    public boolean isRight() {
+        return right;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

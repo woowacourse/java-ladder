@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.domain.generator.DirectionsGeneratorFactory;
 import ladder.domain.generator.PlayerGenerator;
 import ladder.domain.generator.PlayerRewardsGenerator;
 import ladder.view.InputConsoleView;
@@ -12,10 +13,11 @@ public class LadderConsoleApp {
     public static void main(String[] args) {
         GamePlayers gamePlayers = new GamePlayers(generatePlayers(InputConsoleView.inputNames()));
         PlayerRewards playerRewards = generateRewards(InputConsoleView.inputRewards());
-        Ladder ladder = new Ladder(InputConsoleView.inputHeight(), gamePlayers.size());
-        GameResult gameResult = new GameResult(ladder, gamePlayers, playerRewards);
+        Ladder ladder = new Ladder(InputConsoleView.inputHeight(), DirectionsGeneratorFactory.getInstance(gamePlayers.size()));
+        GameResult gameResult = new GameResult(ladder.play(gamePlayers, playerRewards));
 
         OutputConsoleView.printLadderGame(ladder, gamePlayers, playerRewards);
+
         String name;
         while (!(name = InputConsoleView.inputResultName()).equals("all")) {
             OutputConsoleView.printResult(gameResult, name);

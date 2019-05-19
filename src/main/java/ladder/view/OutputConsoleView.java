@@ -51,15 +51,15 @@ public class OutputConsoleView {
 
     private static void printLine(StringBuilder sb, Line line) {
         sb.append(THREE_TAB);
-        for (Boolean subLine : line.getSubLines()) {
-            printSubLines(sb, subLine);
+        for (Direction direction : line.getDirections()) {
+            printSubLines(sb, direction);
         }
-        sb.append(VERTICAL_LINE).append("\n");
+        sb.append("\n");
     }
 
-    private static void printSubLines(StringBuilder sb, Boolean subLine) {
+    private static void printSubLines(StringBuilder sb, Direction direction) {
         sb.append(VERTICAL_LINE);
-        sb.append(subLine ? SUB_LINE_TRUE : SUB_LINE_FALSE);
+        sb.append(direction.isRight() ? SUB_LINE_TRUE : SUB_LINE_FALSE);
     }
 
     private static void printRewards(PlayerRewards results) {
