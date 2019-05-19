@@ -12,18 +12,18 @@ public class ResultProcessorTest {
     List<Integer> allResult;
     Person person;
     Result result;
-    ResultProcessor resultProcessor;
+    GameResult resultProcessor;
     @BeforeEach
     void setUp() {
         allResult = Arrays.asList(1, 2, 3);
         person = new Person(Arrays.asList("pobi", "brown", "woni"));
         result = new Result(Arrays.asList("꽝", "5000", "꽝"));
-        resultProcessor = new ResultProcessor(allResult, person, result);
+        resultProcessor = new GameResult(allResult, person, result);
     }
 
     @Test
     void 생성자확인() {
-        assertThat(resultProcessor).isEqualTo(new ResultProcessor(allResult, person, result));
+        assertThat(resultProcessor).isEqualTo(new GameResult(allResult, person, result));
     }
 
     @Test

@@ -6,16 +6,24 @@ import java.util.List;
 public class LadderGame {
     private final List<Line> ladder;
 
-    public LadderGame(final List<Line> ladder) {
+    private LadderGame(final List<Line> ladder) {
         this.ladder = ladder;
     }
 
-    public static List<Line> generateLadder(int height, int countOfPerson) {
+    public static LadderGame generateLadder(int height, int countOfPerson) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             lines.add(new Line(Line.generatePoints(countOfPerson)));
         }
-        return lines;
+        return new LadderGame(lines);
+    }
+
+    public GameResult generateAllResults(Person person, Result result) {
+        List<Integer> resultIndex = new ArrayList<>();
+        for (int i = 0; i < person.getCountOfPerson(); i++) {
+            resultIndex.add(generateResult(i + 1));
+        }
+        return new GameResult(resultIndex, person, result);
     }
 
     private int generateResult(int index) {
@@ -23,14 +31,6 @@ public class LadderGame {
             index = line.move(index);
         }
         return index;
-    }
-
-    public ResultProcessor generateAllResults(Person person, Result result) {
-        List<Integer> resultIndex = new ArrayList<>();
-        for (int i = 0; i < person.getCountOfPerson(); i++) {
-            resultIndex.add(generateResult(i + 1));
-        }
-        return new ResultProcessor(resultIndex, person, result);
     }
 
     @Override

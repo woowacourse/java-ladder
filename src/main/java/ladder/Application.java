@@ -9,17 +9,17 @@ public class Application {
     private static Result result;
     private static int height;
     private static LadderGame ladderGame;
-    private static ResultProcessor resultProcessor;
+    private static GameResult gameResult;
 
     public static void main(String[] args) {
         receiveInput();
-        ladderGame = new LadderGame(LadderGame.generateAllPoints(height, person.getCountOfPerson()));
+        ladderGame = LadderGame.generateLadder(height, person.getCountOfPerson());
         OutputView.printLadder(ladderGame, person, result);
-        resultProcessor = ladderGame.generateAllResults(person, result);
+        gameResult = ladderGame.generateAllResults(person, result);
         String requestedName;
         do {
             requestedName = InputView.findResultName(person);
-            OutputView.printLadderResult(resultProcessor.getResult(requestedName));
+            OutputView.printLadderResult(gameResult.getResult(requestedName));
         } while (!requestedName.equals("all"));
     }
 

@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.LinkedHashMap;
 import java.util.Objects;
 
-public class ResultProcessor {
+public class GameResult {
     private final LinkedHashMap<String, String> nameToResult = new LinkedHashMap<>();
 
-    ResultProcessor(List<Integer> allResult, Person person, Result result) {
+    GameResult(List<Integer> allResult, Person person, Result result) {
         for (int i = 0; i < allResult.size(); i++) {
             nameToResult.put(person.getName(i), result.getResult(allResult.get(i) - 1));
         }
@@ -33,7 +33,7 @@ public class ResultProcessor {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ResultProcessor that = (ResultProcessor) o;
+        GameResult that = (GameResult) o;
         return Objects.equals(nameToResult, that.nameToResult);
     }
 

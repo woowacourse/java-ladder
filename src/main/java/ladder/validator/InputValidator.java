@@ -28,6 +28,18 @@ public class InputValidator {
         return names;
     }
 
+    public static List<String> checkResult(int countOfPerson, String inputs) {
+        isEmpty(inputs);
+        hasSpace(inputs);
+        checkLastIndex(inputs);
+        List<String> results = InputHelper.splitNames(inputs);
+        isSameLength(countOfPerson, results);
+        for (String result : results) {
+            isOverMaxInputLimit(result);
+        }
+        return results;
+    }
+
     private static void isEmpty(String inputs) {
         if (inputs == null || inputs.length() == 0) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE);
@@ -63,18 +75,6 @@ public class InputValidator {
         if (names.size() != name.size()) {
             throw new IllegalArgumentException(DUPLICATED_MESSAGE);
         }
-    }
-
-    public static List<String> checkResult(int countOfPerson, String inputs) {
-        isEmpty(inputs);
-        hasSpace(inputs);
-        checkLastIndex(inputs);
-        List<String> results = InputHelper.splitNames(inputs);
-        isSameLength(countOfPerson, results);
-        for (String result : results) {
-            isOverMaxInputLimit(result);
-        }
-        return results;
     }
 
     private static void isSameLength(int countOfPerson, List<String> results) {
