@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class Calculator {
 
-    public static List<Integer> getNumbers(String input) {
+    public static List<Integer> convertNumbers(String input) {
         input = StringUtils.deleteWhitespace(input);
         List<Integer> result = new ArrayList<>();
         for (String s : inputSplit(input)) {
@@ -32,7 +32,9 @@ public class Calculator {
     public static List<String> customSplit(String input) {
         Matcher matcher = Pattern.compile(CalculatorConst.FORMAT_SYMBOL).matcher(input);
         if (matcher.find()) {
-            return Arrays.asList(matcher.group(2).split(Pattern.quote(matcher.group(1))));
+            String splitSymbol = matcher.group(1);
+            String content = matcher.group(2);
+            return Arrays.asList(content.split(Pattern.quote(splitSymbol)));
         }
         throw new IllegalArgumentException("입력값이 잘못되었습니다.");
     }
@@ -44,7 +46,7 @@ public class Calculator {
         return number;
     }
 
-    public static int calSumNumber(List<Integer> numbers) {
+    public static int sumNumber(List<Integer> numbers) {
         return numbers.stream().reduce(0, (x, y) -> x + y);
     }
 }

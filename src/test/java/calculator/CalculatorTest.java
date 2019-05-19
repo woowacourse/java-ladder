@@ -89,28 +89,28 @@ public class CalculatorTest {
     @Test
     void 문자열_숫자를_정수형으로_변환하기() {
         String input = "//:\\n1:2:3";
-        List<Integer> result = Calculator.getNumbers(input);
+        List<Integer> result = Calculator.convertNumbers(input);
         assertThat(result).isEqualTo(Arrays.asList(1, 2, 3));
     }
 
     @Test
     void 문자열_숫자를_정수형으로_변환하기2() {
         String input = "1,2,3";
-        List<Integer> result = Calculator.getNumbers(input);
+        List<Integer> result = Calculator.convertNumbers(input);
         assertThat(result).isEqualTo(Arrays.asList(1, 2, 3));
     }
 
     @Test
     void 숫자_1개_입력할_경우() {
         String input = "3";
-        List<Integer> result = Calculator.getNumbers(input);
+        List<Integer> result = Calculator.convertNumbers(input);
         assertThat(result).isEqualTo(Arrays.asList(3));
     }
 
     @Test
     void 공백_있는_경우() {
         String input = "1, 2, 3";
-        List<Integer> result = Calculator.getNumbers(input);
+        List<Integer> result = Calculator.convertNumbers(input);
         assertThat(result).isEqualTo(Arrays.asList(1, 2, 3));
     }
 
@@ -118,7 +118,7 @@ public class CalculatorTest {
     void 음수가_포함된_경우() {
         String input = "1, -2, 3";
         assertThrows(RuntimeException.class, () -> {
-            Calculator.getNumbers(input);
+            Calculator.convertNumbers(input);
         });
     }
 
@@ -133,19 +133,19 @@ public class CalculatorTest {
     void 숫자_이외에_다른_입력값이_올_경우() {
         String input = "a, 2, 3";
         assertThrows(RuntimeException.class, () -> {
-            Calculator.getNumbers(input);
+            Calculator.convertNumbers(input);
         });
     }
 
     @Test
     void 결과값_출력하기() {
         String input = "//a\\n1a2a3";
-        assertThat(Calculator.calSumNumber(Calculator.getNumbers(input))).isEqualTo(6);
+        assertThat(Calculator.sumNumber(Calculator.convertNumbers(input))).isEqualTo(6);
     }
 
     @Test
     void 결과값_출력하기_뒤에_숫자_안씀() {
         String input = "1,3,2, ";
-        assertThat(Calculator.calSumNumber(Calculator.getNumbers(input))).isEqualTo(6);
+        assertThat(Calculator.sumNumber(Calculator.convertNumbers(input))).isEqualTo(6);
     }
 }
