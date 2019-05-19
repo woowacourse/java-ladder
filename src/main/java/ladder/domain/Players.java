@@ -7,6 +7,7 @@ import java.util.Set;
 
 public final class Players {
     public static final int MIN_PLAYER = 2;
+
     private final Set<Player> players;
 
     public Players(final List<Player> players) {
@@ -37,7 +38,7 @@ public final class Players {
     }
 
     public Set<Player> getPlayers() {
-        return players;
+        return new HashSet<>(players);
     }
 
     @Override

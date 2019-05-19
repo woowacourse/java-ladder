@@ -36,7 +36,7 @@ public final class Ladder {
     }
 
     public List<Line> getLines() {
-        return lines;
+        return new ArrayList<>(lines);
     }
 
     public Map<String, String> play(final Players players, final Rewards rewards) {
