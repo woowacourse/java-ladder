@@ -26,12 +26,15 @@ public class Direction {
         return of(false, right);
     }
 
-    public static Direction last(final boolean left) {
-        return of(left, false);
+    public Direction last() {
+        return of(this.right, false);
     }
 
     public Direction next(final boolean right) {
-        return of(this.right, right);
+        if (this.right) {
+            return of(true, false);
+        }
+        return of(false, right);
     }
 
     public int move() {
