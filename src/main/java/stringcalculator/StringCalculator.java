@@ -14,8 +14,8 @@ public class StringCalculator {
         return numbers.stream().reduce(0, Integer::sum);
     }
 
-    private void checkNegativeNumber(List<Integer> numbers){
-        if(numbers.stream().anyMatch(number -> number < 0)){
+    private void checkNegativeNumber(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(number -> number < 0)) {
             throw new IllegalArgumentException("음수는 입력받을 수 없습니다.");
         }
     }

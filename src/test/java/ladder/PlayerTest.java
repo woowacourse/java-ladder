@@ -10,7 +10,7 @@ public class PlayerTest {
 
     @Test
     void 올바른_이름일_때_생성_검증() {
-        assertDoesNotThrow(()-> new Player("bmo", 0));
+        assertDoesNotThrow(() -> new Player("bmo", 0));
     }
 
     @Test

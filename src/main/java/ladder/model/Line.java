@@ -1,72 +1,47 @@
 package ladder.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Line {
-    private static final Random RANDOM = new Random();
     private static final String EMPTY_LINE = "     ";
     private static final String FILLED_LINE = "-----";
     private static final String VERTICAL_LINE = "|";
 
-    private List<Boolean> points = new ArrayList<>();
+    private Points points;
 
-    public Line(int countOfPlayer) {
-        this.pointsInit(countOfPlayer);
+    public Line(Points points) {
+        checkPointsValid(points);
+        this.points = points;
     }
 
-    private void pointsInit(int countOfPlayer) {
-        boolean previous = false;
-        for (int i = 0; i < countOfPlayer - 1; i++) {
-            previous = nextPoint(previous);
-            points.add(previous);
-        }
-        this.checkPointsValid();
+    public void checkPointsValid(Points points) {
+        int length = points.size();
+        IntStream.range(1, length).forEach(i -> checkContinued(points, i - 1));
     }
 
-    private boolean nextPoint(boolean previous) {
-        if (!previous) {
-            return RANDOM.nextBoolean();
-        }
-        return false;
-    }
-
-    public void checkPointsValid() {
-        for (int i = 1, length = points.size(); i < length; i++) {
-            checkContinued(i - 1, i);
-        }
-    }
-
-    private void checkContinued(int left, int right) {
-        if (this.points.get(left) && this.points.get(right)) {
+    private void checkContinued(Points points, int index) {
+        if (points.isTrue(index) && points.isTrue(index + 1)) {
             throw new IllegalArgumentException("이어지는 가로라인 발생");
         }
     }
 
-    private String getOne(int pointIndex) {
-        if (this.points.get(pointIndex)) {
+    private String getHorizontalLine(int pointIndex) {
+        if (this.points.isTrue(pointIndex)) {
             return FILLED_LINE;
         }
         return EMPTY_LINE;
     }
 
-    public boolean isTrue(int index) {
-        return this.points.get(index);
-    }
-
     void moveOneLine(Players players) {
-        for (Player player : players) {
-            this.move(player);
-        }
+        players.forEach(player -> move(player));
     }
 
     public void move(Player player) {
         int position = player.getPosition();
-        if (position > 0 && points.get(position - 1)) {
+        if (position > 0 && points.isTrue(position - 1)) {
             player.moveLeft();
         }
-        if (position < points.size() && points.get(position)) {
+        if (points.isUnderLast(position) && points.isTrue(position)) {
             player.moveRight();
         }
     }
@@ -74,9 +49,9 @@ public class Line {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder(VERTICAL_LINE);
-        for (int i = 0, length = points.size(); i < length; i++) {
-            stringBuilder.append(getOne(i)).append(VERTICAL_LINE);
-        }
+        int length = points.size();
+        IntStream.range(0, length).forEach(i -> stringBuilder.append(getHorizontalLine(i)).append(VERTICAL_LINE));
+
         return stringBuilder.toString();
     }
 }

@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public enum DelimiterType {
-    BLANK{
+    BLANK {
         @Override
         boolean matchDelimiterType(String formula) {
             return StringUtils.isBlank(formula);
@@ -23,7 +23,7 @@ public enum DelimiterType {
             return separatedNumbers;
         }
     },
-    CUSTOM_DELIMITER{
+    CUSTOM_DELIMITER {
         @Override
         boolean matchDelimiterType(String formula) {
             return formula.matches(CUSTOM_DELIMITER_PATTERN);
@@ -39,7 +39,7 @@ public enum DelimiterType {
                     .collect(Collectors.toList());
         }
     },
-    BASIC_DELIMITER{
+    BASIC_DELIMITER {
         @Override
         boolean matchDelimiterType(String formula) {
             return !formula.matches(NOT_BASIC_DELIMITER_PATTERN);
@@ -57,9 +57,10 @@ public enum DelimiterType {
     private static final String BASIC_DELIMITER_REGEX = ",|:";
 
     abstract boolean matchDelimiterType(String formula);
+
     abstract List<Integer> separateString(String formula);
 
-    public static DelimiterType findDelimiterType(String formula){
+    public static DelimiterType findDelimiterType(String formula) {
         return Arrays.stream(DelimiterType.values()).filter(delimiterType -> delimiterType.matchDelimiterType(formula)).findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("올바른 문자열을 입력해주세요"));
     }

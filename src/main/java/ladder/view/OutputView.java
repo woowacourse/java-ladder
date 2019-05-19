@@ -6,14 +6,14 @@ import ladder.model.Players;
 
 public class OutputView {
 
-    public static void printResultOfLadder(Players players, Ladder ladder, LadderGameResult ladderGameResult) {
+    public static void printLadderResult(Players players, Ladder ladder, LadderGameResult ladderGameResult) {
         System.out.println("사다리 결과");
-        System.out.println(players.toString());
-        System.out.print(ladder.toString());
-        System.out.println(ladderGameResult.toString());
+        System.out.println(players);
+        System.out.print(ladder);
+        System.out.println(ladderGameResult);
     }
 
-    public static void printResultOfExecution(String executionResult){
+    public static void printExecutionResult(String executionResult) {
         System.out.println("실행 결과");
         System.out.println(executionResult);
     }

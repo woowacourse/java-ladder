@@ -1,9 +1,6 @@
 package ladder.controller;
 
-import ladder.model.Ladder;
-import ladder.model.LadderGame;
-import ladder.model.LadderGameResult;
-import ladder.model.Players;
+import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -14,22 +11,26 @@ public class MainController {
 
     public static void main(String[] args) {
         String[] names = Arrays.stream(InputView.inputNames()).map(String::trim).toArray(String[]::new);
-        String[] gameResults = Arrays.stream(InputView.inputLadderGameResult()).map(String::trim).toArray(String[]::new);
-        int height = InputView.inputLadderHeight();
-
         Players players = new Players(names);
-        Ladder ladder = new Ladder(height, names.length);
+        LinePointsGenerator linePointsGenerator = new RandomLinePointsGenerator(names.length);
+
+        String[] gameResults = Arrays.stream(InputView.inputLadderGameResult()).map(String::trim).toArray(String[]::new);
         LadderGameResult ladderGameResult = new LadderGameResult(gameResults, names.length);
-        OutputView.printResultOfLadder(players, ladder, ladderGameResult);
+
+        int height = InputView.inputLadderHeight();
+        Ladder ladder = new Ladder(linePointsGenerator, height);
 
         LadderGame ladderGame = new LadderGame(players, ladder, ladderGameResult);
         ladderGame.playGame();
 
+        OutputView.printLadderResult(players, ladder, ladderGameResult);
+
         String desiredResult = InputView.inputDesiredResult().trim();
         while (!desiredResult.equals(ALL_PLAYERS)) {
-            OutputView.printResultOfExecution(ladderGame.getResultByName(desiredResult));
+            OutputView.printExecutionResult(ladderGame.getResultByName(desiredResult));
             desiredResult = InputView.inputDesiredResult();
         }
-        OutputView.printResultOfExecution(ladderGame.getAllResult());
+
+        OutputView.printExecutionResult(ladderGame.getAllResult());
     }
 }

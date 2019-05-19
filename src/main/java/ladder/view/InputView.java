@@ -16,12 +16,12 @@ public class InputView {
         return Integer.parseInt(SCANNER.nextLine());
     }
 
-    public static String[] inputLadderGameResult(){
+    public static String[] inputLadderGameResult() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         return SCANNER.nextLine().split(DELIMITER);
     }
 
-    public static String inputDesiredResult(){
+    public static String inputDesiredResult() {
         System.out.println("결과를 보고 싶은 사람은?");
         return SCANNER.nextLine();
     }

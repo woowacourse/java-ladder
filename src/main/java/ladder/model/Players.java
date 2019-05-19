@@ -1,6 +1,10 @@
 package ladder.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class Players implements Iterable<Player> {
@@ -31,7 +35,7 @@ public class Players implements Iterable<Player> {
         return players.stream()
                 .filter(player -> player.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("없는 이름의 플레이어"))
+                .orElseThrow(() -> new IllegalArgumentException("입력된 이름의 플레이어가 없습니다."))
                 .getPosition();
     }
 

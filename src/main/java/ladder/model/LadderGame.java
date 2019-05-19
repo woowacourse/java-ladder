@@ -22,9 +22,12 @@ public class LadderGame {
 
     public String getAllResult() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Player player : this.players) {
-            stringBuilder.append(player.getName()).append(COLON).append(this.getResultByName(player.getName())).append(NEW_LINE);
-        }
+        players.forEach(player ->
+                stringBuilder.append(player.getName())
+                .append(COLON)
+                .append(this.getResultByName(player.getName()))
+                .append(NEW_LINE));
+
         return stringBuilder.toString();
     }
 
