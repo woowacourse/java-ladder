@@ -24,4 +24,8 @@ public class Line {
     public boolean getBooleanValue(int x) {
         return line.get(x);
     }
+
+    public int getSize() {
+        return line.size();
+    }
 }

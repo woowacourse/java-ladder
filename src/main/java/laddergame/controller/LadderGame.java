@@ -15,8 +15,8 @@ public class LadderGame {
         OutputView.printPlayersAndLadder(players, ladder);
         OutputView.printPrizes(prizes);
 
-        GameProcessor processor = new GameProcessor(players);
-        processor.processGame(ladder.getLadderMap());
+        GameEngine engine = new GameEngine(players, ladder);
+        engine.makePlayersPlayTheLadder();
 
         keepAsk(players, prizes);
     }

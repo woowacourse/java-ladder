@@ -25,7 +25,7 @@ public class GameResultTest {
     void 결과_출력에_특정플레이어를_입력했을때_제대로하는지_테스트() {
         List<Player> inputPlayers = Arrays.asList(new Player("a"), new Player("b"), new Player("c"), new Player("d"));
         List<Prize> inputPrizes = Arrays.asList(new Prize("win"), new Prize("win"), new Prize("lose"), new Prize("lose"));
-        GameProcessor processor = new GameProcessor(inputPlayers);
+        GameEngine processor = new GameEngine(inputPlayers);
         List<List<Boolean>> instructions = Arrays.asList(Arrays.asList(true, false, true), Arrays.asList(false, false, true));
         processor.processGame(instructions);
 
@@ -40,7 +40,7 @@ public class GameResultTest {
         List<Player> inputPlayers = Arrays.asList(new Player("a"), new Player("b"), new Player("c"), new Player("d"));
         List<Prize> inputPrizes = Arrays.asList(new Prize("win"), new Prize("win"), new Prize("lose"), new Prize("lose"));
 
-        GameProcessor processor = new GameProcessor(inputPlayers);
+        GameEngine processor = new GameEngine(inputPlayers);
         List<List<Boolean>> instructions = Arrays.asList(Arrays.asList(true, false, true), Arrays.asList(false, false, true));
         processor.processGame(instructions);
 

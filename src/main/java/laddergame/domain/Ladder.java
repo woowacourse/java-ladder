@@ -28,12 +28,34 @@ public class Ladder {
         return ladderInformationAsTrueFalse;
     }
 
-
-
-    public ArrayList<List<Boolean>> getLadderMap() {
-        return this.ladderMap;
+    public int getHeight() {
+        return height;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public List<Line> getLadderInformationAsTrueFalse() {
+        return ladderInformationAsTrueFalse;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladder ladder = (Ladder) o;
+        return width == ladder.width &&
+                height == ladder.height &&
+                Objects.equals(ladderInformationAsTrueFalse, ladder.ladderInformationAsTrueFalse);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ladderInformationAsTrueFalse, width, height);
+    }
+
+    /*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,15 +90,6 @@ public class Ladder {
         sb.append("\n");
     }
 
-    public int getHeight() {
-        return height;
-    }
+     */
 
-    public int getWidth() {
-        return width;
-    }
-
-    public List<Line> getLadderInformationAsTrueFalse() {
-        return ladderInformationAsTrueFalse;
-    }
 }
