@@ -6,6 +6,11 @@ import java.util.Map;
 import ladderGame.domain.*;
 
 public class OutputView {
+    private static final String LINE = "|";
+    private static final String STAIR = "-----";
+    private static final String STAIR_NONE = "     ";
+    private static final String RESULT_DELIMITER = " : ";
+
     public static void printNames(List<User> users) {
         for (User user : users) {
             System.out.printf("%-6s", user.getName());
@@ -22,17 +27,17 @@ public class OutputView {
 
     private static void printFloor(Floor floor) {
         for (Point point : floor.getPoints()) {
-            System.out.print("|");
+            System.out.print(LINE);
             printPoint(point.isHasRight());
         }
     }
 
     private static void printPoint(boolean isStair) {
         if (isStair) {
-            System.out.print("-----");
+            System.out.print(STAIR);
         }
         if (!isStair) {
-            System.out.print("     ");
+            System.out.print(STAIR_NONE);
         }
     }
 
@@ -56,7 +61,7 @@ public class OutputView {
     public static void printResultAll(Map<UserName, Reward> resultMap) {
         for (UserName userName : resultMap.keySet()) {
             Reward value = resultMap.get(userName);
-            System.out.println(userName + " : " + value);
+            System.out.println(userName + RESULT_DELIMITER + value);
         }
     }
 }
