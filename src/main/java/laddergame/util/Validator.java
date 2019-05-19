@@ -25,7 +25,7 @@ public class Validator {
 
     public static void checkNumberOfNames(List<String> names, int min) {
         if (names.size() < min) {
-            throw new IllegalArgumentException("두 사람이상이여야 게임이 가능합니다.");
+            throw new IllegalArgumentException(min + "명이상이여야 게임이 가능합니다.");
         }
     }
 
@@ -48,9 +48,9 @@ public class Validator {
         }
     }
 
-    public static void checkLadderHeight(int height) {
-        if (height < 1) {
-            throw new IllegalArgumentException("1이상의 높이를 입력해 주세요!");
+    public static void checkLadderHeight(int height, int min) {
+        if (height < min) {
+            throw new IllegalArgumentException(min + "이상의 높이를 입력해 주세요!");
         }
     }
 }

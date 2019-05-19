@@ -6,6 +6,8 @@ import laddergame.util.Validator;
 import java.util.*;
 
 public class Ladder {
+    private static final int MIN_HEIGHT = 1;
+
     private List<Line> lines;
 
     public Ladder(List<Line> lines) {
@@ -13,7 +15,7 @@ public class Ladder {
     }
 
     public Ladder(int numberOfPlayer, int height, Rule rule) {
-        Validator.checkLadderHeight(height);
+        Validator.checkLadderHeight(height, MIN_HEIGHT);
 
         this.lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {

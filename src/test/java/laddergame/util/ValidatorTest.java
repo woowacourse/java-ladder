@@ -23,7 +23,7 @@ class ValidatorTest {
     @Test
     void checkNameLength() {
         assertThrows(IllegalArgumentException.class, () ->
-                Validator.checkNameLength("abcd",3));
+                Validator.checkNameLength("abcd", 3));
     }
 
     @Test
@@ -35,13 +35,13 @@ class ValidatorTest {
     @Test
     void checkDuplicateNames() {
         assertThrows(IllegalArgumentException.class, () ->
-                Validator.checkDuplicateNames(Arrays.asList("a","a")));
+                Validator.checkDuplicateNames(Arrays.asList("a", "a")));
     }
 
     @Test
     void checkEqualSize() {
         assertThrows(IllegalArgumentException.class, () ->
-                Validator.checkEqualSize(1,2));
+                Validator.checkEqualSize(1, 2));
     }
 
     @Test
@@ -53,6 +53,6 @@ class ValidatorTest {
     @Test
     void checkLadderHeight() {
         assertThrows(IllegalArgumentException.class, () ->
-                Validator.checkLadderHeight(0));
+                Validator.checkLadderHeight(0, 1));
     }
 }
