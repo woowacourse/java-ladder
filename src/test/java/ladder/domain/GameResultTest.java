@@ -12,9 +12,9 @@ class GameResultTest {
     void setUp() {
         gameResult = new GameResult();
         Player testPlayer = new Player("aaa");
-        DrawResult testDrawResult = new DrawResult("5000");
+        Reward testDrawResult = new Reward("5000");
         gameResult.addGameResult(testPlayer, testDrawResult);
-        gameResult.addGameResult(new Player("aa"), new DrawResult("100"));
+        gameResult.addGameResult(new Player("aa"), new Reward("100"));
     }
 
     @Test

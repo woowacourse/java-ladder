@@ -9,13 +9,13 @@ public class GameResult {
     private static final String DELIMITER = " : ";
     private static final String NEXT_LINE = "\n";
 
-    private Map<Player, DrawResult> results;
+    private Map<Player, Reward> results;
 
     GameResult() {
         results = new HashMap<>();
     }
 
-    public void addGameResult(Player player, DrawResult drawResult) {
+    public void addGameResult(Player player, Reward drawResult) {
         results.put(player, drawResult);
     }
 

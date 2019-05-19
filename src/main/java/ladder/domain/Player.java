@@ -14,7 +14,7 @@ public class Player {
     private void validName(String name) {
         checkBlank(name);
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format("%s 의 길이가 너무 깁니다.", name));
         }
     }
 
