@@ -3,13 +3,12 @@ package StringAddCalculator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StringAddCalculator {
+class StringAddCalculator {
     private static final int USER_SPLITTER_INDEX = 2;
     private static final int LOWER_BOUND_EXPRESSION = 4;
 
     static List<Integer> splitString(String input, List<String> splitter) {
         input = getExpression(Validator.checkEmpty(input), splitter);
-
         return convertStringToInt(replaceSplitter(input.trim(), splitter).split(" "));
     }
 
@@ -18,7 +17,6 @@ public class StringAddCalculator {
             splitter.add(Character.toString(input.charAt(USER_SPLITTER_INDEX)));
             return input.substring(LOWER_BOUND_EXPRESSION);
         }
-
         return input;
     }
 
@@ -29,7 +27,6 @@ public class StringAddCalculator {
         for (String s : splitter) {
             input = input.replaceAll(s, " ");
         }
-
         return input;
     }
 
@@ -39,7 +36,6 @@ public class StringAddCalculator {
             int num = Validator.checkNegativeValue(Integer.parseInt(value));
             result.add(num);
         }
-
         return result;
     }
 
