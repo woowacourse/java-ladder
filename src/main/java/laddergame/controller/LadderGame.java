@@ -34,7 +34,7 @@ public class LadderGame {
             gameResult.makeResult(players, prizes);
             return gameResult.getResult(players,input);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return makeResults(players, prizes);
         }
     }
@@ -44,7 +44,7 @@ public class LadderGame {
             String input = InputView.askPrizes();
             return PrizesGenerator.createPrizes(input, numOfPlayers);
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return getPrizes(numOfPlayers);
         }
     }
@@ -54,7 +54,7 @@ public class LadderGame {
             String input = InputView.askUserNames();
             return PlayersGenerator.createPlayers(input);
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return getPlayers();
         }
     }
@@ -64,7 +64,7 @@ public class LadderGame {
             int height = InputView.askHeight();
             return new Ladder(width, height);
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return getLadder(width);
         }
     }
