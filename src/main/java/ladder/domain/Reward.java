@@ -12,8 +12,8 @@ public class Reward {
 
     public Reward(String name) {
         validateNotNull(name);
-        validateNameLength(name);
-        this.name = name;
+        validateNameLength(name.trim());
+        this.name = name.trim();
     }
 
     private void validateNameLength(String name) {
