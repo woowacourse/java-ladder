@@ -7,13 +7,13 @@ import ladder.view.OutputView;
 public class Application {
     private static Person person;
     private static Result result;
-    private static int height;
+    private static Height height;
     private static LadderGame ladderGame;
     private static GameResult gameResult;
 
     public static void main(String[] args) {
         receiveInput();
-        ladderGame = LadderGame.generateLadder(height, person.getCountOfPerson());
+        ladderGame = LadderGame.generateLadder(height.getHeight(), person.getCountOfPerson());
         OutputView.printLadder(ladderGame, person, result);
         gameResult = ladderGame.generateAllResults(person, result);
         String requestedName;

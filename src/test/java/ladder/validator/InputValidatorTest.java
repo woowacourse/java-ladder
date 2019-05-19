@@ -58,13 +58,6 @@ class InputValidatorTest {
     }
 
     @Test
-    void 높이_최소값_이하() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.isLowerLimit(0);
-        });
-    }
-
-    @Test
     void 실행결과수_이름수_불일치() {
         String[] names = {"pobi", "brown", "buddy"};
         assertThrows(IllegalArgumentException.class, () -> {

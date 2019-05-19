@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.Height;
 import ladder.domain.Person;
 import ladder.validator.InputValidator;
 
@@ -24,11 +25,10 @@ public class InputView {
         }
     }
 
-    public static int inputHeight() {
+    public static Height inputHeight() {
         try {
             System.out.println(INPUT_HEIGHT_MESSAGE);
-            int height = Integer.parseInt(SCANNER.nextLine());
-            return InputValidator.isLowerLimit(height);
+            return new Height(Integer.parseInt(SCANNER.nextLine()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputHeight();
