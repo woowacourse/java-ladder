@@ -1,25 +1,16 @@
 package ladder.domain;
 
-import ladder.domain.generator.SubLineGenerator;
-import ladder.domain.generator.SubLineRandomGenerator;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public final class Line {
     private static final int MIN_PLAYER = 2;
 
-    private final List<Boolean> subLines;
+    private final List<Direction> directions;
 
-    public Line(final int countOfPerson) {
-        this(countOfPerson, new SubLineRandomGenerator(countOfPerson));
-    }
-
-    public Line(final int countOfPerson, SubLineGenerator subLineGenerator) {
-        validateSize(countOfPerson);
-        this.subLines = new ArrayList<>(subLineGenerator.generate());
-        validateDuplication(subLines);
+    public Line(final List<Direction> directions) {
+        validateSize(directions.size());
+        this.directions = directions;
     }
 
     private void validateSize(int countOfPerson) {
@@ -28,51 +19,16 @@ public final class Line {
         }
     }
 
-    private void validateDuplication(List<Boolean> subLines) {
-        for (int i = 1; i < subLines.size(); i++) {
-            validateDuplication(subLines.get(i), subLines.get(i - 1));
-        }
-    }
-
-    private void validateDuplication(boolean first, boolean second) {
-        if (first && second) {
-            throw new IllegalArgumentException("Line.class validate Duplication Error");
-        }
-    }
-
-    public int move(int index) {
-        if (isLeft(index)) {
-            return -1;
-        }
-        if (isRight(index)) {
-            return 1;
-        }
-        return 0;
-    }
-
-    private boolean isLeft(int index) {
-        return index > 0 && subLines.get(index - 1);
-    }
-
-    private boolean isRight(int index) {
-        return index < subLines.size() && subLines.get(index);
-    }
-
-
-    public List<Boolean> getSubLines() {
-        return subLines;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Line line = (Line) o;
-        return Objects.equals(subLines, line.subLines);
+        return Objects.equals(directions, line.directions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(subLines);
+        return Objects.hash(directions);
     }
 }
