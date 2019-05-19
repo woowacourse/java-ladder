@@ -70,4 +70,15 @@ public class InputView {
         }
         return new LadderHeight(Integer.parseInt(inputInteger));
     }
+
+    public static PlayerName getPlayerName() {
+        try {
+            System.out.println("결과를 보고 싶은 사람은?");
+            String userInput = SCANNER.nextLine();
+            return new PlayerName(userInput);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return getPlayerName();
+        }
+    }
 }
