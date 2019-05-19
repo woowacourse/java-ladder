@@ -3,6 +3,7 @@ package laddergame.util;
 import laddergame.domain.Ladder;
 import laddergame.domain.LadderGame;
 import laddergame.domain.LadderGameResult;
+import laddergame.domain.Tag;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,15 +65,15 @@ public class OutputView {
             outputAllResult(ladderGameResult.allPrizes());
             return;
         }
-        System.out.println(ladderGameResult.prize(person));
+        System.out.println(ladderGameResult.prize(new Tag(person)).getName());
     }
 
-    private static void outputAllResult(Map<String, String> allPrizes) {
+    private static void outputAllResult(Map<Tag, Tag> allPrizes) {
         StringBuilder result = new StringBuilder();
-        for (String person : allPrizes.keySet()) {
-            result.append(person)
+        for (Tag member : allPrizes.keySet()) {
+            result.append(member.getName())
                     .append(" : ")
-                    .append(allPrizes.get(person))
+                    .append(allPrizes.get(member).getName())
                     .append('\n');
         }
         System.out.print(result);

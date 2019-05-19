@@ -24,10 +24,10 @@ public class LadderGame {
     }
 
     public LadderGameResult startGame() {
-        Map<String, String> result = new HashMap<>();
+        Map<Tag, Tag> result = new HashMap<>();
 
         for (int i = 0; i < members.size(); i++) {
-            result.put(members.getTagName(i), prizes.getTagName(ladder.takeLadder(i)));
+            result.put(members.getTag(i), prizes.getTag(ladder.takeLadder(i)));
         }
         return new LadderGameResult(result);
     }

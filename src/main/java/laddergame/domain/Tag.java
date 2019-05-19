@@ -2,6 +2,8 @@ package laddergame.domain;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Objects;
+
 public class Tag {
     private static final int TAG_LENGTH_BOUND = 5;
 
@@ -23,5 +25,18 @@ public class Tag {
         if (tag.length() > TAG_LENGTH_BOUND) {
             throw new IllegalArgumentException("이름은 5자 이내여야 합니다.");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tag tag = (Tag) o;
+        return Objects.equals(name, tag.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

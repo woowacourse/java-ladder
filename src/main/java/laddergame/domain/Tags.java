@@ -18,8 +18,8 @@ public class Tags {
                 .collect(Collectors.toList());
     }
 
-    public String getTagName(int index) {
-        return tags.get(index).getName();
+    public Tag getTag(int index) {
+        return tags.get(index);
     }
 
     public int size() {
