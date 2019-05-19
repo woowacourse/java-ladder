@@ -1,84 +1,80 @@
 package ladder.domain;
 
-import ladder.util.Const;
-
 import java.util.*;
 
 /**
- * 사다리 결과 값을 저장하는 클래스
- * <br> LadderResult radderResult = new RadderResult("pobi, crong, hi", "꽝, 1000, 2000", 5)
- * <br> radderResult.getResultOfName("pobi")
- * <br> radderResult.getResultOfName("all")
- *
- * @author heebg, hyojaekim
- * @version 1.0 2019-05-16
+ * @author heebg
+ * @version 1.0 2019-05-18
  */
 public class LadderResult {
-    Ladder ladder;
-    Map<String, String> result;
+    private final String SIGN_EX_NAME = "all";
+
+    private final Map<Player, Item> ladderResult;
+
+    private LadderResult(Players players, Items items, LineResult result) {
+        Map<Player, Item> ladderResult = new LinkedHashMap<>();
+        for (int i = 0; i < players.size(); i++) {
+            Player player = players.get(i);
+            Item item = items.get(result.get(i));
+            ladderResult.put(player, item);
+        }
+        this.ladderResult = ladderResult;
+    }
 
     /**
      * 생성자
      *
-     * @param names
-     * @param rewards
-     * @param depth
+     * @param players
+     * @param items
+     * @param result
+     * @return
      */
-    public LadderResult(String names, String rewards, int depth) {
-        names = Rule.ruleInputPlayerNames(names);
-        rewards = Rule.ruleInputReward(rewards, names.split(",").length);
-        depth = Rule.ruleLadderDepthRange(depth);
-
-        this.ladder = new Ladder(setPlayers(names).size(), depth);
-        this.result = setResult(setPlayers(names), Arrays.asList(rewards.split(",")), depth);
+    public static LadderResult newBuild(Players players, Items items, LineResult result) {
+        return new LadderResult(players, items, result);
     }
 
     /**
-     * 이름의 결과값 반환
+     * 사다리 결과 반환
+     *
+     * @return
+     */
+    public Map<Player, Item> getResult() {
+        return ladderResult;
+    }
+
+    /**
+     * 해당 이름에 해당하는 사다리 결과 반환
      *
      * @param name
      * @return
      */
-    public String getResultOfName(String name) {
-        if (name.equals(Const.LADDERRESULT_GET_RESULT_ALL)) {
-            return getResultOfAllName();
+    public String matchItem(String name) {
+        if (name.equals(SIGN_EX_NAME)) {
+            return allItem();
         }
-        return result.get(name);
+        return ladderResult.get(Player.newBuilder(name)).toString();
     }
 
     /**
-     * 사다리 모양 출력
+     * 모든 결과 반환
      *
-     * @return
+     * @return string
      */
-    public String getLadderShape() {
-        return ladder.getLadderShape();
-    }
-
-    private Map<String, String> setResult(List<Player> players, List<String> rewards, int depth) {
-        Map<String, String> result = new HashMap<>();
-        List<Integer> initResult = ladder.getResult();
-        for (int i = 0; i < players.size(); i++) {
-            result.put(players.get(i).getName(), rewards.get(initResult.get(i)));
-        }
-        return result;
-    }
-
-    private List<Player> setPlayers(String playerNames) {
-        List<Player> players = new ArrayList<>();
-        List<String> names = Arrays.asList(playerNames.split(","));
-        for (String name : names) {
-            players.add(new Player(name));
-        }
-        return players;
-    }
-
-    private String getResultOfAllName() {
+    private String allItem() {
         StringJoiner stringJoiner = new StringJoiner("\n");
-        for (Map.Entry<String, String> entry : result.entrySet()) {
-            stringJoiner.add(entry.getKey() + " : " + entry.getValue());
+        for (Map.Entry<Player, Item> playerRewardEntry : ladderResult.entrySet()) {
+            stringJoiner.add(playerRewardEntry.getKey() + " : " + playerRewardEntry.getValue());
         }
         return stringJoiner.toString();
+    }
+
+    /**
+     * 모든 결과 반환
+     *
+     * @return Map
+     */
+    public Map allMatchItem() {
+        return ladderResult;
     }
 
     @Override
@@ -86,12 +82,11 @@ public class LadderResult {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderResult that = (LadderResult) o;
-        return Objects.equals(ladder, that.ladder) &&
-                Objects.equals(result, that.result);
+        return Objects.equals(ladderResult, that.ladderResult);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladder, result);
+        return Objects.hash(ladderResult);
     }
 }

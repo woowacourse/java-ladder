@@ -3,81 +3,90 @@ package ladder.domain;
 import java.util.*;
 
 /**
- * 사다리를 그려주는 클래스
- * <br> 가로, 세로를 넣어준다.
- * <br> Ladder ladder = new Ladder(5,4)
- * <br> ladder.
- *
- * @author heebg, hyojaekim
- * @version 1.0 2019-05-16
+ * @author heebg
+ * @version 1.0 2019-05-18
  */
 public class Ladder {
-    List<LadderLine> ladder;
-    List<Integer> result;
+    private final String FALSE_SHAPE = "|     ";
+    private final String TRUE_SHAPE = "|-----";
+
+    private final List<Line> ladder;
+
+    private Ladder(List<Line> ladder) {
+        this.ladder = ladder;
+    }
 
     /**
      * 생성자
      *
-     * @param row
+     * @param rowSize
      * @param depth
+     * @return
      */
-    public Ladder(int row, int depth) {
-        this.ladder = setLadder(row, depth);
-        this.result = setResult(row, depth);
+    public static Ladder newBuilder(int rowSize, int depth) {
+        List<Line> ladder = new ArrayList<>();
+        for (int i = 0; i < depth; i++) {
+            ladder.add(Line.newBuilder(rowSize));
+        }
+        return new Ladder(ladder);
     }
 
     /**
-     * 사다리 결과값 반환.
+     * 생성자
      *
+     * @param lines
      * @return
      */
-    public List<Integer> getResult() {
-        return this.result;
+    public static Ladder newBuilder(List<Line> lines) {
+        return new Ladder(lines);
     }
 
     /**
-     * 사다리 모양 반환
+     * 모양 반환
      *
      * @return
      */
-    public String getLadderShape() {
-        StringJoiner stringJoiner = new StringJoiner("\n");
-        for (LadderLine ladderLine : ladder) {
-            stringJoiner.add(ladderLine.toString());
-        }
-        return stringJoiner.toString();
+    public String draw() {
+        return draw(TRUE_SHAPE, FALSE_SHAPE);
     }
 
-    private List<LadderLine> setLadder(int row, int depth) {
-        List<LadderLine> ladder = new LinkedList<>();
-        for (int i = 0; i < depth; i++) {
-            ladder.add(new LadderLine(row));
+    /**
+     * 모양 반환
+     *
+     * @param trueString
+     * @param falseString
+     * @return
+     */
+    public String draw(String trueString, String falseString) {
+        StringJoiner shapes = new StringJoiner("\n");
+        for (Line line : ladder) {
+            shapes.add(line.draw(trueString, falseString));
         }
-        return ladder;
+        return shapes.toString();
     }
 
-    private List<Integer> setResult(int row, int depth) {
-        List<Integer> starter = setStater(row);
-        for (int i = 0; i < depth; i++) {
-            starter = moveRadderLIne(i, starter);
+    /**
+     * 사다리 결과 반환
+     *
+     * @return
+     */
+    public LineResult executeResult() {
+        LineResult result = LineResult.newBuilder(ladder.get(0).size());
+        for (Line line : ladder) {
+            result = result.move(line);
         }
-        return starter;
+        return result;
     }
 
-    private List<Integer> setStater(int row) {
-        List<Integer> stater = new ArrayList<>();
-        for (int i = 0; i < row; i++) {
-            stater.add(i);
-        }
-        return stater;
-    }
-
-    private List<Integer> moveRadderLIne(int depth, List<Integer> starter) {
-        for (int i = 0; i < starter.size(); i++) {
-            int nowPosition = starter.get(i);
-            starter.set(i, nowPosition + ladder.get(depth).getNextPosition(nowPosition));
-        }
-        return starter;
+    /**
+     * 사다리 결과 반환
+     *
+     * @param players 입력값
+     * @param items   결과값
+     * @return LadderResult
+     */
+    public LadderResult makeResult(Players players, Items items) {
+        return LadderResult.newBuild(players, items, executeResult());
     }
 
     @Override
@@ -85,12 +94,11 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return Objects.equals(this.ladder, ladder.ladder) &&
-                Objects.equals(result, ladder.result);
+        return Objects.equals(this.ladder, ladder.ladder);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladder, result);
+        return Objects.hash(ladder);
     }
 }
