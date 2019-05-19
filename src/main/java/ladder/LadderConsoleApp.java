@@ -11,12 +11,12 @@ import java.util.List;
 
 public class LadderConsoleApp {
     public static void main(String[] args) {
-        GamePlayers gamePlayers = new GamePlayers(generatePlayers(InputConsoleView.inputNames()));
+        Players players = new Players(generatePlayers(InputConsoleView.inputNames()));
         Rewards rewards = generateRewards(InputConsoleView.inputRewards());
-        Ladder ladder = new Ladder(InputConsoleView.inputHeight(), DirectionsGeneratorFactory.getInstance(gamePlayers.size()));
-        GameResult gameResult = new GameResult(ladder.play(gamePlayers, rewards));
+        Ladder ladder = new Ladder(InputConsoleView.inputHeight(), DirectionsGeneratorFactory.getInstance(players.size()));
+        GameResult gameResult = new GameResult(ladder.play(players, rewards));
 
-        OutputConsoleView.printLadderGame(ladder, gamePlayers, rewards);
+        OutputConsoleView.printLadderGame(ladder, players, rewards);
 
         String name;
         while (!(name = InputConsoleView.inputResultName()).equals("all")) {

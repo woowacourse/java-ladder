@@ -13,13 +13,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LadderTest {
-    GamePlayers gamePlayers;
+    Players players;
     Rewards rewards;
     Ladder ladder;
 
     @BeforeEach
     void setUp() {
-        gamePlayers = new GamePlayers(new PlayerGenerator("pobi,crong,honux").generate());
+        players = new Players(new PlayerGenerator("pobi,crong,honux").generate());
         rewards = new RewardsGenerator("꽝, 5000, 3000").generate();
         List<Direction> directions = Arrays.asList(
                 Direction.first(true),
@@ -40,7 +40,7 @@ public class LadderTest {
 
     @Test
     public void playTest() {
-        Map<String, String> result = ladder.play(gamePlayers, rewards);
+        Map<String, String> result = ladder.play(players, rewards);
 
         assertThat(result.get("honux")).isEqualTo("3000");
         assertThat(result.get("pobi")).isEqualTo("5000");
@@ -51,7 +51,7 @@ public class LadderTest {
     public void 플레이어와_결과_size_다름_검사() {
         rewards = new RewardsGenerator("꽝, 5000, 3000, 5000").generate();
         assertThrows(IllegalArgumentException.class, ()->{
-            Map<String, String> result = ladder.play(gamePlayers, rewards);
+            Map<String, String> result = ladder.play(players, rewards);
         });
     }
 }

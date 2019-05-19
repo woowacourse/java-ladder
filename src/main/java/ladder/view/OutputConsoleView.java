@@ -14,16 +14,16 @@ public class OutputConsoleView {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String ILLEGAL_NAME = "없는 사용자입니다.";
 
-    public static void printLadderGame(Ladder ladder, GamePlayers gamePlayers, Rewards rewards) {
-        printNames(gamePlayers);
+    public static void printLadderGame(Ladder ladder, Players players, Rewards rewards) {
+        printNames(players);
         printLadder(ladder);
         printRewards(rewards);
     }
 
-    private static void printNames(GamePlayers gamePlayers) {
+    private static void printNames(Players players) {
         StringBuilder sb = new StringBuilder();
         sb.append(PADDING);
-        for (Player player : gamePlayers.getPlayers()) {
+        for (Player player : players.getPlayers()) {
             sb.append(fillPadding(player.getName()));
         }
         System.out.println(sb.toString());

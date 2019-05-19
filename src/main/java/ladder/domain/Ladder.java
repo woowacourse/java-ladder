@@ -39,11 +39,11 @@ public final class Ladder {
         return lines;
     }
 
-    public Map<String, String> play(final GamePlayers gamePlayers, final Rewards rewards) {
-        validate(gamePlayers.size(), rewards.size());
-        Map<String, String> result = new HashMap<>(gamePlayers.size());
+    public Map<String, String> play(final Players players, final Rewards rewards) {
+        validate(players.size(), rewards.size());
+        Map<String, String> result = new HashMap<>(players.size());
 
-        for (final Player player : gamePlayers.getPlayers()) {
+        for (final Player player : players.getPlayers()) {
             int position = player.getPosition();
             for (final Line line : lines) {
                 position += line.move(position);

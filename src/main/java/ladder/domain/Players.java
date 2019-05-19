@@ -1,15 +1,14 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public final class GamePlayers {
+public final class Players {
     public static final int MIN_PLAYER = 2;
     private final Set<Player> players;
 
-    public GamePlayers(final List<Player> players) {
+    public Players(final List<Player> players) {
         validate(players);
         this.players = new HashSet<>(players);
     }
