@@ -30,19 +30,30 @@ class StringSumCalculatorTest {
     }
 
     @Test
-    void 숫자_2개이상을_컴마_구분자로_입력할_경우_모든_숫자의_합을_반환() {
+    void 숫자_2개를_컴마로_구분하여_입력할_경우_모든_숫자의_합을_반환() {
         assertThat(stringSumCalculator.calculateFormula("1,1")).isEqualTo(2);
-        assertThat(stringSumCalculator.calculateFormula("1,2,3")).isEqualTo(6);
-        assertThat(stringSumCalculator.calculateFormula("1,2,3,4")).isEqualTo(10);
+    }
+
+    @Test
+    void 숫자_5개를_컴마로_구분하여_입력할_경우_모든_숫자의_합을_반환() {
         assertThat(stringSumCalculator.calculateFormula("1,2,3,4,5")).isEqualTo(15);
     }
 
     @Test
     void 구분자로_콜론을_사용() {
         assertThat(stringSumCalculator.calculateFormula("1:1")).isEqualTo(2);
+    }
+
+    @Test
+    void 구분자로_콜론_2개_사용() {
         assertThat(stringSumCalculator.calculateFormula("1:1:1")).isEqualTo(3);
+    }
+
+    @Test
+    void 구분자로_콜론과_콤마_사용() {
         assertThat(stringSumCalculator.calculateFormula("1:1,1")).isEqualTo(3);
     }
+
 
     @Test
     void 커스텀_구분자_지정() {
