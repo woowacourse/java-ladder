@@ -1,15 +1,19 @@
 package calculator;
 
+import java.util.Arrays;
+
 public class StringCalculator {
     private static final int SPLIT_BOUNDARY = 2;
     private static final int SEPARATOR_LENGTH = 1;
     private static final int SEPARATOR = 1;
+    private static final int NO_CUSTOM_SEPARATOR = 1;
 
     private static final String AFTER_SEPARATOR = "//";
+    private static final String ENTER = "\n";
 
     private CustomSeparators customSeparators;
 
-    StringCalculator() {
+    public StringCalculator() {
         customSeparators = new CustomSeparators();
     }
 
@@ -28,42 +32,42 @@ public class StringCalculator {
     }
 
     public int[] splitBySeparator(String expression) {
-        String[] temp = expression.split(customSeparators.combineSeparatorToRegex());
-        int[] result = new int[temp.length];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = Integer.parseInt(temp[i]);
-        }
-        return result;
+        String[] numbers = expression.split(customSeparators.combineSeparatorToRegex());
+        return Arrays.stream(numbers)
+                .mapToInt(Integer::parseInt)
+                .toArray();
     }
 
     public String[] splitByEnter(String input) {
-        return input.split("\n", 2);
+        return input.split(ENTER, 2);
     }
 
     public int add(String input) {
-        if (isBlankOrNull(input)) return 0;
-        String[] temp = splitByEnter(input);
-        int[] expression = splitExpression(temp);
+        if (isBlankOrNull(input)) {
+            return 0;
+        }
+        String[] separatorAndExpression = splitByEnter(input);
+        int[] expression = splitExpression(separatorAndExpression);
         return sum(expression);
     }
 
-    private int[] splitExpression(String[] temp) {
-        if (temp.length == 1) {
-            return splitBySeparator(temp[0]);
+    private int[] splitExpression(String[] separatorAndExpression) {
+        if (separatorAndExpression.length == NO_CUSTOM_SEPARATOR) {
+            return splitBySeparator(separatorAndExpression[0]);
         }
-        customSeparators.addCustomSeparator(createCustomSeparator(temp[0]));
-        return splitBySeparator(temp[1]);
+        customSeparators.addCustomSeparator(createCustomSeparator(separatorAndExpression[0]));
+        return splitBySeparator(separatorAndExpression[1]);
     }
 
     private boolean isBlankOrNull(String input) {
-        return input.isEmpty() || input == null;
+        return input == null || input.isEmpty();
     }
 
     private int sum(int[] expression) {
         int sum = 0;
-        for (int i = 0; i < expression.length; i++) {
-            isNegative(expression[i]);
-            sum += expression[i];
+        for (int number : expression) {
+            isNegative(number);
+            sum += number;
         }
         return sum;
     }

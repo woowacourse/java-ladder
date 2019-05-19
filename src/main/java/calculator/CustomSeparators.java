@@ -8,7 +8,7 @@ public class CustomSeparators {
 
     private Set<CustomSeparator> customSeparators;
 
-    CustomSeparators() {
+    public CustomSeparators() {
         customSeparators = new HashSet<>();
         customSeparators.add(new CustomSeparator(","));
         customSeparators.add(new CustomSeparator(":"));

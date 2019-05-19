@@ -14,6 +14,7 @@ public class OutputView {
     private static final String COLON = " : ";
     private static final String LINE_COMPONENT = "|------";
     private static final String NONE_LINE_COMPONENT = "|      ";
+    private static final String LADDER_VIEW_LENGTH = "%-7s";
 
 
     public static void printLadderGame(LadderGame ladderGame) {
@@ -27,14 +28,14 @@ public class OutputView {
 
     private static void printLadderGameComponent(String[] components) {
         for (String component : components) {
-            System.out.printf("%-7s", component);
+            System.out.printf(LADDER_VIEW_LENGTH, component);
         }
         System.out.println();
     }
 
     private static void printLadderGameComponent(List<Player> players) {
         for (Player player : players) {
-            System.out.printf("%-7s", player.getName());
+            System.out.printf(LADDER_VIEW_LENGTH, player.getName());
         }
         System.out.println();
     }
