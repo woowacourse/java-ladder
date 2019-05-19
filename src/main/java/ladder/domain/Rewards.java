@@ -3,10 +3,10 @@ package ladder.domain;
 import java.util.Map;
 import java.util.Objects;
 
-public final class PlayerRewards {
+public final class Rewards {
     private final Map<Integer, String> rewards;
 
-    public PlayerRewards(final Map<Integer, String> rewards) {
+    public Rewards(final Map<Integer, String> rewards) {
         validateSize(rewards);
         this.rewards = rewards;
     }
@@ -29,7 +29,7 @@ public final class PlayerRewards {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PlayerRewards that = (PlayerRewards) o;
+        Rewards that = (Rewards) o;
         return Objects.equals(rewards, that.rewards);
     }
 

@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import ladder.domain.generator.DirectionsGenerator;
-import ladder.domain.generator.DirectionsGeneratorFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,8 +39,8 @@ public final class Ladder {
         return lines;
     }
 
-    public Map<String, String> play(final GamePlayers gamePlayers, final PlayerRewards playerRewards) {
-        validate(gamePlayers.size(), playerRewards.size());
+    public Map<String, String> play(final GamePlayers gamePlayers, final Rewards rewards) {
+        validate(gamePlayers.size(), rewards.size());
         Map<String, String> result = new HashMap<>(gamePlayers.size());
 
         for (final Player player : gamePlayers.getPlayers()) {
@@ -49,7 +48,7 @@ public final class Ladder {
             for (final Line line : lines) {
                 position += line.move(position);
             }
-            result.put(player.getName(), playerRewards.getReward(position));
+            result.put(player.getName(), rewards.getReward(position));
         }
 
         return result;

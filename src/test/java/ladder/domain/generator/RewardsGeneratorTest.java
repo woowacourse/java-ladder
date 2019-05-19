@@ -1,7 +1,6 @@
 package ladder.domain.generator;
 
-import ladder.domain.PlayerRewards;
-import ladder.domain.generator.PlayerRewardsGenerator;
+import ladder.domain.Rewards;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -9,7 +8,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PlayerRewardsGeneratorTest {
+public class RewardsGeneratorTest {
     @Test
     void 컴마_기준으로_나누기() {
         String input = "꽝, 5000, 꽝";
@@ -17,10 +16,10 @@ public class PlayerRewardsGeneratorTest {
         inputMap.put(0, "꽝");
         inputMap.put(1, "5000");
         inputMap.put(2, "꽝");
-        PlayerRewards expectedPlayerRewards = new PlayerRewards(inputMap);
+        Rewards expectedRewards = new Rewards(inputMap);
 
-        PlayerRewards actualPlayerRewards = new PlayerRewardsGenerator(input).generate();
+        Rewards actualRewards = new RewardsGenerator(input).generate();
 
-        assertThat(actualPlayerRewards.equals(expectedPlayerRewards)).isTrue();
+        assertThat(actualRewards.equals(expectedRewards)).isTrue();
     }
 }

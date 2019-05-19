@@ -7,12 +7,12 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class PlayerRewardsTest {
+public class RewardsTest {
     @Test
     void 사이즈0_체크() {
         Map<Integer, String> input = new HashMap<>();
         assertThrows(IllegalArgumentException.class,()->{
-           new PlayerRewards(input);
+           new Rewards(input);
         });
     }
 }

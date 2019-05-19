@@ -14,10 +14,10 @@ public class OutputConsoleView {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String ILLEGAL_NAME = "없는 사용자입니다.";
 
-    public static void printLadderGame(Ladder ladder, GamePlayers gamePlayers, PlayerRewards playerRewards) {
+    public static void printLadderGame(Ladder ladder, GamePlayers gamePlayers, Rewards rewards) {
         printNames(gamePlayers);
         printLadder(ladder);
-        printRewards(playerRewards);
+        printRewards(rewards);
     }
 
     private static void printNames(GamePlayers gamePlayers) {
@@ -62,7 +62,7 @@ public class OutputConsoleView {
         sb.append(direction.isRight() ? SUB_LINE_TRUE : SUB_LINE_FALSE);
     }
 
-    private static void printRewards(PlayerRewards results) {
+    private static void printRewards(Rewards results) {
         StringBuilder sb = new StringBuilder();
         sb.append(PADDING);
         for (int i = 0; i < results.size(); i++) {
