@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Prize {
     private String prize;
 
-    Prize(String input) {
+    public Prize(String input) {
         this.prize = input;
     }
 

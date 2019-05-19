@@ -4,8 +4,13 @@ import java.util.Objects;
 
 public class Player {
     private final String name;
+
     public Player(String name) {
         this.name = name;
+    }
+
+    public boolean contains(String name) {
+        return this.name.equals(name);
     }
 
     @Override
@@ -24,9 +29,5 @@ public class Player {
     @Override
     public String toString() {
         return this.name;
-    }
-
-    public boolean contains(String name) {
-        return this.name.equals(name);
     }
 }

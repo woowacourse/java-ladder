@@ -10,11 +10,9 @@ public class InputView {
         return reader.nextLine();
     }
 
-    public static int askHeight() {
+    public static String askHeight() {
         System.out.println("사다리 높이는 몇 개인가요?");
-        int height = reader.nextInt();
-        reader.nextLine();
-        return height;
+        return reader.nextLine();
     }
 
     public static String askPrizes() {

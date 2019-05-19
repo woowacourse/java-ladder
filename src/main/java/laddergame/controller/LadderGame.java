@@ -9,8 +9,9 @@ import java.util.List;
 public class LadderGame {
     public void play() {
         Players players = generatePlayers();
-        Ladder ladder = getLadder(players.getPeopleCount());
-        List<Prize> prizes = getPrizes(players.size());
+        Ladder ladder = generateLadder(players.getPeopleCount());
+        Prizes prizes = generatePrizes(players.getPeopleCount());
+        //List<Prize> prizes = getPrizes(players.size());
         OutputView.printLadder(players, ladder);
         OutputView.printPrizes(prizes);
 
@@ -18,6 +19,24 @@ public class LadderGame {
         processor.processGame(ladder.getLadderMap());
 
         keepAsk(players, prizes);
+    }
+
+    private static Prizes generatePrizes(int width) {
+        try {
+            String prizes = InputView.askPrizes();
+            return new Prizes(width,prizes);
+        } catch (Exception e) {
+            return generatePrizes(width);
+        }
+    }
+
+    private static Ladder generateLadder(int width) {
+        try {
+            String height = InputView.askHeight();
+            return new Ladder(width, height);
+        } catch (Exception e) {
+            return generateLadder(width);
+        }
     }
 
 

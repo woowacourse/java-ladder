@@ -1,26 +1,34 @@
 package laddergame.domain;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 public class Ladder {
-    private ArrayList<List<Boolean>> ladderMap = new ArrayList<>();
+    private List<Line> ladderInformationAsTrueFalse = new ArrayList<>();
     private final int width;
     private final int height;
 
-    public Ladder(final int width, final int height) {
+    public Ladder(final int width, final String height) {
         LadderValidator.checkConditionsForLadder(height);
 
         this.width = width;
-        this.height = height;
+        this.height = Integer.parseInt(height);
 
-        ladderMap = makeLadder(width, height);
+        ladderInformationAsTrueFalse = generateLadderInformation(this.width, this.height);
     }
 
-    private ArrayList<List<Boolean>> makeLadder(int width, int height) {
-        return LadderMapGenerator.fillLadderMap(width, height);
+    private List<Line> generateLadderInformation(int width, int hegiht) {
+        List<Line> ladderInformationAsTrueFalse = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            ladderInformationAsTrueFalse.add(new Line(width));
+        }
+        return ladderInformationAsTrueFalse;
     }
+
+
 
     public ArrayList<List<Boolean>> getLadderMap() {
         return this.ladderMap;
