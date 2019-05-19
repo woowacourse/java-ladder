@@ -1,6 +1,6 @@
-package ladder;
+package ladder.model.player;
 
-import ladder.model.Players;
+import ladder.model.player.Players;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,7 @@
-package ladder.model;
+package ladder.model.linepointsgenerator.impl;
+
+import ladder.model.ladder.Points;
+import ladder.model.linepointsgenerator.LinePointsGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

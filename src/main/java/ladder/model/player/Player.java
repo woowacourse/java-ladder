@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.model.player;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -29,11 +29,11 @@ public class Player {
         return (!StringUtils.isBlank(name)) && (name.length() <= MAX_NAME_LENGTH);
     }
 
-    void moveLeft() {
+    public void moveLeft() {
         this.position--;
     }
 
-    void moveRight() {
+    public void moveRight() {
         this.position++;
     }
 

@@ -1,4 +1,7 @@
-package ladder.model;
+package ladder.model.ladder;
+
+import ladder.model.player.Player;
+import ladder.model.player.Players;
 
 import java.util.stream.IntStream;
 
@@ -32,7 +35,7 @@ public class Line {
         return EMPTY_LINE;
     }
 
-    void moveOneLine(Players players) {
+    public void moveOneLine(Players players) {
         players.forEach(player -> move(player));
     }
 

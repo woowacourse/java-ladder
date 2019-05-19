@@ -1,4 +1,7 @@
-package ladder.model;
+package ladder.model.laddergame;
+
+import ladder.model.ladder.Ladder;
+import ladder.model.player.Players;
 
 public class LadderGame {
     private static final String NEW_LINE = "\n";

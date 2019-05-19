@@ -1,4 +1,7 @@
-package ladder.model;
+package ladder.model.ladder;
+
+import ladder.model.player.Players;
+import ladder.model.linepointsgenerator.LinePointsGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +25,7 @@ public class Ladder {
         return height >= MIN_LADDER_HEIGHT;
     }
 
-    void move(Players players) {
+    public void move(Players players) {
         lines.forEach(line -> line.moveOneLine(players));
     }
 

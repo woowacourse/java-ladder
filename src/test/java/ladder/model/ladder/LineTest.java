@@ -1,9 +1,9 @@
-package ladder;
+package ladder.model.ladder;
 
-import ladder.model.CustomLinePointsGenerator;
-import ladder.model.Line;
-import ladder.model.LinePointsGenerator;
-import ladder.model.Player;
+import ladder.model.linepointsgenerator.impl.CustomLinePointsGenerator;
+import ladder.model.ladder.Line;
+import ladder.model.linepointsgenerator.LinePointsGenerator;
+import ladder.model.player.Player;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

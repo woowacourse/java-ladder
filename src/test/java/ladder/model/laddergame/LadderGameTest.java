@@ -1,6 +1,10 @@
-package ladder;
+package ladder.model.laddergame;
 
-import ladder.model.*;
+import ladder.model.ladder.Ladder;
+import ladder.model.laddergame.LadderGame;
+import ladder.model.laddergame.LadderGameResult;
+import ladder.model.linepointsgenerator.impl.CustomLinePointsGenerator;
+import ladder.model.player.Players;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

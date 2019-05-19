@@ -1,6 +1,6 @@
-package ladder;
+package ladder.model.laddergame;
 
-import ladder.model.LadderGameResult;
+import ladder.model.laddergame.LadderGameResult;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

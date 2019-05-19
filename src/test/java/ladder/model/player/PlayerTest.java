@@ -1,6 +1,6 @@
-package ladder;
+package ladder.model.player;
 
-import ladder.model.Player;
+import ladder.model.player.Player;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.model.player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,7 +31,7 @@ public class Players implements Iterable<Player> {
         return players.stream().anyMatch(player -> player.getName().equals(name));
     }
 
-    int getPositionByName(String name) {
+    public int getPositionByName(String name) {
         return players.stream()
                 .filter(player -> player.getName().equals(name))
                 .findFirst()

@@ -1,8 +1,8 @@
 package ladder.view;
 
-import ladder.model.Ladder;
-import ladder.model.LadderGameResult;
-import ladder.model.Players;
+import ladder.model.ladder.Ladder;
+import ladder.model.laddergame.LadderGameResult;
+import ladder.model.player.Players;
 
 public class OutputView {
 

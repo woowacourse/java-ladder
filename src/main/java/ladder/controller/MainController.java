@@ -1,6 +1,11 @@
 package ladder.controller;
 
-import ladder.model.*;
+import ladder.model.ladder.Ladder;
+import ladder.model.laddergame.LadderGame;
+import ladder.model.laddergame.LadderGameResult;
+import ladder.model.linepointsgenerator.LinePointsGenerator;
+import ladder.model.linepointsgenerator.impl.RandomLinePointsGenerator;
+import ladder.model.player.Players;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
