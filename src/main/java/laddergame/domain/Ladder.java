@@ -46,17 +46,20 @@ public class Ladder {
         StringBuilder sb = new StringBuilder();
 
         for (int y = 0; y < height; y++) {
-            toStringLine(sb, y);
+            sb.append(toStringLine(sb, y));
         }
 
         return sb.toString();
     }
 
-    private void toStringLine(StringBuilder sb, int y) {
-        sb.append("     |");
+    private StringBuilder toStringLine(StringBuilder sb, int y) {
+        StringBuilder stringBuilder = new StringBuilder("     |");
+
         for (int x = 0; x < width - 1; x++) {
             sb.append(ladderMap.get(y).get(x) ? "-----|" : "     |");
         }
         sb.append("\n");
+
+        return stringBuilder;
     }
 }

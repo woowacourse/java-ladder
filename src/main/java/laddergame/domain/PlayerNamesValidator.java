@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 public class PlayerNamesValidator {
+    private final static int MAX_PLAYER_NAME_LENGTH = 5;
+
     static void checkConditions(String input, List<String> names) {
         checkEmptyName(input);
         checkNameLength(names);
@@ -29,7 +31,7 @@ public class PlayerNamesValidator {
     }
 
     private static boolean checkCurrentNameLength(String name) {
-        if (name.isEmpty() || name.length() > 5) {
+        if (name.isEmpty() || name.length() > MAX_PLAYER_NAME_LENGTH) {
             return true;
         }
         return false;

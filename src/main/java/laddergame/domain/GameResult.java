@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameResult {
+    private static final int DEFAULT_INDEX = 0;
+
     private List<String> results = new ArrayList<>();
 
     public String getResult(List<Player> players, String name) {
@@ -16,7 +18,7 @@ public class GameResult {
     }
 
     private String getRequestedResult(String name) {
-        int index = 0;
+        int index = DEFAULT_INDEX;
 
         while (index < results.size() && !results.get(index).startsWith(name + " : ")) {
             index++;
