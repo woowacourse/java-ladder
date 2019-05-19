@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.*;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class OutputView {
 				+ UserOutput.LADDER_LINE.getOutputMessage());
 	}
 
-	public static void printLadderValues(List<Reward> rewards) {
+	public static void printLadderGameRewards(List<Reward> rewards) {
 		for (Reward reward : rewards) {
 			System.out.printf(UserOutput.PRINT_FORM.getOutputMessage(), reward);
 		}
@@ -39,10 +40,14 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public static void printResult(LadderGameResult ladderGameResult, String name) {
+	public static void printLadderGameResult(LadderGameResult ladderGameResult, String name) {
 		if (name.equals(UserOutput.PRINT_ALL_PLAYER.getOutputMessage())) {
 			ladderGameResult.getAllPlayerNames().stream()
-							.forEach(playerName -> System.out.println(playerName + " : " + ladderGameResult.getReward(playerName)));
+					.forEach(playerName -> System.out.println(playerName + " : " + ladderGameResult.getReward(playerName)));
+			return;
+		}
+
+		if (StringUtils.isBlank(name)) {
 			return;
 		}
 
