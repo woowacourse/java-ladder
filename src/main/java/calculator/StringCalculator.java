@@ -7,10 +7,10 @@ public class StringCalculator {
 
     private static final String AFTER_SEPARATOR = "//";
 
-    private CustomSeparatorGroup customSeparatorGroup;
+    private CustomSeparators customSeparators;
 
     StringCalculator() {
-        customSeparatorGroup = new CustomSeparatorGroup();
+        customSeparators = new CustomSeparators();
     }
 
     public CustomSeparator createCustomSeparator(String input) {
@@ -28,7 +28,7 @@ public class StringCalculator {
     }
 
     public int[] splitBySeparator(String expression) {
-        String[] temp = expression.split(customSeparatorGroup.combineSeparatorToRegex());
+        String[] temp = expression.split(customSeparators.combineSeparatorToRegex());
         int[] result = new int[temp.length];
         for (int i = 0; i < result.length; i++) {
             result[i] = Integer.parseInt(temp[i]);
@@ -51,7 +51,7 @@ public class StringCalculator {
         if (temp.length == 1) {
             return splitBySeparator(temp[0]);
         }
-        customSeparatorGroup.addCustomSeparator(createCustomSeparator(temp[0]));
+        customSeparators.addCustomSeparator(createCustomSeparator(temp[0]));
         return splitBySeparator(temp[1]);
     }
 

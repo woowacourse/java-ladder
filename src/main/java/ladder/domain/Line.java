@@ -11,7 +11,7 @@ public class Line {
     public Line(int countOfPerson) {
         points = new Direction[countOfPerson];
         addPoints();
-    }   
+    }
 
     public Line(Direction[] points) {
         this.points = points;
