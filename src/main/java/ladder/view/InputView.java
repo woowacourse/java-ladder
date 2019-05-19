@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+    private static final String COMMA = ",";
 
     public static List<String> readName() {
         System.out.println(ConsoleMessages.INPUT_NAME.message());
         Scanner scanner = new Scanner(System.in);
-        return Arrays.asList(scanner.nextLine().split(","));
+        return Arrays.asList(scanner.nextLine().split(COMMA));
     }
 
     public static String readHeight() {
@@ -18,10 +19,10 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static String readReward() {
+    public static List<String> readReward() {
         System.out.println(ConsoleMessages.INPUT_REWARD.message());
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        return Arrays.asList(scanner.nextLine().split(COMMA));
     }
 
     public static String readPlayer() {

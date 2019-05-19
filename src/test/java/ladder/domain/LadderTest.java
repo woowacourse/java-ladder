@@ -22,19 +22,4 @@ public class LadderTest {
         LadderRow ladderRow = new LadderRow(Arrays.asList(1, -1, 1, -1, 0));
         assertEquals(ladderRow.status(), ladder.status(1).status());
     }
-//
-//    @Test(expected = IllegalArgumentException.class)
-//    public void 사다리_만들기_예외() {
-//        Ladder ladder = new Ladder(1, 1);
-//    }
-//
-//    @Test(expected = IllegalArgumentException.class)
-//    public void 사다리_만들기_예외2() {
-//        Ladder ladder = new Ladder(3, "a");
-//    }
-//
-//    @Test(expected = IllegalArgumentException.class)
-//    public void 사다리_만들기_예외3() {
-//        Ladder ladder = new Ladder(-1, -5);
-//    }
 }

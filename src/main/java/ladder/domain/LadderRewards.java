@@ -2,29 +2,22 @@ package ladder.domain;
 
 import ladder.view.ConsoleMessages;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderRewards {
     private List<String> rewards;
 
-    public LadderRewards(String text, int width) {
-//        this.rewards =
-//        Arrays.asList(text.split(",")).
-        rewards = Arrays.stream(text.split(","))
-                .map(reward -> {
-                    reward = reward.trim();
-                    if (reward.isEmpty()) {
-                        throw new IllegalArgumentException(ConsoleMessages.ERR_BLANK.message());
-                    }
-                    return reward;
-                })
-                .collect(Collectors.toList());
-
-        if (rewards.size() != width) {
+    public LadderRewards(List<String> inputRewards, int width) {
+        if(inputRewards.size() == 0) {
+            throw new IllegalArgumentException(ConsoleMessages.ERR_BLANK.message());
+        }
+        if(inputRewards.contains("")) {
+            throw new IllegalArgumentException(ConsoleMessages.ERR_BLANK.message());
+        }
+        if (inputRewards.size() != width) {
             throw new IllegalArgumentException(ConsoleMessages.ERR_REWARD_COUNT.message());
         }
+        rewards = inputRewards;
     }
 
     String reward(int index) {
