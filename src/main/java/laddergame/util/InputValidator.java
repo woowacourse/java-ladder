@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Validator {
+public class InputValidator {
     public static void checkEndsWithComma(String names) {
         if (names.endsWith(",")) {
             throw new IllegalArgumentException("입력값이 잘못되었습니다!");
@@ -14,7 +14,7 @@ public class Validator {
     public static void checkMemberNames(List<String> names) {
         checkEmptyTag(names);
         checkDuplicateNames(names);
-        names.forEach(Validator::checkNameIsAll);
+        names.forEach(InputValidator::checkNameIsAll);
     }
 
     public static void checkPrizesName(List<String> names, int size) {

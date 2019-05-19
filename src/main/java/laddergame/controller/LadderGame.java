@@ -13,10 +13,10 @@ public class LadderGame {
     private final Tags prizes;
     private final Ladder ladder;
 
-    public LadderGame(Tags members, Rule rule) {
+    public LadderGame(Tags members, Tags prizes, int height, Rule rule) {
         this.members = members;
-        this.prizes = GamePreparer.makePrizes(members.size());
-        this.ladder = LadderGenerator.generateLadder(GamePreparer.makeHeight(), members.size(), rule);
+        this.prizes = prizes;
+        this.ladder = LadderGenerator.generateLadder(height, members.size(), rule);
     }
 
     public LadderGame(Tags members, Tags prizes, Rule rule, int height) {

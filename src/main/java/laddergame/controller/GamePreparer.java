@@ -3,7 +3,7 @@ package laddergame.controller;
 import laddergame.domain.Tags;
 import laddergame.util.InputView;
 import laddergame.util.Splitter;
-import laddergame.util.Validator;
+import laddergame.util.InputValidator;
 
 import java.util.List;
 
@@ -11,10 +11,10 @@ public class GamePreparer {
     public static Tags makeMembers() {
         try {
             String inputNames = InputView.inputMembers();
-            Validator.checkEndsWithComma(inputNames);
+            InputValidator.checkEndsWithComma(inputNames);
             List<String> names = Splitter.splitByComma(inputNames);
 
-            Validator.checkMemberNames(names);
+            InputValidator.checkMemberNames(names);
             return new Tags(names);
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -25,10 +25,10 @@ public class GamePreparer {
     public static Tags makePrizes(int size) {
         try {
             String inputNames = InputView.inputPrizes();
-            Validator.checkEndsWithComma(inputNames);
+            InputValidator.checkEndsWithComma(inputNames);
             List<String> names = Splitter.splitByComma(inputNames);
 
-            Validator.checkPrizesName(names, size);
+            InputValidator.checkPrizesName(names, size);
             return new Tags(names);
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -39,7 +39,7 @@ public class GamePreparer {
     public static int makeHeight() {
         try {
             int height = InputView.inputHeight();
-            Validator.checkHeightIsPositive(height);
+            InputValidator.checkHeightIsPositive(height);
             return height;
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
