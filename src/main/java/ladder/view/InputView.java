@@ -71,14 +71,26 @@ public class InputView {
         return new LadderHeight(Integer.parseInt(inputInteger));
     }
 
-    public static PlayerName getPlayerName() {
+    public static PlayerName getPlayerName(Players players) {
         try {
             System.out.println("결과를 보고 싶은 사람은?");
             String userInput = SCANNER.nextLine();
             return new PlayerName(userInput);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return getPlayerName();
+            return getPlayerName(players);
         }
+    }
+
+    private static PlayerName inputToPlayerName(String inputName, List<PlayerName> playerNames) {
+        if (playerNames.contains(new PlayerName(inputName))) {
+            return new PlayerName(inputName);
+        }
+
+        if (inputName.equals("all")) {
+            return new PlayerName("all");
+        }
+
+        throw new IllegalArgumentException("존재하지 않는 플레이어 이름입니다.");
     }
 }

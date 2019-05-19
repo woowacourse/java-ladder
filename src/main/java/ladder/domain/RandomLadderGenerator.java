@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RandomLadderGenerator {
-    public static Ladder generate(int numOfPlayers, int height) {
+    public static Ladder generate(int numOfPlayers, LadderHeight height) {
         validateNumOfPlayersBiggerThanZero(numOfPlayers);
-        return new Ladder(generateLines(numOfPlayers, height), new LadderHeight(height));
+        return new Ladder(generateLines(numOfPlayers, height), height);
     }
 
     private static void validateNumOfPlayersBiggerThanZero(int numOfPlayers) {
@@ -17,9 +17,9 @@ public class RandomLadderGenerator {
         }
     }
 
-    private static List<Line> generateLines(int numOfPlayers, int height) {
+    private static List<Line> generateLines(int numOfPlayers, LadderHeight height) {
         List<Line> lines = new ArrayList<>();
-        while (lines.size() < height) {
+        while (lines.size() < height.getHeight()) {
             lines.add(generateLine(numOfPlayers));
         }
         return lines;
