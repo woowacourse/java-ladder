@@ -2,6 +2,7 @@ package ladder.domain.generator;
 
 import ladder.domain.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,8 +17,11 @@ public final class PlayerGenerator {
     }
 
     public List<Player> generate() {
-        return Arrays.stream(playerNames.split(DELIMITER))
-                .map(Player::new)
-                .collect(Collectors.toList());
+        List<Player> players = new ArrayList<>();
+        String[] names = playerNames.split(DELIMITER);
+        for (int i = 0; i < names.length; i++) {
+            players.add(new Player(names[i], i));
+        }
+        return players;
     }
 }

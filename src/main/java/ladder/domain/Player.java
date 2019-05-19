@@ -13,9 +13,11 @@ public final class Player {
     }
 
     private final String name;
+    private final int position;
 
-    public Player(final String name) {
+    public Player(final String name, final int position) {
         this.name = validName(name);
+        this.position = position;
     }
 
     private String validName(String name) {
@@ -50,6 +52,10 @@ public final class Player {
 
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override
