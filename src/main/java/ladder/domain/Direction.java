@@ -20,26 +20,4 @@ public class Direction {
         }
         return 0;
     }
-
-    public Direction next(boolean nextCurrent) {
-        return new Direction(this.current,nextCurrent);
-    }
-
-    public Direction pre(boolean beforeCurrent) {
-        return new Direction(beforeCurrent,this.current);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Direction direction = (Direction) o;
-        return left == direction.left &&
-                current == direction.current;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(left, current);
-    }
 }

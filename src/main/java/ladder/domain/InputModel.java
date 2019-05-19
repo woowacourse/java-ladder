@@ -31,6 +31,18 @@ public class InputModel {
         return names;
     }
 
+    public List<String> getValidExecuteResult(String executeResult,int countOfName) {
+        checkBlankInput(executeResult);
+        return checkValidExecuteResult(Arrays.asList(split(executeResult)),countOfName);
+    }
+
+    private List<String> checkValidExecuteResult(List<String> executeResult, int countOfName) {
+        checkEmpty(executeResult);
+        checkExecuteResultLength(executeResult,countOfName);
+
+        return executeResult;
+    }
+
     private String[] split(String names) {
         return names.trim().split(",");
     }
@@ -54,6 +66,12 @@ public class InputModel {
         }
     }
 
+    private void checkExecuteResultLength(List<String> executeResult,int countOfName) {
+        if (executeResult.size() != countOfName) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
+        }
+    }
+
     public int getValidLadderHeight(int number) {
         if (number < MIN_HEIGHT) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
@@ -61,4 +79,34 @@ public class InputModel {
 
         return number;
     }
+
+    public String getPlayerForResult(List<String> names,String player) {
+        return checkValidPlayer(names,player);
+    }
+
+    private String checkValidPlayer(List<String> names,String player) {
+        checkPlayerEmpty(player);
+        if (player.equals("all")) {
+           return player;
+        }
+
+        Set<String> matchNames = new HashSet<>(names);
+        checkMatchedName(matchNames,player);
+
+        return player;
+    }
+
+    private void checkPlayerEmpty(String name) {
+        if(name.equals("")) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
+        }
+    }
+
+    private void checkMatchedName(Set<String> matchNames,String player) {
+        if (!matchNames.contains(player)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
+        }
+    }
+
+
 }
