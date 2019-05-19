@@ -40,31 +40,18 @@ public class OutputView {
         }
     }
 
-    public static void showResultOf(String playerName, Map<String, ResultItem> ladderingResult) {
-        System.out.println("실행 결과");
-        if (playerName.equals("all")) {
-            showAllResultOf(ladderingResult);
-            return;
-        }
-
-        if (!ladderingResult.containsKey(playerName)) {
-            throw new IllegalArgumentException("존재하지 않는 플레이어입니다.");
-        }
-
-        System.out.println(ladderingResult.get(playerName));
-    }
-
-    public static void showResultOf2(String playerName, LadderResult ladderingResult) {
+    public static void showResultOf(String playerName, LadderResult ladderingResult) {
         System.out.println("실행 결과");
         if (playerName.equals("all")) {
             showAllResultOf(ladderingResult.getResultAll());
+            return;
         }
         System.out.println(ladderingResult.getResultOf(playerName));
     }
 
-    private static void showAllResultOf(Map<String, ResultItem> ladderingResult) {
-        for (String playerName : ladderingResult.keySet()) {
-            System.out.println(playerName + " : " + ladderingResult.get(playerName));
+    private static void showAllResultOf(Map<Player, ResultItem> ladderingResult) {
+        for (Player player : ladderingResult.keySet()) {
+            System.out.println(player + " : " + ladderingResult.get(player));
         }
     }
 }

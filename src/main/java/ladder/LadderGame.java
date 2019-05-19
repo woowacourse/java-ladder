@@ -21,7 +21,7 @@ public class LadderGame {
     private static void show(LadderResult ladderingResult) {
         try {
             String playerName = InputView.inputPlayerNameToShowResult();
-            OutputView.showResultOf2(playerName, ladderingResult);
+            OutputView.showResultOf(playerName, ladderingResult);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
