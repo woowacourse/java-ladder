@@ -9,6 +9,7 @@ public class OutputView {
     private static final int PADDING_WIDTH = 5;
 
     public static void printPlayerNames(Players players) {
+        System.out.println("사다리 결과");
         List<PlayerName> names = players.getPlayerNames();
         for (PlayerName name : names) {
             System.out.printf("%s ", StringUtils.center(name.getName(), PADDING_WIDTH));
@@ -44,5 +45,10 @@ public class OutputView {
             System.out.printf("%s ", StringUtils.center(reward.getName(), PADDING_WIDTH));
         }
         System.out.println("\n");
+    }
+
+    public static void printReward(Reward reward) {
+        System.out.println("실행 결과");
+        System.out.println(reward.getName());
     }
 }
