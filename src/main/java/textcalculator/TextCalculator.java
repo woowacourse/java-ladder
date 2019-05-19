@@ -2,23 +2,21 @@ package textcalculator;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class TextCalculator {
     public List<String> tokenizer(String inputString) {
-
-        String delimeter = getDelimter(inputString);
-
-        return Arrays.asList(inputString.replace("//" + delimeter + "\n", "").split(delimeter));
+        String delimiter = getDelimiter(inputString);
+        return Arrays.asList(inputString.replace("//" + delimiter + "\n", "").split(delimiter));
     }
 
-    public String getDelimter(String text) {
-        char a = text.charAt(0);
-        char b = text.charAt(3);
-        char c = "\n".charAt(0);
+    public String getDelimiter(String text) {
+        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
 
-        if (text.charAt(0) == '/' && text.charAt(1) == '/' && text.charAt(3) == 10) {
-            return Character.toString(text.charAt(2));
+        if (matcher.find()) {
+            return matcher.group(1);
         }
 
         return ",|:";
