@@ -29,6 +29,10 @@ public class Reward {
         }
     }
 
+    public String getReward() {
+        return reward;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
