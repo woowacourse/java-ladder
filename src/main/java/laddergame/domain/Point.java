@@ -5,15 +5,15 @@ import laddergame.domain.rule.Rule;
 import java.util.Objects;
 
 public class Point {
-    private boolean canMoveLeft;
-    private boolean canMoveRight;
+    private Direction left;
+    private Direction right;
 
     public Point(boolean canMoveLeft, boolean canMoveRight) {
         if (canMoveLeft && canMoveRight) {
             throw new IllegalArgumentException("양쪽으로 이동은 불가능합니다.");
         }
-        this.canMoveLeft = canMoveLeft;
-        this.canMoveRight = canMoveRight;
+        this.left = new Direction(canMoveLeft);
+        this.right = new Direction(canMoveRight);
     }
 
     public static Point first(Rule rule) {
@@ -21,28 +21,24 @@ public class Point {
     }
 
     public Point next(Rule rule) {
-        if (canMoveRight) {
+        if (right.canMove()) {
             return new Point(true, false);
         }
         return new Point(false, rule.canCreate());
     }
 
     public Point last() {
-        return new Point(this.canMoveRight, false);
+        return new Point(right.canMove(), false);
     }
 
     public int move(int position) {
-        if (canMoveLeft) {
+        if (left.canMove()) {
             return position - 1;
         }
-        if (canMoveRight) {
+        if (right.canMove()) {
             return position + 1;
         }
         return position;
-    }
-
-    public boolean canMoveRight() {
-        return canMoveRight;
     }
 
     @Override
