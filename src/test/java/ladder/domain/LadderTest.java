@@ -1,9 +1,12 @@
 package ladder.domain;
 
+import ladder.domain.generator.PlayerGenerator;
+import ladder.domain.generator.PlayerRewardsGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -11,32 +14,29 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class LadderTest {
     @Test
     void 높이_유효성_테스트() {
-        int countOfPlayers = 5;
         int height = 0;
         assertThrows(IllegalArgumentException.class, () -> {
-            new Ladder(height, countOfPlayers);
+            new Ladder(height, () -> {
+                return null;
+            });
         });
     }
 
     @Test
-    void 사람_수_테스트() {
-        int countOfPlayers = 0;
-        int height = 5;
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Ladder(height, countOfPlayers);
-        });
-    }
+    public void playTest() {
+        GamePlayers gamePlayers = new GamePlayers(new PlayerGenerator("pobi,crong,honux").generate());
+        PlayerRewards playerRewards = new PlayerRewardsGenerator("꽝, 5000, 3000").generate();
 
-    @Test
-    void 사다리_게임_진행() {
-        List<Boolean> line1 = Arrays.asList(false, true);
-        List<Boolean> line2 = Arrays.asList(true, false);
+        List<Direction> directions = Arrays.asList(
+                Direction.first(true),
+                Direction.of(true, false),
+                Direction.of(false, false));
+        Ladder ladder = new Ladder(3, () -> directions);
 
-        List<Line> lines = Arrays.asList(new Line(line1.size(), () -> line1), new Line(line2.size(), () -> line2));
+        Map<String, String> result = ladder.play(gamePlayers, playerRewards);
 
-//        LadderGame ladderGame = new LadderGame(2, gamePlayers, playerRewards, () -> lines);
-        Ladder ladder = new Ladder(3, 3, () -> lines);
-
-        assertThat(ladder.moveLadder(0)).isEqualTo(1);
+        assertThat(result.get("honux")).isEqualTo("3000");
+        assertThat(result.get("pobi")).isEqualTo("5000");
+        assertThat(result.get("crong")).isEqualTo("꽝");
     }
 }

@@ -1,28 +1,25 @@
 package ladder.domain;
 
-import ladder.domain.generator.LineGenerator;
-import ladder.domain.generator.LineRandomGenerator;
+import ladder.domain.generator.DirectionsGenerator;
+import ladder.domain.generator.DirectionsGeneratorFactory;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public final class Ladder {
     private static final int MIN_HEIGHT = 1;
-    private static final int MIN_PLAYER_COUNT = 2;
 
     private final List<Line> lines;
 
-    public Ladder(int height, int countOfPlayers) {
-        this(height, countOfPlayers, new LineRandomGenerator(countOfPlayers, height));
+    public Ladder(int height, DirectionsGenerator directionsGenerator) {
+        validate(height);
+        this.lines = generateLines(height, directionsGenerator);
     }
 
-    public Ladder(int height, int countOfPlayers, LineGenerator lineGenerator) {
-        validate(height, countOfPlayers);
-        this.lines = lineGenerator.generate();
-    }
-
-    private void validate(int height, int countOfPlayers) {
+    private void validate(int height) {
         validateHeight(height);
-        validateCount(countOfPlayers);
     }
 
     private void validateHeight(int height) {
@@ -31,20 +28,29 @@ public final class Ladder {
         }
     }
 
-    private void validateCount(int countOfPlayers) {
-        if (countOfPlayers < MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException("사람수는 2명 이상 이어야 합니다.");
+    private List<Line> generateLines(final int height, final DirectionsGenerator directionsGenerator) {
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(directionsGenerator.generate()));
         }
-    }
-
-    public int moveLadder(int position) {
-        for (Line line : lines) {
-            position += line.move(position);
-        }
-        return position;
+        return lines;
     }
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public Map<String, String> play(final GamePlayers gamePlayers, final PlayerRewards playerRewards) {
+        Map<String, String> result = new HashMap<>(gamePlayers.size());
+
+        for (final Player player : gamePlayers.getPlayers()) {
+            int position = player.getPosition();
+            for (final Line line : lines) {
+                position += line.move(position);
+            }
+            result.put(player.getName(), playerRewards.getReward(position));
+        }
+
+        return result;
     }
 }
