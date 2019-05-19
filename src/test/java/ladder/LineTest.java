@@ -25,7 +25,7 @@ public class LineTest {
         Line line = new Line(2);
         Player player = new Player("bmo",0);
         line.move(player);
-        if (line.isTrue(0)) {
+        if (line.isBridgeConnected(0)) {
             assertThat(player.getPosition()).isEqualTo(1);
         } else {
             assertThat(player.getPosition()).isEqualTo(0);

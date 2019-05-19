@@ -18,7 +18,7 @@ public class Ladder {
     }
 
     private void linesInit(int countOfPlayer) {
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < this.height; i++) {
             lines.add(new Line(countOfPlayer));
         }
     }
@@ -28,7 +28,7 @@ public class Ladder {
     }
 
     public int linesSize() {
-        return lines.size();
+        return this.lines.size();
     }
 
     void move(Players players) {

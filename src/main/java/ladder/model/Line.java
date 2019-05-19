@@ -9,8 +9,7 @@ public class Line {
     private static final String EMPTY_LINE = "     ";
     private static final String FILLED_LINE = "-----";
     private static final String VERTICAL_LINE = "|";
-
-    private List<Boolean> points = new ArrayList<>();
+    private List<Bridge> bridges = new ArrayList<>();
 
     public Line(int countOfPlayer) {
         this.pointsInit(countOfPlayer);
@@ -20,7 +19,7 @@ public class Line {
         boolean previous = false;
         for (int i = 0; i < countOfPlayer - 1; i++) {
             previous = nextPoint(previous);
-            points.add(previous);
+            bridges.add(new Bridge(previous));
         }
         this.checkPointsValid();
     }
@@ -33,7 +32,7 @@ public class Line {
     }
 
     public int lineSize() {
-        return this.points.size();
+        return this.bridges.size();
     }
 
     public void checkPointsValid() {
@@ -43,29 +42,13 @@ public class Line {
     }
 
     private void checkContinued(int left, int right) {
-        if (this.points.get(left) && this.points.get(right)) {
+        if (this.isBridgeConnected(left) && this.isBridgeConnected(right)) {
             throw new IllegalArgumentException("이어지는 가로라인 발생");
         }
     }
 
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder(VERTICAL_LINE);
-        for (int i = 0; i < lineSize(); i++) {
-            stringBuilder.append(getOne(i)).append(VERTICAL_LINE);
-        }
-        return stringBuilder.toString();
-    }
-
-    private String getOne(int pointIndex) {
-        if (this.points.get(pointIndex)) {
-            return FILLED_LINE;
-        }
-        return EMPTY_LINE;
-    }
-
-    public boolean isTrue(int index) {
-        return this.points.get(index);
+    public boolean isBridgeConnected(int index) {
+        return this.bridges.get(index).isConnected();
     }
 
     void moveOneLine(Players players) {
@@ -76,11 +59,27 @@ public class Line {
 
     public void move(Player player) {
         int position = player.getPosition();
-        if (position > 0 && points.get(position - 1)) {
+        if (position > 0 && this.isBridgeConnected(position - 1)) {
             player.moveLeft();
         }
-        if (position < points.size() && points.get(position)) {
+        if (position < bridges.size() && this.isBridgeConnected(position)) {
             player.moveRight();
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder(VERTICAL_LINE);
+        for (int i = 0; i < lineSize(); i++) {
+            stringBuilder.append(this.getOne(i)).append(VERTICAL_LINE);
+        }
+        return stringBuilder.toString();
+    }
+
+    private String getOne(int pointIndex) {
+        if (this.isBridgeConnected(pointIndex)) {
+            return FILLED_LINE;
+        }
+        return EMPTY_LINE;
     }
 }
