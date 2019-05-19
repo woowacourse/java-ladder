@@ -1,10 +1,9 @@
 package laddergame.domain;
 
 import laddergame.domain.rule.Rule;
+import laddergame.util.Validator;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Ladder {
     private List<Line> lines;
@@ -14,6 +13,8 @@ public class Ladder {
     }
 
     public Ladder(int numberOfPlayer, int height, Rule rule) {
+        Validator.checkLadderHeight(height);
+
         this.lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             lines.add(new Line(numberOfPlayer, rule));
@@ -33,6 +34,16 @@ public class Ladder {
             point = line.moveNextPoint(point);
         }
         return point;
+    }
+
+    public LadderGameResult startGame(Players players, Rewards rewards) {
+        Validator.checkEqualSize(players.size(), rewards.size());
+
+        Map<Player, Reward> result = new HashMap<>();
+        for (int i = 0; i < players.size(); i++) {
+            result.put(players.get(i), rewards.get(takeLadder(i)));
+        }
+        return new LadderGameResult(result);
     }
 
     @Override

@@ -11,10 +11,10 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void outputLadderGame(LadderGame ladderGame, Players players, Rewards rewards) {
+    public static void outputLadderGame(Ladder ladder, Players players, Rewards rewards) {
         System.out.println("사다리 결과");
         outputNames(players.getPlayersNames());
-        outputLadder(ladderGame.getLadder());
+        outputLadder(ladder);
         outputNames(rewards.getRewardsNames());
     }
 
