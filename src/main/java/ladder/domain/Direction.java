@@ -35,7 +35,7 @@ public class Direction {
         return new Direction(this.current, nextCurrent);
     }
 
-    public Direction next(RandomValueGenerator randomValueGenerator) {
+    Direction next(RandomValueGenerator randomValueGenerator) {
         if (this.current) {
             return next(false);
         }
@@ -63,5 +63,9 @@ public class Direction {
     @Override
     public int hashCode() {
         return Objects.hash(left, current);
+    }
+
+    public boolean isLeft() {
+        return left;
     }
 }

@@ -1,5 +1,6 @@
 package ladder.View;
 
+import ladder.domain.Direction;
 import ladder.domain.Line;
 import ladder.domain.Player;
 
@@ -12,25 +13,26 @@ public class OutputView {
     private static final String EMPTY_LINE = "     ";
     private static final String NAME_INTERVAL = " ";
     private static final String COL_LINE = "|";
+    private static final String NEXT_LINE = "\n";
     private static StringBuilder stringBuilder;
 
-    public static void printLadder(Line line) {
-        stringBuilder = new StringBuilder();
-        stringBuilder.append(EMPTY_LINE);
-        stringBuilder.append(COL_LINE);
-        for (Boolean rowLine : line.getRowLines()) {
-            stringBuilder.append(rowLine ? ROW_LINE : EMPTY_LINE);
-            stringBuilder.append(COL_LINE);
-        }
-
-        System.out.println(stringBuilder.toString());
-    }
-
-    public static void printLadderResult(List<Player> players) {
+    public static void printLadderResult(List<Player> players, List<Line> ladder) {
         stringBuilder = new StringBuilder();
         System.out.println(OUTPUT_LADDER_RESULT);
         printPlayers(players);
+        printLadder(ladder);
+        printPlayersAfterMove(players);
         System.out.println(stringBuilder.toString());
+    }
+
+    private static void printLadder(List<Line> ladder) {
+        for (Line line : ladder) {
+            for (Direction direction : line.getLine()) {
+                stringBuilder.append(direction.isLeft() ? ROW_LINE : EMPTY_LINE);
+                stringBuilder.append(COL_LINE);
+            }
+            stringBuilder.append(NEXT_LINE);
+        }
     }
 
     private static void printPlayers(List<Player> players) {
@@ -38,6 +40,7 @@ public class OutputView {
             stringBuilder.append(printInterval(player.getName().length()));
             stringBuilder.append(player.getName());
         }
+        stringBuilder.append(NEXT_LINE);
     }
 
     private static StringBuilder printInterval(int playerNameLength) {
@@ -48,6 +51,11 @@ public class OutputView {
         }
 
         return stringBuilder;
+    }
+
+    private static void printPlayersAfterMove(List<Player> players) {
+        players.sort(Player::compareTo);
+        printPlayers(players);
     }
 
 }

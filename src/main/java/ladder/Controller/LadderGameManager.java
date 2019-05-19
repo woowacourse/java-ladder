@@ -1,5 +1,6 @@
 package ladder.Controller;
 
+import ladder.View.OutputView;
 import ladder.domain.*;
 import ladder.View.InputView;
 
@@ -10,11 +11,21 @@ public class LadderGameManager {
     private List<Line> createdLadder;
 
     public void start() {
-        registerPlayers();
 
+        registerPlayers();
         registerCreatedLadder();
 
+        play();
 
+        OutputView.printLadderResult(players, createdLadder);
+    }
+
+    private void registerPlayers() {
+        InputModel inputModel = new InputModel();
+        PlayerManager playerManager = new PlayerManager();
+
+        playerManager.createPlayers(inputModel.getValidNames(InputView.getNames()));
+        players = playerManager.getPlayers();
     }
 
     private void registerCreatedLadder() {
@@ -26,11 +37,8 @@ public class LadderGameManager {
         createdLadder = ladder.getLadder();
     }
 
-    private void registerPlayers() {
-        InputModel inputModel = new InputModel();
-        PlayerManager playerManager = new PlayerManager();
-
-        playerManager.createPlayers(inputModel.getValidNames(InputView.getNames()));
-        players = playerManager.getPlayers();
+    private void play() {
+        LadderGame ladderGame = new LadderGame(players, createdLadder);
+        ladderGame.runGame();
     }
 }

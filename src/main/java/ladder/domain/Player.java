@@ -11,8 +11,12 @@ public class Player {
         this.position = position;
     }
 
-    public void updatePosition(int moveState){
+    public void updatePosition(int moveState) {
         this.position += moveState;
+    }
+
+    public int compareTo(Player comparePlayer) {
+        return this.position - comparePlayer.position;
     }
 
     @Override
@@ -27,5 +31,13 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(name, position);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    int getPosition() {
+        return position;
     }
 }
