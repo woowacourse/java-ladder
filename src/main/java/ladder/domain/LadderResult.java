@@ -30,7 +30,7 @@ public class LadderResult {
         depth = Rule.ruleLadderDepthRange(depth);
 
         this.ladder = new Ladder(setPlayers(names).size(), depth);
-        this.result = setResult(setPlayers(names), Arrays.asList(rewards.split(",")), depth);
+        this.result = setResult(setPlayers(names), Arrays.asList(rewards.split(",")), depth); //TODO 1. depth 사용하지 않음
     }
 
     /**
@@ -55,7 +55,7 @@ public class LadderResult {
         return ladder.getLadderShape();
     }
 
-    private Map<String, String> setResult(List<Player> players, List<String> rewards, int depth) {
+    private Map<String, String> setResult(List<Player> players, List<String> rewards, int depth) { //TODO 1. depth 사용하지 않음
         Map<String, String> result = new HashMap<>();
         List<Integer> initResult = ladder.getResult();
         for (int i = 0; i < players.size(); i++) {

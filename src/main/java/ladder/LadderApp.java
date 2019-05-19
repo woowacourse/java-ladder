@@ -10,7 +10,7 @@ public class LadderApp {
 
     public static void main(String[] args) {
         String names = inputPlayerNames(InputView.inputPlayerNames());
-        String rewards = InputRewards(InputView.inputRewards(), names.split(",").length);
+        String rewards = inputRewards(InputView.inputRewards(), names.split(",").length);
         int depth = inputLadderDepth(InputView.inputLadderDepth());
 
         LadderResult ladderResult = new LadderResult(names, rewards, depth);
@@ -28,12 +28,12 @@ public class LadderApp {
         }
     }
 
-    private static String InputRewards(String inputRewards, int count) {
+    private static String inputRewards(String inputRewards, int count) { //TODO 2. 이름 변경
         try {
             return Rule.ruleInputReward(inputRewards, count);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return InputRewards(InputView.inputRewards(), count);
+            return inputRewards(InputView.inputRewards(), count);
         }
     }
 
