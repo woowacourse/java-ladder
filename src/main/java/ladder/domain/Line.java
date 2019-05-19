@@ -41,7 +41,7 @@ public class Line {
             directions.add(Direction.LEFT);
             return;
         }
-        if (directions.size() == numberOfPlayers - BEFORE){
+        if (directions.size() == numberOfPlayers - BEFORE) {
             directions.add(Direction.STRAIGHT);
             return;
         }
@@ -66,6 +66,10 @@ public class Line {
         }
         return true;
     }*/
+
+    public Direction get(int index) {
+        return directions.get(index);
+    }
 
     public List<Direction> getDirections() {
         return Collections.unmodifiableList(directions);

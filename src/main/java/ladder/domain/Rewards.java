@@ -21,6 +21,14 @@ public class Rewards {
         }
     }
 
+    public int size() {
+        return rewards.size();
+    }
+
+    public Reward get(int index) {
+        return rewards.get(index);
+    }
+
     public List<Reward> getRewards() {
         return Collections.unmodifiableList(rewards);
     }

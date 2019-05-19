@@ -18,6 +18,14 @@ public class Ladder {
         }
     }
 
+    public int getHeight(){
+        return lines.size();
+    }
+
+    public Line get(int index) {
+        return lines.get(index);
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }

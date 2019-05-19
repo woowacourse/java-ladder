@@ -12,4 +12,8 @@ public class LadderGameResult {
     public Reward findReward(Player player) {
         return ladderGameResult.get(player);
     }
+
+    public Map<Player, Reward> getLadderGameResult() {
+        return ladderGameResult;
+    }
 }

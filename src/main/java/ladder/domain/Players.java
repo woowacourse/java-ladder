@@ -26,6 +26,14 @@ public class Players {
         }
     }
 
+    public int size() {
+        return players.size();
+    }
+
+    public Player get(int index) {
+        return players.get(index);
+    }
+
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
     }
