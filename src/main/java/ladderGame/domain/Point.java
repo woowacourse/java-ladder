@@ -5,8 +5,15 @@ public class Point {
     private final boolean hasRight;
 
     public Point(boolean hasLeft, boolean hasRight) {
+        validatePoint(hasLeft, hasRight);
         this.hasLeft = hasLeft;
         this.hasRight = hasRight;
+    }
+
+    private void validatePoint(boolean hasLeft, boolean hasRight) {
+        if (hasLeft && hasRight) {
+            throw new IllegalArgumentException("가로 라인은 겹칠 수 없음");
+        }
     }
 
     public static Point pointFirst(boolean hasRight) {
