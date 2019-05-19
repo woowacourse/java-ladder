@@ -56,7 +56,7 @@ class InputValidatorTest {
 //            InputValidator.checkValidName("pobi,brown,");
 //        });
 //    }
-
+//
 //    @Test
 //    void 실행결과수_이름수_불일치() {
 //        String[] names = {"pobi", "brown", "buddy"};

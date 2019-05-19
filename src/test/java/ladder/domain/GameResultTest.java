@@ -16,8 +16,8 @@ public class GameResultTest {
     @BeforeEach
     void setUp() {
         arrival = Arrays.asList(1, 2, 3);
-//        person = new Person(Arrays.asList("pobi", "brown", "woni"));
-        result = new Result(Arrays.asList("꽝", "5000", "꽝"));
+        person = new Person("pobi,brown,woni");
+        result = new Result("꽝,5000,꽝",person.getCountOfPerson());
         gameResult = new GameResult(arrival, person, result);
     }
 

@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.Height;
 import ladder.domain.Person;
+import ladder.domain.Result;
 import ladder.validator.InputValidator;
 
 import java.util.List;
@@ -36,11 +37,11 @@ public class InputView {
 
     }
 
-    public static List<String> inputResultAll(int countOfPerson) {
+    public static Result inputResultAll(int countOfPerson) {
         try {
             System.out.println(INPUT_RESULT_MESSAGE);
             String results = SCANNER.nextLine();
-            return InputValidator.checkResult(countOfPerson, results);
+            return new Result(results,countOfPerson);
         } catch (IllegalArgumentException e) {
             return inputResultAll(countOfPerson);
         }

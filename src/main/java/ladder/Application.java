@@ -24,8 +24,8 @@ public class Application {
     }
 
     private static void receiveInput() {
-//        person = new Person(InputView.inputNames());
-        result = new Result(InputView.inputResultAll(person.getCountOfPerson()));
+        person = InputView.inputNames();
+        result = InputView.inputResultAll(person.getCountOfPerson());
         height = InputView.inputHeight();
     }
 }
