@@ -19,7 +19,7 @@ class LadderGameTest {
         LadderGameResult result = ladderGame.startGame();
 
         /* When */
-        assertThat(result.prize("pobi")).isEqualTo("100");
-        assertThat(result.prize("cu")).isEqualTo("1000");
+        assertThat(result.prize(new Tag("pobi"))).isEqualTo(new Tag("100"));
+        assertThat(result.prize(new Tag("cu"))).isEqualTo(new Tag("1000"));
     }
 }

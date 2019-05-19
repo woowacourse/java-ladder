@@ -6,16 +6,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LadderGameResultTest {
     @Test
-    void 결과를_제대로_저장하는지_확인() {
-        Map<String, String> result = new HashMap<>();
-        result.put("pobi", "1000");
-        result.put("cu", "100");
+    void 게임_결과값을_제대로_저장하는지_확인() {
+        /* Given */
+        Map<Tag, Tag> result = new HashMap<>();
+        Tag member1 = new Tag("pobi");
+        Tag member2 = new Tag("cu");
+        Tag prize1 = new Tag("1000");
+        Tag prize2 = new Tag("100");
+
+        /* When */
+        result.put(member1, prize1);
+        result.put(member2, prize2);
         LadderGameResult ladderGameResult = new LadderGameResult(result);
 
-        assertThat(ladderGameResult.prize("pobi")).isEqualTo("1000");
+        /* Then */
+        assertThat(ladderGameResult.prize(new Tag("pobi")).getName()).isEqualTo("1000");
         assertThat(ladderGameResult.allPrizes()).isEqualTo(result);
+        assertThrows(IllegalArgumentException.class, () -> {
+            ladderGameResult.prize(new Tag("gogo"));
+        });
     }
 }
