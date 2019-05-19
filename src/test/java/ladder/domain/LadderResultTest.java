@@ -22,8 +22,7 @@ public class LadderResultTest {
         ladderRewards = new LadderRewards("꽝,5000,꽝,3000", 4);
         ladderResult = new LadderResult(ladderRewards);
         randomGenerator = new RandomGenerator(Arrays.asList(1, 1, 0, 1));
-        ladder = new Ladder(4, 2);
-        ladder.make(randomGenerator);
+        ladder = new Ladder(4, 2, randomGenerator);
         players = new Players("a,b,c,d");
     }
 

@@ -49,7 +49,6 @@ public class LadderMain {
     private static void createLadder() {
         try {
             ladder = new Ladder(players.count(), InputView.readHeight());
-            ladder.make();
             ladderResult = new LadderResult(ladderRewards);
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
