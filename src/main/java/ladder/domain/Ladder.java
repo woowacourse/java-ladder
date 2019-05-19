@@ -28,4 +28,8 @@ public class Ladder {
     public int hashCode() {
         return Objects.hash(ladder);
     }
+
+    public List<Line> getLadder() {
+        return ladder;
+    }
 }

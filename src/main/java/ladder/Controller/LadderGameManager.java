@@ -6,16 +6,31 @@ import ladder.View.InputView;
 import java.util.List;
 
 public class LadderGameManager {
-    private List<Line> ladder;
+    private List<Player> players;
+    private List<Line> createdLadder;
 
     public void start() {
+        registerPlayers();
+
+        registerCreatedLadder();
+
+
+    }
+
+    private void registerCreatedLadder() {
         InputModel inputModel = new InputModel();
-        List<String> names = inputModel.getValidNames(InputView.getNames());
+        Ladder ladder = new Ladder();
 
         int ladderHeight = inputModel.getValidLadderHeight(InputView.getLadderHeight());
-        Ladder ladder = new Ladder();
-        ladder.createLadder(ladderHeight, names.size());
+        ladder.createLadder(ladderHeight, players.size());
+        createdLadder = ladder.getLadder();
+    }
 
+    private void registerPlayers() {
+        InputModel inputModel = new InputModel();
+        PlayerManager playerManager = new PlayerManager();
 
+        playerManager.createPlayers(inputModel.getValidNames(InputView.getNames()));
+        players = playerManager.getPlayers();
     }
 }
