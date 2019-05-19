@@ -10,7 +10,6 @@ public class RandomCrossbarGenerator implements CrossbarGenerator {
     private static final Double RATE_OF_EMPTY_CROSSBAR = 0.5;
 
     private int numberOfCrossbar;
-    private List<Boolean> crossbars;
 
     public RandomCrossbarGenerator(int numberOfPlayer) {
         this.numberOfCrossbar = numberOfPlayer + LAST_DUMMY_SPACE;
@@ -18,19 +17,18 @@ public class RandomCrossbarGenerator implements CrossbarGenerator {
 
     @Override
     public Crosspoints generateCrossbars() {
-        setCrossbars();
+        List<Boolean> crossbars = new ArrayList<>();
+        setCrossbars(crossbars);
         return new Crosspoints(crossbars);
     }
 
-    private void setCrossbars() {
-        crossbars = new ArrayList<>();
-
+    private void setCrossbars(List<Boolean> crossbars) {
         crossbars.add(DUMMY_CROSSBAR);
-        addRandomCrossbars();
+        addRandomCrossbars(crossbars);
         crossbars.add(DUMMY_CROSSBAR);
     }
 
-    private void addRandomCrossbars() {
+    private void addRandomCrossbars(List<Boolean> crossbars) {
         boolean lastAdded = false;
 
         while (crossbars.size() <= (numberOfCrossbar - DUMMY_SIZE)) {

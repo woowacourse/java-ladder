@@ -54,6 +54,14 @@ public class OutputView {
         System.out.println(ladderingResult.get(playerName));
     }
 
+    public static void showResultOf2(String playerName, LadderResult ladderingResult) {
+        System.out.println("실행 결과");
+        if (playerName.equals("all")) {
+            showAllResultOf(ladderingResult.getResultAll());
+        }
+        System.out.println(ladderingResult.getResultOf(playerName));
+    }
+
     private static void showAllResultOf(Map<String, ResultItem> ladderingResult) {
         for (String playerName : ladderingResult.keySet()) {
             System.out.println(playerName + " : " + ladderingResult.get(playerName));

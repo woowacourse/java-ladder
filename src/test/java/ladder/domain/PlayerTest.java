@@ -34,16 +34,4 @@ public class PlayerTest {
         assertThrows(IllegalArgumentException.class, () -> new Player("all"));
     }
 
-    @Test
-    void 플레이어가_사다리를_다_내려간_결과와_자신의_이름을_반환하는지_테스트() {
-        List<Boolean> userSetCroossbar = Arrays.asList(false, true, false);
-        List<ResultItem> resultItems = Arrays.asList(new ResultItem("a"), new ResultItem("b"));
-        Ladder testLadder = new Ladder(1, resultItems,
-                new UserSetCrossbarGenerator(userSetCroossbar));
-        Player player = new Player("van", 0);
-        Player player2 = new Player("duck", 1);
-
-        assertThat(player.stepDown(testLadder).get("van")).isEqualTo(new ResultItem("b"));
-        assertThat(player2.stepDown(testLadder).get("duck")).isEqualTo(new ResultItem("a"));
-    }
 }

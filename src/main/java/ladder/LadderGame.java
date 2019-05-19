@@ -6,23 +6,22 @@ import ladder.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class LadderGame {
     public static void main(String[] args) {
         PlayerGroup players = getPlayers();
         CrossbarGenerator randomCrossbarGenerator = new RandomCrossbarGenerator(players.size());
         Ladder ladder = getLadderBy(getResultItems(), randomCrossbarGenerator);
-        Map<String, ResultItem> ladderingResult = players.findLadderingResult(ladder);
+        LadderResult ladderingResult = players.findLadderingResult(ladder);
 
         OutputView.showPlayersAndLadder(players, ladder);
         show(ladderingResult);
     }
 
-    private static void show(Map<String, ResultItem> ladderingResult) {
+    private static void show(LadderResult ladderingResult) {
         try {
             String playerName = InputView.inputPlayerNameToShowResult();
-            OutputView.showResultOf(playerName, ladderingResult);
+            OutputView.showResultOf2(playerName, ladderingResult);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         }

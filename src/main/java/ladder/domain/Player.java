@@ -45,11 +45,8 @@ public class Player {
         }
     }
 
-    Map<String, ResultItem> stepDown(Ladder ladder) {
-        Map<String, ResultItem> ladderingResult = new LinkedHashMap<>();
-
-        ladderingResult.put(name, ladder.answerResult(position));
-        return ladderingResult;
+    void stepDown(Ladder ladder, LadderResult ladderResult) {
+        ladderResult.addResult(name, ladder.answerResult(position));
     }
 
     @Override

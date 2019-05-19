@@ -22,11 +22,11 @@ public class PlayerGroup {
         return players;
     }
 
-    public Map<String, ResultItem> findLadderingResult(Ladder ladder) {
-        Map<String, ResultItem> ladderingResult = new LinkedHashMap<>();
+    public LadderResult findLadderingResult(Ladder ladder) {
+        LadderResult ladderingResult = new LadderResult();
 
         for (Player player : players) {
-            ladderingResult.putAll(player.stepDown(ladder));
+            player.stepDown(ladder, ladderingResult);
         }
         return ladderingResult;
     }
