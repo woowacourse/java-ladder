@@ -1,7 +1,8 @@
 package ladder.model;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class LadderGamePlayers {
     private final List<LadderPlayer> ladderPlayers;
@@ -11,7 +12,9 @@ public class LadderGamePlayers {
     }
 
     public List<String> getAlignedNames() {
-        return ladderPlayers.stream().map(LadderPlayer::getAlignedName).collect(Collectors.toList());
+        return ladderPlayers.stream()
+                .map(LadderPlayer::getAlignedName)
+                .collect(toList());
     }
 
     public int size() {
@@ -19,6 +22,8 @@ public class LadderGamePlayers {
     }
 
     public List<String> getAllPlayerNames() {
-        return ladderPlayers.stream().map(LadderPlayer::getName).collect(Collectors.toList());
+        return ladderPlayers.stream()
+                .map(LadderPlayer::getName)
+                .collect(toList());
     }
 }

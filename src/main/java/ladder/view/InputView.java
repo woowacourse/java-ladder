@@ -10,7 +10,8 @@ import ladder.validator.LadderPlayerValidator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class InputView {
     private static final String NEW_LINE = "\n";
@@ -25,7 +26,10 @@ public class InputView {
     public static List<LadderPlayer> createLadderPlayers(String[] inputs) {
         try {
             LadderPlayerValidator.checkAccuracyOfUserInputs(inputs);
-            return Arrays.stream(inputs).map(String::trim).map(LadderPlayer::new).collect(Collectors.toList());
+            return Arrays.stream(inputs)
+                    .map(String::trim)
+                    .map(LadderPlayer::new)
+                    .collect(toList());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createLadderPlayers();
@@ -55,7 +59,10 @@ public class InputView {
     public static List<LadderGoal> createLadderGoals(String[] inputs, int numOfPlayers) {
         try {
             LadderGoalValidator.checkAccuracyOfUserInputs(inputs, numOfPlayers);
-            return Arrays.stream(inputs).map(String::trim).map(LadderGoal::new).collect(Collectors.toList());
+            return Arrays.stream(inputs)
+                    .map(String::trim)
+                    .map(LadderGoal::new)
+                    .collect(toList());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createLadderGoals(numOfPlayers);

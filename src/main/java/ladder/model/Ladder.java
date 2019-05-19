@@ -2,7 +2,8 @@ package ladder.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.joining;
 
 public class Ladder {
     private static final String NEW_LINE = "\n";
@@ -30,6 +31,8 @@ public class Ladder {
 
     @Override
     public String toString() {
-        return lines.stream().map(LadderLine::toString).collect(Collectors.joining(NEW_LINE));
+        return lines.stream()
+                .map(LadderLine::toString)
+                .collect(joining(NEW_LINE));
     }
 }

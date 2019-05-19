@@ -3,7 +3,8 @@ package ladder.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.joining;
 
 public class LadderLine {
     private static final String PIPE = "|";
@@ -48,7 +49,8 @@ public class LadderLine {
         String crossbar = createCrossbar(HYPHEN);
         String emptySpace = createCrossbar(BLANK);
 
-        return PIPE + crossbars.stream().map(index -> index ? crossbar : emptySpace)
-                .collect(Collectors.joining(PIPE)) + PIPE;
+        return PIPE + crossbars.stream()
+                .map(index -> index ? crossbar : emptySpace)
+                .collect(joining(PIPE)) + PIPE;
     }
 }
