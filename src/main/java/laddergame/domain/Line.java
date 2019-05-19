@@ -9,13 +9,13 @@ public class Line {
     private List<Boolean> line = new ArrayList<>();
 
     public Line(int width) {
-        line.add(getBooleanValueForLadder(false));
+        line.add(decideBooleanValueForLadder(false));
         for (int i = 1; i < width -1; i++) {
-            line.add(getBooleanValueForLadder(line.get(i-1)));
+            line.add(decideBooleanValueForLadder(line.get(i-1)));
         }
     }
 
-    private static boolean getBooleanValueForLadder(boolean preValue) {
+    private static boolean decideBooleanValueForLadder(boolean preValue) {
         if (preValue) return false;
 
         return new Random().nextBoolean();

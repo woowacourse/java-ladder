@@ -18,15 +18,17 @@ public class LadderGame {
         GameEngine engine = new GameEngine(players, ladder);
         engine.makePlayersPlayTheLadder();
 
-        keepAsk(players, prizes);
+        promptUserForRequest(players, prizes);
     }
 
-    private static Prizes generatePrizes(int width) {
+    private static Players generatePlayers() {
         try {
-            String prizes = InputView.askPrizes();
-            return new Prizes(width, prizes);
+            String playersNames = InputView.askPlayersNames();
+            playersNames = playersNames.replaceAll(" ","");
+            return new Players(playersNames);
         } catch (Exception e) {
-            return generatePrizes(width);
+            System.out.println("잘못된 이름이 있습니다!");
+            return generatePlayers();
         }
     }
 
@@ -38,6 +40,33 @@ public class LadderGame {
             return generateLadder(width);
         }
     }
+
+    private static Prizes generatePrizes(int width) {
+        try {
+            String prizes = InputView.askPrizes();
+            return new Prizes(width, prizes);
+        } catch (Exception e) {
+            return generatePrizes(width);
+        }
+    }
+
+    private String promptUserForRequest(Players players, Prizes prizes) {
+        while (true) {
+            String result = makeResults(players, prizes);
+            OutputView.printResult(result);
+        }
+    }
+
+    private void makeResults(Players players, Prizes prizes) {
+        try {
+            String input = InputView.askResult();
+            GameResult gameResult = new GameResult(input, Players, Prizes);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return makeResults(players, prizes);
+        }
+    }
+
 
 
     /*
@@ -54,15 +83,6 @@ public class LadderGame {
 
      */
 
-    private static Players generatePlayers() {
-        try {
-            String playersNames = InputView.askPlayersNames();
-            return new Players(playersNames);
-        } catch (Exception e) {
-            return generatePlayers();
-        }
-
-    }
     /*
     private static List<Player> getPlayers() {
         try {
@@ -71,26 +91,6 @@ public class LadderGame {
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return getPlayers();
-        }
-    }
-     */
-
-    private String keepAsk(List<Player> players, List<Prize> prizes) {
-        while (true) {
-            String result = makeResults(players, prizes);
-            OutputView.printResult(result);
-        }
-    }
-
-    private String makeResults(List<Player> players, List<Prize> prizes) {
-        try {
-            String input = InputView.askResult();
-            GameResult gameResult = new GameResult();
-            gameResult.makeResult(players, prizes);
-            return gameResult.getResult(players,input);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return makeResults(players, prizes);
         }
     }
 
@@ -103,4 +103,6 @@ public class LadderGame {
             return getPrizes(numOfPlayers);
         }
     }
+     */
+
 }

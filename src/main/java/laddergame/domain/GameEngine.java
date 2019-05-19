@@ -17,7 +17,6 @@ public class GameEngine {
         for (int i = 0; i < ladder.getLadderInformationAsTrueFalse().size(); i++) {
             switchPosition(ladder.getLadderInformationAsTrueFalse().get(i));
         }
-        //return players;
     }
 
     private void switchPosition(Line line) {

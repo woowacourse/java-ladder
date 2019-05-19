@@ -40,6 +40,10 @@ public class Ladder {
         return ladderInformationAsTrueFalse;
     }
 
+    public void makeThePlayersClimbDownTheLadder(Players players) {
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

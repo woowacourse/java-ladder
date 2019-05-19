@@ -3,13 +3,14 @@ package laddergame.domain;
 import java.util.Objects;
 
 public class Player {
-    private final String name;
+    private final Name name;
 
-    public Player(String name) {
+    public Player(String nameInput) {
+        Name name = new Name(nameInput);
         this.name = name;
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
@@ -30,8 +31,11 @@ public class Player {
         return Objects.hash(name);
     }
 
+    /*
     @Override
     public String toString() {
         return this.name;
     }
+
+     */
 }

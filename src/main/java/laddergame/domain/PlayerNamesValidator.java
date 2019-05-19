@@ -5,10 +5,13 @@ import java.util.*;
 
 public class PlayerNamesValidator {
     static void checkConditions(String playersNames) {
-        checkEmptyName(playersNames);
+        checkNullName(playersNames);
         List<String> names = new ArrayList<>(Arrays.asList(playersNames.split(",")));
-        checkNameLength(names);
         checkDuplicatedName(names);
+        /*
+        checkNameLength(names);
+        checkEmptyName(playersNames);
+         */
     }
 
     private static void checkDuplicatedName(List<String> names) {
