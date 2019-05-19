@@ -7,7 +7,7 @@ public enum UserOutput {
 	DEMAND_PLAYER_NAMES("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"),
 	DEMAND_LADDER_HEIGHT("최대 사다리 높이는 얼마인가요?"),
 	DEMAND_GAME_RESULTS("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"),
-	DEMAND_PLAYER_NAME_FOR_RESULT("결과를 보고 싶은 사람은?"),
+	DEMAND_PLAYER_NAME_FOR_RESULT("결과를 보고 싶은 사람은? (exit 입력시 게임 종료.)"),
 	VIOLATE_PLAYER_NAMES("참가자 이름을 5글자 이내로 입력해주세요."),
 	VIOLATE_PLAYER_NAME_ALL("참가자 이름에 all은 들어갈 수 없습니다."),
 	VIOLATE_PLAYER_OVERLAP_NAMES("참가자 이름 중 중복되는 이름이 있습니다."),

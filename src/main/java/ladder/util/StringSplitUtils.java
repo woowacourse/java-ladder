@@ -11,6 +11,7 @@ public class StringSplitUtils {
 		if (StringUtils.isBlank(input)) {
 			throw new NullPointerException(UserOutput.VIOLATE_PLAYER_NAME.getOutputMessage());
 		}
+
 		return Arrays.asList(input.split(","));
 	}
 }

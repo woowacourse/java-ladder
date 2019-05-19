@@ -18,7 +18,7 @@ class LadderGameResultTest {
 		players = Arrays.asList(new Player("pobi"), new Player("tobi"), new Player("tiber"));
 		reward = Arrays.asList(new Reward("꽝"), new Reward("당첨"), new Reward("1000"));
 
-		for (int i = 0; i < players.size() ; i++) {
+		for (int i = 0; i < players.size(); i++) {
 			result.put(players.get(i), reward.get(i));
 		}
 

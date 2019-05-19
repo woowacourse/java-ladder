@@ -12,7 +12,7 @@ public class PointTest {
 	}
 
 	@Test
-	void 첫번째_위치의_포인트일때_왼쪽_포인트_확인(){
+	void 첫번째_위치의_포인트일때_왼쪽_포인트_확인() {
 		Point point = Point.first();
 		assertThat(point.canGoLeft()).isEqualTo(false);
 	}

@@ -5,7 +5,7 @@ public class Point {
 	private boolean currentPosition;
 
 	public Point(boolean leftPosition, boolean currentPosition) {
-		if(leftPosition && currentPosition) {
+		if (leftPosition && currentPosition) {
 			throw new IllegalArgumentException(UserOutput.VIOLATE_POINTS.getOutputMessage());
 		}
 		this.leftPosition = leftPosition;
@@ -36,11 +36,11 @@ public class Point {
 	}
 
 	public int move() {
-		if(leftPosition) {
+		if (leftPosition) {
 			return -1;
 		}
 
-		if(currentPosition) {
+		if (currentPosition) {
 			return 1;
 		}
 

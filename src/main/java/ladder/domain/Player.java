@@ -8,27 +8,27 @@ public class Player {
 	private String playerName;
 
 	public Player(String playerName) {
-		validateNamesLength(playerName);
+		validateNameLength(playerName);
 		validateWordAllInPlayerName(playerName);
 		validateNameEmpty(playerName);
 		this.playerName = playerName;
 	}
 
-	private void validateNamesLength(String playerName) {
+	private void validateNameLength(String playerName) {
 		if (playerName.length() > 5) {
 			throw new IllegalArgumentException(UserOutput.VIOLATE_PLAYER_NAMES.getOutputMessage());
 		}
 	}
 
 	private void validateWordAllInPlayerName(String playerName) {
-		if(playerName.equals(UserOutput.PRINT_ALL_PLAYER.getOutputMessage())) {
+		if (playerName.equals(UserOutput.PRINT_ALL_PLAYER.getOutputMessage())) {
 			throw new IllegalArgumentException(UserOutput.VIOLATE_PLAYER_NAME_ALL.getOutputMessage());
 		}
 	}
 
 	private void validateNameEmpty(String playerName) {
-		if(StringUtils.isBlank(playerName)) {
-			throw new IllegalArgumentException(UserOutput.VIOLATE_PLAYER_NAME_ALL.getOutputMessage());
+		if (StringUtils.isBlank(playerName)) {
+			throw new IllegalArgumentException(UserOutput.VIOLATE_PLAYER_NAME.getOutputMessage());
 		}
 	}
 

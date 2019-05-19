@@ -15,7 +15,7 @@ public class LadderGameApp {
 		Ladder ladder = generateLadder(ladderGameInformation.getPlayers().size());
 		OutputView.printPlayerNames(ladderGameInformation.getPlayers());
 		OutputView.printLadder(ladder);
-		OutputView.printLadderValues(ladderGameInformation.getRewards());
+		OutputView.printLadderGameRewards(ladderGameInformation.getRewards());
 
 		LadderGameResult ladderGameResult = LadderGame.run(ladderGameInformation, ladder);
 
@@ -29,15 +29,6 @@ public class LadderGameApp {
 			System.out.println(e.getMessage());
 			return getLadderGameInformation();
 		}
-	}
-
-	public static void getPersonNameForGameResult(LadderGameResult ladderGameResult) {
-		String name;
-		do {
-			name = InputView.inputResult();
-			OutputView.printResult(ladderGameResult, name);
-		}
-		while (!name.equals(UserOutput.FINISH_LADDER_GAME.getOutputMessage()));
 	}
 
 	public static List<Player> getPersonNames() {
@@ -63,6 +54,15 @@ public class LadderGameApp {
 		} catch (Exception e) {
 			return generateLadder(numberOfPlayers);
 		}
+	}
+
+	public static void getPersonNameForGameResult(LadderGameResult ladderGameResult) {
+		String name;
+		do {
+			name = InputView.inputResult();
+			OutputView.printLadderGameResult(ladderGameResult, name);
+		}
+		while (!name.equals(UserOutput.FINISH_LADDER_GAME.getOutputMessage()));
 	}
 }
 
