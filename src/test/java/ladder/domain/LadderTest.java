@@ -23,7 +23,7 @@ public class LadderTest {
         next = first.next(true);
         Line line2 = new Line(Arrays.asList(first, next, next.last()));
 
-        Ladder ladder = new Ladder(Arrays.asList(line1, line2), 2);
+        Ladder ladder = new Ladder(Arrays.asList(line1, line2), new LadderHeight(2));
         assertThat(ladder.getNextLine()).isEqualTo(line1);
         assertThat(ladder.getNextLine()).isEqualTo(line2);
     }
@@ -33,7 +33,7 @@ public class LadderTest {
         Point first = Point.first(true);
         Point next = first.next(false);
         Line line1 = new Line(Arrays.asList(first, next, next.last()));
-        Ladder ladder = new Ladder(Arrays.asList(line1), 1);
+        Ladder ladder = new Ladder(Arrays.asList(line1), new LadderHeight(1));
 
         assertThat(ladder.hasNextLine()).isTrue();
         ladder.getNextLine();

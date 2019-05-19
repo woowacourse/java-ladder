@@ -8,19 +8,12 @@ import java.util.List;
 public class RandomLadderGenerator {
     public static Ladder generate(int numOfPlayers, int height) {
         validateNumOfPlayersBiggerThanZero(numOfPlayers);
-        validateHeightBiggerThanZero(height);
-        return new Ladder(generateLines(numOfPlayers, height), height);
+        return new Ladder(generateLines(numOfPlayers, height), new LadderHeight(height));
     }
 
     private static void validateNumOfPlayersBiggerThanZero(int numOfPlayers) {
         if (numOfPlayers <= 0) {
             throw new IllegalArgumentException("플레이어 수는 두 명 이상이어야 합니다.");
-        }
-    }
-
-    private static void validateHeightBiggerThanZero(int height) {
-        if (height <= 0) {
-            throw new IllegalArgumentException("사다리 높이는 0보다 커야합니다.");
         }
     }
 
