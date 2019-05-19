@@ -4,45 +4,24 @@ import laddergame.domain.rule.Rule;
 import laddergame.util.Validator;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class LadderGame {
-    private static final int MIN_PLAYER = 2;
-
     private Ladder ladder;
-    private List<Player> players;
-    private List<Reward> rewards;
 
-    public LadderGame(List<String> playerNames, List<String> rewardsNames, int height, Rule rule) {
-        Validator.checkNumberOfNames(playerNames, MIN_PLAYER);
-        Validator.checkEqualSize(playerNames.size(), rewardsNames.size());
-        Validator.checkDuplicateNames(playerNames);
+    public LadderGame(int numberOfPlayers, int height, Rule rule) {
         Validator.checkLadderHeight(height);
 
-        players = playerNames.stream()
-                .map(Player::new)
-                .collect(Collectors.toList());
-        rewards = rewardsNames.stream()
-                .map(Reward::new)
-                .collect(Collectors.toList());
-        ladder = new Ladder(players.size(), height, rule);
+        ladder = new Ladder(numberOfPlayers, height, rule);
     }
 
     public Ladder getLadder() {
         return ladder;
     }
 
-    public List<Player> getPlayers() {
-        return players;
-    }
+    public LadderGameResult startGame(Players players, Rewards rewards) {
+        Validator.checkEqualSize(players.size(), rewards.size());
 
-    public List<Reward> getRewards() {
-        return rewards;
-    }
-
-    public LadderGameResult startGame() {
         Map<Player, Reward> result = new HashMap<>();
         for (int i = 0; i < players.size(); i++) {
             result.put(players.get(i), rewards.get(ladder.takeLadder(i)));

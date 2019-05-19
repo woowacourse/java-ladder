@@ -20,6 +20,10 @@ public class Ladder {
         }
     }
 
+    public Line getLine(int height) {
+        return lines.get(height);
+    }
+
     public int getHeight() {
         return lines.size();
     }
@@ -29,10 +33,6 @@ public class Ladder {
             point = line.moveNextPoint(point);
         }
         return point;
-    }
-
-    public Line getLine(int height) {
-        return lines.get(height);
     }
 
     @Override

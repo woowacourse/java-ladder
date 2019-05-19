@@ -8,15 +8,15 @@ import laddergame.util.OutputView;
 public class LadderGameApplication {
     public static void main(String[] args) {
         try {
-            LadderGame ladderGame = new LadderGame(
-                    InputView.inputPlayerNames(),
-                    InputView.inputRewardNames(),
+            Players players = new Players(InputView.inputPlayerNames());
+            Rewards rewards = new Rewards(InputView.inputRewardNames());
+            LadderGame ladderGame = new LadderGame(players.size(),
                     InputView.inputHeight(),
                     new RandomCreateRule());
 
-            OutputView.outputLadderGame(ladderGame);
+            OutputView.outputLadderGame(ladderGame, players, rewards);
 
-            LadderGameResult ladderGameResult = ladderGame.startGame();
+            LadderGameResult ladderGameResult = ladderGame.startGame(players, rewards);
 
             OutputView.outputLadderGameResult(InputView.inputWantResult(), ladderGameResult);
         } catch (Exception e) {

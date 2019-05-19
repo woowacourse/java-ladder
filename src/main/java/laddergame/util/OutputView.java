@@ -5,27 +5,17 @@ import laddergame.domain.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class OutputView {
     public static void outputMessage(String message) {
         System.out.println(message);
     }
 
-    public static void outputLadderGame(LadderGame ladderGame) {
-        List<String> playerNames = ladderGame.getPlayers()
-                .stream()
-                .map(Player::getName)
-                .collect(Collectors.toList());
-        List<String> rewardNames = ladderGame.getRewards()
-                .stream()
-                .map(Reward::getName)
-                .collect(Collectors.toList());
-
+    public static void outputLadderGame(LadderGame ladderGame, Players players, Rewards rewards) {
         System.out.println("사다리 결과");
-        outputNames(playerNames);
+        outputNames(players.getPlayersNames());
         outputLadder(ladderGame.getLadder());
-        outputNames(rewardNames);
+        outputNames(rewards.getRewardsNames());
     }
 
     private static void outputNames(List<String> names) {
@@ -58,7 +48,7 @@ public class OutputView {
         StringBuilder lineView = new StringBuilder("   |");
         List<String> scaffoldsView = new ArrayList<>();
 
-        for (Boolean scaffold: ladder.getLine(index).getScaffolds()) {
+        for (Boolean scaffold : ladder.getLine(index).getScaffolds()) {
             scaffoldsView.add(makeScaffoldView(scaffold));
         }
         lineView.append(String.join("|", scaffoldsView));
