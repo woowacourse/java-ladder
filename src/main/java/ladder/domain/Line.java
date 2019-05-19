@@ -29,4 +29,8 @@ public class Line {
                 "points=" + points +
                 '}';
     }
+
+    public List<Point> getPoints() {
+        return points;
+    }
 }
