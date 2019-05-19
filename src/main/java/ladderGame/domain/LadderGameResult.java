@@ -5,28 +5,29 @@ import java.util.List;
 import java.util.Map;
 
 public class LadderGameResult {
-    private final Map<String, String> resultMap;
+    private final Map<UserName, Reward> resultMap;
 
     public LadderGameResult(List<String> result, List<User> users) {
         this.resultMap = createResultMap(result, users);
     }
 
-    private Map<String, String> createResultMap(List<String> result, List<User> users) {
-        Map<String, String> resultMap = new HashMap<>();
+    private Map<UserName, Reward> createResultMap(List<String> result, List<User> users) {
+        Map<UserName, Reward> resultMap = new HashMap<>();
 
         for (User user : users) {
-            resultMap.put(user.getName(), result.get(user.getPosition()));
+            UserName userName = new UserName(user.getName());
+            Reward reward = new Reward(result.get(user.getPosition()));
+            resultMap.put(userName, reward);
         }
 
         return resultMap;
     }
 
-    public String getResultByName(String name) {
-        return resultMap.get(name);
+    public Reward getResultByName(String name) {
+        return resultMap.get(new UserName(name));
     }
 
-    public Map<String, String> getResultMap() {
+    public Map<UserName, Reward> getResultMap() {
         return resultMap;
     }
-
 }

@@ -43,7 +43,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printResult(String result) {
+    public static void printResult(Reward result) {
         System.out.println(result);
     }
 
@@ -53,10 +53,10 @@ public class OutputView {
         printResults(results);
     }
 
-    public static void printResultAll(Map<String, String> resultMap) {
-        for (String key : resultMap.keySet()) {
-            String value = resultMap.get(key);
-            System.out.println(key + " : " + value);
+    public static void printResultAll(Map<UserName, Reward> resultMap) {
+        for (UserName userName : resultMap.keySet()) {
+            Reward value = resultMap.get(userName);
+            System.out.println(userName + " : " + value);
         }
     }
 }

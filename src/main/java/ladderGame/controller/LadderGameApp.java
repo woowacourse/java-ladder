@@ -27,10 +27,10 @@ public class LadderGameApp {
     }
 
     private static void printResult(LadderGameResult ladderResult) {
-        String name = "";
+        String name = InputView.inputName();
         while (!name.equals(APP_EXIT_NAME)) {
-            name = InputView.inputName();
             OutputView.printResult(ladderResult.getResultByName(name));
+            name = InputView.inputName();
         }
         OutputView.printResultAll(ladderResult.getResultMap());
     }

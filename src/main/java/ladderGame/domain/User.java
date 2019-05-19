@@ -3,6 +3,8 @@ package ladderGame.domain;
 import java.util.*;
 
 public class User {
+    private static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
     private int position;
 
@@ -20,7 +22,7 @@ public class User {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw  new IllegalArgumentException("이름이 5자 초과입니다.");
         }
     }
