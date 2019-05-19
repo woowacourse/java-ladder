@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Set;
 
 public final class GamePlayers {
-    private final List<Player> players;
+    public static final int MIN_PLAYER = 2;
+    private final Set<Player> players;
 
     public GamePlayers(final List<Player> players) {
         validate(players);
-        this.players = new ArrayList<>(players);
+        this.players = new HashSet<>(players);
     }
 
     private void validate(List<Player> players) {
@@ -19,7 +20,7 @@ public final class GamePlayers {
     }
 
     private void validateSize(List<Player> players) {
-        if (players.isEmpty()) {
+        if (players.isEmpty() || players.size() < MIN_PLAYER) {
             throw new IllegalArgumentException("두 명 이상 입력 해주세요.");
         }
     }
@@ -31,15 +32,11 @@ public final class GamePlayers {
         }
     }
 
-    String getPlayerName(int index) {
-        return players.get(index).getName();
-    }
-
     public int size() {
         return players.size();
     }
 
-    public List<Player> getPlayers() {
+    public Set<Player> getPlayers() {
         return players;
     }
 }

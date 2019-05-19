@@ -19,7 +19,7 @@ public class GamePlayersTest {
 
     @Test
     void 이름_중복_체크() {
-        List<Player> players = Arrays.asList(new Player("뚱이"), new Player("뚱이"));
+        List<Player> players = Arrays.asList(new Player("뚱이",0), new Player("뚱이",1));
         assertThrows(IllegalArgumentException.class, ()->{
             GamePlayers gamePlayers = new GamePlayers(players);
         });
