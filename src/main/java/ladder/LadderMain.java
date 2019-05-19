@@ -17,11 +17,8 @@ public class LadderMain {
 
 
     public static void main(String[] args) {
-
         ready();
-
         play();
-
     }
 
     private static void play() {
