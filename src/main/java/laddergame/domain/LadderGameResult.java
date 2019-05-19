@@ -17,7 +17,15 @@ public class LadderGameResult {
         return result.get(player);
     }
 
-    public Map<Player, Reward> allResult() {
-        return result;
+    @Override
+    public String toString() {
+        StringBuilder resultView = new StringBuilder();
+        for (Player player : result.keySet()) {
+            resultView.append(player.getName())
+                    .append(" : ")
+                    .append(result.get(player).getName())
+                    .append('\n');
+        }
+        return resultView.toString();
     }
 }

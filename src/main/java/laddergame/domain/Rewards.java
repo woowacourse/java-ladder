@@ -22,13 +22,16 @@ public class Rewards {
         return rewards.get(index);
     }
 
-    public List<String> getRewardsNames() {
-        return rewards.stream()
-                .map(Reward::getName)
-                .collect(Collectors.toList());
-    }
-
     public int size() {
         return rewards.size();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder playersView = new StringBuilder();
+        for (Reward reward : rewards) {
+            playersView.append(reward);
+        }
+        return playersView.toString();
     }
 }

@@ -46,12 +46,17 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return canMoveLeft == point.canMoveLeft &&
-                canMoveRight == point.canMoveRight;
+        return Objects.equals(left, point.left) &&
+                Objects.equals(right, point.right);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(canMoveLeft, canMoveRight);
+        return Objects.hash(left, right);
+    }
+
+    @Override
+    public String toString() {
+        return left + "|" + right;
     }
 }

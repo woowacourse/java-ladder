@@ -23,14 +23,6 @@ public class Ladder {
         }
     }
 
-    public Line getLine(int height) {
-        return lines.get(height);
-    }
-
-    public int getHeight() {
-        return lines.size();
-    }
-
     public int takeLadder(int point) {
         for (Line line : lines) {
             point = line.moveNextPoint(point);
@@ -59,5 +51,15 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder ladderView = new StringBuilder();
+        for (Line line : lines) {
+            ladderView.append(line);
+            ladderView.append("\n");
+        }
+        return ladderView.toString();
     }
 }

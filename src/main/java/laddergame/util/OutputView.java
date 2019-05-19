@@ -2,10 +2,6 @@ package laddergame.util;
 
 import laddergame.domain.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 public class OutputView {
     public static void outputMessage(String message) {
         System.out.println(message);
@@ -13,71 +9,18 @@ public class OutputView {
 
     public static void outputLadderGame(Ladder ladder, Players players, Rewards rewards) {
         System.out.println("사다리 결과");
-        outputNames(players.getPlayersNames());
-        outputLadder(ladder);
-        outputNames(rewards.getRewardsNames());
-    }
-
-    private static void outputNames(List<String> names) {
-        StringBuilder namesView = new StringBuilder();
-        for (String name : names) {
-            namesView.append(makeNameView(name));
-        }
-        System.out.println(namesView);
-    }
-
-    private static StringBuilder makeNameView(String name) {
-        StringBuilder nameView = new StringBuilder("       ");
-        int nameStart = 3 - name.length() / 2;
-        int nameEnd = nameStart + name.length();
-
-        nameView.replace(nameStart, nameEnd, name);
-        return nameView;
-    }
-
-    private static void outputLadder(Ladder ladder) {
-        StringBuilder ladderView = new StringBuilder();
-        int height = ladder.getHeight();
-        for (int i = 0; i < height; i++) {
-            ladderView.append(makeLineView(ladder, i));
-        }
-        System.out.print(ladderView);
-    }
-
-    private static StringBuilder makeLineView(Ladder ladder, int index) {
-        StringBuilder lineView = new StringBuilder("   |");
-        List<String> scaffoldsView = new ArrayList<>();
-
-        for (Boolean scaffold : ladder.getLine(index).getScaffolds()) {
-            scaffoldsView.add(makeScaffoldView(scaffold));
-        }
-        lineView.append(String.join("|", scaffoldsView));
-        lineView.append("|\n");
-        return lineView;
-    }
-
-    private static String makeScaffoldView(Boolean scaffold) {
-        return scaffold ? "------" : "      ";
+        System.out.println(players);
+        System.out.print(ladder);
+        System.out.println(rewards);
     }
 
     public static void outputLadderGameResult(String name, LadderGameResult ladderGameResult) {
         System.out.println("실행 결과");
         if ("all".equals(name)) {
-            outputAllResult(ladderGameResult.allResult());
+            System.out.println(ladderGameResult);
             return;
         }
-        System.out.println(ladderGameResult.result(name).getName());
-    }
-
-    private static void outputAllResult(Map<Player, Reward> results) {
-        StringBuilder outputResult = new StringBuilder();
-        for (Player player : results.keySet()) {
-            outputResult.append(player.getName())
-                    .append(" : ")
-                    .append(results.get(player).getName())
-                    .append('\n');
-        }
-        System.out.print(outputResult);
+        System.out.println(ladderGameResult.result(name).toString().trim());
     }
 
     public static void outputErrorMessage(String message) {

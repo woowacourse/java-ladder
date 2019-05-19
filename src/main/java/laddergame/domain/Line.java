@@ -28,14 +28,6 @@ public class Line {
         points.add(point.last());
     }
 
-    public List<Boolean> getScaffolds() {
-        List<Boolean> scaffolds = new ArrayList<>();
-        for (int i = 0; i < points.size() - 1; i++) {
-            scaffolds.add(points.get(i).canMoveRight());
-        }
-        return scaffolds;
-    }
-
     public int moveNextPoint(int position) {
         if (outOfPointRange(position)) {
             throw new IllegalArgumentException("이동 범위를 벗어났습니다.");
@@ -58,5 +50,14 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(points);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder lineView = new StringBuilder();
+        for (Point point : points) {
+            lineView.append(point);
+        }
+        return lineView.toString();
     }
 }

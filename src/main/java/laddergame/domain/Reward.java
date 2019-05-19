@@ -16,4 +16,13 @@ public class Reward {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder nameView = new StringBuilder("       ");
+        int nameStart = 3 - name.length() / 2;
+        int nameEnd = nameStart + name.length();
+        nameView.replace(nameStart, nameEnd, name);
+        return nameView.toString();
+    }
 }

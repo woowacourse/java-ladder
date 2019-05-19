@@ -23,13 +23,16 @@ public class Players {
         return players.get(index);
     }
 
-    public List<String> getPlayersNames() {
-        return players.stream()
-                .map(Player::getName)
-                .collect(Collectors.toList());
-    }
-
     public int size() {
         return players.size();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder playersView = new StringBuilder();
+        for (Player player : players) {
+            playersView.append(player);
+        }
+        return playersView.toString();
     }
 }
