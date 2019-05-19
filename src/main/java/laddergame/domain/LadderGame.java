@@ -1,8 +1,7 @@
-package laddergame.controller;
+package laddergame.domain;
 
+import laddergame.controller.LadderGenerator;
 import laddergame.controller.rule.Rule;
-import laddergame.domain.Ladder;
-import laddergame.domain.Tags;
 import laddergame.util.OutputView;
 
 import java.util.HashMap;

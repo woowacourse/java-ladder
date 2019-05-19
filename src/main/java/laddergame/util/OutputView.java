@@ -1,6 +1,6 @@
 package laddergame.util;
 
-import laddergame.controller.LadderGameResult;
+import laddergame.domain.LadderGameResult;
 import laddergame.domain.*;
 
 import java.util.ArrayList;

@@ -1,5 +1,6 @@
-package laddergame.util;
+package laddergame.validator;
 
+import laddergame.validator.InputValidator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

@@ -3,7 +3,7 @@ package laddergame.controller;
 import laddergame.domain.Tags;
 import laddergame.util.InputView;
 import laddergame.util.Splitter;
-import laddergame.util.InputValidator;
+import laddergame.validator.InputValidator;
 
 import java.util.List;
 

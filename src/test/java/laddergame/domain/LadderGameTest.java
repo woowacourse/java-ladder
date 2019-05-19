@@ -1,7 +1,5 @@
 package laddergame.domain;
 
-import laddergame.controller.LadderGame;
-import laddergame.controller.LadderGameResult;
 import laddergame.controller.rule.AlwaysCreateRule;
 import org.junit.jupiter.api.Test;
 
