@@ -4,6 +4,7 @@ import ladder.domain.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     private static final int PADDING_WIDTH = 5;
@@ -50,5 +51,12 @@ public class OutputView {
     public static void printReward(Reward reward) {
         System.out.println("실행 결과");
         System.out.println(reward.getName());
+    }
+
+    public static void printResults(Results result) {
+        Map<PlayerName, Reward> resultMap = result.getResults();
+        for (Map.Entry<PlayerName, Reward> entry : resultMap.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
     }
 }
