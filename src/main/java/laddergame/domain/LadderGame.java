@@ -2,7 +2,6 @@ package laddergame.domain;
 
 import laddergame.controller.LadderGenerator;
 import laddergame.controller.rule.Rule;
-import laddergame.util.OutputView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,10 +25,22 @@ public class LadderGame {
 
     public LadderGameResult startGame() {
         Map<String, String> result = new HashMap<>();
+
         for (int i = 0; i < members.size(); i++) {
             result.put(members.getTagName(i), prizes.getTagName(ladder.takeLadder(i)));
         }
-        OutputView.outputLadderGame(members, ladder, prizes);
         return new LadderGameResult(result);
+    }
+
+    public Tags getMembers() {
+        return members;
+    }
+
+    public Tags getPrizes() {
+        return prizes;
+    }
+
+    public Ladder getLadder() {
+        return ladder;
     }
 }
