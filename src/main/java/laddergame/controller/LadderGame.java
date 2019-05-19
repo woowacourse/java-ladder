@@ -15,8 +15,13 @@ public class LadderGame {
         OutputView.printPlayersAndLadder(players, ladder);
         OutputView.printPrizes(prizes);
 
+        /*
         GameEngine engine = new GameEngine(players, ladder);
         engine.makePlayersPlayTheLadder();
+         */
+
+        ladder.makeThePlayersClimbDownTheLadder(players);
+
 
         promptUserForRequest(players, prizes);
     }

@@ -1,10 +1,7 @@
 package laddergame.domain;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 public class Ladder {
     private List<Line> ladderInformationAsTrueFalse = new ArrayList<>();
@@ -41,8 +38,24 @@ public class Ladder {
     }
 
     public void makeThePlayersClimbDownTheLadder(Players players) {
-
+        for (int i = 0; i < ladderInformationAsTrueFalse.size(); i++) {
+            switchPosition(ladderInformationAsTrueFalse.get(i), players);
+        }
     }
+
+    private void switchPosition(Line line, Players players) {
+        for (int i = 0; i < line.getSize(); i++) {
+            swap(line, i, players);
+        }
+    }
+
+    private void swap(Line line, int position, Players players) {
+        if (line.getBooleanValue(position)) {
+            Collections.swap(players.getPlayers(), position, position + 1);
+        }
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
