@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Player;
-import ladder.domain.PlayerName;
-import ladder.domain.Players;
-import ladder.domain.Position;
+import ladder.domain.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,24 +10,44 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static Players inputPlayers() {
+    public static Players getPlayers() {
         try {
-            System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요.");
+            System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요.)");
             String userInput = SCANNER.nextLine();
             String[] commaSeparatedUserInput = userInput.split(",");
-            return namesToPlayers(Arrays.asList(commaSeparatedUserInput));
+            return inputToPlayers(Arrays.asList(commaSeparatedUserInput));
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return inputPlayers();
+            return getPlayers();
         }
     }
 
-    private static Players namesToPlayers(List<String> names) {
-        Players.NUM_OF_PLAYERS = names.size();
+    private static Players inputToPlayers(List<String> inputNames) {
+        Players.NUM_OF_PLAYERS = inputNames.size();
         List<Player> players = new ArrayList<>();
-        for (int i=0; i<names.size(); i++) {
-            players.add(new Player(new PlayerName(names.get(i)), new Position(i))); // exception can be thrown
+        for (int i=0; i<inputNames.size(); i++) {
+            players.add(new Player(new PlayerName(inputNames.get(i)), new Position(i))); // exception can be thrown
         }
         return new Players(players);
+    }
+
+    public static Rewards getRewards() {
+        try {
+            System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+            String userInput = SCANNER.nextLine();
+            String[] commaSeparatedUserInput = userInput.split(",");
+            return inputToRewards(Arrays.asList(commaSeparatedUserInput));
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+            return getRewards();
+        }
+    }
+
+    private static Rewards inputToRewards(List<String> inputRewards) {
+        List<Reward> rewards = new ArrayList<>();
+        for (String reward : inputRewards) {
+            rewards.add(new Reward(reward));
+        }
+        return new Rewards(rewards);
     }
 }

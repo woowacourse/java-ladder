@@ -22,4 +22,11 @@ public class Rewards {
     public Reward getReward(int index) {
         return rewards.get(index);
     }
+
+    @Override
+    public String toString() {
+        return "Rewards{" +
+                "rewards=" + rewards +
+                '}';
+    }
 }
