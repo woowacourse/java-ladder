@@ -17,14 +17,14 @@ public class Line {
     }
 
     private void init(int numberOfPlayers) {
-        if (isThereOnePlayer(numberOfPlayers)) {
+        if (isOnePlayer(numberOfPlayers)) {
             directions.add(Direction.STRAIGHT);
             return;
         }
         generateRandomDirections(numberOfPlayers);
     }
 
-    private boolean isThereOnePlayer(int numberOfPlayers) {
+    private boolean isOnePlayer(int numberOfPlayers) {
         return numberOfPlayers == ONE_PLAYER;
     }
 
