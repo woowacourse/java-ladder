@@ -1,24 +1,40 @@
 package ladder.model;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Result implements Iterator {
-    private final List<Player> result;
+    private final List<String> players;
+    private final List<String> rewards;
     private int index = 0;
 
-    Result(List<Player> players, Ladder ladder, List<String> query) {
-        result = Collections.unmodifiableList(ladder.apply(players).stream()
-            .filter(x -> query.contains("all") || query.contains(x.getName()))
-            .collect(Collectors.toList()));
+    Result(Players players, Rewards rewards, Ladder ladder, List<String> query) {
+        final Rewards applied = ladder.apply(players, rewards);
+        if (query.contains("all")) {
+            this.players = Collections.unmodifiableList(players.getListOfPlayers());
+            this.rewards = Collections.unmodifiableList(applied.getListOfRewards());
+            return;
+        }
+        List<Integer> searchResult = IntStream.range(0, players.number()).boxed()
+                                            .filter(i -> query.contains(players.get(i)))
+                                            .collect(Collectors.toList());
+        this.players = Collections.unmodifiableList(
+                searchResult.stream()
+                            .map(i -> players.get(i))
+                            .collect(Collectors.toList())
+        );
+        this.rewards = Collections.unmodifiableList(
+                searchResult.stream()
+                            .map(i -> applied.get(i))
+                            .collect(Collectors.toList())
+        );
     }
     public boolean hasNext() {
-        return index < result.size();
+        return index < players.size();
     }
 
-    public Player next() {
-        return result.get(index++);
+    public String next() {
+        return players.get(index) + " : " + rewards.get(index++);
     }
 }

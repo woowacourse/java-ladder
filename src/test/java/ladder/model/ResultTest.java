@@ -3,23 +3,15 @@ package ladder.model;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ResultTest {
-    List<Player> players = Arrays.asList(
-        new Player("A", "1"),
-        new Player("B", "2"),
-        new Player("C", "3"),
-        new Player("D", "4"),
-        new Player("E", "5")
-    );
-    Ladder ladder = new Game(players, 12).getLadder();
+    Game game = new Game(Arrays.asList("a", "b", "c", "d", "e"), Arrays.asList("1", "2", "3", "4", "5"), 12);
 
     @Test
     void getAllTest() {
-        Result r = new Result(players, ladder, Arrays.asList("all"));
+        Result r = new Result(game.getPlayers(), game.getRewards(), game.getLadder(), Arrays.asList("all"));
         int size = 0;
         while (r.hasNext()) {
             r.next();
@@ -30,7 +22,7 @@ class ResultTest {
 
     @Test
     void getSomeTestA() {
-        Result r = new Result(players, ladder, Arrays.asList("A"));
+        Result r = new Result(game.getPlayers(), game.getRewards(), game.getLadder(), Arrays.asList("a"));
         int size = 0;
         while (r.hasNext()) {
             r.next();
@@ -41,7 +33,7 @@ class ResultTest {
 
     @Test
     void getSomeTestB() {
-        Result r = new Result(players, ladder, Arrays.asList("A", "B"));
+        Result r = new Result(game.getPlayers(), game.getRewards(), game.getLadder(), Arrays.asList("a", "b"));
         int size = 0;
         while (r.hasNext()) {
             r.next();
@@ -52,7 +44,7 @@ class ResultTest {
 
     @Test
     void getNoneTest() {
-        Result r = new Result(players, ladder, Arrays.asList("F"));
+        Result r = new Result(game.getPlayers(), game.getRewards(), game.getLadder(), Arrays.asList("f"));
         int size = 0;
         while (r.hasNext()) {
             r.next();

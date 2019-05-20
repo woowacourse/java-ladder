@@ -1,4 +1,4 @@
-package ladder.model.Coin;
+package ladder.model.coin;
 
 public class Never implements Coin {
     @Override

@@ -32,7 +32,9 @@ public class Expression {
 
     private static List<Integer> validate(List<Integer> numbers) {
         try {
-            return (numbers.stream().map(x -> x < 0).reduce(false, (x, y) -> x | y))
+            return (numbers.stream()
+                    .map(x -> x < 0)
+                    .reduce(false, (x, y) -> x | y))
                     ? Arrays.asList()
                     : numbers;
         } catch (NumberFormatException e) {

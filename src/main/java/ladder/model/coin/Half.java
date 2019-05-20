@@ -1,4 +1,4 @@
-package ladder.model.Coin;
+package ladder.model.coin;
 
 public class Half implements Coin {
     private static final double HALF = 0.5;

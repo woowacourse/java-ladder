@@ -1,4 +1,4 @@
-package ladder.model.Coin;
+package ladder.model.coin;
 
 public class OddOnly implements Coin {
     private boolean isOdd = false;

@@ -1,17 +1,20 @@
 package ladder.model;
 
-import ladder.model.Coin.Always;
-import ladder.model.Coin.EvenOnly;
-import ladder.model.Coin.Never;
-import ladder.model.Coin.OddOnly;
+import ladder.model.coin.Always;
+import ladder.model.coin.EvenOnly;
+import ladder.model.coin.Never;
+import ladder.model.coin.OddOnly;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
+    Players players = new Players(Arrays.asList("a", "b", "c", "d", "e"));
+
     @Test
     void initTestA() {
         Ladder ladderA = new Ladder(10, 6, new Always());
@@ -48,95 +51,37 @@ class LadderTest {
 
     @Test
     void applyTestA() {
-        List<Player> players = Arrays.asList(
-            new Player("A", "1"),
-            new Player("B", "2"),
-            new Player("C", "3"),
-            new Player("D", "4"),
-            new Player("E", "5")
-        );
-        List<Player> expected = Arrays.asList(
-            new Player("A", "2"),
-            new Player("B", "1"),
-            new Player("C", "4"),
-            new Player("D", "3"),
-            new Player("E", "5")
-        );
-        Ladder ladderA = new Ladder(players.size(), 11, new Always());
-        List<Player> actual = ladderA.apply(players);
-        for (int i = 0; i < players.size(); i++) {
-            assertThat(actual.get(i).toString()).isEqualTo(expected.get(i).toString());
-        }
+        final Rewards rewards = new Rewards(players, Arrays.asList("1", "2", "3", "4", "5"));
+        final List<String> expected = Arrays.asList("2", "1", "4", "3", "5");
+        final Ladder ladderA = new Ladder(players.number(), 11, new Always());
+        final Rewards actual = ladderA.apply(players, rewards);
+        IntStream.range(0, players.number()).boxed().forEach(i -> assertThat(actual.get(i)).isEqualTo(expected.get(i)));
     }
 
     @Test
     void applyTestN() {
-        List<Player> players = Arrays.asList(
-                new Player("A", "1"),
-                new Player("B", "2"),
-                new Player("C", "3"),
-                new Player("D", "4"),
-                new Player("E", "5")
-        );
-        List<Player> expected = Arrays.asList(
-                new Player("A", "1"),
-                new Player("B", "2"),
-                new Player("C", "3"),
-                new Player("D", "4"),
-                new Player("E", "5")
-        );
-        Ladder ladderN = new Ladder(players.size(), 9, new Never());
-        List<Player> actual = ladderN.apply(players);
-        for (int i = 0; i < players.size(); i++) {
-            assertThat(actual.get(i).toString()).isEqualTo(expected.get(i).toString());
-        }
+        final Rewards rewards = new Rewards(players, Arrays.asList("1", "2", "3", "4", "5"));
+        final List<String> expected = Arrays.asList("1", "2", "3", "4", "5");
+        final Ladder ladderA = new Ladder(players.number(), 9, new Never());
+        final Rewards actual = ladderA.apply(players, rewards);
+        IntStream.range(0, players.number()).boxed().forEach(i -> assertThat(actual.get(i)).isEqualTo(expected.get(i)));
     }
 
     @Test
     void applyTestO() {
-        List<Player> players = Arrays.asList(
-            new Player("A", "1"),
-            new Player("B", "2"),
-            new Player("C", "3"),
-            new Player("D", "4"),
-            new Player("E", "5"),
-            new Player("F", "6")
-        );
-        List<Player> expected = Arrays.asList(
-            new Player("A", "2"),
-            new Player("B", "1"),
-            new Player("C", "3"),
-            new Player("D", "5"),
-            new Player("E", "4"),
-            new Player("F", "6")
-        );
-        Ladder ladderO = new Ladder(players.size(), 15, new OddOnly());
-        List<Player> actual = ladderO.apply(players);
-        for (int i = 0; i < players.size(); i++) {
-            assertThat(actual.get(i).toString()).isEqualTo(expected.get(i).toString());
-        }
+        final Rewards rewards = new Rewards(players, Arrays.asList("1", "2", "3", "4", "5", "6"));
+        final List<String> expected = Arrays.asList("2", "1", "3", "5", "4", "6");
+        final Ladder ladderA = new Ladder(players.number(), 15, new OddOnly());
+        final Rewards actual = ladderA.apply(players, rewards);
+        IntStream.range(0, players.number()).boxed().forEach(i -> assertThat(actual.get(i)).isEqualTo(expected.get(i)));
     }
 
     @Test
     void applyTestE() {
-        List<Player> players = Arrays.asList(
-            new Player("A", "1"),
-            new Player("B", "2"),
-            new Player("C", "3"),
-            new Player("D", "4"),
-            new Player("E", "5")
-        );
-        List<Player> expected = Arrays.asList(
-            new Player("A", "1"),
-            new Player("B", "3"),
-            new Player("C", "2"),
-            new Player("D", "4"),
-            new Player("E", "5")
-        );
-        Ladder ladderE = new Ladder(players.size(), 271, new EvenOnly());
-        List<Player> actual = ladderE.apply(players);
-        for (int i = 0; i < players.size(); i++) {
-            assertThat(actual.get(i).toString()).isEqualTo(expected.get(i).toString());
-        }
+        final Rewards rewards = new Rewards(players, Arrays.asList("1", "2", "3", "4", "5"));
+        final List<String> expected = Arrays.asList("1", "3", "2", "4", "5");
+        final Ladder ladderA = new Ladder(players.number(), 271, new EvenOnly());
+        final Rewards actual = ladderA.apply(players, rewards);
+        IntStream.range(0, players.number()).boxed().forEach(i -> assertThat(actual.get(i)).isEqualTo(expected.get(i)));
     }
 }

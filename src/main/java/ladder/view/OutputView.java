@@ -1,11 +1,9 @@
 package ladder.view;
 
+
 import ladder.model.*;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class OutputView {
     private static final int MIN_SPACE = 2;
@@ -14,15 +12,14 @@ public class OutputView {
     private static final String VERT_LINE = "|";
 
     public static void printGame(Game game) {
-        final List<String> names = game.getPlayers().stream().map(x -> x.getName()).collect(Collectors.toList());
-        final List<String> rewards = game.getPlayers().stream().map(x -> x.getReward()).collect(Collectors.toList());
-        final int maxLength = Stream.concat(names.stream(), rewards.stream())
-            .max(Comparator.comparing(String::length)).get().length();
-        final int offset = (maxLength - Math.max(names.get(0).length(), rewards.get(0).length())) / 2;
+        final Players players = game.getPlayers();
+        final Rewards rewards = game.getRewards();
+        final int maxLength = Math.max(players.getLongestPlayerNameLength(), rewards.getLongestRewardNameLength());
+        final int offset = (maxLength - Math.max(players.get(0).length(), rewards.get(0).length())) / 2;
         System.out.println("\n사다리 결과\n");
-        printWords(names, maxLength, offset);
+        printWords(players.getListOfPlayers(), maxLength, offset);
         printLadder(game.getLadder(), maxLength, offset);
-        printWords(rewards, maxLength, offset);
+        printWords(rewards.getListOfRewards(), maxLength, offset);
     }
 
     private static void printWords(List<String> words, int maxLength, int offset) {
@@ -75,8 +72,7 @@ public class OutputView {
             return false;
         }
         while (result.hasNext()) {
-            Player player = result.next();
-            System.out.println(player);
+            System.out.println(result.next());
         }
         return true;
     }
