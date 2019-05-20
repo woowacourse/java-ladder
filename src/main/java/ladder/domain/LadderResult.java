@@ -1,6 +1,8 @@
 package ladder.domain;
 
-import ladder.util.Const;
+import ladder.view.LadderDepthException;
+import ladder.view.PlayerException;
+import ladder.view.RewardException;
 
 import java.util.*;
 
@@ -14,6 +16,8 @@ import java.util.*;
  * @version 1.0 2019-05-16
  */
 public class LadderResult {
+    public static final String LADDERRESULT_GET_RESULT_ALL = "all";
+
     private Ladder ladder;
     private Map<String, String> result;
 
@@ -25,9 +29,9 @@ public class LadderResult {
      * @param depth
      */
     public LadderResult(String names, String rewards, int depth) {
-        names = Rule.ruleInputPlayerNames(names);
-        rewards = Rule.ruleInputReward(rewards, names.split(",").length);
-        depth = Rule.ruleLadderDepthRange(depth);
+        names = PlayerException.playerNames(names);
+        rewards = RewardException.reward(rewards, names.split(",").length);
+        depth = LadderDepthException.ladderMinDepth(depth);
 
         this.ladder = new Ladder(setPlayers(names).size(), depth);
         this.result = setResult(setPlayers(names), Arrays.asList(rewards.split(",")), depth); //TODO 1. depth 사용하지 않음
@@ -40,7 +44,7 @@ public class LadderResult {
      * @return
      */
     public String getResultOfName(String name) {
-        if (name.equals(Const.LADDERRESULT_GET_RESULT_ALL)) {
+        if (name.equals(LADDERRESULT_GET_RESULT_ALL)) {
             return getResultOfAllName();
         }
         return result.get(name);

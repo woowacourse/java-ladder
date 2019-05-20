@@ -1,7 +1,7 @@
 package ladder.domain;
 
-import ladder.util.Const;
 import ladder.util.Util;
+import ladder.view.PlayerException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,9 @@ import java.util.Objects;
  * @version 1.0 2019-05-16
  */
 public class LadderLine {
+    public static final String LINE_STATE_FALSE = "     |";
+    public static final String LINE_STATE_TRUE = "-----|";
+
     private final int playerCount;
     private List<Boolean> lineStates;
 
@@ -25,7 +28,7 @@ public class LadderLine {
      * @param playerCount 가로 길이
      */
     public LadderLine(int playerCount) {
-        this.playerCount = Rule.rulePlayerCountSize(playerCount);
+        this.playerCount = PlayerException.playersMinCount(playerCount);
         this.lineStates = setLineStates();
     }
 
@@ -63,9 +66,9 @@ public class LadderLine {
 
     private String getStateShape(boolean lineState) {
         if (lineState) {
-            return Const.LINE_STATE_TRUE;
+            return LINE_STATE_TRUE;
         }
-        return Const.LINE_STATE_FALSE;
+        return LINE_STATE_FALSE;
     }
 
     boolean isMatchLineState(int i) {

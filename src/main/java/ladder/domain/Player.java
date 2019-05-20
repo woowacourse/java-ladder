@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.view.PlayerException;
+
 import java.util.Objects;
 
 /**
@@ -19,7 +21,7 @@ public class Player {
      * @throws IllegalArgumentException 이름 길이가 rule과 다를 때 발생
      */
     public Player(String name) {
-        this.name = Rule.rulePlayerNameLength(name);
+        this.name = PlayerException.playerNameOverLength(name);
     }
 
     /**
