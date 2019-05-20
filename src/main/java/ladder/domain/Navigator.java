@@ -1,3 +1,5 @@
+package ladder.domain;
+
 import ladder.domain.DrawnLadder;
 import ladder.domain.Position;
 
