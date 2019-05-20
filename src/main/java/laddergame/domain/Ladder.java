@@ -49,22 +49,27 @@ public class Ladder {
         return ladderInformationAsTrueFalse;
     }
 
-    public void makeThePlayersClimbDownTheLadder(Players players) {
+    public Players makeThePlayersClimbDownTheLadder(Players players) {
+        Players resultPlayers = players.makeNewPlayers();
         for (int i = 0; i < ladderInformationAsTrueFalse.size(); i++) {
-            switchPosition(ladderInformationAsTrueFalse.get(i), players);
+           resultPlayers = switchPosition(ladderInformationAsTrueFalse.get(i), resultPlayers);
         }
+        return resultPlayers;
     }
 
-    private void switchPosition(Line line, Players players) {
+    private Players switchPosition(Line line, Players resultPlayers) {
         for (int i = 0; i < line.getLineSize(); i++) {
-            swap(line, i, players);
+            resultPlayers = swap(line, i, resultPlayers);
         }
+        return resultPlayers;
     }
 
-    private void swap(Line line, int position, Players players) {
+    private Players swap(Line line, int position, Players resultPlayers) {
         if (line.getBooleanValue(position)) {
-            Collections.swap(players.getPlayers(), position, position + 1);
+            Collections.swap(resultPlayers.getPlayers(), position, position+1);
+            return resultPlayers;
         }
+        return resultPlayers;
     }
 
 

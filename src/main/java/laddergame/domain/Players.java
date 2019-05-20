@@ -4,7 +4,7 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class Players {
-    private final List<Player> players = new ArrayList<>();
+    private List<Player> players = new ArrayList<>();
 
     public Players(String playersNames) {
         checkNullName(playersNames);
@@ -39,6 +39,17 @@ public class Players {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public Players makeNewPlayers() {
+        List<String> names = new ArrayList<>();
+        for (int i = 0; i < players.size(); i++) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(players.get(i).getName().getName());
+            names.add(sb.toString());
+        }
+        String newNames = String.join(",",names);
+        return new Players(newNames);
     }
 
     @Override

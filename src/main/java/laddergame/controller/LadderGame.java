@@ -20,7 +20,7 @@ public class LadderGame {
         engine.makePlayersPlayTheLadder();
          */
 
-        ladder.makeThePlayersClimbDownTheLadder(players);
+        players = ladder.makeThePlayersClimbDownTheLadder(players);
         promptUserForRequest(players, prizes);
     }
 

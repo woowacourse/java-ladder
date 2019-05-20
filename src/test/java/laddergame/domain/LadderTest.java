@@ -53,7 +53,7 @@ public class LadderTest {
         List<Line> lines = Arrays.asList(line1, line2, line3);
         Ladder testLadder = new Ladder(lines, 4, 3);
 
-        testLadder.makeThePlayersClimbDownTheLadder(players);
-        assertThat(players).isEqualTo(new Players("d,b,c,a"));
+        Players testPlayers = testLadder.makeThePlayersClimbDownTheLadder(players);
+        assertThat(testPlayers).isEqualTo(new Players("d,b,c,a"));
     }
 }
