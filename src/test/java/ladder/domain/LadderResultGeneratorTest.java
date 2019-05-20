@@ -25,36 +25,36 @@ public class LadderResultTest {
 
     @Test
     public void 결과_확인() {
-        PlayerResult playerResult = new PlayerResult("a", "꽝");
-        assertEquals(playerResult, ladderResult.result(ladder, players.player("a")));
+        PlayerResults playerResults = new PlayerResults("a", "꽝");
+        assertEquals(playerResults, ladderResult.result(ladder, players.player("a")));
     }
 
     @Test
     public void 결과_확인2() {
-        PlayerResult playerResult = new PlayerResult("b", "꽝");
-        assertEquals(playerResult, ladderResult.result(ladder, players.player("b")));
+        PlayerResults playerResults = new PlayerResults("b", "꽝");
+        assertEquals(playerResults, ladderResult.result(ladder, players.player("b")));
     }
 
     @Test
     public void 결과_확인3() {
-        PlayerResult playerResult = new PlayerResult("c", "3000");
-        assertEquals(playerResult, ladderResult.result(ladder, players.player("c")));
+        PlayerResults playerResults = new PlayerResults("c", "3000");
+        assertEquals(playerResults, ladderResult.result(ladder, players.player("c")));
     }
 
     @Test
     public void 결과_확인4() {
-        PlayerResult playerResult = new PlayerResult("d", "5000");
-        assertEquals(playerResult, ladderResult.result(ladder, players.player("d")));
+        PlayerResults playerResults = new PlayerResults("d", "5000");
+        assertEquals(playerResults, ladderResult.result(ladder, players.player("d")));
     }
 
     @Test
     public void 전체_결과_확인() {
 
-        List<PlayerResult> expect = Arrays.asList(
-                new PlayerResult("a", "꽝"),
-                new PlayerResult("b", "꽝"),
-                new PlayerResult("c", "3000"),
-                new PlayerResult("d", "5000"));
+        List<PlayerResults> expect = Arrays.asList(
+                new PlayerResults("a", "꽝"),
+                new PlayerResults("b", "꽝"),
+                new PlayerResults("c", "3000"),
+                new PlayerResults("d", "5000"));
         assertEquals(expect, ladderResult.result(ladder, players));
     }
 }
