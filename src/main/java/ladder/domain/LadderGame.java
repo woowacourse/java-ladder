@@ -13,8 +13,6 @@ public class LadderGame {
     private LadderGamePlayers players;
     private LadderGameRewards rewards;
     private Ladder ladder;
-    private List<Record> log;
-    private GameResult gameResult;
 
     public LadderGame(List<String> names, List<String> rewards, Ladder ladder) {
         checkCount(names.size(), rewards.size());
@@ -22,36 +20,17 @@ public class LadderGame {
         this.players = new LadderGamePlayers(names);
         this.rewards = new LadderGameRewards(rewards);
         this.ladder = ladder;
-        log = new ArrayList<>();
-        gameResult = new GameResult();
     }
 
     private void checkCount(int countOfPlayers, int countOfResults) {
         if (countOfPlayers != countOfResults) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("플레이어수와 리워드의 수가 다릅니다.");
         }
     }
 
-    public void play() {
-        log.add(new Record(Arrays.stream(IntStream.rangeClosed(0, players.size() - 1)
-                .toArray())
-                .boxed()
-                .collect(Collectors.toList())));
-        ladder.drawLadder(log);
-
-        makeGameResult();
-    }
-
-    private void makeGameResult() {
-        List<Integer> lastRecord = log.get(log.size() - 1).getIndices();
-
-        for (int i = 0; i < players.size(); i++){
-            gameResult.addGameResult(players.get(i), rewards.get(lastRecord.indexOf(i)));
-        }
-    }
-
-    public String drawResult(String message){
-        return gameResult.getResult(message);
+    public GameResult play() {
+        ladder.drawLadder();
+        return ladder.getResult(players, rewards);
     }
 
     @Override

@@ -11,8 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LadderGameTest {
     private LadderGame ladderGame;
-    private List<Player> players;
-    private List<Reward> drawResults;
     private Ladder ladder;
 
     @BeforeEach
@@ -33,15 +31,20 @@ class LadderGameTest {
 
     @Test
     void 전체_결과_출력_테스트() {
-        assertThat(ladderGame.drawResult("all")).isEqualTo("zino : 탕수육\n" +
+        assertThat(ladderGame.play().getResult("all")).isEqualTo("zino : 탕수육\n" +
                 "pobi : 짜장\n" +
                 "crong : 짬뽕\n");
     }
 
     @Test
     void 플레이어_결과_출력_테스트() {
-        assertThat(ladderGame.drawResult("zino")).isEqualTo("zino : 탕수육\n" +
+        assertThat(ladderGame.play().getResult("zino")).isEqualTo("zino : 탕수육\n" +
                 "pobi : 짜장\n" +
                 "crong : 짬뽕\n");
+    }
+
+    @Test
+    void 존재하지_않는_플레이어_결과_출력_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> ladderGame.play().getResult("mino"));
     }
 }

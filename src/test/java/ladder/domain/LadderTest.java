@@ -29,7 +29,7 @@ public class LadderTest {
         Record record3 = new Record(Arrays.asList(1, 2, 0));
         List<Record> log1 = new ArrayList<>(Arrays.asList(record1, record2, record3));
 
-        assertThat(ladder.drawLadder(log)).isEqualTo(log1);
+        assertThat(ladder.drawLadder()).isEqualTo(log1);
     }
 
     @Test

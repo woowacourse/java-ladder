@@ -22,7 +22,7 @@ public class Ladder {
 
     private void checkZero(int count) {
         if (count < MINIMUM_COUNT_OF_LINES) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("사다리는 적어도 한 줄 이상이어야 합니다.");
         }
     }
 
@@ -35,7 +35,7 @@ public class Ladder {
         log.add(init_record);
     }
 
-    List<Record> drawLadder(List<Record> log) {
+    List<Record> drawLadder() {
         Record last = log.get(FIRST_RECORD);
         for (Line line : lines) {
             Record newRecord = line.drawLine(last);
@@ -45,10 +45,18 @@ public class Ladder {
         return log;
     }
 
-
+    GameResult getResult(LadderGamePlayers players, LadderGameRewards rewards) {
+        GameResult gameResult = new GameResult();
+        List<Integer> lastRecord = log.get(log.size() - 1).getIndices();
+        for (int i = 0; i < players.size(); i++){
+            gameResult.addGameResult(players.get(i), rewards.get(lastRecord.indexOf(i)));
+        }
+        return gameResult;
+    }
 
     @Override
     public String toString() {
         return this.lines.stream().map(Line::toString).collect(Collectors.joining(NEXT_LINE));
     }
+
 }
