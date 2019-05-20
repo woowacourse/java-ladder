@@ -59,7 +59,16 @@ public class LadderGameResult {
         return new ArrayList<>(gameResults.keySet());
     }
 
-    public String matchGoalWith(String targetPlayerName) {
+    public String matchResult(String targetPlayerName) {
+        try {
+            return matchGoalWith(targetPlayerName);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    private String matchGoalWith(String targetPlayerName) {
         if (gameResults.containsKey(targetPlayerName)) {
             return gameResults.get(targetPlayerName);
         }

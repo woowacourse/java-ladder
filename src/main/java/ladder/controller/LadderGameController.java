@@ -33,15 +33,6 @@ public class LadderGameController {
             OutputView.showMatchingResult(ladderGameResult.toString());
             return;
         }
-        OutputView.showMatchingResult(matchResult(ladderGameResult, targetPlayerName));
-    }
-
-    private String matchResult(LadderGameResult ladderGameResult, String targetPlayerName) {
-        try {
-            return ladderGameResult.matchGoalWith(targetPlayerName);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+        OutputView.showMatchingResult(ladderGameResult.matchResult(targetPlayerName));
     }
 }
