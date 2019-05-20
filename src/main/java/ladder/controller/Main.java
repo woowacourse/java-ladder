@@ -37,10 +37,11 @@ public class Main {
         LadderHeight floors = getFloor();
 
         LadderGame ladderGame = new LadderGame(players, results, floors);
+        GameResult gameResult = ladderGame.getAllResult();
 
         OutputView.ladderTitle();
-        OutputView.ladderShape(ladderGame);
-        showResult(ladderGame);
+        OutputView.ladderBody(ladderGame);
+        showResult(gameResult);
     }
 
     private static PlayerTags getPlayers() {
@@ -70,38 +71,38 @@ public class Main {
         }
     }
 
-    private static void showResult(LadderGame ladderGame) {
+    private static void showResult(GameResult gameResult) {
         try {
-            chooseResult(ladderGame);
+            chooseResult(gameResult);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            showResult(ladderGame);
+            showResult(gameResult);
         }
     }
 
-    private static void chooseResult(LadderGame ladderGame) {
+    private static void chooseResult(GameResult gameResult) {
         String select = "";
         while (!select.equals(EXIT_CONDITION)) {
             select = InputView.resultSelect();
-            chooseOne(ladderGame, select);
-            select = chooseAll(ladderGame, select);
+            chooseOne(gameResult, select);
+            select = chooseAll(gameResult, select);
         }
     }
 
-    private static String chooseAll(LadderGame ladderGame, String select) {
+    private static String chooseAll(GameResult gameResult, String select) {
         if (select.equals(ALL_CONDITION)) {
             OutputView.resultTitle();
-            OutputView.resultPrint(ladderGame.getAllPlayerResult());
+            OutputView.resultPrint2(gameResult);
             select = EXIT_CONDITION;
         }
         return select;
     }
 
-    private static void chooseOne(LadderGame ladderGame, String select) {
+    private static void chooseOne(GameResult gameResult, String select) {
         if (!select.equals(EXIT_CONDITION) && !select.equals(ALL_CONDITION)) {
             OutputView.resultTitle();
             Tag selectTag = new Tag(select);
-            OutputView.resultPrint(ladderGame.getOneResult(selectTag).getName());
+            OutputView.resultPrint(gameResult.get(selectTag).getName());
         }
     }
 }

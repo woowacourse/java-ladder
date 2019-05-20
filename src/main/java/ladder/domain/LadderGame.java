@@ -26,37 +26,37 @@ import ladder.domain.tag.Tag;
  * @version 1.0.0
  */
 public class LadderGame {
-    private static final String GET_ONE_PLAYER_ERROR = "일치하는 플레이어 이름이 없습니다.";
-    private static final String JOIN_NAME_RESULT = " : ";
     private static final String NEW_LINE = "\n";
 
     private Ladder ladder;
     private PlayerTags players;
     private ResultTags results;
 
+    public Ladder getLadder() {
+        return ladder;
+    }
+
+    public PlayerTags getPlayers() {
+        return players;
+    }
+
+    public ResultTags getResults() {
+        return results;
+    }
+
     public LadderGame(PlayerTags players, ResultTags results, LadderHeight ladderHeight) {
         this.players = players;
         this.results = results;
-        ladder = new Ladder(ladderHeight, new LadderWidth(players.size()));
+        this.ladder = new Ladder(ladderHeight, new LadderWidth(players.size()));
     }
 
-    public Tag getOneResult(Tag tag) {
-        if (!this.players.getNames().contains(tag)) {
-            throw new IllegalArgumentException(GET_ONE_PLAYER_ERROR);
+    public GameResult getAllResult() {
+        GameResult gameResult = new GameResult();
+        for (Tag tag : players) {
+            Position result = ladder.moveToResult(players.indexOf(tag));
+            gameResult.put(tag, results.get(result.getPosition()));
         }
-        Position result = ladder.moveToResult(players.indexOf(tag));
-        return results.get(result.getPosition());
-    }
-
-    public String getAllPlayerResult() {
-        StringBuilder sb = new StringBuilder();
-        for (Tag tag : players.getNames()) {
-            sb.append(tag.toString())
-                    .append(JOIN_NAME_RESULT)
-                    .append(this.getOneResult(tag))
-                    .append(NEW_LINE);
-        }
-        return sb.toString();
+        return gameResult;
     }
 
     // TODO 제거해야 할 부분

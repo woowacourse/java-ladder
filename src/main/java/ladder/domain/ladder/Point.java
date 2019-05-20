@@ -2,13 +2,13 @@ package ladder.domain.ladder;
 
 import java.util.Objects;
 
-import ladder.domain.RandomGenerator;
+import ladder.domain.utils.RandomGenerator;
 
-public class Point {
+class Point {
     private Boolean left;
     private Boolean right;
 
-    public Point(Boolean left, Boolean right) {
+    Point(Boolean left, Boolean right) {
         this.left = left;
         this.right = right;
     }
@@ -17,30 +17,30 @@ public class Point {
         return new Point(first, second);
     }
 
-    public static Point first() {
+    static Point first() {
         return of(false, RandomGenerator.get());
     }
 
-    public Point next(Boolean nextCurrent) {
+    Point next(Boolean nextCurrent) {
         return of(right, nextCurrent);
     }
 
-    public Point next() {
+    Point next() {
         if (right.equals(false)) {
             return next(RandomGenerator.get());
         }
         return next(false);
     }
 
-    public Point last() {
+    Point last() {
         return next(false);
     }
 
-    public Boolean canMoveLeft() {
+    Boolean canMoveLeft() {
         return left;
     }
 
-    public Boolean canMoveRight() {
+    Boolean canMoveRight() {
         return right;
     }
 
@@ -60,6 +60,6 @@ public class Point {
 
     @Override
     public String toString() {
-        return right ? "-----" : "     ";
+        return left ? "-----" : "     ";
     }
 }

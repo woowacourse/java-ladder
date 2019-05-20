@@ -69,12 +69,11 @@ public class Horizontal {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(HEADER_HORIZONTAL_LINE);
-        for (Point point : this.horizontal) {
+        for (int i = 1; i < this.horizontal.size(); i++) {
             sb.append(VERTICAL_LINE)
-                    .append(point.toString());
+                    .append(horizontal.get(i).toString());
         }
         sb.append(VERTICAL_LINE + NEW_LINE);
         return sb.toString();
     }
-
 }

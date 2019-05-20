@@ -24,43 +24,24 @@ import java.util.List;
  */
 public class Ladder {
     private List<Horizontal> ladder;
-    private LadderHeight height;
-    private LadderWidth width;
-
-//    public Ladder(LadderHeight height, int playerNumber) {
-//        this.ladder = new ArrayList<>();
-//        this.height = height;
-//        for (int i = 0; i < height.getHeight(); i++) {
-//            ladder.add(new Horizontal(playerNumber));
-//        }
-//    }
 
     public Ladder(LadderHeight height, LadderWidth width) {
         this.ladder = new ArrayList<>();
-        this.height = height;
-        this.width = width;
         for (int i = 0; i < height.getHeight(); i++) {
             ladder.add(new Horizontal(width));
         }
     }
 
-//    public int getPlayerResult(int playerIndex){
-//        for(Horizontal horizontal : ladder){
-//            playerIndex = moveVertical(horizontal, playerIndex);
-//        }
-//        return playerIndex;
-//    }
-
-//    private int moveVertical(Horizontal horizontal, int index){
-//        return horizontal.moveHorizontal(index);
-//    }
+    public List<Horizontal> getLadder() {
+        return ladder;
+    }
 
     public Position moveToResult(int startIndex){
-        Position currentPosition = new Position(startIndex, this.width.getLadderWidth());
+        Position current = new Position(startIndex);
         for (Horizontal horizontal : ladder) {
-            currentPosition.move(horizontal.get(startIndex));
+            current = current.move(horizontal.get(current.getPosition()));
         }
-        return currentPosition;
+        return current;
     }
 
     // TODO 제거해야 할 부분
