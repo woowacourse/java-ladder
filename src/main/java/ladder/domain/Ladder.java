@@ -42,19 +42,23 @@ public class Ladder {
     }
 
     private int moveColumn(int row, int column) {
-        if (isConnected(row, column)) {
+        if (isConnectedRight(row, column)) {
             return column + 1;
         }
 
-        if (isConnected(row, column - 1)) {
+        if (isConnectedLeft(row, column)) {
             return column - 1;
         }
 
         return column;
     }
 
-    private boolean isConnected(int row, int column) {
-        return (column >= LEFT_BOUNDARY_CHECK) && (column < getNumberOfPeople() - 1) && getLine(row).isConnected(column);
+    private boolean isConnectedRight(int row, int column) {
+        return (column < getNumberOfPeople() - 1) && getLine(row).isConnected(column);
+    }
+
+    private boolean isConnectedLeft(int row, int column) {
+        return (column >= LEFT_BOUNDARY_CHECK) && getLine(row).isConnected(column - 1);
     }
 
     public Line getLine(int lineNumber) {
@@ -67,7 +71,6 @@ public class Ladder {
 
     public int getNumberOfPeople() {
         return numberOfPeople;
-//        return lines.get(0).getNumberOfPeople();
     }
 
     @Override

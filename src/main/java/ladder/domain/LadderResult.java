@@ -11,11 +11,11 @@ public class LadderResult {
         this.result = result;
     }
 
-    public List<String> match(List<String> items) {
+    public List<String> match(Items items) {
         List<String> ladderResult = new ArrayList<>();
 
         for (int index : result) {
-            ladderResult.add(items.get(index));
+            ladderResult.add(items.getItemName(index));
         }
 
         return ladderResult;

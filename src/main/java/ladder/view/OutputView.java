@@ -1,7 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
+import ladder.domain.*;
 
 import java.util.List;
 
@@ -11,11 +10,11 @@ public class OutputView {
     private static final String LADDER_LEG = "|";
     private static final String ALL_PARTICIPANTS = "all";
 
-    public static void printNames(List<String> names) {
+    public static void printNames(Players players) {
         System.out.println("실행 결과\n");
 
-        for (String name : names) {
-            System.out.printf("%6s", name);
+        for (Player player : players.getPlayers()) {
+            System.out.printf("%6s", player.getName());
         }
 
         System.out.println();
@@ -54,28 +53,28 @@ public class OutputView {
         }
     }
 
-    public static void printItems(List<String> items) {
-        for (String item : items) {
+    public static void printItems(Items items) {
+        for (String item : items.getItems()) {
             System.out.printf("%6s", item);
         }
 
         System.out.println();
     }
 
-    public static void printResult(List<String> names, List<String> result, String participant) {
+    public static void printResult(Players players, List<String> result, String participant) {
         System.out.println("실행 결과");
         if (participant.equals(ALL_PARTICIPANTS)) {
-            printTotalResult(names, result);
+            printTotalResult(players, result);
 
             return;
         }
 
-        System.out.println(participant + " : " + result.get(names.indexOf(participant)));
+        System.out.println(participant + " : " + result.get(players.getIndex(participant)));
     }
 
-    private static void printTotalResult(List<String> names, List<String> result) {
-        for (int i = 0; i < names.size(); i++) {
-            System.out.println(names.get(i) + " : " + result.get(i));
+    private static void printTotalResult(Players players, List<String> result) {
+        for (int i = 0; i < players.getNumberOfPlayers(); i++) {
+            System.out.println(players.getPlayers().get(i).getName() + " : " + result.get(i));
         }
     }
 }

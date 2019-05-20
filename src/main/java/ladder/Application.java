@@ -10,14 +10,14 @@ public class Application {
     private static final String ALL_PARTICIPANT = "all";
 
     public static void main(String[] args) {
-        List<String> names = InputView.inputNames();
-        List<String> items = InputView.inputItems(names.size());
+        Players players = InputView.inputNames();
+        Items items = InputView.inputItems(players.getNumberOfPlayers());
         LadderHeight height = InputView.inputHeight();
 
         LadderBuilder ladderBuilder = new LadderBuilder();
-        Ladder ladder = ladderBuilder.build(height, names.size(), new RandomValueBuildStrategy());
+        Ladder ladder = ladderBuilder.build(height, players.getNumberOfPlayers(), new RandomValueBuildStrategy());
 
-        printLadder(names, items, ladder);
+        printLadder(players, ladder, items);
 
         LadderResult ladderResult = ladder.play();
         List<String> result = ladderResult.match(items);
@@ -25,13 +25,13 @@ public class Application {
         String participant;
 
         do {
-            participant = InputView.inputParticipant(names);
-            OutputView.printResult(names, result, participant);
+            participant = InputView.inputParticipant(players);
+            OutputView.printResult(players, result, participant);
         } while (!participant.equals(ALL_PARTICIPANT));
     }
 
-    private static void printLadder(List<String> names, List<String> items, Ladder ladder) {
-        OutputView.printNames(names);
+    private static void printLadder(Players players, Ladder ladder, Items items) {
+        OutputView.printNames(players);
         OutputView.printLadder(ladder);
         OutputView.printItems(items);
     }
