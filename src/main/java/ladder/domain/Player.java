@@ -38,11 +38,12 @@ public class Player {
         return this.name.equals(name);
     }
 
-    public String getName() {
+    public PlayerName getName() {
         return name;
     }
 
     public int getPosition() {
         return position;
     }
+
 }

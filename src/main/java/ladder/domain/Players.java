@@ -11,4 +11,12 @@ public class Players {
             players.add(new Player(names.get(position), position));
         }
     }
+
+    public int getPlayerNum() {
+        return players.size();
+    }
+
+    public static List<Player> getPlayers() {
+        return players;
+    }
 }

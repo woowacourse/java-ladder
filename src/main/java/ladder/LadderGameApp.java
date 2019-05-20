@@ -1,27 +1,30 @@
 package ladder;
 
-import ladder.domain.LadderGameBoard;
-import ladder.domain.Player;
+import ladder.domain.*;
+import ladder.view.InputView;
 import ladder.view.OutputView;
-
-import java.util.List;
 
 public class LadderGameApp {
     public static void main(String[] args) {
-        LadderGameBoard board = LadderGame.generateGameBoard();
-        OutputView.printLadderGameBoard(board);
+        Players players = new Players(InputView.getNames());
+        Results results = InputView.getResult(players.getPlayerNum());
+        Ladder ladder = InputView.createLadder(players.getPlayerNum());
 
-        LadderGame.executeLadderGame();
+        OutputView.printLadderGameBoard(players, results, ladder);
+
+        LadderGame game = new LadderGame(ladder);
+        game.movePlayers(players);
+
+        LadderGameResult gameResult = new LadderGameResult(players, results);
 
         String inputName;
-        List<Player> foundPlayers;
 
         do {
-            inputName = LadderGame.getNameForLookup();
-            foundPlayers = LadderGame.lookUpResult(inputName);
-            OutputView.printResult(foundPlayers);
-        } while (!"종료".equals(inputName));
+            inputName = InputView.inputNameForResult();
+            OutputView.printGameResult(inputName, gameResult);
+        } while (!"all".equals(inputName));
 
+        OutputView.printAllGameResults(gameResult);
         OutputView.printEnd();
     }
 }

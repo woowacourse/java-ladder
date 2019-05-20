@@ -1,35 +1,44 @@
 package ladder.view;
 
-import ladder.LadderGame;
-import ladder.domain.LadderGameBoard;
-import ladder.domain.Player;
-import ladder.domain.UserOutput;
+import ladder.domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
-    public static void printLadderGameBoard(LadderGameBoard board) {
-        printLadderValues(board.getNames());
-        System.out.println(board.getLadder());
-        printLadderValues(board.getResults());
+    public static void printLadderGameBoard(Players players, Results results, Ladder ladder) {
+        printPlayers(players.getPlayers());
+        System.out.println(ladder);
+        printResult(results.getResults());
     }
 
-    private static void printLadderValues(List<String> values) {
-        for (String value : values) {
-            System.out.printf("%-6s", value);
+    private static void printPlayers(List<Player> players) {
+        for (Player player : players) {
+            System.out.printf("%-6s", player.getName());
         }
         System.out.println();
     }
 
-    public static void printResult(List<Player> players) {
+    private static void printResult(List<Result> results) {
+        for (Result result : results) {
+            System.out.printf("%-6s", result);
+        }
+        System.out.println();
+    }
+
+    public static void printGameResult(String input, LadderGameResult gameResult) {
+        System.out.println(UserOutput.PRINT_RESULT_INDEX.getOutputMessage());
+        PlayerName name = new PlayerName(input);
+        System.out.println(gameResult.getGameResult().get(name));
+    }
+
+    public static void printAllGameResults(LadderGameResult gameResult) {
         System.out.println(UserOutput.PRINT_RESULT_INDEX.getOutputMessage());
 
-        for (Player player : players) {
-            String result = LadderGame.getResults().get(player.getPosition());
-            System.out.println(player.getName() + " : " + result);
+        Map<PlayerName, Result> result = gameResult.getGameResult();
+        for (PlayerName name : result.keySet()) {
+            System.out.println(name + " : " + result.get(name));
         }
-
-        System.out.println(UserOutput.PRINT_GUIDE_FOR_END.getOutputMessage());
     }
 
     public static void printEnd() {
