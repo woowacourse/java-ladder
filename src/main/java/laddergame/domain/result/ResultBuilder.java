@@ -18,7 +18,7 @@ public class ResultBuilder {
     public Results buildResults() {
         inputValidator.validateInput(result);
 
-        List<Result> results =  Arrays.asList(result.split(Constant.COMMA)).stream()
+        List<Result> results =  Arrays.stream(result.split(Constant.COMMA))
                 .map(Result::new)
                 .collect(Collectors.toList());
 

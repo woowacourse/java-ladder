@@ -18,7 +18,7 @@ public class PlayerBuilder {
 
     public Players buildPlayers() {
         inputValidator.validateInput(names);
-        List<Player> players = Arrays.asList(names.split(Constant.COMMA)).stream()
+        List<Player> players = Arrays.stream(names.split(Constant.COMMA))
                 .map(String::trim)
                 .map(Player::new)
                 .collect(Collectors.toList());
