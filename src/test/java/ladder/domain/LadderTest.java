@@ -29,8 +29,15 @@ public class LadderTest {
 
     @Test
     void 사다리_게임_진행() {
-        List<Boolean> line1 = Arrays.asList(false, true);
-        List<Boolean> line2 = Arrays.asList(true, false);
+        List<Direction> line1 = Arrays.asList(
+                new Direction(false, false),
+                new Direction(false, true),
+                new Direction(true, false));
+
+        List<Direction> line2 = Arrays.asList(
+                new Direction(false, true),
+                new Direction(true, false),
+                new Direction(false, false));
 
         List<Line> lines = Arrays.asList(new Line(line1.size(), () -> line1), new Line(line2.size(), () -> line2));
 

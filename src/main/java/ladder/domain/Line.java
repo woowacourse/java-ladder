@@ -1,7 +1,7 @@
 package ladder.domain;
 
-import ladder.domain.generator.SubLineGenerator;
-import ladder.domain.generator.SubLineRandomGenerator;
+import ladder.domain.generator.DirectionGenerator;
+import ladder.domain.generator.DirectionRandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,16 +10,15 @@ import java.util.Objects;
 public final class Line {
     private static final int MIN_PLAYER = 2;
 
-    private final List<Boolean> subLines;
+    private final List<Direction> directions;
 
     public Line(final int countOfPerson) {
-        this(countOfPerson, new SubLineRandomGenerator(countOfPerson));
+        this(countOfPerson, new DirectionRandomGenerator(countOfPerson));
     }
 
-    public Line(final int countOfPerson, SubLineGenerator subLineGenerator) {
+    public Line(final int countOfPerson, DirectionGenerator directionGenerator) {
         validateSize(countOfPerson);
-        this.subLines = new ArrayList<>(subLineGenerator.generate());
-        validateDuplication(subLines);
+        this.directions = new ArrayList<>(directionGenerator.generate());
     }
 
     private void validateSize(int countOfPerson) {
@@ -28,39 +27,13 @@ public final class Line {
         }
     }
 
-    private void validateDuplication(List<Boolean> subLines) {
-        for (int i = 1; i < subLines.size(); i++) {
-            validateDuplication(subLines.get(i), subLines.get(i - 1));
-        }
-    }
-
-    private void validateDuplication(boolean first, boolean second) {
-        if (first && second) {
-            throw new IllegalArgumentException("Line.class validate Duplication Error");
-        }
-    }
-
     public int move(int index) {
-        if (isLeft(index)) {
-            return -1;
-        }
-        if (isRight(index)) {
-            return 1;
-        }
-        return 0;
+        Direction direction = directions.get(index);
+        return direction.move();
     }
 
-    private boolean isLeft(int index) {
-        return index > 0 && subLines.get(index - 1);
-    }
-
-    private boolean isRight(int index) {
-        return index < subLines.size() && subLines.get(index);
-    }
-
-
-    public List<Boolean> getSubLines() {
-        return subLines;
+    public List<Direction> getDirections() {
+        return directions;
     }
 
     @Override
@@ -68,11 +41,11 @@ public final class Line {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Line line = (Line) o;
-        return Objects.equals(subLines, line.subLines);
+        return Objects.equals(directions, line.directions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(subLines);
+        return Objects.hash(directions);
     }
 }
