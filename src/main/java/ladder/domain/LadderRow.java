@@ -42,7 +42,7 @@ public class LadderRow {
             this.width -= draw(false);
             return;
         }
-        this.width -= draw(getRandomFlag());
+        this.width -= draw(LadderRules.DRAW.canDraw(generator.generate()));
     }
 
     private int draw(boolean isDraw) {
@@ -53,10 +53,6 @@ public class LadderRow {
         }
         row.add(LadderRules.SKIP.number());
         return LadderRules.DRAW_SKIP.number();
-    }
-
-    private boolean getRandomFlag() {
-        return generator.generate() == LadderRules.RANDOM_DRAW.number();
     }
 
     public List<Integer> status() {
