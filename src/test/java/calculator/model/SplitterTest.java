@@ -47,7 +47,7 @@ class SplitterTest {
 
     @Test
     void 커스텀_구분자_추출() {
-        assertThat(new Splitter("//;\n1;2;3").getDelimiter()).isEqualTo(";");
+        assertThat(new Splitter("//;\\n1;2;3").getDelimiter()).isEqualTo(";");
     }
     
     @Test

@@ -17,14 +17,14 @@ import java.util.regex.Pattern;
  * @version 1.0 2019년 05년 16일
  * @author 김효건
  */
-public class Splitter {
-    /*(입력 구분기) 주어진 입력에 대해 구분자와, 식을 추출하는 클래스*/
-    private static final String DEFAULT_DELIMITER = ":|,";
-    private static final String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
-    private static final String EMPTY_EXPRESSION = "0";
+    public class Splitter {
+        /*(입력 구분기) 주어진 입력에 대해 구분자와, 식을 추출하는 클래스*/
+        private static final String DEFAULT_DELIMITER = ":|,";
+        private static final String CUSTOM_DELIMITER_REGEX = "//(.)\\\\n(.*)";
+        private static final String EMPTY_EXPRESSION = "0";
 
-    private String delimiter = DEFAULT_DELIMITER;
-    private String expression;
+        private String delimiter = DEFAULT_DELIMITER;
+        private String expression;
 
     public Splitter(String input) {
         this.expression = input;
