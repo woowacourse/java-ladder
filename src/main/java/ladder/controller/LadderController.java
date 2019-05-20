@@ -1,6 +1,12 @@
 package ladder.controller;
 
-import ladder.domain.*;
+import ladder.domain.ladder.Height;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.laddergame.LadderGame;
+import ladder.domain.laddergame.LadderGameResult;
+import ladder.domain.linegenerator.impl.RandomLineGenerator;
+import ladder.domain.player.Players;
+import ladder.domain.reward.Rewards;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -13,7 +19,7 @@ public class LadderController {
         Height height = new Height(InputView.inputHeight());
         Rewards rewards = new Rewards(splitComponent(InputView.inputRewards()));
 
-        Ladder ladder = new Ladder(players.size(), height);
+        Ladder ladder = new Ladder(new RandomLineGenerator(players.size()), height);
         LadderGame ladderGame = new LadderGame(ladder);
         LadderGameResult ladderGameResult = ladderGame.play(players, rewards);
 

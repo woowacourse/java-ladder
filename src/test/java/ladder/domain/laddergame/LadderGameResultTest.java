@@ -1,5 +1,7 @@
-package ladder.domain;
+package ladder.domain.laddergame;
 
+import ladder.domain.player.Player;
+import ladder.domain.reward.Reward;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

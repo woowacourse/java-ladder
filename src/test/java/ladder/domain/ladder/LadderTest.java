@@ -1,5 +1,8 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
+import ladder.domain.ladder.Height;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

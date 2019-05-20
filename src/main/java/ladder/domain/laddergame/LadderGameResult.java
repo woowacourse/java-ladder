@@ -1,4 +1,7 @@
-package ladder.domain;
+package ladder.domain.laddergame;
+
+import ladder.domain.player.Player;
+import ladder.domain.reward.Reward;
 
 import java.util.Map;
 import java.util.Set;

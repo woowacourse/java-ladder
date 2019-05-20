@@ -1,4 +1,7 @@
-package ladder.domain;
+package ladder.domain.ladder;
+
+import ladder.domain.linegenerator.LineGenerator;
+import ladder.domain.linegenerator.impl.RandomLineGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,14 +10,14 @@ import java.util.List;
 public class Ladder {
     private List<Line> lines;
 
-    public Ladder(int numberOfPlayers, int height) {
+    public Ladder(LineGenerator lineGenerator, Height height) {
         lines = new ArrayList<>();
-        addLines(numberOfPlayers, height);
+        addLines(lineGenerator, height);
     }
 
-    private void addLines(int numberOfPlayers, int height) {
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(numberOfPlayers));
+    private void addLines(LineGenerator lineGenerator, Height height) {
+        for (int i = 0; i < height.getHeight(); i++) {
+            lines.add(lineGenerator.generateLine());
         }
     }
 

@@ -1,5 +1,10 @@
-package ladder.domain;
+package ladder.domain.laddergame;
 
+import ladder.domain.ladder.Height;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.laddergame.LadderGame;
+import ladder.domain.player.Players;
+import ladder.domain.reward.Rewards;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

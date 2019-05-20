@@ -1,6 +1,6 @@
 package ladder.utils;
 
-import ladder.domain.Player;
+import ladder.domain.player.Player;
 
 import java.util.Arrays;
 import java.util.Set;

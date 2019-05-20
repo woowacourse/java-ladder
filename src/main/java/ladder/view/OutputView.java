@@ -1,6 +1,12 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.ladder.Direction;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
+import ladder.domain.laddergame.LadderGameResult;
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
+import ladder.domain.reward.Rewards;
 
 import java.util.stream.Collectors;
 

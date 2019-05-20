@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Player;
+import ladder.domain.player.Player;
 import ladder.utils.InputValidator;
 
 import java.util.Scanner;

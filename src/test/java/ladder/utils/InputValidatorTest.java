@@ -1,6 +1,6 @@
 package ladder.utils;
 
-import ladder.domain.Player;
+import ladder.domain.player.Player;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
