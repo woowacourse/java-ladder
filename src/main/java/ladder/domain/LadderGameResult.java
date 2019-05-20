@@ -8,11 +8,9 @@ import java.util.stream.Collectors;
 
 public class LadderGameResult {
     private Map<Participant, Reward> ladderGameResult;
-    private boolean isEnd;
 
     public LadderGameResult(Map<Participant, Reward> ladderGameResult) {
         this.ladderGameResult = Collections.unmodifiableMap(ladderGameResult);
-        isEnd =  false;
     }
 
     private Participant findParticipant(String name) {
@@ -30,21 +28,16 @@ public class LadderGameResult {
         names = checkInput(names);
         LinkedHashMap<String, String> gameResult = new LinkedHashMap<>();
         names.forEach(name -> gameResult.put(name, this.ladderGameResult.get(findParticipant(name)).toString()));
-        return gameResult;
+        return Collections.unmodifiableMap(gameResult);
     }
 
     private List<String> checkInput(List<String> names) {
         if (names.size() == 1 && names.get(0).toLowerCase().equals("all")) {
-            isEnd = true;
             return ladderGameResult.keySet().stream()
                     .map(x -> x.toString())
                     .collect(Collectors.toList());
         }
         return names;
-    }
-
-    public boolean isEnd() {
-        return isEnd;
     }
 
     @Override

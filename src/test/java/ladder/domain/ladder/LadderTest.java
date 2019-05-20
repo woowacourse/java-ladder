@@ -28,6 +28,13 @@ class LadderTest {
     }
 
     @Test
+    void 사다리생성오류() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Ladder(null);
+        });
+    }
+
+    @Test
     void 라인너비주입확인() {
         for (Line line : ladder.getLines()) {
             assertThat(line.getPointDTO().size()).isEqualTo(countPerson);

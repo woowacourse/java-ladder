@@ -15,6 +15,9 @@ public class Ladder {
     }
 
     private void validateLadder(List<Line> lines) {
+        if (lines == null) {
+            throw new IllegalArgumentException("사다리 생성이 불가합니다.");
+        }
         if (lines.size() < MIN_LADDER_HEIGHT) {
             throw new IllegalArgumentException("사다리 높이는 " + MIN_LADDER_HEIGHT + " 이상입니다.");
         }
@@ -33,7 +36,7 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 
     @Override

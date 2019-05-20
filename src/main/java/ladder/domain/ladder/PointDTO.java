@@ -9,7 +9,7 @@ public class PointDTO {
         this.haveRight = haveRight;
     }
 
-    PointDTO(LadderGameResult point) {
+    PointDTO(Point point) {
         this(point.isRightDirection());
     }
 

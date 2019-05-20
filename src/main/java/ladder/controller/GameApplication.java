@@ -8,6 +8,8 @@ import ladder.domain.participant.ParticipantGroup;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.List;
+
 public class GameApplication {
     public static void main(String[] args) {
         ParticipantGroup participants = createParticipantGroup();
@@ -18,9 +20,12 @@ public class GameApplication {
 
         MatchingResult matchingResult = ladderGame.play();
         LadderGameResult ladderGameResult = matchingResult.map(participants, rewards);
-        while (!ladderGameResult.isEnd()) {
-            OutputView.printGameResult(ladderGameResult);
-        }
+
+        List<String> names;
+        do {
+            names = InputView.inputResultNames();
+            OutputView.printGameResult(ladderGameResult, names);
+        } while (!(names.size() == 1 && names.get(0).toLowerCase().equals("all")));
     }
 
     private static ParticipantGroup createParticipantGroup() {

@@ -53,11 +53,4 @@ class LadderGameResultTest {
         assertThat(ladderGameResult.getResult(Arrays.asList("All"))).isEqualTo(multiResult);
         assertThat(ladderGameResult.getResult(Arrays.asList("aLl"))).isEqualTo(multiResult);
     }
-
-    @Test
-    void All입력시종료() {
-        assertThat(ladderGameResult.isEnd()).isFalse();
-        ladderGameResult.getResult(Arrays.asList("All"));
-        assertThat(ladderGameResult.isEnd()).isTrue();
-    }
 }

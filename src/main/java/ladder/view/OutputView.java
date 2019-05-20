@@ -65,8 +65,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printGameResult(LadderGameResult ladderGameResult) {
-        List<String> names = InputView.inputResultNames();
+    public static void printGameResult(LadderGameResult ladderGameResult, List<String> names) {
         System.out.println("\n실행 결과");
         try {
             ladderGameResult.getResult(names).entrySet().stream()
