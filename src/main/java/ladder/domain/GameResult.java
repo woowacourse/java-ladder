@@ -6,16 +6,19 @@ import java.util.Map;
 
 import ladder.domain.tag.Tag;
 
+/**
+ * 게임 결과와 그와 관련된 로직을 수행하기 위한 클래스
+ */
 public class GameResult implements Iterable<Map.Entry<Tag, Tag>> {
     private static final String GET_ONE_PLAYER_ERROR = "일치하는 플레이어 이름이 없습니다.";
 
     private Map<Tag, Tag> gameResult;
 
-    public GameResult() {
+    GameResult() {
         gameResult = new HashMap<>();
     }
 
-    public void put(Tag name, Tag result) {
+    void put(Tag name, Tag result) {
         gameResult.put(name, result);
     }
 

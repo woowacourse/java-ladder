@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
 /**
- * 현재 위치
+ * 플레이어의 위치와 이동을 위한 클래스
  */
 public class Position {
     private int position;

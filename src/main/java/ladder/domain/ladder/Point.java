@@ -4,11 +4,14 @@ import java.util.Objects;
 
 import ladder.domain.utils.RandomGenerator;
 
+/**
+ * Horizontal 의 한 칸을 나타내는 클래스
+ */
 public class Point {
     private Boolean left;
     private Boolean right;
 
-    Point(Boolean left, Boolean right) {
+    private Point(Boolean left, Boolean right) {
         this.left = left;
         this.right = right;
     }
@@ -21,7 +24,7 @@ public class Point {
         return of(false, RandomGenerator.get());
     }
 
-    Point next(Boolean nextCurrent) {
+    private Point next(Boolean nextCurrent) {
         return of(right, nextCurrent);
     }
 

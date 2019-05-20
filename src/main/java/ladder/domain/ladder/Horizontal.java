@@ -23,10 +23,6 @@ import java.util.List;
  * @version 1.0.0
  */
 public class Horizontal {
-    private static final String HEADER_HORIZONTAL_LINE = "   ";
-    private static final String VERTICAL_LINE = "|";
-    private static final String NEW_LINE = "\n";
-
     private List<Point> horizontal;
 
     public Horizontal(LadderWidth width) {
