@@ -39,14 +39,14 @@ public class RandomLadderGenerator {
         return new Line(points);
     }
 
+    private static Point generateFirstPoint() {
+        return Point.first(RandomBooleanGenerator.generateRandomBoolean());
+    }
+
     private static Point generateNextPoint(Point currentPoint) {
         if (currentPoint.getCurrent()) {
             return currentPoint.next(false);
         }
         return currentPoint.next(RandomBooleanGenerator.generateRandomBoolean());
-    }
-
-    private static Point generateFirstPoint() {
-        return Point.first(RandomBooleanGenerator.generateRandomBoolean());
     }
 }

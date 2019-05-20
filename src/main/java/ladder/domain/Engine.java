@@ -13,8 +13,11 @@ public class Engine {
         this.players = playersBeforeGame;
     }
 
+    /**
+     * 사다리를 타고 내려가 위치가 변화된 플레이어들을 반환하는 메소드
+     */
     public Players playLadderGame() {
-        while(ladder.hasNextLine()) {
+        while (ladder.hasNextLine()) {
             players = players.goDown(ladder.getNextLine());
         }
         ladder.endIteration();

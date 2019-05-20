@@ -21,6 +21,14 @@ public class Player {
         return new Player(name, newPosition);
     }
 
+    public PlayerName getName() {
+        return name;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,13 +49,5 @@ public class Player {
                 "name=" + name +
                 ", position=" + position +
                 '}';
-    }
-
-    public PlayerName getName() {
-        return name;
-    }
-
-    public Position getPosition() {
-        return position;
     }
 }

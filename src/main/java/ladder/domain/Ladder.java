@@ -20,12 +20,16 @@ public class Ladder {
         }
     }
 
+    public boolean hasNextLine() {
+        return index < lines.size();
+    }
+
     public Line getNextLine() {
         return lines.get(index++);
     }
 
-    public boolean hasNextLine() {
-        return index < lines.size();
+    public void endIteration() {
+        this.index = 0;
     }
 
     @Override
@@ -34,9 +38,5 @@ public class Ladder {
                 "lines=" + lines +
                 ", index=" + index +
                 '}';
-    }
-
-    public void endIteration() {
-        this.index = 0;
     }
 }

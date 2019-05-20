@@ -25,7 +25,7 @@ public class InputView {
     private static Players inputToPlayers(List<String> inputNames) {
         Players.NUM_OF_PLAYERS = inputNames.size();
         List<Player> players = new ArrayList<>();
-        for (int i=0; i<inputNames.size(); i++) {
+        for (int i = 0; i < inputNames.size(); i++) {
             players.add(new Player(new PlayerName(inputNames.get(i)), new Position(i))); // exception can be thrown
         }
         return new Players(players);
@@ -37,7 +37,7 @@ public class InputView {
             String userInput = SCANNER.nextLine();
             String[] commaSeparatedUserInput = userInput.split(",");
             return inputToRewards(Arrays.asList(commaSeparatedUserInput));
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return getRewards();
         }

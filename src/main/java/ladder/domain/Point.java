@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.util.RandomBooleanGenerator;
-
 public class Point {
     static final int LEFT = -1;
     static final int STRAIGHT = 0;

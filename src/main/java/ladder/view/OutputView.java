@@ -27,7 +27,7 @@ public class OutputView {
     private static void printLine(Line line) {
         System.out.print("  |");
         List<Point> points = line.getPoints();
-        for (int i=0; i<points.size() - 1; i++) {
+        for (int i = 0; i < points.size() - 1; i++) {
             printPoint(points.get(i));
             System.out.print("|");
         }

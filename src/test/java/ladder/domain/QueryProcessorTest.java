@@ -23,6 +23,7 @@ public class QueryProcessorTest {
                 new Reward("2000")));
         queryProcessor = new QueryProcessor(playersAfterGame, rewards);
     }
+
     @Test
     void rewardQuerySuccessTest() {
         assertThat(queryProcessor.getRewardOf(new PlayerName("pobi"))).isEqualTo(new Reward("꽝"));

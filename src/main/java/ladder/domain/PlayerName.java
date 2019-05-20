@@ -5,8 +5,8 @@ import java.util.Objects;
 import static ladder.util.NotNullValidator.validateNotNull;
 
 public class PlayerName {
-    private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_NAME_LENGTH = 1;
+    private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
 

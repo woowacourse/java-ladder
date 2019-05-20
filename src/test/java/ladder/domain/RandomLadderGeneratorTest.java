@@ -17,7 +17,7 @@ public class RandomLadderGeneratorTest {
         Players.NUM_OF_PLAYERS = 2;
         System.out.println("Test of two players ladder");
         Ladder ladder = RandomLadderGenerator.generate(2, new LadderHeight(2));
-        while(ladder.hasNextLine()) {
+        while (ladder.hasNextLine()) {
             System.out.println(ladder.getNextLine());
         }
     }
@@ -27,7 +27,7 @@ public class RandomLadderGeneratorTest {
         Players.NUM_OF_PLAYERS = 3;
         System.out.println("Test of three players ladder");
         Ladder ladder = RandomLadderGenerator.generate(3, new LadderHeight(2));
-        while(ladder.hasNextLine()) {
+        while (ladder.hasNextLine()) {
             System.out.println(ladder.getNextLine());
         }
     }
