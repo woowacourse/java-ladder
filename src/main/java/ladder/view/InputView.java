@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.LadderHeight;
 import ladder.utils.ValidatorUtils;
 
 import java.util.ArrayList;
@@ -21,12 +22,11 @@ public class InputView {
         }
     }
 
-    public static int inputHeight() {
+    public static LadderHeight inputHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         try {
             int height = Integer.parseInt(SCANNER.nextLine());
-            ValidatorUtils.checkHeight(height);
-            return height;
+            return new LadderHeight(height);
         } catch (IllegalArgumentException e) {
             return inputHeight();
         }

@@ -12,7 +12,7 @@ public class Application {
     public static void main(String[] args) {
         List<String> names = InputView.inputNames();
         List<String> items = InputView.inputItems(names.size());
-        int height = InputView.inputHeight();
+        LadderHeight height = InputView.inputHeight();
 
         LadderBuilder ladderBuilder = new LadderBuilder();
         Ladder ladder = ladderBuilder.build(height, names.size(), new RandomValueBuildStrategy());

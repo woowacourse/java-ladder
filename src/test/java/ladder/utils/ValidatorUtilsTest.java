@@ -34,15 +34,6 @@ public class ValidatorUtilsTest {
     }
 
     @Test
-    public void 입력된_사다리_높이가_자연수가_아닐_때() {
-        int input1 = 0;
-        int input2 = -1;
-
-        assertThatThrownBy(() -> ValidatorUtils.checkHeight(input1)).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> ValidatorUtils.checkHeight(input2)).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     public void 입력된_아이템에_빈칸이_있을_때() {
         List<String> input1 = Arrays.asList(" ,   ".trim().split(","));
         List<String> input2 = Arrays.asList("     ".trim().split(","));

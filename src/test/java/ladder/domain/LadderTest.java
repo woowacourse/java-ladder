@@ -43,7 +43,7 @@ public class LadderTest {
     @Test
     public void play() {
         LadderBuilder ladderBuilder = new LadderBuilder();
-        Ladder ladder = ladderBuilder.build(1, 1, new MockLadderBuildStrategy());
+        Ladder ladder = ladderBuilder.build(new LadderHeight(1), 1, new MockLadderBuildStrategy());
         List<Integer> result = new ArrayList<>();
 
         result.add(0);

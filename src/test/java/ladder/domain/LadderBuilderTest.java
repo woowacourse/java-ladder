@@ -18,6 +18,6 @@ public class LadderBuilderTest {
 
         LadderBuilder ladderBuilder = new LadderBuilder();
 
-        assertThat(ladderBuilder.build(1, 1, new MockLadderBuildStrategy())).isEqualTo(ladder);
+        assertThat(ladderBuilder.build(new LadderHeight(1), 1, new MockLadderBuildStrategy())).isEqualTo(ladder);
     }
 }

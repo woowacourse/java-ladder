@@ -6,20 +6,20 @@ import java.util.List;
 public class LadderBuilder {
     private Ladder ladder;
 
-    public Ladder build(int height, int numberOfPeople, LadderBuildingStrategy strategy) {
+    public Ladder build(LadderHeight height, int numberOfPeople, LadderBuildingStrategy strategy) {
         initLadder(height, numberOfPeople);
 
-        for (int row = 0; row < height; row++) {
+        for (int row = 0; height.isSmallerThanHeight(row); row++) {
             connect(strategy, numberOfPeople, row);
         }
 
         return ladder;
     }
 
-    private void initLadder(int height, int numberOfPeople) {
+    private void initLadder(LadderHeight height, int numberOfPeople) {
         List<Line> lines = new ArrayList<>();
 
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; height.isSmallerThanHeight(i); i++) {
             lines.add(new Line());
         }
 
