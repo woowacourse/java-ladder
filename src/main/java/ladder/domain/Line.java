@@ -30,7 +30,7 @@ public class Line {
 
     private void checkRecordSize(int size) {
         if (size != crossLine.size() + 1){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("레코드의 길이와 사다리 길이가 다릅니다.");
         }
     }
 

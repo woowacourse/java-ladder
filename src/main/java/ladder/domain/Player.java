@@ -20,7 +20,7 @@ class Player {
 
     private void checkBlank(String name) {
         if (name.equals(BLANK)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("플레이어의 이름으로 공백을 넣을 수 없습니다.");
         }
     }
 

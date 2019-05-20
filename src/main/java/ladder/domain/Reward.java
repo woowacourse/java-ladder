@@ -20,7 +20,7 @@ class Reward {
 
     private void checkBlank(String result) {
         if (result.equals(BLANK)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("보상을 명명할 때 공백을 넣을 수 없습니다.");
         }
     }
 
