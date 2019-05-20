@@ -11,7 +11,7 @@ public class InputLadderGoalValidator {
         if (!isMatchPlayersAndGoals(inputs, numOfPlayers)) {
             throw new IllegalArgumentException(MessageCollection.ERROR_MISMATCH_PLAYERS_AND_GOALS);
         }
-        if(isOverlapLadderGoal(inputs)){
+        if (isOverlapLadderGoal(inputs)) {
             throw new IllegalArgumentException(MessageCollection.ERROR_OVERLAP_GOAL_NAME);
         }
     }

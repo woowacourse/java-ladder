@@ -16,8 +16,8 @@ public class LadderGamePlayersTest {
         players.add(new LadderPlayer("blue"));
         players.add(new LadderPlayer("green"));
 
-        assertThat(new LadderGamePlayers(players).getAllPlayerNames().get(0)).isEqualTo("red");
-        assertThat(new LadderGamePlayers(players).getAllPlayerNames().get(1)).isEqualTo("blue");
-        assertThat(new LadderGamePlayers(players).getAllPlayerNames().get(2)).isEqualTo("green");
+        assertThat(new LadderGamePlayers(players).getAllPlayer().get(0).getPlayerName()).isEqualTo("red");
+        assertThat(new LadderGamePlayers(players).getAllPlayer().get(1).getPlayerName()).isEqualTo("blue");
+        assertThat(new LadderGamePlayers(players).getAllPlayer().get(2).getPlayerName()).isEqualTo("green");
     }
 }

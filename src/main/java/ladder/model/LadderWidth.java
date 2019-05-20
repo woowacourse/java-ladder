@@ -39,13 +39,20 @@ public class LadderWidth {
         return !index && new Random().nextBoolean();
     }
 
-    public boolean hasCrossbar(int column) {
-        return crossbars.get(column);
+    public List<LadderPlayer> changePlayer(List<LadderPlayer> players) {
+        for (int i = 0; i < crossbars.size(); i++) {
+            if (crossbars.get(i)) {
+                LadderPlayer temp = players.get(i);
+                players.set(i, players.get(i + 1));
+                players.set(i + 1, temp);
+            }
+        }
+        return players;
     }
 
-    private String createCrossbar(String mark){
+    private String createCrossbar(String mark) {
         StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0 ; i < maxLenOfGoalNames ; i++){
+        for (int i = 0; i < maxLenOfGoalNames; i++) {
             stringBuilder.append(mark);
         }
         return stringBuilder.toString();

@@ -28,7 +28,7 @@ public class InputViewTest {
 
     @Test
     void 사다리_실행_결과가_올바르게_입력되는지_테스트() {
-        List<LadderGoal> expected = InputView.makeLadderGoals("one,two,three".split(","),3);
+        List<LadderGoal> expected = InputView.makeLadderGoals("one,two,three".split(","), 3);
         List<LadderGoal> actual = new ArrayList<>(Arrays.asList(new LadderGoal("one"), new LadderGoal("two"), new LadderGoal("three")));
 
         assertEquals(expected, actual);

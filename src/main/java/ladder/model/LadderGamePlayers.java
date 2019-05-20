@@ -9,20 +9,20 @@ public class LadderGamePlayers {
 
     private List<LadderPlayer> ladderPlayers;
 
-    public LadderGamePlayers(List<LadderPlayer> players) {
-        this.ladderPlayers = players;
+    public LadderGamePlayers(List<LadderPlayer> ladderPlayer) {
+        this.ladderPlayers = ladderPlayer;
     }
 
     public List<String> getAlignedNames(int maxLenOfGoalNames) {
-        return ladderPlayers.stream().map(player -> player.getAlignedName(maxLenOfGoalNames)).collect(Collectors.toList());
+        return ladderPlayers.stream().map(ladderPlayer -> ladderPlayer.getAlignedName(maxLenOfGoalNames)).collect(Collectors.toList());
     }
 
     public int size() {
         return ladderPlayers.size();
     }
 
-    public List<String> getAllPlayerNames() {
-        return ladderPlayers.stream().map(LadderPlayer::getPlayerName).collect(Collectors.toList());
+    public List<LadderPlayer> getAllPlayer() {
+        return ladderPlayers;
     }
 
     public boolean existName(String targetName) {

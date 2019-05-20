@@ -34,8 +34,8 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void showGameResult(String foundGoal){
-        if(foundGoal != null){
+    public static void showGameResult(String foundGoal) {
+        if (foundGoal != null) {
             System.out.println(ENTER + MessageCollection.OUTPUT_RESULT);
             System.out.println(foundGoal);
         }

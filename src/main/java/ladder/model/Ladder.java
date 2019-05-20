@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
-    private List<LadderWidth> lines = new ArrayList<>();
+    private List<LadderWidth> lines;
 
     // test 코드
     public Ladder(List<LadderWidth> lines) {
@@ -14,17 +14,22 @@ public class Ladder {
     }
 
     public Ladder(LadderGamePlayers players, int height, int maxLenOfGoalNames) {
+        this.lines = new ArrayList<>();
+        this.lines = makeLadder(players, height, maxLenOfGoalNames);
+    }
+
+    private List<LadderWidth> makeLadder(LadderGamePlayers players, int height, int maxLenOfGoalNames) {
         for (int i = 0; i < height; i++) {
             lines.add(new LadderWidth(players.size() - 1, maxLenOfGoalNames));
         }
+        return lines;
     }
 
-    public boolean hasCrossbar(int column, int row) {
-        return lines.get(row).hasCrossbar(column);
-    }
-
-    public int size() {
-        return lines.size();
+    public List<LadderPlayer> changePlayer(List<LadderPlayer> players) {
+        for (int i = 0; i < lines.size(); i++) {
+            players = lines.get(i).changePlayer(players);
+        }
+        return players;
     }
 
     @Override

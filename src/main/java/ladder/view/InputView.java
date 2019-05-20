@@ -39,10 +39,10 @@ public class InputView {
     }
 
     public static int makeLadderHeight(String input) {
-        try{
+        try {
             InputLadderHeightValidator.checkLadderHeightInputAccuracy(input);
             return Integer.parseInt(input.trim());
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return makeLadderHeight();
         }
@@ -55,17 +55,17 @@ public class InputView {
     }
 
     public static List<LadderGoal> makeLadderGoals(String[] inputs, int numOfPlayers) {
-        try{
+        try {
             InputLadderGoalValidator.checkLadderGoalInputAccuracy(inputs, numOfPlayers);
             return Arrays.stream(inputs).map(String::trim).map(LadderGoal::new).collect(Collectors.toList());
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return makeLadderGoals(numOfPlayers);
         }
 
     }
 
-    public static String findName(){
+    public static String findName() {
         System.out.println(ENTER + MessageCollection.INPUT_FIND_NAME);
         return scanner.nextLine();
     }

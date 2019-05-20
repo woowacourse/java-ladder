@@ -29,10 +29,10 @@ public class LadderGameResultTest {
         goals.add(new LadderGoal("four"));
 
         List<LadderWidth> ladders = new ArrayList<>();
-        ladders.add(new LadderWidth(new ArrayList<>(Arrays.asList(true,false,true))));
-        ladders.add(new LadderWidth(new ArrayList<>(Arrays.asList(false,false,true))));
-        ladders.add(new LadderWidth(new ArrayList<>(Arrays.asList(true,false,false))));
-        ladders.add(new LadderWidth(new ArrayList<>(Arrays.asList(false,true,false))));
+        ladders.add(new LadderWidth(new ArrayList<>(Arrays.asList(true, false, true))));
+        ladders.add(new LadderWidth(new ArrayList<>(Arrays.asList(false, false, true))));
+        ladders.add(new LadderWidth(new ArrayList<>(Arrays.asList(true, false, false))));
+        ladders.add(new LadderWidth(new ArrayList<>(Arrays.asList(false, true, false))));
 
         Ladder ladder = new Ladder(ladders);
 
@@ -49,7 +49,7 @@ public class LadderGameResultTest {
 
     @Test
     void all을_입력받으면_전체_결과_출력_테스트() {
-        assertThat(ladderGameResult.toString()).isEqualTo("red : one\nblue : three\ngreen : two\nblack : four\n");
+        assertThat(ladderGameResult.toString()).isEqualTo("red : one\ngreen : two\nblue : three\nblack : four\n");
     }
 
     @AfterEach

@@ -24,8 +24,8 @@ class LadderGameGoalsTest {
         goals.add(new LadderGoal("two"));
         goals.add(new LadderGoal("three"));
 
-        assertThat(new LadderGameGoals(goals).getAllGoalNames().get(0)).isEqualTo("one");
-        assertThat(new LadderGameGoals(goals).getAllGoalNames().get(1)).isEqualTo("two");
-        assertThat(new LadderGameGoals(goals).getAllGoalNames().get(2)).isEqualTo("three");
+        assertThat(new LadderGameGoals(goals).getAllGoalNames().get(0).getGoalName()).isEqualTo("one");
+        assertThat(new LadderGameGoals(goals).getAllGoalNames().get(1).getGoalName()).isEqualTo("two");
+        assertThat(new LadderGameGoals(goals).getAllGoalNames().get(2).getGoalName()).isEqualTo("three");
     }
 }

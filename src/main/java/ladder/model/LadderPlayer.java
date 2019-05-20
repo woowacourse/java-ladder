@@ -28,6 +28,7 @@ public class LadderPlayer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderPlayer that = (LadderPlayer) o;
+
         return Objects.equals(name, that.name);
     }
 

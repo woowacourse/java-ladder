@@ -4,6 +4,7 @@ import ladder.model.Ladder;
 import ladder.model.LadderGameGoals;
 import ladder.model.LadderGamePlayers;
 import ladder.model.LadderGameResult;
+import ladder.validator.LadderGameResultValidator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -41,7 +42,7 @@ public class LadderGameController {
 
     private String matchGameResult(LadderGameResult ladderGameResult, String foundName) {
         try {
-            return ladderGameResult.match(foundName);
+            return LadderGameResultValidator.checMatchPlayerAndGoal(ladderGameResult.match(foundName));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return null;
