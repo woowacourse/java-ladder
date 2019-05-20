@@ -11,10 +11,14 @@ class GameResultTest {
     @BeforeEach
     void setUp() {
         gameResult = new GameResult();
-        Player testPlayer = new Player("aaa");
-        Reward testDrawResult = new Reward("5000");
-        gameResult.addGameResult(testPlayer, testDrawResult);
-        gameResult.addGameResult(new Player("aa"), new Reward("100"));
+        Player testPlayer1 = new Player("pobi");
+        Player testPlayer2 = new Player("crong");
+        Player testPlayer3 = new Player("zino");
+        Reward testDrawResult1 = new Reward("5000");
+        Reward testDrawResult2 = new Reward("100");
+        Reward testDrawResult3 = new Reward("꽝");
+        gameResult.addGameResult(testPlayer1, testDrawResult1);
+        gameResult.addGameResult(testPlayer2, testDrawResult2);
     }
 
     @Test
