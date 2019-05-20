@@ -1,13 +1,13 @@
 package ladder.domain;
 
 public class LadderLine {
-    private final LadderRules direction;
+    private final Direction direction;
 
-    public LadderLine(LadderRules ladderRules) {
-        this.direction = ladderRules;
+    public LadderLine(Direction direction) {
+        this.direction = direction;
     }
 
-    public LadderRules direction() {
+    public Direction direction() {
         return direction;
     }
 

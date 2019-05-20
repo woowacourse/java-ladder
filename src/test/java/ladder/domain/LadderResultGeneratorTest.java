@@ -4,7 +4,9 @@ package ladder.domain;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,8 +15,16 @@ public class LadderResultGeneratorTest {
 
     @Before
     public void setUp() throws Exception {
-        RandomGenerator randomGenerator = new RandomGenerator(Arrays.asList(1, 1, 0, 0, 0, 0, 0, 0));
-        ladder = new Ladder().make(randomGenerator, 5, 2);
+        List<LadderRow> rows = new ArrayList<>();
+
+        rows.add(LadderRowGenerator.row(Arrays.asList(LadderLineTest.line(1),
+                LadderLineTest.line(-1), LadderLineTest.line(1), LadderLineTest.line(-1),
+                LadderLineTest.line(0))));
+
+        rows.add(LadderRowGenerator.row(Arrays.asList(LadderLineTest.line(0),
+                LadderLineTest.line(0), LadderLineTest.line(0),
+                LadderLineTest.line(0), LadderLineTest.line(0))));
+        ladder = new Ladder(rows);
     }
 
     @Test

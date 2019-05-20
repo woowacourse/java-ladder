@@ -8,13 +8,13 @@ public class LadderLineTest {
 
     public static LadderLine line(int position) {
         if (position == 1) {
-            return new LadderLine(LadderRules.RIGHT);
+            return new LadderLine(Direction.RIGHT);
         }
         if (position == 0) {
-            return new LadderLine(LadderRules.SKIP);
+            return new LadderLine(Direction.SKIP);
         }
         if (position == -1) {
-            return new LadderLine(LadderRules.LEFT);
+            return new LadderLine(Direction.LEFT);
         }
         throw new IllegalArgumentException();
     }
@@ -23,13 +23,13 @@ public class LadderLineTest {
     @Test
     public void 라인_생성() {
         LadderLine ladderLine = line(1);
-        assertEquals(LadderRules.RIGHT, ladderLine.direction());
+        assertEquals(Direction.RIGHT, ladderLine.direction());
     }
 
     @Test
     public void 라인_생성2() {
         LadderLine ladderLine = line(1);
-        assertEquals(LadderRules.RIGHT.number(), ladderLine.position());
+        assertEquals(Direction.RIGHT.number(), ladderLine.position());
     }
 
 

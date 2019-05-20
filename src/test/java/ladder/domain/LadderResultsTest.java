@@ -3,7 +3,9 @@ package ladder.domain;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,8 +16,17 @@ public class LadderResultsTest {
     public void setUp() throws Exception {
         Players players = new Players("a,b,c,d,e");
         LadderRewards rewards = new LadderRewards("1,2,3,4,5", 5);
-        RandomGenerator randomGenerator = new RandomGenerator(Arrays.asList(1, 1, 0, 1, 1));
-        Ladder ladder = new Ladder().make(randomGenerator, 5, 2);
+        List<LadderRow> rows = new ArrayList<>();
+
+        rows.add(LadderRowGenerator.row(Arrays.asList(LadderLineTest.line(1),
+                LadderLineTest.line(-1), LadderLineTest.line(1), LadderLineTest.line(-1),
+                LadderLineTest.line(0))));
+
+        rows.add(LadderRowGenerator.row(Arrays.asList(LadderLineTest.line(0),
+                LadderLineTest.line(1), LadderLineTest.line(-1),
+                LadderLineTest.line(1), LadderLineTest.line(-1))));
+        Ladder ladder = new Ladder(rows);
+
         ladderResults = LadderResultGenerator.result(ladder, players, rewards);
     }
 
@@ -26,11 +37,11 @@ public class LadderResultsTest {
 
     @Test
     public void 결과_확인2() {
-        assertEquals("a : 3\n", ladderResults.result("a"));
+        assertEquals("3", ladderResults.result("a"));
     }
 
     @Test
     public void 결과_확인3() {
-        assertEquals("b : 1\n", ladderResults.result("b"));
+        assertEquals("1", ladderResults.result("b"));
     }
 }

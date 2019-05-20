@@ -44,7 +44,7 @@ public class OutputView {
     }
 
     private String mark(LadderLine line) {
-        if (line.direction() == LadderRules.RIGHT) {
+        if (line.direction() == Direction.RIGHT) {
             return "-----";
         }
         return "     ";

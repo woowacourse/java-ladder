@@ -14,11 +14,15 @@ public class Ladder {
         rows = new ArrayList<>();
     }
 
+    public Ladder(List<LadderRow> rows) {
+        this.rows = rows;
+    }
+
     public Ladder init(int width, String inputHeight) {
         int height;
         try {
             height = Integer.parseInt(inputHeight);
-            make(width, height);
+            random(width, height);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ConsoleMessages.ERR_NUMBER_FORMAT.message());
         }
@@ -31,13 +35,14 @@ public class Ladder {
         }
     }
 
-    private void make(int width, int height) {
+    private void random(int width, int height) {
         valid(width, height);
-        RandomGenerator randomGenerator = new RandomGenerator();
-        make(randomGenerator, width, height);
+        for (int i = 0; i < height; i++) {
+            rows.add(LadderRowGenerator.row(width));
+        }
     }
 
-    LadderRow rows(int index) {
+    public LadderRow rows(int index) {
         try {
             return rows.get(index);
         } catch (IndexOutOfBoundsException e) {
@@ -47,13 +52,5 @@ public class Ladder {
 
     public List<LadderRow> rows() {
         return rows;
-    }
-
-    public Ladder make(RandomGenerator randomGenerator, int width, int height) {
-        valid(width, height);
-        for (int i = 0; i < height; i++) {
-            rows.add(new LadderRow().manual(width, randomGenerator));
-        }
-        return this;
     }
 }
