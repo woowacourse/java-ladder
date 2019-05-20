@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Game {
-    public static String NIL = "꽝";
+    private static String NIL = "꽝";
 
     private final List<Player> players;
     private final Ladder ladder;
@@ -28,8 +28,8 @@ public class Game {
 
     public Game(List<Player> players, int height) {
         this(
-            players.stream().map(x -> x.getName()).collect(Collectors.toList()),
-            players.stream().map(x -> x.getReward()).collect(Collectors.toList()),
+            players.stream().map(Player::getName).collect(Collectors.toList()),
+            players.stream().map(Player::getReward).collect(Collectors.toList()),
             height
         );
     }

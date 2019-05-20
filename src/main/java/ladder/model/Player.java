@@ -1,8 +1,8 @@
 package ladder.model;
 
 public class Player {
-    static final int NAME_MIN_LENGTH = 1;
-    static final int NAME_MAX_LENGTH = 5;
+    private static final int NAME_MIN_LENGTH = 1;
+    private static final int NAME_MAX_LENGTH = 5;
 
     private final String name;
     private String reward;

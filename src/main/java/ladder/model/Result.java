@@ -10,9 +10,13 @@ public class Result implements Iterator {
     private int index = 0;
 
     Result(List<Player> players, Ladder ladder, List<String> query) {
-        result = Collections.unmodifiableList(ladder.apply(players).stream()
-            .filter(x -> query.contains("all") || query.contains(x.getName()))
-            .collect(Collectors.toList()));
+        result = Collections.unmodifiableList(
+                ladder
+                .apply(players)
+                .stream()
+                .filter(x -> query.contains("all") || query.contains(x.getName()))
+                .collect(Collectors.toList())
+        );
     }
     public boolean hasNext() {
         return index < result.size();
