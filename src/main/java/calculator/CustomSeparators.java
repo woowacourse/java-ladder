@@ -5,7 +5,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class CustomSeparators {
-
     private Set<CustomSeparator> customSeparators;
 
     public CustomSeparators() {

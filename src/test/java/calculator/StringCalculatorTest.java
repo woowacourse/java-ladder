@@ -51,4 +51,9 @@ public class StringCalculatorTest {
         assertThat(stringCalculator.splitBySeparator(temp)).contains(1, 2, 3);
     }
 
+    @Test
+    void 음수(){
+        assertThatThrownBy(() -> stringCalculator.createCustomSeparator("-1:1")).isInstanceOf(RuntimeException.class);
+    }
+
 }

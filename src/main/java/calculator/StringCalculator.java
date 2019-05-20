@@ -8,7 +8,7 @@ public class StringCalculator {
     private static final int SEPARATOR = 1;
     private static final int NO_CUSTOM_SEPARATOR = 1;
 
-    private static final String AFTER_SEPARATOR = "//";
+    private static final String BEFORE_SEPARATOR = "//";
     private static final String ENTER = "\n";
 
     private CustomSeparators customSeparators;
@@ -18,7 +18,7 @@ public class StringCalculator {
     }
 
     public CustomSeparator createCustomSeparator(String input) {
-        String[] unrefinedSeparator = input.split(AFTER_SEPARATOR);
+        String[] unrefinedSeparator = input.split(BEFORE_SEPARATOR);
         isValidSplitInput(unrefinedSeparator.length, SPLIT_BOUNDARY);
         isValidSplitInput(unrefinedSeparator[SEPARATOR].length(), SEPARATOR_LENGTH);
 
@@ -48,7 +48,9 @@ public class StringCalculator {
         }
         String[] separatorAndExpression = splitByEnter(input);
         int[] expression = splitExpression(separatorAndExpression);
-        return sum(expression);
+        return Arrays.stream(expression)
+                .peek(i -> isNegative(i))
+                .sum();
     }
 
     private int[] splitExpression(String[] separatorAndExpression) {
@@ -61,15 +63,6 @@ public class StringCalculator {
 
     private boolean isBlankOrNull(String input) {
         return input == null || input.isEmpty();
-    }
-
-    private int sum(int[] expression) {
-        int sum = 0;
-        for (int number : expression) {
-            isNegative(number);
-            sum += number;
-        }
-        return sum;
     }
 
     private void isNegative(int i) {

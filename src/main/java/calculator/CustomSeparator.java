@@ -4,7 +4,6 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class CustomSeparator {
-
     private final String separator;
 
     public CustomSeparator(final String separator) {
