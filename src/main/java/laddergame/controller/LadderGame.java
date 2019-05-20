@@ -24,7 +24,7 @@ public class LadderGame {
         promptUserForRequest(players, prizes);
     }
 
-    public static Players generatePlayers() {
+    private static Players generatePlayers() {
         try {
             String playersNames = InputView.askPlayersNames();
             return new Players(playersNames);

@@ -44,7 +44,7 @@ public class OutputView {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (Prize prize : prizes.getPrizes()) {
-            stringBuilder.append(String.format("%6s", prize));
+            stringBuilder.append(String.format("%6s", prize.getPrize()));
         }
 
         System.out.println(stringBuilder.toString());

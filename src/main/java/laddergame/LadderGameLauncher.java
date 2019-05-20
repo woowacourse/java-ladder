@@ -9,9 +9,7 @@ public class LadderGameLauncher {
     }
 
     private static void doLadderGame() {
-        //LadderGame game = new LadderGame();
-        //game.play();
-        Players players = LadderGame.generatePlayers();
-
+        LadderGame game = new LadderGame();
+        game.play();
     }
 }

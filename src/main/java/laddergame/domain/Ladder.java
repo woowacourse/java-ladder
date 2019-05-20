@@ -9,12 +9,11 @@ public class Ladder {
     private final int height;
 
     public Ladder(final int width, final String height) {
-        LadderValidator.checkConditionsForLadder(height);
+        checkConditionsForLadder(height);
 
         this.width = width;
         this.height = Integer.parseInt(height);
-
-        ladderInformationAsTrueFalse = generateLadderInformation(this.width, this.height);
+        this.ladderInformationAsTrueFalse = generateLadderInformation(this.width, this.height);
     }
 
     public Ladder(List<Line> lines, int width, int height) {
@@ -23,8 +22,12 @@ public class Ladder {
         this.height = height;
     }
 
-    //테스트용 overloading
-
+    private static void checkConditionsForLadder(String height) {
+        int newHeight = Integer.parseInt(height);
+        if (newHeight < 1) {
+            throw new IllegalArgumentException("사다리의 높이는 최소 1이상이어야 합니다.\n다시 입력해주세요.");
+        }
+    }
 
     private List<Line> generateLadderInformation(int width, int hegiht) {
         List<Line> ladderInformationAsTrueFalse = new ArrayList<>();
