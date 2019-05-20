@@ -29,18 +29,18 @@ public final class Player {
         validateExceptName(name);
     }
 
-    private void validateExceptName(String name) {
-        if (EXCEPT_NAME.contains(name)) {
-            throw new IllegalArgumentException(name + "은 사용될 수 없는 이름입니다.");
-        }
-    }
-
     private void validateNameSize(String name) {
-        if (name.isEmpty()) {
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("이름은 1글자 이상 입력해주세요.");
         }
         if (name.length() > NAME_LENGTH_CONDITION) {
             throw new IllegalArgumentException("이름은 " + NAME_LENGTH_CONDITION + "글자 이하로 입력해주세요.");
+        }
+    }
+
+    private void validateExceptName(String name) {
+        if (EXCEPT_NAME.contains(name)) {
+            throw new IllegalArgumentException(name + "은 사용될 수 없는 이름입니다.");
         }
     }
 
