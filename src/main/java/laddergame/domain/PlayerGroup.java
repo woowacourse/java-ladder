@@ -1,14 +1,13 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class PlayerGroup {
-    private List<Player> players = new ArrayList<>();
+    private final List<Player> players;
 
-    public PlayerGroup(List<Player> names) {
-        this.players = players;
+    public PlayerGroup(final List<Player> names) {
+        this.players = names;
     }
 
     public List<Player> getPlayers() {

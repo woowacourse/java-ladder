@@ -17,7 +17,7 @@ public class PrizesGeneratorTest {
 
     @Test
     void 제대로_prize리스트_반환하는지_테스트() {
-        assertThat(PrizesGenerator.createPrizes("a,b,c", 3)).isEqualTo(Arrays.asList(new Prize("a"), new Prize("b"), new Prize("c")));
+        assertThat(PrizesGenerator.createPrizes("a,b,c", 3)).isEqualTo(new PrizeGroup(Arrays.asList(new Prize("a"), new Prize("b"), new Prize("c"))));
     }
 
     @Test

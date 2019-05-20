@@ -3,10 +3,14 @@ package laddergame.domain;
 import java.util.Objects;
 
 public class Prize {
-    private String prize;
+    private final String prize;
 
-    Prize(String input) {
+    Prize(final String input) {
         this.prize = input;
+    }
+
+    public String getPrize() {
+        return prize;
     }
 
     @Override
@@ -20,10 +24,5 @@ public class Prize {
     @Override
     public int hashCode() {
         return Objects.hash(prize);
-    }
-
-    @Override
-    public String toString() {
-        return prize;
     }
 }

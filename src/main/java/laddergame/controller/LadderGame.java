@@ -10,8 +10,8 @@ public class LadderGame {
     public void play() {
         PlayerGroup players = InputView.askUserNames();
         Ladder ladder = InputView.askHeight(players.getCountOfPlayers());
-        //Ladder ladder = getLines(players.size());
-        /*List<Prize> prizes = getPrizes(players.size());
+        PrizeGroup prizeGroup = InputView.askPrizes(players.getCountOfPlayers());
+        /*
         OutputView.printLadder(players, ladder);
         OutputView.printPrizes(prizes);
 
@@ -39,34 +39,4 @@ public class LadderGame {
             return makeResults(players, prizes);
         }
     }
-
-    private List<Prize> getPrizes(int numOfPlayers) {
-        try {
-            String input = InputView.askPrizes();
-            return PrizesGenerator.createPrizes(input, numOfPlayers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getPrizes(numOfPlayers);
-        }
-    }
-
-    /*private static List<Player> getPlayers() {
-        try {
-            String input = InputView.askUserNames();
-            return PlayersGenerator.createPlayers(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getPlayers();
-        }
-    }*/
-
-    /*private static Ladder getLines(int width) {
-        try {
-            int height = InputView.askHeight();
-            return new Ladder(width, height);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getLines(width);
-        }
-    }*/
 }

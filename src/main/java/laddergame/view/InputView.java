@@ -1,8 +1,6 @@
 package laddergame.view;
 
-import laddergame.domain.Ladder;
-import laddergame.domain.PlayerGroup;
-import laddergame.domain.PlayersGenerator;
+import laddergame.domain.*;
 
 import java.util.Scanner;
 
@@ -31,9 +29,15 @@ public class InputView {
         }
     }
 
-    public static String askPrizes() {
+    public static PrizeGroup askPrizes(int countOfPlayers) {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요.)");
-        return reader.nextLine();
+
+        try {
+            return PrizesGenerator.createPrizes(reader.nextLine(), countOfPlayers);
+        } catch (IllegalArgumentException e) {
+            System.out.println("상품의 수가 올바르지 않습니다.\n다시 입력하세요.");
+            return askPrizes(countOfPlayers);
+        }
     }
 
     public static String askResult() {
