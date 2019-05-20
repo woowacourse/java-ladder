@@ -25,4 +25,8 @@ public class MessageCollection {
     public static final String ERROR_OVERLAP_GOAL_NAME = "ERROR : 중복된 실행 결과가 있습니다.";
 
     public static final String ERROR_PLAYER_NOT_EXIST = "ERROR : 플레이어가 존재하지 않습니다.";
+
+    public static final String PIPE = "|";
+    public static final String HYPHEN = "-";
+    public static final String BLANK = " ";
 }

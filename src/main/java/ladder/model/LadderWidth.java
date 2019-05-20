@@ -5,11 +5,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import static ladder.MessageCollection.*;
+
 public class LadderWidth {
 
-    private static final String PIPE = "|";
-    private static final String HYPHEN = "-";
-    private static final String BLANK = " ";
     private static final boolean INITIAL_INDEX = false;
 
     private List<Boolean> crossbars;
