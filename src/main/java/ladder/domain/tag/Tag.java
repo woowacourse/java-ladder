@@ -55,7 +55,7 @@ public class Tag {
     }
 
     private void checkSpace(String name) {
-        if(name.contains(WHITE_SPACE)){
+        if (name.contains(WHITE_SPACE)) {
             throw new IllegalArgumentException(NAME_SPACE_ERROR);
         }
     }
@@ -65,7 +65,7 @@ public class Tag {
             throw new IllegalArgumentException(NAME_COMMAND_ERROR);
         }
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

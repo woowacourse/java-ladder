@@ -1,3 +1,15 @@
+/*
+ * @(#)Point.java
+ *
+ * v 1.1.0
+ *
+ * 2019.05.20
+ *
+ * Copyright (c) 2019 KwonMC.
+ * WoowahanTechCourse, Seoul, KOREA
+ * All right Reserved
+ */
+
 package ladder.domain.ladder;
 
 import java.util.Objects;
@@ -6,6 +18,9 @@ import ladder.domain.utils.RandomGenerator;
 
 /**
  * Horizontal 의 한 칸을 나타내는 클래스
+ *
+ * @author kwonmc
+ * @version 1.1.0
  */
 public class Point {
     private Boolean left;
@@ -64,9 +79,4 @@ public class Point {
     public int hashCode() {
         return Objects.hash(left, right);
     }
-
-//    @Override
-//    public String toString() {
-//        return left ? "-----" : "     ";
-//    }
 }

@@ -12,13 +12,10 @@
 
 package ladder.view;
 
-import java.util.Locale;
 import java.util.Map;
 
 import ladder.domain.GameResult;
 import ladder.domain.LadderGame;
-import ladder.domain.PlayerTags;
-import ladder.domain.ResultTags;
 import ladder.domain.ladder.Horizontal;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.tag.Tag;

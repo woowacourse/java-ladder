@@ -13,7 +13,7 @@
 package ladder.domain.ladder;
 
 /**
- * 사다리 높이를 위한 클래스
+ * 사다리 높이 래퍼 클래스
  *
  * @author mrkwon
  * @author men7627

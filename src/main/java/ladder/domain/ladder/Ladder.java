@@ -37,7 +37,7 @@ public class Ladder implements Iterable<Horizontal> {
         return ladder;
     }
 
-    public Position moveToResult(int startIndex){
+    public Position moveToResult(int startIndex) {
         Position current = new Position(startIndex);
         for (Horizontal horizontal : ladder) {
             current = current.move(horizontal.get(current.getPosition()));
