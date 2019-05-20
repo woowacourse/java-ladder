@@ -4,14 +4,14 @@ import java.util.Map;
 import java.util.Objects;
 
 public final class PlayerRewards {
-    private final Map<Integer, String> rewards;
+    private final Map<Integer, Reward> rewards;
 
-    public PlayerRewards(final Map<Integer, String> rewards) {
+    public PlayerRewards(final Map<Integer, Reward> rewards) {
         validateSize(rewards);
         this.rewards = rewards;
     }
 
-    private void validateSize(Map<Integer, String> results) {
+    private void validateSize(Map<Integer, Reward> results) {
         if (results.isEmpty()) {
             throw new IllegalArgumentException("결과를 1개 이상 입력해 주세요");
         }
@@ -21,7 +21,7 @@ public final class PlayerRewards {
         return rewards.size();
     }
 
-    public String getReward(int index) {
+    public Reward getReward(int index) {
         return rewards.get(index);
     }
 

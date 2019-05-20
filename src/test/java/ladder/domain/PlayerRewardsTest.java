@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class PlayerRewardsTest {
     @Test
     void 사이즈0_체크() {
-        Map<Integer, String> input = new HashMap<>();
+        Map<Integer, Reward> input = new HashMap<>();
         assertThrows(IllegalArgumentException.class,()->{
            new PlayerRewards(input);
         });
