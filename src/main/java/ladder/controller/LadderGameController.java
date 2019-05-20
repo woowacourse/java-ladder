@@ -13,7 +13,7 @@ public class LadderGameController {
 
     public void run() {
         LadderGamePlayers players = InputView.createLadderGamePlayers();
-        LadderGameGoals goals = new LadderGameGoals(InputView.createLadderGoals(players.size()));
+        LadderGameGoals goals = InputView.createLadderGameGoals(players.size());
         Ladder ladder = new Ladder(players, InputView.createLadderHeight());
         LadderGameResult ladderGameResult = new LadderGameResult(players, ladder, goals);
 

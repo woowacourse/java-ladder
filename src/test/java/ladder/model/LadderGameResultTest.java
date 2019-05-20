@@ -35,7 +35,7 @@ public class LadderGameResultTest {
 
         Ladder ladder = new Ladder(ladders);
 
-        ladderGameResult = new LadderGameResult(new LadderGamePlayers(players), ladder, new LadderGameGoals(goals));
+        ladderGameResult = new LadderGameResult(new LadderGamePlayers(players), ladder, new LadderGameGoals(goals, 4));
     }
 
     @Test

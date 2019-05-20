@@ -1,10 +1,10 @@
 package ladder.view;
 
 import ladder.constant.MessageConstant;
+import ladder.model.LadderGameGoals;
 import ladder.model.LadderGamePlayers;
 import ladder.model.LadderGoal;
 import ladder.model.LadderPlayer;
-import ladder.validator.LadderGoalValidator;
 import ladder.validator.LadderHeightValidator;
 
 import java.util.Arrays;
@@ -36,24 +36,23 @@ public class InputView {
         }
     }
 
-    public static List<LadderGoal> createLadderGoals(int numOfPlayers) {
+    public static LadderGameGoals createLadderGameGoals(int numOfLadderPlayers) {
         System.out.println(NEW_LINE + MessageConstant.INPUT_LADDER_GOAL_NAME);
-        return createLadderGoals(SCANNER.nextLine().split(DELIMITER), numOfPlayers);
+        return createLadderGameGoals(SCANNER.nextLine().split(DELIMITER), numOfLadderPlayers);
     }
 
-    public static List<LadderGoal> createLadderGoals(String[] inputs, int numOfPlayers) {
+    public static LadderGameGoals createLadderGameGoals(String[] inputs, int numOfLadderPlayers) {
         try {
-            LadderGoalValidator.checkAccuracyOfUserInputs(inputs, numOfPlayers);
-            return Arrays.stream(inputs)
+            List<LadderGoal> goals = Arrays.stream(inputs)
                     .map(String::trim)
                     .map(LadderGoal::new)
                     .collect(toList());
+            return new LadderGameGoals(goals, numOfLadderPlayers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return createLadderGoals(numOfPlayers);
+            return createLadderGameGoals(numOfLadderPlayers);
         }
     }
-
 
     public static int createLadderHeight() {
         System.out.println(NEW_LINE + MessageConstant.INPUT_LADDER_HEIGHT);
