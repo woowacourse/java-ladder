@@ -1,5 +1,6 @@
 package laddergame.view;
 
+import laddergame.domain.Ladder;
 import laddergame.domain.PlayerGroup;
 import laddergame.domain.PlayersGenerator;
 
@@ -19,11 +20,15 @@ public class InputView {
         }
     }
 
-    public static int askHeight() {
+    public static Ladder askHeight(int width) {
         System.out.println("사다리 높이는 몇 개인가요?");
-        int height = reader.nextInt();
-        reader.nextLine();
-        return height;
+
+        try {
+            return new Ladder(width, reader.nextLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println("사다리의 높이는 자연수만 입력할 수 있습니다.\n다시 입력해주세요.");
+            return askHeight(width);
+        }
     }
 
     public static String askPrizes() {

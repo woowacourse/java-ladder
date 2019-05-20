@@ -3,7 +3,7 @@ package laddergame.domain;
 import java.util.List;
 
 public class Line {
-    private List<Boolean> line;
+    private final List<Boolean> line;
     private final int width;
 
     public Line(List<Boolean> line) {
@@ -19,6 +19,7 @@ public class Line {
         return width;
     }
 
+    // TODO toString 없애야 함
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("     |");

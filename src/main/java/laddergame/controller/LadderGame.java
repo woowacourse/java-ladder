@@ -9,13 +9,14 @@ import java.util.List;
 public class LadderGame {
     public void play() {
         PlayerGroup players = InputView.askUserNames();
-        /*Ladder ladder = getLadder(players.size());
-        List<Prize> prizes = getPrizes(players.size());
+        Ladder ladder = InputView.askHeight(players.getCountOfPlayers());
+        //Ladder ladder = getLines(players.size());
+        /*List<Prize> prizes = getPrizes(players.size());
         OutputView.printLadder(players, ladder);
         OutputView.printPrizes(prizes);
 
         GameProcessor processor = new GameProcessor(players);
-        processor.processGame(ladder.getLadder());
+        processor.processGame(ladder.getLines());
 
         keepAsk(players, prizes);*/
     }
@@ -59,13 +60,13 @@ public class LadderGame {
         }
     }*/
 
-    private static Ladder getLadder(int width) {
+    /*private static Ladder getLines(int width) {
         try {
             int height = InputView.askHeight();
             return new Ladder(width, height);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getLadder(width);
+            return getLines(width);
         }
-    }
+    }*/
 }
