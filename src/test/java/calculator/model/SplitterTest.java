@@ -37,7 +37,7 @@ class SplitterTest {
 
     @Test
     void 커스텀_식_추출() {
-        assertThat(new Splitter("//;\n1;2;3").getExpression()).isEqualTo(Arrays.asList(1,2,3));
+        assertThat(new Splitter("//;\\n1;2;3").getExpression()).isEqualTo(Arrays.asList(1,2,3));
     }
 
     @Test
