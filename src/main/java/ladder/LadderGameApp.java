@@ -20,7 +20,7 @@ public class LadderGameApp {
             inputName = LadderGame.getNameForLookup();
             foundPlayers = LadderGame.lookUpResult(inputName);
             OutputView.printResult(foundPlayers);
-        } while (!inputName.equals("종료"));
+        } while (!"종료".equals(inputName));
 
         OutputView.printEnd();
     }

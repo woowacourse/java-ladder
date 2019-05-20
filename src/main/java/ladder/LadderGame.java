@@ -99,7 +99,7 @@ public class LadderGame {
     private static String getNameForResult(List<String> names) {
         String input = InputView.inputNameForResult();
 
-        if (input.equals("종료")) {
+        if ("종료".equals(input)) {
             return "종료";
         }
 
@@ -113,7 +113,7 @@ public class LadderGame {
     }
 
     public static List<Player> lookUpResult(String input) {
-        if ((input.equals("all")) | (input.equals("종료"))) {
+        if (("all".equals(input)) | ("종료".equals(input))) {
             return players;
         }
         return findPlayer(input);
