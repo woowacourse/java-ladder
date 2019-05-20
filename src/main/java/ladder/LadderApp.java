@@ -13,7 +13,7 @@ import ladder.view.OutputView;
  */
 public class LadderApp {
     public static void main(String[] args) {
-        Players players = InputView.inputPlayers(InputView.InputPlayersFromUser());
+        Players players = InputView.inputPlayers(InputView.inputPlayersFromUser());
         Items items = InputView.inputItems(InputView.inputItemsFromUser(), players.size());
         int depth = InputView.inputDepth(InputView.inputDepthFromUser());
 

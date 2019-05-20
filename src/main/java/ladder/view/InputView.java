@@ -26,11 +26,11 @@ public class InputView {
             return Players.newBuilder(names);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return inputPlayers(InputPlayersFromUser());
+            return inputPlayers(inputPlayersFromUser());
         }
     }
 
-    public static String InputPlayersFromUser() {
+    public static String inputPlayersFromUser() {
         System.out.println(INPUT_PLAYERS);
         return SCANNER.nextLine();
     }
