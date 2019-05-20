@@ -1,13 +1,12 @@
 package ladder.controller;
 
-import ladder.model.Ladder;
-import ladder.model.LadderGame;
-import ladder.model.LadderGameResult;
-import ladder.model.Players;
+import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class MainController {
+    private static final String ALL = "all";
+
     public static void main(String[] args) {
         String[] scannedNames = InputView.inputNames();
         String[] scannedLadderGameResult = InputView.inputLadderGameResult();
@@ -15,21 +14,21 @@ public class MainController {
 
         Players players = new Players(scannedNames);
         Ladder ladder = new Ladder(scannedHeight, scannedNames.length);
-        LadderGameResult ladderGameResult = new LadderGameResult(scannedLadderGameResult, scannedNames.length);
-        OutputView.printResultOfLadder(players, ladder, ladderGameResult);
+        LadderGameResults ladderGameResults = new LadderGameResults(scannedLadderGameResult, scannedNames.length);
+        OutputView.printResultOfLadder(players, ladder, ladderGameResults);
 
-        LadderGame ladderGame = new LadderGame(players, ladder, ladderGameResult);
-        ladderGame.playGame();
+        LadderGame ladderGame = new LadderGame(players, ladder, ladderGameResults);
+        GameResult gameResult = ladderGame.playGame();
 
-        playQnA(ladderGame);
+        playQnA(gameResult, players);
     }
 
-    private static void playQnA(LadderGame ladderGame) {
-        String scannedDesiredResult = InputView.inputDesiredResult();
-        while (!scannedDesiredResult.equals("all")) {
-            OutputView.printResultOfExecution(ladderGame.getResultByName(scannedDesiredResult));
-            scannedDesiredResult = InputView.inputDesiredResult();
+    private static void playQnA(GameResult gameResult, Players players) {
+        String scannedName = InputView.inputDesiredResult();
+        while (!scannedName.equals(ALL)) {
+            OutputView.printResultOfExecution(gameResult.getResultByName(players, scannedName));
+            scannedName = InputView.inputDesiredResult();
         }
-        OutputView.printResultOfExecution(ladderGame.getAllResult());
+        OutputView.printResultOfExecution(gameResult.getAllResult(players));
     }
 }

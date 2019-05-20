@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Players implements Iterable<Player> {
     private static final int MIN_PLAYER_NUMBER = 2;
-    private List<Player> players = new ArrayList<>();
+    private List<Player> players;
 
     public Players(String[] names) {
         if (names.length < MIN_PLAYER_NUMBER) {
@@ -16,37 +16,43 @@ public class Players implements Iterable<Player> {
         this.playersInit(names);
     }
 
+    public boolean isContains(String name) {
+        return this.players.contains(new Player(name));
+    }
+
+    int getPlayersNumber() {
+        return this.players.size();
+    }
+
+    Player getPlayerByName(String name) {
+        return this.players.stream()
+                .filter(player -> player.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("없는 이름의 플레이어 입니다."));
+    }
+
+    Player getPlayerByIndex(int index) {
+        return this.players.get(index);
+    }
+
     private boolean isDuplicatedName(String[] names) {
         return names.length != new HashSet<>(Arrays.asList(names)).size();
     }
 
     private void playersInit(String[] names) {
-        for (int i = 0; i < names.length; i++) {
-            players.add(new Player(names[i], i));
-        }
-    }
-
-    public boolean isContains(String name) {
-        return players.stream().anyMatch(player -> player.getName().equals(name));
-    }
-
-    int getPositionByName(String name) {
-        return players.stream()
-                .filter(player -> player.getName().equals(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("없는 이름의 플레이어"))
-                .getPosition();
+        this.players = new ArrayList<>();
+        Arrays.stream(names).forEach(name -> this.players.add(new Player(name)));
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        players.forEach(player -> stringBuilder.append(String.format("%-6s", player)));
+        this.players.forEach(stringBuilder::append);
         return stringBuilder.toString();
     }
 
     @Override
     public Iterator<Player> iterator() {
-        return players.iterator();
+        return this.players.iterator();
     }
 }

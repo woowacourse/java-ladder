@@ -2,69 +2,77 @@ package ladder.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
-    private static final Random RANDOM = new Random();
     private static final String EMPTY_LINE = "     ";
     private static final String FILLED_LINE = "-----";
     private static final String VERTICAL_LINE = "|";
-    private List<Bridge> bridges = new ArrayList<>();
+    private static final int MOVE_LEFT = -1;
+    private static final int MOVE_RIGHT = 1;
+    private static final int MOVE_NONE = 0;
+    private static final int ONE = 1;
+    private List<Bridge> bridges;
 
     public Line(int countOfPlayer) {
-        this.pointsInit(countOfPlayer);
-    }
-
-    private void pointsInit(int countOfPlayer) {
-        boolean previous = false;
-        for (int i = 0; i < countOfPlayer - 1; i++) {
-            previous = nextPoint(previous);
-            bridges.add(new Bridge(previous));
-        }
-        this.checkPointsValid();
-    }
-
-    private boolean nextPoint(boolean previous) {
-        if (!previous) {
-            return RANDOM.nextBoolean();
-        }
-        return false;
+        this.bridgesInit(countOfPlayer);
     }
 
     public int lineSize() {
         return this.bridges.size();
     }
 
-    public void checkPointsValid() {
+    public void checkLineValid() {
         for (int i = 1; i < this.lineSize(); i++) {
-            checkContinued(i - 1, i);
+            int previousBridgeIndex = i - ONE;
+            int currentBridgeIndex = i;
+            checkLineContinued(previousBridgeIndex, currentBridgeIndex);
         }
     }
 
-    private void checkContinued(int left, int right) {
-        if (this.isBridgeConnected(left) && this.isBridgeConnected(right)) {
+    int move(int position) {
+        if (this.canMoveLeft(position)) {
+            return MOVE_LEFT;
+        }
+        if (this.canMoveRight(position)) {
+            return MOVE_RIGHT;
+        }
+        return MOVE_NONE;
+    }
+
+    private void bridgesInit(int countOfPlayer) {
+        this.bridges = new ArrayList<>();
+        Bridge previousBridge = Bridge.firstBridge();
+        bridges.add(previousBridge);
+        for (int i = 1; i < countOfPlayer - ONE; i++) {
+            bridges.add(Bridge.nextBridge(previousBridge));
+            previousBridge = bridges.get(i);
+        }
+        this.checkLineValid();
+    }
+
+    private Bridge getBridgeByIndex(int index) {
+        return this.bridges.get(index);
+    }
+
+    private void checkLineContinued(int previousBridgeIndex, int currentBridgeIndex) {
+        if (this.getBridgeByIndex(previousBridgeIndex).isBridgesConnected(this.getBridgeByIndex(currentBridgeIndex))) {
             throw new IllegalArgumentException("이어지는 가로라인 발생");
         }
     }
 
-    public boolean isBridgeConnected(int index) {
-        return this.bridges.get(index).isConnected();
+    private boolean canMoveLeft(int position) {
+        return position > 0 && this.getBridgeByIndex(position - ONE).isConnect();
     }
 
-    void moveOneLine(Players players) {
-        for (Player player : players) {
-            this.move(player);
-        }
+    private boolean canMoveRight(int position) {
+        return position < this.lineSize() && this.getBridgeByIndex(position).isConnect();
     }
 
-    public void move(Player player) {
-        int position = player.getPosition();
-        if (position > 0 && this.isBridgeConnected(position - 1)) {
-            player.moveLeft();
+    private String getOne(int pointIndex) {
+        if (this.getBridgeByIndex(pointIndex).isConnect()) {
+            return FILLED_LINE;
         }
-        if (position < bridges.size() && this.isBridgeConnected(position)) {
-            player.moveRight();
-        }
+        return EMPTY_LINE;
     }
 
     @Override
@@ -74,12 +82,5 @@ public class Line {
             stringBuilder.append(this.getOne(i)).append(VERTICAL_LINE);
         }
         return stringBuilder.toString();
-    }
-
-    private String getOne(int pointIndex) {
-        if (this.isBridgeConnected(pointIndex)) {
-            return FILLED_LINE;
-        }
-        return EMPTY_LINE;
     }
 }

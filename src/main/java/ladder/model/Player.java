@@ -7,34 +7,28 @@ import java.util.Objects;
 public class Player {
     private static final int MAX_NAME_LENGTH = 5;
     private final String name;
-    private int position;
 
-    public Player(String name, int position) {
+    public Player(final String name) {
         if (!isValidName(name)) {
             throw new IllegalArgumentException("올바르지 않은 이름입니다.");
         }
         this.name = name;
-        this.position = position;
+    }
+
+    int playGame(Ladder ladder, int startPosition) {
+        int currentPosition = startPosition;
+        for (int currentLine = 0; currentLine < ladder.ladderSize(); currentLine++) {
+            currentPosition += ladder.getLine(currentLine).move(currentPosition);
+        }
+        return currentPosition;
     }
 
     String getName() {
         return this.name;
     }
 
-    public int getPosition() {
-        return this.position;
-    }
-
     private boolean isValidName(String name) {
         return (!StringUtils.isBlank(name)) && (name.length() <= MAX_NAME_LENGTH);
-    }
-
-    void moveLeft() {
-        this.position--;
-    }
-
-    void moveRight() {
-        this.position++;
     }
 
     @Override
@@ -42,16 +36,16 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return Objects.equals(name, player.name);
+        return name.equals(player.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, position);
+        return Objects.hash(name);
     }
 
     @Override
     public String toString() {
-        return this.name;
+        return String.format("%-6s", this.name);
     }
 }

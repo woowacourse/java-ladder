@@ -21,6 +21,6 @@ public class LadderTest {
 
     @Test
     void Ladder의_크기가_Height와_같은_지_검증() {
-        assertThat(new Ladder(5, 4).linesSize()).isEqualTo(5);
+        assertThat(new Ladder(5, 4).ladderSize()).isEqualTo(5);
     }
 }

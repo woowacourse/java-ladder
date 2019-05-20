@@ -6,7 +6,7 @@ import java.util.List;
 public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;
     private static final String NEW_LINE = "\n";
-    private List<Line> lines = new ArrayList<>();
+    private List<Line> lines;
 
     public Ladder(int height, int countOfPlayer) {
         if (!this.isValidHeight(height)) {
@@ -15,7 +15,16 @@ public class Ladder {
         linesInit(countOfPlayer, height);
     }
 
+    public int ladderSize() {
+        return this.lines.size();
+    }
+
+    Line getLine(int index) {
+        return this.lines.get(index);
+    }
+
     private void linesInit(int countOfPlayer, int height) {
+        this.lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             lines.add(new Line(countOfPlayer));
         }
@@ -25,20 +34,10 @@ public class Ladder {
         return height >= MIN_LADDER_HEIGHT;
     }
 
-    public int linesSize() {
-        return this.lines.size();
-    }
-
-    void move(Players players) {
-        for (Line line : lines) {
-            line.moveOneLine(players);
-        }
-    }
-
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < linesSize(); i++) {
+        for (int i = 0; i < ladderSize(); i++) {
             stringBuilder.append(lines.get(i)).append(NEW_LINE);
         }
         return stringBuilder.toString();
