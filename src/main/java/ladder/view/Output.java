@@ -44,9 +44,7 @@ public class Output {
     }
 
     private static List<String> getPlayersField(List<Player> players, Function<Player, String> mapper) {
-        return players.stream()
-                .map(mapper)
-                .collect(Collectors.toList());
+        return players.stream().map(mapper).collect(Collectors.toList());
     }
 
     private static void words(List<String> words, int maxLength, int offset) {

@@ -3,14 +3,14 @@ package ladder.model;
 import ladder.model.Coin.Half;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Game {
     private static String NIL = "꽝";
 
-    private final List<Player> players;
+    private final List<Player> players = new ArrayList<>();
     private final Ladder ladder;
 
     public Game(List<String> names, List<String> rewards, int height) {
@@ -18,21 +18,23 @@ public class Game {
             throw new IllegalArgumentException();
         }
         adjustInputs(names, rewards);
-        List<Player> players = new ArrayList<>();
-        for (int i = 0; i < names.size(); i++) {
+        for (int i = 0; i < names.size(); i++) { // Zip()이 있으면 좋을텐데…
             players.add(new Player(names.get(i), rewards.get(i)));
         }
-        this.players = Collections.unmodifiableList(players);
         ladder = new Ladder(names.size(), height, new Half());
     }
 
     public Game(List<Player> players, int height) {
         this(
-            players.stream().map(Player::getName).collect(Collectors.toList()),
-            players.stream().map(Player::getReward).collect(Collectors.toList()),
-            height
+                getPlayersField(players, Player::getName),
+                getPlayersField(players, Player::getReward),
+                height
         );
     }
+
+    private static List<String> getPlayersField(List<Player> players, Function<Player, String> mapper) {
+        return players.stream().map(mapper).collect(Collectors.toList());
+    } // 이 코드가 다른 곳에서도 반복해서 사용되는 것이 영 걸리는데…
 
     private static void adjustInputs(List<String> names, List<String> rewards) {
         while (names.size() > rewards.size()) {
