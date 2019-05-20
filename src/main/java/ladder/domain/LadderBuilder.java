@@ -4,15 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderBuilder {
-    private LadderBuildingStrategy strategy;
     private Ladder ladder;
 
-    public LadderBuilder(LadderBuildingStrategy strategy) {
-        this.strategy = strategy;
-    }
-
-    public Ladder build(int height, int numberOfPeople) {
-        initLadder(height);
+    public Ladder build(int height, int numberOfPeople, LadderBuildingStrategy strategy) {
+        initLadder(height, numberOfPeople);
 
         for (int row = 0; row < height; row++) {
             connect(strategy, numberOfPeople, row);
@@ -21,14 +16,14 @@ public class LadderBuilder {
         return ladder;
     }
 
-    private void initLadder(int height) {
+    private void initLadder(int height, int numberOfPeople) {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
             lines.add(new Line());
         }
 
-        ladder = new Ladder(lines);
+        ladder = new Ladder(lines, numberOfPeople);
     }
 
     private void connect(LadderBuildingStrategy strategy, int numberOfPeople, int row) {

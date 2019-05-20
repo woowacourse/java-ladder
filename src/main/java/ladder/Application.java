@@ -14,12 +14,12 @@ public class Application {
         List<String> items = InputView.inputItems(names.size());
         int height = InputView.inputHeight();
 
-        LadderBuilder ladderBuilder = new LadderBuilder(new RandomValueBuildStrategy());
-        Ladder ladder = ladderBuilder.build(height, names.size());
+        LadderBuilder ladderBuilder = new LadderBuilder();
+        Ladder ladder = ladderBuilder.build(height, names.size(), new RandomValueBuildStrategy());
 
         printLadder(names, items, ladder);
 
-        LadderResult ladderResult = LadderGame.play(ladder);
+        LadderResult ladderResult = ladder.play();
         List<String> result = ladderResult.match(items);
 
         String participant;

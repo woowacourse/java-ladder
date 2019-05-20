@@ -13,11 +13,11 @@ public class LadderBuilderTest {
         List<Line> lines = new ArrayList<>();
         lines.add(new Line());
 
-        Ladder ladder = new Ladder(lines);
+        Ladder ladder = new Ladder(lines, 1);
         ladder.connect(new MockLadderBuildStrategy(), 0, 0);
 
-        LadderBuilder ladderBuilder = new LadderBuilder(new MockLadderBuildStrategy());
+        LadderBuilder ladderBuilder = new LadderBuilder();
 
-        assertThat(ladderBuilder.build(1, 1)).isEqualTo(ladder);
+        assertThat(ladderBuilder.build(1, 1, new MockLadderBuildStrategy())).isEqualTo(ladder);
     }
 }

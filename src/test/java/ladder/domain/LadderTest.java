@@ -19,8 +19,8 @@ public class LadderTest {
         lines.add(line);
         lines2.add(new Line());
 
-        Ladder ladder = new Ladder(lines);
-        Ladder ladder2 = new Ladder(lines2);
+        Ladder ladder = new Ladder(lines, 1);
+        Ladder ladder2 = new Ladder(lines2, 1);
 
         ladder2.connect(new MockLadderBuildStrategy(), 0, 0);
 
@@ -32,11 +32,22 @@ public class LadderTest {
         List<Line> lines = new ArrayList<>();
         lines.add(new Line());
 
-        Ladder ladder = new Ladder(lines);
+        Ladder ladder = new Ladder(lines, 1);
 
         assertThat(ladder.getLine(0).isConnected(0)).isFalse();
 
         ladder.connect(new MockLadderBuildStrategy(), 0, 0);
         assertThat(ladder.getLine(0).isConnected(0)).isTrue();
+    }
+
+    @Test
+    public void play() {
+        LadderBuilder ladderBuilder = new LadderBuilder();
+        Ladder ladder = ladderBuilder.build(1, 1, new MockLadderBuildStrategy());
+        List<Integer> result = new ArrayList<>();
+
+        result.add(0);
+
+        assertThat(ladder.play()).isEqualTo(new LadderResult(result));
     }
 }
