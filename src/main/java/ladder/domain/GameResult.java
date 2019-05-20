@@ -24,13 +24,24 @@ public class GameResult {
         if (message.equals(ALL_RESULT)) {
             return this.toString();
         }
+        return getRewardOfPlayerNamed(message);
+    }
+
+    private String getRewardOfPlayerNamed(String message) {
+        if (!isExistThePlayerNamed(message))
+            throw new IllegalArgumentException("해당 이름을 가진 플레이어가 없습니다.");
+
         Stream<String> matchedResults = results.keySet()
                 .stream()
                 .filter(player -> player.getName().equals(message))
                 .map(player -> results.get(player).getResult());
-        if (matchedResults.count() == 0)
-            throw new IllegalArgumentException();
+
         return matchedResults.collect(Collectors.joining(" "));
+    }
+
+    private boolean isExistThePlayerNamed(String name) {
+        return results.keySet()
+                .stream().anyMatch(player -> player.getName().equals(name));
     }
 
     @Override
