@@ -1,7 +1,6 @@
 package ladder.model.player;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -12,12 +11,12 @@ public class Players implements Iterable<Player> {
     private static final String NAME_SPACE_FORMAT = "%-6s";
     private List<Player> players = new ArrayList<>();
 
-    public Players(String[] names) {
+    public Players(List<String> names) {
         validateNames(names);
-        IntStream.range(0, names.length).forEach(i -> players.add(new Player(names[i], i)));
+        IntStream.range(0, names.size()).forEach(i -> players.add(new Player(names.get(i), i)));
     }
 
-    private void validateNames(String[] names){
+    private void validateNames(List<String> names){
         if(isPlayersUnderMinPlayerNumber(names)){
             throw new IllegalArgumentException("플레이어는 2명 이상이어야 합니다.");
         }
@@ -26,12 +25,12 @@ public class Players implements Iterable<Player> {
         }
     }
 
-    private boolean isPlayersUnderMinPlayerNumber(String[] names){
-        return names.length < MIN_PLAYER_NUMBER;
+    private boolean isPlayersUnderMinPlayerNumber(List<String> names){
+        return names.size() < MIN_PLAYER_NUMBER;
     }
 
-    private boolean isDuplicatedName(String[] names) {
-        return names.length != new HashSet<>(Arrays.asList(names)).size();
+    private boolean isDuplicatedName(List<String> names) {
+        return names.size() != new HashSet<>(names).size();
     }
 
     public boolean isContains(String name) {

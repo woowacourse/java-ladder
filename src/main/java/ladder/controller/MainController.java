@@ -10,17 +10,19 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class MainController {
     private static final String ALL_PLAYERS = "all";
 
     public static void main(String[] args) {
-        String[] names = Arrays.stream(InputView.inputNames()).map(String::trim).toArray(String[]::new);
+        List<String> names = InputView.inputNames();
         Players players = new Players(names);
-        LinePointsGenerator linePointsGenerator = new RandomLinePointsGenerator(names.length);
 
-        String[] gameResults = Arrays.stream(InputView.inputLadderGameResult()).map(String::trim).toArray(String[]::new);
-        LadderGameResult ladderGameResult = new LadderGameResult(gameResults, names.length);
+        int countOfPlayer = names.size();
+        LinePointsGenerator linePointsGenerator = new RandomLinePointsGenerator(countOfPlayer);
+
+        LadderGameResult ladderGameResult = new LadderGameResult(InputView.inputLadderGameResult(), countOfPlayer);
 
         int height = InputView.inputLadderHeight();
         Ladder ladder = new Ladder(linePointsGenerator, height);

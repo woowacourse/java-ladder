@@ -1,18 +1,24 @@
 package ladder.model.laddergame;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LadderGameResult {
     private static final String NAME_SPACE_FORMAT = "%-6s";
     private List<String> ladderGameResults;
 
-    public LadderGameResult(String[] inputLadderGameResults, int countOfPlayer) {
-        if (inputLadderGameResults.length != countOfPlayer) {
-            throw new IllegalArgumentException("잘못된 실행 결과 입니다.");
+    public LadderGameResult(List<String> ladderGameResults, int countOfPlayer) {
+        validateLadderGameResults(ladderGameResults, countOfPlayer);
+        this.ladderGameResults = ladderGameResults;
+    }
+
+    private void validateLadderGameResults(List<String> ladderGameResults, int countOfPlayer){
+        if (isDifferent(ladderGameResults.size(), countOfPlayer)) {
+            throw new IllegalArgumentException("실행 결과의 수가 플레이어의 수와 다릅니다.");
         }
-        ladderGameResults = new ArrayList<>(Arrays.asList(inputLadderGameResults));
+    }
+
+    private boolean isDifferent(int a, int b){
+        return a != b;
     }
 
     public String getResultByPosition(int position) {
