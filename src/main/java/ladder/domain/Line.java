@@ -6,14 +6,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
-    private static final int LEFT_END = 0;
-    private static final String CROSS_BAR = "-----|";
-    private static final String UNCROSS_BAR = "     |";
     private static final String DEFAULT_BAR = "|";
 
-    private List<Boolean> points;
+    private List<Point> points;
 
-    public Line(List<Boolean> points) {
+    public Line(List<Point> points) {
         this.points = points;
     }
 
@@ -21,44 +18,23 @@ public class Line {
         List<Integer> beforeRecord = record.getIndices();
         int size = beforeRecord.size();
         checkSize(size);
-        List<Boolean> tempPoints = initialTemp(points);
         List<Integer> afterRecord = new ArrayList<>(Arrays.asList(new Integer[size]));
 
         for (int i = 0; i < size; i++) {
-            afterRecord.set(move(tempPoints.get(i), i, tempPoints.get(i + 1)), beforeRecord.get(i));
+            afterRecord.set(i + points.get(i).move(), beforeRecord.get(i));
         }
 
         return new Record(afterRecord);
     }
 
-    private ArrayList<Boolean> initialTemp(List<Boolean> original){
-        ArrayList<Boolean> tempPoints = new ArrayList<>(original);
-        tempPoints.add(LEFT_END, false);
-        tempPoints.add(tempPoints.size(), false);
-
-        return tempPoints;
-    }
-
     private void checkSize(int size) {
-        if (size != points.size() + 1){
+        if (size != points.size()) {
             throw new IllegalArgumentException();
         }
     }
 
-    private int move(boolean left, int index, boolean right) {
-        if (left && right) {
-            throw new IllegalArgumentException();
-        }
-        if (left) {
-            return --index;
-        }
-        if (right) {
-            return ++index;
-        }
-        return index;
-    }
     @Override
     public String toString() {
-        return DEFAULT_BAR + this.points.stream().map(point -> point ? CROSS_BAR : UNCROSS_BAR).collect(Collectors.joining());
+        return DEFAULT_BAR + this.points.stream().map(Point::toString).collect(Collectors.joining(DEFAULT_BAR));
     }
 }

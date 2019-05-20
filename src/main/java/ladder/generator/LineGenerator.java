@@ -1,32 +1,26 @@
 package ladder.generator;
 
 import ladder.domain.Line;
+import ladder.domain.Point;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 class LineGenerator {
 
-    private static final Random random = new Random();
-
     Line makeLine(int countOfPlayers) {
-        return new Line(makeRandomBooleans(countOfPlayers - 1));
+        return new Line(makeRandomPoints(countOfPlayers));
     }
 
-    private List<Boolean> makeRandomBooleans(int length) {
-        List<Boolean> randomBooleanList = new ArrayList<>();
+    private List<Point> makeRandomPoints(int length) {
+        List<Point> points = new ArrayList<>(Arrays.asList(Point.firstPoint()));
 
-        randomBooleanList.add(random.nextBoolean());
-
-        for (int i = 1; i < length; i++) {
-            randomBooleanList.add(getNextBoolean(randomBooleanList.get(i - 1)));
+        for (int i = 0; i < length - 2; i++) {
+            points.add(Point.nextPoint(points.get(i)));
         }
+        points.add(Point.lastPoint(points.get(points.size() - 1)));
 
-        return randomBooleanList;
-    }
-
-    private boolean getNextBoolean(boolean before) {
-        return !before && new Random().nextBoolean();
+        return points;
     }
 }

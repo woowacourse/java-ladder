@@ -6,12 +6,12 @@ import java.util.Objects;
 public class Record {
     private List<Integer> indices;
 
-    Record(List<Integer> indices){
+    Record(List<Integer> indices) {
         this.indices = indices;
     }
 
-    List<Integer> getIndices(){
-        return indices;
+    List<Integer> getIndices() {
+        return java.util.Collections.unmodifiableList(indices);
     }
 
     @Override

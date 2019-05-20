@@ -8,7 +8,10 @@ import java.util.List;
 
 public class LadderGenerator {
 
-    public Ladder makeLadder(int countOfPlayers, int countOfLines) {
+    private LadderGenerator() {
+    }
+
+    public static Ladder makeLadder(int countOfPlayers, int countOfLines) {
         List<Line> lines = new ArrayList<>();
         LineGenerator lineGenerator = new LineGenerator();
 

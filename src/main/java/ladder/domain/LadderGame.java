@@ -1,29 +1,25 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGame {
-    private static final String NEXT_LINE = "\n";
-    private static final String DEFAULT_LENGTH_FORMAT = "%-6s";
-
-    private List<Player> players;
-    private List<DrawResult> drawResults;
     private Ladder ladder;
     private List<Record> log;
-    private GameResult gameResult;
 
-    public LadderGame(String[] names, String[] drawResults, Ladder ladder) {
-        checkCount(names.length, drawResults.length);
-
-        this.players = Arrays.stream(names).map(Player::new).collect(Collectors.toList());
-        this.drawResults = Arrays.stream(drawResults).map(DrawResult::new).collect(Collectors.toList());
+    public LadderGame(Ladder ladder) {
         this.ladder = ladder;
         log = new ArrayList<>();
-        gameResult = new GameResult();
+    }
+
+    public GameResult play(List<Player> players, List<DrawResult> drawResults) {
+        checkCount(players.size(), drawResults.size());
+
+        log.add(new Record(initialValue(players.size())));
+        log = ladder.drawLadder(log);
+
+        return new GameResult(makeGameResult(players, drawResults));
     }
 
     private void checkCount(int countOfPlayers, int countOfResults) {
@@ -32,42 +28,21 @@ public class LadderGame {
         }
     }
 
-    public void play() {
-        log.add(new Record(initialValue()));
-        ladder.drawLadder(log);
-
-        makeGameResult();
-    }
-
-    private List initialValue() {
-        return Arrays.stream(IntStream.rangeClosed(0, players.size() - 1)
+    private List initialValue(int size) {
+        return Arrays.stream(IntStream.rangeClosed(0, size - 1)
                 .toArray())
                 .boxed()
                 .collect(Collectors.toList());
     }
 
-    private void makeGameResult() {
+    private Map<Player, DrawResult> makeGameResult(List<Player> players, List<DrawResult> drawResults) {
         List<Integer> lastRecord = log.get(log.size() - 1).getIndices();
+        Map<Player, DrawResult> results = new HashMap<>();
 
         for (int i = 0; i < players.size(); i++) {
-            gameResult.addGameResult(players.get(i), drawResults.get(lastRecord.indexOf(i)));
+            results.put(players.get(i), drawResults.get(lastRecord.indexOf(i)));
         }
+        return results;
     }
 
-    public String drawResult(String message) {
-        return gameResult.getResult(message);
-    }
-
-    @Override
-    public String toString() {
-        return players.stream()
-                .map(player -> String.format(DEFAULT_LENGTH_FORMAT, player.getName()))
-                .collect(Collectors.joining())
-                + NEXT_LINE
-                + ladder.toString()
-                + NEXT_LINE
-                + drawResults.stream()
-                .map(drawResult -> String.format(DEFAULT_LENGTH_FORMAT, drawResult.getResult()))
-                .collect(Collectors.joining());
-    }
 }

@@ -23,11 +23,13 @@ public class Ladder {
 
     List<Record> drawLadder(List<Record> log) {
         Record last = log.get(FIRST_RECORD);
+
         for (Line line : lines) {
             Record newRecord = line.drawLine(last);
             log.add(newRecord);
             last = newRecord;
         }
+
         return log;
     }
 

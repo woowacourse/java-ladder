@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -11,12 +10,8 @@ public class GameResult {
 
     private Map<Player, DrawResult> results;
 
-    GameResult() {
-        results = new HashMap<>();
-    }
-
-    public void addGameResult(Player player, DrawResult drawResult) {
-        results.put(player, drawResult);
+    GameResult(Map results) {
+        this.results = results;
     }
 
     public String getResult(String message) {

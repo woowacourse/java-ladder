@@ -3,6 +3,9 @@ package ladder.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GameResultTest {
@@ -10,22 +13,26 @@ class GameResultTest {
 
     @BeforeEach
     void setUp() {
-        gameResult = new GameResult();
-        Player testPlayer = new Player("aaa");
-        DrawResult testDrawResult = new DrawResult("5000");
-        gameResult.addGameResult(testPlayer, testDrawResult);
-        gameResult.addGameResult(new Player("aa"), new DrawResult("100"));
+
+        Map<Player, DrawResult> testResult = new HashMap<>();
+        testResult.put(new Player("a"), new DrawResult("1"));
+        testResult.put(new Player("b"), new DrawResult("2"));
+        testResult.put(new Player("c"), new DrawResult("3"));
+
+        gameResult = new GameResult(testResult);
+
     }
 
     @Test
     void 전체_결과_출력_테스트() {
-        assertThat(gameResult.getResult("all")).isEqualTo("aaa : 5000\n" +
-                                                            "aa : 100");
+        assertThat(gameResult.getResult("all")).isEqualTo("a : 1\n" +
+                                                        "b : 2\n" +
+                                                        "c : 3\n");
     }
 
     @Test
     void 플레이어_결과_출력_테스트() {
-        assertThat(gameResult.getResult("aaa")).isEqualTo("5000");
+        assertThat(gameResult.getResult("a")).isEqualTo("1");
     }
 
 

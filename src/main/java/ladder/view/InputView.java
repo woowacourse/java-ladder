@@ -2,7 +2,7 @@ package ladder.view;
 
 import java.util.Scanner;
 
-import static ladder.view.constants.InputViewConstants.*;
+import static ladder.view.constants.InputViewMessages.*;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
@@ -22,7 +22,7 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public static String getResult(){
+    public static String getResult() {
         System.out.println(GET_RESULT_MESSAGE);
         return scanner.nextLine();
     }

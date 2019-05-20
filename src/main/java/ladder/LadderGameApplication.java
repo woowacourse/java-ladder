@@ -1,9 +1,13 @@
 package ladder;
 
-import ladder.domain.LadderGame;
+import ladder.domain.*;
 import ladder.generator.LadderGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGameApplication {
 
@@ -11,20 +15,26 @@ public class LadderGameApplication {
     private static final String BLANK = "";
 
     public static void main(String[] args) {
-        String[] names = InputView.getNames();
-        String[] drawResults = InputView.getDrawResults();
+        List<Player> names = Arrays.stream(InputView.getNames())
+                .map(Player::new)
+                .collect(Collectors.toList());
+        List<DrawResult> drawResults = Arrays.stream(InputView.getDrawResults())
+                .map(DrawResult::new)
+                .collect(Collectors.toList());
         int countOfLines = InputView.getCountOfLines();
 
-        LadderGame ladderGame = new LadderGame(names, drawResults, new LadderGenerator().makeLadder(names.length, countOfLines));
+        Ladder ladder = LadderGenerator.makeLadder(names.size(), countOfLines);
+        LadderGame ladderGame = new LadderGame(ladder);
+        GameResult gameResult = ladderGame.play(names, drawResults);
 
-        ladderGame.play();
-
-        OutputView.printLadder(ladderGame.toString());
+        OutputView.printLadder(ladder, names, drawResults);
 
         String message = BLANK;
+
         while (!message.equals(STOP_MESSAGE)) {
             message = InputView.getResult();
-            OutputView.printResult(ladderGame.drawResult(message));
+            OutputView.printResult(gameResult.getResult(message));
         }
+
     }
 }

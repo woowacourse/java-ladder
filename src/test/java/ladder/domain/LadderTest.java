@@ -9,15 +9,20 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderTest {
+class LadderTest {
 
     Ladder ladder;
     List<Record> log = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
-        Line line1 = new Line(new ArrayList<>(Arrays.asList(true, false)));
-        Line line2 = new Line(new ArrayList<>(Arrays.asList(false, true)));
+        Line line1 = new Line(Arrays.asList(new Point(false, 0, true)
+                                            , new Point(true,1,false)
+                                            , new Point(false, 2, false)));
+        Line line2 = new Line(Arrays.asList(new Point(false, 0, false)
+                                            , new Point(false,1,true)
+                                            , new Point(true, 2, false)));
+
         ladder = new Ladder(new ArrayList<>(Arrays.asList(line1, line2)));
         log.add(new Record(new ArrayList<>(Arrays.asList(0, 1, 2))));
     }
@@ -32,9 +37,4 @@ public class LadderTest {
         assertThat(ladder.drawLadder(log)).isEqualTo(log1);
     }
 
-    @Test
-    void 출력_테스트() {
-        assertThat(ladder.toString()).isEqualTo("|-----|     |\n" +
-                                                "|     |-----|");
-    }
 }

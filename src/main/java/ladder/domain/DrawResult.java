@@ -16,7 +16,7 @@ public class DrawResult {
         }
     }
 
-    String getResult() {
+    public String getResult() {
         return result;
     }
 }
