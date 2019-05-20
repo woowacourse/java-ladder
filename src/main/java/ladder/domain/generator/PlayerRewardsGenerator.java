@@ -4,6 +4,7 @@ import ladder.domain.PlayerRewards;
 import ladder.domain.Reward;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public final class PlayerRewardsGenerator {
@@ -16,7 +17,7 @@ public final class PlayerRewardsGenerator {
     }
 
     public PlayerRewards generate() {
-        Map<Integer, Reward> map = new HashMap<>();
+        Map<Integer, Reward> map = new LinkedHashMap<>();
         int index = 0;
         for (String in : input.split(DELIMITER)) {
             Reward reward = new Reward(in.trim());

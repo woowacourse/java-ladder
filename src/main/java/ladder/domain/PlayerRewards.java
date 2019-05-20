@@ -25,6 +25,10 @@ public final class PlayerRewards {
         return rewards.get(index);
     }
 
+    public Map<Integer, Reward> getRewards() {
+        return rewards;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

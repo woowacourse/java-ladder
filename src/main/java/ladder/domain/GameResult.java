@@ -1,13 +1,14 @@
 package ladder.domain;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class GameResult {
     private final Map<Player, Reward> results;
 
     public GameResult(Ladder ladder, GamePlayers gamePlayers, PlayerRewards playerRewards) {
-        this.results = new HashMap<>();
+        this.results = new LinkedHashMap<>();
         validate(gamePlayers.size(), playerRewards.size());
         for (int i = 0; i < gamePlayers.size(); i++) {
             int result = ladder.moveLadder(i);
