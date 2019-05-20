@@ -5,11 +5,12 @@ import ladder.util.RandomHelper;
 import java.util.*;
 
 class Line {
+    private final String CONSECUTIVE_EXCEPTION_MESSAGE = "연속된 true는 허용되지 않습니다.";
     private final List<Boolean> points;
 
     Line(final List<Boolean> points) {
         if (isConsecutive(points)) {
-            throw new IllegalArgumentException("연속된 true는 허용되지 않습니다.");
+            throw new IllegalArgumentException(CONSECUTIVE_EXCEPTION_MESSAGE);
         }
         this.points = points;
     }
