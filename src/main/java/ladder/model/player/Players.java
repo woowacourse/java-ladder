@@ -13,14 +13,21 @@ public class Players implements Iterable<Player> {
     private List<Player> players = new ArrayList<>();
 
     public Players(String[] names) {
-        if (names.length < MIN_PLAYER_NUMBER) {
+        validateNames(names);
+        IntStream.range(0, names.length).forEach(i -> players.add(new Player(names[i], i)));
+    }
+
+    private void validateNames(String[] names){
+        if(isPlayersUnderMinPlayerNumber(names)){
             throw new IllegalArgumentException("플레이어는 2명 이상이어야 합니다.");
         }
         if (this.isDuplicatedName(names)) {
             throw new IllegalArgumentException("중복된 이름이 있습니다.");
         }
+    }
 
-        IntStream.range(0, names.length).forEach(i -> players.add(new Player(names[i], i)));
+    private boolean isPlayersUnderMinPlayerNumber(String[] names){
+        return names.length < MIN_PLAYER_NUMBER;
     }
 
     private boolean isDuplicatedName(String[] names) {
