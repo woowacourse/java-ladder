@@ -3,7 +3,7 @@ package ladderGame.domain;
 public class Point {
     private Direction direction;
 
-    public Point(Direction direction) {
+    private Point(Direction direction) {
         this.direction = direction;
     }
 
