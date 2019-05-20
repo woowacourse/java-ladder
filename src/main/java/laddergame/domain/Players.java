@@ -45,7 +45,7 @@ public class Players {
         List<String> names = new ArrayList<>();
         for (int i = 0; i < players.size(); i++) {
             StringBuilder sb = new StringBuilder();
-            sb.append(players.get(i).getName().getName());
+            sb.append(players.get(i).getName());
             names.add(sb.toString());
         }
         String newNames = String.join(",",names);

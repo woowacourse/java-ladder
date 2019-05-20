@@ -15,7 +15,7 @@ public class OutputView {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (Player player : players.getPlayers()) {
-            stringBuilder.append(String.format("%6s", player.getName().getName()));
+            stringBuilder.append(String.format("%6s", player.getName()));
         }
         stringBuilder.append("\n");
 

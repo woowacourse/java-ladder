@@ -15,8 +15,8 @@ public class LadderGame {
         OutputView.printPlayersAndLadder(players, ladder);
         OutputView.printPrizes(prizes);
 
-        players = ladder.makeThePlayersClimbDownTheLadder(players);
-        promptUserForRequest(players, prizes);
+        Players resultPlayers = ladder.makeThePlayersClimbDownTheLadder(players);
+        promptUserForRequest(resultPlayers, prizes);
     }
 
     private static Players generatePlayers() {
