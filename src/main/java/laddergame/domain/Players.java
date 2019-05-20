@@ -1,21 +1,35 @@
 package laddergame.domain;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Players {
     private final List<Player> players = new ArrayList<>();
 
     public Players(String playersNames) {
-        PlayerNamesValidator.checkNullName(playersNames);
+        checkNullName(playersNames);
         playersNames = playersNames.replaceAll(" ","");
-        PlayerNamesValidator.checkConditions(playersNames);
+        checkConditions(playersNames);
         List<String> names = new ArrayList<>(Arrays.asList(playersNames.split(",")));
         for (String name : names) {
             players.add(new Player(name));
+        }
+    }
+    static void checkConditions(String playersNames) {
+        List<String> names = new ArrayList<>(Arrays.asList(playersNames.split(",")));
+        checkDuplicatedName(names);
+    }
+
+    private static void checkDuplicatedName(List<String> names) {
+        Set<String> namesWithoutDuplicates = new HashSet<>(names);
+        if (names.size() != namesWithoutDuplicates.size()) {
+            throw new IllegalArgumentException("중복된 이름이 존재합니다.\n다시 입력해주세요.");
+        }
+    }
+
+    private static void checkNullName(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("입력하신 이름이 null입니다.\n다시 입력해주세요.");
         }
     }
 
