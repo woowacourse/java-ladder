@@ -4,30 +4,30 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Points {
-    private List<Boolean> points;
+    private List<Point> points;
 
-    public Points(List<Boolean> points) {
+    public Points(List<Point> points) {
         checkPointsValid(points);
         this.points = points;
     }
 
-    private void checkPointsValid(List<Boolean> points) {
+    private void checkPointsValid(List<Point> points) {
         int length = points.size();
-        IntStream.range(1, length).forEach(i -> checkContinued(i - 1));
+        IntStream.range(0, length - 1).forEach(i -> checkContinued(points, i));
     }
 
-    private void checkContinued(int index) {
-        if (isContinuedPoints(index)) {
+    private void checkContinued(List<Point> points, int index) {
+        if (isContinuedPoints(points, index)) {
             throw new IllegalArgumentException("이어지는 가로라인 발생");
         }
     }
 
-    private boolean isContinuedPoints(int index) {
-        return isTrue(index) && isTrue(index + 1);
+    private boolean isContinuedPoints(List<Point> points, int index) {
+        return points.get(index).isTrue() && points.get(index + 1).isTrue();
     }
 
     public boolean isTrue(int index) {
-        return points.get(index);
+        return points.get(index).isTrue();
     }
 
     public boolean isUnderLast(int index) {

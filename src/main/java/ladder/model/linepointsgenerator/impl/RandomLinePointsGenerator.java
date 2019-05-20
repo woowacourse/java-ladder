@@ -1,5 +1,6 @@
 package ladder.model.linepointsgenerator.impl;
 
+import ladder.model.ladder.Point;
 import ladder.model.ladder.Points;
 import ladder.model.linepointsgenerator.LinePointsGenerator;
 
@@ -24,10 +25,10 @@ public class RandomLinePointsGenerator implements LinePointsGenerator {
 
     @Override
     public Points generatePoints() {
-        List<Boolean> points = new ArrayList<>();
+        List<Point> points = new ArrayList<>();
         boolean previous = false;
         for (int i = 0; i < countOfPlayer - 1; i++) {
-            points.add(previous = nextPoint(previous));
+            points.add(new Point(previous = nextPoint(previous)));
         }
 
         return new Points(points);
