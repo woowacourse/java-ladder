@@ -48,9 +48,9 @@ public class LadderResult {
      * @param name
      * @return
      */
-    public String matchItem(String name) {
+    public String findMatchItem(String name) {
         if (name.equals(SIGN_EX_NAME)) {
-            return allItem();
+            return findAllItem();
         }
         return ladderResult.get(Player.newBuilder(name)).toString();
     }
@@ -60,21 +60,12 @@ public class LadderResult {
      *
      * @return string
      */
-    private String allItem() {
+    private String findAllItem() {
         StringJoiner stringJoiner = new StringJoiner("\n");
         for (Map.Entry<Player, Item> playerRewardEntry : ladderResult.entrySet()) {
             stringJoiner.add(playerRewardEntry.getKey() + " : " + playerRewardEntry.getValue());
         }
         return stringJoiner.toString();
-    }
-
-    /**
-     * 모든 결과 반환
-     *
-     * @return Map
-     */
-    public Map allMatchItem() {
-        return ladderResult;
     }
 
     @Override

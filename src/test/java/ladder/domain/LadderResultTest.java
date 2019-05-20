@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +42,7 @@ class LadderResultTest {
 
     @Test
     void 이름_가져오기() {
-        assertThat(ladderResult.matchItem("pobi")).isEqualTo("star");
+        assertThat(ladderResult.findMatchItem("pobi")).isEqualTo("star");
     }
 
     @Test
@@ -53,6 +52,6 @@ class LadderResultTest {
         sb.append("hello : 2000\n");
         sb.append("mynam : pass\n");
         sb.append("is : 1000");
-        assertThat(ladderResult.matchItem("all")).isEqualTo(sb.toString());
+        assertThat(ladderResult.findMatchItem("all")).isEqualTo(sb.toString());
     }
 }

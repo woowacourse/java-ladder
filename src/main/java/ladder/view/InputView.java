@@ -72,7 +72,7 @@ public class InputView {
 
     public static String inputName(String name, LadderResult result) {
         try {
-            return result.matchItem(name);
+            return result.findMatchItem(name);
         } catch (Exception e) {
             System.out.println(EX_NOT_MATCH_NAME);
             return inputName(inputNameFromUser(), result);

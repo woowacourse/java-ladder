@@ -68,7 +68,7 @@ public class Ladder {
     /**
      * 사다리 결과 반환
      *
-     * @return
+     * @return LadderResult
      */
     public LineResult executeResult() {
         LineResult result = LineResult.newBuilder(ladder.get(0).size());

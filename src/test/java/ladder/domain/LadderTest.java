@@ -62,7 +62,7 @@ public class LadderTest {
     void 결과_매핑_확인() {
         LadderResult ladderResult = LadderResult.newBuild(players, items, ladder.executeResult());
         System.out.println(ladder.draw());
-        System.out.println(ladderResult.matchItem("all"));
+        System.out.println(ladderResult.findMatchItem("all"));
     }
 
     @Test
