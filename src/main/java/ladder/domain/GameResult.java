@@ -15,8 +15,8 @@ public class GameResult {
         }
     }
 
-    public String getResult(String requestedName,Person person) {
-        isNotContainName(person,requestedName);
+    public String getGameResult(String requestedName, Person person) {
+        isNotContainName(person, requestedName);
         if (requestedName.equals("all")) {
             return getAllResults();
         }

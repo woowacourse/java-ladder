@@ -70,7 +70,7 @@ public class Person {
         return names.get(index);
     }
 
-    public int getCountOfPerson() {
+    int getCountOfPerson() {
         return names.size();
     }
 

@@ -8,14 +8,14 @@ class Line {
     private final List<Boolean> points;
 
     Line(final List<Boolean> points) {
-        if(isConsecutive(points)){
+        if (isConsecutive(points)) {
             throw new IllegalArgumentException("연속된 true는 허용되지 않습니다.");
         }
         this.points = points;
     }
 
     private boolean isConsecutive(List<Boolean> points) {
-        return Collections.indexOfSubList(points,Arrays.asList(true,true)) != -1;
+        return Collections.indexOfSubList(points, Arrays.asList(true, true)) != -1;
     }
 
     static List<Boolean> generatePoints(int countOfPerson) {

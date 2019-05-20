@@ -5,27 +5,17 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class Application {
-    private static Person person;
-    private static Result result;
-    private static Height height;
-    private static LadderGame ladderGame;
-    private static GameResult gameResult;
 
     public static void main(String[] args) {
-        receiveInput();
-        ladderGame = LadderGame.generateLadder(height, person);
+        Person person = InputView.inputNames();
+        Result result = InputView.inputResultAll(person);
+        LadderGame ladderGame = LadderGame.generateLadder(InputView.inputHeight(), person);
         OutputView.printLadder(ladderGame, person, result);
-        gameResult = ladderGame.generateAllResults(person, result);
+        GameResult gameResult = ladderGame.generateAllResults(person, result);
         String requestedName;
         do {
-            requestedName = InputView.findResultName(person);
-            OutputView.printLadderResult(gameResult.getResult(requestedName,person));
+            requestedName = InputView.findResultName(gameResult, person);
+            OutputView.printLadderResult(gameResult.getGameResult(requestedName, person));
         } while (!requestedName.equals("all"));
-    }
-
-    private static void receiveInput() {
-        person = InputView.inputNames();
-        result = InputView.inputResultAll(person.getCountOfPerson());
-        height = InputView.inputHeight();
     }
 }

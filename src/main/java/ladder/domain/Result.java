@@ -11,8 +11,8 @@ public class Result {
     private static final int RESULT_MAX_LENGTH = 6;
     private final List<String> results;
 
-    public Result(String results, int countOfPerson) {
-        this.results = checkResult(results,countOfPerson);
+    public Result(String results, Person person) {
+        this.results = checkResult(results, person.getCountOfPerson());
     }
 
     private List<String> checkResult(String inputs, int countOfPerson) {
