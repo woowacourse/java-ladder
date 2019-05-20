@@ -2,7 +2,7 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -10,14 +10,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LadderBuilderTest {
     @Test
     public void build() {
-        List<Line> lines = new ArrayList<>();
-        lines.add(new Line());
+        Line line = new Line(Arrays.asList(true, false));
+        List<Line> lines = Arrays.asList(line);
 
-        Ladder ladder = new Ladder(lines, 1);
-        ladder.connect(new MockLadderBuildStrategy(), 0, 0);
+        Ladder ladder = new Ladder(lines, 2);
+        LadderBuilder ladderBuilder = new LadderBuilder(new MockLadderBuildStrategy());
 
-        LadderBuilder ladderBuilder = new LadderBuilder();
-
-        assertThat(ladderBuilder.build(new LadderHeight(1), 1, new MockLadderBuildStrategy())).isEqualTo(ladder);
+        assertThat(ladderBuilder.build(new LadderHeight(1), 2)).isEqualTo(ladder);
     }
 }

@@ -15,10 +15,6 @@ public class Ladder {
         this.numberOfPeople = numberOfPeople;
     }
 
-    public void connect(LadderBuildingStrategy strategy, int lineNumber, int point) {
-        lines.get(lineNumber).connect(strategy, point);
-    }
-
     public LadderResult play() {
         List<Integer> result = new ArrayList<>();
         int numberOfPeople = getNumberOfPeople();
@@ -78,11 +74,12 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return Objects.equals(lines, ladder.lines);
+        return numberOfPeople == ladder.numberOfPeople &&
+                Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lines);
+        return Objects.hash(lines, numberOfPeople);
     }
 }

@@ -1,8 +1,8 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class LadderResult {
     private List<Integer> result;
@@ -12,13 +12,7 @@ public class LadderResult {
     }
 
     public List<String> match(Items items) {
-        List<String> ladderResult = new ArrayList<>();
-
-        for (int index : result) {
-            ladderResult.add(items.getItemName(index));
-        }
-
-        return ladderResult;
+        return result.stream().map(items::getItemName).collect(Collectors.toList());
     }
 
     @Override

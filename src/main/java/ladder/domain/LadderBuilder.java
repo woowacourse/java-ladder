@@ -2,33 +2,47 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderBuilder {
-    private Ladder ladder;
+    private LadderBuildingStrategy strategy;
 
-    public Ladder build(LadderHeight height, int numberOfPeople, LadderBuildingStrategy strategy) {
-        initLadder(height, numberOfPeople);
-
-        for (int row = 0; height.isSmallerThanHeight(row); row++) {
-            connect(strategy, numberOfPeople, row);
-        }
-
-        return ladder;
+    public LadderBuilder(LadderBuildingStrategy strategy) {
+        this.strategy = strategy;
     }
 
-    private void initLadder(LadderHeight height, int numberOfPeople) {
-        List<Line> lines = new ArrayList<>();
-
-        for (int i = 0; height.isSmallerThanHeight(i); i++) {
-            lines.add(new Line());
-        }
-
-        ladder = new Ladder(lines, numberOfPeople);
+    public Ladder build(LadderHeight height, int numberOfPeople) {
+        return new Ladder(createLines(height, numberOfPeople), numberOfPeople);
     }
 
-    private void connect(LadderBuildingStrategy strategy, int numberOfPeople, int row) {
-        for (int column = 0; column < numberOfPeople; column++) {
-            ladder.connect(strategy, row, column);
+    private List<Line> createLines(LadderHeight height, int numberOfPeople) {
+        return IntStream.range(0, height.getHeight())
+                .mapToObj(it -> new Line(createPoints(numberOfPeople)))
+                .collect(Collectors.toList());
+    }
+
+    private List<Boolean> createPoints(int numberOfPeople) {
+        List<Boolean> points = new ArrayList<>();
+        boolean isConnected = false;
+
+        for (int i = 0; i < numberOfPeople; i++) {
+            isConnected = connect(i, numberOfPeople, isConnected);
+            points.add(isConnected);
         }
+
+        return points;
+    }
+
+    private boolean connect(int point, int numberOfPeople, boolean previousPointConnected) {
+        if (!isAvailableToConnect(point, numberOfPeople, previousPointConnected)) {
+            return false;
+        }
+
+        return strategy.generate();
+    }
+
+    private boolean isAvailableToConnect(int point, int numberOfPeople, boolean previousPointConnected) {
+        return (point < numberOfPeople - 1) && !previousPointConnected;
     }
 }

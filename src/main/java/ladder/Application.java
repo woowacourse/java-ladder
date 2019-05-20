@@ -14,8 +14,8 @@ public class Application {
         Items items = InputView.inputItems(players.getNumberOfPlayers());
         LadderHeight height = InputView.inputHeight();
 
-        LadderBuilder ladderBuilder = new LadderBuilder();
-        Ladder ladder = ladderBuilder.build(height, players.getNumberOfPlayers(), new RandomValueBuildStrategy());
+        LadderBuilder ladderBuilder = new LadderBuilder(new RandomValueBuildStrategy());
+        Ladder ladder = ladderBuilder.build(height, players.getNumberOfPlayers());
 
         printLadder(players, ladder, items);
 
