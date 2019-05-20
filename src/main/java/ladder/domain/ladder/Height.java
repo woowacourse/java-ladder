@@ -12,7 +12,7 @@ public class Height {
 
     private void checkNegative(int number) {
         if (number < 0) {
-            throw new RuntimeException("자연수만 입력 가능합니다.");
+            throw new IllegalArgumentException("자연수만 입력 가능합니다.");
         }
     }
 

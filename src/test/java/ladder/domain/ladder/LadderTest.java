@@ -1,8 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.Height;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
+import ladder.domain.linegenerator.impl.RandomLineGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +10,7 @@ public class LadderTest {
     private Ladder ladder;
     @BeforeEach
     void setUp() {
-        ladder = new Ladder(3, new Height(3));
+        ladder = new Ladder(new RandomLineGenerator(3), new Height(3));
     }
 
     @Test
