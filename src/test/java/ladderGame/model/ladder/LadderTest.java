@@ -1,5 +1,6 @@
-package ladderGame.model;
+package ladderGame.model.ladder;
 
+import ladderGame.model.ladder.Ladder;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

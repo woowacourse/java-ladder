@@ -1,4 +1,6 @@
-package ladderGame.model;
+package ladderGame.model.ladder;
+
+import ladderGame.model.ladder.Point;
 
 import java.util.ArrayList;
 import java.util.List;

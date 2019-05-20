@@ -1,4 +1,4 @@
-package ladderGame.model;
+package ladderGame.model.ladder;
 
 public class Point {
     private boolean drawn;
