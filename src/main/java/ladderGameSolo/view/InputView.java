@@ -38,6 +38,50 @@ public class InputView {
         return Integer.parseInt(height);
     }
 
+    public static String inputResult(int memberSize) {
+        System.out.println(MessageContants.INPUT_RESULT);
+        String result = SCAN.nextLine();
+
+        if (validGameResult(result) || isNotSameLength(memberSize, result)) {
+            return inputResult(memberSize);
+        }
+
+        return result;
+    }
+
+    private static boolean validGameResult(String result) {
+        return isBlank(result) || hasNotComma(result);
+    }
+
+    private static boolean isNotSameLength(int memberSize, String target) {
+        String[] targets = target.split(MessageContants.DELIMITER_COMMA);
+
+        if (memberSize != targets.length) {
+            System.err.println(MessageContants.ERROR_INPUT_RESULT);
+            return true;
+        }
+
+        return false;
+    }
+
+    private static boolean isBlank(String text) {
+        if (text.isEmpty()) {
+            System.err.println(MessageContants.ERROR_EMPTY);
+            return true;
+        }
+
+        return false;
+    }
+
+    private static boolean hasNotComma(String text) {
+        if (!text.contains(MessageContants.DELIMITER_COMMA)) {
+            System.err.println(MessageContants.ERROR_COMMA);
+            return true;
+        }
+
+        return false;
+    }
+
     private static boolean validName(String name) {
         Pattern pattern = Pattern.compile(REGEX_NAME);
         Matcher matcher = pattern.matcher(name);

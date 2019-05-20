@@ -9,6 +9,7 @@ public class GameView {
 
     public void run() {
         String[] names = InputView.inputName().split(MessageContants.DELIMITER_COMMA);
+        String[] inputResult = InputView.inputResult(names.length).split(MessageContants.DELIMITER_COMMA);
         int height = InputView.inputHeight();
         Ladder ladder = LadderGame.getLadders(names.length, height);
 
