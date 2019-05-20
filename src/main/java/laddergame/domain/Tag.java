@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Objects;
 
 public class Tag {
-    private static final int TAG_LENGTH_BOUND = 5;
+    public static final int TAG_LENGTH_BOUND = 5;
 
     private final String name;
 

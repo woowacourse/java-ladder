@@ -19,10 +19,6 @@ public class Ladder {
         return lines.add(line);
     }
 
-    public int getHeight() {
-        return lines.size();
-    }
-
     public int takeLadder(int point) {
         for (Line line : lines) {
             point = line.moveNextPoint(point);
@@ -30,8 +26,8 @@ public class Ladder {
         return point;
     }
 
-    public Line getLine(int height) {
-        return lines.get(height);
+    public List<Line> getLines() {
+        return lines;
     }
 
     @Override
