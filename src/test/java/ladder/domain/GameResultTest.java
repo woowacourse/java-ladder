@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GameResultTest {
     private GameResult gameResult;
@@ -23,13 +24,16 @@ class GameResultTest {
 
     @Test
     void 전체_결과_출력_테스트() {
-        assertThat(gameResult.getResult("all")).isEqualTo("aaa : 5000\n" +
-                                                            "aa : 100");
+        assertThat(gameResult.getResult("all")).isEqualTo("pobi : 5000\n" + "crong : 100\n");
     }
 
     @Test
     void 플레이어_결과_출력_테스트() {
-        assertThat(gameResult.getResult("aaa")).isEqualTo("5000");
+        assertThat(gameResult.getResult("pobi")).isEqualTo("5000");
     }
 
+    @Test
+    void 존재하지_않는_플레이어_결과_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> gameResult.getResult("zico"));
+    }
 }
