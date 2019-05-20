@@ -5,8 +5,10 @@ import ladder.domain.UserOutput;
 import java.util.List;
 
 public class Validator {
+    private static final int MAX_PLAYER_NAME_LENGTH = 5;
+
     private static boolean checkNameLength(String name) {
-        return name.length() <= 5;
+        return name.length() <= MAX_PLAYER_NAME_LENGTH;
     }
 
     public static void checkNamesLength(List<String> names) {
@@ -18,7 +20,7 @@ public class Validator {
     public static void checkLadderHeight(String height) {
         try {
             Integer.parseInt(height);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new NumberFormatException(UserOutput.VIOLATE_LADDER_HEIGHT.getOutputMessage());
         }
     }

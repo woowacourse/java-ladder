@@ -39,7 +39,7 @@ public class LadderGame {
             names = InputView.inputNames();
             Validator.checkNamesLength(StringSplitUtils.splitString(names));
             return Arrays.asList(names.split(","));
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getPersonNames();
         }
@@ -52,7 +52,7 @@ public class LadderGame {
             height = InputView.inputHeight();
             Validator.checkLadderHeight(height);
             return Integer.parseInt(height);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
             return getLadderHeight();
         }
@@ -65,7 +65,7 @@ public class LadderGame {
             result = InputView.inputResults();
             Validator.checkNumberOfResult(names, StringSplitUtils.splitString(result));
             return Arrays.asList(result.split(","));
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getGameResult(names);
         }
@@ -106,7 +106,7 @@ public class LadderGame {
         try {
             Validator.checkNameForResult(names, input);
             return input;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getNameForResult(names);
         }
