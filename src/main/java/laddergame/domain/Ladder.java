@@ -44,16 +44,4 @@ public class Ladder {
     public int hashCode() {
         return Objects.hash(lines, height);
     }
-
-    // TODO toString 없애기
-    /*@Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < lines.size(); i++) {
-            sb.append(lines.get(i));
-        }
-
-        return sb.toString();
-    }*/
 }

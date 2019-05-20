@@ -18,17 +18,4 @@ public class Line {
     public int getWidth() {
         return width;
     }
-
-    // TODO toString 없애야 함
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("     |");
-
-        for (int i = 0; i < line.size(); i++) {
-            sb.append(line.get(i) ? "-----|" : "     |");
-        }
-        sb.append("\n");
-
-        return sb.toString();
-    }
 }

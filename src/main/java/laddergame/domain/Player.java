@@ -27,11 +27,6 @@ public class Player {
         return Objects.hash(name);
     }
 
-    /*@Override
-    public String toString() {
-        return this.name;
-    }*/
-
     public boolean hasSameName(String name) {
         return this.name.equals(name);
     }
