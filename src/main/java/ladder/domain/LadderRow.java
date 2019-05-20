@@ -1,8 +1,6 @@
 package ladder.domain;
 
 import ladder.util.Generator;
-import ladder.util.RandomGenerator;
-import ladder.util.RowInputGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
