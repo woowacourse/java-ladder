@@ -6,7 +6,7 @@ public class StringCalculator {
     private List<Integer> numbers;
 
     public StringCalculator(String formula) {
-        List<Integer> numbers = DelimiterType.findDelimiterType(formula).separateString(formula);
+        List<Integer> numbers = Splitter.split(DelimiterType.findDelimiterType(formula), formula);
         checkNegativeNumber(numbers);
         this.numbers = numbers;
     }
