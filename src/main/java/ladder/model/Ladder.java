@@ -6,19 +6,17 @@ import java.util.List;
 public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;
     private static final String NEW_LINE = "\n";
-    private final int height;
     private List<Line> lines = new ArrayList<>();
 
     public Ladder(int height, int countOfPlayer) {
         if (!this.isValidHeight(height)) {
             throw new IllegalArgumentException("높이는 1 이상의 정수이어야 합니다.");
         }
-        this.height = height;
-        linesInit(countOfPlayer);
+        linesInit(countOfPlayer, height);
     }
 
-    private void linesInit(int countOfPlayer) {
-        for (int i = 0; i < this.height; i++) {
+    private void linesInit(int countOfPlayer, int height) {
+        for (int i = 0; i < height; i++) {
             lines.add(new Line(countOfPlayer));
         }
     }
@@ -40,7 +38,7 @@ public class Ladder {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < linesSize(); i++) {
             stringBuilder.append(lines.get(i)).append(NEW_LINE);
         }
         return stringBuilder.toString();
