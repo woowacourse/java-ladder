@@ -9,6 +9,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Calculator {
+    public static final String FORMAT_SYMBOL = "//(.*)\\\\n(.*)";
+    public static final String DEFAULT_SYMBOL = ",|:";
+    public static final String STRING_ZERO = "0";
+    public static final Character SLASH = '/';
+    public static final int ZERO = 0;
 
     public static List<Integer> convertNumbers(String input) {
         input = StringUtils.deleteWhitespace(input);
@@ -21,16 +26,16 @@ public class Calculator {
 
     public static List<String> inputSplit(String input) {
         if (StringUtils.isBlank(input)) {
-            return Arrays.asList(CalculatorConst.STRING_ZERO);
+            return Arrays.asList(STRING_ZERO);
         }
-        if (input.charAt(0) == CalculatorConst.SLASH) {
+        if (input.charAt(0) == SLASH) {
             return customSplit(input);
         }
-        return Arrays.asList(input.split(CalculatorConst.DEFAULT_SYMBOL));
+        return Arrays.asList(input.split(DEFAULT_SYMBOL));
     }
 
     public static List<String> customSplit(String input) {
-        Matcher matcher = Pattern.compile(CalculatorConst.FORMAT_SYMBOL).matcher(input);
+        Matcher matcher = Pattern.compile(FORMAT_SYMBOL).matcher(input);
         if (matcher.find()) {
             String splitSymbol = matcher.group(1);
             String content = matcher.group(2);
@@ -40,13 +45,15 @@ public class Calculator {
     }
 
     static int checkMinusNumber(int number) {
-        if (number < CalculatorConst.ZERO) {
+        if (number < ZERO) {
             throw new IllegalArgumentException("음수가 포함되어 있습니다.");
         }
         return number;
     }
 
     public static int sumNumber(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers.stream()
+                .mapToInt(x -> x)
+                .sum();
     }
 }
