@@ -3,12 +3,12 @@ package ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class LadderGameRewards {
+public class LadderGameRewards {
     private static final String DEFALT_LENGTH_FORMAT = "%-6s";
 
     private List<Reward> rewards;
 
-    LadderGameRewards(List<String> rewards) {
+    public LadderGameRewards(List<String> rewards) {
         this.rewards = rewards.stream().map(Reward::new).collect(Collectors.toList());
     }
 

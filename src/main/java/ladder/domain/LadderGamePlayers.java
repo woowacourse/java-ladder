@@ -4,13 +4,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class LadderGamePlayers {
+public class LadderGamePlayers {
     private static final String DUPLICATION_EXCEPTION_MESSAGE = "이름은 중복을 허용하지 않습니다.";
     private static final String DEFALT_LENGTH_FORMAT = "%-6s";
 
     private List<Player> players;
 
-    LadderGamePlayers(List<String> names) {
+    public LadderGamePlayers(List<String> names) {
         validationDuplication(names);
         this.players = names.stream().map(Player::new).collect(Collectors.toList());
     }
@@ -21,7 +21,7 @@ class LadderGamePlayers {
         }
     }
 
-    int size() {
+    public int size() {
         return players.size();
     }
 

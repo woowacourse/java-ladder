@@ -45,7 +45,7 @@ public class Ladder {
         return log;
     }
 
-    GameResult getResult(LadderGamePlayers players, LadderGameRewards rewards) {
+    public GameResult getResult(LadderGamePlayers players, LadderGameRewards rewards) {
         GameResult gameResult = new GameResult();
         List<Integer> lastRecord = log.get(log.size() - 1).getIndices();
         for (int i = 0; i < players.size(); i++) {
