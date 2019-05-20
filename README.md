@@ -9,22 +9,26 @@
 
 ## 사다리 게임
 ### Model
-1. Line
+1. Point
+    - 사다리 게임에서 진행방향을 나타낼 기능
+    - 발판이 있다면 오른쪽 또는 왼쪽
+    - 양쪽에 다 없으면 직진
+2. Line
     - 발판의 존재 여부를 저장하는 points
     - 랜덤하게 발판이 생기는 기능
     - 이전 발판 여부를 확인하는 검사
-2. Ladder
+3. Ladder
     - 사다리 Line들을 저장하는 lines
     - 사다리 게임을 진행하는 기능
-3. Tags
+4. Tags
     - 태그들을 저장하는 tags
     - 각각의 정보를 조회하는 기능
-4. Tag
+5. Tag
     - 이름을 저장하는 tag
     - 이름에 대한 유효성 검사
-5. LadderGame
+6. LadderGame
     - 사다리 게임을 진행하는 기능
-6. LadderGameResult
+7. LadderGameResult
     - 사다리 게임 결과를 저장하는 기능
 
 ### Util
@@ -39,6 +43,10 @@
     - 참여자들의 이름을 출력하는 기능
     - 사다리를 출력하는 기능
     - 사다리 게임 결과를 출력하는 기능
-4. Validator
+4. LadderGameViewMaker
+    - 사다리 게임을 콘솔에 출력하기 위한 포맷을 만드는 기능
+
+### Validator
+1. InputValidator
     - 유효성 검사를 실시하는 기능
     
