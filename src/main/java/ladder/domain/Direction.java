@@ -6,7 +6,6 @@ public class Direction {
     private static final int MOVE_NONE = 0;
 
     private final boolean right;
-
     private final boolean current;
 
     public Direction(final boolean current, final boolean right) {
