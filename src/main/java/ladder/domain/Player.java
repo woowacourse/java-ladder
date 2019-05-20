@@ -19,6 +19,9 @@ public final class Player {
     }
 
     private String validName(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("이름을 입력해 주세요");
+        }
         String trimmedName = trimName(name);
         validateName(trimmedName);
         return trimmedName;
@@ -30,7 +33,7 @@ public final class Player {
     }
 
     private void validateNameSize(String name) {
-        if (name == null || name.isEmpty()) {
+        if (name.isEmpty()) {
             throw new IllegalArgumentException("이름은 1글자 이상 입력해주세요.");
         }
         if (name.length() > NAME_LENGTH_CONDITION) {
