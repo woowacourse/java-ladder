@@ -22,7 +22,7 @@ public class LadderResultTest {
         ladderRewards = new LadderRewards(Arrays.asList("꽝", "5000", "꽝", "3000"), 4);
         ladderResult = new LadderResult(ladderRewards);
         rowInputGenerator = new RowInputGenerator(Arrays.asList(1, 1, 0, 1));
-        ladder = new Ladder(4, 2, rowInputGenerator);
+        ladder = new Ladder(4, new Height("2"), rowInputGenerator);
         players = new Players(Arrays.asList("a", "b", "c", "d"));
     }
 

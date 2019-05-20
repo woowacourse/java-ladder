@@ -12,15 +12,15 @@ public class Ladder {
     private final int height;
     private List<LadderRow> rows = new ArrayList<>();
 
-    public Ladder(final int width, final int height) {
+    public Ladder(final int width, final Height height) {
         this.width = width;
-        this.height = height;
+        this.height = height.getHeight();
         make();
     }
 
-    public Ladder(final int width, final int height, RowInputGenerator rowInputGenerator) {
+    public Ladder(final int width, final Height height, RowInputGenerator rowInputGenerator) {
         this.width = width;
-        this.height = height;
+        this.height = height.getHeight();
         make(rowInputGenerator);
     }
 
