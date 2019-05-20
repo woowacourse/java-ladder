@@ -8,10 +8,6 @@ public class GameResult {
 
     public GameResult(Ladder ladder, GamePlayers gamePlayers, PlayerRewards playerRewards) {
         this.results = new HashMap<>();
-        init(ladder, gamePlayers, playerRewards);
-    }
-
-    private void init(Ladder ladder, GamePlayers gamePlayers, PlayerRewards playerRewards) {
         validate(gamePlayers.size(), playerRewards.size());
         for (int i = 0; i < gamePlayers.size(); i++) {
             int result = ladder.moveLadder(i);
@@ -21,7 +17,7 @@ public class GameResult {
 
     private void validate(int countOfPlayers, int countOfRewards) {
         if (countOfPlayers != countOfRewards) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("사용자의 수와 당첨보상의 수가 다릅니다.");
         }
     }
 
