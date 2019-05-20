@@ -4,7 +4,7 @@ import ladder.util.RandomHelper;
 
 import java.util.*;
 
-class Line {
+public class Line {
     private final String CONSECUTIVE_EXCEPTION_MESSAGE = "연속된 true는 허용되지 않습니다.";
     private final List<Boolean> points;
 
@@ -28,19 +28,8 @@ class Line {
         return points;
     }
 
-    String makeLine() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < points.size() - 1; i++) {
-            sb.append(makeRow(i));
-        }
-        return sb.toString() + "\n";
-    }
-
-    private String makeRow(int index) {
-        if (points.get(index)) {
-            return "-----|";
-        }
-        return "     |";
+    public List<Boolean> getPoints() {
+        return points;
     }
 
     int move(int index) {
@@ -52,6 +41,7 @@ class Line {
         }
         return index;
     }
+
 }
 
 

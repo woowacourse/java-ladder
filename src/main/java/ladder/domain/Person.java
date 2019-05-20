@@ -9,7 +9,6 @@ public class Person {
     private static final String EXCEPTION_MESSAGE = "양식에 맞게 입력해 주세요.";
     private static final String DUPLICATED_MESSAGE = "중복된 이름은 허용하지 않습니다.";
     private static final String NOT_ALLOW_ALL_MESSAGE = "이름 all은 허용하지 않습니다.";
-    private static final int NAME_MAX_LENGTH = 6;
     private static final int NAME_MAX_LIMIT = 5;
     private final List<String> names;
 
@@ -66,8 +65,13 @@ public class Person {
             throw new IllegalArgumentException(DUPLICATED_MESSAGE);
         }
     }
+
     boolean findName(String requestedName) {
         return names.contains(requestedName);
+    }
+
+    public List<String> getNames() {
+        return names;
     }
 
     String getName(int index) {
@@ -78,21 +82,4 @@ public class Person {
         return names.size();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (String name : names) {
-            sb.append(makeBlank(name));
-            sb.append(name);
-        }
-        return sb.toString();
-    }
-
-    private String makeBlank(String name) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < NAME_MAX_LENGTH - name.length(); i++) {
-            sb.append(" ");
-        }
-        return sb.toString();
-    }
 }

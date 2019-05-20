@@ -2,12 +2,9 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LineTest {
@@ -16,12 +13,6 @@ class LineTest {
         assertThrows(IllegalArgumentException.class, () -> {
             new Line(Arrays.asList(false, true, true, false));
         });
-    }
-
-    @Test
-    void 라인_출력() {
-        Line line = new Line(Arrays.asList(false, true, false, true, false));
-        assertThat(line.makeLine()).isEqualTo("     |-----|     |-----|\n");
     }
 
     @Test

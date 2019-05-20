@@ -33,12 +33,7 @@ public class LadderGame {
         return index;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Line line : ladder) {
-            sb.append(line.makeLine());
-        }
-        return sb.toString();
+    public List<Line> getLadder() {
+        return ladder;
     }
 }

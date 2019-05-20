@@ -2,7 +2,6 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PersonTest {
@@ -53,11 +52,5 @@ class PersonTest {
         assertThrows(IllegalArgumentException.class, () -> {
             new Person("pobi,brown,");
         });
-    }
-
-    @Test
-    void 출력() {
-        Person person = new Person("pobi,brown");
-        assertThat(person.toString()).isEqualTo("  pobi brown");
     }
 }
