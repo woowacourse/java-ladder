@@ -1,11 +1,11 @@
 package ladder.domain;
 
-import ladder.util.Util;
 import ladder.view.PlayerException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * 사다리 가로 줄 하나를 만드는 클래스
@@ -61,7 +61,7 @@ public class LadderLine {
         if (state) {
             return false;
         }
-        return Util.getRandomState();
+        return new Random().nextBoolean();
     }
 
     private String getStateShape(boolean lineState) {

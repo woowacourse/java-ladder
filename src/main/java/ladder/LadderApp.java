@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.domain.LadderResult;
-import ladder.util.Util;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -14,7 +13,7 @@ public class LadderApp {
 
         LadderResult ladderResult = new LadderResult(names, rewards, depth);
 
-        OutputView.outputLadder(Util.formatAlignRight(names), ladderResult.getLadderShape(), Util.formatAlignRight(rewards));
+        OutputView.outputLadder(names, ladderResult.getLadderShape(), rewards);
         OutputView.outputLadderReward(InputView.wantName(ladderResult));
     }
 }
