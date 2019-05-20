@@ -12,131 +12,139 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
+    Ladder ladder;
+    List<Player> players;
+    List<Player> expected;
+    List<Player> actual;
+
+    void forTest() {
+        for (int i = 0; i < players.size(); i++) {
+            assertThat(actual.get(i).toString())
+                    .isEqualTo(expected.get(i).toString());
+        }
+    }
+
     @Test
     void initTestA() {
-        Ladder ladderA = new Ladder(10, 6, new Always());
-        ladderA.getLevels().forEach(l ->
-            assertThat(new Level(ladderA.getWidth() - 1, new Always()).getLines()).isEqualTo(l.getLines())
-        );
+        ladder = new Ladder(10, 6, new Always());
+        ladder
+                .getLevels()
+                .forEach(l -> assertThat(new Level(ladder.getWidth() - 1, new Always()).getLines())
+                        .isEqualTo(l.getLines()));
     }
 
     @Test
     void initTestN() {
-        Ladder ladderN = new Ladder(11, 7, new Never());
-        ladderN.getLevels().forEach(l ->
-            assertThat(new Level(ladderN.getWidth() - 1, new Never()).getLines()).isEqualTo(l.getLines())
-        );
+        ladder = new Ladder(11, 7, new Never());
+        ladder
+                .getLevels()
+                .forEach(l -> assertThat(new Level(ladder.getWidth() - 1, new Never()).getLines())
+                        .isEqualTo(l.getLines()));
     }
 
     @Test
     void initTestO() {
         OddOnly odd = new OddOnly();
-        Ladder ladderO = new Ladder(7, 123, new OddOnly());
-        ladderO.getLevels().forEach(l ->
-            assertThat(new Level(ladderO.getWidth() - 1, odd).getLines()).isEqualTo(l.getLines())
-        );
+        ladder = new Ladder(7, 123, new OddOnly());
+        ladder
+                .getLevels()
+                .forEach(l -> assertThat(new Level(ladder.getWidth() - 1, odd).getLines())
+                        .isEqualTo(l.getLines()));
     }
 
     @Test
     void initTestE() {
         EvenOnly even = new EvenOnly();
-        Ladder ladderE = new Ladder(117, 2, new EvenOnly());
-        ladderE.getLevels().forEach(l ->
-            assertThat(new Level(ladderE.getWidth() - 1, even).getLines()).isEqualTo(l.getLines())
-        );
+        ladder = new Ladder(117, 2, new EvenOnly());
+        ladder
+                .getLevels()
+                .forEach(l -> assertThat(new Level(ladder.getWidth() - 1, even).getLines())
+                        .isEqualTo(l.getLines()));
     }
 
     @Test
     void applyTestA() {
-        List<Player> players = Arrays.asList(
-            new Player("A", "1"),
-            new Player("B", "2"),
-            new Player("C", "3"),
-            new Player("D", "4"),
-            new Player("E", "5")
+        players = Arrays.asList(
+                new Player("A", "1"),
+                new Player("B", "2"),
+                new Player("C", "3"),
+                new Player("D", "4"),
+                new Player("E", "5")
         );
-        List<Player> expected = Arrays.asList(
-            new Player("A", "2"),
-            new Player("B", "1"),
-            new Player("C", "4"),
-            new Player("D", "3"),
-            new Player("E", "5")
+        expected = Arrays.asList(
+                new Player("A", "2"),
+                new Player("B", "1"),
+                new Player("C", "4"),
+                new Player("D", "3"),
+                new Player("E", "5")
         );
-        Ladder ladderA = new Ladder(players.size(), 11, new Always());
-        List<Player> actual = ladderA.apply(players);
-        for (int i = 0; i < players.size(); i++) {
-            assertThat(actual.get(i).toString()).isEqualTo(expected.get(i).toString());
-        }
+        ladder = new Ladder(players.size(), 11, new Always());
+        actual = ladder.apply(players);
+        forTest();
     }
 
     @Test
     void applyTestN() {
-        List<Player> players = Arrays.asList(
+        players = Arrays.asList(
                 new Player("A", "1"),
                 new Player("B", "2"),
                 new Player("C", "3"),
                 new Player("D", "4"),
                 new Player("E", "5")
         );
-        List<Player> expected = Arrays.asList(
+        expected = Arrays.asList(
                 new Player("A", "1"),
                 new Player("B", "2"),
                 new Player("C", "3"),
                 new Player("D", "4"),
                 new Player("E", "5")
         );
-        Ladder ladderN = new Ladder(players.size(), 9, new Never());
-        List<Player> actual = ladderN.apply(players);
-        for (int i = 0; i < players.size(); i++) {
-            assertThat(actual.get(i).toString()).isEqualTo(expected.get(i).toString());
-        }
+        ladder = new Ladder(players.size(), 9, new Never());
+        actual = ladder.apply(players);
+        forTest();
     }
 
     @Test
     void applyTestO() {
-        List<Player> players = Arrays.asList(
-            new Player("A", "1"),
-            new Player("B", "2"),
-            new Player("C", "3"),
-            new Player("D", "4"),
-            new Player("E", "5"),
-            new Player("F", "6")
+        players = Arrays.asList(
+                new Player("A", "1"),
+                new Player("B", "2"),
+                new Player("C", "3"),
+                new Player("D", "4"),
+                new Player("E", "5"),
+                new Player("F", "6")
         );
-        List<Player> expected = Arrays.asList(
-            new Player("A", "2"),
-            new Player("B", "1"),
-            new Player("C", "3"),
-            new Player("D", "5"),
-            new Player("E", "4"),
-            new Player("F", "6")
+        expected = Arrays.asList(
+                new Player("A", "2"),
+                new Player("B", "1"),
+                new Player("C", "3"),
+                new Player("D", "5"),
+                new Player("E", "4"),
+                new Player("F", "6")
         );
-        Ladder ladderO = new Ladder(players.size(), 15, new OddOnly());
-        List<Player> actual = ladderO.apply(players);
-        for (int i = 0; i < players.size(); i++) {
-            assertThat(actual.get(i).toString()).isEqualTo(expected.get(i).toString());
-        }
+        ladder = new Ladder(players.size(), 15, new OddOnly());
+        actual = ladder.apply(players);
+        forTest();
     }
 
     @Test
     void applyTestE() {
-        List<Player> players = Arrays.asList(
-            new Player("A", "1"),
-            new Player("B", "2"),
-            new Player("C", "3"),
-            new Player("D", "4"),
-            new Player("E", "5")
+        players = Arrays.asList(
+                new Player("A", "1"),
+                new Player("B", "2"),
+                new Player("C", "3"),
+                new Player("D", "4"),
+                new Player("E", "5")
         );
-        List<Player> expected = Arrays.asList(
-            new Player("A", "1"),
-            new Player("B", "3"),
-            new Player("C", "2"),
-            new Player("D", "4"),
-            new Player("E", "5")
+        expected = Arrays.asList(
+                new Player("A", "1"),
+                new Player("B", "3"),
+                new Player("C", "2"),
+                new Player("D", "4"),
+                new Player("E", "5")
         );
-        Ladder ladderE = new Ladder(players.size(), 271, new EvenOnly());
-        List<Player> actual = ladderE.apply(players);
-        for (int i = 0; i < players.size(); i++) {
-            assertThat(actual.get(i).toString()).isEqualTo(expected.get(i).toString());
-        }
+        ladder = new Ladder(players.size(), 271, new EvenOnly());
+        actual = ladder.apply(players);
+        forTest();
     }
 }
