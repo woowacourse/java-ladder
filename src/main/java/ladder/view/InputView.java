@@ -48,4 +48,7 @@ public class InputView {
     }
 
 
+    public static void readPlayer() {
+        
+    }
 }

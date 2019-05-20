@@ -2,6 +2,8 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class HorizontalLine {
     private final int numPosition;
@@ -43,5 +45,13 @@ public class HorizontalLine {
 
     public Position createFirstLeftColumnPosition() {
         return new Position(0, directions.size() - 1, 0);
+    }
+
+    public static HorizontalLine create(int numPosition) {
+        return new HorizontalLine(
+                Stream.generate(() -> Direction.NONE)
+                        .limit(numPosition)
+                        .collect(Collectors.toList())
+        );
     }
 }

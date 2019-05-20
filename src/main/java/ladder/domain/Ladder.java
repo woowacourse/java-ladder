@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
 
@@ -34,5 +35,13 @@ public class Ladder {
 
     public Position createFirstLeftColumnPosition() {
         return lines.get(0).createFirstLeftColumnPosition();
+    }
+
+    public static Ladder create(int numRowPosition, int numColumnPosition) {
+        return new Ladder(
+                Stream.generate(() -> HorizontalLine.create(numColumnPosition))
+                        .limit(numRowPosition)
+                        .collect(Collectors.toList())
+        );
     }
 }

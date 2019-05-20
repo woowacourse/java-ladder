@@ -12,22 +12,21 @@ public class Main {
     public static void main(String[] args) {
         List<Player> players = InputView.initPlayers();
         List<Reward> rewards = InputView.initRewards(players);
-        int height = InputView.initLadderHeight();
 
         System.out.println("사다리 결과");
-
-        int numRowPosition = 5;
-        int numColumnPosition = 7;
-        // Todo: 좀더 간단하게 생성하도록 도와주는 부분이 필요
-        Ladder ladder = new Ladder(Stream.generate(() -> new HorizontalLine(Stream.generate(() -> Direction.NONE).limit(numColumnPosition).collect(Collectors.toList()))).limit(numRowPosition).collect(Collectors.toList()));
+        Ladder ladder = Ladder.create(InputView.initLadderHeight(), players.size());
 
         // Todo: 몇개 정도 선긋기를 시도하는게 좋을까?
-        LadderDrawer.tryDraw(ladder, 2 * (numColumnPosition + numRowPosition));
-
+        LadderDrawer.tryDraw(ladder, 2 * players.size());
         DrawnLadder drawnLadder = ladder.drawn();
-        OutputView.printDrawnLadder(drawnLadder);
+
+        OutputView.printLadderGameBoard(drawnLadder, players, rewards);
+
+        // LadderGame game = new LadderGame(drawnLadder, players, rewards);
         //
 //        while(true) {
+            InputView.readPlayer();
+
             System.out.println("결과를 보고 싶은 사람은?");
 
             Position position = Navigator.navigate(drawnLadder, drawnLadder.createFirstColumnPosition());
