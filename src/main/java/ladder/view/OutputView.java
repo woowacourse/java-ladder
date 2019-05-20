@@ -18,6 +18,7 @@ import ladder.domain.GameResult;
 import ladder.domain.LadderGame;
 import ladder.domain.PlayerTags;
 import ladder.domain.ResultTags;
+import ladder.domain.ladder.Horizontal;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.tag.Tag;
 
@@ -47,7 +48,11 @@ public class OutputView {
     }
 
     private static void ladderShape(Ladder ladder) {
-        System.out.println(ladder.toString());
+        StringBuilder sb = new StringBuilder();
+        for (Horizontal horizontal : ladder) {
+            sb.append(horizontal.toString());
+        }
+        System.out.println(sb.toString());
     }
 
     private static void ladderResults(ResultTags resultTags) {

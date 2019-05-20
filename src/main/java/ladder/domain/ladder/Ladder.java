@@ -13,6 +13,7 @@
 package ladder.domain.ladder;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ import java.util.List;
  * @author men7627
  * @version 1.0.0
  */
-public class Ladder {
+public class Ladder implements Iterable<Horizontal> {
     private List<Horizontal> ladder;
 
     public Ladder(LadderHeight height, LadderWidth width) {
@@ -44,13 +45,8 @@ public class Ladder {
         return current;
     }
 
-    // TODO 제거해야 할 부분
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Horizontal horizontal : this.ladder) {
-            sb.append(horizontal.toString());
-        }
-        return sb.toString();
+    public Iterator<Horizontal> iterator() {
+        return ladder.iterator();
     }
 }
