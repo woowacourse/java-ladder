@@ -16,7 +16,7 @@ public class GamePreparer {
 
             InputValidator.checkMemberNames(names);
             return new Tags(names);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
             return makeMembers();
         }
@@ -30,7 +30,7 @@ public class GamePreparer {
 
             InputValidator.checkPrizesName(names, size);
             return new Tags(names);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
             return makePrizes(size);
         }
