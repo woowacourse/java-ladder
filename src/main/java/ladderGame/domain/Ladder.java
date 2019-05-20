@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Ladder {
     private final List<Floor> floors;
+    private PointGeneratorInterface pointGenerator = PointGenerator.getInstance();
 
     public Ladder(int height, int userSize) {
         validatePositiveNumber(height);
@@ -19,7 +20,6 @@ public class Ladder {
 
     private List<Floor> createLadder(int floorSize, int height) {
         List<Floor> floors = new ArrayList<>();
-        PointGenerator pointGenerator = new PointGenerator();
 
         for (int i = 0; i < height; i++) {
             floors.add(new Floor(pointGenerator.makePointList(floorSize)));

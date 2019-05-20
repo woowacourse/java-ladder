@@ -6,6 +6,17 @@ import java.util.Random;
 
 public class PointGenerator implements PointGeneratorInterface {
 
+    private static PointGenerator instance;
+
+    private PointGenerator() {}
+
+    public static PointGenerator getInstance() {
+        if (instance == null) {
+            instance = new PointGenerator();
+        }
+        return instance;
+    }
+
     @Override
     public List<Point> makePointList(int width) {
         List<Point> points = new ArrayList<>();
