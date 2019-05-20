@@ -10,23 +10,9 @@ public class Player {
     private int position;
 
     public Player(String name, int position) {
-        if (!isValidName(name)) {
-            throw new IllegalArgumentException("올바르지 않은 이름입니다.");
-        }
+        validateName(name);
         this.name = name;
         this.position = position;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public int getPosition() {
-        return this.position;
-    }
-
-    private boolean isValidName(String name) {
-        return (!StringUtils.isBlank(name)) && (name.length() <= MAX_NAME_LENGTH);
     }
 
     public void moveLeft() {
@@ -35,6 +21,31 @@ public class Player {
 
     public void moveRight() {
         this.position++;
+    }
+
+    private void validateName(String name) {
+        if (isNameBlank(name)) {
+            throw new IllegalArgumentException("빈 이름을 입력했습니다.");
+        }
+        if(isNameOverMaxLength(name)){
+            throw new IllegalArgumentException("이름이 5자를 초과합니다.");
+        }
+    }
+
+    private boolean isNameBlank(String name){
+        return StringUtils.isBlank(name);
+    }
+
+    private boolean isNameOverMaxLength(String name){
+        return name.length() > MAX_NAME_LENGTH;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPosition() {
+        return this.position;
     }
 
     @Override
