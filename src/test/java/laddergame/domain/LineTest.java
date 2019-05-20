@@ -22,11 +22,13 @@ class LineTest {
     @Test
     void 발판이_제대로_놓아지는지_테스트() {
         Line line = new Line(Arrays.asList(Point.STRAIGHT, Point.STRAIGHT, Point.STRAIGHT));
-        final int interval = 1;
+        Line line1 = new Line(Arrays.asList(Point.STRAIGHT, Point.STRAIGHT, Point.STRAIGHT));
 
-        line.addScaffold(interval);
+        line.addScaffold(1);
+        line1.addScaffold(2);
 
         assertThat(line).isEqualTo(new Line(Arrays.asList(Point.STRAIGHT, Point.RIGHT, Point.LEFT)));
+        assertThat(line1).isEqualTo(new Line(Arrays.asList(Point.STRAIGHT, Point.RIGHT, Point.LEFT)));
     }
 
     @Test
