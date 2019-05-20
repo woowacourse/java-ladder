@@ -1,8 +1,8 @@
 package ladder.constant;
 
 import ladder.controller.LadderGameController;
-import ladder.model.LadderGoal;
-import ladder.model.LadderPlayer;
+import ladder.model.objectname.LadderGoalName;
+import ladder.model.objectname.LadderPlayerName;
 import ladder.validator.LadderHeightValidator;
 
 public class MessageConstant {
@@ -18,7 +18,7 @@ public class MessageConstant {
     public static final String OUTPUT_ACTION_RESULT = "실행 결과";
 
     public static final String ERROR_EXCESS_PLAYER_NAME_LENGTH
-            = String.format("ERROR : 플레이어 이름의 길이는 %d자를 넘을 수 없습니다.", LadderPlayer.MAX_LENGTH_OF_NAME);
+            = String.format("ERROR : 플레이어 이름의 길이는 %d자를 넘을 수 없습니다.", LadderPlayerName.MAX_LENGTH_OF_PLAYER_NAME);
     public static final String ERROR_EMPTY_VALUE = "ERROR : 입력값은 공백 등이 될 수 없습니다.";
     public static final String ERROR_LACK_OF_PLAYERS = "ERROR : 한 명의 플레이어로는 게임을 진행 할 수 없습니다.";
     public static final String ERROR_OVERLAP_PLAYERS = "ERROR : 중복된 플레이어 이름이 있습니다.";
@@ -28,7 +28,7 @@ public class MessageConstant {
     public static final String ERROR_NOT_INTEGER = "ERROR : 사다리의 높이는 정수로 입력해 주세요.";
 
     public static final String ERROR_EXCESS_GOAL_NAME_LENGTH
-            = String.format("ERROR : 실행 결과 이름의 길이는 %d자를 넘을 수 없습니다.", LadderGoal.MAX_LENGTH_OF_GOAL_NAME);
+            = String.format("ERROR : 실행 결과 이름의 길이는 %d자를 넘을 수 없습니다.", LadderGoalName.MAX_LENGTH_OF_GOAL_NAME);
     public static final String ERROR_MISMATCH_NUM_OF_PLAYERS_AND_GOALS = "ERROR : 참여자의 수와 실행 결과의 수가 같지 않습니다.";
     public static final String ERROR_OVERLAP_GOALS = "ERROR : 중복된 실행 결과가 있습니다.";
 

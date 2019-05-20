@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class LadderPlayerTest {
     @Test
     void 객체에_Player_이름이_잘_입력되었는지_테스트() {
-        assertThat(new LadderPlayer("pobi").getName()).isEqualTo("pobi");
+        assertThat(new LadderPlayer("pobi").getPlayerName()).isEqualTo("pobi");
     }
 
     @Test

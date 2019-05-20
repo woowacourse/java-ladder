@@ -1,26 +1,24 @@
 package ladder.model;
 
-import ladder.validator.LadderGoalValidator;
+import ladder.model.objectname.LadderGoalName;
 
 import java.util.Objects;
 
 public class LadderGoal {
-    public static final int MAX_LENGTH_OF_GOAL_NAME = 5;
-    private static final String FORMAT_OF_ALIGNED_GOAL_NAME = "%-" + MAX_LENGTH_OF_GOAL_NAME + "s";
+    private static final String FORMAT_OF_ALIGNED_GOAL_NAME = "%-" + LadderGoalName.MAX_LENGTH_OF_GOAL_NAME + "s";
     private static final String BLANK_FOR_ALIGNMENT_ON_LADDER = " ";
-    private final String goalName;
+    private final LadderGoalName goalName;
 
     public LadderGoal(final String goalName) {
-        LadderGoalValidator.checkAccuracyOfGoalName(goalName);
-        this.goalName = goalName.trim();
+        this.goalName = new LadderGoalName(goalName);
     }
 
     public String getGoalName() {
-        return goalName;
+        return goalName.getName();
     }
 
     String getAlignedGoalName() {
-        return String.format(FORMAT_OF_ALIGNED_GOAL_NAME, goalName) + BLANK_FOR_ALIGNMENT_ON_LADDER;
+        return String.format(FORMAT_OF_ALIGNED_GOAL_NAME, getGoalName()) + BLANK_FOR_ALIGNMENT_ON_LADDER;
     }
 
     @Override

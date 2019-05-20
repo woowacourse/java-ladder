@@ -23,7 +23,7 @@ public class LadderGamePlayers {
 
     public List<String> getAllPlayerNames() {
         return ladderPlayers.stream()
-                .map(LadderPlayer::getName)
+                .map(LadderPlayer::getPlayerName)
                 .collect(toList());
     }
 }

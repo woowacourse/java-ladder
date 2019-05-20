@@ -1,5 +1,8 @@
 package ladder.model;
 
+import ladder.model.objectname.LadderGoalName;
+import ladder.model.objectname.LadderPlayerName;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -37,7 +40,8 @@ public class LadderLine {
 
     private String createCrossbar(String mark) {
         StringBuilder stringBuilder = new StringBuilder();
-        int maxLenOfAllNames = Math.max(LadderPlayer.MAX_LENGTH_OF_NAME, LadderGoal.MAX_LENGTH_OF_GOAL_NAME);
+        int maxLenOfAllNames
+                = Math.max(LadderPlayerName.MAX_LENGTH_OF_PLAYER_NAME, LadderGoalName.MAX_LENGTH_OF_GOAL_NAME);
         for (int i = 0; i < maxLenOfAllNames; i++) {
             stringBuilder.append(mark);
         }

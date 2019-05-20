@@ -1,7 +1,6 @@
 package ladder.validator;
 
 import ladder.constant.MessageConstant;
-import ladder.model.LadderGoal;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -27,18 +26,5 @@ public class LadderGoalValidator {
     private static boolean isOverlapLadderGoal(String[] inputs) {
         Set<String> checkOverlapGoalNames = new HashSet<>(Arrays.asList(inputs));
         return checkOverlapGoalNames.size() != inputs.length;
-    }
-
-    public static void checkAccuracyOfGoalName(String goalName) {
-        if (goalName == null) {
-            throw new IllegalArgumentException(MessageConstant.ERROR_NULL);
-        }
-        goalName = goalName.trim();
-        if (goalName.isEmpty()) {
-            throw new IllegalArgumentException(MessageConstant.ERROR_EMPTY_VALUE);
-        }
-        if (goalName.length() > LadderGoal.MAX_LENGTH_OF_GOAL_NAME) {
-            throw new IllegalArgumentException(MessageConstant.ERROR_EXCESS_GOAL_NAME_LENGTH);
-        }
     }
 }
