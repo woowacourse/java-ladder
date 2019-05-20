@@ -21,11 +21,12 @@ public class Line {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("|");
+        StringBuilder sb = new StringBuilder("     |");
 
         for (int i = 0; i < line.size(); i++) {
             sb.append(line.get(i) ? "-----|" : "     |");
         }
+        sb.append("\n");
 
         return sb.toString();
     }

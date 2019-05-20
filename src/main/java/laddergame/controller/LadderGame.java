@@ -4,13 +4,12 @@ import laddergame.domain.*;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
-import java.util.InputMismatchException;
 import java.util.List;
 
 public class LadderGame {
     public void play() {
-        List<Player> players = getPlayers();
-        Ladder ladder = getLadder(players.size());
+        PlayerGroup players = InputView.askUserNames();
+        /*Ladder ladder = getLadder(players.size());
         List<Prize> prizes = getPrizes(players.size());
         OutputView.printLadder(players, ladder);
         OutputView.printPrizes(prizes);
@@ -18,7 +17,7 @@ public class LadderGame {
         GameProcessor processor = new GameProcessor(players);
         processor.processGame(ladder.getLadder());
 
-        keepAsk(players, prizes);
+        keepAsk(players, prizes);*/
     }
 
     private String keepAsk(List<Player> players, List<Prize> prizes) {
@@ -50,7 +49,7 @@ public class LadderGame {
         }
     }
 
-    private static List<Player> getPlayers() {
+    /*private static List<Player> getPlayers() {
         try {
             String input = InputView.askUserNames();
             return PlayersGenerator.createPlayers(input);
@@ -58,7 +57,7 @@ public class LadderGame {
             System.out.println(e.getMessage());
             return getPlayers();
         }
-    }
+    }*/
 
     private static Ladder getLadder(int width) {
         try {

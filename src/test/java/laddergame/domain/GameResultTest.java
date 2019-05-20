@@ -12,7 +12,7 @@ public class GameResultTest {
 
     @Test
     void 리스트에_존재하지않을때_테스트() {
-        List<Player> testList = Arrays.asList(new Player("a"), new Player("b"), new Player("c"));
+        List<Player> testList = Arrays.asList(new Player(new PlayerName("a")), new Player(new PlayerName("b")), new Player(new PlayerName("c")));
         List<Prize> testList2 = Arrays.asList(new Prize("win"), new Prize("win"), new Prize("lose"));
         String input = "JM";
 
@@ -23,7 +23,7 @@ public class GameResultTest {
 
     @Test
     void 결과_출력에_특정플레이어를_입력했을때_제대로하는지_테스트() {
-        List<Player> inputPlayers = Arrays.asList(new Player("a"), new Player("b"), new Player("c"), new Player("d"));
+        List<Player> inputPlayers = Arrays.asList(new Player(new PlayerName("a")), new Player(new PlayerName("b")), new Player(new PlayerName("c")), new Player(new PlayerName("d")));
         List<Prize> inputPrizes = Arrays.asList(new Prize("win"), new Prize("win"), new Prize("lose"), new Prize("lose"));
         GameProcessor processor = new GameProcessor(inputPlayers);
         List<Line> ladder = Arrays.asList(
@@ -40,7 +40,7 @@ public class GameResultTest {
 
     @Test
     void 결과_출력이_all일때_제대로하는지_테스트() {
-        List<Player> inputPlayers = Arrays.asList(new Player("a"), new Player("b"), new Player("c"), new Player("d"));
+        List<Player> inputPlayers = Arrays.asList(new Player(new PlayerName("a")), new Player(new PlayerName("b")), new Player(new PlayerName("c")), new Player(new PlayerName("d")));
         List<Prize> inputPrizes = Arrays.asList(new Prize("win"), new Prize("win"), new Prize("lose"), new Prize("lose"));
 
         GameProcessor processor = new GameProcessor(inputPlayers);

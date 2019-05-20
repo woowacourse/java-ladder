@@ -2,21 +2,23 @@ package laddergame.view;
 
 import laddergame.domain.Ladder;
 import laddergame.domain.Player;
+import laddergame.domain.PlayerGroup;
 import laddergame.domain.Prize;
 
 import java.util.List;
 
 public class OutputView {
 
-    public static void printLadder(List<Player> players, Ladder ladder) {
+    public static void printLadder(PlayerGroup playerGroup, Ladder ladder) {
         StringBuilder stringBuilder = new StringBuilder();
 
+        List<Player> players = playerGroup.getPlayers();
         for (Player player : players) {
-            stringBuilder.append(String.format("%6s", player));
+            stringBuilder.append(String.format("%6s", player.getName()));
         }
         stringBuilder.append("\n").append(ladder);
 
-        System.out.println(stringBuilder.toString());
+        System.out.print(stringBuilder.toString());
     }
 
     public static void printPrizes(List<Prize> prizes) {
