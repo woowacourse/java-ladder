@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class OutputView {
     private static final String OUTPUT_LADDER_RESULT = "사다리 결과";
+    private static final String OUTPUT_EXECUTE_RESULT = "실행 결과";
     private static final int MAX_INTERVAL = 5;
     private static final String ROW_LINE = "-----";
     private static final String EMPTY_LINE = "     ";
@@ -18,16 +19,12 @@ public class OutputView {
     private static final String NEXT_LINE = "\n";
     private static StringBuilder stringBuilder;
 
-    public static void ladderGameResult(List<Player> players, List<Line> ladder, Map<Integer, String> rewards) {
-        ladderResult(players, ladder, rewards);
-    }
-
-    private static void ladderResult(List<Player> players, List<Line> ladder, Map<Integer, String> rewards) {
+    public static void ladderResult(List<Player> players, List<Line> ladder, Map<String, String> gameRewards) {
         stringBuilder = new StringBuilder();
         System.out.println(OUTPUT_LADDER_RESULT);
         printPlayers(players);
         printLadder(ladder);
-        printReward(rewards);
+        printReward(gameRewards);
         System.out.println(stringBuilder.toString());
     }
 
@@ -59,12 +56,32 @@ public class OutputView {
         }
     }
 
-    private static void printReward(Map<Integer, String> rewards) {
-        Collection<String> values = rewards.values();
+    private static void printReward(Map<String, String> gameRewards) {
+        Collection<String> values = gameRewards.values();
         for (String value : values) {
             stringBuilder.append(printInterval(value.length()));
             stringBuilder.append(value);
         }
         stringBuilder.append(NEXT_LINE);
+    }
+
+    public static void printOnePlayerResult(Player player, Map<String, String> gameRewards) {
+        stringBuilder = new StringBuilder();
+        String resultPosition = String.valueOf(player.getPosition());
+
+        stringBuilder.append(OUTPUT_EXECUTE_RESULT).append(NEXT_LINE);
+        stringBuilder.append(gameRewards.get(resultPosition)).append(NEXT_LINE);
+        System.out.println(stringBuilder.toString());
+    }
+
+    public static void printAllPlayersResult(List<Player> players, Map<String, String> gameRewards) {
+        stringBuilder = new StringBuilder();
+
+        stringBuilder.append(OUTPUT_EXECUTE_RESULT).append(NEXT_LINE);
+        for(Player player : players){
+            String resultPosition = String.valueOf(player.getPosition());
+            stringBuilder.append(player.getName()).append(" : ").append(gameRewards.get(resultPosition)).append(NEXT_LINE);
+        }
+        System.out.println(stringBuilder.toString());
     }
 }

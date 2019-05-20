@@ -15,10 +15,6 @@ public class Player {
         this.position += moveState;
     }
 
-    public int compareTo(Player comparePlayer) {
-        return this.position - comparePlayer.position;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -37,7 +33,7 @@ public class Player {
         return name;
     }
 
-    int getPosition() {
+    public int getPosition() {
         return position;
     }
 }

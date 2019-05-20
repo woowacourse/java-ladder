@@ -11,37 +11,40 @@ import java.util.Map;
 public class LadderGameManager {
     private List<Player> players;
     private List<Line> createdLadder;
-    private Map<Integer, String> gameReward;
+    private Map<String, String> gameReward;
 
     public void start() {
+        registerGameEnv();
+        play();
+        OutputView.ladderResult(players, createdLadder, gameReward);
+        gameResult(players, gameReward);
+    }
+
+    private void registerGameEnv() {
         registerPlayers();
         registerGameReward();
         registerCreatedLadder();
-
-        play();
-        OutputView.ladderGameResult(players, createdLadder, gameReward);
     }
 
     private void registerPlayers() {
-        InputModel inputModel = new InputModel();
         PlayerManager playerManager = new PlayerManager();
-
-        playerManager.createPlayers(inputModel.getValidNames(InputView.getNames()));
+        playerManager.createPlayers(InputModel.getValidNames(InputView.getNames()));
         players = playerManager.getPlayers();
     }
 
     private void registerGameReward() {
         gameReward = new HashMap<>();
-        InputModel inputModel = new InputModel();
+        gameReward = InputModel.getWrappedValidReward(getValidReward());
+    }
 
-        gameReward = inputModel.getWrappedValidReward(inputModel.getValidReward(InputView.getGameReward(), players.size()));
+    private List<String> getValidReward() {
+        return InputModel.getValidReward(InputView.getGameReward(), players.size());
     }
 
     private void registerCreatedLadder() {
-        InputModel inputModel = new InputModel();
         Ladder ladder = new Ladder();
 
-        int ladderHeight = inputModel.getValidLadderHeight(InputView.getLadderHeight());
+        int ladderHeight = InputModel.getValidLadderHeight(InputView.getLadderHeight());
         ladder.createLadder(ladderHeight, players.size());
         createdLadder = ladder.getLadder();
     }
@@ -49,5 +52,23 @@ public class LadderGameManager {
     private void play() {
         LadderGame ladderGame = new LadderGame(players, createdLadder);
         ladderGame.runGame();
+    }
+
+
+    private void gameResult(List<Player> players, Map<String, String> gameRewards) {
+        String playerName = InputView.getWantToKnowResult();
+
+        if (playerName.equals("all")) {
+            OutputView.printAllPlayersResult(players, gameRewards);
+            return;
+        }
+
+        for (Player player : players) {
+            if (player.getName().equals(playerName)) {
+                OutputView.printOnePlayerResult(player, gameRewards);
+            }
+        }
+
+        gameResult(players, gameRewards);
     }
 }
