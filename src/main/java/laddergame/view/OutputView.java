@@ -12,7 +12,7 @@ public class OutputView {
     }
 
     private static void showMessageOfExecution() {
-        System.out.println("실행 결과");
+        System.out.println("\n실행 결과");
     }
 
     public static void showPlayers(Players players) {

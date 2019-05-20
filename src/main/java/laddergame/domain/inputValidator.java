@@ -3,6 +3,7 @@ package laddergame.domain;
 import org.apache.commons.lang3.StringUtils;
 
 public class inputValidator {
+    private final static String COMMA = ",";
 
     private inputValidator() {
     }
@@ -13,7 +14,7 @@ public class inputValidator {
     }
 
     private static void checkLastIndexOfInput(String input) {
-        if (input.lastIndexOf(Constant.COMMA) == input.length() - 1) {
+        if (input.lastIndexOf(COMMA) == input.length() - 1) {
             throw new IllegalArgumentException("콤마로 끝나면 안됩니다");
         }
     }

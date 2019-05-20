@@ -1,6 +1,5 @@
 package laddergame.domain.player;
 
-import laddergame.domain.Constant;
 import laddergame.domain.inputValidator;
 
 import java.util.Arrays;
@@ -10,6 +9,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class PlayerBuilder {
+    private final static String COMMA = ",";
+
     private final String names;
 
     public PlayerBuilder(final String names) {
@@ -18,7 +19,7 @@ public class PlayerBuilder {
 
     public Players buildPlayers() {
         inputValidator.validateInput(names);
-        List<Player> players = Arrays.stream(names.split(Constant.COMMA))
+        List<Player> players = Arrays.stream(names.split(COMMA))
                 .map(String::trim)
                 .map(Player::new)
                 .collect(Collectors.toList());

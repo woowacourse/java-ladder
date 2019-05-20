@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Ladder {
-    private final int height;            // 행
-    private final int width;            // 렬
+    private final int height;
+    private final int width;
     private List<Line> ladder;
 
     public Ladder(int height, int width) {
@@ -23,8 +23,8 @@ public class Ladder {
     public void connectBridgesRandomly(int count) {
         Random random = new Random();
         for (int i = 0; i < count; i++) {
-            int randomRow = random.nextInt(height - 1) + 1;              // 1 ~ height
-            int randomColumn = random.nextInt((width - 1)) + 1;                 // 1 ~ width
+            int randomRow = random.nextInt(height) + 1;
+            int randomColumn = random.nextInt(width) + 1;
 
             connectBridge(randomRow, randomColumn);
         }
@@ -34,7 +34,6 @@ public class Ladder {
         try {
             ladder.get(row).connect(column);
         } catch (IndexOutOfBoundsException e) {
-            // 인덱스 범위 벗어날 시 아무 수행하지 않는다.
         }
     }
 
@@ -60,6 +59,6 @@ public class Ladder {
             stringBuilder.append(line);
             stringBuilder.append("\n");
         }
-        return stringBuilder.toString();
+        return stringBuilder.toString().substring(0, stringBuilder.length() - 1);
     }
 }

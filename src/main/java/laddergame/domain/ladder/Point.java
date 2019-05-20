@@ -1,6 +1,8 @@
 package laddergame.domain.ladder;
 
 public class Point {
+	private final static String CONNECTED_BRIDGE = "-----";
+	private final static String NON_BRIDGE = "     ";
 	private final boolean bridge;
 
 	public Point(boolean bridge) {
@@ -13,6 +15,6 @@ public class Point {
 
 	@Override
 	public String toString() {
-		return bridge ? "-----" : "     ";
+		return bridge ? CONNECTED_BRIDGE : NON_BRIDGE;
 	}
 }

@@ -1,11 +1,13 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.Constant;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+    private static final int RIGHT_MOVE = 1;
+    private static final int LEFT_MOVE = -1;
+    private static final int NOT_MOVE = 0;
+
     private List<Point> line;
 
     public Line(int width) {
@@ -43,12 +45,12 @@ public class Line {
 
     public int findRoute(int startPosition) {
         if (hasBridgeAtLeftSide(startPosition + 1)) {
-            return Constant.LEFT_MOVE;
+            return LEFT_MOVE;
         }
         if (hasBridgeAtRightSide(startPosition)) {
-            return Constant.RIGHT_MOVE;
+            return RIGHT_MOVE;
         }
-        return Constant.NOT_MOVE;
+        return NOT_MOVE;
     }
 
     @Override

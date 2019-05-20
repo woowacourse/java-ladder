@@ -1,6 +1,5 @@
 package laddergame.domain.result;
 
-import laddergame.domain.Constant;
 import laddergame.domain.inputValidator;
 
 import java.util.Arrays;
@@ -9,6 +8,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ResultBuilder {
+    private final static String COMMA = ",";
+
     private String result;
 
     public ResultBuilder(String result) {
@@ -18,7 +19,7 @@ public class ResultBuilder {
     public Results buildResults() {
         inputValidator.validateInput(result);
 
-        List<Result> results =  Arrays.stream(result.split(Constant.COMMA))
+        List<Result> results =  Arrays.stream(result.split(COMMA))
                 .map(Result::new)
                 .collect(Collectors.toList());
 

@@ -1,12 +1,11 @@
 package laddergame.domain.result;
 
-import laddergame.domain.Constant;
-import laddergame.domain.player.Players;
-
 import java.util.List;
 import java.util.Objects;
 
 public class Results {
+    private final static String BLANK = " ";
+
     private List<Result> results;
 
     public Results(List<Result> results) {
@@ -36,10 +35,9 @@ public class Results {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder(String.format("%-3s", BLANK));
         for (Result result : results) {
-            stringBuilder.append(String.format("%-" + Constant.BOUND_OF_NAME_LENGTH + "s", result));
-            stringBuilder.append(" ");
+            stringBuilder.append(String.format("%-6s", result));
         }
         return stringBuilder.toString();
     }

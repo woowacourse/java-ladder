@@ -1,6 +1,5 @@
 package laddergame.controller;
 
-import laddergame.domain.Constant;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.player.PlayerBuilder;
@@ -11,6 +10,8 @@ import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
 public class LadderGameController {
+    private static final String COMMAND_ALL = "all";
+    private static final int CONNECTING_BRIDGE_TRIAL_COUNT = 100;
 
     private Players players;
     private Results results;
@@ -25,7 +26,7 @@ public class LadderGameController {
         do {
             command = InputView.inputCommand();
             printResult(command);
-        } while (!command.equals(Constant.COMMAND_ALL));
+        } while (!command.equals(COMMAND_ALL));
         OutputView.showAllResult(this.players, this.results, this.ladder);
     }
 
@@ -34,7 +35,7 @@ public class LadderGameController {
         this.results = setResults(players);
         LadderHeight ladderHeight = setLadderHeight();
         this.ladder = new Ladder(ladderHeight.getLadderHeight(), players.getPlayersSize());
-        this.ladder.connectBridgesRandomly(Constant.CONNECTING_BRIDGE_TRIAL_COUNT);
+        this.ladder.connectBridgesRandomly(CONNECTING_BRIDGE_TRIAL_COUNT);
     }
 
     private Players setPlayers() {

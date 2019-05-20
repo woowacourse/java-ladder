@@ -1,11 +1,12 @@
 package laddergame.domain.player;
 
-import laddergame.domain.Constant;
-
 import java.util.List;
 import java.util.Objects;
 
 public class Players {
+    private final static String COMMAND_ALL = "all";
+    private final static String EMPTY = "";
+
     private final List<Player> players;
 
     public Players(List<Player> players) {
@@ -17,6 +18,9 @@ public class Players {
     }
 
     public int getIndexOfName(String name) {
+        if(name.equals(COMMAND_ALL)){
+            throw new IllegalArgumentException(EMPTY);
+        }
         if (!players.contains(new Player(name))) {
             throw new IllegalArgumentException("존재하지않는 이름입니다.");
         }
@@ -42,10 +46,9 @@ public class Players {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder(String.format("%-3s", " "));
         for (Player player : players) {
-            stringBuilder.append(String.format("%-" + Constant.BOUND_OF_NAME_LENGTH + "s", player));
-            stringBuilder.append(" ");
+            stringBuilder.append(String.format("%-6s", player));
         }
         return stringBuilder.toString();
     }
