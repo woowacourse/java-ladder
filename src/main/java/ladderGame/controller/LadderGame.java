@@ -12,35 +12,29 @@ public class LadderGame {
         PlayerNamesInput playerNamesInput = InputView.readNames();
         int rows = InputView.readRows();
         ResultsInput resultsInput = InputView.readResults(playerNamesInput);
+
         int columns = playerNamesInput.getNames().size() - 1;
         LadderFactory ladderFactory = new LadderFactory();
-        OutputView.printLadder(ladderFactory., playerNamesInput.getNames(), resultsInput.getResults());
+        Ladder ladder = ladderFactory.generateLadder(rows, columns);
 
-        showResultUntilUserQuits(drawnLadder, playerNamesInput, resultsInput);
+        OutputView.printLadder(ladder, playerNamesInput.getNames(), resultsInput.getResults());
+        showResultUntilUserQuits(ladder, playerNamesInput, resultsInput);
     }
 
-    private static DrawnLadder generateDrawnLadder(PlayerNamesInput playerNamesInput, int rows) {
-        LadderFactory ladderFactory = new LadderFactory(new LadderRowFactory());
-        Ladder ladder = ladderFactory.newInstance(rows, playerNamesInput.getNames().size() - 1 );
-        LadderDrawer ladderDrawer = new LadderDrawer();
-        ladderDrawer.draw(ladder, rows);
-        return ladder.drawn();
-    }
-
-    private static String showResultUntilUserQuits(DrawnLadder drawnLadder,
+    private static String showResultUntilUserQuits(Ladder ladder,
                                                    PlayerNamesInput playerNamesInput,
                                                    ResultsInput resultsInput) {
         String name = InputView.readPlayer(playerNamesInput);
         if (name.equals("all")) {
-            OutputView.printAllResults(drawnLadder, playerNamesInput, resultsInput);
+            OutputView.printAllResults(ladder, playerNamesInput, resultsInput);
         }
         if (name.equals("quit")) {
             return name;
         }
         if (playerNamesInput.getNames().contains(name)) {
-            OutputView.printOnePlayerResult(drawnLadder, name, playerNamesInput, resultsInput);
+            OutputView.printOnePlayerResult(ladder, name, playerNamesInput, resultsInput);
         }
-        return showResultUntilUserQuits(drawnLadder, playerNamesInput, resultsInput);
+        return showResultUntilUserQuits(ladder, playerNamesInput, resultsInput);
     }
 }
 

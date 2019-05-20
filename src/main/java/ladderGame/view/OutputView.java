@@ -1,8 +1,8 @@
 package ladderGame.view;
-import ladderGame.dto.DrawnLadder;
 import ladderGame.model.input.PlayerNamesInput;
 import ladderGame.model.input.ResultsInput;
-import ladderGame.model.ladder.LadderNavigator;
+import ladderGame.model.ladder.Ladder;
+
 import java.util.List;
 
 public class OutputView {
@@ -10,23 +10,23 @@ public class OutputView {
     private static final String FILLED = "-----";
     private static final String VERTICAL_BAR = "|";
 
-    public static void printLadder(DrawnLadder drawnladder, List<String> names, List<String> results) {
+    public static void printLadder(Ladder ladder, List<String> names, List<String> results) {
         System.out.println("\n실행결과\n");
         printNames(names);
-        int rows = drawnladder.getRows();
-        int columns = drawnladder.getColumns();
+        int rows = ladder.getRowNum();
+        int columns = ladder.getColumns();
         for (int row = 0; row < rows; row++) {
             System.out.print(EMPTY);
-            printLadderRow(drawnladder, columns, row);
+            printLadderRow(ladder, columns, row);
             System.out.println(VERTICAL_BAR);
         }
         printNames(results);
     }
 
-    private static void printLadderRow(DrawnLadder drawnladder, int columns, int row) {
+    private static void printLadderRow(Ladder ladder, int columns, int row) {
         for (int column = 0; column < columns; column++) {
             System.out.print(VERTICAL_BAR);
-            System.out.print(drawnladder.isDrawn(row, column) ? FILLED : EMPTY);
+            System.out.print(ladder.getPoint(row, column) ? FILLED : EMPTY);
         }
     }
 
@@ -37,23 +37,23 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printAllResults(DrawnLadder drawnLadder,
+    public static void printAllResults(Ladder ladder,
                                        PlayerNamesInput playerNamesInput, ResultsInput resultsInput) {
         System.out.println("\n실행결과");
         for (String playerName : playerNamesInput.getNames()
         ) {
-            int startPoint = playerNamesInput.getNames().indexOf(playerName);
-            int finishPoint = LadderNavigator.navigate(drawnLadder, startPoint);
+            int startIndex = playerNamesInput.getNames().indexOf(playerName);
+            int finishPoint = ladder.getArrivialIndex(startIndex);
             System.out.println(playerName + " : " + resultsInput.getResults().get(finishPoint));
         }
 
     }
 
-    public static void printOnePlayerResult(DrawnLadder drawnLadder, String name,
+    public static void printOnePlayerResult(Ladder ladder, String name,
                                             PlayerNamesInput playerNamesInput, ResultsInput resultsInput) {
         System.out.println("\n실행결과");
-        int startPoint = playerNamesInput.getNames().indexOf(name);
-        int finishPoint = LadderNavigator.navigate(drawnLadder, startPoint);
-        System.out.println(name + " : " + resultsInput.getResults().get(finishPoint));
+        int startIndex = playerNamesInput.getNames().indexOf(name);
+        int arrivialIndex = ladder.getArrivialIndex(startIndex);
+        System.out.println(name + " : " + resultsInput.getResults().get(arrivialIndex));
     }
 }

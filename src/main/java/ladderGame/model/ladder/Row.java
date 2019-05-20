@@ -1,7 +1,5 @@
 package ladderGame.model.ladder;
 
-import ladderGame.model.ladder.Point;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,18 +14,18 @@ public class Row {
     }
 
     public void draw(int column) {
-        if(leftisSetTrue(column) || rightisSetTrue(column)) {
+        if(leftPointisSetTrue(column) || rightPointisSetTrue(column)) {
             return;
         }
         points.get(column).setTrue();
     }
 
-    private boolean leftisSetTrue(int column) {
+    private boolean leftPointisSetTrue(int column) {
         return column > 0 && points.get(column - 1).isTrue();
 
     }
 
-    private boolean rightisSetTrue(int column) {
+    private boolean rightPointisSetTrue(int column) {
         return column < points.size() - 1 && points.get(column + 1).isTrue();
     }
 
@@ -48,4 +46,5 @@ public class Row {
     public int getTruePointNumber() {
         return (int)points.stream().filter(point -> point.isTrue()).count();
     }
+
 }
