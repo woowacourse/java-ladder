@@ -11,6 +11,16 @@ public enum  Direction {
         this.distance = distance;
     }
 
+    public static Direction makeDirection(Direction direction, boolean nextRight) {
+        if (direction == RIGHT) {
+            return LEFT;
+        }
+        if (nextRight) {
+            return RIGHT;
+        }
+        return STOP;
+    }
+
     public int getDistance() {
         return distance;
     }

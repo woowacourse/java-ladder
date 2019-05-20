@@ -7,28 +7,16 @@ public class Point {
         this.direction = direction;
     }
 
-    public static Point pointFirst(boolean hasRight) {
-        if (hasRight) {
-            return new Point(Direction.RIGHT);
-        }
-        return new Point(Direction.STOP);
+    public static Point pointFirst(boolean nextRight) {
+        return new Point(Direction.makeDirection(Direction.STOP, nextRight));
     }
 
     public Point nextPointLast() {
-        if (direction == Direction.RIGHT) {
-            return new Point(Direction.LEFT);
-        }
-        return new Point(Direction.STOP);
+        return new Point(Direction.makeDirection(direction, false));
     }
 
     public Point nextPoint(boolean nextRight) {
-        if (direction == Direction.RIGHT) {
-            return new Point(Direction.LEFT);
-        }
-        if (nextRight) {
-            return new Point(Direction.RIGHT);
-        }
-        return new Point(Direction.STOP);
+        return new Point(Direction.makeDirection(direction, nextRight));
     }
 
     public boolean isHasRight() {
