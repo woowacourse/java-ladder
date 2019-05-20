@@ -22,6 +22,6 @@ public class LadderGameResultTest {
 
     @Test
     void 이름에_맞는_상품_찾기() {
-        assertThat(ladderGameResult.findReward(new Player("pobi"))).isEqualTo(new Reward("100"));
+        assertThat(ladderGameResult.findReward("pobi")).isEqualTo(new Reward("100"));
     }
 }

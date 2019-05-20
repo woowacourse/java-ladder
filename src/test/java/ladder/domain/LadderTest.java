@@ -9,7 +9,7 @@ public class LadderTest {
     private Ladder ladder;
     @BeforeEach
     void setUp() {
-        ladder = new Ladder(3, 3);
+        ladder = new Ladder(3, new Height(3));
     }
 
     @Test
