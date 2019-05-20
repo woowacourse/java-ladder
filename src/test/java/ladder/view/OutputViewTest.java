@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.LadderRow;
 import ladder.domain.PlayerResult;
+import ladder.util.RowInputGenerator;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -14,14 +15,18 @@ public class OutputViewTest {
 
     @Test
     public void 사다리_한줄_출력_문자열() {
-        LadderRow row = new LadderRow(Arrays.asList(1, -1, 0, 1, -1));
-        assertEquals("   |-----|     |     |-----|", OutputView.line(row));
+        RowInputGenerator rowInputGenerator = new RowInputGenerator(Arrays.asList(1, 0, 1));
+        LadderRow ladderRow = new LadderRow(5, rowInputGenerator);
+        ladderRow.makeRow();
+        assertEquals("   |-----|     |     |-----|", OutputView.line(ladderRow));
     }
 
     @Test
     public void 사다리_한줄_출력_문자열2() {
-        LadderRow row = new LadderRow(Arrays.asList(0, 0, 0, 0, 0));
-        assertEquals("   |     |     |     |     |", OutputView.line(row));
+        RowInputGenerator rowInputGenerator = new RowInputGenerator(Arrays.asList(0, 0, 0, 0, 0));
+        LadderRow ladderRow = new LadderRow(5, rowInputGenerator);
+        ladderRow.makeRow();
+        assertEquals("   |     |     |     |     |", OutputView.line(ladderRow));
 
     }
 

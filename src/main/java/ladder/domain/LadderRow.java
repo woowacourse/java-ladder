@@ -16,10 +16,6 @@ public class LadderRow {
         this.width = width;
     }
 
-    public LadderRow(List<Integer> numbers) {
-        this.row = numbers;
-    }
-
     public LadderRow(int width, Generator generator) {
         row = new ArrayList<>();
         this.width = width;
