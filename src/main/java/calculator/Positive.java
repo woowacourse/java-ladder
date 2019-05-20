@@ -9,7 +9,7 @@ public class Positive {
 
     public Positive(final int number) {
         if (number < 0) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException("0 이상의 수를 입력해 주세요");
         }
         this.number = number;
     }
