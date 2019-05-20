@@ -4,20 +4,22 @@ import ladder.View.OutputView;
 import ladder.domain.*;
 import ladder.View.InputView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LadderGameManager {
     private List<Player> players;
     private List<Line> createdLadder;
+    private Map<Integer, String> gameReward;
 
     public void start() {
-
         registerPlayers();
+        registerGameReward();
         registerCreatedLadder();
 
         play();
-
-        OutputView.printLadderResult(players, createdLadder);
+        OutputView.ladderGameResult(players, createdLadder, gameReward);
     }
 
     private void registerPlayers() {
@@ -26,6 +28,13 @@ public class LadderGameManager {
 
         playerManager.createPlayers(inputModel.getValidNames(InputView.getNames()));
         players = playerManager.getPlayers();
+    }
+
+    private void registerGameReward() {
+        gameReward = new HashMap<>();
+        InputModel inputModel = new InputModel();
+
+        gameReward = inputModel.getWrappedValidReward(inputModel.getValidReward(InputView.getGameReward(), players.size()));
     }
 
     private void registerCreatedLadder() {

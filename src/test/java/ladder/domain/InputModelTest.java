@@ -3,6 +3,7 @@ package ladder.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class InputModelTest {
     private InputModel inputModel;
@@ -48,4 +49,10 @@ class InputModelTest {
         });
     }
 
+    @Test
+    void 참가자수와_결과수가_다른_경우() {
+        assertThrows(IllegalArgumentException.class, () ->{
+            inputModel.getValidReward("ef", 2);
+        });
+    }
 }

@@ -17,7 +17,7 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public static String getExecuteResult() {
+    public static String getGameReward() {
         System.out.println(INPUT_EXECUTE_RESULT);
         return scanner.nextLine();
     }

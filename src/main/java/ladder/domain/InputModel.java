@@ -21,7 +21,6 @@ public class InputModel {
 
     private List<String> checkValidNames(List<String> names) {
         checkEmpty(names);
-
         checkOverlap(names);
 
         for (String name : names) {
@@ -31,8 +30,8 @@ public class InputModel {
         return names;
     }
 
-    private String[] split(String names) {
-        return names.trim().split(",");
+    private String[] split(String input) {
+        return input.trim().split(",");
     }
 
     private void checkEmpty(List<String> validNames) {
@@ -60,5 +59,35 @@ public class InputModel {
         }
 
         return number;
+    }
+
+    public List<String> getValidReward(String rewards, int numberOfPlayers) {
+        checkBlankInput(rewards);
+
+        return checkValidReward(Arrays.asList(split(rewards)), numberOfPlayers);
+    }
+
+    private List<String> checkValidReward(List<String> rewards, int numberOfPlayers) {
+        checkEmpty(rewards);
+
+        return checkNumberOfMatch(rewards, numberOfPlayers);
+    }
+
+    private List<String> checkNumberOfMatch(List<String> rewards, int numberOfPlayers) {
+        if (rewards.size() != numberOfPlayers) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
+        }
+
+        return rewards;
+    }
+
+    public Map<Integer, String> getWrappedValidReward(List<String> rewards) {
+        Map<Integer, String> result = new HashMap<>();
+
+        for (int i = 0; i < rewards.size(); i++) {
+            result.put(i, rewards.get(i));
+        }
+
+        return result;
     }
 }
