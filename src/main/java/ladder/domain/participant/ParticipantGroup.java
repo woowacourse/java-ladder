@@ -12,7 +12,7 @@ public class ParticipantGroup {
     public ParticipantGroup(final List<String> names) {
         validateMinParticipants(names);
         validateDuplicatedParticipants(names);
-        names.stream().forEach(x -> this.participants.add(new Participant(x)));
+        names.forEach(x -> this.participants.add(new Participant(x)));
     }
 
     private void validateMinParticipants(List<String> participants) {
@@ -35,7 +35,7 @@ public class ParticipantGroup {
         return participants;
     }
 
-    public int orderOf(Participant p) {
-        return participants.indexOf(p);
+    public Participant getNthParticipant(int index) {
+        return participants.get(index);
     }
 }

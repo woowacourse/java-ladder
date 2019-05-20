@@ -5,11 +5,11 @@ import java.util.Objects;
 public class PointDTO {
     private boolean haveRight;
 
-    public PointDTO(boolean haveRight) {
+    PointDTO(boolean haveRight) {
         this.haveRight = haveRight;
     }
 
-    public PointDTO(Point point) {
+    PointDTO(LadderGameResult point) {
         this(point.isRightDirection());
     }
 

@@ -2,31 +2,31 @@ package ladder.domain.ladder;
 
 import java.util.Objects;
 
-class Point {
+class LadderGameResult {
     private final Direction direction;
     private final int position;
 
-    private Point(int position, Direction direction) {
+    private LadderGameResult(int position, Direction direction) {
         this.position = position;
         this.direction = direction;
     }
 
-    static Point firstPoint(boolean tmp) {
-        return new Point(0, Direction.firstDirection(tmp));
+    static LadderGameResult firstPoint(boolean tmp) {
+        return new LadderGameResult(0, Direction.firstDirection(tmp));
     }
 
-    Point nextPoint(int maxPosition, boolean tmp) {
+    LadderGameResult nextPoint(int maxPosition, boolean tmp) {
         if (maxPosition > position + 1) {
-            return new Point(position + 1, direction.nextDirection(tmp));
+            return new LadderGameResult(position + 1, direction.nextDirection(tmp));
         }
         if (maxPosition == position + 1) {
-            return new Point(position + 1, direction.lastDirection());
+            return new LadderGameResult(position + 1, direction.lastDirection());
         }
         throw new IllegalArgumentException();
     }
 
-    static Point of(int position, Direction direction) {
-        return new Point(position, direction);
+    static LadderGameResult of(int position, Direction direction) {
+        return new LadderGameResult(position, direction);
     }
 
     int nextPointPosition() {
@@ -41,7 +41,7 @@ class Point {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
+        LadderGameResult point = (LadderGameResult) o;
         return direction.equals(point.direction)
                 && position == point.position;
     }

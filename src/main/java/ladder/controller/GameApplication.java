@@ -2,6 +2,7 @@ package ladder.controller;
 
 import ladder.domain.LadderGame;
 import ladder.domain.LadderGameResult;
+import ladder.domain.MatchingResult;
 import ladder.domain.reward.RewardGroup;
 import ladder.domain.participant.ParticipantGroup;
 import ladder.view.InputView;
@@ -11,11 +12,12 @@ public class GameApplication {
     public static void main(String[] args) {
         ParticipantGroup participants = createParticipantGroup();
         RewardGroup rewards = createRewards(participants.getSize());
-        LadderGame ladderGame = createLadderGame(participants, rewards);
+        LadderGame ladderGame = createLadderGame(participants);
 
         OutputView.printLadderResult(participants, ladderGame.getLadder(), rewards);
 
-        LadderGameResult ladderGameResult = ladderGame.getGameResult();
+        MatchingResult matchingResult = ladderGame.play();
+        LadderGameResult ladderGameResult = matchingResult.map(participants, rewards);
         while (!ladderGameResult.isEnd()) {
             OutputView.printGameResult(ladderGameResult);
         }
@@ -39,12 +41,12 @@ public class GameApplication {
         }
     }
 
-    private static LadderGame createLadderGame(final ParticipantGroup participants, final RewardGroup rewards) {
+    private static LadderGame createLadderGame(final ParticipantGroup participants) {
         try {
-            return new LadderGame(participants, rewards, InputView.inputLadderHeight());
+            return new LadderGame(participants, InputView.inputLadderHeight());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + "\n");
-            return createLadderGame(participants, rewards);
+            return createLadderGame(participants);
         }
     }
 }

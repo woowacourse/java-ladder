@@ -8,7 +8,7 @@ public class RewardGroup {
 
     public RewardGroup(final List<String> rewards, int size) {
         validateRewardsSize(rewards, size);
-        rewards.stream().forEach(x -> this.rewards.add(new Reward(x)));
+        rewards.forEach(x -> this.rewards.add(new Reward(x)));
     }
 
     private void validateRewardsSize(List<String> rewards, int size) {
@@ -23,5 +23,9 @@ public class RewardGroup {
 
     public List<Reward> getRewardList() {
         return rewards;
+    }
+
+    public int getSize() {
+        return rewards.size();
     }
 }

@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 public class Line {
     private static final int MIN_LINE_WIDTH = 2;
 
-    private final List<Point> points;
+    private final List<LadderGameResult> points;
 
-    Line(List<Point> points) {
+    Line(List<LadderGameResult> points) {
         validateLineWidth(points.size());
         this.points = Collections.unmodifiableList(points);
     }
