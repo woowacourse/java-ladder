@@ -16,6 +16,10 @@ public class Point {
         this.right = right;
     }
 
+    public Boolean getLeft() {
+        return left;
+    }
+
     private static Point of(Boolean first, Boolean second) {
         return new Point(first, second);
     }
@@ -61,8 +65,8 @@ public class Point {
         return Objects.hash(left, right);
     }
 
-    @Override
-    public String toString() {
-        return left ? "-----" : "     ";
-    }
+//    @Override
+//    public String toString() {
+//        return left ? "-----" : "     ";
+//    }
 }

@@ -42,10 +42,6 @@ public class Tag {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     private void checkEmpty(String name) {
         if (name.length() == NAME_LOWER_BOUND) {
             throw new IllegalArgumentException(NAME_EMPTY_ERROR);
@@ -75,15 +71,14 @@ public class Tag {
         if (this == o) return true;
         if (!(o instanceof Tag)) return false;
         Tag that = (Tag) o;
-        return getName().equals(that.getName());
+        return name.equals(that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName());
+        return Objects.hash(name);
     }
 
-    // TODO 제거해야 할 부분
     @Override
     public String toString() {
         return this.name;

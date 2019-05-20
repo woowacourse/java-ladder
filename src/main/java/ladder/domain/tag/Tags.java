@@ -34,6 +34,10 @@ public abstract class Tags {
         addNames(input);
     }
 
+    public List<Tag> getTags() {
+        return tags;
+    }
+
     private void validInput(String input) {
         if(!input.matches(PLAYER_NAMES_REGEX)){
             throw new IllegalArgumentException(VALID_INPUT_ERROR);
@@ -48,12 +52,12 @@ public abstract class Tags {
         }
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for(Tag tag : tags){
-            sb.append(String.format("%6s", tag.toString()));
-        }
-        return sb.toString();
-    }
+//    @Override
+//    public String toString() {
+//        StringBuilder sb = new StringBuilder();
+//        for(Tag tag : tags){
+//            sb.append(String.format("%6s", tag.toString()));
+//        }
+//        return sb.toString();
+//    }
 }
