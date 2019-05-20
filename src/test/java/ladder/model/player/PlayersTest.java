@@ -4,14 +4,18 @@ import ladder.model.player.Players;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayersTest {
-    String[] names;
+    List<String> names;
 
     @BeforeEach
     void setup() {
-        names = new String[]{"bmo", "pobi"};
+        names = Arrays.stream("bmo,pobi".split(",")).collect(Collectors.toList());
     }
 
     @Test
