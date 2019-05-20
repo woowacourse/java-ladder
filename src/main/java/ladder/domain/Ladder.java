@@ -14,15 +14,22 @@ public class Ladder {
     public Line getLine(int lineIndex) {
         return lines.get(lineIndex);
     }
-    
-    public List<Integer> play() {
+
+    public List<Item> play(Items items) {
+        List<Integer> ladderResult = playAllRound();
+        List<Item> finalResult = LadderResult.generate(ladderResult, items);
+
+        return finalResult;
+    }
+
+    private List<Integer> playAllRound() {
         List<Integer> ladderResult = new ArrayList<>();
 
         for (int i = 0; i < getNumberOfPeople(); i++) {
             int index = i;
             ladderResult.add(playOneRound(index));
         }
-        
+
         return ladderResult;
     }
 

@@ -1,18 +1,21 @@
 package calculator;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+    private static final int INITIAL_SUM = 0;
+    private static final int NEGATIVE_CRITERION = 0;
 
     public int process(String input) {
-        if (isNull(input) || input.isEmpty()) return 0;
+        if (Objects.isNull(input) || input.isEmpty()) return 0;
 
         String[] tokens = getTokens(input);
 
         validate(tokens);
 
-        return getSum(tokens);
+        return sum(tokens);
     }
 
     private String[] getTokens(String input) {
@@ -33,8 +36,8 @@ public class StringCalculator {
         }
     }
 
-    private int getSum(String[] tokens) {
-        int sum = 0;
+    private int sum(String[] tokens) {
+        int sum = INITIAL_SUM;
 
         for (String token : tokens) {
             sum += Integer.parseInt(token);
@@ -44,7 +47,7 @@ public class StringCalculator {
     }
 
     private void validateNegativeNumber(String token) {
-        if (Integer.parseInt(token) < 0) {
+        if (Integer.parseInt(token) < NEGATIVE_CRITERION) {
             throw new RuntimeException("0 이상의 정수를 입력해 주세요.");
         }
     }
@@ -53,9 +56,5 @@ public class StringCalculator {
         if (!(new Integer(Integer.parseInt(token)) instanceof Integer)) {
             throw new RuntimeException("구분자와 숫자만을 입력해주세요..");
         }
-    }
-
-    private boolean isNull(String input) {
-        return input == null;
     }
 }

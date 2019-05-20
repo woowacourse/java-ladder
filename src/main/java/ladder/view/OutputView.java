@@ -1,7 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
+import ladder.domain.*;
 
 import java.util.List;
 
@@ -9,11 +8,11 @@ public class OutputView {
     private final static String CONNECTED = "-----";
     private final static String DISCONNECTED = "     ";
 
-    public static void printNames(List<String> names) {
+    public static void printNames(Players players) {
         System.out.println("\n사다리 결과\n");
 
-        for (String name : names) {
-            System.out.printf("%6s", name);
+        for (int i = 0; i < players.getSize(); i++) {
+            System.out.printf("%6s", players.getPlayer(i));
         }
         System.out.println();
     }
@@ -46,25 +45,25 @@ public class OutputView {
         return DISCONNECTED;
     }
 
-    public static void printItems(List<String> items) {
-        for (String item : items) {
-            System.out.printf("%6s", item);
+    public static void printItems(Items items) {
+        for (int i = 0; i < items.getSize(); i++) {
+            System.out.printf("%6s", items.getItem(i));
         }
         System.out.println();
     }
 
-    public static void printResult(String participant, List<String> finalResult, List<String> names) {
+    public static void printResult(Player participant, List<Item> finalResult, Players players) {
         System.out.println("\n실행 결과");
-        if (participant.equals("all")) {
-            printForAll(finalResult, names);
+        if (participant.toString().equals("all")) {
+            printForAll(finalResult, players);
             return;
         }
-        System.out.println(finalResult.get(names.indexOf(participant)));
+        System.out.println(finalResult.get(players.indexOf(participant)));
     }
 
-    private static void printForAll(List<String> finalResult, List<String> names) {
-        for (int i = 0; i < names.size(); i++) {
-            System.out.println(names.get(i) + " : " + finalResult.get(i));
+    private static void printForAll(List<Item> finalResult, Players players) {
+        for (int i = 0; i < players.getSize(); i++) {
+            System.out.println(players.getPlayer(i) + " : " + finalResult.get(i));
         }
     }
 }

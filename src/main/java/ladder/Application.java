@@ -13,33 +13,28 @@ public class Application {
     }
 
     private void play() {
-        List<String> names = InputView.inputNames();
-        List<String> items = InputView.inputItems(names.size());
+        Players players = InputView.inputPlayers();
+        Items items = InputView.inputItems(players);
         int height = InputView.inputHeight();
 
-        Ladder ladder = new LadderGenerator().generate(height, names.size());
-        printLadder(names, items, ladder);
+        Ladder ladder = new LadderGenerator().generate(height, players.getSize());
+        printLadder(players, items, ladder);
 
-        List<String> finalResult = getResult(items, ladder);
-        printResult(names, finalResult);
+        List<Item> finalResult = ladder.play(items);
+        printResult(players, finalResult);
     }
 
-    private void printLadder(List<String> names, List<String> items, Ladder ladder) {
-        OutputView.printNames(names);
+    private void printLadder(Players players, Items items, Ladder ladder) {
+        OutputView.printNames(players);
         OutputView.printLadderBody(ladder);
         OutputView.printItems(items);
     }
 
-    private List<String> getResult(List<String> items, Ladder ladder) {
-        List<Integer> result = ladder.play();
-        return LadderResult.generate(result, items);
-    }
-
-    private void printResult(List<String> names, List<String> finalResult) {
-        String participant;
+    private void printResult(Players players, List<Item> finalResult) {
+        Player participant;
         do {
-            participant = InputView.inputParticipant(names);
-            OutputView.printResult(participant, finalResult, names);
-        } while (!participant.equals("all"));
+            participant = InputView.inputParticipant(players);
+            OutputView.printResult(participant, finalResult, players);
+        } while (!participant.toString().equals("all"));
     }
 }

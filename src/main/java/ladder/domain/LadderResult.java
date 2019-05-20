@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderResult {
-    public static List<String> generate(List<Integer> result, List<String> items) {
-        List<String> finalResult = new ArrayList<>();
+    public static List<Item> generate(List<Integer> result, Items items) {
+        List<Item> finalResult = new ArrayList<>();
 
         for (int i = 0; i < result.size(); i++) {
-            finalResult.add(items.get(result.get(i)));
+            finalResult.add(items.getItem(result.get(i)));
         }
 
         return finalResult;

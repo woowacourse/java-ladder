@@ -26,8 +26,12 @@ public class LadderTest {
 
     @Test
     public void 사다리_잘_타는지_확인() {
-        List<Integer> resultByMe = Arrays.asList(1, 0, 3, 2);
-        List<Integer> resultByLadder = ladder.play();
+        String[] names = {"pobi", "cony", "done", "brown"};
+        Players players = new Players(names);
+        String[] itemNames = {"a", "b", "c", "d"};
+        Items items = new Items(itemNames, players);
+        List<Item> resultByMe = Arrays.asList(new Item("b"), new Item("a"), new Item("d"), new Item("c"));
+        List<Item> resultByLadder = ladder.play(items);
 
         assertThat(resultByMe).isEqualTo(resultByLadder);
     }
