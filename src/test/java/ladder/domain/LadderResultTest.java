@@ -1,6 +1,6 @@
 package ladder.domain;
 
-
+import ladder.util.RowInputGenerator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,14 +15,14 @@ public class LadderResultTest {
     private LadderResult ladderResult;
     private Ladder ladder;
     private Players players;
-    private RandomGenerator randomGenerator;
+    private RowInputGenerator rowInputGenerator;
 
     @Before
     public void setLadderGame() {
         ladderRewards = new LadderRewards(Arrays.asList("꽝", "5000", "꽝", "3000"), 4);
         ladderResult = new LadderResult(ladderRewards);
-        randomGenerator = new RandomGenerator(Arrays.asList(1, 1, 0, 1));
-        ladder = new Ladder(4, 2, randomGenerator);
+        rowInputGenerator = new RowInputGenerator(Arrays.asList(1, 1, 0, 1));
+        ladder = new Ladder(4, 2, rowInputGenerator);
         players = new Players(Arrays.asList("a", "b", "c", "d"));
     }
 

@@ -1,11 +1,15 @@
 package ladder.domain;
 
+import ladder.util.Generator;
+import ladder.util.RandomGenerator;
+import ladder.util.RowInputGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class LadderRow {
     private static final int LAST_LINE = 1;
-    private RandomGenerator randomGenerator;
+    private Generator generator;
     private List<Integer> row;
     private int width;
 
@@ -18,10 +22,10 @@ public class LadderRow {
         this.row = numbers;
     }
 
-    public LadderRow(int width, RandomGenerator randomGenerator) {
+    public LadderRow(int width, Generator generator) {
         row = new ArrayList<>();
         this.width = width;
-        this.randomGenerator = randomGenerator;
+        this.generator = generator;
     }
 
     LadderRow getRow() {
@@ -54,7 +58,7 @@ public class LadderRow {
     }
 
     private boolean getRandomFlag() {
-        return randomGenerator.number() == LadderRules.RANDOM_DRAW.number();
+        return generator.generate() == LadderRules.RANDOM_DRAW.number();
     }
 
     public List<Integer> status() {
