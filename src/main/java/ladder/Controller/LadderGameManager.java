@@ -21,15 +21,15 @@ public class LadderGameManager {
     }
 
     public void start() {
-        InputModel inputModel = new InputModel();
-        names = inputModel.getValidNames(InputView.getNames());
-        List<String> executeResult = inputModel.getValidExecuteResult(InputView.getExecuteResult(), names.size());
-        int ladderHeight = inputModel.getValidLadderHeight(InputView.getLadderHeight());
+        InputManager inputManager = new InputManager();
+        names = inputManager.getValidNames(InputView.getNames());
+        List<String> executeResult = inputManager.getValidExecuteResult(InputView.getExecuteResult(), names.size());
+        int ladderHeight = inputManager.getValidLadderHeight(InputView.getLadderHeight());
         createdLadder = new Ladder(names.size(), ladderHeight).getLadder();
         createPlayers();
 
         ladderMove(ladderHeight);
-        output(inputModel,executeResult);
+        output(inputManager,executeResult);
     }
 
     private void createPlayers() {
@@ -74,7 +74,7 @@ public class LadderGameManager {
         return new Player(names.get(playerNumber), players.get(playerNumber).getPosition(), new Direction(createdLadder.get(height).getRowLines().get(playerPosition - 1), createdLadder.get(height).getRowLines().get(playerPosition)));
     }
 
-    private void output(InputModel inputModel, List<String> executeResult) {
+    private void output(InputManager inputManager, List<String> executeResult) {
         OutputView.printNames(names);
 
         for (Line line : createdLadder) {
@@ -82,7 +82,7 @@ public class LadderGameManager {
         }
 
         OutputView.printExecuteResult(executeResult);
-        OutputView.printMatchedExecuteResult(players, inputModel.getPlayerForResult(names, InputView.getPlayerForResult()), executeResult);
+        OutputView.printMatchedExecuteResult(players, inputManager.getPlayerForResult(names, InputView.getPlayerForResult()), executeResult);
     }
 
 }

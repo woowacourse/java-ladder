@@ -2,10 +2,11 @@ package ladder.domain;
 
 import java.util.*;
 
-public class InputModel {
+public class InputManager {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_HEIGHT = 1;
     private static final String ERROR_MESSAGE = "입력이 올바르지 않습니다.";
+    private final String COMMA = ",";
 
     public List<String> getValidNames(String names) {
         checkBlankInput(names);
@@ -44,7 +45,7 @@ public class InputModel {
     }
 
     private String[] split(String names) {
-        return names.trim().split(",");
+        return names.trim().split(COMMA);
     }
 
     private void checkEmpty(List<String> validNames) {
