@@ -16,8 +16,8 @@ public class Player {
     }
 
     public Player moveOn(Line line) {
-        Point point = line.getPoint(position);
-        Position newPosition = new Position(position.getValue() + point.move());
+        final Point point = line.getPoint(position);
+        final Position newPosition = new Position(position.getValue() + point.move());
         return new Player(name, newPosition);
     }
 

@@ -18,7 +18,7 @@ public class RandomLadderGenerator {
     }
 
     private static List<Line> generateLines(int numOfPlayers, LadderHeight height) {
-        List<Line> lines = new ArrayList<>();
+        final List<Line> lines = new ArrayList<>();
         while (lines.size() < height.getHeight()) {
             lines.add(generateLine(numOfPlayers));
         }
@@ -27,7 +27,7 @@ public class RandomLadderGenerator {
 
     private static Line generateLine(int numOfPlayers) {
         Point currentPoint = generateFirstPoint();
-        List<Point> points = new ArrayList<>();
+        final List<Point> points = new ArrayList<>();
 
         points.add(currentPoint);
         while (points.size() < numOfPlayers - 1) {

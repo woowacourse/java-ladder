@@ -25,7 +25,7 @@ public class Players {
     }
 
     public Players goDown(Line line) {
-        List<Player> movedPlayers = new ArrayList<>();
+        final List<Player> movedPlayers = new ArrayList<>();
         for (Player player : players) {
             movedPlayers.add(player.moveOn(line));
         }
@@ -37,7 +37,7 @@ public class Players {
     }
 
     public List<PlayerName> getPlayerNames() {
-        List<PlayerName> names = new ArrayList<>();
+        final List<PlayerName> names = new ArrayList<>();
         for (Player player : players) {
             names.add(player.getName());
         }

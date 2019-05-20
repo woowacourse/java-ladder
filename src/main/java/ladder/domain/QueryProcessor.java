@@ -11,9 +11,9 @@ public class QueryProcessor {
     public QueryProcessor(Players playersAfterGame, Rewards rewards) {
         validateNotNull(playersAfterGame);
         validateNotNull(rewards);
-        Map<PlayerName, Reward> resultPairs = new HashMap<>();
+        final Map<PlayerName, Reward> resultPairs = new HashMap<>();
         for (int i = 0; i < Players.NUM_OF_PLAYERS; i++) {
-            Player thisPlayer = playersAfterGame.getPlayer(i);
+            final Player thisPlayer = playersAfterGame.getPlayer(i);
             resultPairs.put(thisPlayer.getName(), rewards.getReward(thisPlayer.getPosition().getValue()));
         }
         results = new Results(resultPairs);

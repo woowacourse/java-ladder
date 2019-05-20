@@ -11,7 +11,7 @@ public class OutputView {
 
     public static void printPlayerNames(Players players) {
         System.out.println("\n사다리 결과");
-        List<PlayerName> names = players.getPlayerNames();
+        final List<PlayerName> names = players.getPlayerNames();
         for (PlayerName name : names) {
             System.out.printf("%s ", StringUtils.center(name.getName(), PADDING_WIDTH));
         }
@@ -26,7 +26,7 @@ public class OutputView {
 
     private static void printLine(Line line) {
         System.out.print("  |");
-        List<Point> points = line.getPoints();
+        final List<Point> points = line.getPoints();
         for (int i = 0; i < points.size() - 1; i++) {
             printPoint(points.get(i));
             System.out.print("|");
@@ -56,7 +56,7 @@ public class OutputView {
 
     public static void printResults(Results result) {
         System.out.println("\n실행 결과");
-        Map<PlayerName, Reward> resultMap = result.getResults();
+        final Map<PlayerName, Reward> resultMap = result.getResults();
         for (Map.Entry<PlayerName, Reward> entry : resultMap.entrySet()) {
             System.out.println(entry.getKey().getName() + " : " + entry.getValue().getName());
         }

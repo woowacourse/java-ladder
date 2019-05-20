@@ -19,8 +19,8 @@ public class LadderGame {
      * 사다리게임 진행 로직
      */
     public void play() {
-        Ladder ladder = RandomLadderGenerator.generate(Players.NUM_OF_PLAYERS, ladderHeight);
-        Engine engine = new Engine(ladder, players);
+        final Ladder ladder = RandomLadderGenerator.generate(Players.NUM_OF_PLAYERS, ladderHeight);
+        final Engine engine = new Engine(ladder, players);
         players = engine.playLadderGame();
         OutputView.printPlayerNames(players);
         OutputView.printLadder(ladder);
@@ -32,7 +32,7 @@ public class LadderGame {
      * 쿼리를 분석해 결과를 출력하는 메소드
      */
     private void processQueries() {
-        QueryProcessor queryProcessor = new QueryProcessor(players, rewards);
+        final QueryProcessor queryProcessor = new QueryProcessor(players, rewards);
         PlayerName name;
         while (!(name = InputView.getPlayerName(players)).getName().equals("all")) {
             OutputView.printReward(queryProcessor.getRewardOf(name));
