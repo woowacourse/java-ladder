@@ -1,7 +1,5 @@
 package ladder.view;
 
-import ladder.domain.Player;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -37,23 +35,15 @@ public class InputView {
     }
 
 
-    public static List<String> getRewards(final List<Player> players) {
+    public static List<String> getRewards() {
         System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         final String rewards = scanner.nextLine();
         try {
             validateNoConsecutiveCommas(rewards);
-            final List<String> splittedRewards = Arrays.asList(rewards.split(","));
-            validateRewardsCount(splittedRewards, players);
-            return splittedRewards;
+            return Arrays.asList(rewards.split(","));
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return getRewards(players);
-        }
-    }
-
-    static void validateRewardsCount(List<String> splittedRewards, List<Player> players) {
-        if (players.size() != splittedRewards.size()) {
-            throw new IllegalArgumentException("실행 결과의 개수는 참여한 사람의 수와 같아야 합니다.");
+            return getRewards();
         }
     }
 
@@ -78,22 +68,9 @@ public class InputView {
         }
     }
 
-    public static String getName(final List<Player> players) {
+    public static String getName() {
         System.out.println("결과를 보고 싶은 사람은?");
         final String name = scanner.nextLine();
-        if (name.equals("all")) {
-            return name;
-        }
-
-        if (hasName(players, name)) {
-            System.out.println("참가자의 이름을 입력해야 합니다.");
-            return getName(players);
-        }
         return name;
     }
-
-    private static boolean hasName(List<Player> players, String name) {
-        return players.stream().filter(player -> player.getName().equals(name)).findAny().orElse(null) == null;
-    }
-
 }

@@ -1,79 +1,66 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.Player;
-import ladder.domain.Result;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
-    private static final int MAX_REWARD_LENGTH = Player.MAX_NAME_LENGTH;
-    private static final int MIN_REWARD_LENGTH = Player.MIN_NAME_LENGTH;
+    private static final String ALL = "all";
 
     private final Ladder ladder;
-    private final List<Player> players;
-    private final List<String> rewards;
+    private final Players players;
+    private final Rewards rewards;
 
     public LadderGame() {
         players = makePlayers();
-        rewards = inputRewards();
-        ladder = new Ladder(players.size(), InputView.getHeight());
+        rewards = makeRewards();
+        ladder = new Ladder(players.getPlayerSize(), InputView.getHeight());
     }
 
-    private List<Player> makePlayers() {
+    private Players makePlayers() {
         try {
-            return getPlayers(InputView.getNames());
+            return new Players(InputView.getNames());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return makePlayers();
         }
     }
 
-    private List<Player> getPlayers(final List<String> names) {
-        List<Player> players = new ArrayList<>();
-        for (int i = 0; i < names.size(); i++) {
-            players.add(new Player(names.get(i), i));
-        }
-        return players;
-    }
-
-    private List<String> inputRewards() {
-        List<String> rewards = InputView.getRewards(players);
-        boolean isOverLengthLimit = validateRewardsLength(rewards);
-        if (isOverLengthLimit) {
+    private Rewards makeRewards() {
+        try {
+            List<String> rewardsInput = InputView.getRewards();
+            validatePlayerRewardLength(rewardsInput.size());
+            return new Rewards(rewardsInput);
+        } catch (IllegalArgumentException e) {
             OutputView.printRewardErrorMsg();
-            return inputRewards();
+            return makeRewards();
         }
-        return rewards;
     }
 
-    private static boolean validateRewardsLength(final List<String> rewards) {
-        boolean isOverLengthLimit = false;
-        for (String reward : rewards) {
-            isOverLengthLimit = isOverLengthLimit(isOverLengthLimit, reward);
-        }
-        return isOverLengthLimit;
-    }
-
-    static boolean isOverLengthLimit(boolean isFound, final String reward) {
-        if (reward.length() > MAX_REWARD_LENGTH || reward.length() < MIN_REWARD_LENGTH) {
-            isFound = true;
-        }
-        return isFound;
+    private void validatePlayerRewardLength(int size) {
+        if (!players.hasSameSize(size))
+            throw new IllegalArgumentException();
     }
 
     public void play() {
         printGame();
-        ladder.goDown(players);
-        final Result result = new Result(players, rewards);
+        List<Integer> resultIndex = ladder.goDown();
+        final Result result = new Result(players, rewards, resultIndex);
         String name;
-        while (!(name = InputView.getName(players)).equals("all")) {
-            OutputView.printResult(name, result);
+        while (!(name = InputView.getName()).equals(ALL)) {
+            printResultWithName(result, name);
         }
-        OutputView.printResultAll(result);
+        OutputView.printResultAll(result.toString());
+    }
+
+    private void printResultWithName(Result result, String name) {
+        if (result.hasName(name)) {
+            OutputView.printResult(result.getReward(name));
+            return;
+        }
+        OutputView.printResultErrorMsg();
     }
 
     private void printGame() {

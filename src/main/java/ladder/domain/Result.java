@@ -5,15 +5,30 @@ import java.util.List;
 import java.util.Map;
 
 public class Result {
-    private Map<String, String> result = new HashMap<>();
+    private static final String NEW_LINE = "\n";
 
-    public Result(List<Player> players, List<String> rewards) {
-        for (Player player : players) {
-            result.put(player.getName(), rewards.get(player.getPosition()));
+    private Map<Player, Reward> result = new HashMap<>();
+
+    public Result(Players players, Rewards rewards, List<Integer> indices) {
+        for (Integer index : indices) {
+            result.put(players.getPlayer(indices.indexOf(index)), rewards.getReward(index));
         }
     }
 
-    public Map<String, String> getResult() {
-        return result;
+    public boolean hasName(String name) {
+        return result.containsKey(new Player(name));
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Map.Entry<Player, Reward> playerRewardEntry : result.entrySet()) {
+            stringBuilder.append(playerRewardEntry.getKey().toString() + " : " + playerRewardEntry.getValue().toString() + NEW_LINE);
+        }
+        return stringBuilder.toString();
+    }
+
+    public String getReward(String name) {
+        return result.get(new Player(name)).toString() + NEW_LINE;
     }
 }

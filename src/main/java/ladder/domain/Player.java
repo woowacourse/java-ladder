@@ -3,16 +3,14 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Player {
-    public static final int MAX_NAME_LENGTH = 5;
-    public static final int MIN_NAME_LENGTH = 1;
+    static final int MAX_NAME_LENGTH = 5;
+    static final int MIN_NAME_LENGTH = 1;
 
     private final String name;
-    private int position;
 
-    public Player(final String name, final int position) {
+    public Player(final String name) {
         this.name = name.trim();
         validateNameLength();
-        this.position = position;
     }
 
     private void validateNameLength() {
@@ -21,29 +19,21 @@ public class Player {
         }
     }
 
-    void goDown(final Line line) {
-        position = line.determineDirection(position).move(position);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    int getPosition() {
-        return position;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return position == player.position &&
-                Objects.equals(name, player.name);
+        return Objects.equals(name, player.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, position);
+        return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
