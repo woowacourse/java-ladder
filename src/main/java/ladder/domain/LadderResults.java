@@ -10,7 +10,7 @@ public class LadderResults {
     }
 
     public String result(String player) {
-        if (player == "all") {
+        if (player.equals(Player.FINISH_COMMAND)) {
             return all();
         }
         if (results.get(player) == null) {

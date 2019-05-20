@@ -42,14 +42,6 @@ public class Ladder {
         }
     }
 
-    public LadderRow rows(int index) {
-        try {
-            return rows.get(index);
-        } catch (IndexOutOfBoundsException e) {
-            throw new IllegalArgumentException();
-        }
-    }
-
     public List<LadderRow> rows() {
         return rows;
     }

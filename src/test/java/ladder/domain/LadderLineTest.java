@@ -19,7 +19,6 @@ public class LadderLineTest {
         throw new IllegalArgumentException();
     }
 
-
     @Test
     public void 라인_생성() {
         LadderLine ladderLine = line(1);
@@ -31,6 +30,4 @@ public class LadderLineTest {
         LadderLine ladderLine = line(1);
         assertEquals(Direction.RIGHT.number(), ladderLine.position());
     }
-
-
 }

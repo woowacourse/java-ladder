@@ -11,8 +11,6 @@ public class LadderRewards {
     private List<String> rewards;
 
     public LadderRewards(String text, int width) {
-//        this.rewards =
-//        Arrays.asList(text.split(",")).
         rewards = Arrays.stream(text.split(DELIMITER))
                 .map(reward -> {
                     reward = reward.trim();
