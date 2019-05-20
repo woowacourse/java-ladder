@@ -3,7 +3,6 @@ package ladder.domain.generator;
 import ladder.domain.PlayerRewards;
 import ladder.domain.Reward;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

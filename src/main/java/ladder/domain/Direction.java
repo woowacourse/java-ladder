@@ -1,16 +1,18 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class Direction {
     private static final int MOVE_LEFT = -1;
     private static final int MOVE_RIGHT = 1;
     private static final int MOVE_NONE = 0;
 
+    private final boolean left;
     private final boolean right;
-    private final boolean current;
 
-    public Direction(final boolean current, final boolean right) {
-        validateDirection(current, right);
-        this.current = current;
+    public Direction(final boolean left, final boolean right) {
+        validateDirection(left, right);
+        this.left = left;
         this.right = right;
     }
 
@@ -21,7 +23,7 @@ public class Direction {
     }
 
     public int move() {
-        if (current) {
+        if (left) {
             return MOVE_LEFT;
         }
         if (right) {
@@ -30,11 +32,26 @@ public class Direction {
         return MOVE_NONE;
     }
 
-    public boolean isCurrent() {
-        return current;
+    public boolean isLeft() {
+        return left;
     }
 
     public boolean isRight() {
         return right;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Direction direction = (Direction) o;
+        return left == direction.left &&
+                right == direction.right;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
     }
 }

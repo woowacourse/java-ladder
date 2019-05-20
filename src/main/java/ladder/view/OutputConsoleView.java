@@ -53,7 +53,7 @@ public class OutputConsoleView {
         sb.append(THREE_TAB);
         for (int i = 1; i < line.getDirections().size(); i++) {
             Direction subLine = line.getDirections().get(i);
-            printSubLines(sb, subLine.isCurrent());
+            printSubLines(sb, subLine.isLeft());
         }
         sb.append(VERTICAL_LINE).append("\n");
     }
