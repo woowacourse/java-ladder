@@ -45,4 +45,9 @@ public class Reward {
     public int hashCode() {
         return Objects.hash(reward);
     }
+
+    @Override
+    public String toString() {
+        return reward;
+    }
 }

@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
@@ -11,15 +10,11 @@ public class LadderGameResult {
         this.ladderGameResult = ladderGameResult;
     }
 
-    public Reward findReward(Player player) {
-        return ladderGameResult.get(player);
+    public Reward findReward(String name) {
+        return ladderGameResult.get(new Player(name));
     }
 
     public Set<Player> keySet(){
         return ladderGameResult.keySet();
-    }
-
-    public Map<Player, Reward> getLadderGameResult() {
-        return Collections.unmodifiableMap(ladderGameResult);
     }
 }

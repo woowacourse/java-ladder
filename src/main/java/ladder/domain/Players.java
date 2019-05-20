@@ -34,7 +34,16 @@ public class Players {
         return players.get(index);
     }
 
+    public boolean contains(String playerName) {
+        return players.contains(new Player(playerName));
+    }
+
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
+    }
+
+    @Override
+    public String toString() {
+        return players.toString();
     }
 }

@@ -9,6 +9,7 @@ public class OutputView {
     private static final String CONNECTOR = "\t\t";
     private static final String CONNECTED_LINE_COMPONENT = "|-----------";
     private static final String NOT_CONNECTED_LINE_COMPONENT = "|           ";
+    private static final String ALL = "all";
 
     public static void printLadder(Ladder ladder) {
         for (Line line : ladder.getLines()) {
@@ -46,9 +47,17 @@ public class OutputView {
         System.out.println(joinedReward);
     }
 
-    public static void printLadderGameResult(LadderGameResult ladderGameResult){
-        for (Player player : ladderGameResult.keySet()){
-            System.out.println(player.getName() + " : " + ladderGameResult.findReward(player).getReward());
+    public static void printLadderGameResult(LadderGameResult ladderGameResult, String name) {
+        if (ALL.equals(name)) {
+            printAllPlayerForReward(ladderGameResult);
+            return;
+        }
+        System.out.println(ladderGameResult.findReward(name));
+    }
+
+    private static void printAllPlayerForReward(LadderGameResult ladderGameResult) {
+        for (Player player : ladderGameResult.keySet()) {
+            System.out.println(player.getName() + " : " + ladderGameResult.findReward(player.getName()));
         }
     }
 }
