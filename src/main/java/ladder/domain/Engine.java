@@ -17,6 +17,7 @@ public class Engine {
         while(ladder.hasNextLine()) {
             players = players.goDown(ladder.getNextLine());
         }
+        ladder.endIteration();
         return players;
     }
 }

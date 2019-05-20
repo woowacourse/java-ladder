@@ -9,14 +9,14 @@ public class RandomLadderGeneratorTest {
     @Test
     void generateLadderWithOnePlayerTest() {
         Players.NUM_OF_PLAYERS = 1;
-        assertThrows(RuntimeException.class, () -> RandomLadderGenerator.generate(1, 2));
+        assertThrows(RuntimeException.class, () -> RandomLadderGenerator.generate(1, new LadderHeight(2)));
     }
 
     @Test
     void generateLadderWithTwoPlayersTest() {
         Players.NUM_OF_PLAYERS = 2;
         System.out.println("Test of two players ladder");
-        Ladder ladder = RandomLadderGenerator.generate(2, 2);
+        Ladder ladder = RandomLadderGenerator.generate(2, new LadderHeight(2));
         while(ladder.hasNextLine()) {
             System.out.println(ladder.getNextLine());
         }
@@ -26,7 +26,7 @@ public class RandomLadderGeneratorTest {
     void generateLadderWithThreePlayersTest() {
         Players.NUM_OF_PLAYERS = 3;
         System.out.println("Test of three players ladder");
-        Ladder ladder = RandomLadderGenerator.generate(3, 2);
+        Ladder ladder = RandomLadderGenerator.generate(3, new LadderHeight(2));
         while(ladder.hasNextLine()) {
             System.out.println(ladder.getNextLine());
         }

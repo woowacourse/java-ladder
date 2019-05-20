@@ -25,12 +25,12 @@ public class QueryProcessorTest {
     }
     @Test
     void rewardQuerySuccessTest() {
-        assertThat(queryProcessor.getRewardOf("pobi")).isEqualTo(new Reward("꽝"));
+        assertThat(queryProcessor.getRewardOf(new PlayerName("pobi"))).isEqualTo(new Reward("꽝"));
     }
 
     @Test
     void rewardQueryNoMatchTest() {
-        assertThrows(RuntimeException.class, () -> queryProcessor.getRewardOf("yumin"));
+        assertThrows(RuntimeException.class, () -> queryProcessor.getRewardOf(new PlayerName("yumin")));
     }
 
     @Test

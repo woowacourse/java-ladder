@@ -33,7 +33,7 @@ public class InputView {
 
     public static Rewards getRewards() {
         try {
-            System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+            System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
             String userInput = SCANNER.nextLine();
             String[] commaSeparatedUserInput = userInput.split(",");
             return inputToRewards(Arrays.asList(commaSeparatedUserInput));
@@ -53,7 +53,7 @@ public class InputView {
 
     public static LadderHeight getLadderHeight() {
         try {
-            System.out.println("최대 사다리 높이는 몇 개인가요?");
+            System.out.println("\n최대 사다리 높이는 몇 개인가요?");
             String userInput = SCANNER.nextLine();
             return inputToLadderHeight(userInput);
         } catch (Exception e) {
@@ -73,9 +73,9 @@ public class InputView {
 
     public static PlayerName getPlayerName(Players players) {
         try {
-            System.out.println("결과를 보고 싶은 사람은?");
+            System.out.println("\n결과를 보고 싶은 사람은?");
             String userInput = SCANNER.nextLine();
-            return new PlayerName(userInput);
+            return inputToPlayerName(userInput, players.getPlayerNames());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return getPlayerName(players);
@@ -83,12 +83,12 @@ public class InputView {
     }
 
     private static PlayerName inputToPlayerName(String inputName, List<PlayerName> playerNames) {
-        if (playerNames.contains(new PlayerName(inputName))) {
-            return new PlayerName(inputName);
-        }
-
         if (inputName.equals("all")) {
             return new PlayerName("all");
+        }
+
+        if (playerNames.contains(new PlayerName(inputName))) {
+            return new PlayerName(inputName);
         }
 
         throw new IllegalArgumentException("존재하지 않는 플레이어 이름입니다.");

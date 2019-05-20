@@ -27,4 +27,16 @@ public class Ladder {
     public boolean hasNextLine() {
         return index < lines.size();
     }
+
+    @Override
+    public String toString() {
+        return "Ladder{" +
+                "lines=" + lines +
+                ", index=" + index +
+                '}';
+    }
+
+    public void endIteration() {
+        this.index = 0;
+    }
 }

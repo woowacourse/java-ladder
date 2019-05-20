@@ -10,7 +10,7 @@ public class OutputView {
     private static final int PADDING_WIDTH = 5;
 
     public static void printPlayerNames(Players players) {
-        System.out.println("사다리 결과");
+        System.out.println("\n사다리 결과");
         List<PlayerName> names = players.getPlayerNames();
         for (PlayerName name : names) {
             System.out.printf("%s ", StringUtils.center(name.getName(), PADDING_WIDTH));
@@ -26,8 +26,9 @@ public class OutputView {
 
     private static void printLine(Line line) {
         System.out.print("  |");
-        for (Point point : line.getPoints()) {
-            printPoint(point);
+        List<Point> points = line.getPoints();
+        for (int i=0; i<points.size() - 1; i++) {
+            printPoint(points.get(i));
             System.out.print("|");
         }
         System.out.println();
@@ -49,14 +50,15 @@ public class OutputView {
     }
 
     public static void printReward(Reward reward) {
-        System.out.println("실행 결과");
+        System.out.println("\n실행 결과");
         System.out.println(reward.getName());
     }
 
     public static void printResults(Results result) {
+        System.out.println("\n실행 결과");
         Map<PlayerName, Reward> resultMap = result.getResults();
         for (Map.Entry<PlayerName, Reward> entry : resultMap.entrySet()) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
+            System.out.println(entry.getKey().getName() + " : " + entry.getValue().getName());
         }
     }
 }

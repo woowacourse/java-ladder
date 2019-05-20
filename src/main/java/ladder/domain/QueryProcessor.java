@@ -19,11 +19,15 @@ public class QueryProcessor {
         results = new Results(resultPairs);
     }
 
-    public Reward getRewardOf(String name) {
-        return results.getRewardOf(new PlayerName(name));
+    public Reward getRewardOf(PlayerName name) {
+        return results.getRewardOf(name);
     }
 
     public Results getAll() {
+        return results;
+    }
+
+    public Results getResults() {
         return results;
     }
 }
