@@ -2,11 +2,15 @@ package ladder.view;
 
 import ladder.domain.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
+    private static final String ALL_PLAYERS = "all";
+
     private static final Scanner scanner = new Scanner(System.in);
 
     public static List<Player> initPlayers() {
@@ -47,8 +51,19 @@ public class InputView {
         return height;
     }
 
+    public static List<Player> readPlayerOrAll(List<Player> players) {
+        System.out.println("결과를 보고 싶은 사람은?");
+        String input = scanner.nextLine();
+        if (input.equals(ALL_PLAYERS)) {
+            return new ArrayList<>(players);
+        }
 
-    public static void readPlayer() {
-        
+        List<Player> readPlayers = players.stream().filter(player -> player.getName().equals(input)).collect(Collectors.toList());
+        if (!readPlayers.isEmpty()) {
+            return readPlayers;
+        }
+
+        System.out.println("존재하지 않는 이름입니다.");
+        return readPlayerOrAll(players);
     }
 }

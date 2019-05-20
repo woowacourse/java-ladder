@@ -7,6 +7,7 @@ import ladder.domain.Reward;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class OutputView {
 
@@ -41,5 +42,11 @@ public class OutputView {
         }
     }
 
-
+    public static void printGameResult(List<Player> inputPlayers, List<Reward> playedRewards) {
+        System.out.println("실행 결과");
+        int n = inputPlayers.size();
+        IntStream.range(0, n).forEach(i -> {
+            System.out.println(inputPlayers.get(i).getName() + " : " + playedRewards.get(i).getName());
+        });
+    }
 }
