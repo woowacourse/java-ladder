@@ -12,7 +12,7 @@ class LadderTest {
     @Test
     void 라인이_제대로_추가되는지_확인() {
         Ladder ladder = new Ladder();
-        Line line = new Line(Arrays.asList(true, false));
+        Line line = new Line(Arrays.asList(Point.RIGHT, Point.LEFT));
 
         assertThat(ladder.addLines(line)).isTrue();
     }

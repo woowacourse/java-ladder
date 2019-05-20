@@ -1,9 +1,6 @@
 package laddergame.util;
 
-import laddergame.domain.Ladder;
-import laddergame.domain.LadderGame;
-import laddergame.domain.LadderGameResult;
-import laddergame.domain.Tag;
+import laddergame.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,19 +41,19 @@ public class OutputView {
     }
 
     private static StringBuilder makeLineView(Ladder ladder, int index) {
-        StringBuilder lineView = new StringBuilder();
+        StringBuilder lineView = new StringBuilder("   |");
         List<String> scaffoldsView = new ArrayList<>();
 
-        for (Boolean scaffold : ladder.getLine(index).getScaffolds()) {
+        for (Point scaffold : ladder.getLine(index).getPoints()) {
             scaffoldsView.add(makeScaffoldView(scaffold));
         }
-        lineView.append(String.join("|", scaffoldsView).substring(3))
+        lineView.append(String.join("|", scaffoldsView))
                 .append("\n");
         return lineView;
     }
 
-    private static String makeScaffoldView(Boolean scaffold) {
-        return scaffold ? "------" : "      ";
+    private static String makeScaffoldView(Point scaffold) {
+        return scaffold.equals(Point.RIGHT) ? "------" : "      ";
     }
 
     public static void outputLadderGameResult(String person, LadderGameResult ladderGameResult) {
