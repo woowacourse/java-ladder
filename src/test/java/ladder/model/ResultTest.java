@@ -17,47 +17,33 @@ class ResultTest {
     );
     Ladder ladder = new Game(players, 12).getLadder();
 
-    @Test
-    void getAllTest() {
-        Result r = new Result(players, ladder, Arrays.asList("all"));
+    void testForm(int expectedSize, String... strList) {
+        Result result = new Result(players, ladder, Arrays.asList(strList));
         int size = 0;
-        while (r.hasNext()) {
-            r.next();
+        while (result.hasNext()) {
+            result.next();
             size++;
         }
-        assertThat(size).isEqualTo(5);
+        assertThat(size).isEqualTo(expectedSize);
+    }
+
+    @Test
+    void getAllTest() {
+        testForm(5, "all");
     }
 
     @Test
     void getSomeTestA() {
-        Result r = new Result(players, ladder, Arrays.asList("A"));
-        int size = 0;
-        while (r.hasNext()) {
-            r.next();
-            size++;
-        }
-        assertThat(size).isEqualTo(1);
+        testForm(1, "A");
     }
 
     @Test
     void getSomeTestB() {
-        Result r = new Result(players, ladder, Arrays.asList("A", "B"));
-        int size = 0;
-        while (r.hasNext()) {
-            r.next();
-            size++;
-        }
-        assertThat(size).isEqualTo(2);
+        testForm(2, "A", "B");
     }
 
     @Test
     void getNoneTest() {
-        Result r = new Result(players, ladder, Arrays.asList("F"));
-        int size = 0;
-        while (r.hasNext()) {
-            r.next();
-            size++;
-        }
-        assertThat(size).isEqualTo(0);
+        testForm(0, "F");
     }
 }
