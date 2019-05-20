@@ -3,20 +3,12 @@ package ladder.domain;
 import java.util.List;
 
 public class Player {
-    private String name;
+    private final PlayerName name;
     private int position;
 
-    public Player(String name, int position) {
+    public Player(PlayerName name, int position) {
         this.name = name;
         this.position = position;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
     }
 
     public int trymove(List<Boolean> points) {
@@ -44,5 +36,13 @@ public class Player {
 
     public boolean matchName(String name) {
         return this.name.equals(name);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

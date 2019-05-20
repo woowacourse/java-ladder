@@ -1,6 +1,5 @@
 package ladder;
 
-
 import ladder.domain.Ladder;
 import ladder.domain.LadderGameBoard;
 import ladder.domain.Player;
