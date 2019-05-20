@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
- import java.util.Collections;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -18,7 +18,7 @@ public class Ladder {
         }
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return lines.size();
     }
 

@@ -52,21 +52,6 @@ public class Line {
         return (int) (Math.random() * RANDOM_RANGE);
     }
 
-    /* TODO 할지 말지?
-    public static boolean isValidLine(Line line){
-        List<Direction> directions = line.getDirections();
-        for (int i = directions.size() - 1; i > 0; i--) {
-            Direction now = directions.get(i);
-            Direction prev = directions.get(i - 1);
-            if(now == Direction.LEFT){
-                if(prev != Direction.RIGHT){
-                    return false;
-                }
-            }
-        }
-        return true;
-    }*/
-
     public Direction get(int index) {
         return directions.get(index);
     }
