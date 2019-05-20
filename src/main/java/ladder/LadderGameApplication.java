@@ -15,7 +15,7 @@ public class LadderGameApplication {
     private static final String BLANK = "";
 
     public static void main(String[] args) {
-        List<Player> names = Arrays.stream(InputView.getNames())
+        List<Player> players = Arrays.stream(InputView.getNames())
                 .map(Player::new)
                 .collect(Collectors.toList());
         List<DrawResult> drawResults = Arrays.stream(InputView.getDrawResults())
@@ -23,11 +23,11 @@ public class LadderGameApplication {
                 .collect(Collectors.toList());
         int countOfLines = InputView.getCountOfLines();
 
-        Ladder ladder = LadderGenerator.makeLadder(names.size(), countOfLines);
+        Ladder ladder = LadderGenerator.makeLadder(players.size(), countOfLines);
         LadderGame ladderGame = new LadderGame(ladder);
-        GameResult gameResult = ladderGame.play(names, drawResults);
+        GameResult gameResult = ladderGame.play(players, drawResults);
 
-        OutputView.printLadder(ladder, names, drawResults);
+        OutputView.printLadder(ladder, players, drawResults);
 
         String message = BLANK;
 
