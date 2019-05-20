@@ -48,11 +48,28 @@ public class OutputView {
     }
 
     private static void ladderShape(Ladder ladder) {
-        StringBuilder sb = new StringBuilder();
-        for (Horizontal horizontal : ladder) {
-            sb.append(horizontal.toString());
-        }
+        StringBuilder sb = getLadderBuilder(ladder);
         System.out.println(sb.toString());
+    }
+
+    private static StringBuilder getLadderBuilder(Ladder ladder) {
+        StringBuilder ladderBuilder = new StringBuilder();
+        for (Horizontal horizontal : ladder) {
+            StringBuilder horizontalBuilder = getHorizontalBuilder(horizontal);
+            ladderBuilder.append(horizontalBuilder.toString());
+        }
+        return ladderBuilder;
+    }
+
+    private static StringBuilder getHorizontalBuilder(Horizontal horizontal) {
+        StringBuilder horizontalBuilder = new StringBuilder();
+        horizontalBuilder.append("     ");
+        for (int i = 1; i < horizontal.getHorizontal().size(); i++) {
+            horizontalBuilder.append("|")
+                    .append(horizontal.get(i).toString());
+        }
+        horizontalBuilder.append("|\n");
+        return horizontalBuilder;
     }
 
     private static void ladderResults(ResultTags resultTags) {
@@ -63,11 +80,11 @@ public class OutputView {
         System.out.println(RESULT_TITLE);
     }
 
-    public static void resultPrint(String result) {
-        System.out.println(result);
+    public static void resultOneResult(Tag tag) {
+        System.out.println(tag.getName());
     }
 
-    public static void resultPrint2(GameResult gameResult) {
+    public static void resultGameResult(GameResult gameResult) {
         for (Map.Entry<Tag, Tag> map : gameResult) {
             System.out.println(map.getKey() + " : " + map.getValue());
         }
