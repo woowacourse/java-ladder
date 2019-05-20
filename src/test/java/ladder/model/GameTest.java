@@ -20,7 +20,7 @@ class GameTest {
 
     @Test
     void initTestMorePeople() {
-        List<Player> expected = Arrays.asList(new Player("A", "1"), new Player("B", "2"), new Player("C", Game.NIL));
+        List<Player> expected = Arrays.asList(new Player("A", "1"), new Player("B", "2"), new Player("C", Player.NIL));
         List<Player> actual = new Game(
             new ArrayList<>(Arrays.asList("A", "B", "C")),
             new ArrayList<>(Arrays.asList("1", "2")),

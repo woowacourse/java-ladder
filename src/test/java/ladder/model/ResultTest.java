@@ -1,6 +1,5 @@
 package ladder.model;
 
-import ladder.model.Coin.Half;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
