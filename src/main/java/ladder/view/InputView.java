@@ -59,7 +59,6 @@ public class InputView {
             System.out.println(e.getMessage());
         }
         return getHeight();
-
     }
 
     static void validateNaturalNumber(final int height) {

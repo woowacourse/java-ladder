@@ -7,8 +7,6 @@ import ladder.view.OutputView;
 import java.util.List;
 
 public class LadderGame {
-    private static final String ALL = "all";
-
     private final Ladder ladder;
     private final Players players;
     private final Rewards rewards;
@@ -44,23 +42,10 @@ public class LadderGame {
             throw new IllegalArgumentException();
     }
 
-    public void play() {
+    public ResultPairs play() {
         printGame();
-        List<Integer> resultIndex = ladder.goDown();
-        final Result result = new Result(players, rewards, resultIndex);
-        String name;
-        while (!(name = InputView.getName()).equals(ALL)) {
-            printResultWithName(result, name);
-        }
-        OutputView.printResultAll(result.toString());
-    }
-
-    private void printResultWithName(Result result, String name) {
-        if (result.hasName(name)) {
-            OutputView.printResult(result.getReward(name));
-            return;
-        }
-        OutputView.printResultErrorMsg();
+        final ResultIndex result = ladder.goDown();
+        return new ResultPairs(players, rewards, result);
     }
 
     private void printGame() {
