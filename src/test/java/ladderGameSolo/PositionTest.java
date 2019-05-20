@@ -1,4 +1,4 @@
-package ladderGame.ladderGameSolo;
+package ladderGameSolo;
 
 import ladderGameSolo.domain.Position;
 import org.junit.jupiter.api.Test;

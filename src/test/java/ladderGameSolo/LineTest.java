@@ -1,4 +1,4 @@
-package ladderGame.ladderGameSolo;
+package ladderGameSolo;
 
 import ladderGameSolo.domain.Direction;
 import ladderGameSolo.domain.Line;
