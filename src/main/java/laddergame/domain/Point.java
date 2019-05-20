@@ -8,12 +8,12 @@ public enum Point {
     private final boolean left;
     private final boolean right;
 
-    Point(boolean left, boolean right) {
+    Point(final boolean left, final boolean right) {
         this.left = left;
         this.right = right;
     }
 
-    public int move(int position) {
+    public int move(final int position) {
         if (left) {
             return position - 1;
         }

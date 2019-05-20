@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class LadderGameViewMaker {
 
-    public static String makeTagsView(List<String> names) {
+    public static String makeTagsView(final List<String> names) {
         StringBuilder namesView = new StringBuilder();
 
         for (String name : names) {
@@ -19,7 +19,7 @@ public class LadderGameViewMaker {
         return namesView.toString();
     }
 
-    public static String makeLadderView(Ladder ladder) {
+    public static String makeLadderView(final Ladder ladder) {
         StringBuilder ladderView = new StringBuilder();
 
         for (Line line : ladder.getLines()) {
@@ -28,7 +28,7 @@ public class LadderGameViewMaker {
         return ladderView.toString();
     }
 
-    public static String makeGameResult(Map<Tag, Tag> allPrizes) {
+    public static String makeGameResult(final Map<Tag, Tag> allPrizes) {
         StringBuilder result = new StringBuilder();
 
         for (Tag member : allPrizes.keySet()) {
@@ -40,7 +40,7 @@ public class LadderGameViewMaker {
         return result.toString();
     }
 
-    private static StringBuilder makeNameView(String name) {
+    private static StringBuilder makeNameView(final String name) {
         StringBuilder nameView = new StringBuilder(makeTagBlank());
         int nameStart = Math.round(Tag.TAG_LENGTH_BOUND / 2) - (name.length() / 2);
         int nameEnd = nameStart + name.length();
@@ -49,7 +49,7 @@ public class LadderGameViewMaker {
         return nameView;
     }
 
-    private static StringBuilder makeLineView(Line line) {
+    private static StringBuilder makeLineView(final Line line) {
         StringBuilder lineView = new StringBuilder(makeLadderBlank());
 
         for (Point point : line.getPoints()) {
@@ -60,7 +60,7 @@ public class LadderGameViewMaker {
         return lineView;
     }
 
-    private static String makePointView(Point point) {
+    private static String makePointView(final Point point) {
         return point.equals(Point.RIGHT) ? makeConnectPoint() : makeBlankPoint();
     }
 
@@ -80,7 +80,7 @@ public class LadderGameViewMaker {
         return makeLadderView(Tag.TAG_LENGTH_BOUND + 1, ' ');
     }
 
-    private static String makeLadderView(int size, char delimiter) {
+    private static String makeLadderView(final int size, final char delimiter) {
         StringBuilder connectPoint = new StringBuilder();
 
         for (int i = 0; i < size; i++) {

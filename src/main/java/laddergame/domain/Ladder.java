@@ -11,11 +11,11 @@ public class Ladder {
         this.lines = new ArrayList<>();
     }
 
-    public Ladder(List<Line> lines) {
+    public Ladder(final List<Line> lines) {
         this.lines = lines;
     }
 
-    public boolean addLines(Line line) {
+    public boolean addLines(final Line line) {
         return lines.add(line);
     }
 

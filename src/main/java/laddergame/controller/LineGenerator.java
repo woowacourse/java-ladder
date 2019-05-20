@@ -4,7 +4,7 @@ import laddergame.controller.rule.Rule;
 import laddergame.domain.Line;
 
 public class LineGenerator {
-    public static Line lineGenerate(Rule rule, int numberOfPerson) {
+    public static Line lineGenerate(final Rule rule, final int numberOfPerson) {
         final int numberOfInterval = numberOfPerson - 1;
         Line line = new Line(numberOfPerson);
 
@@ -14,7 +14,7 @@ public class LineGenerator {
         return line;
     }
 
-    private static void generateScaffold(Rule rule, Line line, int index) {
+    private static void generateScaffold(final Rule rule, final Line line, final int index) {
         if (line.canAddScaffold(index) && rule.canCreate()) {
             line.addScaffold(index);
         }

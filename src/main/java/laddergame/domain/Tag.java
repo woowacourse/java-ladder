@@ -18,7 +18,7 @@ public class Tag {
         return name;
     }
 
-    private void checkTag(String tag) {
+    private void checkTag(final String tag) {
         if (StringUtils.isBlank(tag)) {
             throw new IllegalArgumentException("입력값이 잘못되었습니다!");
         }

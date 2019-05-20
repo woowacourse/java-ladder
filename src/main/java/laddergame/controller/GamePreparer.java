@@ -22,7 +22,7 @@ public class GamePreparer {
         }
     }
 
-    public static Tags makePrizes(int size) {
+    public static Tags makePrizes(final int size) {
         try {
             String inputNames = InputView.inputPrizes();
             InputValidator.checkEndsWithComma(inputNames);

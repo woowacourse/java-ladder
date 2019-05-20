@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class Tags {
     private List<Tag> tags;
 
-    public Tags(List<String> names) {
+    public Tags(final List<String> names) {
         this.tags = names.stream()
                 .map(Tag::new)
                 .collect(Collectors.toList());
@@ -18,7 +18,7 @@ public class Tags {
                 .collect(Collectors.toList());
     }
 
-    public Tag getTag(int index) {
+    public Tag getTag(final int index) {
         return tags.get(index);
     }
 

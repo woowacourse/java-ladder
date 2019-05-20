@@ -10,11 +10,11 @@ public class Line {
 
     private List<Point> points;
 
-    public Line(List<Point> points) {
+    public Line(final List<Point> points) {
         this.points = points;
     }
 
-    public Line(int numberOfPerson) {
+    public Line(final int numberOfPerson) {
         List<Point> points = new ArrayList<>();
 
         for (int i = 0; i < numberOfPerson; i++) {
@@ -23,12 +23,12 @@ public class Line {
         this.points = points;
     }
 
-    public boolean canAddScaffold(int index) {
+    public boolean canAddScaffold(final int index) {
         return points.get(index).equals(Point.STRAIGHT) &&
                 points.get(index + RIGHT_POINT).equals(Point.STRAIGHT);
     }
 
-    public void addScaffold(int index) {
+    public void addScaffold(final int index) {
         if (isLastScaffold(index)) {
             points.set(index, Point.LEFT);
             points.set(index + LEFT_POINT, Point.RIGHT);
@@ -38,7 +38,7 @@ public class Line {
         points.set(index, Point.RIGHT);
     }
 
-    private boolean isLastScaffold(int index) {
+    private boolean isLastScaffold(final int index) {
         return (index + RIGHT_POINT) == points.size();
     }
 
