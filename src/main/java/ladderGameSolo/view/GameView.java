@@ -14,6 +14,8 @@ public class GameView {
         Ladder ladder = LadderGame.getLadders(names.length, height);
 
         printLadderInfo(names, inputResult, height, ladder);
+
+        String targetName = InputView.inputTargetName(names);
     }
 
     private void printLadderInfo(String[] names, String[] inputResult, int height, Ladder ladder) {

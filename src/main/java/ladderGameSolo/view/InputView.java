@@ -49,6 +49,44 @@ public class InputView {
         return result;
     }
 
+    public static String inputTargetName(String[] names) {
+        System.out.println(MessageContants.INPUT_TARGET);
+        String target = SCAN.nextLine();
+
+        if (isBlank(target) || isNotInName(target, names)) {
+            return inputTargetName(names);
+        }
+
+        return target;
+    }
+
+    private static boolean isNotInName(String target, String[] names) {
+        int count = 0;
+
+        count = getCount(target, names, count);
+
+        if (count == 0 && !target.equals(MessageContants.MESSAGE_ALL)) {
+            System.err.println(MessageContants.ERROR_NOT_EXIST_MEMBER);
+            return true;
+        }
+
+        return false;
+    }
+
+    private static int getCount(String target, String[] names, int count) {
+        for (String name : names) {
+            count += findSameName(target, name);
+        }
+        return count;
+    }
+
+    private static int findSameName(String target, String name) {
+        if (name.equals(target)) {
+            return 1;
+        }
+        return 0;
+    }
+
     private static boolean validGameResult(String result) {
         return isBlank(result) || hasNotComma(result);
     }
