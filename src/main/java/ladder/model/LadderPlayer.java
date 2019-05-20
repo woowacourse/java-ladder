@@ -17,7 +17,7 @@ public class LadderPlayer {
         return playerName.getName();
     }
 
-    String getAlignedName() {
+    String getAlignedPlayerName() {
         return String.format(FORMAT_OF_ALIGNED_NAME, getPlayerName()) + BLANK_FOR_ALIGNMENT_ON_LADDER;
     }
 

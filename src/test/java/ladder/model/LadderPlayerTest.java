@@ -34,7 +34,7 @@ public class LadderPlayerTest {
 
     @Test
     void 정렬된_이름을_가져오는_메소드_테스트() {
-        assertEquals(new LadderPlayer("red").getAlignedName(), "red   ");
-        assertEquals(new LadderPlayer("green").getAlignedName(), "green ");
+        assertEquals(new LadderPlayer("red").getAlignedPlayerName(), "red   ");
+        assertEquals(new LadderPlayer("green").getAlignedPlayerName(), "green ");
     }
 }

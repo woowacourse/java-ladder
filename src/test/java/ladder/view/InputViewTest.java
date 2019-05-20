@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.model.LadderGamePlayers;
 import ladder.model.LadderGoal;
 import ladder.model.LadderPlayer;
 import org.junit.jupiter.api.Test;
@@ -13,8 +14,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class InputViewTest {
     @Test
     void Player_객체가_올바르게_만들어지는지_테스트() {
-        List<LadderPlayer> expected = InputView.createLadderPlayers("red,blue,green".split(","));
-        List<LadderPlayer> actual = new ArrayList<>(Arrays.asList(new LadderPlayer("red"), new LadderPlayer("blue"), new LadderPlayer("green")));
+        LadderGamePlayers expected = InputView.createLadderGamePlayers("red,blue,green".split(","));
+        List<LadderPlayer> players = Arrays.asList(new LadderPlayer("red")
+                , new LadderPlayer("blue"), new LadderPlayer("green"));
+        LadderGamePlayers actual = new LadderGamePlayers(players);
 
         assertEquals(expected, actual);
     }

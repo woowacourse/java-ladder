@@ -12,12 +12,12 @@ public class LadderGameController {
     public static final String ALL_RESULTS = "all";
 
     public void run() {
-        LadderGamePlayers players = new LadderGamePlayers(InputView.createLadderPlayers());
+        LadderGamePlayers players = InputView.createLadderGamePlayers();
         LadderGameGoals goals = new LadderGameGoals(InputView.createLadderGoals(players.size()));
         Ladder ladder = new Ladder(players, InputView.createLadderHeight());
         LadderGameResult ladderGameResult = new LadderGameResult(players, ladder, goals);
 
-        OutputView.showLadderGame(players.getAlignedNames(), ladder, goals.getAlignedGoalNames());
+        OutputView.showLadderGame(players.getAllAlignedPlayerNames(), ladder, goals.getAlignedGoalNames());
 
         showMatchingResults(ladderGameResult);
     }

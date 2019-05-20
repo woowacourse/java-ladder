@@ -1,11 +1,11 @@
 package ladder.view;
 
 import ladder.constant.MessageConstant;
+import ladder.model.LadderGamePlayers;
 import ladder.model.LadderGoal;
 import ladder.model.LadderPlayer;
 import ladder.validator.LadderGoalValidator;
 import ladder.validator.LadderHeightValidator;
-import ladder.validator.LadderPlayerValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,36 +18,21 @@ public class InputView {
     private static final String DELIMITER = ",";
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static List<LadderPlayer> createLadderPlayers() {
+    public static LadderGamePlayers createLadderGamePlayers() {
         System.out.println(MessageConstant.INPUT_LADDER_PLAYER_NAME);
-        return createLadderPlayers(SCANNER.nextLine().split(DELIMITER));
+        return createLadderGamePlayers(SCANNER.nextLine().split(DELIMITER));
     }
 
-    public static List<LadderPlayer> createLadderPlayers(String[] inputs) {
+    public static LadderGamePlayers createLadderGamePlayers(String[] inputs) {
         try {
-            LadderPlayerValidator.checkAccuracyOfUserInputs(inputs);
-            return Arrays.stream(inputs)
+            List<LadderPlayer> players = Arrays.stream(inputs)
                     .map(String::trim)
                     .map(LadderPlayer::new)
                     .collect(toList());
+            return new LadderGamePlayers(players);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return createLadderPlayers();
-        }
-    }
-
-    public static int createLadderHeight() {
-        System.out.println(NEW_LINE + MessageConstant.INPUT_LADDER_HEIGHT);
-        return createLadderHeight(SCANNER.nextLine());
-    }
-
-    public static int createLadderHeight(String input) {
-        try {
-            LadderHeightValidator.checkAccuracyOfUserInput(input);
-            return Integer.parseInt(input.trim());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return createLadderHeight();
+            return createLadderGamePlayers();
         }
     }
 
@@ -66,6 +51,22 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createLadderGoals(numOfPlayers);
+        }
+    }
+
+
+    public static int createLadderHeight() {
+        System.out.println(NEW_LINE + MessageConstant.INPUT_LADDER_HEIGHT);
+        return createLadderHeight(SCANNER.nextLine());
+    }
+
+    public static int createLadderHeight(String input) {
+        try {
+            LadderHeightValidator.checkAccuracyOfUserInput(input);
+            return Integer.parseInt(input.trim());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createLadderHeight();
         }
     }
 
