@@ -23,7 +23,7 @@ public class LadderGame {
         for (int i = 0; i < person.getCountOfPerson(); i++) {
             resultIndex.add(generateResult(i + 1));
         }
-        return new GameResult(resultIndex, person, result);
+        return GameResult.generateGameResult(resultIndex, person, result);
     }
 
     private int generateResult(int index) {

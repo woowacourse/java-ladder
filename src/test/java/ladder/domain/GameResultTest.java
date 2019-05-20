@@ -20,7 +20,7 @@ class GameResultTest {
         arrival = Arrays.asList(1, 2, 3);
         person = new Person("pobi,brown,woni");
         result = new Result("꽝,5000,꽝", person);
-        gameResult = new GameResult(arrival, person, result);
+        gameResult = GameResult.generateGameResult(arrival, person, result);
     }
 
     @Test

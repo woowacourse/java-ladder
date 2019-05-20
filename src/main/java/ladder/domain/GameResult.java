@@ -7,12 +7,18 @@ import java.util.Objects;
 
 public class GameResult {
     private static String NOT_CONTAIN_NAME_MESSAGE = "없는 이름입니다.";
-    private final LinkedHashMap<String, String> nameToResult = new LinkedHashMap<>();
+    private final LinkedHashMap<String, String> nameToResult;
 
-    GameResult(List<Integer> allResult, Person person, Result result) {
+    private GameResult(final LinkedHashMap<String, String> nameToResult) {
+        this.nameToResult = nameToResult;
+    }
+
+    static GameResult generateGameResult(List<Integer> allResult, Person person, Result result) {
+        LinkedHashMap<String, String> nameToResult = new LinkedHashMap<>();
         for (int i = 0; i < allResult.size(); i++) {
             nameToResult.put(person.getName(i), result.getResult(allResult.get(i) - 1));
         }
+        return new GameResult(nameToResult);
     }
 
     public String getGameResult(String requestedName, Person person) {
