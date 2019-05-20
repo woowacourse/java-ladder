@@ -16,7 +16,6 @@ public class GameResult {
         }
     }
 
-
     private void validate(int countOfPlayers, int countOfRewards) {
         if (countOfPlayers != countOfRewards) {
             throw new IllegalArgumentException("사용자의 수와 당첨보상의 수가 다릅니다.");
@@ -27,7 +26,7 @@ public class GameResult {
         return results.get(player);
     }
 
-    public Map<Player, Reward> getAll() {
+    public Map<Player, Reward> getAllResults() {
         return new HashMap<>(results);
     }
 }

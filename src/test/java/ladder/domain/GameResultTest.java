@@ -47,7 +47,7 @@ public class GameResultTest {
 
     @Test
     void 전체_결과() {
-        Map<Player, Reward> expected = gameResult.getAll();
+        Map<Player, Reward> expected = gameResult.getAllResults();
 
         assertThat(3).isEqualTo(expected.size());
         assertThat(new Reward("5000")).isEqualTo(expected.get(new Player("pobi")));

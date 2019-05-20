@@ -34,7 +34,6 @@ public class LadderTest {
 
         List<Line> lines = Arrays.asList(new Line(line1.size(), () -> line1), new Line(line2.size(), () -> line2));
 
-//        LadderGame ladderGame = new LadderGame(2, gamePlayers, playerRewards, () -> lines);
         Ladder ladder = new Ladder(3, 3, () -> lines);
 
         assertThat(ladder.moveLadder(0)).isEqualTo(1);

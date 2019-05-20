@@ -37,11 +37,11 @@ public final class GamePlayers {
         return players.get(index);
     }
 
-    public int size() {
-        return players.size();
+    public List<Player> getAllPlayers() {
+        return players;
     }
 
-    public List<Player> getPlayers() {
-        return players;
+    public int size() {
+        return players.size();
     }
 }

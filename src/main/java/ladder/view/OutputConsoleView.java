@@ -2,7 +2,6 @@ package ladder.view;
 
 import ladder.domain.*;
 
-import java.lang.management.PlatformLoggingMXBean;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +23,7 @@ public class OutputConsoleView {
     private static void printNames(GamePlayers gamePlayers) {
         StringBuilder sb = new StringBuilder();
         sb.append(PADDING);
-        for (Player player : gamePlayers.getPlayers()) {
+        for (Player player : gamePlayers.getAllPlayers()) {
             sb.append(fillPadding(player.getName()));
         }
         System.out.println(sb.toString());
@@ -64,10 +63,11 @@ public class OutputConsoleView {
     }
 
     private static void printRewards(PlayerRewards rewards) {
+        Map<Integer, Reward> allRewards = rewards.getAllRewards();
         StringBuilder sb = new StringBuilder();
         sb.append(PADDING);
-        for (Reward reward : rewards.getRewards().values()) {
-            sb.append(reward);
+        for (Reward reward : allRewards.values()) {
+            sb.append(fillPadding(reward.getName()));
         }
         System.out.println(sb.toString());
     }
@@ -80,13 +80,15 @@ public class OutputConsoleView {
             return;
         }
         System.out.println(reward.getName());
+        System.out.println();
     }
 
     public static void printResult(GameResult gameResult) {
-        Map<Player, Reward> results = gameResult.getAll();
+        Map<Player, Reward> results = gameResult.getAllResults();
         System.out.println("실행 결과");
         results.forEach((player, reward) -> {
             System.out.println(player.getName() + " : " + reward.getName());
         });
+        System.out.println();
     }
 }

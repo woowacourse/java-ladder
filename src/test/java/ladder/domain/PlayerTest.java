@@ -27,7 +27,7 @@ public class PlayerTest {
 
     @Test
     void NULL_검사() {
-        assertThrows(NullPointerException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             new Player(null);
         });
     }

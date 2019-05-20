@@ -25,7 +25,7 @@ public final class PlayerRewards {
         return rewards.get(index);
     }
 
-    public Map<Integer, Reward> getRewards() {
+    public Map<Integer, Reward> getAllRewards() {
         return rewards;
     }
 

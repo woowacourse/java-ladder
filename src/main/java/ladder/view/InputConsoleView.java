@@ -19,7 +19,7 @@ public class InputConsoleView {
     }
 
     public static String inputResultName() {
-        System.out.println("결과를 보고 싶은 사람은?");
+        System.out.println("결과를 보고 싶은 사람은? 종료를 원하시면 EXIT를 입력하세요");
         return new Scanner(System.in).nextLine();
     }
 }
