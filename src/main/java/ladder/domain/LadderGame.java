@@ -26,8 +26,6 @@ import ladder.domain.tag.Tag;
  * @version 1.0.0
  */
 public class LadderGame {
-    private static final String NEW_LINE = "\n";
-
     private Ladder ladder;
     private PlayerTags players;
     private ResultTags results;
@@ -57,13 +55,5 @@ public class LadderGame {
             gameResult.put(tag, results.get(result.getPosition()));
         }
         return gameResult;
-    }
-
-    // TODO 제거해야 할 부분
-    @Override
-    public String toString() {
-        return players.toString() + NEW_LINE
-                + ladder.toString()
-                + results.toString();
     }
 }

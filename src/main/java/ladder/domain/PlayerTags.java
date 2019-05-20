@@ -33,10 +33,6 @@ public class PlayerTags extends Tags implements Iterable<Tag> {
         super(input);
     }
 
-    public List<Tag> getNames() {
-        return tags;
-    }
-
     public int size() {
         return tags.size();
     }

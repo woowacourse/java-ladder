@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import ladder.domain.utils.RandomGenerator;
 
-class Point {
+public class Point {
     private Boolean left;
     private Boolean right;
 

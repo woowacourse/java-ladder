@@ -34,6 +34,10 @@ public class Horizontal {
         generateHorizontal(width);
     }
 
+    public List<Point> getHorizontal() {
+        return horizontal;
+    }
+
     public Point get(int index) {
         return horizontal.get(index);
     }
@@ -62,18 +66,5 @@ public class Horizontal {
         if (i == width.getLadderWidth() - 1) {
             horizontal.add(horizontal.get(i - 1).last());
         }
-    }
-
-    // TODO 제거해야 할 부분
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(HEADER_HORIZONTAL_LINE);
-        for (int i = 1; i < this.horizontal.size(); i++) {
-            sb.append(VERTICAL_LINE)
-                    .append(horizontal.get(i).toString());
-        }
-        sb.append(VERTICAL_LINE + NEW_LINE);
-        return sb.toString();
     }
 }

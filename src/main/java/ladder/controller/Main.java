@@ -92,7 +92,7 @@ public class Main {
     private static String chooseAll(GameResult gameResult, String select) {
         if (select.equals(ALL_CONDITION)) {
             OutputView.resultTitle();
-            OutputView.resultPrint2(gameResult);
+            OutputView.resultGameResult(gameResult);
             select = EXIT_CONDITION;
         }
         return select;
@@ -101,8 +101,7 @@ public class Main {
     private static void chooseOne(GameResult gameResult, String select) {
         if (!select.equals(EXIT_CONDITION) && !select.equals(ALL_CONDITION)) {
             OutputView.resultTitle();
-            Tag selectTag = new Tag(select);
-            OutputView.resultPrint(gameResult.get(selectTag).getName());
+            OutputView.resultOneResult(gameResult.get(new Tag(select)));
         }
     }
 }

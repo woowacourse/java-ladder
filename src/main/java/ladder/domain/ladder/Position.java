@@ -33,10 +33,10 @@ public class Position {
 
 
     private Position moveRight() {
-        return new Position(this.position + 1/*, this.max*/);
+        return new Position(this.position + 1);
     }
 
     private Position moveLeft() {
-        return new Position(this.position - 1/*, this.max*/);
+        return new Position(this.position - 1);
     }
 }
