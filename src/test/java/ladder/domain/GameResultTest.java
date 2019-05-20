@@ -40,18 +40,18 @@ public class GameResultTest {
 
     @Test
     void 한명_결과() {
-        assertThat("5000").isEqualTo(gameResult.get("pobi"));
-        assertThat("3000").isEqualTo(gameResult.get("crong"));
-        assertThat("꽝").isEqualTo(gameResult.get("honux"));
+        assertThat(new Reward("5000")).isEqualTo(gameResult.get(new Player("pobi")));
+        assertThat(new Reward("3000")).isEqualTo(gameResult.get(new Player("crong")));
+        assertThat(new Reward("꽝")).isEqualTo(gameResult.get(new Player("honux")));
     }
 
     @Test
     void 전체_결과() {
-        Map<String, String> expected = gameResult.getAll();
+        Map<Player, Reward> expected = gameResult.getAll();
 
         assertThat(3).isEqualTo(expected.size());
-        assertThat("5000").isEqualTo(expected.get("pobi"));
-        assertThat("3000").isEqualTo(expected.get("crong"));
-        assertThat("꽝").isEqualTo(expected.get("honux"));
+        assertThat(new Reward("5000")).isEqualTo(expected.get(new Player("pobi")));
+        assertThat(new Reward("3000")).isEqualTo(expected.get(new Player("crong")));
+        assertThat(new Reward("꽝")).isEqualTo(expected.get(new Player("honux")));
     }
 }

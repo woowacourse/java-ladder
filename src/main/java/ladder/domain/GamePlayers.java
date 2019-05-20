@@ -33,8 +33,8 @@ public final class GamePlayers {
         }
     }
 
-    String getPlayerName(int index) {
-        return players.get(index).getName();
+    public Player getPlayer(int index) {
+        return players.get(index);
     }
 
     public int size() {

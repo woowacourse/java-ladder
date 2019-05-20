@@ -4,16 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameResult {
-    private final Map<String, String> results;
+    private final Map<Player, Reward> results;
 
     public GameResult(Ladder ladder, GamePlayers gamePlayers, PlayerRewards playerRewards) {
         this.results = new HashMap<>();
         validate(gamePlayers.size(), playerRewards.size());
         for (int i = 0; i < gamePlayers.size(); i++) {
             int result = ladder.moveLadder(i);
-            results.put(gamePlayers.getPlayerName(i), playerRewards.getReward(result));
+            results.put(gamePlayers.getPlayer(i), playerRewards.getReward(result));
         }
     }
+
 
     private void validate(int countOfPlayers, int countOfRewards) {
         if (countOfPlayers != countOfRewards) {
@@ -21,11 +22,11 @@ public class GameResult {
         }
     }
 
-    public String get(String playerName) {
-        return results.get(playerName);
+    public Reward get(Player player) {
+        return results.get(player);
     }
 
-    public Map<String, String> getAll() {
+    public Map<Player, Reward> getAll() {
         return new HashMap<>(results);
     }
 }
