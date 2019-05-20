@@ -9,35 +9,41 @@ import ladder.model.player.Players;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class MainController {
     private static final String ALL_PLAYERS = "all";
 
     public static void main(String[] args) {
-        List<String> names = InputView.inputNames();
-        Players players = new Players(names);
-
-        int countOfPlayer = names.size();
-        LinePointsGenerator linePointsGenerator = new RandomLinePointsGenerator(countOfPlayer);
-
-        LadderGameResult ladderGameResult = new LadderGameResult(InputView.inputLadderGameResult(), countOfPlayer);
-
-        int height = InputView.inputLadderHeight();
-        Ladder ladder = new Ladder(linePointsGenerator, height);
-
-        LadderGame ladderGame = new LadderGame(players, ladder, ladderGameResult);
+        LadderGame ladderGame = createLadderGame();
         ladderGame.playGame();
 
-        OutputView.printLadderResult(players, ladder, ladderGameResult);
+        OutputView.printLadderResult(ladderGame);
 
-        String desiredResult = InputView.inputDesiredResult().trim();
-        while (!desiredResult.equals(ALL_PLAYERS)) {
+        String desiredResult = InputView.inputDesiredResult();
+        while (!ladderGame.isFinished(desiredResult)) {
             OutputView.printExecutionResult(ladderGame.getResultByName(desiredResult));
             desiredResult = InputView.inputDesiredResult();
         }
 
         OutputView.printExecutionResult(ladderGame.getAllResult());
+    }
+
+    private static LadderGame createLadderGame() {
+        Players players = createPlayers();
+        Ladder ladder = createLadder(players.countOfPlayer());
+        LadderGameResult ladderGameResult = createLadderGameResult(players.countOfPlayer());
+
+        return new LadderGame(players, ladder, ladderGameResult);
+    }
+
+    private static LadderGameResult createLadderGameResult(int countOfPlayer) {
+        return new LadderGameResult(InputView.inputLadderGameResult(), countOfPlayer);
+    }
+
+    private static Players createPlayers() {
+        return new Players(InputView.inputNames());
+    }
+
+    private static Ladder createLadder(int countOfPlayer) {
+        return new Ladder(new RandomLinePointsGenerator(countOfPlayer), InputView.inputLadderHeight());
     }
 }

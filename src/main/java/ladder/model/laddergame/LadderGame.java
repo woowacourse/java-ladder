@@ -27,14 +27,28 @@ public class LadderGame {
         StringBuilder stringBuilder = new StringBuilder();
         players.forEach(player ->
                 stringBuilder.append(player.getName())
-                .append(COLON)
-                .append(this.getResultByName(player.getName()))
-                .append(NEW_LINE));
+                        .append(COLON)
+                        .append(this.getResultByName(player.getName()))
+                        .append(NEW_LINE));
 
         return stringBuilder.toString();
     }
 
     public void playGame() {
         ladder.move(players);
+    }
+
+    public boolean isFinished(String name) {
+        return "all".equals(name);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(players).append(NEW_LINE);
+        stringBuilder.append(ladder);
+        stringBuilder.append(ladderGameResult).append(NEW_LINE);
+
+        return stringBuilder.toString();
     }
 }
