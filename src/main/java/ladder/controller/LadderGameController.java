@@ -1,9 +1,6 @@
 package ladder.controller;
 
-import ladder.model.Ladder;
-import ladder.model.LadderGameGoals;
-import ladder.model.LadderGamePlayers;
-import ladder.model.LadderGameResult;
+import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -14,7 +11,8 @@ public class LadderGameController {
     public void run() {
         LadderGamePlayers players = InputView.createLadderGamePlayers();
         LadderGameGoals goals = InputView.createLadderGameGoals(players.size());
-        Ladder ladder = new Ladder(players, InputView.createLadderHeight());
+        LadderHeight height = InputView.createLadderHeight();
+        Ladder ladder = new Ladder(players, height);
         LadderGameResult ladderGameResult = new LadderGameResult(players, ladder, goals);
 
         OutputView.showLadderGame(players.getAllAlignedPlayerNames(), ladder, goals.getAlignedGoalNames());

@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.model.LadderGameGoals;
-import ladder.model.LadderGamePlayers;
-import ladder.model.LadderGoal;
-import ladder.model.LadderPlayer;
+import ladder.model.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -25,7 +22,8 @@ public class InputViewTest {
 
     @Test
     void 사다리_높이가_올바르게_만들어지는지_테스트() {
-        assertEquals(InputView.createLadderHeight("5"), 5);
+        assertEquals(InputView.createLadderHeight("5"), new LadderHeight("5"));
+        assertEquals(InputView.createLadderHeight("5"), new LadderHeight(5));
     }
 
     @Test

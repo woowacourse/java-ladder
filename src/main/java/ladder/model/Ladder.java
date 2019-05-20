@@ -13,9 +13,9 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public Ladder(LadderGamePlayers players, int height) {
+    public Ladder(LadderGamePlayers players, LadderHeight height) {
         List<LadderLine> createdLines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < height.getHeight(); i++) {
             createdLines.add(new LadderLine(players.size() - 1));
         }
         this.lines = createdLines;

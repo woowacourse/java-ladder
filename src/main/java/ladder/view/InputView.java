@@ -1,11 +1,7 @@
 package ladder.view;
 
 import ladder.constant.MessageConstant;
-import ladder.model.LadderGameGoals;
-import ladder.model.LadderGamePlayers;
-import ladder.model.LadderGoal;
-import ladder.model.LadderPlayer;
-import ladder.validator.LadderHeightValidator;
+import ladder.model.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -54,15 +50,14 @@ public class InputView {
         }
     }
 
-    public static int createLadderHeight() {
+    public static LadderHeight createLadderHeight() {
         System.out.println(NEW_LINE + MessageConstant.INPUT_LADDER_HEIGHT);
         return createLadderHeight(SCANNER.nextLine());
     }
 
-    public static int createLadderHeight(String input) {
+    public static LadderHeight createLadderHeight(String input) {
         try {
-            LadderHeightValidator.checkAccuracyOfUserInput(input);
-            return Integer.parseInt(input.trim());
+            return new LadderHeight(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createLadderHeight();

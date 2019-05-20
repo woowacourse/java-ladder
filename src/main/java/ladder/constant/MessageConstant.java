@@ -1,9 +1,9 @@
 package ladder.constant;
 
 import ladder.controller.LadderGameController;
+import ladder.model.LadderHeight;
 import ladder.model.objectname.LadderGoalName;
 import ladder.model.objectname.LadderPlayerName;
-import ladder.validator.LadderHeightValidator;
 
 public class MessageConstant {
     private MessageConstant() {
@@ -24,7 +24,7 @@ public class MessageConstant {
     public static final String ERROR_OVERLAP_PLAYERS = "ERROR : 중복된 플레이어 이름이 있습니다.";
 
     public static final String ERROR_BELOW_HEIGHT
-            = String.format("ERROR : 사다리의 높이는 %d 이상의 수입니다.", LadderHeightValidator.MIN_HEIGHT);
+            = String.format("ERROR : 사다리의 높이는 %d 이상의 수입니다.", LadderHeight.MIN_HEIGHT);
     public static final String ERROR_NOT_INTEGER = "ERROR : 사다리의 높이는 정수로 입력해 주세요.";
 
     public static final String ERROR_EXCESS_GOAL_NAME_LENGTH
