@@ -33,8 +33,8 @@ public class LadderResult {
         rewards = RewardException.reward(rewards, names.split(",").length);
         depth = LadderDepthException.ladderMinDepth(depth);
 
-        this.ladder = new Ladder(setPlayers(names).size(), depth);
-        this.result = setResult(setPlayers(names), Arrays.asList(rewards.split(",")), depth); //TODO 1. depth 사용하지 않음
+        this.ladder = getLadder(names, depth);
+        this.result = getResult(getPlayers(names), Arrays.asList(rewards.split(",")));
     }
 
     /**
@@ -50,25 +50,28 @@ public class LadderResult {
         return result.get(name);
     }
 
+    private String getResultOfAllName() {
+        StringJoiner stringJoiner = new StringJoiner("\n");
+        for (Map.Entry<String, String> entry : result.entrySet()) {
+            stringJoiner.add(entry.getKey() + " : " + entry.getValue());
+        }
+        return stringJoiner.toString();
+    }
+
     /**
      * 사다리 모양 출력
      *
      * @return
      */
-    public String getLadderShape() {
+    public String drawLadderShape() {
         return ladder.drawLadderShape();
     }
 
-    private Map<String, String> setResult(List<Player> players, List<String> rewards, int depth) { //TODO 1. depth 사용하지 않음
-        Map<String, String> result = new HashMap<>();
-        List<Integer> initResult = ladder.getResult();
-        for (int i = 0; i < players.size(); i++) {
-            result.put(players.get(i).getName(), rewards.get(initResult.get(i)));
-        }
-        return result;
+    private Ladder getLadder(String names, int depth) {
+        return new Ladder(names.split(",").length, depth);
     }
 
-    private List<Player> setPlayers(String playerNames) {
+    private List<Player> getPlayers(String playerNames) {
         List<Player> players = new ArrayList<>();
         List<String> names = Arrays.asList(playerNames.split(","));
         for (String name : names) {
@@ -77,12 +80,13 @@ public class LadderResult {
         return players;
     }
 
-    private String getResultOfAllName() {
-        StringJoiner stringJoiner = new StringJoiner("\n");
-        for (Map.Entry<String, String> entry : result.entrySet()) {
-            stringJoiner.add(entry.getKey() + " : " + entry.getValue());
+    private Map<String, String> getResult(List<Player> players, List<String> rewards) {
+        Map<String, String> result = new HashMap<>();
+        List<Integer> initResult = ladder.getResult();
+        for (int i = 0; i < players.size(); i++) {
+            result.put(players.get(i).getName(), rewards.get(initResult.get(i)));
         }
-        return stringJoiner.toString();
+        return result;
     }
 
     @Override

@@ -13,7 +13,7 @@ public class LadderApp {
 
         LadderResult ladderResult = new LadderResult(names, rewards, depth);
 
-        OutputView.outputLadder(names, ladderResult.getLadderShape(), rewards);
+        OutputView.outputLadder(names, ladderResult.drawLadderShape(), rewards);
         OutputView.outputLadderReward(InputView.wantName(ladderResult));
     }
 }
