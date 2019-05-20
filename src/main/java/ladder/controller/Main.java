@@ -14,7 +14,7 @@
 package ladder.controller;
 
 import ladder.domain.*;
-import ladder.domain.ladder.Height;
+import ladder.domain.ladder.LadderHeight;
 import ladder.domain.LadderGame;
 import ladder.domain.tag.Tag;
 import ladder.view.InputView;
@@ -34,7 +34,7 @@ public class Main {
     public static void main(String[] args) {
         PlayerTags players = getPlayers();
         ResultTags results = getResults(players.size());
-        Height floors = getFloor();
+        LadderHeight floors = getFloor();
 
         LadderGame ladderGame = new LadderGame(players, results, floors);
 
@@ -61,9 +61,9 @@ public class Main {
         }
     }
 
-    private static Height getFloor() {
+    private static LadderHeight getFloor() {
         try {
-            return new Height(InputView.floors());
+            return new LadderHeight(InputView.floors());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getFloor();
@@ -101,7 +101,7 @@ public class Main {
         if (!select.equals(EXIT_CONDITION) && !select.equals(ALL_CONDITION)) {
             OutputView.resultTitle();
             Tag selectTag = new Tag(select);
-            OutputView.resultPrint(ladderGame.getOnePlayerResult(selectTag));
+            OutputView.resultPrint(ladderGame.getOneResult(selectTag).getName());
         }
     }
 }

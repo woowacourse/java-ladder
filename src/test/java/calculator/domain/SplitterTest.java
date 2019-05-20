@@ -1,6 +1,7 @@
 package calculator.domain;
 
 import calculator.constants.Constants;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -16,7 +17,7 @@ class SplitterTest {
 
     @Test
     void 디폴트_식_추출() {
-        assertThat(new Splitter("1,2:3").getExpression()).isEqualTo(Arrays.asList(1,2,3));
+        assertThat(new Splitter("1,2:3").getExpression()).isEqualTo(Arrays.asList(1, 2, 3));
     }
 
     @Test
@@ -26,7 +27,7 @@ class SplitterTest {
 
     @Test
     void 커스텀_식_추출() {
-        assertThat(new Splitter("//;\n1;2;3").getExpression()).isEqualTo(Arrays.asList(1,2,3));
+        assertThat(new Splitter("//;\n1;2;3").getExpression()).isEqualTo(Arrays.asList(1, 2, 3));
     }
 
     @Test
@@ -38,6 +39,7 @@ class SplitterTest {
     void 커스텀_구분자_추출() {
         assertThat(new Splitter("//;\n1;2;3").getDelimiter()).isEqualTo(";");
     }
+
     @Test
     void 디폴트_커스텀_둘_다_아닌경우() {
         assertThrows(Exception.class, () -> {

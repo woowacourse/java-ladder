@@ -23,31 +23,52 @@ import java.util.List;
  * @version 1.0.0
  */
 public class Ladder {
-    private List<Line> ladder;
+    private List<Horizontal> ladder;
+    private LadderHeight height;
+    private LadderWidth width;
 
-    public Ladder(Height height, int playerNumber) {
-        ladder = new ArrayList<>();
-        for (int i = 0; i < height.getFloor(); i++) {
-            ladder.add(new Line(playerNumber));
+//    public Ladder(LadderHeight height, int playerNumber) {
+//        this.ladder = new ArrayList<>();
+//        this.height = height;
+//        for (int i = 0; i < height.getHeight(); i++) {
+//            ladder.add(new Horizontal(playerNumber));
+//        }
+//    }
+
+    public Ladder(LadderHeight height, LadderWidth width) {
+        this.ladder = new ArrayList<>();
+        this.height = height;
+        this.width = width;
+        for (int i = 0; i < height.getHeight(); i++) {
+            ladder.add(new Horizontal(width));
         }
     }
 
-    public int getPlayerResult(int playerIndex){
-        for(Line line : ladder){
-            playerIndex = moveVertical(line, playerIndex);
+//    public int getPlayerResult(int playerIndex){
+//        for(Horizontal horizontal : ladder){
+//            playerIndex = moveVertical(horizontal, playerIndex);
+//        }
+//        return playerIndex;
+//    }
+
+//    private int moveVertical(Horizontal horizontal, int index){
+//        return horizontal.moveHorizontal(index);
+//    }
+
+    public Position moveToResult(int startIndex){
+        Position currentPosition = new Position(startIndex, this.width.getLadderWidth());
+        for (Horizontal horizontal : ladder) {
+            currentPosition.move(horizontal.get(startIndex));
         }
-        return playerIndex;
+        return currentPosition;
     }
 
-    private int moveVertical(Line line, int index){
-        return line.moveHorizontal(index);
-    }
-
+    // TODO 제거해야 할 부분
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (Line line : this.ladder) {
-            sb.append(line.toString());
+        for (Horizontal horizontal : this.ladder) {
+            sb.append(horizontal.toString());
         }
         return sb.toString();
     }

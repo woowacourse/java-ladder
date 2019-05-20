@@ -12,8 +12,10 @@
 
 package ladder.domain;
 
-import ladder.domain.ladder.Height;
+import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderWidth;
+import ladder.domain.ladder.Position;
 import ladder.domain.tag.Tag;
 
 /**
@@ -32,18 +34,18 @@ public class LadderGame {
     private PlayerTags players;
     private ResultTags results;
 
-    public LadderGame(PlayerTags players, ResultTags results, Height height) {
+    public LadderGame(PlayerTags players, ResultTags results, LadderHeight ladderHeight) {
         this.players = players;
         this.results = results;
-        ladder = new Ladder(height, players.size());
+        ladder = new Ladder(ladderHeight, new LadderWidth(players.size()));
     }
 
-    public String getOnePlayerResult(Tag tag) {
+    public Tag getOneResult(Tag tag) {
         if (!this.players.getNames().contains(tag)) {
             throw new IllegalArgumentException(GET_ONE_PLAYER_ERROR);
         }
-        int index = ladder.getPlayerResult(players.indexOf(tag));
-        return results.get(index).toString();
+        Position result = ladder.moveToResult(players.indexOf(tag));
+        return results.get(result.getPosition());
     }
 
     public String getAllPlayerResult() {
@@ -51,12 +53,13 @@ public class LadderGame {
         for (Tag tag : players.getNames()) {
             sb.append(tag.toString())
                     .append(JOIN_NAME_RESULT)
-                    .append(this.getOnePlayerResult(tag))
+                    .append(this.getOneResult(tag))
                     .append(NEW_LINE);
         }
         return sb.toString();
     }
 
+    // TODO 제거해야 할 부분
     @Override
     public String toString() {
         return players.toString() + NEW_LINE

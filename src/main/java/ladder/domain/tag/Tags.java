@@ -48,6 +48,7 @@ public abstract class Tags {
         }
     }
 
+    // TODO 제거해야 할 부분
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -42,7 +42,7 @@ public class Tag {
         this.name = name;
     }
 
-    private String getName() {
+    public String getName() {
         return name;
     }
 
@@ -83,6 +83,7 @@ public class Tag {
         return Objects.hash(getName());
     }
 
+    // TODO 제거해야 할 부분
     @Override
     public String toString() {
         return this.name;

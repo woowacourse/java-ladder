@@ -12,6 +12,7 @@
 
 package ladder.domain;
 
+import java.util.Iterator;
 import java.util.List;
 
 import ladder.domain.tag.Tag;
@@ -25,18 +26,11 @@ import ladder.domain.tag.Tags;
  * @version 1.0.0
  * @see Tags
  */
-public class PlayerTags extends Tags {
+public class PlayerTags extends Tags implements Iterable<Tag> {
     private static final String DUPLICATE_NAME_ERROR = "중복 이름 오류";
 
     public PlayerTags(String input) {
         super(input);
-        validPlayerNumber(this.tags.size());
-    }
-
-    private void validPlayerNumber(int playerNumber) {
-        if (playerNumber <= 1) {
-            throw new IllegalArgumentException("플레이어 수는 최소 2명");
-        }
     }
 
     public List<Tag> getNames() {
@@ -61,5 +55,10 @@ public class PlayerTags extends Tags {
         if (tags.contains(new Tag(name))) {
             throw new IllegalArgumentException(DUPLICATE_NAME_ERROR);
         }
+    }
+
+    @Override
+    public Iterator<Tag> iterator() {
+        return tags.iterator();
     }
 }

@@ -1,5 +1,5 @@
 /*
- * @(#)Height.java
+ * @(#)LadderHeight.java
  *
  * v 1.0.0
  *
@@ -19,21 +19,21 @@ package ladder.domain.ladder;
  * @author men7627
  * @version 1.0.0
  */
-public class Height {
+public class LadderHeight {
     private static final String NAT_NUM_EXCEPTION_MESSAGE = "층 수 0이하 입력 오류";
     private static final String VALID_TYPE_EXCEPTION_MESSAGE = "층 수 입력 형식 오류";
     private static final int MINIMUM_RANGE = 0;
 
-    private int floor;
+    private int height;
 
-    public Height(String input) {
+    public LadderHeight(String input) {
         int number = validType(input);
         validRange(number);
-        this.floor = number;
+        this.height = number;
     }
 
-    int getFloor() {
-        return floor;
+    int getHeight() {
+        return height;
     }
 
     private int validType(String input) {
@@ -49,5 +49,4 @@ public class Height {
             throw new IllegalArgumentException(NAT_NUM_EXCEPTION_MESSAGE);
         }
     }
-
 }
