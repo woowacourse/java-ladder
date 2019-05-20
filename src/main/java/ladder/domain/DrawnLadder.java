@@ -39,6 +39,10 @@ public class DrawnLadder {
         return lines.get(0).createFirstLeftColumnPosition();
     }
 
+    public Position nextColumnPosition(Position row, Position current) {
+        return lines.get(row.toInt()).nextPosition(current);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
