@@ -66,7 +66,7 @@ class InputViewTest {
 
     @Test
     void 플레이어_입력_테스트_1명() {
-        String input = "exit";
+        String input = "abc";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 

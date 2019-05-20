@@ -8,8 +8,11 @@ package ladder.view;
 
 import ladder.model.game.GameResult;
 import ladder.model.game.LadderGame;
+import ladder.model.ladder.Horizon;
 import ladder.model.ladder.Line;
 import ladder.model.tags.Tag;
+
+import java.util.List;
 
 /**
  * @author 김효건
@@ -73,16 +76,17 @@ public class OutputView {
 
     private static String toStringEachLine(Line line) {
         StringBuilder sb = new StringBuilder();
-        for (Boolean horizon : line.getHorizons()) {
+        List<Horizon> horizons = line.getHorizons();
+        for (int i = 0; i < line.getHorizons().size()-1; i++) {
             sb.append(VERTICAL_LINE);
-            sb.append(toStringEachHorizon(horizon));
+            sb.append(toStringEachHorizon(horizons.get(i)));
         }
         sb.append(VERTICAL_LINE).append(NEW_LINE);
         return sb.toString();
     }
 
-    private static String toStringEachHorizon(Boolean horizon) {
-        if (horizon) {
+    private static String toStringEachHorizon(Horizon horizon) {
+        if (horizon.hasHorizon()) {
             return HORIZON_LINE;
         }
         return NO_HORIZON_LINE;

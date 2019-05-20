@@ -7,7 +7,6 @@
 
 package ladder.model.game;
 
-import ladder.model.game.GameResult;
 import ladder.model.ladder.Floor;
 import ladder.model.ladder.Ladder;
 import ladder.model.tags.PlayerTags;

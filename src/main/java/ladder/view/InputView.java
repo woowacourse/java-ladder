@@ -22,7 +22,7 @@ public class InputView {
     private static final String INPUT_RESULTS_MESSAGE = "실행결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String INPUT_SELECT_RESULTS_MESSAGE = "결과를 보고 싶은 사람은? (종료를 원하시면 exit을 입력하세요)";
     private static final String NOT_VALID_INPUT_ERROR = "입력 형식 오류";
-    private static final String ONE_PLAYER_INPUT_ERROR = "플레이어 1명 입력 오류";
+    private static final String ONE_PLAYER_INPUT_ERROR = "태그 1명 입력 오류";
     private static final String RESERVED_WORD_INPUT_ERROR = "예약어 입력 오류";
     private static final String INPUT_REGEX = "^([^,]+)(,[^,]+)*$";
     private static final String DELIMITER = ",";

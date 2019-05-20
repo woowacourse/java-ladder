@@ -16,59 +16,34 @@ import java.util.Random;
  */
 public class Line {
     /*사다리게임의 각 층(라인)에 대한 클래스*/
-    private static final String HORIZON_LINE_DUPLICATION_ERROR = "가로선 중복 오류";
+    private List<Horizon> horizons;
+    private Random random;
 
-    private List<Boolean> horizons;
+    public Line(int tagsNumber) {
+        random = new Random();
+        horizons = new ArrayList<>();
+        addFirstHorizon();
+        for (int i = 1; i < tagsNumber - 1; i++) {
+            horizons.add(new Horizon(horizons.get(i - 1), random.nextBoolean()));
+        }
+        addLastHorizon(tagsNumber);
+    }
 
-    public List<Boolean> getHorizons() {
+    private void addLastHorizon(int tagsNumber) {
+        Horizon lastHorizon = new Horizon(horizons.get(tagsNumber - 2),false);
+        horizons.add(lastHorizon);
+    }
+
+    private void addFirstHorizon() {
+        Horizon firstHorizon = new Horizon(random.nextBoolean());
+        horizons.add(firstHorizon);
+    }
+
+    public List<Horizon> getHorizons() {
         return horizons;
     }
 
-    public Line(int tagsNumber) {
-        horizons = new ArrayList<>();
-        makeRandomHorizons(tagsNumber);
-    }
-
-    public Line(List<Boolean> horizon) {
-        checkDuplicateHorizon(horizon);
-        this.horizons = horizon;
-    }
-
-    private void makeRandomHorizons(int tagsNumber) {
-        Random random = new Random();
-        horizons.add(random.nextBoolean());
-        for (int index = 1; index < tagsNumber - 1; index++) {
-            makeProperHorizon(index, random.nextBoolean());
-        }
-    }
-
-    private void makeProperHorizon(int currentIndex, Boolean randomBoolean) {
-        if (!horizons.get(currentIndex - 1)) {
-            horizons.add(randomBoolean);
-            return;
-        }
-        horizons.add(false);
-    }
-
-    private void checkDuplicateHorizon(List<Boolean> horizon) {
-        for (int index = 0; index < horizon.size() - 1; index++) {
-            checkOneDuplicationHorizon(horizon, index);
-        }
-    }
-
-    private void checkOneDuplicationHorizon(List<Boolean> horizon, int index) {
-        if (horizon.get(index) && horizon.get(index + 1)) {
-            throw new IllegalArgumentException(HORIZON_LINE_DUPLICATION_ERROR);
-        }
-    }
-
     public int getIndexAfterMovingHorizon(int index) {
-        if (index > 0 && horizons.get(index - 1)) {
-            return --index;
-        }
-        if (index < horizons.size() && horizons.get(index)) {
-            return ++index;
-        }
-        return index;
+        return index + horizons.get(index).move();
     }
 }
