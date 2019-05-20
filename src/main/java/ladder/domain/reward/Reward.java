@@ -10,7 +10,7 @@ public class Reward {
         this.reward = reward;
     }
 
-    private void validateRewardLength(String reward) {
+    private void validateRewardLength(final String reward) {
         if (reward.length() > MAX_REWARD_LENGTH) {
             throw new IllegalArgumentException("결과가 " + MAX_REWARD_LENGTH + "글자가 넘어갑니다.");
         }

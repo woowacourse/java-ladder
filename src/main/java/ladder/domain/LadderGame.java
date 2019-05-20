@@ -14,12 +14,12 @@ public class LadderGame {
     private final ParticipantGroup participantGroup;
     private final Ladder ladder;
 
-    public LadderGame(final ParticipantGroup participants,  int ladderHeight, LadderRule ladderRule) {
+    public LadderGame(final ParticipantGroup participants,  final int ladderHeight, final LadderRule ladderRule) {
         this.participantGroup = participants;
         this.ladder = LadderGenerator.generate(participants.getSize(), ladderHeight, ladderRule);
     }
 
-    public LadderGame(final ParticipantGroup participants, int ladderHeight) {
+    public LadderGame(final ParticipantGroup participants, final int ladderHeight) {
         this(participants, ladderHeight, new RandomPointLadderRule());
     }
 

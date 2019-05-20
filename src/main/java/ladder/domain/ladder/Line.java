@@ -10,18 +10,18 @@ public class Line {
 
     private final List<Point> points;
 
-    Line(List<Point> points) {
+    Line(final List<Point> points) {
         validateLineWidth(points.size());
         this.points = Collections.unmodifiableList(points);
     }
 
-    private void validateLineWidth(int width) {
+    private void validateLineWidth(final int width) {
         if (width < MIN_LINE_WIDTH) {
             throw new IllegalArgumentException("라인의 길이는 " + MIN_LINE_WIDTH + " 이상입니다.");
         }
     }
 
-    int move(int point) {
+    int move(final int point) {
         return points.get(point).nextPointPosition();
     }
 

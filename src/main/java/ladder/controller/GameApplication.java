@@ -14,8 +14,8 @@ public class GameApplication {
     public static void main(String[] args) {
         ParticipantGroup participants = createParticipantGroup();
         RewardGroup rewards = createRewards(participants.getSize());
-        LadderGame ladderGame = createLadderGame(participants);
 
+        LadderGame ladderGame = createLadderGame(participants);
         OutputView.printLadderResult(participants, ladderGame.getLadder(), rewards);
 
         MatchingResult matchingResult = ladderGame.play();

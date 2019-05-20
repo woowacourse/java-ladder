@@ -3,10 +3,10 @@ package ladder.domain.ladder;
 import java.util.Objects;
 
 class Direction {
-    private boolean left;
-    private boolean right;
+    private final boolean left;
+    private final boolean right;
 
-    private Direction(boolean left, boolean right) {
+    private Direction(final boolean left, final boolean right) {
         if (left && right) {
             throw new IllegalArgumentException();
         }
@@ -14,15 +14,15 @@ class Direction {
         this.right = right;
     }
 
-    static Direction firstDirection(boolean tmp) {
-        return new Direction(false, tmp);
+    static Direction firstDirection(final boolean right) {
+        return new Direction(false, right);
     }
 
-    static Direction of(boolean left, boolean right) {
+    static Direction of(final boolean left, final boolean right) {
         return new Direction(left, right);
     }
 
-    Direction nextDirection(boolean injectionValue) {
+    Direction nextDirection(final boolean injectionValue) {
         return new Direction(right, (!right && injectionValue));
     }
 

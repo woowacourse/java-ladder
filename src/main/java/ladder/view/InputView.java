@@ -24,7 +24,7 @@ public class InputView {
         return filterTypos(input.nextLine());
     }
 
-    private static List<String> filterTypos(String arg) {
+    private static List<String> filterTypos(final String arg) {
         return new ArrayList<>(
                 Arrays.stream(arg.split(","))
                         .map(x -> x.trim())

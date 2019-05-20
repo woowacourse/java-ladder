@@ -8,17 +8,15 @@ import ladder.domain.reward.RewardGroup;
 import java.util.*;
 
 public class MatchingResult {
-    private Map<Integer, Integer> matchingResult;
+    private final Map<Integer, Integer> matchingResult;
 
-    MatchingResult(List<Integer> tmps) {
+    MatchingResult(final List<Integer> result) {
         Map<Integer, Integer> matchingResult = new HashMap<>();
-        for (int tmp : tmps) {
-            matchingResult.put(tmps.indexOf(tmp), tmp);
-        }
+        result.forEach(x -> matchingResult.put(result.indexOf(x), x));
         this.matchingResult = Collections.unmodifiableMap(matchingResult);
     }
 
-    public LadderGameResult map(ParticipantGroup participants, RewardGroup rewards) {
+    public LadderGameResult map(final ParticipantGroup participants, final RewardGroup rewards) {
         validateMappingInformation(participants, rewards);
 
         Map<Participant, Reward> ladderGameResult = new LinkedHashMap<>();
@@ -30,7 +28,7 @@ public class MatchingResult {
         return new LadderGameResult(ladderGameResult);
     }
 
-    private void validateMappingInformation(ParticipantGroup participants, RewardGroup rewards) {
+    private void validateMappingInformation(final ParticipantGroup participants, final RewardGroup rewards) {
         if (participants == null || rewards == null) {
             throw new IllegalArgumentException();
         }

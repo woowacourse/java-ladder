@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class LineGenerator {
-    static Line generate(int lineWidth, LadderRule rule) {
+    static Line generate(final int lineWidth, final LadderRule rule) {
         List<Point> points = new ArrayList<>();
         points.add(Point.firstPoint(rule.isAvailablePoint()));
         for (int i = 0; i < lineWidth - 1; i++) {

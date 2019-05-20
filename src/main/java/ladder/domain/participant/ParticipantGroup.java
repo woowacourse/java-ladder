@@ -15,13 +15,13 @@ public class ParticipantGroup {
         names.forEach(x -> this.participants.add(new Participant(x)));
     }
 
-    private void validateMinParticipants(List<String> participants) {
+    private void validateMinParticipants(final List<String> participants) {
         if (participants.size() < MIN_PARTICIPANTS_NUMBER) {
             throw new IllegalArgumentException("참가자는 2명 이상이어야 합니다.");
         }
     }
 
-    private void validateDuplicatedParticipants(List<String> participants) {
+    private void validateDuplicatedParticipants(final List<String> participants) {
         if (participants.size() != new HashSet<>(participants).size()) {
             throw new IllegalArgumentException("참가자 명은 중복될 수 없습니다.");
         }
@@ -35,7 +35,7 @@ public class ParticipantGroup {
         return participants;
     }
 
-    public Participant getNthParticipant(int index) {
+    public Participant getNthParticipant(final int index) {
         return participants.get(index);
     }
 }

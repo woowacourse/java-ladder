@@ -6,16 +6,16 @@ class Point {
     private final Direction direction;
     private final int position;
 
-    private Point(int position, Direction direction) {
+    private Point(final int position, final Direction direction) {
         this.position = position;
         this.direction = direction;
     }
 
-    static Point firstPoint(boolean tmp) {
+    static Point firstPoint(final boolean tmp) {
         return new Point(0, Direction.firstDirection(tmp));
     }
 
-    Point nextPoint(int maxPosition, boolean tmp) {
+    Point nextPoint(final int maxPosition, final boolean tmp) {
         if (maxPosition > position + 1) {
             return new Point(position + 1, direction.nextDirection(tmp));
         }
@@ -25,7 +25,7 @@ class Point {
         throw new IllegalArgumentException();
     }
 
-    static Point of(int position, Direction direction) {
+    static Point of(final int position, final Direction direction) {
         return new Point(position, direction);
     }
 

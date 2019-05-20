@@ -3,13 +3,13 @@ package ladder.domain.ladder;
 import java.util.Objects;
 
 public class PointDTO {
-    private boolean haveRight;
+    private final boolean haveRight;
 
-    PointDTO(boolean haveRight) {
+    PointDTO(final boolean haveRight) {
         this.haveRight = haveRight;
     }
 
-    PointDTO(Point point) {
+    PointDTO(final Point point) {
         this(point.isRightDirection());
     }
 

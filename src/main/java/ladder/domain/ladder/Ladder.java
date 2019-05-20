@@ -9,12 +9,12 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    Ladder(List<Line> lines) {
+    Ladder(final List<Line> lines) {
         validateLadder(lines);
         this.lines = Collections.unmodifiableList(lines);
     }
 
-    private void validateLadder(List<Line> lines) {
+    private void validateLadder(final List<Line> lines) {
         if (lines == null) {
             throw new IllegalArgumentException("사다리 생성이 불가합니다.");
         }
@@ -27,7 +27,7 @@ public class Ladder {
         }
     }
 
-    public int getEndPoint(int index) {
+    public int getEndPoint(final int index) {
         int endPoint = index;
         for (Line line : lines) {
             endPoint = line.move(endPoint);
