@@ -9,7 +9,7 @@ public class LadderApp {
 
     public static void main(String[] args) {
         String names = InputView.playerNames();
-        String rewards = InputView.rewards();
+        String rewards = InputView.rewards(names.split(",").length);
         int depth = InputView.ladderDepth();
 
         LadderResult ladderResult = new LadderResult(names, rewards, depth);

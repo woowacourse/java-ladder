@@ -14,8 +14,8 @@ import java.util.*;
  * @version 1.0 2019-05-16
  */
 public class LadderResult {
-    Ladder ladder;
-    Map<String, String> result;
+    private Ladder ladder;
+    private Map<String, String> result;
 
     /**
      * 생성자

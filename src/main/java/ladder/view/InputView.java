@@ -12,7 +12,7 @@ public class InputView {
     public static String playerNames() {
         try {
             return Rule.ruleInputPlayerNames(inputPlayerNames());
-        } catch (Exception e) {
+        } catch (RuntimeException e) { //TODO RuntimeException
             System.out.println(e.getMessage());
             return playerNames();
         }
@@ -23,13 +23,13 @@ public class InputView {
         return SCANNER.nextLine();
     }
 
-    public static String rewards() {
+    public static String rewards(int size) {
         try {
             String rewards = inputRewards();
-            return Rule.ruleInputReward(rewards, rewards.length());
-        } catch (Exception e) {
+            return Rule.ruleInputReward(rewards, size);
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
-            return rewards();
+            return rewards(size);
         }
     }
 
@@ -41,7 +41,7 @@ public class InputView {
     public static int ladderDepth() {
         try {
             return Rule.ruleLadderDepthRange(inputLadderDepth());
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return ladderDepth();
         }
@@ -51,7 +51,7 @@ public class InputView {
         try {
             System.out.println(Const.INPUT_DEPTH);
             return Integer.parseInt(SCANNER.nextLine());
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             System.out.println(Const.EX_LINE_COUNT);
             return inputLadderDepth();
         }
@@ -61,7 +61,7 @@ public class InputView {
         try {
             String resultOfName = ladderResult.getResultOfName(inputWantName());
             return Rule.ruleInputWantName(resultOfName);
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return wantName(ladderResult);
         }

@@ -12,8 +12,8 @@ import java.util.*;
  * @version 1.0 2019-05-16
  */
 public class Ladder {
-    List<LadderLine> ladder;
-    List<Integer> result;
+    private List<LadderLine> ladder;
+    private List<Integer> result;
 
     /**
      * 생성자
