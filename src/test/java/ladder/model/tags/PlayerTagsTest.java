@@ -9,6 +9,7 @@ package ladder.model.tags;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -23,5 +24,17 @@ public class PlayerTagsTest {
         assertThrows(IllegalArgumentException.class, ()->{
            new PlayerTags(input);
         });
+    }
+
+    @Test
+    void 태그_수_추출_검사() {
+        String[] input = {"pobi","coogi","jason","luffy"};
+        assertThat(new PlayerTags(input).getTagsNumber()).isEqualTo(4);
+    }
+
+    @Test
+    void 태그이름으로_인덱스_찾기_검사() {
+        String[] input = {"pobi","coogi","brown","luffy"};
+        assertThat(new PlayerTags(input).getIndexByTag(new Tag("brown"))).isEqualTo(2);
     }
 }

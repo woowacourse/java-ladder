@@ -5,9 +5,8 @@
  * Ladder, Java, Seoul, KOREA
  */
 
-package ladder.model;
+package ladder.model.game;
 
-import ladder.model.game.LadderGame;
 import ladder.model.ladder.Floor;
 import ladder.model.tags.PlayerTags;
 import ladder.model.tags.ResultTags;

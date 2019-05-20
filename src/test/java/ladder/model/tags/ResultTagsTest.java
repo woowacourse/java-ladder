@@ -9,6 +9,7 @@ package ladder.model.tags;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -23,5 +24,11 @@ public class ResultTagsTest {
         assertThrows(IllegalArgumentException.class, ()->{
            new ResultTags(input,3);
         });
+    }
+
+    @Test
+    void 인덱스로_태그_찾기_검사() {
+        String[] input = {"aa","bb","cc","dd"};
+        assertThat(new ResultTags(input,4).getTagByIndex(3)).isEqualTo(new Tag("dd"));
     }
 }

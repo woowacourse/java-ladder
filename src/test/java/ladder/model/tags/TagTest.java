@@ -36,4 +36,11 @@ class TagTest {
             new Tag("ABC F");
         });
     }
+
+    @Test
+    void 빈이름_검사() {
+        assertThrows(IllegalArgumentException.class, ()->{
+            new Tag("");
+        });
+    }
 }

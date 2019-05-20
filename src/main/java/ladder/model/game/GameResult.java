@@ -18,7 +18,11 @@ import java.util.Map;
  */
 public class GameResult {
     /*게임 결과에 관련 된 클래스*/
-    private Map<Tag, Tag> mappingResult = new LinkedHashMap<>();
+    private Map<Tag, Tag> mappingResult;
+
+    public GameResult(){
+        mappingResult = new LinkedHashMap<>();
+    }
 
     public void addResult(Tag inTag, Tag outTag) {
         mappingResult.put(inTag, outTag);
