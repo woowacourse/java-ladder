@@ -24,10 +24,9 @@ public class LadderGame {
         promptUserForRequest(players, prizes);
     }
 
-    private static Players generatePlayers() {
+    public static Players generatePlayers() {
         try {
             String playersNames = InputView.askPlayersNames();
-            playersNames = playersNames.replaceAll(" ","");
             return new Players(playersNames);
         } catch (Exception e) {
             System.out.println("잘못된 이름이 있습니다!");
@@ -40,6 +39,7 @@ public class LadderGame {
             String height = InputView.askHeight();
             return new Ladder(width, height);
         } catch (Exception e) {
+            System.out.println("잘못된 높이입니다!");
             return generateLadder(width);
         }
     }
@@ -49,6 +49,7 @@ public class LadderGame {
             String prizes = InputView.askPrizes();
             return new Prizes(width, prizes);
         } catch (Exception e) {
+            System.out.println("상품의 수가 맞지 않습니다!");
             return generatePrizes(width);
         }
     }

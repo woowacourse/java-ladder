@@ -17,6 +17,9 @@ public class Ladder {
         ladderInformationAsTrueFalse = generateLadderInformation(this.width, this.height);
     }
 
+    //테스트용 overloading
+
+
     private List<Line> generateLadderInformation(int width, int hegiht) {
         List<Line> ladderInformationAsTrueFalse = new ArrayList<>();
         for (int i = 0; i < height; i++) {

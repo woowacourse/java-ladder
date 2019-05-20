@@ -5,7 +5,6 @@ import java.util.*;
 
 public class PlayerNamesValidator {
     static void checkConditions(String playersNames) {
-        checkNullName(playersNames);
         List<String> names = new ArrayList<>(Arrays.asList(playersNames.split(",")));
         checkDuplicatedName(names);
         /*
