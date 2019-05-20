@@ -17,15 +17,25 @@ public class Line {
         if (numberOfPoints < 2) {
             throw new IllegalArgumentException("2개 이상의 포인트가 필요합니다.");
         }
-        points = new ArrayList<>();
 
-        Point point =  Point.first(rule);
-        points.add(point);
-        for (int i = 1; i < numberOfPoints - 1; i++) {
-            point = point.next(rule);
-            points.add(point);
+        points = new ArrayList<>();
+        while (points.size() != numberOfPoints) {
+            makePoint(numberOfPoints, rule);
         }
-        points.add(point.last());
+    }
+
+    private void makePoint(int numberOfPoints, Rule rule) {
+        if (points.size() == 0) {
+            points.add(Point.first(rule));
+            return;
+        }
+
+        Point prevPoint = points.get(points.size() - 1);
+        if (points.size() == numberOfPoints - 1) {
+            points.add(prevPoint.last());
+            return;
+        }
+        points.add(prevPoint.next(rule));
     }
 
     public int moveNextPoint(int position) {
@@ -36,7 +46,7 @@ public class Line {
     }
 
     private boolean outOfPointRange(int position) {
-        return (position < 0) || (position > points.size() - 1);
+        return (position < 0) || (position >= points.size());
     }
 
     @Override
