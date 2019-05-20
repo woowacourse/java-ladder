@@ -45,6 +45,10 @@ public class Players implements Iterable<Player> {
                 .getPosition();
     }
 
+    public int countOfPlayer(){
+        return players.size();
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
