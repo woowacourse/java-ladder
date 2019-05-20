@@ -6,9 +6,9 @@ import java.util.List;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(int CountOfPerson, int height) {
+    public Ladder(int countOfPerson, int height) {
         this.lines = new ArrayList<>();
-        addLines(CountOfPerson, height);
+        addLines(countOfPerson, height);
     }
 
     public Ladder(List<Line> lines) {

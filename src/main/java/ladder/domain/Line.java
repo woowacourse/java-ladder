@@ -1,41 +1,51 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Line {
     private static final int RANDOM_FACTOR = 2;
     private static final int BEFORE = 1;
+    private static final int ONE_PLAYER = 1;
 
-    private Direction[] points;
+    private List<Direction> directions;
 
     public Line(int countOfPerson) {
-        points = new Direction[countOfPerson];
-        addPoints();
+        directions = new ArrayList<>();
+        addPoints(countOfPerson);
     }
 
-    public Line(Direction[] points) {
-        this.points = points;
+    public Line(List<Direction> directions) {
+        this.directions = directions;
     }
 
-    private void addPoints() {
-        points[0] = addFirstComponent();
-        for (int i = 1; i < points.length; i++) {
-            points[i] = compareBeforeComponent(i);
+    private void addPoints(int countOfPerson) {
+        if (isThereOnePlayer(countOfPerson)) {
+            directions.add(Direction.STRAIGHT);
+            return;
+        }
+        generateRandomDirections(countOfPerson);
+    }
+
+    private void generateRandomDirections(int countOfPerson) {
+        directions.add(Direction.valueOf(getRandomLineComponent()));
+        for (int i = 1; i < countOfPerson; i++) {
+            compareBeforeComponent(i, countOfPerson);
         }
     }
 
-    private Direction addFirstComponent() {
-        if (points.length == 1) {
-            return Direction.STRAIGHT;
-        }
-        return Direction.valueOf(getRandomLineComponent());
+    private boolean isThereOnePlayer(int numberOfPlayers) {
+        return numberOfPlayers == ONE_PLAYER;
     }
 
-    private Direction compareBeforeComponent(int index) {
-        if (index == points.length - BEFORE) {
-            return compareLastComponent(index);
+    private void compareBeforeComponent(int index, int countOfPerson) {
+        if (index == countOfPerson - BEFORE) {
+            directions.add(compareLastComponent(index));
+            return;
         }
-        return compareNotLastComponent(points[index - BEFORE]);
+        directions.add(compareNotLastComponent(directions.get(index - BEFORE)));
+        return;
     }
 
     private Direction compareNotLastComponent(Direction point) {
@@ -46,7 +56,7 @@ public class Line {
     }
 
     private Direction compareLastComponent(int index) {
-        if (points[index - BEFORE] == Direction.RIGHT) {
+        if (directions.get(index - BEFORE) == Direction.RIGHT) {
             return Direction.LEFT;
         }
         return Direction.STRAIGHT;
@@ -56,7 +66,7 @@ public class Line {
         return new Random().nextInt(RANDOM_FACTOR);
     }
 
-    public Direction[] getPoints() {
-        return points;
+    public List<Direction> getDirections() {
+        return this.directions;
     }
 }

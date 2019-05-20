@@ -15,19 +15,16 @@ public class LadderGameResultTest {
 
     @BeforeEach
     void setUp() {
-        List<Player> players = new ArrayList<>(Arrays.asList(
-                new Player("pobi"),
-                new Player("denis"),
-                new Player("gorae"),
-                new Player("sean"),
-                new Player("ddugi")));
-        String[] prizes = {"1000", "2000", "3000", "4000", "꽝"};
+        Players players = new Players("pobi,denis,gorae,sean,ddugi");
+        Prizes prizes = new Prizes("1000,2000,3000,4000,꽝");
+
         List<Line> lines = new ArrayList<>(Arrays.asList(
-                new Line(new Direction[]{Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT, Direction.STRAIGHT}),
-                new Line(new Direction[]{Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT, Direction.STRAIGHT}),
-                new Line(new Direction[]{Direction.STRAIGHT, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT}),
-                new Line(new Direction[]{Direction.STRAIGHT, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT}),
-                new Line(new Direction[]{Direction.STRAIGHT, Direction.STRAIGHT, Direction.RIGHT, Direction.LEFT, Direction.STRAIGHT})));
+                new Line(new ArrayList<>(Arrays.asList(Direction.RIGHT,Direction.LEFT,Direction.RIGHT,Direction.LEFT,Direction.STRAIGHT))),
+                new Line(new ArrayList<>(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT, Direction.STRAIGHT))),
+                new Line(new ArrayList<>(Arrays.asList(Direction.STRAIGHT, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT))),
+                new Line(new ArrayList<>(Arrays.asList(Direction.STRAIGHT, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT))),
+                new Line(new ArrayList<>(Arrays.asList(Direction.STRAIGHT, Direction.STRAIGHT, Direction.RIGHT, Direction.LEFT, Direction.STRAIGHT)))
+        ));
 
         Ladder ladder = new Ladder(lines);
         ladderGame = new LadderGame(ladder, players, prizes);
@@ -37,10 +34,10 @@ public class LadderGameResultTest {
     void 게임_결과() {
         LadderGameResult ladderGameResult = ladderGame.start();
 
-        assertThat(ladderGameResult.getNameToPrize().get(new Player("pobi"))).isEqualTo("1000");
-        assertThat(ladderGameResult.getNameToPrize().get(new Player("denis"))).isEqualTo("2000");
-        assertThat(ladderGameResult.getNameToPrize().get(new Player("gorae"))).isEqualTo("4000");
-        assertThat(ladderGameResult.getNameToPrize().get(new Player("sean"))).isEqualTo("3000");
-        assertThat(ladderGameResult.getNameToPrize().get(new Player("ddugi"))).isEqualTo("꽝");
+        assertThat(ladderGameResult.getNameToPrize().get(new Player("pobi"))).isEqualTo(new Prize("1000"));
+        assertThat(ladderGameResult.getNameToPrize().get(new Player("denis"))).isEqualTo(new Prize("2000"));
+        assertThat(ladderGameResult.getNameToPrize().get(new Player("gorae"))).isEqualTo(new Prize("4000"));
+        assertThat(ladderGameResult.getNameToPrize().get(new Player("sean"))).isEqualTo(new Prize("3000"));
+        assertThat(ladderGameResult.getNameToPrize().get(new Player("ddugi"))).isEqualTo(new Prize("꽝"));
     }
 }

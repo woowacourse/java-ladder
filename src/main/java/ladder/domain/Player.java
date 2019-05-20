@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Player {
-
     private static int MAX_LENGTH = 5;
 
     private String name;

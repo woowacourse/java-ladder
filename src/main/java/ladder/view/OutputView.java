@@ -2,11 +2,9 @@ package ladder.view;
 
 import ladder.domain.*;
 
-import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-
     public static final String ALL_USER = "all";
 
     private static final String GAME_START_RESULT_MSG = "\n실행결과";
@@ -16,25 +14,24 @@ public class OutputView {
     private static final String NONE_LINE_COMPONENT = "|      ";
     private static final String LADDER_VIEW_LENGTH = "%-7s";
 
-
     public static void printLadderGame(LadderGame ladderGame) {
         System.out.println(GAME_LADDER_RESULT_MSG);
-        List<Player> players = ladderGame.getPlayers();
-        String[] prizes = ladderGame.getPrizes();
-        printLadderGameComponent(players);
+        Players players = ladderGame.getPlayers();
+        Prizes prizes = ladderGame.getPrizes();
+        printLadderGamePlayer(players);
         printLadder(ladderGame.getLadder());
-        printLadderGameComponent(prizes);
+        printLadderGamePrize(prizes);
     }
 
-    private static void printLadderGameComponent(String[] components) {
-        for (String component : components) {
-            System.out.printf(LADDER_VIEW_LENGTH, component);
+    private static void printLadderGamePrize(Prizes prizes) {
+        for (Prize prize : prizes.getPrizes()) {
+            System.out.printf(LADDER_VIEW_LENGTH, prize.getPrize());
         }
         System.out.println();
     }
 
-    private static void printLadderGameComponent(List<Player> players) {
-        for (Player player : players) {
+    private static void printLadderGamePlayer(Players players) {
+        for (Player player : players.getPlayers()) {
             System.out.printf(LADDER_VIEW_LENGTH, player.getName());
         }
         System.out.println();
@@ -47,7 +44,7 @@ public class OutputView {
     }
 
     private static void printLine(Line line) {
-        for (Direction direction : line.getPoints()) {
+        for (Direction direction : line.getDirections()) {
             printLineComponent(direction);
         }
         System.out.println();
@@ -64,17 +61,25 @@ public class OutputView {
 
     public static void printLadderGameResult(LadderGameResult ladderGameResult, String name) {
         System.out.println(GAME_START_RESULT_MSG);
-        Map<Player, String> matchedUserToPrize = ladderGameResult.getNameToPrize();
+        Map<Player, Prize> matchedUserToPrize = ladderGameResult.getNameToPrize();
         if (name.equals(ALL_USER)) {
             printUsersResult(matchedUserToPrize);
             return;
         }
-        System.out.println(matchedUserToPrize.get(new Player(name)));
+        System.out.println(matchedUserToPrize.get(new Player(name)).getPrize());
     }
 
-    private static void printUsersResult(Map<Player, String> map) {
+    private static void printUsersResult(Map<Player, Prize> map) {
         for (Player key : map.keySet()) {
-            System.out.println(key.getName() + COLON + map.get(key));
+            System.out.println(key.getName() + COLON + map.get(key).getPrize());
         }
+    }
+
+    public static void showGameResult(LadderGameResult ladderGameResult) {
+        String inputNameForResult;
+        do {
+            inputNameForResult = InputView.inputNameForResult();
+            OutputView.printLadderGameResult(ladderGameResult, inputNameForResult);
+        } while (!inputNameForResult.equals(OutputView.ALL_USER));
     }
 }

@@ -11,7 +11,6 @@ public class InputView {
     private static final String GAME_PRIZE_INPUT_MGS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String NAME_FOR_RESULT_INPUT_MSG = "\n결과를 보고 싶은 사람은?";
 
-
     public static String inputNames() {
         System.out.println(GAME_USER_NAME_INPUT_MSG);
         try {
