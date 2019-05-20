@@ -1,9 +1,10 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Line {
-    private ArrayList<Boolean> rowLines;
+    private List<Boolean> rowLines;
     private LineCreate lineCreate;
 
     Line(ArrayList<Boolean> rowLines, LineCreate lineCreate) {
@@ -22,7 +23,7 @@ public class Line {
         return lineCreate.checkLine();
     }
 
-    public ArrayList<Boolean> getRowLines() {
+    public List<Boolean> getRowLines() {
         return rowLines;
     }
 }
