@@ -9,6 +9,7 @@ public class Result {
     private static final String NOT_EQUAL_COUNT_MESSAGE = "결과의 개수는 %d개가 필요합니다.";
     private static final String BLANK_RESULT_MESSAGE = "결과를 꼭 모두 입력해주세요.";
     private static final int RESULT_MAX_LENGTH = 6;
+    private static final int RESULT_MAX_LIMIT = 5;
     private final List<String> results;
 
     public Result(String results, Person person) {
@@ -46,7 +47,7 @@ public class Result {
     }
 
     private void isOverMaxInputLimit(String input) {
-        if (input.length() > 5) {
+        if (input.length() > RESULT_MAX_LIMIT) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE);
         }
     }

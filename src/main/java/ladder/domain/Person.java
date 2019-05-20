@@ -10,6 +10,7 @@ public class Person {
     private static final String DUPLICATED_MESSAGE = "중복된 이름은 허용하지 않습니다.";
     private static final String NOT_ALLOW_ALL_MESSAGE = "이름 all은 허용하지 않습니다.";
     private static final int NAME_MAX_LENGTH = 6;
+    private static final int NAME_MAX_LIMIT = 5;
     private final List<String> names;
 
     public Person(String names) {
@@ -48,7 +49,7 @@ public class Person {
     }
 
     private static void isOverMaxInputLimit(String input) {
-        if (input.length() > 5) {
+        if (input.length() > NAME_MAX_LIMIT) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE);
         }
     }
