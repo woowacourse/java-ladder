@@ -1,11 +1,13 @@
 package calculator;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+    private final String COMMA = ",";
+    private final String COLON = ":";
+    private final String COL_LINE ="|";
     public int add(String text) {
         if (isBlank(text)) return 0;
 
@@ -15,6 +17,7 @@ public class StringCalculator {
     private boolean isBlank(String text) {
         return text == null || text.isEmpty();
     }
+    
 
     private String[] split(String text) {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
@@ -22,7 +25,7 @@ public class StringCalculator {
             String customDelimeter = m.group(1);
             return m.group(2).split(customDelimeter);
         }
-        return text.split(",|:");
+        return text.split(COMMA+COL_LINE+COLON);
     }
 
     private int[] toInts(String[] values) {
