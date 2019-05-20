@@ -11,10 +11,9 @@ public class LadderGame {
         PlayerGroup players = InputView.askUserNames();
         Ladder ladder = InputView.askHeight(players.getCountOfPlayers());
         PrizeGroup prizeGroup = InputView.askPrizes(players.getCountOfPlayers());
-        /*
-        OutputView.printLadder(players, ladder);
-        OutputView.printPrizes(prizes);
 
+        OutputView.printGameBoard(players, ladder, prizeGroup);
+        /*
         GameProcessor processor = new GameProcessor(players);
         processor.processGame(ladder.getLines());
 

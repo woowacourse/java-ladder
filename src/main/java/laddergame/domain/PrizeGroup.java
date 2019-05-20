@@ -10,6 +10,10 @@ public class PrizeGroup {
         this.prizes = prizes;
     }
 
+    public List<Prize> getPrizes() {
+        return prizes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

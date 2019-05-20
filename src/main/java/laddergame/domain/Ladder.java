@@ -46,7 +46,7 @@ public class Ladder {
     }
 
     // TODO toString 없애기
-    @Override
+    /*@Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
@@ -55,5 +55,5 @@ public class Ladder {
         }
 
         return sb.toString();
-    }
+    }*/
 }
