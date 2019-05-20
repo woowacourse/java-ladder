@@ -47,7 +47,7 @@ public class Ladder {
     }
 
     private void switchPosition(Line line, Players players) {
-        for (int i = 0; i < line.getSize(); i++) {
+        for (int i = 0; i < line.getLineSize(); i++) {
             swap(line, i, players);
         }
     }

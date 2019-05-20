@@ -25,7 +25,7 @@ public class Line {
         return line.get(x);
     }
 
-    public int getSize() {
+    public int getLineSize() {
         return line.size();
     }
 }
