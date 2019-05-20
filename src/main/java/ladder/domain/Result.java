@@ -65,5 +65,4 @@ public class Result {
         return results.get(index);
     }
 
-
 }
