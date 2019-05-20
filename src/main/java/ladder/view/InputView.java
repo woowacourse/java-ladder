@@ -11,21 +11,34 @@ public class InputView {
 
     public static List<String> getNames() {
         System.out.println(GET_NAME_MESSAGE);
-        return Arrays.asList(scanner.nextLine().split(","));
+        List<String> names = Arrays.asList(scanner.nextLine().split(","));
+        System.out.println();
+        return names;
     }
 
     public static List<String> getRewards() {
         System.out.println(GET_DRAW_RESULT_MESSAGE);
-        return Arrays.asList(scanner.nextLine().split(","));
+        List<String> rewards = Arrays.asList(scanner.nextLine().split(","));
+        System.out.println();
+        return rewards;
     }
 
     public static int getCountOfLines() {
         System.out.println(GET_COUNT_OF_LINES_MESSAGE);
-        return scanner.nextInt();
+        try {
+            int CountOfLines = Integer.parseInt(scanner.nextLine());
+            System.out.println();
+            return CountOfLines;
+        } catch (NumberFormatException ne) {
+            System.out.println("숫자를 입력하세요.");
+            return getCountOfLines();
+        }
     }
 
     public static String getResult(){
         System.out.println(GET_RESULT_MESSAGE);
-        return scanner.nextLine();
+        String result = scanner.nextLine();
+        System.out.println();
+        return result;
     }
 }
