@@ -3,6 +3,9 @@ package ladderGameSolo.view;
 import ladderGameSolo.controller.LadderGame;
 import ladderGameSolo.constant.MessageContants;
 import ladderGameSolo.domain.Ladder;
+import ladderGameSolo.domain.Member;
+
+import java.util.List;
 
 public class GameView {
     private static final int LEFT_NUMBER = -1;
@@ -16,6 +19,8 @@ public class GameView {
         printLadderInfo(names, inputResult, height, ladder);
 
         String targetName = InputView.inputTargetName(names);
+        List<Member> members = LadderGame.makeMembers(names, targetName, height);
+        printGameResult(inputResult, ladder, members);
     }
 
     private void printLadderInfo(String[] names, String[] inputResult, int height, Ladder ladder) {
@@ -56,6 +61,23 @@ public class GameView {
         if (directionMoveResult != LEFT_NUMBER) {
             System.out.print(String.format(MessageContants.RESULT_FORMAT, MessageContants.MESSAGE_BLANK));
         }
+    }
+
+    private void printGameResult(String[] inputResult, Ladder ladder, List<Member> members) {
+        System.out.println(MessageContants.MESSAGE_RESULT);
+
+        for (Member member : members) {
+            String result = LadderGame.getResult(ladder, member, inputResult);
+            printResult(members, member, result);
+        }
+    }
+
+    private void printResult(List<Member> members, Member member, String result) {
+        if (members.size() > 1) {
+            System.out.print(String.format(MessageContants.RESULT_ALL_FORMAT, member.getName()));
+        }
+
+        System.out.println(result);
     }
 
     private void printResult(String[] inputResult) {
