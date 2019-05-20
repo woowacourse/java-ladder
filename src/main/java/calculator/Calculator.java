@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Calculator {
     public int evaluate(String input) {
-        if(input == null || input.isEmpty()) {
+        if (input == null || input.isEmpty()) {
             return 0;
         }
 
@@ -20,6 +20,7 @@ public class Calculator {
     private void checkMinus(List<Integer> numbers) throws RuntimeException {
         if (0 < numbers.stream().filter((number) -> number < 0).count()) {
             throw new RuntimeException();
-        };
+        }
+        ;
     }
 }
