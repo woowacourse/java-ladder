@@ -3,10 +3,12 @@ package ladder.model;
 import ladder.constant.MessageConstant;
 import ladder.controller.LadderGameController;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toSet;
 
 public class LadderGamePlayers {
     private final List<LadderPlayer> ladderPlayers;

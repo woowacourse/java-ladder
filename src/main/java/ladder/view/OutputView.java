@@ -5,8 +5,6 @@ import ladder.model.Ladder;
 import ladder.model.LadderGameGoals;
 import ladder.model.LadderGamePlayers;
 
-import java.util.List;
-
 public class OutputView {
     private OutputView() {
     }
