@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
+    private static final String INPUT_RECORD_LENGTH_EXCEPTION_MESSAGE = "레코드의 길이와 사다리 길이가 다릅니다.";
+
     private List<LadderStair> crossLine = new ArrayList<>();
 
     public Line(List<Boolean> isExistStairs) {
@@ -21,16 +23,16 @@ public class Line {
         checkRecordSize(size);
         Record newRecord = new Record(new ArrayList<>(record.getIndices()));
 
-        IntStream.range(0, size-1)
+        IntStream.range(0, size - 1)
                 .filter(i -> crossLine.get(i).isExist())
-                .forEach(i -> newRecord.swap(i,i+1));
+                .forEach(i -> newRecord.swap(i, i + 1));
 
         return newRecord;
     }
 
     private void checkRecordSize(int size) {
-        if (size != crossLine.size() + 1){
-            throw new IllegalArgumentException("레코드의 길이와 사다리 길이가 다릅니다.");
+        if (size != crossLine.size() + 1) {
+            throw new IllegalArgumentException(INPUT_RECORD_LENGTH_EXCEPTION_MESSAGE);
         }
     }
 

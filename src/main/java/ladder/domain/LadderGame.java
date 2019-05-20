@@ -1,13 +1,10 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LadderGame {
     private static final String NEXT_LINE = "\n";
+    private static final String INVALID_LENGTH_REWARDS_EXCEPTION_MASSAGE = "플레이어수와 리워드의 수가 다릅니다.";
 
 
     private LadderGamePlayers players;
@@ -24,7 +21,7 @@ public class LadderGame {
 
     private void checkCount(int countOfPlayers, int countOfResults) {
         if (countOfPlayers != countOfResults) {
-            throw new IllegalArgumentException("플레이어수와 리워드의 수가 다릅니다.");
+            throw new IllegalArgumentException(INVALID_LENGTH_REWARDS_EXCEPTION_MASSAGE);
         }
     }
 

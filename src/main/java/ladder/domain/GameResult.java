@@ -9,6 +9,7 @@ public class GameResult {
     private static final String ALL_RESULT = "all";
     private static final String DELIMITER = " : ";
     private static final String NEXT_LINE = "\n";
+    private static final String NO_PLAYER_WITH_THE_NAME_EXCEPTION_MASSAGE = "해당 이름을 가진 플레이어가 없습니다.";
 
     private Map<Player, Reward> results;
 
@@ -29,7 +30,7 @@ public class GameResult {
 
     private String getRewardOfPlayerNamed(String message) {
         if (!isExistThePlayerNamed(message))
-            throw new IllegalArgumentException("해당 이름을 가진 플레이어가 없습니다.");
+            throw new IllegalArgumentException(NO_PLAYER_WITH_THE_NAME_EXCEPTION_MASSAGE);
 
         Stream<String> matchedResults = results.keySet()
                 .stream()

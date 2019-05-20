@@ -16,7 +16,7 @@ class LadderGamePlayers {
     }
 
     private void validationDuplication(List<String> names) {
-        if(names.size() != new HashSet<>(names).size()) {
+        if (names.size() != new HashSet<>(names).size()) {
             throw new IllegalArgumentException(DUPLICATION_EXCEPTION_MESSAGE);
         }
     }

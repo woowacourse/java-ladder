@@ -8,13 +8,8 @@ class LadderGameRewards {
 
     private List<Reward> rewards;
 
-
-    LadderGameRewards(List<String> rewards){
+    LadderGameRewards(List<String> rewards) {
         this.rewards = rewards.stream().map(Reward::new).collect(Collectors.toList());
-    }
-
-    int size() {
-        return rewards.size();
     }
 
     Reward get(int i) {

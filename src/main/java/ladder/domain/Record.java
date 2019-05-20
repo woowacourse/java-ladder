@@ -17,8 +17,8 @@ class Record {
 
     void swap(int a, int b) {
         Integer tmp = indices.get(a);
-        indices.set(a,indices.get(b));
-        indices.set(b,tmp);
+        indices.set(a, indices.get(b));
+        indices.set(b, tmp);
     }
 
     @Override
