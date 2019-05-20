@@ -50,5 +50,4 @@ public class GameResultTest {
         assertThat(gameResult.getResult(inputPlayers, "all")).isEqualTo("b : win\na : win\nc : lose\nd : lose\n");
     }
 }
-
  */
