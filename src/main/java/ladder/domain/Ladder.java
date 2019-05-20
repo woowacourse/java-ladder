@@ -1,37 +1,19 @@
 package ladder.domain;
 
+import ladder.utils.PointsGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
     private List<Line> lines = new ArrayList<>();
+    private final PointsGenerator generator;
 
     public Ladder(final int numPlayers, final int height) {
+        generator = new PointsGenerator(numPlayers);
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(makePoints(numPlayers)));
+            lines.add(new Line(generator.generate()));
         }
-    }
-
-    private static List<Boolean> makePoints(final int numPlayers) {
-        List<Boolean> points = new ArrayList<>();
-        points.add(randomBoolean());
-
-        while (points.size() < numPlayers - 1) {
-            points.add(validRandom(points.get(points.size() - 1)));
-        }
-
-        return points;
-    }
-
-    private static boolean randomBoolean() {
-        return (int) (Math.random() * 2) > 0;
-    }
-
-    private static boolean validRandom(final boolean prev) {
-        if (prev) {
-            return false;
-        }
-        return randomBoolean();
     }
 
     public List<Player> goDown(List<Player> players) {
@@ -54,5 +36,4 @@ public class Ladder {
     public List<Line> getLines() {
         return lines;
     }
-
 }

@@ -22,7 +22,7 @@ public class Player {
     }
 
     void goDown(final Line line) {
-        position += line.getDirection(position).getValue();
+        position = line.determineDirection(position).move(position);
     }
 
     public String getName() {

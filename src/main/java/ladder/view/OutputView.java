@@ -4,8 +4,10 @@ import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Player;
 import ladder.domain.Result;
+import ladder.dto.PointsTupleDto;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -35,20 +37,34 @@ public class OutputView {
     }
 
     private static void printLine(final Line line) {
-        System.out.print("  |");
-        for (Boolean point : line.getPoints()) {
-            printPoint(point);
-            System.out.print("|");
+        List<PointsTupleDto> points = line.makeTupleDto();
+        Iterator<PointsTupleDto> iter = new Iterator<PointsTupleDto>() {
+            int count = 0;
+
+            @Override
+            public boolean hasNext() {
+                return count < points.size() - 1;
+            }
+
+            @Override
+            public PointsTupleDto next() {
+                return points.get(count++);
+            }
+        };
+        StringBuilder sb = new StringBuilder();
+        sb.append("  |");
+        while (iter.hasNext()) {
+            sb.append(printPoint(iter.next().getRight()));
+            sb.append("|");
         }
-        System.out.println();
+        System.out.println(sb.toString());
     }
 
-    private static void printPoint(final Boolean point) {
+    private static String printPoint(final Boolean point) {
         if (point) {
-            System.out.print("-----");
-            return;
+            return "-----";
         }
-        System.out.print("     ");
+        return "     ";
     }
 
     public static void printRewards(final List<String> rewards) {

@@ -1,35 +1,30 @@
 package ladder.domain;
 
+import ladder.dto.PointsTupleDto;
+
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<PointsTuple> canMoveForLines;
 
-    public Line(final List<Boolean> points) {
-        this.points = points;
-
-        if (isConsecutive()) {
+    public Line(final List<PointsTuple> canMoveForLines) {
+        if (isConsecutive(canMoveForLines)) {
             throw new IllegalArgumentException();
         }
+        this.canMoveForLines = canMoveForLines;
     }
 
-    private boolean isConsecutive() {
-        return Collections.indexOfSubList(points, Arrays.asList(true, true)) != -1;
+    private boolean isConsecutive(List<PointsTuple> canMoveForLines) {
+        return canMoveForLines.contains(new PointsTuple(Arrays.asList(true, true)));
     }
 
-    Direction getDirection(int position) {
-        if (position != 0 && points.get(position - 1)) {
-            return Direction.LEFT;
-        }
-        if (position != points.size() && points.get(position)) {
-            return Direction.RIGHT;
-        }
-        return Direction.STRAIGHT;
+    Direction determineDirection(int position) {
+        return Direction.determine(canMoveForLines.get(position));
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    public List<PointsTupleDto> makeTupleDto() {
+        return canMoveForLines.stream().map(o -> new PointsTupleDto(o.canMoveRight())).collect(Collectors.toList());
     }
 }
