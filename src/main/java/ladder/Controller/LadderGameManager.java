@@ -25,12 +25,11 @@ public class LadderGameManager {
         names = inputModel.getValidNames(InputView.getNames());
         List<String> executeResult = inputModel.getValidExecuteResult(InputView.getExecuteResult(), names.size());
         int ladderHeight = inputModel.getValidLadderHeight(InputView.getLadderHeight());
-        String playerForResult = inputModel.getPlayerForResult(names, InputView.getPlayerForResult());
         createdLadder = new Ladder(names.size(), ladderHeight).getLadder();
         createPlayers();
 
         ladderMove(ladderHeight);
-        output(playerForResult, executeResult);
+        output(inputModel,executeResult);
     }
 
     private void createPlayers() {
@@ -75,7 +74,7 @@ public class LadderGameManager {
         return new Player(names.get(playerNumber), players.get(playerNumber).getPosition(), new Direction(createdLadder.get(height).getRowLines().get(playerPosition - 1), createdLadder.get(height).getRowLines().get(playerPosition)));
     }
 
-    private void output(String playerForResult, List<String> executeResult) {
+    private void output(InputModel inputModel, List<String> executeResult) {
         OutputView.printNames(names);
 
         for (Line line : createdLadder) {
@@ -83,8 +82,7 @@ public class LadderGameManager {
         }
 
         OutputView.printExecuteResult(executeResult);
-        OutputView.printMatchedExecuteResult(players, playerForResult, executeResult);
-
+        OutputView.printMatchedExecuteResult(players, inputModel.getPlayerForResult(names, InputView.getPlayerForResult()), executeResult);
     }
 
 }
