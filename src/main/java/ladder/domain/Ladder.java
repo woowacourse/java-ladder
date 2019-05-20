@@ -31,7 +31,7 @@ public class Ladder {
         return new ResultIndex(indices);
     }
 
-    private static List<Integer> goDownOneLine(List<Integer> indices, final Line line) {
+    static List<Integer> goDownOneLine(List<Integer> indices, final Line line) {
         int[] tempIndex = new int[indices.size()];
         for (int i = 0; i < indices.size(); i++) {
             tempIndex[i] = line.determineDirection(indices.get(i)).move(indices.get(i));
