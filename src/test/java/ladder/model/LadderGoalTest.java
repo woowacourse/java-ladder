@@ -13,19 +13,6 @@ public class LadderGoalTest {
     }
 
     @Test
-    void 이름이_없거나_빈칸인_경우_테스트() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new LadderGoal(null);
-        });
-        assertThrows(IllegalArgumentException.class, () -> {
-            new LadderGoal("");
-        });
-        assertThrows(IllegalArgumentException.class, () -> {
-            new LadderGoal(" ");
-        });
-    }
-
-    @Test
     void 정렬된_이름을_가져오는_메소드_테스트() {
         assertEquals(new LadderGoal("one").getAlignedGoalName(), "one   ");
         assertEquals(new LadderGoal("three").getAlignedGoalName(), "three ");
