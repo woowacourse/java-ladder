@@ -6,7 +6,6 @@ public class LadderGame {
     private static final String NEXT_LINE = "\n";
     private static final String INVALID_LENGTH_REWARDS_EXCEPTION_MASSAGE = "플레이어수와 리워드의 수가 다릅니다.";
 
-
     private LadderGamePlayers players;
     private LadderGameRewards rewards;
     private Ladder ladder;
