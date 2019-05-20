@@ -15,7 +15,7 @@ public class LadderGameController {
         Ladder ladder = new Ladder(players, height);
         LadderGameResult ladderGameResult = new LadderGameResult(players, ladder, goals);
 
-        OutputView.showLadderGame(players.getAllAlignedPlayerNames(), ladder, goals.getAlignedGoalNames());
+        OutputView.showLadderGame(players, ladder, goals);
 
         showMatchingResults(ladderGameResult);
     }

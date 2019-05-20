@@ -2,6 +2,8 @@ package ladder.view;
 
 import ladder.constant.MessageConstant;
 import ladder.model.Ladder;
+import ladder.model.LadderGameGoals;
+import ladder.model.LadderGamePlayers;
 
 import java.util.List;
 
@@ -11,15 +13,15 @@ public class OutputView {
 
     private static final String NEW_LINE = "\n";
 
-    public static void showLadderGame(List<String> names, Ladder ladder, List<String> goalNames) {
+    public static void showLadderGame(LadderGamePlayers players, Ladder ladder, LadderGameGoals goals) {
         System.out.println(NEW_LINE + MessageConstant.OUTPUT_LADDER_GAME_RESULT + NEW_LINE);
-        showLadderPlayers(names);
+        showLadderPlayers(players);
         showLadder(ladder);
-        showLadderGoals(goalNames);
+        showLadderGoals(goals);
     }
 
-    private static void showLadderPlayers(List<String> playerNames) {
-        for (String playerName : playerNames) {
+    private static void showLadderPlayers(LadderGamePlayers players) {
+        for (String playerName : players.getAllAlignedPlayerNames()) {
             System.out.print(playerName);
         }
         System.out.println();
@@ -29,8 +31,8 @@ public class OutputView {
         System.out.println(ladder);
     }
 
-    private static void showLadderGoals(List<String> goalNames) {
-        for (String goalName : goalNames) {
+    private static void showLadderGoals(LadderGameGoals goals) {
+        for (String goalName : goals.getAlignedGoalNames()) {
             System.out.print(goalName);
         }
         System.out.println();
