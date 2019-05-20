@@ -15,7 +15,7 @@ public class PlayerGeneratorTest {
     @Test
     void 컴마_기준으로_나누기() {
         String input = "pobi, jason, brown";
-        List<String> playerNames = Arrays.asList(input.split(PlayerGenerator.DELIMITER));
+        List<String> playerNames = Arrays.asList(input.split(","));
         List<Player> expected = new ArrayList<>();
         for (String name : playerNames) {
             expected.add(new Player(name));
