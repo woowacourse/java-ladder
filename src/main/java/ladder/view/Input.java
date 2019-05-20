@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 public class Input {
     private static Scanner SCANNER = new Scanner(System.in);
+    private static String DELIMITER;
     private static String INPUT_NAMES;
     private static String INPUT_REWARDS;
     private static String INPUT_HEIGHT;
@@ -14,6 +15,7 @@ public class Input {
     private static String WRONG_INPUT;
 
     static {
+        DELIMITER = ",";
         INPUT_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
         INPUT_REWARDS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
         INPUT_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
@@ -57,7 +59,7 @@ public class Input {
 
     private static List<String> filterInputs(String input) {
         List<String> tokens = Stream
-                .of(input.split(","))
+                .of(input.split(DELIMITER))
                 .map(x -> x.trim())
                 .filter(x -> x.length() != 0)
                 .collect(Collectors.toList());
