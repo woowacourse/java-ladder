@@ -13,19 +13,7 @@ public class Line {
     private Points points;
 
     public Line(Points points) {
-        checkPointsValid(points);
         this.points = points;
-    }
-
-    public void checkPointsValid(Points points) {
-        int length = points.size();
-        IntStream.range(1, length).forEach(i -> checkContinued(points, i - 1));
-    }
-
-    private void checkContinued(Points points, int index) {
-        if (points.isTrue(index) && points.isTrue(index + 1)) {
-            throw new IllegalArgumentException("이어지는 가로라인 발생");
-        }
     }
 
     private String getHorizontalLine(int pointIndex) {
