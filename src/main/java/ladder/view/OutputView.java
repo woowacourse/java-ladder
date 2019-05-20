@@ -65,7 +65,9 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printGameResult(final LadderGameResult ladderGameResult, final List<String> names) {
+    public static void printGameResult(final LadderGameResult ladderGameResult) {
+        List<String> names = InputView.inputNames();
+
         System.out.println("\n실행 결과");
         try {
             ladderGameResult.getResult(names).entrySet().stream()
@@ -74,9 +76,21 @@ public class OutputView {
             System.out.println(e.getMessage());
         }
         System.out.println();
+
+        if (morePrint(names)) {
+            printGameResult(ladderGameResult);
+        }
     }
 
-    private static void printResult(final String name, final String reward) {
+    private static void printResult(String name, String reward) {
         System.out.println(name + " : " + reward);
     }
+
+    private static boolean morePrint(List<String> names) {
+        if ((names.size() == 1 && names.get(0).toLowerCase().equals("all"))){
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -13,17 +13,6 @@ public class LadderGameResult {
         this.ladderGameResult = Collections.unmodifiableMap(ladderGameResult);
     }
 
-    private Participant findParticipant(final String name) {
-        Optional<Participant> participant = ladderGameResult.keySet().stream()
-                .filter(x -> x.toString().equals(name))
-                .findFirst();
-        if (participant.isPresent()) {
-            return participant.get();
-        }
-        System.out.println(name);
-        throw new IllegalArgumentException("등록되지 않은 참가자입니다.");
-    }
-
     public Map<String, String> getResult(List<String> names) {
         names = checkInput(names);
         LinkedHashMap<String, String> gameResult = new LinkedHashMap<>();
@@ -38,6 +27,16 @@ public class LadderGameResult {
                     .collect(Collectors.toList());
         }
         return names;
+    }
+
+    private Participant findParticipant(final String name) {
+        Optional<Participant> participant = ladderGameResult.keySet().stream()
+                .filter(x -> x.toString().equals(name))
+                .findFirst();
+        if (participant.isPresent()) {
+            return participant.get();
+        }
+        throw new IllegalArgumentException("등록되지 않은 참가자입니다.");
     }
 
     @Override
