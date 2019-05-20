@@ -6,8 +6,9 @@ public class StringCalculator {
     private List<Integer> numbers;
 
     public StringCalculator(String formula) {
-        numbers = DelimiterType.findDelimiterType(formula).separateString(formula);
+        List<Integer> numbers = DelimiterType.findDelimiterType(formula).separateString(formula);
         checkNegativeNumber(numbers);
+        this.numbers = numbers;
     }
 
     public int addAll() {
@@ -15,8 +16,12 @@ public class StringCalculator {
     }
 
     private void checkNegativeNumber(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number < 0)) {
+        if (numbers.stream().anyMatch(this::isNegativeNumber)) {
             throw new IllegalArgumentException("음수는 입력받을 수 없습니다.");
         }
+    }
+
+    private boolean isNegativeNumber(int number) {
+        return number < 0;
     }
 }
