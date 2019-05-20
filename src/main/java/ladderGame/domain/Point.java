@@ -1,54 +1,41 @@
 package ladderGame.domain;
 
 public class Point {
-    private final boolean hasLeft;
-    private final boolean hasRight;
+    private Direction direction;
 
-    public Point(boolean hasLeft, boolean hasRight) {
-        validatePoint(hasLeft, hasRight);
-        this.hasLeft = hasLeft;
-        this.hasRight = hasRight;
-    }
-
-    private void validatePoint(boolean hasLeft, boolean hasRight) {
-        if (hasLeft && hasRight) {
-            throw new IllegalArgumentException("가로 라인은 겹칠 수 없음");
-        }
+    public Point(Direction direction) {
+        this.direction = direction;
     }
 
     public static Point pointFirst(boolean hasRight) {
-        return new Point(false, hasRight);
+        if (hasRight) {
+            return new Point(Direction.RIGHT);
+        }
+        return new Point(Direction.STOP);
     }
 
     public Point nextPointLast() {
-        if (hasRight) {
-            return new Point(true, false);
+        if (direction == Direction.RIGHT) {
+            return new Point(Direction.LEFT);
         }
-        return new Point(false, false);
+        return new Point(Direction.STOP);
     }
 
     public Point nextPoint(boolean nextRight) {
-        if (hasRight) {
-            return new Point(true, false);
+        if (direction == Direction.RIGHT) {
+            return new Point(Direction.LEFT);
         }
-        return new Point(false, nextRight);
+        if (nextRight) {
+            return new Point(Direction.RIGHT);
+        }
+        return new Point(Direction.STOP);
     }
 
     public boolean isHasRight() {
-        return hasRight;
-    }
-
-    public boolean isHasLeft() {
-        return hasLeft;
+        return direction == Direction.RIGHT;
     }
 
     public int move() {
-        if (hasLeft) {
-            return -1;
-        }
-        if (hasRight) {
-            return 1;
-        }
-        return 0;
+        return direction.getDistance();
     }
 }
