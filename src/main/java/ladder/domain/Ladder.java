@@ -18,12 +18,57 @@ public class Ladder {
     /**
      * 생성자
      *
-     * @param row
+     * @param playerSize
      * @param depth
      */
-    public Ladder(int row, int depth) {
-        this.ladder = setLadder(row, depth);
-        this.result = setResult(row, depth);
+    public Ladder(int playerSize, int depth) {
+        this.ladder = getLadderLines(playerSize, depth);
+        this.result = getResultLine(playerSize, depth);
+    }
+
+    private List<LadderLine> getLadderLines(int playerSize, int depth) {
+        List<LadderLine> ladder = new LinkedList<>();
+        for (int i = 0; i < depth; i++) {
+            ladder.add(new LadderLine(playerSize));
+        }
+        return ladder;
+    }
+
+    private List<Integer> getResultLine(int playerSize, int depth) {
+        List<Integer> moveLine = resetResultLines(playerSize);
+        for (int i = 0; i < depth; i++) {
+            moveLine = moveRadderLIne(i, moveLine);
+        }
+        return moveLine;
+    }
+
+    private List<Integer> resetResultLines(int playerSize) {
+        List<Integer> line = new ArrayList<>();
+        for (int i = 0; i < playerSize; i++) {
+            line.add(i);
+        }
+        return line;
+    }
+
+    private List<Integer> moveRadderLIne(int depth, List<Integer> moveLine) {
+        for (int i = 0; i < moveLine.size(); i++) {
+            int nowPosition = moveLine.get(i);
+            moveLine.set(i, nowPosition + ladder.get(depth).getNextPosition(nowPosition));
+        }
+        return moveLine;
+    }
+
+    /**
+     * 사다리 모양 반환
+     *
+     * @return
+     */
+    public String drawLadderShape() {
+        StringJoiner stringJoiner = new StringJoiner("\n");
+        for (LadderLine ladderLine : ladder) {
+            stringJoiner.add(ladderLine.toString());
+        }
+        return stringJoiner.toString();
     }
 
     /**
@@ -33,51 +78,6 @@ public class Ladder {
      */
     public List<Integer> getResult() {
         return this.result;
-    }
-
-    /**
-     * 사다리 모양 반환
-     *
-     * @return
-     */
-    public String getLadderShape() {
-        StringJoiner stringJoiner = new StringJoiner("\n");
-        for (LadderLine ladderLine : ladder) {
-            stringJoiner.add(ladderLine.toString());
-        }
-        return stringJoiner.toString();
-    }
-
-    private List<LadderLine> setLadder(int row, int depth) {
-        List<LadderLine> ladder = new LinkedList<>();
-        for (int i = 0; i < depth; i++) {
-            ladder.add(new LadderLine(row));
-        }
-        return ladder;
-    }
-
-    private List<Integer> setResult(int row, int depth) {
-        List<Integer> starter = setStater(row);
-        for (int i = 0; i < depth; i++) {
-            starter = moveRadderLIne(i, starter);
-        }
-        return starter;
-    }
-
-    private List<Integer> setStater(int row) {
-        List<Integer> stater = new ArrayList<>();
-        for (int i = 0; i < row; i++) {
-            stater.add(i);
-        }
-        return stater;
-    }
-
-    private List<Integer> moveRadderLIne(int depth, List<Integer> starter) {
-        for (int i = 0; i < starter.size(); i++) {
-            int nowPosition = starter.get(i);
-            starter.set(i, nowPosition + ladder.get(depth).getNextPosition(nowPosition));
-        }
-        return starter;
     }
 
     @Override

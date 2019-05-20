@@ -52,7 +52,7 @@ public class LadderResult {
      * @return
      */
     public String getLadderShape() {
-        return ladder.getLadderShape();
+        return ladder.drawLadderShape();
     }
 
     private Map<String, String> setResult(List<Player> players, List<String> rewards, int depth) { //TODO 1. depth 사용하지 않음
