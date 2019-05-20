@@ -34,4 +34,16 @@ public class DrawnHorizontalLine {
     public int hashCode() {
         return Objects.hash(numPosition, directions);
     }
+
+    public boolean isDrawn(Position leftColumn) {
+        return directions.get(leftColumn.toInt()) == Direction.RIGHT;
+    }
+
+    public Position createFirstColumnPosition() {
+        return new Position(0, directions.size(), 0);
+    }
+
+    public Position createFirstLeftColumnPosition() {
+        return new Position(0, directions.size() - 1, 0);
+    }
 }

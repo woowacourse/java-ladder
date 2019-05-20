@@ -14,7 +14,7 @@ public enum Direction {
     }
 
     public Position nextPosition(Position position) {
-        return position.add(getInt());
+        return position.plus(getInt());
     }
 
     private int getInt() {

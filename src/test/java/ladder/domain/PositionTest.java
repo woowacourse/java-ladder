@@ -30,14 +30,14 @@ public class PositionTest {
     void add_결과가_올바른_범위() {
         Position position = new Position(begin, end, 0);
 
-        assertThat(position.add(end - 1)).isEqualTo(new Position(begin, end, 0 + (end - 1)));
+        assertThat(position.plus(end - 1)).isEqualTo(new Position(begin, end, 0 + (end - 1)));
     }
 
     @Test
     void add_결과가_초과되는_범위() {
         Position position = new Position(begin, end, 0);
 
-        assertThrows(IllegalArgumentException.class, () -> position.add(end));
+        assertThrows(IllegalArgumentException.class, () -> position.plus(end));
     }
 
 }

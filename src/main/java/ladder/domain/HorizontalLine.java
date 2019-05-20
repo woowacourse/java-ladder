@@ -36,4 +36,12 @@ public class HorizontalLine {
     public DrawnHorizontalLine drawn() {
         return new DrawnHorizontalLine(directions);
     }
+
+    public Position createFirstColumnPosition() {
+        return new Position(0, directions.size(), 0);
+    }
+
+    public Position createFirstLeftColumnPosition() {
+        return new Position(0, directions.size() - 1, 0);
+    }
 }

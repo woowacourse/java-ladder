@@ -22,7 +22,7 @@ public class HorizontalLineTest {
         HorizontalLine line = new HorizontalLine(Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.LEFT, Direction.NONE));
         Position beginPosition = new Position(0, line.getNumPosition(), 0);
 
-        assertThat(line.canDraw(beginPosition.add(1))).isFalse();
+        assertThat(line.canDraw(beginPosition.plus(1))).isFalse();
     }
 
     @Test
@@ -30,7 +30,7 @@ public class HorizontalLineTest {
         HorizontalLine line = new HorizontalLine(Arrays.asList(Direction.NONE, Direction.NONE, Direction.NONE, Direction.NONE));
         Position beginPosition = new Position(0, line.getNumPosition(), 0);
 
-        assertThat(line.canDraw(beginPosition.Last())).isFalse();
+        assertThat(line.canDraw(beginPosition.last())).isFalse();
     }
 
     @Test
@@ -43,7 +43,7 @@ public class HorizontalLineTest {
         for (HorizontalLine line : lines) {
             Position beginPosition = new Position(0, line.getNumPosition(), 0);
 
-            assertThat(line.canDraw(beginPosition.add(1))).isFalse();
+            assertThat(line.canDraw(beginPosition.plus(1))).isFalse();
         }
     }
 
@@ -52,7 +52,7 @@ public class HorizontalLineTest {
         HorizontalLine line = new HorizontalLine(Arrays.asList(Direction.NONE, Direction.NONE, Direction.NONE, Direction.NONE));
         Position beginPosition = new Position(0, line.getNumPosition(), 0);
 
-        line.draw(beginPosition.add(1));
+        line.draw(beginPosition.plus(1));
 
         assertThat(line.drawn()).isEqualTo(new DrawnHorizontalLine(Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.LEFT, Direction.NONE)));
     }

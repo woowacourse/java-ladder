@@ -22,7 +22,7 @@ class LadderTest {
         HorizontalLine line = new HorizontalLine(Arrays.asList(Direction.NONE, Direction.NONE));
 
 
-        assertThat(ladder.canDraw(beginRowPosition.add(1), beginColumnPosition.add(1))).isTrue();
+        assertThat(ladder.canDraw(beginRowPosition.plus(1), beginColumnPosition.plus(1))).isTrue();
     }
 
     @Test
@@ -38,7 +38,7 @@ class LadderTest {
         HorizontalLine line = new HorizontalLine(Arrays.asList(Direction.NONE, Direction.NONE));
 
 
-        assertThat(ladder.canDraw(beginRowPosition.add(1), beginColumnPosition.add(1))).isFalse();
+        assertThat(ladder.canDraw(beginRowPosition.plus(1), beginColumnPosition.plus(1))).isFalse();
     }
 
     @Test
@@ -54,7 +54,7 @@ class LadderTest {
         HorizontalLine line = new HorizontalLine(Arrays.asList(Direction.NONE, Direction.NONE));
 
 
-        assertThat(ladder.canDraw(beginRowPosition.add(1), beginColumnPosition.Last())).isFalse();
+        assertThat(ladder.canDraw(beginRowPosition.plus(1), beginColumnPosition.last())).isFalse();
     }
 
     @Test
@@ -78,7 +78,7 @@ class LadderTest {
             Position beginColumnPosition = new Position(0, lines.get(0).getNumPosition(), 0);
             Ladder ladder = new Ladder(lines);
 
-            assertThat(ladder.canDraw(beginRowPosition.add(1), beginColumnPosition.add(1))).isFalse();
+            assertThat(ladder.canDraw(beginRowPosition.plus(1), beginColumnPosition.plus(1))).isFalse();
         }
     }
 
@@ -92,7 +92,7 @@ class LadderTest {
         Position beginColumnPosition = new Position(0, lines.get(0).getNumPosition(), 0);
         Ladder ladder = new Ladder(lines);
 
-        ladder.draw(beginRowPosition.add(1), beginColumnPosition.add(1));
+        ladder.draw(beginRowPosition.plus(1), beginColumnPosition.plus(1));
 
         assertThat(ladder.drawn()).isEqualTo(new DrawnLadder(Arrays.asList(
                 new DrawnHorizontalLine(Arrays.asList(Direction.NONE, Direction.NONE, Direction.NONE, Direction.NONE)),

@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class DrawnHorizontalLineTest {
 
@@ -17,7 +16,7 @@ class DrawnHorizontalLineTest {
 
         Position next = line.nextPosition(current);
 
-        assertThat(next).isEqualTo(current.add(-1));
+        assertThat(next).isEqualTo(current.plus(-1));
     }
 
     @Test
@@ -28,7 +27,7 @@ class DrawnHorizontalLineTest {
 
         Position next = line.nextPosition(current);
 
-        assertThat(next).isEqualTo(current.add(1));
+        assertThat(next).isEqualTo(current.plus(1));
     }
 
     @Test
@@ -39,6 +38,6 @@ class DrawnHorizontalLineTest {
 
         Position next = line.nextPosition(current);
 
-        assertThat(next).isEqualTo(current.add(0));
+        assertThat(next).isEqualTo(current.plus(0));
     }
 }

@@ -23,4 +23,16 @@ public class Ladder {
     public DrawnLadder drawn() {
         return new DrawnLadder(lines.stream().map(line -> line.drawn()).collect(Collectors.toList()));
     }
+
+    public Position createFirstRowPosition() {
+        return new Position(0, lines.size(), 0);
+    }
+
+    public Position createFirstColumnPosition() {
+        return lines.get(0).createFirstColumnPosition();
+    }
+
+    public Position createFirstLeftColumnPosition() {
+        return lines.get(0).createFirstLeftColumnPosition();
+    }
 }
