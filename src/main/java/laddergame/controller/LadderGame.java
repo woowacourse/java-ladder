@@ -11,14 +11,9 @@ public class LadderGame {
         Players players = generatePlayers();
         Ladder ladder = generateLadder(players.getPeopleCount());
         Prizes prizes = generatePrizes(players.getPeopleCount());
-        //List<Prize> prizes = getPrizes(players.size());
+
         OutputView.printPlayersAndLadder(players, ladder);
         OutputView.printPrizes(prizes);
-
-        /*
-        GameEngine engine = new GameEngine(players, ladder);
-        engine.makePlayersPlayTheLadder();
-         */
 
         players = ladder.makeThePlayersClimbDownTheLadder(players);
         promptUserForRequest(players, prizes);
@@ -70,43 +65,4 @@ public class LadderGame {
             return generateGameResult(players, prizes);
         }
     }
-
-
-
-    /*
-
-    private static Ladder getLadder(int width) {
-        try {
-            int height = InputView.askHeight();
-            return new Ladder(width, height);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return getLadder(width);
-        }
-    }
-
-     */
-
-    /*
-    private static List<Player> getPlayers() {
-        try {
-            String input = InputView.askUserNames();
-            return PlayersGenerator.createPlayers(input);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return getPlayers();
-        }
-    }
-
-    private List<Prize> getPrizes(int numOfPlayers) {
-        try {
-            String input = InputView.askPrizes();
-            return PrizesGenerator.createPrizes(input, numOfPlayers);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return getPrizes(numOfPlayers);
-        }
-    }
-     */
-
 }
