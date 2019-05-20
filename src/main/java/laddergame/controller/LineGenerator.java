@@ -4,11 +4,11 @@ import laddergame.controller.rule.Rule;
 import laddergame.domain.Line;
 
 public class LineGenerator {
-    public static Line lineGenerate(int numberOfPerson, Rule rule) {
+    public static Line lineGenerate(Rule rule, int numberOfPerson) {
         final int numberOfInterval = numberOfPerson - 1;
         Line line = new Line(numberOfPerson);
 
-        for (int i = 1; i <= numberOfInterval; i++) {
+        for (int i = 0; i < numberOfInterval; i++) {
             generateScaffold(rule, line, i);
         }
         return line;

@@ -1,9 +1,9 @@
 package laddergame;
 
 import laddergame.controller.GamePreparer;
+import laddergame.controller.rule.RandomCreateRule;
 import laddergame.domain.LadderGame;
 import laddergame.domain.LadderGameResult;
-import laddergame.controller.rule.RandomCreateRule;
 import laddergame.domain.Tags;
 import laddergame.util.InputView;
 import laddergame.util.OutputView;
