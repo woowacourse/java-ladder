@@ -1,4 +1,4 @@
-package ladder.model.Coin;
+package ladder.model.coin;
 
 public class EvenOnly implements Coin {
     private boolean isEven = true;

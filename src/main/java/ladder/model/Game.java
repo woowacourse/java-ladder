@@ -1,6 +1,6 @@
 package ladder.model;
 
-import ladder.model.Coin.Half;
+import ladder.model.coin.Half;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Game {
-    private static String NIL = "꽝";
+    static String NIL = "꽝";
 
     private final List<Player> players = new ArrayList<>();
     private final Ladder ladder;
@@ -17,6 +17,7 @@ public class Game {
         if (names.isEmpty()) {
             throw new IllegalArgumentException();
         }
+
         adjustInputs(names, rewards);
         for (int i = 0; i < names.size(); i++) { // Zip()이 있으면 좋을텐데…
             players.add(new Player(names.get(i), rewards.get(i)));

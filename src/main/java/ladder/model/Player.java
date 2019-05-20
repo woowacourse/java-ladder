@@ -12,6 +12,7 @@ public class Player {
         if (name.length() < NAME_MIN_LENGTH || name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException();
         }
+
         this.name = name;
         this.reward = reward.trim();
     }

@@ -1,14 +1,14 @@
 package ladder.model;
 
-import ladder.model.Coin.Coin;
+import ladder.model.coin.Coin;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Level {
-    private static int DRAW = 2;
     private static int PASS = 1;
+    private static int DRAW = 2;
     private final List<Integer> lines;
 
     public Level(int width, Coin possibility) {
