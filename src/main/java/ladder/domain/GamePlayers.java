@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 public final class GamePlayers {
+    private static final int MIN_PLAYERS_NUMBER = 2;
+
     private final List<Player> players;
 
     public GamePlayers(final List<Player> players) {
@@ -19,7 +21,7 @@ public final class GamePlayers {
     }
 
     private void validateSize(List<Player> players) {
-        if (players.isEmpty()) {
+        if (players.size() < MIN_PLAYERS_NUMBER) {
             throw new IllegalArgumentException("두 명 이상 입력 해주세요.");
         }
     }
