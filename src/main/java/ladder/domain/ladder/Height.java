@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import java.util.Objects;
 
 public class Height {
+    private static final int ZERO = 0;
     private final int number;
 
     public Height(int number) {
@@ -11,7 +12,7 @@ public class Height {
     }
 
     private void checkNegative(int number) {
-        if (number < 0) {
+        if (number <= ZERO) {
             throw new IllegalArgumentException("자연수만 입력 가능합니다.");
         }
     }

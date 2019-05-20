@@ -15,7 +15,14 @@ public class OutputView {
     private static final String CONNECTOR = "\t\t";
     private static final String CONNECTED_LINE_COMPONENT = "|-----------";
     private static final String NOT_CONNECTED_LINE_COMPONENT = "|           ";
+    private static final String COLON = " : ";
     private static final String ALL = "all";
+
+    public static void printLadderGame(Players players, Ladder ladder, Rewards rewards){
+        printPlayers(players);
+        printLadder(ladder);
+        printRewards(rewards);
+    }
 
     public static void printLadder(Ladder ladder) {
         for (Line line : ladder.getLines()) {
@@ -38,7 +45,6 @@ public class OutputView {
         System.out.print(NOT_CONNECTED_LINE_COMPONENT);
     }
 
-    // TODO interface 적용해서 중복코드 줄여보기? (Players, Rewards)
     public static void printPlayers(Players players) {
         String joinedPlayer = players.getPlayers().stream()
                 .map(player -> String.format(PRINT_FORMAT, player.getName()))
@@ -63,7 +69,7 @@ public class OutputView {
 
     private static void printAllPlayerForReward(LadderGameResult ladderGameResult) {
         for (Player player : ladderGameResult.keySet()) {
-            System.out.println(player.getName() + " : " + ladderGameResult.findReward(player.getName()));
+            System.out.println(player.getName() + COLON + ladderGameResult.findReward(player.getName()));
         }
     }
 }

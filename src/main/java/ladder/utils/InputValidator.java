@@ -17,12 +17,12 @@ public class InputValidator {
     private static final String LENGTH_REGEX = "[a-zA-Z0-9]{1,5}((,)([a-zA-Z0-9]){1,5})+";
 
     public static void checkValidNames(String input) {
-        isWrongLength(input);
-        isDuplicated(input);
-        isWrongName(input);
+        checkWrongLength(input);
+        checkDuplicated(input);
+        checkWrongName(input);
     }
 
-    private static void isWrongName(String input) {
+    private static void checkWrongName(String input) {
         String[] names = splitComponent(input);
         for (String name : names) {
             checkNameFormat(name);
@@ -35,13 +35,13 @@ public class InputValidator {
         }
     }
 
-    public static void isWrongLength(String component) {
+    public static void checkWrongLength(String component) {
         if (!Pattern.matches(LENGTH_REGEX, component)) {
             throw new IllegalArgumentException(WRONG_NAME_LENGTH_MSG + component);
         }
     }
 
-    private static void isDuplicated(String input) {
+    private static void checkDuplicated(String input) {
         String[] names = splitComponent(input);
         Set<String> notDuplicateNames = handleDuplicateName(names);
         if (names.length != notDuplicateNames.size()) {
