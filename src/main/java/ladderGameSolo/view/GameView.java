@@ -13,12 +13,13 @@ public class GameView {
         int height = InputView.inputHeight();
         Ladder ladder = LadderGame.getLadders(names.length, height);
 
-        printLadderInfo(names, height, ladder);
+        printLadderInfo(names, inputResult, height, ladder);
     }
 
-    private void printLadderInfo(String[] names, int height, Ladder ladder) {
+    private void printLadderInfo(String[] names, String[] inputResult, int height, Ladder ladder) {
         printName(names);
         printLadder(ladder, height);
+        printResult(inputResult);
     }
 
     private void printName(String[] names) {
@@ -55,4 +56,10 @@ public class GameView {
         }
     }
 
+    private void printResult(String[] inputResult) {
+        for (String result : inputResult) {
+            System.out.print(String.format(MessageContants.RESULT_FORMAT, result));
+        }
+        System.out.println();
+    }
 }
