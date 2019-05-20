@@ -65,6 +65,9 @@ public class Person {
             throw new IllegalArgumentException(DUPLICATED_MESSAGE);
         }
     }
+    boolean findName(String requestedName) {
+        return names.contains(requestedName);
+    }
 
     String getName(int index) {
         return names.get(index);
@@ -90,9 +93,5 @@ public class Person {
             sb.append(" ");
         }
         return sb.toString();
-    }
-
-    public boolean findName(String requestedName) {
-        return names.contains(requestedName);
     }
 }
