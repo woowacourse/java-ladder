@@ -43,4 +43,17 @@ public class LadderTest {
         }
 
     }
+
+    @Test
+    void 게임_로직_제대로_돌아가는지_테스트() {
+        Players players = new Players("a,b,c,d");
+        Line line1 = new Line(Arrays.asList(true,false,true));
+        Line line2 = new Line(Arrays.asList(false, true, false));
+        Line line3 = new Line(Arrays.asList(true, false, true));
+        List<Line> lines = Arrays.asList(line1, line2, line3);
+        Ladder testLadder = new Ladder(lines, 4, 3);
+
+        testLadder.makeThePlayersClimbDownTheLadder(players);
+        assertThat(players).isEqualTo(new Players("d,b,c,a"));
+    }
 }

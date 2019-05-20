@@ -9,6 +9,10 @@ public class Prize {
         this.prize = input;
     }
 
+    public String getPrize() {
+        return prize;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -22,8 +26,13 @@ public class Prize {
         return Objects.hash(prize);
     }
 
+/*
     @Override
     public String toString() {
         return prize;
     }
+
+ */
+
+
 }

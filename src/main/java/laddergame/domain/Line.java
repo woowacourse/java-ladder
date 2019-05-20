@@ -15,6 +15,10 @@ public class Line {
         }
     }
 
+    public Line(List<Boolean> booleans) {
+        this.line = booleans;
+    }
+
     private static boolean decideBooleanValueForLadder(boolean preValue) {
         if (preValue) return false;
 

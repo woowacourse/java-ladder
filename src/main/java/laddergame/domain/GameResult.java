@@ -12,7 +12,7 @@ public class GameResult {
         this.request = wrappedRequest;
 
         for (int i = 0; i < players.getPlayers().size(); i++) {
-            results.add(players.getPlayers().get(i).getName().getName() + " : " + prizes.getPrizes().get(i) + "\n");
+            results.add(players.getPlayers().get(i).getName().getName() + " : " + prizes.getPrizes().get(i).getPrize() + "\n");
         }
     }
 
@@ -23,6 +23,8 @@ public class GameResult {
     public List<String> getResults() {
         return results;
     }
+
+    public Request getRequestValue() {return request;}
 
     public int getResultsSize() {
         return results.size();
