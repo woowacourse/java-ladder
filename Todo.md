@@ -1,21 +1,5 @@
 ## Todo
-user names input test case:
-pobi, pobi, ole -> exception because repetition exists
-pobi, pobipobi -> exception because name length is invalid
-"" or null-> exception
-pobi,ko,,, -> exception
-ole, ko, pobi ->no exception
 
-height input test case:
-2 -> no exception
-"" -> exception
-a -> exception
-
-user name input test case
-asssumption: pobi, ole, ko is previous input.
-pob -> exception because it does not belong to previous input.
-ko -> no exception
-all, quit -> no exception
 
 
 

@@ -44,4 +44,8 @@ public class Row {
         }
         return startIndex;
     }
+
+    public int getTruePointNumber() {
+        return (int)points.stream().filter(point -> point.isTrue()).count();
+    }
 }

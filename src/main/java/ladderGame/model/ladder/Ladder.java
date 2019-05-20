@@ -1,6 +1,7 @@
 package ladderGame.model.ladder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Ladder {
@@ -27,5 +28,9 @@ public class Ladder {
             arrivalIndex = row.getArrivalIndex(arrivalIndex);
         }
         return arrivalIndex;
+    }
+
+    public int getTruePointNumber() {
+        return rows.stream().mapToInt(row -> row.getTruePointNumber()).sum();
     }
 }

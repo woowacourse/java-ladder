@@ -81,7 +81,7 @@ public class LadderTest {
     }
 
     @Test
-    void 크기3by3인_사다리에서_다리_네개_일떼_결과값() {
+    void 크기3by3인_사다리에서_다리_네개_일때_결과값() {
         Ladder ladder = new Ladder(3,3);
         ladder.draw(0,1);
         ladder.draw(1,0);
@@ -92,6 +92,17 @@ public class LadderTest {
         assertThat(ladder.getArrivialIndex(1)).isEqualTo(3);
         assertThat(ladder.getArrivialIndex(2)).isEqualTo(1);
         assertThat(ladder.getArrivialIndex(3)).isEqualTo(2);
+    }
+
+    @Test
+    void 크기3by3인_사다리에서_다리_네개_일때_getTruePointNumber() {
+        Ladder ladder = new Ladder(3,3);
+        ladder.draw(0,1);
+        ladder.draw(1,0);
+        ladder.draw(2,0);
+        ladder.draw(2,2);
+
+        assertThat(ladder.getTruePointNumber()).isEqualTo(4);
     }
 
 }
