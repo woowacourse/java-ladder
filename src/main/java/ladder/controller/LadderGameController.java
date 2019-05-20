@@ -30,7 +30,7 @@ public class LadderGameController {
 
     private void showMatchingResult(LadderGameResult ladderGameResult, String targetPlayerName) {
         if (targetPlayerName.equals(ALL_RESULTS)) {
-            OutputView.showMatchingResult(ladderGameResult.toString());
+            OutputView.showMatchingResult(ladderGameResult);
             return;
         }
         OutputView.showMatchingResult(ladderGameResult.matchResult(targetPlayerName));

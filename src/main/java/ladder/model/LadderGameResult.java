@@ -9,8 +9,6 @@ import java.util.Map;
 
 public class LadderGameResult {
     private static final int START_VALUE_FOR_RECURSIVE = 0;
-    private static final String COLON_WITH_SPACE = " : ";
-    private static final String NEW_LINE = "\n";
     private final Ladder ladder;
     private Map<String, String> gameResults = new LinkedHashMap<>();
 
@@ -55,8 +53,12 @@ public class LadderGameResult {
         }
     }
 
-    private List<String> getPlayerNames() {
+    public List<String> getPlayerNames() {
         return new ArrayList<>(gameResults.keySet());
+    }
+
+    public int size() {
+        return gameResults.size();
     }
 
     public String matchResult(String targetPlayerName) {
@@ -73,19 +75,5 @@ public class LadderGameResult {
             return gameResults.get(targetPlayerName);
         }
         throw new IllegalArgumentException(MessageConstant.ERROR_PLAYER_NOT_EXIST);
-    }
-
-    @Override
-    public String toString() {
-        List<String> keys = getPlayerNames();
-
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < gameResults.size(); i++) {
-            stringBuilder.append(keys.get(i))
-                    .append(COLON_WITH_SPACE)
-                    .append(gameResults.get(keys.get(i)))
-                    .append(NEW_LINE);
-        }
-        return stringBuilder.toString();
     }
 }

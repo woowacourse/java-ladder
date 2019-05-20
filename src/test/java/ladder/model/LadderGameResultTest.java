@@ -40,15 +40,10 @@ public class LadderGameResultTest {
 
     @Test
     void 사다리게임_결과가_올바르게_나오는지_테스트() {
-        assertThat(ladderGameResult.matchGoalWith("red")).isEqualTo("one");
-        assertThat(ladderGameResult.matchGoalWith("blue")).isEqualTo("three");
-        assertThat(ladderGameResult.matchGoalWith("green")).isEqualTo("two");
-        assertThat(ladderGameResult.matchGoalWith("black")).isEqualTo("four");
-    }
-
-    @Test
-    void 전체_결과를_반환하는_toString_메소드_테스트() {
-        assertThat(ladderGameResult.toString()).isEqualTo("red : one\nblue : three\ngreen : two\nblack : four\n");
+        assertThat(ladderGameResult.matchResult("red")).isEqualTo("one");
+        assertThat(ladderGameResult.matchResult("blue")).isEqualTo("three");
+        assertThat(ladderGameResult.matchResult("green")).isEqualTo("two");
+        assertThat(ladderGameResult.matchResult("black")).isEqualTo("four");
     }
 
     @AfterEach
