@@ -1,56 +1,47 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Line {
-    private static final int LEFT_END = 0;
+    private List<LadderStair> crossLine = new ArrayList<>();
 
-    private List<Boolean> points;
-
-    public Line(List<Boolean> points) {
-        this.points = points;
+    public Line(List<Boolean> isExistStairs) {
+        LadderStair stair = LadderStair.start();
+        for (Boolean isExist : isExistStairs) {
+            crossLine.add(stair.next(isExist));
+        }
+        stair.end();
     }
 
     Record drawLine(Record record) {
-        List<Integer> beforeRecord = record.getIndices();
-        int size = beforeRecord.size();
-        checkSize(size);
-        List<Boolean> tempPoints = new ArrayList<>(points);
-        List<Integer> afterRecord = new ArrayList<>(Arrays.asList(new Integer[size]));
+        int size = record.getIndices().size();
+        checkRecordSize(size);
+        Record newRecord = new Record(new ArrayList<>(record.getIndices()));
 
-        tempPoints.add(LEFT_END, false);
-        tempPoints.add(tempPoints.size(), false);
+        IntStream.range(0, size-1)
+                .filter(i -> crossLine.get(i).isExist())
+                .forEach(i -> newRecord.swap(i,i+1));
 
-        for (int i = 0; i < size; i++) {
-            afterRecord.set(move(tempPoints.get(i), i, tempPoints.get(i + 1)), beforeRecord.get(i));
-        }
-
-        return new Record(afterRecord);
+        return newRecord;
     }
 
-    private void checkSize(int size) {
-        if (size != points.size() + 1){
+    private void checkRecordSize(int size) {
+        if (size != crossLine.size() + 1){
             throw new IllegalArgumentException();
         }
     }
 
-    private int move(boolean left, int index, boolean right) {
-        if (left && right) {
-            throw new IllegalArgumentException();
-        }
-        if (left) {
-            return --index;
-        }
-        if (right) {
-            return ++index;
-        }
-        return index;
+    int length() {
+        return crossLine.size();
     }
+
     @Override
     public String toString() {
-        return "|" + this.points.stream().map(point -> point ? "-----|" : "     |").collect(Collectors.joining());
+        return "|" + this.crossLine.stream()
+                .map(ladderStair -> ladderStair.isExist() ? "-----|" : "     |")
+                .collect(Collectors.joining());
     }
 }

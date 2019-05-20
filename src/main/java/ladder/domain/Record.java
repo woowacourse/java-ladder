@@ -15,6 +15,12 @@ class Record {
         return Collections.unmodifiableList(indices);
     }
 
+    void swap(int a, int b) {
+        Integer tmp = indices.get(a);
+        indices.set(a,indices.get(b));
+        indices.set(b,tmp);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -26,8 +26,7 @@ class LineTest {
 
     @Test
     void 움직임_테스트_true_true() {
-        line = new Line(new ArrayList<>(Arrays.asList(true, true)));
-        assertThrows(IllegalArgumentException.class, () -> line.drawLine(record));
+        assertThrows(IllegalArgumentException.class, () -> new Line(new ArrayList<>(Arrays.asList(true, true))));
     }
 
     @Test
