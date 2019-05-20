@@ -12,7 +12,14 @@
 
 package ladder.view;
 
+import java.util.Map;
+
+import ladder.domain.GameResult;
 import ladder.domain.LadderGame;
+import ladder.domain.PlayerTags;
+import ladder.domain.ResultTags;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.tag.Tag;
 
 /**
  * 사다리 게임 출력을 담당하는 View 클래스
@@ -29,8 +36,22 @@ public class OutputView {
         System.out.println(LADDER_TITLE);
     }
 
-    public static void ladderShape(LadderGame ladderGame) {
-        System.out.println(ladderGame.toString());
+    public static void ladderBody(LadderGame ladderGame) {
+        ladderPlayers(ladderGame.getPlayers());
+        ladderShape(ladderGame.getLadder());
+        ladderResults(ladderGame.getResults());
+    }
+
+    private static void ladderPlayers(PlayerTags playerTags) {
+        System.out.println(playerTags.toString());
+    }
+
+    private static void ladderShape(Ladder ladder) {
+        System.out.println(ladder.toString());
+    }
+
+    private static void ladderResults(ResultTags resultTags) {
+        System.out.println(resultTags.toString());
     }
 
     public static void resultTitle() {
@@ -39,5 +60,11 @@ public class OutputView {
 
     public static void resultPrint(String result) {
         System.out.println(result);
+    }
+
+    public static void resultPrint2(GameResult gameResult) {
+        for (Map.Entry<Tag, Tag> map : gameResult) {
+            System.out.println(map.getKey() + " : " + map.getValue());
+        }
     }
 }
