@@ -16,7 +16,7 @@ public class OutputView {
     }
 
     public static void printLadderMessage() {
-        System.out.println("\n사다리 결과\n");
+        System.out.println(NEW_LINE + "사다리 결과" + NEW_LINE);
     }
 
     public static void printNames(final Players players) {
@@ -31,7 +31,6 @@ public class OutputView {
     public static void printLadder(final Ladder ladder) {
         for (Line line : ladder.getLines()) {
             printLine(line);
-            System.out.println();
         }
     }
 
@@ -56,7 +55,7 @@ public class OutputView {
             sb.append(printPoint(iter.next().getRight()));
             sb.append("|");
         }
-        System.out.print(sb.toString());
+        System.out.println(sb.toString());
     }
 
     private static String printPoint(final Boolean point) {
@@ -76,17 +75,17 @@ public class OutputView {
     }
 
     public static void printResultMessage() {
-        System.out.println("\n실행 결과");
+        System.out.println("실행 결과");
     }
 
-    public static void printResult(final String reward) {
+    public static void printResult(final ResultPair pair) {
         printResultMessage();
-        System.out.println(reward);
+        System.out.println(pair.getReward() + NEW_LINE);
     }
 
-    public static void printResultAll(final String results) {
+    public static void printResultAll(final ResultPairs pairs) {
         printResultMessage();
-        System.out.println(results);
+        System.out.println(pairs.toString());
     }
 
     public static void printResultErrorMsg() {

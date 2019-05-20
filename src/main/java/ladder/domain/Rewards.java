@@ -12,7 +12,7 @@ public class Rewards implements Iterable<Reward> {
         this.rewards = Collections.unmodifiableList(rewards.stream().map(reward -> new Reward(reward)).collect(Collectors.toList()));
     }
 
-    Reward getReward(int index) {
+    public Reward getReward(int index) {
         return rewards.get(index);
     }
 

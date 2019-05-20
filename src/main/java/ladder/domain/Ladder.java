@@ -23,12 +23,12 @@ public class Ladder {
         }
     }
 
-    public List<Integer> goDown() {
+    public ResultIndex goDown() {
         List<Integer> indices = IntStream.range(START, numPlayers).boxed().collect(Collectors.toList());
         for (Line line : lines) {
             indices = goDownOneLine(indices, line);
         }
-        return indices;
+        return new ResultIndex(indices);
     }
 
     private static List<Integer> goDownOneLine(List<Integer> indices, final Line line) {
