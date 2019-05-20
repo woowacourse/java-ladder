@@ -17,6 +17,7 @@ public class OutputView {
     private static final String NAME_INTERVAL = " ";
     private static final String COL_LINE = "|";
     private static final String NEXT_LINE = "\n";
+    private static final String NAME_REWARD_SEPARATOR = " : ";
     private static StringBuilder stringBuilder;
 
     public static void ladderResult(List<Player> players, List<Line> ladder, Map<String, String> gameRewards) {
@@ -78,9 +79,9 @@ public class OutputView {
         stringBuilder = new StringBuilder();
 
         stringBuilder.append(OUTPUT_EXECUTE_RESULT).append(NEXT_LINE);
-        for(Player player : players){
+        for (Player player : players) {
             String resultPosition = String.valueOf(player.getPosition());
-            stringBuilder.append(player.getName()).append(" : ").append(gameRewards.get(resultPosition)).append(NEXT_LINE);
+            stringBuilder.append(player.getName()).append(NAME_REWARD_SEPARATOR).append(gameRewards.get(resultPosition)).append(NEXT_LINE);
         }
         System.out.println(stringBuilder.toString());
     }

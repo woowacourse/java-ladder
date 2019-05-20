@@ -24,7 +24,7 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static String getWantToKnowResult(){
+    public static String getWantToKnowResult() {
         scanner = new Scanner(System.in);
         System.out.println(INPUT_WANT_TO_KNOW);
         return scanner.nextLine();

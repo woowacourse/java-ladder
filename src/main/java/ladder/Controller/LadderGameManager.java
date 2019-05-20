@@ -34,7 +34,7 @@ public class LadderGameManager {
 
     private void registerGameReward() {
         gameReward = new HashMap<>();
-        gameReward = InputModel.getWrappedValidReward(getValidReward());
+        gameReward = InputModel.getMappingValidReward(getValidReward());
     }
 
     private List<String> getValidReward() {
@@ -58,17 +58,28 @@ public class LadderGameManager {
     private void gameResult(List<Player> players, Map<String, String> gameRewards) {
         String playerName = InputView.getWantToKnowResult();
 
-        if (playerName.equals("all")) {
-            OutputView.printAllPlayersResult(players, gameRewards);
+        if (isAllPlayerResult(players, gameRewards, playerName)) {
             return;
         }
-
         for (Player player : players) {
-            if (player.getName().equals(playerName)) {
-                OutputView.printOnePlayerResult(player, gameRewards);
-            }
+            matchedPlayerResult(gameRewards, playerName, player);
         }
 
         gameResult(players, gameRewards);
+    }
+
+    private boolean isAllPlayerResult(List<Player> players, Map<String, String> gameRewards, String playerName) {
+        if (playerName.equals("all")) {
+            OutputView.printAllPlayersResult(players, gameRewards);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void matchedPlayerResult(Map<String, String> gameRewards, String playerName, Player player) {
+        if (player.getName().equals(playerName)) {
+            OutputView.printOnePlayerResult(player, gameRewards);
+        }
     }
 }

@@ -6,6 +6,7 @@ public class InputModel {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_HEIGHT = 1;
     private static final String ERROR_MESSAGE = "입력이 올바르지 않습니다.";
+    private static final String COMMA_FRONT_AND_BACK_SPACE_REMOVE = "\\s*,\\s*";
 
     public static List<String> getValidNames(String names) {
         checkBlankInput(names);
@@ -31,7 +32,7 @@ public class InputModel {
     }
 
     private static String[] split(String input) {
-        return input.trim().split(",");
+        return input.split(COMMA_FRONT_AND_BACK_SPACE_REMOVE);
     }
 
     private static void checkEmpty(List<String> validNames) {
@@ -81,13 +82,13 @@ public class InputModel {
         return gameRewards;
     }
 
-    public static Map<String, String> getWrappedValidReward(List<String> gameRewards) {
-        Map<String, String> result = new HashMap<>();
+    public static Map<String, String> getMappingValidReward(List<String> gameRewards) {
+        Map<String, String> matchedRewards = new HashMap<>();
 
         for (int i = 0; i < gameRewards.size(); i++) {
-            result.put(String.valueOf(i), gameRewards.get(i));
+            matchedRewards.put(String.valueOf(i), gameRewards.get(i));
         }
 
-        return result;
+        return matchedRewards;
     }
 }
