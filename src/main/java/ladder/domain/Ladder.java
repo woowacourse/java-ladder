@@ -31,7 +31,7 @@ public class Ladder {
         }
     }
 
-    public void make(int width, int height) {
+    private void make(int width, int height) {
         valid(width, height);
         RandomGenerator randomGenerator = new RandomGenerator();
         make(randomGenerator, width, height);
@@ -49,7 +49,7 @@ public class Ladder {
         return rows;
     }
 
-    Ladder make(RandomGenerator randomGenerator, int width, int height) {
+    public Ladder make(RandomGenerator randomGenerator, int width, int height) {
         valid(width, height);
         for (int i = 0; i < height; i++) {
             rows.add(new LadderRow().manual(width, randomGenerator));

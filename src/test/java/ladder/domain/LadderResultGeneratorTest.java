@@ -5,56 +5,25 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class LadderResultTest {
-    private LadderResult ladderResult;
-    private Ladder ladder;
-    private Players players;
+public class LadderResultGeneratorTest {
+    Ladder ladder;
 
     @Before
-    public void setLadderGame() {
-        LadderRewards ladderRewards = new LadderRewards("꽝,5000,꽝,3000", 4);
-        ladderResult = new LadderResult(ladderRewards);
-        RandomGenerator randomGenerator = new RandomGenerator(Arrays.asList(1, 1, 0, 1));
-        ladder = new Ladder().make(randomGenerator, 4, 2);
-        players = new Players("a,b,c,d");
+    public void setUp() throws Exception {
+        RandomGenerator randomGenerator = new RandomGenerator(Arrays.asList(1, 1, 0, 0, 0, 0, 0, 0));
+        ladder = new Ladder().make(randomGenerator, 5, 2);
     }
 
     @Test
     public void 결과_확인() {
-        PlayerResults playerResults = new PlayerResults("a", "꽝");
-        assertEquals(playerResults, ladderResult.result(ladder, players.player("a")));
+        assertEquals(1, LadderResultGenerator.find(ladder, 0));
     }
 
     @Test
     public void 결과_확인2() {
-        PlayerResults playerResults = new PlayerResults("b", "꽝");
-        assertEquals(playerResults, ladderResult.result(ladder, players.player("b")));
-    }
-
-    @Test
-    public void 결과_확인3() {
-        PlayerResults playerResults = new PlayerResults("c", "3000");
-        assertEquals(playerResults, ladderResult.result(ladder, players.player("c")));
-    }
-
-    @Test
-    public void 결과_확인4() {
-        PlayerResults playerResults = new PlayerResults("d", "5000");
-        assertEquals(playerResults, ladderResult.result(ladder, players.player("d")));
-    }
-
-    @Test
-    public void 전체_결과_확인() {
-
-        List<PlayerResults> expect = Arrays.asList(
-                new PlayerResults("a", "꽝"),
-                new PlayerResults("b", "꽝"),
-                new PlayerResults("c", "3000"),
-                new PlayerResults("d", "5000"));
-        assertEquals(expect, ladderResult.result(ladder, players));
+        assertEquals(0, LadderResultGenerator.find(ladder, 1));
     }
 }

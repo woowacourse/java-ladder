@@ -10,19 +10,26 @@ public class OutputView {
     public OutputView() {
     }
 
-    public void print(LadderRow row) {
+    public void print(Players players, Ladder ladder, LadderRewards ladderRewards) {
         System.out.println(ConsoleMessages.OUTPUT_LADDER.message());
-        System.out.println(line(row));
-        System.out.println();
+        printPlayers(players);
+        printLadder(ladder);
+        printRewards(ladderRewards);
     }
 
+    private void printRow(LadderRow row) {
+        System.out.println(line(row));
+    }
 
-    public void print(Ladder ladder) {
-        List<LadderRow> rows = ladder.rows();
-        for (int i = 0; i < rows.size(); i++) {
-            System.out.println(line(rows.get(i)));
+    private void printLadder(Ladder ladder) {
+        for (LadderRow ladderRow : ladder.rows()) {
+            printRow(ladderRow);
         }
+    }
 
+    public void printResult(String message) {
+        System.out.println(ConsoleMessages.OUTPUT_RESULT.message());
+        System.out.println(message);
     }
 
     public String line(LadderRow row) {
@@ -36,44 +43,11 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-
     private String mark(LadderLine line) {
         if (line.direction() == LadderRules.RIGHT) {
             return "-----";
         }
         return "     ";
-    }
-
-    public String result(PlayerResult playerResult) {
-        return playerResult.reward();
-
-    }
-
-    public String result(List<PlayerResult> playerResults) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (PlayerResult playerResult : playerResults) {
-            stringBuilder.append(playerResult.name()).append(" : ").append(playerResult.reward()).append("\n");
-        }
-        return stringBuilder.toString();
-    }
-
-    public void print(PlayerResult playerResult) {
-        System.out.println(ConsoleMessages.OUTPUT_RESULT.message());
-        System.out.println(result(playerResult));
-        System.out.println();
-    }
-
-    public void print(List<PlayerResult> playerResults) {
-        System.out.println(ConsoleMessages.OUTPUT_RESULT.message());
-        System.out.println(result(playerResults));
-        System.out.println();
-    }
-
-    public void print(Players players, Ladder ladder, LadderRewards ladderRewards) {
-        System.out.println(ConsoleMessages.OUTPUT_LADDER.message());
-        printPlayers(players);
-        print(ladder);
-        printRewards(ladderRewards);
     }
 
     private void printPlayers(Players players) {

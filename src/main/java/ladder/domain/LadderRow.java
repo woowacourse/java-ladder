@@ -28,7 +28,9 @@ public class LadderRow {
         while (width - row.size() > LAST_LINE) {
             randomLine();
         }
-        draw(false);
+        if (width - row.size() == LAST_LINE) {
+            draw(false);
+        }
     }
 
     private void randomLine() {
