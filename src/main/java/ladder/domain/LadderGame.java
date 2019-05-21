@@ -29,12 +29,12 @@ public class LadderGame {
         return points;
     }
 
-    public ResultProcessor generateAllResults(Person person, Result result) {
+    public ResultProcessor generateAllResults(LadderGameData ladderGameData) {
         List<Integer> resultIndex = new ArrayList<>();
-        for (int i = 0; i < person.getCountOfPerson(); i++) {
+        for (int i = 0; i < ladderGameData.getPerson().getCountOfPerson(); i++) {
             resultIndex.add(generateResult(i + 1));
         }
-        return new ResultProcessor(resultIndex, person, result);
+        return new ResultProcessor(resultIndex, ladderGameData);
     }
 
     private int generateResult(int index) {
