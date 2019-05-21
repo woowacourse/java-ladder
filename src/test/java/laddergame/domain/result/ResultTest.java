@@ -20,7 +20,7 @@ class ResultTest {
     }
 
     @Test
-    public void 공백문자들로_객체를_생성했을때_예외발생하는지_검사() {
+    public void 문자길이가_5자리_이상으로_생성했을때_예외발생하는지_검사() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
             new Result("500000");
         });
