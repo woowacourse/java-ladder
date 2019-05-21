@@ -31,7 +31,7 @@ public class PlayerGroupTest {
         PlayerGroup players = new PlayerGroup(Arrays.asList("a", "b"));
         List<Boolean> userSetCroossbar = Arrays.asList(false, true, false);
         ResultItems resultItems = new ResultItems(Arrays.asList("1", "2"), 2);
-        Ladder testLadder = new Ladder(1, new UserSetCrosspointGenerator(userSetCroossbar), 2);
+        Ladder testLadder = new Ladder(1, new UserSetLadderRowGenerator(userSetCroossbar), 2);
         List<Integer> ladderingResultItemsIndex = testLadder.getLadderingResultItemsIndex(2);
 
         LadderResult ladderResult = new LadderResult();

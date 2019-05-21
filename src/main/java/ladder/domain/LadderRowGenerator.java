@@ -1,5 +1,5 @@
 package ladder.domain;
 
-public interface CrosspointGenerator {
+public interface LadderRowGenerator {
     LadderRow generateLadderRow(int numberOfPlayer);
 }

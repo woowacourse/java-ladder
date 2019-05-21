@@ -3,10 +3,10 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserSetCrosspointGenerator implements CrosspointGenerator {
+public class UserSetLadderRowGenerator implements LadderRowGenerator {
     private List<Boolean> setCrossbars;
 
-    UserSetCrosspointGenerator(List<Boolean> userSetCrossbars) {
+    UserSetLadderRowGenerator(List<Boolean> userSetCrossbars) {
         this.setCrossbars = userSetCrossbars;
     }
 

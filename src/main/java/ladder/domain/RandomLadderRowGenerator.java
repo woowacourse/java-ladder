@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RandomCrosspointGenerator implements CrosspointGenerator {
+public class RandomLadderRowGenerator implements LadderRowGenerator {
     private static final int FIRST_AND_LAST_SIZE = 2;
     private static final Double RATE_OF_EMPTY_CROSSBAR = 0.5;
 

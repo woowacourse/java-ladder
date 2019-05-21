@@ -8,9 +8,9 @@ import java.util.List;
 public class LadderGame {
     public static void main(String[] args) {
         PlayerGroup players = getPlayers();
-        CrosspointGenerator randomCrosspointGenerator = new RandomCrosspointGenerator();
+        LadderRowGenerator randomLadderRowGenerator = new RandomLadderRowGenerator();
         ResultItems resultItems = getResultItems(players.size());
-        Ladder ladder = getLadderBy(randomCrosspointGenerator, players.size());
+        Ladder ladder = getLadderBy(randomLadderRowGenerator, players.size());
         LadderResult ladderingResult = players.matchLadderingResult(resultItems
                 , ladder.getLadderingResultItemsIndex(players.size()));
 
@@ -40,12 +40,12 @@ public class LadderGame {
         }
     }
 
-    private static Ladder getLadderBy(CrosspointGenerator crosspointGenerator, int numberOfPlayer) {
+    private static Ladder getLadderBy(LadderRowGenerator ladderRowGenerator, int numberOfPlayer) {
         try {
-            return new Ladder(getHeight(), crosspointGenerator, numberOfPlayer);
+            return new Ladder(getHeight(), ladderRowGenerator, numberOfPlayer);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getLadderBy(crosspointGenerator, numberOfPlayer);
+            return getLadderBy(ladderRowGenerator, numberOfPlayer);
         }
     }
 

@@ -8,10 +8,10 @@ public class Ladder {
     private static final int MINIMUM_HEIGHT = 1;
     private List<LadderRow> ladderRows = new ArrayList<>();
 
-    public Ladder(int height, CrosspointGenerator crosspointGenerator, int numberOfPlayer) {
+    public Ladder(int height, LadderRowGenerator ladderRowGenerator, int numberOfPlayer) {
         validateHeight(height);
         for (int i = 0; i < height; i++) {
-            ladderRows.add(crosspointGenerator.generateLadderRow(numberOfPlayer));
+            ladderRows.add(ladderRowGenerator.generateLadderRow(numberOfPlayer));
         }
     }
 
