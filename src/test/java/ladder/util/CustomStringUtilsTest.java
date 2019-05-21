@@ -6,11 +6,11 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class StringSplitUtilsTest {
+class CustomStringUtilsTest {
 
     @Test
     void 쉼표로_문자열_구분하기() {
-        assertThat(StringSplitUtils.splitString("pobi,honux,crong,jk"))
+        assertThat(CustomStringUtils.splitString("pobi,honux,crong,jk"))
                 .isEqualTo(Arrays.asList("pobi", "honux", "crong", "jk"));
     }
 }
