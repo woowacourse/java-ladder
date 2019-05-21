@@ -2,18 +2,17 @@ package ladder.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static ladder.view.OutputView.*;
 
 public class LadderWidth {
 
     private List<LadderCrossBar> crossbars;
-    private int width;
 
-    public LadderWidth(int numberOfPlayer, int width) {
+    public LadderWidth(int numberOfPlayer) {
         this.crossbars = generateLadderWidth(numberOfPlayer);
-        this.width = width;
+    }
+
+    public List<LadderCrossBar> getCrossbars() {
+        return crossbars;
     }
 
     private List<LadderCrossBar> generateLadderWidth(int numberOfPlayer) {
@@ -38,26 +37,5 @@ public class LadderWidth {
             players.set(position, players.get(position + 1));
             players.set(position + 1, temp);
         }
-    }
-
-    private String createCrossbar(String mark) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < width; i++) {
-            stringBuilder.append(mark);
-        }
-        return stringBuilder.toString();
-    }
-
-    @Override
-    public String toString() {
-        String crossbar = createCrossbar(HYPHEN);
-        String notCrossbar = createCrossbar(BLANK);
-
-        return PIPE + crossbars.stream().map(index -> {
-            if (index.isCrossbar()) {
-                return crossbar;
-            }
-            return notCrossbar;
-        }).collect(Collectors.joining(PIPE)) + PIPE;
     }
 }
