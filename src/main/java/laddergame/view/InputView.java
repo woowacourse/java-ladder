@@ -40,8 +40,9 @@ public class InputView {
         }
     }
 
-    public static String askResult() {
+    public static Player askResult() {
         System.out.println("결과를 보고 싶은 사람은 ?");
-        return reader.nextLine();
+
+        return new Player(new PlayerName(reader.nextLine()));
     }
 }

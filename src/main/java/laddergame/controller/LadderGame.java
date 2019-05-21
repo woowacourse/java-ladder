@@ -4,6 +4,7 @@ import laddergame.domain.*;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LadderGame {
@@ -13,29 +14,18 @@ public class LadderGame {
         PrizeGroup prizeGroup = InputView.askPrizes(players.getCountOfPlayers());
 
         OutputView.printGameBoard(players, ladder, prizeGroup);
-        /*
-        GameProcessor processor = new GameProcessor(players);
-        processor.processGame(ladder.getLines());
 
-        keepAsk(players, prizes);*/
+        PlayerGroup resultPlayers = players.clone();
+        ladder.playLadder(resultPlayers);
+        GameResult gameResult = new GameResult(resultPlayers, prizeGroup);
+
+        keepAsk(gameResult);
     }
 
-    private String keepAsk(List<Player> players, List<Prize> prizes) {
+    private String keepAsk(GameResult gameResult) {
         while (true) {
-            String result = makeResults(players, prizes);
-            OutputView.printResult(result);
-        }
-    }
-
-    private String makeResults(List<Player> players, List<Prize> prizes) {
-        try {
-            String input = InputView.askResult();
-            GameResult gameResult = new GameResult();
-            gameResult.makeResult(players, prizes);
-            return gameResult.getResult(players,input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return makeResults(players, prizes);
+            Player player = InputView.askResult();
+            OutputView.printResult(gameResult, player);
         }
     }
 }

@@ -1,57 +1,45 @@
 package laddergame.domain;
 
+import org.assertj.core.util.Maps;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class GameResultTest {
+    private List<Player> players = Arrays.asList(new Player(new PlayerName("a")), new Player(new PlayerName("b")), new Player(new PlayerName("c")));
+    private List<Prize> prizes = Arrays.asList(new Prize("win"), new Prize("win"), new Prize("lose"));
+    private GameResult gameResult;
+
+    @BeforeEach
+    void setUp() {
+        gameResult = new GameResult(new PlayerGroup(players), new PrizeGroup(prizes));
+    }
 
     @Test
     void 리스트에_존재하지않을때_테스트() {
-        List<Player> testList = Arrays.asList(new Player(new PlayerName("a")), new Player(new PlayerName("b")), new Player(new PlayerName("c")));
-        List<Prize> testList2 = Arrays.asList(new Prize("win"), new Prize("win"), new Prize("lose"));
-        String input = "JM";
-
-        GameResult gameResult = new GameResult();
-        gameResult.makeResult(testList, testList2);
-        assertThrows(IllegalArgumentException.class, () -> gameResult.getResult(testList, input));
+        assertThrows(IllegalArgumentException.class, () -> gameResult.getRequestedPrize(new Player(new PlayerName("JM"))));
     }
 
     @Test
     void 결과_출력에_특정플레이어를_입력했을때_제대로하는지_테스트() {
-        List<Player> inputPlayers = Arrays.asList(new Player(new PlayerName("a")), new Player(new PlayerName("b")), new Player(new PlayerName("c")), new Player(new PlayerName("d")));
-        List<Prize> inputPrizes = Arrays.asList(new Prize("win"), new Prize("win"), new Prize("lose"), new Prize("lose"));
-        GameProcessor processor = new GameProcessor(inputPlayers);
-        List<Line> ladder = Arrays.asList(
-                new Line(Arrays.asList(true, false, true)),
-                new Line(Arrays.asList(false, false, true))
-        );
-        processor.processGame(ladder);
-
-        GameResult gameResult = new GameResult();
-        gameResult.makeResult(inputPlayers, inputPrizes);
-        assertThat(gameResult.getResult(inputPlayers, "a")).isEqualTo("a : win\n");
-        assertThat(gameResult.getResult(inputPlayers, "c")).isEqualTo("c : lose\n");
+        assertThat(gameResult.getRequestedPrize(new Player(new PlayerName("a")))).isEqualTo(new Prize("win"));
+        assertThat(gameResult.getRequestedPrize(new Player(new PlayerName("b")))).isEqualTo(new Prize("win"));
     }
 
     @Test
     void 결과_출력이_all일때_제대로하는지_테스트() {
-        List<Player> inputPlayers = Arrays.asList(new Player(new PlayerName("a")), new Player(new PlayerName("b")), new Player(new PlayerName("c")), new Player(new PlayerName("d")));
-        List<Prize> inputPrizes = Arrays.asList(new Prize("win"), new Prize("win"), new Prize("lose"), new Prize("lose"));
+        Map<Player, Prize> results = new HashMap<>();
+        results.put(new Player(new PlayerName("a")), new Prize("win"));
+        results.put(new Player(new PlayerName("b")), new Prize("win"));
+        results.put(new Player(new PlayerName("c")), new Prize("lose"));
 
-        GameProcessor processor = new GameProcessor(inputPlayers);
-        List<Line> ladder = Arrays.asList(
-                new Line(Arrays.asList(true, false, true)),
-                new Line(Arrays.asList(false, false, true))
-        );
-        processor.processGame(ladder);
-
-        GameResult gameResult = new GameResult();
-        gameResult.makeResult(inputPlayers, inputPrizes);
-        assertThat(gameResult.getResult(inputPlayers, "all")).isEqualTo("b : win\na : win\nc : lose\nd : lose\n");
+        assertThat(gameResult.getAllResult()).isEqualTo(results);
     }
 }

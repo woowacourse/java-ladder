@@ -1,55 +1,38 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class GameResult {
-    public static final String ALL = "all";
-    private static final int DEFAULT_INDEX = 0;
+    private final Map<Player, Prize> results;
 
-    private List<String> results = new ArrayList<>();
+    public GameResult(final PlayerGroup playerGroup, final PrizeGroup prizeGroup) {
+        results = new HashMap<>();
 
-    public String getResult(List<Player> players, String name) {
-        validateExistedInputException(players, name);
-
-        if (name.equals(ALL)) {
-            return getAllResult();
-        }
-        return getRequestedResult(name);
+        makeResult(playerGroup, prizeGroup);
     }
 
-    private String getRequestedResult(String name) {
-        int index = DEFAULT_INDEX;
+    private void makeResult(final PlayerGroup playerGroup, final PrizeGroup prizeGroup) {
+        List<Player> players = playerGroup.getPlayers();
+        List<Prize> prizes = prizeGroup.getPrizes();
 
-        while (index < results.size() && !results.get(index).startsWith(name + " : ")) {
-            index++;
-        }
-
-        return results.get(index);
-    }
-
-    private String getAllResult() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String result : results) {
-            stringBuilder.append(result);
-        }
-        return stringBuilder.toString();
-    }
-
-    public void makeResult(List<Player> players, List<Prize> prizes) {
         for (int i = 0; i < players.size(); i++) {
-            results.add(players.get(i) + " : " + prizes.get(i) + "\n");
+            results.put(players.get(i), prizes.get(i));
         }
     }
 
-    private static void validateExistedInputException(List<Player> players, String input) {
-        if (input.equals("all")) { return; }
+    public Prize getRequestedPrize(Player player) {
+        validateExistedInputException(results.get(player));
 
-        boolean isNamePresent = false;
-        for (int i = 0; i < players.size() && !isNamePresent; i++) {
-            isNamePresent = players.get(i).hasSameName(input);
+        return results.get(player);
+    }
+
+    public Map<Player, Prize> getAllResult() {
+        return results;
+    }
+
+    private static void validateExistedInputException(Prize prize) {
+        if (Objects.isNull(prize)) {
+            throw new IllegalArgumentException("일치하는 플레이어의 이름이 존재하지 않습니다.");
         }
-
-        if (!isNamePresent) { throw new IllegalArgumentException("일치하는 플레이어의 이름이 존재하지 않습니다."); }
     }
 }
