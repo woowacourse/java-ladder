@@ -6,22 +6,24 @@ import java.util.List;
 public class Line {
     private final List<Point> line;
 
-    public Line(int width) {
+    public Line(final int width) {
         line = new ArrayList<>();
         for (int i = 0; i < width; i++) {
             line.add(new Point(false));
         }
     }
 
-    public void connect(int column) {
+    public boolean connect(int column) {
         if (!checkRight(column) && !checkLeft(column)) {
             line.set(column, new Point(true));
+            return true;
         }
+        return false;
     }
 
     private boolean checkRight(int column) {
         try {
-            return checkRightBridge(column);
+            return (line.get(column + 1).hasBridge());
         } catch (IndexOutOfBoundsException e) {
             return false;
         }
@@ -29,25 +31,13 @@ public class Line {
 
     private boolean checkLeft(int column) {
         try {
-            return checkLeftBridge(column);
+            return (line.get(column - 1).hasBridge());
         } catch (IndexOutOfBoundsException e) {
             return false;
         }
     }
 
-    private boolean checkRightBridge(int column) {
-        return (line.get(column + 1).hasBridge());
-    }
-
-    private boolean checkLeftBridge(int column) {
-        return (line.get(column - 1).hasBridge());
-    }
-
-    public boolean isLinked(int column) {
-        return line.get(column).hasBridge();
-    }
-
-    public Direction findRoute(int startPosition) {
+    public Direction findPosition(int startPosition) {
         if (checkLeft(startPosition)) {
             return Direction.left();
         }

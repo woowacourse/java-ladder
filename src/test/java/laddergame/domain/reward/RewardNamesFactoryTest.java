@@ -9,46 +9,46 @@ class RewardNamesFactoryTest {
 
     @Test
     public void 객제_생성_검사() {
-        RewardsFactory playerMaker = new RewardsFactory("pobi,crong");
-        assertThat(playerMaker).isEqualTo(new RewardsFactory("pobi,crong"));
+        RewardsNamesFactory playerMaker = new RewardsNamesFactory("pobi,crong");
+        assertThat(playerMaker).isEqualTo(new RewardsNamesFactory("pobi,crong"));
     }
 
     @Test
     public void 공백이_입력되어있을때_검사() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new RewardsFactory(" ").create();
+            new RewardsNamesFactory(" ").create();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new RewardsFactory("").create();
+            new RewardsNamesFactory("").create();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new RewardsFactory(null).create();
+            new RewardsNamesFactory(null).create();
         });
     }
 
     @Test
     public void 이름목록에_스페이스가_포함되어있을때_검사() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new RewardsFactory(" ,pobi,honux,crong,jk").create();
+            new RewardsNamesFactory(" ,pobi,honux,crong,jk").create();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new RewardsFactory("pobi,honux,crong,jk, ").create();
+            new RewardsNamesFactory("pobi,honux,crong,jk, ").create();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new RewardsFactory("pobi,honux, ,crong,jk").create();
+            new RewardsNamesFactory("pobi,honux, ,crong,jk").create();
         });
     }
 
     @Test
     public void 이름목록에_공백이_포함되어있을때_검사() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new RewardsFactory(",pobi,honux,crong,jk").create();
+            new RewardsNamesFactory(",pobi,honux,crong,jk").create();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new RewardsFactory("pobi,honux,crong,jk,").create();
+            new RewardsNamesFactory("pobi,honux,crong,jk,").create();
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new RewardsFactory("pobi,honux,,crong,jk,").create();
+            new RewardsNamesFactory("pobi,honux,,crong,jk,").create();
         });
     }
 }

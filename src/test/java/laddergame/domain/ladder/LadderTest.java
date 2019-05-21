@@ -9,23 +9,22 @@ public class LadderTest {
     @Test
     public void 레더_테스트_사다리의_너비가_1일때() {
         Ladder ladder = new Ladder(1, 1);
-        assertThat(ladder.isLinked(1, 1)).isFalse();
+        assertThat(ladder.connectBridge(1, 1)).isFalse();
     }
 
     @Test
     public void 연속된_연결로를_추가할때_검사_4X4사다리() {
         Ladder ladder = new Ladder(4, 4);
         ladder.connectBridge(1, 2);
-        ladder.connectBridge(2, 1);
         ladder.connectBridge(1, 1);
         ladder.connectBridge(1, 3);
+        ladder.connectBridge(2, 1);
 
-        assertThat(ladder.isLinked(1, 1)).isFalse();
-        assertThat(ladder.isLinked(1, 3)).isFalse();
+        assertThat(ladder.connectBridge(1, 1)).isFalse();
+        assertThat(ladder.connectBridge(1, 3)).isFalse();
 
         ladder.connectBridge(2, 2);
-
-        assertThat(ladder.isLinked(2, 2)).isFalse();
+        assertThat(ladder.connectBridge(2, 2)).isFalse();
     }
 
     @Test
@@ -33,7 +32,7 @@ public class LadderTest {
         Ladder ladder = new Ladder(1, 2);
         ladder.connectBridge(1, 1);
 
-        assertThat(ladder.isLinked(1, 1)).isTrue();
+        assertThat(ladder.connectBridge(1, 1)).isTrue();
     }
 
     @Test
@@ -42,8 +41,8 @@ public class LadderTest {
         ladder.connectBridge(1, 1);
         ladder.connectBridge(2, 1);
 
-        assertThat(ladder.isLinked(1, 1)).isTrue();
-        assertThat(ladder.isLinked(2, 1)).isTrue();
+        assertThat(ladder.findDestination(1)).isEqualTo(1);
+        assertThat(ladder.findDestination(2)).isEqualTo(2);
     }
 
     @Test
@@ -53,9 +52,9 @@ public class LadderTest {
         ladder.connectBridge(2, 1);
         ladder.connectBridge(3, 2);
 
-        assertThat(ladder.isLinked(1, 1)).isTrue();
-        assertThat(ladder.isLinked(2, 1)).isTrue();
-        assertThat(ladder.isLinked(3, 2)).isTrue();
+        assertThat(ladder.findDestination(1)).isEqualTo(1);
+        assertThat(ladder.findDestination(3)).isEqualTo(2);
+        assertThat(ladder.findDestination(2)).isEqualTo(3);
     }
 
     @Test

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlayersTest {
     private List<Player> playersForTest;
@@ -28,14 +27,13 @@ public class PlayersTest {
     }
 
     @Test
+    public void 인자_리스트를_변경했을때_Players객체에_영향을_주는지_검사() {
+        playersForTest.add(new Player("pi"));
+        assertThat(players).isNotEqualTo(new Players(playersForTest));
+    }
+
+    @Test
     public void 총_플레이어의_인원을_제대로_반환하는지_검사() {
         assertThat(players.getSize()).isEqualTo(3);
     }
-
-//    @Test
-//    public void 이름이_존재하지_않을_때_예외를_발생시키는지() {
-//        assertThrows(IllegalArgumentException.class, () -> {
-//            players.getIndexOfName("water");
-//        });
-//    }
 }

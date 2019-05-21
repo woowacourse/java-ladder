@@ -1,17 +1,17 @@
 package laddergame.domain.reward;
 
-import laddergame.NameList;
-import laddergame.AllowDuplicateNamesFactory;
+import laddergame.domain.AbstractNamesFactory;
+import laddergame.domain.NameList;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class RewardsFactory extends AllowDuplicateNamesFactory {
+public class RewardsNamesFactory extends AbstractNamesFactory {
     private final String names;
 
-    public RewardsFactory(final String names) {
+    public RewardsNamesFactory(final String names) {
         this.names = names;
     }
 
@@ -29,8 +29,8 @@ public class RewardsFactory extends AllowDuplicateNamesFactory {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof RewardsFactory)) return false;
-        RewardsFactory that = (RewardsFactory) o;
+        if (!(o instanceof RewardsNamesFactory)) return false;
+        RewardsNamesFactory that = (RewardsNamesFactory) o;
         return Objects.equals(names, that.names);
     }
 

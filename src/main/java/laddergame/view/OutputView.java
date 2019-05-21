@@ -1,6 +1,6 @@
 package laddergame.view;
 
-import laddergame.NameList;
+import laddergame.domain.NameList;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.result.GameResultFormat;
 

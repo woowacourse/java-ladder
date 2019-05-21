@@ -5,7 +5,7 @@ import java.util.Objects;
 public class LadderHeight {
     private final int ladderHeight;
 
-    public LadderHeight(String height) {
+    public LadderHeight(final String height) {
         this.ladderHeight = parse(height);
         checkValidBound();
     }
@@ -16,12 +16,16 @@ public class LadderHeight {
         }
     }
 
-    private int parse(String height) {
+    private int parse(final String height) {
         try {
             return Integer.parseInt(height);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자를 입력해주세요");
         }
+    }
+
+    public int getLadderHeight() {
+        return this.ladderHeight;
     }
 
     @Override
@@ -35,9 +39,5 @@ public class LadderHeight {
     @Override
     public int hashCode() {
         return Objects.hash(ladderHeight);
-    }
-
-    public int getLadderHeight() {
-        return this.ladderHeight;
     }
 }

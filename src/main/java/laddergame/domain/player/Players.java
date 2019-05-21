@@ -1,52 +1,53 @@
 package laddergame.domain.player;
 
-import laddergame.NameList;
+import laddergame.domain.NameList;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Players implements NameList {
-    private final List<Player> players;
+	private final List<Player> players;
 
-    public Players(List<Player> players) {
-        this.players = players;
-    }
+	public Players(final List<Player> players) {
+		this.players = new ArrayList<>(players);
+	}
 
-    @Override
-    public String getNameOfIndex(int index) {
-        return players.get(index - 1).getName();
-    }
+	@Override
+	public String getNameOfIndex(int index) {
+		return players.get(index - 1).getName();
+	}
 
-    @Override
-    public boolean isSizeEqual(NameList other) {
-        return (this.players.size() == other.getSize());
-    }
+	@Override
+	public boolean isSizeEqual(NameList other) {
+		return (this.players.size() == other.getSize());
+	}
 
-    @Override
-    public int getSize() {
-        return players.size();
-    }
+	@Override
+	public int getSize() {
+		return players.size();
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Players)) return false;
-        Players that = (Players) o;
-        return Objects.equals(players, that.players);
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Players)) return false;
+		Players that = (Players) o;
+		return Objects.equals(players, that.players);
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(players);
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(players);
+	}
 
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Player player : players) {
-            stringBuilder.append(String.format("%-" + player.BOUND_OF_NAME_LENGTH + "s", player));
-            stringBuilder.append(" ");
-        }
-        return stringBuilder.toString();
-    }
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		for (Player player : players) {
+			stringBuilder.append(String.format("%-" + player.BOUND_OF_NAME_LENGTH + "s", player));
+			stringBuilder.append(" ");
+		}
+		return stringBuilder.toString();
+	}
 }

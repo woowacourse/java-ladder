@@ -1,30 +1,31 @@
 package laddergame.domain.reward;
 
-import laddergame.NameList;
+import laddergame.domain.NameList;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Rewards implements NameList {
     private final List<Reward> rewards;
 
-    public Rewards(List<Reward> rewards) {
-        this.rewards = rewards;
+    public Rewards(final List<Reward> rewards) {
+        this.rewards = new ArrayList(rewards);
     }
 
     @Override
-    public String getNameOfIndex(int index) {
+    public String getNameOfIndex(final int index) {
         return rewards.get(index - 1).getName();
     }
 
     @Override
-    public boolean isSizeEqual(NameList other) {
+    public boolean isSizeEqual(final NameList other) {
         return (this.rewards.size() == other.getSize());
     }
 
     @Override
     public int getSize() {
-        return 0;
+        return rewards.size();
     }
 
     @Override

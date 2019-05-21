@@ -1,4 +1,4 @@
-package laddergame;
+package laddergame.domain;
 
 public interface NameList {
 

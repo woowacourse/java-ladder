@@ -1,12 +1,11 @@
 package laddergame.controller;
 
-import laddergame.NameList;
+import laddergame.domain.NameList;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
-import laddergame.domain.player.PlayersFactory;
+import laddergame.domain.player.PlayersNamesFactory;
 import laddergame.domain.result.GameResult;
-import laddergame.domain.reward.RewardsFactory;
-import laddergame.domain.reward.Rewards;
+import laddergame.domain.reward.RewardsNamesFactory;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -14,11 +13,9 @@ public class LadderGameController {
 
     private GameResult ladderGameResult;
 
-    public LadderGameController() {
-        init();
-    }
+    public LadderGameController() { }
 
-    private void init() {
+    public void init() {
         NameList players = assignPlayers();
         NameList rewards = assignRewards(players);
         LadderHeight ladderHeight = assignLadderHeight();
@@ -31,7 +28,7 @@ public class LadderGameController {
 
 
     private NameList assignPlayers() {
-        PlayersFactory playersFactory = new PlayersFactory(InputView.inputPlayers());
+        PlayersNamesFactory playersFactory = new PlayersNamesFactory(InputView.inputPlayers());
         try {
             return playersFactory.create();
         } catch (IllegalArgumentException e) {
@@ -41,9 +38,9 @@ public class LadderGameController {
     }
 
     private NameList assignRewards(NameList players) throws IllegalArgumentException {
-        RewardsFactory rewardsFactory = new RewardsFactory(InputView.inputRewards());
+        RewardsNamesFactory rewardsFactory = new RewardsNamesFactory(InputView.inputRewards());
         try {
-            Rewards rewards = (Rewards) rewardsFactory.create();
+            NameList rewards = rewardsFactory.create();
             checkPlayersWithRewards(players, rewards);
             return rewards;
         } catch (IllegalArgumentException e) {
