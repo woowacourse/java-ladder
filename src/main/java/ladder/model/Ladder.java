@@ -15,6 +15,14 @@ public class Ladder {
         linesInit(countOfPlayer, height);
     }
 
+    public int move(int startPosition) {
+        int currentPosition = startPosition;
+        for (int currentLine = 0; currentLine < this.ladderSize(); currentLine++) {
+            currentPosition += this.getLine(currentLine).move(currentPosition);
+        }
+        return currentPosition;
+    }
+
     public int ladderSize() {
         return this.lines.size();
     }

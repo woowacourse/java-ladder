@@ -14,7 +14,7 @@ public class LineTest {
 
     @Test
     void 랜덤_boolean에_따라_생성된_한_라인의_가로라인이_겹치지_않는지_검증() {
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
             assertDoesNotThrow(() -> new Line(5).checkLineValid());
         }
     }

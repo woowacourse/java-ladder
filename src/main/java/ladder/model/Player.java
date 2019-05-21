@@ -15,14 +15,6 @@ public class Player {
         this.name = name;
     }
 
-    int playGame(Ladder ladder, int startPosition) {
-        int currentPosition = startPosition;
-        for (int currentLine = 0; currentLine < ladder.ladderSize(); currentLine++) {
-            currentPosition += ladder.getLine(currentLine).move(currentPosition);
-        }
-        return currentPosition;
-    }
-
     String getName() {
         return this.name;
     }
