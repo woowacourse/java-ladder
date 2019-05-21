@@ -46,7 +46,7 @@ public class Player {
     }
 
     void stepDown(Ladder ladder, LadderResult ladderResult) {
-        ladderResult.addResult(name, ladder.answerResult(position));
+        ladderResult.addResult(this, ladder.answerResult(position));
     }
 
     @Override

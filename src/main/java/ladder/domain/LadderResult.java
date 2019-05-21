@@ -6,8 +6,8 @@ import java.util.Map;
 public class LadderResult {
     private Map<Player, ResultItem> ladderingResult = new LinkedHashMap<>();
 
-    public void addResult(String name, ResultItem resultItem) {
-        ladderingResult.put(new Player(name), resultItem);
+    public void addResult(Player player, ResultItem resultItem) {
+        ladderingResult.put(player, resultItem);
     }
 
     public ResultItem getResultOf(String name) {
