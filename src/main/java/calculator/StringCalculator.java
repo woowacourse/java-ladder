@@ -1,6 +1,8 @@
 package calculator;
 
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,15 +11,10 @@ public class StringCalculator {
     private final String COLON = ":";
     private final String COL_LINE ="|";
     public int add(String text) {
-        if (isBlank(text)) return 0;
+        if (StringUtils.isBlank(text)) return 0;
 
         return sum(toInts(split(text)));
     }
-
-    private boolean isBlank(String text) {
-        return text == null || text.isEmpty();
-    }
-    
 
     private String[] split(String text) {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
