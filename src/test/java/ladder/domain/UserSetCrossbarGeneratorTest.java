@@ -9,10 +9,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserSetCrossbarGeneratorTest {
     @Test
-    void name() {
+    void 크로스바가_제대로_생성되는지_테스트() {
         List<Boolean> userSetCrossbars = Arrays.asList(false, true, false, true, false);
         UserSetCrossbarGenerator testGenerator = new UserSetCrossbarGenerator(userSetCrossbars);
 
-        assertThat(testGenerator.generateCrossbars()).isEqualTo(new Crosspoints(userSetCrossbars));
+        assertThat(testGenerator.generateCrossbars()).isEqualTo(new Crosspoints(new Crossbar(userSetCrossbars)));
     }
 }

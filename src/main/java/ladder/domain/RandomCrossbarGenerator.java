@@ -19,7 +19,7 @@ public class RandomCrossbarGenerator implements CrossbarGenerator {
     public Crosspoints generateCrossbars() {
         List<Boolean> crossbars = new ArrayList<>();
         setCrossbars(crossbars);
-        return new Crosspoints(crossbars);
+        return new Crosspoints(new Crossbar(crossbars));
     }
 
     private void setCrossbars(List<Boolean> crossbars) {

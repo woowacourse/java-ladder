@@ -17,8 +17,8 @@ public class LadderTest {
 
     @BeforeEach
     void setUp() {
-        crosspoints1 = new Crosspoints(Arrays.asList(false, false));
-        crosspoints2 = new Crosspoints(Arrays.asList(false, true, false));
+        crosspoints1 = new Crosspoints(new Crossbar(Arrays.asList(false, false)));
+        crosspoints2 = new Crosspoints(new Crossbar(Arrays.asList(false, true, false)));
         userSetCroossbar = Arrays.asList(false, true, false);
         resultItems = Arrays.asList(new ResultItem("a"), new ResultItem("b"));
     }
