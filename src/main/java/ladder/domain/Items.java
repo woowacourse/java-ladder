@@ -33,14 +33,8 @@ public class Items implements Iterable<Item> {
         for (String name : names.split(SIGN_SEPARATOR)) {
             items.add(Item.newInstance(name));
         }
-        makeTrow(items.size() != rowSize, EX_OUTPUT_SAME_SIZE);
+        ThrowException.checkArgument(items.size() != rowSize, EX_OUTPUT_SAME_SIZE);
         return new Items(items);
-    }
-
-    private static void makeTrow(boolean state, String message) {
-        if (state) {
-            throw new IllegalArgumentException(message);
-        }
     }
 
     /**

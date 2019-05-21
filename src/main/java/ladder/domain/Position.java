@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import jdk.internal.util.Preconditions;
-
 import java.util.Objects;
 import java.util.Random;
 
