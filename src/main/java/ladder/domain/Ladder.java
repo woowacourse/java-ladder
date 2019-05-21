@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Ladder {
@@ -36,5 +37,18 @@ public class Ladder {
     @Override
     public String toString() {
         return this.lines.stream().map(Line::toString).collect(Collectors.joining(NEXT_LINE));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladder ladder = (Ladder) o;
+        return Objects.equals(lines, ladder.lines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lines);
     }
 }

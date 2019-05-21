@@ -11,12 +11,11 @@ public class LadderGenerator {
     private LadderGenerator() {
     }
 
-    public static Ladder makeLadder(int countOfPlayers, int countOfLines) {
+    public static Ladder makeLadder(int countOfPlayers, int countOfLines, LineGenerator LineGenerator) {
         List<Line> lines = new ArrayList<>();
-        LineGenerator lineGenerator = new LineGenerator();
 
         for (int i = 0; i < countOfLines; i++) {
-            lines.add(lineGenerator.makeLine(countOfPlayers));
+            lines.add(LineGenerator.makeLine(countOfPlayers));
         }
         return new Ladder(lines);
     }

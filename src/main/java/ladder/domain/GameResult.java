@@ -20,7 +20,7 @@ public class GameResult {
         }
         return results.keySet()
                 .stream()
-                .filter(player -> player.getName().equals(message))
+                .filter(player -> player.isSameName(message))
                 .map(player -> results.get(player).getResult())
                 .collect(Collectors.joining());
     }

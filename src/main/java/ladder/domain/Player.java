@@ -28,4 +28,8 @@ public class Player {
         return name;
     }
 
+    public boolean isSameName(String name) {
+        return this.name.equals(name);
+    }
+
 }

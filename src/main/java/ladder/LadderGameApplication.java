@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.*;
 import ladder.generator.LadderGenerator;
+import ladder.generator.RandomLineGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -23,7 +24,7 @@ public class LadderGameApplication {
                 .collect(Collectors.toList());
         int countOfLines = InputView.getCountOfLines();
 
-        Ladder ladder = LadderGenerator.makeLadder(players.size(), countOfLines);
+        Ladder ladder = LadderGenerator.makeLadder(players.size(), countOfLines, new RandomLineGenerator());
         LadderGame ladderGame = new LadderGame(ladder);
         GameResult gameResult = ladderGame.play(players, drawResults);
 

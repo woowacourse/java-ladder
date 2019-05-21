@@ -33,6 +33,10 @@ public class Line {
         }
     }
 
+    public boolean isSameLength(int length){
+        return length == points.size();
+    }
+
     @Override
     public String toString() {
         return DEFAULT_BAR + this.points.stream().map(Point::toString).collect(Collectors.joining(DEFAULT_BAR));

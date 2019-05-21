@@ -10,7 +10,7 @@ public class Point {
     private int position;
     private boolean right;
 
-    Point(boolean left, int position, boolean right) {
+    public Point(boolean left, int position, boolean right) {
         checkSameTrue(left, right);
         this.left = left;
         this.position = position;
@@ -49,6 +49,4 @@ public class Point {
     public String toString() {
         return right ? CROSS_BAR : UNCROSS_BAR;
     }
-
-
 }
