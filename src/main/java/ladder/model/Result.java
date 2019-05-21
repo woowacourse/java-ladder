@@ -7,23 +7,21 @@ import java.util.stream.IntStream;
 public class Result implements Iterator {
     private final Players players;
     private final Rewards rewards;
-    private final List<Integer> result;
-    private int index = 0;
+    private final Queue<Integer> result;
 
     Result(Players players, Rewards rewards, Ladder ladder, List<String> query) {
         this.players = players;
         this.rewards = ladder.apply(players, rewards);
-        this.result = Collections.unmodifiableList(
-                IntStream.range(0, players.number()).boxed()
-                .filter(i -> query.contains("all") || query.contains(players.get(i)))
-                .collect(Collectors.toList())
-        );
+        this.result = IntStream.range(0, players.number()).boxed()
+                        .filter(i -> query.contains("all") || query.contains(players.get(i)))
+                        .collect(Collectors.toCollection(LinkedList::new));
     }
     public boolean hasNext() {
-        return index < result.size();
+        return !result.isEmpty();
     }
 
     public String next() {
-        return players.get(result.get(index)) + " : " + rewards.get(result.get(index++));
+        final int index = result.poll();
+        return players.get(index) + " : " + rewards.get(index);
     }
 }
