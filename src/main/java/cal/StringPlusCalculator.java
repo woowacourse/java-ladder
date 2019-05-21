@@ -3,6 +3,7 @@ package cal;
 public class StringPlusCalculator {
     private static final String DEFAULT_SEPARATOR = "[,|:]";
     private static final int NON_CUSTOM_DELIMITER = -1;
+    private static final int VALID_BOUND_NUMBER = 0;
 
     public static int calculate(String expression) {
         expression = checkBlank(expression);
@@ -53,7 +54,7 @@ public class StringPlusCalculator {
 
     private static void checkNegative(String[] numbers) {
         for (String number : numbers) {
-            if (Integer.parseInt(number) < 0) throw new RuntimeException();
+            if (Integer.parseInt(number) < VALID_BOUND_NUMBER) throw new IllegalArgumentException();
         }
     }
 
