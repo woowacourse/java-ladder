@@ -1,6 +1,7 @@
 package StringAddCalculator;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class Validator {
     static String checkEmpty(String input) {
@@ -15,7 +16,8 @@ public class Validator {
     }
 
     static boolean matchCustomSplitter(String input) {
-        return input.matches("//.*\\n.*");
+        Pattern pattern = Pattern.compile("//.*\\n.*");
+        return pattern.matcher(input).matches();
     }
 
     static int checkNegativeValue(int number) {
