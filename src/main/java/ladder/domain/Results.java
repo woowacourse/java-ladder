@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Results {
+    private static final String VIOLATE_GAME_RESULTS = "결과 값의 수가 참가자 수와 다릅니다.";
+
     private static final List<Result> results = new ArrayList<>();
 
     public Results(List<String> resultNames, int playerNum) {
@@ -15,7 +17,7 @@ public class Results {
 
     private void checkNumberOfResult(int resultNum, int playerNum) {
         if (resultNum != playerNum) {
-            throw new IllegalArgumentException(UserOutput.VIOLATE_GAME_RESULTS.getOutputMessage());
+            throw new IllegalArgumentException(VIOLATE_GAME_RESULTS);
         }
     }
 

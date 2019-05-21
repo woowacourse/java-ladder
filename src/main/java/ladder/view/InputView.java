@@ -8,10 +8,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+    private static final String DEMAND_PLAYER_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String DEMAND_RESULTS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String DEMAND_LADDER_HEIGHT = "최대 사다리 높이는 얼마인가요?";
+    private static final String VIOLATE_LADDER_HEIGHT = "사다리의 높이를 숫자로 입력해주세요.";
+    private static final String DEMAND_PLAYER_NAME_FOR_RESULT = "\n결과를 보고 싶은 사람은?";
+
     private static Scanner scanner = new Scanner(System.in);
 
     public static String inputNames() {
-        System.out.println(UserOutput.DEMAND_PLAYER_NAMES.getOutputMessage());
+        System.out.println(DEMAND_PLAYER_NAMES);
         return scanner.nextLine();
     }
 
@@ -36,7 +42,7 @@ public class InputView {
     }
 
     public static String inputResults() {
-        System.out.println(UserOutput.DEMAND_GAME_RESULTS.getOutputMessage());
+        System.out.println(DEMAND_RESULTS);
         return scanner.nextLine();
     }
 
@@ -51,12 +57,12 @@ public class InputView {
     }
 
     public static int inputHeight() {
-        System.out.println(UserOutput.DEMAND_LADDER_HEIGHT.getOutputMessage());
+        System.out.println(DEMAND_LADDER_HEIGHT);
 
         try {
             return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
-            System.out.println(UserOutput.VIOLATE_LADDER_HEIGHT.getOutputMessage());
+            System.out.println(VIOLATE_LADDER_HEIGHT);
             return inputHeight();
         }
     }
@@ -73,7 +79,7 @@ public class InputView {
     }
 
     public static String inputNameForResult() {
-        System.out.println(UserOutput.DEMAND_PLAYER_NAME_FOR_RESULT.getOutputMessage());
+        System.out.println(DEMAND_PLAYER_NAME_FOR_RESULT);
         return scanner.nextLine();
     }
 }

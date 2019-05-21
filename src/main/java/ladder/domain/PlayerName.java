@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class PlayerName {
     private static final int MAX_PLAYER_NAME_LENGTH = 5;
+    private static final String VIOLATE_PLAYER_NAMES = "참가자 이름을 5글자 이내로 입력해주세요.";
 
     private final String name;
 
@@ -14,7 +15,7 @@ public class PlayerName {
 
     private static void checkNameLength(String name) {
         if (name.length() > MAX_PLAYER_NAME_LENGTH) {
-            throw new IllegalArgumentException(UserOutput.VIOLATE_PLAYER_NAMES.getOutputMessage());
+            throw new IllegalArgumentException(VIOLATE_PLAYER_NAMES);
         }
     }
 
