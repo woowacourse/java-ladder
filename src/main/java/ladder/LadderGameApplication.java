@@ -6,7 +6,7 @@ import ladder.util.LadderMaker;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-public class Application {
+public class LadderGameApplication {
     public static void main(String[] args) {
         LadderGameData ladderGameData = generateData();
         Ladder ladder = new Ladder(LadderMaker.generateAllPoints(ladderGameData.getHeight(), ladderGameData.getPerson().getCountOfPerson()));
