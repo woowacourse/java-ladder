@@ -18,4 +18,8 @@ public class Line {
     public List<Direction> getDirections() {
         return Collections.unmodifiableList(directions);
     }
+
+    public int move(int currentLocation) {
+        return directions.get(currentLocation).getDirection();
+    }
 }

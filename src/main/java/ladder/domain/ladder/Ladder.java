@@ -1,14 +1,13 @@
 package ladder.domain.ladder;
 
 import ladder.domain.linegenerator.LineGenerator;
-import ladder.domain.linegenerator.impl.RandomLineGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private List<Line> lines;
+    private final List<Line> lines;
 
     public Ladder(LineGenerator lineGenerator, Height height) {
         lines = new ArrayList<>();

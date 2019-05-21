@@ -15,7 +15,6 @@ public class RandomLineGenerator implements LineGenerator {
 
     private final int numberOfPlayers;
 
-
     public RandomLineGenerator(int numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
     }
@@ -35,7 +34,7 @@ public class RandomLineGenerator implements LineGenerator {
     }
 
     private void generateRandomDirections(List<Direction> randomDirections) {
-        randomDirections.add(Direction.valueOf(generateRandomNumber()));
+        randomDirections.add(Direction.of(generateRandomNumber()));
         for (int i = 1; i < numberOfPlayers; i++) {
             addDirection(randomDirections);
         }
@@ -51,7 +50,7 @@ public class RandomLineGenerator implements LineGenerator {
             randomDirections.add(Direction.STRAIGHT);
             return;
         }
-        randomDirections.add(Direction.valueOf(generateRandomNumber()));
+        randomDirections.add(Direction.of(generateRandomNumber()));
     }
 
     private int generateRandomNumber() {

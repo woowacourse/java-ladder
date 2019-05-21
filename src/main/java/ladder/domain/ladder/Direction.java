@@ -13,18 +13,22 @@ public enum Direction {
         this.direction = direction;
     }
 
-    public int getDirection() {
-        return direction;
-    }
-
-    public static Direction valueOf(int directionIntValue) {
+    public static Direction of(int direction) {
         return Arrays.stream(values())
-                .filter(direction -> direction.getDirection() == directionIntValue)
+                .filter(d -> d.match(direction))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않은 Direction 입니다."));
     }
 
     public static boolean isRight(Direction prevDirection){
         return prevDirection == RIGHT;
+    }
+
+    public boolean match(int direction) {
+        return this.direction == direction;
+    }
+
+    public int getDirection() {
+        return direction;
     }
 }

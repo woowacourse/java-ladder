@@ -38,7 +38,6 @@ public class OutputView {
         System.out.print(NOT_CONNECTED_LINE_COMPONENT);
     }
 
-    // TODO interface 적용해서 중복코드 줄여보기? (Players, Rewards)
     public static void printPlayers(Players players) {
         String joinedPlayer = players.getPlayers().stream()
                 .map(player -> String.format(PRINT_FORMAT, player.getName()))
