@@ -15,7 +15,7 @@ public class PlayerName {
         this.name = name;
     }
 
-    private static void checkNameLength(String name) {
+    public static void checkNameLength(String name) {
         CustomStringUtils.checkIsBlank(name);
 
         if (name.length() > MAX_PLAYER_NAME_LENGTH) {

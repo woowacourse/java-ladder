@@ -17,7 +17,7 @@ public class Ladder {
     }
 
     public static void checkHeightIsPositive(int height) {
-        if (height < 0) {
+        if (height <= 0) {
             throw new NumberFormatException(VIOLATE_LADDER_HEIGHT_POSITIVE);
         }
     }

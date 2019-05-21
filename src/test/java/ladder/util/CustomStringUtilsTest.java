@@ -2,15 +2,30 @@ package ladder.util;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CustomStringUtilsTest {
+    @Test
+    void 한글자_이상_입력될_경우() {
+        assertDoesNotThrow(() -> CustomStringUtils.checkIsBlank("a"));
+    }
 
     @Test
-    void 쉼표로_문자열_구분하기() {
-        assertThat(CustomStringUtils.splitString("pobi,honux,crong,jk"))
-                .isEqualTo(Arrays.asList("pobi", "honux", "crong", "jk"));
+    void Null_입력될_경우_예외_반환() {
+        assertThrows(IllegalArgumentException.class,
+                () -> CustomStringUtils.checkIsBlank(null));
+    }
+
+    @Test
+    void 빈문자열_입력될_경우_예외_반환() {
+        assertThrows(IllegalArgumentException.class,
+                () -> CustomStringUtils.checkIsBlank(""));
+    }
+
+    @Test
+    void 공백_입력될_경우_예외_반환() {
+        assertThrows(IllegalArgumentException.class,
+                () -> CustomStringUtils.checkIsBlank(" "));
     }
 }
