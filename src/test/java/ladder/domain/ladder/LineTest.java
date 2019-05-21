@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.Line;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

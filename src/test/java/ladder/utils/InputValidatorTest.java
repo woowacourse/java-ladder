@@ -11,12 +11,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class InputValidatorTest {
     @Test
     void 입력값의_길이_체크() {
-        assertThatThrownBy(() -> InputValidator.isWrongLength("pooooooobi,deeeeeenis")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> InputValidator.checkWrongLength("pooooooobi,deeeeeenis")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 빈값_체크() {
-        assertThatThrownBy(() -> InputValidator.isWrongLength(" ,denis")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> InputValidator.checkWrongLength(" ,denis")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

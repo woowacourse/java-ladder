@@ -45,7 +45,7 @@ public class InputView {
         String input;
         try {
             input = SCANNER.nextLine();
-            InputValidator.isWrongLength(input);
+            InputValidator.checkWrongLength(input);
             return input;
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());

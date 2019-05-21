@@ -23,19 +23,17 @@ public class LadderController {
         LadderGame ladderGame = new LadderGame(ladder);
         LadderGameResult ladderGameResult = ladderGame.play(players, rewards);
 
-        OutputView.printPlayers(players);
-        OutputView.printLadder(ladder);
-        OutputView.printRewards(rewards);
+        OutputView.printLadderGame(players, ladder, rewards);
 
         showLadderGameResult(ladderGameResult);
     }
 
     private static void showLadderGameResult(LadderGameResult ladderGameResult) {
         String inputPlayerForReward;
-        do{
+        do {
             inputPlayerForReward = InputView.inputPlayerForResult(ladderGameResult.keySet());
             OutputView.printLadderGameResult(ladderGameResult, inputPlayerForReward);
-        }while(!ALL.equals(inputPlayerForReward));
+        } while (!ALL.equals(inputPlayerForReward));
 
     }
 
