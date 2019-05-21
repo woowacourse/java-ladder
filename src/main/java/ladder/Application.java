@@ -8,13 +8,13 @@ import ladder.view.OutputView;
 public class Application {
     public static void main(String[] args) {
         LadderGameData ladderGameData = generateData();
-        LadderGame ladderGame = new LadderGame(LadderGame.generateAllPoints(ladderGameData.getHeight(), ladderGameData.getPerson().getCountOfPerson()));
-        OutputView.printLadder(ladderGame, ladderGameData);
-        ResultProcessor resultProcessor = ladderGame.generateAllResults(ladderGameData);
+        Ladder ladder = new Ladder(ladderGameData.getHeight(), ladderGameData.getPerson().getCountOfPerson());
+        OutputView.printLadder(ladder, ladderGameData);
+        ResultMatcher resultMatcher = new ResultMatcher(ladder, ladderGameData);
         String requestedName;
         do {
             requestedName = InputView.findResultName(ladderGameData.getPerson());
-            OutputView.printLadderResult(resultProcessor.getResult(requestedName));
+            OutputView.printLadderResult(resultMatcher.getResult(requestedName));
         } while (!InputHelper.isAll(requestedName));
     }
 
