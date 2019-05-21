@@ -12,26 +12,26 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ItemsTest {
     @Test
     void create_생성() {
-        Items items = Items.newBuilder("name,hi,name", 3);
-        assertThat(items).isEqualTo(Items.newBuilder("name, hi, name", 3));
+        Items items = Items.newInstance("name,hi,name", 3);
+        assertThat(items).isEqualTo(Items.newInstance("name, hi, name", 3));
     }
 
     @Test
     void create_add_생성() {
-        Items items = Items.newBuilder("name, hi, name", 3);
-        assertThat(items).isEqualTo(Items.newBuilder("name,hi,name", 3));
+        Items items = Items.newInstance("name, hi, name", 3);
+        assertThat(items).isEqualTo(Items.newInstance("name,hi,name", 3));
     }
 
     @Test
     void create_개수_다름_예외() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Items.newBuilder("name, hi, name", 4);
+            Items.newInstance("name, hi, name", 4);
         });
     }
 
     @Test
     void iter_확인() {
-        for (Item item : Items.newBuilder("name, pass, 1000", 3)) {
+        for (Item item : Items.newInstance("name, pass, 1000", 3)) {
             System.out.println(item);
         }
     }

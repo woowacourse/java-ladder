@@ -6,7 +6,7 @@ import java.util.Objects;
 
 /**
  * 사용자 클래스
- * <br> Player player = Player.newBuilder("name")
+ * <br> Player player = Player.newInstance("name")
  *
  * @author heebg
  * @version 1.0 2019-05-17
@@ -30,22 +30,16 @@ public class Player {
      * @param name 이름
      * @return
      */
-    public static Player newBuilder(String name) {
+    public static Player newInstance(String name) {
         return new Player(name);
     }
 
     private String checkCondition(String name) {
         name = name.trim();
-        makeThrow(StringUtils.isBlank(name), EX_INPUT_RANGE);
-        makeThrow(name.length() > CNT_MAX_INPUT_RANGE, EX_INPUT_RANGE);
-        makeThrow(name.equals(SIGH_EX_NAME), EX_NAME_EXSIGN);
+        ThrowException.checkArgument(StringUtils.isBlank(name), EX_INPUT_RANGE);
+        ThrowException.checkArgument(name.length() > CNT_MAX_INPUT_RANGE, EX_INPUT_RANGE);
+        ThrowException.checkArgument(name.equals(SIGH_EX_NAME), EX_NAME_EXSIGN);
         return name;
-    }
-
-    private void makeThrow(boolean state, String message) {
-        if (state) {
-            throw new IllegalArgumentException(message);
-        }
     }
 
     @Override

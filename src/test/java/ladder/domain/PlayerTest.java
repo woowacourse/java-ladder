@@ -12,34 +12,34 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class PlayerTest {
     @Test
     void create_생성() {
-        Player player = Player.newBuilder("namea");
-        assertThat(Player.newBuilder("namea")).isEqualTo(player);
+        Player player = Player.newInstance("namea");
+        assertThat(Player.newInstance("namea")).isEqualTo(player);
     }
 
     @Test
     void create_이름_공백_예외() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Player.newBuilder("");
+            Player.newInstance("");
         });
     }
 
     @Test
     void create_이름_글자수_예외() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Player.newBuilder("aaaaaa");
+            Player.newInstance("aaaaaa");
         });
     }
 
     @Test
     void create_공백_삭제되는지_확인() {
-        Player player = Player.newBuilder(" name ");
-        assertThat(Player.newBuilder("name")).isEqualTo(player);
+        Player player = Player.newInstance(" name ");
+        assertThat(Player.newInstance("name")).isEqualTo(player);
     }
 
     @Test
     void create_이름_all_예외() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Player.newBuilder("all");
+            Player.newInstance("all");
         });
     }
 }

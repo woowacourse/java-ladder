@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Player가 모여있는 객체
- * <br> Players players = Players.newBuilder("pobi, crong, name");
+ * <br> Players players = Players.newInstance("pobi, crong, name");
  *
  * @author heebg
  * @version 1.0 2019-05-17
@@ -27,24 +27,18 @@ public class Players implements Iterable<Player> {
      * @param names 이름들
      * @return Players
      */
-    public static Players newBuilder(String names) {
+    public static Players newInstance(String names) {
         List<Player> ladderPlayers = new ArrayList<>();
         for (String name : names.split(SIGN_SEPARATOR)) {
-            ladderPlayers.add(Player.newBuilder(name));
+            ladderPlayers.add(Player.newInstance(name));
         }
         return new Players(ladderPlayers);
     }
 
     private List<Player> checkCondition(List<Player> players) {
-        makeThrow(players.size() < CNT_MIN_INPUT_RANGE, EX_INPUT_COUNT);
+        ThrowException.checkArgument(players.size() < CNT_MIN_INPUT_RANGE, EX_INPUT_COUNT);
         checkInputDuple(players, EX_INPUT_DUPLE);
         return players;
-    }
-
-    private void makeThrow(boolean state, String message) {
-        if (state) {
-            throw new IllegalArgumentException(message);
-        }
     }
 
     private void checkInputDuple(List<Player> players, String message) {
@@ -52,7 +46,7 @@ public class Players implements Iterable<Player> {
         for (Player player : players) {
             checkDuple.add(player);
         }
-        makeThrow(checkDuple.size() != players.size(), message);
+        ThrowException.checkArgument(checkDuple.size() != players.size(), message);
     }
 
     /**
@@ -63,7 +57,7 @@ public class Players implements Iterable<Player> {
      * @return Players
      */
     public Players add(String playerName) {
-        players.add(Player.newBuilder(playerName));
+        players.add(Player.newInstance(playerName));
         return new Players(players);
     }
 

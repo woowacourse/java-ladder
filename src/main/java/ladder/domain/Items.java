@@ -28,10 +28,10 @@ public class Items implements Iterable<Item> {
      * @param rowSize 아이템 개수들
      * @return Items
      */
-    public static Items newBuilder(String names, int rowSize) {
+    public static Items newInstance(String names, int rowSize) {
         List<Item> items = new ArrayList<>();
         for (String name : names.split(SIGN_SEPARATOR)) {
-            items.add(Item.newBuilder(name));
+            items.add(Item.newInstance(name));
         }
         makeTrow(items.size() != rowSize, EX_OUTPUT_SAME_SIZE);
         return new Items(items);

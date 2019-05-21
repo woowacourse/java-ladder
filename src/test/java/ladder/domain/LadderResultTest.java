@@ -23,16 +23,16 @@ class LadderResultTest {
 
     @BeforeEach
     void setUp() {
-        players = Players.newBuilder("pobi, hello, mynam, is");
-        items = Items.newBuilder("pass, 1000, 2000, star",players.size());
-        lineResult = LineResult.newBuilder(Arrays.asList(3,2,0,1));
+        players = Players.newInstance("pobi, hello, mynam, is");
+        items = Items.newInstance("pass, 1000, 2000, star",players.size());
+        lineResult = LineResult.newInstance(Arrays.asList(3,2,0,1));
 
-        ladderResult = LadderResult.newBuild(players, items, lineResult);
+        ladderResult = LadderResult.newInstance(players, items, lineResult);
         result = new HashMap<>();
-        result.put(Player.newBuilder("pobi"), Item.newBuilder("star"));
-        result.put(Player.newBuilder("hello"), Item.newBuilder("2000"));
-        result.put(Player.newBuilder("mynam"), Item.newBuilder("pass"));
-        result.put(Player.newBuilder("is"), Item.newBuilder("1000"));
+        result.put(Player.newInstance("pobi"), Item.newInstance("star"));
+        result.put(Player.newInstance("hello"), Item.newInstance("2000"));
+        result.put(Player.newInstance("mynam"), Item.newInstance("pass"));
+        result.put(Player.newInstance("is"), Item.newInstance("1000"));
     }
 
     @Test

@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import jdk.internal.util.Preconditions;
+
 import java.util.Objects;
 import java.util.Random;
 
@@ -15,15 +17,9 @@ public class Position {
     private final boolean current;
 
     private Position(boolean hasLeft, boolean current) {
-        makeThrow(hasLeft && current, EX_POSITION_ROW_TRUE_DUPLE);
+        ThrowException.checkArgument(hasLeft && current , EX_POSITION_ROW_TRUE_DUPLE);
         this.hasLeft = hasLeft;
         this.current = current;
-    }
-
-    private void makeThrow(boolean state, String message) {
-        if (state) {
-            throw new IllegalArgumentException(message);
-        }
     }
 
     /**

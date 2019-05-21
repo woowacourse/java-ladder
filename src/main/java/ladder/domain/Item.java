@@ -6,7 +6,7 @@ import java.util.Objects;
 
 /**
  * 사다리 타기 실행 결과 아이템 클래스
- * <br> Item item = Item.newBuilder("pass")
+ * <br> Item item = Item.newInstance("pass")
  *
  * @author heebg
  * @version 1.0 2019-05-18
@@ -28,21 +28,15 @@ public class Item {
      * @param item 실행 결과 아이템
      * @return Item
      */
-    public static Item newBuilder(String item) {
+    public static Item newInstance(String item) {
         return new Item(item);
     }
 
     private String checkCondition(String item) {
         item = item.trim();
-        makeThrow(StringUtils.isBlank(item), EX_OUTPUT_LENGTH);
-        makeThrow(item.length() > CNT_MAX_OUTPUT_RANGE, EX_OUTPUT_LENGTH);
+        ThrowException.checkArgument(StringUtils.isBlank(item), EX_OUTPUT_LENGTH);
+        ThrowException.checkArgument(item.length() > CNT_MAX_OUTPUT_RANGE, EX_OUTPUT_LENGTH);
         return item;
-    }
-
-    private void makeThrow(boolean state, String message) {
-        if (state) {
-            throw new IllegalArgumentException(message);
-        }
     }
 
     @Override

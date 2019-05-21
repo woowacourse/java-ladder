@@ -19,7 +19,7 @@ public class LineResult implements Iterable<Integer> {
      * @param
      * @return
      */
-    public static LineResult newBuilder(int rowSize) {
+    public static LineResult newInstance(int rowSize) {
         List<Integer> result = new ArrayList<>();
         for (int i = 0; i < rowSize; i++) {
             result.add(i);
@@ -33,7 +33,7 @@ public class LineResult implements Iterable<Integer> {
      * @param result
      * @return
      */
-    public static LineResult newBuilder(List<Integer> result) {
+    public static LineResult newInstance(List<Integer> result) {
         return new LineResult(result);
     }
 

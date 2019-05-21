@@ -6,7 +6,7 @@ import java.util.*;
  * @author heebg
  * @version 1.0 2019-05-18
  */
-public class Ladder {
+public class Ladder implements Iterable<Line> {
     private final String FALSE_SHAPE = "|     ";
     private final String TRUE_SHAPE = "|-----";
 
@@ -23,10 +23,10 @@ public class Ladder {
      * @param depth
      * @return
      */
-    public static Ladder newBuilder(int rowSize, int depth) {
+    public static Ladder newInstance(int rowSize, int depth) {
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < depth; i++) {
-            ladder.add(Line.newBuilder(rowSize));
+            ladder.add(Line.newInstance(rowSize));
         }
         return new Ladder(ladder);
     }
@@ -37,7 +37,7 @@ public class Ladder {
      * @param lines
      * @return
      */
-    public static Ladder newBuilder(List<Line> lines) {
+    public static Ladder newInstance(List<Line> lines) {
         return new Ladder(lines);
     }
 
@@ -71,7 +71,7 @@ public class Ladder {
      * @return LadderResult
      */
     public LineResult executeResult() {
-        LineResult result = LineResult.newBuilder(ladder.get(0).size());
+        LineResult result = LineResult.newInstance(ladder.get(0).size());
         for (Line line : ladder) {
             result = result.move(line);
         }
@@ -86,7 +86,12 @@ public class Ladder {
      * @return LadderResult
      */
     public LadderResult makeResult(Players players, Items items) {
-        return LadderResult.newBuild(players, items, executeResult());
+        return LadderResult.newInstance(players, items, executeResult());
+    }
+
+    @Override
+    public Iterator<Line> iterator() {
+        return ladder.iterator();
     }
 
     @Override

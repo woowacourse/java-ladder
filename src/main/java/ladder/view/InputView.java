@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.Items;
 import ladder.domain.LadderResult;
 import ladder.domain.Players;
+import ladder.domain.ThrowException;
 
 import java.util.Scanner;
 
@@ -23,7 +24,7 @@ public class InputView {
 
     public static Players inputPlayers(String names) {
         try {
-            return Players.newBuilder(names);
+            return Players.newInstance(names);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return inputPlayers(inputPlayersFromUser());
@@ -37,7 +38,7 @@ public class InputView {
 
     public static Items inputItems(String names, int size) {
         try {
-            return Items.newBuilder(names, size);
+            return Items.newInstance(names, size);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return inputItems(inputItemsFromUser(), size);
@@ -52,7 +53,7 @@ public class InputView {
 
     public static int inputDepth(int depth) {
         try {
-            makeThrow(depth < MIN_DEPTH_RANGE, EX_DEPTH);
+            ThrowException.checkArgument(depth < MIN_DEPTH_RANGE, EX_DEPTH);
             return depth;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -84,9 +85,4 @@ public class InputView {
         return SCANNER.nextLine();
     }
 
-    private static void makeThrow(boolean status, String message) {
-        if (status) {
-            throw new IllegalArgumentException(message);
-        }
-    }
 }

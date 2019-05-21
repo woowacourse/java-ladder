@@ -29,7 +29,7 @@ public class LadderResult {
      * @param result
      * @return
      */
-    public static LadderResult newBuild(Players players, Items items, LineResult result) {
+    public static LadderResult newInstance(Players players, Items items, LineResult result) {
         return new LadderResult(players, items, result);
     }
 
@@ -52,7 +52,7 @@ public class LadderResult {
         if (name.equals(SIGN_EX_NAME)) {
             return findAllItem();
         }
-        return ladderResult.get(Player.newBuilder(name)).toString();
+        return ladderResult.get(Player.newInstance(name)).toString();
     }
 
     /**

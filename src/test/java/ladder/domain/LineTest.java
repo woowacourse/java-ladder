@@ -23,21 +23,21 @@ public class LineTest {
 
     @BeforeEach
     void setUp() {
-        line = Line.newBuilder().start(true).add(false).add(false).add(true).end();
+        line = Line.newInstance().start(true).add(false).add(false).add(true).end();
         shape = TRUE_SHAPE + FALSE_SHAPE + FALSE_SHAPE + TRUE_SHAPE + FALSE_SHAPE;
-        result = LineResult.newBuilder(Arrays.asList(1, 0, 2, 4, 3));
+        result = LineResult.newInstance(Arrays.asList(1, 0, 2, 4, 3));
     }
 
     @Test
     void create_생성() {
         List<Position> line = new ArrayList<>();
         line.add(Position.add(false, true));
-        assertThat(Line.newBuilder().start(true)).isEqualTo(Line.newBuilder(line));
+        assertThat(Line.newInstance().start(true)).isEqualTo(Line.newInstance(line));
     }
 
     @Test
     void create_리스트로_생성() {
-        Line line = Line.newBuilder().start(true).add(false).add(true).end();
+        Line line = Line.newInstance().start(true).add(false).add(true).end();
         for (Position position : line) {
             System.out.println(position.status());
         }
@@ -46,13 +46,13 @@ public class LineTest {
     @Test
     void create_true_true_예외_start() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Line.newBuilder().start(true).add(true).add(false).end();
+            Line.newInstance().start(true).add(true).add(false).end();
         });
     }
 
     @Test
     void create_newBuilder로_자동_생성() {
-        Line line = Line.newBuilder(5);
+        Line line = Line.newInstance(5);
         for (Position position : line) {
             System.out.println(position.status());
         }

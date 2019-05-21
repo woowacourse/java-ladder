@@ -19,7 +19,7 @@ public class Line implements Iterable<Position> {
      *
      * @return
      */
-    public static Line newBuilder() {
+    public static Line newInstance() {
         List<Position> line = new ArrayList<>();
         return new Line(line);
     }
@@ -30,7 +30,7 @@ public class Line implements Iterable<Position> {
      * @param line Position들
      * @return
      */
-    public static Line newBuilder(List<Position> line) {
+    public static Line newInstance(List<Position> line) {
         return new Line(line);
     }
 
@@ -40,7 +40,7 @@ public class Line implements Iterable<Position> {
      * @param rowSize 가로 길이
      * @return
      */
-    public static Line newBuilder(int rowSize) {
+    public static Line newInstance(int rowSize) {
         List<Position> line = new ArrayList<>();
         line.add(Position.start());
         if (rowSize == 1) {
@@ -116,7 +116,7 @@ public class Line implements Iterable<Position> {
      * @return LineResult
      */
     public LineResult move() {
-        return LineResult.newBuilder(line.size()).move(this);
+        return LineResult.newInstance(line.size()).move(this);
     }
 
     private void makeThrows(boolean state, String message) {
