@@ -2,10 +2,10 @@ package laddergame.domain;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class inputValidator {
+public class InputValidator {
     private final static String COMMA = ",";
 
-    private inputValidator() {
+    private InputValidator() {
     }
 
     public static void validateInput(String input) {

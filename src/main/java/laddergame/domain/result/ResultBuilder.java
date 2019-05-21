@@ -1,6 +1,6 @@
 package laddergame.domain.result;
 
-import laddergame.domain.inputValidator;
+import laddergame.domain.InputValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +17,7 @@ public class ResultBuilder {
     }
 
     public Results buildResults() {
-        inputValidator.validateInput(result);
+        InputValidator.validateInput(result);
 
         List<Result> results =  Arrays.stream(result.split(COMMA))
                 .map(Result::new)

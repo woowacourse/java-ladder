@@ -1,6 +1,6 @@
 package laddergame.domain.player;
 
-import laddergame.domain.inputValidator;
+import laddergame.domain.InputValidator;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -18,7 +18,7 @@ public class PlayerBuilder {
     }
 
     public Players buildPlayers() {
-        inputValidator.validateInput(names);
+        InputValidator.validateInput(names);
         List<Player> players = Arrays.stream(names.split(COMMA))
                 .map(String::trim)
                 .map(Player::new)
