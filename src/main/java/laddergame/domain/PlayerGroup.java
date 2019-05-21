@@ -1,9 +1,10 @@
 package laddergame.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class PlayerGroup {
+public class PlayerGroup implements Cloneable {
     private final List<Player> players;
 
     public PlayerGroup(final List<Player> names) {
@@ -16,6 +17,16 @@ public class PlayerGroup {
 
     public int getCountOfPlayers() {
         return players.size();
+    }
+
+    public PlayerGroup clone() {
+        List<Player> players = new ArrayList<>();
+
+        for (Player player : this.players) {
+            players.add(player);
+        }
+
+        return new PlayerGroup(players);
     }
 
     @Override
