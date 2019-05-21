@@ -20,11 +20,18 @@ public class LadderGameApp {
         String inputName;
 
         do {
-            inputName = InputView.getNameForResult();
-            OutputView.printGameResult(inputName, gameResult);
+            inputName = lookupGameResult(gameResult);
         } while (!"all".equals(inputName));
 
         OutputView.printAllGameResults(gameResult);
         OutputView.printEnd();
+    }
+
+    private static String lookupGameResult(LadderGameResult gameResult) {
+        String inputName = InputView.getNameForResult();
+        if (!"all".equals(inputName)) {
+            OutputView.printGameResult(inputName, gameResult);
+        }
+        return inputName;
     }
 }

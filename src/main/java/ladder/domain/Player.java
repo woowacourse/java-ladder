@@ -34,10 +34,6 @@ public class Player {
         return position;
     }
 
-    public boolean matchName(String name) {
-        return this.name.equals(name);
-    }
-
     public PlayerName getName() {
         return name;
     }

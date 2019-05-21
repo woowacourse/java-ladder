@@ -30,9 +30,15 @@ public class OutputView {
     }
 
     public static void printGameResult(String input, LadderGameResult gameResult) {
-        System.out.println(PRINT_RESULT_INDEX);
-        PlayerName name = new PlayerName(input);
-        System.out.println(gameResult.getGameResult().get(name));
+        try {
+            PlayerName name = new PlayerName(input);
+            Result result = gameResult.getResult(name);
+
+            System.out.println(PRINT_RESULT_INDEX);
+            System.out.println(result);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static void printAllGameResults(LadderGameResult gameResult) {
