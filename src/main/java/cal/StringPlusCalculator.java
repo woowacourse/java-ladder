@@ -1,8 +1,8 @@
 package cal;
 
 public class StringPlusCalculator {
-
-    public static final String DEFAULT_SEPARATOR = "[,|:]";
+    private static final String DEFAULT_SEPARATOR = "[,|:]";
+    private static final int NON_CUSTOM_DELIMITER = -1;
 
     public static int calculate(String expression) {
         expression = checkBlank(expression);
@@ -29,7 +29,7 @@ public class StringPlusCalculator {
     }
 
     private static String separatorGenerator(String expression, int nPosition) {
-        if (nPosition != -1) {
+        if (nPosition != NON_CUSTOM_DELIMITER) {
             String operator = expression.substring(2, nPosition);
             return "[,|:|" + operator + "]";
         }
