@@ -14,19 +14,19 @@ public class LineTest {
     @Test
     public void 라인의_너비가_1일때() {
         line = new Line(1);
-        assertThat(line.findRoute(1)).isEqualTo(NOT_MOVE);
+        assertThat(line.findRoute(0)).isEqualTo(NOT_MOVE);
     }
 
     @Test
     public void 라인의_너비가_2일때() {
         line = new Line(2);
         //          |       |
+        assertThat(line.findRoute(0)).isEqualTo(NOT_MOVE);
         assertThat(line.findRoute(1)).isEqualTo(NOT_MOVE);
-        assertThat(line.findRoute(2)).isEqualTo(NOT_MOVE);
 
         line.connect(1);
         //          |------|
-        assertThat(line.findRoute(1)).isEqualTo(RIGHT_MOVE);
-        assertThat(line.findRoute(2)).isEqualTo(LEFT_MOVE);
+        assertThat(line.findRoute(0)).isEqualTo(RIGHT_MOVE);
+        assertThat(line.findRoute(1)).isEqualTo(LEFT_MOVE);
     }
 }
