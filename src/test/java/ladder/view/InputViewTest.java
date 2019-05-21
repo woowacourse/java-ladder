@@ -13,7 +13,7 @@ public class InputViewTest {
     public void 이름_입력_테스트() {
         ByteArrayInputStream input = new ByteArrayInputStream("pobi,honux,crong,jk".getBytes());
         System.setIn(input);
-        assertEquals("pobi,honux,crong,jk", InputView.readName());
+        assertEquals(Arrays.asList("pobi", "honux", "crong", "jk"), InputView.readName());
     }
 
     @Test
