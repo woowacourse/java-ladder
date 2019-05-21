@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ParticipantTest {
     @Test
-    public void 이름5글자제한() {
+    public void 이름_5글자_제한() {
         assertThrows(IllegalArgumentException.class, () -> {
             new Participant("abcdef");
         });
     }
 
     @Test
-    public void 이름명령어제한() {
+    public void 이름_명령어_제한() {
         assertThrows(IllegalArgumentException.class, () -> {
             new Participant("all");
         });

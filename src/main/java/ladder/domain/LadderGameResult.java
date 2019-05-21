@@ -1,25 +1,23 @@
 package ladder.domain;
 
 import ladder.domain.participant.Participant;
-import ladder.domain.participant.ParticipantGroup;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class LadderGameResult {
-    private HashMap<Participant, String> gameResult = new LinkedHashMap<>();
-    private boolean isEnd = false;
+    private final Map<Participant, String> gameResult;
+    private boolean isEnd;
 
-    public LadderGameResult(ParticipantGroup participantGroup, Rewards rewards, List<Integer> ranking) {
-        for (Participant participant : participantGroup.getParticipantList()) {
-            gameResult.put(participant, rewards.getNthReward(ranking.get(participantGroup.getOrder(participant))));
-        }
+    public LadderGameResult(final Map<Participant, String> gameResult) {
+        this.gameResult = gameResult;
+        this.isEnd = false;
     }
 
-    private Participant findParticipant(String name) {
+    private Participant findParticipant(final String name) {
         Optional<Participant> participant = gameResult.keySet().stream()
                 .filter(x -> x.toString().equals(name))
                 .findFirst();
@@ -29,14 +27,14 @@ public class LadderGameResult {
         throw new IllegalArgumentException("등록되지 않은 참가자 입니다.");
     }
 
-    public HashMap<String, String> getResult(List<String> names) {
+    public Map<String, String> getResult(List<String> names) {
         names = checkInput(names);
         LinkedHashMap<String, String> gameResult = new LinkedHashMap<>();
         names.stream().forEach(name -> gameResult.put(name, this.gameResult.get(findParticipant(name))));
         return gameResult;
     }
 
-    private List<String> checkInput(List<String> names) {
+    private List<String> checkInput(final List<String> names) {
         if (names.size() == 1 && names.get(0).toLowerCase().equals("all")) {
             isEnd = true;
             return gameResult.keySet().stream()

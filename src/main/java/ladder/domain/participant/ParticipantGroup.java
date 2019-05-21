@@ -8,11 +8,12 @@ import java.util.stream.Collectors;
 public class ParticipantGroup {
     private static final int MIN_PARTICIPANTS_NUMBER = 2;
 
-    private final List<Participant> participants = new ArrayList<>();
+    private final List<Participant> participants;
 
     public ParticipantGroup(final List<String> names) {
         validateMinParticipants(names);
         validateDuplicatedParticipants(names);
+        this.participants = new ArrayList<>();
         names.stream().forEach(x -> this.participants.add(new Participant(x)));
     }
 
@@ -32,12 +33,9 @@ public class ParticipantGroup {
         return participants.size();
     }
 
-    public List<String> getNames() {
-        return participants.stream()
-                .map(x -> x.toString())
-                .collect(Collectors.toList());
+    public Participant getNthParticipant(final int index) {
+        return participants.get(index);
     }
-
     public List<Participant> getParticipantList() {
         return participants;
     }

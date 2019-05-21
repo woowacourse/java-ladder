@@ -8,12 +8,10 @@ import java.util.List;
 
 public class LadderGame {
     private final ParticipantGroup participantGroup;
-    private final Rewards rewards;
     private final Ladder ladder;
 
-    public LadderGame(final ParticipantGroup participants, final Rewards rewards, int ladderHeight) {
+    public LadderGame(final ParticipantGroup participants, final int ladderHeight) {
         this.participantGroup = participants;
-        this.rewards = rewards;
         this.ladder = new Ladder(ladderHeight, participantGroup.getSize());
     }
 
@@ -21,15 +19,11 @@ public class LadderGame {
         return ladder;
     }
 
-    public LadderGameResult getGameResult() {
-        return new LadderGameResult(participantGroup, rewards, makeLadderResult());
-    }
-
-    public List<Integer> makeLadderResult() {
+    public Match matchingPoint() {
         List<Integer> order = new ArrayList<>();
         for (int i = 0; i < participantGroup.getSize(); i++) {
             order.add(ladder.getEndPoint(i));
         }
-        return order;
+        return new Match(order);
     }
 }

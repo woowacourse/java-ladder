@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.line.LineDTO;
 import ladder.domain.rule.LadderRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,17 +12,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class LadderTest {
     int countPerson;
     int ladderHeight;
-    List<LineDTO> lines;
+    List<Line> lines;
 
     @BeforeEach
     public void setup() {
         countPerson = 3;
         ladderHeight = 5;
-        lines = new Ladder(ladderHeight, countPerson).getLineDTO();
+        lines = new Ladder(ladderHeight, countPerson).getLines();
     }
 
     @Test
-    public void 사다리생성확인() {
+    public void 사다리_사이즈_높이_일치_여부() {
         assertThat(lines.size()).isEqualTo(ladderHeight);
     }
 
@@ -48,13 +47,6 @@ public class LadderTest {
         assertThat(ladder.getEndPoint(0)).isEqualTo(1);
     }
 
-    @Test
-    public void 도착점찾기모두교차() {
-        Ladder ladder = new Ladder(3, 4, new ForcedRule());
-        assertThat(ladder.getEndPoint(0)).isEqualTo(3);
-        assertThat(ladder.getEndPoint(1)).isEqualTo(1);
-        assertThat(ladder.getEndPoint(2)).isEqualTo(2);
-    }
 }
 
 class ForcedRule implements LadderRule {
