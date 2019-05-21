@@ -20,7 +20,6 @@ public class LadderTest {
         System.out.println(ladder.drawLadderShape());
         for (Integer integer : ladder.getResult()) {
             System.out.print(integer + ", ");
-
         }
     }
 }

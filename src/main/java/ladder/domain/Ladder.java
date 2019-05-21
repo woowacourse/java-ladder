@@ -37,7 +37,7 @@ public class Ladder {
     private List<Integer> getResultLine(int playerSize, int depth) {
         List<Integer> moveLine = resetResultLines(playerSize);
         for (int i = 0; i < depth; i++) {
-            moveLine = moveRadderLIne(i, moveLine);
+            moveRadderLIne(i, moveLine);
         }
         return moveLine;
     }
@@ -50,12 +50,11 @@ public class Ladder {
         return line;
     }
 
-    private List<Integer> moveRadderLIne(int depth, List<Integer> moveLine) {
+    private void moveRadderLIne(int depth, List<Integer> moveLine) { //TODO
         for (int i = 0; i < moveLine.size(); i++) {
-            int nowPosition = moveLine.get(i);
-            moveLine.set(i, nowPosition + ladder.get(depth).getNextPosition(nowPosition));
+            int nowPosition = moveLine.get(i) + ladder.get(depth).getNextPosition(moveLine.get(i));
+            moveLine.set(i, nowPosition);
         }
-        return moveLine;
     }
 
     /**
