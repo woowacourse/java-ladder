@@ -1,7 +1,10 @@
 package cal;
 
+import java.util.regex.Pattern;
+
 public class StringPlusCalculator {
     private static final String DEFAULT_SEPARATOR = "[,|:]";
+    private static final String NUMBER_REGEX = "[0-9]*";
     private static final int NON_CUSTOM_DELIMITER = -1;
     private static final int VALID_BOUND_NUMBER = 0;
 
@@ -48,7 +51,7 @@ public class StringPlusCalculator {
     }
 
     private static void checkDelimiter(String number) {
-        if (!number.matches("[0-9]*"))
+        if (!Pattern.matches(NUMBER_REGEX, number))
             throw new IllegalArgumentException();
     }
 
