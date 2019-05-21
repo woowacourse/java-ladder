@@ -3,9 +3,7 @@ package ladder.View;
 import ladder.domain.Line;
 import ladder.domain.Player;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class OutputView {
@@ -66,7 +64,7 @@ public class OutputView {
         return stringBuilder;
     }
 
-    public static void printMatchedExecuteResult(Map<Integer, Player> players, String playerForResult, List<String> executeResult) {
+    public static void printMatchedExecuteResult(List<Player> players, String playerForResult, List<String> executeResult) {
         stringBuilder = new StringBuilder();
         stringBuilder.append(OUTPUT_PLAYER_RESULT + "\n");
 
@@ -78,21 +76,18 @@ public class OutputView {
 
     }
 
-    private static void outputAllPlayerResult(Map<Integer, Player> players, List<String> executeResult) {
-        Iterator<Integer> iterator = players.keySet().iterator();
-        while (iterator.hasNext()) {
-            Player player = players.get(iterator.next());
+    private static void outputAllPlayerResult(List<Player> players, List<String> executeResult) {
+        for (Player player : players ) {
             stringBuilder.append(player.getName() + COLON);
             stringBuilder.append(executeResult.get(player.getPosition()) + "\n");
         }
+
         System.out.println(stringBuilder.toString());
     }
 
-    private static void outputPlayerResult(Map<Integer, Player> players, String playerForResult, List<String> executeResult) {
-        Iterator<Integer> iterator = players.keySet().iterator();
+    private static void outputPlayerResult(List<Player> players, String playerForResult, List<String> executeResult) {
         AtomicBoolean findResult = new AtomicBoolean(false);
-        while (iterator.hasNext() && !findResult.get()) {
-            Player player = players.get(iterator.next());
+        for (Player player : players) {
             findResult.set(checkContainsPlayer(player, playerForResult, executeResult));
         }
 

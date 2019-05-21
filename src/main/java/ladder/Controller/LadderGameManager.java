@@ -1,21 +1,19 @@
 package ladder.Controller;
 
+import ladder.View.InputView;
 import ladder.View.OutputView;
 import ladder.domain.*;
-import ladder.View.InputView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class LadderGameManager {
-    private Map<Integer, Player> players;
+    private List<Player> players;
     private List<String> names;
     private Ladder ladder ;
 
     public LadderGameManager() {
-        players = new HashMap<>();
+        players = new ArrayList<>();
         names = new ArrayList<>();
         ladder = new Ladder();
     }
@@ -34,7 +32,7 @@ public class LadderGameManager {
 
     private void createPlayers() {
         for (int i = 0; i < names.size(); i++) {
-            players.put(i, new Player(names.get(i), i));
+            players.add(i, new Player(names.get(i), i));
         }
     }
 
@@ -47,12 +45,12 @@ public class LadderGameManager {
     private void moveLadderHeight(int playerNumber, int ladderHeight) {
         for (int j = 0; j < ladderHeight; j++) {
             players.get(playerNumber).move(players.size(),checkPlayerDirection(j,players.get(playerNumber).getPosition()));
-            players.put(playerNumber, getPlayer(playerNumber));
+            players.set(playerNumber, getPlayer(playerNumber));
         }
     }
 
     private Direction checkPlayerDirection(int height, int playerPosition) {
-        return ladder.getcurrentDirection(height,playerPosition);
+        return ladder.getCurrentDirection(height,playerPosition);
     }
 
     private Player getPlayer(int playerNumber) {
