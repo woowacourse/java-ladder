@@ -13,4 +13,8 @@ public class LadderResult {
 
         return finalResult;
     }
+
+    public static Item findItemByPlayer(Player participant, List<Item> finalResult, Players players) {
+        return finalResult.get(players.indexOf(participant));
+    }
 }

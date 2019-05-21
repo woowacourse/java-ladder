@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MockLineGenerator implements LineBuilder {
+public class MockLineGenerator implements LineGenerator {
     @Override
     public Line generate(int numberOfPeople) {
         List<Boolean> points = new ArrayList<>();

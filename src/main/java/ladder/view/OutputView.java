@@ -7,6 +7,7 @@ import java.util.List;
 public class OutputView {
     private final static String CONNECTED = "-----";
     private final static String DISCONNECTED = "     ";
+    private static final String PARTICIPANT_ALL = "all";
 
     public static void printNames(Players players) {
         System.out.println("\n사다리 결과\n");
@@ -32,13 +33,13 @@ public class OutputView {
         printLine.append("     ");
         for (int j = 0; j < numberOfPeople - 1; j++) {
             printLine.append("|");
-            printLine.append(LineStructure(line, j));
+            printLine.append(buildLineStructure(line, j));
         }
         printLine.append("|");
         System.out.println(printLine);
     }
 
-    private static String LineStructure(Line line, int index) {
+    private static String buildLineStructure(Line line, int index) {
         if (line.isConnected(index)) {
             return CONNECTED;
         }
@@ -54,11 +55,11 @@ public class OutputView {
 
     public static void printResult(Player participant, List<Item> finalResult, Players players) {
         System.out.println("\n실행 결과");
-        if (participant.toString().equals("all")) {
+        if (participant.toString().equals(PARTICIPANT_ALL)) {
             printForAll(finalResult, players);
             return;
         }
-        System.out.println(finalResult.get(players.indexOf(participant)));
+        System.out.println(LadderResult.findItemByPlayer(participant, finalResult, players));
     }
 
     private static void printForAll(List<Item> finalResult, Players players) {

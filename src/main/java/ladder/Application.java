@@ -7,6 +7,8 @@ import ladder.view.OutputView;
 import java.util.List;
 
 public class Application {
+    private static final String PARTICIPANT_ALL = "all";
+
     public static void main(String[] args) {
         Application application = new Application();
         application.play();
@@ -17,7 +19,7 @@ public class Application {
         Items items = InputView.inputItems(players);
         int height = InputView.inputHeight();
 
-        Ladder ladder = new LadderGenerator().generate(height, players.getSize());
+        Ladder ladder = new LadderGenerator().generate(height, players.getSize(), new RandomLineGenerator());
         printLadder(players, items, ladder);
 
         List<Item> finalResult = ladder.play(items);
@@ -35,6 +37,6 @@ public class Application {
         do {
             participant = InputView.inputParticipant(players);
             OutputView.printResult(participant, finalResult, players);
-        } while (!participant.toString().equals("all"));
+        } while (!participant.toString().equals(PARTICIPANT_ALL));
     }
 }

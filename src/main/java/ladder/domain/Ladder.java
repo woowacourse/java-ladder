@@ -42,13 +42,7 @@ public class Ladder {
     }
 
     private int moveIndex(Line line, int index) {
-        if (index == 0) {
-            return (line.isConnected(index)) ? index + 1 : index;
-        }
-        if (line.isConnected(index - 1)) return index - 1;
-        if (line.isConnected(index)) return index + 1;
-
-        return index;
+        return line.getMovedIndex(index);
     }
 
     public int getHeight() {

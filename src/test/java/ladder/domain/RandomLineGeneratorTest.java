@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LineGeneratorTest {
+public class RandomLineGeneratorTest {
     @Test
     public void Line을_잘_만드는지_확인() {
         MockLineGenerator mockLineGenerator = new MockLineGenerator();

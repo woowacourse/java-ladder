@@ -10,6 +10,16 @@ public class Line {
         this.points = points;
     }
 
+    public int getMovedIndex(int index) {
+        if (index == 0) {
+            return (isConnected(index)) ? index + 1 : index;
+        }
+        if (isConnected(index - 1)) return index - 1;
+        if (isConnected(index)) return index + 1;
+
+        return index;
+    }
+
     public boolean isConnected(int point) {
         return points.get(point);
     }
