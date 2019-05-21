@@ -7,19 +7,22 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class TextCalculator {
+    private static final String BASIC_DELIMITER = ",|:";
+    private static final String CUSTOM_DELIMITER = "//(.)\n(.*)";
+
     public List<String> tokenizer(String inputString) {
         String delimiter = getDelimiter(inputString);
         return Arrays.asList(inputString.replace("//" + delimiter + "\n", "").split(delimiter));
     }
 
     public String getDelimiter(String text) {
-        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
+        Matcher matcher = Pattern.compile(CUSTOM_DELIMITER).matcher(text);
 
         if (matcher.find()) {
             return matcher.group(1);
         }
 
-        return ",|:";
+        return BASIC_DELIMITER;
     }
 
     public List<Integer> toInt(List<String> tokens) {
