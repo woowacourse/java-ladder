@@ -15,7 +15,7 @@ public class Results {
         }
     }
 
-    public void checkNumberOfResult(List<String> names, int playerNum) {
+    public static void checkNumberOfResult(List<String> names, int playerNum) {
         if (names.size() != playerNum) {
             throw new IllegalArgumentException(VIOLATE_GAME_RESULTS);
         }

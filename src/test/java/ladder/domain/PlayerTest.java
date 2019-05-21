@@ -13,7 +13,7 @@ public class PlayerTest {
 
     @BeforeEach
     void setUp() {
-        name = new PlayerName("player");
+        name = new PlayerName("pobi");
     }
 
     @Test
