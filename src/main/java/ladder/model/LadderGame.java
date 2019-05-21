@@ -21,7 +21,7 @@ public class LadderGame {
             Player player = this.players.getPlayerByIndex(startPosition);
             int endPosition = ladder.move(startPosition);
 
-            gameResult.put(this.players.getPlayerByIndex(startPosition), ladderGameResults.getResultByPosition(endPosition));
+            gameResult.put(player, ladderGameResults.getResultByPosition(endPosition));
         }
         return new GameResult(gameResult);
     }
