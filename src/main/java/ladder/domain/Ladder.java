@@ -1,22 +1,21 @@
 package ladder.domain;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
     private static final int MINIMUM_HEIGHT = 1;
-    private List<Crosspoints> ladderRows = new ArrayList<>();
+    private List<LadderRow> ladderRows = new ArrayList<>();
 
-    public Ladder(int height, CrossbarGenerator crossbarGenerator) {
+    public Ladder(int height, CrosspointGenerator crosspointGenerator, int numberOfPlayer) {
         validateHeight(height);
         for (int i = 0; i < height; i++) {
-            ladderRows.add(crossbarGenerator.generateCrossbars());
+            ladderRows.add(crosspointGenerator.generateLadderRow(numberOfPlayer));
         }
     }
 
-    public List<Crosspoints> getLadderRows() {
+    public List<LadderRow> getLadderRows() {
         return ladderRows;
     }
 
@@ -38,7 +37,7 @@ public class Ladder {
     private int stepDown(int startPosition) {
         int currentPosition = startPosition;
 
-        for (Crosspoints ladderRow : ladderRows) {
+        for (LadderRow ladderRow : ladderRows) {
             currentPosition = ladderRow.answerResultIndexOf(currentPosition);
         }
 

@@ -3,16 +3,14 @@ package ladder;
 import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
     public static void main(String[] args) {
         PlayerGroup players = getPlayers();
-        CrossbarGenerator randomCrossbarGenerator = new RandomCrossbarGenerator(players.size());
+        CrosspointGenerator randomCrosspointGenerator = new RandomCrosspointGenerator();
         ResultItems resultItems = getResultItems(players.size());
-        Ladder ladder = getLadderBy(randomCrossbarGenerator);
+        Ladder ladder = getLadderBy(randomCrosspointGenerator, players.size());
         LadderResult ladderingResult = players.matchLadderingResult(resultItems
                 , ladder.getLadderingResultItemsIndex(players.size()));
 
@@ -42,21 +40,12 @@ public class LadderGame {
         }
     }
 
-    private static List<ResultItem> createResultItems(List<String> resultNames) {
-        List<ResultItem> resultItems = new ArrayList<>();
-
-        for (String resultName : resultNames) {
-            resultItems.add(new ResultItem(resultName));
-        }
-        return resultItems;
-    }
-
-    private static Ladder getLadderBy(CrossbarGenerator crossbarGenerator) {
+    private static Ladder getLadderBy(CrosspointGenerator crosspointGenerator, int numberOfPlayer) {
         try {
-            return new Ladder(getHeight(), crossbarGenerator);
+            return new Ladder(getHeight(), crosspointGenerator, numberOfPlayer);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getLadderBy(crossbarGenerator);
+            return getLadderBy(crosspointGenerator, numberOfPlayer);
         }
     }
 

@@ -13,12 +13,35 @@ public class Crosspoint {
         this.movingVector = (leftCrossbar || rightCrossbar) ? setMovingVectorBy(leftCrossbar) : STAY;
     }
 
-    private int setMovingVectorBy(boolean leftCrossbar) {
-        if (leftCrossbar) {
+    private Crosspoint(int movingVector) {
+        this.movingVector = movingVector;
+    }
+
+    static Crosspoint addFirst(boolean rightCrossbar) {
+        if (rightCrossbar) {
+            return new Crosspoint(ONE_STEP_RIGHT);
+        }
+        return new Crosspoint(STAY);
+    }
+
+    static Crosspoint addPoint(boolean prevBoolean, boolean nextBoolean) {
+        return new Crosspoint((prevBoolean || nextBoolean) ? setMovingVectorBy(prevBoolean) : STAY);
+    }
+
+    static Crosspoint addLast(boolean prevBoolean) {
+        if(prevBoolean){
+            return new Crosspoint(ONE_STEP_LEFT);
+        }
+        return new Crosspoint(STAY);
+    }
+
+    private static int setMovingVectorBy(boolean prevBoolean) {
+        if (prevBoolean) {
             return ONE_STEP_LEFT;
         }
-        return ONE_STEP_RIGHT;
+            return ONE_STEP_RIGHT;
     }
+
 
     private void validateCrossbar(boolean leftCrossbar, boolean rightCrossbar) {
         if (leftCrossbar && rightCrossbar) {
@@ -32,6 +55,11 @@ public class Crosspoint {
 
     public boolean hasRightSideCrossbar() {
         return movingVector == ONE_STEP_RIGHT;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(movingVector);
     }
 
     @Override

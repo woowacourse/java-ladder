@@ -25,7 +25,7 @@
    * 입력받은 사람의 수에 따라서 crossbars를 만들어야 합니다.
      - crossbars에는 연속된 crossbar가 있어서는 안 됩니다.
    * 랜덤한 crossbar 리스트를 생성해 Crossbars 객체를 만들어주는 기능
-   * crosspoints 리스트를 입력받아 Ladder를 생성합니다.
+   * ladderRow 리스트를 입력받아 Ladder를 생성합니다.
      - crossbars의 갯수는 1 이상이여야 합니다.
    * 참여할 사람 이름 길이는 최대 5글자까지 부여할 수 있습니다.
    * 참여할 사람 이름을 입력받아야 합니다.
