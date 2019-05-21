@@ -11,13 +11,13 @@ import java.util.Map;
 
 public class LadderGameManager {
     private Map<Integer, Player> players;
-    private List<Line> createdLadder;
     private List<String> names;
+    private Ladder ladder ;
 
     public LadderGameManager() {
         players = new HashMap<>();
-        createdLadder = new ArrayList<>();
         names = new ArrayList<>();
+        ladder = new Ladder();
     }
 
     public void start() {
@@ -25,27 +25,17 @@ public class LadderGameManager {
         names = inputManager.getValidNames(InputView.getNames());
         List<String> executeResult = inputManager.getValidExecuteResult(InputView.getExecuteResult(), names.size());
         int ladderHeight = inputManager.getValidLadderHeight(InputView.getLadderHeight());
-        createdLadder = new Ladder(names.size(), ladderHeight).getLadder();
+        ladder.createLadder(names.size(), ladderHeight);
         createPlayers();
 
         ladderMove(ladderHeight);
-        output(inputManager,executeResult);
+        output(executeResult);
     }
 
     private void createPlayers() {
         for (int i = 0; i < names.size(); i++) {
-            players.put(i, checkPlayers(i));
+            players.put(i, new Player(names.get(i), i));
         }
-    }
-
-    private Player checkPlayers(int playerNumber) {
-        if (playerNumber == 0) {
-            return new Player(names.get(playerNumber), playerNumber, new Direction(false, createdLadder.get(0).getRowLines().get(playerNumber)));
-        }
-        if (playerNumber == names.size() - 1) {
-            return new Player(names.get(playerNumber), playerNumber, new Direction(createdLadder.get(0).getRowLines().get(playerNumber - 1), false));
-        }
-        return new Player(names.get(playerNumber), playerNumber, new Direction(createdLadder.get(0).getRowLines().get(playerNumber - 1), createdLadder.get(0).getRowLines().get(playerNumber)));
     }
 
     private void ladderMove(int ladderHeight) {
@@ -56,28 +46,24 @@ public class LadderGameManager {
 
     private void moveLadderHeight(int playerNumber, int ladderHeight) {
         for (int j = 0; j < ladderHeight; j++) {
-            players.get(playerNumber).move(players.size());
-            if (j + 1 == ladderHeight) break;
-            players.put(playerNumber, checkPlayerPosition(playerNumber, j + 1, players.get(playerNumber).getPosition()));
+            players.get(playerNumber).move(players.size(),checkPlayerDirection(j,players.get(playerNumber).getPosition()));
+            players.put(playerNumber, getPlayer(playerNumber));
         }
     }
 
-    private Player checkPlayerPosition(int playerNumber, int height, int playerPosition) {
-        if (playerPosition == 0) {
-            return new Player(names.get(playerNumber), players.get(playerNumber).getPosition(), new Direction(false, createdLadder.get(height).getRowLines().get(playerPosition)));
-        }
-
-        if (playerPosition == names.size() - 1) {
-            return new Player(names.get(playerNumber), players.get(playerNumber).getPosition(), new Direction(createdLadder.get(height).getRowLines().get(playerPosition - 1), false));
-        }
-
-        return new Player(names.get(playerNumber), players.get(playerNumber).getPosition(), new Direction(createdLadder.get(height).getRowLines().get(playerPosition - 1), createdLadder.get(height).getRowLines().get(playerPosition)));
+    private Direction checkPlayerDirection(int height, int playerPosition) {
+        return ladder.getcurrentDirection(height,playerPosition);
     }
 
-    private void output(InputManager inputManager, List<String> executeResult) {
+    private Player getPlayer(int playerNumber) {
+        return new Player(names.get(playerNumber), players.get(playerNumber).getPosition());
+    }
+
+    private void output(List<String> executeResult) {
+        InputManager inputManager = new InputManager();
         OutputView.printNames(names);
 
-        for (Line line : createdLadder) {
+        for (Line line : ladder.getLadder()) {
             OutputView.printLadder(line);
         }
 

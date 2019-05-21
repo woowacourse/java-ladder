@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.Objects;
 
 public class Direction {
     public boolean left;

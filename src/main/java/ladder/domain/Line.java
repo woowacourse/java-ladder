@@ -26,4 +26,8 @@ public class Line {
     public List<Boolean> getRowLines() {
         return rowLines;
     }
+
+    public boolean getLinePosition(int position) {
+        return rowLines.get(position);
+    }
 }
