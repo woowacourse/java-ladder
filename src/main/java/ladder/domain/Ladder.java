@@ -50,7 +50,7 @@ public class Ladder {
         return line;
     }
 
-    private void moveRadderLIne(int depth, List<Integer> moveLine) { //TODO
+    private void moveRadderLIne(int depth, List<Integer> moveLine) {
         for (int i = 0; i < moveLine.size(); i++) {
             int nowPosition = moveLine.get(i) + ladder.get(depth).getNextPosition(moveLine.get(i));
             moveLine.set(i, nowPosition);

@@ -27,18 +27,6 @@ public class LadderLineTest {
     }
 
     @Test
-    void 랜덤값_확인하기_true_입력() {
-        assertFalse(LadderLine.setNextState(true));
-    }
-
-    @Test
-    void 랜덤값_확인하기_false_입력() {
-        for (int i = 0; i < 3; i++) {
-            System.out.println(LadderLine.setNextState(false));
-        }
-    }
-
-    @Test
     void 라인_결과_출력() {
         System.out.println(new LadderLine(5));
     }
