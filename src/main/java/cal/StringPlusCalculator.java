@@ -2,16 +2,16 @@ package cal;
 
 public class StringPlusCalculator {
 
-    public static final String DEFAULT_SAPERATOR = "[,|:]";
+    public static final String DEFAULT_SEPARATOR = "[,|:]";
 
     public static int calculate(String expression) {
         expression = checkBlank(expression);
-        int nPosition = checkCustomSeperator(expression);
-        String seperator = seperatorGenerator(expression, nPosition);
+        int nPosition = checkCustomSeparator(expression);
+        String seperator = separatorGenerator(expression, nPosition);
         String target = extractExpression(expression, nPosition);
         String[] numbers = target.split(seperator);
 
-        checkDelimeters(numbers);
+        checkDelimiters(numbers);
         checkNegative(numbers);
 
         return sum(numbers);
@@ -24,29 +24,29 @@ public class StringPlusCalculator {
         return expression;
     }
 
-    private static int checkCustomSeperator(String expression) {
+    private static int checkCustomSeparator(String expression) {
         return expression.indexOf("\n");
     }
 
-    private static String seperatorGenerator(String expression, int nPosition) {
+    private static String separatorGenerator(String expression, int nPosition) {
         if (nPosition != -1) {
             String operator = expression.substring(2, nPosition);
             return "[,|:|" + operator + "]";
         }
-        return DEFAULT_SAPERATOR;
+        return DEFAULT_SEPARATOR;
     }
 
     private static String extractExpression(String expression, int nPosition) {
         return expression.substring(nPosition + 1);
     }
 
-    private static void checkDelimeters(String[] numbers) {
+    private static void checkDelimiters(String[] numbers) {
         for (String number : numbers) {
-            checkDelimeter(number);
+            checkDelimiter(number);
         }
     }
 
-    private static void checkDelimeter(String number) {
+    private static void checkDelimiter(String number) {
         if (!number.matches("[0-9]*"))
             throw new IllegalArgumentException();
     }
