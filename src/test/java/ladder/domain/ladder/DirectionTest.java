@@ -38,6 +38,6 @@ public class DirectionTest {
 
     @Test
     void 존재하지_않는_of() {
-        assertThatThrownBy(() -> Direction.valueOf(2)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Direction.of(2)).isInstanceOf(IllegalArgumentException.class);
     }
 }
