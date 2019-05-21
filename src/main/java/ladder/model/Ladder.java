@@ -13,14 +13,14 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public Ladder(LadderGamePlayers players, int height, int maxLenOfGoalNames) {
+    public Ladder(LadderGamePlayers players, int height, int width) {
         this.lines = new ArrayList<>();
-        this.lines = makeLadder(players, height, maxLenOfGoalNames);
+        this.lines = makeLadder(players, height, width);
     }
 
-    private List<LadderWidth> makeLadder(LadderGamePlayers players, int height, int maxLenOfGoalNames) {
+    private List<LadderWidth> makeLadder(LadderGamePlayers players, int height, int width) {
         for (int i = 0; i < height; i++) {
-            lines.add(new LadderWidth(players.size() - 1, maxLenOfGoalNames));
+            lines.add(new LadderWidth(players.size() - 1, width));
         }
         return lines;
     }

@@ -13,11 +13,14 @@ public class LadderGameResult {
     private Map<LadderPlayer, LadderGoal> gameResults = new LinkedHashMap<>();
 
     public LadderGameResult(LadderGamePlayers players, Ladder ladder, LadderGameGoals goals) {
-        List<LadderPlayer> players1 = ladder.changePlayer(players.getAllPlayer());
-        for (int i = 0; i < players1.size(); i++) {
-            gameResults.put(players1.get(i), goals.getAllGoalNames().get(i));
-        }
+        List<LadderPlayer> changedPlayers = ladder.changePlayer(players.getAllPlayer());
+        generateGameResult(goals, changedPlayers);
+    }
 
+    private void generateGameResult(LadderGameGoals goals, List<LadderPlayer> changedPlayers) {
+        for (int i = 0; i < changedPlayers.size(); i++) {
+            gameResults.put(changedPlayers.get(i), goals.getAllGoalNames().get(i));
+        }
     }
 
     public String match(String targetPlayer) {

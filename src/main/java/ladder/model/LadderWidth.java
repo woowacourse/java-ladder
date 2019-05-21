@@ -2,45 +2,37 @@ package ladder.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 import static ladder.MessageCollection.*;
 
 public class LadderWidth {
 
-    private static final boolean INITIAL_INDEX = false;
-
-    private List<Boolean> crossbars;
-    private int maxLenOfGoalNames;
+    private List<LadderCrossBar> crossbars;
+    private int width;
 
     // test 생성자
-    public LadderWidth(List<Boolean> crossbars) {
+    public LadderWidth(List<LadderCrossBar> crossbars) {
         this.crossbars = crossbars;
     }
 
-    public LadderWidth(int width, int maxLenOfGoalNames) {
-        this.crossbars = generateLadderWidth(width);
-        this.maxLenOfGoalNames = maxLenOfGoalNames;
+    public LadderWidth(int numberOfPlayer, int width) {
+        this.crossbars = generateLadderWidth(numberOfPlayer);
+        this.width = width;
     }
 
-    private List<Boolean> generateLadderWidth(int width) {
+    private List<LadderCrossBar> generateLadderWidth(int numberOfPlayer) {
         crossbars = new ArrayList<>();
-        boolean index = INITIAL_INDEX;
-        for (int i = 0; i < width; i++) {
-            index = generateRandom(index);
-            crossbars.add(index);
+        crossbars.add(new LadderCrossBar());
+        for (int i = 1; i < numberOfPlayer; i++) {
+            crossbars.add(new LadderCrossBar(crossbars.get(i-1)));
         }
         return crossbars;
     }
 
-    private boolean generateRandom(boolean index) {
-        return !index && new Random().nextBoolean();
-    }
-
     public List<LadderPlayer> changePlayer(List<LadderPlayer> players) {
         for (int i = 0; i < crossbars.size(); i++) {
-            if (crossbars.get(i)) {
+            if (crossbars.get(i).isCrossbar()) {
                 LadderPlayer temp = players.get(i);
                 players.set(i, players.get(i + 1));
                 players.set(i + 1, temp);
@@ -51,7 +43,7 @@ public class LadderWidth {
 
     private String createCrossbar(String mark) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < maxLenOfGoalNames; i++) {
+        for (int i = 0; i < width; i++) {
             stringBuilder.append(mark);
         }
         return stringBuilder.toString();
@@ -63,7 +55,7 @@ public class LadderWidth {
         String notCrossbar = createCrossbar(BLANK);
 
         return PIPE + crossbars.stream().map(index -> {
-            if (index) {
+            if (index.isCrossbar()) {
                 return crossbar;
             }
             return notCrossbar;
