@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.util.CustomStringUtils;
+
 import java.util.Objects;
 
 public class PlayerName {
@@ -14,6 +16,8 @@ public class PlayerName {
     }
 
     private static void checkNameLength(String name) {
+        CustomStringUtils.checkIsBlank(name);
+
         if (name.length() > MAX_PLAYER_NAME_LENGTH) {
             throw new IllegalArgumentException(VIOLATE_PLAYER_NAMES);
         }

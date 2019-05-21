@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.util.CustomStringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,6 +50,7 @@ public class InputView {
     public static Results getResult(int playerNum) {
         try {
             String input = inputResults();
+            CustomStringUtils.checkIsBlank(input);
             return new Results(Arrays.asList(input.split(",")), playerNum);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -81,5 +83,16 @@ public class InputView {
     public static String inputNameForResult() {
         System.out.println(DEMAND_PLAYER_NAME_FOR_RESULT);
         return scanner.nextLine();
+    }
+
+    public static String getNameForResult() {
+        try {
+            String input = inputNameForResult();
+            CustomStringUtils.checkIsBlank(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getNameForResult();
+        }
     }
 }

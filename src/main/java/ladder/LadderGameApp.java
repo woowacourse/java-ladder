@@ -20,7 +20,7 @@ public class LadderGameApp {
         String inputName;
 
         do {
-            inputName = InputView.inputNameForResult();
+            inputName = InputView.getNameForResult();
             OutputView.printGameResult(inputName, gameResult);
         } while (!"all".equals(inputName));
 
