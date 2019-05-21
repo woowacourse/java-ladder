@@ -27,8 +27,10 @@ public class Ladder {
         return this.lines;
     }
 
-    public int getHeight() {
-        return height;
+    public void playLadder(PlayerGroup playerGroup) {
+        for (int i = 0; i < height; i++) {
+            lines.get(i).swap(playerGroup);
+        }
     }
 
     @Override
