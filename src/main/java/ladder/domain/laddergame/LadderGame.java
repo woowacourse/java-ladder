@@ -23,19 +23,19 @@ public class LadderGame {
 
     private Map<Player, Reward> calculateReward(Players players, Rewards rewards) {
         Map<Player, Reward> result = new HashMap<>();
-        for (int startPoint = 0; startPoint < players.size(); startPoint++) {
-            int currentLocation = startPoint;
-            currentLocation = takeLadder(currentLocation);
-            result.put(players.get(startPoint), rewards.get(currentLocation));
+        for (int start = 0; start < players.size(); start++) {
+            int current = start;
+            current = takeLadder(current);
+            result.put(players.get(start), rewards.get(current));
         }
         return result;
     }
 
-    private int takeLadder(int currentLocation) {
+    private int takeLadder(int current) {
         for (int j = 0; j < ladder.getHeight(); j++) {
-            currentLocation += ladder.get(j).get(currentLocation).getDirection();
+            current += ladder.get(j).move(current);
         }
-        return currentLocation;
+        return current;
     }
 
     private void checkNumberOfRewards(Players players, Rewards rewards) {
