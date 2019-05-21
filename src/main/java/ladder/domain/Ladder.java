@@ -25,6 +25,13 @@ public class Ladder {
         return points;
     }
 
+    int move(int index) {
+        for (Line line : ladder) {
+            index = line.move(index);
+        }
+        return index;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -32,12 +39,5 @@ public class Ladder {
             sb.append(line.makeLine());
         }
         return sb.toString();
-    }
-
-    int move(int index) {
-        for (Line line : ladder) {
-            index = line.move(index);
-        }
-        return index;
     }
 }
