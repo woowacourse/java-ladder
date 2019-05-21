@@ -31,6 +31,10 @@ public class Players {
         return players.get(index).getName();
     }
 
+    public boolean isSameSize(int size) {
+        return players.size() == size;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

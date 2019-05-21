@@ -68,7 +68,7 @@ public class LadderGameController {
     }
 
     private void checkCountOfResultsWithPlayers(Players players, Results results) {
-        if (results.isEqualToPlayersCount(players.getPlayersSize())) {
+        if (results.isSameSizeWith(players)) {
             throw new IllegalArgumentException("개수가 같아야됩니다(플레이어, 결과)");
         }
     }

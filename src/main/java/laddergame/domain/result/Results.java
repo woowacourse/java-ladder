@@ -1,5 +1,7 @@
 package laddergame.domain.result;
 
+import laddergame.domain.player.Players;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -18,6 +20,10 @@ public class Results {
 
     public Result getResult(int index) {
         return this.results.get(index);
+    }
+
+    public boolean isSameSizeWith(Players players) {
+        return players.isSameSize(results.size());
     }
 
     @Override
