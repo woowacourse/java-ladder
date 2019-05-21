@@ -1,6 +1,9 @@
 package cal;
 
 public class StringPlusCalculator {
+
+    public static final String DEFAULT_SAPERATOR = "[,|:]";
+
     public static int calculate(String expression) {
         expression = checkBlank(expression);
         int nPosition = checkCustomSeperator(expression);
@@ -15,7 +18,7 @@ public class StringPlusCalculator {
     }
 
     private static String checkBlank(String expression) {
-        if (expression.equals("")) {
+        if ("".equals(expression)) {
             expression = "0";
         }
         return expression;
@@ -30,7 +33,7 @@ public class StringPlusCalculator {
             String operator = expression.substring(2, nPosition);
             return "[,|:|" + operator + "]";
         }
-        return "[,|:]";
+        return DEFAULT_SAPERATOR;
     }
 
     private static String extractExpression(String expression, int nPosition) {
