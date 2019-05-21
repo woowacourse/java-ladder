@@ -20,6 +20,10 @@ public class Number {
         }
     }
 
+    public int add(int sum) {
+        return this.number + sum;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,9 +35,5 @@ public class Number {
     @Override
     public int hashCode() {
         return Objects.hash(number);
-    }
-
-    int getNumber() {
-        return this.number;
     }
 }
