@@ -9,7 +9,8 @@ import java.util.regex.Pattern;
 public class StringCalculator {
     private final String COMMA = ",";
     private final String COLON = ":";
-    private final String COL_LINE ="|";
+    private final String COL_LINE = "|";
+
     public int add(String text) {
         if (StringUtils.isBlank(text)) return 0;
 
@@ -22,7 +23,7 @@ public class StringCalculator {
             String customDelimeter = m.group(1);
             return m.group(2).split(customDelimeter);
         }
-        return text.split(COMMA+COL_LINE+COLON);
+        return text.split(COMMA + COL_LINE + COLON);
     }
 
     private int[] toInts(String[] values) {

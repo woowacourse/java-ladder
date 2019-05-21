@@ -17,7 +17,7 @@ public class Line {
     }
 
     private boolean isEmptyLine() {
-        if(rowLines.size() !=0 ) {
+        if (rowLines.size() != 0) {
             return !rowLines.get(rowLines.size() - 1) && lineCreate.checkLine();
         }
         return lineCreate.checkLine();

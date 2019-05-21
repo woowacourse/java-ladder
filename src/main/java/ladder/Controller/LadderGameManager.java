@@ -10,7 +10,7 @@ import java.util.List;
 public class LadderGameManager {
     private List<Player> players;
     private List<String> names;
-    private Ladder ladder ;
+    private Ladder ladder;
 
     public LadderGameManager() {
         players = new ArrayList<>();
@@ -44,13 +44,13 @@ public class LadderGameManager {
 
     private void moveLadderHeight(int playerNumber, int ladderHeight) {
         for (int j = 0; j < ladderHeight; j++) {
-            players.get(playerNumber).move(players.size(),checkPlayerDirection(j,players.get(playerNumber).getPosition()));
+            players.get(playerNumber).move(players.size(), checkPlayerDirection(j, players.get(playerNumber).getPosition()));
             players.set(playerNumber, getPlayer(playerNumber));
         }
     }
 
     private Direction checkPlayerDirection(int height, int playerPosition) {
-        return ladder.getCurrentDirection(height,playerPosition);
+        return ladder.CurrentDirection(height, playerPosition);
     }
 
     private Player getPlayer(int playerNumber) {

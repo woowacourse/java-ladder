@@ -17,7 +17,7 @@ public class Player {
         return this.position;
     }
 
-    public void move(int playerSize,Direction direction) {
+    public void move(int playerSize, Direction direction) {
         int nextCurrent = direction.move();
         if (nextCurrent == -1 && this.position > 0) {
             this.position--;

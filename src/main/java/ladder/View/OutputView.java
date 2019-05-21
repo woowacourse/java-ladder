@@ -77,7 +77,7 @@ public class OutputView {
     }
 
     private static void outputAllPlayerResult(List<Player> players, List<String> executeResult) {
-        for (Player player : players ) {
+        for (Player player : players) {
             stringBuilder.append(player.getName() + COLON);
             stringBuilder.append(executeResult.get(player.getPosition()) + "\n");
         }
