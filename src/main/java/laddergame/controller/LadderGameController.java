@@ -32,7 +32,7 @@ public class LadderGameController {
 
     private void init() {
         this.players = setPlayers();
-        this.results = setResults(players);
+        this.results = setResults();
         LadderHeight ladderHeight = setLadderHeight();
         this.ladder = new Ladder(ladderHeight.getLadderHeight(), players.getPlayersSize());
         this.ladder.connectBridgesRandomly(CONNECTING_BRIDGE_TRIAL_COUNT);
@@ -47,14 +47,14 @@ public class LadderGameController {
         }
     }
 
-    private Results setResults(Players players) {
+    private Results setResults() {
         try {
             Results results = new ResultBuilder(InputView.inputResults()).buildResults();
-            checkCountOfResultsWithPlayers(players, results);
+            checkCountOfResultsWithPlayers(results);
             return results;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return setResults(players);
+            return setResults();
         }
     }
 
@@ -67,8 +67,8 @@ public class LadderGameController {
         }
     }
 
-    private void checkCountOfResultsWithPlayers(Players players, Results results) {
-        if (results.isSameSizeWith(players)) {
+    private void checkCountOfResultsWithPlayers(Results results) {
+        if (!results.isSameSizeWith(players)) {
             throw new IllegalArgumentException("개수가 같아야됩니다(플레이어, 결과)");
         }
     }

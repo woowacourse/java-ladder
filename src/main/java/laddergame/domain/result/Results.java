@@ -14,10 +14,6 @@ public class Results {
         this.results = results;
     }
 
-    public boolean isEqualToPlayersCount(int playerCount) {
-        return (playerCount != results.size());
-    }
-
     public Result getResult(int index) {
         return this.results.get(index);
     }
