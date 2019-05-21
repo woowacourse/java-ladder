@@ -5,10 +5,10 @@ import ladder.domain.*;
 import java.util.Map;
 
 public class OutputView {
-    public static void showPlayersAndLadder(PlayerGroup players, Ladder ladder) {
+    public static void showPlayersAndLadder(PlayerGroup players, Ladder ladder, ResultItems resultItems) {
         System.out.println("실행 결과\n");
         printPlayerNames(players);
-        printLadder(ladder);
+        printLadder(ladder, resultItems);
     }
 
     private static void printPlayerNames(PlayerGroup players) {
@@ -18,13 +18,13 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printLadder(Ladder ladder) {
+    private static void printLadder(Ladder ladder, ResultItems resultItems) {
         for (Crosspoints crosspoints : ladder.getLadderRows()) {
             printCrossbars(crosspoints);
             System.out.println();
         }
 
-        for (ResultItem resultItem : ladder.getResultItems()) {
+        for (ResultItem resultItem : resultItems.getResultItems()) {
             System.out.print(String.format("%-6s", resultItem));
         }
         System.out.println();

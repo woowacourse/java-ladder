@@ -11,10 +11,12 @@ public class LadderGame {
     public static void main(String[] args) {
         PlayerGroup players = getPlayers();
         CrossbarGenerator randomCrossbarGenerator = new RandomCrossbarGenerator(players.size());
-        Ladder ladder = getLadderBy(getResultItems(), randomCrossbarGenerator);
-        LadderResult ladderingResult = players.findLadderingResult(ladder);
+        ResultItems resultItems = getResultItems(players.size());
+        Ladder ladder = getLadderBy(randomCrossbarGenerator);
+        LadderResult ladderingResult = players.matchLadderingResult(resultItems
+                , ladder.getLadderingResultItemsIndex(players.size()));
 
-        OutputView.showPlayersAndLadder(players, ladder);
+        OutputView.showPlayersAndLadder(players, ladder, resultItems);
         show(ladderingResult);
     }
 
@@ -22,21 +24,21 @@ public class LadderGame {
         try {
             String playerName = InputView.inputPlayerNameToShowResult();
             OutputView.showResultOf(playerName, ladderingResult);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
         show(ladderingResult);
     }
 
-    private static List<ResultItem> getResultItems() {
+    private static ResultItems getResultItems(int numberOfPlayer) {
         List<String> resultNames;
 
         try {
             resultNames = InputView.inputResultName();
-            return createResultItems(resultNames);
+            return new ResultItems(resultNames, numberOfPlayer);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getResultItems();
+            return getResultItems(numberOfPlayer);
         }
     }
 
@@ -49,12 +51,12 @@ public class LadderGame {
         return resultItems;
     }
 
-    private static Ladder getLadderBy(List<ResultItem> resultItems, CrossbarGenerator crossbarGenerator) {
+    private static Ladder getLadderBy(CrossbarGenerator crossbarGenerator) {
         try {
-            return new Ladder(getHeight(), resultItems, crossbarGenerator);
+            return new Ladder(getHeight(), crossbarGenerator);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getLadderBy(getResultItems(), crossbarGenerator);
+            return getLadderBy(crossbarGenerator);
         }
     }
 

@@ -22,12 +22,15 @@ public class PlayerGroup {
         return players;
     }
 
-    public LadderResult findLadderingResult(Ladder ladder) {
+    public LadderResult matchLadderingResult(ResultItems resultItems, List<Integer> ladderingResultItemsIndex) {
         LadderResult ladderingResult = new LadderResult();
+        int playerPosition = 0;
 
         for (Player player : players) {
-            player.stepDown(ladder, ladderingResult);
+            ladderingResult.addResult(player,resultItems.answerMatchItemOf(ladderingResultItemsIndex.get(playerPosition)));
+            playerPosition++;
         }
+
         return ladderingResult;
     }
 
@@ -47,4 +50,5 @@ public class PlayerGroup {
     public int hashCode() {
         return Objects.hash(players);
     }
+
 }
