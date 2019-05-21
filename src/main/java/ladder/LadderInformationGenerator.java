@@ -3,7 +3,7 @@ package ladder;
 import ladder.domain.*;
 import ladder.view.InputView;
 
-public class CreateController {
+public class LadderInformationGenerator {
     public static Players createPlayers() {
         try {
             return new Players(InputView.readName());

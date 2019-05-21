@@ -7,9 +7,9 @@ import ladder.view.OutputView;
 public class LadderMain {
 
     public static void main(String[] args) {
-        Players players = CreateController.createPlayers();
-        LadderRewards ladderRewards = CreateController.createRewards(players.count());
-        Height height = CreateController.createHeight();
+        Players players = LadderInformationGenerator.createPlayers();
+        LadderRewards ladderRewards = LadderInformationGenerator.createRewards(players.count());
+        Height height = LadderInformationGenerator.createHeight();
 
         Ladder ladder = new Ladder(players.count(), height);
         LadderResult ladderResult = new LadderResult(ladderRewards);
