@@ -17,9 +17,10 @@ import java.util.*;
  */
 public class LadderResult {
     public static final String LADDERRESULT_GET_RESULT_ALL = "all";
+    public static final String NOT_FIND_PLAYER = "존재하지 않는 플레이어 입니다.";
 
     private Ladder ladder;
-    private Map<String, String> result;
+    private Map<Player, Item> result;
 
     /**
      * 생성자
@@ -34,7 +35,15 @@ public class LadderResult {
         depth = LadderDepthException.ladderMinDepth(depth);
 
         this.ladder = getLadder(names, depth);
-        this.result = getResult(getPlayers(names), Arrays.asList(rewards.split(",")));
+        this.result = getResult(getPlayers(names), convertItems(rewards));
+    }
+
+    private List<Item> convertItems(String items) {
+        List<Item> convertItems = new ArrayList<>();
+        for (String item : items.split(",")) {
+            convertItems.add(new Item(item));
+        }
+        return convertItems;
     }
 
     /**
@@ -47,12 +56,20 @@ public class LadderResult {
         if (name.equals(LADDERRESULT_GET_RESULT_ALL)) {
             return getResultOfAllName();
         }
-        return result.get(name);
+        return matchPlayerItem(name);
+    }
+
+    private String matchPlayerItem(String name) {
+        try {
+            return result.get(new Player(name)).toString();
+        } catch (NullPointerException e) {
+            throw new NullPointerException(NOT_FIND_PLAYER);
+        }
     }
 
     private String getResultOfAllName() {
         StringJoiner stringJoiner = new StringJoiner("\n");
-        for (Map.Entry<String, String> entry : result.entrySet()) {
+        for (Map.Entry<Player, Item> entry : result.entrySet()) {
             stringJoiner.add(entry.getKey() + " : " + entry.getValue());
         }
         return stringJoiner.toString();
@@ -80,11 +97,11 @@ public class LadderResult {
         return players;
     }
 
-    private Map<String, String> getResult(List<Player> players, List<String> rewards) {
-        Map<String, String> result = new HashMap<>();
+    private Map<Player, Item> getResult(List<Player> players, List<Item> items) {
+        Map<Player, Item> result = new HashMap<>();
         List<Integer> initResult = ladder.getResult();
         for (int i = 0; i < players.size(); i++) {
-            result.put(players.get(i).getName(), rewards.get(initResult.get(i)));
+            result.put(players.get(i), items.get(initResult.get(i)));
         }
         return result;
     }

@@ -24,12 +24,8 @@ public class Player {
         this.name = PlayerException.playerNameOverLength(name);
     }
 
-    /**
-     * 이름 반환
-     *
-     * @return name 참여자 이름
-     */
-    public String getName() {
+    @Override
+    public String toString() {
         return name;
     }
 
