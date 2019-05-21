@@ -20,7 +20,7 @@ public class Number {
         }
     }
 
-    public int add(int sum) {
+    public int plus(int sum) {
         return this.number + sum;
     }
 

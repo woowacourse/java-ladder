@@ -1,6 +1,5 @@
 package calculator.domain;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Calculator {
@@ -10,14 +9,9 @@ public class Calculator {
         this.expression = new Expression(expression);
     }
 
-    int calculate() {
-        List<Number> numbers = expression.getNumbers();
-        int sum = 0;
-
-        for (Number number : numbers) {
-            sum += number.getNumber();
-        }
-        return sum;
+    public int plusAllNumbers() {
+        Numbers numbers = expression.getNumbers();
+        return numbers.sum();
     }
 
     @Override

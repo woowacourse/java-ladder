@@ -13,7 +13,7 @@ public class Numbers {
         int sum = 0;
 
         for (Number number : numbers) {
-            sum = number.add(sum);
+            sum = number.plus(sum);
         }
 
         return sum;

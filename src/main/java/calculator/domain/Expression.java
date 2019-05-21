@@ -22,10 +22,11 @@ public class Expression {
         this.expression = expression;
     }
 
-    List<Number> getNumbers() {
-        return splitExpression().stream()
+    Numbers getNumbers() {
+        List<Number> numbers =  splitExpression().stream()
                 .map(Number::new)
                 .collect(Collectors.toList());
+        return new Numbers(numbers);
     }
 
     List<String> splitExpression() {
