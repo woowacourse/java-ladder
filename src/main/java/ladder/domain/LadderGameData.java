@@ -5,6 +5,10 @@ public class LadderGameData {
     private final Result result;
     private final int height;
 
+    public LadderGameData(Person person, Result result) {
+        this(person, result, 1);
+    }
+
     public LadderGameData(final Person person, final Result result, final int height) {
         this.person = person;
         this.result = result;
