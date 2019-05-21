@@ -8,24 +8,24 @@ public class Line {
     private static final int LEFT_MOVE = -1;
     private static final int NOT_MOVE = 0;
 
-    private List<Point> line;
+    private List<Point> points;
 
     public Line(int width) {
-        line = new ArrayList<>();
+        points = new ArrayList<>();
         for (int i = 0; i < width; i++) {
-            line.add(new Point(false));
+            points.add(new Point(false));
         }
     }
 
     public void connect(int column) {
         if (!hasBridgeAtRightSide(column) && !hasBridgeAtLeftSide(column)) {
-            line.set(column, new Point(true));
+            points.set(column, new Point(true));
         }
     }
 
     private boolean hasBridgeAtRightSide(int column) {
         try {
-            return line.get(column + 1).hasBridge();
+            return points.get(column + 1).hasBridge();
         } catch (IndexOutOfBoundsException e) {
             return false;
         }
@@ -33,14 +33,14 @@ public class Line {
 
     private boolean hasBridgeAtLeftSide(int column) {
         try {
-            return line.get(column - 1).hasBridge();
+            return points.get(column - 1).hasBridge();
         } catch (IndexOutOfBoundsException e) {
             return false;
         }
     }
 
     public boolean isLinked(int column) {
-        return line.get(column).hasBridge();
+        return points.get(column).hasBridge();
     }
 
     public int findRoute(int startPosition) {
@@ -56,7 +56,7 @@ public class Line {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Point point : line) {
+        for (Point point : points) {
             stringBuilder.append(point);
             stringBuilder.append("|");
         }
