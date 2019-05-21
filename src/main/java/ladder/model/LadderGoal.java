@@ -1,6 +1,6 @@
 package ladder.model;
 
-import ladder.validator.LadderGoalValidator;
+import ladder.MessageCollection;
 
 import java.util.Objects;
 
@@ -12,7 +12,14 @@ public class LadderGoal {
     private String goalName;
 
     public LadderGoal(String goalName) {
-        this.goalName = LadderGoalValidator.validatedGoalName(goalName);
+        this.goalName = validatedGoalName(goalName);
+    }
+
+    private String validatedGoalName(String goalName) {
+        if (goalName == null || goalName.trim().isEmpty()) {
+            throw new IllegalArgumentException(MessageCollection.ERROR_HAS_VALUE_EMPTY);
+        }
+        return goalName.trim();
     }
 
     public String getGoalName() {

@@ -1,6 +1,6 @@
 package ladder.model;
 
-import ladder.validator.PlayerValidator;
+import ladder.MessageCollection;
 
 import java.util.Objects;
 
@@ -8,11 +8,22 @@ public class LadderPlayer {
 
     private static final String STANDARD_FORMAT_FIRST_INDEX = "%-";
     private static final String STANDARD_FORMAT_SECOND_INDEX = "s";
+    private static final int MAX_NAME_LENGTH = 5;
 
     private String name;
 
     public LadderPlayer(String name) {
-        this.name = PlayerValidator.validatedName(name);
+        this.name = validatedName(name);
+    }
+
+    private String validatedName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException(MessageCollection.ERROR_HAS_VALUE_EMPTY);
+        }
+        if (name.trim().length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(MessageCollection.ERROR_OVER_LENGTH);
+        }
+        return name.trim();
     }
 
     public String getPlayerName() {

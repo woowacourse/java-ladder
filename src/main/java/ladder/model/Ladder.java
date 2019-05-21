@@ -8,11 +8,6 @@ public class Ladder {
 
     private List<LadderWidth> lines;
 
-    // test 코드
-    public Ladder(List<LadderWidth> lines) {
-        this.lines = lines;
-    }
-
     public Ladder(LadderGamePlayers players, int height, int width) {
         this.lines = new ArrayList<>();
         this.lines = makeLadder(players, height, width);
@@ -25,9 +20,9 @@ public class Ladder {
         return lines;
     }
 
-    public List<LadderPlayer> changePlayer(List<LadderPlayer> players) {
-        for (int i = 0; i < lines.size(); i++) {
-            players = lines.get(i).changePlayer(players);
+    List<LadderPlayer> changePlayer(List<LadderPlayer> players) {
+        for (LadderWidth line : lines) {
+            players = line.changePlayer(players);
         }
         return players;
     }

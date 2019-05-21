@@ -4,17 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ladder.MessageCollection.*;
+import static ladder.view.OutputView.*;
 
 public class LadderWidth {
 
     private List<LadderCrossBar> crossbars;
     private int width;
-
-    // test 생성자
-    public LadderWidth(List<LadderCrossBar> crossbars) {
-        this.crossbars = crossbars;
-    }
 
     public LadderWidth(int numberOfPlayer, int width) {
         this.crossbars = generateLadderWidth(numberOfPlayer);
@@ -25,20 +20,24 @@ public class LadderWidth {
         crossbars = new ArrayList<>();
         crossbars.add(new LadderCrossBar());
         for (int i = 1; i < numberOfPlayer; i++) {
-            crossbars.add(new LadderCrossBar(crossbars.get(i-1)));
+            crossbars.add(new LadderCrossBar(crossbars.get(i - 1)));
         }
         return crossbars;
     }
 
     public List<LadderPlayer> changePlayer(List<LadderPlayer> players) {
-        for (int i = 0; i < crossbars.size(); i++) {
-            if (crossbars.get(i).isCrossbar()) {
-                LadderPlayer temp = players.get(i);
-                players.set(i, players.get(i + 1));
-                players.set(i + 1, temp);
-            }
+        for (int position = 0; position < crossbars.size(); position++) {
+            swapCrossbar(players, position);
         }
         return players;
+    }
+
+    private void swapCrossbar(List<LadderPlayer> players, int position) {
+        if (crossbars.get(position).isCrossbar()) {
+            LadderPlayer temp = players.get(position);
+            players.set(position, players.get(position + 1));
+            players.set(position + 1, temp);
+        }
     }
 
     private String createCrossbar(String mark) {

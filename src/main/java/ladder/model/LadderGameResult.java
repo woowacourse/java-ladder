@@ -36,9 +36,9 @@ public class LadderGameResult {
         StringBuilder stringBuilder = new StringBuilder();
         gameResults.keySet()
                 .forEach(player -> stringBuilder.append(player.getPlayerName())
-                .append(COLON)
-                .append(gameResults.get(player).getGoalName())
-                .append(ENTER));
+                        .append(COLON)
+                        .append(gameResults.get(player).getGoalName())
+                        .append(ENTER));
         return stringBuilder.toString();
     }
 }

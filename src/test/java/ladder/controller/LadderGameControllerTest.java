@@ -1,7 +1,6 @@
 package ladder.controller;
 
 import ladder.model.LadderGamePlayers;
-import ladder.model.LadderGameResult;
 import ladder.model.LadderPlayer;
 import org.junit.jupiter.api.Test;
 

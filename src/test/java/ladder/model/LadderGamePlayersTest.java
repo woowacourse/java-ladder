@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderGamePlayersTest {
+class LadderGamePlayersTest {
 
     @Test
     void 모든_플레이어가_String형으로_잘들어가는지_테스트() {
