@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PersonTest {
+class PersonTest {
     @Test
     void 출력() {
         Person person = new Person(Arrays.asList("pobi", "brown"));

@@ -9,7 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class StringAddCalculatorTest {
+class StringAddCalculatorTest {
     @Test
     void 구분자_구분() {
         String input = "1,2,3";

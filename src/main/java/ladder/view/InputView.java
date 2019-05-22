@@ -1,7 +1,6 @@
 package ladder.view;
 
 import ladder.domain.LadderGameData;
-import ladder.domain.Person;
 import ladder.validator.InputValidator;
 
 import java.util.List;

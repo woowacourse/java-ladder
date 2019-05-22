@@ -9,7 +9,7 @@ public class Line {
 
     private final List<Boolean> points;
 
-    public Line(final List<Boolean> points) {
+    Line(final List<Boolean> points) {
         this.points = points;
     }
 

@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderRewardsTest {
+class LadderRewardsTest {
     @Test
     void 출력() {
         LadderRewards ladderRewards = new LadderRewards(Arrays.asList("꽝", "5000"));

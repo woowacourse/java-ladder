@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class InputHelperTest {
+class InputHelperTest {
     @Test
     void 쉼표_구분() {
         String names = "buddy,pobi,brown";
