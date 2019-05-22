@@ -8,9 +8,9 @@ public class Line {
     private static final String HORIZONAL_LINE = "-----";
     private static final String LINE_SPACE = "     ";
 
-    private List<Step> steps;
+    private Steps steps;
 
-    public Line(List<Step> steps) {
+    public Line(Steps steps) {
         this.steps = steps;
     }
 
@@ -22,7 +22,7 @@ public class Line {
     public String toString() {
         List<String> lineElements = new ArrayList<>();
 
-        for (Step step : steps) {
+        for (Step step : steps.getSteps()) {
             lineElements.add((step.exist()) ? HORIZONAL_LINE : LINE_SPACE);
         }
 

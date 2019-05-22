@@ -11,17 +11,19 @@ public class Player {
         this.position = position;
     }
 
-    public int tryMove(List<Step> steps) {
+    public int tryMove(Steps steps) {
+        List<Step> stepList = steps.getSteps();
+
         if (position == 0) {
-            return (steps.get(position).exist() ? moveRight() : position);
+            return (stepList.get(position).exist() ? moveRight() : position);
         }
-        if (position == steps.size()) {
-            return (steps.get(position - 1).exist() ? moveLeft() : position);
+        if (position == stepList.size()) {
+            return (stepList.get(position - 1).exist() ? moveLeft() : position);
         }
-        if (steps.get(position - 1).exist()) {
+        if (stepList.get(position - 1).exist()) {
             return moveLeft();
         }
-        return (steps.get(position).exist() ? moveRight() : position);
+        return (stepList.get(position).exist() ? moveRight() : position);
     }
 
     private int moveLeft() {

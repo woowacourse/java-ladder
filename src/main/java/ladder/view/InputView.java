@@ -73,7 +73,7 @@ public class InputView {
         int height = inputHeight();
 
         try {
-            return new Ladder(playerNum, height);
+            return new Ladder(new RandomStepsGenerator(playerNum), height);
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
             return createLadder(playerNum);

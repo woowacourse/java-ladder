@@ -6,13 +6,15 @@ import java.util.List;
 public class Ladder {
     private static final String VIOLATE_LADDER_HEIGHT_POSITIVE = "사다리의 높이를 양수로 입력해주세요.";
 
-    private List<Line> lines = new ArrayList<>();
+    private List<Line> lines;
 
-    public Ladder(int playerNum, int height) {
+    public Ladder(StepsGenerator stepsGenerator, int height) {
         checkHeightIsPositive(height);
 
-        for (int i = 0; i < height; ++i) {
-            lines.add(new Line(playerNum));
+        lines = new ArrayList<>();
+
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(stepsGenerator.generateSteps()));
         }
     }
 
