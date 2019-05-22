@@ -2,7 +2,9 @@ package com.woowacourse.laddergame.domain.vo;
 
 import com.woowacourse.laddergame.util.Duplicate;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

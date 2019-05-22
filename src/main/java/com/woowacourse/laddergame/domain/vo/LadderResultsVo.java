@@ -1,7 +1,5 @@
 package com.woowacourse.laddergame.domain.vo;
 
-import com.woowacourse.laddergame.util.Duplicate;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;

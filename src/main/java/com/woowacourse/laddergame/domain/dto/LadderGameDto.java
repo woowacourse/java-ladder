@@ -7,12 +7,12 @@ public class LadderGameDto {
     private MadeLadderVo madeLadderVO;
     private LadderMatchingResultVo ladderMatchingResultVo;
 
-    public void setMadeLadderVO(MadeLadderVo madeLadderVO) {
-        this.madeLadderVO = madeLadderVO;
-    }
-
     public MadeLadderVo getMadeLadderVO() {
         return madeLadderVO;
+    }
+
+    public void setMadeLadderVO(MadeLadderVo madeLadderVO) {
+        this.madeLadderVO = madeLadderVO;
     }
 
     public LadderMatchingResultVo getLadderMatchingResultVo() {

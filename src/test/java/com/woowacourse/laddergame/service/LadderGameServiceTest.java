@@ -48,8 +48,7 @@ class LadderGameServiceTest {
         expectedLadderResultDto.setMadeLadderVO(madeLadderVO);
         expectedLadderResultDto.setLadderMatchingResultVo(ladderMatchingResultVo);
 
-        LadderGameService ladderGameService = new LadderGameService();
-        LadderGameDto actualLadderResultDto = ladderGameService.request(ladderDto);
+        LadderGameDto actualLadderResultDto = LadderGameService.request(ladderDto);
 
         System.out.println(actualLadderResultDto.getMadeLadderVO());
         System.out.println(actualLadderResultDto.getLadderMatchingResultVo());

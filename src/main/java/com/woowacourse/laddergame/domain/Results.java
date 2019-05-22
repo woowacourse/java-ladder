@@ -2,7 +2,6 @@ package com.woowacourse.laddergame.domain;
 
 import com.woowacourse.laddergame.util.NaturalNumber;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Results {

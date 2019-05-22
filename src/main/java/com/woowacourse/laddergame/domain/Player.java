@@ -26,7 +26,7 @@ public class Player {
         }
     }
 
-    private void checkEmpty(String name)  {
+    private void checkEmpty(String name) {
         if (name.contains(" ")) {
             throw new IllegalArgumentException("이름에 공백이 있으면 안됩니다");
         }

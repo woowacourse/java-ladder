@@ -1,9 +1,9 @@
 package com.woowacourse.laddergame.view;
 
-import com.woowacourse.laddergame.domain.vo.ResultNameVo;
 import com.woowacourse.laddergame.domain.vo.HeightVo;
 import com.woowacourse.laddergame.domain.vo.LadderResultsVo;
 import com.woowacourse.laddergame.domain.vo.PlayerNamesVo;
+import com.woowacourse.laddergame.domain.vo.ResultNameVo;
 
 import java.util.Scanner;
 
