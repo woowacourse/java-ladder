@@ -6,33 +6,18 @@ import java.util.Objects;
 
 public class Ladder {
     private static final int MINIMUM_HEIGHT = 1;
-    private List<Crosspoints> ladderRows = new ArrayList<>();
-    private List<ResultItem> resultItems;
 
-    public Ladder(int height, List<ResultItem> resultItems, CrossbarGenerator crossbarGenerator) {
+    private List<Crosspoints> ladderRows = new ArrayList<>();
+
+    public Ladder(int height, CrossbarGenerator crossbarGenerator) {
         validateHeight(height);
         for (int i = 0; i < height; i++) {
             ladderRows.add(crossbarGenerator.generateCrossbars());
         }
-
-        validateNumberOfResultItems(resultItems.size());
-        this.resultItems = resultItems;
     }
 
     public List<Crosspoints> getLadderRows() {
         return ladderRows;
-    }
-
-    public List<ResultItem> getResultItems() {
-        return resultItems;
-    }
-
-    private void validateNumberOfResultItems(int numberOfResultItems) {
-        int numberOfPlayer = ladderRows.get(0).width();
-
-        if (numberOfResultItems != numberOfPlayer) {
-            throw new IllegalArgumentException("당첨 상품의 수는 플레이어의 수와 같아야 합니다.");
-        }
     }
 
     private void validateHeight(int height) {
@@ -41,13 +26,13 @@ public class Ladder {
         }
     }
 
-    public ResultItem answerResult(int playerPosition) {
+    public int answerResultPositionOf(int playerPosition) {
         int currentPosition = playerPosition;
 
         for (Crosspoints crosspoints : ladderRows) {
             currentPosition = crosspoints.answerResultIndexOf(currentPosition);
         }
-        return resultItems.get(currentPosition);
+        return currentPosition;
     }
 
     @Override

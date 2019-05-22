@@ -5,10 +5,11 @@ import ladder.domain.*;
 import java.util.Map;
 
 public class OutputView {
-    public static void showPlayersAndLadder(PlayerGroup players, Ladder ladder) {
+    public static void showPlayersAndLadder(PlayerGroup players, Ladder ladder, ResultItems resultItems) {
         System.out.println("실행 결과\n");
         printPlayerNames(players);
         printLadder(ladder);
+        printResultItems(resultItems);
     }
 
     private static void printPlayerNames(PlayerGroup players) {
@@ -23,9 +24,11 @@ public class OutputView {
             printCrossbars(crosspoints);
             System.out.println();
         }
+    }
 
-        for (ResultItem resultItem : ladder.getResultItems()) {
-            System.out.print(String.format("%-6s", resultItem));
+    private static void printResultItems(ResultItems resultItems) {
+        for (int position = 0; position < resultItems.size(); position++) {
+            System.out.print(String.format("%-6s", resultItems.getResultItemAtPositionOf(position)));
         }
         System.out.println();
     }
@@ -40,23 +43,28 @@ public class OutputView {
         }
     }
 
-    public static void showResultOf(String playerName, Map<String, ResultItem> ladderingResult) {
-        System.out.println("실행 결과");
+    public static void showResultOf(String playerName, Map<Player, ResultItem> ladderingResult) {
         if (playerName.equals("all")) {
             showAllResultOf(ladderingResult);
             return;
         }
 
-        if (!ladderingResult.containsKey(playerName)) {
+        showPlayerResult(playerName, ladderingResult);
+    }
+
+    private static void showAllResultOf(Map<Player, ResultItem> ladderingResult) {
+        for (Player player : ladderingResult.keySet()) {
+            System.out.println(player + " : " + ladderingResult.get(player));
+        }
+    }
+
+    private static void showPlayerResult(String playerName, Map<Player, ResultItem> ladderingResult) {
+        Player player = new Player(playerName);
+
+        if (!ladderingResult.containsKey(player)) {
             throw new IllegalArgumentException("존재하지 않는 플레이어입니다.");
         }
 
-        System.out.println(ladderingResult.get(playerName));
-    }
-
-    private static void showAllResultOf(Map<String, ResultItem> ladderingResult) {
-        for (String playerName : ladderingResult.keySet()) {
-            System.out.println(playerName + " : " + ladderingResult.get(playerName));
-        }
+        System.out.println(ladderingResult.get(player));
     }
 }

@@ -25,21 +25,19 @@ public class LadderTest {
 
     @Test
     void Ladder가_제대로_생성되는지_테스트() {
-        assertThat(new Ladder(3, resultItems, new UserSetCrossbarGenerator(userSetCroossbar)))
-                .isEqualTo(new Ladder(3, resultItems, new UserSetCrossbarGenerator(userSetCroossbar)));
+        assertThat(new Ladder(3, new UserSetCrossbarGenerator(userSetCroossbar)))
+                .isEqualTo(new Ladder(3, new UserSetCrossbarGenerator(userSetCroossbar)));
     }
 
     @Test
     void Ladder의_높이가_1보다_작을_때_예외를_던지는지_테스트() {
-        assertThrows(IllegalArgumentException.class, () -> new Ladder(0, resultItems, new RandomCrossbarGenerator(4)));
+        assertThrows(IllegalArgumentException.class, () -> new Ladder(0, new RandomCrossbarGenerator(4)));
     }
 
     @Test
     void 플레이어_위치를_입력받아_결과를_제대로_알려주는지_테스트() {
-        Ladder testLadder = new Ladder(1, resultItems,
-                new UserSetCrossbarGenerator(userSetCroossbar));
+        Ladder testLadder = new Ladder(1, new UserSetCrossbarGenerator(userSetCroossbar));
 
-        assertThat(testLadder.answerResult(0)).isEqualTo(new ResultItem("b"));
-        assertThat(testLadder.answerResult(1)).isEqualTo(new ResultItem("a"));
+        assertThat(testLadder.answerResultPositionOf(0)).isEqualTo(1);
     }
 }

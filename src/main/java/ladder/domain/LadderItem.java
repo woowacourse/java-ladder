@@ -8,7 +8,7 @@ public class LadderItem {
 
     private final String name;
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
