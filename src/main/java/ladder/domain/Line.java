@@ -8,14 +8,10 @@ public class Line {
     private static final String HORIZONAL_LINE = "-----";
     private static final String LINE_SPACE = "     ";
 
-    private List<Boolean> steps = new ArrayList<>();
+    private List<Step> steps;
 
-    public Line(int countOfPerson) {
-        steps.add(RandomGenerator.getRandomBoolean());
-
-        for (int i = 1; i < countOfPerson - 1; ++i) {
-            steps.add(RandomGenerator.getRandomBoolean(steps.get(i - 1)));
-        }
+    public Line(List<Step> steps) {
+        this.steps = steps;
     }
 
     public int getNextPositon(Player player) {
@@ -26,8 +22,8 @@ public class Line {
     public String toString() {
         List<String> lineElements = new ArrayList<>();
 
-        for (boolean step : steps) {
-            lineElements.add((step) ? HORIZONAL_LINE : LINE_SPACE);
+        for (Step step : steps) {
+            lineElements.add((step.exist()) ? HORIZONAL_LINE : LINE_SPACE);
         }
 
         return VERTICAL_LINE

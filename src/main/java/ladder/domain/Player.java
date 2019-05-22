@@ -11,17 +11,17 @@ public class Player {
         this.position = position;
     }
 
-    public int tryMove(List<Boolean> points) {
+    public int tryMove(List<Step> steps) {
         if (position == 0) {
-            return (points.get(position) ? moveRight() : position);
+            return (steps.get(position).exist() ? moveRight() : position);
         }
-        if (position == points.size()) {
-            return (points.get(position - 1) ? moveLeft() : position);
+        if (position == steps.size()) {
+            return (steps.get(position - 1).exist() ? moveLeft() : position);
         }
-        if (points.get(position - 1)) {
+        if (steps.get(position - 1).exist()) {
             return moveLeft();
         }
-        return (points.get(position) ? moveRight() : position);
+        return (steps.get(position).exist() ? moveRight() : position);
     }
 
     private int moveLeft() {
