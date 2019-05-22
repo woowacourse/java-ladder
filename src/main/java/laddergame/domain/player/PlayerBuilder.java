@@ -11,13 +11,7 @@ import java.util.stream.Collectors;
 public class PlayerBuilder {
     private final static String COMMA = ",";
 
-    private final String names;
-
-    public PlayerBuilder(final String names) {
-        this.names = names;
-    }
-
-    public Players buildPlayers() {
+    public static Players buildPlayers(String names) {
         InputValidator.validateInput(names);
         List<Player> players = Arrays.stream(names.split(COMMA))
                 .map(String::trim)
@@ -27,22 +21,9 @@ public class PlayerBuilder {
         return new Players(players);
     }
 
-    private void checkDuplication(List<Player> players) {
+    private static void checkDuplication(List<Player> players) {
         if(new HashSet<>(players).size() != players.size()){
             throw new IllegalArgumentException("중복이 있습니다.");
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PlayerBuilder)) return false;
-        PlayerBuilder that = (PlayerBuilder) o;
-        return Objects.equals(names, that.names);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(names);
     }
 }

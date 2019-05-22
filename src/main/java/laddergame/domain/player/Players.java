@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class Players {
-    private final static String COMMAND_ALL = "all";
-    private final static String EMPTY = "";
-
     private final List<Player> players;
 
     public Players(List<Player> players) {

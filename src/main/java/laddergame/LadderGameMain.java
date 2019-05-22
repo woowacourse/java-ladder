@@ -32,7 +32,7 @@ public class LadderGameMain {
 
     private static Players setPlayers() {
         try {
-            return new PlayerBuilder(InputView.inputPlayers()).buildPlayers();
+            return PlayerBuilder.buildPlayers(InputView.inputPlayers());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return setPlayers();
