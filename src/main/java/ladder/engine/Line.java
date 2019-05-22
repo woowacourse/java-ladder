@@ -1,5 +1,5 @@
 package ladder.engine;
 
-public interface LadderLine {
+public interface Line {
     int move(int position);
 }

@@ -1,16 +1,16 @@
-package ladder.engine.basic;
+package ladder.engine.impl;
 
 import ladder.engine.Ladder;
-import ladder.engine.LadderLine;
 import ladder.engine.LadderResult;
+import ladder.engine.Line;
 
 import java.util.List;
 
 public class DefaultLadder implements Ladder {
     private final int sizeOfPerson;
-    private final List<LadderLine> lines;
+    private final List<Line> lines;
 
-    public DefaultLadder(final int sizeOfPerson, final List<LadderLine> lines) {
+    public DefaultLadder(final int sizeOfPerson, final List<Line> lines) {
         this.sizeOfPerson = sizeOfPerson;
         this.lines = lines;
     }
@@ -26,7 +26,7 @@ public class DefaultLadder implements Ladder {
 
     private int getTarget(int position) {
         int target = position;
-        for (LadderLine line : lines) {
+        for (Line line : lines) {
             target = line.move(target);
         }
         return target;

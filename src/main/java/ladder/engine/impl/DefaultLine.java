@@ -1,13 +1,13 @@
-package ladder.engine.basic;
+package ladder.engine.impl;
 
-import ladder.engine.LadderLine;
+import ladder.engine.Line;
 
 import java.util.List;
 
-class DefaultLadderLine implements LadderLine {
+class DefaultLine implements Line {
     private final List<Point> points;
 
-    DefaultLadderLine(List<Point> points) {
+    DefaultLine(List<Point> points) {
         this.points = points;
     }
 
@@ -18,7 +18,7 @@ class DefaultLadderLine implements LadderLine {
 
     @Override
     public String toString() {
-        return "DefaultLadderLine{" +
+        return "DefaultLine{" +
                 "points=" + points +
                 '}';
     }

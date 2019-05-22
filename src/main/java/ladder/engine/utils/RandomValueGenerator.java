@@ -1,4 +1,4 @@
-package ladder.engine.basic;
+package ladder.engine.utils;
 
 import java.util.Random;
 

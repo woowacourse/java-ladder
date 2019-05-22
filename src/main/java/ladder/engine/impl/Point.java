@@ -1,4 +1,4 @@
-package ladder.engine.basic;
+package ladder.engine.impl;
 
 class Point {
     private final int index;
