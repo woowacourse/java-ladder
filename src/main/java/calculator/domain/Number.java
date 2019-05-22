@@ -3,7 +3,7 @@ package calculator.domain;
 import java.util.Objects;
 
 public class Number {
-    private final int number;
+    private int number;
 
     public Number(String number) {
         this.number = parseNumber(number);
@@ -20,7 +20,15 @@ public class Number {
         }
     }
 
-    int getNumber() {
+    public static Number zeroNumber() {
+        return new Number("0");
+    }
+
+    public void add(final Number operand) {
+        this.number += operand.getNumber();
+    }
+
+    public int getNumber() {
         return this.number;
     }
 

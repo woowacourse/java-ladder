@@ -5,11 +5,12 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Expression {
+    private static final String BLANK_EXPRESSION = "0";
+
     private static final int LOCATION_OF_DELIMITER = 2;
     private static final int EXPRESSION_START_POINT = 4;
     private static final Pattern CUSTOM_PATTERN = Pattern.compile("//.*\\n.*");
@@ -19,7 +20,7 @@ public class Expression {
 
     public Expression(String expression) {
         if (StringUtils.isBlank(expression)) {
-            expression = "0";
+            expression = BLANK_EXPRESSION;
         }
         this.expression = expression;
     }

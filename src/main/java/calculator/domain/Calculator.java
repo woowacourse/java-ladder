@@ -12,12 +12,12 @@ public class Calculator {
 
     int calculate() {
         List<Number> numbers = expression.getNumbers();
-        int sum = 0;
+        Number sum = Number.zeroNumber();
 
-        for (Number number : numbers) {
-            sum += number.getNumber();
+        for (final Number number : numbers) {
+            sum.add(number);
         }
-        return sum;
+        return sum.getNumber();
     }
 
     @Override
