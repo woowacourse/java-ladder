@@ -8,20 +8,16 @@ import java.util.List;
 public class Results {
     private List<Result> results;
 
-    public Results() {
-        this.results = new ArrayList<>();
+    public Results(List<Result> results) {
+        this.results = results;
     }
 
-    public void add(Result result) {
-        results.add(result);
-    }
-
-    public Result get(NaturalNumber resultNo) {
+    Result get(NaturalNumber resultNo) {
         return results.get(resultNo.convertIndex());
     }
 
-    public boolean isContains(String result) {
-        return results.contains(new Result(result));
+    public int size() {
+        return results.size();
     }
 
     @Override

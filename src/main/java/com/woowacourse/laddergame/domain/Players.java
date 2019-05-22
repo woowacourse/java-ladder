@@ -1,5 +1,6 @@
 package com.woowacourse.laddergame.domain;
 
+import com.woowacourse.laddergame.util.Duplicate;
 import com.woowacourse.laddergame.util.NaturalNumber;
 
 import java.util.ArrayList;
@@ -8,26 +9,18 @@ import java.util.List;
 public class Players {
     private List<Player> players;
 
-    public Players() {
-        players = new ArrayList<>();
-    }
-
-    public void add(Player player) {
-        if (checkDuplicateName(player)) {
+    public Players(List<Player> players) {
+        if (Duplicate.check(players)) {
             throw new IllegalArgumentException("이름은 중복될 수 없습니다");
         }
-        players.add(player);
-    }
-
-    private boolean checkDuplicateName(Player player) {
-        return players.contains(player);
+        this.players = players;
     }
 
     public int getPlayerNo(String name) {
         return players.indexOf(new Player(name)) + 1;
     }
 
-    public Player get(NaturalNumber playerNo) {
+    Player get(NaturalNumber playerNo) {
         return players.get(playerNo.convertIndex());
     }
 

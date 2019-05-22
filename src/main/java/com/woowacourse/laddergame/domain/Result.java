@@ -1,5 +1,7 @@
 package com.woowacourse.laddergame.domain;
 
+import java.util.Objects;
+
 public class Result {
     private String result;
 
@@ -7,7 +9,7 @@ public class Result {
         this.result = result;
     }
 
-    String getResult() {
+    public String getResult() {
         return result;
     }
 
@@ -19,15 +21,13 @@ public class Result {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (!(o instanceof Result)) return false;
         Result result1 = (Result) o;
-
-        return result != null ? result.equals(result1.result) : result1.result == null;
+        return Objects.equals(getResult(), result1.getResult());
     }
 
     @Override
     public int hashCode() {
-        return result != null ? result.hashCode() : 0;
+        return Objects.hash(getResult());
     }
 }
