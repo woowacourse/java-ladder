@@ -1,5 +1,7 @@
 package com.woowacourse.laddergame.util;
 
+import java.util.Objects;
+
 public class NaturalNumber {
     private int number;
 
@@ -17,5 +19,22 @@ public class NaturalNumber {
 
     public int getNumber() {
         return number;
+    }
+
+    public boolean isBiggerThan(NaturalNumber number) {
+        return this.number > number.number;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof NaturalNumber)) return false;
+        NaturalNumber that = (NaturalNumber) o;
+        return getNumber() == that.getNumber();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNumber());
     }
 }
