@@ -3,43 +3,44 @@ package laddergame.domain.ladder;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class LadderTest {
 
     @Test
     public void 레더_테스트_사다리의_너비가_1일때() {
         Ladder ladder = new Ladder(1, 1);
-        assertThat(ladder.connectBridge(1, 1)).isFalse();
+        assertThat(ladder.connectBridge(Position.of(1, 1))).isFalse();
     }
 
     @Test
     public void 연속된_연결로를_추가할때_검사_4X4사다리() {
         Ladder ladder = new Ladder(4, 4);
-        ladder.connectBridge(1, 2);
-        ladder.connectBridge(1, 1);
-        ladder.connectBridge(1, 3);
-        ladder.connectBridge(2, 1);
+        ladder.connectBridge(Position.of(1, 2));
+        ladder.connectBridge(Position.of(1, 1));
+        ladder.connectBridge(Position.of(1, 3));
+        ladder.connectBridge(Position.of(2, 1));
 
-        assertThat(ladder.connectBridge(1, 1)).isFalse();
-        assertThat(ladder.connectBridge(1, 3)).isFalse();
+        assertThat(ladder.connectBridge(Position.of(1, 1))).isFalse();
+        assertThat(ladder.connectBridge(Position.of(1, 3))).isFalse();
 
-        ladder.connectBridge(2, 2);
-        assertThat(ladder.connectBridge(2, 2)).isFalse();
+        ladder.connectBridge(Position.of(2, 2));
+        assertThat(ladder.connectBridge(Position.of(2, 2))).isFalse();
     }
 
     @Test
     public void 연속된_연결로를_추가할때_추가가_안되는지_검사_1X2사다리() {
         Ladder ladder = new Ladder(1, 2);
-        ladder.connectBridge(1, 1);
+        ladder.connectBridge(Position.of(1, 1));
 
-        assertThat(ladder.connectBridge(1, 1)).isTrue();
+        assertThat(ladder.connectBridge(Position.of(1, 1))).isTrue();
     }
 
     @Test
     public void 레더_테스트_2X2크기일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(2, 2);
-        ladder.connectBridge(1, 1);
-        ladder.connectBridge(2, 1);
+        ladder.connectBridge(Position.of(1, 1));
+        ladder.connectBridge(Position.of(2, 1));
 
         assertThat(ladder.findDestination(1)).isEqualTo(1);
         assertThat(ladder.findDestination(2)).isEqualTo(2);
@@ -48,9 +49,9 @@ public class LadderTest {
     @Test
     public void 레더_테스트_3X3크기일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(3, 3);
-        ladder.connectBridge(1, 1);
-        ladder.connectBridge(2, 1);
-        ladder.connectBridge(3, 2);
+        ladder.connectBridge(Position.of(1, 1));
+        ladder.connectBridge(Position.of(2, 1));
+        ladder.connectBridge(Position.of(3, 2));
 
         assertThat(ladder.findDestination(1)).isEqualTo(1);
         assertThat(ladder.findDestination(3)).isEqualTo(2);
@@ -69,7 +70,7 @@ public class LadderTest {
     @Test
     public void 레더_테스트_1X2크기일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(1, 2);
-        ladder.connectBridge(1, 1);
+        ladder.connectBridge(Position.of(1, 1));
 
         assertThat(ladder.findDestination(1)).isEqualTo(2);
         assertThat(ladder.findDestination(2)).isEqualTo(1);
@@ -78,8 +79,8 @@ public class LadderTest {
     @Test
     public void 레더_테스트_1X5크기일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(1, 5);
-        ladder.connectBridge(1, 2);
-        ladder.connectBridge(1, 4);
+        ladder.connectBridge(Position.of(1, 2));
+        ladder.connectBridge(Position.of(1, 4));
 
         assertThat(ladder.findDestination(1)).isEqualTo(1);
         assertThat(ladder.findDestination(2)).isEqualTo(3);
@@ -91,10 +92,10 @@ public class LadderTest {
     @Test
     public void 레더_테스트_2X5크기일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(2, 5);
-        ladder.connectBridge(1, 2);
-        ladder.connectBridge(1, 4);
-        ladder.connectBridge(2, 1);
-        ladder.connectBridge(2, 3);
+        ladder.connectBridge(Position.of(1, 2));
+        ladder.connectBridge(Position.of(1, 4));
+        ladder.connectBridge(Position.of(2, 1));
+        ladder.connectBridge(Position.of(2, 3));
 
         assertThat(ladder.findDestination(1)).isEqualTo(2);
         assertThat(ladder.findDestination(2)).isEqualTo(4);
@@ -106,11 +107,11 @@ public class LadderTest {
     @Test
     public void 레더_테스트_3X5크기일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(3, 5);
-        ladder.connectBridge(1, 2);
-        ladder.connectBridge(1, 4);
-        ladder.connectBridge(2, 1);
-        ladder.connectBridge(2, 3);
-        ladder.connectBridge(3, 3);
+        ladder.connectBridge(Position.of(1, 2));
+        ladder.connectBridge(Position.of(1, 4));
+        ladder.connectBridge(Position.of(2, 1));
+        ladder.connectBridge(Position.of(2, 3));
+        ladder.connectBridge(Position.of(3, 3));
 
         assertThat(ladder.findDestination(1)).isEqualTo(2);
         assertThat(ladder.findDestination(2)).isEqualTo(3);
@@ -122,13 +123,22 @@ public class LadderTest {
     @Test
     public void 레더_테스트_6X3크기일때_경로를_제대로_찾는지() {
         Ladder ladder = new Ladder(6, 3);
-        ladder.connectBridge(1, 1);
-        ladder.connectBridge(2, 1);
-        ladder.connectBridge(3, 1);
-        ladder.connectBridge(5, 2);
+        ladder.connectBridge(Position.of(1, 1));
+        ladder.connectBridge(Position.of(2, 1));
+        ladder.connectBridge(Position.of(3, 1));
+        ladder.connectBridge(Position.of(5, 2));
 
         assertThat(ladder.findDestination(1)).isEqualTo(3);
         assertThat(ladder.findDestination(2)).isEqualTo(1);
         assertThat(ladder.findDestination(3)).isEqualTo(2);
+    }
+
+    @Test
+    public void 좌표로_0이하의_크기를_입력했을때_예외가_발생하는지_확인() {
+        Ladder ladder = new Ladder(5, 5);
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+            ladder.connectBridge(Position.of(0, 0));
+            ladder.connectBridge(Position.of(-1, 2));
+        });
     }
 }

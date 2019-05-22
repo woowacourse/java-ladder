@@ -9,7 +9,10 @@ import laddergame.domain.reward.RewardsNamesFactory;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
+import java.util.Optional;
+
 public class LadderGameController {
+    private static final String ALL_COMMAND = "all";
 
     private GameResult ladderGameResult;
 
@@ -72,16 +75,20 @@ public class LadderGameController {
     }
 
     public void proceedGame() {
-        String command;
+        Optional<String> optCommand;
         do {
-            command = InputView.inputCommand();
-        } while (proceedWithCommand(command));
-        OutputView.showAllResult(this.ladderGameResult.getAllGameResultFormat());
+            String command = InputView.inputCommand();
+            optCommand = Optional.ofNullable(command);
+        } while (proceedWithCommand(optCommand.orElse("quit")));
     }
 
     private boolean proceedWithCommand(String command) {
         try {
+            if (command.equals("quit")) {
+                return false;
+            }
             if (command.equals("all")) {
+                OutputView.showAllResult(this.ladderGameResult.getAllGameResultFormat());
                 return false;
             }
             OutputView.showResult(this.ladderGameResult.getGameResultFormat(command));

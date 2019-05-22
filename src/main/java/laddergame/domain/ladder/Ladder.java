@@ -24,18 +24,18 @@ public class Ladder {
             final int randomRow = new Random().nextInt(height) + 1;
             final int randomCol = (int) (Math.random() * width) + 1;
 
-            connectBridge(randomRow, randomCol);
+            connectBridge(Position.of(randomRow, randomCol));
         }
     }
 
-    public boolean connectBridge(final int row, final int column) {
+    public boolean connectBridge(final Position input) {
         try {
-            return ladder.get(row).connect(column);
+            return ladder.get(input.getRow()).connect(input.getColumn());
         } catch (IndexOutOfBoundsException e) {
+            return false;
         } catch (IllegalArgumentException e) {
             return false;
         }
-        return false;
     }
 
     public int findDestination(int startPosition) {
