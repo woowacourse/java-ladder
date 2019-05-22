@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.LadderGameData;
 import ladder.domain.Person;
 import ladder.validator.InputValidator;
 
@@ -46,14 +47,14 @@ public class InputView {
         }
     }
 
-    public static String findResultName(Person person) {
+    public static String findResultName(LadderGameData ladderGameData) {
         try {
             System.out.println(FIND_RESULT_NAME_MESSAGE);
             String requestedName = SCANNER.nextLine();
-            return InputValidator.isNotContainName(person, requestedName);
+            return InputValidator.isNotContainName(ladderGameData.getPerson(), requestedName);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return findResultName(person);
+            return findResultName(ladderGameData);
         }
     }
 }

@@ -3,8 +3,8 @@ package ladder.util;
 import java.util.List;
 import java.util.Random;
 
-class RandomHelper {
-    static boolean randomPoint(List<Boolean> points, int countOfPerson) {
+public class RandomHelper {
+    public static boolean randomPoint(List<Boolean> points, int countOfPerson) {
         Random random = new Random();
         if (isOnePerson(countOfPerson) || isStartEnd(points, countOfPerson) || isFormerFalse(points)) {
             return false;

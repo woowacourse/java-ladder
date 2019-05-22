@@ -1,15 +1,15 @@
-package ladder.util;
+package ladder.domain;
 
-import ladder.domain.Line;
+import ladder.util.RandomHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LadderMaker {
-    public static List<Line> generateLadder(int height, int countOfPerson) {
+class LadderMaker {
+    static List<Line> generateLadder(LadderGameData ladderGameData) {
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(generateOneLine(countOfPerson)));
+        for (int i = 0; i < ladderGameData.getHeight(); i++) {
+            lines.add(new Line(generateOneLine(ladderGameData.getPerson().getCountOfPerson())));
         }
         return lines;
     }
