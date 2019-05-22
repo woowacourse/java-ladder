@@ -1,66 +1,61 @@
 package com.woowacourse.laddergame.view;
 
-import com.woowacourse.laddergame.domain.dto.LadderDto;
+import com.woowacourse.laddergame.domain.vo.ResultNameVo;
 import com.woowacourse.laddergame.domain.vo.HeightVo;
 import com.woowacourse.laddergame.domain.vo.LadderResultsVo;
 import com.woowacourse.laddergame.domain.vo.PlayerNamesVo;
-import com.woowacourse.laddergame.domain.dto.ResultNameDto;
 
 import java.util.Scanner;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static LadderDto inputPlayerNames(LadderDto ladderDto) {
+    public static PlayerNamesVo inputPlayerNames() {
         try {
             System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-            ladderDto.setPlayerNamesVo(new PlayerNamesVo(scanner.nextLine()));
-            return ladderDto;
+            return new PlayerNamesVo(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputPlayerNames(ladderDto);
+            return inputPlayerNames();
         }
 
     }
 
-    public static LadderDto inputGameResult(LadderDto ladderDto) {
+    public static LadderResultsVo inputGameResult() {
         try {
             System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-            ladderDto.setLadderResultsVo(new LadderResultsVo(scanner.nextLine()));
-            return ladderDto;
+            return new LadderResultsVo(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputGameResult(ladderDto);
+            return inputGameResult();
         }
     }
 
-    public static LadderDto inputHeight(LadderDto ladderDto) {
+    public static HeightVo inputHeight() {
         try {
             System.out.println("최대 사다리 높이는 몇 개인가요?");
-            ladderDto.setHeightVo(new HeightVo(scanner.nextLine()));
-            return ladderDto;
+            return new HeightVo(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputHeight(ladderDto);
+            return inputHeight();
         }
     }
 
-    public static ResultNameDto inputResultName(ResultNameDto resultNameDto) {
+    public static ResultNameVo inputResultName() {
         try {
             System.out.println("결과를 보고 싶은 사람은?");
             String resultName = scanner.nextLine();
             checkExit(resultName);
-            resultNameDto.setName(resultName);
-            return resultNameDto;
+            return new ResultNameVo(resultName);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputResultName(resultNameDto);
+            return inputResultName();
         }
     }
 
     private static void checkExit(String input) {
         if (input.equals("-1")) {
-            System.exit(0);
+            throw new RuntimeException("종료를 합니다.");
         }
     }
 }

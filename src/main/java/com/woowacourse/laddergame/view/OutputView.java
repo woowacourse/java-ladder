@@ -1,28 +1,28 @@
 package com.woowacourse.laddergame.view;
 
-import com.woowacourse.laddergame.domain.dto.LadderGameResultDto;
+import com.woowacourse.laddergame.domain.dto.LadderGameDto;
 
 public class OutputView {
-    public static void printLadderStatus(LadderGameResultDto ladderGameResultDto) {
-        System.out.println(ladderGameResultDto.getMadeLadderVO().toString());
+    public static void printLadderStatus(LadderGameDto ladderGameDto) {
+        System.out.println(ladderGameDto.getMadeLadderVO().toString());
     }
 
-    public static void printLadderGameResult(String targetName, LadderGameResultDto ladderGameResultDto) {
+    public static void printLadderGameResult(String targetName, LadderGameDto ladderGameDto) {
         System.out.println("실행 결과");
         if (targetName.equals("all")) {
-            printAllLadderGameResult(ladderGameResultDto);
+            printAllLadderGameResult(ladderGameDto);
             return;
         }
-        printSelectedLadderGameResult(targetName, ladderGameResultDto);
+        printSelectedLadderGameResult(targetName, ladderGameDto);
     }
 
-    public static void printAllLadderGameResult(LadderGameResultDto ladderGameResultDto) {
-        System.out.println(ladderGameResultDto.getLadderGameResultVo().toString());
+    public static void printAllLadderGameResult(LadderGameDto ladderGameDto) {
+        System.out.println(ladderGameDto.getLadderMatchingResultVo().toString());
     }
 
-    public static void printSelectedLadderGameResult(String targetName, LadderGameResultDto ladderGameResultDto) {
+    public static void printSelectedLadderGameResult(String targetName, LadderGameDto ladderGameDto) {
         try {
-            System.out.println(ladderGameResultDto.getLadderGameResultVo().getResult(targetName));
+            System.out.println(ladderGameDto.getLadderMatchingResultVo().getResult(targetName));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
