@@ -18,6 +18,7 @@ public class LadderGameMain {
         Players players = setPlayers();
         Results results = setResults(players);
         Ladder ladder = new Ladder(setLadderHeight().getLadderHeight(), players.getPlayersSize());
+        ladder.connectBridgesRandomly();
         OutputView.showPlayers(players);
         OutputView.showLadder(ladder);
         OutputView.showResults(results);
@@ -41,7 +42,7 @@ public class LadderGameMain {
 
     private static Results setResults(Players players) {
         try {
-            Results results = new ResultBuilder(InputView.inputResults()).buildResults();
+            Results results = ResultBuilder.buildResults(InputView.inputResults());
             checkCountOfResultsWithPlayers(players, results);
             return results;
         } catch (IllegalArgumentException e) {

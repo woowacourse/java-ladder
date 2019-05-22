@@ -10,13 +10,7 @@ import java.util.stream.Collectors;
 public class ResultBuilder {
     private final static String COMMA = ",";
 
-    private String result;
-
-    public ResultBuilder(String result) {
-        this.result = result;
-    }
-
-    public Results buildResults() {
+    public static Results buildResults(String result) {
         InputValidator.validateInput(result);
 
         List<Result> results =  Arrays.stream(result.split(COMMA))
@@ -24,18 +18,5 @@ public class ResultBuilder {
                 .collect(Collectors.toList());
 
         return new Results(results);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ResultBuilder)) return false;
-        ResultBuilder that = (ResultBuilder) o;
-        return Objects.equals(result, that.result);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(result);
     }
 }
