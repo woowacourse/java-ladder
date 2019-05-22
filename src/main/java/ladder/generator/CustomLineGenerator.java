@@ -12,7 +12,7 @@ public class CustomLineGenerator implements LineGenerator {
     @Override
     public Line makeLine(int countOfPlayers) {
         if (line.isSameLength(countOfPlayers)){
-            new IllegalArgumentException();
+            throw new IllegalArgumentException();
         }
         return line;
     }
