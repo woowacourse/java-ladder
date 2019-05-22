@@ -11,6 +11,10 @@ public class Line {
     private List<Point> points;
 
     public Line(int width) {
+        initializeLine(width);
+    }
+
+    private void initializeLine(int width) {
         points = new ArrayList<>();
         for (int i = 0; i < width; i++) {
             points.add(new Point(false));

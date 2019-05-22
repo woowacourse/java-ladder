@@ -15,8 +15,11 @@ public class Ladder {
     public Ladder(int height, int width) {
         this.height = height;
         this.width = width;
-        ladder = new ArrayList<>();
+        initializeLadder();
+    }
 
+    private void initializeLadder(){
+        ladder = new ArrayList<>();
         for (int i = 0; i <= height; i++) {
             ladder.add(new Line(width));
         }
