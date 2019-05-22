@@ -1,11 +1,13 @@
 package laddergame.domain.ladder;
 
-import java.util.ArrayList;
-import java.util.List;
+import laddergame.domain.player.Players;
+import laddergame.domain.result.Results;
 
-import java.util.Random;
+import java.util.*;
 
 public class Ladder {
+    private static final int CONNECTING_BRIDGE_TRIAL_COUNT = 100;
+
     private final int height;
     private final int width;
     private List<Line> ladder;
@@ -18,11 +20,12 @@ public class Ladder {
         for (int i = 0; i <= height; i++) {
             ladder.add(new Line(width));
         }
+        connectBridgesRandomly();
     }
 
-    public void connectBridgesRandomly(int count) {
+    private void connectBridgesRandomly() {
         Random random = new Random();
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < CONNECTING_BRIDGE_TRIAL_COUNT; i++) {
             int randomRow = random.nextInt(height) + 1;
             int randomColumn = random.nextInt(width) + 1;
 
@@ -51,6 +54,17 @@ public class Ladder {
             return false;
         }
     }
+
+    public Map<String, String> getResultOfPlayer(Players players, Results results){
+        Map<String, String> resultOfPlayer = new TreeMap<>();
+        for (int i = 0; i < players.getPlayersSize(); i++) {
+            String player = players.getNameOfIndex(i);
+            String result = results.getResult(findIndexOfResult(i));
+            resultOfPlayer.put(player, result);
+        }
+        return resultOfPlayer;
+    }
+
 
     @Override
     public String toString() {

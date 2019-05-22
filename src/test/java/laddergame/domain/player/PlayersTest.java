@@ -33,14 +33,7 @@ public class PlayersTest {
     }
 
     @Test
-    public void 이름으로_인덱스를_제대로_반환하는지() {
-        assertThat(players.getIndexOfName("pobi")).isEqualTo(0);
-    }
-
-    @Test
-    public void 이름이_존재하지_않을_때_예외를_발생시키는지() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            players.getIndexOfName("water");
-        });
+    public void 이름이_존재하지_않을_때() {
+        assertThat(players.contains("water")).isFalse();
     }
 }

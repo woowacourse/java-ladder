@@ -6,16 +6,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class Results {
-    private final static String BLANK = " ";
-
     private List<Result> results;
 
     public Results(List<Result> results) {
         this.results = results;
     }
 
-    public Result getResult(int index) {
-        return this.results.get(index);
+    public String getResult(int index) {
+        return this.results.get(index).getResult();
     }
 
     public boolean isSameSizeWith(Players players) {
@@ -37,9 +35,9 @@ public class Results {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder(String.format("%-3s", BLANK));
+        StringBuilder stringBuilder = new StringBuilder();
         for (Result result : results) {
-            stringBuilder.append(String.format("%-6s", result));
+            stringBuilder.append(String.format("%6s", result.getResult()));
         }
         return stringBuilder.toString();
     }

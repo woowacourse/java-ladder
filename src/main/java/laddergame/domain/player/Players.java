@@ -17,14 +17,8 @@ public class Players {
         return players.size();
     }
 
-    public int getIndexOfName(String name) {
-        if(name.equals(COMMAND_ALL)){
-            throw new IllegalArgumentException(EMPTY);
-        }
-        if (!players.contains(new Player(name))) {
-            throw new IllegalArgumentException("존재하지않는 이름입니다.");
-        }
-        return players.indexOf(new Player(name));
+    public boolean contains(String name) {
+        return players.contains(new Player(name));
     }
 
     public String getNameOfIndex(int index) {
@@ -50,9 +44,9 @@ public class Players {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder(String.format("%-3s", " "));
+        StringBuilder stringBuilder = new StringBuilder();
         for (Player player : players) {
-            stringBuilder.append(String.format("%-6s", player));
+            stringBuilder.append(String.format("%6s", player.getName()));
         }
         return stringBuilder.toString();
     }

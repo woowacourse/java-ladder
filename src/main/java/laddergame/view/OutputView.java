@@ -1,9 +1,14 @@
 package laddergame.view;
 
+import laddergame.domain.gameresult.GameResult;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.player.Players;
 import laddergame.domain.result.Result;
 import laddergame.domain.result.Results;
+
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 public class OutputView {
 
@@ -28,15 +33,15 @@ public class OutputView {
         System.out.println(results);
     }
 
-    public static void showResult(Result result) {
+    public static void showResult(String result) {
+        if(result == null) {
+            return;
+        }
         showMessageOfExecution();
         System.out.println(result);
     }
 
-    public static void showAllResult(Players players, Results results, Ladder ladder) {
-        for (int i = 0; i < players.getPlayersSize(); i++) {
-            System.out.print(players.getNameOfIndex(i));
-            System.out.println("\t:\t" + results.getResult(ladder.findIndexOfResult(i)));
-        }
+    public static void showAllResult(GameResult gameResult) {
+        System.out.println(gameResult);
     }
 }
