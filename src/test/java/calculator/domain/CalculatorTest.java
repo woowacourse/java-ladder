@@ -50,7 +50,7 @@ public class CalculatorTest {
 
     @Test
     public void 주어진_식에서_음수나_문자가_포함되어있을떄_예외를_발생시키는지_확인() {
-        assertThrows(RuntimeException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             new Calculator("-1:2,3").calculate();
             new Calculator("a:2,3").calculate();
         });

@@ -8,7 +8,7 @@ public class Number {
     public Number(String number) {
         this.number = parseNumber(number);
         if (this.number < 0) {
-            throw new RuntimeException("0 이상의 정수를 입력하세요");
+            throw new IllegalArgumentException("0 이상의 정수를 입력하세요");
         }
     }
 
@@ -16,7 +16,7 @@ public class Number {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new RuntimeException("문자를 입력하지마세요");
+            throw new IllegalArgumentException("문자를 입력하지마세요");
         }
     }
 

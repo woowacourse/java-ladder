@@ -5,12 +5,14 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Expression {
     private static final int LOCATION_OF_DELIMITER = 2;
     private static final int EXPRESSION_START_POINT = 4;
-    private static final String CUSTOM_PATTERN = "//.*\\n.*";
+    private static final Pattern CUSTOM_PATTERN = Pattern.compile("//.*\\n.*");
     private static final String COMMA_OR_COLON = ",|:";
 
     private final String expression;
@@ -29,7 +31,7 @@ public class Expression {
     }
 
     List<String> splitExpression() {
-        if (expression.matches(CUSTOM_PATTERN)) {
+        if (CUSTOM_PATTERN.asPredicate().test(this.expression)) {
             String splitedExpression = this.expression.substring(EXPRESSION_START_POINT);
             return Arrays.asList(splitedExpression
                     .split(Character.toString(this.expression.charAt(LOCATION_OF_DELIMITER))));
