@@ -37,15 +37,17 @@ public class LadderGameManager {
     }
 
     private void ladderMove(int ladderHeight) {
-        for (int i = 0; i < players.size(); i++) {
-            moveLadderHeight(i, ladderHeight);
+        int playerNumber = 0;
+        for (Player player : players) {
+            moveLadderHeight(playerNumber, player, ladderHeight);
+            playerNumber++;
         }
     }
 
-    private void moveLadderHeight(int playerNumber, int ladderHeight) {
+    private void moveLadderHeight(int playerNumber, Player player, int ladderHeight) {
         for (int j = 0; j < ladderHeight; j++) {
-            players.get(playerNumber).move(players.size(), checkPlayerDirection(j, players.get(playerNumber).getPosition()));
-            players.set(playerNumber, getPlayer(playerNumber));
+            player.move(players.size(), checkPlayerDirection(j, player.getPosition()));
+            players.set(playerNumber, getPlayer(player));
         }
     }
 
@@ -53,8 +55,8 @@ public class LadderGameManager {
         return ladder.CurrentDirection(height, playerPosition);
     }
 
-    private Player getPlayer(int playerNumber) {
-        return new Player(names.get(playerNumber), players.get(playerNumber).getPosition());
+    private Player getPlayer(Player player) {
+        return new Player(player.getName(), player.getPosition());
     }
 
     private void output(List<String> executeResult) {
