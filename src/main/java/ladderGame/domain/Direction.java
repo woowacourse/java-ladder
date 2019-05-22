@@ -1,6 +1,6 @@
 package ladderGame.domain;
 
-public enum  Direction {
+public enum Direction {
     RIGHT(1),
     LEFT(-1),
     STOP(0);

@@ -38,7 +38,7 @@ public class InputView {
     }
 
     public static List<Reward> createResults(int userSize) {
-        List<String> results= StringUtil.splitComma(InputView.inputResults());
+        List<String> results = StringUtil.splitComma(InputView.inputResults());
 
         if (results.size() != userSize) {
             System.out.println("결과와 참여자의 수는 같아야합니다");

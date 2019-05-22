@@ -5,8 +5,8 @@ import java.util.*;
 public class Floor {
     private final List<Point> points;
 
-    public Floor(List<Point> points) {
-        this.points = points;
+    public Floor(PointGenerator pointGenerator, int width) {
+        this.points = pointGenerator.makePointList(width);
     }
 
     public Point getPointByPosition(int position) {
