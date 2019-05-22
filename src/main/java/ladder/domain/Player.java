@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.view.PlayerException;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -13,6 +14,7 @@ import java.util.Objects;
  */
 public class Player {
     private final String name;
+    private int position;
 
     /**
      * 생성자
@@ -22,6 +24,34 @@ public class Player {
      */
     public Player(String name) {
         this.name = PlayerException.playerNameOverLength(name);
+    }
+
+    /**
+     * 생성자
+     *
+     * @param name     참여자 이름
+     * @param position 참여자 위치
+     * @throws IllegalArgumentException 이름 길이가 rule과 다를 때 발생
+     */
+    public Player(String name, int position) {
+        this.name = PlayerException.playerNameOverLength(name);
+        this.position = position;
+    }
+
+    public void moveLeft() {
+        position--;
+    }
+
+    public void moveRight() {
+        position++;
+    }
+
+    public Item findItem(List<Item> items) {
+        return items.get(position);
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override

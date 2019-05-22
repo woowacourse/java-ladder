@@ -33,9 +33,9 @@ public class LadderResult {
         names = PlayerException.playerNames(names);
         rewards = RewardException.reward(rewards, names.split(",").length);
         depth = LadderDepthException.ladderMinDepth(depth);
-
-        this.ladder = getLadder(names, depth);
-        this.result = getResult(getPlayers(names), convertItems(rewards));
+        List<Player> players = getPlayers(names);
+        this.ladder = getLadder(players, depth);
+        this.result = getResult(players, convertItems(rewards));
     }
 
     private List<Item> convertItems(String items) {
@@ -84,24 +84,24 @@ public class LadderResult {
         return ladder.drawLadderShape();
     }
 
-    private Ladder getLadder(String names, int depth) {
-        return new Ladder(names.split(",").length, depth);
+    private Ladder getLadder(List<Player> players, int depth) {
+        return new Ladder(players, depth);
     }
 
     private List<Player> getPlayers(String playerNames) {
         List<Player> players = new ArrayList<>();
         List<String> names = Arrays.asList(playerNames.split(","));
-        for (String name : names) {
-            players.add(new Player(name));
+        for (int index = 0; index < names.size(); index++) {
+            players.add(new Player(names.get(index), index));
         }
         return players;
     }
 
     private Map<Player, Item> getResult(List<Player> players, List<Item> items) {
         Map<Player, Item> result = new HashMap<>();
-        List<Integer> initResult = ladder.getResult();
         for (int i = 0; i < players.size(); i++) {
-            result.put(players.get(i), items.get(initResult.get(i)));
+            Player player = players.get(i);
+            result.put(player, player.findItem(items));
         }
         return result;
     }

@@ -13,17 +13,18 @@ import java.util.*;
  */
 public class Ladder {
     private List<LadderLine> ladder;
-    private List<Integer> result;
+    private List<Player> players;
 
     /**
      * 생성자
      *
-     * @param playerSize
+     * @param players
      * @param depth
      */
-    public Ladder(int playerSize, int depth) {
-        this.ladder = getLadderLines(playerSize, depth);
-        this.result = getResultLine(playerSize, depth);
+    public Ladder(List<Player> players, int depth) {
+        this.ladder = getLadderLines(players.size(), depth);
+        this.players = players;
+        moveResultPosition(depth);
     }
 
     private List<LadderLine> getLadderLines(int playerSize, int depth) {
@@ -34,26 +35,16 @@ public class Ladder {
         return ladder;
     }
 
-    private List<Integer> getResultLine(int playerSize, int depth) {
-        List<Integer> moveLine = resetResultLines(playerSize);
+    private void moveResultPosition(int depth) {
         for (int i = 0; i < depth; i++) {
-            moveRadderLIne(i, moveLine);
+            moveOneLinePosition(i);
         }
-        return moveLine;
     }
 
-    private List<Integer> resetResultLines(int playerSize) {
-        List<Integer> line = new ArrayList<>();
-        for (int i = 0; i < playerSize; i++) {
-            line.add(i);
-        }
-        return line;
-    }
-
-    private void moveRadderLIne(int depth, List<Integer> moveLine) {
-        for (int i = 0; i < moveLine.size(); i++) {
-            int nowPosition = moveLine.get(i) + ladder.get(depth).getNextPosition(moveLine.get(i));
-            moveLine.set(i, nowPosition);
+    private void moveOneLinePosition(int depth) {
+        for (int i = 0; i < players.size(); i++) {
+            Player player = players.get(i);
+            ladder.get(depth).movePlayerPosition(player, player.getPosition());
         }
     }
 
@@ -70,26 +61,16 @@ public class Ladder {
         return stringJoiner.toString();
     }
 
-    /**
-     * 사다리 결과값 반환.
-     *
-     * @return
-     */
-    public List<Integer> getResult() {
-        return this.result;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
-        return Objects.equals(this.ladder, ladder.ladder) &&
-                Objects.equals(result, ladder.result);
+        Ladder ladder1 = (Ladder) o;
+        return Objects.equals(ladder, ladder1.ladder);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladder, result);
+        return Objects.hash(ladder);
     }
 }

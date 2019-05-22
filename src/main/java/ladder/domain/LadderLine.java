@@ -9,7 +9,7 @@ import java.util.Objects;
 /**
  * 사다리 가로 줄 하나를 만드는 클래스
  * <br> LadderLine ladderLine = new LadderLine(row)
- * <br> ladderLine.getNextPosition(index)
+ * <br> ladderLine.movePlayerPosition(players, index)
  *
  * @author heebg, hyojaekim
  * @version 1.0 2019-05-16
@@ -31,17 +31,16 @@ public class LadderLine {
     /**
      * 해당 라인을 실행 한 이후 인덱스를 반환
      *
-     * @param index 실행할 인덱스
+     * @param position 실행할 인덱스
      * @return index
      */
-    public int getNextPosition(int index) {
-        if (index != 0 && lineStates.get(index).getNowPoint()) {
-            return -1;
+    public void movePlayerPosition(Player player, int position) {
+        if (position != 0 && lineStates.get(position).getNowPoint()) {
+            player.moveLeft();
         }
-        if (index != lineStates.size() - 1 && lineStates.get(index + 1).getNowPoint()) {
-            return +1;
+        if (position != lineStates.size() - 1 && lineStates.get(position + 1).getNowPoint()) {
+            player.moveRight();
         }
-        return 0;
     }
 
     private List<Point> setLineStates() {
