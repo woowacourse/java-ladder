@@ -5,43 +5,43 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class PositionTest {
+class PositionTest {
     private static final int MAX = 3;
 
     @Test
-    public void isFirst() {
+    void isFirst() {
         Position position = new Position(0, MAX);
         assertThat(position.isFirst()).isTrue();
     }
 
     @Test
-    public void isLast() {
+    void isLast() {
         Position position = new Position(MAX - 1, MAX);
         assertThat(position.isLast()).isTrue();
     }
 
     @Test
-    public void underZero() {
+    void underZero() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Position(-1, MAX);
         });
     }
 
     @Test
-    public void overMax() {
+    void overMax() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Position(MAX, MAX);
         });
     }
 
     @Test
-    public void moveNext() {
+    void moveNext() {
         assertThat(new Position(0, MAX).moveNext())
                 .isEqualTo(new Position(1, MAX));
     }
 
     @Test
-    public void movePrevious() {
+    void movePrevious() {
         assertThat(new Position(1, MAX).movePrevious())
                 .isEqualTo(new Position(0, MAX));
     }
