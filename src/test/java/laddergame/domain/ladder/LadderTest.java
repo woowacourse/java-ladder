@@ -141,4 +141,10 @@ public class LadderTest {
             ladder.connectBridge(Position.of(-1, 2));
         });
     }
+
+    @Test
+    public void Ladder의_크기를_벗어난_좌표를_입력했을때_연결로가_이어지는지_확인() {
+        Ladder ladder = new Ladder(3, 3);
+        assertThat(ladder.connectBridge(Position.of(4, 3))).isFalse();
+    }
 }
