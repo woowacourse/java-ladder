@@ -1,19 +1,19 @@
-package com.woowacourse.laddergame.domain.dto;
+package com.woowacourse.laddergame.domain.vo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ResultNameDto {
+public class ResultNameVo {
     private static final Pattern SINGLE_PLAYER_NAMES_PATTERN = Pattern.compile("^([A-Za-z]{1,5})$");
-    private String name;
+    private final String name;
+
+    public ResultNameVo(String name) {
+        checkName(name);
+        this.name = name;
+    }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        checkName(name);
-        this.name = name;
     }
 
     private void checkName(String name) {
