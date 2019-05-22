@@ -11,8 +11,8 @@ public class Result {
         this.winner = winner;
     }
 
-    public String getWinner(){
-        return winner;
+    public boolean isWinner(String member) {
+        return member == winner;
     }
 
     @Override

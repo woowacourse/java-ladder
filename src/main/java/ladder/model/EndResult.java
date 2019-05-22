@@ -12,7 +12,7 @@ public class EndResult {
 
     public Result getMemberResult(String member) {
         for (Result result : results) {
-            if (result.getWinner().equals(member)) {
+            if (result.isWinner(member)) {
                 return result;
             }
         }
