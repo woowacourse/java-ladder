@@ -3,6 +3,7 @@ package ladderGame.domain;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -15,8 +16,9 @@ public class FloorTest {
         points.add(Point.pointFirst(true));
         points.add(points.get(0).nextPoint(false));
         points.add(points.get(1).nextPoint(true));
+        points.add(points.get(2).nextPointLast());
 
-        Floor floor = new Floor(points);
+        Floor floor = new Floor( (e) -> points, 4);
         User pobi = new User("pobi", 0);
         User crong = new User("crong", 1);
         User honux = new User("honux", 2);
