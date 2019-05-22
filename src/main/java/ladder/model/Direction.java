@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
 
+// https://github.com/woowacourse/java-ladder/tree/livecoding
 public class Direction {
     private final boolean left;
     private final boolean current;
