@@ -27,8 +27,8 @@ public class LineTest {
         line.putBridge(new NaturalNumber(1));
         line.putBridge(new NaturalNumber(3));
 
-        assertThat(line.isBridgeExist(1)).isTrue();
-        assertThat(line.isBridgeExist(3)).isTrue();
+        assertThat(line.isBridgeExist(new NaturalNumber(1))).isTrue();
+        assertThat(line.isBridgeExist(new NaturalNumber(3))).isTrue();
     }
 
     @Test
@@ -116,6 +116,6 @@ public class LineTest {
         line.putBridge(new NaturalNumber(1));
         line.putBridge(new NaturalNumber(3));
 
-        assertThat(line.takeLine(new NaturalNumber(1))).isEqualTo(2);
+        assertThat(line.movePosition(new NaturalNumber(1))).isEqualTo(2);
     }
 }

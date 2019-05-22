@@ -31,5 +31,7 @@ class NaturalNumberTest {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
             NaturalNumber naturalNumber = new NaturalNumber(number);
         }).withMessage("자연수가 아닙니다.");
+
+
     }
 }

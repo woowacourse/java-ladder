@@ -5,7 +5,7 @@ import java.util.function.Function;
 public enum Position {
     LEFT((index) -> index - 1),
     RIGHT((index) -> index + 1),
-    NONE((index) -> index);
+    STOP((index) -> index);
 
     Function<Integer, Integer> function;
 

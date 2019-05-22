@@ -20,6 +20,6 @@ class PositionTest {
     @Test
     public void 정지() {
         int nowIndex = 3;
-        assertThat(Position.NONE.move(nowIndex)).isEqualTo(nowIndex);
+        assertThat(Position.STOP.move(nowIndex)).isEqualTo(nowIndex);
     }
 }
