@@ -11,7 +11,7 @@ public class OutputView {
         System.out.println(LADDER_RESULT_MESSAGE);
         System.out.println(ladderGameData.getPerson());
         System.out.println(ladder);
-        System.out.println(ladderGameData.getResult());
+        System.out.println(ladderGameData.getLadderRewards());
     }
 
     public static void printLadderResult(String ladderResult) {

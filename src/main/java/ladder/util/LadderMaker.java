@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderMaker {
-    public static List<Line> generateAllPoints(int height, int countOfPerson) {
+    public static List<Line> generateLadder(int height, int countOfPerson) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(generatePoints(countOfPerson)));
+            lines.add(new Line(generateOneLine(countOfPerson)));
         }
         return lines;
     }
 
-    private static List<Boolean> generatePoints(int countOfPerson) {
+    private static List<Boolean> generateOneLine(int countOfPerson) {
         List<Boolean> points = new ArrayList<>();
         for (int j = 0; j < countOfPerson; j++) {
             points.add(RandomHelper.randomPoint(points, countOfPerson));

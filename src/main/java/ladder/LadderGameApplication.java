@@ -9,21 +9,21 @@ import ladder.view.OutputView;
 public class LadderGameApplication {
     public static void main(String[] args) {
         LadderGameData ladderGameData = generateData();
-        Ladder ladder = new Ladder(LadderMaker.generateAllPoints(ladderGameData.getHeight(), ladderGameData.getPerson().getCountOfPerson()));
+        Ladder ladder = new Ladder(LadderMaker.generateLadder(ladderGameData.getHeight(), ladderGameData.getPerson().getCountOfPerson()));
         OutputView.printLadder(ladder, ladderGameData);
-        ResultMatcher resultMatcher = new ResultMatcher(ladder, ladderGameData);
+        RewardPersonConnector rewardPersonConnector = new RewardPersonConnector(ladder, ladderGameData);
         String requestedName;
         do {
             requestedName = InputView.findResultName(ladderGameData.getPerson());
-            OutputView.printLadderResult(resultMatcher.getResult(requestedName));
+            OutputView.printLadderResult(rewardPersonConnector.getResult(requestedName));
         } while (!InputHelper.isAll(requestedName));
     }
 
     private static LadderGameData generateData() {
         Person person = new Person(InputView.inputNames());
-        Result result = new Result(InputView.inputResultAll(person.getCountOfPerson()));
+        LadderRewards ladderRewards = new LadderRewards(InputView.inputResultAll(person.getCountOfPerson()));
         int height = InputView.inputHeight();
 
-        return new LadderGameData(person, result, height);
+        return new LadderGameData(person, ladderRewards, height);
     }
 }

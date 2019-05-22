@@ -22,7 +22,7 @@ public class LineTest {
     @Test
     void 라인_출력() {
         Line line = new Line(Arrays.asList(false, true, false, true, false));
-        assertThat(line.makeLine()).isEqualTo("     |-----|     |-----|\n");
+        assertThat(line.drawLadder()).isEqualTo("     |-----|     |-----|\n");
 
     }
 

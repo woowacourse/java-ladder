@@ -19,6 +19,10 @@ public class Person {
         return names.size();
     }
 
+    public boolean findName(String requestedName) {
+        return names.contains(requestedName);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -37,7 +41,4 @@ public class Person {
         return sb.toString();
     }
 
-    public boolean findName(String requestedName) {
-        return names.contains(requestedName);
-    }
 }

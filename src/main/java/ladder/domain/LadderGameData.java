@@ -2,16 +2,16 @@ package ladder.domain;
 
 public class LadderGameData {
     private final Person person;
-    private final Result result;
+    private final LadderRewards ladderRewards;
     private final int height;
 
-    public LadderGameData(Person person, Result result) {
-        this(person, result, 1);
+    public LadderGameData(final Person person, final LadderRewards ladderRewards) {
+        this(person, ladderRewards, 1);
     }
 
-    public LadderGameData(final Person person, final Result result, final int height) {
+    public LadderGameData(final Person person, final LadderRewards ladderRewards, final int height) {
         this.person = person;
-        this.result = result;
+        this.ladderRewards = ladderRewards;
         this.height = height;
     }
 
@@ -19,8 +19,8 @@ public class LadderGameData {
         return person;
     }
 
-    public Result getResult() {
-        return result;
+    public LadderRewards getLadderRewards() {
+        return ladderRewards;
     }
 
     public int getHeight() {

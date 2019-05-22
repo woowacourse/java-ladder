@@ -13,15 +13,15 @@ public class Line {
         this.points = points;
     }
 
-    String makeLine() {
+    String drawLadder() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < points.size() - 1; i++) {
-            sb.append(makeRow(i));
+            sb.append(drawRow(i));
         }
         return sb.toString() + "\n";
     }
 
-    private String makeRow(int index) {
+    private String drawRow(int index) {
         if (points.get(index)) {
             return LADDER_TRUE;
         }

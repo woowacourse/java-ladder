@@ -2,28 +2,16 @@ package ladder.domain;
 
 import ladder.util.InputHelper;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import java.util.LinkedHashMap;
 import java.util.Objects;
 
-public class ResultMatcher {
+public class RewardPersonConnector {
     private final LinkedHashMap<String, String> nameToResult = new LinkedHashMap<>();
 
-    public ResultMatcher(Ladder ladder, LadderGameData ladderGameData) {
-        List<Integer> allResult = generateAllResults(ladder, ladderGameData);
-        for (int i = 0; i < allResult.size(); i++) {
-            nameToResult.put(ladderGameData.getPerson().getName(i), ladderGameData.getResult().getResult(allResult.get(i) - 1));
-        }
-    }
-
-    private List<Integer> generateAllResults(Ladder ladder, LadderGameData ladderGameData) {
-        List<Integer> resultIndex = new ArrayList<>();
+    public RewardPersonConnector(Ladder ladder, LadderGameData ladderGameData) {
         for (int i = 0; i < ladderGameData.getPerson().getCountOfPerson(); i++) {
-            resultIndex.add(ladder.move(i + 1));
+            nameToResult.put(ladderGameData.getPerson().getName(i), ladderGameData.getLadderRewards().getResult(ladder.moveStartToEnd(i + 1) - 1));
         }
-        return resultIndex;
     }
 
     public String getResult(String requestedName) {
@@ -36,7 +24,7 @@ public class ResultMatcher {
     private String getAllResults() {
         StringBuilder sb = new StringBuilder();
         for (String name : nameToResult.keySet()) {
-            sb.append(name + " : " + nameToResult.get(name) + "\n");
+            sb.append(name).append(" : ").append(nameToResult.get(name)).append("\n");
         }
         return sb.toString();
     }
@@ -45,7 +33,7 @@ public class ResultMatcher {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ResultMatcher that = (ResultMatcher) o;
+        RewardPersonConnector that = (RewardPersonConnector) o;
         return Objects.equals(nameToResult, that.nameToResult);
     }
 
