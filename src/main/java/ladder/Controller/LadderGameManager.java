@@ -15,7 +15,6 @@ public class LadderGameManager {
     public LadderGameManager() {
         players = new ArrayList<>();
         names = new ArrayList<>();
-        ladder = new Ladder();
     }
 
     public void start() {
@@ -23,7 +22,8 @@ public class LadderGameManager {
         names = inputManager.getValidNames(InputView.getNames());
         List<String> executeResult = inputManager.getValidExecuteResult(InputView.getExecuteResult(), names.size());
         int ladderHeight = inputManager.getValidLadderHeight(InputView.getLadderHeight());
-        ladder.createLadder(names.size(), ladderHeight);
+
+        ladder = new Ladder(names.size(), ladderHeight);
         createPlayers();
 
         ladderMove(ladderHeight);
