@@ -1,10 +1,10 @@
-package ladder.domain;
+package ladder.engine.infra;
 
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
 
-public class Direction {
+class Direction {
     private final boolean left;
     private final boolean current;
 
@@ -17,7 +17,7 @@ public class Direction {
         this.current = current;
     }
 
-    public int move() {
+    int move() {
         if (this.left) {
             return -1;
         }
@@ -29,26 +29,26 @@ public class Direction {
         return 0;
     }
 
-    public Direction next(boolean nextCurrent) {
+    Direction next(boolean nextCurrent) {
         return of(this.current, nextCurrent);
     }
 
-    public Direction next() {
+    Direction next() {
         if (this.current) {
             return next(FALSE);
         }
         return next(RandomValueGenerator.generate());
     }
 
-    public static Direction of(boolean first, boolean second) {
+    static Direction of(boolean first, boolean second) {
         return new Direction(first, second);
     }
 
-    public static Direction first(boolean current) {
+    static Direction first(boolean current) {
         return of(FALSE, current);
     }
 
-    public Direction last() {
+    Direction last() {
         return of(this.current, FALSE);
     }
 

@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.engine.infra;
 
 import java.util.Objects;
 

@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder.engine.infra;
 
+import ladder.engine.infra.Direction;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.Boolean.FALSE;
