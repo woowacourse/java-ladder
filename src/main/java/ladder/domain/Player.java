@@ -11,7 +11,7 @@ public class Player {
         this.position = position;
     }
 
-    public int trymove(List<Boolean> points) {
+    public int tryMove(List<Boolean> points) {
         if (position == 0) {
             return (points.get(position) ? moveRight() : position);
         }

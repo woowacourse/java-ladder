@@ -8,26 +8,26 @@ public class Line {
     private static final String HORIZONAL_LINE = "-----";
     private static final String LINE_SPACE = "     ";
 
-    private List<Boolean> points = new ArrayList<>();
+    private List<Boolean> steps = new ArrayList<>();
 
     public Line(int countOfPerson) {
-        points.add(RandomGenerator.getRandomBoolean());
+        steps.add(RandomGenerator.getRandomBoolean());
 
         for (int i = 1; i < countOfPerson - 1; ++i) {
-            points.add(RandomGenerator.getRandomBoolean(points.get(i - 1)));
+            steps.add(RandomGenerator.getRandomBoolean(steps.get(i - 1)));
         }
     }
 
     public int getNextPositon(Player player) {
-        return player.trymove(points);
+        return player.tryMove(steps);
     }
 
     @Override
     public String toString() {
         List<String> lineElements = new ArrayList<>();
 
-        for (boolean point : points) {
-            lineElements.add((point) ? HORIZONAL_LINE : LINE_SPACE);
+        for (boolean step : steps) {
+            lineElements.add((step) ? HORIZONAL_LINE : LINE_SPACE);
         }
 
         return VERTICAL_LINE
