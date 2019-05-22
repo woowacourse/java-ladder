@@ -1,6 +1,5 @@
-package ladder.engine.infra;
+package ladder.engine.basic;
 
-import ladder.engine.infra.Point;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.Boolean.FALSE;

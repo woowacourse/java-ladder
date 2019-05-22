@@ -9,4 +9,8 @@ public class LadderResult {
     public void put(int source, int target) {
         result.put(source, target);
     }
+
+    public int getTarget(int source) {
+        return result.get(source);
+    }
 }

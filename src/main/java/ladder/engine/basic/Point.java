@@ -1,4 +1,4 @@
-package ladder.engine.infra;
+package ladder.engine.basic;
 
 class Point {
     private final int index;
@@ -17,7 +17,7 @@ class Point {
         return new Point(index + 1, direction.next());
     }
 
-    Point next(Boolean right) {
+    Point next(boolean right) {
         return new Point(index + 1, direction.next(right));
     }
 
@@ -25,7 +25,7 @@ class Point {
         return maxPosition == this.index + 1;
     }
 
-    static Point first(Boolean right) {
+    static Point first(boolean right) {
         return new Point(0, Direction.first(right));
     }
 

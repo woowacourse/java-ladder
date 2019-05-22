@@ -1,7 +1,7 @@
 package ladder.engine;
 
-import ladder.engine.infra.DefaultLadder;
-import ladder.engine.infra.LadderLineFactory;
+import ladder.engine.basic.DefaultLadder;
+import ladder.engine.basic.LadderLineFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,6 @@ public class LadderFactory {
         for (int i = 0; i < height; i++) {
             lines.add(LadderLineFactory.createLine(sizeOfPerson));
         }
-        return new DefaultLadder(lines);
+        return new DefaultLadder(sizeOfPerson, lines);
     }
 }

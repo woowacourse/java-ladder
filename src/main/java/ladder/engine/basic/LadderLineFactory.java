@@ -1,14 +1,14 @@
-package ladder.engine.infra;
+package ladder.engine.basic;
 
 import ladder.engine.LadderLine;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static ladder.engine.infra.RandomValueGenerator.generate;
+import static ladder.engine.basic.RandomValueGenerator.generate;
 
 public class LadderLineFactory {
-    public static LadderLine createLine(int sizeOfPerson) {
+    public static LadderLine createLine(final int sizeOfPerson) {
         List<Point> points = new ArrayList<>();
         Point point = Point.first(generate());
         points.add(point);

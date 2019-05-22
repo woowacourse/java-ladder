@@ -1,6 +1,5 @@
-package ladder.engine.infra;
+package ladder.engine.basic;
 
-import ladder.engine.infra.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
