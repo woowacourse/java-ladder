@@ -3,20 +3,22 @@ package laddergame.domain.ladder;
 import java.util.Objects;
 
 public class LadderHeight {
+    private static final int ZERO_BOUND = 0;
+
     private final int ladderHeight;
 
     public LadderHeight(String height) {
-        this.ladderHeight = parse(height);
+        this.ladderHeight = toInt(height);
         checkValidBound();
     }
 
     private void checkValidBound() {
-        if (this.ladderHeight <= 0) {
+        if (this.ladderHeight <= ZERO_BOUND) {
             throw new IllegalArgumentException("1 이상의 정수를 입력해주세요");
         }
     }
 
-    private int parse(String height) {
+    private int toInt(String height) {
         try {
             return Integer.parseInt(height);
         } catch (NumberFormatException e) {
