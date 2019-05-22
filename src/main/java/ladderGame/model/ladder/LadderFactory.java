@@ -1,8 +1,8 @@
 package ladderGame.model.ladder;
 
 public class LadderFactory {
-    public Ladder generateLadder(int rows, int columns) {
-        int randomNum = (int)(Math.random() * (getmaxNum(rows, columns)));
+    public static Ladder generateLadder(int rows, int columns) {
+        int randomNum = (int)(Math.random() * (getMaxTruePointNum(rows, columns)));
         Ladder ladder = new Ladder(rows, columns);
 
         while(ladder.getTruePointNumber() < randomNum) {
@@ -13,7 +13,7 @@ public class LadderFactory {
         return ladder;
     }
 
-    private int getmaxNum(int rows, int columns) {
+    private static int getMaxTruePointNum(int rows, int columns) {
         return rows % 2 == 1? (rows / 2 + 1) * columns : (rows / 2) * columns;
     }
 }

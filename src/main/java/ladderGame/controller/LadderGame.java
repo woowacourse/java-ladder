@@ -1,40 +1,44 @@
 package ladderGame.controller;
-import ladderGame.model.input.PlayerNamesInput;
-import ladderGame.model.input.ResultsInput;
-import ladderGame.model.ladder.*;
-import ladderGame.view.InputView;
-import ladderGame.view.OutputView;
 
 
 public class LadderGame {
-
-    public static void main(String[] args) {
-        PlayerNamesInput playerNamesInput = InputView.readNames();
-        int rows = InputView.readRows();
-        ResultsInput resultsInput = InputView.readResults(playerNamesInput);
-
-        int columns = playerNamesInput.getNames().size() - 1;
-        LadderFactory ladderFactory = new LadderFactory();
-        Ladder ladder = ladderFactory.generateLadder(rows, columns);
-
-        OutputView.printLadder(ladder, playerNamesInput.getNames(), resultsInput.getResults());
-        showResultUntilUserQuits(ladder, playerNamesInput, resultsInput);
-    }
-
-    private static String showResultUntilUserQuits(Ladder ladder,
-                                                   PlayerNamesInput playerNamesInput,
-                                                   ResultsInput resultsInput) {
-        String name = InputView.readPlayer(playerNamesInput);
-        if (name.equals("all")) {
-            OutputView.printAllResults(ladder, playerNamesInput, resultsInput);
-        }
-        if (name.equals("quit")) {
-            return name;
-        }
-        if (playerNamesInput.getNames().contains(name)) {
-            OutputView.printOnePlayerResult(ladder, name, playerNamesInput, resultsInput);
-        }
-        return showResultUntilUserQuits(ladder, playerNamesInput, resultsInput);
-    }
+//
+//    public static void main(String[] args) {
+//        Players playerNames = PlayersFactory.getPlayerNames(InputView.readPlayerNames());
+//        Results results = ResultsFactory.getResults(InputView.readResults(playerNames));
+//        int rows = InputView.readRows();
+//        int columns = playerNames.getColumnNum();
+//        Ladder ladder = LadderFactory.generateLadder(rows,columns);
+//
+//
+//
+//
+//
+//        Players playerNamesInput = InputView.readNames();
+//        int rows = InputView.readRows();
+//        Results resultsInput = InputView.readResults(playerNamesInput);
+//
+//        int columns = playerNamesInput.getNames().size() - 1;
+//        Ladder ladder = LadderFactory.generateLadder(rows, columns);
+//
+//        OutputView.printLadder(ladder, playerNamesInput.getNames(), resultsInput.getResults());
+//        showResultUntilUserQuits(ladder, playerNamesInput, resultsInput);
+//    }
+//
+//    private static String showResultUntilUserQuits(Ladder ladder,
+//                                                   Players playerNames,
+//                                                   Results results) {
+//        String name = InputView.readPlayer(playerNames);
+//        if (name.equals("all")) {
+//            OutputView.printAllResults(ladder, playerNames, results);
+//        }
+//        if (name.equals("quit")) {
+//            return name;
+//        }
+//        if (playerNames.getNames().contains(name)) {
+//            OutputView.printOnePlayerResult(ladder, name, playerNames, results);
+//        }
+//        return showResultUntilUserQuits(ladder, playerNames, results);
+//    }
 }
 
