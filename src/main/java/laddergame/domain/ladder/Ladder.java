@@ -20,10 +20,9 @@ public class Ladder {
         for (int i = 0; i <= height; i++) {
             ladder.add(new Line(width));
         }
-        connectBridgesRandomly();
     }
 
-    private void connectBridgesRandomly() {
+    public void connectBridgesRandomly() {
         Random random = new Random();
         for (int i = 0; i < CONNECTING_BRIDGE_TRIAL_COUNT; i++) {
             int randomRow = random.nextInt(height) + 1;

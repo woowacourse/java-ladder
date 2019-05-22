@@ -1,5 +1,6 @@
 package laddergame.domain.ladder;
 
+import laddergame.view.OutputView;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -136,12 +137,13 @@ public class LadderTest {
         ladder.connectBridge(2, 1);
         ladder.connectBridge(3, 1);
         ladder.connectBridge(5, 2);
-        //          |-----|      |      |
-        //          |-----|      |      |
-        //          |-----|      |      |
-        //          |-----|      |      |
-        //          |     |------|      |
-        //          |     |      |      |
+        //          |-----|      |
+        //          |-----|      |
+        //          |-----|      |
+        //          |-----|      |
+        //          |     |------|
+        //          |     |      |
+        OutputView.showLadder(ladder);
         assertThat(ladder.findIndexOfResult(0)).isEqualTo(2);
         assertThat(ladder.findIndexOfResult(1)).isEqualTo(0);
         assertThat(ladder.findIndexOfResult(2)).isEqualTo(1);
