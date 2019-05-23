@@ -37,6 +37,7 @@ public class OutputView {
     private static final String MAP_FORMAT = "%s : %s";
     private static final String VERTICAL_LINE = "|";
     private static final String END_VERTICAL_LINE = "|\n";
+    private static final int EXCEPT_FIRST_INDEX = 1;
 
 
     public static void ladderTitle() {
@@ -74,7 +75,7 @@ public class OutputView {
     private static StringBuilder getHorizontalBuilder(Horizontal horizontal) {
         StringBuilder horizontalBuilder = new StringBuilder();
         horizontalBuilder.append(NO_HORIZONTAL_LINE);
-        for (int i = 1; i < horizontal.getHorizontal().size(); i++) {
+        for (int i = EXCEPT_FIRST_INDEX; i < horizontal.getHorizontal().size(); i++) {
             horizontalBuilder.append(VERTICAL_LINE)
                     .append(getHorizontalLine(horizontal, i));
         }

@@ -23,6 +23,10 @@ import java.util.List;
  * @version 1.0.0
  */
 public class Horizontal {
+    private static final int FIRST_INDEX = 0;
+    private static final int EXCEPT_LAST_INDEX = 1;
+    private static final int BEFORE = 1;
+
     private List<Point> horizontal;
 
     public Horizontal(LadderWidth width) {
@@ -39,7 +43,7 @@ public class Horizontal {
     }
 
     private void generateHorizontal(LadderWidth width) {
-        for (int i = 0; i < width.getLadderWidth(); i++) {
+        for (int i = FIRST_INDEX; i < width.getLadderWidth(); i++) {
             addFirst(i);
             addMiddle(width, i);
             addLast(width, i);
@@ -47,20 +51,20 @@ public class Horizontal {
     }
 
     private void addFirst(int i) {
-        if (i == 0) {
+        if (i == FIRST_INDEX) {
             horizontal.add(Point.first());
         }
     }
 
     private void addMiddle(LadderWidth width, int i) {
-        if (i != 0 && i != width.getLadderWidth() - 1) {
-            horizontal.add(horizontal.get(i - 1).next());
+        if (i != FIRST_INDEX && i != width.getLadderWidth() - EXCEPT_LAST_INDEX) {
+            horizontal.add(horizontal.get(i - BEFORE).next());
         }
     }
 
     private void addLast(LadderWidth width, int i) {
-        if (i == width.getLadderWidth() - 1) {
-            horizontal.add(horizontal.get(i - 1).last());
+        if (i == width.getLadderWidth() - EXCEPT_LAST_INDEX) {
+            horizontal.add(horizontal.get(i - BEFORE).last());
         }
     }
 }
