@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static ladder.domain.PointTest.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
@@ -15,11 +16,8 @@ class LadderTest {
 
 	@BeforeEach
 	void init() {
-		List<Point> points = new ArrayList<>(Arrays.asList(new Point(false, true),
-				new Point(true, false), new Point(false, true),
-				new Point(true, false),
-				new Point(false, false)));
-
+		List<Point> points = new ArrayList<>(Arrays.asList(CAN_MOVE_RIGHT_POINT, CAN_MOVE_LEFT_POINT,
+				CAN_MOVE_RIGHT_POINT, CAN_MOVE_LEFT_POINT, STOP_POINT));
 		List<Line> lines = new ArrayList<>();
 		for (int i = 0; i < 3; ++i) {
 			lines.add(new Line(points));

@@ -6,6 +6,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PointTest {
+	public static final Point CAN_MOVE_LEFT_POINT = new Point(true, false);
+	public static final Point CAN_MOVE_RIGHT_POINT = new Point(false, true);
+	public static final Point STOP_POINT = new Point(false, false);
+
 	@Test
 	void 왼쪽_포인트와_오른쪽_포인트가_true인_경우_예외_반환() {
 		assertThrows(IllegalArgumentException.class, () -> new Point(true, true));
@@ -25,7 +29,7 @@ public class PointTest {
 
 	@Test
 	void 이전_위치_값이_true_일때_다음_오른쪽_위치_값_false_반환() {
-		Point point = new Point(false, true).next();
+		Point point = CAN_MOVE_RIGHT_POINT.next();
 		assertThat(point.canGoRight()).isEqualTo(false);
 	}
 
