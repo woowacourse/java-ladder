@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
+	public static final String PRINT_ALL_PLAYER = "all";
+
 	public static void printLadder(Ladder ladder) {
 		for (Line line : ladder.getLines()) {
 			printLine(line);
@@ -41,7 +43,7 @@ public class OutputView {
 	}
 
 	public static void printLadderGameResult(LadderGameResult ladderGameResult, String name) {
-		if (name.equals(UserOutput.PRINT_ALL_PLAYER.getOutputMessage())) {
+		if (name.equals(PRINT_ALL_PLAYER)) {
 			ladderGameResult.getAllPlayerNames().stream()
 					.forEach(playerName -> System.out.println(playerName + " : " + ladderGameResult.getReward(playerName)));
 			return;

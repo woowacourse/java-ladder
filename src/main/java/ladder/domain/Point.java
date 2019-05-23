@@ -6,7 +6,7 @@ public class Point {
 
 	public Point(boolean leftPosition, boolean currentPosition) {
 		if (leftPosition && currentPosition) {
-			throw new IllegalArgumentException(UserOutput.VIOLATE_POINTS.getOutputMessage());
+			throw new IllegalArgumentException(ExceptionOutput.VIOLATE_POINTS.getOutputMessage());
 		}
 		this.leftPosition = leftPosition;
 		this.currentPosition = currentPosition;

@@ -18,19 +18,19 @@ public class LadderGameInformation {
 
 	private void validateOverlapPlayerNames(List<Player> players) {
 		if (new HashSet<>(players).size() != players.size()) {
-			throw new IllegalArgumentException(UserOutput.VIOLATE_PLAYER_OVERLAP_NAMES.getOutputMessage());
+			throw new IllegalArgumentException(ExceptionOutput.VIOLATE_PLAYER_OVERLAP_NAMES.getOutputMessage());
 		}
 	}
 
 	private void validateCountOfPlayerNumber(List<Player> players) {
 		if (players.size() < 2) {
-			throw new IllegalArgumentException(UserOutput.VIOLATE_NUMBER_OF_PLAYERS.getOutputMessage());
+			throw new IllegalArgumentException(ExceptionOutput.VIOLATE_NUMBER_OF_PLAYERS.getOutputMessage());
 		}
 	}
 
 	private void validateGameInformation(List<Player> players, List<Reward> rewards) {
 		if (players.size() != rewards.size()) {
-			throw new IllegalArgumentException(UserOutput.VIOLATE_GAME_RESULTS.getOutputMessage());
+			throw new IllegalArgumentException(ExceptionOutput.VIOLATE_GAME_RESULTS.getOutputMessage());
 		}
 	}
 

@@ -14,7 +14,7 @@ public class Reward {
 
 	private void validateRewardEmpty(String reward) {
 		if (StringUtils.isBlank(reward)) {
-			throw new IllegalArgumentException(UserOutput.VIOLATE_GAME_REWARD.getOutputMessage());
+			throw new IllegalArgumentException(ExceptionOutput.VIOLATE_GAME_REWARD.getOutputMessage());
 		}
 	}
 

@@ -9,6 +9,8 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderGameApp {
+	private static final String FINISH_LADDER_GAME = "exit";
+
 	public static void main(String[] args) {
 		LadderGameInformation ladderGameInformation = getLadderGameInformation();
 
@@ -36,7 +38,7 @@ public class LadderGameApp {
 			return StringSplitUtils.splitString(InputView.inputNames()).stream()
 					.map(Player::new)
 					.collect(Collectors.toList())
-			;
+					;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return getPersonNames();
@@ -64,7 +66,7 @@ public class LadderGameApp {
 			name = InputView.inputResult();
 			OutputView.printLadderGameResult(ladderGameResult, name);
 		}
-		while (!name.equals(UserOutput.FINISH_LADDER_GAME.getOutputMessage()));
+		while (!name.equals(FINISH_LADDER_GAME));
 	}
 }
 

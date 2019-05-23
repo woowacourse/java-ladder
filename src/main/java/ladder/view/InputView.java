@@ -2,8 +2,6 @@ package ladder.view;
 
 import java.util.Scanner;
 
-import ladder.domain.UserOutput;
-
 public class InputView {
 	private static Scanner scanner = new Scanner(System.in);
 
