@@ -7,12 +7,14 @@ import java.util.Objects;
 public class Ladder {
     private List<Line> ladder = new ArrayList<>();
 
-    public void createLadder(final int ladderHeight, final int numberOfPlayers) {
+    public List<Line> createLadder(final int ladderHeight, final int numberOfPlayers) {
         for (int i = 0; i < ladderHeight; i++) {
             Line line = new Line(new RandomValue(), numberOfPlayers);
 
             ladder.add(line);
         }
+
+        return ladder;
     }
 
     @Override
@@ -26,9 +28,5 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(ladder);
-    }
-
-    public List<Line> getLadder() {
-        return ladder;
     }
 }

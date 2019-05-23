@@ -51,8 +51,7 @@ public class LadderGameManager {
         Ladder ladder = new Ladder();
 
         int ladderHeight = InputModel.getValidLadderHeight(InputView.getLadderHeight());
-        ladder.createLadder(ladderHeight, players.size());
-        createdLadder = ladder.getLadder();
+        createdLadder = ladder.createLadder(ladderHeight, players.size());
     }
 
     private void play() {
