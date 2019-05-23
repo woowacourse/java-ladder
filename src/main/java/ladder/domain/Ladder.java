@@ -12,11 +12,15 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder newLadder(LadderGameData ladderGameData) {
+    public static Ladder newLadderUsingRandomLine(LadderGameData ladderGameData) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < ladderGameData.getHeight(); i++) {
             lines.add(new Line(generateOneLine(ladderGameData.getPerson().getCountOfPerson())));
         }
+        return new Ladder(lines);
+    }
+
+    static Ladder newLadderUsingDecidedLine(final List<Line> lines) {
         return new Ladder(lines);
     }
 

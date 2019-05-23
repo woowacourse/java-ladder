@@ -8,7 +8,7 @@ import ladder.view.OutputView;
 public class LadderGameApplication {
     public static void main(String[] args) {
         LadderGameData ladderGameData = generateData();
-        Ladder ladder = Ladder.newLadder(ladderGameData);
+        Ladder ladder = Ladder.newLadderUsingRandomLine(ladderGameData);
         OutputView.printLadder(ladder, ladderGameData);
         RewardPersonConnector rewardPersonConnector = new RewardPersonConnector(ladder, ladderGameData);
         String requestedName;
