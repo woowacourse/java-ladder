@@ -62,10 +62,14 @@ public class LadderResult {
 
     private String matchPlayerItem(String name) {
         Player wantPlayer = new Player(name);
-        if(!result.containsKey(wantPlayer)) {
+        existWantPlayer(wantPlayer);
+        return result.get(wantPlayer).toString();
+    }
+
+    private void existWantPlayer(Player wantPlayer) {
+        if (!result.containsKey(wantPlayer)) {
             throw new IllegalArgumentException(NOT_FIND_PLAYER);
         }
-        return result.get(wantPlayer).toString();
     }
 
     private String matchItemOfAllName() {
