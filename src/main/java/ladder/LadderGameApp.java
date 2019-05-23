@@ -44,7 +44,7 @@ public class LadderGameApp {
 	}
 
 	public static List<Reward> getGameReward() {
-		return StringSplitUtils.splitString(InputView.inputNames()).stream()
+		return StringSplitUtils.splitString(InputView.inputResults()).stream()
 				.map(Reward::new)
 				.collect(Collectors.toList())
 				;
@@ -52,7 +52,7 @@ public class LadderGameApp {
 
 	public static Ladder generateLadder(int numberOfPlayers) {
 		try {
-			return Ladder.generateLadder(numberOfPlayers, InputView.inputHeight());
+			return Ladder.createLadder(numberOfPlayers, InputView.inputHeight());
 		} catch (Exception e) {
 			return generateLadder(numberOfPlayers);
 		}

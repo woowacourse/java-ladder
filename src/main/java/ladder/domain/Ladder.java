@@ -7,8 +7,8 @@ import java.util.List;
 public class Ladder {
 	private List<Line> lines;
 
-	public Ladder(List<Line> lines) {
-		this.lines = lines;
+	public Ladder(final List<Line> lines) {
+		this.lines = new ArrayList<>(lines);
 	}
 
 	public int getLastPosition(int playerPosition) {
@@ -20,7 +20,7 @@ public class Ladder {
 		return lastPosition;
 	}
 
-	public static Ladder generateLadder(int countOfPerson, String ladderHegiht) {
+	public static Ladder createLadder(int countOfPerson, String ladderHegiht) {
 		validateCountOfPerson(countOfPerson);
 		validateLadderHeight(ladderHegiht);
 
