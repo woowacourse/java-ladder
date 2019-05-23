@@ -43,7 +43,7 @@ public class OutputView {
         }
     }
 
-    public static void showResultOf(String playerName, Map<Player, ResultItem> ladderingResult) {
+    public static void showResultOf(String playerName, Map<Player, LadderItem> ladderingResult) {
         if (playerName.equals("all")) {
             showAllResultOf(ladderingResult);
             return;
@@ -52,13 +52,13 @@ public class OutputView {
         showPlayerResult(playerName, ladderingResult);
     }
 
-    private static void showAllResultOf(Map<Player, ResultItem> ladderingResult) {
+    private static void showAllResultOf(Map<Player, LadderItem> ladderingResult) {
         for (Player player : ladderingResult.keySet()) {
             System.out.println(player + " : " + ladderingResult.get(player));
         }
     }
 
-    private static void showPlayerResult(String playerName, Map<Player, ResultItem> ladderingResult) {
+    private static void showPlayerResult(String playerName, Map<Player, LadderItem> ladderingResult) {
         Player player = new Player(playerName);
 
         if (!ladderingResult.containsKey(player)) {

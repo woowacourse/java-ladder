@@ -13,14 +13,14 @@ public class LadderTest {
     Crosspoints crosspoints1;
     Crosspoints crosspoints2;
     List<Boolean> userSetCroossbar;
-    List<ResultItem> resultItems;
+    List<LadderItem> resultItems;
 
     @BeforeEach
     void setUp() {
         crosspoints1 = new Crosspoints(Arrays.asList(false, false));
         crosspoints2 = new Crosspoints(Arrays.asList(false, true, false));
         userSetCroossbar = Arrays.asList(false, true, false);
-        resultItems = Arrays.asList(new ResultItem("a"), new ResultItem("b"));
+        resultItems = Arrays.asList(new LadderItem("a"), new LadderItem("b"));
     }
 
     @Test

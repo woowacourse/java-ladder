@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ResultItems {
-    private List<ResultItem> ladderItems = new ArrayList<>();
+    private List<LadderItem> ladderItems = new ArrayList<>();
 
     public ResultItems(List<String> itemNames, int numberOfPlayers) {
         if (itemNames.size() != numberOfPlayers) {
             throw new IllegalArgumentException("결과 항목의 수는 플레이어 수와 같아야합니다.");
         }
         for (String itemName : itemNames) {
-            ladderItems.add(new ResultItem(itemName));
+            ladderItems.add(new LadderItem(itemName));
         }
     }
 
-    public ResultItem getResultItemAtPositionOf(final int position) {
+    public LadderItem getResultItemAtPositionOf(final int position) {
         return ladderItems.get(position);
     }
 
