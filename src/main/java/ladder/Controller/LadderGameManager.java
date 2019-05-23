@@ -23,7 +23,7 @@ public class LadderGameManager {
         List<String> executeResult = inputManager.getValidExecuteResult(InputView.getExecuteResult(), names.size());
         int ladderHeight = inputManager.getValidLadderHeight(InputView.getLadderHeight());
 
-        ladder = new Ladder(names.size(), ladderHeight);
+        ladder = new Ladder(names.size(), ladderHeight,new LineGenerator(new RandomCreateLine()));
         createPlayers();
 
         ladderMove(ladderHeight);

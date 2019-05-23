@@ -2,24 +2,16 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Ladder {
     private List<Line> lines;
-    private int countOfPerson;
-    private int ladderHeight;
 
-    public Ladder(int countOfPerson, int ladderHeight) {
-        this.countOfPerson = countOfPerson;
-        this.ladderHeight = ladderHeight;
-        createLadder();
-    }
-
-    private List<Line> createLadder() {
+    public Ladder(int countOfPerson, int ladderHeight ,LineGenerator lineGenerator){
         lines = new ArrayList<>();
         for (int i = 1; i <= ladderHeight; i++) {
-            lines.add(new LineGenerator(new RandomCreateLine()).drawLine(countOfPerson - 1));
+            lines.add(lineGenerator.drawLine(countOfPerson - 1));
         }
-        return lines;
     }
 
     public Direction CurrentDirection(int height, int playerPosition) {
@@ -36,4 +28,16 @@ public class Ladder {
         return lines;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladder ladder = (Ladder) o;
+        return Objects.equals(lines, ladder.lines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lines);
+    }
 }

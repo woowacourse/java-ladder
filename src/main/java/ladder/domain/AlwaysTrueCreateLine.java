@@ -5,4 +5,5 @@ public class AlwaysTrueCreateLine implements LineCreate {
     public boolean checkLine() {
         return true;
     }
+
 }

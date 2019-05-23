@@ -3,10 +3,10 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-class LineGenerator {
+public class LineGenerator {
     private LineCreate lineCreate;
 
-    LineGenerator(LineCreate lineCreate) {
+    public LineGenerator(LineCreate lineCreate) {
         this.lineCreate = lineCreate;
     }
 

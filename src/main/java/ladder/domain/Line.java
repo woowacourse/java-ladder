@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
     private List<Boolean> rowLines;
@@ -29,4 +30,19 @@ public class Line {
     public boolean getLinePosition(int position) {
         return rowLines.get(position);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(rowLines, line.rowLines) &&
+                Objects.equals(lineCreate, line.lineCreate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rowLines, lineCreate);
+    }
+
 }
