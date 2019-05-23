@@ -20,8 +20,8 @@ public class Point {
 		return new Point(currentPosition, false);
 	}
 
-	public static Point next(boolean currentPosition) {
-		if (currentPosition) {
+	public Point next() {
+		if (this.currentPosition) {
 			return new Point(true, false);
 		}
 		return new Point(false, RandomGenerator.getNextValue());

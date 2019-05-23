@@ -25,7 +25,7 @@ public class PointTest {
 
 	@Test
 	void 이전_위치_값이_true_일때_다음_오른쪽_위치_값_false_반환() {
-		Point point = new Point(false, true).next(true);
+		Point point = new Point(false, true).next();
 		assertThat(point.canGoRight()).isEqualTo(false);
 	}
 
