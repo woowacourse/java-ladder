@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PlayersFactory {
 
-    public static Players getPlayerNames(List<String> splittedInput) {
+    public static Players getPlayers(List<String> splittedInput) {
         Players players = new Players(splittedInput);
         return players;
     }

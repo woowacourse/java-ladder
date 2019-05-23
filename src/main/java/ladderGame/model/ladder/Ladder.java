@@ -8,12 +8,12 @@ public class Ladder {
     private List<Row> rows;
     private int columnNum;
 
-    public Ladder(int rowNum, int columnNum) {
+    public Ladder(int rowNumber, int columnNumber) {
         rows= new ArrayList();
-        for (int i = 0; i < rowNum; i++) {
-            rows.add(new Row(columnNum));
+        for (int i = 0; i < rowNumber; i++) {
+            rows.add(new Row(columnNumber));
         }
-        this.columnNum = columnNum;
+        this.columnNum = columnNumber;
     }
 
     public void draw(int row, int column) {
@@ -36,7 +36,7 @@ public class Ladder {
         return rows.stream().mapToInt(row -> row.getTruePointNumber()).sum();
     }
 
-    public int getRowNum() {
+    public int getRowNumber() {
         return rows.size();
     }
 
