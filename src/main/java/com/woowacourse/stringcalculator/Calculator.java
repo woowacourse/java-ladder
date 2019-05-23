@@ -5,7 +5,9 @@ import java.util.List;
 public class Calculator {
     public static int add(final List<Integer> numbers) {
         numbers.stream().forEach(Calculator::isValidNumber);
-        return numbers.stream().mapToInt(Integer::new).sum();
+        return numbers
+                .stream()
+                .mapToInt(Integer::new).sum();
     }
 
     private static void isValidNumber(final int number) throws IllegalArgumentException {

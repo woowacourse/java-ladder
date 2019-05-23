@@ -18,21 +18,21 @@ public class ResultQueryTest {
     @Test
     void 결과보고싶은_사람을_공백으로_입력했을때_예외() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new ResultQuery("  ",playerList);
+            new ResultQuery("  ");
         });
     }
 
     @Test
     void 없는이름을_결과보고싶은_사람으로_입력했을때_예외() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new ResultQuery("honux",playerList);
+            new ResultQuery("honux");
         });
     }
 
     @Test
     void 아무것도_입력하지않을때_예외() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new ResultQuery("",playerList);
+            new ResultQuery("");
         });
     }
 }

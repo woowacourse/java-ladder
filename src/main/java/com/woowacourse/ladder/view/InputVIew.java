@@ -1,5 +1,6 @@
 package com.woowacourse.ladder.view;
 
+import com.woowacourse.ladder.InputValidator;
 import com.woowacourse.ladder.domain.Height;
 import com.woowacourse.ladder.domain.PlayerList;
 import com.woowacourse.ladder.domain.ResultItems;
@@ -10,56 +11,40 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputVIew {
+    private static final String INPUT_PLAYER_NAME_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String INPUT_EXECUTE_RESULTS_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String INPUT_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
+    private static final String INPUT_RESULT_QUERY_MESSAGE = "결과를 보고 싶은 사람은?";
 
-    public static PlayerList promptPlayerNames() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+    public static List<String> promptPlayerNames() {
+        System.out.println(INPUT_PLAYER_NAME_MESSAGE);
         Scanner scanner = new Scanner(System.in);
         List<String> names = Arrays.asList(scanner.nextLine().split(","));
 
-        try {
-            return new PlayerList(names);
-        } catch (IllegalArgumentException e) {
-            System.out.println("올바른 사람 이름을 입력하세요.(all이란 이름은 금지입니다.)");
-            return promptPlayerNames();
-        }
+        return names;
     }
 
-    public static ResultItems promptExecuteResults(PlayerList playerList) {
-        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    public static List<String> promptExecuteResults() {
+        System.out.println(INPUT_EXECUTE_RESULTS_MESSAGE);
         Scanner scanner = new Scanner(System.in);
         List<String> results = Arrays.asList(scanner.nextLine().split(","));
 
-        try {
-            return new ResultItems(results,playerList);
-        } catch (IllegalArgumentException e) {
-            System.out.println("올바른 실행결과를 입력해주세요.");
-            return promptExecuteResults(playerList);
-        }
+        return results;
     }
 
-    public static Height promptHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+    public static String promptHeight() {
+        System.out.println(INPUT_HEIGHT_MESSAGE);
         Scanner scanner = new Scanner(System.in);
         String height = scanner.nextLine();
 
-        try {
-            return new Height(height);
-        } catch (IllegalArgumentException e) {
-            System.out.println("올바른 사다리 높이를 입력해주세요.");
-            return promptHeight();
-        }
+        return height;
     }
 
-    public static ResultQuery promptResultQuery(PlayerList playerList) {
-        System.out.println("결과를 보고 싶은 사람은?");
+    public static String promptResultQuery() {
+        System.out.println(INPUT_RESULT_QUERY_MESSAGE);
         Scanner scanner = new Scanner(System.in);
-        String resultQuery = scanner.nextLine();
+        String resultQuery = scanner.nextLine().trim();
 
-        try {
-            return new ResultQuery(resultQuery,playerList);
-        }catch (IllegalArgumentException e){
-            System.out.println("결과를 보고 싶은 사람을 올바르게 입력해주세요.");
-            return promptResultQuery(playerList);
-        }
+        return resultQuery;
     }
 }

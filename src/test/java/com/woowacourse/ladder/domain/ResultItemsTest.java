@@ -18,14 +18,14 @@ public class ResultItemsTest {
     @Test
     void 실행결과들을_공백으로_입력했을때_예외() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new ResultItems(Arrays.asList("   ","    "),playerList);
+            new ResultItems(Arrays.asList("   ","    "));
         });
     }
 
     @Test
     void 실행결과수와_이름들의수가_일치하지않을때_예외() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new ResultItems(Arrays.asList("pobi","crong","honux"),playerList);
+            new ResultItems(Arrays.asList("pobi","crong","honux"));
         });
     }
 }

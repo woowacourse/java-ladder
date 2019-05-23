@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class StringProcessor {
     private static final String DEFAULT_DELIMITERS = "[,:]";
+    private static final String CUSTOM_SEPARATOR_SIGNAL ="//";
 
     public static List<Integer> split(final String input) {
         if (checkIfStringNullOrEmpty(input)) {
@@ -29,8 +30,8 @@ public class StringProcessor {
             return splitIntoIntegers(input, DEFAULT_DELIMITERS);
         }
 
-        if (inputTokens[0].startsWith("//")) {
-            String customDelimiter = inputTokens[0].split("//")[1];
+        if (inputTokens[0].startsWith(CUSTOM_SEPARATOR_SIGNAL)) {
+            String customDelimiter = inputTokens[0].split(CUSTOM_SEPARATOR_SIGNAL)[1];
             throwIfNumber(customDelimiter);
             return splitIntoIntegers(inputTokens[1], String.format("(%s|%s)", DEFAULT_DELIMITERS, Pattern.quote(customDelimiter)));
         }
