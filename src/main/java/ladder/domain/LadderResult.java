@@ -55,20 +55,20 @@ public class LadderResult {
      */
     public String getResultOfName(String name) {
         if (name.equals(LADDERRESULT_GET_RESULT_ALL)) {
-            return getResultOfAllName();
+            return matchItemOfAllName();
         }
         return matchPlayerItem(name);
     }
 
     private String matchPlayerItem(String name) {
-        try {
-            return result.get(new Player(name)).toString();
-        } catch (NullPointerException e) {
-            throw new NullPointerException(NOT_FIND_PLAYER);
+        Player wantPlayer = new Player(name);
+        if(!result.containsKey(wantPlayer)) {
+            throw new IllegalArgumentException(NOT_FIND_PLAYER);
         }
+        return result.get(wantPlayer).toString();
     }
 
-    private String getResultOfAllName() {
+    private String matchItemOfAllName() {
         StringJoiner stringJoiner = new StringJoiner("\n");
         for (Map.Entry<Player, Item> entry : result.entrySet()) {
             stringJoiner.add(entry.getKey() + " : " + entry.getValue());
