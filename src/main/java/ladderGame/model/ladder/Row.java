@@ -14,7 +14,7 @@ public class Row {
     }
 
     public void draw(int column) {
-        if(leftPointisSetTrue(column) || rightPointisSetTrue(column)) {
+        if (leftPointisSetTrue(column) || rightPointisSetTrue(column)) {
             return;
         }
         points.get(column).setTrue();
@@ -33,18 +33,18 @@ public class Row {
         return points.get(column).isTrue();
     }
 
-    public int getArrivalIndex (int startIndex) {
-        if(startIndex > 0 && points.get(startIndex - 1).isTrue()) {
+    public int getArrivalIndex(int startIndex) {
+        if (startIndex > 0 && points.get(startIndex - 1).isTrue()) {
             return startIndex - 1;
         }
-        if(startIndex < points.size() && points.get(startIndex).isTrue()) {
+        if (startIndex < points.size() && points.get(startIndex).isTrue()) {
             return startIndex + 1;
         }
         return startIndex;
     }
 
     public int getTruePointNumber() {
-        return (int)points.stream().filter(point -> point.isTrue()).count();
+        return (int) points.stream().filter(point -> point.isTrue()).count();
     }
 
 }

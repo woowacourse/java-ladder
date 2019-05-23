@@ -13,7 +13,7 @@ public class Player {
     }
 
     private void checkLength(String splittedInput) {
-        if(splittedInput.length() < MIN_LENGTH || splittedInput.length() > MAX_LENGTH) {
+        if (splittedInput.length() < MIN_LENGTH || splittedInput.length() > MAX_LENGTH) {
             throw new IllegalArgumentException("이름의 길이는 1 이상 5이하입니다.");
         }
     }

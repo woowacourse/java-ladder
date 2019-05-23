@@ -1,4 +1,5 @@
 package ladderGame.view;
+
 import ladderGame.model.ladder.Ladder;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class OutputView {
 
     public static void printAllResults(Map<String, String> result) {
         System.out.println("\n실행결과");
-        for (String player: result.keySet()) {
+        for (String player : result.keySet()) {
             System.out.println(player + " : " + result.get(player));
         }
     }

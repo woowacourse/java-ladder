@@ -10,7 +10,7 @@ public class Results {
         results = new ArrayList();
         checkResultsLengthIsEqualTo(splittedInputs, playersSize);
 
-        for(String splittedInput : splittedInputs) {
+        for (String splittedInput : splittedInputs) {
             results.add(new Result(splittedInput));
         }
     }
@@ -23,7 +23,7 @@ public class Results {
 
     public List<String> getNames() {
         List<String> names = new ArrayList<>();
-        for(Result result: results) {
+        for (Result result : results) {
             names.add(result.getName());
         }
         return names;

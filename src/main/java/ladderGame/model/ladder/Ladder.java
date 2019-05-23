@@ -1,7 +1,6 @@
 package ladderGame.model.ladder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Ladder {
@@ -9,7 +8,7 @@ public class Ladder {
     private int columnNum;
 
     public Ladder(int rowNumber, int columnNumber) {
-        rows= new ArrayList();
+        rows = new ArrayList();
         for (int i = 0; i < rowNumber; i++) {
             rows.add(new Row(columnNumber));
         }

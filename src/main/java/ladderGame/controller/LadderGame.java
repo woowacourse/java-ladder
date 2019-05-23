@@ -1,14 +1,11 @@
 package ladderGame.controller;
 
 
-import ladderGame.model.ladder.LadderResult;
-import ladderGame.model.ladder.LadderResultFactory;
-import ladderGame.model.input.Players;
-import ladderGame.model.input.PlayersFactory;
-import ladderGame.model.input.Results;
-import ladderGame.model.input.ResultsFactory;
+import ladderGame.model.input.*;
 import ladderGame.model.ladder.Ladder;
 import ladderGame.model.ladder.LadderFactory;
+import ladderGame.model.ladder.LadderResult;
+import ladderGame.model.ladder.LadderResultFactory;
 import ladderGame.view.InputView;
 import ladderGame.view.OutputView;
 
@@ -19,9 +16,9 @@ public class LadderGame {
     public static void main(String[] args) {
         Players players = PlayersFactory.getPlayers(InputView.readPlayerNames());
         Results results = ResultsFactory.getResults(InputView.readResults(), players.size());
-        int rows = InputView.readRowNumber();
+        int rows = RowNumberValidator.validates(InputView.readRowNumber());
         int columns = players.size() - 1;
-        Ladder ladder = LadderFactory.generateLadder(rows,columns);
+        Ladder ladder = LadderFactory.generateLadder(rows, columns);
 
         OutputView.printLadder(ladder, players.getNames(), results.getNames());
         showResultUntilUserQuits(LadderResultFactory

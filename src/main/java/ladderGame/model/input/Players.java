@@ -12,13 +12,13 @@ public class Players {
         checkRepetition(new HashSet(splittedInputs), splittedInputs.size());
 
         players = new ArrayList();
-        for(String splittedInput : splittedInputs) {
+        for (String splittedInput : splittedInputs) {
             players.add(new Player(splittedInput));
         }
     }
 
     private void checkRepetition(Set<String> splittedInputs, int size) {
-        if (splittedInputs.size() != size ) {
+        if (splittedInputs.size() != size) {
             throw new IllegalArgumentException("입력에 중복이 있습니다.");
         }
     }
@@ -29,7 +29,7 @@ public class Players {
 
     public List<String> getNames() {
         List<String> names = new ArrayList<>();
-        for(Player player: players) {
+        for (Player player : players) {
             names.add(player.getName());
         }
         return names;
