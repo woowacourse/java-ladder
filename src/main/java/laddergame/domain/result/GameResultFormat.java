@@ -13,12 +13,11 @@ public class GameResultFormat {
 		return new GameResultFormat(people, reward);
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(people);
-		stringBuilder.append("\t : \t");
-		stringBuilder.append(reward);
-		return stringBuilder.toString();
+	public String getPlayerName() {
+		return this.people;
+	}
+
+	public String getRewardName() {
+		return this.reward;
 	}
 }

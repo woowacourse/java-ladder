@@ -4,60 +4,54 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Point> line;
+	private final List<Point> line;
 
-    public Line(final int width) {
-        line = new ArrayList<>();
-        for (int i = 0; i < width; i++) {
-            line.add(Point.of(Point.DISCONNECT));
-        }
-    }
+	public Line(final int width) {
+		line = new ArrayList<>();
+		for (int i = 0; i < width; i++) {
+			line.add(Point.of(Point.DISCONNECT));
+		}
+	}
 
-    public boolean connect(final int column) {
-        if (!checkRight(column) && !checkLeft(column)) {
-            line.set(column, Point.of(Point.CONNECT));
-            return true;
-        }
-        return false;
-    }
+	public boolean connect(final int column) {
+		if (!checkRight(column) && !checkLeft(column)) {
+			line.set(column, Point.of(Point.CONNECT));
+			return true;
+		}
+		return false;
+	}
 
-    private boolean checkRight(int column) {
-        try {
-            return (line.get(column + 1).hasBridge());
-        } catch (IndexOutOfBoundsException e) {
-            return false;
-        }
-    }
+	private boolean checkRight(final int column) {
+		try {
+			return (line.get(column + 1).hasBridge());
+		} catch (IndexOutOfBoundsException e) {
+			return false;
+		}
+	}
 
-    private boolean checkLeft(int column) {
-        try {
-            return (line.get(column - 1).hasBridge());
-        } catch (IndexOutOfBoundsException e) {
-            return false;
-        }
-    }
+	private boolean checkLeft(final int column) {
+		try {
+			return (line.get(column - 1).hasBridge());
+		} catch (IndexOutOfBoundsException e) {
+			return false;
+		}
+	}
 
-    public Direction findPosition(int startPosition) {
-        if (checkLeft(startPosition)) {
-            return Direction.left();
-        }
-        if (checkRight(startPosition - 1)) {
-            return Direction.right();
-        }
-        return Direction.keep();
-    }
+	public Direction findPosition(final int startPosition) {
+		if (checkLeft(startPosition)) {
+			return Direction.left();
+		}
+		if (checkRight(startPosition - 1)) {
+			return Direction.right();
+		}
+		return Direction.keep();
+	}
 
-    public int getWidth() {
-        return (line.size() - 1);
-    }
+	public List<Point> getLineFormat() {
+		return new ArrayList<>(line);
+	}
 
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Point point : line) {
-            stringBuilder.append(point);
-            stringBuilder.append("|");
-        }
-        return stringBuilder.toString();
-    }
+	public int getWidth() {
+		return (line.size() - 1);
+	}
 }

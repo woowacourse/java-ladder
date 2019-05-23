@@ -1,25 +1,20 @@
 package laddergame.domain.ladder;
 
 public class Point {
-    public static final boolean CONNECT = true;
-    public static final boolean DISCONNECT = false;
+	public static final boolean CONNECT = true;
+	public static final boolean DISCONNECT = false;
 
-    private final boolean bridge;
+	private final boolean bridge;
 
-    private Point(final boolean bridge) {
-        this.bridge = bridge;
-    }
+	private Point(final boolean bridge) {
+		this.bridge = bridge;
+	}
 
-    public static Point of(final boolean bridge) {
-        return new Point(bridge);
-    }
+	public static Point of(final boolean bridge) {
+		return new Point(bridge);
+	}
 
-    public boolean hasBridge() {
-        return this.bridge;
-    }
-
-    @Override
-    public String toString() {
-        return bridge ? "-----" : "     ";
-    }
+	public boolean hasBridge() {
+		return this.bridge;
+	}
 }

@@ -1,5 +1,6 @@
 package laddergame.domain.player;
 
+import laddergame.domain.AbstractName;
 import laddergame.domain.NameList;
 
 import java.util.ArrayList;
@@ -29,6 +30,11 @@ public class Players implements NameList {
 	}
 
 	@Override
+	public List<? extends AbstractName> getNames() {
+		return new ArrayList<>(this.players);
+	}
+
+	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (!(o instanceof Players)) return false;
@@ -39,15 +45,5 @@ public class Players implements NameList {
 	@Override
 	public int hashCode() {
 		return Objects.hash(players);
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder stringBuilder = new StringBuilder();
-		for (Player player : players) {
-			stringBuilder.append(String.format("%-" + player.BOUND_OF_NAME_LENGTH + "s", player));
-			stringBuilder.append(" ");
-		}
-		return stringBuilder.toString();
 	}
 }

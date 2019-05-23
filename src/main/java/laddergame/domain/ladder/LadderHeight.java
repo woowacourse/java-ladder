@@ -3,6 +3,7 @@ package laddergame.domain.ladder;
 import java.util.Objects;
 
 public class LadderHeight {
+    private static final int MIN_NUM_OF_LADDER_HEIGHT = 0;
     private final int ladderHeight;
 
     public LadderHeight(final String height) {
@@ -11,7 +12,7 @@ public class LadderHeight {
     }
 
     private void checkValidBound() {
-        if (this.ladderHeight <= 0) {
+        if (this.ladderHeight <= MIN_NUM_OF_LADDER_HEIGHT) {
             throw new IllegalArgumentException("1 이상의 정수를 입력해주세요");
         }
     }
@@ -26,6 +27,10 @@ public class LadderHeight {
 
     public int getLadderHeight() {
         return this.ladderHeight;
+    }
+
+    public int calculateArea(final int width) {
+        return (ladderHeight * width);
     }
 
     @Override

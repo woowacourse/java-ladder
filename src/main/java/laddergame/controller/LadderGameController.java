@@ -25,7 +25,7 @@ public class LadderGameController {
 		NameList rewards = assignRewards(players);
 		LadderHeight ladderHeight = assignLadderHeight();
 		Ladder ladder = new Ladder(ladderHeight.getLadderHeight(), players.getSize());
-		ladder.connectBridgesRandomly(ladderHeight.getLadderHeight() * players.getSize());
+		ladder.connectBridgesRandomly(ladderHeight.calculateArea(players.getSize()));
 		this.ladderGameResult = GameResult.of(players, rewards, ladder);
 
 		printLadderGameScreen(players, ladder, rewards);
@@ -71,6 +71,7 @@ public class LadderGameController {
 	}
 
 	private void printLadderGameScreen(NameList players, Ladder ladder, NameList rewards) {
+		OutputView.showMessageOfExecution();
 		OutputView.showPlayers(players);
 		OutputView.showLadder(ladder);
 		OutputView.showRewards(rewards);
@@ -85,7 +86,7 @@ public class LadderGameController {
 
 	private boolean proceedWithCommand(final String command) {
 		try {
-			return checkAndShowCommand(command);
+			return checkAndShowCommand(command.trim());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return true;
@@ -94,11 +95,12 @@ public class LadderGameController {
 
 	private boolean checkAndShowCommand(final String command) {
 		if (command.equals(QUIT_COMMAND)) {
+			OutputView.quitGame();
 			return false;
 		}
 		if (command.equals(ALL_COMMAND)) {
 			OutputView.showAllResult(this.ladderGameResult.getAllGameResultFormat());
-			return false;
+			return true;
 		}
 		OutputView.showResult(this.ladderGameResult.getGameResultFormat(command));
 		return true;
