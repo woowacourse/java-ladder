@@ -25,10 +25,10 @@ public class Ladder {
         }
     }
 
-    public List<Integer> getLadderingResultItemsIndex(int numberofPlayer) {
+    public List<Integer> getLadderingResultItemsIndex(int numberOfPlayer) {
         List<Integer> ladderingResultItemIndex = new ArrayList<>();
 
-        for (int startPosition = 0; startPosition < numberofPlayer; startPosition++) {
+        for (int startPosition = 0; startPosition < numberOfPlayer; startPosition++) {
             ladderingResultItemIndex.add(stepDown(startPosition));
         }
         return ladderingResultItemIndex;

@@ -23,15 +23,7 @@ public class PlayerGroup {
     }
 
     public LadderResult matchLadderingResult(ResultItems resultItems, List<Integer> ladderingResultItemsIndex) {
-        LadderResult ladderingResult = new LadderResult();
-        int playerPosition = 0;
-
-        for (Player player : players) {
-            ladderingResult.addResult(player,resultItems.answerMatchItemOf(ladderingResultItemsIndex.get(playerPosition)));
-            playerPosition++;
-        }
-
-        return ladderingResult;
+        return new LadderResult(players, resultItems, ladderingResultItemsIndex);
     }
 
     public int size() {
