@@ -18,7 +18,7 @@ public class StringSeparator {
 
 	private static String[] splitStringWithSeparator(String input) {
 		Pattern pattern = Pattern.compile(REGEX_OF_INPUT_FORMAT);
-		Matcher m = pattern.matcher(input.replaceAll("\\\\n", "\n"));
+		Matcher m = pattern.matcher(replaceNewLine(input));
 
 		if (m.find()) {
 			String customDelimiter = m.group(1);
@@ -27,5 +27,9 @@ public class StringSeparator {
 		}
 
 		return input.split(REGEX_OF_DEFAULT_SEPARATOR);
+	}
+
+	private static String replaceNewLine(String input) {
+		return input.replaceAll("\\\\n", "\n");
 	}
 }
