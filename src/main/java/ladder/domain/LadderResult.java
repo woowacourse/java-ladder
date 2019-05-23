@@ -30,15 +30,16 @@ public class LadderResult {
      * @param depth
      */
     public LadderResult(String names, String rewards, int depth) {
-        names = PlayerException.playerNames(names);
-        rewards = RewardException.reward(rewards, names.split(",").length);
-        depth = LadderDepthException.ladderMinDepth(depth);
+        PlayerException.playerNames(names);
+        RewardException.reward(rewards, names.split(",").length);
+        LadderDepthException.ladderMinDepth(depth);
         List<Player> players = getPlayers(names);
         this.ladder = getLadder(players, depth);
         this.result = getResult(players, convertItems(rewards));
     }
 
     private List<Item> convertItems(String items) {
+        items = items.replace(" ", "");
         List<Item> convertItems = new ArrayList<>();
         for (String item : items.split(",")) {
             convertItems.add(new Item(item));
@@ -90,7 +91,7 @@ public class LadderResult {
 
     private List<Player> getPlayers(String playerNames) {
         List<Player> players = new ArrayList<>();
-        List<String> names = Arrays.asList(playerNames.split(","));
+        List<String> names = Arrays.asList(playerNames.replaceAll(" ", "").split(","));
         for (int index = 0; index < names.size(); index++) {
             players.add(new Player(names.get(index), index));
         }

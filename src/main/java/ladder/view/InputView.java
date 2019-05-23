@@ -14,7 +14,9 @@ public class InputView {
 
     public static String playerNames() {
         try {
-            return PlayerException.playerNames(inputPlayerNames());
+            String playerNames = inputPlayerNames();
+            PlayerException.playerNames(playerNames);
+            return playerNames;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return playerNames();
@@ -29,7 +31,8 @@ public class InputView {
     public static String rewards(String names) {
         try {
             String rewards = inputRewards();
-            return RewardException.reward(rewards, names.split(",").length);
+            RewardException.reward(rewards, names.split(",").length);
+            return rewards;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return rewards(names);
@@ -43,7 +46,9 @@ public class InputView {
 
     public static int ladderDepth() {
         try {
-            return LadderDepthException.ladderMinDepth(inputLadderDepth());
+            int ladderDepth = inputLadderDepth();
+            LadderDepthException.ladderMinDepth(ladderDepth);
+            return ladderDepth;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return ladderDepth();
@@ -63,7 +68,8 @@ public class InputView {
     public static String wantName(LadderResult ladderResult) {
         try {
             String resultOfName = ladderResult.getResultOfName(inputWantName());
-            return WantPlayerException.wantName(resultOfName);
+            WantPlayerException.wantName(resultOfName);
+            return resultOfName;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return wantName(ladderResult);

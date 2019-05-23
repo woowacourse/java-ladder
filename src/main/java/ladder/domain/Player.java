@@ -23,7 +23,8 @@ public class Player {
      * @throws IllegalArgumentException 이름 길이가 rule과 다를 때 발생
      */
     public Player(String name) {
-        this.name = PlayerException.playerNameOverLength(name);
+        PlayerException.playerNameOverLength(name);
+        this.name = name;
     }
 
     /**
@@ -34,7 +35,8 @@ public class Player {
      * @throws IllegalArgumentException 이름 길이가 rule과 다를 때 발생
      */
     public Player(String name, int position) {
-        this.name = PlayerException.playerNameOverLength(name);
+        PlayerException.playerNameOverLength(name);
+        this.name = name;
         this.position = position;
     }
 

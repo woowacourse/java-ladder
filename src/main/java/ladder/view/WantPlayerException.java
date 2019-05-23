@@ -11,10 +11,9 @@ public class WantPlayerException {
      * @param inputWantName
      * @return
      */
-    public static String wantName(String inputWantName) {
+    public static void wantName(String inputWantName) {
         if (StringUtils.isBlank(inputWantName)) {
             throw new IllegalArgumentException(EX_WANT_NAME);
         }
-        return inputWantName;
     }
 }

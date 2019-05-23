@@ -14,11 +14,10 @@ public class RewardException {
      * @return reward
      * @throws IllegalArgumentException
      */
-    public static String reward(String reward, int playerCount) {
-        reward = reward.replaceAll(" ", "");
-        List<String> rewards = Arrays.asList(checkReward(reward).split(","));
+    public static void reward(String reward, int playerCount) {
+        checkReward(reward);
+        List<String> rewards = Arrays.asList(reward.split(","));
         checkRewardSize(rewards.size() != playerCount);
-        return reward;
     }
 
     /**
@@ -29,14 +28,13 @@ public class RewardException {
      * @return inputNames
      * @throws IllegalArgumentException
      */
-    public static String checkReward(String inputNames) {
+    public static void checkReward(String inputNames) {
         List<String> names = PlayerException.playerNamesMinSize(
                 Arrays.asList(inputNames.split(","))
         );
         for (String name : names) {
             PlayerException.playerNameOverLength(name);
         }
-        return inputNames;
     }
 
     /**

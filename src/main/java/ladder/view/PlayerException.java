@@ -27,16 +27,14 @@ public class PlayerException {
      * @return inputNames
      * @throws IllegalArgumentException
      */
-    public static String playerNames(String inputNames) {
+    public static void playerNames(String inputNames) {
         inputNames = inputNames.replaceAll(" ", "");
-        List<String> names = playerNamesMinSize(
-                Arrays.asList(inputNames.split(","))
-        );
-        for (String name : playerDuple(names)) {
+        List<String> names = playerNamesMinSize(Arrays.asList(inputNames.split(",")));
+        playerDuple(names);
+        for (String name : names) {
             playerNameOverLength(name);
             playerNameCheckAll(name);
         }
-        return inputNames;
     }
 
     /**
@@ -61,12 +59,11 @@ public class PlayerException {
      * @return names
      * @throws IllegalArgumentException
      */
-    private static List<String> playerDuple(List<String> names) {
+    private static void playerDuple(List<String> names) {
         Set<String> nameSet = new HashSet<>(names);
         if (nameSet.size() != names.size()) {
             throw new IllegalArgumentException(EX_NAME_DUPLE);
         }
-        return names;
     }
 
     /**
@@ -77,11 +74,10 @@ public class PlayerException {
      * @return name
      * @throws IllegalArgumentException EX_NAME_ALL
      */
-    private static String playerNameCheckAll(String name) {
+    private static void playerNameCheckAll(String name) {
         if (name.equals(LadderResult.LADDERRESULT_GET_RESULT_ALL)) {
             throw new IllegalArgumentException(EX_NAME_ALL);
         }
-        return name;
     }
 
     /**
@@ -92,11 +88,10 @@ public class PlayerException {
      * @return name
      * @throws IllegalArgumentException EX_NAME
      */
-    public static String playerNameOverLength(String name) {
+    public static void playerNameOverLength(String name) {
         if (StringUtils.isBlank(name) || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(EX_NAME);
         }
-        return name;
     }
 
     /**

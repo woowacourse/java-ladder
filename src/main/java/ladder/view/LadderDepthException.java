@@ -11,10 +11,9 @@ public class LadderDepthException {
      * @return depth
      * @throws IllegalArgumentException InputView.EX_LINE_COUNT
      */
-    public static int ladderMinDepth(int depth) {
+    public static void ladderMinDepth(int depth) {
         if (depth < MIN_LINE_COUNT) {
             throw new IllegalArgumentException(InputView.EX_LINE_COUNT);
         }
-        return depth;
     }
 }
