@@ -1,7 +1,24 @@
+/*
+ * @(#)Direction.java
+ *
+ * v 1.2.0
+ *
+ * 2019.05.23
+ *
+ * Copyright (c) 2019 KwonMC.
+ * WoowahanTechCourse, Seoul, KOREA
+ * All right Reserved
+ */
 package ladder.domain.ladder;
 
 import java.util.Objects;
 
+/**
+ * Point 의 방향을 나타내기 위한 클래스
+ *
+ * @author mrkwon
+ * @version 1.2.0
+ */
 public class Direction {
     private Boolean direction;
 

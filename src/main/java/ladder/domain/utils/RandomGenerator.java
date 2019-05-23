@@ -6,9 +6,7 @@ import ladder.domain.ladder.Direction;
 
 public class RandomGenerator {
     private static Random random = new Random();
-//    public static Boolean get() {
-//        return random.nextBoolean();
-//    }
+
     public static Direction get() {
         return new Direction(random.nextBoolean());
     }

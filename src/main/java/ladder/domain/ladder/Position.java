@@ -19,6 +19,8 @@ package ladder.domain.ladder;
  * @version 1.1.0
  */
 public class Position {
+    private static final String LOWER_BOUND_ERROR = "현재 위치는 0 미만 불가능";
+
     private int position;
 
     Position(int position) {
@@ -28,7 +30,7 @@ public class Position {
 
     private void validLowerBound(int position) {
         if (position < 0) {
-            throw new IllegalArgumentException("현재 위치는 0 미만 불가능");
+            throw new IllegalArgumentException(LOWER_BOUND_ERROR);
         }
     }
 
