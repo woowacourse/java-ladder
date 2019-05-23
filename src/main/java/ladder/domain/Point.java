@@ -4,8 +4,8 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Point {
-    public static final String LINE_STATE_FALSE = "     |";
-    public static final String LINE_STATE_TRUE = "-----|";
+    private static final String LINE_STATE_FALSE = "     |";
+    private static final String LINE_STATE_TRUE = "-----|";
 
     private final boolean nowPoint;
 

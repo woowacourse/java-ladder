@@ -17,7 +17,7 @@ import java.util.*;
  */
 public class LadderResult {
     public static final String LADDERRESULT_GET_RESULT_ALL = "all";
-    public static final String NOT_FIND_PLAYER = "존재하지 않는 플레이어 입니다.";
+    private static final String NOT_FIND_PLAYER = "존재하지 않는 플레이어 입니다.";
 
     private Ladder ladder;
     private Map<Player, Item> result;

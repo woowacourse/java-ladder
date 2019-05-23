@@ -26,13 +26,13 @@ public class InputView {
         return SCANNER.nextLine();
     }
 
-    public static String rewards(int size) {
+    public static String rewards(String names) {
         try {
             String rewards = inputRewards();
-            return RewardException.reward(rewards, size);
+            return RewardException.reward(rewards, names.split(",").length);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
-            return rewards(size);
+            return rewards(names);
         }
     }
 

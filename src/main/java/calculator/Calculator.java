@@ -9,11 +9,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Calculator {
-    public static final String FORMAT_SYMBOL = "//(.*)\\\\n(.*)";
-    public static final String DEFAULT_SYMBOL = ",|:";
-    public static final String STRING_ZERO = "0";
-    public static final Character SLASH = '/';
-    public static final int ZERO = 0;
+    private static final String FORMAT_SYMBOL = "//(.*)\\\\n(.*)";
+    private static final String DEFAULT_SYMBOL = ",|:";
+    private static final String STRING_ZERO = "0";
+    private static final Character SLASH = '/';
+    private static final int ZERO = 0;
 
     public static List<Integer> convertNumbers(String input) {
         input = StringUtils.deleteWhitespace(input);
