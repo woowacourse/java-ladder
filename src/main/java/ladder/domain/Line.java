@@ -6,11 +6,10 @@ import java.util.*;
  * @author heebg
  * @version 1.0 2019-05-18
  */
-public class Line implements Iterable<Position> {
-    private final String EX_POSITION_ROW_TRUE_DUPLE = "사다리 가로 라인은 연속으로 생길 수 없습니다.";
-    private final List<Position> line;
+public class Line implements Iterable<Point> {
+    private final List<Point> line;
 
-    private Line(List<Position> line) {
+    private Line(List<Point> line) {
         this.line = line;
     }
 
@@ -20,7 +19,7 @@ public class Line implements Iterable<Position> {
      * @return
      */
     public static Line newInstance() {
-        List<Position> line = new ArrayList<>();
+        List<Point> line = new ArrayList<>();
         return new Line(line);
     }
 
@@ -30,7 +29,7 @@ public class Line implements Iterable<Position> {
      * @param line Position들
      * @return
      */
-    public static Line newInstance(List<Position> line) {
+    public static Line newInstance(List<Point> line) {
         return new Line(line);
     }
 
@@ -41,40 +40,37 @@ public class Line implements Iterable<Position> {
      * @return
      */
     public static Line newInstance(int rowSize) {
-        List<Position> line = new ArrayList<>();
-        line.add(Position.start());
+        List<Point> line = new ArrayList<>();
+        line.add(PointConfigure.generateRandom(Point.FALSE));
         if (rowSize == 1) {
             return new Line(line);
         }
         for (int i = 1; i < rowSize - 1; i++) {
-            line.add(Position.add(line.get(i - 1).status()));
+            line.add(PointConfigure.generateRandom(line.get(i - 1)));
         }
-        line.add(Position.end(line.get(rowSize - 2).status()));
+        line.add(PointConfigure.generateRandom(line.get(rowSize - 2)));
         return new Line(line);
     }
 
     /**
      * 첫번째 Position 추가
      *
-     * @param currentStatus 현재 Position 상태
      * @return Line
      */
-    public Line start(boolean currentStatus) {
-        List<Position> line = new ArrayList<>();
-        line.add(Position.start(currentStatus));
+    public Line start() {
+        List<Point> line = new ArrayList<>();
+        line.add(PointConfigure.generateRandom(Point.FALSE));
         return new Line(line);
     }
 
     /**
      * Position 추가
      *
-     * @param currentStatus 현재 Position 상태
      * @return Position
      */
-    public Line add(boolean currentStatus) {
-        boolean preStatus = line.get(line.size() - 1).status();
-        makeThrows(preStatus && currentStatus, EX_POSITION_ROW_TRUE_DUPLE);
-        line.add(Position.add(preStatus, currentStatus));
+    public Line add() {
+        Point preStatus = line.get(line.size() - 1);
+        line.add(PointConfigure.generateRandom(preStatus));
         return new Line(line);
     }
 
@@ -84,7 +80,7 @@ public class Line implements Iterable<Position> {
      * @return Position
      */
     public Line end() {
-        line.add(Position.end(line.get(line.size() - 1).status()));
+        line.add(Point.FALSE);
         return new Line(line);
     }
 
@@ -97,7 +93,7 @@ public class Line implements Iterable<Position> {
      */
     public String draw(String trueShape, String falseShape) {
         StringBuilder sb = new StringBuilder();
-        for (Position position : line) {
+        for (Point position : line) {
             sb.append(drawPosition(trueShape, falseShape, position.status()));
         }
         return sb.toString();
@@ -119,12 +115,6 @@ public class Line implements Iterable<Position> {
         return LineResult.newInstance(line.size()).move(this);
     }
 
-    private void makeThrows(boolean state, String message) {
-        if (state) {
-            throw new IllegalArgumentException(message);
-        }
-    }
-
     /**
      * line 크기 반환
      *
@@ -134,12 +124,12 @@ public class Line implements Iterable<Position> {
         return line.size();
     }
 
-    public Position get(int index) {
+    public Point get(int index) {
         return line.get(index);
     }
 
     @Override
-    public Iterator<Position> iterator() {
+    public Iterator<Point> iterator() {
         return line.iterator();
     }
 

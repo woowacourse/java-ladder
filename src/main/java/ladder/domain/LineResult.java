@@ -39,9 +39,18 @@ public class LineResult implements Iterable<Integer> {
 
     public LineResult move(Line line) {
         for (int i = 0; i < line.size(); i++) {
-            result.set(i, line.get(result.get(i)).move(result.get(i)));
+            Point nowPoint = line.get(result.get(i));
+            Point prePoint = generatePrePoint(line, i);
+            result.set(i, nowPoint.move(result.get(i), prePoint));
         }
         return new LineResult(result);
+    }
+
+    private Point generatePrePoint(Line line, int i) {
+        if (result.get(i) == 0) {
+            return Point.FALSE;
+        }
+        return line.get(result.get(i)-1);
     }
 
     /**
