@@ -53,10 +53,4 @@ class LadderGameInformationTest {
 		this.rewards.removeAll(Arrays.asList(new Reward("1000"), new Reward("3000")));
 		assertDoesNotThrow(() -> new LadderGameInformation(players, rewards));
 	}
-
-	@Test
-	void 글자수_5자_초과인_값이_있을_경우_예외_반환() {
-		this.players.add(new Player("abcdef"));
-		assertThrows(IllegalArgumentException.class, () -> new LadderGameInformation(players, rewards));
-	}
 }
