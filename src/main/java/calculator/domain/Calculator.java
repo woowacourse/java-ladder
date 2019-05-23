@@ -8,11 +8,15 @@ public class Calculator {
 	private static final Pattern pattern = Pattern.compile(REGEX_OF_NUMBER);
 
 	public static int sumValues(String[] values) {
-		return Arrays.stream(values).mapToInt(value -> Integer.parseInt(value)).sum();
+		return Arrays.stream(values)
+				.mapToInt(value -> Integer.parseInt(value))
+				.sum()
+				;
 	}
 
 	public static void checkCorrectValue(String[] values) {
-		if (!Arrays.stream(values).allMatch(value -> pattern.matcher(value).matches())) {
+		if (!Arrays.stream(values)
+				.allMatch(value -> pattern.matcher(value).matches())) {
 			throw new RuntimeException();
 		}
 	}
