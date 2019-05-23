@@ -34,7 +34,7 @@ public class PlayerTagsTest {
 
     @Test
     void 태그이름으로_인덱스_찾기_검사() {
-        String[] input = {"pobi","coogi","brown","luffy"};
-        assertThat(new PlayerTags(input).getIndexByTag(new Tag("brown"))).isEqualTo(2);
+        String[] input = {"pobi","coogi","brown","luffy","cozi"};
+        assertThat(new PlayerTags(input).getIndexByTag(new Tag("cozi"))).isEqualTo(4);
     }
 }

@@ -22,11 +22,8 @@ public class Ladder {
                 return lines;
         }
 
-        public Ladder(Floor floor, int tagsNumber) {
-                lines = new ArrayList<>();
-                for (int i = 0; i < floor.getNumber(); i++) {
-                        lines.add(new Line(tagsNumber));
-                }
+        public Ladder(List<Line> lines){
+                this.lines = lines;
         }
 
         public int findResultTagIndexByIndex(int index) {

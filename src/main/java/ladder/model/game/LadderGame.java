@@ -7,11 +7,17 @@
 
 package ladder.model.game;
 
+import ladder.model.creator.LadderCreator;
 import ladder.model.ladder.Floor;
 import ladder.model.ladder.Ladder;
+import ladder.model.ladder.Line;
+import ladder.model.creator.LineCreator;
 import ladder.model.tags.PlayerTags;
 import ladder.model.tags.ResultTags;
 import ladder.model.tags.Tag;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 김효건
@@ -37,10 +43,10 @@ public class LadderGame {
                 return resultTags;
         }
 
-        public LadderGame(PlayerTags playerTags, ResultTags resultTags, Floor floor) {
+        public LadderGame(PlayerTags playerTags, ResultTags resultTags, Ladder ladder) {
                 this.playerTags = playerTags;
                 this.resultTags = resultTags;
-                ladder = new Ladder(floor, playerTags.getTagsNumber());
+                this.ladder = ladder;
         }
 
         public Tag getOneResultByTag(Tag tag) {

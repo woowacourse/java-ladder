@@ -7,8 +7,10 @@
 
 package ladder.controller;
 
+import ladder.model.creator.LadderCreator;
 import ladder.model.game.LadderGame;
 import ladder.model.ladder.Floor;
+import ladder.model.ladder.Ladder;
 import ladder.model.tags.PlayerTags;
 import ladder.model.tags.ResultTags;
 import ladder.model.tags.Tag;
@@ -26,9 +28,11 @@ public class Main {
 
         public static void main(String[] args) {
                 PlayerTags playerTags = getPlayerTags();
-                ResultTags resultTags = getResultTags(playerTags.getTagsNumber());
+                int tagNumber = playerTags.getTagsNumber();
+                ResultTags resultTags = getResultTags(tagNumber);
                 Floor floor = getFloor();
-                LadderGame ladderGame = new LadderGame(playerTags, resultTags, floor);
+                Ladder ladder = LadderCreator.create(floor, playerTags.getTagsNumber());
+                LadderGame ladderGame = new LadderGame(playerTags, resultTags, ladder);
 
                 OutputView.PrintLadderTitle();
                 OutputView.PrintTagsAndLadder(ladderGame);

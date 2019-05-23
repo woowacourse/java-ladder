@@ -10,7 +10,9 @@ package ladder.model.game;
 import ladder.model.tags.Tag;
 
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author 김효건
@@ -18,7 +20,7 @@ import java.util.Map;
  */
 public class GameResult {
         /*게임 결과에 관련 된 클래스*/
-        private Map<Tag, Tag> mappingResult;
+        private LinkedHashMap<Tag, Tag> mappingResult;
 
         public GameResult() {
                 mappingResult = new LinkedHashMap<>();
@@ -28,7 +30,7 @@ public class GameResult {
                 mappingResult.put(inTag, outTag);
         }
 
-        public Map<Tag, Tag> getMappingResult() {
+        public LinkedHashMap<Tag, Tag> getMappingResult() {
                 return mappingResult;
         }
 }

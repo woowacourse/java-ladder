@@ -29,6 +29,7 @@ public class InputView {
         private static final String RESERVED_WORD = "exit|all";
         private static final int ONE_PLAYER = 1;
 
+
         public static String[] inputPlayers() {
                 System.out.println(INPUT_NAMES_MESSAGE);
                 Scanner scanner = new Scanner(System.in);
@@ -65,11 +66,11 @@ public class InputView {
         }
 
         public static String[] inputResults() {
-                        System.out.println(INPUT_RESULTS_MESSAGE);
+                System.out.println(INPUT_RESULTS_MESSAGE);
                 Scanner scanner = new Scanner(System.in);
-                        String input = scanner.nextLine();
-                        checkValidInput(input);
-                        return splitInput(input);
+                String input = scanner.nextLine();
+                checkValidInput(input);
+                return splitInput(input);
         }
 
         public static Floor inputFloors() {
