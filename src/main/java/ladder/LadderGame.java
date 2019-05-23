@@ -11,7 +11,7 @@ public class LadderGame {
         LadderRowGenerator randomLadderRowGenerator = new RandomLadderRowGenerator();
         ResultItems resultItems = getResultItems(players.size());
         Ladder ladder = getLadderBy(randomLadderRowGenerator, players.size());
-        LadderResult ladderingResult = players.matchLadderingResult(resultItems
+        LadderResult ladderingResult = new LadderResult(players,resultItems
                 , ladder.getLadderingResultItemsIndex(players.size()));
 
         OutputView.showPlayersAndLadder(players, ladder, resultItems);

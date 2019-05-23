@@ -5,12 +5,9 @@ import java.util.*;
 public class LadderResult {
     private Map<Player, ResultItem> ladderingResult = new LinkedHashMap<>();
 
-    LadderResult(Set<Player> players, ResultItems resultItems, List<Integer> ladderingResultItemsIndex) {
-        int playerPosition = 0;
-
-        for (Player player : players) {
-            ladderingResult.put(player,resultItems.answerMatchItemOf(ladderingResultItemsIndex.get(playerPosition)));
-            playerPosition++;
+    public LadderResult(PlayerGroup players, ResultItems resultItems, List<Integer> ladderingResultItemsIndex) {
+        for (int index = 0; index < players.size(); index++) {
+            ladderingResult.put(players.answerMatchPlayerOf(index), resultItems.answerMatchItemOf(ladderingResultItemsIndex.get(index)));
         }
     }
 

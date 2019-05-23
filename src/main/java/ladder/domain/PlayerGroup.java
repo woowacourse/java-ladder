@@ -21,9 +21,9 @@ public class PlayerGroup {
     public Set<Player> getPlayers() {
         return players;
     }
-
-    public LadderResult matchLadderingResult(ResultItems resultItems, List<Integer> ladderingResultItemsIndex) {
-        return new LadderResult(players, resultItems, ladderingResultItemsIndex);
+    
+    Player answerMatchPlayerOf(int index) {
+        return new ArrayList<>(players).get(index);
     }
 
     public int size() {
@@ -42,5 +42,4 @@ public class PlayerGroup {
     public int hashCode() {
         return Objects.hash(players);
     }
-
 }
