@@ -12,11 +12,11 @@ public class RandomStepsGenerator implements StepsGenerator{
         this.countOfPlayer = countOfPlayer;
     }
 
-    public static Step getRandomStep() {
+    public Step getRandomStep() {
         return new Step(random.nextBoolean());
     }
 
-    public static Step getRandomStep(Step step) {
+    public Step getRandomStep(Step step) {
         return (step.exist()) ? new Step(false) : new Step(random.nextBoolean());
     }
 
@@ -30,5 +30,16 @@ public class RandomStepsGenerator implements StepsGenerator{
         }
 
         return new Steps(steps);
+    }
+
+    @Override
+    public List<Steps> generateStepsList(int ladderHeight) {
+        List<Steps> stepsList = new ArrayList<>();
+
+        for (int i = 1; i < ladderHeight; i++) {
+            stepsList.add(generateSteps());
+        }
+
+        return stepsList;
     }
 }

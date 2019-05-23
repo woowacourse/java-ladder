@@ -11,11 +11,13 @@ public class Ladder {
     public Ladder(StepsGenerator stepsGenerator, int height) {
         checkHeightIsPositive(height);
 
-        lines = new ArrayList<>();
+        List<Steps> stepsList = stepsGenerator.generateStepsList(height) ;
+        List<Line> lines = new ArrayList<>();
 
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(stepsGenerator.generateSteps()));
+        for (Steps steps : stepsList) {
+            lines.add(new Line(steps));
         }
+        this.lines = lines;
     }
 
     public static void checkHeightIsPositive(int height) {
