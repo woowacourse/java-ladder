@@ -29,7 +29,7 @@ public class Player {
 
 	private void validateNameEmpty(String playerName) {
 		if (StringUtils.isBlank(playerName)) {
-			throw new IllegalArgumentException(ExceptionOutput.VIOLATE_PLAYER_NAME.getOutputMessage());
+			throw new IllegalArgumentException(ExceptionOutput.VIOLATE_PLAYER_NAME_AND_REWARD_NAME.getOutputMessage());
 		}
 	}
 
