@@ -23,47 +23,47 @@ import ladder.domain.utils.RandomGenerator;
  * @version 1.1.0
  */
 public class Point {
-    private Boolean left;
-    private Boolean right;
+    private Direction left;
+    private Direction right;
 
-    private Point(Boolean left, Boolean right) {
+    private Point(Direction left, Direction right) {
         this.left = left;
         this.right = right;
     }
 
-    public Boolean getLeft() {
-        return left;
-    }
-
-    private static Point of(Boolean first, Boolean second) {
+    private static Point of(Direction first, Direction second) {
         return new Point(first, second);
     }
 
-    static Point first() {
-        return of(false, RandomGenerator.get());
+    public Direction getLeft() {
+        return left;
     }
 
-    private Point next(Boolean nextCurrent) {
+    static Point first() {
+        return of(new Direction(false), RandomGenerator.get());
+    }
+
+    private Point next(Direction nextCurrent) {
         return of(right, nextCurrent);
     }
 
     Point next() {
-        if (right.equals(false)) {
+        if (right.equals(Direction.empty())) {
             return next(RandomGenerator.get());
         }
-        return next(false);
+        return next(Direction.empty());
     }
 
     Point last() {
-        return next(false);
+        return next(Direction.empty());
     }
 
     Boolean canMoveLeft() {
-        return left;
+        return left.is();
     }
 
     Boolean canMoveRight() {
-        return right;
+        return right.is();
     }
 
     @Override

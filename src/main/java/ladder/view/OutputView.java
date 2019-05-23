@@ -84,7 +84,7 @@ public class OutputView {
     }
 
     private static String getHorizontalLine(Horizontal horizontal, int i) {
-        return horizontal.get(i).getLeft() ? HORIZONTAL_LINE : NO_HORIZONTAL_LINE;
+        return horizontal.get(i).getLeft().is() ? HORIZONTAL_LINE : NO_HORIZONTAL_LINE;
     }
 
     public static void resultTitle() {
