@@ -24,8 +24,9 @@ public class LadderLine {
      * @param playerCount 가로 길이
      */
     public LadderLine(int playerCount) {
-        this.playerCount = PlayerException.playersMinCount(playerCount);
-        this.lineStates = setLineStates();
+        PlayerException.playersMinCount(playerCount);
+        this.playerCount = playerCount;
+        this.lineStates = addLineStates();
     }
 
     /**
@@ -35,15 +36,23 @@ public class LadderLine {
      * @return index
      */
     public void movePlayerPosition(Player player, int position) {
-        if (position != 0 && lineStates.get(position).getNowPoint()) {
+        if (isLeftLadderLine(position)) {
             player.moveLeft();
         }
-        if (position != lineStates.size() - 1 && lineStates.get(position + 1).getNowPoint()) {
+        if (isRightLadderLine(position)) {
             player.moveRight();
         }
     }
 
-    private List<Point> setLineStates() {
+    private boolean isRightLadderLine(int position) {
+        return position != lineStates.size() - 1 && lineStates.get(position + 1).getNowPoint();
+    }
+
+    private boolean isLeftLadderLine(int position) {
+        return position != 0 && lineStates.get(position).getNowPoint();
+    }
+
+    private List<Point> addLineStates() {
         List<Point> lineStates = new ArrayList<>();
         lineStates.add(new Point());
         for (int i = 1; i < playerCount; i++) {

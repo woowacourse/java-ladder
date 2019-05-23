@@ -22,12 +22,12 @@ public class Ladder {
      * @param depth
      */
     public Ladder(List<Player> players, int depth) {
-        this.ladder = getLadderLines(players.size(), depth);
+        this.ladder = addLadderLines(players.size(), depth);
         this.players = players;
         moveResultPosition(depth);
     }
 
-    private List<LadderLine> getLadderLines(int playerSize, int depth) {
+    private List<LadderLine> addLadderLines(int playerSize, int depth) {
         List<LadderLine> ladder = new LinkedList<>();
         for (int i = 0; i < depth; i++) {
             ladder.add(new LadderLine(playerSize));
@@ -42,8 +42,7 @@ public class Ladder {
     }
 
     private void moveOneLinePosition(int depth) {
-        for (int i = 0; i < players.size(); i++) {
-            Player player = players.get(i);
+        for (Player player : players) {
             ladder.get(depth).movePlayerPosition(player, player.getPosition());
         }
     }

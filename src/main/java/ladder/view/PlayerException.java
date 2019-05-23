@@ -107,10 +107,9 @@ public class PlayerException {
      * @return playerCount
      * @throws IllegalArgumentException EX_PLAYER_COUNT
      */
-    public static int playersMinCount(int playerCount) {
+    public static void playersMinCount(int playerCount) {
         if (playerCount < MIN_PLAYER_COUNT) {
             throw new IllegalArgumentException(EX_PLAYER_COUNT);
         }
-        return playerCount;
     }
 }
