@@ -15,7 +15,7 @@ public class Calculator {
         Number sum = Number.zeroNumber();
 
         for (final Number number : numbers) {
-            sum.add(number);
+            sum = sum.add(number);
         }
         return sum.getNumber();
     }
