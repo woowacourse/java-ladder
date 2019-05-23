@@ -1,7 +1,7 @@
 package ladder;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import ladder.domain.*;
 import ladder.util.StringSplitUtils;
@@ -33,9 +33,10 @@ public class LadderGameApp {
 
 	public static List<Player> getPersonNames() {
 		try {
-			List<Player> players = new ArrayList<>();
-			StringSplitUtils.splitString(InputView.inputNames()).forEach(name -> players.add(new Player(name)));
-			return players;
+			return StringSplitUtils.splitString(InputView.inputNames()).stream()
+					.map(Player::new)
+					.collect(Collectors.toList())
+			;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return getPersonNames();
@@ -43,9 +44,10 @@ public class LadderGameApp {
 	}
 
 	public static List<Reward> getGameReward() {
-		List<Reward> rewards = new ArrayList<>();
-		StringSplitUtils.splitString(InputView.inputResults()).forEach(reward -> rewards.add(new Reward(reward)));
-		return rewards;
+		return StringSplitUtils.splitString(InputView.inputNames()).stream()
+				.map(Reward::new)
+				.collect(Collectors.toList())
+				;
 	}
 
 	public static Ladder generateLadder(int numberOfPlayers) {
