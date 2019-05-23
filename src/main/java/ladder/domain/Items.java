@@ -14,8 +14,8 @@ public class Items {
                 .collect(Collectors.toList());
     }
 
-    private void validateSize(String[] items, Players players) {
-        if (!players.hasSameSize(items.length)) {
+    private void validateSize(String[] itemNames, Players players) {
+        if (!players.hasSameSize(itemNames.length)) {
             throw new IllegalArgumentException("사람 수와 실행 결과의 수가 다릅니다.");
         }
     }
@@ -24,7 +24,7 @@ public class Items {
         return items.get(index);
     }
 
-    public int getSize() {
+    public int getNumberOfItems() {
         return items.size();
     }
 }

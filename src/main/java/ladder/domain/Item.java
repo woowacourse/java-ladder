@@ -9,7 +9,7 @@ public class Item {
 
     public Item(String item) {
         validateLength(item.trim());
-        this.item = item.trim();
+        this.item = item;
     }
 
     private void validateLength(String item) {

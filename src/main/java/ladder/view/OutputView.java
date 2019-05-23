@@ -2,17 +2,15 @@ package ladder.view;
 
 import ladder.domain.*;
 
-import java.util.List;
-
 public class OutputView {
     private final static String CONNECTED = "-----";
     private final static String DISCONNECTED = "     ";
     private static final String PARTICIPANT_ALL = "all";
 
-    public static void printNames(Players players) {
+    public static void printPlayers(Players players) {
         System.out.println("\n사다리 결과\n");
 
-        for (int i = 0; i < players.getSize(); i++) {
+        for (int i = 0; i < players.getNumberOfPlayers(); i++) {
             System.out.printf("%6s", players.getPlayer(i));
         }
         System.out.println();
@@ -20,7 +18,7 @@ public class OutputView {
 
     public static void printLadderBody(Ladder ladder) {
         int height = ladder.getHeight();
-        int numberOfPeople = ladder.getNumberOfPeople();
+        int numberOfPeople = ladder.getNumberOfPlayers();
 
         for (int i = 0; i < height; i++) {
             Line line = ladder.getLine(i);
@@ -40,31 +38,32 @@ public class OutputView {
     }
 
     private static String buildLineStructure(Line line, int index) {
-        if (line.isConnected(index)) {
+        if (line.isConnectedToRight(index)) {
             return CONNECTED;
         }
         return DISCONNECTED;
     }
 
     public static void printItems(Items items) {
-        for (int i = 0; i < items.getSize(); i++) {
+        for (int i = 0; i < items.getNumberOfItems(); i++) {
             System.out.printf("%6s", items.getItem(i));
         }
         System.out.println();
     }
 
-    public static void printResult(Player participant, List<Item> finalResult, Players players) {
+    public static void printResult(Player participant, LadderResult ladderResult, Players players) {
         System.out.println("\n실행 결과");
         if (participant.toString().equals(PARTICIPANT_ALL)) {
-            printForAll(finalResult, players);
+            printForAll(ladderResult, players);
             return;
         }
-        System.out.println(LadderResult.findItemByPlayer(participant, finalResult, players));
+        System.out.println(ladderResult.getItemByPlayer(participant));
     }
 
-    private static void printForAll(List<Item> finalResult, Players players) {
-        for (int i = 0; i < players.getSize(); i++) {
-            System.out.println(players.getPlayer(i) + " : " + finalResult.get(i));
+    private static void printForAll(LadderResult ladderResult, Players players) {
+        for (int i = 0; i < players.getNumberOfPlayers(); i++) {
+            Player player = players.getPlayer(i);
+            System.out.println(player + " : " + ladderResult.getItemByPlayer(player));
         }
     }
 }

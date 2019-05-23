@@ -3,18 +3,18 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Player {
-    private static final int MINIMUM_LENGTH_OF_NAME = 1;
-    private static final int MAXIMUM_LENGTH_OF_NAME = 5;
+    private static final int MIN_LENGTH_OF_NAME = 1;
+    private static final int MAX_LENGTH_OF_NAME = 5;
 
     private final String name;
 
     public Player(String name) {
         validateLength(name.trim());
-        this.name = name.trim();
+        this.name = name;
     }
 
     private void validateLength(String name) {
-        if (name.length() < MINIMUM_LENGTH_OF_NAME || name.length() > MAXIMUM_LENGTH_OF_NAME) {
+        if (name.length() < MIN_LENGTH_OF_NAME || name.length() > MAX_LENGTH_OF_NAME) {
             throw new IllegalArgumentException("이름은 1~5자만 가능합니다.");
         }
     }

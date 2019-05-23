@@ -1,20 +1,15 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 public class LadderResult {
-    public static List<Item> generate(List<Integer> result, Items items) {
-        List<Item> finalResult = new ArrayList<>();
+    private Map<Player, Item> result;
 
-        for (int i = 0; i < result.size(); i++) {
-            finalResult.add(items.getItem(result.get(i)));
-        }
-
-        return finalResult;
+    public LadderResult(Map<Player, Item> result) {
+        this.result = result;
     }
 
-    public static Item findItemByPlayer(Player participant, List<Item> finalResult, Players players) {
-        return finalResult.get(players.indexOf(participant));
+    public Item getItemByPlayer(Player player) {
+        return result.get(player);
     }
 }

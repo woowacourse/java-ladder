@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Players {
-    private static final int MINIMUM_LENGTH_OF_PLAYERS = 2;
+    private static final int MIN_LENGTH_OF_PLAYERS = 2;
 
     private final List<Player> players;
 
@@ -20,7 +20,7 @@ public class Players {
     }
 
     private void validateSize(String[] playerNames) {
-        if (playerNames.length < MINIMUM_LENGTH_OF_PLAYERS) {
+        if (playerNames.length < MIN_LENGTH_OF_PLAYERS) {
             throw new IllegalArgumentException("2명 이상의 이름을 제대로 입력해 주세요.");
         }
     }
@@ -40,15 +40,11 @@ public class Players {
         return players.contains(player);
     }
 
-    public int indexOf(Player player) {
-        return players.indexOf(player);
-    }
-
     public Player getPlayer(int index) {
         return players.get(index);
     }
 
-    public int getSize() {
+    public int getNumberOfPlayers() {
         return players.size();
     }
 }

@@ -1,8 +1,8 @@
 package ladder.domain;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
 public class Ladder {
     private List<Line> lines;
@@ -11,31 +11,22 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public Line getLine(int lineIndex) {
-        return lines.get(lineIndex);
-    }
-
-    public List<Item> play(Items items) {
-        List<Integer> ladderResult = playAllRound();
-        List<Item> finalResult = LadderResult.generate(ladderResult, items);
-
-        return finalResult;
-    }
-
-    private List<Integer> playAllRound() {
-        List<Integer> ladderResult = new ArrayList<>();
-
-        for (int i = 0; i < getNumberOfPeople(); i++) {
-            int index = i;
-            ladderResult.add(playOneRound(index));
+    public LadderResult makeResult(Players players, Items items) {
+        Map<Player, Item> result = new HashMap<>();
+        for (int i = 0; i < lines.get(0).getNumberOfPlayers(); i++) {
+            Player player = players.getPlayer(i);
+            result.put(player, play(i, items));
         }
-
-        return ladderResult;
+        return new LadderResult(result);
     }
 
-    private int playOneRound(int index) {
-        for (int j = 0; j < lines.size(); j++) {
-            Line line = lines.get(j);
+    private Item play(int index, Items items) {
+        return items.getItem(getItemIndex(index));
+    }
+
+    private int getItemIndex(int index) {
+        for (int i = 0; i < lines.size(); i++) {
+            Line line = lines.get(i);
             index = moveIndex(line, index);
         }
         return index;
@@ -45,24 +36,15 @@ public class Ladder {
         return line.getMovedIndex(index);
     }
 
+    public Line getLine(int index) {
+        return lines.get(index);
+    }
+
     public int getHeight() {
         return lines.size();
     }
 
-    public int getNumberOfPeople() {
-        return lines.get(0).getNumberOfPeople();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
-        return Objects.equals(lines, ladder.lines);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(lines);
+    public int getNumberOfPlayers() {
+        return lines.get(0).getNumberOfPlayers();
     }
 }
