@@ -7,17 +7,10 @@
 
 package ladder.model.game;
 
-import ladder.model.creator.LadderCreator;
-import ladder.model.ladder.Floor;
 import ladder.model.ladder.Ladder;
-import ladder.model.ladder.Line;
-import ladder.model.creator.LineCreator;
 import ladder.model.tags.PlayerTags;
 import ladder.model.tags.ResultTags;
 import ladder.model.tags.Tag;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author 김효건

@@ -7,8 +7,6 @@
 
 package ladder.model.tags;
 
-import java.util.List;
-
 /**
  * @author 김효건
  * @version 1.0 2019년 05년 16일

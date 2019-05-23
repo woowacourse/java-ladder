@@ -16,7 +16,7 @@ public class Line {
         /*사다리게임의 각 층(라인)에 대한 클래스*/
         private List<Horizon> horizons;
 
-        public Line(List<Horizon> horizons){
+        public Line(List<Horizon> horizons) {
                 this.horizons = horizons;
         }
 

@@ -14,21 +14,23 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * @version 1.0 2019년 05년 16일
  * @author 김효건
+ * @version 1.0 2019년 05년 16일
  */
 class CalculatorTest {
-    /*문자열 계산기의 계산기에 대한 테스트*/
-    @Test
-    void 합() {
-        assertThat(new Calculator(Arrays.asList(1,2,3)).sum()).isEqualTo(6);
-    }
-    @Test
-    void 인풋없을때() {
-        assertThat(new Calculator(Arrays.asList()).sum()).isEqualTo(0);
-    }
-    @Test
-    void 숫자하나일때() {
-        assertThat(new Calculator(Arrays.asList(2)).sum()).isEqualTo(2);
-    }
+        /*문자열 계산기의 계산기에 대한 테스트*/
+        @Test
+        void 합() {
+                assertThat(new Calculator(Arrays.asList(1, 2, 3)).sum()).isEqualTo(6);
+        }
+
+        @Test
+        void 인풋없을때() {
+                assertThat(new Calculator(Arrays.asList()).sum()).isEqualTo(0);
+        }
+
+        @Test
+        void 숫자하나일때() {
+                assertThat(new Calculator(Arrays.asList(2)).sum()).isEqualTo(2);
+        }
 }
