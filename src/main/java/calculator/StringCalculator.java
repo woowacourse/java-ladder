@@ -1,11 +1,14 @@
 package calculator;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+    private static final String BETWEEN_REMARK_AND_NEXT_LINE = "//(.)\n(.*)";
+    private static final String COMMA_OR_COLON = "[,:]";
+
     public int add(String text) {
         if (isBlank(text)) return 0;
 
@@ -17,33 +20,37 @@ public class StringCalculator {
     }
 
     private String[] split(String text) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
+        Matcher m = Pattern.compile(BETWEEN_REMARK_AND_NEXT_LINE).matcher(text);
+
         if (m.find()) {
-            String customDelimeter = m.group(1);
-            return m.group(2).split(customDelimeter);
+            String customDelimiter = m.group(1);
+            return m.group(2).split(customDelimiter);
         }
-        return text.split(",|:");
+
+        return text.split(COMMA_OR_COLON);
     }
 
-    private int[] toInts(String[] values) {
-        int[] numbers = new int[values.length];
-        for (int i = 0; i < values.length; i++) {
-            int number = Integer.parseInt(values[i]);
-            numbers[i] = checkNegativeNumber(number);
+    private List<Integer> toInts(String[] values) {
+        List<Integer> numbers = new ArrayList<>();
+
+        for (String value : values) {
+            int number = Integer.parseInt(value);
+            checkNegativeNumber(number);
+            numbers.add(number);
         }
+
         return numbers;
     }
 
-    private int checkNegativeNumber(int number) {
+    private void checkNegativeNumber(int number) {
         if (number < 0) {
-            throw new RuntimeException();
+            throw new IllegalStateException();
         }
-        return number;
     }
 
-    private int sum(int[] numbers) {
+    private int sum(List<Integer> numbers) {
         int sum = 0;
-        for (int number : numbers) {
+        for (Integer number : numbers) {
             sum += number;
         }
         return sum;

@@ -9,8 +9,7 @@ public class Ladder {
 
     public void createLadder(final int ladderHeight, final int numberOfPlayers) {
         for (int i = 0; i < ladderHeight; i++) {
-            Line line = new Line(numberOfPlayers);
-            line.createLine(new RandomValue());
+            Line line = new Line(new RandomValue(), numberOfPlayers);
 
             ladder.add(line);
         }

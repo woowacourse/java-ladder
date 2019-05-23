@@ -82,13 +82,19 @@ public class InputModel {
         return gameRewards;
     }
 
-    public static Map<String, String> getMappingValidReward(List<String> gameRewards) {
-        Map<String, String> matchedRewards = new HashMap<>();
+    public static Map<Integer, String> getMappingValidReward(List<String> gameRewards) {
+        Map<Integer, String> matchedRewards = new HashMap<>();
 
         for (int i = 0; i < gameRewards.size(); i++) {
-            matchedRewards.put(String.valueOf(i), gameRewards.get(i));
+            matchedRewards.put(i, gameRewards.get(i));
         }
 
         return matchedRewards;
+    }
+
+    public static String getValidWantToKnowPlayer(String wantToKnowResult) {
+        checkBlankInput(wantToKnowResult);
+
+        return wantToKnowResult;
     }
 }

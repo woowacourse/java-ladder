@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SplitTest {
+class SplitTest {
     @Test
-    public void Split() {
+    void Split() {
         String[] values = "1".split(",");
         assertThat(new String[] {"1"}).isEqualTo(values);
 

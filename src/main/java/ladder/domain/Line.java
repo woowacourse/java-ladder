@@ -7,15 +7,11 @@ import java.util.Objects;
 public class Line {
     private static final int EXCEPT_FIRST_AND_LAST = 2;
 
-    private final int numberOfVerticalLine;
     private List<Direction> line;
 
-    public Line(int numberOfVerticalLine) {
-        this.numberOfVerticalLine = numberOfVerticalLine;
-    }
-
-    public void createLine(RandomValueGenerator randomValueGenerator) {
+    public Line(RandomValueGenerator randomValueGenerator, int numberOfVerticalLine) {
         line = new ArrayList<>();
+
         line.add(firstDirection(randomValueGenerator));
         for (int i = 0; i < numberOfVerticalLine - EXCEPT_FIRST_AND_LAST; i++) {
             line.add(line.get(i).next(randomValueGenerator));

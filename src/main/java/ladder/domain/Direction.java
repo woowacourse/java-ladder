@@ -10,7 +10,7 @@ public class Direction {
     private final boolean left;
     private final boolean current;
 
-    public Direction(boolean left, boolean current) {
+    private Direction(boolean left, boolean current) {
         if (left && current) {
             throw new IllegalArgumentException();
         }

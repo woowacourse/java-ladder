@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,16 +13,16 @@ class LineTest {
 
     @BeforeEach
     void setUp() {
-        Direction false_false = new Direction(false, false);
-        Direction false_true = new Direction(false, true);
-        Direction true_false = new Direction(true, false);
-        answerLine = new ArrayList<>(Arrays.asList(false_true, true_false, false_false));
+        DirectionTest directionTest = new DirectionTest();
+        answerLine = new ArrayList<>();
+        answerLine.add(directionTest.falseTrue);
+        answerLine.add(directionTest.trueFalse);
+        answerLine.add(directionTest.falseFalse);
     }
 
     @Test
     void create_Line() {
-        Line line = new Line(3);
-        line.createLine(new AlwaysTrue());
+        Line line = new Line(new AlwaysTrue(), 3);
         assertThat(line.getLine()).isEqualTo(answerLine);
     }
 }

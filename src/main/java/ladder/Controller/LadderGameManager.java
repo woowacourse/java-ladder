@@ -4,14 +4,17 @@ import ladder.View.OutputView;
 import ladder.domain.*;
 import ladder.View.InputView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LadderGameManager {
+    private static final String ALL_PLAYERS = "all";
+
     private List<Player> players;
     private List<Line> createdLadder;
-    private Map<String, String> gameReward;
+    private Map<Integer, String> gameReward;
 
     public void start() {
         registerGameEnv();
@@ -27,9 +30,12 @@ public class LadderGameManager {
     }
 
     private void registerPlayers() {
-        PlayerManager playerManager = new PlayerManager();
-        playerManager.createPlayers(InputModel.getValidNames(InputView.getNames()));
-        players = playerManager.getPlayers();
+        List<String> names = InputModel.getValidNames(InputView.getNames());
+        players = new ArrayList<>();
+
+        for (String name : names) {
+            players.add(new Player(name, players.size()));
+        }
     }
 
     private void registerGameReward() {
@@ -55,8 +61,8 @@ public class LadderGameManager {
     }
 
 
-    private void gameResult(List<Player> players, Map<String, String> gameRewards) {
-        String playerName = InputView.getWantToKnowResult();
+    private void gameResult(List<Player> players, Map<Integer, String> gameRewards) {
+        String playerName = InputModel.getValidWantToKnowPlayer(InputView.getWantToKnowResult());
 
         if (isAllPlayerResult(players, gameRewards, playerName)) {
             return;
@@ -68,8 +74,8 @@ public class LadderGameManager {
         gameResult(players, gameRewards);
     }
 
-    private boolean isAllPlayerResult(List<Player> players, Map<String, String> gameRewards, String playerName) {
-        if (playerName.equals("all")) {
+    private boolean isAllPlayerResult(List<Player> players, Map<Integer, String> gameRewards, String playerName) {
+        if (playerName.equals(ALL_PLAYERS)) {
             OutputView.printAllPlayersResult(players, gameRewards);
             return true;
         }
@@ -77,7 +83,7 @@ public class LadderGameManager {
         return false;
     }
 
-    private void matchedPlayerResult(Map<String, String> gameRewards, String playerName, Player player) {
+    private void matchedPlayerResult(Map<Integer, String> gameRewards, String playerName, Player player) {
         if (player.getName().equals(playerName)) {
             OutputView.printOnePlayerResult(player, gameRewards);
         }

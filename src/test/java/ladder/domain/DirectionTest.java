@@ -6,47 +6,46 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class DirectionTest {
+    Direction trueFalse = Direction.first(new AlwaysTrue()).next(false);
+    Direction falseTrue = Direction.first(new AlwaysTrue());
+    Direction falseFalse = Direction.first(new AlwaysTrue()).next(false).last();
 
     @Test
     void init_invalid() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Direction(true, true);
+            Direction.first(new AlwaysTrue()).next(true);
         });
     }
 
     @Test
     void move_left() {
-        Direction direction = new Direction(true, false);
-        assertThat(direction.move()).isEqualTo(-1);
+        assertThat(trueFalse.move()).isEqualTo(-1);
     }
 
     @Test
     void move_right() {
-        Direction direction = new Direction(false, true);
-        assertThat(direction.move()).isEqualTo(1);
+        assertThat(falseTrue.move()).isEqualTo(1);
     }
 
     @Test
     void move_none() {
-        Direction direction = new Direction(false, false);
-        assertThat(direction.move()).isEqualTo(0);
+        assertThat(falseFalse.move()).isEqualTo(0);
     }
 
     @Test
     void move_next() {
-        Direction direction = new Direction(false, false);
-        assertThat(direction.next(true)).isEqualTo(new Direction(false, true));
+        assertThat(falseFalse.next(true)).isEqualTo(falseTrue);
     }
 
     @Test
     void first() {
         Direction direction = Direction.first(new AlwaysTrue());
-        assertThat(direction).isEqualTo(new Direction(false, true));
+        assertThat(direction).isEqualTo(falseTrue);
     }
 
     @Test
     void last() {
         Direction direction = Direction.first(new AlwaysTrue()).last();
-        assertThat(direction).isEqualTo(new Direction(true, false));
+        assertThat(direction).isEqualTo(trueFalse);
     }
 }
