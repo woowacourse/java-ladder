@@ -1,42 +1,35 @@
 package ladder.domain;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class Position {
-    // [begin, end)
     private final int begin, end, current;
 
-    // begin <= current < end
     public Position(int begin, int end, int current) {
         if (!(begin <= current && current < end)) {
-            System.out.printf("position (%d, %d, %d)\n", begin, end, current);
-            throw new IllegalArgumentException("i의 범위가 잘못 되었습니다. begin <= i < end");
+            throw new IndexOutOfBoundsException(
+                    String.format("current(=%d)의 범위는 [%d, %d) 이여야 합니다.", current, begin, end)
+            );
         }
         this.begin = begin;
         this.end = end;
         this.current = current;
     }
 
-    public Position plus(int i) {
-        return new Position(begin, end, current + i);
+    public Position at(int current) {
+        return new Position(begin, end, current);
+    }
+
+    public Position prev() {
+        return new Position(begin, end, current - 1);
+    }
+
+    public Position next() {
+        return new Position(begin, end, current + 1);
     }
 
     public int toInt() {
         return current;
-    }
-
-    public boolean isLast() {
-        return current + 1 == end;
-    }
-
-    public Position last() {
-        return new Position(begin, end, end - 1);
-    }
-
-    public PositionIterator begin() {
-        return new PositionIterator(this);
     }
 
     @Override

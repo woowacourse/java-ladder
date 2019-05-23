@@ -2,46 +2,43 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Ladder {
-
-    private final List<HorizontalLine> lines;
+    private final List<HorizontalLine> lines; // top to bottom
 
     public Ladder(List<HorizontalLine> lines) {
-        this.lines = new ArrayList<>(lines);
+        this.lines = lines;
     }
 
-    public boolean canDraw(Position row, Position leftColumn) {
-        return lines.get(row.toInt()).canDraw(leftColumn);
+    public static Ladder create(int height, int numPosition) {
+        List<HorizontalLine> generatedLines = new ArrayList<>();
+        for (int h = 0; h < height; h++) {
+            generatedLines.add(HorizontalLine.create(numPosition));
+        }
+        return new Ladder(generatedLines);
     }
 
-    public void draw(Position row, Position leftColumn) {
-        lines.get(row.toInt()).draw(leftColumn);
+    public static Ladder create(List<HorizontalLine> lines) {
+        return new Ladder(lines);
     }
 
-    public DrawnLadder drawn() {
-        return new DrawnLadder(lines.stream().map(line -> line.drawn()).collect(Collectors.toList()));
+    public Position nextPosition(Position from) {
+        Position p = from;
+        for (HorizontalLine line : lines) {
+            p = line.nextPosition(p);
+        }
+        return p;
     }
 
-    public Position createFirstRowPosition() {
-        return new Position(0, lines.size(), 0);
-    }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
 
-    public Position createFirstColumnPosition() {
-        return lines.get(0).createFirstColumnPosition();
-    }
+        for (HorizontalLine line : lines) {
+            sb.append(line.toString());
+            sb.append("\n");
+        }
 
-    public Position createFirstLeftColumnPosition() {
-        return lines.get(0).createFirstLeftColumnPosition();
-    }
-
-    public static Ladder create(int numRowPosition, int numColumnPosition) {
-        return new Ladder(
-                Stream.generate(() -> HorizontalLine.create(numColumnPosition))
-                        .limit(numRowPosition)
-                        .collect(Collectors.toList())
-        );
+        return sb.toString();
     }
 }

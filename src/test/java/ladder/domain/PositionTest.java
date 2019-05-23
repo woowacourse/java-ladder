@@ -3,41 +3,35 @@ package ladder.domain;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
-// 특정한 범위를 가지는 객체,
-// 범위를 생성될 때 가지고 있고 (만들어질 때) 이후는 범위 안에서 사용
-public class PositionTest {
-    private final int begin = 0, end = 10;
+class PositionTest {
 
     @Test
-    void 생성자_범위_초과() {
-        assertThrows(IllegalArgumentException.class, () -> new Position(begin, end, begin - 1));
-        assertThrows(IllegalArgumentException.class, () -> new Position(begin, end, end));
-    }
+    void at() {
+        Position position = new Position(0, 2, 1);
+        int atIdx = 0;
 
-//    @Test
-//    void begin_(){
-//
-//    }
-//
-//    @Test
-//    void end() {
-//
-//    }
-
-    @Test
-    void add_결과가_올바른_범위() {
-        Position position = new Position(begin, end, 0);
-
-        assertThat(position.plus(end - 1)).isEqualTo(new Position(begin, end, 0 + (end - 1)));
+        assertThat(position.at(atIdx)).isEqualTo(new Position(0, 2, atIdx));
     }
 
     @Test
-    void add_결과가_초과되는_범위() {
-        Position position = new Position(begin, end, 0);
+    void prev() {
+        Position position = new Position(0, 2, 1);
 
-        assertThrows(IllegalArgumentException.class, () -> position.plus(end));
+        assertThat(position.prev()).isEqualTo(new Position(0, 2, 0));
     }
 
+    @Test
+    void next() {
+        Position position = new Position(0, 2, 0);
+
+        assertThat(position.next()).isEqualTo(new Position(0, 2, 1));
+    }
+
+    @Test
+    void toInt() {
+        Position position = new Position(0, 2, 0);
+
+        assertThat(position.toInt()).isEqualTo(0);
+    }
 }

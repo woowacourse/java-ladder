@@ -1,29 +1,34 @@
 package ladder.domain;
 
+import java.util.Random;
+
 public enum Direction {
-    LEFT(true, false),
-    RIGHT(false, true),
-    NONE(false, false);
+    NONE(position -> position),
+    LEFT(position -> position.prev()),
+    RIGHT(position -> position.next());
 
-    private final boolean left;
-    private final boolean right;
+    private static final Random RANDOM = new Random();
+    private final PositionCreator creator;
 
-    Direction(boolean left, boolean right) {
-        this.left = left;
-        this.right = right;
+    Direction(PositionCreator creator) {
+        this.creator = creator;
     }
 
-    public Position nextPosition(Position position) {
-        return position.plus(getInt());
+    public Position nextPosition(Position p) {
+        return creator.create(p);
     }
 
-    private int getInt() {
-        if (left) {
-            return -1;
+    public Direction next() {
+        if (this.equals(Direction.RIGHT)) {
+            return Direction.LEFT;
         }
-        if (right) {
-            return 1;
+        return RANDOM.nextBoolean() ? Direction.RIGHT : Direction.NONE;
+    }
+
+    public Direction end() {
+        if (this.equals(Direction.RIGHT)) {
+            return Direction.LEFT;
         }
-        return 0;
+        return Direction.NONE;
     }
 }
