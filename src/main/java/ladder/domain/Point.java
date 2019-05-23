@@ -35,15 +35,15 @@ public class Point {
 		return this.leftPosition;
 	}
 
-	public int move() {
+	public Direction move() {
 		if (leftPosition) {
-			return -1;
+			return Direction.LEFT;
 		}
 
 		if (currentPosition) {
-			return 1;
+			return Direction.RIGHT;
 		}
 
-		return 0;
+		return Direction.STOP;
 	}
 }

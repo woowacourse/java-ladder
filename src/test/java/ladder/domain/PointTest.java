@@ -35,16 +35,16 @@ public class PointTest {
 
 	@Test
 	void 왼쪽_이동_확인() {
-		assertThat(new Point(true, false).move()).isEqualTo(-1);
+		assertThat(CAN_MOVE_LEFT_POINT.move()).isEqualTo(Direction.LEFT);
 	}
 
 	@Test
 	void 오른쪽_이동_확인() {
-		assertThat(new Point(false, true).move()).isEqualTo(1);
+		assertThat(CAN_MOVE_RIGHT_POINT.move()).isEqualTo(Direction.RIGHT);
 	}
 
 	@Test
 	void 정지_확인() {
-		assertThat(new Point(false, false).move()).isEqualTo(0);
+		assertThat(STOP_POINT.move()).isEqualTo(Direction.STOP);
 	}
 }
