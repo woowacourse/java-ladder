@@ -5,17 +5,13 @@ import java.util.*;
 public class LadderResult {
     private Map<Player, ResultItem> ladderingResult = new LinkedHashMap<>();
 
-    public LadderResult(Set<Player> players, ResultItems resultItems, List<Integer> ladderingResultItemsIndex) {
+    LadderResult(Set<Player> players, ResultItems resultItems, List<Integer> ladderingResultItemsIndex) {
         int playerPosition = 0;
 
         for (Player player : players) {
             ladderingResult.put(player,resultItems.answerMatchItemOf(ladderingResultItemsIndex.get(playerPosition)));
             playerPosition++;
         }
-    }
-
-    public void addResult(Player player, ResultItem resultItem) {
-        ladderingResult.put(player, resultItem);
     }
 
     public ResultItem getResultOf(String name) {
