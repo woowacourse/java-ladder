@@ -27,9 +27,9 @@ public class Ladder {
         return this.lines;
     }
 
-    public void playLadder(PlayerGroup playerGroup) {
+    public void playLadder(PlayerResult playerResult) {
         for (int i = 0; i < height; i++) {
-            lines.get(i).swap(playerGroup);
+            lines.get(i).swap(playerResult);
         }
     }
 

@@ -5,14 +5,14 @@ import java.util.*;
 public class GameResult {
     private final Map<Player, Prize> results;
 
-    public GameResult(final PlayerGroup playerGroup, final PrizeGroup prizeGroup) {
+    public GameResult(final PlayerResult playerResult, final PrizeGroup prizeGroup) {
         results = new HashMap<>();
 
-        makeResult(playerGroup, prizeGroup);
+        makeResult(playerResult, prizeGroup);
     }
 
-    private void makeResult(final PlayerGroup playerGroup, final PrizeGroup prizeGroup) {
-        List<Player> players = playerGroup.getPlayers();
+    private void makeResult(final PlayerResult playerResult, final PrizeGroup prizeGroup) {
+        List<Player> players = playerResult.getPlayers();
         List<Prize> prizes = prizeGroup.getPrizes();
 
         for (int i = 0; i < players.size(); i++) {

@@ -84,7 +84,7 @@ public class OutputView {
         List<Prize> prizes = new ArrayList<>(results.values());
 
         for (int i = 0; i < results.size(); i++) {
-            stringBuilder.append(players.get(i).getName()).append(" : ").append(prizes.get(i).getPrize());
+            stringBuilder.append(players.get(i).getName()).append(" : ").append(prizes.get(i).getPrize()).append("\n");
         }
 
         return stringBuilder.toString();

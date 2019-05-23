@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class PlayerGroup implements Cloneable {
+public class PlayerGroup {
     private final List<Player> players;
 
     public PlayerGroup(final List<Player> names) {
@@ -19,7 +19,17 @@ public class PlayerGroup implements Cloneable {
         return players.size();
     }
 
-    public PlayerGroup clone() {
+    public PlayerResult makePlayerResult() {
+        List<Player> players = new ArrayList<>();
+
+        for (Player player : this.players) {
+            players.add(player);
+        }
+
+        return new PlayerResult(players);
+    }
+
+    /*public PlayerGroup clone() {
         List<Player> players = new ArrayList<>();
 
         for (Player player : this.players) {
@@ -27,7 +37,7 @@ public class PlayerGroup implements Cloneable {
         }
 
         return new PlayerGroup(players);
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {

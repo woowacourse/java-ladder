@@ -20,8 +20,8 @@ public class Line {
         return width;
     }
 
-    public void swap(PlayerGroup playerGroup) {
-        List<Player> players = playerGroup.getPlayers();
+    public void swap(PlayerResult playerResult) {
+        List<Player> players = playerResult.getPlayers();
 
         for (int i = 0; i < width; i++) {
             if (line.get(i)) {
