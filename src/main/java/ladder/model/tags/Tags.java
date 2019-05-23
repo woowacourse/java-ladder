@@ -16,18 +16,16 @@ import java.util.List;
  * @version 1.0 2019년 05년 16일
  */
 public abstract class Tags {
-    /*사다리게임의 태그그룹에 대한 추상클래스*/
-    protected static final String DELIMITER = ",";
+        /*사다리게임의 태그그룹에 대한 추상클래스*/
+        protected List<Tag> tags;
 
-    protected List<Tag> tags;
+        protected Tags() {
+                tags = new ArrayList<>();
+        }
 
-    protected Tags() {
-        tags = new ArrayList<>();
-    }
+        public List<Tag> getTags() {
+                return tags;
+        }
 
-    public List<Tag> getTags() {
-        return tags;
-    }
-
-    protected abstract void addTags(String[] input);
+        protected abstract void addTags(String[] input);
 }

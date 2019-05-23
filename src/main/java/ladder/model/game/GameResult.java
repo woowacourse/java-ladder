@@ -17,18 +17,18 @@ import java.util.Map;
  * @version 1.0 2019년 05년 16일
  */
 public class GameResult {
-    /*게임 결과에 관련 된 클래스*/
-    private Map<Tag, Tag> mappingResult;
+        /*게임 결과에 관련 된 클래스*/
+        private Map<Tag, Tag> mappingResult;
 
-    public GameResult(){
-        mappingResult = new LinkedHashMap<>();
-    }
+        public GameResult() {
+                mappingResult = new LinkedHashMap<>();
+        }
 
-    public void addResult(Tag inTag, Tag outTag) {
-        mappingResult.put(inTag, outTag);
-    }
+        public void addResult(Tag inTag, Tag outTag) {
+                mappingResult.put(inTag, outTag);
+        }
 
-    public Map<Tag, Tag> getMappingResult() {
-        return mappingResult;
-    }
+        public Map<Tag, Tag> getMappingResult() {
+                return mappingResult;
+        }
 }

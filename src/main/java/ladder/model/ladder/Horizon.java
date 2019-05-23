@@ -12,40 +12,40 @@ package ladder.model.ladder;
  * @version 1.0 2019년 05년 20일
  */
 public class Horizon {
-    /*사다리게임의 가로선에 대한 클래스*/
-    private final static int MOVE_LEFT = -1;
-    private final static int MOVE_RIGHT = 1;
-    private final static int MOVE_NONE = 0;
+        /*사다리게임의 가로선에 대한 클래스*/
+        private final static int MOVE_LEFT = -1;
+        private final static int MOVE_RIGHT = 1;
+        private final static int MOVE_NONE = 0;
 
-    private boolean beforeValue;
-    private boolean currentValue;
+        private boolean beforeValue;
+        private boolean currentValue;
 
-    public Horizon(Boolean value) {
-        beforeValue = false;
-        currentValue = value;
-    }
-
-    public Horizon(Horizon beforeHorizon, Boolean value) {
-        beforeValue = beforeHorizon.hasHorizon();
-        if(beforeValue) {
-            currentValue = false;
-            return;
+        public Horizon(Boolean value) {
+                beforeValue = false;
+                currentValue = value;
         }
-        currentValue = value;
-    }
 
-    public boolean hasHorizon() {
-        return currentValue;
-    }
-
-
-    public int move() {
-        if(beforeValue){
-            return MOVE_LEFT;
+        public Horizon(Horizon beforeHorizon, Boolean value) {
+                beforeValue = beforeHorizon.hasHorizon();
+                if (beforeValue) {
+                        currentValue = false;
+                        return;
+                }
+                currentValue = value;
         }
-        if(currentValue){
-            return MOVE_RIGHT;
+
+        public boolean hasHorizon() {
+                return currentValue;
         }
-        return MOVE_NONE;
-    }
+
+
+        public int move() {
+                if (beforeValue) {
+                        return MOVE_LEFT;
+                }
+                if (currentValue) {
+                        return MOVE_RIGHT;
+                }
+                return MOVE_NONE;
+        }
 }
