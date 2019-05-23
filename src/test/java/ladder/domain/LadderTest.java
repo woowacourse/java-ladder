@@ -11,28 +11,19 @@ import static ladder.domain.PointTest.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
-	private Ladder ladder;
 	private int countOfNumber = 5;
+	private int ladderHeight = 3;
 
 	@BeforeEach
 	void init() {
 		List<Point> points = new ArrayList<>(Arrays.asList(CAN_MOVE_RIGHT_POINT, CAN_MOVE_LEFT_POINT,
 				CAN_MOVE_RIGHT_POINT, CAN_MOVE_LEFT_POINT, STOP_POINT));
 		List<Line> lines = new ArrayList<>();
-		for (int i = 0; i < 3; ++i) {
+		for (int i = 0; i < ladderHeight; ++i) {
 			lines.add(new Line(points));
 		}
 
-		ladder = new Ladder(lines);
-	}
-
-	@Test
-	void 참가자의_처음_위치에_따라_마지막_위치_반환() {
-		int[] playerLastPosition = {1, 0, 3, 2, 4};
-
-		for (int i = 0; i < countOfNumber; ++i) {
-			assertEquals(ladder.getLastPosition(i), playerLastPosition[i]);
-		}
+		Ladder.createLadder(countOfNumber, String.valueOf(ladderHeight));
 	}
 
 	@Test

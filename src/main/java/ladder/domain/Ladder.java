@@ -9,7 +9,7 @@ import ladder.view.UserOutput;
 public class Ladder {
 	private List<Line> lines;
 
-	public Ladder(final List<Line> lines) {
+	private Ladder(final List<Line> lines) {
 		this.lines = new ArrayList<>(lines);
 	}
 
