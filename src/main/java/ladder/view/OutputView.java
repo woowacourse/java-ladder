@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-
     private static final String SINGLE_BLANK = " ";
     private static final String NEW_LINE = "\n";
     private static final int MAX_NAME_LENGTH = 5;
@@ -34,8 +33,8 @@ public class OutputView {
     // todo: LadderGame에서 ladder 정보를 전달하도록 구현
     private static void setPrintLadder(LadderGame ladderGame, StringBuilder stringBuilder) {
         stringBuilder.append(NEW_LINE);
-        for (Row row : ladderGame.getLadder()){
-            stringBuilder.append(row.toString() + NEW_LINE);
+        for (Row row : ladderGame.getLadderStructure()){
+            stringBuilder.append(row.toString()).append(NEW_LINE);
         }
     }
 
