@@ -23,8 +23,7 @@ public class PointTest {
 
 	@Test
 	void 마지막_위치의_포인트일때_오른쪽_포인트_확인() {
-		Point point = Point.last(true);
-		assertThat(point.canGoRight()).isEqualTo(false);
+		assertThat(CAN_MOVE_LEFT_POINT.last().canGoRight()).isEqualTo(false);
 	}
 
 	@Test

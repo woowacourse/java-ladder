@@ -16,8 +16,8 @@ public class Point {
 		return new Point(false, RandomGenerator.getNextValue());
 	}
 
-	public static Point last(boolean currentPosition) {
-		return new Point(currentPosition, false);
+	public Point last() {
+		return new Point(this.currentPosition, false);
 	}
 
 	public Point next() {

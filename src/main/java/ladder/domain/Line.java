@@ -23,7 +23,7 @@ public class Line {
 			point = point.next();
 			points.add(point);
 		}
-		points.add(Point.last(points.get(countOfPerson - 2).canGoRight()));
+		points.add(point.last());
 
 		return new Line(points);
 	}
