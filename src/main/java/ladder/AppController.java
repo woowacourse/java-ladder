@@ -32,7 +32,7 @@ public class AppController {
     }
 
     private void endGame(EndResult results, List<String> memberNames) {
-        String name = InputView.inputGetMemberResult();
+        String name = InputView.inputGetMemberResult(memberNames);
         if (name.equals("all")) {
             OutputView.allPrintResult(results.getAll(), memberNames);
             return;

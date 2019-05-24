@@ -24,13 +24,13 @@ public class InputView {
     }
 
     public static String[] inputResults(int countOfMember) {
-        System.out.println(RESULT_INPUT_MESSAGE);
         String inputText = "";
         String[] inputs = new String[0];
         do {
+            System.out.println(RESULT_INPUT_MESSAGE);
             inputText = scanner.nextLine().trim();
             inputs = inputText.split(COMMA);
-        } while (InputValidator.validSeparator(inputText) || InputValidator.validMemberCount(inputs.length, countOfMember));
+        } while (!InputValidator.validSeparator(inputText) || InputValidator.validMemberCount(inputs.length, countOfMember));
         return inputs;
     }
 
@@ -39,20 +39,20 @@ public class InputView {
     }
 
     public static int inputLadderHeight() {
-        System.out.println(HEIGHT_INPUT_MESSAGE);
         int height = 0;
         do {
+            System.out.println(HEIGHT_INPUT_MESSAGE);
             height = Integer.parseInt(scanner.nextLine());
         } while (InputValidator.validHeight(height));
         return height;
     }
 
     public static String inputGetMemberResult(List<String> memberNames) {
-        System.out.println(GET_MEMBER_RESULT_INPUT_MESSAGE);
         String name = "";
         do {
+            System.out.println(GET_MEMBER_RESULT_INPUT_MESSAGE);
             name = scanner.nextLine();
-        } while (InputValidator.validResultsName(memberNames, name));
+        } while (!InputValidator.validResultsName(memberNames, name));
         return name;
     }
 }
