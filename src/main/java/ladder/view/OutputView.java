@@ -43,13 +43,13 @@ public class OutputView {
 	}
 
 	public static void printLadderGameResult(LadderGameResult ladderGameResult, String name) {
-		if (name.equals(PRINT_ALL_PLAYER)) {
-			ladderGameResult.getAllPlayerNames().stream()
-					.forEach(playerName -> System.out.println(playerName + " : " + ladderGameResult.getReward(playerName)));
+		if (StringUtils.isBlank(name)) {
 			return;
 		}
 
-		if (StringUtils.isBlank(name)) {
+		if (name.equals(PRINT_ALL_PLAYER)) {
+			ladderGameResult.getAllPlayerNames().stream()
+					.forEach(playerName -> System.out.println(playerName + " : " + ladderGameResult.getReward(playerName)));
 			return;
 		}
 
