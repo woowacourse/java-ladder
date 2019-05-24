@@ -28,6 +28,7 @@ public class Row {
         lines.add(direction);
         for (int i = 0; i < numberOfMember; i++) {
             direction = direction.next(RandomValueGenerator.generateRandomValue());
+            lines.add(direction);
         }
         lines.add(direction.last());
         return lines;
@@ -36,4 +37,5 @@ public class Row {
     public int move(int position) {
         return position + lines.get(position).move();
     }
+
 }

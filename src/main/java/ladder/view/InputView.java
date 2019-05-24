@@ -19,7 +19,7 @@ public class InputView {
         do {
             System.out.println(NAME_INPUT_MESSAGE);
             inputText = scanner.nextLine().trim();
-        } while (MemberValidator.checkSeparator(inputText));
+        } while (!MemberValidator.checkSeparator(inputText));
         return refineNames(inputText);
     }
 
