@@ -26,7 +26,7 @@ public class Row {
         List<Direction> lines = new ArrayList<>();
         Direction direction = Direction.first(RandomValueGenerator.generateRandomValue());
         lines.add(direction);
-        for (int i = 0; i < numberOfMember; i++) {
+        for (int i = 1; i < numberOfMember - 1; i++) {
             direction = direction.next(RandomValueGenerator.generateRandomValue());
             lines.add(direction);
         }
@@ -37,5 +37,4 @@ public class Row {
     public int move(int position) {
         return position + lines.get(position).move();
     }
-
 }
