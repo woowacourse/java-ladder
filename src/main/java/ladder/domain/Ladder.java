@@ -18,7 +18,7 @@ public class Ladder {
         return new Ladder(generatedLines);
     }
 
-    public static Ladder create(List<HorizontalLine> lines) {
+    public static Ladder from(List<HorizontalLine> lines) {
         return new Ladder(lines);
     }
 

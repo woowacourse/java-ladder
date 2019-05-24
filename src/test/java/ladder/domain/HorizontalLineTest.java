@@ -15,7 +15,7 @@ public class HorizontalLineTest {
     @Test
     void nextPosition_NONE() {
         List<Direction> directions = Arrays.asList(Direction.NONE, Direction.NONE, Direction.NONE);
-        HorizontalLine line = HorizontalLine.create(directions);
+        HorizontalLine line = HorizontalLine.from(directions);
 
         assertThat(line.nextPosition(position)).isEqualTo(position);
     }
@@ -23,7 +23,7 @@ public class HorizontalLineTest {
     @Test
     void nextPosition_LEFT() {
         List<Direction> directions = Arrays.asList(Direction.NONE, Direction.LEFT, Direction.NONE);
-        HorizontalLine line = HorizontalLine.create(directions);
+        HorizontalLine line = HorizontalLine.from(directions);
 
         assertThat(line.nextPosition(position)).isEqualTo(leftPosition);
     }
@@ -31,7 +31,7 @@ public class HorizontalLineTest {
     @Test
     void nextPosition_RIGHT() {
         List<Direction> directions = Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.NONE);
-        HorizontalLine line = HorizontalLine.create(directions);
+        HorizontalLine line = HorizontalLine.from(directions);
 
         assertThat(line.nextPosition(position)).isEqualTo(rightPosition);
     }
@@ -39,7 +39,7 @@ public class HorizontalLineTest {
     @Test
     void toString_() {
         List<Direction> directions = Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.LEFT);
-        HorizontalLine line = HorizontalLine.create(directions);
+        HorizontalLine line = HorizontalLine.from(directions);
 
         assertThat(line.toString()).isEqualTo("     |     |-----|");
     }

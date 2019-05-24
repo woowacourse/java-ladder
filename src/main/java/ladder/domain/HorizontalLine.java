@@ -13,7 +13,7 @@ public class HorizontalLine {
         return new HorizontalLine(generateRandomDirections(numPosition));
     }
 
-    public static HorizontalLine create(List<Direction> directions) {
+    public static HorizontalLine from(List<Direction> directions) {
         return new HorizontalLine(directions);
     }
 

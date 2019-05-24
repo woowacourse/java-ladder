@@ -14,9 +14,9 @@ public class LadderTest {
     void nextPosition() {
         List<Position> positions = Arrays.asList(beginPosition.at(0), beginPosition.at(1), beginPosition.at(2));
         List<Position> wants = Arrays.asList(beginPosition.at(2), beginPosition.at(0), beginPosition.at(1));
-        Ladder ladder = Ladder.create(Arrays.asList(
-                HorizontalLine.create(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.NONE)),
-                HorizontalLine.create(Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.LEFT))
+        Ladder ladder = Ladder.from(Arrays.asList(
+                HorizontalLine.from(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.NONE)),
+                HorizontalLine.from(Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.LEFT))
         ));
 
         for (int i = 0; i < positions.size(); i++) {
@@ -29,9 +29,9 @@ public class LadderTest {
 
     @Test
     void toString_() {
-        Ladder ladder = Ladder.create(Arrays.asList(
-                HorizontalLine.create(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.NONE)),
-                HorizontalLine.create(Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.LEFT))
+        Ladder ladder = Ladder.from(Arrays.asList(
+                HorizontalLine.from(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.NONE)),
+                HorizontalLine.from(Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.LEFT))
         ));
 
         assertThat(ladder.toString()).isEqualTo("     |-----|     |\n     |     |-----|\n");
