@@ -7,9 +7,10 @@ import java.util.*;
  * @version 1.0 2019-05-18
  */
 public class Line implements Iterable<Point> {
-    public static final Point END = Point.STRAIGHT;
     private final List<Point> line;
     private static final Point STARTER = Point.STRAIGHT;
+    private static final Point END = Point.STRAIGHT;
+    private static final PointGenerate pointGenerate = PointGenerateFactory.getInstance().create(PointGenerateStatus.RANDOM);
 
     private Line(List<Point> line) {
         this.line = line;
@@ -50,7 +51,7 @@ public class Line implements Iterable<Point> {
         for (int i = 1; i < rowSize - 1; i++) {
             line.add(PointGenerate.generatePoint(line.get(i - 1)));
         }
-        line.add(PointGenerate.generatePoint(line.get(rowSize - 2)));
+        line.add(END);
         return new Line(line);
     }
 
