@@ -33,4 +33,8 @@ public class Ladder {
 
         return results.getResult(position);
     }
+
+    public List<Row> ladderStructure() {
+        return new ArrayList<>(ladder);
+    }
 }

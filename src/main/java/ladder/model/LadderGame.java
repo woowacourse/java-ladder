@@ -37,4 +37,8 @@ public class LadderGame {
                 .map(Result::getResult)
                 .collect(Collectors.toList());
     }
+
+    public List<Row> getLadderStructure() {
+        return ladder.ladderStructure();
+    }
 }
