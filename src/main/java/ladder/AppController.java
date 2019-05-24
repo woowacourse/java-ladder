@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.model.*;
 import ladder.model.generator.MemberGenerator;
+import ladder.model.generator.ResultsGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -20,8 +21,7 @@ public class AppController {
         Members members = new Members(MemberGenerator.generateMembers(InputView.inputNames()));
         int countOfMember = members.numberOfMembers();
         Ladder ladder = Ladder.nHeightLadder(countOfMember, InputView.inputLadderHeight());
-        // todo: ResultGenerator 구현
-        DefaultResults results = new DefaultResults(InputView.inputResults(countOfMember));
+        DefaultResults results = new DefaultResults(ResultsGenerator.generateResults(InputView.inputResults(countOfMember)));
 
         return new LadderGame(members, ladder, results);
     }
