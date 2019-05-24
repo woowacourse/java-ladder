@@ -7,6 +7,10 @@ public class Member {
     private int position;
 
     public Member(String name, int position) {
+        if (name.length() > 5) {
+            throw new IllegalArgumentException();
+        }
+
         this.name = name;
         this.position = position;
     }
