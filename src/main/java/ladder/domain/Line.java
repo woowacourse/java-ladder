@@ -51,16 +51,8 @@ public class Line implements Iterable<Point> {
         for (int i = 1; i < rowSize - 1; i++) {
             line.add(pointGenerate.generatePoint(line.get(i - 1)));
         }
-        line.add(generateEndPoint(line.get(rowSize - 2)));
+        line.add(pointGenerate.generateEndPoint(line.get(rowSize - 2)));
         return new Line(line);
-    }
-
-    private static Point generateEndPoint(Point prePoint) {
-        if (prePoint.equals(Point.RIGHT)) {
-            return Point.LEFT;
-        }
-
-        return END;
     }
 
     /**

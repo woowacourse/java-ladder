@@ -25,4 +25,13 @@ public class PointGenerateRandomImp implements PointGenerate {
 
         throw new IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION);
     }
+
+    @Override
+    public Point generateEndPoint(Point prePoint) {
+        if (prePoint.equals(Point.RIGHT)) {
+            return Point.LEFT;
+        }
+
+        return Point.STRAIGHT;
+    }
 }

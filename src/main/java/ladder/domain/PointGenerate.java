@@ -27,4 +27,5 @@ public interface PointGenerate {
     }
 
     Point generate(Point prePoint);
+    Point generateEndPoint(Point prePoint);
 }
