@@ -1,12 +1,27 @@
 package ladder.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
     private final List<Row> ladder;
 
-    public Ladder(final List<Row> ladder) {
+    private Ladder(final List<Row> ladder) {
         this.ladder = ladder;
+    }
+
+    static Ladder of(List<Row> ladder) {
+        return new Ladder(ladder);
+    }
+
+    static Ladder nHeightLadder(int countOfMember, int height) {
+        List<Row> ladder = new ArrayList<>();
+
+        for (int i = 0; i < height; i++) {
+            ladder.add(Row.generateRandomRow(countOfMember));
+        }
+
+        return new Ladder(ladder);
     }
 
     Result play(Member member, DefaultResults results) {
