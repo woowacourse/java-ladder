@@ -35,4 +35,16 @@ public class Players implements Names {
     public String getName(int i) {
         return players.get(i).getName();
     }
+
+    public boolean contains(Player player) {
+        return players.contains(player);
+    }
+
+    public int indexOf(Object o) {
+        return players.indexOf(o);
+    }
+
+    public Player getPlayer(int i) {
+        return players.get(i);
+    }
 }

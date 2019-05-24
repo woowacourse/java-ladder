@@ -1,7 +1,11 @@
 package ladder.domain;
 
-public class Player {
+import java.util.Objects;
+
+public class Player implements Name {
     public static final int MAX_NAME_LEN = 5;
+    public static final Player ALL = Player.from("all");
+
     private final String name;
 
     private Player(String name) {
@@ -18,7 +22,21 @@ public class Player {
         return new Player(name);
     }
 
+    @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.DuplicatedNameException;
-import ladder.domain.Height;
-import ladder.domain.Players;
-import ladder.domain.Rewards;
+import ladder.domain.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,11 +49,29 @@ public class InputView {
     }
 
     public static Height readHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
         try {
             return Height.create(Integer.parseInt(SCANNER.nextLine()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readHeight();
         }
+    }
+
+    public static Player readExistPlayer(Players players) {
+        System.out.println("결과를 보고 싶은 사람은? (모두 확인하려면 'all'을 입력하세요)");
+        Player player;
+        try {
+            player = Player.from(SCANNER.nextLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readExistPlayer(players);
+        }
+
+        if (!player.equals(Player.ALL) && !players.contains(player)) {
+            System.out.println("존재하지 않는 플레이어 입니다. 다시입력해주세요.");
+            return readExistPlayer(players);
+        }
+        return player;
     }
 }

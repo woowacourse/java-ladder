@@ -24,4 +24,8 @@ public class Rewards implements Names {
     public String getName(int i) {
         return rewards.get(i).getName();
     }
+
+    public Reward getReward(int i) {
+        return rewards.get(i);
+    }
 }

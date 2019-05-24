@@ -1,5 +1,12 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class LadderBoard {
     private static final int NAME_FORMAT_LEN = 6;
     private static final String ENTER = "\n";
@@ -38,5 +45,19 @@ public class LadderBoard {
         }
 
         return sb.toString();
+    }
+
+    public List<LadderMachingPair> play(Player player) {
+        List<Integer> froms =
+                Player.ALL.equals(player)
+                        ? IntStream.range(0, players.size()).boxed().collect(Collectors.toList())
+                        : Arrays.asList(players.indexOf(player));
+
+        List<LadderMachingPair> pairs = new ArrayList<>();
+        for (Integer from : froms) {
+            Position to = ladder.nextPosition(new Position(0, players.size(), from));
+            pairs.add(LadderMachingPair.of(players.getPlayer(from), rewards.getReward(to.toInt())));
+        }
+        return pairs;
     }
 }

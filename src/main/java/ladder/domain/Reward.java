@@ -1,6 +1,6 @@
 package ladder.domain;
 
-public class Reward {
+public class Reward implements Name {
     public static final int MAX_NAME_LEN = 5;
     private final String name;
 
@@ -18,6 +18,7 @@ public class Reward {
         return new Reward(name);
     }
 
+    @Override
     public String getName() {
         return name;
     }
