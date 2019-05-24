@@ -107,15 +107,6 @@ public class Line implements Iterable<Point> {
     }
 
     /**
-     * 라인 이동 후 결과 반환
-     *
-     * @return LineResult
-     */
-    public LineResult move() {
-        return LineResult.newInstance(line.size()).move(this);
-    }
-
-    /**
      * line 크기 반환
      *
      * @return size

@@ -37,6 +37,12 @@ public class LineResult implements Iterable<Integer> {
         return new LineResult(result);
     }
 
+    /**
+     * 라인 이동 후 결과 반환
+     *
+     * @param line 이동할 라인
+     * @return
+     */
     public LineResult move(Line line) {
         for (int i = 0; i < line.size(); i++) {
             Point nowPoint = line.get(result.get(i));

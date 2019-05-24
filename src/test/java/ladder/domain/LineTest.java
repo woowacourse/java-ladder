@@ -58,16 +58,4 @@ public class LineTest {
         assertThat(line.draw(TRUE_SHAPE, FALSE_SHAPE)).isEqualTo(shape);
     }
 
-    @Test
-    void move_확인() {
-        for (Integer integer : line.move()) {
-            System.out.print(integer);
-        }
-        System.out.println();
-        for (Integer integer : result) {
-            System.out.print(integer);
-        }
-        assertThat(line.move()).isEqualTo(result);
-    }
-
 }
