@@ -1,72 +1,39 @@
 package ladder.model;
 
+import ladder.model.generator.RandomValueGenerator;
+
+import ladder.model.generator.RandomValueGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Row {
-    private static final int LINE = 1;
-    private static final String VERTICAL_LINE = "|";
-    private static final String LINKED_LINE = "-----";
-    private static final String NONE_LINKED_LINE = "     ";
-    private static final String DOUBLE_BLANK = "  ";
-    private static final int MOVE = 1;
-    private static final int PREV = 1;
+    private final List<Direction> lines;
 
-    private List<Boolean> lines;
-
-    public Row(int[] linked) {
-        lines = new ArrayList<>();
-
-        lines.add(booleanGenerator(linked[0], false));
-
-        for (int i = 1; i < linked.length; i++) {
-            lines.add(booleanGenerator(linked[i], lines.get(i - PREV)));
-        }
+    private Row(List<Direction> lines) {
+        this.lines = lines;
     }
 
-    private boolean booleanGenerator(int random, boolean prevStatus) {
-        return !prevStatus && random == LINE;
+    static Row of(List<Direction> lines) {
+        return new Row(lines);
     }
 
-    public boolean checkDoubleDraw() {
-        int i = 0;
+    static Row generateRandomRow(final int numberOfMember) {
+        return new Row(generateRow(numberOfMember));
+    }
 
-        while (i < lines.size() - 1 && !(lines.get(i) && lines.get(i + 1))) {
-            i++;
+    private static List<Direction> generateRow(final int numberOfMember) {
+        List<Direction> lines = new ArrayList<>();
+        Direction direction = Direction.first(RandomValueGenerator.generateRandomValue());
+        lines.add(direction);
+        for (int i = 0; i < numberOfMember; i++) {
+            direction = direction.next(RandomValueGenerator.generateRandomValue());
         }
-
-        return i == lines.size();
+        lines.add(direction.last());
+        return lines;
     }
 
     public int move(int position) {
-        if (position < lines.size() && lines.get(position)) {
-            return position + MOVE;
-        }
-
-        if (position > 0 && lines.get(position - PREV)) {
-            return position - MOVE;
-        }
-        return position;
-    }
-
-    public int getLineSize() {
-        return lines.size();
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder(DOUBLE_BLANK);
-        for (Boolean line : lines) {
-            stringBuilder.append(isLinked(line));
-        }
-        stringBuilder.append(VERTICAL_LINE);
-        return stringBuilder.toString();
-    }
-
-    private String isLinked(boolean line) {
-        if (line) {
-            return VERTICAL_LINE + LINKED_LINE;
-        }
-        return VERTICAL_LINE + NONE_LINKED_LINE;
+        return position + lines.get(position).move();
     }
 }
