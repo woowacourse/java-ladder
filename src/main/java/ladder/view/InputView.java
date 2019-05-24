@@ -14,29 +14,20 @@ public class InputView {
     private static Scanner scanner = new Scanner(System.in);
 
     public static String[] inputNames() {
-        System.out.println(NAME_INPUT_MESSAGE);
-        String inputText = scanner.nextLine().trim();
-        try {
-            MemberValidator.checkSeparator(inputText);
-            String[] inputs = refineNames(inputText);
-            MemberValidator.checkNamesLength(inputs);
-            return inputs;
-        } catch (IllegalArgumentException e) {
-            return inputNames();
-        }
+        String inputText = "";
+        do {
+            System.out.println(NAME_INPUT_MESSAGE);
+            inputText = scanner.nextLine().trim();
+        } while (MemberValidator.checkSeparator(inputText));
+        return refineNames(inputText);
     }
 
-    private static String[] refineNames(final String inputText) {
-        return inputText.split(COMMA);
-    }
-
-    public static String[] inputResults(int countOfMember){
+    public static String[] inputResults(int countOfMember) {
         System.out.println(RESULT_INPUT_MESSAGE);
         String inputText = scanner.nextLine().trim();
         try {
             MemberValidator.checkSeparator(inputText);
             String[] inputs = refineNames(inputText);
-            MemberValidator.checkNamesLength(inputs);
             MemberValidator.checkMemberCount(inputs.length, countOfMember);
             return inputs;
         } catch (IllegalArgumentException e) {
@@ -44,12 +35,16 @@ public class InputView {
         }
     }
 
-    public static int inputLadderHeight(){
+    private static String[] refineNames(final String inputText) {
+        return inputText.split(COMMA);
+    }
+
+    public static int inputLadderHeight() {
         System.out.println(HEIGHT_INPUT_MESSAGE);
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public static String inputGetMemberResult(){
+    public static String inputGetMemberResult() {
         System.out.println(GET_MEMBER_RESULT_INPUT_MESSAGE);
         return scanner.nextLine();
     }
