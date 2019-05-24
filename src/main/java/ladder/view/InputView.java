@@ -10,9 +10,9 @@ public class InputView {
 		return scanner.nextLine();
 	}
 
-	public static String inputHeight() {
+	public static int inputHeight() {
 		System.out.println(UserOutput.DEMAND_LADDER_HEIGHT.getOutputMessage());
-		return scanner.nextLine();
+		return scanner.nextInt();
 	}
 
 	public static String inputResults() {

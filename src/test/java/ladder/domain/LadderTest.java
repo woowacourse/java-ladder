@@ -23,26 +23,26 @@ class LadderTest {
 			lines.add(new Line(points));
 		}
 
-		Ladder.createLadder(countOfNumber, String.valueOf(ladderHeight));
+		Ladder.createLadder(countOfNumber, ladderHeight);
 	}
 
 	@Test
 	void 참가자의_수가_2미만인_경우_예외_반환() {
-		assertThrows(IllegalArgumentException.class, () -> Ladder.createLadder(1, "2"));
+		assertThrows(IllegalArgumentException.class, () -> Ladder.createLadder(1, 2));
 	}
 
 	@Test
 	void 참가자의_수가_2이상인_경우() {
-		assertDoesNotThrow(() -> Ladder.createLadder(2, "2"));
+		assertDoesNotThrow(() -> Ladder.createLadder(2, 2));
 	}
 
 	@Test
 	void 사다리의_높이가_2미만인_경우_예외_반환() {
-		assertThrows(IllegalArgumentException.class, () -> Ladder.createLadder(2, "1"));
+		assertThrows(IllegalArgumentException.class, () -> Ladder.createLadder(2, 1));
 	}
 
 	@Test
 	void 사다리의_높이가_2이상인_경우() {
-		assertDoesNotThrow(() -> Ladder.createLadder(2, "2"));
+		assertDoesNotThrow(() -> Ladder.createLadder(2, 2));
 	}
 }

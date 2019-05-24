@@ -22,12 +22,12 @@ public class Ladder {
 		return lastPosition;
 	}
 
-	public static Ladder createLadder(int countOfPerson, String ladderHeight) {
+	public static Ladder createLadder(int countOfPerson, int ladderHeight) {
 		validateCountOfPerson(countOfPerson);
-		validateLadderHeight(ladderHeight);
+		validateLadderHeight(String.valueOf(ladderHeight));
 
 		List<Line> lines = new ArrayList<>();
-		for (int i = 0; i < Integer.parseInt(ladderHeight); i++) {
+		for (int i = 0; i < ladderHeight; i++) {
 			lines.add(Line.generateLine(countOfPerson));
 		}
 
