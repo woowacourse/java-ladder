@@ -1,9 +1,11 @@
 package ladder.model.generator;
 
-public class RandomValueGenerator {
-    private static final int MAX_BOUND = 2;
+import java.util.Random;
 
-    public static int generateRandomValue() {
-        return (int) (Math.random() * MAX_BOUND);
+public class RandomValueGenerator {
+    private static final Random RANDOM = new Random();
+
+    public static boolean generateRandomValue() {
+        return RANDOM.nextBoolean();
     }
 }
