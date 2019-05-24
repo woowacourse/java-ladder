@@ -16,7 +16,7 @@ public class LadderGame {
         OutputView.printGameBoard(players, ladder, prizeGroup);
 
         PlayerResult playerResult = players.makePlayerResult();
-        ladder.playLadder(playerResult);
+        playerResult.playLadder(ladder);
         GameResult gameResult = new GameResult(playerResult, prizeGroup);
 
         keepAsk(gameResult);

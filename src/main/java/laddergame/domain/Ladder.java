@@ -27,12 +27,6 @@ public class Ladder {
         return this.lines;
     }
 
-    public void playLadder(PlayerResult playerResult) {
-        for (int i = 0; i < height; i++) {
-            lines.get(i).swap(playerResult);
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

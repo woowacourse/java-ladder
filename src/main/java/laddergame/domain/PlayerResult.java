@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,6 +13,26 @@ public class PlayerResult {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public void playLadder(Ladder ladder) {
+        List<Line> lines = ladder.getLines();
+
+        for (Line line : lines) {
+            playLine(line);
+        }
+    }
+
+    private void playLine(Line line) {
+        for (int i = 0; i < line.getWidth(); i++) {
+            swap(line, i);
+        }
+    }
+
+    private void swap(Line line, int i) {
+        if (line.getHandle(i)) {
+            Collections.swap(players, i, i + 1);
+        }
     }
 
     @Override

@@ -1,6 +1,5 @@
 package laddergame.domain;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -18,15 +17,5 @@ public class Line {
 
     public int getWidth() {
         return width;
-    }
-
-    public void swap(PlayerResult playerResult) {
-        List<Player> players = playerResult.getPlayers();
-
-        for (int i = 0; i < width; i++) {
-            if (line.get(i)) {
-                Collections.swap(players, i, i + 1);
-            }
-        }
     }
 }

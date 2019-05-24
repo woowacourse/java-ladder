@@ -8,14 +8,14 @@ public class LineGenerator {
     private static boolean FIRST_VALUE_OF_LINE = false;
 
     protected static Line makeLine(int width) {
-        List<Boolean> line = new ArrayList<>();
+        List<Boolean> handles = new ArrayList<>();
 
-        line.add(getConnectableValue(FIRST_VALUE_OF_LINE));
+        handles.add(getConnectableValue(FIRST_VALUE_OF_LINE));
         for (int i = 1; i < width-1; i++) {
-            line.add(getConnectableValue(line.get(i-1)));
+            handles.add(getConnectableValue(handles.get(i-1)));
         }
 
-        return new Line(line);
+        return new Line(handles);
     }
 
     private static boolean getConnectableValue(boolean preValue) {
