@@ -10,11 +10,11 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    static Ladder of(List<Row> ladder) {
+    public static Ladder of(List<Row> ladder) {
         return new Ladder(ladder);
     }
 
-    static Ladder nHeightLadder(int countOfMember, int height) {
+    public static Ladder nHeightLadder(int countOfMember, int height) {
         List<Row> ladder = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
