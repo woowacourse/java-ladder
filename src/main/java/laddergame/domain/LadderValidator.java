@@ -1,9 +1,13 @@
 package laddergame.domain;
 
-import java.rmi.UnexpectedException;
-
 public class LadderValidator {
     private static final int LEAST_LADDER_HEIGHT = 1;
+
+    public static void validateLadder(final String height) {
+        checkEmpty(height);
+        checkNumeric(height);
+        checkLadderHeight(height);
+    }
 
     static void checkEmpty(final String height) {
         if (height.isEmpty()) {

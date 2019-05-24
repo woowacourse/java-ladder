@@ -4,25 +4,22 @@ import laddergame.domain.*;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
-import java.util.Collections;
-import java.util.List;
-
 public class LadderGame {
     public void play() {
         PlayerGroup players = InputView.askUserNames();
-        Ladder ladder = InputView.askHeight(players.getCountOfPlayers());
-        PrizeGroup prizeGroup = InputView.askPrizes(players.getCountOfPlayers());
-
-        OutputView.printGameBoard(players, ladder, prizeGroup);
+        int width = players.getCountOfPlayers();
+        Ladder ladder = new Ladder(width, InputView.askHeight(players.getCountOfPlayers()));
+        PrizeGroup prizeGroup = InputView.askPrizes(width);
 
         PlayerResult playerResult = players.makePlayerResult();
         playerResult.playLadder(ladder);
         GameResult gameResult = new GameResult(playerResult, prizeGroup);
 
-        keepAsk(gameResult);
+        OutputView.printGameBoard(players, ladder, prizeGroup);
+        keepAsking(gameResult);
     }
 
-    private String keepAsk(GameResult gameResult) {
+    private String keepAsking(GameResult gameResult) {
         while (true) {
             Player player = InputView.askResult();
             OutputView.printResult(gameResult, player);

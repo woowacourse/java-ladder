@@ -8,12 +8,8 @@ public class Ladder {
     private final List<Line> lines = new ArrayList<>();
     private final int height;
 
-    public Ladder(final int width, final String height) {
-        LadderValidator.checkEmpty(height);
-        LadderValidator.checkNumeric(height);
-        LadderValidator.checkLadderHeight(height);
-
-        this.height = Integer.parseInt(height);
+    public Ladder(final int width, final int height) {
+        this.height = height;
 
         makeLadder(width, this.height);
     }

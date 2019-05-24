@@ -3,7 +3,6 @@ package laddergame.view;
 import laddergame.domain.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -14,14 +13,14 @@ public class OutputView {
 
     public static void printGameBoard(PlayerGroup playerGroup, Ladder ladder, PrizeGroup prizeGroup) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(getPlayers(playerGroup));
-        stringBuilder.append(getLadder(ladder));
+        stringBuilder.append(printPlayers(playerGroup));
+        stringBuilder.append(drawLadder(ladder));
         stringBuilder.append(getPrizes(prizeGroup));
 
         System.out.println(stringBuilder.toString());
     }
 
-    private static String getPlayers(PlayerGroup playerGroup) {
+    private static String printPlayers(PlayerGroup playerGroup) {
         StringBuilder stringBuilder = new StringBuilder();
         List<Player> players = playerGroup.getPlayers();
 
@@ -33,18 +32,26 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    private static String getLadder(Ladder ladder) {
+    private static String drawLadder(Ladder ladder) {
         StringBuilder stringBuilder = new StringBuilder();
         List<Line> lines = ladder.getLines();
 
         for (Line line : lines) {
-            int width = line.getWidth();
-            stringBuilder.append(NON_HANDLE);
-            for (int i = 0; i < width; i++) {
-                stringBuilder.append(line.getHandle(i) ? HANDLE : NON_HANDLE);
-            }
-            stringBuilder.append("\n");
+            stringBuilder.append(drawOneLine(line));
         }
+
+        return stringBuilder.toString();
+    }
+
+    private static String drawOneLine(Line line) {
+        StringBuilder stringBuilder = new StringBuilder();
+        int width = line.getWidth();
+
+        stringBuilder.append(NON_HANDLE);
+        for (int i = 0; i < width; i++) {
+            stringBuilder.append(line.getHandle(i) ? HANDLE : NON_HANDLE);
+        }
+        stringBuilder.append("\n");
 
         return stringBuilder.toString();
     }
