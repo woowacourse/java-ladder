@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.view.PlayerException;
+import ladder.view.validator.PlayerValidate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class LadderLine {
      * @param playerCount 가로 길이
      */
     public LadderLine(int playerCount) {
-        PlayerException.playersMinCount(playerCount);
+        PlayerValidate.playersMinCount(playerCount);
         this.playerCount = playerCount;
         this.lineStates = addLineStates();
     }
@@ -45,24 +45,24 @@ public class LadderLine {
     }
 
     private boolean isRightLadderLine(int position) {
-        return position != lineStates.size() - 1 && lineStates.get(position + 1).getNowPoint();
+        return position != lineStates.size() - 1 && lineStates.get(position + 1).isNowPoint();
     }
 
     private boolean isLeftLadderLine(int position) {
-        return position != 0 && lineStates.get(position).getNowPoint();
+        return position != 0 && lineStates.get(position).isNowPoint();
     }
 
     private List<Point> addLineStates() {
         List<Point> lineStates = new ArrayList<>();
         lineStates.add(new Point());
         for (int i = 1; i < playerCount; i++) {
-            lineStates.add(new Point(lineStates.get(i - 1).getNowPoint()));
+            lineStates.add(new Point(lineStates.get(i - 1).isNowPoint()));
         }
         return lineStates;
     }
 
     boolean isMatchLineState(int i) {
-        return this.lineStates.get(i).getNowPoint();
+        return this.lineStates.get(i).isNowPoint();
     }
 
     @Override

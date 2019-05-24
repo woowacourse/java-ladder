@@ -1,8 +1,8 @@
-package ladder.view;
+package ladder.view.validator;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class WantPlayerException {
+public class WantPlayerValidate {
     public static final String EX_WANT_NAME = "없는 이름입니다.";
 
     /**

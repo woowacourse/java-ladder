@@ -6,6 +6,7 @@ import java.util.Random;
 public class Point {
     private static final String LINE_STATE_FALSE = "     |";
     private static final String LINE_STATE_TRUE = "-----|";
+    private static final Random RANDOM = new Random();
 
     private final boolean nowPoint;
 
@@ -21,23 +22,23 @@ public class Point {
         if (beforePoint) {
             return false;
         }
-        return new Random().nextBoolean();
+        return RANDOM.nextBoolean();
     }
 
-    private static String getStateShape(boolean lineState) {
+    private static String createLadderState(boolean lineState) {
         if (lineState) {
             return LINE_STATE_TRUE;
         }
         return LINE_STATE_FALSE;
     }
 
-    public boolean getNowPoint() {
+    public boolean isNowPoint() {
         return nowPoint;
     }
 
     @Override
     public String toString() {
-        return getStateShape(nowPoint);
+        return createLadderState(nowPoint);
     }
 
     @Override

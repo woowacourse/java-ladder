@@ -1,6 +1,8 @@
-package ladder.view;
+package ladder.view.validator;
 
-public class LadderDepthException {
+import ladder.view.InputView;
+
+public class LadderDepthValidate {
     public static final int MIN_LINE_COUNT = 1;
 
     /**

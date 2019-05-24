@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
-    public static final String OUTPUT_RESULT = "실행 결과";
+    private static final String OUTPUT_RESULT = "실행 결과";
 
     public static void outputLadder(String names, String lines, String rewards) {
         System.out.println(OUTPUT_RESULT);

@@ -1,8 +1,8 @@
 package ladder.domain;
 
-import ladder.view.LadderDepthException;
-import ladder.view.PlayerException;
-import ladder.view.RewardException;
+import ladder.view.validator.LadderDepthValidate;
+import ladder.view.validator.PlayerValidate;
+import ladder.view.validator.RewardValidate;
 
 import java.util.*;
 
@@ -30,12 +30,12 @@ public class LadderResult {
      * @param depth
      */
     public LadderResult(String names, String rewards, int depth) {
-        PlayerException.playerNames(names);
-        RewardException.reward(rewards, names.split(",").length);
-        LadderDepthException.ladderMinDepth(depth);
+        PlayerValidate.playerNames(names);
+        RewardValidate.reward(rewards, names.split(",").length);
+        LadderDepthValidate.ladderMinDepth(depth);
         List<Player> players = getPlayers(names);
-        this.ladder = getLadder(players, depth);
-        this.result = getResult(players, convertItems(rewards));
+        this.ladder = LadderFactory.getLadder(players, depth);
+        this.result = matchPlayerOfItem(players, convertItems(rewards));
     }
 
     private List<Item> convertItems(String items) {
@@ -89,10 +89,6 @@ public class LadderResult {
         return ladder.drawLadderShape();
     }
 
-    private Ladder getLadder(List<Player> players, int depth) {
-        return new Ladder(players, depth);
-    }
-
     private List<Player> getPlayers(String playerNames) {
         List<Player> players = new ArrayList<>();
         List<String> names = Arrays.asList(playerNames.replaceAll(" ", "").split(","));
@@ -102,10 +98,9 @@ public class LadderResult {
         return players;
     }
 
-    private Map<Player, Item> getResult(List<Player> players, List<Item> items) {
+    private Map<Player, Item> matchPlayerOfItem(List<Player> players, List<Item> items) {
         Map<Player, Item> result = new HashMap<>();
-        for (int i = 0; i < players.size(); i++) {
-            Player player = players.get(i);
+        for (Player player : players) {
             result.put(player, player.findItem(items));
         }
         return result;

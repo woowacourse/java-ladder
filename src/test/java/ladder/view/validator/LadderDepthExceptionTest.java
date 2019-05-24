@@ -1,4 +1,4 @@
-package ladder.view;
+package ladder.view.validator;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,7 @@ public class LadderDepthExceptionTest {
     @Test
     void ladderMinDepth_0_예외_확인() {
         assertThrows(IllegalArgumentException.class, () -> {
-            LadderDepthException.ladderMinDepth(0);
+            LadderDepthValidate.ladderMinDepth(0);
         });
     }
 }

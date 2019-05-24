@@ -1,21 +1,25 @@
 package ladder.view;
 
 import ladder.domain.LadderResult;
+import ladder.view.validator.LadderDepthValidate;
+import ladder.view.validator.PlayerValidate;
+import ladder.view.validator.RewardValidate;
+import ladder.view.validator.WantPlayerValidate;
 
 import java.util.*;
 
 public class InputView {
-    public static final String INPUT_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) (all 제외)";
-    public static final String INPUT_DEPTH = "최대 사다리 높이는 몇 개인가요?";
-    public static final String INPUT_REWARDS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
-    public static final String INPUT_WANT_NAME = "결과를 보고 싶은 사람은?";
     public static final String EX_LINE_COUNT = "사다리 높이는 1 이상 숫자만 가능 합니다.";
+    private static final String INPUT_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) (all 제외)";
+    private static final String INPUT_DEPTH = "최대 사다리 높이는 몇 개인가요?";
+    private static final String INPUT_REWARDS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String INPUT_WANT_NAME = "결과를 보고 싶은 사람은?";
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static String playerNames() {
         try {
             String playerNames = inputPlayerNames();
-            PlayerException.playerNames(playerNames);
+            PlayerValidate.playerNames(playerNames);
             return playerNames;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
@@ -31,7 +35,7 @@ public class InputView {
     public static String rewards(String names) {
         try {
             String rewards = inputRewards();
-            RewardException.reward(rewards, names.split(",").length);
+            RewardValidate.reward(rewards, names.split(",").length);
             return rewards;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
@@ -47,7 +51,7 @@ public class InputView {
     public static int ladderDepth() {
         try {
             int ladderDepth = inputLadderDepth();
-            LadderDepthException.ladderMinDepth(ladderDepth);
+            LadderDepthValidate.ladderMinDepth(ladderDepth);
             return ladderDepth;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
@@ -68,7 +72,7 @@ public class InputView {
     public static String wantName(LadderResult ladderResult) {
         try {
             String resultOfName = ladderResult.getResultOfName(inputWantName());
-            WantPlayerException.wantName(resultOfName);
+            WantPlayerValidate.wantName(resultOfName);
             return resultOfName;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());

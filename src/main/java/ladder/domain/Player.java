@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.view.PlayerException;
+import ladder.view.validator.PlayerValidate;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,7 +23,7 @@ public class Player {
      * @throws IllegalArgumentException 이름 길이가 rule과 다를 때 발생
      */
     public Player(String name) {
-        PlayerException.playerNameOverLength(name);
+        PlayerValidate.playerNameOverLength(name);
         this.name = name;
     }
 
@@ -35,7 +35,7 @@ public class Player {
      * @throws IllegalArgumentException 이름 길이가 rule과 다를 때 발생
      */
     public Player(String name, int position) {
-        PlayerException.playerNameOverLength(name);
+        PlayerValidate.playerNameOverLength(name);
         this.name = name;
         this.position = position;
     }

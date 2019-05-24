@@ -1,4 +1,4 @@
-package ladder.view;
+package ladder.view.validator;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,21 +8,21 @@ public class WantPlayerExceptionTest {
     @Test
     void wantName_값이_Null값이_있는_경우_확인() {
         assertThrows(IllegalArgumentException.class, () -> {
-            WantPlayerException.wantName(null);
+            WantPlayerValidate.wantName(null);
         });
     }
 
     @Test
     void wantName_값이_빈_값이_있는_경우_확인() {
         assertThrows(IllegalArgumentException.class, () -> {
-            WantPlayerException.wantName("");
+            WantPlayerValidate.wantName("");
         });
     }
 
     @Test
     void wantName_값이_공백이_있는_경우_확인() {
         assertThrows(IllegalArgumentException.class, () -> {
-            WantPlayerException.wantName("   ");
+            WantPlayerValidate.wantName("   ");
         });
     }
 }

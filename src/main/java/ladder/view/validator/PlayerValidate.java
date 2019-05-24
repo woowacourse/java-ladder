@@ -1,4 +1,4 @@
-package ladder.view;
+package ladder.view.validator;
 
 import ladder.domain.LadderResult;
 import org.apache.commons.lang3.StringUtils;
@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class PlayerException {
+public class PlayerValidate {
     public static final int MIN_PLAYER_COUNT = 1;
     public static final int MAX_NAME_LENGTH = 5;
 

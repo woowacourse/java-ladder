@@ -1,9 +1,9 @@
-package ladder.view;
+package ladder.view.validator;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class RewardException {
+public class RewardValidate {
     public static final String EX_REWARDS_COUNT = "플레이어 수랑 결과 개수는 같아야 합니다.";
 
     /**
@@ -29,11 +29,11 @@ public class RewardException {
      * @throws IllegalArgumentException
      */
     public static void checkReward(String inputNames) {
-        List<String> names = PlayerException.playerNamesMinSize(
+        List<String> names = PlayerValidate.playerNamesMinSize(
                 Arrays.asList(inputNames.split(","))
         );
         for (String name : names) {
-            PlayerException.playerNameOverLength(name);
+            PlayerValidate.playerNameOverLength(name);
         }
     }
 
