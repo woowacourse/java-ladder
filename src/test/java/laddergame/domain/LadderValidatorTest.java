@@ -12,6 +12,6 @@ public class LadderValidatorTest {
 
     @Test
     void 사다리의_높이가_1보다_작을때_예외처리_테스트() {
-        assertThrows(IllegalArgumentException.class, () -> LadderValidator.checkLadderHeightLadder("0"));
+        assertThrows(IllegalArgumentException.class, () -> LadderValidator.checkLadderHeight("0"));
     }
 }

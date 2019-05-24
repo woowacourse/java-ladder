@@ -9,8 +9,9 @@ public class Ladder {
     private final int height;
 
     public Ladder(final int width, final String height) {
+        LadderValidator.checkEmpty(height);
         LadderValidator.checkNumeric(height);
-        LadderValidator.checkLadderHeightLadder(height);
+        LadderValidator.checkLadderHeight(height);
 
         this.height = Integer.parseInt(height);
 
