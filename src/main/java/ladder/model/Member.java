@@ -11,11 +11,11 @@ public class Member {
         this.position = position;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public int getPosition() {
+    int getPosition() {
         return position;
     }
 
