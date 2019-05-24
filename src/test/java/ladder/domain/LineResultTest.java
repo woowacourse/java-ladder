@@ -19,7 +19,7 @@ class LineResultTest {
 
     @BeforeEach
     void setUp() {
-        List<Point> points = Arrays.asList(Point.TRUE,Point.FALSE,Point.FALSE,Point.TRUE,Point.FALSE);
+        List<Point> points = Arrays.asList(Point.RIGHT,Point.LEFT,Point.STRAIGHT,Point.RIGHT,Point.LEFT);
         line = Line.newInstance(points);
         lineAnswerResult = LineResult.newInstance(Arrays.asList(1, 0, 2, 4, 3));
         lineResult = LineResult.newInstance(line.size());

@@ -46,18 +46,18 @@ public class LineResult implements Iterable<Integer> {
     public LineResult move(Line line) {
         for (int i = 0; i < line.size(); i++) {
             Point nowPoint = line.get(result.get(i));
-            Point prePoint = generatePrePoint(line, i);
-            result.set(i, nowPoint.move(result.get(i), prePoint));
+//            Point prePoint = generatePrePoint(line, i);
+            result.set(i, nowPoint.move(result.get(i)));
         }
         return new LineResult(result);
     }
 
-    private Point generatePrePoint(Line line, int i) {
-        if (result.get(i) == 0) {
-            return Point.FALSE;
-        }
-        return line.get(result.get(i)-1);
-    }
+//    private Point generatePrePoint(Line line, int i) {
+//        if (result.get(i) == 0) {
+//            return Point.FALSE;
+//        }
+//        return line.get(result.get(i)-1);
+//    }
 
     /**
      * 해당 인덱스 값 반환

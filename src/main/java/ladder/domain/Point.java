@@ -1,51 +1,27 @@
 package ladder.domain;
 
+import java.util.function.Function;
+
 /**
+ * 사다리의 한 점을 나타내는 객체
+ * <br> 사다리 방향을 나타낸다.
+ * <br> LEFT, STRAIGHT, RIGHT
+ *
  * @author heebg
  * @version 1.0 2019-05-22
  */
 public enum  Point {
-    TRUE(true),
-    FALSE(false);
+    LEFT(index -> index - 1 ),
+    STRAIGHT(index -> index),
+    RIGHT(index -> index + 1);
 
-    private static final String EX_ILLEGAL_POINT = "Point에 잘못된 값이 들어왔습니다.";
-    private final boolean status;
+    private Function<Integer,Integer> expression;
 
-    Point(boolean status) {
-        this.status = status;
+    Point(Function<Integer,Integer> expression) {
+        this.expression = expression;
     }
 
-    public static Point valueOf(boolean status) {
-        for (Point point : values()) {
-            if (point.status == status) {
-                return point;
-            }
-        }
-
-        throw new IllegalArgumentException(EX_ILLEGAL_POINT);
-    }
-
-    public int move(int index, Point prePoint) {
-        if (status) {
-            return index + 1;
-        }
-
-        if (index != 0 && prePoint.status) {
-            return index - 1;
-        }
-
-        return index;
-    }
-
-    public boolean status() {
-        return status;
-    }
-}
-
-class Test {
-    public static void main(String[] args) {
-        Point point = Point.FALSE;
-        point.status();
-        point.move(0,Point.TRUE);
+    public int move(int index) {
+        return expression.apply(index);
     }
 }

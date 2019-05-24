@@ -21,9 +21,9 @@ public class LadderTest {
     @BeforeEach
     void setUp() {
         lines = new ArrayList<>();
-        lines.add(Line.newInstance(Arrays.asList(Point.TRUE, Point.FALSE, Point.FALSE, Point.TRUE, Point.FALSE)));
-        lines.add(Line.newInstance(Arrays.asList(Point.FALSE, Point.TRUE, Point.FALSE, Point.TRUE, Point.FALSE)));
-        lines.add(Line.newInstance(Arrays.asList(Point.FALSE, Point.FALSE, Point.TRUE, Point.FALSE, Point.FALSE)));
+        lines.add(Line.newInstance(Arrays.asList(Point.RIGHT, Point.LEFT, Point.STRAIGHT, Point.RIGHT, Point.LEFT)));
+        lines.add(Line.newInstance(Arrays.asList(Point.STRAIGHT, Point.RIGHT, Point.LEFT, Point.RIGHT, Point.LEFT)));
+        lines.add(Line.newInstance(Arrays.asList(Point.STRAIGHT, Point.STRAIGHT, Point.RIGHT, Point.LEFT, Point.STRAIGHT)));
         ladder = Ladder.newInstance(lines);
         result = LineResult.newInstance(Arrays.asList(3, 0, 1, 2, 4));
         players = Players.newInstance("pobi, hello, mynam, is, haha");
@@ -75,8 +75,8 @@ public class LadderTest {
     @Test
     void iter_확인() {
         for (Line line : Ladder.newInstance(4, 5)) {
-            for (Point position : line) {
-                System.out.print(position.status());
+            for (Point point : line) {
+                System.out.print(point);
             }
         }
     }

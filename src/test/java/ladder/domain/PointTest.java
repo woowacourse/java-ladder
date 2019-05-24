@@ -10,18 +10,20 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @version 1.0 2019-05-22
  */
 class PointTest {
-    Point Tpoint;
-    Point Fpoint;
+    Point Rpoint;
+    Point Lpoint;
+    Point Spoint;
 
     @BeforeEach
     void setUp() {
-        Tpoint = Point.TRUE;
-        Fpoint = Point.FALSE;
+        Rpoint = Point.RIGHT;
+        Lpoint = Point.LEFT;
+        Spoint = Point.STRAIGHT;
     }
 
     @Test
     void create_생성() {
-        assertThat(Tpoint).isEqualTo(Point.TRUE);
+        assertThat(Rpoint).isEqualTo(Point.RIGHT);
     }
 
 }

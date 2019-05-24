@@ -7,7 +7,9 @@ import java.util.*;
  * @version 1.0 2019-05-18
  */
 public class Line implements Iterable<Point> {
+    public static final Point END = Point.STRAIGHT;
     private final List<Point> line;
+    private static final Point STARTER = Point.STRAIGHT;
 
     private Line(List<Point> line) {
         this.line = line;
@@ -41,14 +43,14 @@ public class Line implements Iterable<Point> {
      */
     public static Line newInstance(int rowSize) {
         List<Point> line = new ArrayList<>();
-        line.add(PointConfigure.generateRandom(Point.FALSE));
+        line.add(PointGenerate.generatePoint(STARTER));
         if (rowSize == 1) {
             return new Line(line);
         }
         for (int i = 1; i < rowSize - 1; i++) {
-            line.add(PointConfigure.generateRandom(line.get(i - 1)));
+            line.add(PointGenerate.generatePoint(line.get(i - 1)));
         }
-        line.add(PointConfigure.generateRandom(line.get(rowSize - 2)));
+        line.add(PointGenerate.generatePoint(line.get(rowSize - 2)));
         return new Line(line);
     }
 
@@ -59,7 +61,7 @@ public class Line implements Iterable<Point> {
      */
     public Line start() {
         List<Point> line = new ArrayList<>();
-        line.add(PointConfigure.generateRandom(Point.FALSE));
+        line.add(PointGenerate.generatePoint(STARTER));
         return new Line(line);
     }
 
@@ -70,7 +72,7 @@ public class Line implements Iterable<Point> {
      */
     public Line add() {
         Point preStatus = line.get(line.size() - 1);
-        line.add(PointConfigure.generateRandom(preStatus));
+        line.add(PointGenerate.generatePoint(preStatus));
         return new Line(line);
     }
 
@@ -80,7 +82,7 @@ public class Line implements Iterable<Point> {
      * @return Position
      */
     public Line end() {
-        line.add(Point.FALSE);
+        line.add(END);
         return new Line(line);
     }
 
@@ -93,14 +95,14 @@ public class Line implements Iterable<Point> {
      */
     public String draw(String trueShape, String falseShape) {
         StringBuilder sb = new StringBuilder();
-        for (Point position : line) {
-            sb.append(drawPosition(trueShape, falseShape, position.status()));
+        for (Point point : line) {
+            sb.append(drawPosition(trueShape, falseShape, point));
         }
         return sb.toString();
     }
 
-    private String drawPosition(String trueShape, String falseShape, boolean status) {
-        if (status) {
+    private String drawPosition(String trueShape, String falseShape, Point point) {
+        if (point.equals(Point.RIGHT)) {
             return trueShape;
         }
         return falseShape;
