@@ -1,8 +1,8 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.Player;
-import ladder.domain.Players;
+import ladder.domain.gamecomponent.Ladder;
+import ladder.domain.gamecomponent.Player;
+import ladder.domain.gamecomponent.Players;
 
 public class LadderGame {
     private final Ladder ladder;

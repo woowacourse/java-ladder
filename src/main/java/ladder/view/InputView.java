@@ -1,7 +1,9 @@
 package ladder.view;
 
-import ladder.domain.*;
-import ladder.util.CustomStringUtils;
+import ladder.domain.gamecomponent.Ladder;
+import ladder.domain.gamecomponent.PlayerName;
+import ladder.domain.gamecomponent.Results;
+import ladder.domain.stepgenerator.RandomStepsGenerator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +52,6 @@ public class InputView {
     public static Results getResult(int playerNum) {
         try {
             String input = inputResults();
-            CustomStringUtils.checkIsBlank(input);
             return new Results(Arrays.asList(input.split(",")), playerNum);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -88,7 +89,6 @@ public class InputView {
     public static String getNameForResult() {
         try {
             String input = inputNameForResult();
-            CustomStringUtils.checkIsBlank(input);
             return input;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

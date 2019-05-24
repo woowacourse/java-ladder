@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.laddercomponent;
+
+import ladder.domain.gamecomponent.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +16,8 @@ public class Line {
         this.steps = steps;
     }
 
-    public int getNextPositon(Player player) {
-        return player.tryMove(steps);
+    public void getNextPositon(Player player) {
+        player.move(steps);
     }
 
     @Override

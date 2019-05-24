@@ -1,14 +1,17 @@
-package ladder.domain;
+package ladder.domain.stepgenerator;
+
+import ladder.domain.laddercomponent.Step;
+import ladder.domain.laddercomponent.Steps;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomStepsGenerator implements StepsGenerator{
+public class RandomStepsGenerator implements StepsGenerator {
     private static Random random = new Random();
     private final int countOfPlayer;
 
-    public RandomStepsGenerator(int countOfPlayer){
+    public RandomStepsGenerator(int countOfPlayer) {
         this.countOfPlayer = countOfPlayer;
     }
 

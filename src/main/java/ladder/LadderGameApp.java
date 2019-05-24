@@ -1,6 +1,9 @@
 package ladder;
 
-import ladder.domain.*;
+import ladder.domain.gamecomponent.Ladder;
+import ladder.domain.gamecomponent.LadderGameResult;
+import ladder.domain.gamecomponent.Players;
+import ladder.domain.gamecomponent.Results;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 

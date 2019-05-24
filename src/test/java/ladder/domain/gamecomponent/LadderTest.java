@@ -1,5 +1,7 @@
-package ladder.domain;
+package ladder.domain.gamecomponent;
 
+import ladder.domain.stepgenerator.CustomStepsGenerator;
+import ladder.domain.stepgenerator.RandomStepsGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -11,12 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class LadderTest {
     @Test
     void 입력값이_양수일_경우() {
-        assertDoesNotThrow(() -> Ladder.checkHeightIsPositive(1));
+        RandomStepsGenerator stepsGenerator = new RandomStepsGenerator(5);
+        assertDoesNotThrow(() -> new Ladder(stepsGenerator, 1));
     }
 
     @Test
     void 입력값이_양수가_아닐_경우_예외_반환() {
-        assertThrows(NumberFormatException.class, () -> Ladder.checkHeightIsPositive(0));
+        RandomStepsGenerator stepsGenerator = new RandomStepsGenerator(5);
+        assertThrows(NumberFormatException.class, () -> new Ladder(stepsGenerator, 0));
     }
 
     @Test

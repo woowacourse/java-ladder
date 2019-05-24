@@ -1,11 +1,12 @@
-package ladder.domain;
+package ladder.domain.stepgenerator;
 
+import ladder.domain.laddercomponent.Step;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class RandomGeneratorTest {
+public class RandomStepsGeneratorTest {
     RandomStepsGenerator stepsGenerator;
 
     @BeforeEach

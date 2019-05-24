@@ -1,4 +1,8 @@
-package ladder.domain;
+package ladder.domain.gamecomponent;
+
+import ladder.domain.laddercomponent.Line;
+import ladder.domain.laddercomponent.Steps;
+import ladder.domain.stepgenerator.StepsGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +15,7 @@ public class Ladder {
     public Ladder(StepsGenerator stepsGenerator, int height) {
         checkHeightIsPositive(height);
 
-        List<Steps> stepsList = stepsGenerator.generateStepsList(height) ;
+        List<Steps> stepsList = stepsGenerator.generateStepsList(height);
         List<Line> lines = new ArrayList<>();
 
         for (Steps steps : stepsList) {
@@ -20,7 +24,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static void checkHeightIsPositive(int height) {
+    private void checkHeightIsPositive(int height) {
         if (height <= 0) {
             throw new NumberFormatException(VIOLATE_LADDER_HEIGHT_POSITIVE);
         }

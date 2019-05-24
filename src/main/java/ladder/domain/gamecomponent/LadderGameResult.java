@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.gamecomponent;
 
 import java.util.HashMap;
 import java.util.List;
