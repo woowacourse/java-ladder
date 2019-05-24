@@ -6,6 +6,7 @@ import ladder.model.generator.RandomValueGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Row {
     private final List<Direction> lines;
@@ -36,5 +37,11 @@ public class Row {
 
     public int move(int position) {
         return position + lines.get(position).move();
+    }
+
+    public List<Boolean> isLinked() {
+        return lines.stream()
+                .map(Direction::isMovable)
+                .collect(Collectors.toList());
     }
 }

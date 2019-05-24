@@ -41,4 +41,8 @@ public class Direction {
         }
         return 0;
     }
+
+    boolean isMovable() {
+        return right;
+    }
 }
