@@ -1,7 +1,8 @@
 package ladder.view;
 
-import ladder.model.validator.MemberValidator;
+import ladder.model.validator.InputValidator;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -13,27 +14,24 @@ public class InputView {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    // todo: 재귀가 아닌 반복문으로 구현
     public static String[] inputNames() {
         String inputText = "";
         do {
             System.out.println(NAME_INPUT_MESSAGE);
             inputText = scanner.nextLine().trim();
-        } while (!MemberValidator.checkSeparator(inputText));
+        } while (!InputValidator.validSeparator(inputText));
         return refineNames(inputText);
     }
 
     public static String[] inputResults(int countOfMember) {
         System.out.println(RESULT_INPUT_MESSAGE);
-        String inputText = scanner.nextLine().trim();
-        try {
-            MemberValidator.checkSeparator(inputText);
-            String[] inputs = refineNames(inputText);
-            MemberValidator.checkMemberCount(inputs.length, countOfMember);
-            return inputs;
-        } catch (IllegalArgumentException e) {
-            return inputResults(countOfMember);
-        }
+        String inputText = "";
+        String[] inputs = new String[0];
+        do {
+            inputText = scanner.nextLine().trim();
+            inputs = inputText.split(COMMA);
+        } while (InputValidator.validSeparator(inputText) || InputValidator.validMemberCount(inputs.length, countOfMember));
+        return inputs;
     }
 
     private static String[] refineNames(final String inputText) {
@@ -42,11 +40,19 @@ public class InputView {
 
     public static int inputLadderHeight() {
         System.out.println(HEIGHT_INPUT_MESSAGE);
-        return Integer.parseInt(scanner.nextLine());
+        int height = 0;
+        do {
+            height = Integer.parseInt(scanner.nextLine());
+        } while (InputValidator.validHeight(height));
+        return height;
     }
 
-    public static String inputGetMemberResult() {
+    public static String inputGetMemberResult(List<String> memberNames) {
         System.out.println(GET_MEMBER_RESULT_INPUT_MESSAGE);
-        return scanner.nextLine();
+        String name = "";
+        do {
+            name = scanner.nextLine();
+        } while (InputValidator.validResultsName(memberNames, name));
+        return name;
     }
 }
