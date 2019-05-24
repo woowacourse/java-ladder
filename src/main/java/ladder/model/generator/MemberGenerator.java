@@ -3,6 +3,7 @@ package ladder.model.generator;
 import ladder.model.Member;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MemberGenerator {

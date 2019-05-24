@@ -1,10 +1,11 @@
 package ladder.model;
 
+import ladder.model.generator.RandomValueGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
-    private static final int MAX_BOUNDARY = 2;
     private final List<Row> ladder = new ArrayList<>();
     private final List<Member> members;
     private final List<String> results;
@@ -31,7 +32,7 @@ public class LadderGame {
         int[] linkedStatus = new int[countOfMembers - 1];
 
         for (int i = 0; i < linkedStatus.length; i++) {
-            linkedStatus[i] = (int) (Math.random() * MAX_BOUNDARY);
+            linkedStatus[i] = RandomValueGenerator.generateRandomValue();
         }
 
         return linkedStatus;
