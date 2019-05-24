@@ -1,5 +1,6 @@
 package ladder.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DefaultResults {
@@ -11,5 +12,9 @@ public class DefaultResults {
 
     Result getResult(final int position) {
         return defaultResult.get(position);
+    }
+
+    List<Result> getResults() {
+        return new ArrayList<>(defaultResult);
     }
 }

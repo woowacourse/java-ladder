@@ -13,4 +13,8 @@ public class Members {
     public List<Member> allMembers() {
         return new ArrayList<>(members);
     }
+
+    public int numberOfMembers() {
+        return members.size();
+    }
 }

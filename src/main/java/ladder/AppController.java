@@ -13,16 +13,17 @@ public class AppController {
     public void play(){
         LadderGame ladderGame = initGame();
         EndResult results = playGame(ladderGame);
-        endGame(results);
+        endGame(results, ladderGame.getMembersName());
     }
 
     private LadderGame initGame() {
-        String[] names = InputView.inputNames();
-        List<Member> members = MemberGenerator.generateMembers(names);
-        List<String> results = Arrays.asList(InputView.inputResults(members.size()));
-        int ladderHeight = InputView.inputLadderHeight();
+        Members members = new Members(MemberGenerator.generateMembers(InputView.inputNames()));
+        int countOfMember = members.numberOfMembers();
+        Ladder ladder = Ladder.nHeightLadder(countOfMember, InputView.inputLadderHeight());
+        // todo: ResultGenerator 구현
+        DefaultResults results = new DefaultResults(InputView.inputResults(countOfMember));
 
-        return new LadderGame(members, ladderHeight, results);
+        return new LadderGame(members, ladder, results);
     }
 
     private EndResult playGame(LadderGame ladderGame){
@@ -30,12 +31,12 @@ public class AppController {
         return ladderGame.executeGame();
     }
 
-    private void endGame(EndResult results) {
+    private void endGame(EndResult results, List<String> memberNames) {
         String name = InputView.inputGetMemberResult();
         if (name.equals("all")) {
-            OutputView.allPrintResult(results.getAllResult());
+            OutputView.allPrintResult(results.getAll(), memberNames);
             return;
         }
-        OutputView.printMemberResult(results.getMemberResult(name));
+        OutputView.printMemberResult(results.get(name));
     }
 }

@@ -1,6 +1,8 @@
 package ladder.model;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGame {
     private final Members members;
@@ -17,8 +19,22 @@ public class LadderGame {
         EndResult endResult = new EndResult(new HashMap<>());
         members.allMembers().forEach(member -> {
             Result result = ladder.play(member, results);
-            endResult.put(member, result);
+            endResult.put(member.getName(), result);
         });
         return endResult;
+    }
+
+    public List<String> getMembersName() {
+        return members.allMembers()
+                .stream()
+                .map(Member::getName)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getResults() {
+        return results.getResults()
+                .stream()
+                .map(Result::getResult)
+                .collect(Collectors.toList());
     }
 }
