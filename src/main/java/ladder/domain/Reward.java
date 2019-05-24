@@ -17,4 +17,8 @@ public class Reward {
     public static Reward from(String name) {
         return new Reward(name);
     }
+
+    public String getName() {
+        return name;
+    }
 }

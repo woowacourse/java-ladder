@@ -15,4 +15,8 @@ public class Height {
     public static Height create(int height) {
         return new Height(height);
     }
+
+    public int toInt() {
+        return height;
+    }
 }

@@ -1,8 +1,6 @@
-import ladder.domain.Height;
-import ladder.domain.Ladder;
-import ladder.domain.Players;
-import ladder.domain.Rewards;
+import ladder.domain.*;
 import ladder.view.InputView;
+import ladder.view.OutputView;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,8 +9,8 @@ public class Main {
 
         Height height = InputView.readHeight();
 
-//        LadderBoard ladderBoard = LadderBoard.of(Ladder.create(height, players.size()), players, rewards);
-//        OutputView.printLadderBoard(ladderBoard);
+        LadderBoard ladderBoard = LadderBoard.of(Ladder.create(height, players.size()), players, rewards);
+        OutputView.printLadderBoard(ladderBoard);
 //
 //        keepLadderBoardMaching(ladderBoard, players);
 //    }

@@ -10,9 +10,9 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder create(int height, int numPosition) {
+    public static Ladder create(Height height, int numPosition) {
         List<HorizontalLine> generatedLines = new ArrayList<>();
-        for (int h = 0; h < height; h++) {
+        for (int h = 0; h < height.toInt(); h++) {
             generatedLines.add(HorizontalLine.create(numPosition));
         }
         return new Ladder(generatedLines);

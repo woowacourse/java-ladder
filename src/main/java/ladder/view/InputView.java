@@ -15,11 +15,11 @@ public class InputView {
     private static final String EMPTY = "";
     private static final String NAME_SEPERATOR = ",";
 
+
     public static Players readPlayers() {
-        String inp = SCANNER.nextLine();
-        List<String> names = splitNames(inp);
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         try {
-            return Players.from(names);
+            return Players.from(splitNames(SCANNER.nextLine()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         } catch (DuplicatedNameException e) {
@@ -29,9 +29,10 @@ public class InputView {
     }
 
     public static Rewards readRewards(int numPlayers) {
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         Rewards rewards;
         try {
-            rewards = Rewards.of(splitNames(SCANNER.nextLine()));
+            rewards = Rewards.from(splitNames(SCANNER.nextLine()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readRewards(numPlayers);
@@ -46,6 +47,7 @@ public class InputView {
 
     private static List<String> splitNames(String inp) {
         inp = inp.replace(SPACE, EMPTY);
+        System.out.println(inp);
         return Arrays.asList(inp.split(NAME_SEPERATOR));
     }
 

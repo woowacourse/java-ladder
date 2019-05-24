@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Players {
+public class Players implements Names {
     private final List<Player> players;
 
     Players(List<Player> players) {
@@ -26,7 +26,13 @@ public class Players {
         return set.size() != names.size();
     }
 
+    @Override
     public int size() {
         return players.size();
+    }
+
+    @Override
+    public String getName(int i) {
+        return players.get(i).getName();
     }
 }
