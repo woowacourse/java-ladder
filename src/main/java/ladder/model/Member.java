@@ -11,10 +11,6 @@ public class Member {
         this.position = position;
     }
 
-    public void move(int movePosition) {
-        this.position = movePosition;
-    }
-
     public String getName() {
         return name;
     }
