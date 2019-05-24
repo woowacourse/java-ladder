@@ -44,12 +44,12 @@ public class Line implements Iterable<Point> {
      */
     public static Line newInstance(int rowSize) {
         List<Point> line = new ArrayList<>();
-        line.add(PointGenerate.generatePoint(STARTER));
+        line.add(pointGenerate.generatePoint(STARTER));
         if (rowSize == 1) {
             return new Line(line);
         }
         for (int i = 1; i < rowSize - 1; i++) {
-            line.add(PointGenerate.generatePoint(line.get(i - 1)));
+            line.add(pointGenerate.generatePoint(line.get(i - 1)));
         }
         line.add(generateEndPoint(line.get(rowSize - 2)));
         return new Line(line);
@@ -70,7 +70,7 @@ public class Line implements Iterable<Point> {
      */
     public Line start() {
         List<Point> line = new ArrayList<>();
-        line.add(PointGenerate.generatePoint(STARTER));
+        line.add(pointGenerate.generatePoint(STARTER));
         return new Line(line);
     }
 
@@ -81,7 +81,7 @@ public class Line implements Iterable<Point> {
      */
     public Line add() {
         Point preStatus = line.get(line.size() - 1);
-        line.add(PointGenerate.generatePoint(preStatus));
+        line.add(pointGenerate.generatePoint(preStatus));
         return new Line(line);
     }
 

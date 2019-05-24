@@ -15,22 +15,9 @@ public class PointGenerateFactory {
     }
 
 
-    public Point create(PointGenerateStatus status) {
+    public PointGenerate create(PointGenerateStatus status) {
         if (status.equals(PointGenerateStatus.RANDOM)) {
-            return generateRandom();
-        }
-
-        throw new IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION);
-    }
-
-    private Point generateRandom() {
-        boolean state = new Random().nextBoolean();
-
-        if (state) {
-            return Point.RIGHT;
-        }
-        if (!state) {
-            return Point.STRAIGHT;
+            return new PointGenerateRandomImp();
         }
 
         throw new IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION);

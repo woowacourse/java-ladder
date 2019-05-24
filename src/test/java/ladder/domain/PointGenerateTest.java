@@ -12,7 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class PointGenerateTest {
     @Test
     void setRandom_true입력_확인() {
-        Point point = PointGenerate.generatePoint(Point.RIGHT);
+        PointGenerate pointGenerate = PointGenerateFactory.getInstance().create(PointGenerateStatus.RANDOM);
+        Point point = pointGenerate.generatePoint(Point.RIGHT);
         assertThat(point).isEqualTo(Point.LEFT);
     }
 }

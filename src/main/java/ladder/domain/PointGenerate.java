@@ -7,10 +7,10 @@ package ladder.domain;
  * @author heebg
  * @version 1.0 2019-05-23
  */
-public class PointGenerate {
-    private static final String ILLEGAL_ARGUMENT_EXCEPTION = "유효하지 않은 값입니다.";
+public interface PointGenerate {
+    String ILLEGAL_ARGUMENT_EXCEPTION = "유효하지 않은 값입니다.";
 
-    public static Point generatePoint(Point prePoint) {
+    default Point generatePoint(Point prePoint) {
         if (prePoint.equals(Point.LEFT)) {
             return Point.STRAIGHT;
         }
@@ -20,9 +20,11 @@ public class PointGenerate {
         }
 
         if (prePoint.equals(Point.STRAIGHT)) {
-            return PointGenerateFactory.getInstance().create(PointGenerateStatus.RANDOM);
+            return generate(prePoint);
         }
 
         throw new IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION);
     }
+
+    Point generate(Point prePoint);
 }
