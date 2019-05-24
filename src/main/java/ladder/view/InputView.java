@@ -13,6 +13,7 @@ public class InputView {
 
     private static Scanner scanner = new Scanner(System.in);
 
+    // todo: 재귀가 아닌 반복문으로 구현
     public static String[] inputNames() {
         String inputText = "";
         do {

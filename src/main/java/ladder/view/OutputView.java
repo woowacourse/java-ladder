@@ -6,6 +6,7 @@ import ladder.model.Result;
 import ladder.model.Row;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -25,8 +26,16 @@ public class OutputView {
     }
 
     private static void setPrintName(LadderGame ladderGame, StringBuilder stringBuilder) {
-        for (Member member : ladderGame.getMembers()) {
-            stringBuilder.append(makePrettyName(member.getName())).append(SINGLE_BLANK);
+        for (String name: ladderGame.getMembersName()) {
+            stringBuilder.append(makePrettyName(name)).append(SINGLE_BLANK);
+        }
+    }
+
+    // todo: LadderGame에서 ladder 정보를 전달하도록 구현
+    private static void setPrintLadder(LadderGame ladderGame, StringBuilder stringBuilder) {
+        stringBuilder.append(NEW_LINE);
+        for (Row row : ladderGame.getLadder()){
+            stringBuilder.append(row.toString() + NEW_LINE);
         }
     }
 
@@ -57,20 +66,13 @@ public class OutputView {
         }
     }
 
-    private static void setPrintLadder(LadderGame ladderGame, StringBuilder stringBuilder) {
-        stringBuilder.append(NEW_LINE);
-        for (Row row : ladderGame.getLadder()){
-            stringBuilder.append(row.toString() + NEW_LINE);
-        }
-    }
-
     public static void printMemberResult(Result result) {
         System.out.println(GAME_RESULT);
-        System.out.println(result);
+        System.out.println(result.getResult());
     }
 
-    public static void allPrintResult(List<Result> results) {
+    public static void allPrintResult(Map<String, Result> results, List<String> membersName) {
         System.out.println(GAME_RESULT);
-        results.forEach(System.out::println);
+        membersName.forEach(name -> System.out.println(name + " : " + results.get(name).getResult()));
     }
 }
