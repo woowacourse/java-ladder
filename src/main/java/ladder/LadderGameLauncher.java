@@ -2,38 +2,52 @@ package ladder;
 
 import ladder.domain.*;
 import ladder.view.InputView;
+import ladder.view.OutputView;
 
 import java.util.List;
 
 public class LadderGameLauncher {
     public static void main(String[] args) {
         PlayerGroup players = getPlayers();
-        ResultItems resultItems = getResultItemsSizeOf(players.size());
-        CrossbarGenerator randomCrossbarGenerator = new RandomCrossbarGenerator(players.size());
-        Ladder ladder = generateLadderBy(randomCrossbarGenerator);
+        int numberOfPlayers = players.size();
+        ResultItems resultItems = getResultItems(numberOfPlayers);
+        Ladder ladder = generateLadderWidthOf(numberOfPlayers);
 
         LadderGame laddergame = new LadderGame();
         laddergame.start(players, ladder, resultItems);
     }
 
-    private static ResultItems getResultItemsSizeOf(int numberOfPeople) {
+    private static PlayerGroup getPlayers() {
+        List<String> playerNames;
+
+        try {
+            playerNames = InputView.inputPlayerName();
+            return new PlayerGroup(playerNames);
+        } catch (IllegalArgumentException e) {
+            OutputView.showErrorMessage(e.getMessage());
+            return getPlayers();
+        }
+    }
+
+    private static ResultItems getResultItems(int numberOfPeople) {
         List<String> resultItemNames;
 
         try {
             resultItemNames = InputView.inputResultName();
             return new ResultItems(resultItemNames, numberOfPeople);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getResultItemsSizeOf(numberOfPeople);
+            OutputView.showErrorMessage(e.getMessage());
+            return getResultItems(numberOfPeople);
         }
     }
 
-    private static Ladder generateLadderBy(CrossbarGenerator crossbarGenerator) {
+    private static Ladder generateLadderWidthOf(int width) {
         try {
-            return new Ladder(getHeight(), crossbarGenerator);
+            int height = getHeight();
+            return new Ladder(height, width);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return generateLadderBy(crossbarGenerator);
+            OutputView.showErrorMessage(e.getMessage());
+            return generateLadderWidthOf(width);
         }
     }
 
@@ -46,15 +60,4 @@ public class LadderGameLauncher {
         }
     }
 
-    private static PlayerGroup getPlayers() {
-        List<String> playerNames;
-
-        try {
-            playerNames = InputView.inputPlayerName();
-            return new PlayerGroup(playerNames);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getPlayers();
-        }
-    }
 }

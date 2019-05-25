@@ -19,7 +19,7 @@ public class CrosspointTest {
     }
 
     @Test
-    void Crosspoint객체가_연결_여부에_따라_변화된_위치를_제대로_돌려주는지_테스트() {
+    void Crosspoint객체가_가진_가로막대_여부에_따라_변화된_위치를_제대로_돌려주는지_테스트() {
         int testPosition = 1;
         int rightPositionOfTestPosition = 2;
         int leftPositionOfTestPosition = 0;
@@ -42,6 +42,6 @@ public class CrosspointTest {
         assertThat(testpoint1.hasRightSideCrossbar()).isTrue();
         assertThat(testpoint2.hasRightSideCrossbar()).isFalse();
         assertThat(testpoint3.hasRightSideCrossbar()).isFalse();
-
     }
+
 }

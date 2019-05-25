@@ -12,7 +12,7 @@ public class ResultItemsTest {
     void 결과Position을_입력받아_해당_위치에_있는_결과항목을_제대로_반환하는지_테스트() {
         ResultItems resultItems = new ResultItems(Arrays.asList("a", "b", "c"), 3);
 
-        assertThat(resultItems.getResultItemAtPositionOf(2)).isEqualTo("c");
+        assertThat(resultItems.getResultItemAtPositionOf(2)).isEqualTo(new LadderItem("c"));
     }
 
     @Test

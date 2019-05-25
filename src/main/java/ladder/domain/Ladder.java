@@ -7,16 +7,21 @@ import java.util.Objects;
 public class Ladder {
     private static final int MINIMUM_HEIGHT = 1;
 
-    private List<Crosspoints> ladderRows = new ArrayList<>();
+    private List<LadderRow> ladderRows = new ArrayList<>();
 
-    public Ladder(int height, CrossbarGenerator crossbarGenerator) {
+    public Ladder(int height, int numberOfPeople) {
         validateHeight(height);
         for (int i = 0; i < height; i++) {
-            ladderRows.add(crossbarGenerator.generateCrossbars());
+            ladderRows.add(LadderRow.of(numberOfPeople));
         }
     }
 
-    public List<Crosspoints> getLadderRows() {
+    Ladder(int height, List<LadderRow> ladderRows) {
+        validateHeight(height);
+        this.ladderRows = ladderRows;
+    }
+
+    public List<LadderRow> getLadderRows() {
         return ladderRows;
     }
 
@@ -29,8 +34,8 @@ public class Ladder {
     public int answerResultPositionOf(int playerPosition) {
         int currentPosition = playerPosition;
 
-        for (Crosspoints crosspoints : ladderRows) {
-            currentPosition = crosspoints.answerResultIndexOf(currentPosition);
+        for (LadderRow ladderRow : ladderRows) {
+            currentPosition = ladderRow.answerResultIndexOf(currentPosition);
         }
         return currentPosition;
     }

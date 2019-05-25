@@ -5,6 +5,10 @@ import ladder.domain.*;
 import java.util.Map;
 
 public class OutputView {
+    public static void showErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     public static void showPlayersAndLadder(PlayerGroup players, Ladder ladder, ResultItems resultItems) {
         System.out.println("실행 결과\n");
         printPlayerNames(players);
@@ -20,8 +24,8 @@ public class OutputView {
     }
 
     private static void printLadder(Ladder ladder) {
-        for (Crosspoints crosspoints : ladder.getLadderRows()) {
-            printCrossbars(crosspoints);
+        for (LadderRow ladderRow : ladder.getLadderRows()) {
+            printCrossbars(ladderRow);
             System.out.println();
         }
     }
@@ -33,8 +37,8 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printCrossbars(Crosspoints crosspoints) {
-        for (Boolean rightCrossbar : crosspoints.getRightSideCrossbars()) {
+    private static void printCrossbars(LadderRow ladderRow) {
+        for (Boolean rightCrossbar : ladderRow.getRightSideCrossbars()) {
             if (rightCrossbar) {
                 System.out.print("|-----");
                 continue;

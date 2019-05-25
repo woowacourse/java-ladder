@@ -6,14 +6,15 @@ public class Crosspoint {
     private static final int ONE_STEP_LEFT = -1;
     private static final int ONE_STEP_RIGHT = 1;
     private static final int STAY = 0;
+
     private final int movingVector;
 
-    public Crosspoint(boolean leftCrossbar, boolean rightCrossbar) {
+    Crosspoint(boolean leftCrossbar, boolean rightCrossbar) {
         validateCrossbar(leftCrossbar, rightCrossbar);
-        this.movingVector = (leftCrossbar || rightCrossbar) ? setMovingVectorBy(leftCrossbar) : STAY;
+        this.movingVector = (leftCrossbar || rightCrossbar) ? selectMovingVectorBy(leftCrossbar) : STAY;
     }
 
-    private int setMovingVectorBy(boolean leftCrossbar) {
+    private int selectMovingVectorBy(boolean leftCrossbar) {
         if (leftCrossbar) {
             return ONE_STEP_LEFT;
         }
@@ -26,12 +27,20 @@ public class Crosspoint {
         }
     }
 
-    public int answerResultPositionOf(int positionOfPlayer) {
+    int answerResultPositionOf(int positionOfPlayer) {
         return positionOfPlayer + movingVector;
     }
 
-    public boolean hasRightSideCrossbar() {
+    boolean hasRightSideCrossbar() {
         return movingVector == ONE_STEP_RIGHT;
+    }
+
+    boolean hasLeftSideCrossbar() {
+        return movingVector == ONE_STEP_LEFT;
+    }
+
+    boolean hasCrossbar() {
+        return (movingVector == ONE_STEP_LEFT) || (movingVector == ONE_STEP_RIGHT);
     }
 
     @Override

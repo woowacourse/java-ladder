@@ -13,8 +13,6 @@ class LadderGame {
         HashMap<Player, LadderItem> ladderingResult = getAllResult(players, ladder, resultItems);
 
         OutputView.showPlayersAndLadder(players, ladder, resultItems);
-
-        System.out.println("\n실행 결과");
         show(ladderingResult);
     }
 
@@ -23,7 +21,7 @@ class LadderGame {
             String playerName = InputView.inputPlayerNameToShowResult();
             OutputView.showResultOf(playerName, ladderingResult);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.showErrorMessage(e.getMessage());
         }
         show(ladderingResult);
     }
