@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.validator;
 
 import org.junit.jupiter.api.Test;
 

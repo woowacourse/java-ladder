@@ -8,7 +8,7 @@ public class LadderGame {
     public void play() {
         PlayerGroup players = InputView.askUserNames();
         int width = players.getCountOfPlayers();
-        Ladder ladder = new Ladder(width, InputView.askHeight(players.getCountOfPlayers()));
+        Ladder ladder = new Ladder(width, InputView.askHeight());
         PrizeGroup prizeGroup = InputView.askPrizes(width);
 
         PlayerResult playerResult = players.makePlayerResult();

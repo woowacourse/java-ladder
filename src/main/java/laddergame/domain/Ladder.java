@@ -1,22 +1,30 @@
 package laddergame.domain;
 
+import laddergame.domain.generator.RandomLineGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
     private final int height;
 
     public Ladder(final int width, final int height) {
+        this.lines = new ArrayList<>();
         this.height = height;
 
         makeLadder(width, this.height);
     }
 
+    Ladder(final List<Line> lines, final int height) {
+        this.lines = lines;
+        this.height = height;
+    }
+
     private void makeLadder(int width, int height) {
         for (int i = 0; i < height; i++) {
-            lines.add(LineGenerator.makeLine(width));
+            lines.add(new RandomLineGenerator().makeLine(width));
         }
     }
 

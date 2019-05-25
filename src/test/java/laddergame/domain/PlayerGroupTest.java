@@ -29,8 +29,8 @@ public class PlayerGroupTest {
     }
 
     @Test
-    void 클론이_제대로_됐는지_테스트() {
-        assertThat((new PlayerGroup(players).clone() == new PlayerGroup(players))
+    void 리스트복사가_제대로_됐는지_테스트() {
+        assertThat((new PlayerGroup(players).makePlayerResult().getPlayers() == new PlayerGroup(players).getPlayers())
                 && (new PlayerGroup(players).equals(new PlayerGroup(players)))).isFalse();
     }
 }

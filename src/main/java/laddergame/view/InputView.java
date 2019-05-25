@@ -1,6 +1,9 @@
 package laddergame.view;
 
 import laddergame.domain.*;
+import laddergame.domain.generator.PlayersGenerator;
+import laddergame.domain.generator.PrizesGenerator;
+import laddergame.domain.validator.LadderValidator;
 
 import java.util.Scanner;
 
@@ -18,36 +21,21 @@ public class InputView {
         }
     }
 
-    public static int askHeight(int width) {
+    public static int askHeight() {
         System.out.println("사다리 높이는 몇 개인가요?");
 
         String height = reader.nextLine();
-
         try {
             LadderValidator.validateLadder(height);
             return Integer.parseInt(height);
         } catch (NullPointerException e) {
             System.out.println("사다리의 높이가 입력되지 않았습니다.");
-            return askHeight(width);
         } catch (NumberFormatException e) {
             System.out.println("사다리의 높이는 자연수여야 합니다.\n다시 입력해주세요.");
-            return askHeight(width);
         } catch (IllegalArgumentException e) {
             System.out.println("사다리의 높이는 최소 1이상이어야 합니다.\n다시 입력해주세요.");
-            return askHeight(width);
         }
-        /*try {
-            return new Ladder(width, reader.nextLine());
-        } catch (NullPointerException e) {
-            System.out.println("사다리의 높이가 입력되지 않았습니다.");
-            return askHeight(width);
-        } catch (NumberFormatException e) {
-            System.out.println("사다리의 높이는 자연수여야 합니다.\n다시 입력해주세요.");
-            return askHeight(width);
-        } catch (IllegalArgumentException e) {
-            System.out.println("사다리의 높이는 최소 1이상이어야 합니다.\n다시 입력해주세요.");
-            return askHeight(width);
-        }*/
+        return askHeight();
     }
 
     public static PrizeGroup askPrizes(int countOfPlayers) {

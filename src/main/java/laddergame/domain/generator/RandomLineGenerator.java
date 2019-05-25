@@ -1,13 +1,14 @@
-package laddergame.domain;
+package laddergame.domain.generator;
+
+import laddergame.domain.Line;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class LineGenerator {
-    private static boolean FIRST_VALUE_OF_LINE = false;
-
-    protected static Line makeLine(int width) {
+public class RandomLineGenerator implements LineGenerator {
+    @Override
+    public Line makeLine(int width) {
         List<Boolean> handles = new ArrayList<>();
 
         handles.add(getConnectableValue(FIRST_VALUE_OF_LINE));
@@ -18,7 +19,7 @@ public class LineGenerator {
         return new Line(handles);
     }
 
-    private static boolean getConnectableValue(boolean preValue) {
+    private boolean getConnectableValue(boolean preValue) {
         if (preValue) return false;
 
         return new Random().nextBoolean();

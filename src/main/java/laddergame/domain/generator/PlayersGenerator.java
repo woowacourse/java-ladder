@@ -1,4 +1,9 @@
-package laddergame.domain;
+package laddergame.domain.generator;
+
+import laddergame.domain.Player;
+import laddergame.domain.PlayerGroup;
+import laddergame.domain.PlayerName;
+import laddergame.domain.validator.PlayerNamesValidator;
 
 import java.util.*;
 

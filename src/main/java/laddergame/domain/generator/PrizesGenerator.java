@@ -1,4 +1,8 @@
-package laddergame.domain;
+package laddergame.domain.generator;
+
+import laddergame.domain.Prize;
+import laddergame.domain.PrizeGroup;
+import laddergame.domain.validator.PrizesValidator;
 
 import java.util.ArrayList;
 import java.util.Arrays;

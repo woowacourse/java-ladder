@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.validator;
 
 import java.util.List;
 

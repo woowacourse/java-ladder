@@ -1,5 +1,7 @@
-package laddergame.domain;
+package laddergame.domain.generator;
 
+import laddergame.domain.Prize;
+import laddergame.domain.PrizeGroup;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

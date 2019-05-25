@@ -1,6 +1,5 @@
 package laddergame.domain;
 
-import org.assertj.core.util.Maps;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,7 @@ public class GameResultTest {
 
     @BeforeEach
     void setUp() {
-        gameResult = new GameResult(new PlayerGroup(players), new PrizeGroup(prizes));
+        gameResult = new GameResult(new PlayerResult(players), new PrizeGroup(prizes));
     }
 
     @Test
