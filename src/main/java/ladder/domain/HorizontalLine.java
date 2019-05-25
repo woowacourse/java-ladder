@@ -4,6 +4,7 @@ import java.util.*;
 
 public class HorizontalLine {
     private static final String VALIDATION_FAIL_MESSAGE = "사다리게임에 사용할 수 없는 입력입니다.";
+    private static final Random RANDOM = new Random();
 
     private final List<Direction> directions;
 
@@ -36,6 +37,18 @@ public class HorizontalLine {
         return new HorizontalLine(generateRandomDirections(numPosition));
     }
 
+    private static List<Direction> generateRandomDirections(int numPosition) {
+        List<Direction> generatedDirections = new ArrayList<>();
+        Direction d = Direction.NONE;
+        for (int i = 0; i < numPosition - 1; i++) {
+            d = d.next(RANDOM::nextBoolean);
+            generatedDirections.add(d);
+        }
+        generatedDirections.add(d.end());
+
+        return generatedDirections;
+    }
+
     public static HorizontalLine from(List<Direction> directions) {
         return new HorizontalLine(directions);
     }
@@ -48,16 +61,8 @@ public class HorizontalLine {
         return directions.get(p.toInt());
     }
 
-    private static List<Direction> generateRandomDirections(int numPosition) {
-        List<Direction> generatedDirections = new ArrayList<>();
-        Direction d = Direction.NONE;
-        for (int i = 0; i < numPosition - 1; i++) {
-            d = d.next();
-            generatedDirections.add(d);
-        }
-        generatedDirections.add(d.end());
-
-        return generatedDirections;
+    public int getNumPosition() {
+        return directions.size();
     }
 
     @Override

@@ -26,20 +26,20 @@ public class InputView {
     }
 
     public static Rewards readRewards(int numPlayers) {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        Rewards rewards;
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         try {
-            rewards = Rewards.from(splitNames(SCANNER.nextLine()));
+            return createRewards(splitNames(SCANNER.nextLine()), numPlayers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readRewards(numPlayers);
         }
+    }
 
-        if (rewards.size() != numPlayers) {
-            System.out.println("플레이어 수와 보상의 수가 다릅니다.");
-            return readRewards(numPlayers);
+    private static Rewards createRewards(List<String> splitNames, int numPlayers) {
+        if (splitNames.size() != numPlayers) {
+            throw new IllegalArgumentException("플레이어 수와 보상의 수가 다릅니다.");
         }
-        return rewards;
+        return Rewards.from(splitNames);
     }
 
     private static List<String> splitNames(String inp) {
@@ -52,25 +52,29 @@ public class InputView {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         try {
             return Height.create(Integer.parseInt(SCANNER.nextLine()));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readHeight();
+        } catch (NumberFormatException e) {
+            System.out.println("높이는 숫자여야 합니다");
         }
+        catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return readHeight();
     }
 
     public static Player readExistPlayer(Players players) {
         System.out.println("결과를 보고 싶은 사람은? (모두 확인하려면 'all'을 입력하세요)");
-        Player player;
         try {
-            player = Player.from(SCANNER.nextLine());
+            return createExistPlayer(players);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readExistPlayer(players);
         }
+    }
 
+    private static Player createExistPlayer(Players players) {
+        Player player = Player.from(SCANNER.nextLine());
         if (!player.equals(Player.ALL) && !players.contains(player)) {
-            System.out.println("존재하지 않는 플레이어 입니다. 다시입력해주세요.");
-            return readExistPlayer(players);
+            throw new IllegalArgumentException("존재하지 않는 플레이어 입니다. 다시입력해주세요.");
         }
         return player;
     }

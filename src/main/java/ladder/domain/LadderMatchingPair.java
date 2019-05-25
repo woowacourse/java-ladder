@@ -2,16 +2,16 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class LadderMachingPair {
+public class LadderMatchingPair {
     private final Name from, to;
 
-    LadderMachingPair(Name from, Name to) {
+    LadderMatchingPair(Name from, Name to) {
         this.from = from;
         this.to = to;
     }
 
-    public static LadderMachingPair of(Name from, Name to) {
-        return new LadderMachingPair(from, to);
+    public static LadderMatchingPair of(Name from, Name to) {
+        return new LadderMatchingPair(from, to);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class LadderMachingPair {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderMachingPair that = (LadderMachingPair) o;
+        LadderMatchingPair that = (LadderMatchingPair) o;
         return Objects.equals(from.getName(), that.from.getName()) &&
                 Objects.equals(to.getName(), that.to.getName());
     }

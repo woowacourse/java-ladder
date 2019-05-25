@@ -1,7 +1,7 @@
-/*package ladder.view;
+package ladder.view;
 
 import ladder.domain.LadderBoard;
-import ladder.domain.LadderMachingPair;
+import ladder.domain.LadderMatchingPair;
 
 import java.util.List;
 
@@ -14,9 +14,10 @@ public class OutputView {
     }
 
 
-    public static void printLadderMachingResults(List<LadderMachingPair> pairs) {
-        for (LadderMachingPair pair : pairs) {
+    public static void printLadderMachingResults(List<LadderMatchingPair> pairs) {
+        System.out.println("실행 결과\n");
+        for (LadderMatchingPair pair : pairs) {
             System.out.println(pair);
         }
     }
-}*/
+}

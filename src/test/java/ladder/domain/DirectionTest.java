@@ -26,4 +26,34 @@ public class DirectionTest {
 
         assertThat(Direction.NONE.nextPosition(position)).isEqualTo(position);
     }
+
+    @Test
+    void end_현재_RIGHT() {
+        assertThat(Direction.RIGHT.end()).isEqualTo(Direction.LEFT);
+    }
+
+    @Test
+    void end_현재_LEFT() {
+        assertThat(Direction.LEFT.end()).isEqualTo(Direction.NONE);
+    }
+
+    @Test
+    void end_현재_NONE() {
+        assertThat(Direction.NONE.end()).isEqualTo(Direction.NONE);
+    }
+
+    @Test
+    void next_현재_RIGHT() {
+        assertThat(Direction.RIGHT.next(() -> true)).isEqualTo(Direction.LEFT);
+        assertThat(Direction.RIGHT.next(() -> false)).isEqualTo(Direction.LEFT);
+    }
+
+    @Test
+    void next_() {
+        assertThat(Direction.LEFT.next(() -> true)).isEqualTo(Direction.RIGHT);
+        assertThat(Direction.LEFT.next(() -> false)).isEqualTo(Direction.NONE);
+
+        assertThat(Direction.NONE.next(() -> true)).isEqualTo(Direction.RIGHT);
+        assertThat(Direction.NONE.next(() -> false)).isEqualTo(Direction.NONE);
+    }
 }

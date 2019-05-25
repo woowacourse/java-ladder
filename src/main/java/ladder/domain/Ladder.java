@@ -1,7 +1,9 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Ladder {
     private final List<HorizontalLine> lines; // top to bottom
@@ -11,10 +13,10 @@ public class Ladder {
     }
 
     public static Ladder create(Height height, int numPosition) {
-        List<HorizontalLine> generatedLines = new ArrayList<>();
-        for (int h = 0; h < height.toInt(); h++) {
-            generatedLines.add(HorizontalLine.create(numPosition));
-        }
+        List<HorizontalLine> generatedLines = Stream.generate(() -> HorizontalLine.create(numPosition))
+                .limit(numPosition)
+                .collect(Collectors.toList());
+
         return new Ladder(generatedLines);
     }
 
@@ -22,12 +24,23 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public Position nextPosition(Position from) {
+    public LadderMatchingIndice match() {
+        Stream<Position> fromPositions = IntStream.range(0, getNumPosition()).mapToObj(Position::create);
+        Stream<Position> toPositions = fromPositions.map(position -> nextPosition(position));
+
+        return LadderMatchingIndice.from(toPositions.map(Position::toInt).collect(Collectors.toList()));
+    }
+
+    private Position nextPosition(Position from) {
         Position p = from;
         for (HorizontalLine line : lines) {
             p = line.nextPosition(p);
         }
         return p;
+    }
+
+    private int getNumPosition() {
+        return lines.get(0).getNumPosition();
     }
 
     @Override
@@ -41,4 +54,6 @@ public class Ladder {
 
         return sb.toString();
     }
+
+
 }

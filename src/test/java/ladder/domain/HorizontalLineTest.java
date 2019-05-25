@@ -13,7 +13,6 @@ public class HorizontalLineTest {
     private final Position leftPosition = position.prev();
     private final Position rightPosition = position.next();
 
-    //
     @Test
     void 생성자_맨_왼쪽_LEFT() {
         List<Direction> directions = Arrays.asList(Direction.LEFT, Direction.NONE);
