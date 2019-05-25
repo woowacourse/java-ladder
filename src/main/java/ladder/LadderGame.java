@@ -10,13 +10,13 @@ import java.util.LinkedHashMap;
 
 class LadderGame {
     void start(PlayerGroup players, Ladder ladder, ResultItems resultItems) {
-        HashMap<Player, LadderItem> ladderingResult = getAllResult(players, ladder, resultItems);
+        LadderingResult ladderingResult = createAllLadderingResult(players, ladder, resultItems);
 
         OutputView.showPlayersAndLadder(players, ladder, resultItems);
         show(ladderingResult);
     }
 
-    private void show(HashMap<Player, LadderItem> ladderingResult) {
+    private void show(LadderingResult ladderingResult) {
         try {
             String playerName = InputView.inputPlayerNameToShowResult();
             OutputView.showResultOf(playerName, ladderingResult);
@@ -26,7 +26,7 @@ class LadderGame {
         show(ladderingResult);
     }
 
-    private HashMap<Player, LadderItem> getAllResult(PlayerGroup players, Ladder ladder, ResultItems resultItems) {
+    private LadderingResult createAllLadderingResult(PlayerGroup players, Ladder ladder, ResultItems resultItems) {
         HashMap<Player, LadderItem> ladderingResult = new LinkedHashMap<>();
         int resultPosition;
 
@@ -34,6 +34,6 @@ class LadderGame {
             resultPosition = ladder.answerResultPositionOf(position);
             ladderingResult.put(players.getPlayerAtPositionOf(position), resultItems.getResultItemAtPositionOf(resultPosition));
         }
-        return ladderingResult;
+        return new LadderingResult(ladderingResult);
     }
 }

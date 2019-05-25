@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class OutputView {
@@ -47,28 +48,11 @@ public class OutputView {
         }
     }
 
-    public static void showResultOf(String playerName, Map<Player, LadderItem> ladderingResult) {
-        if (playerName.equals("all")) {
-            showAllResultOf(ladderingResult);
-            return;
+    public static void showResultOf(String playerName, LadderingResult ladderingResult) {
+        HashMap<Player, LadderItem> foundResult = ladderingResult.findResultOf(playerName);
+
+        for (Map.Entry<Player, LadderItem> result : foundResult.entrySet()) {
+            System.out.println(result.getKey() + " : " + result.getValue());
         }
-
-        showPlayerResult(playerName, ladderingResult);
-    }
-
-    private static void showAllResultOf(Map<Player, LadderItem> ladderingResult) {
-        for (Player player : ladderingResult.keySet()) {
-            System.out.println(player + " : " + ladderingResult.get(player));
-        }
-    }
-
-    private static void showPlayerResult(String playerName, Map<Player, LadderItem> ladderingResult) {
-        Player player = new Player(playerName);
-
-        if (!ladderingResult.containsKey(player)) {
-            throw new IllegalArgumentException("존재하지 않는 플레이어입니다.");
-        }
-
-        System.out.println(ladderingResult.get(player));
     }
 }
