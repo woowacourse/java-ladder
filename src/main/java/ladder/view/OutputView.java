@@ -1,4 +1,4 @@
-package ladder.view;
+/*package ladder.view;
 
 import ladder.domain.LadderBoard;
 import ladder.domain.LadderMachingPair;
@@ -19,4 +19,4 @@ public class OutputView {
             System.out.println(pair);
         }
     }
-}
+}*/

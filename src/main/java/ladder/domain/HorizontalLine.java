@@ -3,10 +3,33 @@ package ladder.domain;
 import java.util.*;
 
 public class HorizontalLine {
+    private static final String VALIDATION_FAIL_MESSAGE = "사다리게임에 사용할 수 없는 입력입니다.";
+
     private final List<Direction> directions;
 
-    private HorizontalLine(List<Direction> directions) {
+    HorizontalLine(List<Direction> directions) {
+        validate(directions);
         this.directions = directions;
+    }
+
+    private void validate(List<Direction> directions) {
+        Direction preD = Direction.NONE;
+        for (Direction d : directions) {
+            validateAdjacentDirections(preD, d);
+            preD = d;
+        }
+        if (preD.equals(Direction.RIGHT)) {
+            throw new IllegalArgumentException(VALIDATION_FAIL_MESSAGE);
+        }
+    }
+
+    private void validateAdjacentDirections(Direction prev, Direction current) {
+        if (prev.equals(Direction.RIGHT) && !current.equals(Direction.LEFT)) {
+            throw new IllegalArgumentException(VALIDATION_FAIL_MESSAGE);
+        }
+        if (current.equals(Direction.LEFT) && !prev.equals(Direction.RIGHT)) {
+            throw new IllegalArgumentException(VALIDATION_FAIL_MESSAGE);
+        }
     }
 
     public static HorizontalLine create(int numPosition) {

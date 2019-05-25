@@ -7,31 +7,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PositionTest {
 
     @Test
-    void at() {
-        Position position = new Position(0, 2, 1);
-        int atIdx = 0;
-
-        assertThat(position.at(atIdx)).isEqualTo(new Position(0, 2, atIdx));
-    }
-
-    @Test
     void prev() {
-        Position position = new Position(0, 2, 1);
+        int at = 1;
+        Position position = Position.create(at);
 
-        assertThat(position.prev()).isEqualTo(new Position(0, 2, 0));
+        assertThat(position.prev()).isEqualTo(Position.create(at - 1));
     }
 
     @Test
     void next() {
-        Position position = new Position(0, 2, 0);
+        int at = 1;
+        Position position = Position.create(at);
 
-        assertThat(position.next()).isEqualTo(new Position(0, 2, 1));
+        assertThat(position.next()).isEqualTo(Position.create(at + 1));
     }
 
     @Test
     void toInt() {
-        Position position = new Position(0, 2, 0);
+        int at = 0;
+        Position position = Position.create(at);
 
-        assertThat(position.toInt()).isEqualTo(0);
+        assertThat(position.toInt()).isEqualTo(at);
     }
 }

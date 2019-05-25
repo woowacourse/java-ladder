@@ -3,47 +3,38 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Position {
-    private final int begin, end, current;
+    private final int position;
 
-    public Position(int begin, int end, int current) {
-        if (!(begin <= current && current < end)) {
-            throw new IndexOutOfBoundsException(
-                    String.format("current(=%d)의 범위는 [%d, %d) 이여야 합니다.", current, begin, end)
-            );
-        }
-        this.begin = begin;
-        this.end = end;
-        this.current = current;
+    private Position(int position) {
+        this.position = position;
     }
 
-    public Position at(int current) {
-        return new Position(begin, end, current);
+    public static Position create(int position) {
+        return new Position(position);
     }
 
     public Position prev() {
-        return new Position(begin, end, current - 1);
+        return new Position(position - 1);
     }
 
     public Position next() {
-        return new Position(begin, end, current + 1);
+        return new Position(position + 1);
     }
 
     public int toInt() {
-        return current;
+        return position;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Position position = (Position) o;
-        return begin == position.begin &&
-                end == position.end &&
-                current == position.current;
+        Position position1 = (Position) o;
+        return position == position1.position;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(begin, end, current);
+        return Objects.hash(position);
     }
 }

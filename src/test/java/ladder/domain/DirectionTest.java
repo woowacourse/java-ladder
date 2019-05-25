@@ -8,21 +8,21 @@ public class DirectionTest {
 
     @Test
     void nextPosition_LEFT() {
-        Position position = new Position(0, 3, 1);
+        Position position = Position.create(1);
 
-        assertThat(Direction.LEFT.nextPosition(position)).isEqualTo(new Position(0, 3, 0));
+        assertThat(Direction.LEFT.nextPosition(position)).isEqualTo(position.prev());
     }
 
     @Test
     void nextPosition_RIGHT() {
-        Position position = new Position(0, 3, 1);
+        Position position = Position.create(1);
 
-        assertThat(Direction.RIGHT.nextPosition(position)).isEqualTo(new Position(0, 3, 2));
+        assertThat(Direction.RIGHT.nextPosition(position)).isEqualTo(position.next());
     }
 
     @Test
     void nextPosition_NONE() {
-        Position position = new Position(0, 3, 1);
+        Position position = Position.create(1);
 
         assertThat(Direction.NONE.nextPosition(position)).isEqualTo(position);
     }
