@@ -3,10 +3,7 @@ package ladder.view;
 import ladder.domain.Players;
 import ladder.domain.Rewards;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class InputView {
     private static final int MIN_HEIGHT = 1;
@@ -63,7 +60,7 @@ public class InputView {
         return getHeight();
     }
 
-    static void validateNaturalNumber(final int height) {
+    private static void validateNaturalNumber(final int height) {
         if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException("사다리 높이는 최소 1 이어야 합니다.");
         }

@@ -6,8 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class Calculator {
-    public static int add(String s) {
+class Calculator {
+    static int add(String s) {
         List<Positive> nums = split(s);
         return getSum(nums);
     }
@@ -29,7 +29,7 @@ public class Calculator {
     }
 
     private static List<Positive> convertInputsToIntegers(String[] input) {
-        return Arrays.asList(input).stream()
+        return Arrays.stream(input)
                 .map(s -> new Positive(Integer.parseInt(s)))
                 .collect(Collectors.toList());
     }

@@ -13,10 +13,9 @@ public class Ladder {
 
     private final int numPlayers;
     private List<Line> lines = new ArrayList<>();
-    private final PointsGenerator generator;
 
     public Ladder(final int numPlayers, final int height) {
-        generator = new PointsGenerator(numPlayers);
+        PointsGenerator generator = new PointsGenerator(numPlayers);
         this.numPlayers = numPlayers;
         for (int i = 0; i < height; i++) {
             lines.add(new Line(generator.generate()));

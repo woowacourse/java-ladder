@@ -26,7 +26,7 @@ public class Players implements Iterable<Player> {
     }
 
     private void validateSurroundedWithComma(String rawNames) {
-        if(rawNames.startsWith(ITEM_SPLITTER) || rawNames.endsWith(ITEM_SPLITTER)){
+        if (rawNames.startsWith(ITEM_SPLITTER) || rawNames.endsWith(ITEM_SPLITTER)) {
             throw new IllegalArgumentException(ITEM_SPLITTER + "로 시작하거나 끝나면 안 됩니다.");
         }
     }

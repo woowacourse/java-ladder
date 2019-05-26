@@ -15,7 +15,7 @@ public class Rewards implements Iterable<Reward> {
         validateNoConsecutiveCommas(rawRewards);
         validateSurroundedWithComma(rawRewards);
         this.rewards = Collections.unmodifiableList(
-                Arrays.asList(rawRewards.split(ITEM_SPLITTER)).stream()
+                Arrays.stream(rawRewards.split(ITEM_SPLITTER))
                         .map(Reward::new).collect(Collectors.toList()));
     }
 
@@ -26,7 +26,7 @@ public class Rewards implements Iterable<Reward> {
     }
 
     private void validateSurroundedWithComma(String rawNames) {
-        if(rawNames.startsWith(ITEM_SPLITTER) || rawNames.endsWith(ITEM_SPLITTER)){
+        if (rawNames.startsWith(ITEM_SPLITTER) || rawNames.endsWith(ITEM_SPLITTER)) {
             throw new IllegalArgumentException(ITEM_SPLITTER + "로 시작하거나 끝나면 안 됩니다.");
         }
     }
