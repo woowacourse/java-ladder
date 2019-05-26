@@ -1,5 +1,6 @@
-package ladder.model;
+package ladder.model.generator;
 
+import ladder.model.Member;
 import ladder.model.generator.MemberGenerator;
 import org.junit.jupiter.api.Test;
 
@@ -9,14 +10,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MemberGeneratorTest {
-
-    @Test
-    void 쉼표_구분자_분리() {
-        String inputText = "pobi,crong";
-        String[] result = MemberGenerator.refineNames(inputText);
-        String[] members = {"pobi", "crong"};
-        assertThat(result).isEqualTo(members);
-    }
 
     @Test
     void 최초_사람_위치_설정() {
