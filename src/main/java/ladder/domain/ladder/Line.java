@@ -20,9 +20,10 @@ public class Line {
     }
 
     private void generatePoints(int width, LadderRule rule) {
-        points.add(new Point(Direction.first(rule.isAvailablePoint()), 0));
+        points.add(Point.generateFirstPoint(rule.isAvailablePoint()));
         for (int i = 0; i < width - 1; i++) {
-            points.add(points.get(i).nextPoint(width - 1, rule.isAvailablePoint()));
+            points.add(Point.genarateNextPoint(points.get(i), width - 1, rule.isAvailablePoint()));
+
         }
     }
 

@@ -24,7 +24,7 @@ public class PointTest {
     @Test
     void 마지막_포인트_생성() {
         Point point = new Point(new Direction(false, true), 9);
-        assertThat(point.nextPoint(10, true)).isEqualTo(new Point(new Direction(true, false), 10));
+        assertThat(Point.genarateNextPoint(point,10, true)).isEqualTo(new Point(new Direction(true, false), 10));
     }
 
     @Test

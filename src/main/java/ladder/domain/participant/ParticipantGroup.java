@@ -3,7 +3,6 @@ package ladder.domain.participant;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ParticipantGroup {
     private static final int MIN_PARTICIPANTS_NUMBER = 2;
@@ -36,6 +35,7 @@ public class ParticipantGroup {
     public Participant getNthParticipant(final int index) {
         return participants.get(index);
     }
+
     public List<Participant> getParticipantList() {
         return participants;
     }

@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Point {
     private static final String VERTICAL_LINE = "-----";
     private static final String VERTICAL_EMPTY = "     ";
+    private static final int NEXT_PASS_VALUE = 1;
 
     private final Direction direction;
     private int position;
@@ -14,16 +15,24 @@ public class Point {
         this.direction = direction;
     }
 
+    public static Point generateFirstPoint(boolean bool) {
+        return new Point(Direction.first(bool), 0);
+    }
+
+    public static Point genarateNextPoint(final Point currentPoint, final int max, final boolean availablePoint) {
+        return currentPoint.nextPoint(max, availablePoint);
+    }
+
     public int move() {
         return this.position += this.direction.move();
     }
 
-    public Point nextPoint(final int max, final boolean nextCurrent) {
-        if (max > position + 1) {
-            return new Point(direction.next(nextCurrent),position + 1);
+    private Point nextPoint(final int max, final boolean nextCurrent) {
+        if (max > position + NEXT_PASS_VALUE) {
+            return new Point(direction.next(nextCurrent), position + NEXT_PASS_VALUE);
         }
-        if (max == position + 1) {
-            return new Point(direction.last(),position + 1);
+        if (max == position + NEXT_PASS_VALUE) {
+            return new Point(direction.last(), position + NEXT_PASS_VALUE);
         }
         throw new IllegalArgumentException();
     }

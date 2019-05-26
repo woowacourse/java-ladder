@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.Reward.Reward;
 import ladder.domain.Reward.RewardGroup;
 import ladder.domain.participant.Participant;
 import ladder.domain.participant.ParticipantGroup;
@@ -17,9 +18,9 @@ class LadderGameResultTest {
     public void setup() {
         ParticipantGroup participants = new ParticipantGroup(Arrays.asList("a", "b", "c"));
         RewardGroup rewards = new RewardGroup(Arrays.asList("1", "2", "3"), 3);
-        Map<Participant,String>gameResult = new HashMap<>();
+        Map<Participant, Reward>gameResult = new HashMap<>();
         for (int i = 0; i<participants.getSize(); i++){
-            gameResult.put(participants.getNthParticipant(i),rewards.getNthReward(i).toString());
+            gameResult.put(participants.getNthParticipant(i),rewards.getNthReward(i));
         }
         ladderGameResult = new LadderGameResult(gameResult);
     }

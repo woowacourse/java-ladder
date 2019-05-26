@@ -2,8 +2,9 @@ package ladder.domain.Reward;
 
 public class Reward {
     private final String rewardName;
-    private final int  MAX_NAME_LENGTH = 5;
-    public Reward(final String name){
+    private final int MAX_NAME_LENGTH = 5;
+
+    public Reward(final String name) {
         validateNameLength(name);
         this.rewardName = name;
     }
@@ -13,6 +14,7 @@ public class Reward {
             throw new IllegalArgumentException("이름이 " + MAX_NAME_LENGTH + "글자가 넘어갑니다.");
         }
     }
+
     @Override
     public String toString() {
         return rewardName;

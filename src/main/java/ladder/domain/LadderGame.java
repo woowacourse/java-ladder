@@ -1,7 +1,7 @@
 package ladder.domain;
 
-import ladder.domain.participant.ParticipantGroup;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.participant.ParticipantGroup;
 
 import java.util.ArrayList;
 import java.util.List;

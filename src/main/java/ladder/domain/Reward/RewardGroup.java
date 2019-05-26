@@ -5,6 +5,7 @@ import java.util.List;
 
 public class RewardGroup {
     private final List<Reward> rewards = new ArrayList<>();
+
     public RewardGroup(final List<String> rewardNames, final int size) {
         validateRewardGroupSize(rewardNames, size);
         rewardNames.stream().forEach(x -> this.rewards.add(new Reward(x)));

@@ -19,7 +19,6 @@ public class GameApplication {
         Match match = ladderGame.matchingPoint();
 
         LadderGameResult ladderGameResult = match.matchLadder(participants, rewardGroup);
-        ;
         while (!ladderGameResult.isEnd()) {
             OutputView.printGameResult(ladderGameResult);
         }
