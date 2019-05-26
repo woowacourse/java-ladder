@@ -13,7 +13,7 @@ public class OutputView {
     private static final String ALL = "all";
 
     static void printPlayerErrorMsg(Exception e) {
-        System.out.println(e.getMessage());
+        System.out.println(e.getMessage() + NEW_LINE);
     }
 
     static void printRewardErrorMsg(Exception e) {
@@ -92,7 +92,7 @@ public class OutputView {
 
     public static void printResult(ResultPairs pairs) {
         String name;
-        while (!(name = InputView.getName()).equals(ALL)) {
+        while (!(name = InputView.getName()).toLowerCase().equals(ALL)) {
             checkName(name, pairs);
         }
         printResultAll(pairs);

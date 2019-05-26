@@ -23,48 +23,25 @@ public class InputView {
         }
     }
 
-    private static List<String> getNames() {
+    private static String getNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 (" + ITEM_SPLITTER + ")로 구분하세요)");
-        final String names = scanner.nextLine();
-        validateNoConsecutiveCommas(names);
-        final List<String> splittedNames = Arrays.asList(names.split(ITEM_SPLITTER));
-        validateNoDuplication(splittedNames);
-
-        return splittedNames;
-    }
-
-    static void validateNoConsecutiveCommas(final String names) {
-        if (names.contains(ITEM_SPLITTER + ITEM_SPLITTER)) {
-            throw new IllegalArgumentException(ITEM_SPLITTER + "가 두개 이상 연달아 있으면 안 됩니다.");
-        }
-    }
-
-    static void validateNoDuplication(final List<String> names) {
-        final List<String> reducedNames = names.stream().distinct().collect(Collectors.toList());
-        if (names.size() != reducedNames.size()) throw new IllegalArgumentException("중복된 이름이 존재하면 안됩니다.");
+        return scanner.nextLine();
     }
 
     public static Rewards createRewards(int playersSize) {
         try {
-            List<String> rewardsInput = InputView.getRewards();
-            validatePlayerRewardLength(playersSize, rewardsInput.size());
-            return new Rewards(rewardsInput);
+            Rewards rewards = new Rewards(getRewards());
+            validatePlayerRewardLength(playersSize, rewards.getRewardSize());
+            return rewards;
         } catch (IllegalArgumentException e) {
             OutputView.printRewardErrorMsg(e);
             return createRewards(playersSize);
         }
     }
 
-    private static List<String> getRewards() {
+    private static String getRewards() {
         System.out.println(NEW_LINE + "실행 결과를 입력하세요. (결과는 (" + ITEM_SPLITTER + ")로 구분하세요)");
-        final String rewards = scanner.nextLine();
-        try {
-            validateNoConsecutiveCommas(rewards);
-            return Arrays.asList(rewards.split(ITEM_SPLITTER));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return getRewards();
-        }
+        return scanner.nextLine();
     }
 
     private static void validatePlayerRewardLength(int playersSize, int rewardsSize) {

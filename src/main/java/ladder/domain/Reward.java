@@ -13,7 +13,7 @@ public class Reward {
 
     private static void validateRewardsLength(final String reward) {
         if (reward.length() > MAX_REWARD_LENGTH || reward.length() < MIN_REWARD_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("보상은 "+MIN_REWARD_LENGTH+"자 이상 "+MAX_REWARD_LENGTH+"자 이내여야 합니다.");
         }
     }
 

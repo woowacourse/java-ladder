@@ -3,19 +3,28 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Player {
+    private static final String ALL = "all";
+
     static final int MAX_NAME_LENGTH = 5;
     static final int MIN_NAME_LENGTH = 1;
 
     private final String name;
 
     Player(final String name) {
+        validateNameIsAll(name);
         validateNameLength(name);
         this.name = name;
     }
 
+    private void validateNameIsAll(String name) {
+        if (name.toLowerCase().equals(ALL)) {
+            throw new IllegalArgumentException("이름은 " + ALL + "일 수 없습니다.");
+        }
+    }
+
     private void validateNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름은 1자 이상 5자 이내여야 합니다.");
+            throw new IllegalArgumentException("이름은 " + MIN_NAME_LENGTH + "자 이상 " + MAX_NAME_LENGTH + "자 이내여야 합니다.");
         }
     }
 
