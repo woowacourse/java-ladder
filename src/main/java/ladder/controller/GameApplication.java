@@ -2,7 +2,6 @@ package ladder.controller;
 
 import ladder.domain.LadderGame;
 import ladder.domain.LadderGameResult;
-import ladder.domain.Match;
 import ladder.domain.Reward.RewardGroup;
 import ladder.domain.participant.ParticipantGroup;
 import ladder.view.InputView;
@@ -16,9 +15,7 @@ public class GameApplication {
         LadderGame ladderGame = createLadderGame(participants, rewardGroup);
         OutputView.printLadderResult(participants, ladderGame.getLadder(), rewardGroup);
 
-        Match match = ladderGame.matchingPoint();
-
-        LadderGameResult ladderGameResult = match.matchLadder(participants, rewardGroup);
+        LadderGameResult ladderGameResult = ladderGame.playingGame(participants, rewardGroup);
         while (!ladderGameResult.isEnd()) {
             OutputView.printGameResult(ladderGameResult);
         }

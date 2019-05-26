@@ -1,10 +1,13 @@
 package ladder.domain;
 
+import ladder.domain.Reward.Reward;
+import ladder.domain.Reward.RewardGroup;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.participant.Participant;
 import ladder.domain.participant.ParticipantGroup;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LadderGame {
     private final ParticipantGroup participantGroup;
@@ -19,11 +22,11 @@ public class LadderGame {
         return ladder;
     }
 
-    public Match matchingPoint() {
-        List<Integer> order = new ArrayList<>();
+    public LadderGameResult playingGame(ParticipantGroup participantGroup, RewardGroup rewardGroup) {
+        Map<Participant, Reward> ladderGameResult = new HashMap<>();
         for (int i = 0; i < participantGroup.getSize(); i++) {
-            order.add(ladder.getEndPoint(i));
+            ladderGameResult.put(participantGroup.getNthParticipant(i), rewardGroup.getNthReward(ladder.getEndPoint(i)));
         }
-        return new Match(order);
+        return new LadderGameResult(ladderGameResult);
     }
 }
