@@ -1,5 +1,8 @@
 package ladder.view;
 
+import ladder.domain.Players;
+import ladder.domain.Rewards;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -7,25 +10,32 @@ import java.util.stream.Collectors;
 
 public class InputView {
     private static final int MIN_HEIGHT = 1;
+    private static final String ITEM_SPLITTER = ",";
+    private static final String NEW_LINE = System.getProperty("line.separator");
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> getNames() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        final String names = scanner.nextLine();
+    public static Players createPlayers() {
         try {
-            validateNoConsecutiveCommas(names);
-            final List<String> splittedNames = Arrays.asList(names.split(","));
-            validateNoDuplication(splittedNames);
-            return splittedNames;
+            return new Players(getNames());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return getNames();
+            OutputView.printPlayerErrorMsg(e);
+            return createPlayers();
         }
     }
 
+    private static List<String> getNames() {
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 (" + ITEM_SPLITTER + ")로 구분하세요)");
+        final String names = scanner.nextLine();
+        validateNoConsecutiveCommas(names);
+        final List<String> splittedNames = Arrays.asList(names.split(ITEM_SPLITTER));
+        validateNoDuplication(splittedNames);
+
+        return splittedNames;
+    }
+
     static void validateNoConsecutiveCommas(final String names) {
-        if (names.contains(",,")) {
-            throw new IllegalArgumentException("','가 두개 이상 연달아 있으면 안 됩니다.");
+        if (names.contains(ITEM_SPLITTER + ITEM_SPLITTER)) {
+            throw new IllegalArgumentException(ITEM_SPLITTER + "가 두개 이상 연달아 있으면 안 됩니다.");
         }
     }
 
@@ -34,29 +44,44 @@ public class InputView {
         if (names.size() != reducedNames.size()) throw new IllegalArgumentException("중복된 이름이 존재하면 안됩니다.");
     }
 
+    public static Rewards createRewards(int playersSize) {
+        try {
+            List<String> rewardsInput = InputView.getRewards();
+            validatePlayerRewardLength(playersSize, rewardsInput.size());
+            return new Rewards(rewardsInput);
+        } catch (IllegalArgumentException e) {
+            OutputView.printRewardErrorMsg(e);
+            return createRewards(playersSize);
+        }
+    }
 
-    public static List<String> getRewards() {
-        System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    private static List<String> getRewards() {
+        System.out.println(NEW_LINE + "실행 결과를 입력하세요. (결과는 (" + ITEM_SPLITTER + ")로 구분하세요)");
         final String rewards = scanner.nextLine();
         try {
             validateNoConsecutiveCommas(rewards);
-            return Arrays.asList(rewards.split(","));
+            return Arrays.asList(rewards.split(ITEM_SPLITTER));
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return getRewards();
         }
     }
 
+    private static void validatePlayerRewardLength(int playersSize, int rewardsSize) {
+        if (playersSize != rewardsSize)
+            throw new IllegalArgumentException("플레이어의 이름과 같은 갯수의 보상을 입력해주세요.");
+    }
+
     public static int getHeight() {
         try {
-            System.out.println("\n최대 사다리 높이는 몇 개인가요?");
+            System.out.println(NEW_LINE + "최대 사다리 높이는 몇 개인가요?");
             final int height = Integer.parseInt(scanner.nextLine());
             validateNaturalNumber(height);
             return height;
         } catch (NumberFormatException e) {
-            System.out.println("정수만 입력할 수 있습니다.");
+            OutputView.printHeightFormatErrorMsg();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            OutputView.printHeightRangeErrorMsg(e);
         }
         return getHeight();
     }
@@ -67,9 +92,8 @@ public class InputView {
         }
     }
 
-    public static String getName() {
+    static String getName() {
         System.out.println("결과를 보고 싶은 사람은?");
-        final String name = scanner.nextLine();
-        return name;
+        return scanner.nextLine();
     }
 }

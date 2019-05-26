@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class Line {
     private final List<PointsTuple> canMoveForLines;
 
-    public Line(final List<PointsTuple> canMoveForLines) {
+    Line(final List<PointsTuple> canMoveForLines) {
         if (isConsecutive(canMoveForLines)) {
             throw new IllegalArgumentException();
         }

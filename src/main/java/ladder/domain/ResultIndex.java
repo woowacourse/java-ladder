@@ -4,10 +4,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ResultIndex {
+class ResultIndex {
     final private List<Integer> resultIndex;
 
-    public ResultIndex(final List<Integer> resultIndex) {
+    ResultIndex(final List<Integer> resultIndex) {
         validateResultIndex(resultIndex);
         this.resultIndex = Collections.unmodifiableList(resultIndex);
     }
@@ -37,11 +37,11 @@ public class ResultIndex {
         }
     }
 
-    public List<Integer> getResultIndex() {
+    List<Integer> getResultIndex() {
         return resultIndex;
     }
 
-    public int findIndex(int target) {
+    int findIndex(int target) {
         return resultIndex.indexOf(target);
     }
 }

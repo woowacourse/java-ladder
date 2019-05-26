@@ -4,12 +4,12 @@ public class ResultPair<P, R> {
     private final P player;
     private final R reward;
 
-    public ResultPair(final P player, final R reward) {
+    ResultPair(final P player, final R reward) {
         this.player = player;
         this.reward = reward;
     }
 
-    public boolean matchName(String name) {
+    boolean matchName(String name) {
         if (player instanceof Player) {
             return ((Player) player).matchName(name);
         }

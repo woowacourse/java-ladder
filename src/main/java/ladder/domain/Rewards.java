@@ -9,10 +9,10 @@ public class Rewards implements Iterable<Reward> {
     private final List<Reward> rewards;
 
     public Rewards(final List<String> rewards) {
-        this.rewards = Collections.unmodifiableList(rewards.stream().map(reward -> new Reward(reward)).collect(Collectors.toList()));
+        this.rewards = Collections.unmodifiableList(rewards.stream().map(Reward::new).collect(Collectors.toList()));
     }
 
-    public Reward getReward(int index) {
+    Reward getReward(int index) {
         return rewards.get(index);
     }
 

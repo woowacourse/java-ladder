@@ -9,26 +9,44 @@ import java.util.List;
 
 public class OutputView {
     private static final int PADDING_WIDTH = 5;
-    private static final String NEW_LINE = "\n";
+    private static final String NEW_LINE = System.getProperty("line.separator");
+    private static final String ALL = "all";
 
-    public static void printRewardErrorMsg() {
-        System.out.println("보상은 1자 이상 5자 이내여야 합니다.");
+    static void printPlayerErrorMsg(Exception e) {
+        System.out.println(e.getMessage());
     }
 
-    public static void printLadderMessage() {
+    static void printRewardErrorMsg(Exception e) {
+        System.out.println(e.getMessage());
+    }
+
+    static void printHeightFormatErrorMsg() {
+        System.out.println("정수만 입력할 수 있습니다.");
+    }
+
+    static void printHeightRangeErrorMsg(Exception e) {
+        System.out.println(e.getMessage());
+    }
+
+    public static void printLadder(Players players, Rewards rewards, Ladder ladder) {
+        printLadderMessage();
+        printNames(players);
+        printLadder(ladder);
+        printRewards(rewards);
+    }
+
+    private static void printLadderMessage() {
         System.out.println(NEW_LINE + "사다리 결과" + NEW_LINE);
     }
 
-    public static void printNames(final Players players) {
-        Iterator<Player> iter = players.iterator();
-        while (iter.hasNext()) {
-            Player player = iter.next();
+    private static void printNames(final Players players) {
+        for (Player player : players) {
             System.out.printf("%s ", StringUtils.center(player.toString(), PADDING_WIDTH));
         }
         System.out.println();
     }
 
-    public static void printLadder(final Ladder ladder) {
+    private static void printLadder(final Ladder ladder) {
         for (Line line : ladder.getLines()) {
             printLine(line);
         }
@@ -65,30 +83,44 @@ public class OutputView {
         return "     ";
     }
 
-    public static void printRewards(final Rewards rewards) {
-        Iterator<Reward> iter = rewards.iterator();
-        while (iter.hasNext()) {
-            Reward reward = iter.next();
+    private static void printRewards(final Rewards rewards) {
+        for (Reward reward : rewards) {
             System.out.printf("%s ", StringUtils.center(reward.toString(), PADDING_WIDTH));
         }
         System.out.println(NEW_LINE);
     }
 
-    public static void printResultMessage() {
-        System.out.println("실행 결과");
+    public static void printResult(ResultPairs pairs) {
+        String name;
+        while (!(name = InputView.getName()).equals(ALL)) {
+            checkName(name, pairs);
+        }
+        printResultAll(pairs);
     }
 
-    public static void printResult(final ResultPair pair) {
+    private static void checkName(String name, ResultPairs pairs) {
+        if (pairs.hasName(name)) {
+            printResultPair(pairs.findPlayer(name));
+            return;
+        }
+        printResultErrorMsg();
+    }
+
+    private static void printResultPair(final ResultPair pair) {
         printResultMessage();
         System.out.println(pair.getReward() + NEW_LINE);
     }
 
-    public static void printResultAll(final ResultPairs pairs) {
-        printResultMessage();
-        System.out.println(pairs.toString());
+    private static void printResultMessage() {
+        System.out.println("실행 결과");
     }
 
-    public static void printResultErrorMsg() {
+    private static void printResultErrorMsg() {
         System.out.println("존재하는 이름을 입력해야 합니다.");
+    }
+
+    private static void printResultAll(final ResultPairs pairs) {
+        printResultMessage();
+        System.out.println(pairs.toString());
     }
 }

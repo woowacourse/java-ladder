@@ -3,23 +3,23 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Player {
-    public static final int MAX_NAME_LENGTH = 5;
-    public static final int MIN_NAME_LENGTH = 1;
+    static final int MAX_NAME_LENGTH = 5;
+    static final int MIN_NAME_LENGTH = 1;
 
     private final String name;
 
-    public Player(final String name) {
-        this.name = name.trim();
-        validateNameLength();
+    Player(final String name) {
+        validateNameLength(name);
+        this.name = name;
     }
 
-    private void validateNameLength() {
+    private void validateNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 1자 이상 5자 이내여야 합니다.");
         }
     }
 
-    public boolean matchName(String name) {
+    boolean matchName(String name) {
         return this.name.equals(name);
     }
 

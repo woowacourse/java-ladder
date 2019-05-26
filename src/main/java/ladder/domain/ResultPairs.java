@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class ResultPairs {
     private static final String NEW_LINE = "\n";
 
-    final List<ResultPair> pairs;
+    private final List<ResultPair> pairs;
 
     public ResultPairs(Players players, Rewards rewards, ResultIndex index) {
         pairs = Collections.unmodifiableList(index.getResultIndex().stream()
@@ -16,7 +16,7 @@ public class ResultPairs {
     }
 
     public boolean hasName(String name) {
-        return pairs.stream().filter(n -> n.matchName(name)).count() != 0;
+        return pairs.stream().anyMatch(n -> n.matchName(name));
     }
 
     public ResultPair findPlayer(String name) {

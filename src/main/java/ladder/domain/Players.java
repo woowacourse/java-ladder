@@ -9,11 +9,7 @@ public class Players implements Iterable<Player> {
     private final List<Player> players;
 
     public Players(final List<String> names) {
-        players = Collections.unmodifiableList(names.stream().map(name -> new Player(name)).collect(Collectors.toList()));
-    }
-
-    public boolean hasSameSize(int size) {
-        return players.size() == size;
+        players = Collections.unmodifiableList(names.stream().map(Player::new).collect(Collectors.toList()));
     }
 
     public int getPlayerSize() {

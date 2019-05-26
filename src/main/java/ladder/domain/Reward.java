@@ -6,7 +6,7 @@ public class Reward {
 
     private final String reward;
 
-    public Reward(final String reward) {
+    Reward(final String reward) {
         validateRewardsLength(reward);
         this.reward = reward;
     }
