@@ -7,19 +7,19 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DelimiterTest {
     @Test
-    void 커스텀구분자추출하기1() {
+    void 커스텀_구분자_추출() {
         assertThat(new Delimiter().extractCustomDelimiters("//&\n1&2,3"))
                 .isEqualTo("1&2,3");
     }
 
     @Test
-    void 커스텀구분자추출하기2() {
+    void 디폴트_구분자_계산() {
         assertThat(new Delimiter().extractCustomDelimiters("1:2,3"))
                 .isEqualTo("1:2,3");
     }
 
     @Test
-    void 금지된커스텀구분자포함() {
+    void 금지된_커스텀_구분자_에러() {
         assertThrows(IllegalArgumentException.class, () -> {
             new Delimiter().extractCustomDelimiters("//-&\n1&2-3");
         });

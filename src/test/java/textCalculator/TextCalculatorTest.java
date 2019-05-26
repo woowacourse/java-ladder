@@ -7,78 +7,78 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TextCalculatorTest {
     @Test
-    void 숫자만입력() {
+    void 숫자만_입력() {
         assertThat(new TextCalculator().calculate("1")).isEqualTo(1);
     }
 
     @Test
-    void 쉼표구분자포함() {
+    void 쉼표_구분자_포함() {
         assertThat(new TextCalculator().calculate("1,2")).isEqualTo(3);
     }
 
     @Test
-    void 콜론구분자포함() {
+    void 콜론_구분자_포함() {
         assertThat(new TextCalculator().calculate("1:2")).isEqualTo(3);
     }
 
     @Test
-    void 콜론쉼표구분자포함() {
+    void 콜론_쉼표_구분자_포함() {
         assertThat(new TextCalculator().calculate("1,2:3")).isEqualTo(6);
     }
 
     @Test
-    void 커스텀구분자포함() {
+    void 커스텀_구분자_포함() {
         assertThat(new TextCalculator().calculate("//;\n1;2,3")).isEqualTo(6);
     }
 
     @Test
-    void 커스텀구분자여러개포함() {
+    void 커스텀_구분자_여러개_포함() {
         assertThat(new TextCalculator().calculate("//;.?\n1;2,3.1?1")).isEqualTo(8);
     }
 
     @Test
-    void null입력() {
+    void null_입력() {
         assertThat(new TextCalculator().calculate(null)).isEqualTo(0);
     }
 
     @Test
-    void 빈문자열입력1() {
+    void 빈_문자열_입력() {
         assertThat(new TextCalculator().calculate("")).isEqualTo(0);
     }
 
     @Test
-    void 빈문자열입력2() {
+    void 유효하지_않은_입력() {
         assertThat(new TextCalculator().calculate("//!?\n")).isEqualTo(0);
     }
 
     @Test
-    void 정규표현식특수문자커스텀구분자1() {
+    void 정규표현식_특수_문자_커스텀_구분자() {
         assertThat(new TextCalculator().calculate("//$\n1$2,3")).isEqualTo(6);
     }
 
     @Test
-    void 음수입력1() {
+    void 음수_입력_하나() {
         assertThrows(IllegalArgumentException.class, () -> {
             new TextCalculator().calculate("-2");
         });
     }
 
     @Test
-    void 음수입력2() {
+    void 음수_입력_여러개() {
         assertThrows(IllegalArgumentException.class, () -> {
             new TextCalculator().calculate("-1,2,3");
         });
     }
 
     @Test
-    void 음수입력3() {
+    void 커스텀_음수_입력() {
         assertThrows(IllegalArgumentException.class, () -> {
             new TextCalculator().calculate("//!\n-1!2,3");
         });
     }
 
     @Test
-    void 금지된커스텀구분자() {
+    void 금지된_커스텀_구분자() {
         assertThrows(IllegalArgumentException.class, () -> {
             new TextCalculator().calculate("//-\n1!2,3");
         });

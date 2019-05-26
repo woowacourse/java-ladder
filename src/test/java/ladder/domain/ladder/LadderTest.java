@@ -27,21 +27,21 @@ public class LadderTest {
     }
 
     @Test
-    public void 라인너비주입확인() {
+    public void 라인_너비_주입_확인() {
         for (int i = 0; i < lines.size(); i++) {
             assertThat(lines.get(i).getPoints().size()).isEqualTo(countPerson);
         }
     }
 
     @Test
-    public void 최소높이테스트() {
+    public void 최소_높이_테스트() {
         assertThrows(IllegalArgumentException.class, () -> {
             new Ladder(0, 100);
         });
     }
 
     @Test
-    public void 도착점찾기모두True() {
+    public void 도착점_찾기_모두_True() {
         int i = 0;
         Ladder ladder = new Ladder(5, 2, new ForcedTrueRule());
         assertThat(ladder.getEndPoint(0)).isEqualTo(1);
