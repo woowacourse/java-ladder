@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Direction {
     private final int FORWARD_VALUE = 1;
-    private final int BACKWARD_VALUE = 1;
-    private final int STAY_VALUE = 1;
+    private final int BACKWARD_VALUE = -1;
+    private final int STAY_VALUE = 0;
     private final boolean left;
     private final boolean current;
 

@@ -13,7 +13,7 @@ public class LadderGameResult {
     private final Map<Participant, Reward> gameResult;
     private final String END_COMMAND = "all";
     private final int END_COMMAND_LENGTH = 1;
-    private final int END_COMMAND_NUM = 1;
+    private final int END_COMMAND_NUM = 0;
 
     private boolean isEnd;
 
