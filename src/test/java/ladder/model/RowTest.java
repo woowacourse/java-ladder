@@ -3,6 +3,8 @@ package ladder.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RowTest {
@@ -11,7 +13,9 @@ public class RowTest {
 
     @BeforeEach
     void setUp() {
-        row = new Row(new int[]{1, 1, 0});
+        row = Row.of(Arrays.asList(Direction.first(true),
+                Direction.of(true, false),
+                Direction.of(false, false)));
     }
 
     @Test
@@ -30,15 +34,5 @@ public class RowTest {
     void 정지() {
         int result = row.move(2);
         assertThat(result).isEqualTo(2);
-    }
-
-
-    void Row_생성_확인() {
-        assertThat(row.getLineSize()).isEqualTo(3);
-    }
-
-    @Test
-    void 두번_긋기_확인() {
-        assertThat(row.checkDoubleDraw()).isFalse();
     }
 }

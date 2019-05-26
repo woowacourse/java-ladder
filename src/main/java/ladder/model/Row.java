@@ -6,6 +6,7 @@ import ladder.model.generator.RandomValueGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Row {
@@ -43,5 +44,18 @@ public class Row {
         return lines.stream()
                 .map(Direction::isMovable)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final Row row = (Row) o;
+        return Objects.equals(lines, row.lines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lines);
     }
 }
