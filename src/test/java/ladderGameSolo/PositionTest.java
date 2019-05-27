@@ -26,6 +26,6 @@ public class PositionTest {
     @Test
     void isUnderMaxPosition() {
         Position position = new Position(3, 4);
-        assertThat(position.isUnder()).isFalse();
+        assertThat(position.isLessThanMax()).isFalse();
     }
 }

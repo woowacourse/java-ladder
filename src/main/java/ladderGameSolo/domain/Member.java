@@ -14,7 +14,7 @@ public class Member {
     }
 
     public int getResultIndex(Ladder ladder) {
-        while (!position.isUnder()) {
+        while (position.isLessThanMax()) {
             this.lineIndex = ladder.getNextLine(position.getPosition(), lineIndex);
             this.position = position.nextPosition();
         }

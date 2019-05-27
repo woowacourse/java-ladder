@@ -1,6 +1,6 @@
 package ladderGameSolo.view;
 
-import ladderGameSolo.constant.MessageContants;
+import ladderGameSolo.constant.MessageConstants;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -11,27 +11,31 @@ import java.util.regex.Pattern;
 
 public class InputView {
     private static final Scanner SCAN = new Scanner(System.in);
-    private static final String REGEX_NAME = "^([a-zA-Zㄱ-ㅎ가-힣0-9]{1,5}){1}(,[a-zA-Zㄱ-ㅎ가-힣0-9]{1,5}){1,}$";
-    private static final String REGEX_HEIGHT = "([0-9]){1}";
+    private static final Pattern REGEX_NAME = Pattern.compile("^([a-zA-Zㄱ-ㅎ가-힣0-9]{1,5}){1}(,[a-zA-Zㄱ-ㅎ가-힣0-9]{1,5}){1,}$");
+    private static final Pattern REGEX_HEIGHT = Pattern.compile("([0-9]){1,}");
 
     public static String inputName() {
-        System.out.println(MessageContants.INPUT_NAME);
-        String name = SCAN.nextLine();
+        String name;
 
-        if (!validName(name) || overlapName(name)) {
-            System.err.println(MessageContants.ERROR_INPUT);
-            return inputName();
-        }
+        do {
+            System.out.println(MessageConstants.INPUT_NAME);
+            name = SCAN.nextLine();
+        } while (inputValidate(name));
 
         return name;
     }
 
+    private static boolean inputValidate(String name) {
+        return validName(name) || overlapName(name);
+
+    }
+
     public static int inputHeight() {
-        System.out.println(MessageContants.INPUT_HEIGHT);
+        System.out.println(MessageConstants.INPUT_HEIGHT);
         String height = SCAN.nextLine();
 
         if (!validHeight(height)) {
-            System.err.println(MessageContants.ERROR_INPUT);
+            System.err.println(MessageConstants.ERROR_INPUT);
             return inputHeight();
         }
 
@@ -39,7 +43,7 @@ public class InputView {
     }
 
     public static String inputResult(int memberSize) {
-        System.out.println(MessageContants.INPUT_RESULT);
+        System.out.println(MessageConstants.INPUT_RESULT);
         String result = SCAN.nextLine();
 
         if (validGameResult(result) || isNotSameLength(memberSize, result)) {
@@ -50,7 +54,7 @@ public class InputView {
     }
 
     public static String inputTargetName(String[] names) {
-        System.out.println(MessageContants.INPUT_TARGET);
+        System.out.println(MessageConstants.INPUT_TARGET);
         String target = SCAN.nextLine();
 
         if (isBlank(target) || isNotInName(target, names)) {
@@ -65,8 +69,8 @@ public class InputView {
 
         count = getCount(target, names, count);
 
-        if (count == 0 && !target.equals(MessageContants.MESSAGE_ALL)) {
-            System.err.println(MessageContants.ERROR_NOT_EXIST_MEMBER);
+        if (count == 0 && !target.equals(MessageConstants.MESSAGE_ALL)) {
+            System.err.println(MessageConstants.ERROR_NOT_EXIST_MEMBER);
             return true;
         }
 
@@ -92,10 +96,10 @@ public class InputView {
     }
 
     private static boolean isNotSameLength(int memberSize, String target) {
-        String[] targets = target.split(MessageContants.DELIMITER_COMMA);
+        String[] targets = target.split(MessageConstants.DELIMITER_COMMA);
 
         if (memberSize != targets.length) {
-            System.err.println(MessageContants.ERROR_INPUT_RESULT);
+            System.err.println(MessageConstants.ERROR_INPUT_RESULT);
             return true;
         }
 
@@ -104,7 +108,7 @@ public class InputView {
 
     private static boolean isBlank(String text) {
         if (text.isEmpty()) {
-            System.err.println(MessageContants.ERROR_EMPTY);
+            System.err.println(MessageConstants.ERROR_EMPTY);
             return true;
         }
 
@@ -112,8 +116,8 @@ public class InputView {
     }
 
     private static boolean hasNotComma(String text) {
-        if (!text.contains(MessageContants.DELIMITER_COMMA)) {
-            System.err.println(MessageContants.ERROR_COMMA);
+        if (!text.contains(MessageConstants.DELIMITER_COMMA)) {
+            System.err.println(MessageConstants.ERROR_COMMA);
             return true;
         }
 
@@ -121,18 +125,20 @@ public class InputView {
     }
 
     private static boolean validName(String name) {
-        Pattern pattern = Pattern.compile(REGEX_NAME);
-        Matcher matcher = pattern.matcher(name);
-
-        return matcher.matches();
+        Matcher matcher = REGEX_NAME.matcher(name);
+        if (!matcher.matches()) {
+            System.err.println(MessageConstants.ERROR_INPUT);
+            return true;
+        }
+        return false;
     }
 
     private static boolean overlapName(String name) {
-        String[] inputName = name.split(MessageContants.DELIMITER_COMMA);
+        String[] inputName = name.split(MessageConstants.DELIMITER_COMMA);
         Set<String> names = new HashSet<>(Arrays.asList(inputName));
 
         if (names.size() != inputName.length) {
-            System.err.println(MessageContants.ERROR_DUPLICATE_NAME);
+            System.err.println(MessageConstants.ERROR_DUPLICATE_NAME);
             return true;
         }
 
@@ -140,8 +146,7 @@ public class InputView {
     }
 
     private static boolean validHeight(String height) {
-        Pattern pattern = Pattern.compile(REGEX_HEIGHT);
-        Matcher matcher = pattern.matcher(height);
+        Matcher matcher = REGEX_HEIGHT.matcher(height);
 
         return matcher.matches();
     }

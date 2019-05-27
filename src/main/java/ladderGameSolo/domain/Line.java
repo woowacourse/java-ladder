@@ -15,12 +15,12 @@ public class Line {
         }
     }
 
-    public List<Direction> getDirections() {
-        return directions;
-    }
-
     public Direction getDirectionByIndex(int index) {
         return this.directions.get(index);
+    }
+
+    public void updateDirection(int index,Direction direction) {
+        directions.set(index, direction);
     }
 
     @Override

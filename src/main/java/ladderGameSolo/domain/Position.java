@@ -23,8 +23,8 @@ public class Position {
         return new Position(this.position + 1, max);
     }
 
-    public boolean isUnder() {
-        return position >= max;
+    public boolean isLessThanMax() {
+        return position < max;
     }
 
     @Override

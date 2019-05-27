@@ -1,14 +1,17 @@
 package stringAddCalculator;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Calculator {
+    private static final Pattern REGEX_DELIMITER = Pattern.compile("//(.)\n(.*)");
+
     public static int calculate(String input) {
         String[] numbers;
 
-        if ("".equals(input) || input == null) {
+        if ("".equals(input) || Objects.isNull(input)) {
             return 0;
         }
 
@@ -57,7 +60,7 @@ public class Calculator {
 
     private static String replaceDelimiter(String input) {
         String customDelimiter;
-        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(input);
+        Matcher matcher = REGEX_DELIMITER.matcher(input);
 
         if (matcher.find()) {
             customDelimiter = matcher.group(1);

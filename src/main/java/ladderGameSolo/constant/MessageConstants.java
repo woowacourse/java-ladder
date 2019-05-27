@@ -1,6 +1,6 @@
 package ladderGameSolo.constant;
 
-public class MessageContants {
+public class MessageConstants {
     public static final String RESULT_FORMAT = "%6s";
     public static final String RESULT_ALL_FORMAT = "%s : ";
 

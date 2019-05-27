@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Ladder {
-    private List<Line> lines;
+    private final List<Line> lines;
 
     public Ladder(int countOfPeople, int height) {
         lines = new ArrayList<>();
@@ -15,7 +15,7 @@ public class Ladder {
             lines.add(new Line(height));
         }
 
-        for (int i = 0; i < lines.size() - 1; i++) {
+        for (int i = 0; i < getSettingLineSize(); i++) {
             makeBridge(height, i);
         }
     }
@@ -24,8 +24,8 @@ public class Ladder {
         return lines.get(index);
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public int getLineSize() {
+        return lines.size();
     }
 
     public int getNextLine(int position, int lineIndex) {
@@ -34,23 +34,30 @@ public class Ladder {
         return lineIndex + line.getDirectionByIndex(position).move();
     }
 
-    private void makeBridge(int height, int index) {
-        Random random = new Random();
+    private int getSettingLineSize() {
+        return lines.size() - 1;
+    }
 
+    private void makeBridge(int height, int index) {
         for (int i = 0; i < height; i++) {
-            setBridge(index, random, i);
+            checkBridgeDirection(index, i);
         }
     }
 
-    private void setBridge(int index, Random random, int i) {
-        if (lines.get(index).getDirections().get(i).move() != 0) {
+    private void checkBridgeDirection(int index, int i) {
+        if (lines.get(index).getDirectionByIndex(i).move() != 0) {
             return;
         }
 
+        setBridge(index, i);
+    }
+
+    private void setBridge(int index, int i) {
+        Random random = new Random();
         boolean right = random.nextBoolean();
 
-        lines.get(index).getDirections().set(i, new Direction(false, right));
-        lines.get(index + 1).getDirections().set(i, new Direction(right, false));
+        lines.get(index).updateDirection(i, new Direction(false, right));
+        lines.get(index + 1).updateDirection(i, new Direction(right, false));
     }
 
     @Override

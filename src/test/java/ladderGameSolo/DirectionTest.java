@@ -4,6 +4,7 @@ import ladderGameSolo.domain.Direction;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DirectionTest {
     @Test
@@ -22,5 +23,12 @@ public class DirectionTest {
     void move_none() {
         Direction direction = new Direction(false, false);
         assertThat(direction.move()).isEqualTo(0);
+    }
+
+    @Test
+    void 모두_true_일때() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Direction direction = new Direction(true, true);
+        });
     }
 }
