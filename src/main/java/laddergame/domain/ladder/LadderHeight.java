@@ -6,22 +6,18 @@ public class LadderHeight {
     private static final int MIN_NUM_OF_LADDER_HEIGHT = 0;
     private final int ladderHeight;
 
-    public LadderHeight(final String height) {
-        this.ladderHeight = parse(height);
+    private LadderHeight(final int height) {
+        this.ladderHeight = height;
         checkValidBound();
+    }
+
+    public static LadderHeight of(final int height) {
+        return new LadderHeight(height);
     }
 
     private void checkValidBound() {
         if (this.ladderHeight <= MIN_NUM_OF_LADDER_HEIGHT) {
             throw new IllegalArgumentException("1 이상의 정수를 입력해주세요");
-        }
-    }
-
-    private int parse(final String height) {
-        try {
-            return Integer.parseInt(height);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력해주세요");
         }
     }
 

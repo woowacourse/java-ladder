@@ -7,10 +7,10 @@ import java.util.Random;
 public class Ladder {
 	private final List<Line> ladder;
 
-	public Ladder(final int height, final int width) {
+	public Ladder(final LadderHeight height, final int width) {
 		ladder = new ArrayList<>();
 
-		for (int i = 0; i <= height; i++) {
+		for (int i = 0; i <= height.getLadderHeight(); i++) {
 			ladder.add(new Line(width));
 		}
 	}

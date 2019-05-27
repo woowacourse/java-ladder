@@ -24,7 +24,7 @@ public class LadderGameController {
 		NameList players = assignPlayers();
 		NameList rewards = assignRewards(players);
 		LadderHeight ladderHeight = assignLadderHeight();
-		Ladder ladder = new Ladder(ladderHeight.getLadderHeight(), players.getSize());
+		Ladder ladder = new Ladder(ladderHeight, players.getSize());
 		ladder.connectBridgesRandomly(ladderHeight.calculateArea(players.getSize()));
 		this.ladderGameResult = GameResult.of(players, rewards, ladder);
 
@@ -57,7 +57,7 @@ public class LadderGameController {
 
 	private LadderHeight assignLadderHeight() {
 		try {
-			return new LadderHeight(InputView.inputLadderHeight());
+			return LadderHeight.of(InputView.inputLadderHeight());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return assignLadderHeight();

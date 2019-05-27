@@ -14,9 +14,13 @@ public class InputView {
 		return SCANNER.nextLine();
 	}
 
-	public static String inputLadderHeight() {
+	public static Integer inputLadderHeight() {
 		System.out.println("최대 사다리 높이는 몇 개인가요?");
-		return SCANNER.nextLine();
+		try {
+			return Integer.parseInt(SCANNER.nextLine());
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("숫자를 입력하세요");
+		}
 	}
 
 	public static String inputRewards() {
