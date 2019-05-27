@@ -9,13 +9,13 @@ public class Line {
 	public Line(final int width) {
 		line = new ArrayList<>();
 		for (int i = 0; i < width; i++) {
-			line.add(Point.of(Point.DISCONNECT));
+			line.add(Point.DISCONNECT);
 		}
 	}
 
 	public boolean connect(final int column) {
 		if (!checkRight(column) && !checkLeft(column)) {
-			line.set(column, Point.of(Point.CONNECT));
+			line.set(column, Point.CONNECT);
 			return true;
 		}
 		return false;
