@@ -12,7 +12,7 @@ public class Calculator {
 
     int calculate() {
         List<Number> numbers = expression.getNumbers();
-        Number sum = Number.zeroNumber();
+        Number sum = Number.ZERO;
 
         for (final Number number : numbers) {
             sum = sum.add(number);
