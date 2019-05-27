@@ -19,6 +19,7 @@ public class Ladder {
 			lastPosition = line.getNextPosition(lastPosition);
 		}
 
+
 		return lastPosition;
 	}
 

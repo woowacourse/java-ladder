@@ -10,23 +10,27 @@ import ladder.view.OutputView;
 
 public class LadderGameApp {
 	private static final String FINISH_LADDER_GAME = "exit";
+	private static List<Player> players;
+	private static List<Reward> rewards;
 
 	public static void main(String[] args) {
-		LadderGameInformation ladderGameInformation = getLadderGameInformation();
+		LadderGame ladderGame = getLadderGameInformation();
 
-		Ladder ladder = generateLadder(ladderGameInformation.getPlayers().size());
-		OutputView.printPlayerNames(ladderGameInformation.getPlayers());
+		Ladder ladder = generateLadder(players.size());
+		OutputView.printPlayerNames(players);
 		OutputView.printLadder(ladder);
-		OutputView.printLadderGameRewards(ladderGameInformation.getRewards());
+		OutputView.printLadderGameRewards(rewards);
 
-		LadderGameResult ladderGameResult = LadderGame.run(ladderGameInformation, ladder);
+		LadderGameResult ladderGameResult = ladderGame.run(ladder);
 
 		getPersonNameForGameResult(ladderGameResult);
 	}
 
-	public static LadderGameInformation getLadderGameInformation() {
+	public static LadderGame getLadderGameInformation() {
 		try {
-			return new LadderGameInformation(getPersonNames(), getGameReward());
+			players = getPersonNames();
+			rewards = getGameReward();
+			return new LadderGame(players, rewards);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return getLadderGameInformation();
