@@ -28,15 +28,15 @@ public class OutputView {
 				+ UserOutput.LADDER_LINE.getOutputMessage());
 	}
 
-	public static void printLadderGameRewards(List<Reward> rewards) {
-		for (Reward reward : rewards) {
+	public static void printLadderGameRewards(Rewards rewards) {
+		for (Reward reward : rewards.getRewards()) {
 			System.out.printf(UserOutput.PRINT_FORM.getOutputMessage(), reward);
 		}
 		System.out.println();
 	}
 
-	public static void printPlayerNames(List<Player> players) {
-		for (Player player : players) {
+	public static void printPlayerNames(Players players) {
+		for (Player player : players.getPlayers()) {
 			System.out.printf(UserOutput.PRINT_FORM.getOutputMessage(), player);
 		}
 		System.out.println();
