@@ -32,7 +32,7 @@ public class RowTest {
         assertThat(result).isEqualTo(2);
     }
 
-
+    @Test
     void Row_생성_확인() {
         assertThat(row.getLineSize()).isEqualTo(3);
     }
