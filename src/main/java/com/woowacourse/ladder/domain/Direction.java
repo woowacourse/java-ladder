@@ -49,4 +49,10 @@ public class Direction {
     public int hashCode() {
         return Objects.hash(left, right);
     }
+
+
+    @Override
+    public Direction clone(){
+        return new Direction(this.left,this.right);
+    }
 }

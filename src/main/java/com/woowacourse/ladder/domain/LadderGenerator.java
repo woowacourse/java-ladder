@@ -5,8 +5,8 @@ import java.util.List;
 
 public class LadderGenerator {
 
-    public static Ladder generateLadder(int width, int height) {
-        List<Line> lines = generateLines(width, height);
+    public static Ladder generateLadder(int width, Height height) {
+        List<Line> lines = generateLines(width, height.getHeight());
         return new Ladder(lines);
     }
 

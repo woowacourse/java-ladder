@@ -2,29 +2,17 @@ package com.woowacourse.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
     private final List<Line> lines;
 
-
     public Ladder(List<Line> lines) {
-        this.lines = new ArrayList<>();
-        this.lines.addAll(lines);
+        this.lines = lines.stream().map(Line::clone).collect(Collectors.toList());
     }
-
 
     public List<Line> getLines() {
-        List<Line> lines = new ArrayList<>();
-        lines.addAll(this.lines);
-        return lines;
-    }
-
-    public List<Integer> takeAllLadder() {
-        List<Integer> resultPositions = new ArrayList<>();
-        for (int i = 0; i < lines.get(0).getWidth(); i++) {
-            resultPositions.add(takeLadder(i));
-        }
-        return resultPositions;
+        return this.lines.stream().map(Line::clone).collect(Collectors.toList());
     }
 
     public int takeLadder(int playerIndex) {

@@ -6,15 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
+    private static final int INTERVAL = 6;
+    private static final String BLANK_INTERVAL = "     ";
+
     public static void printLadder(PlayerList playerList, ResultItems resultItems, Ladder ladder) {
         List<Line> lines = ladder.getLines();
         playerList.getNames().stream().forEach(p -> {
-            System.out.printf("%-6s ", p);
+            System.out.printf("%-" +INTERVAL+"s ", p);
         });
         System.out.println();
         printLines(lines);
         resultItems.getResults().stream().forEach(r -> {
-            System.out.printf("%-6s ", r);
+            System.out.printf("%-" +INTERVAL+"s ", r);
         });
         System.out.println();
     }
@@ -27,7 +30,7 @@ public class OutputView {
     }
 
     private static void printLine(List<Boolean> bools) {
-        System.out.print("    ");
+        System.out.print(BLANK_INTERVAL);
         for (int j = 0; j < bools.size(); j++) {
             System.out.print("|");
             printBridge(bools, j);
@@ -40,7 +43,7 @@ public class OutputView {
             System.out.print("=====");
             return;
         }
-        System.out.print("     ");
+        System.out.print(BLANK_INTERVAL);
     }
 
     public static void printResult(Result result) {

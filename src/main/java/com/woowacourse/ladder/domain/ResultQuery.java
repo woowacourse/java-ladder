@@ -1,7 +1,5 @@
 package com.woowacourse.ladder.domain;
 
-import java.util.Objects;
-
 public class ResultQuery {
     private final String resultQuery;
 
