@@ -16,6 +16,7 @@ public class PlayerBuilder {
                 .map(String::trim)
                 .map(Player::new)
                 .collect(Collectors.toList());
+
         checkDuplication(players);
         return new Players(players);
     }

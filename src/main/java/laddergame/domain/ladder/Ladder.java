@@ -1,16 +1,18 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.RandomGenerator;
 import laddergame.domain.player.Players;
 import laddergame.domain.result.Results;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Ladder {
-    private static final int CONNECTING_BRIDGE_TRIAL_COUNT = 100;
-
     private final int height;
     private final int width;
-    private List<Line> ladder;
+    private List<Line> lines;
 
     public Ladder(int height, int width) {
         this.height = height;
@@ -18,32 +20,32 @@ public class Ladder {
         initializeLadder();
     }
 
-    private void initializeLadder(){
-        ladder = new ArrayList<>();
+    private void initializeLadder() {
+        lines = new ArrayList<>();
         for (int i = 0; i <= height; i++) {
-            ladder.add(new Line(width));
+            lines.add(new Line(width));
         }
     }
 
     public void connectBridgesRandomly() {
-        Random random = new Random();
-        for (int i = 0; i < CONNECTING_BRIDGE_TRIAL_COUNT; i++) {
-            int randomRow = random.nextInt(height) + 1;
-            int randomColumn = random.nextInt(width) + 1;
+        for (int i = 0; i < countAllSections(); i++) {
+            int randomRow = RandomGenerator.generateNumber(height);
+            int randomColumn = RandomGenerator.generateNumber(width - 1);
 
             connectBridge(randomRow, randomColumn);
         }
     }
 
     public void connectBridge(int row, int column) {
-        try {
-            ladder.get(row).connect(column);
-        } catch (IndexOutOfBoundsException e) {
-        }
+        lines.get(row).connect(column);
+    }
+
+    private int countAllSections() {
+        return height * (width - 1);
     }
 
     public int findIndexOfResult(int startPosition) {
-        for (Line line : ladder) {
+        for (Line line : lines) {
             startPosition += line.findRoute(startPosition);
         }
         return startPosition;
@@ -51,13 +53,13 @@ public class Ladder {
 
     public boolean isLinked(int row, int column) {
         try {
-            return ladder.get(row).isLinked(column);
+            return lines.get(row).isLinked(column);
         } catch (IndexOutOfBoundsException e) {
             return false;
         }
     }
 
-    public Map<String, String> getResultOfPlayer(Players players, Results results){
+    public Map<String, String> getResultOfPlayer(Players players, Results results) {
         Map<String, String> resultOfPlayer = new TreeMap<>();
         for (int i = 0; i < players.getPlayersSize(); i++) {
             String player = players.getNameOfIndex(i);
@@ -71,7 +73,7 @@ public class Ladder {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Line line : ladder.subList(1, ladder.size())) {
+        for (Line line : lines.subList(1, lines.size())) {
             stringBuilder.append(line);
             stringBuilder.append("\n");
         }

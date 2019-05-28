@@ -22,9 +22,14 @@ public class Line {
     }
 
     public void connect(int column) {
-        if (!hasBridgeAtRightSide(column) && !hasBridgeAtLeftSide(column)) {
+        if (!hasBridge(column) && !hasBridgeAtRightSide(column)
+                && !hasBridgeAtLeftSide(column)) {
             points.set(column, new Point(true));
         }
+    }
+
+    private boolean hasBridge(int column) {
+        return points.get(column).hasBridge();
     }
 
     private boolean hasBridgeAtRightSide(int column) {

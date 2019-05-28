@@ -1,4 +1,4 @@
-package laddergame.domain.gameresult;
+package laddergame.domain;
 
 import java.util.Map;
 
