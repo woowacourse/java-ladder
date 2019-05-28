@@ -1,7 +1,7 @@
 package laddergame.view;
 
+import laddergame.NameList;
 import laddergame.domain.AbstractName;
-import laddergame.domain.NameList;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.Line;
 import laddergame.domain.ladder.Point;
@@ -22,7 +22,6 @@ public class OutputView {
     }
 
     public static void showPlayers(final NameList players) {
-        showMessageOfExecution();
         showNameList(players);
         System.out.println();
     }

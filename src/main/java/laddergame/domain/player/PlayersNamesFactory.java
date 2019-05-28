@@ -1,7 +1,7 @@
 package laddergame.domain.player;
 
 
-import laddergame.domain.NameList;
+import laddergame.NameList;
 import laddergame.domain.ProhibitDuplicateNamesNamesFactory;
 
 import java.util.Arrays;

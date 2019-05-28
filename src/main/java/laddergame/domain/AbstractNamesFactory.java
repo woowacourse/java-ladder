@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.NamesFactory;
 import org.apache.commons.lang3.StringUtils;
 
 public abstract class AbstractNamesFactory implements NamesFactory {

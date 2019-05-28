@@ -1,7 +1,7 @@
 package laddergame.domain.reward;
 
 import laddergame.domain.AbstractNamesFactory;
-import laddergame.domain.NameList;
+import laddergame.NameList;
 
 import java.util.Arrays;
 import java.util.List;

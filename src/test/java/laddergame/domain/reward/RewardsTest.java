@@ -1,6 +1,6 @@
 package laddergame.domain.reward;
 
-import laddergame.domain.NameList;
+import laddergame.NameList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -21,12 +21,8 @@ public class LadderHeight {
         }
     }
 
-    public int getLadderHeight() {
+    int getLadderHeight() {
         return this.ladderHeight;
-    }
-
-    public int calculateArea(final int width) {
-        return (ladderHeight * width);
     }
 
     @Override

@@ -5,45 +5,42 @@ import java.util.List;
 import java.util.Random;
 
 public class Ladder {
-	private final List<Line> ladder;
+    private final List<Line> ladder;
 
-	public Ladder(final LadderHeight height, final int width) {
-		ladder = new ArrayList<>();
+    public Ladder(final LadderHeight height, final int width) {
+        ladder = new ArrayList<>();
 
-		for (int i = 0; i <= height.getLadderHeight(); i++) {
-			ladder.add(new Line(width));
-		}
-	}
+        for (int i = 0; i <= height.getLadderHeight(); i++) {
+            ladder.add(new Line(width));
+        }
+    }
 
-	public void connectBridgesRandomly(final int count) {
-		final int height = ladder.size() - 1;
-		final int width = ladder.get(0).getWidth();
-		for (int i = 0; i < count; i++) {
-			final int randomRow = new Random().nextInt(height) + 1;
-			final int randomCol = (int) (Math.random() * width) + 1;
+    public boolean connectBridge(final Position input) {
+        try {
+            return ladder.get(input.getRow()).connect(input.getColumn());
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+    }
 
-			connectBridge(Position.of(randomRow, randomCol));
-		}
-	}
+    public int findDestination(int startPosition) {
+        for (Line line : ladder) {
+            startPosition += line.findPosition(startPosition).move();
+        }
+        return startPosition;
+    }
 
-	public boolean connectBridge(final Position input) {
-		try {
-			return ladder.get(input.getRow()).connect(input.getColumn());
-		} catch (IndexOutOfBoundsException e) {
-			return false;
-		} catch (IllegalArgumentException e) {
-			return false;
-		}
-	}
+    public List<Line> getLadderFormat() {
+        return new ArrayList<>(ladder.subList(1, ladder.size()));
+    }
 
-	public int findDestination(int startPosition) {
-		for (Line line : ladder) {
-			startPosition += line.findPosition(startPosition).move();
-		}
-		return startPosition;
-	}
+    public int getHeight() {
+        return (ladder.size() - 1);
+    }
 
-	public List<Line> getLadderFormat() {
-		return new ArrayList<>(ladder.subList(1, ladder.size()));
-	}
+    public int getWidth() {
+        return ladder.get(1).getWidth();
+    }
 }
