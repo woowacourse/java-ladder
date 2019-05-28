@@ -2,15 +2,15 @@ package laddergame.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Ladder {
     private final List<Line> ladder;
 
-    public Ladder(final LadderHeight height, final int width) {
+    public Ladder(final LadderHeight ladderHeight, final int width) {
         ladder = new ArrayList<>();
 
-        for (int i = 0; i <= height.getLadderHeight(); i++) {
+        final int height = ladderHeight.getLadderHeight();
+        for (int i = 0; i <= height; i++) {
             ladder.add(new Line(width));
         }
     }

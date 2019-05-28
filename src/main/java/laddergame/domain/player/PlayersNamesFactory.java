@@ -1,6 +1,5 @@
 package laddergame.domain.player;
 
-
 import laddergame.NameList;
 import laddergame.domain.ProhibitDuplicateNamesNamesFactory;
 
