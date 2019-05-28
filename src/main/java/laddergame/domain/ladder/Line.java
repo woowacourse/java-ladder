@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-	private final List<Point> line;
+	private final List<Point> points;
 
 	public Line(final int width) {
-		line = new ArrayList<>();
+		points = new ArrayList<>();
 		for (int i = 0; i < width; i++) {
-			line.add(Point.DISCONNECT);
+			points.add(Point.DISCONNECT);
 		}
 	}
 
 	public boolean connect(final int column) {
 		if (!checkRight(column) && !checkLeft(column)) {
-			line.set(column, Point.CONNECT);
+			points.set(column, Point.CONNECT);
 			return true;
 		}
 		return false;
@@ -23,7 +23,7 @@ public class Line {
 
 	private boolean checkRight(final int column) {
 		try {
-			return (line.get(column + 1).hasBridge());
+			return (points.get(column + 1).hasBridge());
 		} catch (IndexOutOfBoundsException e) {
 			return false;
 		}
@@ -31,7 +31,7 @@ public class Line {
 
 	private boolean checkLeft(final int column) {
 		try {
-			return (line.get(column - 1).hasBridge());
+			return (points.get(column - 1).hasBridge());
 		} catch (IndexOutOfBoundsException e) {
 			return false;
 		}
@@ -48,10 +48,10 @@ public class Line {
 	}
 
 	public List<Point> getLineFormat() {
-		return new ArrayList<>(line);
+		return new ArrayList<>(points);
 	}
 
 	public int getWidth() {
-		return (line.size() - 1);
+		return (points.size() - 1);
 	}
 }
