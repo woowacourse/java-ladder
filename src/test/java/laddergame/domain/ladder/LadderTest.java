@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class LadderTest {
     LadderHeight ladderHeight;
-    
+
     @Test
     public void 레더_테스트_사다리의_너비가_1일때() {
         ladderHeight = LadderHeight.of(1);

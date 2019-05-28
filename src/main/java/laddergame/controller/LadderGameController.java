@@ -2,7 +2,7 @@ package laddergame.controller;
 
 import laddergame.NameList;
 import laddergame.domain.ladder.Ladder;
-import laddergame.domain.ladder.LadderFactory;
+import laddergame.domain.ladder.NormalLadderFactory;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.player.PlayersNamesFactory;
 import laddergame.domain.result.GameResult;
@@ -25,7 +25,7 @@ public class LadderGameController {
 		NameList players = assignPlayers();
 		NameList rewards = assignRewards(players);
 		LadderHeight ladderHeight = assignLadderHeight();
-		Ladder ladder = LadderFactory.of().create(ladderHeight, players.getSize());
+		Ladder ladder = NormalLadderFactory.getInstance().create(ladderHeight, players.getSize());
 		this.ladderGameResult = GameResult.of(players, rewards, ladder);
 
 		printLadderGameScreen(players, ladder, rewards);

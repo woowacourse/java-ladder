@@ -1,14 +1,14 @@
 package laddergame.domain.player;
 
 import laddergame.NameList;
-import laddergame.domain.ProhibitDuplicateNamesNamesFactory;
+import laddergame.domain.ProhibitDuplicateNamesFactory;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class PlayersNamesFactory extends ProhibitDuplicateNamesNamesFactory {
+public class PlayersNamesFactory extends ProhibitDuplicateNamesFactory {
 	private final String names;
 
 	public PlayersNamesFactory(final String names) {
