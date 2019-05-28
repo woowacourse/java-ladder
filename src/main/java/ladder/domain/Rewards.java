@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,5 +28,9 @@ public class Rewards implements Names {
 
     public Reward getReward(int i) {
         return rewards.get(i);
+    }
+
+    public List<Reward> toList() {
+        return new ArrayList<>(rewards);
     }
 }

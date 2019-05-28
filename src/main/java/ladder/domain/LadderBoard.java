@@ -1,10 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LadderBoard {
     private static final int NAME_FORMAT_LEN = 6;
@@ -24,18 +21,15 @@ public class LadderBoard {
         return new LadderBoard(ladder, players, rewards);
     }
 
-    public List<LadderMatchingPair> play(Player player) {
-        LadderMatchingIndice matchingIndice = ladder.match();
-
-        List<Integer> froms = Player.ALL.equals(player)
-                ? IntStream.range(0, players.size()).boxed().collect(Collectors.toList())
-                : Arrays.asList(players.indexOf(player));
-
-        List<LadderMatchingPair> pairs = new ArrayList<>();
-        for (Integer from : froms) {
-            pairs.add(LadderMatchingPair.of(players.getPlayer(from), rewards.getReward(matchingIndice.to(from))));
+    public GameResult play() {
+        LadderMatchingIndice toIndice = ladder.match();
+        List<Reward> resultRewards = new ArrayList<>();
+        for (int from = 0; from < players.size(); from++) {
+            int to = toIndice.to(from);
+            resultRewards.add(rewards.getReward(to));
         }
-        return pairs;
+
+        return GameResult.of(players.toList(), resultRewards);
     }
 
     @Override

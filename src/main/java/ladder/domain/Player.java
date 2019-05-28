@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Player implements Name {
     public static final int MAX_NAME_LEN = 5;
     public static final Player ALL = Player.from("all");
+    public static final Player NONE = Player.from("none!");
 
     private final String name;
 

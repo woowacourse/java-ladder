@@ -4,14 +4,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderBoardTest {
 
     private LadderBoard board;
-    private List<LadderMatchingPair> pairs;
     private Players players;
     private Rewards rewards;
 
@@ -26,15 +24,11 @@ class LadderBoardTest {
 
         board = LadderBoard.of(ladder, players, rewards);
 
-        pairs = Arrays.asList(
-                LadderMatchingPair.of(players.getPlayer(0), rewards.getReward(2)),
-                LadderMatchingPair.of(players.getPlayer(1), rewards.getReward(0)),
-                LadderMatchingPair.of(players.getPlayer(2), rewards.getReward(1))
-        );
+
     }
 
     @Test
-    void toString_() throws DuplicatedNameException {
+    void toString_() {
         assertThat(board.toString()).isEqualTo(
                           "     a     b     c\n"
                         + "     |-----|     |\n"
@@ -43,15 +37,8 @@ class LadderBoardTest {
     }
 
     @Test
-    void play_한명시도() {
-        int idx = 0;
-        Player player = players.getPlayer(idx);
-
-        assertThat(board.play(player)).isEqualTo(Arrays.asList(pairs.get(idx)));
-    }
-
-    @Test
-    void play_ALL() {
-        assertThat(board.play(Player.ALL)).isEqualTo(pairs);
+    void play_() {
+        GameResult gameResult = GameResult.of(players.toList(), Rewards.from(Arrays.asList("3", "1", "2")).toList());
+        assertThat(board.play()).isEqualTo(gameResult);
     }
 }

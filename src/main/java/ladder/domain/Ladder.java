@@ -14,7 +14,7 @@ public class Ladder {
 
     public static Ladder create(Height height, int numPosition) {
         List<HorizontalLine> generatedLines = Stream.generate(() -> HorizontalLine.create(numPosition))
-                .limit(numPosition)
+                .limit(height.toInt())
                 .collect(Collectors.toList());
 
         return new Ladder(generatedLines);
@@ -39,8 +39,12 @@ public class Ladder {
         return p;
     }
 
-    private int getNumPosition() {
+    public int getNumPosition() {
         return lines.get(0).getNumPosition();
+    }
+
+    public Height getHeight() {
+        return Height.create(lines.size());
     }
 
     @Override
