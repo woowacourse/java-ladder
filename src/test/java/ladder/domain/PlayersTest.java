@@ -25,4 +25,12 @@ class PlayersTest {
 		List<Player> players = Arrays.asList(new Player("pobi"), new Player("jason"));
 		assertDoesNotThrow(() -> new Players(players));
 	}
+
+	@Test
+	void invalidIndex() {
+		Players players = new Players(Arrays.asList(new Player("jason"), new Player("pobi")));
+		assertThrows(IllegalArgumentException.class, () -> players.getPlayer(-1));
+		assertThrows(IllegalArgumentException.class, () -> players.getPlayer(2));
+		assertDoesNotThrow(() -> players.getPlayer(1));
+	}
 }

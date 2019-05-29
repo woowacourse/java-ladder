@@ -1,6 +1,8 @@
 package ladder.domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LadderGameInformation {
 	private final Players players;
@@ -18,11 +20,24 @@ public class LadderGameInformation {
 		}
 	}
 
+	public Map<Player, Reward> matchPlayersAndRewards(Ladder ladder) {
+		Map<Player, Reward> matchResult = new LinkedHashMap<>();
+
+		for (int i = 0; i < players.getSize(); i++) {
+			matchResult.put(players.getPlayer(i), rewards.getReward(ladder.getLastPosition(i)));
+		}
+		return matchResult;
+	}
+
+	public int getPlayersSize() {
+		return players.getSize();
+	}
+
 	public Players getPlayers() {
-		return this.players;
+		return players;
 	}
 
 	public Rewards getRewards() {
-		return this.rewards;
+		return rewards;
 	}
 }

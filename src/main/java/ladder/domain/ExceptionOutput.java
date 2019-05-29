@@ -10,7 +10,8 @@ public enum ExceptionOutput {
 	VIOLATE_PLAYER_NAME_AND_REWARD_NAME("잘못된 입력입니다."),
 	VIOLATE_GAME_RESULTS("참가자 수와 실행 결과의 수가 다릅니다."),
 	VIOLATE_GAME_REWARD("실행 결과를 다시 입력해주세요."),
-	VIOLATE_POINTS("잘못된 포인트 값 입니다.");
+	VIOLATE_POINTS("잘못된 포인트 값 입니다."),
+	VIOLATE_INDEX("잘못된 인덱스 값 입니다.");
 
 	private final String outputMessage;
 

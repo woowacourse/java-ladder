@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Players {
-	private static final int MINIMUM_NUMBER_FOR_GAMES = 2;
+	public static final int MINIMUM_NUMBER_FOR_GAMES = 2;
 	private final List<Player> players;
 
 	public Players(final List<Player> players) {
@@ -25,6 +25,13 @@ public class Players {
 		if (this.players.size() < MINIMUM_NUMBER_FOR_GAMES) {
 			throw new IllegalArgumentException(ExceptionOutput.VIOLATE_NUMBER_OF_PLAYERS.getOutputMessage());
 		}
+	}
+
+	public Player getPlayer(int index) {
+		if(index < 0 || index >= players.size()) {
+			throw new IllegalArgumentException(ExceptionOutput.VIOLATE_INDEX.getOutputMessage());
+		}
+		return players.get(index);
 	}
 
 	public int getSize() {

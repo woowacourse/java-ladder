@@ -14,7 +14,7 @@ public class LadderGameApp {
 	public static void main(String[] args) {
 		LadderGameInformation ladderGameInformation = getLadderGameInformation();
 
-		Ladder ladder = generateLadder(ladderGameInformation.getPlayers().getSize());
+		Ladder ladder = generateLadder(ladderGameInformation.getPlayersSize());
 		OutputView.printPlayerNames(ladderGameInformation.getPlayers());
 		OutputView.printLadder(ladder);
 		OutputView.printLadderGameRewards(ladderGameInformation.getRewards());
