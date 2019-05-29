@@ -11,7 +11,7 @@ public enum Direction {
 		this.direction = direction;
 	}
 
-	public static int getDirection(Direction d) {
-		return d.direction;
+	public int getDirection() {
+		return this.direction;
 	}
 }
