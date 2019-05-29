@@ -33,7 +33,7 @@ public class LadderGameInformation {
 		return players.getSize();
 	}
 
-	public Players getPlayers(){
+	public Players getPlayers() {
 		return players;
 	}
 
