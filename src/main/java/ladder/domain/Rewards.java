@@ -15,7 +15,7 @@ public class Rewards {
 	}
 
 	private void validateCountOfRewardNumber(List<Reward> rewards) {
-		if(rewards.size() < MINIMUM_NUMBER_FOR_GAMES) {
+		if (rewards.size() < MINIMUM_NUMBER_FOR_GAMES) {
 			throw new IllegalArgumentException(ExceptionOutput.VIOLATE_GAME_RESULTS.getOutputMessage());
 		}
 	}
@@ -25,7 +25,7 @@ public class Rewards {
 	}
 
 	public Reward getReward(int index) {
-		if(index < 0 || index >= rewards.size()) {
+		if (index < 0 || index >= rewards.size()) {
 			throw new IllegalArgumentException(ExceptionOutput.VIOLATE_INDEX.getOutputMessage());
 		}
 		return rewards.get(index);

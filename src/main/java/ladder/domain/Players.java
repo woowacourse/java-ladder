@@ -28,7 +28,7 @@ public class Players {
 	}
 
 	public Player getPlayer(int index) {
-		if(index < 0 || index >= players.size()) {
+		if (index < 0 || index >= players.size()) {
 			throw new IllegalArgumentException(ExceptionOutput.VIOLATE_INDEX.getOutputMessage());
 		}
 		return players.get(index);
