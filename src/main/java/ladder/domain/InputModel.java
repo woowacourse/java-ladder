@@ -1,0 +1,91 @@
+package ladder.domain;
+
+import java.util.*;
+
+public class InputModel {
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final String ERROR_MESSAGE = "입력이 올바르지 않습니다.";
+    private static final String COMMA_FRONT_AND_BACK_SPACE_REMOVE = "\\s*,\\s*";
+
+    public static List<String> getValidNames(String names) {
+        checkBlankInput(names);
+
+        return checkValidNames(Arrays.asList(split(names)));
+    }
+
+    private static void checkBlankInput(String names) {
+        if (names == null || names.equals("")) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
+        }
+    }
+
+    private static List<String> checkValidNames(List<String> names) {
+        checkEmpty(names);
+        checkOverlap(names);
+
+        for (String name : names) {
+            isOverNameLength(name);
+        }
+
+        return names;
+    }
+
+    private static String[] split(String input) {
+        return input.split(COMMA_FRONT_AND_BACK_SPACE_REMOVE);
+    }
+
+    private static void checkEmpty(List<String> validNames) {
+        if (validNames.isEmpty()) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
+        }
+    }
+
+    private static void checkOverlap(List<String> validNames) {
+        Set<String> overlapNames = new HashSet<>(validNames);
+        if (overlapNames.size() != validNames.size()) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
+        }
+    }
+
+    private static void isOverNameLength(String name) {
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
+        }
+    }
+
+    public static List<String> getValidReward(String gameRewards, int numberOfPlayers) {
+        checkBlankInput(gameRewards);
+
+        return checkValidReward(Arrays.asList(split(gameRewards)), numberOfPlayers);
+    }
+
+    private static List<String> checkValidReward(List<String> gameRewards, int numberOfPlayers) {
+        checkEmpty(gameRewards);
+
+        return checkNumberOfMatch(gameRewards, numberOfPlayers);
+    }
+
+    private static List<String> checkNumberOfMatch(List<String> gameRewards, int numberOfPlayers) {
+        if (gameRewards.size() != numberOfPlayers) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
+        }
+
+        return gameRewards;
+    }
+
+    public static Map<Integer, String> getMappingValidReward(List<String> gameRewards) {
+        Map<Integer, String> matchedRewards = new HashMap<>();
+
+        for (int i = 0; i < gameRewards.size(); i++) {
+            matchedRewards.put(i, gameRewards.get(i));
+        }
+
+        return matchedRewards;
+    }
+
+    public static String getValidWantToKnowPlayer(String wantToKnowResult) {
+        checkBlankInput(wantToKnowResult);
+
+        return wantToKnowResult;
+    }
+}
