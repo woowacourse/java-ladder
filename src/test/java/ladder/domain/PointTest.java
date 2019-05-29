@@ -47,6 +47,6 @@ public class PointTest {
 
 	@Test
 	void 정지_확인() {
-		assertThat(point.last().move()).isEqualTo(Direction.STOP);
+		assertThat(point.valueOf(false, false).move()).isEqualTo(Direction.STOP);
 	}
 }
