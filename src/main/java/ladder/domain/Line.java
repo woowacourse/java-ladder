@@ -11,7 +11,7 @@ public class Line {
 	}
 
 	public int getNextPosition(int position) {
-		return position + Direction.valueOf(points.get(position).move());
+		return position + Direction.getDirection(points.get(position).move());
 	}
 
 	public static Line generateLine(int countOfPerson) {
