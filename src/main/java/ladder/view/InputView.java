@@ -1,4 +1,4 @@
-package ladder.View;
+package ladder.view;
 
 import java.util.Scanner;
 
@@ -14,9 +14,9 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static int getLadderHeight() {
+    public static String getLadderHeight() {
         System.out.println(INPUT_HEIGHT);
-        return scanner.nextInt();
+        return scanner.nextLine();
     }
 
     public static String getGameReward() {

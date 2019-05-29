@@ -4,7 +4,6 @@ import java.util.*;
 
 public class InputModel {
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int MIN_HEIGHT = 1;
     private static final String ERROR_MESSAGE = "입력이 올바르지 않습니다.";
     private static final String COMMA_FRONT_AND_BACK_SPACE_REMOVE = "\\s*,\\s*";
 
@@ -52,14 +51,6 @@ public class InputModel {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
-    }
-
-    public static int getValidLadderHeight(int number) {
-        if (number < MIN_HEIGHT) {
-            throw new IllegalArgumentException(ERROR_MESSAGE);
-        }
-
-        return number;
     }
 
     public static List<String> getValidReward(String gameRewards, int numberOfPlayers) {

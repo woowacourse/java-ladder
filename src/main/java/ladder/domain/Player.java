@@ -15,6 +15,10 @@ public class Player {
         this.position += moveState;
     }
 
+    boolean isMatchPlayer(int position){
+        return this.position == position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

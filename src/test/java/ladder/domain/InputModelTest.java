@@ -42,13 +42,6 @@ class InputModelTest {
     }
 
     @Test
-    void 높이가_0_이하인_경우() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            inputModel.getValidLadderHeight(-2);
-        });
-    }
-
-    @Test
     void 참가자수와_결과수가_다른_경우() {
         assertThrows(IllegalArgumentException.class, () ->{
             inputModel.getValidReward("ef", 2);

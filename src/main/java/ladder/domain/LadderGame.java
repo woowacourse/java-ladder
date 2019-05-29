@@ -13,17 +13,7 @@ public class LadderGame {
 
     public void runGame() {
         for (Line line : ladder) {
-            updateAllPlayerPosition(line);
+            line.move(players);
         }
-    }
-
-    private void updateAllPlayerPosition(Line line) {
-        for (Player player : players) {
-            player.updatePosition(getNextPosition(line, player));
-        }
-    }
-
-    private int getNextPosition(Line line, Player player) {
-        return line.getLine().get(player.getPosition()).move();
     }
 }

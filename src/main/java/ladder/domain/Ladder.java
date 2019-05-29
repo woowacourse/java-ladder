@@ -7,11 +7,13 @@ import java.util.Objects;
 public class Ladder {
     private List<Line> ladder = new ArrayList<>();
 
-    public List<Line> createLadder(final int ladderHeight, final int numberOfPlayers) {
-        for (int i = 0; i < ladderHeight; i++) {
+    public List<Line> createLadder(LadderHeight ladderHeight, final int numberOfPlayers) {
+        int createdLineCount = 0;
+        while (!ladderHeight.isCompleteLadder(createdLineCount)) {
             Line line = new Line(new RandomValue(), numberOfPlayers);
 
             ladder.add(line);
+            createdLineCount++;
         }
 
         return ladder;

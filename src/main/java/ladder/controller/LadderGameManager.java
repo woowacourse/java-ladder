@@ -1,8 +1,8 @@
-package ladder.Controller;
+package ladder.controller;
 
-import ladder.View.OutputView;
+import ladder.view.OutputView;
 import ladder.domain.*;
-import ladder.View.InputView;
+import ladder.view.InputView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,8 +49,7 @@ public class LadderGameManager {
 
     private void registerCreatedLadder() {
         Ladder ladder = new Ladder();
-
-        int ladderHeight = InputModel.getValidLadderHeight(InputView.getLadderHeight());
+        LadderHeight ladderHeight = new LadderHeight(InputView.getLadderHeight());
         createdLadder = ladder.createLadder(ladderHeight, players.size());
     }
 
@@ -74,7 +73,7 @@ public class LadderGameManager {
     }
 
     private boolean isAllPlayerResult(List<Player> players, Map<Integer, String> gameRewards, String playerName) {
-        if (playerName.equals(ALL_PLAYERS)) {
+        if (ALL_PLAYERS.equals(playerName)) {
             OutputView.printAllPlayersResult(players, gameRewards);
             return true;
         }

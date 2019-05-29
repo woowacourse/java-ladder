@@ -43,4 +43,19 @@ public class Line {
     public List<Direction> getLine() {
         return line;
     }
+
+    void move(List<Player> players) {
+        for (int currentPosition = 0; currentPosition < players.size(); currentPosition++) {
+            int nextMoving = line.get(currentPosition).move();
+            updateMatchedPlayer(players, currentPosition, nextMoving);
+        }
+    }
+
+    private void updateMatchedPlayer(List<Player> players, int currentPosition, int nextMoving) {
+        for (Player player : players) {
+            if (player.isMatchPlayer(currentPosition)) {
+                player.updatePosition(nextMoving);
+            }
+        }
+    }
 }
