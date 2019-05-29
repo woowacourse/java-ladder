@@ -7,7 +7,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static ladder.domain.PointTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
@@ -15,7 +14,9 @@ class LineTest {
 
 	@BeforeEach
 	void init() {
-		List<Point> points = new ArrayList<>(Arrays.asList(CAN_MOVE_RIGHT_POINT, CAN_MOVE_LEFT_POINT, STOP_POINT, STOP_POINT));
+		Point point = Point.first();
+		List<Point> points = new ArrayList<>(Arrays.asList(point.valueOf(false, true),
+				point.valueOf(true, false), point.valueOf(false, false)));
 		line = new Line(points);
 	}
 
