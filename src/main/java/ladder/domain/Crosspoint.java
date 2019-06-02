@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Crosspoint {
     private static final int ONE_STEP_LEFT = -1;
     private static final int ONE_STEP_RIGHT = 1;
+    private static final double RATE_OF_EMPTY_CROSSBARS = 0.5;
 
     private final boolean leftCrossbar;
     private final boolean rightCrossbar;
@@ -13,6 +14,25 @@ public class Crosspoint {
         validateCrossbar(leftCrossbar, rightCrossbar);
         this.leftCrossbar = leftCrossbar;
         this.rightCrossbar = rightCrossbar;
+    }
+
+    static Crosspoint generateFirstCrosspoint() {
+        return new Crosspoint(false, generateCrossbarRandomly());
+    }
+
+    private static boolean generateCrossbarRandomly() {
+        return Math.random() > RATE_OF_EMPTY_CROSSBARS;
+    }
+
+    static Crosspoint generateLastCrosspointNeighboredWith(Crosspoint leftNeighboredCrossbar) {
+        return new Crosspoint(leftNeighboredCrossbar.hasRightSideCrossbar(), false);
+    }
+
+    static Crosspoint generateInnerCrosspointNeighboredWith(Crosspoint leftNeighboredCrossbar) {
+        Crosspoint leftHandCrosspoint = new Crosspoint(true, false);
+        Crosspoint randomCrosspointWithoutLeftHand = new Crosspoint(false, generateCrossbarRandomly());
+
+        return leftNeighboredCrossbar.hasRightSideCrossbar() ? leftHandCrosspoint : randomCrosspointWithoutLeftHand;
     }
 
     private void validateCrossbar(boolean leftCrossbar, boolean rightCrossbar) {

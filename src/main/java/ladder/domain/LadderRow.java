@@ -45,37 +45,19 @@ public class LadderRow {
 
     static LadderRow of(int numberOfPeople) {
         LinkedList<Crosspoint> crosspoints = new LinkedList<>();
-        Crosspoint firstCrosspoint = new Crosspoint(false, randomGenerateBoolean());
+        Crosspoint firstCrosspoint = Crosspoint.generateFirstCrosspoint();
 
         crosspoints.add(firstCrosspoint);
         addInnerCrosspointsInto(crosspoints, numberOfPeople - NUM_OF_OUTER_CROSSPOINT);
-        crosspoints.add(generateLastCrosspointBy(crosspoints.getLast()));
+        crosspoints.add(Crosspoint.generateLastCrosspointNeighboredWith(crosspoints.getLast()));
 
         return new LadderRow(crosspoints);
     }
 
-    private static boolean randomGenerateBoolean() {
-        return Math.random() > RATE_OF_EMPTY_CROSSBARS;
-    }
-
     private static void addInnerCrosspointsInto(LinkedList<Crosspoint> crosspoints, int numberOfInnerCrosspoint) {
         for (int i = 0; i < numberOfInnerCrosspoint; i++) {
-            crosspoints.add(generateNewCrosspointBy(crosspoints.getLast()));
+            crosspoints.add(Crosspoint.generateInnerCrosspointNeighboredWith(crosspoints.getLast()));
         }
-    }
-
-    private static Crosspoint generateNewCrosspointBy(Crosspoint lastGenerated) {
-        Crosspoint leftHandCrosspoint = new Crosspoint(true, false);
-        Crosspoint randomCrosspointWithoutLeftHand = new Crosspoint(false, randomGenerateBoolean());
-
-        return lastGenerated.hasRightSideCrossbar() ? leftHandCrosspoint : randomCrosspointWithoutLeftHand;
-    }
-
-    private static Crosspoint generateLastCrosspointBy(Crosspoint lastGenerated) {
-        Crosspoint leftHandCrosspoint = new Crosspoint(true, false);
-        Crosspoint downwardCrosspoint = new Crosspoint(false, false);
-
-        return lastGenerated.hasRightSideCrossbar() ? leftHandCrosspoint : downwardCrosspoint;
     }
 
     int answerResultIndexOf(int positionOfPlayer) {

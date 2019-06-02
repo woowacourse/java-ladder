@@ -9,10 +9,10 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class LadderRowTest {
-    Crosspoint rightHandCrosspoint = new Crosspoint(false, true);
-    Crosspoint leftHandCrosspoint = new Crosspoint(true, false);
-    Crosspoint downwardCrosspoint = new Crosspoint(false, false);
+class LadderRowTest {
+    private Crosspoint rightHandCrosspoint = new Crosspoint(false, true);
+    private Crosspoint leftHandCrosspoint = new Crosspoint(true, false);
+    private Crosspoint downwardCrosspoint = new Crosspoint(false, false);
 
     @BeforeEach
     void setUp() {
