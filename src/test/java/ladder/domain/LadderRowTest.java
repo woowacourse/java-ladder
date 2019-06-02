@@ -22,11 +22,6 @@ public class LadderRowTest {
     }
 
     @Test
-    void crosspoint_개수가_1보다_작으면_예외를_던지는지_테스트() {
-        assertThrows(IllegalArgumentException.class, () -> new LadderRow(Arrays.asList(downwardCrosspoint)));
-    }
-
-    @Test
     void 연속해서_오른쪽_방향_Crossbar가_있는_경우_예외를_던지는지_테스트() {
         List<Crosspoint> crosspoints = Arrays.asList(rightHandCrosspoint, rightHandCrosspoint, leftHandCrosspoint);
 

@@ -1,30 +1,42 @@
 package ladder.domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PlayerGroup {
-    private Set<Player> players = new LinkedHashSet<>();
+    private static final int MINIMUM_NUMBER_OF_PLAYER = 2;
+
+    private List<Player> players = new LinkedList<>();
 
     public PlayerGroup(List<String> playerNames) {
+        checkDuplicationIn(playerNames);
+        validateNumberOfPlayers(playerNames.size());
         for (String playerName : playerNames) {
             players.add(new Player(playerName));
         }
-        checkDuplication(players.size(), playerNames.size());
     }
 
-    private void checkDuplication(int numberOfUniqueNames, int numberOfPlayer) {
-        if (numberOfUniqueNames != numberOfPlayer) {
-            throw new IllegalArgumentException("중복된 이름은 입력할 수 없습니다.");
+    private void checkDuplicationIn(List<String> playerNames) {
+        Set playerNameSet = playerNames.stream()
+                .map(String::trim)
+                .collect(Collectors.toSet());
+
+        if (playerNameSet.size() != playerNames.size()) {
+            throw new IllegalArgumentException("중복되는 이름은 입력할 수 없습니다.");
         }
     }
 
-    public Set<Player> getPlayers() {
+    private void validateNumberOfPlayers(int numberOfPlayers) {
+        if (numberOfPlayers < MINIMUM_NUMBER_OF_PLAYER) {
+            throw new IllegalArgumentException("플레이어 수는 2 이상이어야 합니다.");
+        }
+    }
+
+    public List<Player> getPlayers() {
         return players;
     }
 
     public Player getPlayerAtPositionOf(int position) {
-        List<Player> players = new ArrayList<>(this.players);
-
         return players.get(position);
     }
 

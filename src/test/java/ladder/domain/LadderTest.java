@@ -26,12 +26,6 @@ public class LadderTest {
     }
 
     @Test
-    void Ladder의_너비가_1보다_작을_때_예외를_던지는지_테스트() {
-        assertThrows(IllegalArgumentException.class, () -> new Ladder(1,
-                Arrays.asList(new LadderRow(Arrays.asList(downwardCrosspoint)))));
-    }
-
-    @Test
     void 플레이어_위치를_입력받아_결과를_제대로_알려주는지_테스트() {
         Ladder testLadder = new Ladder(1,
                 Arrays.asList(new LadderRow(Arrays.asList(rightHandCrosspoint, leftHandCrosspoint))));

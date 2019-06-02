@@ -25,4 +25,9 @@ public class PlayerGroupTest {
     void 중복된_이름이_입력되었을_떄_예외를_던지는지_테스트() {
         assertThrows(IllegalArgumentException.class, () -> new PlayerGroup(Arrays.asList("a", "c", "c")));
     }
+
+    @Test
+    void 플레이어_수가_2보다_작을_때_예외를_던지는지_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> new PlayerGroup(Arrays.asList("a")));
+    }
 }

@@ -15,16 +15,9 @@ public class LadderRow {
     private List<Crosspoint> crosspoints;
 
     LadderRow(List<Crosspoint> crosspoints) {
-        validateLengthOf(crosspoints);
         validateOutsideCrossbarEmpty(crosspoints);
         validateNotSameHandNeighborCrossbar(crosspoints);
         this.crosspoints = crosspoints;
-    }
-
-    private void validateLengthOf(List<Crosspoint> crosspoints) {
-        if (crosspoints.size() < MIN_LENTH) {
-            throw new IllegalArgumentException("사다리에는 최소한 2명의 플레이어가 있어야 합니다.");
-        }
     }
 
     private void validateOutsideCrossbarEmpty(List<Crosspoint> crosspoints) {
