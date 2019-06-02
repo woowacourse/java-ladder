@@ -8,13 +8,10 @@ public class LadderItem {
 
     private final String name;
 
-    String getName() {
-        return name;
-    }
-
     LadderItem(final String name) {
         nullCheck(name);
-        this.name = getTrimmed(name);
+        validateNameLength(name);
+        this.name = name.trim();
     }
 
     private void nullCheck(String name) {
@@ -23,16 +20,15 @@ public class LadderItem {
         }
     }
 
-    private String getTrimmed(String name) {
-        name = name.trim();
-        validateNameLength(name);
-        return name;
-    }
-
     private void validateNameLength(String name) {
-        if ((name.length() > MAXIMUM_NAME_LENGTH) || (name.length() < MINIMUM_NAME_LENGTH)) {
+        if ((name.trim().length() > MAXIMUM_NAME_LENGTH)
+                || (name.trim().length() < MINIMUM_NAME_LENGTH)) {
             throw new IllegalArgumentException("이름의 길이는 1자 이상, 5자 이하여야 합니다.");
         }
+    }
+
+    String getName() {
+        return name;
     }
 
     @Override
