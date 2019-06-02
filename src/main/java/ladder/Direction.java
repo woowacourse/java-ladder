@@ -6,7 +6,7 @@ public class Direction {
     private final boolean hasLeft;
     private final boolean hasRight;
 
-    public Direction(boolean hasLeft, boolean hasRight) {
+    public Direction(final boolean hasLeft, final boolean hasRight) {
         checkDirection(hasLeft, hasRight);
         this.hasLeft = hasLeft;
         this.hasRight = hasRight;
@@ -33,8 +33,8 @@ public class Direction {
         return new Direction(hasLeft, hasRight);
     }
 
-    public static Direction last(boolean hasLeft) {
-        return new Direction(hasLeft, false);
+    public Direction last() {
+        return new Direction(hasRight, false);
     }
 
     public int move() {
@@ -63,9 +63,9 @@ public class Direction {
 
     @Override
     public String toString() {
-        return "Direction{" +
-                "hasLeft=" + hasLeft +
-                ", hasRight=" + hasRight +
-                '}';
+        if (hasRight) {
+            return "-----";
+        }
+        return "     ";
     }
 }

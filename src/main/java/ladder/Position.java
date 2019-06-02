@@ -3,26 +3,31 @@ package ladder;
 import java.util.Objects;
 
 public class Position {
-    private final int max;
     private int position;
+    private Direction direction;
 
-    public Position(int position, int max) {
+    private Position(int position, final Direction direction) {
         checkUnderZero(position);
-        checkMoreThanMax(position, max);
         this.position = position;
-        this.max = max;
-    }
-
-    private void checkMoreThanMax(int position, int max) {
-        if (position >= max) {
-            throw new IllegalArgumentException("위치는 최대보다 작아야합니다.");
-        }
+        this.direction = direction;
     }
 
     private void checkUnderZero(int position) {
         if (position < 0) {
             throw new IllegalArgumentException("위치는 음수 일 수는 없습니다.");
         }
+    }
+
+    public static Position first(boolean hasRight) {
+        return new Position(0, Direction.first(hasRight));
+    }
+
+    public Position next(int nextPosition, boolean hasRight) {
+        return new Position(nextPosition, direction.next(hasRight));
+    }
+
+    public Position last(int lastPosition) {
+        return new Position(lastPosition, direction.last());
     }
 
     public void move(Direction direction) {
@@ -34,12 +39,19 @@ public class Position {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Position position1 = (Position) o;
-        return max == position1.max &&
-                position == position1.position;
+        return position == position1.position &&
+                Objects.equals(direction, position1.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(max, position);
+        return Objects.hash(position, direction);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(direction);
+        return stringBuilder.toString();
     }
 }

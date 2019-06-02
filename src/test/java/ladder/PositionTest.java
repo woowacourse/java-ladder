@@ -11,43 +11,33 @@ public class PositionTest {
     private final static boolean FALSE = false;
 
     @Test
-    void 각_포지션_생성() {
-        Position position = new Position(1, MAX);
-        assertThat(position).isEqualTo(new Position(1, MAX));
+    void 첫_포지션_생성() {
+        Position position = Position.first(TRUE);
+        assertThat(position).isEqualTo(Position.first(TRUE));
     }
 
     @Test
-    void 음수인_포지션인_경우() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Position(-1, MAX);
-        });
+    void 첫_포지션에서_포지션이_있는_경우_다음_포지션_생성() {
+        Position position = Position.first(TRUE).next(1, TRUE);
+        Position position1 = Position.first(TRUE).next(1, FALSE);
+        assertThat(position).isEqualTo(position1);
     }
 
     @Test
-    void 최대_포지션_이상인_경우() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Position(MAX, MAX);
-        });
+    void 첫_포지션에서_포지션이_없는_경우_다음_포지션_생성() {
+        Position position = Position.first(FALSE).next(1, TRUE);
+        assertThat(position.toString()).isEqualTo("Position{position=1, direction=Direction{hasLeft=false, hasRight=true}}");
+
+        position = Position.first(FALSE).next(1, FALSE);
+        assertThat(position.toString()).isEqualTo("Position{position=1, direction=Direction{hasLeft=false, hasRight=false}}");
     }
 
     @Test
-    void 왼쪽으로_움직일_경우() {
-        Position position = new Position(1, MAX);
-        position.move(Direction.of(TRUE, FALSE));
-        assertThat(position).isEqualTo(new Position(0, MAX));
-    }
+    void 마지막_이전이_포지션이_있는_경우_마지막_포지션_생성() {
+        Position position = Position.first(FALSE).next(1, TRUE).last(2);
+        assertThat(position.toString()).isEqualTo("Position{position=2, direction=Direction{hasLeft=true, hasRight=false}}");
 
-    @Test
-    void 오른쪽으로_움직일_경우() {
-        Position position = new Position(1, MAX);
-        position.move(Direction.of(FALSE, TRUE));
-        assertThat(position).isEqualTo(new Position(2, MAX));
-    }
-
-    @Test
-    void 움직이지_않을_경우() {
-        Position position = new Position(1, MAX);
-        position.move(Direction.of(FALSE, FALSE));
-        assertThat(position).isEqualTo(new Position(1, MAX));
+        position = Position.first(FALSE).next(1, FALSE).last(2);
+        assertThat(position.toString()).isEqualTo("Position{position=2, direction=Direction{hasLeft=false, hasRight=false}}");
     }
 }

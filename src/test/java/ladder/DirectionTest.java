@@ -29,12 +29,6 @@ public class DirectionTest {
     }
 
     @Test
-    void 마지막_라인에서_생성되는_경우() {
-        assertThat(Direction.last(TRUE)).isEqualTo(new Direction(TRUE, FALSE));
-        assertThat(Direction.last(FALSE)).isEqualTo(new Direction(FALSE, FALSE));
-    }
-
-    @Test
     void 이전_방향이_오른쪽인_경우_다음_방향_생성() {
         Direction direction = Direction.of(FALSE, TRUE).next(TRUE);
         assertThat(direction).isEqualTo(new Direction(TRUE, FALSE));
@@ -59,6 +53,12 @@ public class DirectionTest {
 
         direction = Direction.of(FALSE, FALSE).next(FALSE);
         assertThat(direction).isEqualTo(new Direction(FALSE, FALSE));
+    }
+
+    @Test
+    void 마지막_라인에서_생성되는_경우() {
+        Direction direction = new Direction(TRUE, FALSE);
+        assertThat(direction.last()).isEqualTo(new Direction(FALSE, FALSE));
     }
 
     @Test
