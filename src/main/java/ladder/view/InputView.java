@@ -17,8 +17,8 @@ public class InputView {
 
     private static List<String> inputName(String inputMessage) {
         System.out.println(inputMessage);
-        String resultNames = SCANNER.nextLine();
-        return Arrays.asList(resultNames.split(","));
+        String names = SCANNER.nextLine();
+        return Arrays.asList(names.split(","));
     }
 
     public static int inputHeight() {
