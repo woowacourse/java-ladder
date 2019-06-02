@@ -28,10 +28,17 @@ public class ParticipantGroup {
 
     private List<Participant> generate(List<String> names) {
         List<Participant> participants = new ArrayList<>();
-        for (String name : names) {
-            participants.add(new Participant(name));
+        for (int i = 0; i < names.size(); i++) {
+            participants.add(new Participant(names.get(i), new Position(i)));
         }
         return participants;
+    }
+
+    public void move(List<Direction> directions) {
+        for (int i = 0; i < participants.size(); i++) {
+            participants.get(i).move(directions.get(participants.get(i).getPosition()));
+            System.out.print(participants.get(i).getPosition());
+        }
     }
 
     public int getSize() {

@@ -3,18 +3,22 @@ package ladder;
 import java.util.List;
 
 public class Line {
-    private final List<Position> positions;
+    private final List<Direction> directions;
 
-    public Line(final List<Position> positions) {
-        this.positions = positions;
+    public Line(final List<Direction> directions) {
+        this.directions = directions;
+    }
+
+    public List<Direction> getDirections() {
+        return directions;
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Position position : positions) {
+        for (Direction direction : directions) {
             stringBuilder.append("|");
-            stringBuilder.append(position);
+            stringBuilder.append(direction);
         }
         return stringBuilder.toString();
     }

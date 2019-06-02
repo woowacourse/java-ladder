@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
-    private static final String NEW_LINE = System.lineSeparator();
-
     private final List<Line> lines;
 
     public Ladder(final List<Line> lines) {

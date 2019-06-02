@@ -5,15 +5,15 @@ import java.util.List;
 
 public class LineGenerator {
     public static Line generate(ParticipantGroup participantGroup) {
-        List<Position> positions = new ArrayList<>();
+        List<Direction> directions = new ArrayList<>();
         int size = participantGroup.getSize();
 
-        positions.add(Position.first(RandomGenerator.generateBoolean()));
+        directions.add(Direction.first(RandomGenerator.generateBoolean()));
         for (int i = 0; i < size - 2; i++) {
-            positions.add(positions.get(i).next(i + 1, RandomGenerator.generateBoolean()));
+            directions.add(directions.get(i).next(RandomGenerator.generateBoolean()));
         }
-        positions.add((positions.get(size - 2).last(size - 1)));
+        directions.add((directions.get(size - 2).last()));
 
-        return new Line(positions);
+        return new Line(directions);
     }
 }

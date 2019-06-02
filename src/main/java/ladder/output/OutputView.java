@@ -2,8 +2,6 @@ package ladder.output;
 
 import ladder.*;
 
-import java.util.List;
-
 public class OutputView {
     private static final String BLANK = "     ";
 
@@ -25,5 +23,9 @@ public class OutputView {
             System.out.print(result + BLANK);
         }
         System.out.println();
+    }
+
+    public static void outputResult() {
+
     }
 }

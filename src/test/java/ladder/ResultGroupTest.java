@@ -13,7 +13,7 @@ public class ResultGroupTest {
 
     @BeforeEach
     void setUp() {
-        participantGroup = new ParticipantGroup(Arrays.asList("1","2","3"));
+        participantGroup = new ParticipantGroup(Arrays.asList("1", "2", "3"));
     }
 
     @Test

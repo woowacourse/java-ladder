@@ -13,6 +13,8 @@ public class Main {
         OutputView.outputParticipants(participantGroup);
         OutputView.outputLadder(ladder);
         OutputView.outputResults(resultGroup);
+
+        playLadderGame(participantGroup, ladder);
     }
 
     private static ParticipantGroup createParticipantGroup() {
@@ -40,5 +42,10 @@ public class Main {
             System.out.println(e.getMessage());
             return createLadder(participantGroup);
         }
+    }
+
+    private static void playLadderGame(ParticipantGroup participantGroup, Ladder ladder) {
+        LadderGame ladderGame = new LadderGame(participantGroup, ladder);
+        ladderGame.play();
     }
 }

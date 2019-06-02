@@ -13,14 +13,14 @@ public class ResultGroup {
         this.results = results;
     }
 
-    public List<Result> getResults() {
-        return results;
-    }
-
-    private void checkResultsSize(ParticipantGroup participantGroup, List<Result> results) {
-        if (participantGroup.getSize() != results.size()) {
+    private void checkResultsSize(ParticipantGroup positionGroup, List<Result> results) {
+        if (positionGroup.getSize() != results.size()) {
             throw new IllegalArgumentException("실행 결과 수가 참여자 수와 동일하지 않습니다.");
         }
+    }
+
+    public List<Result> getResults() {
+        return results;
     }
 
     @Override
