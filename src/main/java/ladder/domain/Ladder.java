@@ -9,10 +9,10 @@ public class Ladder {
 
     private List<LadderRow> ladderRows = new ArrayList<>();
 
-    public Ladder(int height, int numberOfPeople) {
+    public Ladder(int height, int numberOfPlayer) {
         validateHeight(height);
         for (int i = 0; i < height; i++) {
-            ladderRows.add(LadderRow.of(numberOfPeople));
+            ladderRows.add(LadderRow.of(numberOfPlayer));
         }
     }
 
@@ -21,14 +21,14 @@ public class Ladder {
         this.ladderRows = ladderRows;
     }
 
-    public List<LadderRow> getLadderRows() {
-        return ladderRows;
-    }
-
     private void validateHeight(int height) {
         if (height < MINIMUM_HEIGHT) {
             throw new IllegalArgumentException("사다리의 높이는 1이상이어야 합니다.");
         }
+    }
+
+    public List<LadderRow> getLadderRows() {
+        return ladderRows;
     }
 
     public int answerResultPositionOf(int playerPosition) {
