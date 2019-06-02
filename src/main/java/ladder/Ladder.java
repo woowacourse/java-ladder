@@ -19,6 +19,10 @@ public class Ladder {
         }
     }
 
+    public List<Line> getLines() {
+        return lines;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -30,15 +34,5 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Line line : lines) {
-            stringBuilder.append(line);
-            stringBuilder.append(NEW_LINE);
-        }
-        return stringBuilder.toString();
     }
 }

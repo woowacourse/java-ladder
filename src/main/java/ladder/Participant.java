@@ -38,6 +38,6 @@ public class Participant {
 
     @Override
     public String toString() {
-        return name + "     ";
+        return name;
     }
 }
