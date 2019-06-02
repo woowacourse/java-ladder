@@ -5,20 +5,14 @@ import java.util.Objects;
 public class Crosspoint {
     private static final int ONE_STEP_LEFT = -1;
     private static final int ONE_STEP_RIGHT = 1;
-    private static final int STAY = 0;
 
-    private final int movingVector;
+    private final boolean leftCrossbar;
+    private final boolean rightCrossbar;
 
     Crosspoint(boolean leftCrossbar, boolean rightCrossbar) {
         validateCrossbar(leftCrossbar, rightCrossbar);
-        this.movingVector = (leftCrossbar || rightCrossbar) ? selectMovingVectorBy(leftCrossbar) : STAY;
-    }
-
-    private int selectMovingVectorBy(boolean leftCrossbar) {
-        if (leftCrossbar) {
-            return ONE_STEP_LEFT;
-        }
-        return ONE_STEP_RIGHT;
+        this.leftCrossbar = leftCrossbar;
+        this.rightCrossbar = rightCrossbar;
     }
 
     private void validateCrossbar(boolean leftCrossbar, boolean rightCrossbar) {
@@ -28,19 +22,23 @@ public class Crosspoint {
     }
 
     int answerResultPositionOf(int positionOfPlayer) {
-        return positionOfPlayer + movingVector;
+        return (leftCrossbar || rightCrossbar) ? move(positionOfPlayer) : positionOfPlayer;
+    }
+
+    private int move(int positionOfPlayer) {
+        return leftCrossbar ? positionOfPlayer + ONE_STEP_LEFT : positionOfPlayer + ONE_STEP_RIGHT;
     }
 
     boolean hasRightSideCrossbar() {
-        return movingVector == ONE_STEP_RIGHT;
+        return rightCrossbar;
     }
 
     boolean hasLeftSideCrossbar() {
-        return movingVector == ONE_STEP_LEFT;
+        return leftCrossbar;
     }
 
     boolean hasCrossbar() {
-        return (movingVector == ONE_STEP_LEFT) || (movingVector == ONE_STEP_RIGHT);
+        return leftCrossbar || rightCrossbar;
     }
 
     @Override
@@ -48,11 +46,12 @@ public class Crosspoint {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Crosspoint that = (Crosspoint) o;
-        return movingVector == that.movingVector;
+        return leftCrossbar == that.leftCrossbar &&
+                rightCrossbar == that.rightCrossbar;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(movingVector);
+        return Objects.hash(leftCrossbar, rightCrossbar);
     }
 }
