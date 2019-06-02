@@ -9,7 +9,14 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(final List<Line> lines) {
+        checkHeight(lines.size());
         this.lines = lines;
+    }
+
+    private void checkHeight(int height) {
+        if (height < 1) {
+            throw new IllegalArgumentException("사다리 높이는 1보다 작을 수 없습니다.");
+        }
     }
 
     @Override
