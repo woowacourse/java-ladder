@@ -6,23 +6,39 @@ import ladder.output.OutputView;
 
 public class Main {
     public static void main(String[] args) {
-        ParticipantGroup participantGroup = createParticipant();
+        ParticipantGroup participantGroup = createParticipantGroup();
+        ResultGroup resultGroup = createResultGroup(participantGroup);
         Ladder ladder = createLadder(participantGroup);
 
         OutputView.outputParticipants(participantGroup);
         OutputView.outputLadder(ladder);
+        OutputView.outputResults(resultGroup);
     }
 
-    private static ParticipantGroup createParticipant() {
+    private static ParticipantGroup createParticipantGroup() {
         try {
             return new ParticipantGroup(InputView.inputParticipants());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage() + "\n");
-            return createParticipant();
+            System.out.println(e.getMessage());
+            return createParticipantGroup();
+        }
+    }
+
+    private static ResultGroup createResultGroup(ParticipantGroup participantGroup) {
+        try {
+            return new ResultGroup(participantGroup, ResultGenerator.generate(InputView.inputResult()));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createResultGroup(participantGroup);
         }
     }
 
     private static Ladder createLadder(ParticipantGroup participantGroup) {
-        return LadderGenerator.generate(participantGroup, InputView.inputLadderHeight());
+        try {
+            return LadderGenerator.generate(participantGroup, InputView.inputLadderHeight());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createLadder(participantGroup);
+        }
     }
 }
