@@ -8,7 +8,7 @@ public class DefaultResults {
     private final List<Result> defaultResult;
 
     public DefaultResults(final List<Result> defaultResult) {
-        this.defaultResult = defaultResult;
+        this.defaultResult = new ArrayList<>(defaultResult);
     }
 
     Result getResult(final int position) {
