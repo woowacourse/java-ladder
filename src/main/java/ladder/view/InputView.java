@@ -19,7 +19,8 @@ public class InputView {
         do {
             System.out.println(NAME_INPUT_MESSAGE);
             inputText = scanner.nextLine().trim();
-        } while (!InputValidator.validSeparator(inputText));
+        } while (!InputValidator.validSeparator(inputText) &&
+                !InputValidator.validDuplicateName(inputText));
         return refineNames(inputText);
     }
 
