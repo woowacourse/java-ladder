@@ -44,7 +44,7 @@ public class OutputView {
     }
 
     private static void drawRow(final StringBuilder stringBuilder, final Row row) {
-        row.isLinked().forEach(linked -> {
+        row.connectResult().forEach(linked -> {
             if (linked) {
                 stringBuilder.append(POLE).append(LINKED);
             }

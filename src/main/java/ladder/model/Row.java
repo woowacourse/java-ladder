@@ -19,7 +19,7 @@ public class Row {
         return position + row.get(position).move();
     }
 
-    public List<Boolean> isLinked() {
+    public List<Boolean> connectResult() {
         return row.stream()
                 .map(Direction::isMovable)
                 .collect(Collectors.toList());
