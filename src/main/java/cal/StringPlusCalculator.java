@@ -9,19 +9,19 @@ public class StringPlusCalculator {
     private static final int VALID_BOUND_NUMBER = 0;
 
     public static int calculate(String expression) {
-        expression = checkBlank(expression);
+        expression = validateBlank(expression);
         int nPosition = checkCustomSeparator(expression);
         String seperator = separatorGenerator(expression, nPosition);
         String target = extractExpression(expression, nPosition);
         String[] numbers = target.split(seperator);
 
-        checkDelimiters(numbers);
-        checkNegative(numbers);
+        validateDelimiters(numbers);
+        validateNegativeInput(numbers);
 
         return sum(numbers);
     }
 
-    private static String checkBlank(String expression) {
+    private static String validateBlank(String expression) {
         if ("".equals(expression)) {
             expression = "0";
         }
@@ -44,20 +44,26 @@ public class StringPlusCalculator {
         return expression.substring(nPosition + 1);
     }
 
-    private static void checkDelimiters(String[] numbers) {
+    private static void validateDelimiters(String[] numbers) {
         for (String number : numbers) {
-            checkDelimiter(number);
+            validateDelimiter(number);
         }
     }
 
-    private static void checkDelimiter(String number) {
+    private static void validateDelimiter(String number) {
         if (!NUMBER_REGEX_PATTERN.matcher(number).matches())
             throw new IllegalArgumentException();
     }
 
-    private static void checkNegative(String[] numbers) {
+    private static void validateNegativeInput(String[] numbers) {
         for (String number : numbers) {
-            if (Integer.parseInt(number) < VALID_BOUND_NUMBER) throw new IllegalArgumentException();
+            validateNegativeOf(number);
+        }
+    }
+
+    private static void validateNegativeOf(final String number) {
+        if (Integer.parseInt(number) < VALID_BOUND_NUMBER) {
+            throw new IllegalArgumentException();
         }
     }
 
