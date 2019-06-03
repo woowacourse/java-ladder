@@ -1,6 +1,6 @@
 package ladder.model;
 
-import ladder.model.generator.RowGenerator;
+import ladder.model.generator.DirectionsGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ public class RowTest {
 
     @BeforeEach
     void setUp() {
-        row = Row.of(RowGenerator.makeDirections(Arrays.asList(true, false, false)));
+        row = Row.of(DirectionsGenerator.makeDirections(Arrays.asList(true, false, false)));
     }
 
     @Test

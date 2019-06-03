@@ -1,7 +1,6 @@
 package ladder.model;
 
-import ladder.model.generator.LadderGenerator;
-import ladder.model.generator.RowGenerator;
+import ladder.model.generator.DirectionsGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,10 +15,10 @@ public class LadderTest {
     void setUp() {
         ladder = Ladder.of(
                 Arrays.asList(
-                        Row.of(RowGenerator.makeDirections(Arrays.asList(true, false))),
-                        Row.of(RowGenerator.makeDirections(Arrays.asList(false, false))),
-                        Row.of(RowGenerator.makeDirections(Arrays.asList(false, true))),
-                        Row.of(RowGenerator.makeDirections(Arrays.asList(true, false)))
+                        Row.of(DirectionsGenerator.makeDirections(Arrays.asList(true, false))),
+                        Row.of(DirectionsGenerator.makeDirections(Arrays.asList(false, false))),
+                        Row.of(DirectionsGenerator.makeDirections(Arrays.asList(false, true))),
+                        Row.of(DirectionsGenerator.makeDirections(Arrays.asList(true, false)))
                 )
         );
     }
@@ -28,10 +27,10 @@ public class LadderTest {
     void 생성() {
         assertThat(ladder).isEqualTo(Ladder.of(
                 Arrays.asList(
-                        Row.of(RowGenerator.makeDirections(Arrays.asList(true, false))),
-                        Row.of(RowGenerator.makeDirections(Arrays.asList(false, false))),
-                        Row.of(RowGenerator.makeDirections(Arrays.asList(false, true))),
-                        Row.of(RowGenerator.makeDirections(Arrays.asList(true, false)))
+                        Row.of(DirectionsGenerator.makeDirections(Arrays.asList(true, false))),
+                        Row.of(DirectionsGenerator.makeDirections(Arrays.asList(false, false))),
+                        Row.of(DirectionsGenerator.makeDirections(Arrays.asList(false, true))),
+                        Row.of(DirectionsGenerator.makeDirections(Arrays.asList(true, false)))
                 )
         ));
     }
