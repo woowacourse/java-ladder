@@ -3,11 +3,15 @@ package ladder.model;
 import java.util.Objects;
 
 public class Direction {
+    private static final int RIGHT_MOVE = 1;
+    private static final int LEFT_MOVE = -1;
+    private static final int NONE_MOVE = 0;
+
     private final boolean left;
     private final boolean right;
 
     private Direction(final boolean left, final boolean right) {
-        if (left & right) {
+        if (left && right) {
             throw new IllegalArgumentException();
         }
 
@@ -15,33 +19,29 @@ public class Direction {
         this.right = right;
     }
 
-    static Direction of(boolean left, boolean right) {
-        return new Direction(left, right);
-    }
-
-    static Direction first(boolean right) {
+    public static Direction first(boolean right) {
         return new Direction(false, right);
     }
 
-    Direction next(boolean right) {
-        if (this.right & right) {
+    public Direction next(boolean right) {
+        if (this.right && right) {
             right = false;
         }
         return new Direction(this.right, right);
     }
 
-    Direction last() {
+    public Direction last() {
         return new Direction(this.right, false);
     }
 
     int move() {
         if (left) {
-            return -1;
+            return LEFT_MOVE;
         }
         if (right) {
-            return 1;
+            return RIGHT_MOVE;
         }
-        return 0;
+        return NONE_MOVE;
     }
 
     boolean isMovable() {

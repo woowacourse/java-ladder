@@ -8,20 +8,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DirectionTest {
 
     Direction first;
-
+    Direction last;
     @BeforeEach
     void setUp() {
         first = Direction.first(true);
+        last = first.last();
     }
 
     @Test
     void 첫번째_방향_테스트() {
-        assertThat(first).isEqualTo(Direction.of(false, true));
+        assertThat(first).isEqualTo(Direction.first(true));
     }
 
     @Test
     void 마지막_방향_테스트() {
-        assertThat(first.last()).isEqualTo(Direction.of(true, false));
+        assertThat(last).isEqualTo(first.last());
     }
 
     @Test
@@ -31,7 +32,8 @@ public class DirectionTest {
 
     @Test
     void 왼쪽_이동_테스트() {
-        assertThat(first.last().move()).isEqualTo(-1);
+
+        assertThat(last.move()).isEqualTo(-1);
     }
 
     @Test
