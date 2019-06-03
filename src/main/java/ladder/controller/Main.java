@@ -13,8 +13,18 @@ public class Main {
         OutputView.outputParticipants(participantGroup);
         OutputView.outputLadder(ladder);
         OutputView.outputResults(resultGroup);
+        LadderGame ladderGame = createLadderGame(participantGroup, ladder, resultGroup);
+        ladderGame.play();
 
-        playLadderGame(participantGroup, ladder);
+        outputResult(ladderGame);
+    }
+
+    private static void outputResult(LadderGame ladderGame) {
+        String name;
+        do {
+            name = InputView.inputParticipant();
+            OutputView.outputResult(name, ladderGame.result());
+        } while (!name.equals("all"));
     }
 
     private static ParticipantGroup createParticipantGroup() {
@@ -44,8 +54,7 @@ public class Main {
         }
     }
 
-    private static void playLadderGame(ParticipantGroup participantGroup, Ladder ladder) {
-        LadderGame ladderGame = new LadderGame(participantGroup, ladder);
-        ladderGame.play();
+    private static LadderGame createLadderGame(ParticipantGroup participantGroup, Ladder ladder, ResultGroup resultGroup) {
+        return new LadderGame(participantGroup, ladder, resultGroup);
     }
 }

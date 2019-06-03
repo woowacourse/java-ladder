@@ -1,21 +1,32 @@
 package ladder;
 
-import java.util.List;
+import java.util.*;
 
 public class LadderGame {
     private final ParticipantGroup participantGroup;
     private final Ladder ladder;
+    private final ResultGroup resultGroup;
 
-    public LadderGame(ParticipantGroup participantGroup, Ladder ladder) {
+    public LadderGame(ParticipantGroup participantGroup, Ladder ladder, ResultGroup resultGroup) {
         this.participantGroup = participantGroup;
         this.ladder = ladder;
+        this.resultGroup = resultGroup;
     }
 
     public void play() {
         List<Line> lines = ladder.getLines();
-        for (int i = 0; i < lines.size(); i++) {
-            participantGroup.move(lines.get(i).getDirections());
-            System.out.println();
+        for (Line line : lines) {
+            participantGroup.move(line.getDirections());
         }
+    }
+
+    public Map<String, Result> result() {
+        Map<String, Result> resultMatch = new LinkedHashMap<>();
+        List<String> names = participantGroup.createNames();
+        List<Result> results = resultGroup.changeResult();
+        for (int i = 0; i < participantGroup.getSize(); i++) {
+            resultMatch.put(names.get(i), results.get(i));
+        }
+        return resultMatch;
     }
 }

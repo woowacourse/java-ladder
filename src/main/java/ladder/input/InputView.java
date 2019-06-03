@@ -18,7 +18,7 @@ public class InputView {
     public static int inputLadderHeight() {
         try {
             System.out.println("최대 사다리 높이는 몇 개 인가요?");
-            return scanner.nextInt();
+            return Integer.parseInt(scanner.nextLine());
         } catch (InputMismatchException e) {
             scanner.nextLine();
             System.out.println("숫자를 입력해주세요.");

@@ -2,12 +2,12 @@ package ladder.output;
 
 import ladder.*;
 
-public class OutputView {
-    private static final String BLANK = "     ";
+import java.util.Map;
 
+public class OutputView {
     public static void outputParticipants(ParticipantGroup participantGroup) {
         for (Participant participant : participantGroup.getParticipants()) {
-            System.out.print(participant + BLANK);
+            System.out.printf("%-6s", participant);
         }
         System.out.println();
     }
@@ -20,12 +20,27 @@ public class OutputView {
 
     public static void outputResults(ResultGroup resultGroup) {
         for (Result result : resultGroup.getResults()) {
-            System.out.print(result + BLANK);
+            System.out.printf("%-6s", result);
         }
         System.out.println();
     }
 
-    public static void outputResult() {
+    public static void outputResult(String name, Map<String, Result> result) {
+        System.out.println("실행 결과");
+        if (result.keySet().contains(name)) {
+            System.out.println(result.get(name));
+            return;
+        }
+        if (name.equals("all")) {
+            outputResultAll(result);
+            return;
+        }
+        System.out.println("존재하지 않습니다.");
+    }
 
+    private static void outputResultAll(Map<String, Result> result) {
+        for (Map.Entry<String, Result> resultEntry : result.entrySet()) {
+            System.out.println(resultEntry.getKey() + " : " + resultEntry.getValue());
+        }
     }
 }

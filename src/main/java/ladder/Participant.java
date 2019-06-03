@@ -1,6 +1,5 @@
 package ladder;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Participant {
@@ -28,13 +27,14 @@ public class Participant {
 
     public void move(Direction direction) {
         position.move(direction);
-        /*for (int i = 0; i < positions.size(); i++) {
-            positions.get(i).play(directions.get(positions.get(i).getPosition()));
-        }*/
     }
 
     public int getPosition() {
         return position.getPosition();
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

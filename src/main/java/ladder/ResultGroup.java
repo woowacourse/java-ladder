@@ -1,7 +1,6 @@
 package ladder;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class ResultGroup {
     private final ParticipantGroup participantGroup;
@@ -17,6 +16,15 @@ public class ResultGroup {
         if (positionGroup.getSize() != results.size()) {
             throw new IllegalArgumentException("실행 결과 수가 참여자 수와 동일하지 않습니다.");
         }
+    }
+
+    public List<Result> changeResult() {
+        List<Integer> resultPositions = participantGroup.createResultPositions();
+        List<Result> resultChange = new ArrayList<>();
+        for (int i = 0; i < results.size(); i++) {
+            resultChange.add(results.get(resultPositions.get(i)));
+        }
+        return resultChange;
     }
 
     public List<Result> getResults() {

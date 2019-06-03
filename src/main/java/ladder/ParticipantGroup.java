@@ -35,10 +35,25 @@ public class ParticipantGroup {
     }
 
     public void move(List<Direction> directions) {
-        for (int i = 0; i < participants.size(); i++) {
-            participants.get(i).move(directions.get(participants.get(i).getPosition()));
-            System.out.print(participants.get(i).getPosition());
+        for (Participant participant : participants) {
+            participant.move(directions.get(participant.getPosition()));
         }
+    }
+
+    public List<Integer> createResultPositions() {
+        List<Integer> resultPositions = new ArrayList<>();
+        for (Participant participant : participants) {
+            resultPositions.add(participant.getPosition());
+        }
+        return resultPositions;
+    }
+
+    public List<String> createNames() {
+        List<String> names = new ArrayList<>();
+        for (Participant participant : participants) {
+            names.add(participant.getName());
+        }
+        return names;
     }
 
     public int getSize() {
@@ -47,10 +62,6 @@ public class ParticipantGroup {
 
     public List<Participant> getParticipants() {
         return participants;
-    }
-
-    public Participant getParticipant(final int index) {
-        return participants.get(index);
     }
 
     @Override
