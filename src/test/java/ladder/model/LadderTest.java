@@ -1,5 +1,7 @@
 package ladder.model;
 
+import ladder.model.generator.LadderGenerator;
+import ladder.model.generator.RowGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,17 +10,16 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
-
     Ladder ladder;
 
     @BeforeEach
     void setUp() {
         ladder = Ladder.of(
                 Arrays.asList(
-                        Row.of(Arrays.asList(Direction.first(true), Direction.of(true, false), Direction.of(false, false))),
-                        Row.of(Arrays.asList(Direction.first(false), Direction.of(false, false), Direction.of(false, false))),
-                        Row.of(Arrays.asList(Direction.first(false), Direction.of(false, true), Direction.of(true, false))),
-                        Row.of(Arrays.asList(Direction.first(true), Direction.of(true, false), Direction.of(false, false)))
+                        Row.of(RowGenerator.makeDirections(Arrays.asList(true, false))),
+                        Row.of(RowGenerator.makeDirections(Arrays.asList(false, false))),
+                        Row.of(RowGenerator.makeDirections(Arrays.asList(false, true))),
+                        Row.of(RowGenerator.makeDirections(Arrays.asList(true, false)))
                 )
         );
     }
@@ -27,17 +28,12 @@ public class LadderTest {
     void 생성() {
         assertThat(ladder).isEqualTo(Ladder.of(
                 Arrays.asList(
-                        Row.of(Arrays.asList(Direction.first(true), Direction.of(true, false), Direction.of(false, false))),
-                        Row.of(Arrays.asList(Direction.first(false), Direction.of(false, false), Direction.of(false, false))),
-                        Row.of(Arrays.asList(Direction.first(false), Direction.of(false, true), Direction.of(true, false))),
-                        Row.of(Arrays.asList(Direction.first(true), Direction.of(true, false), Direction.of(false, false)))
+                        Row.of(RowGenerator.makeDirections(Arrays.asList(true, false))),
+                        Row.of(RowGenerator.makeDirections(Arrays.asList(false, false))),
+                        Row.of(RowGenerator.makeDirections(Arrays.asList(false, true))),
+                        Row.of(RowGenerator.makeDirections(Arrays.asList(true, false)))
                 )
         ));
-    }
-
-    @Test
-    void Ladder_높이에_맞게_생성되는지_테스트() {
-        assertThat(Ladder.nHeightLadder(2, 5).ladderStructure().size()).isEqualTo(5);
     }
 
     @Test

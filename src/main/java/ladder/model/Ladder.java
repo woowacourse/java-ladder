@@ -15,16 +15,6 @@ public class Ladder {
         return new Ladder(ladder);
     }
 
-    public static Ladder nHeightLadder(int countOfMember, int height) {
-        List<Row> ladder = new ArrayList<>();
-
-        for (int i = 0; i < height; i++) {
-            ladder.add(Row.generateRandomRow(countOfMember));
-        }
-
-        return new Ladder(ladder);
-    }
-
     Result play(Member member, DefaultResults results) {
         int position = member.getPosition();
 

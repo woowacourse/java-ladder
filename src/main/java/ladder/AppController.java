@@ -1,13 +1,14 @@
 package ladder;
 
 import ladder.model.*;
-import ladder.model.generator.MemberGenerator;
-import ladder.model.generator.ResultsGenerator;
-import ladder.view.InputView;
-import ladder.view.OutputView;
 
-import java.util.Arrays;
 import java.util.List;
+
+import static ladder.model.generator.LadderGenerator.generateLadder;
+import static ladder.model.generator.MemberGenerator.generateMembers;
+import static ladder.model.generator.ResultsGenerator.generateResults;
+import static ladder.view.InputView.*;
+import static ladder.view.OutputView.*;
 
 public class AppController {
 
@@ -18,25 +19,25 @@ public class AppController {
     }
 
     private LadderGame initGame() {
-        Members members = new Members(MemberGenerator.generateMembers(InputView.inputNames()));
+        Members members = new Members(generateMembers(inputNames()));
         int countOfMember = members.numberOfMembers();
-        Ladder ladder = Ladder.nHeightLadder(countOfMember, InputView.inputLadderHeight());
-        DefaultResults results = new DefaultResults(ResultsGenerator.generateResults(InputView.inputResults(countOfMember)));
+        Ladder ladder = generateLadder(countOfMember, inputLadderHeight());
+        DefaultResults results = new DefaultResults(generateResults(inputResults(countOfMember)));
 
         return new LadderGame(members, ladder, results);
     }
 
     private EndResult playGame(LadderGame ladderGame){
-        OutputView.printLadder(ladderGame);
+        printLadder(ladderGame);
         return ladderGame.executeGame();
     }
 
     private void endGame(EndResult results, List<String> memberNames) {
-        String name = InputView.inputGetMemberResult(memberNames);
+        String name = inputGetMemberResult(memberNames);
         if (name.equals("all")) {
-            OutputView.allPrintResult(results.getAll(), memberNames);
+            allPrintResult(results.getAll(), memberNames);
             return;
         }
-        OutputView.printMemberResult(results.get(name));
+        printMemberResult(results.get(name));
     }
 }
