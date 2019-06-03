@@ -16,7 +16,7 @@ public class InputValidator {
 
     public static boolean validDuplicateName(String inputNames) {
         List<String> names = Arrays.stream(inputNames.split(",")).collect(Collectors.toList());
-        return names.size() != new HashSet<>(names).size();
+        return names.size() == new HashSet<>(names).size();
     }
 
     public static boolean validMemberCount(int countOfResults, int countOfMember) {
