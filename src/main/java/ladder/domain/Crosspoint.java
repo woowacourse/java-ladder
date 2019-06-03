@@ -16,16 +16,18 @@ public class Crosspoint {
         this.rightCrossbar = rightCrossbar;
     }
 
+    private void validateCrossbar(boolean leftCrossbar, boolean rightCrossbar) {
+        if (leftCrossbar && rightCrossbar) {
+            throw new IllegalArgumentException("양쪽 모두 가로 막대가 있을 수는 없습니다.");
+        }
+    }
+
     static Crosspoint generateFirstCrosspoint() {
         return new Crosspoint(false, generateCrossbarRandomly());
     }
 
     private static boolean generateCrossbarRandomly() {
         return Math.random() > RATE_OF_EMPTY_CROSSBARS;
-    }
-
-    static Crosspoint generateLastCrosspointNeighboredWith(Crosspoint leftNeighboredCrossbar) {
-        return new Crosspoint(leftNeighboredCrossbar.hasRightSideCrossbar(), false);
     }
 
     static Crosspoint generateInnerCrosspointNeighboredWith(Crosspoint leftNeighboredCrossbar) {
@@ -35,10 +37,8 @@ public class Crosspoint {
         return leftNeighboredCrossbar.hasRightSideCrossbar() ? leftHandCrosspoint : randomCrosspointWithoutLeftHand;
     }
 
-    private void validateCrossbar(boolean leftCrossbar, boolean rightCrossbar) {
-        if (leftCrossbar && rightCrossbar) {
-            throw new IllegalArgumentException("양쪽 모두 가로 막대가 있을 수는 없습니다.");
-        }
+    static Crosspoint generateLastCrosspointNeighboredWith(Crosspoint leftNeighboredCrossbar) {
+        return new Crosspoint(leftNeighboredCrossbar.hasRightSideCrossbar(), false);
     }
 
     int answerResultPositionOf(int positionOfPlayer) {
