@@ -2,9 +2,7 @@ package ladder.domain.result;
 
 import ladder.domain.participant.ParticipantGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class ResultGroup {
     private final ParticipantGroup participantGroup;
