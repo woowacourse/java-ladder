@@ -12,9 +12,10 @@ public class LadderGameLauncher {
         int numberOfPlayers = players.size();
         ResultItems resultItems = getResultItems(numberOfPlayers);
         Ladder ladder = generateLadderWidthOf(numberOfPlayers);
+        OutputView.showPlayersAndLadder(players, ladder, resultItems);
 
-        LadderGame laddergame = new LadderGame();
-        laddergame.start(players, ladder, resultItems);
+        LadderingResult ladderingResult = LadderGame.start(players, ladder, resultItems);
+        show(ladderingResult);
     }
 
     private static PlayerGroup getPlayers() {
@@ -60,4 +61,13 @@ public class LadderGameLauncher {
         }
     }
 
+    private static void show(LadderingResult ladderingResult) {
+        try {
+            String playerName = InputView.inputPlayerNameToShowResult();
+            OutputView.showResultOf(playerName, ladderingResult);
+        } catch (IllegalArgumentException e) {
+            OutputView.showErrorMessage(e.getMessage());
+        }
+        show(ladderingResult);
+    }
 }
