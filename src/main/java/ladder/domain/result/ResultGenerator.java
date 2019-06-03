@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain.result;
 
 import java.util.ArrayList;
 import java.util.List;

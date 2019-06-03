@@ -1,5 +1,6 @@
-package ladder;
+package ladder.domain.ladder;
 
+import ladder.domain.participant.ParticipantGroup;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

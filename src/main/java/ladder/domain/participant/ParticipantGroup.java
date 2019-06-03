@@ -1,4 +1,6 @@
-package ladder;
+package ladder.domain.participant;
+
+import ladder.domain.ladder.Direction;
 
 import java.util.ArrayList;
 import java.util.HashSet;

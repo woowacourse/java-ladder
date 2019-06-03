@@ -1,6 +1,12 @@
-package ladder;
+package ladder.domain.ladder;
 
-import java.util.*;
+import ladder.domain.participant.ParticipantGroup;
+import ladder.domain.result.Result;
+import ladder.domain.result.ResultGroup;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LadderGame {
     private final ParticipantGroup participantGroup;

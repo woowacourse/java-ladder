@@ -1,4 +1,6 @@
-package ladder;
+package ladder.domain.ladder;
+
+import ladder.domain.participant.ParticipantGroup;
 
 import java.util.ArrayList;
 import java.util.List;

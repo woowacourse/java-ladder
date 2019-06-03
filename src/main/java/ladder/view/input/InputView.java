@@ -1,4 +1,4 @@
-package ladder.input;
+package ladder.view.input;
 
 import org.apache.commons.lang3.StringUtils;
 

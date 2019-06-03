@@ -1,8 +1,13 @@
 package ladder.controller;
 
-import ladder.*;
-import ladder.input.InputView;
-import ladder.output.OutputView;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderGame;
+import ladder.domain.ladder.LadderGenerator;
+import ladder.domain.participant.ParticipantGroup;
+import ladder.domain.result.ResultGenerator;
+import ladder.domain.result.ResultGroup;
+import ladder.view.input.InputView;
+import ladder.view.output.OutputView;
 
 public class Main {
     public static void main(String[] args) {

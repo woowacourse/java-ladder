@@ -1,4 +1,7 @@
-package ladder;
+package ladder.domain.ladder;
+
+import ladder.domain.participant.ParticipantGroup;
+import ladder.util.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,11 @@
-package ladder.output;
+package ladder.view.output;
 
-import ladder.*;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
+import ladder.domain.participant.Participant;
+import ladder.domain.participant.ParticipantGroup;
+import ladder.domain.result.Result;
+import ladder.domain.result.ResultGroup;
 
 import java.util.Map;
 
