@@ -17,7 +17,7 @@ public class DirectionTest {
 
     @Test
     void 방향이_한개가_아닌_경우() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(InvalidDirection.class, () -> {
             new Direction(TRUE, TRUE);
         });
     }

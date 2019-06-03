@@ -5,6 +5,8 @@ import ladder.domain.participant.ParticipantGroup;
 import java.util.*;
 
 public class ResultGroup {
+    private static final String NOT_MATCH_RESULTS_SIZE_ERROR = "실행 결과 수가 참여자 수와 동일하지 않습니다.";
+
     private final ParticipantGroup participantGroup;
     private final List<Result> results;
 
@@ -16,7 +18,7 @@ public class ResultGroup {
 
     private void checkResultsSize(ParticipantGroup positionGroup, List<Result> results) {
         if (positionGroup.getSize() != results.size()) {
-            throw new IllegalArgumentException("실행 결과 수가 참여자 수와 동일하지 않습니다.");
+            throw new InvalidResultGroup(NOT_MATCH_RESULTS_SIZE_ERROR);
         }
     }
 

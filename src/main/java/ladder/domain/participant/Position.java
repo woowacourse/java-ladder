@@ -8,14 +8,7 @@ public class Position {
     private int position;
 
     public Position(int position) {
-        checkUnderZero(position);
         this.position = position;
-    }
-
-    private void checkUnderZero(int position) {
-        if (position < 0) {
-            throw new IllegalArgumentException("위치는 음수 일 수는 없습니다.");
-        }
     }
 
     public void move(Direction direction) {

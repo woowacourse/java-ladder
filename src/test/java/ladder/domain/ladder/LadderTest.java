@@ -19,7 +19,7 @@ public class LadderTest {
     @Test
     void 높이가_1_이하인_경우() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Ladder ladder = LadderGenerator.generate(participantGroup, 0);
+            LadderGenerator.generate(participantGroup, 0);
         });
     }
 }

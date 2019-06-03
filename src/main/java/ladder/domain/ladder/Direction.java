@@ -3,6 +3,13 @@ package ladder.domain.ladder;
 import java.util.Objects;
 
 public class Direction {
+    private static final int MOVE_RIGHT = 1;
+    private static final int MOVE_LEFT = -1;
+    private static final int MOVE_STOP = 0;
+    private static final String DUPLICATED_DIRECTION_ERROR = "방향을 두 개 이상 가질 수 없습니다.";
+    private static final String BLANK = "     ";
+    private static final String STAIR = "-----";
+
     private final boolean hasLeft;
     private final boolean hasRight;
 
@@ -14,7 +21,7 @@ public class Direction {
 
     private void checkDirection(boolean hasLeft, boolean hasRight) {
         if (hasLeft && hasRight) {
-            throw new IllegalArgumentException("방향을 두 개 이상 가질 수 없습니다.");
+            throw new InvalidDirection(DUPLICATED_DIRECTION_ERROR);
         }
     }
 
@@ -39,12 +46,12 @@ public class Direction {
 
     public int move() {
         if (hasLeft) {
-            return -1;
+            return MOVE_LEFT;
         }
         if (hasRight) {
-            return 1;
+            return MOVE_RIGHT;
         }
-        return 0;
+        return MOVE_STOP;
     }
 
     @Override
@@ -64,8 +71,8 @@ public class Direction {
     @Override
     public String toString() {
         if (hasRight) {
-            return "-----";
+            return STAIR;
         }
-        return "     ";
+        return BLANK;
     }
 }

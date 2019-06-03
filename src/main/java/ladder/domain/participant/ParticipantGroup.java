@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class ParticipantGroup {
+    private static final int MINIMUM_PARTICIPANT_NUM = 2;
+    private static final String MINIMUM_PARTICIPANT_NUM_ERROR = "참가자는 2명 이상이어야 합니다.";
+    private static final String DUPLICATE_PARTICIPANT_NAME = "중복되는 참가자 명이 있습니다.";
+
     private final List<Participant> participants;
 
     public ParticipantGroup(List<String> names) {
@@ -17,14 +21,14 @@ public class ParticipantGroup {
     }
 
     private void checkMinimumParticipants(List<String> names) {
-        if (names.size() < 2) {
-            throw new IllegalArgumentException("참가자는 2명 이상이어야 합니다.");
+        if (names.size() < MINIMUM_PARTICIPANT_NUM) {
+            throw new InvalidParticipantGroup(MINIMUM_PARTICIPANT_NUM_ERROR);
         }
     }
 
     private void checkDuplicatedParticipant(List<String> names) {
         if (names.size() != new HashSet<>(names).size()) {
-            throw new IllegalArgumentException("중복되는 참가자 명이 있습니다.");
+            throw new InvalidParticipantGroup(DUPLICATE_PARTICIPANT_NAME);
         }
     }
 
