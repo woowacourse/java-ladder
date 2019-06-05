@@ -19,7 +19,6 @@ public class ResultsTest {
         });
     }
 
-
     @Test
     void 이름들_입력보다_많은_결과들_입력() {
         String[] playerInputs = StringUtils.deleteWhitespace("pobi,ko").split(",");
@@ -39,5 +38,4 @@ public class ResultsTest {
             ResultsFactory.getResults(Arrays.asList(results), players.size());
         });
     }
-
 }

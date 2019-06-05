@@ -7,7 +7,6 @@ public class BridgePoint {
         this.drawn = drawn;
     }
 
-
     public void setTrue() {
         drawn = true;
     }

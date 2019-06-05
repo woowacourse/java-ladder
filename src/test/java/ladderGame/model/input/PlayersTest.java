@@ -56,6 +56,4 @@ public class PlayersTest {
             PlayersFactory.getPlayers(Arrays.asList(input.split(",")));
         });
     }
-
-
 }
