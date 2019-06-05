@@ -8,14 +8,6 @@ public class Ladder {
     private int columnNum;
     private RandomBridgeGenerator randomBridgeGenerator;
 
-    public Ladder(int rowNumber, int columnNumber) {
-        rows = new ArrayList();
-        for (int i = 0; i < rowNumber; i++) {
-            rows.add(new Row(columnNumber));
-        }
-        this.columnNum = columnNumber;
-    }
-
     public Ladder(RandomBridgeGenerator randomBridgeGenerator, int rowNumber, int columnNumber) {
         rows = new ArrayList();
         for (int i = 0; i < rowNumber; i++) {
@@ -34,12 +26,12 @@ public class Ladder {
         }
     }
 
-    public void draw(int row, int column) {
+    private void draw(int row, int column) {
         rows.get(row).draw(column);
     }
 
     public boolean getPoint(int row, int column) {
-        return rows.get(row).getPoint(column);
+        return rows.get(row).getBridgePointExistence(column);
     }
 
     public int getArrivialIndex(int startIndex) {
@@ -51,7 +43,7 @@ public class Ladder {
     }
 
     public int getTruePointNumber() {
-        return rows.stream().mapToInt(row -> row.getTruePointNumber()).sum();
+        return rows.stream().mapToInt(row -> row.getTrueBridgePointNumber()).sum();
     }
 
     public int getRowNumber() {

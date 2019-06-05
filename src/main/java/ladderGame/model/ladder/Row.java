@@ -4,47 +4,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Row {
-    private List<Point> points;
+    private List<BridgePoint> bridgePoints;
 
     public Row(int columnNum) {
-        points = new ArrayList<Point>();
+        bridgePoints = new ArrayList<BridgePoint>();
         for (int i = 0; i < columnNum; i++) {
-            points.add(new Point(false));
+            bridgePoints.add(new BridgePoint(false));
         }
     }
 
     public void draw(int column) {
-        if (leftPointisSetTrue(column) || rightPointisSetTrue(column)) {
+        if (leftBridgePointisSetTrue(column) || rightBridgePointisSetTrue(column)) {
             return;
         }
-        points.get(column).setTrue();
+        bridgePoints.get(column).setTrue();
     }
 
-    private boolean leftPointisSetTrue(int column) {
-        return column > 0 && points.get(column - 1).isTrue();
+    private boolean leftBridgePointisSetTrue(int column) {
+        return column > 0 && bridgePoints.get(column - 1).isTrue();
 
     }
 
-    private boolean rightPointisSetTrue(int column) {
-        return column < points.size() - 1 && points.get(column + 1).isTrue();
+    private boolean rightBridgePointisSetTrue(int column) {
+        return column < bridgePoints.size() - 1 && bridgePoints.get(column + 1).isTrue();
     }
 
-    public boolean getPoint(int column) {
-        return points.get(column).isTrue();
+    public boolean getBridgePointExistence(int column) {
+        return bridgePoints.get(column).isTrue();
     }
 
     public int getArrivalIndex(int startIndex) {
-        if (startIndex > 0 && points.get(startIndex - 1).isTrue()) {
+        if (startIndex > 0 && bridgePoints.get(startIndex - 1).isTrue()) {
             return startIndex - 1;
         }
-        if (startIndex < points.size() && points.get(startIndex).isTrue()) {
+        if (startIndex < bridgePoints.size() && bridgePoints.get(startIndex).isTrue()) {
             return startIndex + 1;
         }
         return startIndex;
     }
 
-    public int getTruePointNumber() {
-        return (int) points.stream().filter(point -> point.isTrue()).count();
+    public int getTrueBridgePointNumber() {
+        return (int) bridgePoints.stream().filter(bridgePoint -> bridgePoint.isTrue()).count();
     }
 
 }
