@@ -6,6 +6,7 @@ import java.util.List;
 public class Ladder {
     private List<Row> rows;
     private int columnNum;
+    private RandomBridgeGenerator randomBridgeGenerator;
 
     public Ladder(int rowNumber, int columnNumber) {
         rows = new ArrayList();
@@ -13,6 +14,24 @@ public class Ladder {
             rows.add(new Row(columnNumber));
         }
         this.columnNum = columnNumber;
+    }
+
+    public Ladder(RandomBridgeGenerator randomBridgeGenerator, int rowNumber, int columnNumber) {
+        rows = new ArrayList();
+        for (int i = 0; i < rowNumber; i++) {
+            rows.add(new Row(columnNumber));
+        }
+        this.columnNum = columnNumber;
+        this.randomBridgeGenerator = randomBridgeGenerator;
+
+        completeLadder();
+    }
+
+    private void completeLadder() {
+        while (getTruePointNumber() < randomBridgeGenerator.generateRandomBridgeCount()) {
+            Location randomLocation = randomBridgeGenerator.generateRandomBridgeLocation();
+            draw(randomLocation.getRow(), randomLocation.getColumn());
+        }
     }
 
     public void draw(int row, int column) {

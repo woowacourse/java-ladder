@@ -2,14 +2,8 @@ package ladderGame.model.ladder;
 
 public class LadderFactory {
     public static Ladder generateLadder(int rows, int columns) {
-        int randomNum = (int) (Math.random() * (getMaxTruePointNum(rows, columns)));
-        Ladder ladder = new Ladder(rows, columns);
-
-        while (ladder.getTruePointNumber() < randomNum) {
-            int randomRowNumber = (int) (Math.random() * rows);
-            int randomColumnNumber = (int) (Math.random() * columns);
-            ladder.draw(randomRowNumber, randomColumnNumber);
-        }
+        RandomBridgeGenerator randomBridgeGenerator = new RandomBridgeGenerator(rows, columns);
+        Ladder ladder = new Ladder(randomBridgeGenerator, rows, columns);
         return ladder;
     }
 
@@ -23,4 +17,5 @@ public class LadderFactory {
     private static boolean isOddNumber(int rows) {
         return rows % 2 == 1;
     }
+
 }

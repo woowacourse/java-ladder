@@ -21,6 +21,5 @@ public class Calculator {
         if (0 < numbers.stream().filter((number) -> number < 0).count()) {
             throw new RuntimeException();
         }
-        ;
     }
 }
