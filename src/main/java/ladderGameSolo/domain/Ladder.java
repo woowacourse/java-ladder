@@ -52,12 +52,12 @@ public class Ladder {
         }
     }
 
-    private void checkBridgeDirection(int index, int i) {
-        if (lines.get(index).isMove(i)) {
+    private void checkBridgeDirection(int lineIndex, int directionIndex) {
+        if (lines.get(lineIndex).isMove(directionIndex)) {
             return;
         }
 
-        setBridge(index, i);
+        setBridge(lineIndex, directionIndex);
     }
 
     private void setBridge(int index, int i) {
