@@ -1,9 +1,6 @@
 package ladderGameSolo.controller;
 
-import ladderGameSolo.domain.GameMembers;
-import ladderGameSolo.domain.Ladder;
-import ladderGameSolo.domain.Member;
-import ladderGameSolo.domain.Position;
+import ladderGameSolo.domain.*;
 import ladderGameSolo.view.GameView;
 import ladderGameSolo.view.InputView;
 
@@ -14,23 +11,19 @@ public class LadderGame {
     private static final int START_POSITION = 0;
     private static final String DELIMITER_COMMA = ",";
     private static final String MESSAGE_ALL = "all";
-    private GameView gameView;
-
-    public LadderGame(GameView gameView) {
-        this.gameView = gameView;
-    }
 
     public void run() {
         String[] names = InputView.inputName().split(DELIMITER_COMMA);
         String[] inputResult = InputView.inputResult(names.length).split(DELIMITER_COMMA);
-        int height = InputView.inputHeight();
-        Ladder ladder = getLadders(names.length, height);
+        Height height = new Height(InputView.inputHeight());
+        Ladder ladder = getLadders(names.length, height.getHeight());
 
-        gameView.printLadderInfo(names, inputResult, ladder);
+        GameView.printLadderInfo(names, inputResult, ladder);
 
         String targetName = InputView.inputTargetName(names);
-        GameMembers gameMembers = new GameMembers(makeMembers(names, targetName, height));
-        gameView.printGameResult(inputResult, ladder, gameMembers);
+        List<Member> members = new ArrayList<>(makeMembers(names, targetName, height.getHeight()));
+        GameMembers gameMembers = new GameMembers(members);
+        GameView.printGameResult(gameMembers, getResult(ladder, gameMembers, inputResult));
     }
 
     private static Ladder getLadders(int countOfPeople, int height) {
@@ -54,5 +47,16 @@ public class LadderGame {
         }
 
         return new String[]{targetName};
+    }
+
+    private List<String> getResult(Ladder ladder, GameMembers gameMembers, String[] result) {
+        List<String> results = new ArrayList<>();
+
+        for (int i = 0; i < gameMembers.getSize(); i++) {
+            int resultIndex = gameMembers.getMemberByIndex(i).getResultIndex(ladder);
+            results.add(result[resultIndex]);
+        }
+
+        return results;
     }
 }
