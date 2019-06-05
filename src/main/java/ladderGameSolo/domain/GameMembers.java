@@ -2,10 +2,10 @@ package ladderGameSolo.domain;
 
 import java.util.List;
 
-public class GameMember {
-    List<Member> members;
+public class GameMembers {
+    private List<Member> members;
 
-    public GameMember(List<Member> members) {
+    public GameMembers(List<Member> members) {
         this.members = members;
     }
 

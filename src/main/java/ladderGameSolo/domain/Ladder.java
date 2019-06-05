@@ -6,6 +6,9 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Ladder {
+    private static final int STANDARD_INDEX = 0;
+    private static final int NEXT_INDEX = 1;
+
     private final List<Line> lines;
 
     public Ladder(int countOfPeople, int height) {
@@ -15,7 +18,8 @@ public class Ladder {
             lines.add(new Line(height));
         }
 
-        for (int i = 0; i < getSettingLineSize(); i++) {
+        int lineSize = getSettingLineSize();
+        for (int i = 0; i < lineSize; i++) {
             makeBridge(height, i);
         }
     }
@@ -28,7 +32,11 @@ public class Ladder {
         return lines.size();
     }
 
-    public int getNextLine(int position, int lineIndex) {
+    public int getHeight() {
+        return lines.get(STANDARD_INDEX).getSize();
+    }
+
+    int getNextLine(int position, int lineIndex) {
         Line line = getLineByIndex(lineIndex);
 
         return lineIndex + line.getDirectionByIndex(position).move();
@@ -45,7 +53,7 @@ public class Ladder {
     }
 
     private void checkBridgeDirection(int index, int i) {
-        if (lines.get(index).getDirectionByIndex(i).move() != 0) {
+        if (lines.get(index).isMove(i)) {
             return;
         }
 
@@ -57,7 +65,7 @@ public class Ladder {
         boolean right = random.nextBoolean();
 
         lines.get(index).updateDirection(i, new Direction(false, right));
-        lines.get(index + 1).updateDirection(i, new Direction(right, false));
+        lines.get(index + NEXT_INDEX).updateDirection(i, new Direction(right, false));
     }
 
     @Override

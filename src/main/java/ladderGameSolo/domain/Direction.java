@@ -3,6 +3,10 @@ package ladderGameSolo.domain;
 import java.util.Objects;
 
 public class Direction {
+    private static final int MOVE_LEFT = -1;
+    private static final int MOVE_RIGHT = 1;
+    private static final int MOVE_NONE = 0;
+
     private boolean left;
     private boolean right;
 
@@ -17,14 +21,18 @@ public class Direction {
 
     public int move() {
         if (this.left) {
-            return -1;
+            return MOVE_LEFT;
         }
 
         if (this.right) {
-            return 1;
+            return MOVE_RIGHT;
         }
 
-        return 0;
+        return MOVE_NONE;
+    }
+
+    boolean checkStatus() {
+        return move() != 0;
     }
 
     @Override

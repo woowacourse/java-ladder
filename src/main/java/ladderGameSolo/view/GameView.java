@@ -1,25 +1,25 @@
 package ladderGameSolo.view;
 
 import ladderGameSolo.constant.MessageConstants;
-import ladderGameSolo.domain.GameMember;
+import ladderGameSolo.domain.GameMembers;
 import ladderGameSolo.domain.Ladder;
 import ladderGameSolo.domain.Member;
 
 public class GameView {
     private static final int LEFT_NUMBER = -1;
 
-    public void printLadderInfo(String[] names, String[] inputResult, int height, Ladder ladder) {
+    public void printLadderInfo(String[] names, String[] inputResult, Ladder ladder) {
         printName(names);
-        printLadder(ladder, height);
+        printLadder(ladder);
         printResult(inputResult);
     }
 
-    public void printGameResult(String[] inputResult, Ladder ladder, GameMember gameMember) {
+    public void printGameResult(String[] inputResult, Ladder ladder, GameMembers gameMembers) {
         System.out.println(MessageConstants.MESSAGE_RESULT);
 
-        for (int i = 0; i < gameMember.getSize(); i++) {
-            String result = getResult(ladder, gameMember.getMemberByIndex(i), inputResult);
-            printResult(gameMember, gameMember.getMemberByIndex(i), result);
+        for (int i = 0; i < gameMembers.getSize(); i++) {
+            String result = getResult(ladder, gameMembers.getMemberByIndex(i), inputResult);
+            printResult(gameMembers, gameMembers.getMemberByIndex(i), result);
         }
     }
 
@@ -35,7 +35,9 @@ public class GameView {
         System.out.println();
     }
 
-    private void printLadder(Ladder ladder, int height) {
+    private void printLadder(Ladder ladder) {
+        int height = ladder.getHeight();
+
         for (int i = 0; i < height; i++) {
             System.out.print(String.format(MessageConstants.RESULT_FORMAT, MessageConstants.MESSAGE_COLUMN));
             printBridges(ladder, i);
@@ -62,8 +64,8 @@ public class GameView {
         }
     }
 
-    private void printResult(GameMember gameMember, Member member, String result) {
-        if (gameMember.getSize() > 1) {
+    private void printResult(GameMembers gameMembers, Member member, String result) {
+        if (gameMembers.getSize() > 1) {
             System.out.print(String.format(MessageConstants.RESULT_ALL_FORMAT, member.getName()));
         }
 

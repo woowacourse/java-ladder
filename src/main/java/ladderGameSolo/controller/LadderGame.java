@@ -1,6 +1,6 @@
 package ladderGameSolo.controller;
 
-import ladderGameSolo.domain.GameMember;
+import ladderGameSolo.domain.GameMembers;
 import ladderGameSolo.domain.Ladder;
 import ladderGameSolo.domain.Member;
 import ladderGameSolo.domain.Position;
@@ -12,8 +12,8 @@ import java.util.List;
 
 public class LadderGame {
     private static final int START_POSITION = 0;
-    public static final String DELIMITER_COMMA = ",";
-    public static final String MESSAGE_ALL = "all";
+    private static final String DELIMITER_COMMA = ",";
+    private static final String MESSAGE_ALL = "all";
     private GameView gameView;
 
     public LadderGame(GameView gameView) {
@@ -26,18 +26,18 @@ public class LadderGame {
         int height = InputView.inputHeight();
         Ladder ladder = getLadders(names.length, height);
 
-        gameView.printLadderInfo(names, inputResult, height, ladder);
+        gameView.printLadderInfo(names, inputResult, ladder);
 
         String targetName = InputView.inputTargetName(names);
-        GameMember gameMember = new GameMember(makeMembers(names, targetName, height));
-        gameView.printGameResult(inputResult, ladder, gameMember);
+        GameMembers gameMembers = new GameMembers(makeMembers(names, targetName, height));
+        gameView.printGameResult(inputResult, ladder, gameMembers);
     }
 
-    public static Ladder getLadders(int countOfPeople, int height) {
+    private static Ladder getLadders(int countOfPeople, int height) {
         return new Ladder(countOfPeople, height);
     }
 
-    public static List<Member> makeMembers(String[] names, String targetName, int height) {
+    private static List<Member> makeMembers(String[] names, String targetName, int height) {
         List<Member> members = new ArrayList<>();
 
         String[] targetNames = getTargetNames(names, targetName);

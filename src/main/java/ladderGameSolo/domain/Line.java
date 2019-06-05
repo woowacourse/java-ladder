@@ -19,7 +19,15 @@ public class Line {
         return this.directions.get(index);
     }
 
-    public void updateDirection(int index,Direction direction) {
+    int getSize() {
+        return directions.size();
+    }
+
+    boolean isMove(int i) {
+        return getDirectionByIndex(i).checkStatus();
+    }
+
+    void updateDirection(int index, Direction direction) {
         directions.set(index, direction);
     }
 

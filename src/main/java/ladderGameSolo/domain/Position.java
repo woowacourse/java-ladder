@@ -15,16 +15,16 @@ public class Position {
         this.max = max;
     }
 
-    public int getPosition() {
+    public boolean isLessThanMax() {
+        return position < max;
+    }
+
+    int getPosition() {
         return position;
     }
 
-    public Position nextPosition() {
+    Position nextPosition() {
         return new Position(this.position + 1, max);
-    }
-
-    public boolean isLessThanMax() {
-        return position < max;
     }
 
     @Override
