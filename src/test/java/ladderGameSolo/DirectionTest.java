@@ -28,7 +28,7 @@ public class DirectionTest {
     @Test
     void 모두_true_일때() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Direction direction = new Direction(true, true);
+            new Direction(true, true);
         });
     }
 }

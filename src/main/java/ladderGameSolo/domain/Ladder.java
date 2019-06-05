@@ -36,7 +36,7 @@ public class Ladder {
         return lines.get(STANDARD_INDEX).getSize();
     }
 
-    int getNextLine(int position, int lineIndex) {
+    public int getNextLine(int position, int lineIndex) {
         Line line = getLineByIndex(lineIndex);
 
         return lineIndex + line.getDirectionByIndex(position).move();
