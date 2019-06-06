@@ -10,12 +10,4 @@ public class Point {
     public Direction getDirection() {
         return this.direction;
     }
-
-    public void setLeft() {
-        this.direction = Direction.LEFT;
-    }
-
-    public void setRight() {
-        this.direction = Direction.RIGHT;
-    }
 }
