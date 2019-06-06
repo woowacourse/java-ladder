@@ -14,19 +14,40 @@ public class Row {
     }
 
     public void draw(int column) {
-        if (leftBridgePointisSetTrue(column) || rightBridgePointisSetTrue(column)) {
+        if (leftBridgePointisStraight(column) && rightBridgePointisStraight(column)) {
+            setDirection(column);
             return;
         }
-        points.get(column).setTrue();
+        return;
     }
 
-    private boolean leftBridgePointisSetTrue(int column) {
-        return column > 0 && points.get(column - 1).isTrue();
-
+    private void setDirection(int column) {
+        if (column < points.size() - 1) {
+            setRight(column);
+            setLeft(column + 1);
+        }
     }
 
-    private boolean rightBridgePointisSetTrue(int column) {
-        return column < points.size() - 1 && points.get(column + 1).isTrue();
+    private void setLeft(int column) {
+        points.get(column).setLeft();
+    }
+
+    private void setRight(int column) {
+        points.get(column).setRight();
+    }
+
+    private boolean leftBridgePointisStraight(int column) {
+        if (column == 0) {
+            return false;
+        }
+        return points.get(column - 1).getDirection() == Direction.STRAIGHT;
+    }
+
+    private boolean rightBridgePointisStraight(int column) {
+        if (column == points.size() - 1) {
+            return false;
+        }
+        return points.get(column + 1).getDirection() == Direction.STRAIGHT;
     }
 
     public boolean getBridgePointExistence(int column) {
@@ -34,17 +55,12 @@ public class Row {
     }
 
     public int getArrivalIndex(int startIndex) {
-        if (startIndex > 0 && points.get(startIndex - 1).isTrue()) {
-            return startIndex - 1;
-        }
-        if (startIndex < points.size() && points.get(startIndex).isTrue()) {
-            return startIndex + 1;
-        }
-        return startIndex;
+        return points.get(startIndex).getDirection().apply(startIndex);
     }
 
-    public int getTrueBridgePointNumber() {
-        return (int) points.stream().filter(point -> point.isTrue()).count();
+    public int getBridgeNumber() {
+        return (int) points.stream()
+                .filter(point -> point.getDirection() == Direction.RIGHT).count();
     }
 
 }

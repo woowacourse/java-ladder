@@ -43,7 +43,7 @@ public class Ladder {
     }
 
     public int getTruePointNumber() {
-        return rows.stream().mapToInt(row -> row.getTrueBridgePointNumber()).sum();
+        return rows.stream().mapToInt(row -> row.getBridgeNumber()).sum();
     }
 
     public int getRowNumber() {
