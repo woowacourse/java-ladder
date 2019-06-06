@@ -20,7 +20,7 @@ public class Ladder {
     }
 
     private void completeLadder() {
-        while (getTruePointNumber() < randomBridgeGenerator.generateRandomBridgeCount()) {
+        while (getBridgeNumber() < randomBridgeGenerator.generateRandomBridgeCount()) {
             Location randomLocation = randomBridgeGenerator.generateRandomBridgeLocation();
             draw(randomLocation.getRow(), randomLocation.getColumn());
         }
@@ -30,8 +30,8 @@ public class Ladder {
         rows.get(row).draw(column);
     }
 
-    public boolean getPoint(int row, int column) {
-        return rows.get(row).getBridgePointExistence(column);
+    public Direction getDirection(int row, int column) {
+        return rows.get(row).getDirection(column);
     }
 
     public int getArrivialIndex(int startIndex) {
@@ -42,7 +42,7 @@ public class Ladder {
         return arrivalIndex;
     }
 
-    public int getTruePointNumber() {
+    public int getBridgeNumber() {
         return rows.stream().mapToInt(row -> row.getBridgeNumber()).sum();
     }
 
@@ -50,7 +50,7 @@ public class Ladder {
         return rows.size();
     }
 
-    public int getColumns() {
+    public int getColumnNumber() {
         return columnNum;
     }
 }

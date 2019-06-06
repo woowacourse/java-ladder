@@ -17,7 +17,7 @@ public class LadderTest {
 
         Ladder ladder = new Ladder(randomBridgeGenerator, 1, 2);
 
-        assertThat(ladder.getPoint(0, 0)).isEqualTo(true);
+        assertThat(ladder.getDirection(0, 0)).isEqualTo(Direction.RIGHT);
     }
 
     // |---|---|   |
@@ -30,8 +30,8 @@ public class LadderTest {
                 .thenReturn(new Location(0, 1))
                 .thenReturn(new Location(0, 2));
 
-        Ladder ladder = new Ladder(randomBridgeGenerator, 1, 3);
-        assertThat(ladder.getPoint(0, 1)).isEqualTo(false);
+        Ladder ladder = new Ladder(randomBridgeGenerator, 1, 4);
+        assertThat(ladder.getDirection(0, 1)).isEqualTo(Direction.LEFT);
     }
 
     // |   |   |---|---|
@@ -44,10 +44,9 @@ public class LadderTest {
                 .thenReturn(new Location(0, 3))
                 .thenReturn(new Location(0, 0));
 
-        Ladder ladder = new Ladder(randomBridgeGenerator, 1, 4);
+        Ladder ladder = new Ladder(randomBridgeGenerator, 1, 5);
 
-        assertThat(ladder.getPoint(0, 2)).isEqualTo(true);
-        assertThat(ladder.getPoint(0, 3)).isEqualTo(false);
+        assertThat(ladder.getDirection(0, 4)).isEqualTo(Direction.STRAIGHT);
     }
 
     // |   |   |
@@ -56,7 +55,7 @@ public class LadderTest {
         RandomBridgeGenerator randomBridgeGenerator = mock(RandomBridgeGenerator.class);
         when(randomBridgeGenerator.generateRandomBridgeCount()).thenReturn(0);
 
-        Ladder ladder = new Ladder(randomBridgeGenerator, 1, 2);
+        Ladder ladder = new Ladder(randomBridgeGenerator, 1, 3);
 
         assertThat(ladder.getArrivialIndex(0)).isEqualTo(0);
         assertThat(ladder.getArrivialIndex(1)).isEqualTo(1);
@@ -70,7 +69,7 @@ public class LadderTest {
         when(randomBridgeGenerator.generateRandomBridgeCount()).thenReturn(1);
         when(randomBridgeGenerator.generateRandomBridgeLocation()).thenReturn(new Location(0, 1));
 
-        Ladder ladder = new Ladder(randomBridgeGenerator, 1, 2);
+        Ladder ladder = new Ladder(randomBridgeGenerator, 1, 3);
 
 
         assertThat(ladder.getArrivialIndex(0)).isEqualTo(0);
@@ -88,7 +87,7 @@ public class LadderTest {
                 .thenReturn(new Location(0, 1))
                 .thenReturn(new Location(1, 0));
 
-        Ladder ladder = new Ladder(randomBridgeGenerator, 2, 2);
+        Ladder ladder = new Ladder(randomBridgeGenerator, 2, 3);
 
 
         assertThat(ladder.getArrivialIndex(0)).isEqualTo(1);
@@ -96,6 +95,9 @@ public class LadderTest {
         assertThat(ladder.getArrivialIndex(2)).isEqualTo(0);
     }
 
+    // |   |---|   |
+    // |---|   |   |
+    // |---|   |---|
     @Test
     void 크기3by3인_사다리에서_다리_네개_일때_결과값() {
         RandomBridgeGenerator randomBridgeGenerator = mock(RandomBridgeGenerator.class);
@@ -106,7 +108,7 @@ public class LadderTest {
                 .thenReturn(new Location(2, 0))
                 .thenReturn(new Location(2, 2));
 
-        Ladder ladder = new Ladder(randomBridgeGenerator, 3, 3);
+        Ladder ladder = new Ladder(randomBridgeGenerator, 3, 4);
 
         assertThat(ladder.getArrivialIndex(0)).isEqualTo(0);
         assertThat(ladder.getArrivialIndex(1)).isEqualTo(3);
@@ -114,8 +116,11 @@ public class LadderTest {
         assertThat(ladder.getArrivialIndex(3)).isEqualTo(2);
     }
 
+    // |   |---|   |
+    // |---|   |   |
+    // |---|   |---|
     @Test
-    void 크기3by3인_사다리에서_다리_네개_일때_getTruePointNumber() {
+    void 크기3by3인_사다리에서_다리_네개_일때_getBridgeNumber() {
         RandomBridgeGenerator randomBridgeGenerator = mock(RandomBridgeGenerator.class);
         when(randomBridgeGenerator.generateRandomBridgeCount()).thenReturn(4);
         when(randomBridgeGenerator.generateRandomBridgeLocation())
@@ -124,8 +129,8 @@ public class LadderTest {
                 .thenReturn(new Location(2, 0))
                 .thenReturn(new Location(2, 2));
 
-        Ladder ladder = new Ladder(randomBridgeGenerator, 3, 3);
-        assertThat(ladder.getTruePointNumber()).isEqualTo(4);
+        Ladder ladder = new Ladder(randomBridgeGenerator, 3, 4);
+        assertThat(ladder.getBridgeNumber()).isEqualTo(4);
     }
 
 }

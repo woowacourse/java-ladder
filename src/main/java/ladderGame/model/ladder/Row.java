@@ -9,23 +9,27 @@ public class Row {
     public Row(int columnNum) {
         points = new ArrayList<Point>();
         for (int i = 0; i < columnNum; i++) {
-            points.add(new Point(false));
+            points.add(new Point(Direction.STRAIGHT));
         }
     }
 
     public void draw(int column) {
-        if (leftBridgePointisStraight(column) && rightBridgePointisStraight(column)) {
+        if (isRightBorder(column)) {
+            return;
+        }
+        if (currentPointisStraight(column) && rightBridgePointisStraight(column)) {
             setDirection(column);
             return;
         }
-        return;
+    }
+
+    private boolean isRightBorder(int column) {
+        return column == points.size() - 1;
     }
 
     private void setDirection(int column) {
-        if (column < points.size() - 1) {
-            setRight(column);
-            setLeft(column + 1);
-        }
+        setRight(column);
+        setLeft(column + 1);
     }
 
     private void setLeft(int column) {
@@ -36,11 +40,8 @@ public class Row {
         points.get(column).setRight();
     }
 
-    private boolean leftBridgePointisStraight(int column) {
-        if (column == 0) {
-            return false;
-        }
-        return points.get(column - 1).getDirection() == Direction.STRAIGHT;
+    private boolean currentPointisStraight(int column) {
+        return points.get(column).getDirection() == Direction.STRAIGHT;
     }
 
     private boolean rightBridgePointisStraight(int column) {
@@ -48,10 +49,6 @@ public class Row {
             return false;
         }
         return points.get(column + 1).getDirection() == Direction.STRAIGHT;
-    }
-
-    public boolean getBridgePointExistence(int column) {
-        return points.get(column).isTrue();
     }
 
     public int getArrivalIndex(int startIndex) {
@@ -63,4 +60,7 @@ public class Row {
                 .filter(point -> point.getDirection() == Direction.RIGHT).count();
     }
 
+    public Direction getDirection(int column) {
+        return points.get(column).getDirection();
+    }
 }

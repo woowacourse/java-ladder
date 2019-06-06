@@ -17,7 +17,7 @@ public class LadderGame {
         Players players = PlayersFactory.getPlayers(InputView.readPlayerNames());
         Results results = ResultsFactory.getResults(InputView.readResults(), players.size());
         int rowNumber = RowNumberValidator.validates(InputView.readRowNumber());
-        int columnNumber = players.size() - 1;
+        int columnNumber = players.size();
         Ladder ladder = LadderFactory.generateLadder(rowNumber, columnNumber);
 
         OutputView.printLadder(ladder, players.getNames(), results.getNames());

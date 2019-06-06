@@ -1,5 +1,6 @@
 package ladderGame.view;
 
+import ladderGame.model.ladder.Direction;
 import ladderGame.model.ladder.Ladder;
 
 import java.util.List;
@@ -14,11 +15,10 @@ public class OutputView {
         System.out.println("\n실행결과\n");
         printNames(playerNames);
         int rows = ladder.getRowNumber();
-        int columns = ladder.getColumns();
+        int columns = ladder.getColumnNumber();
         for (int row = 0; row < rows; row++) {
             System.out.print(EMPTY);
             printLadderRow(ladder, columns, row);
-            System.out.println(VERTICAL_BAR);
         }
         printNames(resultNames);
     }
@@ -26,8 +26,9 @@ public class OutputView {
     private static void printLadderRow(Ladder ladder, int columns, int row) {
         for (int column = 0; column < columns; column++) {
             System.out.print(VERTICAL_BAR);
-            System.out.print(ladder.getPoint(row, column) ? FILLED : EMPTY);
+            System.out.print(ladder.getDirection(row, column) == Direction.RIGHT ? FILLED : EMPTY);
         }
+        System.out.println();
     }
 
     public static void printNames(List<String> names) {
