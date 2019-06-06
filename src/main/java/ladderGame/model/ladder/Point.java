@@ -1,9 +1,9 @@
 package ladderGame.model.ladder;
 
-public class BridgePoint {
+public class Point {
     private boolean drawn;
 
-    BridgePoint(boolean drawn) {
+    Point(boolean drawn) {
         this.drawn = drawn;
     }
 

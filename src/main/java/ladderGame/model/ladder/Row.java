@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Row {
-    private List<BridgePoint> bridgePoints;
+    private List<Point> points;
 
     public Row(int columnNum) {
-        bridgePoints = new ArrayList<BridgePoint>();
+        points = new ArrayList<Point>();
         for (int i = 0; i < columnNum; i++) {
-            bridgePoints.add(new BridgePoint(false));
+            points.add(new Point(false));
         }
     }
 
@@ -17,34 +17,34 @@ public class Row {
         if (leftBridgePointisSetTrue(column) || rightBridgePointisSetTrue(column)) {
             return;
         }
-        bridgePoints.get(column).setTrue();
+        points.get(column).setTrue();
     }
 
     private boolean leftBridgePointisSetTrue(int column) {
-        return column > 0 && bridgePoints.get(column - 1).isTrue();
+        return column > 0 && points.get(column - 1).isTrue();
 
     }
 
     private boolean rightBridgePointisSetTrue(int column) {
-        return column < bridgePoints.size() - 1 && bridgePoints.get(column + 1).isTrue();
+        return column < points.size() - 1 && points.get(column + 1).isTrue();
     }
 
     public boolean getBridgePointExistence(int column) {
-        return bridgePoints.get(column).isTrue();
+        return points.get(column).isTrue();
     }
 
     public int getArrivalIndex(int startIndex) {
-        if (startIndex > 0 && bridgePoints.get(startIndex - 1).isTrue()) {
+        if (startIndex > 0 && points.get(startIndex - 1).isTrue()) {
             return startIndex - 1;
         }
-        if (startIndex < bridgePoints.size() && bridgePoints.get(startIndex).isTrue()) {
+        if (startIndex < points.size() && points.get(startIndex).isTrue()) {
             return startIndex + 1;
         }
         return startIndex;
     }
 
     public int getTrueBridgePointNumber() {
-        return (int) bridgePoints.stream().filter(bridgePoint -> bridgePoint.isTrue()).count();
+        return (int) points.stream().filter(point -> point.isTrue()).count();
     }
 
 }
