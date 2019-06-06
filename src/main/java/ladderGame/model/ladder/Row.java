@@ -3,52 +3,26 @@ package ladderGame.model.ladder;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ladderGame.model.ladder.Direction.*;
+
 public class Row {
     private List<Point> points;
 
-    public Row(int columnNum) {
+    public Row(RandomBridgeGenerator randomBridgeGenerator, int columnNum) {
         points = new ArrayList<Point>();
         for (int i = 0; i < columnNum; i++) {
-            points.add(new Point(Direction.STRAIGHT));
+            Direction randomDirection = randomBridgeGenerator.generateRandomDirection();
+
+            if (i > 0 && points.get(i - 1).getDirection() == RIGHT) {
+                points.add(new Point(LEFT));
+                continue;
+            }
+            if (i == columnNum - 1) {
+                points.add(new Point(STRAIGHT));
+                continue;
+            }
+            points.add(new Point(randomDirection));
         }
-    }
-
-    public void draw(int column) {
-        if (isRightBorder(column)) {
-            return;
-        }
-        if (currentPointisStraight(column) && rightBridgePointisStraight(column)) {
-            setDirection(column);
-            return;
-        }
-    }
-
-    private boolean isRightBorder(int column) {
-        return column == points.size() - 1;
-    }
-
-    private void setDirection(int column) {
-        setRight(column);
-        setLeft(column + 1);
-    }
-
-    private void setLeft(int column) {
-        points.get(column).setLeft();
-    }
-
-    private void setRight(int column) {
-        points.get(column).setRight();
-    }
-
-    private boolean currentPointisStraight(int column) {
-        return points.get(column).getDirection() == Direction.STRAIGHT;
-    }
-
-    private boolean rightBridgePointisStraight(int column) {
-        if (column == points.size() - 1) {
-            return false;
-        }
-        return points.get(column + 1).getDirection() == Direction.STRAIGHT;
     }
 
     public int getArrivalIndex(int startIndex) {
@@ -57,7 +31,7 @@ public class Row {
 
     public int getBridgeNumber() {
         return (int) points.stream()
-                .filter(point -> point.getDirection() == Direction.RIGHT).count();
+                .filter(point -> point.getDirection() == RIGHT).count();
     }
 
     public Direction getDirection(int column) {
