@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AppController {
 
-    public static final String WRONG_INPUT_MESSAGE = "잘못 입력했습니다.";
+    private static final String WRONG_INPUT_MESSAGE = "잘못 입력했습니다.";
 
     public void play(){
         LadderGame ladderGame = initGame();
@@ -37,7 +37,6 @@ public class AppController {
             OutputView.allPrintResult(results.getAllResult());
             return;
         }
-
         try {
             OutputView.printMemberResult(results.getMemberResult(name));
         } catch (IllegalArgumentException e) {

@@ -9,11 +9,11 @@ public class InputView {
     private static final String RESULT_INPUT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String HEIGHT_INPUT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String FIND_RESULT_MESSAGE = "결과를 보고 싶은 사람은?";
+    private static final String NUMBER_EXCEPTION_MESSAGE = "숫자를 입력해주세요.";
+    private static final String NUMBER_RANGE_EXCEPTION_MESSAGE = "1 이상의 숫자를 입력해주세요.";
     private static final String SINGLE_BLANK = " ";
     private static final String NONE_BLANK = "";
     public static final String SEPERATOR = ",";
-    public static final String NUMBER_EXCEPTION_MESSAGE = "숫자를 입력해주세요.";
-    public static final String NUMBER_RANGE_EXCEPTION_MESSAGE = "1 이상의 숫자를 입력해주세요.";
     private static Scanner scanner = new Scanner(System.in);
 
     public static List<String> inputNames() {

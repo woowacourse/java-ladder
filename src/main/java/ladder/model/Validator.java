@@ -6,10 +6,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validator {
-
     private static final String SEPARATOR_REGEX = "([0-9a-zA-Z가-힣]+,)*([0-9a-zA-Z가-힣]+)";
-    private static final int MAX_NAME_LENGTH = 5;
     private static final Pattern p = Pattern.compile(SEPARATOR_REGEX);
+    private static final int MAX_NAME_LENGTH = 5;
 
     public static void checkInput(String names) {
         checkSeparator(names);

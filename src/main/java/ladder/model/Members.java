@@ -5,16 +5,20 @@ import java.util.List;
 
 public class Members {
 
-    List<Member> members;
+    private List<Member> members;
 
     public Members(List<String> names) {
         List<Member> members = new ArrayList<>();
-
         for (int i = 0; i < names.size(); i++) {
             members.add(new Member(names.get(i), i));
         }
-
         this.members = members;
+    }
+
+    public void move(List<Row> ladder) {
+        for (Member member : members) {
+            member.move(ladder);
+        }
     }
 
     public int size() {
@@ -25,9 +29,4 @@ public class Members {
         return members;
     }
 
-    public void move(List<Row> ladder) {
-        for (Member member : members) {
-            member.move(ladder);
-        }
-    }
 }

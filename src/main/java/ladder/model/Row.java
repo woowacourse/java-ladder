@@ -13,12 +13,10 @@ public class Row {
     private static final int PREV = 1;
     private static final int BACK = -1;
     private static final int DIRECT = 0;
-
     private List<Boolean> lines;
 
     public Row(List<Integer> linked) {
         lines = new ArrayList<>();
-
         lines.add(booleanGenerator(linked.get(0), false));
 
         for (int i = 1; i < linked.size() - 1; i++) {
@@ -32,11 +30,9 @@ public class Row {
 
     public boolean checkDoubleDraw() {
         int i = 0;
-
         while (i < lines.size() - 1 && isNotContinuouslyTrue(i)) {
             i++;
         }
-
         return i == lines.size();
     }
 
@@ -48,15 +44,17 @@ public class Row {
         if (position < lines.size() && lines.get(position)) {
             return MOVE;
         }
-
         if (position > 0 && lines.get(position - PREV)) {
             return BACK;
         }
         return DIRECT;
     }
 
-    public int getLineSize() {
-        return lines.size();
+    private String isLinked(boolean line) {
+        if (line) {
+            return VERTICAL_LINE + LINKED_LINE;
+        }
+        return VERTICAL_LINE + NONE_LINKED_LINE;
     }
 
     @Override
@@ -69,10 +67,4 @@ public class Row {
         return stringBuilder.toString();
     }
 
-    private String isLinked(boolean line) {
-        if (line) {
-            return VERTICAL_LINE + LINKED_LINE;
-        }
-        return VERTICAL_LINE + NONE_LINKED_LINE;
-    }
 }
