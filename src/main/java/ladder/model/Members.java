@@ -5,13 +5,29 @@ import java.util.List;
 
 public class Members {
 
-    public static List<Member> generateMembers(String[] names) {
+    List<Member> members;
+
+    public Members(List<String> names) {
         List<Member> members = new ArrayList<>();
 
-        for (int i = 0; i < names.length; i++) {
-            members.add(new Member(names[i], i));
+        for (int i = 0; i < names.size(); i++) {
+            members.add(new Member(names.get(i), i));
         }
 
+        this.members = members;
+    }
+
+    public int size() {
+        return members.size();
+    }
+
+    public  List<Member> getMembers() {
         return members;
+    }
+
+    public void move(List<Row> ladder) {
+        for (Member member : members) {
+            member.move(ladder);
+        }
     }
 }
