@@ -18,7 +18,7 @@ public class EndResultTest {
     }
 
     @Test
-    void pobi_결과_확인() {
+    void 한명_결과_확인() {
         assertThat(endResults.getMemberResult("pobi")).isEqualTo(new Result("5000", "pobi"));
     }
 
