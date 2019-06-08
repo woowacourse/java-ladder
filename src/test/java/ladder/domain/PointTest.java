@@ -1,52 +1,45 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static ladder.domain.Point.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PointTest {
-	private Point point;
-
-	@BeforeEach
-	void init() {
-		point = Point.first();
+	@Test
+	void 왼쪽_위치_값이_true일때_왼쪽_이동_가능_확인() {
+		assertThat(LEFT_POSITION.canGoLeft()).isEqualTo(true);
 	}
 
 	@Test
-	void 왼쪽_포인트와_오른쪽_포인트가_true인_경우_예외_반환() {
-		assertThrows(IllegalArgumentException.class, () -> point.valueOf(true, true));
+	void 왼쪽_위치_값이_false일때_왼쪽_이동_가능_확인() {
+		assertThat(RIGHT_POSITION.canGoLeft()).isEqualTo(false);
+		assertThat(STOP_POSITION.canGoLeft()).isEqualTo(false);
 	}
 
 	@Test
-	void 첫번째_위치의_포인트일때_왼쪽_포인트_확인() {
-		assertThat(point.canGoLeft()).isEqualTo(false);
+	void 오른쪽_위치_값이_true일때_오른쪽_이동_가능_확인() {
+		assertThat(RIGHT_POSITION.canGoRight()).isEqualTo(true);
 	}
 
 	@Test
-	void 마지막_위치의_포인트일때_오른쪽_포인트_확인() {
-		assertThat(point.last().canGoRight()).isEqualTo(false);
-	}
-
-	@Test
-	void 이전_위치_값이_true_일때_다음_오른쪽_위치_값_false_반환() {
-
-		assertThat(point.valueOf(false, true).next().canGoRight()).isEqualTo(false);
+	void 오른쪽_위치_값이_false일때_오른쪽_이동_가능_확인() {
+		assertThat(LEFT_POSITION.canGoRight()).isEqualTo(false);
+		assertThat(STOP_POSITION.canGoRight()).isEqualTo(false);
 	}
 
 	@Test
 	void 왼쪽_이동_확인() {
-		assertThat(point.valueOf(true, false).move()).isEqualTo(Direction.LEFT);
+		assertThat(LEFT_POSITION.move()).isEqualTo(Direction.LEFT);
 	}
 
 	@Test
 	void 오른쪽_이동_확인() {
-		assertThat(point.valueOf(false, true).move()).isEqualTo(Direction.RIGHT);
+		assertThat(RIGHT_POSITION.move()).isEqualTo(Direction.RIGHT);
 	}
 
 	@Test
 	void 정지_확인() {
-		assertThat(point.valueOf(false, false).move()).isEqualTo(Direction.STOP);
+		assertThat(STOP_POSITION.move()).isEqualTo(Direction.STOP);
 	}
 }

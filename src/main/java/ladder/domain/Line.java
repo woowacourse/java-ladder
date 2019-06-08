@@ -3,6 +3,8 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import ladder.generator.PointGenerator;
+
 public class Line {
 	private final List<Point> points;
 
@@ -17,13 +19,13 @@ public class Line {
 	public static Line generateLine(int countOfPerson) {
 		List<Point> points = new ArrayList<>();
 
-		Point point = Point.first();
+		Point point = PointGenerator.firstPoint();
 		points.add(point);
 		for (int i = 1; i < countOfPerson - 1; i++) {
-			point = point.next();
+			point = PointGenerator.nextPoint(point);
 			points.add(point);
 		}
-		points.add(point.last());
+		points.add(PointGenerator.lastPoint(point));
 
 		return new Line(points);
 	}

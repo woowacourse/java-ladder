@@ -3,10 +3,10 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static ladder.domain.Point.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
@@ -14,9 +14,7 @@ class LineTest {
 
 	@BeforeEach
 	void init() {
-		Point point = Point.first();
-		List<Point> points = new ArrayList<>(Arrays.asList(point.valueOf(false, true),
-				point.valueOf(true, false), point.valueOf(false, false)));
+		List<Point> points = new ArrayList<>(Arrays.asList(RIGHT_POSITION,LEFT_POSITION,STOP_POSITION));
 		line = new Line(points);
 	}
 
