@@ -9,9 +9,6 @@ public class Point {
 	private boolean currentPosition;
 
 	private Point(boolean leftPosition, boolean currentPosition) {
-		if (leftPosition && currentPosition) {
-			throw new IllegalArgumentException(ExceptionOutput.VIOLATE_POINTS.getOutputMessage());
-		}
 		this.leftPosition = leftPosition;
 		this.currentPosition = currentPosition;
 	}
