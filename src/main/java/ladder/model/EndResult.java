@@ -1,6 +1,6 @@
 package ladder.model;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class EndResult {
@@ -20,8 +20,6 @@ public class EndResult {
     }
 
     public List<Result> getAllResult() {
-        List<Result> allResult = new ArrayList<>();
-        allResult.addAll(results);
-        return allResult;
+        return Collections.unmodifiableList(results);
     }
 }

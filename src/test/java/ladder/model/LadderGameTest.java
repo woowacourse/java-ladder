@@ -14,22 +14,14 @@ public class LadderGameTest {
 
     @BeforeEach
     void setUp() {
-        String[] names = {"pobi", "hunux", "jk", "crong"};
-        List<Member> member = Members.generateMembers(names);
+        Members members = new Members(Arrays.asList("pobi", "hunux", "jk", "crong"));
         List<String> results = Arrays.asList("꽝", "5000", "꽝", "3000");
-        int [][] linkedStatus = {
-                {1, 0, 1},
-                {0, 1, 0},
-                {1, 0, 0},
-                {0, 1, 0},
-                {1, 0, 1}
-        };
-        ladderGame = new LadderGame(member, linkedStatus, results);
+        ladderGame = new LadderGame(members, 5, results);
     }
 
     @Test
     void 사다리_높이에_따라_row_생성되는지_확인() {
-        int rowCount = ladderGame.getLadderHeight();
+        int rowCount = ladderGame.getLadder().ladderHeight();
         assertThat(rowCount).isEqualTo(5);
     }
 }

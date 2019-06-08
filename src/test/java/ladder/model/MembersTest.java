@@ -11,8 +11,8 @@ public class MembersTest {
 
     @Test
     void 최초_사람_위치_설정() {
-        String[] names = {"pobi", "honux", "crong"};
-        List<Member> result = Members.generateMembers(names);
-        assertThat(result).isEqualTo(Arrays.asList(new Member("pobi", 0), new Member("honux", 1), new Member("crong", 2)));
+
+        Members member = new Members(Arrays.asList("pobi", "honux", "crong"));
+        assertThat(member.getMembers()).isEqualTo(Arrays.asList(new Member("pobi", 0), new Member("honux", 1), new Member("crong", 2)));
     }
 }
