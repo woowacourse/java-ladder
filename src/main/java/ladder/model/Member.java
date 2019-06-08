@@ -1,5 +1,6 @@
 package ladder.model;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Member {
@@ -11,8 +12,10 @@ public class Member {
         this.position = position;
     }
 
-    public void move(int movePosition) {
-        this.position = movePosition;
+    public void move(List<Row> ladder) {
+        for (Row row : ladder) {
+            this.position += row.judegeMove(position);
+        }
     }
 
     public String getName() {

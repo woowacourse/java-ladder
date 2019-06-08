@@ -4,23 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Row {
-    private static final int LINE = 1;
     private static final String VERTICAL_LINE = "|";
     private static final String LINKED_LINE = "-----";
     private static final String NONE_LINKED_LINE = "     ";
     private static final String DOUBLE_BLANK = "  ";
+    private static final int LINE = 1;
     private static final int MOVE = 1;
     private static final int PREV = 1;
+    private static final int BACK = -1;
+    private static final int DIRECT = 0;
 
     private List<Boolean> lines;
 
-    public Row(int[] linked) {
+    public Row(List<Integer> linked) {
         lines = new ArrayList<>();
 
-        lines.add(booleanGenerator(linked[0], false));
+        lines.add(booleanGenerator(linked.get(0), false));
 
-        for (int i = 1; i < linked.length; i++) {
-            lines.add(booleanGenerator(linked[i], lines.get(i - PREV)));
+        for (int i = 1; i < linked.size() - 1; i++) {
+            lines.add(booleanGenerator(linked.get(i), lines.get(i - PREV)));
         }
     }
 
@@ -31,22 +33,26 @@ public class Row {
     public boolean checkDoubleDraw() {
         int i = 0;
 
-        while (i < lines.size() - 1 && !(lines.get(i) && lines.get(i + 1))) {
+        while (i < lines.size() - 1 && isNotContinuouslyTrue(i)) {
             i++;
         }
 
         return i == lines.size();
     }
 
-    public int move(int position) {
+    private boolean isNotContinuouslyTrue(int i) {
+        return !(lines.get(i) && lines.get(i + 1));
+    }
+
+    public int judegeMove(int position) {
         if (position < lines.size() && lines.get(position)) {
-            return position + MOVE;
+            return MOVE;
         }
 
         if (position > 0 && lines.get(position - PREV)) {
-            return position - MOVE;
+            return BACK;
         }
-        return position;
+        return DIRECT;
     }
 
     public int getLineSize() {

@@ -12,7 +12,7 @@ public class Result {
     }
 
     public boolean isWinner(String member) {
-        return member == winner;
+        return winner.equals(member);
     }
 
     @Override

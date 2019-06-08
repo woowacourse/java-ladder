@@ -59,7 +59,7 @@ public class OutputView {
 
     private static void setPrintLadder(LadderGame ladderGame, StringBuilder stringBuilder) {
         stringBuilder.append(NEW_LINE);
-        for (Row row : ladderGame.getLadder()){
+        for (Row row : ladderGame.getLadder().getLadder()){
             stringBuilder.append(row.toString() + NEW_LINE);
         }
     }

@@ -9,6 +9,8 @@ import java.util.List;
 
 public class AppController {
 
+    public static final String WRONG_INPUT_MESSAGE = "잘못 입력했습니다.";
+
     public void play(){
         LadderGame ladderGame = initGame();
         EndResult results = playGame(ladderGame);
@@ -16,9 +18,9 @@ public class AppController {
     }
 
     private LadderGame initGame() {
-        String[] names = InputView.inputNames();
-        List<Member> members = Members.generateMembers(names);
-        List<String> results = Arrays.asList(InputView.inputResults(members.size()));
+        List<String> names = InputView.inputNames();
+        Members members = new Members(names);
+        List<String> results = InputView.inputResults(members.size());
         int ladderHeight = InputView.inputLadderHeight();
 
         return new LadderGame(members, ladderHeight, results);
@@ -31,10 +33,16 @@ public class AppController {
 
     private void endGame(EndResult results) {
         String name = InputView.inputGetMemberResult();
-        if (name.equals("all")) {
+        if (name.equals("all") || name.equals("ALL")) {
             OutputView.allPrintResult(results.getAllResult());
             return;
         }
-        OutputView.printMemberResult(results.getMemberResult(name));
+
+        try {
+            OutputView.printMemberResult(results.getMemberResult(name));
+        } catch (IllegalArgumentException e) {
+            System.out.println(WRONG_INPUT_MESSAGE);
+            endGame(results);
+        }
     }
 }
