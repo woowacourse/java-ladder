@@ -2,7 +2,6 @@ package ladder;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 import ladder.domain.*;
 import ladder.util.StringSplitUtils;
 import ladder.view.InputView;

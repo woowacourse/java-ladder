@@ -13,7 +13,7 @@ public class PointGenerator {
 	}
 
 	public static Point nextPoint(Point point) {
-		if(point.canGoRight()) {
+		if (point.canGoRight()) {
 			return Point.LEFT_POSITION;
 		}
 		return valueOf(false, RandomGenerator.getNextValue());
@@ -23,6 +23,6 @@ public class PointGenerator {
 		if (leftPosition && currentPosition) {
 			throw new IllegalArgumentException(ExceptionOutput.VIOLATE_POINTS.getOutputMessage());
 		}
-		return (leftPosition)? Point.LEFT_POSITION : (currentPosition)? Point.RIGHT_POSITION : Point.STOP_POSITION;
+		return (leftPosition) ? Point.LEFT_POSITION : (currentPosition) ? Point.RIGHT_POSITION : Point.STOP_POSITION;
 	}
 }

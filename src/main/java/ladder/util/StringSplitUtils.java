@@ -2,7 +2,6 @@ package ladder.util;
 
 import java.util.Arrays;
 import java.util.List;
-
 import ladder.domain.ExceptionOutput;
 import org.apache.commons.lang3.StringUtils;
 

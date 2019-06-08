@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ class LineTest {
 
 	@BeforeEach
 	void init() {
-		List<Point> points = new ArrayList<>(Arrays.asList(RIGHT_POSITION,LEFT_POSITION,STOP_POSITION));
+		List<Point> points = new ArrayList<>(Arrays.asList(RIGHT_POSITION, LEFT_POSITION, STOP_POSITION));
 		line = new Line(points);
 	}
 
