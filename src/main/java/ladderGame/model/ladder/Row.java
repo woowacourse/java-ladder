@@ -1,7 +1,7 @@
 package ladderGame.model.ladder;
 
 import ladderGame.model.ladder.direction.Direction;
-import ladderGame.model.ladder.direction.RandomDirectionGenerator;
+import ladderGame.model.ladder.direction.DirectionGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +11,10 @@ import static ladderGame.model.ladder.direction.Direction.*;
 public class Row {
     private List<Point> points;
 
-    public Row(RandomDirectionGenerator randomDirectionGenerator, int columnNum) {
+    public Row(DirectionGenerator directionGenerator, int columnNum) {
         points = new ArrayList<Point>();
         for (int i = 0; i < columnNum; i++) {
-            Direction randomDirection = randomDirectionGenerator.generateRandomDirection();
+            Direction direction = directionGenerator.generateDirection();
 
             if (i > 0 && points.get(i - 1).getDirection() == RIGHT) {
                 points.add(new Point(LEFT));
@@ -24,7 +24,7 @@ public class Row {
                 points.add(new Point(STRAIGHT));
                 continue;
             }
-            points.add(new Point(randomDirection));
+            points.add(new Point(direction));
         }
     }
 
