@@ -8,8 +8,8 @@ public class Results {
 
     public Results(List<String> splittedInputs, int playersSize) {
         results = new ArrayList();
-        checkResultsLengthIsEqualTo(splittedInputs, playersSize);
 
+        checkResultsLengthIsEqualTo(splittedInputs, playersSize);
         for (String splittedInput : splittedInputs) {
             results.add(new Result(splittedInput));
         }

@@ -1,6 +1,5 @@
 package ladderGame.view;
 
-
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;

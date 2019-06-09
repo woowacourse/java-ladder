@@ -10,7 +10,6 @@ public class Ladder {
     private List<Row> rows;
     private int columnNum;
 
-
     public Ladder(DirectionGenerator directionGenerator, int rowNumber, int columnNumber) {
         rows = new ArrayList();
         for (int i = 0; i < rowNumber; i++) {

@@ -7,13 +7,10 @@ public class Calculator {
         if (input == null || input.isEmpty()) {
             return 0;
         }
-
         List<Integer> numbers = ExpressionParser.parseNumbers(
                 InputParser.extractDelimiters(input),
                 InputParser.extractExpression(input));
-
         checkMinus(numbers);
-
         return numbers.stream().mapToInt((i) -> i).sum();
     }
 

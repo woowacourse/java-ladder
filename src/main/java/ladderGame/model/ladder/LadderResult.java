@@ -16,7 +16,6 @@ public class LadderResult {
         return Collections.unmodifiableMap(result);
     }
 
-
     public Set<String> getPlayers() {
         return result.keySet();
     }

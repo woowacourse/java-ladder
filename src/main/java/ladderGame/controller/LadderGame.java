@@ -1,6 +1,5 @@
 package ladderGame.controller;
 
-
 import ladderGame.model.input.*;
 import ladderGame.model.ladder.Ladder;
 import ladderGame.model.ladder.LadderFactory;
@@ -19,7 +18,6 @@ public class LadderGame {
         int rowNumber = RowNumberValidator.validates(InputView.readRowNumber());
         int columnNumber = players.size();
         Ladder ladder = LadderFactory.generateLadder(rowNumber, columnNumber);
-
         OutputView.printLadder(ladder, players.getNames(), results.getNames());
         showResultUntilUserQuits(LadderResultFactory
                 .generatesResult(ladder, players.getNames(), results.getNames()));

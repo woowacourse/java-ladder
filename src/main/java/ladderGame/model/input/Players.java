@@ -10,7 +10,6 @@ public class Players {
 
     Players(List<String> splittedInputs) {
         checkRepetition(new HashSet(splittedInputs), splittedInputs.size());
-
         players = new ArrayList();
         for (String splittedInput : splittedInputs) {
             players.add(new Player(splittedInput));
