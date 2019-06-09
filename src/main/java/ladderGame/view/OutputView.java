@@ -1,7 +1,7 @@
 package ladderGame.view;
 
-import ladderGame.model.ladder.Direction;
 import ladderGame.model.ladder.Ladder;
+import ladderGame.model.ladder.direction.Direction;
 
 import java.util.List;
 import java.util.Map;

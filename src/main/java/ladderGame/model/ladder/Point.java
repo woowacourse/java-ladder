@@ -1,5 +1,7 @@
 package ladderGame.model.ladder;
 
+import ladderGame.model.ladder.direction.Direction;
+
 public class Point {
     private Direction direction;
 

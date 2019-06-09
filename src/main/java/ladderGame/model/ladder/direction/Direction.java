@@ -1,4 +1,4 @@
-package ladderGame.model.ladder;
+package ladderGame.model.ladder.direction;
 
 import java.util.function.Function;
 

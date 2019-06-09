@@ -1,6 +1,6 @@
-package ladderGame.model.ladder;
+package ladderGame.model.ladder.direction;
 
-public class RandomBridgeGenerator {
+public class RandomDirectionGenerator {
     public Direction generateRandomDirection() {
         int randomNumber = (int) (Math.random() * 2);
         if (randomNumber % 2 == 0) {

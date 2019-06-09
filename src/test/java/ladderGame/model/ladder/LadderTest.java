@@ -1,5 +1,7 @@
 package ladderGame.model.ladder;
 
+import ladderGame.model.ladder.direction.Direction;
+import ladderGame.model.ladder.direction.RandomDirectionGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -11,10 +13,10 @@ public class LadderTest {
     @Test
     void 크기1by1인_사다리에서_하나_draw() {
 
-        RandomBridgeGenerator randomBridgeGenerator = mock(RandomBridgeGenerator.class);
-        when(randomBridgeGenerator.generateRandomDirection()).thenReturn(Direction.RIGHT);
+        RandomDirectionGenerator randomDirectionGenerator = mock(RandomDirectionGenerator.class);
+        when(randomDirectionGenerator.generateRandomDirection()).thenReturn(Direction.RIGHT);
 
-        Ladder ladder = new Ladder(randomBridgeGenerator, 1, 2);
+        Ladder ladder = new Ladder(randomDirectionGenerator, 1, 2);
 
         assertThat(ladder.getDirection(0, 0)).isEqualTo(Direction.RIGHT);
     }
@@ -22,10 +24,10 @@ public class LadderTest {
     // |   |   |
     @Test
     void 크기1by2인_사다리에서_다리_없을_때_결과값() {
-        RandomBridgeGenerator randomBridgeGenerator = mock(RandomBridgeGenerator.class);
-        when(randomBridgeGenerator.generateRandomDirection()).thenReturn(Direction.STRAIGHT);
+        RandomDirectionGenerator randomDirectionGenerator = mock(RandomDirectionGenerator.class);
+        when(randomDirectionGenerator.generateRandomDirection()).thenReturn(Direction.STRAIGHT);
 
-        Ladder ladder = new Ladder(randomBridgeGenerator, 1, 3);
+        Ladder ladder = new Ladder(randomDirectionGenerator, 1, 3);
 
         assertThat(ladder.getArrivialIndex(0)).isEqualTo(0);
         assertThat(ladder.getArrivialIndex(1)).isEqualTo(1);
@@ -35,9 +37,9 @@ public class LadderTest {
     // |---|   |
     @Test
     void 크기1by2인_사다리에서_다리_하나_일때_결과값() {
-        RandomBridgeGenerator randomBridgeGenerator = mock(RandomBridgeGenerator.class);
-        when(randomBridgeGenerator.generateRandomDirection()).thenReturn(Direction.RIGHT);
-        Ladder ladder = new Ladder(randomBridgeGenerator, 1, 3);
+        RandomDirectionGenerator randomDirectionGenerator = mock(RandomDirectionGenerator.class);
+        when(randomDirectionGenerator.generateRandomDirection()).thenReturn(Direction.RIGHT);
+        Ladder ladder = new Ladder(randomDirectionGenerator, 1, 3);
 
 
         assertThat(ladder.getArrivialIndex(0)).isEqualTo(1);
@@ -49,10 +51,10 @@ public class LadderTest {
     // |---|   |
     @Test
     void 크기2by2인_사다리에서_다리_두개_일때_결과값() {
-        RandomBridgeGenerator randomBridgeGenerator = mock(RandomBridgeGenerator.class);
-        when(randomBridgeGenerator.generateRandomDirection()).thenReturn(Direction.RIGHT);
+        RandomDirectionGenerator randomDirectionGenerator = mock(RandomDirectionGenerator.class);
+        when(randomDirectionGenerator.generateRandomDirection()).thenReturn(Direction.RIGHT);
 
-        Ladder ladder = new Ladder(randomBridgeGenerator, 2, 3);
+        Ladder ladder = new Ladder(randomDirectionGenerator, 2, 3);
 
 
         assertThat(ladder.getArrivialIndex(0)).isEqualTo(0);
@@ -65,10 +67,10 @@ public class LadderTest {
     // |---|   |---|
     @Test
     void 크기3by3인_사다리에서_다리_네개_일때_결과값() {
-        RandomBridgeGenerator randomBridgeGenerator = mock(RandomBridgeGenerator.class);
-        when(randomBridgeGenerator.generateRandomDirection()).thenReturn(Direction.RIGHT);
+        RandomDirectionGenerator randomDirectionGenerator = mock(RandomDirectionGenerator.class);
+        when(randomDirectionGenerator.generateRandomDirection()).thenReturn(Direction.RIGHT);
 
-        Ladder ladder = new Ladder(randomBridgeGenerator, 3, 4);
+        Ladder ladder = new Ladder(randomDirectionGenerator, 3, 4);
 
         assertThat(ladder.getArrivialIndex(0)).isEqualTo(1);
         assertThat(ladder.getArrivialIndex(1)).isEqualTo(0);
@@ -81,10 +83,10 @@ public class LadderTest {
     // |---|   |---|
     @Test
     void 크기3by3인_사다리에서_다리_네개_일때_getBridgeNumber() {
-        RandomBridgeGenerator randomBridgeGenerator = mock(RandomBridgeGenerator.class);
-        when(randomBridgeGenerator.generateRandomDirection()).thenReturn(Direction.RIGHT);
+        RandomDirectionGenerator randomDirectionGenerator = mock(RandomDirectionGenerator.class);
+        when(randomDirectionGenerator.generateRandomDirection()).thenReturn(Direction.RIGHT);
 
-        Ladder ladder = new Ladder(randomBridgeGenerator, 3, 4);
+        Ladder ladder = new Ladder(randomDirectionGenerator, 3, 4);
         assertThat(ladder.getBridgeNumber()).isEqualTo(6);
     }
 
