@@ -11,7 +11,7 @@ public class EndResult {
 
     public Result getMemberResult(String member) {
         for (Result result : results) {
-            if (result.isWinner(member)) {
+            if (result.isEqualsWinnerName(member)) {
                 return result;
             }
         }

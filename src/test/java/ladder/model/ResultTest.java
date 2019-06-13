@@ -15,11 +15,11 @@ class ResultTest {
 
     @Test
     void 우승자_확인() {
-        assertThat(result.isWinner("abc")).isEqualTo(true);
+        assertThat(result.isEqualsWinnerName("abc")).isEqualTo(true);
     }
 
     @Test
     void 우승자_확인실패() {
-        assertThat(result.isWinner("xyz")).isEqualTo(false);
+        assertThat(result.isEqualsWinnerName("xyz")).isEqualTo(false);
     }
 }

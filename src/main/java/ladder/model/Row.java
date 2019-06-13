@@ -8,39 +8,28 @@ public class Row {
     private static final String LINKED_LINE = "-----";
     private static final String BLANK_LINE = "     ";
     private static final String DOUBLE_BLANK = "  ";
-    private static final int LINE = 1;
     private static final int MOVE = 1;
     private static final int PREV = 1;
     private static final int BACK = -1;
     private static final int DIRECT = 0;
+    private static final double HALF = 0.5;
     private List<Boolean> lines;
 
-    public Row(List<Integer> linked) {
+    Row(int countOfMembers) {
         lines = new ArrayList<>();
-        lines.add(booleanGenerator(linked.get(0), false));
+        lines.add(getRandom(false));
 
-        for (int i = 1; i < linked.size() - 1; i++) {
-            lines.add(booleanGenerator(linked.get(i), lines.get(i - PREV)));
+        for (int i = 1; i < countOfMembers - 1; i++) {
+            lines.add(getRandom(lines.get(i - PREV)));
         }
     }
 
-    private boolean booleanGenerator(int random, boolean prevStatus) {
-        return !prevStatus && random == LINE;
+    private boolean getRandom(boolean prevStatus) {
+        boolean coinFlip = Math.random() < HALF;
+        return !prevStatus && coinFlip;
     }
 
-    public boolean checkDoubleDraw() {
-        int i = 0;
-        while (i < (lines.size() - 1) && isNotContinuous(i)) {
-            i++;
-        }
-        return i == lines.size();
-    }
-
-    private boolean isNotContinuous(int i) {
-        return !(lines.get(i) && lines.get(i + 1));
-    }
-
-    public int judgeMove(int position) {
+    int judgeMove(int position) {
         if (position < lines.size() && lines.get(position)) {
             return MOVE;
         }

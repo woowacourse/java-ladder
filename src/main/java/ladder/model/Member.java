@@ -12,7 +12,7 @@ public class Member {
         this.position = position;
     }
 
-    public void move(List<Row> ladder) {
+    void move(List<Row> ladder) {
         for (Row row : ladder) {
             this.position += row.judgeMove(position);
         }
@@ -22,7 +22,7 @@ public class Member {
         return name;
     }
 
-    public int getPosition() {
+    int getPosition() {
         return position;
     }
 

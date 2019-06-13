@@ -11,7 +11,7 @@ public class Result {
         this.winner = winner;
     }
 
-    public boolean isWinner(String member) {
+    public boolean isEqualsWinnerName(String member) {
         return winner.equals(member);
     }
 
