@@ -23,13 +23,12 @@ public class App {
         Members members = new Members(names);
         List<String> results = Input.results(members.size());
         int ladderHeight = Input.ladderHeight();
-
         return new LadderGame(members, ladderHeight, results);
     }
 
     private EndResult playGame(LadderGame game) {
         Output.printLadder(game);
-        return game.excute();
+        return game.execute();
     }
 
     private void endGame(EndResult results) {

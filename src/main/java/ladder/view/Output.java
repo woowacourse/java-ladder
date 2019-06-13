@@ -6,14 +6,16 @@ import ladder.model.Result;
 import ladder.model.Row;
 
 import java.util.List;
+import java.util.Map;
 
 public class Output {
-    private static final String SINGLE_BLANK = " ";
     private static final String NEW_LINE = "\n";
+    private static final String SINGLE_BLANK = " ";
     private static final String DOUBLE_BLANK = "  ";
     private static final String VERTICAL_LINE = "|";
     private static final String LINKED_LINE = "-----";
     private static final String BLANK_LINE = "     ";
+    private static final String COLON = " : ";
     private static final String GAME_RESULT = "실행 결과";
     private static final int MAX_NAME_LENGTH = 5;
 
@@ -92,13 +94,19 @@ public class Output {
         }
     }
 
-    public static void memberResult(Result result) {
-        System.out.println(GAME_RESULT);
-        System.out.println(result);
+    private static void singleResult(Result result) {
+        System.out.println(result.getWinner() + COLON + result.getResult());
     }
 
-    public static void allResult(List<Result> results) {
+    public static void memberResult(Result result) {
         System.out.println(GAME_RESULT);
-        results.forEach(System.out::println);
+        singleResult(result);
+    }
+
+    public static void allResult(Map<String, Result> results) {
+        System.out.println(GAME_RESULT);
+        for (Result result : results.values()) {
+            singleResult(result);
+        }
     }
 }

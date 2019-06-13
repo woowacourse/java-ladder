@@ -1,7 +1,8 @@
 package ladder.model;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LadderGame {
     private final Members members;
@@ -14,19 +15,18 @@ public class LadderGame {
         this.ladder = new Ladder(ladderHeight, members.size());
     }
 
-    public EndResult excute() {
+    public EndResult execute() {
         members.move(ladder.getLadder());
         return makeResult();
     }
 
     private EndResult makeResult() {
-        List<Result> endResult = new ArrayList<>();
-
+        Map<String, Result> endResult = new HashMap<>();
         for (Member member : members.getMembers()) {
-            Result result = new Result(results.get(member.getPosition()), member.getName());
-            endResult.add(result);
+            String winner = member.getName();
+            Result result = new Result(results.get(member.getPosition()), winner);
+            endResult.put(winner, result);
         }
-
         return new EndResult(endResult);
     }
 

@@ -11,6 +11,14 @@ public class Result {
         this.winner = winner;
     }
 
+    public String getResult() {
+        return result;
+    }
+
+    public String getWinner() {
+        return winner;
+    }
+
     public boolean isEqualsWinnerName(String member) {
         return winner.equals(member);
     }

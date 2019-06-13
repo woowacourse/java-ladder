@@ -1,24 +1,19 @@
 package ladder.model;
 
-import java.util.List;
+import java.util.Map;
 
 public class EndResult {
-    private final List<Result> results;
+    private final Map<String, Result> results;
 
-    public EndResult(List<Result> results) {
+    public EndResult(Map<String, Result> results) {
         this.results = results;
     }
 
     public Result getMemberResult(String member) {
-        for (Result result : results) {
-            if (result.isEqualsWinnerName(member)) {
-                return result;
-            }
-        }
-        throw new IllegalArgumentException();
+        return results.get(member);
     }
 
-    public List<Result> getAllResult() {
+    public Map<String, Result> getAllResult() {
         return results;
     }
 }
