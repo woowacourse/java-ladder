@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Row {
-    private static final String VERTICAL_LINE = "|";
-    private static final String LINKED_LINE = "-----";
-    private static final String BLANK_LINE = "     ";
-    private static final String DOUBLE_BLANK = "  ";
     private static final int MOVE = 1;
     private static final int PREV = 1;
     private static final int BACK = -1;
@@ -39,18 +35,7 @@ public class Row {
         return DIRECT;
     }
 
-    private String isLinked(boolean line) {
-        String lineString = line ? LINKED_LINE : BLANK_LINE;
-        return VERTICAL_LINE + lineString;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder(DOUBLE_BLANK);
-        for (Boolean line : lines) {
-            sb.append(isLinked(line));
-        }
-        sb.append(VERTICAL_LINE);
-        return sb.toString();
+    public List<Boolean> getLines() {
+        return lines;
     }
 }

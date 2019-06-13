@@ -10,6 +10,10 @@ import java.util.List;
 public class Output {
     private static final String SINGLE_BLANK = " ";
     private static final String NEW_LINE = "\n";
+    private static final String DOUBLE_BLANK = "  ";
+    private static final String VERTICAL_LINE = "|";
+    private static final String LINKED_LINE = "-----";
+    private static final String BLANK_LINE = "     ";
     private static final String GAME_RESULT = "실행 결과";
     private static final int MAX_NAME_LENGTH = 5;
 
@@ -66,10 +70,25 @@ public class Output {
         }
     }
 
+    private static String rowToString(Row row) {
+        List<Boolean> lines = row.getLines();
+        StringBuilder sb = new StringBuilder(DOUBLE_BLANK);
+        for (Boolean line : lines) {
+            sb.append(isLinked(line));
+        }
+        sb.append(VERTICAL_LINE);
+        return sb.toString();
+    }
+
+    private static String isLinked(boolean line) {
+        String lineString = line ? LINKED_LINE : BLANK_LINE;
+        return VERTICAL_LINE + lineString;
+    }
+
     private static void setPrintLadder(LadderGame game, StringBuilder sb) {
         sb.append(NEW_LINE);
         for (Row row : game.getLadder().getLadder()) {
-            sb.append(row.toString() + NEW_LINE);
+            sb.append(rowToString(row) + NEW_LINE);
         }
     }
 
