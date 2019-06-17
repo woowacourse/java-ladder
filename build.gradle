@@ -1,8 +1,10 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
+plugins {
+    id 'java'
+    id 'idea'
+}
 
 version = '1.0.0'
-sourceCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
@@ -10,5 +12,5 @@ repositories {
 
 dependencies {
     testCompile('org.junit.jupiter:junit-jupiter:5.4.2')
-    testCompile('org.assertj:assertj-core:3.11.1')
+    testCompile('org.assertj:assertj-core:3.12.2')
 }
