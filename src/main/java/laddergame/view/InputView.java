@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String SPLIT_DELIMITER = ",";
+    private static final String NATURAL_NUMBER_REGEX = "^[1-9]+[0-9]*$";
 
     public static List<String> inputPlayerNames() {
         String playerNames = scanner.nextLine();
@@ -22,6 +23,13 @@ public class InputView {
 
     public static int inputLadderHeight() {
         String ladderHeight = scanner.nextLine();
+        validateNaturalNumber(ladderHeight);
         return Integer.parseInt(ladderHeight);
+    }
+
+    private static void validateNaturalNumber(String input) {
+        if (!input.matches(NATURAL_NUMBER_REGEX)) {
+            throw new IllegalArgumentException("[ERROR] 자연수를 입력해 주세요.");
+        }
     }
 }
