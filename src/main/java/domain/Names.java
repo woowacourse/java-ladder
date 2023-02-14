@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Names {
@@ -14,5 +15,9 @@ public class Names {
             throw new IllegalArgumentException(String.format("[ERROR] 이름은 최소 2개 이상이여햡니다. 입력값 : %d", names.size()));
         }
         this.names = new ArrayList<>(names);
+    }
+
+    public List<Name> getNames() {
+        return Collections.unmodifiableList(names);
     }
 }

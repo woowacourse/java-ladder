@@ -16,4 +16,8 @@ public class Name {
             throw new IllegalArgumentException(String.format("이름은 5글자 이하여야합니다. 입력값 : %s", name));
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
