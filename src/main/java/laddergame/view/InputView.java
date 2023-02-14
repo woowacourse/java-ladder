@@ -19,4 +19,9 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 공백을 입력할 수 없습니다.");
         }
     }
+
+    public static int inputLadderHeight() {
+        String ladderHeight = scanner.nextLine();
+        return Integer.parseInt(ladderHeight);
+    }
 }
