@@ -15,13 +15,18 @@ public class Participants {
 
     public Participants(String participantNames) {
         validate(participantNames);
-        splitNames(participantNames).forEach((name) -> {
-            if (!checkDuplicate.containsKey(name)) {
-                checkDuplicate.put(name, 0);
-            }
-            checkDuplicate.put(name, checkDuplicate.get(name) + 1);
-            people.add(new Person(name, checkDuplicate.get(name)));
-        });
+        joinAllParticipants(participantNames);
+    }
+
+    private void joinAllParticipants(String participantNames) {
+        splitNames(participantNames).forEach((name) -> people.add(new Person(name, getIdentifier(name))));
+    }
+
+    private int getIdentifier(String name) {
+        if (!checkDuplicate.containsKey(name)) {
+            checkDuplicate.put(name, 0);
+        }
+        return checkDuplicate.merge(name, 1, Integer::sum);
     }
 
     private void validate(String participantNames) {
