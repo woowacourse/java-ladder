@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 
-import org.assertj.core.api.Assertions;
-import org.assertj.core.internal.bytebuddy.ClassFileVersion;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +17,6 @@ public class LineGeneratorTest {
         Line line = new Line(List.of(true, true, true));
         Line newLine = LineGenerator.generate(line);
 
-        assertThat(newLine.getLine()).containsExactly(false, false, false);
+        assertThat(newLine.getExistedLine()).containsExactly(false, false, false);
     }
 }
