@@ -34,12 +34,24 @@ public class PersonTest {
         assertThatThrownBy(() -> new Person(null))
                 .isInstanceOf(NullPointerException.class);
     }
+
+    @Test
+    @DisplayName("5글자가 넘어가는 이름은 예외를 던진다.")
+    void throwExceptionWhenNameLengthOverFive() {
+        final String name = "abcdef";
+
+        assertThatThrownBy(() -> new Person(name))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
 
 class Person {
 
     private static final Pattern NAME_FORMAT = Pattern.compile("[a-zA-Z]+");
+    private static final int NAME_MAX_LENGTH = 5;
     private static final String NAME_FORMAT_ERROR_MESSAGE = "사람 이름은 영문자만 가능합니다. 현재 입력은 {0} 입니다.";
+    private static final String NAME_LENGTH_ERROR_MESSAGE =
+            "사람 이름은 " + NAME_MAX_LENGTH + "글자까지 가능합니다. 현재 입력은 {0} 입니다.";
 
     private final String name;
 
@@ -50,6 +62,7 @@ class Person {
 
     private void validate(final String name) {
         validateNameFormat(name);
+        validateNameLength(name);
     }
 
     private void validateNameFormat(final String name) {
@@ -60,5 +73,15 @@ class Person {
 
     private boolean isNotEnglish(final String name) {
         return !NAME_FORMAT.matcher(name).matches();
+    }
+
+    private void validateNameLength(final String name) {
+        if (hasExceedLength(name)) {
+            throw new IllegalArgumentException(MessageFormat.format(NAME_LENGTH_ERROR_MESSAGE, name));
+        }
+    }
+
+    private boolean hasExceedLength(final String name) {
+        return name.length() > NAME_MAX_LENGTH;
     }
 }
