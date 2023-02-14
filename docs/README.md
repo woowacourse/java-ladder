@@ -17,7 +17,7 @@
 
 #### 랜덤값 
 
-- [ ] boolean값을 생성한다.
+- [x] boolean값을 생성한다.
 
 #### 사다리(ladder)
 
@@ -31,7 +31,7 @@
 #### Line
 
 -[ ] List<Direction> 필드를 갖는다.
-    -[ ] 처음 Direction 을 만드는 함수
+    - [ ] 처음 Direction 을 만드는 함수
     - [ ] 끝 Direction을 만드는 함수
     - [ ] 중간 Direction을 만드는 함수
 
