@@ -19,7 +19,7 @@ public class PlayerTest {
 
     @DisplayName("빈문자열을 입력하면 예외가 발생한다.")
     @Test
-    void playerNameNotNull() {
+    void playerNameNotBlank() {
         String playerName = "";
         assertThatThrownBy(() -> {
             new Player(playerName);

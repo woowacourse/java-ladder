@@ -27,7 +27,7 @@ public class PlayersFactoryTest {
 
     @DisplayName("참여자가 0명 이하일 수 없다.")
     @Test
-    void playerSizeNotLessThan0() {
+    void playerSizeNotLessThan1() {
         List<String> playerNames = Collections.emptyList();
         assertThatThrownBy(() -> {
             PlayerFactory.generate(playerNames);

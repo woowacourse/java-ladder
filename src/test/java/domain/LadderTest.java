@@ -21,7 +21,7 @@ public class LadderTest {
     @DisplayName("사다리 높이에 0 이하의 수가 들어올 수 없다.")
     @ValueSource(ints = {0, -1})
     @ParameterizedTest
-    void ladderLineSizeNotLessThan30(int lineSize) {
+    void ladderLineSizeNotLessThan1(int lineSize) {
         assertThatThrownBy(() -> {
             new Ladder(lineSize);
         }).isInstanceOf(IllegalArgumentException.class);
