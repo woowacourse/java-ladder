@@ -27,9 +27,9 @@ public class ParticipantNameTest {
     }
 
     @ParameterizedTest
-    @EmptySource
-    @DisplayName("공백이 입력되면, 예외가 발생한다.")
-    void name_blank_test(String blankName) {
+    @ValueSource(strings = {" ", "pobi ", "po bi", " po y", " p o ", " pobi"})
+    @DisplayName("이름에 공백이 포함되면, 예외가 발생한다.")
+    void name_with_blank_test(String blankName) {
         assertThatThrownBy(() -> new ParticipantName(blankName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
