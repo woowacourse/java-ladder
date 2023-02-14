@@ -38,7 +38,7 @@ class LadderTest {
     @DisplayName("연결하면 안 되는 곳이 없을 경우 모두 연결된 상태를 가진다.")
     @Test
     void makeStatus() {
-        List avoid = List.of();
+        List<Integer> avoid = List.of();
         Ladder ladder = new Ladder(3);
         BooleanGenerator booleanGenerator = () -> true;
         ladder.generateStatus(avoid, booleanGenerator);
@@ -48,10 +48,30 @@ class LadderTest {
     @DisplayName("연결하면 안 되는 곳 제외 모두 연결된 상태를 가진다.")
     @Test
     void makeStatusWithAvoidExist() {
-        List avoid = List.of(1);
+        List<Integer> avoid = List.of(1);
         Ladder ladder = new Ladder(3);
         BooleanGenerator booleanGenerator = () -> true;
         ladder.generateStatus(avoid, booleanGenerator);
         Assertions.assertThat(ladder.getStatus()).isEqualTo(new boolean[]{true, false, true});
+    }
+
+    @DisplayName("연결되어 있는 곳의 인덱스를 리스트로 반환한다.(연결된 곳이 없을 경우)")
+    @Test
+    void getConnectedIndexNoConnected() {
+        Ladder ladder = new Ladder(3);
+        BooleanGenerator booleanGenerator = () -> false;
+        ladder.generateStatus(List.of(), booleanGenerator);
+        List<Integer> connectedIndex = ladder.getConnectedIndex();
+        Assertions.assertThat(connectedIndex).isEmpty();
+    }
+
+    @DisplayName("연결되어 있는 곳의 인덱스를 리스트로 반환한다. (연결된 곳이 있을 경우)")
+    @Test
+    void getConnectedIndexConnected() {
+        Ladder ladder = new Ladder(3);
+        BooleanGenerator booleanGenerator = () -> true;
+        ladder.generateStatus(List.of(), booleanGenerator);
+        List<Integer> connectedIndex = ladder.getConnectedIndex();
+        Assertions.assertThat(connectedIndex).containsExactly(0, 1, 2);
     }
 }

@@ -2,6 +2,7 @@ package domain;
 
 import exception.InvalidLadderHeightException;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import util.BooleanGenerator;
 
@@ -41,5 +42,10 @@ public class Ladder {
 
     public boolean[] getStatus() {
         return status;
+    }
+
+    public List<Integer> getConnectedIndex() {
+        return IntStream.range(0, status.length).filter((index) -> status[index]).boxed()
+            .collect(Collectors.toList());
     }
 }
