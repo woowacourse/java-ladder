@@ -12,7 +12,7 @@ public class LineGenerator {
     public static final Random RANDOM = new Random();
 
     public static Line generate(Line previousLine) {
-        List<Boolean> lines = previousLine.getLine();
+        List<Boolean> lines = previousLine.getExistedLine();
 
         List<Boolean> newLines = lines.stream()
                 .map(LineGenerator::convertBoolean)
