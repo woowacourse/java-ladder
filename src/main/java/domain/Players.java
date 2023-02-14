@@ -13,9 +13,19 @@ public class Players {
 
     public Players(String input) {
         String[] names = input.split(DELIMITER);
+        validateDuplicate(names);
         this.players = Arrays.stream(names)
                 .map(Player::new)
                 .collect(toList());
+    }
+
+    private void validateDuplicate(String[] names) {
+        long uniqueNamesLength = Arrays.stream(names)
+                .distinct()
+                .count();
+        if (uniqueNamesLength != names.length) {
+            throw new IllegalArgumentException("[ERROR] 중복된 이름이 있습니다.");
+        }
     }
 
     public List<Player> getPlayers() {
