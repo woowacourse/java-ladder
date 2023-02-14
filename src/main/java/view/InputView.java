@@ -23,4 +23,20 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
+    public int sendLadderHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+
+        String rawLadderHeight = scanner.nextLine();
+        return parseInt(rawLadderHeight);
+    }
+
+    private static int parseInt(String rawLadderHeight) {
+        try {
+            return Integer.parseInt(rawLadderHeight);
+        }
+        catch (NumberFormatException e) {
+            throw new IllegalArgumentException(String.format("[ERROR] 사다리의 높이는 숫자여야합니다. " +
+                    "입력값: %s", rawLadderHeight));
+        }
+    }
 }
