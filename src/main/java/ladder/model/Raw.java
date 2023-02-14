@@ -13,12 +13,16 @@ public class Raw {
         }
     }
 
-    public void createLine(int index, boolean isCreated){
-        points.set(index, isCreated);
+    public void createLineAt(int point, boolean isCreated) {
+        points.set(point, isCreated);
     }
 
-    public boolean isPointHasLine(int index) {
-        return points.get(index);
+    public boolean isPointHasLine(int point) {
+        return points.get(point);
+    }
+
+    public boolean isLeftPointHasLine(int point) {
+        return points.get(point - 1);
     }
 
 }
