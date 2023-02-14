@@ -10,6 +10,13 @@ public class InputView {
 
     public static List<String> inputPlayerNames() {
         String playerNames = scanner.nextLine();
+        validateBlankInput(playerNames);
         return Arrays.asList(playerNames.split(SPLIT_DELIMITER));
+    }
+
+    private static void validateBlankInput(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 공백을 입력할 수 없습니다.");
+        }
     }
 }
