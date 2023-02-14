@@ -9,13 +9,19 @@ public class Person {
     public Person(String name){
         this.name = name;
         validateNameLength(name);
+        validateNameBlank(name);
     }
 
-    private static void validateNameLength(String name) {
-        if (name.length() > NAME_MAX_LENGTH) {
+    private void validateNameBlank(String name) {
+        if (name.isBlank()){
             throw new IllegalArgumentException();
         }
     }
 
+    private void validateNameLength(String name) {
+        if (name.length() > NAME_MAX_LENGTH) {
+            throw new IllegalArgumentException();
+        }
+    }
 
 }
