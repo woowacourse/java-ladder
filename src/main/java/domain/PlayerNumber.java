@@ -26,4 +26,9 @@ public class PlayerNumber {
         return !(LENGTH_LOWER_BOUND_INCLUSIVE <= playerNumber
                 && playerNumber <= LENGTH_UPPER_BOUND_INCLUSIVE);
     }
+
+    public int getLineNumber() {
+        return this.playerNumber - 1;
+    }
+
 }
