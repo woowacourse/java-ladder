@@ -25,8 +25,8 @@ class PlayerTest {
     @ValueSource(strings = {"", " ", "\n", "  "})
     void create_blankName(String input) {
         // expect
-        assertThatThrownBy(() -> new Player(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 이름은 공백이 될 수 없습니다.");
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new Player(input);
+        }).withMessage("[ERROR] 이름은 공백이 될 수 없습니다.");
     }
 }
