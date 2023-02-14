@@ -2,22 +2,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    RandomTrueAndFalseGenerator randomNumberGenerater = new RandomTrueAndFalseGenerator();
+    private final TrueAndFalseGenerator trueAndFalseGenerator;
     private final List<Boolean> points;
 
-    public Line(int personCount) {
+    public Line(int personCount, TrueAndFalseGenerator trueAndFalseGenerator) {
+        this.trueAndFalseGenerator = trueAndFalseGenerator;
         this.points = lineMaker(personCount);
     }
 
-    public List<Boolean> lineMaker(int personCount) {
+    private List<Boolean> lineMaker(int personCount) {
         List<Boolean> points = new ArrayList<>();
+        points.add(false);
         for (int count = 1; count < personCount; count++) {
-
+            points.add(validate(points.get(count - 1), trueAndFalseGenerator.generate()));
         }
         return points;
     }
 
-    public boolean validate(Boolean previous, Boolean current) {
+    private boolean validate(Boolean previous, Boolean current) {
         if (!previous || !current) {
             return current;
         }
