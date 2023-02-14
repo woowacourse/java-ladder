@@ -1,9 +1,18 @@
 public class User {
+    private static final int MIN_NAME_LENGTH = 1;
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final String NAME_LENGTH_ERROR_MESSAGE =
+            "[ERROR] 사람 이름은 " + MIN_NAME_LENGTH + "~" + MAX_NAME_LENGTH + "글자로 입력해 주세요.";
+
     private String name;
 
     public static void validateNameLength(String name) {
-        if (name.length() <= 0 || name.length() > 5) {
-            throw new IllegalArgumentException("");
+        if (isValidLength(name)) {
+            throw new IllegalArgumentException(NAME_LENGTH_ERROR_MESSAGE);
         }
+    }
+
+    private static boolean isValidLength(String name) {
+        return name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH;
     }
 }
