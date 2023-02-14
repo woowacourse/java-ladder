@@ -13,7 +13,7 @@ public class Name {
 
     private void validate(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format("이름은 5글자 이하여야합니다. 입력값 : %s", name));
         }
     }
 }
