@@ -41,7 +41,7 @@ class LadderTest {
         List<Integer> avoid = List.of();
         Ladder ladder = new Ladder(3);
         BooleanGenerator booleanGenerator = () -> true;
-        ladder.generateStatus(avoid, booleanGenerator);
+        ladder.generate(avoid, booleanGenerator);
         Assertions.assertThat(ladder.getStatus()).isEqualTo(new boolean[]{true, true, true});
     }
 
@@ -51,7 +51,7 @@ class LadderTest {
         List<Integer> avoid = List.of(1);
         Ladder ladder = new Ladder(3);
         BooleanGenerator booleanGenerator = () -> true;
-        ladder.generateStatus(avoid, booleanGenerator);
+        ladder.generate(avoid, booleanGenerator);
         Assertions.assertThat(ladder.getStatus()).isEqualTo(new boolean[]{true, false, true});
     }
 
@@ -60,7 +60,7 @@ class LadderTest {
     void getConnectedIndexNoConnected() {
         Ladder ladder = new Ladder(3);
         BooleanGenerator booleanGenerator = () -> false;
-        ladder.generateStatus(List.of(), booleanGenerator);
+        ladder.generate(List.of(), booleanGenerator);
         List<Integer> connectedIndex = ladder.getConnectedIndex();
         Assertions.assertThat(connectedIndex).isEmpty();
     }
@@ -70,7 +70,7 @@ class LadderTest {
     void getConnectedIndexConnected() {
         Ladder ladder = new Ladder(3);
         BooleanGenerator booleanGenerator = () -> true;
-        ladder.generateStatus(List.of(), booleanGenerator);
+        ladder.generate(List.of(), booleanGenerator);
         List<Integer> connectedIndex = ladder.getConnectedIndex();
         Assertions.assertThat(connectedIndex).containsExactly(0, 1, 2);
     }

@@ -31,7 +31,7 @@ public class Ladder {
         return status.length;
     }
 
-    public void generateStatus(List<Integer> avoid, BooleanGenerator booleanGenerator) {
+    public void generate(List<Integer> avoid, BooleanGenerator booleanGenerator) {
         IntStream.range(0, status.length)
             .filter((num) -> !avoid.contains(num))
             .forEach((num) -> {

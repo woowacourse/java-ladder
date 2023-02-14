@@ -46,7 +46,7 @@ public class Map {
         List<Integer> avoid = new ArrayList<>();
         for (int count = 0; count < ladderCount; count++) {
             Ladder ladder = new Ladder(height);
-            ladder.generateStatus(avoid, booleanGenerator);
+            ladder.generate(avoid, booleanGenerator);
             ladders.add(ladder);
             avoid = ladders.get(ladders.size() - 1).getConnectedIndex();
         }
