@@ -13,8 +13,11 @@ class RawTest {
     void createLineTest() {
         int personCount = 5;
         int index = 0;
+        boolean isCreated = true;
         Raw raw = new Raw(personCount);
-        raw.createLine(index);
+        raw.createLine(index, isCreated);
         assertThat(raw.isPointHasLine(index)).isTrue();
     }
+
+
 }
