@@ -11,4 +11,12 @@ public class UserTest {
         Assertions.assertThatCode(() -> new User(name))
                 .doesNotThrowAnyException();
     }
+
+    @ParameterizedTest(name = "이름이 1글자 미만 5글자 초과면 예외를 던진다. 입력값 = {0}")
+    @ValueSource(strings = {"", "honuxx"})
+    void userFailureTest(String name) {
+        Assertions.assertThatThrownBy(() -> new User(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 }
