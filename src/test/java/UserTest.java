@@ -1,4 +1,5 @@
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
@@ -16,14 +17,16 @@ class UserTest {
         @Test
         void shouldFailNameLengthOver() {
             String name = "abcdef";
-            assertThrows(IllegalArgumentException.class, () -> User.validateNameLength(name));
+            assertThatThrownBy(() -> User.validateNameLength(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(User.NAME_LENGTH_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름이 0글자일 때 실패한다.")
         @Test
         void shouldFailNameLengthZero() {
             String name = "";
-            assertThrows(IllegalArgumentException.class, () -> User.validateNameLength(name));
+            assertThatThrownBy(() -> User.validateNameLength(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(User.NAME_LENGTH_ERROR_MESSAGE);
         }
     }
 
@@ -34,28 +37,32 @@ class UserTest {
         @Test
         void shouldFailNameWithSpecialCharacter() {
             String name = "ab#c";
-            assertThrows(IllegalArgumentException.class, () -> User.validateNameFormat(name));
+            assertThatThrownBy(() -> User.validateNameFormat(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름에 숫자가 포함되면 실패한다.")
         @Test
         void shouldFailNameWithNumber() {
             String name = "ab23c";
-            assertThrows(IllegalArgumentException.class, () -> User.validateNameFormat(name));
+            assertThatThrownBy(() -> User.validateNameFormat(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름에 한글이 포함되면 실패한다.")
         @Test
         void shouldFailNameWithKorean() {
             String name = "ab가c";
-            assertThrows(IllegalArgumentException.class, () -> User.validateNameFormat(name));
+            assertThatThrownBy(() -> User.validateNameFormat(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름에 공백이 포함되면 실패한다.")
         @Test
         void shouldFailNameWithBlank() {
             String name = "ab c";
-            assertThrows(IllegalArgumentException.class, () -> User.validateNameFormat(name));
+            assertThatThrownBy(() -> User.validateNameFormat(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
         }
     }
 

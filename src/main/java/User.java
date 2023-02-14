@@ -3,9 +3,9 @@ import java.util.List;
 public class User {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
-    private static final String NAME_LENGTH_ERROR_MESSAGE =
+    public static final String NAME_LENGTH_ERROR_MESSAGE =
             "[ERROR] 사람 이름은 " + MIN_NAME_LENGTH + "~" + MAX_NAME_LENGTH + "글자로 입력해 주세요.";
-    private static final String NAME_FORMAT_ERROR_MESSAGE = "[ERROR] 사람 이름은 영문자만 가능합니다.";
+    public static final String NAME_FORMAT_ERROR_MESSAGE = "[ERROR] 사람 이름은 영문자만 가능합니다.";
 
     private String name;
 
