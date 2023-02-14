@@ -1,17 +1,19 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
-public class Line {
-    private final List<Boolean> lines;
 
-    public Line(List<Boolean> lines) {
-        this.lines = lines;
+public class Line {
+    private final List<Boolean> points;
+
+    public Line(List<Boolean> points) {
+        this.points = points;
     }
 
     //TODO : 네이밍
     public void method() {
         boolean state = false;
-        for (boolean line : lines) {
+        for (boolean line : points) {
             state = updateState(state, line);
         }
     }
@@ -23,5 +25,9 @@ public class Line {
         }
         state = line;
         return state;
+    }
+
+    public List<Boolean> getPoints() {
+        return new ArrayList<>(points);
     }
 }
