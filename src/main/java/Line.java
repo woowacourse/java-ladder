@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    RandomNumberGenerater randomNumberGenerater = new RandomNumberGenerater();
+    RandomTrueAndFalseGenerator randomNumberGenerater = new RandomTrueAndFalseGenerator();
     private final List<Boolean> points;
 
     public Line(int personCount) {
@@ -11,14 +11,17 @@ public class Line {
 
     public List<Boolean> lineMaker(int personCount) {
         List<Boolean> points = new ArrayList<>();
-        for (int count = 0; count < personCount-1; count++) {
-            points.add(changeNumberToBoolean(randomNumberGenerater.generate()));
+        for (int count = 1; count < personCount; count++) {
+
         }
         return points;
     }
 
-    private boolean changeNumberToBoolean(int randomNumber) {
-        return randomNumber != 0;
+    public boolean validate(Boolean previous, Boolean current) {
+        if (!previous || !current) {
+            return current;
+        }
+        return false;
     }
 
     public List<Boolean> getPoints() {
