@@ -1,15 +1,25 @@
 package player;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.*;
+
+import domain.PlayerName;
+import domain.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class PlayerTest {
-//    @Test
-//    @DisplayName("사람의 수가 1명 이하이면 예외를 던진다.")
-//    void player_constructor_validate() {
-//        // when & then
-//        Assertions.assertThatThrownBy(new Player())
-//                .isInstanceOf(IllegalArgumentException.class);
-//    }
+
+    @Test
+    @DisplayName("Player의 getName은 Player의 이름을 반환한다.")
+    void returns_player_name() {
+        //given
+        String givenName = "123";
+        Player player = new Player(new PlayerName(givenName));
+
+        //when
+        String expectedName = player.getName();
+
+        //then
+        assertThat(expectedName).isEqualTo(givenName);
+    }
 }
