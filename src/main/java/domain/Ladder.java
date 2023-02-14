@@ -7,11 +7,19 @@ public class Ladder {
     private final boolean[] status;
 
     public Ladder(int height) {
-        final int maxHeight = 10;
-        final int minHeight = 1;
-        if (height < minHeight || height > maxHeight) {
+        validateHeight(height);
+        status = new boolean[height];
+    }
+
+    private void validateHeight(int height) {
+        if (isValidHeight(height)) {
             throw new InvalidLadderHeightException();
         }
-        status = new boolean[maxHeight];
+    }
+
+    private boolean isValidHeight(int height) {
+        final int maxHeight = 10;
+        final int minHeight = 1;
+        return height < minHeight || height > maxHeight;
     }
 }
