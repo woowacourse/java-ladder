@@ -29,4 +29,14 @@ class StringParserTest {
 
         assertThat(strings).containsExactly("pobi", "", "", "");
     }
+
+    @Test
+    @DisplayName("문자열을 int로 변환한다.")
+    void convertToNumber() {
+        String input = "1";
+
+        int number = StringParser.parseToInteger(input);
+
+        assertThat(number).isEqualTo(1);
+    }
 }
