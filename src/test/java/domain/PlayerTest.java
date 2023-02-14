@@ -1,9 +1,7 @@
-package player;
+package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import domain.PlayerName;
-import domain.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,14 +10,14 @@ public class PlayerTest {
     @Test
     @DisplayName("Player의 getName은 Player의 이름을 반환한다.")
     void returns_player_name() {
-        //given
+        // given
         String givenName = "123";
         Player player = new Player(new PlayerName(givenName));
 
-        //when
+        // when
         String expectedName = player.getName();
 
-        //then
+        // then
         assertThat(expectedName).isEqualTo(givenName);
     }
 }
