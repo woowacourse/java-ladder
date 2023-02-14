@@ -19,7 +19,7 @@ graph TD
 
     LadderGameController --> InputView
     LadderGameController --> OutputView
-    
+
     Ladder --> Line
     Line --> LineStatus
 ```
@@ -27,12 +27,13 @@ graph TD
 ### 참가자
 
 - [x] 참가자는 이름을 가진다.
-  - [x] 이름은 1자 이상, 5자 이하의 길이를 가진다.
+    - [x] 이름은 1자 이상, 5자 이하의 길이를 가진다.
 
 ### 사다리
 
 - [ ] 사다리는 높이를 가진다.
 - [ ] 사다리 가로 라인을 가진다.
+- [x] 각각의 가로 라인은 상태를 가진다.
 - [ ] 사다리 가로 라인이 겹치지 않도록 해야 한다.
 
 ### 입력
