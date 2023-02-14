@@ -18,4 +18,8 @@ public class Person {
                     String.format(ErrorCode.NAME_OUT_OF_RANGE.getMessage(), MIN_NAME, MAX_NAME));
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
