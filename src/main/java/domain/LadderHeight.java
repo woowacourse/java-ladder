@@ -12,4 +12,8 @@ public class LadderHeight {
         }
         this.ladderHeight = ladderHeight;
     }
+
+    public int getLadderHeight() {
+        return this.ladderHeight;
+    }
 }
