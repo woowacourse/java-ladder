@@ -18,4 +18,13 @@ public class UserTest {
             new User(value)
         ).doesNotThrowAnyException();
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "aaaaaa"})
+    @DisplayName("유저 생성 예외 테스트")
+    void makeInvalidUserTest(String value) {
+        assertThatThrownBy(() -> new User(value))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
