@@ -18,10 +18,22 @@ class MapTest {
         }
     }
 
-    @DisplayName("높이의 숫자가 아닌 경우 오류를 던진다.")
+    @DisplayName("높이가 숫자가 아닌 경우 오류를 던진다.")
     @Test
     void heightNotDigit() {
         Assertions.assertThatThrownBy(() -> new Map("a", 2)).isExactlyInstanceOf(NotNumberException.class);
+    }
+
+    @DisplayName("높이가 null일 경우 오류를 던진다.")
+    @Test
+    void heightNull() {
+        Assertions.assertThatThrownBy(() -> new Map(null, 2)).isExactlyInstanceOf(NotNumberException.class);
+    }
+
+    @DisplayName("높이가 공백으로만 이루어져 있을 경우 오류를 던진다.")
+    @Test
+    void heightBlank() {
+        Assertions.assertThatThrownBy(() -> new Map("     ", 2)).isExactlyInstanceOf(NotNumberException.class);
     }
 
     @DisplayName("사다리 개수가 10보다 큰 경우 오류를 던진다.")
