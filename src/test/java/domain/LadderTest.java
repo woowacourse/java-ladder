@@ -1,9 +1,11 @@
 package domain;
 
 import exception.InvalidLadderHeightException;
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import util.BooleanGenerator;
 
 class LadderTest {
 
@@ -11,7 +13,9 @@ class LadderTest {
     @Test
     void ladderSuccess() {
         try {
-            new Ladder(10);
+            Ladder ladder = new Ladder(10);
+            int height = ladder.getHeight();
+            Assertions.assertThat(height).isEqualTo(10);
         } catch (IllegalArgumentException exception) {
             Assertions.fail("높이가 조건에 맞을 경우 객체를 생성해야 합니다.");
         }
@@ -29,5 +33,25 @@ class LadderTest {
     void heightLessThan1() {
         Assertions.assertThatThrownBy(() -> new Ladder(0))
             .isExactlyInstanceOf(InvalidLadderHeightException.class);
+    }
+
+    @DisplayName("연결하면 안 되는 곳이 없을 경우 모두 연결된 상태를 가진다.")
+    @Test
+    void makeStatus() {
+        List avoid = List.of();
+        Ladder ladder = new Ladder(3);
+        BooleanGenerator booleanGenerator = () -> true;
+        ladder.generateStatus(avoid, booleanGenerator);
+        Assertions.assertThat(ladder.getStatus()).isEqualTo(new boolean[]{true, true, true});
+    }
+
+    @DisplayName("연결하면 안 되는 곳 제외 모두 연결된 상태를 가진다.")
+    @Test
+    void makeStatusWithAvoidExist() {
+        List avoid = List.of(1);
+        Ladder ladder = new Ladder(3);
+        BooleanGenerator booleanGenerator = () -> true;
+        ladder.generateStatus(avoid, booleanGenerator);
+        Assertions.assertThat(ladder.getStatus()).isEqualTo(new boolean[]{true, false, true});
     }
 }
