@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Players {
+    private static final int MIN_PLAYERS = 2;
+    private static final int MAX_PLAYERS = 13;
     private static final String DELIMITER = ",";
 
     private final List<Player> players;
@@ -21,7 +23,7 @@ public class Players {
     }
 
     public void validateSize(String[] names) {
-        if (names.length < 2 || names.length > 13) {
+        if (names.length < MIN_PLAYERS || names.length > MAX_PLAYERS) {
             throw new IllegalArgumentException("[ERROR] 사용자는 2명에서 13명까지 가능합니다.");
         }
     }
