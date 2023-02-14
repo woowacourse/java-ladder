@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 @DisplayName("높이")
 public class HeightTest {
 
-    public static final String RANGE_ERROR_MESSAGE = "사다리 높이는 1 ~ 100만 가능합니다.";
+    public static final String HEIGHT_RANGE_ERROR_MESSAGE = "사다리 높이는 1 ~ 100만 가능합니다.";
 
     @DisplayName("범위 밖인 경우 예외 발생")
     @ParameterizedTest
@@ -18,7 +18,7 @@ public class HeightTest {
     void createHeightFail(int input) {
         assertThatThrownBy(() -> new Height(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(RANGE_ERROR_MESSAGE);
+                .hasMessage(HEIGHT_RANGE_ERROR_MESSAGE);
     }
 
     @DisplayName("범위 내인 경우 정상 작동")

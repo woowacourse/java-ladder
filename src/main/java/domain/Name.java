@@ -4,10 +4,10 @@ import java.util.regex.Pattern;
 
 public class Name {
 
-    private static final int LENGTH_LOWER_BOUND_INCLUSIVE = 1;
-    private static final int LENGTH_UPPER_BOUND_INCLUSIVE = 5;
+    private static final int NAME_MIN_SIZE_INCLUSIVE = 1;
+    private static final int NAME_MAX_SIZE_INCLUSIVE = 5;
 
-    private static final String LENGTH_ERROR_MESSAGE = "이름은 1 ~ 5 글자여야 합니다.";
+    private static final String NAME_SIZE_ERROR_MESSAGE = "이름은 1 ~ 5 글자여야 합니다.";
     private static final String VALUE_ERROR_MESSAGE = "이름은 문자만 숫자로 가능합니다.";
     private static final String VALID_WORD_REGEX = "(\\w)+";
     private static final Pattern NAME_PATTERN = Pattern.compile(VALID_WORD_REGEX);
@@ -26,7 +26,7 @@ public class Name {
 
     private void validateName(String name) {
         if (isOutOfRange(name)) {
-            throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NAME_SIZE_ERROR_MESSAGE);
         }
     }
 
@@ -37,8 +37,8 @@ public class Name {
     }
 
     private boolean isOutOfRange(String name) {
-        return !(LENGTH_LOWER_BOUND_INCLUSIVE <= name.length()
-                && name.length() <= LENGTH_UPPER_BOUND_INCLUSIVE);
+        return !(NAME_MIN_SIZE_INCLUSIVE <= name.length()
+                && name.length() <= NAME_MAX_SIZE_INCLUSIVE);
     }
 
 }
