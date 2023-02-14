@@ -1,7 +1,7 @@
 package domain;
 
 import exception.InvalidLadderCountException;
-import exception.NotNumberException;
+import exception.InvalidLadderHeightException;
 import java.util.ArrayList;
 import java.util.List;
 import util.BooleanGenerator;
@@ -25,7 +25,7 @@ public class Map {
 
     private void validate(String height, int ladderCount) {
         if (!isNum(height)) {
-            throw new NotNumberException();
+            throw new InvalidLadderHeightException();
         }
         if (!isValidLadderCount(ladderCount)) {
             throw new InvalidLadderCountException();
