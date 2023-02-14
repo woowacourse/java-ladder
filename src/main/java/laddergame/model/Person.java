@@ -10,6 +10,10 @@ public class Person {
         if(isKorean){
             throw new IllegalArgumentException();
         }
-        this.name = name;
+        this.name = name.trim();
+    }
+
+    public String getName() {
+        return this.name;
     }
 }

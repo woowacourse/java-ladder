@@ -1,5 +1,6 @@
 package laddergame.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,4 +25,9 @@ class PersonTest {
         }
     }
 
+    @Test
+    @DisplayName("앞 뒤의 공백이 있는 문자열이 입력되면 공백이 제거된다.")
+    void Should_Trim_When_FrontAndBackBlank() {
+        assertThat(new Person(" name ").getName()).isEqualTo(" name ".trim());
+    }
 }
