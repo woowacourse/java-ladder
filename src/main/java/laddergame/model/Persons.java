@@ -19,12 +19,6 @@ public class Persons {
         addPerson(names);
     }
 
-    private void addPerson(List<String> names) {
-        for (String name : names) {
-            persons.add(new Person(name));
-        }
-    }
-
     private static void validatePersonLength(List<String> names) {
         if (names.size() < MIN_PERSON_LENGTH) {
             throw new IllegalArgumentException(ERROR_PERSON_LENGTH);
@@ -35,6 +29,12 @@ public class Persons {
         Set<String> removeDuplicateNames = new HashSet<>(names);
         if (removeDuplicateNames.size() != names.size()) {
             throw new IllegalArgumentException(ERROR_DUPLICATION);
+        }
+    }
+
+    private void addPerson(List<String> names) {
+        for (String name : names) {
+            persons.add(new Person(name));
         }
     }
 }

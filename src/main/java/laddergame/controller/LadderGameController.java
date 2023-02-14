@@ -1,12 +1,21 @@
 package laddergame.controller;
 
-import java.util.List;
+import laddergame.model.Persons;
 import laddergame.view.InputView;
 
 public class LadderGameController {
     InputView inputView = new InputView();
 
     public void run() {
-        List<String> names = inputView.readPersonNames();
+        makePersons();
+    }
+
+    private void makePersons() {
+        try {
+            Persons persons = new Persons(inputView.readPersonNames());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            makePersons();
+        }
     }
 }
