@@ -13,7 +13,7 @@ class LineTest {
     @DisplayName("주어진 숫자에 따라 적합한 points를 가진 Line을 생성한다.")
     @Test
     void create() {
-        Line line = Line.create(3, new MockNumberGenerator(List.of(3,4,3)));
+        Line line = Line.create(3, new MockNumberGenerator(List.of(3, 4, 3)));
         List<Point> points = line.getPoints();
         assertThat(points).containsExactly(Point.BLOCKED, Point.PASSABLE, Point.BLOCKED);
     }

@@ -11,14 +11,14 @@ public class Ladder {
     private final List<Line> lines;
     private final LadderHeight ladderHeight;
 
-    private Ladder(List<Line> lines, LadderHeight ladderHeight){
+    private Ladder(List<Line> lines, LadderHeight ladderHeight) {
         this.lines = lines;
         this.ladderHeight = ladderHeight;
     }
 
     public static Ladder create(LadderHeight ladderHeight,
-                         int numberOfPeople,
-                         NumberGenerator numberGenerator) {
+                                int numberOfPeople,
+                                NumberGenerator numberGenerator) {
         List<Line> lines = new ArrayList<>();
         Ladder ladder = new Ladder(lines, ladderHeight);
         ladder.addUntilLastLine(numberOfPeople, numberGenerator);
