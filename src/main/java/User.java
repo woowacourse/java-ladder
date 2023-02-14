@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class User {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
@@ -21,5 +23,9 @@ public class User {
         if (!name.matches("^[a-zA-z]*$")) {
             throw new IllegalArgumentException(NAME_FORMAT_ERROR_MESSAGE);
         }
+    }
+
+    public static List<String> splitNameInput(String nameInput) {
+        return List.of(nameInput.split(","));
     }
 }
