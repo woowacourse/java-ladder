@@ -2,9 +2,9 @@ package view;
 
 public class InputValidator {
 
-    public void validateHeight(String height) {
+    public int validateHeight(String height) {
         try {
-            int i = Integer.parseInt(height);
+            return Integer.parseInt(height);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }
