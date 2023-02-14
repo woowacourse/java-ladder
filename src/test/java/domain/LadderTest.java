@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,5 +36,14 @@ class LadderTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Ladder(5, 2);
         }).withMessage("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
+    }
+
+    @Test
+    @DisplayName("사다리가 정상적으로 생성되어야 한다.")
+    void create_success() {
+        // expect
+        assertThatNoException().isThrownBy(() -> {
+            new Ladder(6, 3);
+        });
     }
 }
