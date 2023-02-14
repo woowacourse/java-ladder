@@ -1,5 +1,6 @@
-import java.util.List;
+package domain;
 
+import java.util.List;
 public class Line {
     private final List<Boolean> lines;
 
