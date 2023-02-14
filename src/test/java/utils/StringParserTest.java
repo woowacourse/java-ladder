@@ -20,4 +20,13 @@ class StringParserTest {
         assertThat(strings).containsExactly("pobi", "honux", "crong", "jk");
     }
 
+    @Test
+    @DisplayName("콤마를 기준으로 사람이름을 분리한다.")
+    void splitByCommaEdgeCaseTest() {
+        String input = "pobi,,,";
+
+        List<String> strings = StringParser.splitByComma(input);
+
+        assertThat(strings).containsExactly("pobi", "", "", "");
+    }
 }
