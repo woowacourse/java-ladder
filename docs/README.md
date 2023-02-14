@@ -21,8 +21,8 @@
 
 #### 사다리(ladder)
 
--[ ] boolean값을 갖는 필드를 갖는다.
-    - [ ] 값이 true인지 false 판단하는 함수
+-[x] boolean값을 갖는 필드를 갖는다.
+    - [x] 값이 true인지 false 판단하는 함수
 
 #### 방향(Direction)
 
