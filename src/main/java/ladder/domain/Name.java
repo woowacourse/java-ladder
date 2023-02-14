@@ -1,11 +1,11 @@
 package ladder.domain;
 
-public class PlayerName {
+public class Name {
 
     private static final int NAME_MAXIMUM_LENGTH = 5;
     private final String name;
 
-    public PlayerName(String name) {
+    public Name(String name) {
         validateNameLength(name);
         this.name = name;
     }
