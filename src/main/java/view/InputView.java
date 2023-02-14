@@ -41,7 +41,6 @@ public class InputView {
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(Message.EXCEPTION_INVALID_HEIGHT.message);
         }
-
     }
 
     private enum Message {
