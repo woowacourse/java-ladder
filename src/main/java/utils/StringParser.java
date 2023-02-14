@@ -7,4 +7,8 @@ public class StringParser {
     public static List<String> splitByComma(String input) {
         return Arrays.asList(input.split(",", -1));
     }
+
+    public static int parseToInteger(String input) {
+        return Integer.parseInt(input);
+    }
 }
