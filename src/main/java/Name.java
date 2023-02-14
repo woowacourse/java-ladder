@@ -1,8 +1,8 @@
-public class Player {
+public class Name {
 
     String name;
 
-    public Player(String name) {
+    public Name(String name) {
         validateNameLength(name);
         this.name = name;
     }
@@ -12,5 +12,4 @@ public class Player {
             throw new IllegalArgumentException("[ERROR] 사람 이름은 최대 5글자 입니다.");
         }
     }
-
 }
