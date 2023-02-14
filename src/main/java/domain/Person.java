@@ -6,10 +6,12 @@ import exception.NameContainsIdentifierException;
 public class Person {
 
     private final String name;
+    private final int identifier;
 
-    public Person(String name) {
+    public Person(String name, int identifier) {
         validateName(name);
         this.name = name;
+        this.identifier = identifier;
     }
 
     private void validateName(String name) {
