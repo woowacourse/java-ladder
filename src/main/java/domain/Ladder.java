@@ -2,6 +2,7 @@ package domain;
 
 public class Ladder {
     public static final int MIN_HEIGHT = 0;
+    public static final int MAX_HEIGHT_RATIO = 2;
 
     private final int height;
 
@@ -18,7 +19,7 @@ public class Ladder {
     }
 
     private void validatePlayersCount(int height, int playersCount) {
-        if (height < playersCount || height > playersCount * 2) {
+        if (height < playersCount || height > playersCount * MAX_HEIGHT_RATIO) {
             throw new IllegalArgumentException("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
         }
     }
