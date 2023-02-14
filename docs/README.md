@@ -6,6 +6,7 @@
       - [x] 이름이 5글자를 넘으면 `IllegalArgumentException`을 던진다.
 - [x] 사다리의 높이를 입력한다.
     - [x] 정수가 아닌 값을 입력하면 `IllegalArgumentException`을 던진다.
+    - [x] 1보다 작은 값을 입력하면 `IllegalArgumentException`을 던진다.
 - [ ] 입력한 값들을 바탕으로 사다리를 생성한다.
 - [ ] 사다리를 출력한다.
     - [ ] 각 이름은 5칸에 맞춰서 출력한다.
