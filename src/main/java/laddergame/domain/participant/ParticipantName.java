@@ -6,6 +6,9 @@ public class ParticipantName {
     private final String name;
 
     public ParticipantName(final String name) {
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 이름은 공백일 수 없습니다.");
+        }
         if (isOutOfRange(name)) {
             throw new IllegalArgumentException("[ERROR] 이름은 다섯 글자를 초과할 수 없습니다.");
         }
