@@ -1,5 +1,7 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
@@ -17,6 +19,6 @@ public class LineGeneratorTest {
         Line line = new Line(List.of(true, true, true));
         Line newLine = LineGenerator.generate(line);
 
-        Assertions.assertThat(newLine.getLine()).containsExactly(false, false, false);
+        assertThat(newLine.getLine()).containsExactly(false, false, false);
     }
 }
