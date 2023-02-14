@@ -13,8 +13,8 @@ public class Raw {
         }
     }
 
-    public void createLine(int index){
-        points.set(index, true);
+    public void createLine(int index, boolean isCreated){
+        points.set(index, isCreated);
     }
 
     public boolean isPointHasLine(int index) {
