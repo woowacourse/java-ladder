@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class NameTest {
 
     private static final String LENGTH_ERROR_MESSAGE = "이름은 1 ~ 5 글자여야 합니다.";
+    private static final String VALUE_ERROR_MESSAGE = "이름은 문자만 숫자로 가능합니다.";
 
     @DisplayName("길이가 범위 밖인 경우 예외 발생")
     @ParameterizedTest
@@ -26,6 +27,15 @@ public class NameTest {
     @ValueSource(strings = {"1", "12345"})
     void createNameSuccess(String input) {
         Assertions.assertDoesNotThrow(() -> new Name(input));
+    }
+
+    @DisplayName("문자나 숫자 이외의 값이 포함되면 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {" ", " pobi", "dk$2"})
+    void createNameNotWordFail(String input) {
+        assertThatThrownBy(() -> new Name(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(VALUE_ERROR_MESSAGE);
     }
 
 }
