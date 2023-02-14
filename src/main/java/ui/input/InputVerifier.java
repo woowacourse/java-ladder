@@ -10,10 +10,10 @@ import java.util.List;
  */
 class InputVerifier {
 
-//    protected static void validateName() {
-//        validateNameLength();
-//
-//    }
+    protected static void validateName(String input) {
+        validateNameLength(input);
+        validatePeopleNumberOverThanOne(input);
+    }
 
     protected static void validateNameLength(String input) {
         List<String> names = splitInput(input);
@@ -26,5 +26,11 @@ class InputVerifier {
 
     private static List<String> splitInput(String input) {
         return Arrays.asList(input.split(","));
+    }
+
+    private static void validatePeopleNumberOverThanOne(String input) {
+        if (!input.contains(",")) {
+            throw new IllegalArgumentException("최소 2명의 참가자를 입력해야 합니다.");
+        }
     }
 }
