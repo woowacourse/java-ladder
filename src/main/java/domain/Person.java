@@ -28,4 +28,13 @@ public class Person {
         final int maxLength = 5;
         return name != null && !name.isBlank() && name.length() <= maxLength;
     }
+
+    public String getName() {
+        final String delimiter = "-";
+        final int unique = 1;
+        if (identifier == unique) {
+            return name;
+        }
+        return name + delimiter + identifier;
+    }
 }

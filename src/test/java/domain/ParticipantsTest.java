@@ -2,6 +2,7 @@ package domain;
 
 import exception.EmpytInputException;
 import exception.InvalidParticipantsCountException;
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,5 +36,21 @@ class ParticipantsTest {
     void participantsOverTen() {
         Assertions.assertThatThrownBy(() -> new Participants("a,b,c,d,e,f,g,h,i,j,k"))
             .isExactlyInstanceOf(InvalidParticipantsCountException.class);
+    }
+
+    @DisplayName("입력받은 참가자들의 이름을 참가자를 가진 리스트로 만들어 준다.(중복 없음)")
+    @Test
+    void joinAllWithoutDuplicate() {
+        Participants participants = new Participants("a,b,c,d,e");
+        List<String> participantsName = participants.getParticipantsName();
+        Assertions.assertThat(participantsName).containsExactly("a", "b", "c", "d", "e");
+    }
+
+    @DisplayName("입력받은 참가자들의 이름을 참가자를 가진 리스트로 만들어 준다.(중복 있음)")
+    @Test
+    void joinAllWithDuplicate() {
+        Participants participants = new Participants("a,a,b,b,c");
+        List<String> participantsName = participants.getParticipantsName();
+        Assertions.assertThat(participantsName).containsExactly("a", "a-2", "b", "b-2", "c");
     }
 }
