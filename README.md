@@ -25,9 +25,9 @@
   - [ ] 참여할 사람의 이름은 `,`로 구분된다.
   - [ ] 참여할 사람은 최소 2명이다.
   - [ ] 참여할 사람은 최대 13명이다.
-  - [ ] 참여할 사람의 이름이 공백이거나 5자리를 초과하면 `IllegalArgumentException` 예외가 발생한다.
+  - [X] 참여할 사람의 이름이 공백이거나 5자리를 초과하면 `IllegalArgumentException` 예외가 발생한다.
   - [ ] 참여할 사람의 이름이 중복되면 `IllegalArgumentException` 예외가 발생한다.
-  - [ ] 참여할 사람에 null 값이 주어지면 `IllegalArgumentException` 예외가 발생한다.
+  - [X] 참여할 사람에 null 값이 주어지면 `IllegalArgumentException` 예외가 발생한다.
 - [ ] 참여할 사람을 입력 받으면 최대 사다리의 높이를 입력 받는다.
   - [ ] 최소 사다리의 높이는 참여하는 사람의 인원 수 이다.
   - [ ] 최대 사다리의 높이는 참여하는 사람의 인원 수의 2배이다.
