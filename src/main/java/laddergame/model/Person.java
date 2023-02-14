@@ -3,18 +3,32 @@ package laddergame.model;
 import java.util.regex.Pattern;
 
 public class Person {
-    String name;
+    //TODO : static 클래스에 [ERROR] 말머리 달아서 출력할때 붙여주기
+    private final static int MIN_NAME_LENGTH = 1;
+    private final static int MAX_NAME_LENGTH = 5;
+    private final static String ERROR_NAME_IS_KOREAN = "참여자 이름에 한글이 포함되어서는 안됩니다.";
+    private final static String ERROR_NAME_OUT_OF_LENGTH =
+            "공백이 제거된 참여자 이름의 길이는 " + MIN_NAME_LENGTH + "보다 크고 " + MAX_NAME_LENGTH + "보다 작아야 합니다.";
+
+    private final String name;
 
     public Person(String name) {
+        validateKorean(name);
+        validateTrimLength(name);
+        this.name = name.trim();
+    }
+
+    private static void validateKorean(String name) {
         boolean isKorean = Pattern.matches("^[ㄱ-ㅎ가-힣]*$", name);
         if (isKorean) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_NAME_IS_KOREAN);
         }
-        if (name.trim().length() < 1 || name.trim().length() > 5) {
-            throw new IllegalArgumentException();
-        }
+    }
 
-        this.name = name.trim();
+    private static void validateTrimLength(String name) {
+        if (name.trim().length() < MIN_NAME_LENGTH || name.trim().length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(ERROR_NAME_OUT_OF_LENGTH);
+        }
     }
 
     public String getName() {
