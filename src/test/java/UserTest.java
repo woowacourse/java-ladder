@@ -1,3 +1,4 @@
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
@@ -55,6 +56,19 @@ class UserTest {
         void shouldFailNameWithBlank() {
             String name = "ab c";
             assertThrows(IllegalArgumentException.class, () -> User.validateNameFormat(name));
+        }
+    }
+
+    @Nested
+    @DisplayName("입력 문자열 분리 테스트")
+    class SplitInputTest {
+        public static final String SPLIT_DELIMITER = ",";
+
+        @DisplayName("입력받은 문자열이 " + SPLIT_DELIMITER + "를 기준으로 분리된다.")
+        @Test
+        void shouldSuccessSplitInput() {
+            String input = "abc,abcd,abcde";
+            assertThat(User.splitNameInput(input)).contains("abc", "abcd", "abcde");
         }
     }
 }
