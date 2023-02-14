@@ -8,7 +8,11 @@ import java.util.Scanner;
 
 public class InputView {
     private static final String SPLIT_DELIMITER = ",";
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner;
+
+    public InputView(Scanner scanner){
+        this.scanner = scanner;
+    }
 
     public List<String> readPlayerNames(){
         String names = scanner.nextLine();
