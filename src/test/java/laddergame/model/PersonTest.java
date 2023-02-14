@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class PersonTest {
     @Nested
@@ -30,4 +32,13 @@ class PersonTest {
     void Should_Trim_When_FrontAndBackBlank() {
         assertThat(new Person(" name ").getName()).isEqualTo(" name ".trim());
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "hihihi","  "," hihihihi ","hi  hi"})
+    @DisplayName("공백이 제거된 후 문자열의 길이가 1보다 작고 5보다 클 때 예외 발생")
+    void Should_ThrowException_When_OutOfRange(String name) {
+        assertThatThrownBy(() -> new Person(name));
+    }
+
+
 }
