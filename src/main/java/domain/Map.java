@@ -4,15 +4,23 @@ import exception.InvalidLadderCountException;
 import exception.NotNumberException;
 import java.util.ArrayList;
 import java.util.List;
+import util.BooleanGenerator;
 
 public class Map {
 
     private final int height;
+    private final int ladderCount;
+
+    public List<Ladder> getLadders() {
+        return ladders;
+    }
+
     private final List<Ladder> ladders = new ArrayList<>();
 
     public Map(String height, int ladderCount) {
         validate(height, ladderCount);
         this.height = Integer.parseInt(height);
+        this.ladderCount = ladderCount;
     }
 
     private void validate(String height, int ladderCount) {
@@ -34,4 +42,13 @@ public class Map {
         return !(ladderCount < minLadderCount || ladderCount > maxLadderCount);
     }
 
+    public void generate(BooleanGenerator booleanGenerator) {
+        List<Integer> avoid = new ArrayList<>();
+        for (int count = 0; count < ladderCount; count++) {
+            Ladder ladder = new Ladder(height);
+            ladder.generateStatus(avoid, booleanGenerator);
+            ladders.add(ladder);
+            avoid = ladders.get(ladders.size() - 1).getConnectedIndex();
+        }
+    }
 }
