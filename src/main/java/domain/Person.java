@@ -8,14 +8,22 @@ public class Person {
     private final String name;
 
     public Person(String name) {
-        final int maxLength = 5;
+        validateName(name);
+        this.name = name;
+    }
+
+    private void validateName(String name) {
         final String identifier = "-";
-        if (name == null || name.isBlank() || name.length() > maxLength) {
+        if (isValidLength(name)) {
             throw new InvalidPersonNameException();
         }
         if (name.contains(identifier)) {
             throw new NameContainsIdentifierException();
         }
-        this.name = name;
+    }
+
+    private boolean isValidLength(String name) {
+        final int maxLength = 5;
+        return name == null || name.isBlank() || name.length() > maxLength;
     }
 }
