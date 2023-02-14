@@ -2,6 +2,7 @@ package domain;
 
 import exception.InvalidLadderHeightException;
 import java.util.List;
+import java.util.stream.IntStream;
 import util.BooleanGenerator;
 
 public class Ladder {
@@ -29,19 +30,13 @@ public class Ladder {
         return status.length;
     }
 
-    public void generateStatus(List avoid, BooleanGenerator booleanGenerator) {
-        for (int i = 0; i < status.length; i++) {
-            if (avoid.contains(i)) {
-                status[i] = false;
-            } else {
+    public void generateStatus(List<Integer> avoid, BooleanGenerator booleanGenerator) {
+        IntStream.range(0, status.length)
+            .filter((num) -> !avoid.contains(num))
+            .forEach((num) -> {
                 boolean isConnect = booleanGenerator.generate();
-                if (isConnect) {
-                    status[i] = true;
-                } else {
-                    status[i] = false;
-                }
-            }
-        }
+                status[num] = isConnect;
+            });
     }
 
     public boolean[] getStatus() {
