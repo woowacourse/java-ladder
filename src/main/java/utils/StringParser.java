@@ -9,6 +9,10 @@ public class StringParser {
     }
 
     public static int parseToInteger(String input) {
-        return Integer.parseInt(input);
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("정수만 입력가능합니다.");
+        }
     }
 }
