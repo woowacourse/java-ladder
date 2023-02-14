@@ -14,7 +14,7 @@ public class Person {
 
     private void validateName(String name) {
         final String identifier = "-";
-        if (isValidLength(name)) {
+        if (!isValidLength(name)) {
             throw new InvalidPersonNameException();
         }
         if (name.contains(identifier)) {
@@ -24,6 +24,6 @@ public class Person {
 
     private boolean isValidLength(String name) {
         final int maxLength = 5;
-        return name == null || name.isBlank() || name.length() > maxLength;
+        return name != null && !name.isBlank() && name.length() <= maxLength;
     }
 }

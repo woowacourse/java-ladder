@@ -15,7 +15,7 @@ public class Ladder {
     }
 
     private void validateHeight(int height) {
-        if (isValidHeight(height)) {
+        if (!isValidHeight(height)) {
             throw new InvalidLadderHeightException();
         }
     }
@@ -23,7 +23,7 @@ public class Ladder {
     private boolean isValidHeight(int height) {
         final int maxHeight = 10;
         final int minHeight = 1;
-        return height < minHeight || height > maxHeight;
+        return minHeight <= height && height <= maxHeight;
     }
 
     public int getHeight() {
