@@ -1,5 +1,7 @@
 package view;
 
+import model.LadderHeight;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -15,5 +17,10 @@ public class InputView {
 
     private List<String> splitPlayerNames(String names){
         return Arrays.asList(names.split(SPLIT_DELIMITER));
+    }
+
+    public LadderHeight readLadderHeight(){
+        LadderHeight height = new LadderHeight(scanner.nextInt());
+        return height;
     }
 }
