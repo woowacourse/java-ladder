@@ -29,4 +29,13 @@ class PlayerTest {
             new Player(input);
         }).withMessage("[ERROR] 이름은 공백이 될 수 없습니다.");
     }
+
+    @Test
+    @DisplayName("사용자의 이름에 null 값이 들어가면 예외가 발생한다.")
+    void create_nullName() {
+        // expect
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new Player(null);
+        }).withMessage("[ERROR] 이름에 null 값이 들어갈 수 없습니다.");
+    }
 }
