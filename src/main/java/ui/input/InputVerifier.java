@@ -10,13 +10,14 @@ import java.util.List;
  */
 class InputVerifier {
 
-    protected static void validateName(String input) {
-        validateNameLength(input);
+    protected static List<String> validateName(String input) {
         validatePeopleNumberOverThanOne(input);
+        List<String> names = splitInput(input);
+        validateNameLength(names);
+        return names;
     }
 
-    protected static void validateNameLength(String input) {
-        List<String> names = splitInput(input);
+    private static void validateNameLength(List<String> names) {
         for (String name : names) {
             if (name.length() > 5) {
                 throw new IllegalArgumentException("이름은 최대 5글자 까지만 입력할 수 있습니다.");
