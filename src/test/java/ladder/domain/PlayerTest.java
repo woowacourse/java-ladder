@@ -10,20 +10,20 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class PersonTest {
+class PlayerTest {
 
     @ParameterizedTest(name = "입력: {0}")
     @ValueSource(strings = {"pobi", "CRONG", "EddY"})
     @DisplayName("이름은 영문자만 가능합니다.")
     void personNameFormatTest(final String name) {
-        assertThatNoException().isThrownBy(() -> new Person(name));
+        assertThatNoException().isThrownBy(() -> new Player(name));
     }
 
     @ParameterizedTest(name = "입력: {0}")
     @ValueSource(strings = {"", "po bi", "세종대왕", "123", "!@#$%"})
     @DisplayName("이름이 영문자가 아니라면 예외를 던진다.")
     void throwExceptionWhenNameNotEnglish(final String name) {
-        assertThatThrownBy(() -> new Person(name))
+        assertThatThrownBy(() -> new Player(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(MessageFormat.format("사람 이름은 영문자만 가능합니다. 현재 입력은 {0} 입니다.", name));
     }
@@ -31,7 +31,7 @@ public class PersonTest {
     @Test
     @DisplayName("이름에 NULL이 들어오면 예외를 던진다.")
     void throwExceptionWhenNameIsNull() {
-        assertThatThrownBy(() -> new Person(null))
+        assertThatThrownBy(() -> new Player(null))
                 .isInstanceOf(NullPointerException.class);
     }
 
@@ -40,12 +40,19 @@ public class PersonTest {
     void throwExceptionWhenNameLengthOverFive() {
         final String name = "abcdef";
 
-        assertThatThrownBy(() -> new Person(name))
+        assertThatThrownBy(() -> new Player(name))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest(name = "입력: {0}")
+    @ValueSource(strings = {"pobi  ", " crong", "   eddy      "})
+    @DisplayName("이름 양끝에 공백이 있다면 공백을 제거한다.")
+    void trimNameBothEndsBlank(final String name) {
+        assertThatNoException().isThrownBy(() -> new Player(name));
     }
 }
 
-class Person {
+class Player {
 
     private static final Pattern NAME_FORMAT = Pattern.compile("[a-zA-Z]+");
     private static final int NAME_MAX_LENGTH = 5;
@@ -55,9 +62,10 @@ class Person {
 
     private final String name;
 
-    public Person(final String name) {
-        validate(name);
-        this.name = name;
+    public Player(final String name) {
+        final String trimName = name.trim();
+        validate(trimName);
+        this.name = trimName;
     }
 
     private void validate(final String name) {
