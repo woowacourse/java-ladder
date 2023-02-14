@@ -17,6 +17,7 @@ public class Controller {
     }
     public void run(){
         List<String> playerNames = setPlayerNames();
+        LadderHeight ladderHeight = setLadderHeight();
     }
 
     private List<String> setPlayerNames(){
@@ -24,4 +25,8 @@ public class Controller {
         return inputView.readPlayerNames();
     }
 
+    private LadderHeight setLadderHeight() {
+        outputView.printLadderHeightMessage();
+        return inputView.readLadderHeight();
+    }
 }
