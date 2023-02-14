@@ -31,4 +31,11 @@ class NameTest {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new Name(""));
     }
+
+    @DisplayName("공백이 포함되면 예외가 발생한다.")
+    @Test
+    public void nameTest_blank() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> new Name("joy "));
+    }
 }
