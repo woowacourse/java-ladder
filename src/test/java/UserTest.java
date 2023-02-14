@@ -20,4 +20,32 @@ class UserTest {
         String name = "";
         assertThrows(IllegalArgumentException.class, () -> User.validateNameLength(name));
     }
+
+    @DisplayName("사람 이름에 특수 문자가 포함되면 실패한다.")
+    @Test
+    void shouldFailNameWithSpecialCharacter() {
+        String name = "ab#c";
+        assertThrows(IllegalArgumentException.class, () -> User.validateNameFormat(name));
+    }
+
+    @DisplayName("사람 이름에 숫자가 포함되면 실패한다.")
+    @Test
+    void shouldFailNameWithNumber() {
+        String name = "ab23c";
+        assertThrows(IllegalArgumentException.class, () -> User.validateNameFormat(name));
+    }
+
+    @DisplayName("사람 이름에 한글이 포함되면 실패한다.")
+    @Test
+    void shouldFailNameWithKorean() {
+        String name = "ab가c";
+        assertThrows(IllegalArgumentException.class, () -> User.validateNameFormat(name));
+    }
+
+    @DisplayName("사람 이름에 공백이 포함되면 실패한다.")
+    @Test
+    void shouldFailNameWithBlank() {
+        String name = "ab c";
+        assertThrows(IllegalArgumentException.class, () -> User.validateNameFormat(name));
+    }
 }
