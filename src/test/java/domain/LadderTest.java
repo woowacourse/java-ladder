@@ -28,6 +28,7 @@ class LadderTest {
         int numberOfLine = 3;
         Ladder ladder = Ladder.create(ladderHeight, numberOfLine, new RandomNumberGenerator());
         List<Line> lines = ladder.getLines();
-        assertThat(lines.get(lines.size() - 1).getPoints()).containsExactly(false,false, false);
+            assertThat(lines.get(lines.size() - 1).getPoints())
+                    .containsExactly(Point.BLOCKED, Point.BLOCKED, Point.BLOCKED);
     }
 }

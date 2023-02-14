@@ -10,29 +10,33 @@ public class Line {
 
     private static final int MIN_NUMBER_RETURN_TRUE = 4;
 
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    private Line(List<Boolean> points) {
-        this.points = points;
+    private Line() {
+        this.points = new ArrayList<>();
     }
 
     public static Line create(int height, NumberGenerator numberGenerator) {
-        List<Boolean> points = new ArrayList<>();
+        Line line = new Line();
         for (int i = 0; i < height; i++) {
-            points.add(isPoint(numberGenerator.generate()));
+            line.addPoint(numberGenerator);
         }
-        return new Line(points);
+        return line;
     }
 
-    private static Boolean isPoint(int number) {
-        return number >= MIN_NUMBER_RETURN_TRUE;
+    private void addPoint(NumberGenerator numberGenerator) {
+        if (numberGenerator.generate() >= MIN_NUMBER_RETURN_TRUE) {
+            points.add(Point.PASSABLE);
+            return;
+        }
+        points.add(Point.BLOCKED);
     }
 
     public int getPointSize() {
         return this.points.size();
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
 }
