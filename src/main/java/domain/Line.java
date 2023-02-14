@@ -3,13 +3,13 @@ package domain;
 import java.util.List;
 
 public class Line {
-    List<Boolean> line;
+    List<Boolean> existedLine;
 
-    public Line(List<Boolean> line) {
-        this.line = line;
+    public Line(List<Boolean> existedLine) {
+        this.existedLine = existedLine;
     }
 
-    public List<Boolean> getLine() {
-        return line;
+    public List<Boolean> getExistedLine() {
+        return existedLine;
     }
 }
