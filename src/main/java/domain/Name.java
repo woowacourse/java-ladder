@@ -20,8 +20,8 @@ public class Name {
     }
 
     public void validate(String name) {
-        validateWord(name);
         validateName(name);
+        validateWord(name);
     }
 
     private void validateName(String name) {
