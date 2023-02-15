@@ -6,10 +6,10 @@ import java.util.List;
 public class Ladder {
     private List<Floor> floors = new ArrayList<>();
 
-    public Ladder(int size){
+    public Ladder(int size, int width){
         validateSize(size);
         for(int i = 0; i < size; i++){
-            floors.add(new Floor(3));
+            floors.add(new Floor(width));
         }
     }
 
