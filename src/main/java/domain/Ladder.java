@@ -14,6 +14,10 @@ public class Ladder {
         addLine(height, personCount, generator);
     }
 
+    public List<Line> getLines() {
+        return lines;
+    }
+
     private void addLine(int height, int personCount, RandomGenerator generator) {
         for (int i = 0; i < height; i++) {
             lines.add(new Line(personCount, generator));
