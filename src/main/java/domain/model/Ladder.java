@@ -11,7 +11,7 @@ public class Ladder {
     public Ladder(int height, int lineCount) {
         this.height = height;
         this.lineCount = lineCount;
-        this.layers = new ArrayList<>(height);
+        this.layers = new ArrayList<>();
     }
 
     public List<Layer> getLayers() {
@@ -25,4 +25,9 @@ public class Ladder {
     public int getLineCount() {
         return this.lineCount;
     }
+
+    public void addLayer(Layer layer) {
+        layers.add(layer);
+    }
+
 }
