@@ -4,6 +4,8 @@ import domain.Lines;
 import domain.People;
 import domain.Peoples;
 
+import java.util.NoSuchElementException;
+
 /**
  * @author 최원용
  * @version 2.0.0
@@ -16,29 +18,32 @@ public class OutputView {
     public static void printResult(Peoples peoples, Lines lines) {
         System.out.println("\n" + EXECUTE_RESULT + "\n");
         printNames(peoples);
-        printLadder(lines);
+        printLadder(lines, peoples);
     }
 
     private static void printNames(Peoples peoples) {
+        Integer maxNameLength = getMaxNameLength(peoples);
         for (People people : peoples.getPeoples()) {
-            calculateNameLength(people.getName());
+            calculateNameLength(maxNameLength, people.getName());
         }
         System.out.println();
     }
 
-    private static void calculateNameLength(String name) {
-        if (name.length() < 5) {
-            System.out.printf("%4s  ", name);
-        }
-        if (name.length() == 5) {
-            System.out.printf("%4s ", name);
-        }
+    private static Integer getMaxNameLength(Peoples peoples) {
+        return peoples.getPeoples().stream()
+                .mapToInt(people -> people.getName().length())
+                .max()
+                .orElseThrow(NoSuchElementException::new);
     }
 
-    private static void printLadder(Lines lines) {
+    private static void calculateNameLength(int maxNameLength, String name) {
+        System.out.print(" ".repeat(maxNameLength - name.length()) + name + " ");
+    }
+
+    private static void printLadder(Lines lines, Peoples peoples) {
         lines.getLines()
                 .forEach(line -> {
-                    StringBuilder lineForm = LadderShape.getLineForm(line.getPoints());
+                    StringBuilder lineForm = LadderShape.getLineForm(line.getPoints(), getMaxNameLength(peoples));
                     System.out.println(lineForm);
                 });
     }
