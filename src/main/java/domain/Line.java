@@ -7,10 +7,11 @@ import domain.numbergenerator.NumberGenerator;
 
 public class Line {
 
-    private List<Boolean> points;
+    private static final int GENERATE_NUMBER = 1;
+
+    private final List<Boolean> points = new ArrayList<>();
 
     public Line(int personCount, NumberGenerator numberGenerator) {
-        points = new ArrayList<>();
         generatePoints(personCount, numberGenerator);
     }
 
@@ -21,11 +22,15 @@ public class Line {
     }
 
     private void generatePoint(NumberGenerator numberGenerator) {
-        if (numberGenerator.generate() == 1 && !hasAdjacentPoint()) {
+        if (isGenerated(numberGenerator) && !hasAdjacentPoint()) {
             points.add(true);
             return;
         }
         points.add(false);
+    }
+
+    private static boolean isGenerated(NumberGenerator numberGenerator) {
+        return numberGenerator.generate() == GENERATE_NUMBER;
     }
 
     private boolean hasAdjacentPoint() {
