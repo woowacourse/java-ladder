@@ -14,4 +14,9 @@ public class InputView {
         return Arrays.stream(input.split(","))
                 .collect(Collectors.toList());
     }
+
+    public static int readCountOfLines() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return SCANNER.nextInt();
+    }
 }
