@@ -7,7 +7,7 @@ public class Person {
     private static final int MIN_NAME = 1;
     private final String name;
 
-    Person(String name) {
+    public Person(String name) {
         validate(name);
         this.name = name;
     }
