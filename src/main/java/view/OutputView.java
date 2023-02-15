@@ -4,6 +4,10 @@ import java.util.List;
 
 public class OutputView {
 
+    public static void printErrorMessage(Exception exception) {
+        System.out.println(exception.getMessage());
+    }
+
     public static void printUserNames(List<String> userNames) {
         String parsedUserNames = String.join(" ", userNames);
         System.out.println(parsedUserNames);

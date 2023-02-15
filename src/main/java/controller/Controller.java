@@ -27,6 +27,34 @@ public class Controller {
         printLadder();
     }
 
+    private void createUser() {
+        try {
+            List<String> userNames = InputView.readUserNames();
+            userNames.forEach(userName -> users.add(new User(userName)));
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception);
+            createUser();
+        }
+    }
+
+    private void createLadder() {
+        try {
+            int ladderHeight = InputView.readLadderHeight();
+            int userCount = users.getSize();
+            addLadder(ladderHeight, userCount);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception);
+            createLadder();
+        }
+    }
+
+    private void addLadder(int ladderHeight, int userCount) {
+        for (int i = 0; i < ladderHeight; i++) {
+            LadderRow line = LadderRowGenerator.generate(userCount);
+            ladder.add(line);
+        }
+    }
+
     private void printUsers() {
         List<String> userNames = users.getUserNames();
         OutputView.printUserNames(userNames);
@@ -35,21 +63,5 @@ public class Controller {
     private void printLadder() {
         List<String> ladders = StringParser.parseLadderToString(ladder);
         OutputView.printLadder(ladders);
-    }
-
-    private void createLadder() {
-        int ladderHeight = InputView.readLadderHeight();
-        int userCount = users.getSize();
-        for (int i = 0; i < ladderHeight; i++) {
-            LadderRow line = LadderRowGenerator.generate(userCount);
-            ladder.add(line);
-        }
-    }
-
-    private void createUser() {
-        List<String> userNames = InputView.readUserNames();
-        for (String userName : userNames) {
-            users.add(new User(userName));
-        }
     }
 }
