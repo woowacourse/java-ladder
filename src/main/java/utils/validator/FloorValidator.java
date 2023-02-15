@@ -5,7 +5,7 @@ public class FloorValidator {
     public static final int MIN_RANGE = 2;
     public static final int MAX_RANGE = 100;
 
-    public static void validatePersonCount(int personCount) {
+    public static void validatePersonNumber(int personCount) {
         if (personCount < MIN_RANGE || personCount > MAX_RANGE) {
             throw new IllegalArgumentException(Message.EXCEPTION_RANGE.message);
         }
