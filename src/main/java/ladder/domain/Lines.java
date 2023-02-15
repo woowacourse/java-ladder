@@ -2,7 +2,9 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import ladder.dto.LinesDto;
 
 public class Lines {
 
@@ -40,5 +42,11 @@ public class Lines {
 
     public List<Line> getLines() {
         return lines.subList(1, lines.size() - 1);
+    }
+
+    public LinesDto toDto() {
+        return new LinesDto(lines.stream()
+                .map(Line::toDto)
+                .collect(Collectors.toList()));
     }
 }

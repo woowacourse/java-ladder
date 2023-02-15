@@ -20,7 +20,12 @@ public class Line {
         connected.add(height, true);
     }
 
+    //todo 명칭 변경
     public boolean getByHeight(int height) {
         return connected.get(height);
+    }
+
+    public List<Boolean> toDto() {
+        return connected;
     }
 }
