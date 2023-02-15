@@ -34,6 +34,10 @@ public class Line {
         }
     }
 
+    public List<Boolean> getPoints() {
+        return points;
+    }
+
     public int size() {
         return points.size();
     }
