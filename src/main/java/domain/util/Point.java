@@ -13,4 +13,11 @@ public enum Point {
 	public boolean isPresent() {
 		return presence;
 	}
+
+	public static Point from(boolean present) {
+		if (present) {
+			return Point.PRESENCE;
+		}
+		return Point.ABSENCE;
+	}
 }
