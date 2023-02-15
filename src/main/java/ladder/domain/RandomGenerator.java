@@ -8,6 +8,7 @@ public class RandomGenerator implements Generator {
 
     @Override
     public boolean generate() {
-        return threadLocalRandom.nextBoolean();
+        int generated = threadLocalRandom.nextInt(10);
+        return generated > 4;
     }
 }

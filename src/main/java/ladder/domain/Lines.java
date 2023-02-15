@@ -44,9 +44,11 @@ public class Lines {
         return lines.subList(1, lines.size() - 1);
     }
 
+
     public LinesDto toDto() {
-        return new LinesDto(lines.stream()
+        //TODO subList 부분 메서드분리
+        return new LinesDto((lines.subList(1, lines.size() - 1)).stream()
                 .map(Line::toDto)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList()), height.getH());
     }
 }
