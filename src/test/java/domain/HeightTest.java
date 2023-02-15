@@ -1,8 +1,10 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -16,5 +18,14 @@ class HeightTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Height(input);
         }).withMessage("[ERROR] 사다리의 높이는 양의 정수여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("Height 클래스가 정상적으로 생성되어야 한다.")
+    void create_success() {
+        // expect
+        assertThatNoException().isThrownBy(() -> {
+            new Height(30);
+        });
     }
 }
