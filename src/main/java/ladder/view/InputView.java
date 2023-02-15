@@ -7,7 +7,8 @@ import java.util.Scanner;
 public class InputView {
 
     private static final InputView INSTANCE = new InputView();
-    private InputView(){
+
+    private InputView() {
     }
 
     public static InputView getInstance() {
@@ -15,17 +16,23 @@ public class InputView {
     }
 
 
-    public List<String> readNames(){
+    public List<String> readNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         Scanner scanner = new Scanner(System.in);
-        String names = scanner.nextLine();
+        String input = scanner.nextLine();
 
-        return new ArrayList<>(List.of(splitNames(names)));
+        List<String> names = new ArrayList<>(List.of(splitNames(input)));
+        validateDuplicatedNames(names);
+        return names;
     }
 
-    private String[] splitNames(String input){
+    private String[] splitNames(String input) {
         return input.split(",");
     }
 
-
+    private void validateDuplicatedNames(List<String> names) {
+        if (names.size() != names.stream().distinct().count()) {
+            throw new IllegalArgumentException("이름은 중복될 수 없습니다.");
+        }
+    }
 }
