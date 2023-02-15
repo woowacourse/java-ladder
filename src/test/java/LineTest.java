@@ -17,7 +17,7 @@ class LineTest {
         @DisplayName("들어간대로 잘 생성되었는지 테스트")
         @Test
         void createTest() {
-            line = new Line(4, new testTrueAndFalseGenerator(new ArrayList<>(Arrays.asList(false, true, false)) {
+            line = new Line(4, new testNumberGenerator(new ArrayList<>(Arrays.asList(0, 1, 0)) {
             }));
             assertThat(line.getPoints()).isEqualTo(List.of(false, false, true, false));
         }
@@ -25,7 +25,7 @@ class LineTest {
         @DisplayName("이전 좌표와 현재 좌표가 겹칠때 변환 테스트(처)")
         @Test
         void createLine2() {
-            line = new Line(4, new testTrueAndFalseGenerator(new ArrayList<>(Arrays.asList(true, true, false)) {
+            line = new Line(4, new testNumberGenerator(new ArrayList<>(Arrays.asList(1, 1, 0)) {
             }));
             assertThat(line.getPoints()).isEqualTo(List.of(false, true, false, false));
         }
@@ -34,15 +34,15 @@ class LineTest {
 
 
 
-    static class testTrueAndFalseGenerator implements TrueAndFalseGenerator {
-        List<Boolean> points;
+    static class testNumberGenerator implements NumberGenerator {
+        List<Integer> points;
 
-        testTrueAndFalseGenerator(List<Boolean> points) {
+        testNumberGenerator(List<Integer> points) {
             this.points = points;
         }
 
         @Override
-        public Boolean generate() {
+        public int generate() {
             return points.remove(0);
         }
     }
