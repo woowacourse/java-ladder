@@ -32,6 +32,15 @@ public class OutputView {
         return collect;
     }
 
+    public void printError(Exception exception) {
+        System.out.println(exception.getMessage());
+    }
+
+    public void printCriticalError(Exception exception) {
+        System.out.println("예기치 못한 에러가 발생했습니다.");
+        System.out.println(exception.getMessage());
+    }
+
     private enum LineType {
         GO(Boolean.TRUE, "-----"),
         STOP(Boolean.FALSE, "     ");
