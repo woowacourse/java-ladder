@@ -42,12 +42,37 @@ public class LadderTest {
         Ladder ladder = new Ladder(1,3);
         ladder.makeFloors(testNumberGenerator);
 
-        Floor firstFloor = ladder.getFloors().get(0);
+        List<Line> firstFloorLines = getFloorLines(1, ladder);
 
-        assertThat(firstFloor.getLines().get(0).isExist()).isEqualTo(true);
-        assertThat(firstFloor.getLines().get(1).isExist()).isEqualTo(false);
-        assertThat(firstFloor.getLines().get(2).isExist()).isEqualTo(false);
+        assertThat(firstFloorLines.get(0).isExist()).isEqualTo(true);
+        assertThat(firstFloorLines.get(1).isExist()).isEqualTo(false);
+        assertThat(firstFloorLines.get(2).isExist()).isEqualTo(false);
     }
 
-    
+
+    @Test
+    @DisplayName("Ladder 생성 테스트")
+    void makeFloorTest(){
+        TestNumberGenerator testNumberGenerator = new TestNumberGenerator(List.of(1,0,0,1,1,1));
+
+        Ladder ladder = new Ladder(2,3);
+        ladder.makeFloors(testNumberGenerator);
+
+        List<Line> firstFloorLines = getFloorLines(1, ladder);
+        List<Line> secondFloorLines = getFloorLines(2, ladder);
+
+        assertThat(firstFloorLines.get(0).isExist()).isEqualTo(true);
+        assertThat(firstFloorLines.get(1).isExist()).isEqualTo(false);
+        assertThat(firstFloorLines.get(2).isExist()).isEqualTo(false);
+
+        assertThat(secondFloorLines.get(0).isExist()).isEqualTo(true);
+        assertThat(secondFloorLines.get(1).isExist()).isEqualTo(false);
+        assertThat(secondFloorLines.get(2).isExist()).isEqualTo(true);
+
+
+    }
+    private static List<Line> getFloorLines(int pos, Ladder ladder) {
+        return ladder.getFloors().get(pos-1).getLines();
+    }
+
 }
