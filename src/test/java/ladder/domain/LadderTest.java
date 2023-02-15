@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +40,7 @@ public class LadderTest {
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(List.of(1,0,0));
 
         Ladder ladder = new Ladder(1,3);
-        ladder.d(testNumberGenerator);
+        ladder.makeFloors(testNumberGenerator);
 
         Floor firstFloor = ladder.getFloors().get(0);
 
