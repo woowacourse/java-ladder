@@ -12,4 +12,9 @@ public class Players {
             players.add(new Player(name));
         }
     }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
+    }
+
 }
