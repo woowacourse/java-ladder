@@ -24,4 +24,13 @@ public class InputView {
         }
         return names;
     }
+
+    public int readLadderSize() {
+        String input = scanner.nextLine();
+        int size = Integer.parseInt(input);
+        if (size < 1 || size > 100) {
+            throw new IllegalArgumentException();
+        }
+        return size;
+    }
 }
