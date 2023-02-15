@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class InputView {
 
-    private static final Pattern pattern = Pattern.compile("^-?\\d+$");
+    private static final Pattern NUMBER = Pattern.compile("^-?\\d+$");
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -17,7 +17,7 @@ public class InputView {
     public static int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String height = scanner.nextLine();
-        if (!pattern.matcher(height).matches()) {
+        if (!NUMBER.matcher(height).matches()) {
             throw new IllegalArgumentException("입력은 숫자여야 합니다");
         }
         return Integer.parseInt(height);

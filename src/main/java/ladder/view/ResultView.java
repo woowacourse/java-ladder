@@ -10,10 +10,14 @@ public class ResultView {
     }
 
     public static void printResult(NamesDto namesDto, LinesDto linesDto) {
-        System.out.println("실행 결과");
-        System.out.println();
+        printResultTitle();
         printNames(namesDto);
         printLines(linesDto);
+    }
+
+    private static void printResultTitle() {
+        System.out.println("실행 결과");
+        System.out.println();
     }
 
     private static void printNames(NamesDto namesDto) {

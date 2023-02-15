@@ -14,13 +14,13 @@ public class Lines {
     public Lines(int height, int lineCount) {
         this.height = new Height(height);
         lines = new ArrayList<>();
-        for (int i = 0; i < lineCount + 1; i++) {
+        for (int i = 0; i < lineCount; i++) {
             lines.add(new Line(this.height));
         }
     }
 
     public void generateLegsOfLines(Generator generator) {
-        IntStream.range(1, lines.size() - 1)
+        IntStream.range(1, lines.size())
                 .forEach(i -> generateLegsOfLine(generator, i));
     }
 
@@ -47,6 +47,6 @@ public class Lines {
     }
 
     private List<Line> removeMeaninglessLine() {
-        return lines.subList(1, lines.size() - 1);
+        return lines.subList(1, lines.size());
     }
 }
