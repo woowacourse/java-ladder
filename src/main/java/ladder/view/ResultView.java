@@ -42,4 +42,8 @@ public class ResultView {
     private static void printLine(List<Boolean> connected) {
 
     }
+
+    public static void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
 }
