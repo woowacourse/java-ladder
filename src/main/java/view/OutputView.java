@@ -1,9 +1,9 @@
 package view;
 
 import java.util.stream.IntStream;
-import model.Block;
 import model.Blocks;
 import model.Names;
+import model.Path;
 
 public class OutputView {
 
@@ -42,19 +42,11 @@ public class OutputView {
 
     public void printBlocks(Blocks blocks) {
         System.out.print(LEFT_LEG);
-        for (Block block : blocks.getBlocks()) {
-            System.out.print(printPass(block));
+        for (Path path : blocks.getBlocks()) {
+            System.out.print(path.getLog());
             System.out.print(LEG);
 
         }
         System.out.println();
     }
-
-    private String printPass(Block block) {
-        if (block.isPass()) {
-            return ACTIVATED_BLOCK;
-        }
-        return DEACTIVATED_BLOCK;
-    }
-
 }

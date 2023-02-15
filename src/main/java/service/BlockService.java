@@ -2,10 +2,10 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.Block;
 import model.Blocks;
 import model.Name;
 import model.Names;
+import model.Path;
 import strategy.PassGenerator;
 
 public class BlockService {
@@ -20,27 +20,19 @@ public class BlockService {
     }
 
     public Blocks initBlocks(int peopleCount) {
-        Block firstBlock = new Block(generator.generate());
-        List<Block> blocks = new ArrayList<>();
-        blocks.add(firstBlock);
+        Path firstPath = Path.calculatePath(generator.generate());
+        List<Path> blocks = new ArrayList<>();
+        blocks.add(firstPath);
         return new Blocks(generateBlocks(peopleCount, blocks));
     }
 
-    private List<Block> generateBlocks(int peopleCount, List<Block> blocks) {
+    private List<Path> generateBlocks(int peopleCount, List<Path> blocks) {
         for (int i = SECOND_BLOCK_INDEX; i < peopleCount - HEAD_TO_BLOCK_SIZE; i++) {
-            Block leftBlock = blocks.get(i - HEAD_TO_LEFT_INDEX);
-            Block rightBlock = new Block(generator.generate());
-            rightBlock = generateBlock(leftBlock, rightBlock);
-            blocks.add(rightBlock);
+            Path leftPath = blocks.get(i - HEAD_TO_LEFT_INDEX);
+            Path rightPath = Path.calculatePath(leftPath, generator.generate());
+            blocks.add(rightPath);
         }
         return blocks;
-    }
-
-    private Block generateBlock(Block leftBlock, Block rightBlock) {
-        while (rightBlock.isLeftBlockHavePass(leftBlock)) {
-            rightBlock = new Block(generator.generate());
-        }
-        return rightBlock;
     }
 
     public Names generateNames(List<String> input){
