@@ -19,7 +19,7 @@ public class InputView {
 
 
     public List<String> readNames() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        System.out.println(InputMessage.INPUT_NAMES.getMessage());
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
@@ -34,21 +34,54 @@ public class InputView {
 
     private void validateDuplicatedNames(List<String> names) {
         if (names.size() != names.stream().distinct().count()) {
-            throw new IllegalArgumentException("이름은 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_DUPLICATED_NAME.getMessage());
         }
     }
 
-    public int readLength() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+    public int readHeight() {
+        System.out.println(InputMessage.INPUT_HEIGHT.getMessage());
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        validateLength(input);
+        validateHeight(input);
         return Integer.parseInt(input);
     }
 
-    private void validateLength(String input) {
+    private void validateHeight(String input) {
         if (!NUMBER_REGEX.matcher(input).matches()) {
-            throw new IllegalArgumentException("정수가 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_NOT_INTEGER.getMessage());
         }
     }
+
+    private enum ErrorMessage {
+        EXCEPTION_DUPLICATED_NAME("이름은 중복될 수 없습니다."),
+        EXCEPTION_NOT_INTEGER("정수가 아닙니다.");
+        private final String message;
+
+        ErrorMessage(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+    }
+
+    private enum InputMessage {
+
+        INPUT_NAMES("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"),
+
+        INPUT_HEIGHT("최대 사다리 높이는 몇 개인가요?");
+        private final String message;
+
+        InputMessage(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+
+    }
+
 }
