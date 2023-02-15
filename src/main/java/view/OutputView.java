@@ -1,9 +1,9 @@
 package view;
 
-import java.util.List;
 import java.util.stream.IntStream;
 import model.Block;
 import model.Blocks;
+import model.Names;
 
 public class OutputView {
 
@@ -26,9 +26,9 @@ public class OutputView {
         System.out.println("실행결과");
     }
 
-    public void printNameOfParticipants(List<String> names) {
-        IntStream.range(0,names.size())
-            .mapToObj(i -> printName(names.get(i), names.size(), i))
+    public void printNameOfParticipants(Names names) {
+        IntStream.range(0,names.getNames().size())
+            .mapToObj(i -> printName(names.getNames().get(i).getName(), names.getNames().size(), i))
             .forEach(System.out::print);
         System.out.println();
     }
