@@ -18,9 +18,13 @@ public class Names {
     }
 
     private void validateNames() {
-        if (names.size() <= 1) {
+        if (isAlone()) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private boolean isAlone() {
+        return names.size() <= 1;
     }
 
     public int getCount() {

@@ -3,17 +3,17 @@ package ladder.util;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class Repeat {
+public class Repeater {
 
-    private Repeat() {
+    private Repeater() {
     }
 
-    public static <T> T repeat(Supplier<T> supplier, Consumer<Exception> exceptionHandler) {
+    public static <T> T repeatIfError(Supplier<T> supplier, Consumer<Exception> exceptionHandler) {
         try {
             return supplier.get();
         } catch (Exception e) {
             exceptionHandler.accept(e);
-            return repeat(supplier, exceptionHandler);
+            return repeatIfError(supplier, exceptionHandler);
         }
     }
 }

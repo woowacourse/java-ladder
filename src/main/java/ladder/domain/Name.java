@@ -13,16 +13,24 @@ class Name {
         this.name = name;
     }
 
-    private static void validateName(String name) {
+    private void validateName(String name) {
         if (name == null) {
             throw new IllegalArgumentException(NULL_MESSAGE);
         }
-        if (name.length() >= 6) {
+        if (isOverLength(name)) {
             throw new IllegalArgumentException(OVER_LENGTH_MESSAGE);
         }
-        if (name.length() == 0) {
+        if (isBlank(name)) {
             throw new IllegalArgumentException(BLANK_MESSAGE);
         }
+    }
+
+    private boolean isBlank(String name) {
+        return name.length() == 0;
+    }
+
+    private boolean isOverLength(String name) {
+        return name.length() >= 6;
     }
 
     String toDto() {
