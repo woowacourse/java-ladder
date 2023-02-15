@@ -5,10 +5,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.text.MessageFormat;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -51,6 +54,15 @@ class PlayersTest {
                         "플레이어는 2명 이상, 10명 이하만 가능합니다. 현재 입력한 플레이어 수는 {0}명 입니다.", names.size()
                 ));
     }
+
+    @Test
+    @DisplayName("플레이어의 이름에 중복이 있으면 예외를 던진다.")
+    void throwExceptionWhenDuplicatePlayerName() {
+        final List<String> names = List.of("pobi", "crong", "eddy", "crong");
+
+        assertThatThrownBy(() -> new Players(names))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
 
 class Players {
@@ -59,6 +71,7 @@ class Players {
     private static final int MAXIMUM_PLAYER_SIZE = 10;
     private static final String PLAYER_SIZE_ERROR_MESSAGE =
             "플레이어는 " + MINIMUM_PLAYER_SIZE + "명 이상, " + MAXIMUM_PLAYER_SIZE + "명 이하만 가능합니다. 현재 입력한 플레이어 수는 {0}명 입니다.";
+    private static final String DUPLICATE_PLAYER_ERROR_MESSAGE = "플레이어 이름은 중복되면 안됩니다.";
 
     private final List<Player> players;
 
@@ -76,6 +89,7 @@ class Players {
 
     private void validate(final List<Player> players) {
         validatePlayerSize(players);
+        validateDuplicatePlayer(players);
     }
 
     private void validatePlayerSize(final List<Player> players) {
@@ -90,6 +104,18 @@ class Players {
 
     private boolean hasLargeSize(final List<Player> players) {
         return MAXIMUM_PLAYER_SIZE < players.size();
+    }
+
+    private void validateDuplicatePlayer(final List<Player> players) {
+        final Set<Player> uniquePlayers = new HashSet<>(players);
+
+        if (isDuplicate(players, uniquePlayers)) {
+            throw new IllegalArgumentException(DUPLICATE_PLAYER_ERROR_MESSAGE);
+        }
+    }
+
+    private boolean isDuplicate(final List<Player> players, final Set<Player> uniquePlayers) {
+        return players.size() != uniquePlayers.size();
     }
 
     public List<Player> getPlayers() {

@@ -1,21 +1,24 @@
 package ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.text.MessageFormat;
+import java.util.Objects;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayerTest {
 
     @ParameterizedTest(name = "입력: {0}")
     @ValueSource(strings = {"pobi", "CRONG", "EddY"})
-    @DisplayName("이름은 영문자만 가능합니다.")
-    void personNameFormatTest(final String name) {
+    @DisplayName("이름은 영문자만 가능하다.")
+    void personNameFormat(final String name) {
         assertThatNoException().isThrownBy(() -> new Player(name));
     }
 
@@ -44,11 +47,13 @@ class PlayerTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest(name = "입력: {0}")
-    @ValueSource(strings = {"pobi  ", " crong", "   eddy      "})
+    @ParameterizedTest(name = "입력: {0}, 출력: {1}")
+    @CsvSource(value = {"pobi  :pobi", " crong:crong", "   eddy      :eddy"}, delimiter = ':')
     @DisplayName("이름 양끝에 공백이 있다면 공백을 제거한다.")
-    void trimNameBothEndsBlank(final String name) {
-        assertThatNoException().isThrownBy(() -> new Player(name));
+    void trimNameBothEndsBlank(final String name, final String expected) {
+        Player player = new Player(name);
+
+        assertThat(player.getName()).isEqualTo(expected);
     }
 }
 
@@ -95,5 +100,22 @@ class Player {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Player player = (Player) o;
+        return Objects.equals(getName(), player.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
     }
 }
