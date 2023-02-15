@@ -19,7 +19,7 @@
 
 ## 사다리 한 라인
 - [x] 한 column에서의 블록 개수는 플레이어 수보다 하나 적어야한다
-- [] 한 column의 블록 list(boolean)를 반환한다
+- [x] 한 column의 블록 list(boolean)를 반환한다
 
 
 ## 사다리

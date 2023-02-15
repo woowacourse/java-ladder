@@ -18,4 +18,16 @@ public class LineTest {
         Assertions.assertThatThrownBy(() -> new Line(playerCount, blocks))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 한_라인의_블록들을_반환한다() {
+        int playerCount = 3;
+        List<Block> blocks = new ArrayList<>(List.of(new Block(true), new Block(false)));
+        Line line = new Line(playerCount, blocks);
+
+        List<Boolean> result = line.getLine();
+        List<Boolean> expect = new ArrayList<>(List.of(true, false));
+
+        Assertions.assertThat(result).isEqualTo(expect);
+    }
 }
