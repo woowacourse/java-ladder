@@ -46,7 +46,7 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         names.forEach(name -> {
             int difference = INTERVAL_UNIT - name.getName().length();
-            sb.append(name.getName()).append(difference);
+            sb.append(name.getName()).append(" ".repeat(difference));
         });
         System.out.println(sb);
     }
