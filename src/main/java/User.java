@@ -33,20 +33,23 @@ public class User {
     public static List<String> convertNames(List<String> names) {
         List<String> convertedNames = new ArrayList<>();
         for (String name : names) {
-            convertedNames.add(convert(name));
+            convertedNames.add(compareNameLength(name));
         }
         return convertedNames;
     }
 
-    private static String convert(String name) {
+    private static String compareNameLength(String name) {
         if (name.length() == MAX_NAME_LENGTH) {
             return name;
         }
+        return insertBlank(name);
+    }
+
+    private static String insertBlank(String name) {
         StringBuilder nameBuilder = new StringBuilder(name + " ");
         while (nameBuilder.length() < MAX_NAME_LENGTH) {
             nameBuilder.insert(0, " ");
         }
-        name = nameBuilder.toString();
-        return name;
+        return nameBuilder.toString();
     }
 }
