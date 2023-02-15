@@ -10,6 +10,13 @@ public enum Point {
         this.link = link;
     }
 
+    public static Point from(boolean link) {
+        if (link) {
+            return LINKED_POINT;
+        }
+        return EMPTY_POINT;
+    }
+
     public boolean isLink() {
         return link;
     }

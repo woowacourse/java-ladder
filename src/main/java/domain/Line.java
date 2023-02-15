@@ -1,5 +1,6 @@
 package domain;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,26 @@ public class Line {
         this.points = points;
     }
 
+    public Line(int personCount) {
+        SecureRandom random = new SecureRandom();
+        points = new ArrayList<>();
+        Point pastPoint = Point.EMPTY_POINT;
+        while (personCount-- > 0) {
+            boolean randomPoint = random.nextBoolean();
+            generateValidatePoint(randomPoint, pastPoint);
+            pastPoint = Point.from(randomPoint);
+        }
+    }
+
+    private void generateValidatePoint(Boolean isLink, Point pastPoint) {
+        if (pastPoint == Point.LINKED_POINT) {
+            points.add(Point.EMPTY_POINT);
+            return;
+        }
+        points.add(Point.from(isLink));
+    }
+
+    //TODO : Line이 validate한지
     public void validateLine() {
         Point state = Point.EMPTY_POINT;
         for (Point line : points) {
