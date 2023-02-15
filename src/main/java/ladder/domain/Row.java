@@ -10,7 +10,7 @@ public class Row {
         this.points = points;
     }
 
-    public static Row of(List<Boolean> points, int expectedSize){
+    public static Row of(List<Boolean> points, int expectedSize) {
         validateSize(points, expectedSize);
         return new Row(points);
     }
