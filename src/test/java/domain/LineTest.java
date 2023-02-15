@@ -27,4 +27,19 @@ public class LineTest {
 
         assertThat(line.getPoints().get(input - 1)).isTrue();
     }
+
+    @DisplayName("지정한 위치에 가로라인이 존재하는지 확인")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 3, 5})
+    void existHorizontalLineAtSuccess(int input) {
+        Line line = Line.fromHeight(new Height(5));
+        line.createHorizontalLineAt(input);
+
+        boolean existAt = line.existHorizontalLineAt(input);
+
+        assertThat(existAt).isTrue();
+    }
+
+
+
 }

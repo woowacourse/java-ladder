@@ -27,4 +27,8 @@ public class Line {
     public void createHorizontalLineAt(int index) {
         this.points.set(index - 1, true);
     }
+
+    public boolean existHorizontalLineAt(int index) {
+        return points.get(index - 1);
+    }
 }
