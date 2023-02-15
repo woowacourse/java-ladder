@@ -1,4 +1,4 @@
 public interface LineGenerator {
 
-    boolean generate();
+    boolean generate(boolean isLeftLineExist);
 }
