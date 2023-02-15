@@ -10,6 +10,10 @@ public class LadderHeight {
         this.height = height;
     }
 
+    public int getHeight() {
+        return height;
+    }
+
     private void validateHeight(int height) {
         if(height < MINIMUM_LADDER_HEIGHT) {
             throw new IllegalArgumentException();
