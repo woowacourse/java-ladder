@@ -1,25 +1,29 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
-import utils.NumberMaker;
+import utils.LineMaker;
 
 public class Line {
 
-    private final NumberMaker numberMaker;
+    private final LineMaker lineMaker;
     private final List<Boolean> points;
 
-    public Line(NumberMaker numberMaker, List<Boolean> points) {
-        this.numberMaker = numberMaker;
-        this.points = points;
+    public Line(LineMaker lineMaker, int userCount) {
+        this.lineMaker = lineMaker;
+        this.points = new ArrayList<>();
+        addPoint(lineMaker.generateLine(userCount));
     }
 
     // TODO: 2023/02/15 메소드명 변경
-    public void addPoint(int bound) {
-        if (checkFront()) {
-            points.add(false);
-            return;
+    public void addPoint(List<Boolean> randomPoints) {
+        for (Boolean randomPoint : randomPoints) {
+            if (checkFront()) {
+                points.add(false);
+                continue;
+            }
+            points.add(randomPoint);
         }
-        points.add(numberMaker.generateNumber(bound));
     }
 
     private boolean checkFront() {
@@ -29,4 +33,5 @@ public class Line {
     public List<Boolean> getPoints() {
         return points;
     }
+
 }
