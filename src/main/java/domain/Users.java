@@ -19,4 +19,12 @@ public class Users {
     public int size() {
         return users.size();
     }
+
+    public List<String> getUsersName() {
+        List<String> usersName = new ArrayList<>();
+        for(User user : users) {
+            usersName.add(user.getName());
+        }
+        return usersName;
+    }
 }
