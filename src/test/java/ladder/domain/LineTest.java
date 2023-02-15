@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
-    private final List<Bar> bars = List.of(new Bar(true), new Bar(false));
+    private final List<Bar> bars = List.of(Bar.MOVABLE_BAR, Bar.UNMOBABLE_BAR);
     private Line line;
 
     @BeforeEach

@@ -11,18 +11,18 @@ public class LineMaker {
         boolean beforeValue = false;
 
         for (int idx = 0; idx < lineSize; idx++) {
-            Bar currentBar = getBar(beforeValue, randomGenerator);
+            Bar currentBar = createBar(beforeValue, randomGenerator);
             line.add(currentBar);
             beforeValue = currentBar.getValue();
         }
         return line;
     }
 
-    private static Bar getBar(boolean beforeValue, RandomGenerator randomGenerator) {
+    private static Bar createBar(boolean beforeValue, RandomGenerator randomGenerator) {
         if(beforeValue) {
-            return new Bar(false);
+            return Bar.UNMOBABLE_BAR;
         }
-        return new Bar(randomGenerator.generateBoolean());
+        return Bar.getBar(randomGenerator.generateBoolean());
     }
 
 }
