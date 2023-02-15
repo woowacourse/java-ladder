@@ -31,7 +31,7 @@ public class PlayerNumberTest {
     
     @DisplayName("따른 사다리 개수 생성 정상 작동")
     @ParameterizedTest
-    @CsvSource(value = {"2:1", "3:2"}, delimiter = ':')
+    @CsvSource(value = {"2:2", "3:3"}, delimiter = ':')
     void createLineNumberSuccess(int input, int expected) {
         PlayerNumber playerNumber = new PlayerNumber(input);
         assertThat(playerNumber.getLineNumber())

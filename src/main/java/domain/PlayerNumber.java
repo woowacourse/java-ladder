@@ -26,7 +26,7 @@ public class PlayerNumber {
     }
 
     public int getLineNumber() {
-        return this.playerNumber - 1;
+        return this.playerNumber;
     }
 
 }
