@@ -9,8 +9,8 @@ public class LadderController {
 	private final InputView inputView;
 	private final OutputView outputView;
 
-	private Ladder ladder;
 	private People people;
+	private Ladder ladder;
 
 	public LadderController(InputView inputView, OutputView outputView) {
 		this.inputView = inputView;
@@ -20,6 +20,10 @@ public class LadderController {
 	public void init() {
 		repeat(() -> people = People.from(inputView.readNames()));
 		repeat(() -> ladder = Ladder.from(inputView.readHeight(), people.size()));
+	}
+
+	public void createLadder() {
+		ladder.makeLadder();
 	}
 
 	private void repeat(Runnable repeatable) {
