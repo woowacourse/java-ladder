@@ -19,35 +19,17 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public String enterParticipantsNameUntilValid() {
-        try {
-            return enterParticipantsName();
-        } catch (IllegalArgumentException exception) {
-            printErrorMessage(exception);
-            return enterParticipantsNameUntilValid();
-        }
-    }
-
-    private String enterParticipantsName() {
+    public String enterParticipantsName() {
         System.out.println(ENTER_PARTICIPANTS_NAME);
         return readLine();
     }
 
-    public String enterHeightUntilValid() {
-        try {
-            return enterHeight();
-        } catch (IllegalArgumentException exception) {
-            printErrorMessage(exception);
-            return enterHeightUntilValid();
-        }
-    }
-
-    private String enterHeight() {
+    public String enterHeight() {
         System.out.println(ENTER_HEIGHT);
         return readLine();
     }
 
-    private void printErrorMessage(IllegalArgumentException exception) {
+    public void printErrorMessage(IllegalArgumentException exception) {
         if (exception instanceof EmpytInputException) {
             System.out.println(ErrorMessage.EMPTY_INPUT.getMessage());
         }
