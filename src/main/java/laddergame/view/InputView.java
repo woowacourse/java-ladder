@@ -10,21 +10,16 @@ public class InputView {
 
     Scanner scanner = new Scanner(System.in);
 
-    private static void validateIsBlank(String input) {
+    private void validateIsBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(ERROR_BLANK);
         }
     }
 
     public List<String> readPersonNames() {
-        try {
-            System.out.println(READ_PERSON_NAMES_MSG);
-            String input = scanner.nextLine();
-            validateIsBlank(input);
-            return List.of(input.split(DELIMITER));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readPersonNames();
-        }
+        System.out.println(READ_PERSON_NAMES_MSG);
+        String input = scanner.nextLine();
+        validateIsBlank(input);
+        return List.of(input.split(DELIMITER));
     }
 }
