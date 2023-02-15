@@ -18,7 +18,9 @@ public class StringParser {
     public static final int ZERO = 0;
 
     public static List<String> splitByComma(String input) {
-        return Arrays.asList(input.split(SPLIT_DELIMITER, SPLIT_LIMIT));
+        return Arrays.asList(input.split(SPLIT_DELIMITER, SPLIT_LIMIT)).stream()
+                .map(name -> name.replace(" ", ""))
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public static int parseToInteger(String input) {
