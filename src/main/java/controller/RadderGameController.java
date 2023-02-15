@@ -2,7 +2,7 @@ package controller;
 
 import domain.Map;
 import domain.Participants;
-import util.RandomBooleanGenerator;
+import util.BooleanGenerator;
 import view.InputView;
 
 public class RadderGameController {
@@ -17,15 +17,15 @@ public class RadderGameController {
         }
     }
 
-    public Map makeMap(InputView inputView, Participants participants) {
+    public Map makeMap(InputView inputView, Participants participants, BooleanGenerator booleanGenerator) {
         try {
             String height = inputView.enterHeight();
-            Map map = new Map(height, participants.getParticipantsName().size() - 1);
-            map.generate(new RandomBooleanGenerator());
+            Map map = new Map(height, participants.getParticipantCount());
+            map.generate(booleanGenerator);
             return map;
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
-            return makeMap(inputView, participants);
+            return makeMap(inputView, participants, booleanGenerator);
         }
     }
 }

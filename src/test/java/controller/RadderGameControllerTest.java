@@ -52,14 +52,7 @@ class RadderGameControllerTest {
         setInput("3");
         RadderGameController radderGameController = new RadderGameController();
         Participants participants = new Participants("split,jamie,pobi");
-        Map map = radderGameController.makeMap(new InputView(), participants);
-        map.generate(new BooleanGenerator() {
-            @Override
-            public boolean generate() {
-                return true;
-            }
-        });
-
+        Map map = radderGameController.makeMap(new InputView(), participants, () -> true);
         Assertions.assertThat(map.getLadders().get(0).getStatus()).containsExactly(true, true, true);
         Assertions.assertThat(map.getLadders().get(1).getStatus()).containsExactly(false, false, false);
     }
@@ -71,7 +64,7 @@ class RadderGameControllerTest {
         setOutput();
         RadderGameController radderGameController = new RadderGameController();
         Participants participants = new Participants("split,jamie,pobi");
-        radderGameController.makeMap(new InputView(), participants);
+        radderGameController.makeMap(new InputView(), participants, new RandomBooleanGenerator());
         Assertions.assertThat(byteArrayOutputStream.toString()).contains(
             ErrorMessage.INVALID_LADDER_HEIGHT.getMessage()
         );

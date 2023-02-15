@@ -17,7 +17,8 @@ public class Map {
 
     private final List<Ladder> ladders = new ArrayList<>();
 
-    public Map(String height, int ladderCount) {
+    public Map(String height, int participantCount) {
+        final int ladderCount = participantCount - 1;
         validate(height, ladderCount);
         this.height = Integer.parseInt(height);
         this.ladderCount = ladderCount;

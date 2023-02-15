@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 
 class MapTest {
 
-    @DisplayName("높이와 사다리 개수가 조건에 맞는 경우 객체를 생성한다.")
+    @DisplayName("높이와 참가자의 수가 조건에 맞는 경우 객체를 생성한다.")
     @Test
     void mapSuccess() {
         try {
-            new Map("3", 2);
+            new Map("3", 3);
         } catch (IllegalArgumentException exception) {
             Assertions.fail("높이가 숫자인 경우 객체가 생성되어야 합니다.");
         }
@@ -38,22 +38,22 @@ class MapTest {
             .isExactlyInstanceOf(InvalidLadderHeightException.class);
     }
 
-    @DisplayName("사다리 개수가 10보다 큰 경우 오류를 던진다.")
+    @DisplayName("참가자 수가 10명보다 많은 경우 오류를 던진다.")
     @Test
     void ladderCountOver10() {
-        Assertions.assertThatThrownBy(() -> new Map("3", 10)).isExactlyInstanceOf(InvalidLadderCountException.class);
+        Assertions.assertThatThrownBy(() -> new Map("3", 11)).isExactlyInstanceOf(InvalidLadderCountException.class);
     }
 
-    @DisplayName("사다리 개수가 1보다 작은 경우 오류를 던진다.")
+    @DisplayName("참가자 수가 2명보다 적은 경우 오류를 던진다.")
     @Test
     void ladderCountUnder1() {
-        Assertions.assertThatThrownBy(() -> new Map("3", 0)).isExactlyInstanceOf(InvalidLadderCountException.class);
+        Assertions.assertThatThrownBy(() -> new Map("3", 1)).isExactlyInstanceOf(InvalidLadderCountException.class);
     }
 
-    @DisplayName("사다리 갯수만큼의 사다리를 만든다.")
+    @DisplayName("참가자 수에서 1을 뺀 만큼의 사다리를 만든다.")
     @Test
     void generateLadder() {
-        Map map = new Map("3", 2);
+        Map map = new Map("3", 3);
         map.generate(() -> true);
         List<Ladder> ladders = map.getLadders();
         Assertions.assertThat(ladders.get(0).getStatus()).containsExactly(true, true, true);
