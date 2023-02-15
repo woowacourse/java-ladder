@@ -1,0 +1,14 @@
+package model;
+
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+public class LadderTest {
+    @Test
+    @DisplayName("Ladder 객체 생성 성공 테스트")
+    void createLadderTest(){
+        Assertions.assertThatNoException().isThrownBy(()->{Ladder ladderHeight =
+                new Ladder(new LadderHeight(5));});
+    }
+}
