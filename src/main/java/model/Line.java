@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private static final int MINIMUM_LINE_SIZE = 1;
+    private static final int MINIMUM_LINE_SIZE = 2;
 
     public Generator generator = new LineGenerator();
     private List<Boolean> points = new ArrayList<>();
