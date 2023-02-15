@@ -1,12 +1,16 @@
 package domain;
 
 public class User {
-    String name;
+    private final String name;
 
     public User(String name) {
         validateLength(name);
         validateBlank(name);
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     private void validateLength(String name) {
