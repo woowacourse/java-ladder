@@ -11,10 +11,6 @@ public class Line {
         this.steps = steps;
     }
 
-    public int getSize() {
-        return steps.size();
-    }
-
     private void validateContinuousStep(List<Step> steps) {
         for (int index = 1; index < steps.size(); index++) {
             checkContinuous(steps, index);
@@ -35,5 +31,9 @@ public class Line {
         return "|" + steps.stream()
                 .map(Step::getShape)
                 .collect(Collectors.joining("|")) + "|";
+    }
+
+    public int getSize() {
+        return steps.size();
     }
 }
