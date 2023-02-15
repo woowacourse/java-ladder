@@ -11,11 +11,10 @@ public class Ladder {
     private static final String NOT_NATURAL_NUMBER_MESSAGE = "사다리의 높이는 자연수이어야 합니다.";
     private static final String HEIGHT_IS_LOWER_THAN_PERSON_COUNT_MESSAGE = "사다리의 높이는 참가자 수 이상이어야 합니다.";
 
-    private final List<Line> ladder;
+    private final List<Line> ladder = new ArrayList<>();
 
     public Ladder(int height, int personCount, NumberGenerator numberGenerator) {
         validate(height, personCount);
-        ladder = new ArrayList<>();
         generateLadder(height, personCount, numberGenerator);
     }
 
