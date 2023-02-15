@@ -1,5 +1,6 @@
 package ladder;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -20,5 +21,14 @@ class PlayersTest {
         assertDoesNotThrow(() -> new Players(names));
     }
 
-
+    @Test
+    @DisplayName("플레이어의 수를 반환한다")
+    public void shouldReturnSizeWhenRequest () {
+        //given
+        List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
+        //when
+        Players players = new Players(names);
+        //then
+        assertThat(players.getSize()).isEqualTo(3);
+    }
 }
