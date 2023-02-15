@@ -20,7 +20,12 @@ public class Line {
 
     private void createPoints(int personCount) {
         int pointsCount = personCount - 1;
-        for(int i=0; i<pointsCount; i++){
+        points.add(pointGenerator.generate());
+        for(int index=0; index<pointsCount-1; index++){
+            if(points.get(index).equals(true)){
+                points.add(false);
+                continue;
+            }
             points.add(pointGenerator.generate());
         }
     }
