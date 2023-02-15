@@ -5,24 +5,24 @@ import java.util.List;
 
 public class LineMaker {
 
-    public static List<Boolean> generate(int playerCount, RandomGenerator<Boolean> randomGenerator) {
-        List<Boolean> line = new ArrayList<>();
+    public static List<Bar> generate(int playerCount, RandomGenerator<Boolean> randomGenerator) {
+        List<Bar> line = new ArrayList<>();
         int lineSize = playerCount - 1;
-        boolean before = false;
+        boolean beforeValue = false;
 
         for (int idx = 0; idx < lineSize; idx++) {
-            boolean current = getBar(before, randomGenerator);
-            line.add(current);
-            before = current;
+            Bar currentBar = getBar(beforeValue, randomGenerator);
+            line.add(currentBar);
+            beforeValue = currentBar.getValue();
         }
         return line;
     }
 
-    private static boolean getBar(boolean before, RandomGenerator<Boolean> randomGenerator) {
-        if(before) {
-            return false;
+    private static Bar getBar(boolean beforeValue, RandomGenerator<Boolean> randomGenerator) {
+        if(beforeValue) {
+            return new Bar(false);
         }
-        return randomGenerator.generate();
+        return new Bar(randomGenerator.generate());
     }
 
 }
