@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import util.RandomBooleanGenerator;
 import validate.ErrorMessage;
 import view.InputView;
+import view.OutputView;
 
 class RadderGameControllerTest {
 
@@ -37,7 +38,7 @@ class RadderGameControllerTest {
     @DisplayName("컨트롤러는 잘못된 입력으로 Participant를 생성 시 오류를 던진다.")
     @Test
     void makeParticipantsFail() {
-        setInput("abcdef\nsplit,jamie");
+        setInput("abcdef,abcde\nsplit,jamie");
         setOutput();
         RadderGameController radderGameController = new RadderGameController();
         radderGameController.makeParticipants(new InputView());
@@ -68,5 +69,22 @@ class RadderGameControllerTest {
         Assertions.assertThat(byteArrayOutputStream.toString()).contains(
             ErrorMessage.INVALID_LADDER_HEIGHT.getMessage()
         );
+    }
+
+    @DisplayName("컨틀롤러는 아웃풋뷰를 통해 맵을 출력한다.")
+    @Test
+    void printMap() {
+        setOutput();
+        RadderGameController radderGameController = new RadderGameController();
+        Participants participants = new Participants("jamie,split,pobi");
+        Map map = new Map("4", participants.getParticipantCount());
+        map.generate(() -> true);
+        radderGameController.showMap(new OutputView(), participants, map);
+        Assertions.assertThat(byteArrayOutputStream.toString()).isEqualTo("jamie split  pobi \n"
+            + "    |-----|     |\n"
+            + "    |-----|     |\n"
+            + "    |-----|     |\n"
+            + "    |-----|     |\n\n");
+
     }
 }

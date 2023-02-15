@@ -52,4 +52,17 @@ public class Map {
             avoid = ladders.get(ladders.size() - 1).getConnectedIndex();
         }
     }
+
+    public List<List<Boolean>> getLines() {
+        List<List<Boolean>> lines = new ArrayList<>();
+        for (int lineIndex = 0; lineIndex < height; lineIndex++) {
+            List<Boolean> line = new ArrayList<>();
+            for (Ladder ladder : ladders) {
+                line.add(ladder.getStatus()[lineIndex]);
+            }
+            lines.add(line);
+        }
+
+        return lines;
+    }
 }

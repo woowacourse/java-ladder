@@ -4,6 +4,7 @@ import domain.Map;
 import domain.Participants;
 import util.BooleanGenerator;
 import view.InputView;
+import view.OutputView;
 
 public class RadderGameController {
 
@@ -27,5 +28,9 @@ public class RadderGameController {
             inputView.printErrorMessage(exception);
             return makeMap(inputView, participants, booleanGenerator);
         }
+    }
+
+    public void showMap(OutputView outputView, Participants participants, Map map) {
+        outputView.printMap(participants, map);
     }
 }
