@@ -10,10 +10,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
 
+    private static final int MIN_NUMBER_RETURN_TRUE = 4;
+
     @DisplayName("주어진 숫자에 따라 적합한 points를 가진 Line을 생성한다.")
     @Test
     void create() {
-        Line line = Line.create(3, new MockNumberGenerator(List.of(3, 4, 3)));
+        List<Integer> orderOfNumber = List.of(
+                MIN_NUMBER_RETURN_TRUE - 1,
+                MIN_NUMBER_RETURN_TRUE,
+                MIN_NUMBER_RETURN_TRUE - 1);
+        Line line = Line.create(3, new MockNumberGenerator(orderOfNumber));
 
         List<Point> points = line.getPoints();
 
