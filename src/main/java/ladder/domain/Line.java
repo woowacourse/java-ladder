@@ -1,11 +1,12 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import ladder.util.BooleanGenerator;
 
-public class Line {
+public class Line implements Iterable<Boolean> {
     private static final int FIRST_CELL_INDEX = 0;
 
     private final List<Boolean> line = new ArrayList<>();
@@ -22,7 +23,7 @@ public class Line {
     }
 
     private void createLine(int personCount) {
-        for (int cell = FIRST_CELL_INDEX; cell < personCount; cell++) {
+        for (int cell = FIRST_CELL_INDEX; cell < personCount - 1; cell++) {
             createLineAtCell(cell);
         }
     }
@@ -38,5 +39,10 @@ public class Line {
 
     private boolean existLineAtLeftCell(int cellIndex) {
         return cellIndex != FIRST_CELL_INDEX && line.get(cellIndex - 1);
+    }
+
+    @Override
+    public Iterator<Boolean> iterator() {
+        return line.iterator();
     }
 }
