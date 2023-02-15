@@ -1,3 +1,4 @@
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -14,11 +15,30 @@ class PlayerTest {
         new Players(List.of("pobi", "beaver", "jena"));
     }
 
-    /*@DisplayName("사용자의 이름의 길이가 5초과 일때 에러 확인")
-    @Test
-    void create() {
-        new Players(List.of("pobiss"));
-    }*/
+    @Nested
+    @DisplayName("플레이어 이름 길이 테스트")
+    class nameLength {
+        @DisplayName("사용자의 이름의 길이가 5초과 일때 에러 확인")
+        @Test
+        void namelength1() {
+            Assertions.assertThatThrownBy(() -> new Players(List.of("pobiss", "crong")))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @DisplayName("사용자 이름의 길이가 0 일때 에러 확인")
+        @Test
+        void namelength2() {
+            Assertions.assertThatThrownBy(() -> new Players(List.of("pobi", "", "crong")))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @DisplayName("사용자 이름이 공백 일때 에러 확인")
+        @Test
+        void namelength3() {
+            Assertions.assertThatThrownBy(() -> new Players(List.of("pobi", "      ", "crong")))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
 
     @Nested
     @DisplayName("플레이어 인원수 테스트")
@@ -56,7 +76,13 @@ class PlayerTest {
         }
 
     }
-    //사용자의 이름이 중복
-    //입력값이 없을때
+    // TODO: 입력값이 없을때
 
+    @DisplayName("플레이어 이름이 중복될 때")
+    @Test
+    void duplicateName() {
+        assertThatThrownBy(() -> {
+            new Players(List.of("a", "a"));
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
