@@ -1,13 +1,12 @@
-package view;
+package view.input;
 
 import exception.EmpytInputException;
-import exception.InvalidLadderCountException;
 import exception.InvalidLadderHeightException;
+import exception.InvalidLineWeightException;
 import exception.InvalidParticipantsCountException;
 import exception.InvalidPersonNameException;
 import exception.NameContainsIdentifierException;
 import java.util.Scanner;
-import validate.ErrorMessage;
 
 public class InputView {
 
@@ -33,8 +32,8 @@ public class InputView {
         if (exception instanceof EmpytInputException) {
             System.out.println(ErrorMessage.EMPTY_INPUT.getMessage());
         }
-        if (exception instanceof InvalidLadderCountException) {
-            System.out.println(ErrorMessage.INVALID_LADDER_COUNT.getMessage());
+        if (exception instanceof InvalidLineWeightException) {
+            System.out.println(ErrorMessage.INVALID_LINE_WEIGHT.getMessage());
         }
         if (exception instanceof InvalidLadderHeightException) {
             System.out.println(ErrorMessage.INVALID_LADDER_HEIGHT.getMessage());
