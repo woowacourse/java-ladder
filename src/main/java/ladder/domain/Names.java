@@ -3,13 +3,14 @@ package ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 import ladder.dto.NamesDto;
+import ladder.util.StringSplitter;
 
 public class Names {
 
     private final List<Name> names;
 
     public Names(String names) {
-        this.names = new NameSplitter(names).split()
+        this.names = StringSplitter.split(names, ",")
                 .stream()
                 .map(Name::new)
                 .collect(Collectors.toList());
