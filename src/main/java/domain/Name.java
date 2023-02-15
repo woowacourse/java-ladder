@@ -14,7 +14,6 @@ public class Name {
         this.name = name;
     }
 
-
     private void validate(String name) {
         validateBlank(name);
         validateLength(name);
