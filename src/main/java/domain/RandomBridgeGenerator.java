@@ -13,7 +13,7 @@ public class RandomBridgeGenerator implements BridgeGenerator {
         List<Boolean> result = new ArrayList<>(count);
         result.add(random.nextBoolean());
 
-        for (int i = 1; i < count; i++) {
+        for (int i = 1; i < count - 1; i++) {
             if (result.get(i - 1)) {
                 result.add(false);
                 continue;
