@@ -39,10 +39,6 @@ public class Line {
         return new Line(points);
     }
 
-    public int getPointSize() {
-        return this.points.size();
-    }
-
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
