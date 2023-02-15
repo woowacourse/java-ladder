@@ -16,4 +16,8 @@ public class Person {
             throw new IllegalArgumentException("이름은 1자 이상 5자 이하여야 합니다");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
