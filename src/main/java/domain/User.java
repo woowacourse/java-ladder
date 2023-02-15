@@ -13,4 +13,8 @@ public class User {
             throw new IllegalArgumentException("[ERROR] 이름은 1글자 이상 5글자 이하여야 합니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

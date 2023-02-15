@@ -8,6 +8,7 @@ import domain.User;
 import domain.Users;
 import utils.LineGenerator;
 import view.InputView;
+import view.OutputView;
 
 public class Controller {
     private final Ladder ladder;
@@ -21,6 +22,16 @@ public class Controller {
     public void run() {
         createUser();
         createLadder();
+        printUsers();
+        printLadder();
+    }
+
+    private void printUsers() {
+        List<String> userNames = users.getUsers();
+        OutputView.printUserNames(userNames);
+    }
+
+    private void printLadder() {
     }
 
     private void createLadder() {
