@@ -17,7 +17,7 @@ public class LadderTest {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < heightOfLadder; i++) {
-            List<Bar> bars = LineMaker.generate(playerCount, new MockRandomBooleanGenerator());
+            List<Bar> bars = LineMaker.generate(playerCount, new MockRandomDataGenerator());
             lines.add(new Line(bars));
         }
 

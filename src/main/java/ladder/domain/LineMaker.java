@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LineMaker {
 
-    public static List<Bar> generate(int playerCount, RandomGenerator<Boolean> randomGenerator) {
+    public static List<Bar> generate(int playerCount, RandomGenerator randomGenerator) {
         List<Bar> line = new ArrayList<>();
         int lineSize = playerCount - 1;
         boolean beforeValue = false;
@@ -18,11 +18,11 @@ public class LineMaker {
         return line;
     }
 
-    private static Bar getBar(boolean beforeValue, RandomGenerator<Boolean> randomGenerator) {
+    private static Bar getBar(boolean beforeValue, RandomGenerator randomGenerator) {
         if(beforeValue) {
             return new Bar(false);
         }
-        return new Bar(randomGenerator.generate());
+        return new Bar(randomGenerator.generateBoolean());
     }
 
 }

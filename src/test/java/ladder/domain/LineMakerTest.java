@@ -12,12 +12,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LineMakerTest {
 
     private int playerCount;
-    private RandomGenerator<Boolean> randomGenerator;
+    private RandomGenerator randomGenerator;
 
     @BeforeEach
     void setup() {
         playerCount = 5;
-        randomGenerator = new RandomBooleanGenerator();
+        randomGenerator = new MockRandomDataGenerator();
     }
 
     @Test
