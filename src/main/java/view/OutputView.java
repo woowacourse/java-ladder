@@ -1,7 +1,7 @@
 package view;
 
 import java.util.stream.IntStream;
-import model.Blocks;
+import model.Line;
 import model.Names;
 import model.Path;
 
@@ -40,9 +40,9 @@ public class OutputView {
         return String.format(PARTICIPANT_NAME_FORMAT_FOR_LAST_INDEX, name);
     }
 
-    public void printBlocks(Blocks blocks) {
+    public void printBlocks(Line line) {
         System.out.print(LEFT_LEG);
-        for (Path path : blocks.getBlocks()) {
+        for (Path path : line.getLine()) {
             System.out.print(path.getLog());
             System.out.print(LEG);
 

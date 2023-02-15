@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import model.Blocks;
+import model.Line;
 import model.Names;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,8 +19,8 @@ class BlockServiceTest {
     @ParameterizedTest
     @CsvSource(value = {"4:3", "5:4"}, delimiter = ':')
     void initBlock_메소드는_입력_받은_사람_수_보다_1_적은_만큼의_BLOCK들을_생성하여_컬렉션으로_관리하는_BLOCKS를_반환한다(int peopleCount, int expected) {
-        Blocks blocks = blockService.initBlocks(peopleCount);
-        assertThat(blocks.getBlocks().size()).isSameAs(expected);
+        Line line = blockService.initBlocks(peopleCount);
+        assertThat(line.getLine().size()).isSameAs(expected);
     }
 
     @Test

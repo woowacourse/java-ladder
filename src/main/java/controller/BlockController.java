@@ -1,6 +1,6 @@
 package controller;
 
-import model.Blocks;
+import model.Line;
 import model.Names;
 import service.BlockService;
 import view.InputView;
@@ -31,8 +31,8 @@ public class BlockController {
 
     private void calculateLadderResult(Names names, int heightOfLadder) {
         for (int i = 0; i < heightOfLadder; i++) {
-            Blocks blocks = blockService.initBlocks(names.getNames().size());
-            outputView.printBlocks(blocks);
+            Line line = blockService.initBlocks(names.getNames().size());
+            outputView.printBlocks(line);
         }
     }
 }

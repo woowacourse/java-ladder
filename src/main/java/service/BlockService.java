@@ -2,7 +2,7 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.Blocks;
+import model.Line;
 import model.Name;
 import model.Names;
 import model.Path;
@@ -19,11 +19,11 @@ public class BlockService {
         this.generator = generator;
     }
 
-    public Blocks initBlocks(int peopleCount) {
+    public Line initBlocks(int peopleCount) {
         Path firstPath = Path.calculatePath(generator.generate());
         List<Path> blocks = new ArrayList<>();
         blocks.add(firstPath);
-        return new Blocks(generateBlocks(peopleCount, blocks));
+        return new Line(generateBlocks(peopleCount, blocks));
     }
 
     private List<Path> generateBlocks(int peopleCount, List<Path> blocks) {
