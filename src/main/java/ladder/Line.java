@@ -6,8 +6,8 @@ import ladder.utils.BarGenerator;
 import ladder.utils.BooleanGenerator;
 
 public class Line {
-    private final List<Boolean> bars = new ArrayList<>();
-    private BooleanGenerator booleanGenerator;
+    private final List<Bar> bars = new ArrayList<>();
+    private final BooleanGenerator booleanGenerator;
 
     public Line(int size) {
         this.booleanGenerator = new BarGenerator();
@@ -20,21 +20,25 @@ public class Line {
     }
 
     private void generateBars(int size) {
-        bars.add(booleanGenerator.generate());
+        bars.add(generateBar());
         for (int i = 1; i < size; i++) {
-            boolean existBar = getAppropriateBar(bars.get(i - 1));
+            Bar existBar = getAppropriateBar(bars.get(i - 1));
             bars.add(existBar);
         }
     }
 
-    private boolean getAppropriateBar(boolean beforeBar) {
-        if (beforeBar) {
-            return false;
-        }
-        return booleanGenerator.generate();
+    private Bar generateBar() {
+        return Bar.of(booleanGenerator.generate());
     }
 
-    public List<Boolean> getBars() {
+    private Bar getAppropriateBar(Bar beforeBar) {
+        if (beforeBar.isMovable()) {
+            return Bar.IMMOVABLE;
+        }
+        return generateBar();
+    }
+
+    public List<Bar> getBars() {
         return bars;
     }
 }

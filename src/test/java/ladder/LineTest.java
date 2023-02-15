@@ -1,5 +1,7 @@
 package ladder;
 
+import static ladder.Bar.IMMOVABLE;
+import static ladder.Bar.MOVABLE;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ class LineTest {
         // when
         Line line = new Line(3, new DeterminedBooleanGenerator(determinedBars));
         // then
-        assertThat(line.getBars()).containsExactly(true, false, true);
+        assertThat(line.getBars()).containsExactly(MOVABLE, IMMOVABLE, MOVABLE);
     }
 
     static class DeterminedBooleanGenerator implements BooleanGenerator {
