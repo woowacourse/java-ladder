@@ -16,4 +16,8 @@ public class People {
             .map(Person::getName)
             .collect(Collectors.toList());
     }
+
+    public int getCount() {
+        return people.size();
+    }
 }
