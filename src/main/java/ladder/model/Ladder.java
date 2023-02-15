@@ -8,7 +8,20 @@ public class Ladder {
 
     private void validateHeight(int height) {
         if (height < ConstantNumber.MIN_HEIGHT.getNumber()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_INVALID_HEIGHT.getMessage());
+        }
+    }
+
+    private enum ErrorMessage {
+        EXCEPTION_INVALID_HEIGHT("사다리 높이는 2 이상이어야 합니다.");
+        private final String message;
+
+        ErrorMessage(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+            return message;
         }
     }
 
@@ -25,7 +38,5 @@ public class Ladder {
         public int getNumber() {
             return number;
         }
-
-
     }
 }
