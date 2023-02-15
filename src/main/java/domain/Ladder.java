@@ -15,9 +15,17 @@ public class Ladder {
         }
     }
 
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
     public void validateHeight(int height) {
         if (height < 1) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public List<Line> getLines() {
+        return new ArrayList<>(lines);
     }
 }
