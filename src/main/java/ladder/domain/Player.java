@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.constant.ErrorConstant;
 import ladder.exception.PlayerNameLengthException;
 
 public class Player {
