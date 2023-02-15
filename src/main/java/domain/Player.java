@@ -1,13 +1,13 @@
 package domain;
 
-public class Name {
+public class Player {
 
     private static final int NAME_LENGTH_LOWER_BOUND = 1;
     private static final int NAME_LENGTH_UPPER_BOUND = 5;
 
     private String name;
 
-    public Name(String name) {
+    public Player(String name) {
         String trimmedName = name.trim();
         validate(trimmedName);
         this.name = trimmedName;
