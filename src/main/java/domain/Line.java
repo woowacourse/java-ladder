@@ -15,6 +15,10 @@ public class Line {
         generatePoints(personCount, numberGenerator);
     }
 
+    private static boolean isGenerated(NumberGenerator numberGenerator) {
+        return numberGenerator.generate() == GENERATE_NUMBER;
+    }
+
     private void generatePoints(int personCount, NumberGenerator numberGenerator) {
         for (int i = 0; i < personCount - 1; i++) {
             generatePoint(numberGenerator);
@@ -27,10 +31,6 @@ public class Line {
             return;
         }
         points.add(false);
-    }
-
-    private static boolean isGenerated(NumberGenerator numberGenerator) {
-        return numberGenerator.generate() == GENERATE_NUMBER;
     }
 
     private boolean hasAdjacentPoint() {

@@ -19,12 +19,6 @@ public class Ladder {
         generateLadder(height, personCount, numberGenerator);
     }
 
-    private void generateLadder(int height, int personCount, NumberGenerator numberGenerator) {
-        for (int i = 0; i < height; i++) {
-            ladder.add(new Line(personCount, numberGenerator));
-        }
-    }
-
     private static void validate(int height, int personCount) {
         validateHeight(height);
         validateHeightCompareWithPersonCount(height, personCount);
@@ -39,6 +33,12 @@ public class Ladder {
     private static void validateHeight(int height) {
         if (height < HEIGHT_LOWER_BOUND) {
             throw new IllegalArgumentException(NOT_NATURAL_NUMBER_MESSAGE);
+        }
+    }
+
+    private void generateLadder(int height, int personCount, NumberGenerator numberGenerator) {
+        for (int i = 0; i < height; i++) {
+            ladder.add(new Line(personCount, numberGenerator));
         }
     }
 }
