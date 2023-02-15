@@ -1,10 +1,18 @@
 package view;
 
 import java.util.List;
+import java.util.stream.IntStream;
 import model.Block;
 import model.Blocks;
 
 public class OutputView {
+
+    public static final String PARTICIPANT_NAME_FORMAT = "%-5s ";
+    public static final String PARTICIPANT_NAME_FORMAT_FOR_LAST_INDEX = "%4s";
+    public static final String LEFT_LEG = "    |";
+    public static final String LEG = "|";
+    public static final String ACTIVATED_BLOCK = "-----";
+    public static final String DEACTIVATED_BLOCK = "     ";
 
     public void noticeInputParticipants() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -19,59 +27,34 @@ public class OutputView {
     }
 
     public void printNameOfParticipants(List<String> names) {
-        /*
-        for (String name : names) {
-            System.out.print(printName(name));
-        }
-
-         */
-        for (int i = 0; i < names.size()-1; i++) {
-            System.out.print(printName(names.get(i)));
-        }
-        //System.out.println();
-       System.out.println(printLastName(names.get(names.size() - 1)));
+        IntStream.range(0,names.size())
+            .mapToObj(i -> printName(names.get(i), names.size(), i))
+            .forEach(System.out::print);
+        System.out.println();
     }
 
-    private String printName(String name) {
-
-        if (name.length() == 5) {
-            return String.format("%5s ", name);
+    private String printName(String name, int totalSize, int index) {
+        if (totalSize - 1 != index){
+            return String.format(PARTICIPANT_NAME_FORMAT, name);
         }
-        return String.format("%-5s ", name);
-
+        return String.format(PARTICIPANT_NAME_FORMAT_FOR_LAST_INDEX, name);
     }
 
-    private String printLastName(String name) {
-
-        if (name.length() == 5) {
-            return String.format("%5s ", name);
-        }
-        return String.format("%4s ", name);
-
-    }
-
-    public void printBlocks(Blocks blocks, List<String> names) {
-        int firstNameLength = names.get(0).length();
-        System.out.print(String.format(String.format("%%%ds",firstNameLength)," "));
-
-//        for (int i = 0; i < 5 - (5 - names.size()); i++) {
-//            System.out.print(" ");
-//        }
-
-        System.out.print("|");
+    public void printBlocks(Blocks blocks) {
+        System.out.print(LEFT_LEG);
         for (Block block : blocks.getBlocks()) {
             System.out.print(printPass(block));
-            System.out.print("|");
+            System.out.print(LEG);
+
         }
         System.out.println();
-        //printNameOfParticipants(names);
     }
 
     private String printPass(Block block) {
         if (block.isPass()) {
-            return "-----";
+            return ACTIVATED_BLOCK;
         }
-        return "     ";
+        return DEACTIVATED_BLOCK;
     }
 
 }
