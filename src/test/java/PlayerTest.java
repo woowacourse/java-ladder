@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 class PlayerTest {
     @DisplayName("생성자 테스트")
@@ -55,7 +54,7 @@ class PlayerTest {
         @Test
         void playerCount2() {
             assertThatNoException().isThrownBy(() -> {
-                new Players(List.of("a","b"));
+                new Players(List.of("a", "b"));
             });
         }
 
@@ -63,7 +62,7 @@ class PlayerTest {
         @Test
         void playerCount3() {
             assertThatNoException().isThrownBy(() -> {
-                new Players(List.of("a","b","c","d","e","f","g","h","i","j","k","l"));
+                new Players(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"));
             });
         }
 
@@ -71,7 +70,7 @@ class PlayerTest {
         @Test
         void playerCount4() {
             assertThatThrownBy(() -> {
-                new Players(List.of("a","b","c","d","e","f","g","h","i","j","k","l","n"));
+                new Players(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "n"));
             }).isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -82,7 +81,14 @@ class PlayerTest {
     @Test
     void duplicateName() {
         assertThatThrownBy(() -> {
-            new Players(List.of("a", "a"));
+            new Players(List.of("aaaa", "aaaa"));
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("플레이어 이름의 최대길이 구하기")
+    @Test
+    void maxName() {
+        Players players = new Players(List.of("aaa", "bbbb"));
+        assertThat(players.getMaxPlayerNameLength()).isEqualTo(4);
     }
 }
