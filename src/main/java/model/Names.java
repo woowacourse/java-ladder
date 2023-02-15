@@ -8,6 +8,7 @@ import java.util.List;
 public class Names {
 
     private static final String NAMES_DELIMITER = ",";
+    private static final String regularExpressionForWhiteSpaceNearbyComma = "\\s*,\\s*";
 
     private final List<String> names;
 
@@ -20,7 +21,11 @@ public class Names {
     }
 
     private List<String> splitInputNames(String inputNames) {
-        return Arrays.asList(inputNames.split(NAMES_DELIMITER));
+        return Arrays.asList(deleteNearbyWhiteSpaceFromComma(inputNames).split(NAMES_DELIMITER));
+    }
+
+    private String deleteNearbyWhiteSpaceFromComma(String inputValue) {
+        return inputValue.replaceAll(regularExpressionForWhiteSpaceNearbyComma, NAMES_DELIMITER);
     }
 
 }
