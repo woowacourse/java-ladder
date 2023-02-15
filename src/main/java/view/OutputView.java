@@ -1,8 +1,6 @@
 package view;
 
-import domain.Ladder;
 import domain.Line;
-import domain.RandomDigitsGenerator;
 import java.util.List;
 
 public class OutputView {
@@ -29,5 +27,16 @@ public class OutputView {
             builder.append("\n");
         }
         System.out.println(builder);
+    }
+
+    public void printPersonNames(List<String> names){
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(String name : names){
+            int length = name.length();
+            stringBuilder.append(name).append(" ".repeat(5-length));
+            stringBuilder.append(" ");
+        }
+        System.out.println(stringBuilder);
     }
 }
