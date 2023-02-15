@@ -7,9 +7,9 @@ public class Line {
 
     private final List<Boolean> points;
 
-    public Line(final int personCount, final BooleanGenerator booleanGenerator) {
+    public Line(final int width, final BooleanGenerator booleanGenerator) {
         this.points = new ArrayList<>();
-        for (int position = 0; position < personCount - 1; position++) {
+        for (int position = 0; position < width; position++) {
             points.add(decideConnection(position, booleanGenerator));
         }
     }
