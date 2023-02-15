@@ -1,7 +1,7 @@
 package controller;
 
-import java.util.List;
 import model.Blocks;
+import model.Names;
 import service.BlockService;
 import view.InputView;
 import view.OutputView;
@@ -20,7 +20,7 @@ public class BlockController {
 
     public void run() {
         outputView.noticeInputParticipants();
-        List<String> names = inputView.inputNameOfParticipants();
+        Names names = blockService.generateNames(inputView.inputNameOfParticipants());
         outputView.noticeInputHeightOfLadder();
         int heightOfLadder = inputView.inputHeightOfLadder();
 
@@ -29,9 +29,9 @@ public class BlockController {
         calculateLadderResult(names, heightOfLadder);
     }
 
-    private void calculateLadderResult(List<String> names, int heightOfLadder) {
+    private void calculateLadderResult(Names names, int heightOfLadder) {
         for (int i = 0; i < heightOfLadder; i++) {
-            Blocks blocks = blockService.initBlocks(names.size());
+            Blocks blocks = blockService.initBlocks(names.getNames().size());
             outputView.printBlocks(blocks);
         }
     }
