@@ -10,7 +10,7 @@ public class LineGenerator {
 
     private static final Random RANDOM = new Random();
 
-    public static Line generateLine(int personCount) {
+    public static Line generate(int personCount) {
         List<Boolean> newBridges = new ArrayList<>();
 
         for (int i = 0; i < personCount - 1; i++) {
