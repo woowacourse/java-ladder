@@ -10,6 +10,10 @@ public class Height {
     }
 
 
+    public void minusHeight() {
+        this.height--;
+    }
+
     private void checkNumberMissMatch(String height) {
         if (!Pattern.matches("^[0-9]*$", height)) {
             throw new IllegalArgumentException();
