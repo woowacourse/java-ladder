@@ -3,14 +3,13 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import utils.booleanGenerator.RandomBooleanGenerator;
+import utils.validator.FloorsValidator;
 
 public class Floors {
     private final List<Floor> floors = new ArrayList<>();
 
     public Floors(int personCount, int floorCount) {
-        if (floorCount < 1 || floorCount > 100) {
-            throw new IllegalArgumentException();
-        }
+        FloorsValidator.validateFloorCount(floorCount);
         for (int count = 0; count < floorCount; count++) {
             floors.add(new Floor(personCount, new RandomBooleanGenerator()));
         }
