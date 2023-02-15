@@ -7,7 +7,7 @@ import java.util.List;
 public class Line {
     private final List<Point> points;
 
-    public Line(List<Point> points) {
+    public Line(final List<Point> points) {
         this.points = points;
     }
 
@@ -23,7 +23,7 @@ public class Line {
         }
     }
 
-    private void generateValidatePoint(Boolean isLink, Point pastPoint) {
+    private void generateValidatePoint(final Boolean isLink, final Point pastPoint) {
         if (pastPoint == Point.LINKED_POINT) {
             points.add(Point.EMPTY_POINT);
             return;
@@ -31,30 +31,7 @@ public class Line {
         points.add(Point.from(isLink));
     }
 
-    //TODO : Line이 validate한지
-    public void validateLine() {
-        Point state = Point.EMPTY_POINT;
-        for (Point line : points) {
-            state = comparePastPointAndPresentPoint(state, line);
-        }
-    }
-
-    private Point comparePastPointAndPresentPoint(Point pastPoint, Point point) {
-        if (point.isLink() && pastPoint.isLink()) {
-            throw new IllegalArgumentException();
-        }
-        pastPoint = point;
-        return pastPoint;
-    }
-
     public List<Point> getPoints() {
         return new ArrayList<>(points);
-    }
-
-    @Override
-    public String toString() {
-        return "Line{" +
-                "points=" + points +
-                '}';
     }
 }
