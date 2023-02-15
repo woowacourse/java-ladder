@@ -32,4 +32,8 @@ public class Row {
     private boolean isConsecutiveStep(List<Boolean> points, int position) {
         return points.get(position) == true && points.get(position + 1) == true;
     }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
 }
