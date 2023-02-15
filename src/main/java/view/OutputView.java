@@ -1,6 +1,7 @@
 package view;
 
 import model.Ladder;
+import model.Player;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class OutputView {
     private static final String CONNECT_LADDER = "-----|";
     private static final String NO_CONNECT_LADDER = "     |";
 
-    private static final int MAXMUM_PLAYER_NAME = 5;
+    private static final int MAXIMUM_PLAYER_NAME = 5;
     public void printPlayerNamesMessage() {
             System.out.println(PLAYER_NAME_MESSAGE);
     }
@@ -21,9 +22,10 @@ public class OutputView {
         System.out.println(LADDER_HEIGHT_MESSAGE);
     }
 
-    public void printPlayerName(List<String> names){
+    public void printPlayerName( List<Player> names){
         for(int index=0; index<names.size(); index++){
-            System.out.print(String.format("%"+ MAXMUM_PLAYER_NAME +"s ", names.get(index)));
+            System.out.print(String.format("%"+ MAXIMUM_PLAYER_NAME +"s ",
+                    names.get(index).getPlayer()));
         }
         System.out.println("");
     }
