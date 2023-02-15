@@ -1,5 +1,6 @@
 package model;
 
+import util.Connection;
 import util.Generator;
 import util.LineGenerator;
 
@@ -14,7 +15,7 @@ public class Line {
 
     public Line (int personCount) {
         for(int column=0; column<personCount-1; column++) {
-            points.add(generator.generate());
+            points.add(Connection.valueOf(generator.generate()).getStatus());
             if(validateLineMake(column)){
                 column--;
             }
