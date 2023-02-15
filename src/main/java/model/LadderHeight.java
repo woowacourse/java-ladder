@@ -15,4 +15,8 @@ public class LadderHeight {
             throw new IllegalArgumentException();
         }
     }
+
+    public int getLadderHeight(){
+        return this.height;
+    }
 }
