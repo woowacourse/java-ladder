@@ -11,7 +11,6 @@ public class Line {
     public Line(PointGenerator pointGenerator, int personCount) {
         this.pointGenerator = pointGenerator;
         createPoints(personCount);
-
     }
 
     public List<Boolean> getPoints() {
@@ -22,11 +21,15 @@ public class Line {
         int pointsCount = personCount - 1;
         points.add(pointGenerator.generate());
         for(int index=0; index<pointsCount-1; index++){
-            if(points.get(index).equals(true)){
-                points.add(false);
-                continue;
-            }
-            points.add(pointGenerator.generate());
+            points.add(makePointAvoidingTrueRepetition(index));
         }
     }
+
+    private Boolean makePointAvoidingTrueRepetition(int index) {
+        if(points.get(index).equals(true)){
+            return Boolean.FALSE;
+        }
+        return pointGenerator.generate();
+    }
+
 }
