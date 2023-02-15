@@ -7,7 +7,7 @@
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
 
 ## 기능
-- [ ] 사다리 생성 기능
+- [x] 사다리 생성 기능
   - [x] 다리 랜덤 생성 기능
     - [x] 연속적인 다리 생성 불가
 
