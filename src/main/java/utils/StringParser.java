@@ -15,4 +15,12 @@ public class StringParser {
             throw new IllegalArgumentException("정수만 입력가능합니다.");
         }
     }
+
+    public static String putBlank(String input) {
+        StringBuilder stringBuilder = new StringBuilder(input);
+        for (int i = 0; i < 5 - input.length(); i++) {
+            stringBuilder.append(" ");
+        }
+        return stringBuilder.toString();
+    }
 }

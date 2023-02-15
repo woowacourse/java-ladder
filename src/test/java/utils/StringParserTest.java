@@ -8,6 +8,8 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class StringParserTest {
     @Test
@@ -48,5 +50,13 @@ class StringParserTest {
         assertThatThrownBy(() -> StringParser.parseToInteger(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("정수만 입력가능합니다.");
+    }
+
+    @ParameterizedTest(name = "문자열에 공백을 삽입하여 5글자로 만든다.")
+    @ValueSource(strings = {"a","adf","asdfg"})
+    void putBlankTest(String input) {
+        String result = StringParser.putBlank(input);
+
+        assertThat(result.length()).isEqualTo(5);
     }
 }
