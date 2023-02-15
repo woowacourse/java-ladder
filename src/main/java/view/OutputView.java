@@ -1,5 +1,6 @@
 package view;
 
+import domain.Bridge;
 import domain.Ladder;
 import domain.Line;
 
@@ -24,16 +25,9 @@ public class OutputView {
     }
 
     private static void printBridgesOf(Line line) {
-        for (Boolean bridge : line.getBridges()) {
-            System.out.print(getStatusOf(bridge));
+        for (Bridge bridge : line.getBridges()) {
+            System.out.print(bridge.getDisplay());
             System.out.print("|");
         }
-    }
-
-    private static String getStatusOf(Boolean bridge) {
-        if (bridge.equals(true)) {
-            return "-----";
-        }
-        return "     ";
     }
 }

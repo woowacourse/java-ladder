@@ -1,17 +1,17 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import helper.AbstractTestFixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LadderTest {
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+class LadderTest extends AbstractTestFixture {
 
     @ParameterizedTest(name = "사다리의 높이는 양수만 가능하다")
     @ValueSource(ints = {1, 999})
@@ -31,26 +31,14 @@ class LadderTest {
     void test_createLadder_with_lines() {
         // given
         List<Line> lines = List.of(
-                new Line(List.of(true, false, true)),
-                new Line(List.of(false, true, false)),
-                new Line(List.of(true, false, true)),
-                new Line(List.of(false, true, false)),
-                new Line(List.of(true, false, true))
+                new Line(convert(true, false, true)),
+                new Line(convert(false, true, false)),
+                new Line(convert(true, false, true)),
+                new Line(convert(false, true, false)),
+                new Line(convert(true, false, true))
         );
 
         // when & then
         assertThatNoException().isThrownBy(() -> new Ladder(createDefaultPerson(), lines));
-    }
-
-    private List<Line> createLines(int height) {
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(List.of(true, false, true)));
-        }
-        return lines;
-    }
-
-    private List<Person> createDefaultPerson() {
-        return List.of(new Person("aa"));
     }
 }
