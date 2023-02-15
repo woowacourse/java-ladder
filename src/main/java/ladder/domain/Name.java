@@ -2,9 +2,7 @@ package ladder.domain;
 
 class Name {
 
-    private static final String OVER_LENGTH_MESSAGE = "글자수가 5글자를 초과했습니다";
-    private static final String BLANK_MESSAGE = "이름이 빈 문자열이 될 수 없습니다";
-
+    public static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
     Name(String name) {
@@ -15,10 +13,10 @@ class Name {
     private void validateName(String name) {
         //todo 형식2
         if (isOverLength(name)) {
-            throw new IllegalArgumentException(OVER_LENGTH_MESSAGE);
+            throw new IllegalArgumentException("글자수가 5글자를 초과했습니다");
         }
         if (isBlank(name)) {
-            throw new IllegalArgumentException(BLANK_MESSAGE);
+            throw new IllegalArgumentException("이름이 빈 문자열이 될 수 없습니다");
         }
     }
 
@@ -27,7 +25,7 @@ class Name {
     }
 
     private boolean isOverLength(String name) {
-        return name.length() >= 6;
+        return name.length() > MAX_NAME_LENGTH;
     }
 
     String toDto() {

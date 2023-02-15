@@ -8,6 +8,7 @@ import ladder.dto.LinesDto;
 
 public class Lines {
 
+    public static final int USEFUL_INDEX_START = 1;
     private final List<Line> lines;
     private final Height height;
 
@@ -24,29 +25,29 @@ public class Lines {
                 .forEach(i -> generateLegsOfLine(generator, i));
     }
 
-    private void generateLegsOfLine(Generator generator, int lineIndex) {
-        for (int heightIndex = 0; heightIndex < height.getHeight(); heightIndex++) {
-            connectLegs(generator, lineIndex, heightIndex);
+    private void generateLegsOfLine(Generator generator, int columnIndex) {
+        for (int rowIndex = 0; rowIndex < height.getHeight(); rowIndex++) {
+            connectLegs(generator, columnIndex, rowIndex);
         }
     }
 
-    private void connectLegs(Generator generator, int lineIndex, int heightIndex) {
-        if (shouldConnect(generator, lineIndex, heightIndex)) {
-            lines.get(lineIndex).connectHeight(heightIndex);
+    private void connectLegs(Generator generator, int columnIndex, int rowIndex) {
+        if (shouldConnect(generator, columnIndex, rowIndex)) {
+            lines.get(columnIndex).connectHeight(rowIndex);
         }
     }
 
-    private boolean shouldConnect(Generator generator, int lineIndex, int heightIndex) {
-        return generator.generate() && !lines.get(lineIndex - 1).isConnected(heightIndex);
+    private boolean shouldConnect(Generator generator, int columnIndex, int rowIndex) {
+        return generator.generate() && !lines.get(columnIndex - 1).isConnected(rowIndex);
     }
 
     public LinesDto toDto() {
-        return new LinesDto(removeMeaninglessLine().stream()
+        return new LinesDto(removeUselessLine().stream()
                 .map(Line::toDto)
                 .collect(Collectors.toList()), height.getHeight());
     }
 
-    private List<Line> removeMeaninglessLine() {
-        return lines.subList(1, lines.size());
+    private List<Line> removeUselessLine() {
+        return lines.subList(USEFUL_INDEX_START, lines.size());
     }
 }

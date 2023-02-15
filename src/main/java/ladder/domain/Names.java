@@ -8,7 +8,7 @@ import ladder.util.StringSplitter;
 
 public class Names {
 
-    private static final Pattern pattern = Pattern.compile("[^,]+(,[^,]+)+");
+    private static final Pattern NAMES_FORMAT = Pattern.compile("[^,]+(,[^,]+)+");
     private final List<Name> names;
 
     public Names(String names) {
@@ -23,11 +23,11 @@ public class Names {
     private static void validateNames(String names) {
         //todo 형식1 : 형식2 와 비교했을 때, 어떤 메서드가 더 적절한 것 같나요?
         validateNull(names);
-        validateForm(names);
+        validateFormat(names);
     }
 
-    private static void validateForm(String names) {
-        if (!pattern.matcher(names).matches()) {
+    private static void validateFormat(String names) {
+        if (!NAMES_FORMAT.matcher(names).matches()) {
             throw new IllegalArgumentException("이름이 형식과 맞지 않습니다");
         }
     }
@@ -36,11 +36,6 @@ public class Names {
         if (names == null) {
             throw new IllegalArgumentException("이름이 null 입니다");
         }
-    }
-
-
-    private boolean isAlone() {
-        return names.size() <= 1;
     }
 
     public int getCount() {
