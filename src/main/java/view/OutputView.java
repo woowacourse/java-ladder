@@ -1,7 +1,7 @@
 package view;
 
-import domain.Floor;
-import domain.Floors;
+import domain.Line;
+import domain.Lines;
 import domain.Name;
 import java.util.List;
 
@@ -16,18 +16,18 @@ public class OutputView {
     private OutputView() {
     }
 
-    public void printResult(List<Name> names, Floors floors) {
+    public void printResult(List<Name> names, Lines lines) {
         System.out.println(Message.OUTPUT_RESULT.message);
         names.forEach(name -> System.out.printf("%-5s", name.getName()));
         System.out.println();
-        printLadder(floors);
+        printLadder(lines);
     }
 
-    public void printLadder(Floors floors) {
-        for (Floor floor : floors.getFloors()) {
+    public void printLadder(Lines lines) {
+        for (Line line : lines.getLines()) {
             StringBuilder result = new StringBuilder();
             result.append(Message.COLUMN_LADDER.message);
-            floor.getPoints()
+            line.getPoints()
                     .forEach(isPoint -> result.append(getPointString(isPoint)));
             System.out.println(result);
         }

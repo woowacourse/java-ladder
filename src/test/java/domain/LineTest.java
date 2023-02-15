@@ -12,7 +12,7 @@ import utils.booleanGenerator.BooleanGenerator;
 import utils.booleanGenerator.RandomBooleanGenerator;
 import utils.booleanGenerator.TrueBooleanGenerator;
 
-class FloorTest {
+class LineTest {
     private BooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
     private BooleanGenerator trueBooleanGenerator = new TrueBooleanGenerator();
 
@@ -24,7 +24,7 @@ class FloorTest {
         @ParameterizedTest
         @ValueSource(ints = {2, 100})
         void validPersonCountTest(int personCount) {
-            assertDoesNotThrow(() -> new Floor(personCount, randomBooleanGenerator));
+            assertDoesNotThrow(() -> new Line(personCount, randomBooleanGenerator));
         }
 
         @DisplayName("1명 이하, 101명 이상의 참가자는 예외 처리한다.")
@@ -32,7 +32,7 @@ class FloorTest {
         @ValueSource(ints = {0, 1, 101, 102})
         void invalidPersonCountTest(int personCount) {
             assertThatIllegalArgumentException()
-                    .isThrownBy(() -> new Floor(personCount, randomBooleanGenerator));
+                    .isThrownBy(() -> new Line(personCount, randomBooleanGenerator));
         }
     }
 
@@ -41,7 +41,7 @@ class FloorTest {
         @DisplayName("연속 true를 테스트한다.")
         @Test
         void trueSequenceTest() {
-            assertDoesNotThrow(() -> new Floor(3, randomBooleanGenerator));
+            assertDoesNotThrow(() -> new Line(3, randomBooleanGenerator));
         }
     }
 }

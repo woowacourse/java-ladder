@@ -1,14 +1,24 @@
-package utils.validator;
+package domain;
 
-public class FloorsValidator {
+public class Height {
 
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 100;
+    private final int height;
 
-    public static void validateFloorCount(int floorCount) {
-        if (floorCount < MIN_RANGE || floorCount > MAX_RANGE) {
+    public Height(int height) {
+        validate(height);
+        this.height = height;
+    }
+
+    public void validate(int height) {
+        if (height < MIN_RANGE || height > MAX_RANGE) {
             throw new IllegalArgumentException(Message.EXCEPTION_RANGE.message);
         }
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     private enum Message {

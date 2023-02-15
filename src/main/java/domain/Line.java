@@ -5,14 +5,14 @@ import java.util.List;
 import utils.booleanGenerator.BooleanGenerator;
 import utils.validator.FloorValidator;
 
-public class Floor {
+public class Line {
     private final BooleanGenerator generator;
     List<Boolean> points = new ArrayList<>();
 
-    public Floor(int personCount, BooleanGenerator generator) {
+    public Line(int personNumber, BooleanGenerator generator) {
         this.generator = generator;
-        FloorValidator.validatePersonCount(personCount);
-        for (int index = 0; index < personCount - 1; index++) {
+        FloorValidator.validatePersonNumber(personNumber);
+        for (int index = 0; index < personNumber - 1; index++) {
             points.add(getPoint(index));
         }
     }
