@@ -1,4 +1,5 @@
-import org.assertj.core.api.Assertions;
+package domain;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -62,7 +63,7 @@ public class LineTest {
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest(name = "Line 에 속한 발판은 존재하는 상태를 연속으로 가질 수 없다")
+    @ParameterizedTest(name = "domain.Line 에 속한 발판은 존재하는 상태를 연속으로 가질 수 없다")
     @MethodSource("consistExistScaffolds")
     void Line_에_속한_발판은_존재하는_상태를_연속으로_가질_수_없다(final List<Scaffold> scaffolds) {
         // when & then
