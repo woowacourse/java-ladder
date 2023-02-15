@@ -18,6 +18,14 @@ class LineTest {
         assertThat(points).containsExactly(Point.BLOCKED, Point.PASSABLE, Point.BLOCKED);
     }
 
+    @DisplayName("통과 가능한 포인트가 없는 Line을 생성한다")
+    @Test
+    void create_line_have_no_point() {
+        Line line = Line.createWithoutPassablePoint(3);
+        List<Point> points = line.getPoints();
+        assertThat(points).containsExactly(Point.BLOCKED, Point.BLOCKED, Point.BLOCKED);
+    }
+
     /**
      * 생성자를 통해 특정한 숫자값을 순서대로 반환하는 NumberGenerator
      */

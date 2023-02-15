@@ -33,7 +33,7 @@ public class Ladder {
     }
 
     private void addLastLine() {
-        lines.add(Line.create(ladderHeight.getLadderHeight(), () -> 0));
+        lines.add(Line.createWithoutPassablePoint(ladderHeight.getLadderHeight()));
     }
 
     public List<Line> getLines() {

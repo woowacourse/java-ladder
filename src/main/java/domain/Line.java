@@ -32,6 +32,14 @@ public class Line {
         points.add(Point.BLOCKED);
     }
 
+    public static Line createWithoutPassablePoint(int height) {
+        Line line = new Line();
+        for (int i = 0; i < height; i++) {
+            line.addPoint(() -> MIN_NUMBER_RETURN_TRUE - 1);
+        }
+        return line;
+    }
+
     public int getPointSize() {
         return this.points.size();
     }
