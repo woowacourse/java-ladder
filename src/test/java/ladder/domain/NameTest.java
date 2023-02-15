@@ -1,14 +1,20 @@
 package ladder.domain;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NameTest {
+
+    private Name name;
+
     @DisplayName("플레이어 이름 생성할 때")
     @Nested
     class PlayerInitiatorTest {
@@ -28,5 +34,14 @@ public class NameTest {
                     .hasMessageContaining("플레이어의 이름은 1자 이상 5자 이하여야 합니다.");
         }
 
+    }
+
+    @Test
+    @DisplayName("Name 객체 equals 테스트")
+    void equalsTest() {
+        String nameValue = "pobi";
+        this.name = new Name(nameValue);
+        Name other = new Name(nameValue);
+        assertThat(name).isEqualTo(other);
     }
 }
