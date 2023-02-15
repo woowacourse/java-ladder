@@ -38,5 +38,14 @@ class HeightTest {
 
     }
 
+    @DisplayName("높이의 값이 1줄어드는 기능 확인")
+    @Test
+    void countOfHeight() {
+        Height height = new Height("1");
+        height.minusHeight();
+        assertThat(height.isPossibleCount()).isFalse();
+
+    }
+
 
 }
