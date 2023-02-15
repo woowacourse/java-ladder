@@ -18,4 +18,8 @@ public class ParticipantName {
     private boolean isOutOfRange(final String name) {
         return name.length() > MAX_LENGTH;
     }
+
+    public String getName() {
+        return name;
+    }
 }

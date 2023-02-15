@@ -39,4 +39,8 @@ public class Participants {
             throw new IllegalArgumentException("[ERROR] 중복된 이름을 입력할 수 없습니다.");
         }
     }
+
+    public List<Participant> getParticipants() {
+        return participants;
+    }
 }
