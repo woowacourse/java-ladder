@@ -10,12 +10,29 @@ public class Controller {
     }
 
     public void run(){
-        List<String> usersName = inputView.inputUsername();
-        Ladders ladders = new Ladders(inputView.inputLadderHeight(),new RandomGenerator());
+        List<String> usersName = settingUsers();
+        Ladders ladders = settingLadders();
         ladders.make(usersName.size()-1);
         outputView.printUsers(usersName);
         for (Ladder ladder : ladders.getLadders()) {
             outputView.printLadder(ladder);
+        }
+    }
+
+    public List<String> settingUsers() {
+        try {
+            return inputView.inputUsername();
+        } catch (IllegalArgumentException e) {
+            return settingUsers();
+        }
+    }
+
+    public Ladders settingLadders() {
+        try {
+            int height = inputView.inputLadderHeight();
+            return new Ladders(height, new RandomGenerator());
+        } catch (IllegalArgumentException e) {
+            return settingLadders();
         }
     }
 }
