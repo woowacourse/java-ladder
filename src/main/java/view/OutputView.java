@@ -7,12 +7,12 @@ import model.Names;
 
 public class OutputView {
 
-    public static final String PARTICIPANT_NAME_FORMAT = "%-5s ";
-    public static final String PARTICIPANT_NAME_FORMAT_FOR_LAST_INDEX = "%4s";
-    public static final String LEFT_LEG = "    |";
-    public static final String LEG = "|";
-    public static final String ACTIVATED_BLOCK = "-----";
-    public static final String DEACTIVATED_BLOCK = "     ";
+    private static final String PARTICIPANT_NAME_FORMAT = "%-5s ";
+    private static final String PARTICIPANT_NAME_FORMAT_FOR_LAST_INDEX = "%4s";
+    private static final String LEFT_LEG = "    |";
+    private static final String LEG = "|";
+    private static final String ACTIVATED_BLOCK = "-----";
+    private static final String DEACTIVATED_BLOCK = "     ";
 
     public void noticeInputParticipants() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");

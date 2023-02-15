@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class InputView {
 
     private static final String DELIMITER = ",";
-    public static final int MINIMUM_LADDER_HEIGHT = 1;
+    private static final int MINIMUM_LADDER_HEIGHT = 1;
 
     private final Scanner scanner;
 

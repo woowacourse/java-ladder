@@ -2,7 +2,7 @@ package model;
 
 public class Name {
 
-    public static final int MAXIMUM_NAME_LENGTH = 5;
+    private static final int MAXIMUM_NAME_LENGTH = 5;
     private final String name;
 
     public Name(String name) {

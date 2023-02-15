@@ -10,9 +10,9 @@ import strategy.PassGenerator;
 
 public class BlockService {
 
-    public static final int HEAD_TO_BLOCK_SIZE = 1;
-    public static final int HEAD_TO_LEFT_INDEX = 1;
-    public static final int SECOND_BLOCK_INDEX = 1;
+    private static final int HEAD_TO_BLOCK_SIZE = 1;
+    private static final int HEAD_TO_LEFT_INDEX = 1;
+    private static final int SECOND_BLOCK_INDEX = 1;
     private final PassGenerator generator;
 
     public BlockService(PassGenerator generator) {
