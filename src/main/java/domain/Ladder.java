@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
     private static final int MAX_HEIGHT_RATIO = 2;
@@ -16,5 +17,11 @@ public class Ladder {
         if (height < playersCount || height > playersCount * MAX_HEIGHT_RATIO) {
             throw new IllegalArgumentException("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
         }
+    }
+
+    public List<String> asString() {
+        return lines.stream()
+                .map(Line::asString)
+                .collect(Collectors.toList());
     }
 }
