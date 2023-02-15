@@ -2,13 +2,15 @@ import java.util.regex.Pattern;
 
 public class Height {
     private int height;
-
     public Height(String height) {
         checkNumberMissMatch(height);
         checkNumberRange(height);
         this.height = Integer.parseInt(height);
     }
 
+    public boolean isPossibleCount() {
+        return this.height > 0;
+    }
 
     public void minusHeight() {
         this.height--;
