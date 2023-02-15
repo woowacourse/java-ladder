@@ -1,10 +1,10 @@
 package view;
 
+import domain.Height;
 import domain.Name;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import utils.validator.LadderSizeValidator;
 
 public class InputView {
     private static final InputView instance = new InputView();
@@ -26,10 +26,18 @@ public class InputView {
         return names;
     }
 
-    public int readLadderSize() {
+    public Height readHeight() {
         String input = readInput(Message.INPUT_LADDER_SIZE.message);
-        LadderSizeValidator.validate(input);
-        return Integer.parseInt(input);
+        return new Height(parseHeight(input));
+
+    }
+
+    private static int parseHeight(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException(Message.EXCEPTION_INVALID_HEIGHT.message);
+        }
     }
 
     private static String readInput(String message) {
@@ -39,7 +47,8 @@ public class InputView {
 
     private enum Message {
         INPUT_NAMES("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"),
-        INPUT_LADDER_SIZE("최대 사다리 높이는 몇 개인가요?");
+        INPUT_LADDER_SIZE("최대 사다리 높이는 몇 개인가요?"),
+        EXCEPTION_INVALID_HEIGHT("자연수만 입력 가능합니다.");
 
         private final String message;
 

@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Height;
 import domain.Lines;
 import domain.Name;
 import java.util.List;
@@ -18,8 +19,8 @@ public class MainController {
 
     public void start() {
         List<Name> names = inputView.readNames();
-        int ladderSize = inputView.readLadderSize();
-        Lines lines = new Lines(names.size(), ladderSize);
+        Height height = inputView.readHeight();
+        Lines lines = new Lines(names.size(), height.getHeight());
         outputView.printResult(names, lines);
     }
 }

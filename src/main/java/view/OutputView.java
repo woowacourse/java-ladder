@@ -20,10 +20,10 @@ public class OutputView {
         System.out.println(Message.OUTPUT_RESULT.message);
         names.forEach(name -> System.out.printf("%-5s", name.getName()));
         System.out.println();
-        printLadder(lines);
+        Lines(lines);
     }
 
-    public void printLadder(Lines lines) {
+    public void Lines(Lines lines) {
         for (Line line : lines.getLines()) {
             StringBuilder result = new StringBuilder();
             result.append(Message.COLUMN_LADDER.message);
