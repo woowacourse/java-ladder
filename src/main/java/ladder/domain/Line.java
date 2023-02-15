@@ -20,8 +20,7 @@ class Line {
         connected.add(height, true);
     }
 
-    //todo 명칭 변경
-    boolean getByHeight(int height) {
+    boolean isConnected(int height) {
         return connected.get(height);
     }
 

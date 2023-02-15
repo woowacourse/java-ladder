@@ -37,7 +37,7 @@ public class Lines {
     }
 
     private boolean shouldConnect(Generator generator, int lineIndex, int heightIndex) {
-        return generator.generate() && !lines.get(lineIndex - 1).getByHeight(heightIndex);
+        return generator.generate() && !lines.get(lineIndex - 1).isConnected(heightIndex);
     }
 
     public LinesDto toDto() {
