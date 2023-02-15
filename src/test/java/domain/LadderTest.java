@@ -17,8 +17,9 @@ class LadderTest {
         Ladder ladder = createLadder(3,3);
 
         List<Line> lines = ladder.getLines();
+
         int numberOfPoint = lines.stream()
-                .map(Line::getPointSize)
+                .map(line -> line.getPoints().size())
                 .collect(Collectors.toSet())
                 .size();
 
