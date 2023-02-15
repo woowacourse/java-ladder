@@ -40,7 +40,7 @@ public class Lines {
         return generator.generate() && !lines.get(lineIndex - 1).getByHeight(heightIndex);
     }
 
-    public List<Line> getLines() {
+    List<Line> getLines() {
         return lines.subList(1, lines.size() - 1);
     }
 

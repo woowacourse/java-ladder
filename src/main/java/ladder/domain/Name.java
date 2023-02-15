@@ -1,6 +1,6 @@
 package ladder.domain;
 
-public class Name {
+class Name {
 
     private static final String OVER_LENGTH_MESSAGE = "글자수가 6글자를 초과했습니다";
     private static final String BLANK_MESSAGE = "이름이 빈 문자열이 될 수 없습니다";
@@ -8,7 +8,7 @@ public class Name {
 
     private final String name;
 
-    public Name(String name) {
+    Name(String name) {
         validateName(name);
         this.name = name;
     }
@@ -25,7 +25,7 @@ public class Name {
         }
     }
 
-    public String toDto() {
+    String toDto() {
         return name;
     }
 }
