@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Block;
 import model.Blocks;
+import model.Name;
+import model.Names;
 import strategy.PassGenerator;
 
 public class BlockService {
@@ -21,10 +23,10 @@ public class BlockService {
         Block firstBlock = new Block(generator.generate());
         List<Block> blocks = new ArrayList<>();
         blocks.add(firstBlock);
-        return new Blocks(genelateBlocks(peopleCount, blocks));
+        return new Blocks(generateBlocks(peopleCount, blocks));
     }
 
-    private List<Block> genelateBlocks(int peopleCount, List<Block> blocks) {
+    private List<Block> generateBlocks(int peopleCount, List<Block> blocks) {
         for (int i = SECOND_BLOCK_INDEX; i < peopleCount - HEAD_TO_BLOCK_SIZE; i++) {
             Block leftBlock = blocks.get(i - HEAD_TO_LEFT_INDEX);
             Block rightBlock = new Block(generator.generate());
@@ -40,4 +42,13 @@ public class BlockService {
         }
         return rightBlock;
     }
+
+    public Names generateNames(List<String> input){
+        List<Name> names = new ArrayList<>();
+        for (String name : input) {
+            names.add(new Name(name));
+        }
+        return new Names(names);
+    }
+
 }
