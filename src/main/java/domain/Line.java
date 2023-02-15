@@ -3,7 +3,6 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import utils.booleanGenerator.BooleanGenerator;
-import utils.validator.FloorValidator;
 
 public class Line {
     private final BooleanGenerator generator;
@@ -11,10 +10,18 @@ public class Line {
 
     public Line(int personNumber, BooleanGenerator generator) {
         this.generator = generator;
-        FloorValidator.validatePersonNumber(personNumber);
-        for (int index = 0; index < personNumber - 1; index++) {
+        for (int index = 0; index < getPointSize(personNumber); index++) {
             points.add(getPoint(index));
         }
+    }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
+
+    private static int getPointSize(int personNumber) {
+        PersonNumber number = new PersonNumber(personNumber);
+        return number.getPersonNumber() - 1;
     }
 
     private boolean getPoint(int index) {
@@ -24,7 +31,4 @@ public class Line {
         return generator.generate();
     }
 
-    public List<Boolean> getPoints() {
-        return points;
-    }
 }
