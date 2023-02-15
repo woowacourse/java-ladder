@@ -2,8 +2,7 @@ package controller;
 
 import domain.Height;
 import domain.Lines;
-import domain.Name;
-import java.util.List;
+import domain.Names;
 import view.InputView;
 import view.OutputView;
 
@@ -18,9 +17,9 @@ public class MainController {
     }
 
     public void start() {
-        List<Name> names = inputView.readNames();
+        Names names = inputView.readNames();
         Height height = inputView.readHeight();
-        Lines lines = new Lines(names.size(), height.getHeight());
+        Lines lines = new Lines(names.getPersonNumber(), height.getHeight());
         outputView.printResult(names, lines);
     }
 }

@@ -10,18 +10,14 @@ public class Line {
 
     public Line(int personNumber, BooleanGenerator generator) {
         this.generator = generator;
-        for (int index = 0; index < getPointSize(personNumber); index++) {
+        int pointSize = personNumber - 1;
+        for (int index = 0; index < pointSize; index++) {
             points.add(getPoint(index));
         }
     }
 
     public List<Boolean> getPoints() {
         return points;
-    }
-
-    private static int getPointSize(int personNumber) {
-        PersonNumber number = new PersonNumber(personNumber);
-        return number.getPersonNumber() - 1;
     }
 
     private boolean getPoint(int index) {

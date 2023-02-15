@@ -13,8 +13,8 @@ import utils.booleanGenerator.RandomBooleanGenerator;
 import utils.booleanGenerator.TrueBooleanGenerator;
 
 class LineTest {
-    private BooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
-    private BooleanGenerator trueBooleanGenerator = new TrueBooleanGenerator();
+    private final BooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
+    private final BooleanGenerator trueBooleanGenerator = new TrueBooleanGenerator();
 
     @Nested
     class personCountTest {

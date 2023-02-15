@@ -2,8 +2,7 @@ package view;
 
 import domain.Line;
 import domain.Lines;
-import domain.Name;
-import java.util.List;
+import domain.Names;
 
 public class OutputView {
 
@@ -16,9 +15,10 @@ public class OutputView {
     private OutputView() {
     }
 
-    public void printResult(List<Name> names, Lines lines) {
+    public void printResult(Names names, Lines lines) {
         System.out.println(Message.OUTPUT_RESULT.message);
-        names.forEach(name -> System.out.printf("%-5s", name.getName()));
+        names.getNames()
+                .forEach(name -> System.out.printf("%-5s", name.getName()));
         System.out.println();
         Lines(lines);
     }
@@ -44,7 +44,7 @@ public class OutputView {
         OUTPUT_RESULT("실행결과\n"),
         COLUMN_LADDER("  |"),
         ROW_LADDER("-----|"),
-        EMPTY_ROW_LADDER("     |");;
+        EMPTY_ROW_LADDER("     |");
 
         private final String message;
 

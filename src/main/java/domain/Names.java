@@ -1,18 +1,28 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class PersonNumber {
-    public static final int MIN_RANGE = 2;
-    public static final int MAX_RANGE = 100;
-    private final int personNumber;
+public class Names {
+    private static final int MIN_RANGE = 2;
+    private static final int MAX_RANGE = 100;
 
-    public PersonNumber(int personNumber) {
-        validate(personNumber);
-        this.personNumber = personNumber;
+    private final List<Name> names;
+
+    public Names(String names) {
+        this.names = new ArrayList<>();
+        for (String name : names.split(",")) {
+            this.names.add(new Name(name.trim()));
+        }
+        validate(this.names.size());
+    }
+
+    public List<Name> getNames() {
+        return names;
     }
 
     public int getPersonNumber() {
-        return personNumber;
+        return names.size();
     }
 
     private static void validate(int personNumber) {
@@ -20,6 +30,7 @@ public class PersonNumber {
             throw new IllegalArgumentException(Message.EXCEPTION_RANGE.message);
         }
     }
+
 
     private enum Message {
         EXCEPTION_RANGE("%d 이상 %d 이하의 자연수만 입력해 주세요.", MIN_RANGE, MAX_RANGE);

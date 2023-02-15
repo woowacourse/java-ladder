@@ -1,9 +1,7 @@
 package view;
 
 import domain.Height;
-import domain.Name;
-import java.util.ArrayList;
-import java.util.List;
+import domain.Names;
 import java.util.Scanner;
 
 public class InputView {
@@ -17,13 +15,9 @@ public class InputView {
     private InputView() {
     }
 
-    public List<Name> readNames() {
+    public Names readNames() {
         String input = readInput(Message.INPUT_NAMES.message);
-        List<Name> names = new ArrayList<>();
-        for (String name : input.split(",")) {
-            names.add(new Name(name.trim()));
-        }
-        return names;
+        return new Names(input);
     }
 
     public Height readHeight() {
