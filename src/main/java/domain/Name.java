@@ -1,5 +1,7 @@
 package domain;
 
+import utils.validator.NameValidator;
+
 public class Name {
 
     private static final int MIN_LENGTH = 1;
