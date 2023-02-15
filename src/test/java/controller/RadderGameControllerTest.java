@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Map;
 import domain.Participants;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -7,6 +8,7 @@ import java.io.PrintStream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import util.BooleanGenerator;
 import validate.ErrorMessage;
 import view.InputView;
 
@@ -41,6 +43,37 @@ class RadderGameControllerTest {
         Participants participants = radderGameController.makeParticipants(new InputView());
         Assertions.assertThat(byteArrayOutputStream.toString()).contains(
             ErrorMessage.INVALID_PERSON_NAME.getMessage()
+        );
+    }
+
+    @DisplayName("컨트롤러는 인풋뷰를 사용해 Map을 정상적으로 생성한다.")
+    @Test
+    void makeMapSuccess() {
+        setInput("3");
+        RadderGameController radderGameController = new RadderGameController();
+        Participants participants = new Participants("split,jamie,pobi");
+        Map map = radderGameController.makeMap(new InputView(), participants);
+        map.generate(new BooleanGenerator() {
+            @Override
+            public boolean generate() {
+                return true;
+            }
+        });
+
+        Assertions.assertThat(map.getLadders().get(0).getStatus()).containsExactly(true, true, true);
+        Assertions.assertThat(map.getLadders().get(1).getStatus()).containsExactly(false, false, false);
+    }
+
+    @DisplayName("컨트롤러는 잘못된 입력으로 Map 생성시 오류를 던진다.")
+    @Test
+    void makeMapFail() {
+        setInput("11\n3");
+        setOutput();
+        RadderGameController radderGameController = new RadderGameController();
+        Participants participants = new Participants("split,jamie,pobi");
+        radderGameController.makeMap(new InputView(), participants);
+        Assertions.assertThat(byteArrayOutputStream.toString()).contains(
+            ErrorMessage.INVALID_LADDER_HEIGHT.getMessage()
         );
     }
 }
