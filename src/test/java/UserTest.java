@@ -2,8 +2,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UserTest {
     @DisplayName("유저 이름이 1글자에서 5글자 사이가 아니면 예외가 발생한다.")
@@ -20,4 +20,14 @@ public class UserTest {
     void userNameLengthTest(String name) {
         assertThatCode(() -> new User(name)).doesNotThrowAnyException();
     }
+
+    @DisplayName("유저 이름이 공백으로만 이루어진 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {" ", "  ", "    "})
+    void userBlankTest(String name) {
+        assertThrows(IllegalArgumentException.class,
+                () -> new User(name));
+    }
+
+
 }
