@@ -10,6 +10,10 @@ public class Name {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void validateNameLength(String name) {
         if(name.isBlank() || name.length() > NAME_MAXIMUM_LENGTH) {
             throw new IllegalArgumentException("플레이어의 이름은 1자 이상 5자 이하여야 합니다.");
