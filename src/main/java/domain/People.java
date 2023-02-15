@@ -7,7 +7,7 @@ package domain;
  */
 public class People {
 
-    private String name;
+    private final String name;
 
     public People(String name) {
         this.name = name;

@@ -11,7 +11,9 @@
 - [x] Boolean 값 랜덤 생성을 한다.
 
 ## Model
-- [ ] Peoples를 생성한다.
-- [ ] People를 생성한다.
+- [x] Peoples를 생성한다.
+  - [x] People를 생성한다.
+- [x] Lines를 생성한다.
+  - [X] Line을 생성한다.
 
 [//]: # (- [ ] )
