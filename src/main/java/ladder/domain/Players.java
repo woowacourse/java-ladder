@@ -17,6 +17,16 @@ public class Players {
         this.players = new ArrayList<>(players);
     }
 
+    public int count() {
+        return players.size();
+    }
+
+    public List<String> getNames() {
+        return players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
+    }
+
     private void validateDuplicatedNames(List<Player> players) {
         Set<String> names = players.stream()
                 .map(Player::getName)
@@ -32,5 +42,4 @@ public class Players {
             throw new IllegalArgumentException("플레이어의 수는 2명 이상이어야 합니다.");
         }
     }
-
 }

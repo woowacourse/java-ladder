@@ -42,11 +42,11 @@ public class PlayersTest {
     }
 
     @Nested
-    @DisplayName("Players")
+    @DisplayName("플레이어 수 테스트")
     class PlayersInitiator {
 
         @Test
-        @DisplayName("플레이어의 수가 1명인 경우, 예외가 발생한다")
+        @DisplayName("1명인 경우, 예외가 발생한다")
         void validateOnePlayer() {
             List<String> playerNames = List.of("pobi");
 
@@ -57,7 +57,7 @@ public class PlayersTest {
         }
 
         @Test
-        @DisplayName("플레이어의 수가 0명인 경우, 예외가 발생한다")
+        @DisplayName("0명인 경우, 예외가 발생한다")
         void validateZeroPlayer() {
             List<String> playerNames = Collections.emptyList();
 
@@ -78,8 +78,7 @@ public class PlayersTest {
 
     @Test
     @DisplayName("플레이어 이름 리스트 반환 테스트")
-    void getCountTest() {
-
+    void getNameTest() {
         List<Player> players = createPlayersByNames(correctPlayerNames);
 
         assertThat(new Players(players).getNames()).isEqualTo(correctPlayerNames);

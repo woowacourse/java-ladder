@@ -14,19 +14,23 @@ public class ResultView {
     private static final String EMPTY_BAR_SYMBOL = " ";
     private static final String LADDER_VERTICAL_SYMBOL = "|";
     private static final String OUTPUT_RESULT_MESSAGE = "실행결과";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
-    public static void printLadder(List<Name> playerNames, int nameLength, List<Line> ladder) {
+    public static void printLadder(List<String> playerNames, int nameLength, List<Line> ladder) {
         System.out.println(OUTPUT_RESULT_MESSAGE);
         System.out.println(convertPlayerNames(playerNames, nameLength));
         System.out.println(convertLadder(ladder, nameLength));
-
     }
 
-    private static String convertPlayerNames(List<Name> playerNames, int nameLength) {
+    public static void printError(String errorMessage){
+        System.out.println(errorMessage);
+    }
+
+    private static String convertPlayerNames(List<String> playerNames, int nameLength) {
         String pattern = "%" + nameLength + "s";
 
         return playerNames.stream()
-                .map(name -> String.format(pattern, name.getName()))
+                .map(name -> String.format(pattern, name))
                 .collect(Collectors.joining(BLANK_BETWEEN_NAMES));
     }
 
