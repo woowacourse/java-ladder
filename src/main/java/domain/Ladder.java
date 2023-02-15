@@ -21,12 +21,12 @@ public class Ladder {
     }
 
     public void buildBridge(int y, int x) {
-        lines.get(x - 1).getPoints().get(y - 1).changeDirection(Direction.RIGHT_DOWN);
-        lines.get(x).getPoints().get(y - 1).changeDirection(Direction.LEFT_DOWN);
+        lines.get(x).getPoints().get(y).changeDirection(Direction.RIGHT_DOWN);
+        lines.get(x + 1).getPoints().get(y).changeDirection(Direction.LEFT_DOWN);
     }
 
     public Point getPoint(int y, int x) {
-        return lines.get(x - 1).getPoints().get(y - 1);
+        return lines.get(x).getPoints().get(y);
     }
 
     public List<Line> getLines() {

@@ -22,9 +22,9 @@ public class LineTest {
         Line line = Line.fromHeight(new Height(5));
         Direction rightDown = Direction.RIGHT_DOWN;
 
-        line.changePointDirectionAt(rightDown, 1);
+        line.changePointDirectionAt(rightDown, 0);
 
-        assertThat(line.getPoints().get(1).matchDirection(rightDown)).isFalse();
+        assertThat(line.getPoints().get(0).matchDirection(rightDown)).isTrue();
     }
 
     @Test
@@ -33,8 +33,8 @@ public class LineTest {
         Line line = Line.fromHeight(new Height(5));
         Direction rightDown = Direction.RIGHT_DOWN;
 
-        line.changePointDirectionAt(rightDown, 1);
-        boolean existAt = line.isPointDirectionStraight(1);
+        line.changePointDirectionAt(rightDown, 0);
+        boolean existAt = line.isPointDirectionStraight(0);
 
         assertThat(existAt).isFalse();
     }

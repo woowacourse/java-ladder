@@ -32,10 +32,10 @@ public class LadderTest {
         Height height = new Height(heightSize);
 
         Ladder ladder = Ladder.of(playerNumber, height);
-        ladder.buildBridge(1, 2);
+        ladder.buildBridge(0, 1);
 
-        ladder.getPoint(1, 2).matchDirection(Direction.RIGHT_DOWN);
-        ladder.getPoint(1, 3).matchDirection(Direction.LEFT_DOWN);
+        ladder.getPoint(0, 1).matchDirection(Direction.RIGHT_DOWN);
+        ladder.getPoint(0, 2).matchDirection(Direction.LEFT_DOWN);
     }
 
 
