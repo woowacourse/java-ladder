@@ -12,7 +12,7 @@ public class InputView {
 
     private static final Scanner sc = new Scanner(System.in);
 
-    public static List<String> readNames() {
+    public static List<String> requestNames() {
         printMessage(Message.ASK_USER_NAMES);
 
         List<String> names = Arrays.asList(sc.nextLine().split(DELIMITER));
@@ -21,7 +21,7 @@ public class InputView {
         return names;
     }
 
-    public static int readLadderHeight() {
+    public static int requestLadderHeight() {
         printMessage(Message.ASK_LADDER_HEIGHT);
 
         String input = sc.nextLine();
@@ -37,7 +37,7 @@ public class InputView {
     }
 
     private static boolean hasDuplicateName(List<String> names) {
-        return names.size() == names.stream().distinct().count();
+        return names.size() != names.stream().distinct().count();
     }
 
     private static void validateNumber(String input) {
