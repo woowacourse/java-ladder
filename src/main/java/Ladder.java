@@ -6,11 +6,11 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(final List<Line> lines) {
-        validate(lines);
+        validateLines(lines);
         this.lines = new ArrayList<>(lines);
     }
 
-    private static void validate(final List<Line> lines) {
+    private static void validateLines(final List<Line> lines) {
         validateLineSizeEmpty(lines);
         validateLinesSameSize(lines);
     }
@@ -32,7 +32,6 @@ public class Ladder {
             throw new IllegalArgumentException();
         }
     }
-
 
     public int getHeight() {
         return lines.size();

@@ -54,20 +54,17 @@ public class LadderTest {
     }
 
     private static Stream<Arguments> sameLengthLines() {
-        List<Scaffold> size0Scaffolds = List.of();
         List<Scaffold> size1Scaffolds = List.of(Scaffold.EXIST);
         List<Scaffold> size2Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE);
         List<Scaffold> size3Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST);
         List<Scaffold> size4Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE);
 
-        Line line0 = new Line(size0Scaffolds);
         Line line1 = new Line(size1Scaffolds);
         Line line2 = new Line(size2Scaffolds);
         Line line3 = new Line(size3Scaffolds);
         Line line4 = new Line(size4Scaffolds);
 
         return Stream.of(
-                Arguments.of(List.of(line0, line0)),
                 Arguments.of(List.of(line1, line1)),
                 Arguments.of(List.of(line2, line2, line2)),
                 Arguments.of(List.of(line3, line3, line3, line3)),
@@ -75,7 +72,6 @@ public class LadderTest {
                 Arguments.of(List.of(line2))
         );
     }
-
 
     @ParameterizedTest(name = "사다리에 속한 Line 은 모두 길이가 같아야 한다")
     @MethodSource("differentSizeLines")
@@ -86,20 +82,18 @@ public class LadderTest {
     }
 
     private static Stream<Arguments> differentSizeLines() {
-        List<Scaffold> size0Scaffolds = List.of();
         List<Scaffold> size1Scaffolds = List.of(Scaffold.EXIST);
         List<Scaffold> size2Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE);
         List<Scaffold> size3Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST);
         List<Scaffold> size4Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE);
 
-        Line line0 = new Line(size0Scaffolds);
         Line line1 = new Line(size1Scaffolds);
         Line line2 = new Line(size2Scaffolds);
         Line line3 = new Line(size3Scaffolds);
         Line line4 = new Line(size4Scaffolds);
 
         return Stream.of(
-                Arguments.of(List.of(line0, line1)),
+                Arguments.of(List.of(line2, line1)),
                 Arguments.of(List.of(line1, line2)),
                 Arguments.of(List.of(line1, line1, line2)),
                 Arguments.of(List.of(line3, line3, line3, line4))

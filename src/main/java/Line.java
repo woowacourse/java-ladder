@@ -9,6 +9,17 @@ public class Line {
     }
 
     private static void validateScaffolds(final List<Scaffold> scaffolds) {
+        validateScaffoldSizeEmpty(scaffolds);
+        validateConsistExistScaffolds(scaffolds);
+    }
+
+    private static void validateScaffoldSizeEmpty(final List<Scaffold> scaffolds) {
+        if (scaffolds.size() == 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateConsistExistScaffolds(final List<Scaffold> scaffolds) {
         for (int i = 0; i < scaffolds.size() - 1; i++) {
             validateConsistExistScaffold(scaffolds, i);
         }

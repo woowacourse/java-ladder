@@ -1,3 +1,4 @@
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -46,9 +47,19 @@ public class LineTest {
                 Arguments.of(List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST)),
                 Arguments.of(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST)),
                 Arguments.of(List.of(Scaffold.NONE, Scaffold.NONE)),
-                Arguments.of(List.of(Scaffold.EXIST)),
-                Arguments.of(List.of())
+                Arguments.of(List.of(Scaffold.EXIST))
         );
+    }
+
+    @Test
+    void 발판의_개수는_1개_이상이어야_한다() {
+        // given
+        List<Scaffold> scaffolds = List.of();
+
+        // when & then
+        assertThatThrownBy(() ->
+                new Line(scaffolds)
+        ).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest(name = "Line 에 속한 발판은 존재하는 상태를 연속으로 가질 수 없다")
