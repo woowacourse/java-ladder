@@ -8,19 +8,29 @@ class Line {
 
     private final List<Boolean> connected;
 
-    Line(Height height) {
-        connected = new ArrayList<>(Collections.nCopies(height.getHeight(), false));
+    //todo width 고민
+    Line(int width) {
+        connected = new ArrayList<>(Collections.nCopies(width, false));
     }
 
-    void connectHeight(int height) {
-        connected.set(height, true);
+    //todo 메서드명 변경
+    void generateRandom(Generator generator) {
+        for (int i = 1; i < connected.size(); i++) {
+            connect(generator, i);
+        }
     }
 
-    boolean isConnected(int height) {
-        return connected.get(height);
+    private void connect(Generator generator, int i) {
+        if (shouldConnect(generator, i)) {
+            connected.set(i, true);
+        }
+    }
+
+    private boolean shouldConnect(Generator generator, int index) {
+        return generator.generate() && !connected.get(index - 1);
     }
 
     List<Boolean> toDto() {
-        return connected;
+        return connected.subList(1, connected.size());
     }
 }

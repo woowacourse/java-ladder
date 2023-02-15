@@ -1,15 +1,30 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class LineTest {
 
-    @Test
-    void 특정_위치의_사다리_연결_기능_테스트() {
-        Line line = new Line(new Height(3));
-        line.connectHeight(1);
-        Assertions.assertThat(line.isConnected(1)).isTrue();
+    private Line line;
+
+    @BeforeEach
+    void setLine() {
+        line = new Line(5);
     }
 
+    @Test
+    void 가능한_모든_경우에_사다리가_이어집니다() {
+        MockGenerator mockGenerator = new MockGenerator(true);
+        line.generateRandom(mockGenerator);
+        assertThat(line.toDto()).containsExactly(true, false, true, false);
+    }
+
+    @Test
+    void 모두_빈_사다리가_만들어집니다() {
+        MockGenerator mockGenerator = new MockGenerator(false);
+        line.generateRandom(mockGenerator);
+        assertThat(line.toDto()).containsExactly(false, false, false, false);
+    }
 }

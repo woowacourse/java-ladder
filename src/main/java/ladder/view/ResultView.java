@@ -29,22 +29,21 @@ public class ResultView {
     }
 
     private static void printLines(LinesDto linesDto) {
-        List<List<Boolean>> lines = linesDto.getLines();
-        for (int i = 0; i < linesDto.getHeight(); i++) {
-            printRow(lines, i);
-        }
-    }
-
-    private static void printRow(List<List<Boolean>> lines, int rowIndex) {
         System.out.println();
-        System.out.print("    |");
-        for (int j = 0; j < lines.size(); j++) {
-            printLeg(lines, rowIndex, j);
-        }
+        List<List<Boolean>> lines = linesDto.getLines();
+        lines.forEach(ResultView::printLine);
     }
 
-    private static void printLeg(List<List<Boolean>> lines, int rowIndex, int columnIndex) {
-        if (lines.get(columnIndex).get(rowIndex)) {
+    private static void printLine(List<Boolean> line) {
+        System.out.print("|");
+        for (int i = 0; i < line.size(); i++) {
+            printLeg(line, i);
+        }
+        System.out.println();
+    }
+
+    private static void printLeg(List<Boolean> line, int index) {
+        if (line.get(index)) {
             System.out.print("-----|");
             return;
         }
