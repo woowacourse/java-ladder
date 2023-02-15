@@ -11,22 +11,28 @@ import domain.Peoples;
  */
 public class OutputView {
 
+    private static final String EXECUTE_RESULT = "실행결과";
+
     public static void printResult(Peoples peoples, Lines lines) {
-        System.out.println("\n실행결과\n");
+        System.out.println("\n" + EXECUTE_RESULT + "\n");
         printNames(peoples);
         printLadder(lines);
     }
 
     private static void printNames(Peoples peoples) {
         for (People people : peoples.getPeoples()) {
-            if (people.getName().length() < 5) {
-                System.out.printf("%4s  ", people.getName());
-            }
-            if (people.getName().length() == 5) {
-                System.out.printf("%4s ", people.getName());
-            }
+            calculateNameLength(people.getName());
         }
         System.out.println();
+    }
+
+    private static void calculateNameLength(String name) {
+        if (name.length() < 5) {
+            System.out.printf("%4s  ", name);
+        }
+        if (name.length() == 5) {
+            System.out.printf("%4s ", name);
+        }
     }
 
     private static void printLadder(Lines lines) {

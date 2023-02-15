@@ -8,7 +8,7 @@ import java.util.List;
  * @Created by 최원용 on 2023. 02. 15.
  */
 public enum LadderShape {
-    WALL("|"), CONNECT("-----"), DISCONNECT("     ");
+    WALL("|"), FIRST_WALL("    |"), CONNECT("-----"), DISCONNECT("     ");
 
     LadderShape(String shape) {
         this.shape = shape;
@@ -18,14 +18,18 @@ public enum LadderShape {
 
     public static StringBuilder getLineForm(List<Boolean> points) {
         StringBuilder sb = new StringBuilder();
-        sb.append("    |");
+        sb.append(FIRST_WALL.shape);
         for (boolean point : points) {
-            if (point) {
-                sb.append(CONNECT.shape).append(WALL.shape);
-            } else {
-                sb.append(DISCONNECT.shape).append(WALL.shape);
-            }
+            appendLineForm(point, sb);
         }
         return sb;
+    }
+
+    private static void appendLineForm(boolean point, StringBuilder sb) {
+        if (point) {
+            sb.append(CONNECT.shape).append(WALL.shape);
+            return;
+        }
+        sb.append(DISCONNECT.shape).append(WALL.shape);
     }
 }
