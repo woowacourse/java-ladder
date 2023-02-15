@@ -1,6 +1,8 @@
 package domain;
 
 
+import java.util.Objects;
+
 public class Name {
 
     private static final int MAX_NAME_LENGTH = 5;
@@ -11,6 +13,7 @@ public class Name {
         validate(name);
         this.name = name;
     }
+
 
     private void validate(String name) {
         validateBlank(name);
@@ -31,5 +34,22 @@ public class Name {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Name ohterName = (Name) o;
+        return name.equals(ohterName.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
