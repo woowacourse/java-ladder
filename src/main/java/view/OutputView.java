@@ -12,24 +12,25 @@ public class OutputView {
     private static final String POINT = "-----|";
     private static final String BLANK = "     |";
 
-    public void printNames(Players players) {
+    public static void printNames(Players players) {
         players.getPlayers().stream()
                 .map(Player::getName)
-                .forEach(this::printName);
+                .forEach(OutputView::printName);
+        System.out.println();
     }
 
-    private void printName(String name) {
+    private static void printName(String name) {
         int length = name.length();
-        String result = " ".repeat(5 - length);
+        String result = " ".repeat(7 - length);
         result += name;
         System.out.print(result);
     }
 
-    public void printLadder(Ladder ladder) {
-        ladder.getLadder().forEach(this::printLine);
+    public static void printLadder(Ladder ladder) {
+        ladder.getLadder().forEach(OutputView::printLine);
     }
 
-    private void printLine(Line line) {
+    private static void printLine(Line line) {
         List<Boolean> points = line.getPoints();
         String result = "    |";
         for (Boolean point : points) {
