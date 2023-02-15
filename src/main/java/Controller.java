@@ -13,5 +13,9 @@ public class Controller {
         List<String> usersName = inputView.inputUsername();
         Ladders ladders = new Ladders(inputView.inputLadderHeight(),new RandomGenerator());
         ladders.make(usersName.size()-1);
+        outputView.printUsers(usersName);
+        for (Ladder ladder : ladders.getLadders()) {
+            outputView.printLadder(ladder);
+        }
     }
 }
