@@ -10,19 +10,20 @@ public class Players {
     private final List<Player> players;
 
     public Players(List<String> playerNames) {
-        validatePlayerNames(playerNames);
-        this.players = playerNames.stream()
+        List<Player> tempPlayers = playerNames.stream()
                 .map(name -> new Player(name))
                 .collect(Collectors.toUnmodifiableList());
+        validatePlayerNames(tempPlayers);
+        this.players = List.copyOf(tempPlayers);
     }
 
-    private void validatePlayerNames(List<String> playerNames) {
-        Set<String> nameSet = new HashSet<>(playerNames);
-        if (nameSet.size() != playerNames.size()) {
+    private void validatePlayerNames(List<Player> tempPlayers) {
+        Set<Player> nameSet = new HashSet<>(tempPlayers);
+        if (nameSet.size() != tempPlayers.size()) {
             throw new IllegalArgumentException("[ERROR] 플레이어 이름이 중복되었습니다.");
         }
 
-        if (playerNames.size() < 2) {
+        if (tempPlayers.size() < 2) {
             throw new IllegalArgumentException("[ERROR] 2명 이상의 플레이어가 필요합니다.");
         }
     }

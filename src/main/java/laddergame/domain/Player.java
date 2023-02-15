@@ -18,4 +18,17 @@ public class Player {
     public String getName() {
         return name;
     }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof  Player) {
+            return name.equals(((Player) obj).getName());
+        }
+        return false;
+    }
 }
