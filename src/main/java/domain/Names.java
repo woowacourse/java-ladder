@@ -4,20 +4,43 @@ import java.util.Collections;
 import java.util.List;
 
 public class Names {
-    //TODO: List<String> 대신 List<Name> 고려
-    public Names(List<String> names) {
-        names.forEach(name -> {
-            if (Collections.frequency(names, name) > 1) {
+
+    public static final int MAX_SIZE = 10;
+    public static final int MIN_SIZE = 1;
+    private final List<Name> names;
+
+    public Names(final List<Name> names) {
+        validateNames(names);
+        this.names = names;
+    }
+
+    private static void validateNames(final List<Name> names) {
+        validateDuplicated(names);
+        validateMinSize(names);
+        validateMaxSize(names);
+    }
+
+    private static void validateMaxSize(final List<Name> names) {
+        if (names.size() > MAX_SIZE) {
+            throw new IllegalArgumentException("최대 10명 이하 참가자가 필요합니다.");
+        }
+    }
+
+    private static void validateMinSize(final List<Name> names) {
+        if (names.size() == MIN_SIZE) {
+            throw new IllegalArgumentException("최소 2명이상 참가자가 필요합니다.");
+        }
+    }
+
+    private static void validateDuplicated(final List<Name> names) {
+        names.forEach(target -> {
+            if (hasDuplication(names, target)) {
                 throw new IllegalArgumentException("중복된 사람은 참여할 수 없습니다.");
             }
         });
+    }
 
-        if(names.size() == 1){
-            throw new IllegalArgumentException("최소 2명이상 참가자가 필요합니다.");
-        }
-
-        if(names.size() >= 11){
-            throw new IllegalArgumentException("최대 10명 이하 참가자가 필요합니다.");
-        }
+    private static boolean hasDuplication(final List<Name> names, Name target){
+        return (Collections.frequency(names, target) > 1);
     }
 }
