@@ -19,13 +19,13 @@ public class Line {
     public static Line create(int height, NumberGenerator numberGenerator) {
         Line line = new Line();
         for (int i = 0; i < height; i++) {
-            line.addPoint(numberGenerator);
+            line.addPoint(numberGenerator.generate());
         }
         return line;
     }
 
-    private void addPoint(NumberGenerator numberGenerator) {
-        if (numberGenerator.generate() >= MIN_NUMBER_RETURN_TRUE) {
+    private void addPoint(int number) {
+        if (number >= MIN_NUMBER_RETURN_TRUE) {
             points.add(Point.PASSABLE);
             return;
         }
@@ -35,7 +35,7 @@ public class Line {
     public static Line createWithoutPassablePoint(int height) {
         Line line = new Line();
         for (int i = 0; i < height; i++) {
-            line.addPoint(() -> MIN_NUMBER_RETURN_TRUE - 1);
+            line.addPoint(MIN_NUMBER_RETURN_TRUE - 1);
         }
         return line;
     }
