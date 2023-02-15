@@ -1,6 +1,7 @@
 package domain;
 
-import java.util.Collections;
+import static java.util.List.*;
+
 import java.util.List;
 
 public class Line {
@@ -11,7 +12,7 @@ public class Line {
 
         validateBridges(bridges);
 
-        this.bridges = Collections.unmodifiableList(bridges);
+        this.bridges = copyOf(bridges);
     }
 
     private void validateBridges(List<Boolean> bridges) {
@@ -23,9 +24,13 @@ public class Line {
     }
 
     private void validateNotSerial(Boolean currentBridge, Boolean nextBridge) {
-        if (currentBridge.equals(true) && currentBridge.equals(nextBridge)) {
+        if (isSerial(currentBridge, nextBridge)) {
             throw new IllegalArgumentException("브릿지는 연속으로 생성될 수 없습니다");
         }
+    }
+
+    private boolean isSerial(Boolean currentBridge, Boolean nextBridge) {
+        return currentBridge.equals(true) && nextBridge.equals(true);
     }
 
     public List<Boolean> getBridges() {
