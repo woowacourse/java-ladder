@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -30,7 +31,7 @@ public class LineTest {
         );
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "발판은 입력받은 숫자만큼의 크기를 가진다")
     @MethodSource("scaffolds")
     void 발판은_입력받은_숫자만큼의_크기를_가진다(final List<Scaffold> scaffolds) {
         // when
@@ -40,13 +41,42 @@ public class LineTest {
         assertThat(line.size()).isEqualTo(scaffolds.size());
     }
 
-    private static Stream<Arguments> scaffolds() { // argument source method
+    private static Stream<Arguments> scaffolds() {
         return Stream.of(
                 Arguments.of(List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST)),
-                Arguments.of(List.of(Scaffold.EXIST, Scaffold.EXIST, Scaffold.EXIST)),
+                Arguments.of(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST)),
                 Arguments.of(List.of(Scaffold.NONE, Scaffold.NONE)),
                 Arguments.of(List.of(Scaffold.EXIST)),
                 Arguments.of(List.of())
+        );
+    }
+
+    @ParameterizedTest(name = "Line 에 속한 발판은 존재하는 상태를 연속으로 가질 수 없다")
+    @MethodSource("consistExistScaffolds")
+    void Line_에_속한_발판은_존재하는_상태를_연속으로_가질_수_없다(final List<Scaffold> scaffolds) {
+        // when & then
+        assertThatThrownBy(() ->
+                new Line(scaffolds)
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private static Stream<Arguments> consistExistScaffolds() {
+        return Stream.of(
+                Arguments.of(List.of(Scaffold.EXIST, Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST)),
+                Arguments.of(List.of(Scaffold.EXIST, Scaffold.EXIST, Scaffold.EXIST)),
+                Arguments.of(List.of(Scaffold.EXIST, Scaffold.EXIST))
+        );
+    }
+
+    @Test
+    @DisplayName("Line에 속한 발판은 존재하지 않는 상태는 연속으로 가질 수 있다")
+    void line_linked_nonlist() {
+        // given
+        Scaffold nonScaffold = Scaffold.NONE;
+
+        // when & then
+        assertDoesNotThrow(() ->
+                new Line(List.of(nonScaffold, nonScaffold))
         );
     }
 }
