@@ -30,10 +30,14 @@ public class LineMakerTest {
     @DisplayName("생성된 Line의 가로가 겹치지 않는지 확인한다.")
     void generateLineTest() {
         // 리스트가 연속된 true값을 갖지 않은지.
-        List<Boolean> bars = LineMaker.generate(playerCount, randomGenerator);
+        List<Bar> bars = LineMaker.generate(playerCount, randomGenerator);
 
         for (int idx = 0; idx < bars.size() - 1; idx++) {
-            assertThat(!bars.get(idx) || !bars.get(idx + 1)).isTrue();
+            Bar currentBar = bars.get(idx);
+            Bar nextBar = bars.get(idx + 1);
+
+            assertThat(!currentBar.getValue() || !nextBar.getValue())
+                    .isTrue();
         }
     }
 }
