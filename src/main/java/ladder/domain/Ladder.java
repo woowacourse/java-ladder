@@ -1,23 +1,29 @@
-//package ladder.domain;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//public class Ladder {
-//    private final List<Line> ladder;
-//
-//    private Ladder(List<Line> ladder) {
-//        this.ladder = ladder;
-//    }
-//
-//
-//    public static Ladder createLadder(String names, int ladderHeight, BarGenerator barGenerator) {
-//        List<String> namesList = PeopleNamesSplitor.namesSplit(names);
-//        List<Line> tmpLadder = new ArrayList<>();
-//        for (int i = 0; i < ladderHeight; i++) {
-//            tmpLadder.add(Line.of(namesList.size(), barGenerator));
-//        }
-//
-//        return new Ladder(tmpLadder);
-//    }
-//}
+package ladder.domain;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
+public class Ladder {
+    private final List<Line> lines;
+
+    public Ladder() {
+        this.lines = new ArrayList<>();
+    }
+
+    public void create(BarGenerator barGenerator, int ladderHeight, int peopleSize) {
+        IntStream.range(0, ladderHeight)
+                .mapToObj(lineCount -> createLine(barGenerator, peopleSize))
+                .forEach(lines::add);
+    }
+
+    private Line createLine(BarGenerator barGenerator, int peopleSize) {
+        Line line = new Line();
+        line.addBars(peopleSize, barGenerator);
+        return line;
+    }
+
+    public List<Line> getLines() {
+        return this.lines;
+    }
+}
