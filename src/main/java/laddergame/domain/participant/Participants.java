@@ -1,7 +1,5 @@
 package laddergame.domain.participant;
 
-import laddergame.domain.participant.Participant;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +17,10 @@ public class Participants {
         participants = Arrays.stream(participantNames)
                 .map(name -> new Participant(name))
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public int size() {
+        return participants.size();
     }
 
     private String[] splitNames(final String names) {
