@@ -26,4 +26,8 @@ public class Lines {
     public List<Line> getLines() {
         return lines;
     }
+
+    public List<Boolean> existFoothold(int index) {
+        return this.lines.get(index).getPoints();
+    }
 }

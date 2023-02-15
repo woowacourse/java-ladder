@@ -9,4 +9,12 @@ public class Ladder {
         this.lines = new Lines(numberOfPlayer, height);
         this.height = new Height(height);
     }
+
+    public Lines getLines() {
+        return lines;
+    }
+
+    public Height getHeight() {
+        return height;
+    }
 }

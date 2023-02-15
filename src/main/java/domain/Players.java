@@ -50,4 +50,18 @@ public class Players {
     public int getNumberOfPlayers() {
         return this.players.size();
     }
+
+    public StringBuilder getPlayerNames() {
+        StringBuilder playerNames = new StringBuilder();
+        int longestName = findLongestPlayerName();
+
+        for (Player player : players) {
+            int blankSpace = longestName - player.getName().length();
+            playerNames.append(player.getName())
+                    .append(" ".repeat(blankSpace))
+                    .append(" ");
+        }
+
+        return playerNames;
+    }
 }
