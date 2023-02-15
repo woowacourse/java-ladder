@@ -14,4 +14,12 @@ public class Ladder {
         }
         this.height = height;
     }
+
+    public int getLadderHeight(){
+        return height.getLadderHeight();
+    }
+
+    public boolean getLadderLine(int row, int column){
+        return ladderLine.get(row).getLine(column);
+    }
 }
