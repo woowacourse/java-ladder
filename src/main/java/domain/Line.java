@@ -23,6 +23,7 @@ public class Line {
     }
 
     private void generatePoints(final int pointSize) {
+        // TODO: Random 객체 외부에서 주입받아서 사용하도록 수정
         Random random = new Random();
 
         for (int i = 0; i < pointSize; i++) {
