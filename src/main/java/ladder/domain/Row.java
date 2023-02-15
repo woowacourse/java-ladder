@@ -26,7 +26,8 @@ class Row {
     }
 
     private boolean shouldConnect(Generator generator, int index) {
-        return generator.generate() && !connected.get(index - 1);
+        int adjacentIndex = index - 1;
+        return generator.generate() && !connected.get(adjacentIndex);
     }
 
     List<Boolean> toDto() {

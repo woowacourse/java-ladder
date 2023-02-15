@@ -24,6 +24,7 @@ public class LadderController {
     }
 
     private Rows inputLines() {
-        return new Rows(InputView.inputLadderHeight(), names.getCount() - 1);
+        int intervalCount = names.getCount() - 1;
+        return new Rows(InputView.inputLadderHeight(), intervalCount);
     }
 }
