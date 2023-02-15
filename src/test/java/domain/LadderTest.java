@@ -11,8 +11,9 @@ public class LadderTest {
     @DisplayName("하나의 다리에 사용자가 입력한 높이 만큼의 Line 이 생긴다")
     void createLadderWithEmptyLines(int ladderHeight) {
         //given
+        int personCount = 5;
         //when
-        Ladder ladder = new Ladder(ladderHeight);
+        Ladder ladder = new Ladder(ladderHeight, personCount);
 
         //then
         Assertions.assertThat(ladder.calculateTotalHeight()).isEqualTo(ladderHeight);
