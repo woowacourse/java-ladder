@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LinesTest {
+public class LadderTest {
 
     @DisplayName("사다리의 최대 높이는 30을 넘을 수 없다.")
     @Test
@@ -19,7 +19,7 @@ public class LinesTest {
             lines.add(new Line(10));
         }
         Assertions.assertThatThrownBy(() -> {
-            new Lines(lines);
+            new Ladder(lines);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -28,7 +28,7 @@ public class LinesTest {
     void lineSizeNotLessThan1() {
         List<Line> lines = Collections.emptyList();
         Assertions.assertThatThrownBy(() -> {
-            new Lines(lines);
+            new Ladder(lines);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -2,12 +2,12 @@ package domain;
 
 import java.util.List;
 
-public class Lines {
+public class Ladder {
 
     public static final int LINE_MIN_SIZE = 1;
     public static final int LINE_MAX_SIZE = 30;
 
-    public Lines(List<Line> lines) {
+    public Ladder(List<Line> lines) {
         validate(lines);
     }
 
