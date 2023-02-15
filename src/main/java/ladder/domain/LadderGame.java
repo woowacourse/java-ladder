@@ -2,14 +2,17 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGame {
 
     private final List<Line> lines;
-    private final List<String> players;
+    private final List<Name> players;
 
     public LadderGame(int height, List<String> players) {
-        this.players = players;
+        this.players = players.stream()
+                .map(Name::new)
+                .collect(Collectors.toList());
         this.lines = initializeLines(height);
     }
 
