@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class PlayersFactoryTest {
+public class PlayerFactoryTest {
 
     @DisplayName("참여자가 20명을 넘을 수 없다.")
     @Test
