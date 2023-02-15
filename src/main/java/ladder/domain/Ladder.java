@@ -13,6 +13,16 @@ public class Ladder {
         }
     }
 
+
+    public void d(NumberGenerator numberGenerator) {
+        for (Floor floor : floors){
+            List<Integer> numbers = new ArrayList<>();
+            for(int i = 0; i < floor.getLines().size(); i++){
+                numbers.add(numberGenerator.generate());
+            }
+            floor.makeFloor(numbers);
+        }
+    }
     public List<Floor> getFloors(){
         return floors;
     }

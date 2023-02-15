@@ -34,4 +34,21 @@ public class LadderTest {
             assertThat(floor.getLines().size()).isEqualTo(2);
         }
     }
+
+    @Test
+    @DisplayName("Ladder 1층 생성 테스트")
+    void makeFirstFloorTest(){
+        TestNumberGenerator testNumberGenerator = new TestNumberGenerator(List.of(1,0,0));
+
+        Ladder ladder = new Ladder(1,3);
+        ladder.d(testNumberGenerator);
+
+        Floor firstFloor = ladder.getFloors().get(0);
+
+        assertThat(firstFloor.getLines().get(0).isExist()).isEqualTo(true);
+        assertThat(firstFloor.getLines().get(1).isExist()).isEqualTo(false);
+        assertThat(firstFloor.getLines().get(2).isExist()).isEqualTo(false);
+    }
+
+    
 }

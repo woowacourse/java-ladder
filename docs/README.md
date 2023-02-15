@@ -14,4 +14,5 @@
   - [X] 중복이름이 있으면 예외가 발생한다.
   - [X] List<User>의 size가 1이하일떄 예외가 발생한다.
   - [X] 유효하지 않은 User는 Users에 들어갈 수 없다.
-
+- [X] Ladder에서 NumberGenerator를 통해 다리 생성 결정 값 리스트를 만들어서 Floor에 전달한다.
+  - [X] 전략 패턴을 이용해 TestNumberGenerator를 만들어서 테스트
