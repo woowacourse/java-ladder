@@ -23,11 +23,16 @@ public class BlockController {
         List<String> names = inputView.inputNameOfParticipants();
         outputView.noticeInputHeightOfLadder();
         int heightOfLadder = inputView.inputHeightOfLadder();
+
         outputView.noticeResult();
         outputView.printNameOfParticipants(names);
+        calculateLadderResult(names, heightOfLadder);
+    }
+
+    private void calculateLadderResult(List<String> names, int heightOfLadder) {
         for (int i = 0; i < heightOfLadder; i++) {
             Blocks blocks = blockService.initBlocks(names.size());
-            outputView.printBlocks(blocks, names);
+            outputView.printBlocks(blocks);
         }
     }
 }
