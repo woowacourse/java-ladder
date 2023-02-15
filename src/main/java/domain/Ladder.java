@@ -1,27 +1,30 @@
 package domain;
 
+import exception.ErrorMessage;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Ladder {
+    private static final int MINIMUM_HEIGHT = 1;
     private final List<Line> lines;
 
-    public Ladder(int height, int personCount) {
+    public Ladder(final int height, final int personCount) {
         validateHeight(height);
         lines = new ArrayList<>();
-        while (height-- > 0) {
-            Line line = new Line(personCount);
-            lines.add(line);
-        }
+
+        IntStream.rangeClosed(1, height)
+                .forEach(count -> lines.add(new Line(personCount)));
     }
 
-    public Ladder(List<Line> lines) {
+    public Ladder(final List<Line> lines) {
         this.lines = lines;
     }
 
-    public void validateHeight(int height) {
-        if (height < 1) {
-            throw new IllegalArgumentException();
+    public void validateHeight(final int height) {
+        if (height < MINIMUM_HEIGHT) {
+            throw new IllegalArgumentException(ErrorMessage.LADDER_HEIGHT_EXCEPTION.getMessage());
         }
     }
 
@@ -29,3 +32,4 @@ public class Ladder {
         return new ArrayList<>(lines);
     }
 }
+
