@@ -24,23 +24,19 @@
 - [x] 현재 카운트를 1씩 증가시킨다.
 - [x] 사람 수와 현재 카운트가 같은지 확인한다.
 
-#### 사다리(ladder)
+#### Bar
 
 -[x] boolean값을 갖는 필드를 갖는다.
     - [x] 값이 true인지 false 판단하는 함수
 
-#### 방향(Direction)
-
--[ ] leftLadder, rightLadder 라는 필드를 갖는다.
-
 #### Line
 
--[ ] List<Direction> 필드를 갖는다.
-    - [ ] 처음 Direction 을 만드는 함수
-    - [ ] 끝 Direction을 만드는 함수
-    - [ ] 중간 Direction을 만드는 함수
+- [ ] Bars를 생성한다.
+  - [ ] 맨 처음 Bar는 false로 지정한다.
+  - [ ] 앞에 Bar가 true라면, 무조건 false를 더한다.
+  - [ ] 앞에 Bar가 false라면, 랜덤 값을 더한다.
 
-#### Lines
+#### Ladder
 
 - [ ] 라인을 생성한다.
 
