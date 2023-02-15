@@ -18,6 +18,6 @@ class LineTest {
     @Test
     @DisplayName("리스트에 연속적으로 true가 포함될 경우 예외 발생")
     void Should_ThrowException_When_ContinueTrue() {
-        assertThatThrownBy(()->new Line(List.of(true,true)));
+        assertThatThrownBy(() -> new Line(List.of(true, true)));
     }
 }
