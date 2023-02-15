@@ -15,6 +15,10 @@ public class Name {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void validateNameLength(String name){
         if(name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException();
