@@ -37,6 +37,6 @@ class LineTest {
     void overlapNeighborLineTest() {
         int playerCount = 4;
         Line line = new Line(playerCount, new TrueGenerator());
-        assertThat(line.getLine()).containsExactly(true, false, true);
+        assertThat(line.getLine()).containsExactly(Point.CONNECT, Point.DISCONNECT, Point.CONNECT);
     }
 }

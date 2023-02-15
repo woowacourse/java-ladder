@@ -11,7 +11,7 @@ public class Ladder {
     private final PointGenerator pointGenerator;
     private final List<Line> lines;
 
-    // todo: refactoring...
+    // todo: pointGenerator를 어디에서 관리할 것인가
     public Ladder(int playerCount, LadderHeight ladderHeight) {
         pointGenerator = new RandomPointGenerator();
         List<Line> tempLines = new ArrayList<>();

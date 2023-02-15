@@ -2,39 +2,38 @@ package laddergame.domain;
 
 import laddergame.util.PointGenerator;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
 
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    // todo: refactoring..
     public Line(int playerCount, PointGenerator pointGenerator) {
         final int pointCount = playerCount - 1;
         this.points = List.copyOf(createLine(pointCount, pointGenerator));
     }
 
-    private List<Boolean> createLine(int pointCount, PointGenerator pointGenerator) {
+    // todo: point를 어디까지 적용할 것인가
+    private List<Point> createLine(int pointCount, PointGenerator pointGenerator) {
         boolean previousPoint = false;
-        List<Boolean> tempPoints = new ArrayList<>();
+        List<Point> tempPoints = new ArrayList<>();
         while (tempPoints.size() < pointCount) {
             boolean currentPoint = selectCurrentPoint(previousPoint, pointGenerator.generate());
-            tempPoints.add(currentPoint);
+            tempPoints.add(Point.findByConnectedCondition(currentPoint));
             previousPoint = currentPoint;
         }
         return tempPoints;
     }
 
-    private Boolean selectCurrentPoint(boolean previousPoint, boolean currentPoint) {
+    private boolean selectCurrentPoint(boolean previousPoint, boolean currentPoint) {
         if (previousPoint && currentPoint) {
             return false;
         }
         return currentPoint;
     }
 
-    public List<Boolean> getLine() {
+    public List<Point> getLine() {
         return points;
     }
 }
