@@ -9,9 +9,16 @@ public class Ladder {
         validateLadderHeight(height);
     }
 
+    public Ladder(){
+
+    }
+
     private static void validateLadderHeight(final int height) {
-        validateMinHeight(height);
-        validateMaxHeight(height);
+//        validateMinHeight(height);
+//        validateMaxHeight(height);
+        if(height < 2 || height > 10){
+            throw new IllegalArgumentException("사다리 길이는 2에서 10사이여야 합니다.");
+        }
     }
 
     private static void validateMaxHeight(final int height) {
@@ -24,5 +31,13 @@ public class Ladder {
         if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException("사다리 높이는 2 이상이어야 합니다.");
         }
+    }
+
+    public void build(final int height){
+        validateLadderHeight(height);
+    }
+
+    public int getLineHeight(){
+        return 5;
     }
 }
