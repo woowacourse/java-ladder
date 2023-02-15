@@ -13,7 +13,7 @@ public class Line {
     // todo: refactoring..
     public Line(int playerCount, PointGenerator pointGenerator) {
         final int pointCount = playerCount - 1;
-        this.points = List.copyOf(createLine(playerCount, pointGenerator));
+        this.points = List.copyOf(createLine(pointCount, pointGenerator));
     }
 
     private List<Boolean> createLine(int pointCount, PointGenerator pointGenerator) {
@@ -26,7 +26,7 @@ public class Line {
         }
         return tempPoints;
     }
-    
+
     private Boolean selectCurrentPoint(boolean previousPoint, boolean currentPoint) {
         if (previousPoint && currentPoint) {
             return false;
