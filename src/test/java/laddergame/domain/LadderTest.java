@@ -2,7 +2,7 @@ package laddergame.domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.*;
 
 import static laddergame.TestDummy.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -39,17 +39,21 @@ class LadderTest {
 
     @Test
     void createdLineSizeIsNotEmpty() {
-        final Ladder ladder = new Ladder(PARTICIPANTS, HEIGHT);
-        final List<Line> createdLines = ladder.createLines();
+        final Ladder ladder = new Ladder(PARTICIPANTS_SIZE_2, HEIGHT_VALUE_1);
+        final List<Boolean> linePointsSize = List.of(true, false);
+        final Deque<Boolean> deque = new ArrayDeque<>(linePointsSize);
+        final List<Line> createdLines = ladder.createLines(deque::pollFirst);
 
         assertThat(createdLines).isNotEmpty();
     }
 
     @Test
     void createLineSizeIsEqualToHeight() {
-        final Ladder ladder = new Ladder(PARTICIPANTS, HEIGHT);
-        final List<Line> createdLines = ladder.createLines();
+        final Ladder ladder = new Ladder(PARTICIPANTS_SIZE_2, HEIGHT_VALUE_1);
+        final List<Boolean> linePointsSize = List.of(true, false);
+        final Deque<Boolean> deque = new ArrayDeque<>(linePointsSize);
+        final List<Line> createdLines = ladder.createLines(deque::pollFirst);
 
-        assertThat(createdLines).hasSize(HEIGHT.getValue());
+        assertThat(createdLines).hasSize(HEIGHT_VALUE_1.getValue());
     }
 }
