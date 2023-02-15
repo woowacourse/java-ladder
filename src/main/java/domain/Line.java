@@ -10,7 +10,6 @@ public class Line {
 
     public Line(final int numberOfPlayer, final FootholdGenerator footholdGenerator) {
         points = makePoint(numberOfPlayer, footholdGenerator);
-
     }
 
     private List<Boolean> makePoint(final int numberOfPlayer, final FootholdGenerator footholdGenerator) {
