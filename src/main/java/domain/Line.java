@@ -4,30 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    public Line(List<Boolean> points) {
+    public Line(List<Point> points) {
         this.points = points;
     }
 
-    //TODO : 네이밍
-    public void method() {
-        boolean state = false;
-        for (boolean line : points) {
-            state = updateState(state, line);
+    public void validateLine() {
+        Point state = Point.EMPTY_POINT;
+        for (Point line : points) {
+            state = comparePastPointAndPresentPoint(state, line);
         }
     }
 
-    //TODO : 네이밍
-    private boolean updateState(boolean state, boolean line) {
-        if (line && state) {
+    private Point comparePastPointAndPresentPoint(Point pastPoint, Point point) {
+        if (point.isLink() && pastPoint.isLink()) {
             throw new IllegalArgumentException();
         }
-        state = line;
-        return state;
+        pastPoint = point;
+        return pastPoint;
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return new ArrayList<>(points);
     }
 }
