@@ -1,9 +1,15 @@
 package ladder.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ladder {
 
-    public Ladder(int height) {
-        validateHeight(height);
+    private final List<Raw> ladder;
+
+    public Ladder(List<Raw> ladder) {
+        validateHeight(ladder.size());
+        this.ladder = ladder;
     }
 
     private void validateHeight(int height) {
