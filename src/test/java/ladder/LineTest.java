@@ -18,20 +18,20 @@ class LineTest {
         Line line = new Line(3);
         // then
         assertThat(line.getBars()).hasSize(3);
-
     }
 
     @Test
-    @DisplayName("bar를 정해진 값으로 생성한다")
+    @DisplayName("bar가 연속되지 않게 Line을 생성한다")
     void shouldDeterminedValuesWhenCreateLine() {
-        List<Boolean> determinedBars = new ArrayList<>(List.of(true, false, true));
+        // given
+        List<Boolean> determinedBars = new ArrayList<>(List.of(true, true));
+        // when
         Line line = new Line(3, new DeterminedBooleanGenerator(determinedBars));
-
+        // then
         assertThat(line.getBars()).containsExactly(true, false, true);
     }
 
     static class DeterminedBooleanGenerator implements BooleanGenerator {
-
         private final List<Boolean> bars;
 
         public DeterminedBooleanGenerator(List<Boolean> bars) {
