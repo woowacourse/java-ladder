@@ -1,12 +1,14 @@
 package domain;
 
+import java.util.ArrayList;
+
 public class Player {
     public static final String NAME_LENGTH_ERROR_MESSAGE = "[ERROR] 플레이어의 이름은 최대 5글자까지입니다.";
     public static final String NAME_NULL_ERROR_MESSAGE = "[ERROR] 플레이어의 이름은 null이면 안됩니다.";
     public static final String NAME_BLANK_ERROR_MESSAGE = "[ERROR] 플레이어의 이름은 빈칸이면 안됩니다.";
     public static final int NAME_MAX_LENGTH = 5;
 
-    private String name;
+    private String name; //judy 4글자. 5-4 = 1.  Players.add();
 
     public Player(String name) {
         this.name = validateName(name);
@@ -16,7 +18,6 @@ public class Player {
         validateNameIsNull(name);
         validateNameIsBlank(name);
         validateNameLength(name);
-
         return name;
     }
 
@@ -36,5 +37,9 @@ public class Player {
         if (name.isBlank()) {
             throw new IllegalArgumentException(NAME_BLANK_ERROR_MESSAGE);
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }
