@@ -23,7 +23,8 @@ class PersonTest {
 	@ValueSource(strings = {"", "  ", "helloWorld"})
 	void nameLengthNot1_5(String name) {
 		assertThatThrownBy(() -> new Person(name))
-			.isInstanceOf(IllegalArgumentException.class);
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("이름은 1 ~ 5글자만 가능합니다");
 	}
 
 }
