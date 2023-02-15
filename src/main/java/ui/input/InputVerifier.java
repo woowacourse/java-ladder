@@ -34,4 +34,10 @@ class InputVerifier {
             throw new IllegalArgumentException("최소 2명의 참가자를 입력해야 합니다.");
         }
     }
+
+    protected static void validateLadderHeight(int ladderHeight) {
+        if (ladderHeight < 1) {
+            throw new IllegalArgumentException("사다리의 단계는 자연수여야 합니다.");
+        }
+    }
 }
