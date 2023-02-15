@@ -13,35 +13,29 @@ public class ResultView {
 
     public static void printResult(Names names, Ladder ladder) {
         printNames(names);
-        printLadder(ladder, names);
+        printLadder(ladder);
     }
 
     private static void printNames(Names names) {
-        int maxNameLength = names.getMaxNameLength();
-
         String result = names.getNames().stream()
-            .map(name -> BLANK.repeat(getCountOfNecessaryBlank(maxNameLength, name.getLength())) + name)
+            .map(name -> String.format(NAME_FORMAT, name))
             .collect(Collectors.joining());
-        System.out.println(result.trim());
+        System.out.println(result);
     }
 
-    private static int getCountOfNecessaryBlank(int maxNameLength, int nameLength) {
-        return maxNameLength - nameLength + 1;
-    }
-
-    private static void printLadder(Ladder ladder, Names names) {
+    private static void printLadder(Ladder ladder) {
         for (Line line : ladder) {
-            String result = BLANK.repeat(names.getFirstNameLength());
-            result += getShapeOf(line, names.getMaxNameLength());
+            String result = BLANK.repeat(WIDTH);
+            result += getShapeOf(line);
             result += LEG;
             System.out.println(result);
         }
     }
 
-    private static String getShapeOf(Line line, int maxNameLength) {
+    private static String getShapeOf(Line line) {
         return line.getLine().stream()
             .map(LadderFormat::getComponent)
-            .map(component -> LEG + component.repeat(maxNameLength))
+            .map(component -> LEG + component.repeat(WIDTH))
             .collect(Collectors.joining());
     }
 }
