@@ -1,10 +1,9 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class LineTest {
 
@@ -17,29 +16,27 @@ public class LineTest {
                 .hasSize(30);
     }
 
-    @DisplayName("지정한 위치에 가로라인 생성")
-    @ParameterizedTest
-    @ValueSource(ints = {1, 3, 5})
-    void createHorizontalLineAtSuccess(int input) {
+    @Test
+    @DisplayName("지정한 위치에 방향 변경 확인")
+    void changePointDirectionAtSuccess() {
         Line line = Line.fromHeight(new Height(5));
+        Direction rightDown = Direction.RIGHT_DOWN;
 
-        line.createHorizontalLineAt(input);
+        line.changePointDirectionAt(rightDown, 1);
 
-        assertThat(line.getPoints().get(input - 1)).isTrue();
+        assertThat(line.getPoints().get(1).matchDirection(rightDown)).isFalse();
     }
 
-    @DisplayName("지정한 위치에 가로라인이 존재하는지 확인")
-    @ParameterizedTest
-    @ValueSource(ints = {1, 3, 5})
-    void existHorizontalLineAtSuccess(int input) {
+    @Test
+    @DisplayName("지정한 위치의 방향이 직진방향인지 확인")
+    void existHorizontalLineAtSuccess() {
         Line line = Line.fromHeight(new Height(5));
-        line.createHorizontalLineAt(input);
+        Direction rightDown = Direction.RIGHT_DOWN;
 
-        boolean existAt = line.existHorizontalLineAt(input);
+        line.changePointDirectionAt(rightDown, 1);
+        boolean existAt = line.isPointDirectionStraight(1);
 
-        assertThat(existAt).isTrue();
+        assertThat(existAt).isFalse();
     }
-
-
 
 }

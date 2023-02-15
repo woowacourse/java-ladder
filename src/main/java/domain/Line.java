@@ -6,29 +6,31 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    private Line(List<Boolean> points) {
+    private Line(List<Point> points) {
         this.points = points;
     }
 
     public static Line fromHeight(Height height) {
-        List<Boolean> points = new ArrayList<>();
+        List<Point> points = new ArrayList<>();
         IntStream.range(0, height.getHeight())
-                .forEach(i -> points.add(false));
+                .forEach(i -> points.add(new Point(Direction.STRAIGHT_DOWN)));
 
         return new Line(points);
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return this.points;
     }
 
-    public void createHorizontalLineAt(int index) {
-        this.points.set(index - 1, true);
+    public void changePointDirectionAt(Direction direction, int index) {
+        this.points.get(index - 1)
+                .changeDirection(direction);
     }
 
-    public boolean existHorizontalLineAt(int index) {
-        return points.get(index - 1);
+    public boolean isPointDirectionStraight(int index) {
+        return this.points.get(index - 1)
+                .matchDirection(Direction.STRAIGHT_DOWN);
     }
 }
