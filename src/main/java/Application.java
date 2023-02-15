@@ -24,6 +24,6 @@ public class Application {
         Peoples peoples = ladderGame.createPeoples(names);
         int ladderHeight = InputView.getLadderHeight();
         Lines lines = ladderGame.createLines(peoples.getPeoples().size(), ladderHeight);
-
+        OutputView.printResult(peoples, lines);
     }
 }

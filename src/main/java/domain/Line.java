@@ -26,12 +26,13 @@ public class Line {
     }
 
     private void calculatePoints(int personCount) {
-        while (personCount-- > 1) {
-            if (points.size() != 0 && !points.get(points.size() - 1)) {
+        points.add(getRandomValue());
+        while (personCount-- > 2) {
+            if (!points.get(points.size() - 1)) {
                 points.add(getRandomValue());
-            } else {
-                points.add(false);
+                continue;
             }
+            points.add(false);
         }
     }
 
