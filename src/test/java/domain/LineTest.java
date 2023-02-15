@@ -16,18 +16,16 @@ public class LineTest {
     @Test
     void pointNotMoreThan20() {
         int pointSize = 21;
-        assertThatThrownBy(() -> {
-            new Line(pointSize);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Line(pointSize))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("라인의 포인트 개수는 0이하일 수 없다.")
     @ValueSource(ints = {0, -1})
     @ParameterizedTest
     void pointNotLessThan1(int pointSize) {
-        assertThatThrownBy(() -> {
-            new Line(pointSize);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Line(pointSize))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("사다리의 포인트가 true인 지점은 연속될 수 없다.")

@@ -20,9 +20,8 @@ public class PlayersTest {
         for (int i = 0; i < 21; i++) {
             players.add(new Player("test"));
         }
-        assertThatThrownBy(() -> {
-            new Players(players);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Players(players))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("참여자가 0명 이하일 수 없다.")
@@ -30,17 +29,15 @@ public class PlayersTest {
     @ParameterizedTest
     void playerSizeNotLessThan1() {
         List<Player> players = Collections.emptyList();
-        assertThatThrownBy(() -> {
-            new Players(players);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Players(players))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("참여자 이름이 중복될 수 없다.")
     @Test
     void playerNameNotDuplicated() {
         List<Player> players = List.of(new Player("a"), new Player("a"));
-        assertThatThrownBy(() -> {
-            new Players(players);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Players(players))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

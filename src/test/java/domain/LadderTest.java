@@ -18,17 +18,15 @@ public class LadderTest {
         for (int i = 0; i < lineSize; i++) {
             lines.add(new Line(10));
         }
-        Assertions.assertThatThrownBy(() -> {
-            new Ladder(lines);
-        }).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> new Ladder(lines))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("사다리의 최대 높이는 1보다 작을 수 없다.")
     @Test
     void lineSizeNotLessThan1() {
         List<Line> lines = Collections.emptyList();
-        Assertions.assertThatThrownBy(() -> {
-            new Ladder(lines);
-        }).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> new Ladder(lines))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
