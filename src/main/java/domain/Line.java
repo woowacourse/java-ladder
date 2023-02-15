@@ -23,4 +23,8 @@ public class Line {
     public List<Boolean> getPoints() {
         return this.points;
     }
+
+    public void createHorizontalLineAt(int index) {
+        this.points.set(index - 1, true);
+    }
 }
