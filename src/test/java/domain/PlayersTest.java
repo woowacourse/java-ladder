@@ -34,4 +34,13 @@ public class PlayersTest {
             new Players(players);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("참여자 이름이 중복될 수 없다.")
+    @Test
+    void playerNameNotDuplicated() {
+        List<Player> players = List.of(new Player("a"), new Player("a"));
+        assertThatThrownBy(() -> {
+            new Players(players);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
