@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -19,5 +20,12 @@ class HeightTest {
     @Test
     void create() {
         assertDoesNotThrow(() -> new Height(1));
+    }
+
+    @Test
+    void getValue() {
+        final Height height = new Height(1);
+        final int heightValue = height.getValue();
+        Assertions.assertThat(heightValue).isEqualTo(1);
     }
 }
