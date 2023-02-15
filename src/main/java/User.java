@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -27,5 +28,25 @@ public class User {
 
     public static List<String> splitNameInput(String nameInput) {
         return List.of(nameInput.split(","));
+    }
+
+    public static List<String> convertNames(List<String> names) {
+        List<String> convertedNames = new ArrayList<>();
+        for (String name : names) {
+            convertedNames.add(convert(name));
+        }
+        return convertedNames;
+    }
+
+    private static String convert(String name) {
+        if (name.length() == MAX_NAME_LENGTH) {
+            return name;
+        }
+        StringBuilder nameBuilder = new StringBuilder(name + " ");
+        while (nameBuilder.length() < MAX_NAME_LENGTH) {
+            nameBuilder.insert(0, " ");
+        }
+        name = nameBuilder.toString();
+        return name;
     }
 }
