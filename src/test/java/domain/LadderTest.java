@@ -38,5 +38,17 @@ public class LadderTest {
         ladder.getPoint(0, 2).matchDirection(Direction.LEFT_DOWN);
     }
 
+    @Test
+    @DisplayName("사다리의 다리 생성")
+    void shuffleLadderSuccess() {
+        int playerCount = 3;
+        int heightSize = 4;
+        PlayerNumber playerNumber = new PlayerNumber(playerCount);
+        Height height = new Height(heightSize);
+
+        Ladder ladder = Ladder.of(playerNumber, height);
+        ladder.shuffleLadder();
+    }
+
 
 }
