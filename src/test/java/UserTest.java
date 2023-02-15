@@ -11,10 +11,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import service.UserService;
-import view.InputView;
+import validate.InputVerifier;
 
 class UserTest {
     public static final int NAME_LENGTH_LIMIT = 5;
+
+    InputVerifier inputVerifier = new InputVerifier();
 
     @Nested
     @DisplayName("유저 생성 테스트")
@@ -29,7 +31,7 @@ class UserTest {
         @DisplayName("생성된 유저 객체가 올바르게 저장되는지 확인한다.")
         @Test
         void shouldSuccessStoreUsers() {
-            List<String> userNames = User.convertNames(List.of("i", "am", "fun", "dino", "mango"));
+            List<String> userNames = inputVerifier.convertNames(List.of("i", "am", "fun", "dino", "mango"));
             UserService userService = new UserService(userNames);
             assertInstanceOf(Users.class, userService.getUsers());
         }
@@ -42,16 +44,16 @@ class UserTest {
         @Test
         void shouldFailNameLengthOver() {
             String name = "abcdef";
-            assertThatThrownBy(() -> User.validateNameLength(name)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(User.NAME_LENGTH_ERROR_MESSAGE);
+            assertThatThrownBy(() -> inputVerifier.validateNameInput(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(InputVerifier.NAME_LENGTH_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름이 0글자일 때 실패한다.")
         @Test
         void shouldFailNameLengthZero() {
             String name = "";
-            assertThatThrownBy(() -> User.validateNameLength(name)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(User.NAME_LENGTH_ERROR_MESSAGE);
+            assertThatThrownBy(() -> inputVerifier.validateNameInput(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(InputVerifier.NAME_LENGTH_ERROR_MESSAGE);
         }
     }
 
@@ -62,32 +64,32 @@ class UserTest {
         @Test
         void shouldFailNameWithSpecialCharacter() {
             String name = "ab#c";
-            assertThatThrownBy(() -> User.validateNameFormat(name)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
+            assertThatThrownBy(() -> inputVerifier.validateNameInput(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(InputVerifier.NAME_FORMAT_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름에 숫자가 포함되면 실패한다.")
         @Test
         void shouldFailNameWithNumber() {
             String name = "ab23c";
-            assertThatThrownBy(() -> User.validateNameFormat(name)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
+            assertThatThrownBy(() -> inputVerifier.validateNameInput(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(InputVerifier.NAME_FORMAT_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름에 한글이 포함되면 실패한다.")
         @Test
         void shouldFailNameWithKorean() {
             String name = "ab가c";
-            assertThatThrownBy(() -> User.validateNameFormat(name)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
+            assertThatThrownBy(() -> inputVerifier.validateNameInput(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(InputVerifier.NAME_FORMAT_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름에 공백이 포함되면 실패한다.")
         @Test
         void shouldFailNameWithBlank() {
             String name = "ab c";
-            assertThatThrownBy(() -> User.validateNameFormat(name)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
+            assertThatThrownBy(() -> inputVerifier.validateNameInput(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(InputVerifier.NAME_FORMAT_ERROR_MESSAGE);
         }
     }
 
@@ -100,7 +102,7 @@ class UserTest {
         @Test
         void shouldSuccessSplitInput() {
             String input = "abc,abcd,abcde";
-            assertThat(User.splitNameInput(input)).contains("abc", "abcd", "abcde");
+            assertThat(inputVerifier.splitNameInput(input)).contains("abc", "abcd", "abcde");
         }
     }
 
@@ -110,7 +112,7 @@ class UserTest {
         @DisplayName("변환된 문자열이 최대 길이 제한과 같은지 확인한다.")
         @Test
         void shouldSuccessConvertNamesEqualMaxLength() {
-            List<String> names = User.convertNames(List.of("i", "am", "fun", "dino"));
+            List<String> names = inputVerifier.convertNames(List.of("i", "am", "fun", "dino"));
             names.forEach(name -> assertThat(name.length()).isEqualTo(NAME_LENGTH_LIMIT));
         }
 
@@ -118,7 +120,7 @@ class UserTest {
         @Test
         void shouldSuccessConvertNames() {
             List<String> names = List.of("i", "am", "fun", "dino", "mango");
-            assertThat(User.convertNames(names)).isEqualTo(List.of("   i ", "  am ", " fun ", "dino ", "mango"));
+            assertThat(inputVerifier.convertNames(names)).isEqualTo(List.of("   i ", "  am ", " fun ", "dino ", "mango"));
         }
     }
 }
