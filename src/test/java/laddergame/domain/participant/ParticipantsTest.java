@@ -2,8 +2,10 @@ package laddergame.domain.participant;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class ParticipantsTest {
@@ -24,5 +26,19 @@ public class ParticipantsTest {
         assertThatThrownBy(() -> new Participants(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"pobi,jiwon,hoocu:3", "choco,jelly,pen,water:4"}, delimiter=':')
+    @DisplayName("참여자 이름의 수에 따라, 참여자 수의 반환값이 달라진다.")
+    void participant_size_test(String names, int expectedSize) {
+        // given
+        Participants participants = new Participants(names);
+
+        // when
+        int actualSize = participants.size();
+
+        // then
+        assertThat(actualSize).isEqualTo(expectedSize);
     }
 }
