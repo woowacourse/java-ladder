@@ -1,5 +1,7 @@
 package domain;
 
+import utils.constants.ErrorMessages;
+
 public class User {
     private final String name;
 
@@ -10,7 +12,7 @@ public class User {
 
     private void validate(String name) {
         if (name.isEmpty() || name.length() > 5) {
-            throw new IllegalArgumentException("[ERROR] 이름은 1글자 이상 5글자 이하여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.NAME_LENGTH.getMessage());
         }
     }
 

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import domain.Ladder;
 import domain.Line;
+import utils.constants.ErrorMessages;
 
 public class StringParser {
     public static List<String> splitByComma(String input) {
@@ -17,15 +18,13 @@ public class StringParser {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("정수만 입력가능합니다.");
+            throw new IllegalArgumentException(ErrorMessages.NUMBER_FORMAT.getMessage(), exception);
         }
     }
 
     public static String putBlank(String input) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < 5 - input.length(); i++) {
-            stringBuilder.append(" ");
-        }
+        stringBuilder.append(" ".repeat(Math.max(0, 5 - input.length())));
         stringBuilder.append(input);
         return stringBuilder.toString();
     }
