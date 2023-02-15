@@ -1,7 +1,7 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum BlockType {
     CROSS("-----", true),
@@ -17,21 +17,16 @@ public enum BlockType {
 
     public static List<String> getBlockTypes(Line line) {
         List<Boolean> blockLine = line.getLine();
-        List<String> blockTypes = new ArrayList<>();
 
-        for (Boolean block : blockLine) {
-            decideBlockType(blockTypes, block);
-        }
-        return blockTypes;
+        return blockLine.stream()
+                .map(BlockType::decideBlockType)
+                .collect(Collectors.toList());
     }
 
-    private static void decideBlockType(List<String> blockTypes, boolean block) {
+    private static String decideBlockType(boolean block) {
         if (block == CROSS.isCross) {
-            blockTypes.add(CROSS.type);
+            return CROSS.type;
         }
-
-        if (block == NOT_CROSS.isCross) {
-            blockTypes.add(NOT_CROSS.type);
-        }
+        return NOT_CROSS.type;
     }
 }
