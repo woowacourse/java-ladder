@@ -8,12 +8,12 @@ public class Repeater {
     private Repeater() {
     }
 
-    public static <T> T repeatIfError(Supplier<T> supplier, Consumer<Exception> exceptionHandler) {
+    public static <T> T repeatIfError(Supplier<T> operation, Consumer<Exception> handler) {
         try {
-            return supplier.get();
+            return operation.get();
         } catch (Exception e) {
-            exceptionHandler.accept(e);
-            return repeatIfError(supplier, exceptionHandler);
+            handler.accept(e);
+            return repeatIfError(operation, handler);
         }
     }
 }

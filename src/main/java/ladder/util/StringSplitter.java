@@ -6,21 +6,17 @@ import java.util.stream.Collectors;
 
 public class StringSplitter {
 
-    private static final String NULL_MESSAGE = "null이 입력되면 안됩니다";
-
     private StringSplitter() {
     }
 
-
-    public static List<String> split(String input, String seperator) {
+    public static List<String> split(String input, String delimiter) {
         validateInput(input);
-
-        return Arrays.stream(input.split(seperator)).collect(Collectors.toList());
+        return Arrays.stream(input.split(delimiter)).collect(Collectors.toList());
     }
 
     private static void validateInput(String input) {
         if (input == null) {
-            throw new IllegalArgumentException(NULL_MESSAGE);
+            throw new IllegalArgumentException("null 이 입력되면 안 됩니다");
         }
     }
 }
