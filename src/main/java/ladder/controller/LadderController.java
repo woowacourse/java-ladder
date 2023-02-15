@@ -1,8 +1,8 @@
 package ladder.controller;
 
-import ladder.domain.Lines;
 import ladder.domain.Names;
 import ladder.domain.RandomGenerator;
+import ladder.domain.Rows;
 import ladder.util.Repeater;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -10,20 +10,20 @@ import ladder.view.ResultView;
 public class LadderController {
 
     private Names names;
-    private Lines lines;
+    private Rows rows;
 
     public void run() {
         names = Repeater.repeatIfError(this::inputNames, ResultView::printErrorMessage);
-        lines = Repeater.repeatIfError(this::inputLines, ResultView::printErrorMessage);
-        lines.generateLegsOfLines(new RandomGenerator());
-        ResultView.printResult(names.toDto(), lines.toDto());
+        rows = Repeater.repeatIfError(this::inputLines, ResultView::printErrorMessage);
+        rows.generateLegsOfLines(new RandomGenerator());
+        ResultView.printResult(names.toDto(), rows.toDto());
     }
 
     private Names inputNames() {
         return new Names(InputView.inputPlayerNames());
     }
 
-    private Lines inputLines() {
-        return new Lines(InputView.inputLadderHeight(), names.getCount());
+    private Rows inputLines() {
+        return new Rows(InputView.inputLadderHeight(), names.getCount() - 1);
     }
 }

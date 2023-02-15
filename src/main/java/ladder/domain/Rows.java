@@ -5,26 +5,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 import ladder.dto.LinesDto;
 
-public class Lines {
+public class Rows {
 
-    private final List<Line> lines;
+    private final List<Row> rows;
     private final Height height;
 
-    public Lines(int height, int width) {
+    public Rows(int height, int width) {
         this.height = new Height(height);
-        lines = new ArrayList<>();
+        rows = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(width));
+            rows.add(new Row(width));
         }
     }
 
     public void generateLegsOfLines(Generator generator) {
-        lines.forEach(line -> line.generateRandom(generator));
+        rows.forEach(row -> row.generateLeg(generator));
     }
 
     public LinesDto toDto() {
-        return new LinesDto(lines.stream()
-                .map(Line::toDto)
+        return new LinesDto(rows.stream()
+                .map(Row::toDto)
                 .collect(Collectors.toList()), height.getHeight());
     }
 }
