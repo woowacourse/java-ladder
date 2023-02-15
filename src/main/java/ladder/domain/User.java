@@ -22,4 +22,8 @@ public class User {
             throw new IllegalArgumentException(INVALID_LENGTH_MESSAGE);
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
