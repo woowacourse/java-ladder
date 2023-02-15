@@ -1,6 +1,6 @@
 package controller;
 
-import domain.Map;
+import domain.Ladder;
 import domain.Participants;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -9,9 +9,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.RandomBooleanGenerator;
-import validate.ErrorMessage;
-import view.InputView;
-import view.OutputView;
+import view.input.ErrorMessage;
+import view.input.InputView;
+import view.output.OutputView;
 
 class RadderGameControllerTest {
 
@@ -47,25 +47,27 @@ class RadderGameControllerTest {
         );
     }
 
-    @DisplayName("컨트롤러는 인풋뷰를 사용해 Map을 정상적으로 생성한다.")
+    @DisplayName("컨트롤러는 인풋뷰를 사용해 사다리를 정상적으로 생성한다.")
     @Test
-    void makeMapSuccess() {
+    void makeLadderSuccess() {
         setInput("3");
         RadderGameController radderGameController = new RadderGameController();
         Participants participants = new Participants("split,jamie,pobi");
-        Map map = radderGameController.makeMap(new InputView(), participants, () -> true);
-        Assertions.assertThat(map.getLadders().get(0).getStatus()).containsExactly(true, true, true);
-        Assertions.assertThat(map.getLadders().get(1).getStatus()).containsExactly(false, false, false);
+        Ladder ladder = radderGameController.makeLadder(new InputView(), participants, () -> true);
+        Assertions.assertThat(ladder.getLines().size()).isEqualTo(3);
+        Assertions.assertThat(ladder.getLines().get(0).getStatus()).containsExactly(true, false);
+        Assertions.assertThat(ladder.getLines().get(1).getStatus()).containsExactly(true, false);
+        Assertions.assertThat(ladder.getLines().get(2).getStatus()).containsExactly(true, false);
     }
 
-    @DisplayName("컨트롤러는 잘못된 입력으로 Map 생성시 오류를 던진다.")
+    @DisplayName("컨트롤러는 잘못된 입력으로 사다리 생성시 오류를 던진다.")
     @Test
-    void makeMapFail() {
+    void makeLadderFail() {
         setInput("11\n3");
         setOutput();
         RadderGameController radderGameController = new RadderGameController();
         Participants participants = new Participants("split,jamie,pobi");
-        radderGameController.makeMap(new InputView(), participants, new RandomBooleanGenerator());
+        radderGameController.makeLadder(new InputView(), participants, new RandomBooleanGenerator());
         Assertions.assertThat(byteArrayOutputStream.toString()).contains(
             ErrorMessage.INVALID_LADDER_HEIGHT.getMessage()
         );
@@ -73,13 +75,13 @@ class RadderGameControllerTest {
 
     @DisplayName("컨틀롤러는 아웃풋뷰를 통해 맵을 출력한다.")
     @Test
-    void printMap() {
+    void printLadder() {
         setOutput();
         RadderGameController radderGameController = new RadderGameController();
         Participants participants = new Participants("jamie,split,pobi");
-        Map map = new Map("4", participants.getParticipantCount());
+        Ladder map = new Ladder("4", participants.getParticipantCount());
         map.generate(() -> true);
-        radderGameController.showMap(new OutputView(), participants, map);
+        radderGameController.showLadder(new OutputView(), participants, map);
         Assertions.assertThat(byteArrayOutputStream.toString()).isEqualTo("\n실행결과\n\n"
             + "jamie split  pobi \n"
             + "    |-----|     |\n"
