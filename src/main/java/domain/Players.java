@@ -49,7 +49,7 @@ public class Players {
     public String asString() {
         return players.stream()
                 .map(Player::getName)
-                .map(s -> String.format("%-5s",s))
+                .map(name -> String.format("%-5s", name))
                 .collect(Collectors.joining(" "));
     }
 }
