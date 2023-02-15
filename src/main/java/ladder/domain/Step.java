@@ -1,4 +1,4 @@
-package domain;
+package ladder.domain;
 
 public enum Step {
     EXIST("-----"),

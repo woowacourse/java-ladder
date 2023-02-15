@@ -1,10 +1,10 @@
-package controller;
+package ladder.controller;
 
-import domain.Height;
-import domain.Ladder;
-import domain.Players;
-import service.LadderService;
-import view.LadderView;
+import ladder.domain.Height;
+import ladder.domain.Ladder;
+import ladder.domain.Players;
+import ladder.service.LadderService;
+import ladder.view.LadderView;
 
 public class LadderController {
     private final LadderService ladderService;

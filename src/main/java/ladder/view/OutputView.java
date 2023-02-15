@@ -1,4 +1,4 @@
-package view;
+package ladder.view;
 
 import java.util.List;
 

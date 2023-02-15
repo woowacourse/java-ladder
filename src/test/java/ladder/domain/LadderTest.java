@@ -1,4 +1,4 @@
-package domain;
+package ladder.domain;
 
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -6,6 +6,9 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import java.util.List;
 import java.util.stream.IntStream;
+import ladder.domain.Ladder;
+import ladder.domain.Line;
+import ladder.domain.Step;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

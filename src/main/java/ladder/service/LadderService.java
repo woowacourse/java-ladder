@@ -1,11 +1,11 @@
-package service;
+package ladder.service;
 
-import domain.Height;
-import domain.Ladder;
-import domain.Line;
+import ladder.domain.Height;
+import ladder.domain.Ladder;
+import ladder.domain.Line;
 import java.util.ArrayList;
 import java.util.List;
-import util.LineStrategy;
+import ladder.util.LineStrategy;
 
 public class LadderService {
     private final LineStrategy lineStrategy;

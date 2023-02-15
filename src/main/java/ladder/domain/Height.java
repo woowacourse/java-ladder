@@ -1,4 +1,4 @@
-package domain;
+package ladder.domain;
 
 public class Height {
     public static final int MIN_HEIGHT = 0;

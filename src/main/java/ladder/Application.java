@@ -1,7 +1,9 @@
-import controller.LadderController;
-import service.LadderService;
-import util.RandomLineStrategy;
-import view.LadderView;
+package ladder;
+
+import ladder.controller.LadderController;
+import ladder.service.LadderService;
+import ladder.util.RandomLineStrategy;
+import ladder.view.LadderView;
 
 public class Application {
     public static void main(String[] args) {

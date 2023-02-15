@@ -1,4 +1,4 @@
-package domain;
+package ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;

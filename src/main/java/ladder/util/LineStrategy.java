@@ -1,6 +1,6 @@
-package util;
+package ladder.util;
 
-import domain.Line;
+import ladder.domain.Line;
 
 public interface LineStrategy {
     Line generate(int width);

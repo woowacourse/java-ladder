@@ -1,11 +1,11 @@
-package util;
+package ladder.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
-import domain.Line;
-import domain.Step;
+import ladder.domain.Line;
+import ladder.domain.Step;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

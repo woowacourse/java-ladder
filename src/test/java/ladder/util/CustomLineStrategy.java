@@ -1,9 +1,10 @@
-package util;
+package ladder.util;
 
-import domain.Line;
-import domain.Step;
+import ladder.domain.Line;
+import ladder.domain.Step;
 import java.util.ArrayList;
 import java.util.List;
+import ladder.util.LineStrategy;
 
 public class CustomLineStrategy implements LineStrategy {
     private final List<Step> mockSteps;

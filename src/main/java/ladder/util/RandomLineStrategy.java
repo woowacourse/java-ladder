@@ -1,7 +1,7 @@
-package util;
+package ladder.util;
 
-import domain.Line;
-import domain.Step;
+import ladder.domain.Line;
+import ladder.domain.Step;
 import java.util.Random;
 import java.util.Stack;
 
