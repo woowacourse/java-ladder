@@ -42,18 +42,18 @@ public class Players {
         }
     }
 
+    public String asString() {
+        return players.stream()
+                .map(Player::getName)
+                .map(name -> String.format("%-5s", name))
+                .collect(Collectors.joining(" "));
+    }
+
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
     }
 
     public int getPlayersCount() {
         return players.size();
-    }
-
-    public String asString() {
-        return players.stream()
-                .map(Player::getName)
-                .map(name -> String.format("%-5s", name))
-                .collect(Collectors.joining(" "));
     }
 }
