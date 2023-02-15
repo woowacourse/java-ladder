@@ -1,5 +1,6 @@
 package controller;
 
+import model.Ladder;
 import model.LadderHeight;
 import view.InputView;
 import view.OutputView;
@@ -17,7 +18,7 @@ public class Controller {
     }
     public void run(){
         List<String> playerNames = setPlayerNames();
-        LadderHeight ladderHeight = setLadderHeight();
+        Ladder ladder = new Ladder(setLadderHeight());
     }
 
     private List<String> setPlayerNames(){
