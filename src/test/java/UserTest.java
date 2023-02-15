@@ -2,13 +2,28 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
+import domain.User;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import view.InputView;
 
 class UserTest {
     public static final int NAME_LENGTH_LIMIT = 5;
+
+    @Nested
+    @DisplayName("유저 생성 테스트")
+    class MakeUserTest {
+        @DisplayName("변환된 입력값을 통해 올바르게 유저가 생성되는지 확인한다.")
+        @ParameterizedTest
+        @ValueSource(strings = {"i", "am", "fun", "dino", "mango"})
+        void shouldSuccessMakeUser(String name) {
+            assertDoesNotThrow(() -> new User(name));
+        }
+    }
 
     @Nested
     @DisplayName("이름 길이 검증 테스트")
