@@ -1,6 +1,7 @@
 package laddergame.controller;
 
 import laddergame.domain.LadderGame;
+import laddergame.util.RepeatValidator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -17,15 +18,19 @@ public class LadderGameController {
     }
 
     private void initPlayers() {
-        OutputView.printPlayerNamesRequestMsg();
-        List<String> playerNames = InputView.inputPlayerNames();
-        ladderGame.setPlayers(playerNames);
+        RepeatValidator.runUntilValidate(() -> {
+            OutputView.printPlayerNamesRequestMsg();
+            List<String> playerNames = InputView.inputPlayerNames();
+            ladderGame.setPlayers(playerNames);
+        });
     }
 
     private void initLadder() {
-        OutputView.printLadderHeightRequestMsg();
-        int ladderHeight = InputView.inputLadderHeight();
-        ladderGame.makeLadder(ladderHeight);
+        RepeatValidator.runUntilValidate(() -> {
+            OutputView.printLadderHeightRequestMsg();
+            int ladderHeight = InputView.inputLadderHeight();
+            ladderGame.makeLadder(ladderHeight);
+        });
     }
 
     private void printLadderResult() {
