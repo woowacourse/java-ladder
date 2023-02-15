@@ -15,10 +15,14 @@ public class Line {
     }
 
     private static void validateContinuousStep(List<Step> steps) {
-        for (int i = 1; i < steps.size(); i++) {
-            if (steps.get(i - 1) == steps.get(i)) {
-                throw new IllegalArgumentException("[ERROR] 라인에 Step이 연속될 수 없습니다.");
-            }
+        for (int index = 1; index < steps.size(); index++) {
+            checkContinuous(steps, index);
+        }
+    }
+
+    private static void checkContinuous(List<Step> steps, int index) {
+        if (steps.get(index) == Step.EXIST && steps.get(index - 1) == Step.EXIST) {
+            throw new IllegalArgumentException("[ERROR] 라인에 Step이 연속될 수 없습니다.");
         }
     }
 }
