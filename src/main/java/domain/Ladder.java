@@ -1,51 +1,59 @@
 package domain;
 
 import exception.InvalidLadderHeightException;
+import exception.InvalidLineWeightException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import util.BooleanGenerator;
 
 public class Ladder {
 
-    private final boolean[] status;
+    private final int height;
+    private final int lineWeight;
+    private final List<Line> lines = new ArrayList<>();
 
-    public Ladder(int height) {
-        validateHeight(height);
-        status = new boolean[height];
+    public Ladder(String height, int participantCount) {
+        final int lineWeight = participantCount - 1;
+        validate(height, lineWeight);
+        this.height = Integer.parseInt(height);
+        this.lineWeight = lineWeight;
     }
 
-    private void validateHeight(int height) {
-        if (!isValidHeight(height)) {
+    private void validate(String height, int lineWeight) {
+        if (!isNum(height) || !isValidHeight(height)) {
             throw new InvalidLadderHeightException();
+        }
+        if (!isValidLineWeight(lineWeight)) {
+            throw new InvalidLineWeightException();
         }
     }
 
-    private boolean isValidHeight(int height) {
-        final int maxHeight = 10;
-        final int minHeight = 1;
-        return minHeight <= height && height <= maxHeight;
+    private boolean isNum(String height) {
+        return !(height == null || height.isBlank() || !height.matches("^[1-9]*$"));
     }
 
-    public int getHeight() {
-        return status.length;
+    private boolean isValidHeight(String heightInput) {
+        final int minLadderCount = 1;
+        final int maxLadderCount = 10;
+        final int height = Integer.parseInt(heightInput);
+        return !(height < minLadderCount || height > maxLadderCount);
     }
 
-    public void generate(List<Integer> avoid, BooleanGenerator booleanGenerator) {
-        IntStream.range(0, status.length)
-            .filter((num) -> !avoid.contains(num))
-            .forEach((num) -> {
-                boolean isConnect = booleanGenerator.generate();
-                status[num] = isConnect;
-            });
+    private boolean isValidLineWeight(int lineWeight) {
+        final int minLineWeight = 1;
+        final int maxLineWeight = 9;
+        return !(lineWeight < minLineWeight || lineWeight > maxLineWeight);
     }
 
-    public boolean[] getStatus() {
-        return status;
+    public void generate(BooleanGenerator booleanGenerator) {
+        for (int count = 0; count < height; count++) {
+            Line line = new Line(lineWeight);
+            line.generate(booleanGenerator);
+            lines.add(line);
+        }
     }
 
-    public List<Integer> getConnectedIndex() {
-        return IntStream.range(0, status.length).filter((index) -> status[index]).boxed()
-            .collect(Collectors.toList());
+    public List<Line> getLines() {
+        return lines;
     }
 }

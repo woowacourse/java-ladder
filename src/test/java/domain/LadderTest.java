@@ -1,77 +1,65 @@
 package domain;
 
 import exception.InvalidLadderHeightException;
+import exception.InvalidLineWeightException;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import util.BooleanGenerator;
 
 class LadderTest {
 
-    @DisplayName("사다리의 높이가 조건에 맞을 경우 객체를 생성한다.")
+    @DisplayName("높이와 참가자의 수가 조건에 맞는 경우 사다리를 생성한다.")
     @Test
-    void ladderSuccess() {
+    void createSuccess() {
         try {
-            Ladder ladder = new Ladder(10);
-            int height = ladder.getHeight();
-            Assertions.assertThat(height).isEqualTo(10);
+            new Ladder("3", 3);
         } catch (IllegalArgumentException exception) {
-            Assertions.fail("높이가 조건에 맞을 경우 객체를 생성해야 합니다.");
+            Assertions.fail("높이가 숫자인 경우 객체가 생성되어야 합니다.");
         }
     }
 
-    @DisplayName("사다리의 높이가 10을 넘을 경우 오류를 던진다.")
+    @DisplayName("높이가 숫자가 아닌 경우 오류를 던진다.")
     @Test
-    void heightOver10() {
-        Assertions.assertThatThrownBy(() -> new Ladder(11))
+    void heightNotDigit() {
+        Assertions.assertThatThrownBy(() -> new Ladder("a", 2)).isExactlyInstanceOf(InvalidLadderHeightException.class);
+    }
+
+    @DisplayName("높이가 null일 경우 오류를 던진다.")
+    @Test
+    void heightNull() {
+        Assertions.assertThatThrownBy(() -> new Ladder(null, 2))
             .isExactlyInstanceOf(InvalidLadderHeightException.class);
     }
 
-    @DisplayName("사다리의 높이가 1보다 작을 경우 오류를 던진다.")
+    @DisplayName("높이가 공백으로만 이루어져 있을 경우 오류를 던진다.")
     @Test
-    void heightLessThan1() {
-        Assertions.assertThatThrownBy(() -> new Ladder(0))
+    void heightBlank() {
+        Assertions.assertThatThrownBy(() -> new Ladder("     ", 2))
             .isExactlyInstanceOf(InvalidLadderHeightException.class);
     }
 
-    @DisplayName("연결하면 안 되는 곳이 없을 경우 모두 연결된 상태를 가진다.")
+    @DisplayName("참가자 수가 10명보다 많은 경우 오류를 던진다.")
     @Test
-    void makeStatus() {
-        List<Integer> avoid = List.of();
-        Ladder ladder = new Ladder(3);
-        BooleanGenerator booleanGenerator = () -> true;
-        ladder.generate(avoid, booleanGenerator);
-        Assertions.assertThat(ladder.getStatus()).isEqualTo(new boolean[]{true, true, true});
+    void lineCountOver10() {
+        Assertions.assertThatThrownBy(() -> new Ladder("3", 11)).isExactlyInstanceOf(InvalidLineWeightException.class);
     }
 
-    @DisplayName("연결하면 안 되는 곳 제외 모두 연결된 상태를 가진다.")
+    @DisplayName("참가자 수가 2명보다 적은 경우 오류를 던진다.")
     @Test
-    void makeStatusWithAvoidExist() {
-        List<Integer> avoid = List.of(1);
-        Ladder ladder = new Ladder(3);
-        BooleanGenerator booleanGenerator = () -> true;
-        ladder.generate(avoid, booleanGenerator);
-        Assertions.assertThat(ladder.getStatus()).isEqualTo(new boolean[]{true, false, true});
+    void lineCountUnder1() {
+        Assertions.assertThatThrownBy(() -> new Ladder("3", 1)).isExactlyInstanceOf(InvalidLineWeightException.class);
     }
 
-    @DisplayName("연결되어 있는 곳의 인덱스를 리스트로 반환한다.(연결된 곳이 없을 경우)")
+    @DisplayName("참가자 수에서 1을 뺀 만큼의 라인을 가진사다리를 만든다.")
     @Test
-    void getConnectedIndexNoConnected() {
-        Ladder ladder = new Ladder(3);
-        BooleanGenerator booleanGenerator = () -> false;
-        ladder.generate(List.of(), booleanGenerator);
-        List<Integer> connectedIndex = ladder.getConnectedIndex();
-        Assertions.assertThat(connectedIndex).isEmpty();
-    }
-
-    @DisplayName("연결되어 있는 곳의 인덱스를 리스트로 반환한다. (연결된 곳이 있을 경우)")
-    @Test
-    void getConnectedIndexConnected() {
-        Ladder ladder = new Ladder(3);
-        BooleanGenerator booleanGenerator = () -> true;
-        ladder.generate(List.of(), booleanGenerator);
-        List<Integer> connectedIndex = ladder.getConnectedIndex();
-        Assertions.assertThat(connectedIndex).containsExactly(0, 1, 2);
+    void generateLadder() {
+        Ladder ladder = new Ladder("3", 3);
+        ladder.generate(() -> true);
+        List<Line> lines = ladder.getLines();
+        Assertions.assertThat(lines.size()).isEqualTo(3);
+        Assertions.assertThat(lines.get(0).getStatus()).containsExactly(true, false);
+        Assertions.assertThat(lines.get(1).getStatus()).containsExactly(true, false);
+        Assertions.assertThat(lines.get(2).getStatus()).containsExactly(true, false);
     }
 }
