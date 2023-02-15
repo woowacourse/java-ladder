@@ -1,11 +1,12 @@
 package util;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import domain.Line;
 import domain.Step;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,8 +33,20 @@ class LineStrategyTest {
         LineStrategy lineStrategy = new CustomLineStrategy(List.of(Step.EMPTY, Step.EXIST, Step.EXIST));
 
         // expect
-        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
             lineStrategy.generate(4);
         }).withMessage("[ERROR] 라인에 Step이 연속될 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("Line이 정상적으로 생성되어야 한다.")
+    void create_success() {
+        // given
+        CustomLineStrategy lineStrategy = new CustomLineStrategy(List.of(Step.EMPTY, Step.EXIST, Step.EMPTY));
+
+        // expect
+        assertThatNoException().isThrownBy(() -> {
+            lineStrategy.generate(4);
+        });
     }
 }
