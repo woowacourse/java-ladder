@@ -1,12 +1,17 @@
 package domain;
 
+import utils.validator.NameValidator;
+
 public class Name {
+
+    private final String name;
+
     public Name(String name) {
-        if (name.isBlank()) {
-            throw new IllegalArgumentException();
-        }
-        if (name.length() < 1 || name.length() > 5) {
-            throw new IllegalArgumentException();
-        }
+        NameValidator.validate(name);
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }
