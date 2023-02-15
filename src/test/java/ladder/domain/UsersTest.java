@@ -28,4 +28,20 @@ public class UsersTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
+
+    @Test
+    @DisplayName("중복된 유저 입력시 Users 예외 테스트")
+    void invalidDuplicationUsersTest() {
+        List<String> users = List.of("가나","가나");
+        assertThatThrownBy(() -> new Users(users))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("단일 유저 입력시 Users 예외 테스트")
+    void makeOneUserUsersTest() {
+        List<String> users = List.of("가나");
+        assertThatThrownBy(() -> new Users(users))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
