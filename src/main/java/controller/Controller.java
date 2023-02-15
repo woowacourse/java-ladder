@@ -7,6 +7,7 @@ import domain.Line;
 import domain.User;
 import domain.Users;
 import utils.LineGenerator;
+import utils.StringParser;
 import view.InputView;
 import view.OutputView;
 
@@ -32,16 +33,16 @@ public class Controller {
     }
 
     private void printLadder() {
+        List<String> ladders = StringParser.parseLadderToString(ladder);
+        OutputView.printLadder(ladders);
     }
 
     private void createLadder() {
         int ladderHeight = InputView.readLadderHeight();
-        Line previousLine = LineGenerator.generateFirstLine(ladderHeight);
-        ladder.add(previousLine);
-        for (int i = 0; i < users.retrieveSize() - 2; i++) {
-            Line line = LineGenerator.generate(previousLine);
+        int userCount = users.retrieveSize();
+        for (int i = 0; i < ladderHeight; i++) {
+            Line line = LineGenerator.generate(userCount);
             ladder.add(line);
-            previousLine = line;
         }
     }
 
