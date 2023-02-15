@@ -16,8 +16,8 @@ public class People {
 			.collect(Collectors.toUnmodifiableList());
 	}
 
-	public List<Person> getPeople() {
-		return people;
+	public int size() {
+		return people.size();
 	}
 
 	private void validate(List<String> names) {

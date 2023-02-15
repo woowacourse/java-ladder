@@ -16,7 +16,7 @@ class PeopleTest {
 	void peopleSizeBetween2_10() {
 		People people = new People(List.of("salmn", "kiara"));
 
-		assertThat(people.getPeople().size()).isBetween(2, 10);
+		assertThat(people.size()).isBetween(2, 10);
 	}
 
 	@DisplayName("2명 미만이면 예외가 발생한다")
