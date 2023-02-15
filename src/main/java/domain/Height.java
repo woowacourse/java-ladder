@@ -9,4 +9,8 @@ public class Height {
         }
         this.height = height;
     }
+
+    public int getHeight() {
+        return height;
+    }
 }
