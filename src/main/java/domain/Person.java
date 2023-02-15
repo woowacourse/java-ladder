@@ -12,6 +12,10 @@ public class Person {
         validateNameBlank(name);
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void validateNameBlank(String name) {
         if (name.isBlank()){
             throw new IllegalArgumentException();
