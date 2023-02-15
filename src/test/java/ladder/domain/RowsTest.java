@@ -22,8 +22,8 @@ class RowsTest {
     static Stream<Arguments> 로우_리스트(){
         return Stream.of(
             Arguments.of(List.of(
-                    Row.of(List.of(true, false), 2),
-                    Row.of(List.of(false, true), 2)
+                    Row.of(List.of(Foothold.Y, Foothold.N), 2),
+                    Row.of(List.of(Foothold.N, Foothold.Y), 2)
             ))
         );
     }
