@@ -17,4 +17,8 @@ public class Name {
             throw new IllegalArgumentException(String.format(LENGTH_ERROR_MESSAGE, MIN_LENGTH, MAX_LENGTH));
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
