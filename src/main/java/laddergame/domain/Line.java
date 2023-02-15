@@ -25,6 +25,10 @@ public class Line {
         return new Line(width, pickStrategy);
     }
 
+    public List<Boolean> getStatuses() {
+        return new ArrayList<>(statuses);
+    }
+
     private List<Boolean> createStatuses(int width) {
         List<Boolean> statuses = new ArrayList<>();
 

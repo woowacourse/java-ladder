@@ -19,4 +19,9 @@ public class Names {
             throw new IllegalArgumentException();
         }
     }
+
+    public List<String> getNames() {
+        return names.stream().map(Name::getName)
+                .collect(Collectors.toList());
+    }
 }
