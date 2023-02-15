@@ -11,8 +11,8 @@ class LadderGameTest {
 
     @Test
     void 사다리는_높이_만큼의_라인을_가진다() {
-        LadderGame ladderGame = new LadderGame(4, players);
+        LadderGame ladderGame = new LadderGame(players);
 
-        assertThat(ladderGame.getLines()).hasSize(4);
+        assertThat(ladderGame.play(4)).hasSize(4);
     }
 }
