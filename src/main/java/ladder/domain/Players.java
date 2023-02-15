@@ -24,4 +24,11 @@ public class Players {
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
     }
+
+    public List<String> getNameValues() {
+        return players.stream()
+                .map(Player::getName)
+                .map(Name::getValue)
+                .collect(Collectors.toList());
+    }
 }

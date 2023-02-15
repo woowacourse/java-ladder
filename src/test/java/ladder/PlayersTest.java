@@ -13,7 +13,7 @@ class PlayersTest {
 
     @Test
     @DisplayName("여러 개의 이름을 입력받고 players를 생성한다")
-    void shouldCreatePlayersWhenInputStrings () {
+    void shouldCreatePlayersWhenInputStrings() {
         //given
         List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
         //when
@@ -23,12 +23,23 @@ class PlayersTest {
 
     @Test
     @DisplayName("플레이어의 수를 반환한다")
-    public void shouldReturnSizeWhenRequest () {
+    void shouldReturnSizeWhenRequest() {
         //given
         List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
         //when
         Players players = new Players(names);
         //then
         assertThat(players.getSize()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("플레이어들의 이름을 문자열로 반환한다")
+    void shouldReturnNameValuesWhenRequest() {
+        //given
+        List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
+        //when
+        Players players = new Players(names);
+        //then
+        assertThat(players.getNameValues()).containsExactly("a", "ab", "abc");
     }
 }

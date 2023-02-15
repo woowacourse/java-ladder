@@ -6,4 +6,8 @@ public class Player {
     public Player(String nameValue) {
         this.name = new Name(nameValue);
     }
+
+    public Name getName() {
+        return name;
+    }
 }
