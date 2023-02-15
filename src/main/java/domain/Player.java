@@ -4,8 +4,8 @@ public class Player {
 
     private final PlayerName playerName;
 
-    public Player(final PlayerName playerName) {
-        this.playerName = playerName;
+    public Player(final String playerName) {
+        this.playerName = new PlayerName(playerName);
     }
 
     public String getName() {

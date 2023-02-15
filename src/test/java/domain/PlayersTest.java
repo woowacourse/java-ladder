@@ -14,11 +14,10 @@ public class PlayersTest {
     @DisplayName("사람의 수가 1명 이하이면 예외를 던진다.")
     void players_constructor_validate() {
         // given
-        Player player = new Player(new PlayerName("pobi"));
-        List<Player> players = List.of(player);
+        List<String> playerNames = List.of("pobi");
 
         // when & then
-        assertThatThrownBy(() -> new Players(players))
+        assertThatThrownBy(() -> new Players(playerNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -26,15 +25,13 @@ public class PlayersTest {
     @DisplayName("사람의 수가 10명 이상이면 예외를 던진다.")
     void players_constructor_validate_over() {
         // given
-        List<Player> players = new ArrayList<>();
+        List<String> playerNames = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
-            PlayerName playerName = new PlayerName("abc" + i);
-            Player player = new Player(playerName);
-            players.add(player);
+            playerNames.add("abc" + i);
         }
 
         // when & then
-        assertThatThrownBy(() -> new Players(players))
+        assertThatThrownBy(() -> new Players(playerNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -42,14 +39,11 @@ public class PlayersTest {
     @DisplayName("중복된 사람의 이름이 있으면 예외를 던진다.")
     void throws_exception_duplicated_name() {
         // given
-        PlayerName duplicatedName = new PlayerName("pobi");
-        Player player1 = new Player(duplicatedName);
-        Player player2 = new Player(duplicatedName);
-        List<Player> players = List.of(player1, player2);
+        String duplicatedName = "pobi";
+        List<String> playerNames = List.of(duplicatedName, duplicatedName);
 
         // when & then
-        assertThat(player1.getName()).isEqualTo(player2.getName());
-        assertThatThrownBy(() -> new Players(players))
+        assertThatThrownBy(() -> new Players(playerNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -57,12 +51,13 @@ public class PlayersTest {
     @DisplayName("플레이어 중 가장 긴 이름의 길이를 반환한다.")
     void returns_longest_players_name() {
         // given
-        Player bob = new Player(new PlayerName("bob"));
-        Player popo = new Player(new PlayerName("popo"));
-        Player dolbi = new Player(new PlayerName("dolbi"));
-        Players players = new Players(List.of(bob, popo, dolbi));
+        String bob = "bob";
+        String popo = "popo";
+        String dolbi = "dolbi";
+        List<String> playerNames = List.of(bob, popo, dolbi);
+        int expectedLongestLengthOfName = dolbi.length();
 
-        int expectedLongestLengthOfName = dolbi.getName().length();
+        Players players = new Players(playerNames);
 
         // when
         int longestLengthOfName = players.findLongestPlayerName();

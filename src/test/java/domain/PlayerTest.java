@@ -12,7 +12,7 @@ public class PlayerTest {
     void returns_player_name() {
         // given
         String givenName = "123";
-        Player player = new Player(new PlayerName(givenName));
+        Player player = new Player(givenName);
 
         // when
         String expectedName = player.getName();
