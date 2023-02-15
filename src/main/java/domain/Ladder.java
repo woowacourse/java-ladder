@@ -1,11 +1,18 @@
 package domain;
 
-public class Ladder {
-    int height;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Ladder(int height) {
+public class Ladder {
+    private final List<Line> lines;
+
+    public Ladder(int height, int personCount) {
         validateHeight(height);
-        this.height = height;
+        lines = new ArrayList<>();
+        while (height-- > 0) {
+            Line line = new Line(personCount);
+            lines.add(line);
+        }
     }
 
     public void validateHeight(int height) {
