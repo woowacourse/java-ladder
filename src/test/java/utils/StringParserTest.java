@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class StringParserTest {
     @Test
     @DisplayName("콤마를 기준으로 사람이름을 분리한다.")
-    void splitByCommaTest() {
+    void splitByDelimiterTest() {
         String input = "pobi,honux,crong,jk";
 
         List<String> strings = StringParser.splitByDelimiter(input);
@@ -23,7 +23,7 @@ class StringParserTest {
 
     @Test
     @DisplayName("콤마를 기준으로 사람이름을 분리한다.")
-    void splitByCommaEdgeCaseTest() {
+    void splitByDelimiterEdgeCaseTest() {
         String input = "pobi,,,";
 
         List<String> strings = StringParser.splitByDelimiter(input);
@@ -53,7 +53,7 @@ class StringParserTest {
 
     @ParameterizedTest(name = "문자열에 공백을 삽입하여 5글자로 만든다.")
     @ValueSource(strings = {"a","adf","asdfg"})
-    void putBlankTest(String input) {
+    void insertBlankTest(String input) {
         String result = StringParser.insertBlank(input);
 
         assertThat(result.length()).isEqualTo(5);
