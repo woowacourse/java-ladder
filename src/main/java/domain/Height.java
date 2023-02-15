@@ -5,8 +5,11 @@ public class Height {
     private static final int HEIGHT_LOWER_BOUND_INCLUSIVE = 1;
     private static final int HEIGHT_UPPER_BOUND_INCLUSIVE = 100;
 
+    private final int height;
+
     public Height(int height) {
         validate(height);
+        this.height = height;
     }
 
     private void validate(int height) {
@@ -18,5 +21,9 @@ public class Height {
     private boolean isOutOfRange(int height) {
         return !(HEIGHT_LOWER_BOUND_INCLUSIVE <= height
                 && height <= HEIGHT_UPPER_BOUND_INCLUSIVE);
+    }
+
+    public int getHeight() {
+        return this.height;
     }
 }
