@@ -26,7 +26,7 @@ public class PlayersTest {
 
         List<Player> players = createPlayersByNames(playerNames);
 
-        assertDoesNotThrow(Players::new);
+        assertDoesNotThrow(() -> new Players(players));
     }
 
     @Test
@@ -40,23 +40,13 @@ public class PlayersTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("모든 조건을 충족한 경우 Players 객체가 생성된다.")
-    void playersInitiatorTest() {
-        List<String> playerNames = List.of("pobi", "crong", "honux");
-
-        List<Player> players = createPlayersByNames(playerNames);
-
-        assertDoesNotThrow(Players::new);
-    }
-
     @Nested
     @DisplayName("Players")
     class PlayersInitiator {
 
         @Test
         @DisplayName("플레이어의 수가 1명인 경우, 예외가 발생한다")
-        void validateCountOfPlayer() {
+        void validateOnePlayer() {
             List<String> playerNames = List.of("pobi");
 
             List<Player> onePlayer = createPlayersByNames(playerNames);
@@ -67,8 +57,8 @@ public class PlayersTest {
 
         @Test
         @DisplayName("플레이어의 수가 0명인 경우, 예외가 발생한다")
-        void validateCountOfPlayer() {
-            List<String> playerNames = Collections.EMPTY_LIST;
+        void validateZeroPlayer() {
+            List<String> playerNames = Collections.emptyList();
 
             List<Player> zeroPlayer = createPlayersByNames(playerNames);
 
