@@ -12,6 +12,7 @@ public class Line {
     }
 
     public Line(int personCount) {
+        personCount -= 1;
         SecureRandom random = new SecureRandom();
         points = new ArrayList<>();
         Point pastPoint = Point.EMPTY_POINT;
@@ -48,5 +49,12 @@ public class Line {
 
     public List<Point> getPoints() {
         return new ArrayList<>(points);
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
     }
 }
