@@ -1,12 +1,15 @@
 package domain;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Line {
-    private final Set<Integer> spaceWithBridge;
+    private final List<Boolean> bridges;
 
-    public Line() {
-        this.spaceWithBridge = new HashSet<>();
+    public Line(int personCount) {
+        this.bridges = new ArrayList<>();
+        for (int index = 0; index < personCount - 1; index++) {
+            bridges.add(false);
+        }
     }
 }
