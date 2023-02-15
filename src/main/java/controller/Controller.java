@@ -1,9 +1,5 @@
 package controller;
 
-import static utils.constants.ErrorMessages.NUMBER_FORMAT;
-import static utils.constants.GameRules.MAX_LADDER_HEIGHT;
-import static utils.constants.GameRules.MIN_LADDER_HEIGHT;
-
 import java.util.List;
 
 import domain.Ladder;
@@ -12,6 +8,7 @@ import domain.User;
 import domain.Users;
 import utils.LadderRowGenerator;
 import utils.StringParser;
+import utils.constants.Validator;
 import view.InputView;
 import view.OutputView;
 
@@ -53,17 +50,10 @@ public class Controller {
     }
 
     private void addLadder(int ladderHeight, int userCount) {
-        validateLadderHeight(ladderHeight);
+        Validator.validateLadderHeight(ladderHeight);
         for (int i = 0; i < ladderHeight; i++) {
             LadderRow line = LadderRowGenerator.generate(userCount);
             ladder.add(line);
-        }
-    }
-
-    private static void validateLadderHeight(int ladderHeight) {
-        if (ladderHeight < MIN_LADDER_HEIGHT.getValue()
-                || ladderHeight > MAX_LADDER_HEIGHT.getValue()) {
-            throw new IllegalArgumentException(NUMBER_FORMAT.getMessage());
         }
     }
 
