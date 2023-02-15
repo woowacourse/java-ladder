@@ -1,4 +1,4 @@
-package laddergame.domain.participants;
+package laddergame.domain.participant;
 
 import laddergame.domain.participant.Participant;
 
@@ -8,10 +8,13 @@ import java.util.stream.Collectors;
 
 public class Participants {
 
+    private static final int MIN_COUNT = 1;
+
     private final List<Participant> participants;
 
     public Participants(String names) {
         String[] participantNames = splitNames(names);
+        validateParticipantCount(participantNames);
         validateDuplicateName(participantNames);
         participants = Arrays.stream(participantNames)
                 .map(name -> new Participant(name))
@@ -20,6 +23,12 @@ public class Participants {
 
     private String[] splitNames(final String names) {
         return names.split(",");
+    }
+
+    private void validateParticipantCount(String[] participantNames) {
+        if (participantNames.length == MIN_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 참여자는 최소 한 명 이상 입력해야 합니다.");
+        }
     }
 
     private void validateDuplicateName(String[] participantNames) {
