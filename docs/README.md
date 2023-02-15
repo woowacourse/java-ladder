@@ -31,10 +31,10 @@
 
 #### Line
 
-- [ ] Bars를 생성한다.
-  - [ ] 맨 처음 Bar는 false로 지정한다.
-  - [ ] 앞에 Bar가 true라면, 무조건 false를 더한다.
-  - [ ] 앞에 Bar가 false라면, 랜덤 값을 더한다.
+- [x] Bars를 생성한다.
+  - [x] 맨 처음 Bar는 false로 지정한다.
+  - [x] 앞에 Bar가 true라면, 무조건 false를 더한다.
+  - [x] 앞에 Bar가 false라면, 랜덤 값을 더한다.
 
 #### Ladder
 
