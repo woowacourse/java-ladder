@@ -20,4 +20,8 @@ public class Ladders {
             ladders.add(new Ladder(randomGenerator.generateLadder(width)));
         }
     }
+
+    public List<Ladder> getLadders() {
+        return new ArrayList<>(ladders);
+    }
 }

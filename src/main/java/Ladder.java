@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
@@ -12,5 +13,9 @@ public class Ladder {
             }
         }
         this.ladder = ladder;
+    }
+
+    public List<Boolean> getLadder() {
+        return new ArrayList<>(ladder);
     }
 }
