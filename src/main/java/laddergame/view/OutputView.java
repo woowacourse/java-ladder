@@ -7,13 +7,6 @@ import laddergame.model.Persons;
 public class OutputView {
     private final static String VERTICAL_LINE = "|";
 
-    private static void printSymbol(List<Boolean> lines) {
-        for (boolean bool : lines) {
-            System.out.print(LineSymbol.findByBool(bool).getSymbol());
-            System.out.print(VERTICAL_LINE);
-        }
-    }
-
     public void printResult(Ladder ladder, Persons persons) {
         printPersons(persons);
         printLadder(ladder);
@@ -32,6 +25,13 @@ public class OutputView {
             System.out.printf("%6s", VERTICAL_LINE);
             printSymbol(lines);
             System.out.println();
+        }
+    }
+
+    private void printSymbol(List<Boolean> lines) {
+        for (boolean bool : lines) {
+            System.out.print(LineSymbol.findByBool(bool).getSymbol());
+            System.out.print(VERTICAL_LINE);
         }
     }
 }

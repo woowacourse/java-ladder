@@ -16,7 +16,7 @@ public class Persons {
         validatePersonLength(names);
         validateDuplication(names);
         this.persons = new ArrayList<>();
-        addPerson(names);
+        makePersons(names);
     }
 
     private static void validatePersonLength(List<String> names) {
@@ -32,7 +32,7 @@ public class Persons {
         }
     }
 
-    private void addPerson(List<String> names) {
+    private void makePersons(List<String> names) {
         for (String name : names) {
             persons.add(new Person(name));
         }

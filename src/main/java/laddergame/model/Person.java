@@ -3,7 +3,6 @@ package laddergame.model;
 import java.util.regex.Pattern;
 
 public class Person {
-    //TODO : static 클래스에 [ERROR] 말머리 달아서 출력할때 붙여주기
     private final static int MIN_NAME_LENGTH = 1;
     private final static int MAX_NAME_LENGTH = 5;
     private final static String ERROR_NAME_IS_KOREAN = "참여자 이름에 한글이 포함되어서는 안됩니다.";

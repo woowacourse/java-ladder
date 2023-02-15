@@ -21,7 +21,7 @@ public class LadderGameController {
         try {
             return new Persons(inputView.readPersonNames());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            System.out.println(InputView.ERROR_PREFIX + e.getMessage());
             return makePersons();
         }
     }
@@ -30,7 +30,7 @@ public class LadderGameController {
         try {
             return new Height(inputView.readLadderHeight());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            System.out.println(InputView.ERROR_PREFIX + e.getMessage());
             return makeLadderHeight();
         }
     }

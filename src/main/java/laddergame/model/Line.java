@@ -26,27 +26,24 @@ public class Line {
 
     private static void validatePoint(List<Boolean> line, int i) {
         if (line.get(i) && line.get(i + 1)) {
-            throw new IllegalArgumentException("[ERROR] 라인에 연속되는 true값이 존재합니다.");
+            throw new IllegalArgumentException();
         }
     }
 
     private static List<Boolean> makeLine(int personCount) {
         List<Boolean> line = new ArrayList<>();
-
         line.add(random.nextBoolean());
         for (int i = 1; i < personCount - 1; i++) {
-            makePoint(line, i);
+            line.add(makePoint(line, i));
         }
         return line;
     }
 
-    private static void makePoint(List<Boolean> line, int i) {
+    private static boolean makePoint(List<Boolean> line, int i) {
         if (line.get(i - 1)) {
-            line.add(false);
+            return false;
         }
-        if (!line.get(i - 1)) {
-            line.add(random.nextBoolean());
-        }
+        return random.nextBoolean();
     }
 
     public int getSize() {
