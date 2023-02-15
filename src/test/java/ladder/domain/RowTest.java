@@ -12,21 +12,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class RowTest {
     @Test
     public void 연속_발판이면_예외_던지기(){
-        assertThatThrownBy(() -> Row.of(List.of(true, true), 2))
+        assertThatThrownBy(() -> Row.of(List.of(Foothold.Y, Foothold.Y), 2))
                 .isInstanceOf(IllegalArgumentException.class);
-
     }
 
     @ParameterizedTest
-    @CsvSource({"true,false", "false,false"})
-    public void Row_정상_생성 (boolean first, boolean second){
+    @CsvSource({"Y,N", "N,N"})
+    public void Row_정상_생성 (Foothold first, Foothold second){
         assertThatNoException()
                 .isThrownBy(() -> Row.of(List.of(first, second), 2));
     }
 
     @Test
     public void Row_사이즈와_사람수가_불일치하면_예외던지기() {
-        assertThatThrownBy(() -> Row.of(List.of(false, false, true), 2))
+        assertThatThrownBy(() -> Row.of(List.of(Foothold.N, Foothold.N, Foothold.Y), 2))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

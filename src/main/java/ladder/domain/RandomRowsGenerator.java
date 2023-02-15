@@ -16,11 +16,15 @@ public class RandomRowsGenerator {
     }
 
     private Row generateRow(int size) {
-        List<Boolean> row = new ArrayList<>();
+        List<Foothold> row = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            row.add(random.nextBoolean());
+            row.add(getFoothold());
         }
         return Row.of(row, size);
+    }
+
+    private Foothold getFoothold() {
+        return Foothold.from(random.nextBoolean());
     }
 
     public Rows generateRows(int width, int height) {
