@@ -6,11 +6,13 @@ import java.util.List;
 public class InputVerifier {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
+    public static final int MIN_HEIGHT = 0;
     public static final String NAME_LENGTH_ERROR_MESSAGE =
             "[ERROR] 사람 이름은 " + MIN_NAME_LENGTH + "~" + MAX_NAME_LENGTH + "글자로 입력해 주세요.";
     public static final String NAME_FORMAT_ERROR_MESSAGE = "[ERROR] 사람 이름은 영문자만 가능합니다.";
     public static final String HEIGHT_FORMAT_ERROR_MESSAGE = "[ERROR] 사다리 높이는 숫자만 가능합니다.";
     public static final String INPUT_NOTHING_ERROR_MESSAGE = "[ERROR] 값을 입력하지 않았습니다.";
+    public static final String HEIGHT_LIMIT_ERROR_MESSAGE = "[ERROR] 사다리 높이는 " + MIN_HEIGHT + " 이상만 가능합니다.";
 
     public List<String> validateNameInput(String nameInput) {
         validateNameLength(nameInput);
@@ -63,7 +65,9 @@ public class InputVerifier {
 
     public int validateHeightInput(String heightInput) {
         validateHeightFormat(heightInput);
-        return convertHeightInput(heightInput);
+        int height = convertHeightInput(heightInput);
+        validateHeightLimit(height);
+        return height;
     }
 
     private void validateHeightFormat(String heightInput) {
@@ -77,6 +81,12 @@ public class InputVerifier {
             return Integer.parseInt(heightInput);
         } catch (NumberFormatException numberFormatException) {
             throw new IllegalArgumentException(INPUT_NOTHING_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateHeightLimit(int height) {
+        if (height < MIN_HEIGHT) {
+            throw new IllegalArgumentException(HEIGHT_LIMIT_ERROR_MESSAGE);
         }
     }
 }
