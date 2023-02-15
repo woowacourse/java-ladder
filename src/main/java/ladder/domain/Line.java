@@ -11,7 +11,7 @@ public class Line {
         this.blocks = blocks;
     }
 
-    List<Boolean> getBlocks() {
+    public List<Boolean> getBlocks() {
         return blocks;
     }
 }

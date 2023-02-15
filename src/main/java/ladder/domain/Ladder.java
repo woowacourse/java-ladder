@@ -9,4 +9,8 @@ public class Ladder {
     public Ladder(final List<Line> lines) {
         this.lines = lines;
     }
+
+    public List<Line> getLines() {
+        return lines;
+    }
 }
