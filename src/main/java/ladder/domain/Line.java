@@ -14,10 +14,6 @@ public class Line {
         }
     }
 
-    public Line(Line line) {
-        this.points = new ArrayList<>(line.points);
-    }
-
     private Boolean decideConnection(int position, BooleanGenerator booleanGenerator) {
         if (position == 0) {
             return booleanGenerator.generate();
