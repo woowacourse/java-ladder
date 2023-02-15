@@ -3,12 +3,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import domain.User;
+import domain.Users;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import service.UserService;
 import view.InputView;
 
 class UserTest {
@@ -22,6 +24,14 @@ class UserTest {
         @ValueSource(strings = {"i", "am", "fun", "dino", "mango"})
         void shouldSuccessMakeUser(String name) {
             assertDoesNotThrow(() -> new User(name));
+        }
+
+        @DisplayName("생성된 유저 객체가 올바르게 저장되는지 확인한다.")
+        @Test
+        void shouldSuccessStoreUsers() {
+            List<String> userNames = User.convertNames(List.of("i", "am", "fun", "dino", "mango"));
+            UserService userService = new UserService(userNames);
+            assertInstanceOf(Users.class, userService.getUsers());
         }
     }
 
