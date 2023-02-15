@@ -13,9 +13,7 @@ class LadderTest {
     @ValueSource(ints = {3, 4, 5, 6})
     void ladder_height_test(int height) {
         Ladder ladder = new Ladder(4, height, new RandomBridgeGenerator());
-
         assertThat(ladder.getHeight()).isEqualTo(height);
-
     }
 
     @DisplayName("사람 {수 -1} 길이의 사다리의 폭을 생성한다")
