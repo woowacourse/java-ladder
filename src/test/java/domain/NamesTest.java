@@ -28,4 +28,39 @@ class NamesTest {
                     .hasMessage("중복된 사람은 참여할 수 없습니다.");
         }
     }
+
+    @Nested
+    @DisplayName("명 수가 ")
+    class SizeCase{
+
+        @Test
+        @DisplayName(" 1명이면 익셉션이 발생한다.")
+        void whenOnlyOnePerson(){
+            assertThatThrownBy(()-> new Names(List.of("pobi")))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("최소 2명이상 참가자가 필요합니다.");
+        }
+
+        @Test
+        @DisplayName(" 2명이면 성공적으로 생성된다.")
+        void whenOverTwoPerson(){
+            assertThatCode(()-> new Names(List.of("pobi", "honux")))
+                    .doesNotThrowAnyException();
+        }
+
+        @Test
+        @DisplayName(" 10명이면 성공적으로 생성된다.")
+        void whenUnderTenPerson(){
+            assertThatCode(() -> new Names(List.of("a","b","c","d","e","f","g","h", "i", "j")))
+                    .doesNotThrowAnyException();
+        }
+
+        @Test
+        @DisplayName(" 11명 이상이면 익셉션이 발생한다.")
+        void whenOverElevenPerson(){
+            assertThatThrownBy(()-> new Names(List.of("a","b","c","d","e","f","g","h", "i", "j", "k")))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("최대 10명 이하 참가자가 필요합니다.");
+        }
+    }
 }
