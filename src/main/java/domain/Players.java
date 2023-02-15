@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.toList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Players {
     private static final int MIN_PLAYERS = 2;
@@ -39,5 +40,16 @@ public class Players {
 
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
+    }
+
+    public int getPlayersCount() {
+        return players.size();
+    }
+
+    public String asString() {
+        return players.stream()
+                .map(Player::getName)
+                .map(s -> String.format("%-5s",s))
+                .collect(Collectors.joining(" "));
     }
 }
