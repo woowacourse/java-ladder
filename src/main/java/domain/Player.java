@@ -23,4 +23,8 @@ public class Player {
         int length = name.length();
         return length < NAME_LENGTH_LOWER_BOUND || length > NAME_LENGTH_UPPER_BOUND;
     }
+
+    public String getName() {
+        return name;
+    }
 }

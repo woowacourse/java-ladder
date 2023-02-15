@@ -12,4 +12,8 @@ public class Players {
                 .map(Player::new)
                 .collect(Collectors.toList());
     }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
 }

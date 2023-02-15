@@ -40,4 +40,8 @@ public class Ladder {
             ladder.add(new Line(personCount, numberGenerator));
         }
     }
+
+    public List<Line> getLadder() {
+        return ladder;
+    }
 }
