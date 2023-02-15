@@ -12,23 +12,23 @@ public class OutputView {
     private static final String LADDER = "|";
 
 
-    public void printResultMessage() {
+    public static void printResultMessage() {
         System.out.println(RESULT_MESSAGE);
         System.out.println();
     }
 
-    public void printUserNames(List<String> userNames) {
+    public static void printUserNames(List<String> userNames) {
         String formattedUserNames = formatUserNames(userNames);
         System.out.println(formattedUserNames);
     }
 
-    public void printResult(List<Line> lines) {
+    public static void printResult(List<Line> lines) {
         for (Line line : lines) {
             System.out.println(renderLine(line));
         }
     }
 
-    private String formatUserNames(List<String> userNames) {
+    private static String formatUserNames(List<String> userNames) {
         StringBuilder builder = new StringBuilder();
         for (String userName : userNames) {
             String formattedUserName = String.format("%6s", userName);
@@ -37,7 +37,7 @@ public class OutputView {
         return builder.toString();
     }
 
-    private String renderLine(Line line) {
+    private static String renderLine(Line line) {
         StringBuilder builder = new StringBuilder();
         builder.append(BLANK_LINE);
         builder.append(LADDER);
@@ -53,6 +53,6 @@ public class OutputView {
             builder.append(CONNECTED_LINE);
             return;
         }
-        System.out.print(BLANK_LINE);
+        builder.append(BLANK_LINE);
     }
 }
