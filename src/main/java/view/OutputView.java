@@ -6,11 +6,14 @@ import java.util.List;
 
 public class OutputView {
 
+    private static final String RESULT_MESSAGE = "\n실행결과\n";
+
     public void printMap(Participants participants, Map map) {
+        System.out.println(RESULT_MESSAGE);
         StringBuilder mapResult = new StringBuilder();
         setNames(mapResult, participants);
         setLadders(mapResult, map);
-        System.out.println(mapResult);
+        System.out.print(mapResult);
     }
 
     private void setNames(StringBuilder mapResult, Participants participants) {

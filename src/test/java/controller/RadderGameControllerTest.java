@@ -80,11 +80,12 @@ class RadderGameControllerTest {
         Map map = new Map("4", participants.getParticipantCount());
         map.generate(() -> true);
         radderGameController.showMap(new OutputView(), participants, map);
-        Assertions.assertThat(byteArrayOutputStream.toString()).isEqualTo("jamie split  pobi \n"
+        Assertions.assertThat(byteArrayOutputStream.toString()).isEqualTo("\n실행결과\n\n"
+            + "jamie split  pobi \n"
             + "    |-----|     |\n"
             + "    |-----|     |\n"
             + "    |-----|     |\n"
-            + "    |-----|     |\n\n");
+            + "    |-----|     |\n");
 
     }
 }
