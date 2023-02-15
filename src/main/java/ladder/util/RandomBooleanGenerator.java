@@ -6,7 +6,7 @@ public class RandomBooleanGenerator implements BooleanGenerator {
     private static final Random random = new Random();
 
     @Override
-    public boolean generate() {
+    public Boolean generate() {
         return random.nextBoolean();
     }
 }
