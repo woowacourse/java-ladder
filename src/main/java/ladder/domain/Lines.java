@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Lines {
 
@@ -11,14 +12,33 @@ public class Lines {
     public Lines(int height, int lineCount) {
         this.height = new Height(height);
         lines = new ArrayList<>();
-        for (int i = 0; i < lineCount; i++) {
+        for (int i = 0; i < lineCount + 1; i++) {
             lines.add(new Line(this.height));
         }
     }
 
-    public void generate(Generator generator) {
-        for (int i = 0; i < height.getH(); i++) {
+    public void generateLegsOfLines(Generator generator) {
+        IntStream.range(1, lines.size() - 1)
+                .forEach(i -> generateLegsOfLine(generator, i));
+    }
 
+    private void generateLegsOfLine(Generator generator, int lineIndex) {
+        for (int heightIndex = 0; heightIndex < height.getH(); heightIndex++) {
+            connectLegs(generator, lineIndex, heightIndex);
         }
+    }
+
+    private void connectLegs(Generator generator, int lineIndex, int heightIndex) {
+        if (shouldConnect(generator, lineIndex, heightIndex)) {
+            lines.get(lineIndex).connectHeight(heightIndex);
+        }
+    }
+
+    private boolean shouldConnect(Generator generator, int lineIndex, int heightIndex) {
+        return generator.generate() && !lines.get(lineIndex - 1).getByHeight(heightIndex);
+    }
+
+    public List<Line> getLines() {
+        return lines.subList(1, lines.size() - 1);
     }
 }
