@@ -9,9 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import domain.Ladder;
-import domain.Line;
-import utils.constants.ErrorMessages;
-import utils.constants.GameRules;
+import domain.LadderRow;
 
 public class StringParser {
 
@@ -39,14 +37,14 @@ public class StringParser {
     }
 
     public static List<String> parseLadderToString(Ladder ladder) {
-        List<Line> lines = ladder.getLines();
+        List<LadderRow> lines = ladder.getLadderRows();
         return lines.stream()
                 .map(StringParser::parseLineToString)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private static String parseLineToString(Line line) {
-        List<Boolean> existedLine = line.getExistedLine();
+    private static String parseLineToString(LadderRow line) {
+        List<Boolean> existedLine = line.getLines();
         List<String> parsedLine = existedLine.stream()
                 .map(StringParser::convertLineStatus)
                 .collect(Collectors.toList());

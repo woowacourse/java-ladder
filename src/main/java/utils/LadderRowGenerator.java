@@ -3,17 +3,16 @@ package utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
-import domain.Line;
+import domain.LadderRow;
 
-public class LineGenerator {
+public class LadderRowGenerator {
 
     public static final Random RANDOM = new Random();
 
-    public static Line generate(int userCount) {
+    public static LadderRow generate(int userCount) {
         List<Boolean> lines = getLines(userCount);
-        return new Line(lines);
+        return new LadderRow(lines);
     }
 
     private static List<Boolean> getLines(int userCount) {

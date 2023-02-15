@@ -3,10 +3,10 @@ package controller;
 import java.util.List;
 
 import domain.Ladder;
-import domain.Line;
+import domain.LadderRow;
 import domain.User;
 import domain.Users;
-import utils.LineGenerator;
+import utils.LadderRowGenerator;
 import utils.StringParser;
 import view.InputView;
 import view.OutputView;
@@ -41,7 +41,7 @@ public class Controller {
         int ladderHeight = InputView.readLadderHeight();
         int userCount = users.retrieveSize();
         for (int i = 0; i < ladderHeight; i++) {
-            Line line = LineGenerator.generate(userCount);
+            LadderRow line = LadderRowGenerator.generate(userCount);
             ladder.add(line);
         }
     }

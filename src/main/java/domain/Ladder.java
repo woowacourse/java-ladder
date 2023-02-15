@@ -5,13 +5,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private List<Line> lines = new ArrayList<>();
+    private List<LadderRow> ladderRows = new ArrayList<>();
 
-    public void add(Line line) {
-        lines.add(line);
+    public void add(LadderRow line) {
+        ladderRows.add(line);
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public List<LadderRow> getLadderRows() {
+        return Collections.unmodifiableList(ladderRows);
     }
 }
