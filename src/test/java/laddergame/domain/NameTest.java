@@ -3,6 +3,7 @@ package laddergame.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -29,5 +30,19 @@ class NameTest {
             assertThatThrownBy(() -> new Name(name))
                     .isInstanceOf(IllegalArgumentException.class);
         }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"에단", "준팍", "또링", "코일", "블랙캣", "백여우"})
+    @DisplayName("이름 길이를 반환한다.")
+    void givenName_thenReturnNameLength(final String input) {
+        //given
+        final Name name = new Name(input);
+
+        //when
+        final int length = name.getNameLength();
+
+        //then
+        assertThat(length).isEqualTo(input.length());
     }
 }
