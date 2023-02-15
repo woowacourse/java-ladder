@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,7 +8,7 @@ public class Ladders {
     private final List<Ladder> ladders;
     private final RandomGenerator randomGenerator;
 
-    Ladders(int height, RandomGenerator randomGenerator) {
+    public Ladders(int height, RandomGenerator randomGenerator) {
         if (height < 1 || height > 10) {
             throw new IllegalArgumentException("사다리 높이는 1에서 10");
         }

@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -5,7 +7,7 @@ import java.util.Random;
 public class RandomGenerator {
     private final Random random;
 
-    RandomGenerator() {
+    public RandomGenerator() {
         this.random = new Random();
     }
 

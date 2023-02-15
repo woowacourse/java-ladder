@@ -1,10 +1,12 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
     private final List<Boolean> ladder;
 
-    Ladder(List<Boolean> ladder) {
+    public Ladder(List<Boolean> ladder) {
         for (int index = 1; index < ladder.size(); index++) {
             Boolean currentBridge = ladder.get(index);
             Boolean previousBridge = ladder.get(index - 1);

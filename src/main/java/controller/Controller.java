@@ -1,3 +1,11 @@
+package controller;
+
+import domain.Ladder;
+import domain.Ladders;
+import domain.RandomGenerator;
+import view.InputView;
+import view.OutputView;
+
 import java.util.List;
 
 public class Controller {
