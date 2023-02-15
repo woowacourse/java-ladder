@@ -12,13 +12,13 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(List<Person> people, List<Line> lines) {
-        validateNotNegative(lines.size());
+        validateHeightOf(lines);
         this.lines = lines;
         this.people = people;
     }
 
-    private void validateNotNegative(int height) {
-        if (height <= MIN_HEIGHT) {
+    private void validateHeightOf(List<Line> lines) {
+        if (lines.size() <= MIN_HEIGHT) {
             throw new IllegalArgumentException("높이는 양수만 가능합니다");
         }
     }
