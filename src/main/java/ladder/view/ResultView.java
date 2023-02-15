@@ -8,8 +8,10 @@ import ladder.domain.Line;
 import ladder.domain.Names;
 
 public class ResultView {
+    private static final int WIDTH = 5;
     private static final String LEG = "|";
     private static final String BLANK = " ";
+    private static final String NAME_FORMAT = "%6s";
 
     public static void printResult(Names names, Ladder ladder) {
         printNames(names);
