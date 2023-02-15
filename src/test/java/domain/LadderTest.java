@@ -22,4 +22,21 @@ public class LadderTest {
         assertThat(ladder.getLines().get(0).getPoints())
                 .hasSize(heightSize);
     }
+
+    @Test
+    @DisplayName("사다리의 다리 생성")
+    void createHorizontalLineAtSuccess() {
+        int playerCount = 3;
+        int heightSize = 4;
+        PlayerNumber playerNumber = new PlayerNumber(playerCount);
+        Height height = new Height(heightSize);
+
+        Ladder ladder = Ladder.of(playerNumber, height);
+        ladder.buildBridge(1, 2);
+
+        ladder.getPoint(1, 2).matchDirection(Direction.RIGHT_DOWN);
+        ladder.getPoint(1, 3).matchDirection(Direction.LEFT_DOWN);
+    }
+
+
 }

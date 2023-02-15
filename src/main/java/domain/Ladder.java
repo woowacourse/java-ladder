@@ -2,10 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import util.RandomNumberGenerator;
 
 public class Ladder {
 
@@ -21,6 +18,15 @@ public class Ladder {
                 .forEach(it -> lines.add(Line.fromHeight(height)));
 
         return new Ladder(lines);
+    }
+
+    public void buildBridge(int y, int x) {
+        lines.get(x - 1).getPoints().get(y - 1).changeDirection(Direction.RIGHT_DOWN);
+        lines.get(x).getPoints().get(y - 1).changeDirection(Direction.LEFT_DOWN);
+    }
+
+    public Point getPoint(int y, int x) {
+        return lines.get(x - 1).getPoints().get(y - 1);
     }
 
     public List<Line> getLines() {
