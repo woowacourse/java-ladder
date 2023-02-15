@@ -5,14 +5,20 @@ import java.util.List;
 
 public class Line {
 
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points;
     private final BooleanGenerator booleanGenerator;
 
     public Line(final int personCount, final BooleanGenerator booleanGenerator) {
+        this.points = new ArrayList<>();
         this.booleanGenerator = booleanGenerator;
         for (int position = 0; position < personCount - 1; position++) {
             points.add(decideConnection(position));
         }
+    }
+
+    public Line(Line line) {
+        this.points = new ArrayList<>(line.points);
+        this.booleanGenerator = line.booleanGenerator;
     }
 
     private Boolean decideConnection(int position) {
@@ -26,6 +32,6 @@ public class Line {
     }
 
     public List<Boolean> getLineStatus() {
-        return new ArrayList<>(points);
+        return List.copyOf(points);
     }
 }
