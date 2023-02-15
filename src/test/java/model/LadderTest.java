@@ -8,7 +8,8 @@ public class LadderTest {
     @Test
     @DisplayName("Ladder 객체 생성 성공 테스트")
     void createLadderTest(){
+        int playerNumber = 1;
         Assertions.assertThatNoException().isThrownBy(()->{Ladder ladderHeight =
-                new Ladder(new LadderHeight(5));});
+                new Ladder(playerNumber,new LadderHeight(5));});
     }
 }
