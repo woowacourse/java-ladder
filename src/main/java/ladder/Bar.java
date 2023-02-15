@@ -18,4 +18,8 @@ public enum Bar {
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
+
+    public boolean isMovable() {
+        return this.isMovable;
+    }
 }

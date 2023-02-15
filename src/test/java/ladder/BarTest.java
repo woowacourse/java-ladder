@@ -18,4 +18,15 @@ class BarTest {
         // then
         assertThat(bar).isEqualTo(expectedBar);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"true:true","false:false"}, delimiter = ':')
+    @DisplayName("건널 수 있는 bar인지 확인한다.")
+    public void shouldReturnWhetherCanMoveWhenRequest(boolean input, boolean expected) {
+        //given
+        //when
+        Bar bar = Bar.of(input);
+        //then
+        assertThat(bar.isMovable()).isEqualTo(expected);
+    }
 }
