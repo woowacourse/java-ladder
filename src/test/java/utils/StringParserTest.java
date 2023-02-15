@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import utils.constants.ErrorMessages;
+
 class StringParserTest {
     @Test
     @DisplayName("콤마를 기준으로 사람이름을 분리한다.")
@@ -48,7 +50,7 @@ class StringParserTest {
 
         assertThatThrownBy(() -> StringParser.parseToInteger(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("정수만 입력가능합니다.");
+                .hasMessage(ErrorMessages.NUMBER_FORMAT.getMessage());
     }
 
     @ParameterizedTest(name = "문자열에 공백을 삽입하여 5글자로 만든다.")

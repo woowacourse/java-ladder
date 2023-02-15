@@ -14,7 +14,7 @@ public class LadderTest {
     void addTest() {
         Ladder ladder = new Ladder();
 
-        LadderRow line = new LadderRow(List.of(false, true, true));
+        LadderRow line = new LadderRow(List.of(false, true, false));
         ladder.add(line);
 
         assertThat(ladder.getLadderRows()).contains(line);
