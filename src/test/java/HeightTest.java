@@ -30,5 +30,13 @@ class HeightTest {
         Assertions.assertThatThrownBy(() -> new Height("0")).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("높이의 값이 0인지 판별")
+    @Test
+    void checkZeroHeight() {
+        Height height = new Height("4");
+        assertThat(height.isPossibleCount()).isTrue();
+
+    }
+
 
 }
