@@ -1,6 +1,7 @@
 package domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -21,5 +22,13 @@ public class LadderTest {
     void createLine_Fail(int height) {
         assertThatThrownBy(() -> new Ladder(height))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {2, 10, 100})
+    @DisplayName("사다리 높이 만큼 Line을 생성한다.")
+    void createLinesWithHeight(int height) {
+        Ladder ladder = new Ladder(height);
+        assertThat(ladder.getLines().size()).isEqaulTo(height);
     }
 }
