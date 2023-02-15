@@ -10,18 +10,10 @@ import java.util.List;
  */
 public class Peoples {
 
-    private List<People> peoples;
+    private final List<People> peoples;
 
-    public Peoples(List<String> names) {
-        this.peoples = createPeoples(names);
-    }
-
-    private List<People> createPeoples(List<String> names) {
-        List<People> peoples = new ArrayList<>();
-        for (String name : names) {
-            peoples.add(new People(name));
-        }
-        return peoples;
+    public Peoples(List<People> peoples) {
+        this.peoples = peoples;
     }
 
     public List<People> getPeoples() {

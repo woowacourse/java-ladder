@@ -40,4 +40,19 @@ class LadderGameTest {
                 }
         );
     }
+
+    @DisplayName("라인들을 받았을 때 Lines 객체가 생성되어야 한다.")
+    @Test
+    void LINES_객체_생성() {
+        final int height = 3;
+        final int width = 3;
+        Lines lines = ladderGame.createLines(width, height);
+
+        Assertions.assertAll(
+                () -> {
+                    assertEquals(lines.getClass(), Lines.class);
+                    assertEquals(lines.getLines().size(), height);
+                }
+        );
+    }
 }

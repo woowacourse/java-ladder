@@ -10,6 +10,8 @@
 ## Util
 - [x] Boolean 값 랜덤 생성을 한다.
 
-[//]: # (## Model)
+## Model
+- [ ] Peoples를 생성한다.
+- [ ] People를 생성한다.
 
 [//]: # (- [ ] )
