@@ -1,5 +1,6 @@
 package domain;
 
+
 public class Name {
 
     private static final int MAX_NAME_LENGTH = 5;
@@ -12,8 +13,19 @@ public class Name {
     }
 
     private void validate(String name) {
+        validateBlank(name);
+        validateLength(name);
+    }
+
+    private void validateBlank(String name) {
+        if (name.isBlank()) {
+            throw new IllegalArgumentException(String.format("이름은 공백이거나 비어있을 수 없습니다. 입력값 : %s", name));
+        }
+    }
+
+    private void validateLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(String.format("이름은 5글자 이하여야합니다. 입력값 : %s", name));
+            throw new IllegalArgumentException(String.format("이름은 1글자 이상, 5글자 이하여야합니다. 입력값 : %s", name));
         }
     }
 

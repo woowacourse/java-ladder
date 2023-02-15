@@ -4,6 +4,7 @@
     - [X] 사람의 이름은 `,`를 통해 구분한다.
     - [X] 사람의 이름은 최대 5글자이다.
       - [x] 이름이 5글자를 넘으면 `IllegalArgumentException`을 던진다.
+    - [x] 이름이 공백 또는 빈 값이면 `IllegalArgumentException`을 던진다.
     - [x] 사람이 두 명 미만이면 `IllegalArgumentException`을 던진다.
 - [x] 사다리의 높이를 입력한다.
     - [x] 정수가 아닌 값을 입력하면 `IllegalArgumentException`을 던진다.
