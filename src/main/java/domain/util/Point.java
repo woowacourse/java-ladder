@@ -1,7 +1,7 @@
 package domain.util;
 
 public enum Point {
-	PRESENT(true),
+	PRESENCE(true),
 	ABSENCE(false);
 
 	private boolean presence;
