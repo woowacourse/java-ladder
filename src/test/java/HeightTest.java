@@ -1,3 +1,4 @@
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +15,12 @@ class HeightTest {
     @Test
     void checkIntegerSuccess() {
         assertThatNoException().isThrownBy(() -> new Height("1"));
+    }
+
+    @DisplayName("높이가 숫자가 아닐 때 에러")
+    @Test
+    void nonDigitFail1() {
+        Assertions.assertThatThrownBy(() -> new Height("abc")).isInstanceOf(IllegalArgumentException.class);
     }
 
 
