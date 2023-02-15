@@ -8,6 +8,9 @@ import strategy.PassGenerator;
 
 public class BlockService {
 
+    public static final int HEAD_TO_BLOCK_SIZE = 1;
+    public static final int HEAD_TO_LEFT_INDEX = 1;
+    public static final int SECOND_BLOCK_INDEX = 1;
     private final PassGenerator generator;
 
     public BlockService(PassGenerator generator) {
@@ -15,22 +18,26 @@ public class BlockService {
     }
 
     public Blocks initBlocks(int peopleCount) {
+        Block firstBlock = new Block(generator.generate());
         List<Block> blocks = new ArrayList<>();
+        blocks.add(firstBlock);
+        return new Blocks(genelateBlocks(peopleCount, blocks));
+    }
 
-        Block leftBlock = new Block(generator.generate());
-        blocks.add(leftBlock);
-
-        for (int i = 1; i < peopleCount - 1; i++) {
-            leftBlock = blocks.get(i - 1);
-
-            Block nowBlock = new Block(generator.generate());
-
-            while (nowBlock.isLeftBlockHavePass(leftBlock)) {
-                nowBlock = new Block(generator.generate());
-            }
-            blocks.add(nowBlock);
+    private List<Block> genelateBlocks(int peopleCount, List<Block> blocks) {
+        for (int i = SECOND_BLOCK_INDEX; i < peopleCount - HEAD_TO_BLOCK_SIZE; i++) {
+            Block leftBlock = blocks.get(i - HEAD_TO_LEFT_INDEX);
+            Block rightBlock = new Block(generator.generate());
+            rightBlock = generateBlock(leftBlock, rightBlock);
+            blocks.add(rightBlock);
         }
+        return blocks;
+    }
 
-        return new Blocks(blocks);
+    private Block generateBlock(Block leftBlock, Block rightBlock) {
+        while (rightBlock.isLeftBlockHavePass(leftBlock)) {
+            rightBlock = new Block(generator.generate());
+        }
+        return rightBlock;
     }
 }
