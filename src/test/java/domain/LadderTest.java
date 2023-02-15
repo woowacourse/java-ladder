@@ -1,21 +1,20 @@
 package domain;
 
+import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import java.util.List;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderTest {
 
     private List<Line> makeLines() {
-        Line line1 = new Line(List.of(Step.EMPTY));
-        Line line2 = new Line(List.of(Step.EMPTY));
-        Line line3 = new Line(List.of(Step.EMPTY));
-        Line line4 = new Line(List.of(Step.EMPTY));
-        Line line5 = new Line(List.of(Step.EMPTY));
-        return List.of(line1, line2, line3, line4, line5);
+        return IntStream.range(0, 5)
+                .mapToObj(value -> new Line(List.of(Step.EMPTY)))
+                .collect(toList());
     }
 
     @Test
