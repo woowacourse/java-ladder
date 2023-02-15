@@ -51,17 +51,11 @@ public class Players {
         return this.players.size();
     }
 
-    public StringBuilder getPlayerNames() {
-        StringBuilder playerNames = new StringBuilder();
-        int longestName = findLongestPlayerName();
+    public Player findFirstPlayer() {
+        return this.players.get(0);
+    }
 
-        for (Player player : players) {
-            int blankSpace = longestName - player.getName().length();
-            playerNames.append(player.getName())
-                    .append(" ".repeat(blankSpace))
-                    .append(" ");
-        }
-
-        return playerNames;
+    public List<Player> getPlayers() {
+        return players;
     }
 }
