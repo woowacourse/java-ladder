@@ -92,4 +92,8 @@ class Player {
     private boolean hasExceedLength(final String name) {
         return name.length() > NAME_MAX_LENGTH;
     }
+
+    public String getName() {
+        return name;
+    }
 }
