@@ -7,10 +7,14 @@ public class LadderHeight {
     private final int ladderHeight;
 
     public LadderHeight(int ladderHeight) {
+        validate(ladderHeight);
+        this.ladderHeight = ladderHeight;
+    }
+
+    private void validate(int ladderHeight) {
         if (ladderHeight < MIN_LADDER_HEIGHT) {
             throw new IllegalArgumentException(String.format("다리 길이는 양수여야합니다. 입력값 : %s", ladderHeight));
         }
-        this.ladderHeight = ladderHeight;
     }
 
     public int getLadderHeight() {

@@ -19,16 +19,10 @@ public class OutputView {
                             Ladder ladder) {
         System.out.println("실행결과");
         System.out.println(getFormattedNames(names));
-        List<Line> lines = ladder.getLines();
-        int ladderHeight = ladder.getLadderHeight();
 
-        List<List<Point>> rows = initRows(ladderHeight);
-        convertLinesToRows(lines, rows);
+        List<List<Point>> rows = initRows(ladder.getLadderHeight());
+        convertLinesToRows(ladder.getLines(), rows);
         printLadder(rows);
-    }
-
-    public void printErrorMessage(String message) {
-        System.out.printf("%s %s%n", ERROR_MESSAGE_PREFIX, message);
     }
 
     private String getFormattedNames(Names names) {
@@ -79,5 +73,9 @@ public class OutputView {
             return;
         }
         System.out.print(BLOCKED_POINT);
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.printf("%s %s%n", ERROR_MESSAGE_PREFIX, message);
     }
 }
