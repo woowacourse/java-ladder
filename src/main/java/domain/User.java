@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,11 @@ public class User {
             "[ERROR] 사람 이름은 " + MIN_NAME_LENGTH + "~" + MAX_NAME_LENGTH + "글자로 입력해 주세요.";
     public static final String NAME_FORMAT_ERROR_MESSAGE = "[ERROR] 사람 이름은 영문자만 가능합니다.";
 
-    private String name;
+    private final String name;
+
+    public User(String name) {
+        this.name = name;
+    }
 
     public static void validateNameLength(String name) {
         if (isValidLength(name)) {
