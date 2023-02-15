@@ -19,7 +19,7 @@ class LineTest {
         void createTest() {
             line = new Line(4, new testNumberGenerator(new ArrayList<>(Arrays.asList(0, 1, 0)) {
             }));
-            assertThat(line.getPoints()).isEqualTo(List.of(false, false, true, false));
+            assertThat(line.getPoints()).isEqualTo(List.of(false, true, false));
         }
 
         @DisplayName("이전 좌표와 현재 좌표가 겹칠때 변환 테스트(처)")
@@ -27,7 +27,7 @@ class LineTest {
         void createLine2() {
             line = new Line(4, new testNumberGenerator(new ArrayList<>(Arrays.asList(1, 1, 0)) {
             }));
-            assertThat(line.getPoints()).isEqualTo(List.of(false, true, false, false));
+            assertThat(line.getPoints()).isEqualTo(List.of(true, false, false));
         }
     }
 
