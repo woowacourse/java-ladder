@@ -1,4 +1,4 @@
-import ladder.domain.RandomGenerator;
+package ladder.domain;
 
 import java.util.Random;
 
