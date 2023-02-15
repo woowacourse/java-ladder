@@ -14,4 +14,8 @@ public class Participants {
         }
         this.people = people;
     }
+
+    public int getSize() {
+        return people.size();
+    }
 }
