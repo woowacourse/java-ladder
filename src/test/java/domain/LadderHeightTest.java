@@ -21,6 +21,7 @@ class LadderHeightTest {
     @ValueSource(ints = {-100, -1, 0})
     void create_fail(int wrongLadderHeight) {
         assertThatThrownBy(() -> new LadderHeight(wrongLadderHeight))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("다리 길이는 양수여야합니다.");
     }
 }
