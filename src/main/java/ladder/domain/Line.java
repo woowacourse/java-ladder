@@ -10,4 +10,8 @@ public class Line {
             isExist = true;
         }
     }
+
+    public boolean isExist() {
+        return isExist;
+    }
 }

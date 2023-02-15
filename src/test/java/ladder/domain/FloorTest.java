@@ -28,4 +28,18 @@ public class FloorTest {
         assertThat(floor.getLines().get(2)).extracting("isExist").isEqualTo(true);
     }
 
+
+    @Test
+    @DisplayName("다리가 연속해서 생기지 않는 것을 테스트 한다")
+    void makeNonContinuousLadderTest(){
+        Floor floor = new Floor(3);
+        List<Integer> list = new ArrayList<>(List.of(1,1,1));
+        floor.b(list);
+        
+        assertThat(floor.getLines().get(0)).extracting("isExist").isEqualTo(true);
+        assertThat(floor.getLines().get(1)).extracting("isExist").isEqualTo(false);
+        assertThat(floor.getLines().get(2)).extracting("isExist").isEqualTo(true);
+
+    }
+
 }

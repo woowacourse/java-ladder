@@ -20,6 +20,15 @@ public class Floor {
 
     public void b(List<Integer> lineValues) {
         for (int i = 0; i < lines.size(); i++) {
+            if (i == 0) {
+                lines.get(i).make(lineValues.get(i));
+                continue;
+            }
+
+            if (lines.get(i - 1).isExist()) {
+                continue;
+            }
+
             lines.get(i).make(lineValues.get(i));
         }
     }
