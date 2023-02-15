@@ -22,4 +22,8 @@ public class Players {
             throw new IllegalArgumentException("[ERROR] 플레이어 이름이 중복되었습니다.");
         }
     }
+
+    public int size() {
+        return players.size();
+    }
 }
