@@ -20,4 +20,8 @@ public enum Point {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 올바른 값이 아닙니다."));
     }
+
+    public String getDisplayFormat() {
+        return displayFormat;
+    }
 }

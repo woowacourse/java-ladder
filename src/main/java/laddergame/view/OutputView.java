@@ -1,10 +1,17 @@
 package laddergame.view;
 
+import laddergame.domain.Line;
+import laddergame.domain.Point;
+
+import java.util.List;
+
 public class OutputView {
 
     private static final String PLAYER_NAMES_REQUEST_MSG = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) ";
     private static final String LADDER_HEIGHT_MSG = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) ";
     private static final String RESULT_INFO_MSG = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) ";
+    private static final String PLAYER_NAME_FORMAT = "%6s";
+    private static final String LADDER_FORMAT = "%s|";
 
     public static void printPlayerNamesRequestMsg() {
         System.out.println(PLAYER_NAMES_REQUEST_MSG);
@@ -16,5 +23,28 @@ public class OutputView {
 
     public static void printResultInfoMsg() {
         System.out.println(RESULT_INFO_MSG);
+    }
+
+    // todo: List<String> or List<Player>
+    public static void printPlayerNames(List<String> playerNames) {
+        for (String name : playerNames) {
+            System.out.print(String.format(PLAYER_NAME_FORMAT, name));
+        }
+        System.out.println();
+    }
+
+    public static void printLadderMap(List<Line> ladder) {
+        for (Line line : ladder) {
+            printLine(line);
+        }
+    }
+
+    private static void printLine(Line line) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.format(LADDER_FORMAT, Point.DISCONNECT.getDisplayFormat()));
+        for (Point point : line.getLine()) {
+            stringBuilder.append(String.format(LADDER_FORMAT, point.getDisplayFormat()));
+        }
+        System.out.println(stringBuilder);
     }
 }
