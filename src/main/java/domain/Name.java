@@ -43,8 +43,8 @@ public class Name {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Name ohterName = (Name) o;
-        return name.equals(ohterName.name);
+        Name otherName = (Name) o;
+        return name.equals(otherName.name);
     }
 
     @Override
