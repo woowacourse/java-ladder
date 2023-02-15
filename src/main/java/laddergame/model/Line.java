@@ -52,4 +52,8 @@ public class Line {
     public int getSize() {
         return line.size();
     }
+
+    public List<Boolean> getLine() {
+        return line;
+    }
 }

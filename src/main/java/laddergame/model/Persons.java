@@ -37,4 +37,12 @@ public class Persons {
             persons.add(new Person(name));
         }
     }
+
+    public int getSize() {
+        return persons.size();
+    }
+
+    public Person getPerson(int i) {
+        return persons.get(i);
+    }
 }
