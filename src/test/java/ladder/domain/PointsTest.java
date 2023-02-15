@@ -29,7 +29,6 @@ class PointsTest {
 
     }
 
-
     private class MockedPointGenerator implements RandomGenerator {
 
         private final Queue<Boolean> queue;
