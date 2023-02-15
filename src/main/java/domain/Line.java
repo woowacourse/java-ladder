@@ -19,7 +19,17 @@ public class Line {
     }
 
     private void addPoints(int personCount, RandomGenerator generator) {
-        for (int i = 0; i < personCount - 1; i++) {
+        addPoint(generator.generate());
+        for (int index = 1; index < personCount - 1; index++) {
+            addConditionPoint(generator, index);
+        }
+    }
+
+    private void addConditionPoint(RandomGenerator generator, int index) {
+        if(points.get(index -1)){
+            addPoint(IMPOSSIBLE_STATE);
+        }
+        if(!points.get(index -1)){
             addPoint(generator.generate());
         }
     }
