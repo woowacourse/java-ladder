@@ -30,6 +30,11 @@ public class Controller {
 
     private LadderHeight setLadderHeight() {
         outputView.printLadderHeightMessage();
-        return inputView.readLadderHeight();
+        try {
+            return inputView.readLadderHeight();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return setLadderHeight();
+        }
     }
 }
