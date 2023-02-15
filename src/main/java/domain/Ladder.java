@@ -7,9 +7,11 @@ public class Ladder {
     private static final int MIN_HEIGHT = 0;
 
     private final List<Person> people;
+    private final List<Line> lines;
 
-    public Ladder(int height, List<Person> people) {
-        validateNotNegative(height);
+    public Ladder(List<Person> people, List<Line> lines) {
+        validateNotNegative(lines.size());
+        this.lines = lines;
         this.people = people;
     }
 
