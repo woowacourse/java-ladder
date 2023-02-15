@@ -1,5 +1,7 @@
 package domain;
 
+import static java.util.stream.Collectors.toUnmodifiableList;
+
 import java.util.List;
 
 public class Ladder {
@@ -19,5 +21,15 @@ public class Ladder {
         if (height <= MIN_HEIGHT) {
             throw new IllegalArgumentException("높이는 양수만 가능합니다");
         }
+    }
+
+    public List<Line> getLines() {
+        return lines;
+    }
+
+    public List<String> getParticipantNames() {
+        return people.stream()
+                .map(Person::getName)
+                .collect(toUnmodifiableList());
     }
 }
