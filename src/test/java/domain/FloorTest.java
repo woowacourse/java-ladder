@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import utils.BooleanGenerator;
-import utils.RandomBooleanGenerator;
-import utils.TrueBooleanGenerator;
+import utils.booleanGenerator.BooleanGenerator;
+import utils.booleanGenerator.RandomBooleanGenerator;
+import utils.booleanGenerator.TrueBooleanGenerator;
 
 class FloorTest {
     private BooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();

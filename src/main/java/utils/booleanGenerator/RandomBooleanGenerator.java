@@ -1,4 +1,4 @@
-package utils;
+package utils.booleanGenerator;
 
 import java.util.Random;
 

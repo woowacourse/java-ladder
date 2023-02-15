@@ -2,7 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import utils.BooleanGenerator;
+import utils.booleanGenerator.BooleanGenerator;
 
 public class Floor {
     List<Boolean> points = new ArrayList<>();
