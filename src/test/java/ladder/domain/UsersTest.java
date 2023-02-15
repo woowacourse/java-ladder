@@ -1,20 +1,20 @@
 package ladder.domain;
 
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class UsersTest {
 
     @Test
     @DisplayName("정상 Users 생성 테스트")
     void checkValidUsersTest(){
-        List<String> users = List.of("가","가나","가나다");
+        List<String> users = List.of("가", "가나", "가나다");
         Users testUsers = new Users(users);
         assertThat(testUsers.getUsers().size())
                 .isEqualTo(3);
