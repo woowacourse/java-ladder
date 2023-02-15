@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import ladder.domain.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,4 +19,6 @@ class PlayersTest {
         //then
         assertDoesNotThrow(() -> new Players(names));
     }
+
+
 }

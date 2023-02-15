@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 public class Name {
     private static final int MAXIMUM_LENGTH = 5;
