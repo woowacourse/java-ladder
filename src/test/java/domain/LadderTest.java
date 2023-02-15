@@ -24,7 +24,7 @@ class LadderTest {
 	@ParameterizedTest
 	@ValueSource(ints = {-2, 101})
 	void heightNot1_100(int height) {
-		assertThatThrownBy(() -> new Ladder(height, 5))
+		assertThatThrownBy(() -> Ladder.from(height, 5))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("높이는 1부터 100까지만 가능합니다");
 	}
@@ -64,6 +64,6 @@ class LadderTest {
 	}
 
 	private static Ladder initLadder(int height, int participantSize) {
-		return new Ladder(height, participantSize);
+		return Ladder.from(height, participantSize);
 	}
 }

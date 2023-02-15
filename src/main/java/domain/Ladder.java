@@ -9,30 +9,18 @@ public class Ladder {
 	private static final Random random = new Random();
 	private final List<List<Boolean>> level;
 
-	public Ladder(int height, int participantSize) {
+	private Ladder(List<List<Boolean>> level) {
+		this.level = level;
+	}
+
+	public static Ladder from(int height, int participantSize) {
 		validate(height);
-		this.level = IntStream.range(0, height)
+		return new Ladder(IntStream.range(0, height)
 			.mapToObj(o -> initLine(participantSize))
-			.collect(Collectors.toList());
+			.collect(Collectors.toList()));
 	}
 
-	public int getHeight() {
-		return level.size();
-	}
-
-	public int getColumnSize() {
-		return level.get(0).size();
-	}
-
-	public List<List<Boolean>> getLadder() {
-		return level;
-	}
-
-	public void makeLadder() {
-		getLadder().forEach(Ladder::makeStools);
-	}
-
-	private void validate(int height) {
+	private static void validate(int height) {
 		if (height < 1 || height > 100)
 			throw new IllegalArgumentException("높이는 1부터 100까지만 가능합니다");
 	}
@@ -63,5 +51,21 @@ public class Ladder {
 			return;
 
 		level.set(index, random.nextBoolean());
+	}
+
+	public int getHeight() {
+		return level.size();
+	}
+
+	public int getColumnSize() {
+		return level.get(0).size();
+	}
+
+	public List<List<Boolean>> getLadder() {
+		return level;
+	}
+
+	public void makeLadder() {
+		getLadder().forEach(Ladder::makeStools);
 	}
 }

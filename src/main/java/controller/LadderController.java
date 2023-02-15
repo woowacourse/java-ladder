@@ -18,6 +18,16 @@ public class LadderController {
 	}
 
 	public void init() {
-		people = new People(inputView.readNames());
+		repeat(() -> people = People.from(inputView.readNames()));
+		repeat(() -> ladder = Ladder.from(inputView.readHeight(), people.size()));
+	}
+
+	private void repeat(Runnable repeatable) {
+		try {
+			repeatable.run();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			repeat(repeatable);
+		}
 	}
 }
