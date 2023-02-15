@@ -49,7 +49,7 @@ public class RungsTest {
     @ParameterizedTest
     @MethodSource("getTestRungsWithNumberGenerator")
     @DisplayName("NumberGenerator에 따라 Rungs의 형태가 달라지는지 확인한다.")
-    void create_rungs_test_by_NumberGenerator(int rungCount, NumberGenerator numberGenerator, List<Rung> expectedRungs) {
+    void create_rungs_test_by_number_generator(int rungCount, NumberGenerator numberGenerator, List<Rung> expectedRungs) {
         // given
         Rungs rungs = new Rungs(rungCount, numberGenerator);
 

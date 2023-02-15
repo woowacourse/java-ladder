@@ -30,7 +30,7 @@ public class RungTest {
     @ParameterizedTest
     @CsvSource(value = {"1:true", "0:false"}, delimiter = ':')
     @DisplayName("0 혹은 1이 아닌 값이 입력되면, 예외가 발생한다.")
-    void make_rung_test(int material, boolean expectedValue) {
+    void make_rung_error_test(int material, boolean expectedValue) {
         // given
         Rung rung = new Rung(material);
 
