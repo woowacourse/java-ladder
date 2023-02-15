@@ -1,8 +1,11 @@
 package utils;
 
-import static utils.constants.ErrorMessages.*;
-import static utils.constants.GameRules.*;
-import static utils.constants.LadderFormat.*;
+import static utils.constants.ErrorMessages.NUMBER_FORMAT;
+import static utils.constants.GameRules.MAX_NAME_LENGTH;
+import static utils.constants.LadderFormat.DELIMITER;
+import static utils.constants.LadderFormat.EXISTED_LINE;
+import static utils.constants.LadderFormat.NON_EXISTED_LINE;
+import static utils.constants.LadderFormat.START_DELIMITER;
 
 import java.util.Arrays;
 import java.util.List;

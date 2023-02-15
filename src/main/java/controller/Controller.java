@@ -1,7 +1,8 @@
 package controller;
 
-import static utils.constants.ErrorMessages.*;
-import static utils.constants.GameRules.*;
+import static utils.constants.ErrorMessages.NUMBER_FORMAT;
+import static utils.constants.GameRules.MAX_LADDER_HEIGHT;
+import static utils.constants.GameRules.MIN_LADDER_HEIGHT;
 
 import java.util.List;
 
@@ -11,8 +12,6 @@ import domain.User;
 import domain.Users;
 import utils.LadderRowGenerator;
 import utils.StringParser;
-import utils.constants.ErrorMessages;
-import utils.constants.GameRules;
 import view.InputView;
 import view.OutputView;
 
