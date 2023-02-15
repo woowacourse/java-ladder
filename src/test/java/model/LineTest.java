@@ -14,14 +14,14 @@ public class LineTest {
     @Test
     @DisplayName("Line 객체 생성 성공 테스트")
     void createLineTest() {
-        assertThatNoException().isThrownBy(()->{Line line = new Line(4);});
+        assertThatNoException().isThrownBy(()->{Line line = new Line(new TestPointGenerator(new ArrayList<>(List.of(false,true,false))), 4);});
     }
 
     @Test
     @DisplayName("사다리 한 라인에 존재하는 포인트들을 만드는 기능 테스트")
     void makePointsInLineTest() {
         //Given
-        Line line = new Line(4);
+        Line line = new Line(new TestPointGenerator(new ArrayList<>(List.of(false,true,false))), 4);
 
         //When
         List<Boolean> result = line.getPoints();
