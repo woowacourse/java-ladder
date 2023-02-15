@@ -17,6 +17,10 @@ public class Names {
         this.names = new ArrayList<>(names);
     }
 
+    public int getSize() {
+        return names.size();
+    }
+
     public List<Name> getNames() {
         return Collections.unmodifiableList(names);
     }
