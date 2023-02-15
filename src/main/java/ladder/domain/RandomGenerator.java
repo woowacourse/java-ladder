@@ -2,5 +2,5 @@ package ladder.domain;
 
 public interface RandomGenerator {
 
-    <T> T generate();
+    <T> T generate(boolean before);
 }

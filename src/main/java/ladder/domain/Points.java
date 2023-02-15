@@ -18,17 +18,10 @@ public class Points {
         Boolean flag = false;
 
         for (int i = 0; i < count; i++) {
-            Boolean generate = generatePoint(flag);
+            Boolean generate = randomGenerator.generate(flag);
             points.add(generate);
             flag = generate;
         }
-    }
-
-    private Boolean generatePoint(boolean before) {
-        if (before) {
-            return false;
-        }
-        return randomGenerator.generate();
     }
 
     public List<Boolean> toUnmodifiablePoints() {

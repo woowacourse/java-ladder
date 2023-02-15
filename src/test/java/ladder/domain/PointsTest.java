@@ -38,7 +38,7 @@ class PointsTest {
         }
 
         @Override
-        public Boolean generate() {
+        public Boolean generate(boolean before) {
             return queue.poll();
         }
     }
