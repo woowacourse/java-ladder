@@ -14,4 +14,12 @@ public class LadderGame {
     public void makeLadder(int height) {
         ladder = new Ladder(players.size(), new LadderHeight(height));
     }
+
+    public List<String> getPlayerNames() {
+        return players.getPlayerNames();
+    }
+
+    public List<Line> getLadderMap() {
+        return ladder.getLadder();
+    }
 }

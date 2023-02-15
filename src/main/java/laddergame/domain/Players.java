@@ -30,4 +30,10 @@ public class Players {
     public int size() {
         return players.size();
     }
+
+    public List<String> getPlayerNames() {
+        return players.stream()
+                .map(player -> player.getName())
+                .collect(Collectors.toList());
+    }
 }

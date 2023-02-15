@@ -14,4 +14,8 @@ public class Player {
             throw new IllegalArgumentException("[ERROR] 플레이어 이름은 공백이 아닌 5글자 이하여야 합니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
