@@ -52,7 +52,11 @@ public class Participants {
         return List.of(participantNames.split(delimiter, -1));
     }
 
-    public List<String> getParticipantsName() {
+    public int getParticipantCount() {
+        return people.size();
+    }
+
+    public List<String> getParticipantsNames() {
         return people.stream().map(Person::getName).collect(Collectors.toList());
     }
 }

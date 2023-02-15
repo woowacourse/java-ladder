@@ -8,7 +8,7 @@ import java.io.PrintStream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import util.BooleanGenerator;
+import util.RandomBooleanGenerator;
 import validate.ErrorMessage;
 import view.InputView;
 
@@ -31,7 +31,7 @@ class RadderGameControllerTest {
         setInput("split,jamie");
         RadderGameController radderGameController = new RadderGameController();
         Participants participants = radderGameController.makeParticipants(new InputView());
-        Assertions.assertThat(participants.getParticipantsName()).containsExactly("split", "jamie");
+        Assertions.assertThat(participants.getParticipantsNames()).containsExactly("split", "jamie");
     }
 
     @DisplayName("컨트롤러는 잘못된 입력으로 Participant를 생성 시 오류를 던진다.")
@@ -40,7 +40,7 @@ class RadderGameControllerTest {
         setInput("abcdef\nsplit,jamie");
         setOutput();
         RadderGameController radderGameController = new RadderGameController();
-        Participants participants = radderGameController.makeParticipants(new InputView());
+        radderGameController.makeParticipants(new InputView());
         Assertions.assertThat(byteArrayOutputStream.toString()).contains(
             ErrorMessage.INVALID_PERSON_NAME.getMessage()
         );

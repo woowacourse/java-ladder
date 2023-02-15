@@ -42,7 +42,7 @@ class ParticipantsTest {
     @Test
     void joinAllWithoutDuplicate() {
         Participants participants = new Participants("a,b,c,d,e");
-        List<String> participantsName = participants.getParticipantsName();
+        List<String> participantsName = participants.getParticipantsNames();
         Assertions.assertThat(participantsName).containsExactly("a", "b", "c", "d", "e");
     }
 
@@ -50,7 +50,7 @@ class ParticipantsTest {
     @Test
     void joinAllWithDuplicate() {
         Participants participants = new Participants("a,a,b,b,c");
-        List<String> participantsName = participants.getParticipantsName();
+        List<String> participantsName = participants.getParticipantsNames();
         Assertions.assertThat(participantsName).containsExactly("a", "a-2", "b", "b-2", "c");
     }
 }
