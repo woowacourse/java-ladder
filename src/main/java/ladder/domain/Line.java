@@ -4,17 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> line;
+    private final List<Bar> line;
 
-    public Line(int personCount) {
-        line = new ArrayList<>(personCount - 1);
-
-        for (int idx = 0; idx < personCount - 1; idx++) {
-            line.add(false);
-        }
+    public Line(List<Bar> bars) {
+        line = new ArrayList<>(bars);
     }
 
-    public List<Boolean> getLine() {
+    public List<Bar> getLine() {
         return line;
     }
 }
