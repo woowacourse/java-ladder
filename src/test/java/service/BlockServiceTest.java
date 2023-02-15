@@ -14,7 +14,7 @@ import strategy.FixedPassGenerator;
 
 class BlockServiceTest {
 
-    private final BlockService blockService = new BlockService(new FixedPassGenerator());
+    private final BlockService blockService = new BlockService(new FixedPassGenerator(false));
 
     @ParameterizedTest
     @CsvSource(value = {"4:3", "5:4"}, delimiter = ':')
