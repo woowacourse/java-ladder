@@ -43,8 +43,9 @@ public class Participants {
     }
 
     private boolean isValidCount(List<String> names) {
+        final int minParticipantCount = 2;
         final int maxParticipantCount = 10;
-        return names.size() > maxParticipantCount;
+        return names.size() < minParticipantCount || names.size() > maxParticipantCount;
     }
 
     private List<String> splitNames(String participantNames) {

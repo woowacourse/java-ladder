@@ -31,6 +31,13 @@ class ParticipantsTest {
         Assertions.assertThatThrownBy(() -> new Participants("    ")).isExactlyInstanceOf(EmpytInputException.class);
     }
 
+    @DisplayName("참가자들의 이름이 2명 미만으로 입력된 경우 오류를 반환한다.")
+    @Test
+    void participantsUnderTwo() {
+        Assertions.assertThatThrownBy(() -> new Participants("a"))
+            .isExactlyInstanceOf(InvalidParticipantsCountException.class);
+    }
+
     @DisplayName("참가자들의 이름이 10명을 초과해 입력된 경우 오류를 반환한다.")
     @Test
     void participantsOverTen() {
