@@ -7,12 +7,12 @@ public class InputView {
     private static final String LADDERS_HEIGHT_INPUT_GUIDE_MESSAGE = "\n최대 사다리 높이는 몇 개인가요?";
     private static final Scanner sc = new Scanner(System.in);
 
-    public static List<String> inputUsername() {
+    public List<String> inputUsername() {
         System.out.println(USER_NAME_INPUT_GUIDE_MESSAGE);
         return Arrays.asList(sc.nextLine().split(",",-1));
     }
 
-    public static int inputLadderHeight() {
+    public int inputLadderHeight() {
         try {
             System.out.println(LADDERS_HEIGHT_INPUT_GUIDE_MESSAGE);
             return Integer.parseInt(sc.nextLine());
