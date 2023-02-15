@@ -3,18 +3,18 @@ public enum Path {
     STOP(0, false);
 
     private final int goNumberValue;
-    private final Boolean goBooleanValue;
+    private final boolean goBooleanValue;
 
     Path(int goNumberValue, boolean goBooleanValue) {
         this.goBooleanValue = goBooleanValue;
         this.goNumberValue = goNumberValue;
     }
 
-    public Boolean getGoBooleanValue() {
-        return goBooleanValue;
-    }
-
     public int getGoNumberValue() {
         return goNumberValue;
+    }
+
+    public boolean getGoBooleanValue() {
+        return goBooleanValue;
     }
 }
