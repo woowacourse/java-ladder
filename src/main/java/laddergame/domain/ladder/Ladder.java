@@ -11,4 +11,8 @@ public class Ladder {
     public Ladder(final List<Rungs> ladder) {
         this.ladder = ladder;
     }
+
+    public List<Rungs> getLadder() {
+        return ladder;
+    }
 }
