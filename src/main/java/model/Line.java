@@ -44,4 +44,8 @@ public class Line {
         }
         return false;
     }
+
+    public boolean getLine(int column){
+        return points.get(column);
+    }
 }
