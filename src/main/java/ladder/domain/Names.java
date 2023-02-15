@@ -26,17 +26,6 @@ public class Names {
         }
     }
 
-    public int getMaxNameLength() {
-        return names.stream()
-            .max(Comparator.comparingInt(Name::getLength))
-            .get()
-            .getLength();
-    }
-
-    public int getFirstNameLength() {
-        return names.get(0).getLength();
-    }
-
     public List<Name> getNames() {
         return names;
     }
