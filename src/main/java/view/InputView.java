@@ -11,7 +11,7 @@ public class InputView {
 
     public static List<String> readUserNames() {
         String userNames = scanner.nextLine();
-        return StringParser.splitByComma(userNames);
+        return StringParser.splitByDelimiter(userNames);
     }
 
     public static int readLadderHeight() {

@@ -28,7 +28,7 @@ public class Controller {
     }
 
     private void printUsers() {
-        List<String> userNames = users.getUsers();
+        List<String> userNames = users.getUserNames();
         OutputView.printUserNames(userNames);
     }
 
@@ -39,7 +39,7 @@ public class Controller {
 
     private void createLadder() {
         int ladderHeight = InputView.readLadderHeight();
-        int userCount = users.retrieveSize();
+        int userCount = users.getSize();
         for (int i = 0; i < ladderHeight; i++) {
             LadderRow line = LadderRowGenerator.generate(userCount);
             ladder.add(line);

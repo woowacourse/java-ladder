@@ -1,11 +1,9 @@
 package utils;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +15,7 @@ class StringParserTest {
     void splitByCommaTest() {
         String input = "pobi,honux,crong,jk";
 
-        List<String> strings = StringParser.splitByComma(input);
+        List<String> strings = StringParser.splitByDelimiter(input);
 
         assertThat(strings).containsExactly("pobi", "honux", "crong", "jk");
     }
@@ -27,7 +25,7 @@ class StringParserTest {
     void splitByCommaEdgeCaseTest() {
         String input = "pobi,,,";
 
-        List<String> strings = StringParser.splitByComma(input);
+        List<String> strings = StringParser.splitByDelimiter(input);
 
         assertThat(strings).containsExactly("pobi", "", "", "");
     }
@@ -55,7 +53,7 @@ class StringParserTest {
     @ParameterizedTest(name = "문자열에 공백을 삽입하여 5글자로 만든다.")
     @ValueSource(strings = {"a","adf","asdfg"})
     void putBlankTest(String input) {
-        String result = StringParser.putBlank(input);
+        String result = StringParser.insertBlank(input);
 
         assertThat(result.length()).isEqualTo(5);
     }

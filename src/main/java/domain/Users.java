@@ -13,13 +13,13 @@ public class Users {
         users.add(user);
     }
 
-    public int retrieveSize() {
+    public int getSize() {
         return users.size();
     }
 
-    public List<String> getUsers() {
+    public List<String> getUserNames() {
         return users.stream()
-                .map(user -> StringParser.putBlank(user.getName()))
+                .map(user -> StringParser.insertBlank(user.getName()))
                 .collect(Collectors.toUnmodifiableList());
     }
 }

@@ -17,7 +17,7 @@ public class StringParser {
     public static final int SPLIT_LIMIT = -1;
     public static final int ZERO = 0;
 
-    public static List<String> splitByComma(String input) {
+    public static List<String> splitByDelimiter(String input) {
         return Arrays.asList(input.split(SPLIT_DELIMITER, SPLIT_LIMIT)).stream()
                 .map(name -> name.replace(" ", ""))
                 .collect(Collectors.toUnmodifiableList());
@@ -31,7 +31,7 @@ public class StringParser {
         }
     }
 
-    public static String putBlank(String input) {
+    public static String insertBlank(String input) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(" ".repeat(Math.max(ZERO, MAX_NAME_LENGTH.getValue()) - input.length()));
         stringBuilder.append(input);
