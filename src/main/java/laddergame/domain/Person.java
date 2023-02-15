@@ -1,8 +1,9 @@
 package laddergame.domain;
 
-import static laddergame.messsages.ExceptionMessages.*;
-
 import java.text.MessageFormat;
+
+import static laddergame.messsages.ExceptionMessages.PERSON_NAME_BLANK_EXCEPTION;
+import static laddergame.messsages.ExceptionMessages.PERSON_NAME_OVER_LENGTH_EXCEPTION;
 
 public class Person {
 	private static final int MAX_NAME_LENGTH = 5;
