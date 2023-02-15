@@ -1,10 +1,10 @@
 package ladder.domain;
 
-public class Name {
+public class Player {
     private static final int MAX_SIZE = 6;
     private final String name;
 
-    public Name(String name) {
+    public Player(String name) {
         validateEmptyName(name);
         validateOutOfNameLength(name);
         this.name = name;
