@@ -1,6 +1,7 @@
 package model;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,5 +23,10 @@ public class LadderHeightTest {
 
         //Then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @Disabled("단순 getter 메서드는 테스트하지 않는다.")
+    void getHeight() {
     }
 }
