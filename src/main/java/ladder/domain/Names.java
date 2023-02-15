@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import ladder.dto.NamesDto;
 
 public class Names {
 
@@ -21,4 +22,13 @@ public class Names {
         }
     }
 
+    public int getCount() {
+        return names.size();
+    }
+
+    public NamesDto toDto() {
+        return new NamesDto(names.stream()
+                .map(Name::toDto)
+                .collect(Collectors.toList()));
+    }
 }

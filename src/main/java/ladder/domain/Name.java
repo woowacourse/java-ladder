@@ -25,5 +25,7 @@ public class Name {
         }
     }
 
-
+    public String toDto() {
+        return name;
+    }
 }
