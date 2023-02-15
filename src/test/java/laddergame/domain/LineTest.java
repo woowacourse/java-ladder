@@ -44,10 +44,6 @@ public class LineTest {
         }
     }
 
-    /**
-     * | --- |   |    |
-     * | --- |  |  |
-     */
     @Test
     @DisplayName("라인이 겹치지 않는다.")
     void givenLine_thenNotOverLap() {
