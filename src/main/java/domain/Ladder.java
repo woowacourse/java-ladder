@@ -1,21 +1,15 @@
 package domain;
 
+import java.util.List;
+
 public class Ladder {
-    public static final int MIN_HEIGHT = 0;
-    public static final int MAX_HEIGHT_RATIO = 2;
+    private static final int MAX_HEIGHT_RATIO = 2;
 
-    private final int height;
+    private final List<Line> lines;
 
-    public Ladder(int height, int playersCount) {
-        validatePositive(height);
-        validatePlayersCount(height, playersCount);
-        this.height = height;
-    }
-
-    private void validatePositive(int height) {
-        if (height <= MIN_HEIGHT) {
-            throw new IllegalArgumentException("[ERROR] 사다리의 높이는 양의 정수여야 합니다.");
-        }
+    public Ladder(List<Line> lines, int playerCount) {
+        validatePlayersCount(lines.size(), playerCount);
+        this.lines = lines;
     }
 
     private void validatePlayersCount(int height, int playersCount) {
