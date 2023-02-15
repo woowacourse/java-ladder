@@ -3,7 +3,6 @@ package ladder.domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import view.ResultView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +16,11 @@ public class LadderTest {
     void ladderInitiatorTest() {
         List<Line> lines = new ArrayList<>();
 
-        for(int i = 0; i < heightOfLadder; i++) {
+        for (int i = 0; i < heightOfLadder; i++) {
             List<Bar> bars = LineMaker.generate(playerCount, new MockRandomBooleanGenerator());
             lines.add(new Line(bars));
         }
 
-        Assertions.assertDoesNotThrow(new Ladder(lines));
+        Assertions.assertDoesNotThrow(() -> new Ladder(lines));
     }
 }
