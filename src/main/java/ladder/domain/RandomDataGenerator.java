@@ -2,7 +2,8 @@ package ladder.domain;
 
 import java.util.Random;
 
-public class RandomDataGenerator implements RandomGenerator{
+public class RandomDataGenerator implements RandomGenerator {
+
     @Override
     public boolean generateBoolean() {
         Random random = new Random();
@@ -14,4 +15,5 @@ public class RandomDataGenerator implements RandomGenerator{
         Random random = new Random();
         return random.nextInt(max - min + 1) + min;
     }
+
 }

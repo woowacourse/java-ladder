@@ -9,8 +9,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderController {
-    private static final int MINIMUM_HEIGHT = 1;
 
+    //TODO: 전략패턴 하나의 인터페이스에 몰아서 하는 게 맞는지 확인하기
+    //TODO: INPUT,OUTPUT, GENERATOR 객체로 컨트롤러에 생성자로 주입 혹은 STATIC으로 사용 둘중에 뭐가 맞는지 확인하기 ★★★★
+    //TODO : 우르의 HANDLE ERROR기능 추가할지 고민해보기 ★★
+    private static final int MINIMUM_HEIGHT = 1;
     private final RandomGenerator randomIntegerGenerator = new RandomDataGenerator();
 
     public void run() {
@@ -52,7 +55,7 @@ public class LadderController {
         }
     }
 
-    private Ladder createLadder(Players players, Height height){
+    private Ladder createLadder(Players players, Height height) {
         List<Line> lines = new ArrayList<>();
         for (int idx = 0; idx < height.getHeight(); idx++) {
             List<Bar> bars = LineMaker.generate(players.count(), randomIntegerGenerator);

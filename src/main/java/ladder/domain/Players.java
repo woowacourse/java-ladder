@@ -27,18 +27,19 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
+    //TODO : SET<STRING> 을 int로 반환하는 메서드로 분리하기
     private void validateDuplicatedNames(List<Player> players) {
         Set<String> names = players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toSet());
 
-        if(names.size() != players.size()) {
+        if (names.size() != players.size()) {
             throw new IllegalArgumentException("플레이어의 이름이 중복됩니다.");
         }
     }
 
     private void validateCountOfPlayers(List<Player> players) {
-        if(players.size() < MINIMUM_COUNT_OF_PLAYERS) {
+        if (players.size() < MINIMUM_COUNT_OF_PLAYERS) {
             throw new IllegalArgumentException("플레이어의 수는 2명 이상이어야 합니다.");
         }
     }

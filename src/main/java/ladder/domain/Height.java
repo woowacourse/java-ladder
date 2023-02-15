@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Height {
+
     private final int height;
 
     public Height(int height) {
@@ -25,4 +26,5 @@ public class Height {
     public int hashCode() {
         return Objects.hash(height);
     }
+
 }

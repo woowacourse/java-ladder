@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+
     private final List<Bar> line;
 
     public Line(List<Bar> bars) {
@@ -13,5 +14,6 @@ public class Line {
     public List<Bar> getLine() {
         return line;
     }
+
 }
 

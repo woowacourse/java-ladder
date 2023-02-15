@@ -1,6 +1,7 @@
 package ladder.domain;
 
 public enum Bar {
+
     MOVABLE_BAR(true),
     UNMOBABLE_BAR(false);
 
