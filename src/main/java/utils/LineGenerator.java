@@ -11,21 +11,21 @@ public class LineGenerator {
 
     public static final Random RANDOM = new Random();
 
-    public static Line generate(Line previousLine) {
-        List<Boolean> lines = previousLine.getExistedLine();
-
-        List<Boolean> newLines = lines.stream()
-                .map(LineGenerator::convertBoolean)
-                .collect(Collectors.toList());
-        return new Line(newLines);
+    public static Line generate(int userCount) {
+        List<Boolean> lines = getLines(userCount);
+        return new Line(lines);
     }
 
-    public static Line generateFirstLine(int height) {
+    private static List<Boolean> getLines(int userCount) {
         List<Boolean> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(RANDOM.nextBoolean());
+        boolean previousBar = RANDOM.nextBoolean();
+        lines.add(previousBar);
+        for (int i = 0; i < userCount - 2; i++) {
+            boolean nextBar = convertBoolean(previousBar);
+            lines.add(nextBar);
+            previousBar = nextBar;
         }
-        return new Line(lines);
+        return lines;
     }
 
     private static boolean convertBoolean(boolean comparedBoolean) {
