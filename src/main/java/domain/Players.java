@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -46,5 +45,9 @@ public class Players {
                 .mapToInt(player -> player.getName().length())
                 .max()
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public int getNumberOfPlayers() {
+        return this.players.size();
     }
 }
