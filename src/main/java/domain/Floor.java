@@ -19,4 +19,8 @@ public class Floor {
             }
         }
     }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
 }
