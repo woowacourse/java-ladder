@@ -25,7 +25,7 @@ public class Lines {
     }
 
     private void generateLegsOfLine(Generator generator, int lineIndex) {
-        for (int heightIndex = 0; heightIndex < height.getH(); heightIndex++) {
+        for (int heightIndex = 0; heightIndex < height.getHeight(); heightIndex++) {
             connectLegs(generator, lineIndex, heightIndex);
         }
     }
@@ -40,15 +40,13 @@ public class Lines {
         return generator.generate() && !lines.get(lineIndex - 1).getByHeight(heightIndex);
     }
 
-    List<Line> getLines() {
-        return lines.subList(1, lines.size() - 1);
+    public LinesDto toDto() {
+        return new LinesDto(removeMeaninglessLine().stream()
+                .map(Line::toDto)
+                .collect(Collectors.toList()), height.getHeight());
     }
 
-
-    public LinesDto toDto() {
-        //TODO subList 부분 메서드분리
-        return new LinesDto((lines.subList(1, lines.size() - 1)).stream()
-                .map(Line::toDto)
-                .collect(Collectors.toList()), height.getH());
+    private List<Line> removeMeaninglessLine() {
+        return lines.subList(1, lines.size() - 1);
     }
 }

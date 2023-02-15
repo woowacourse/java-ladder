@@ -13,9 +13,9 @@ class LinesTest {
         Lines lines = new Lines(2, 2);
         lines.generateLegsOfLines(new MockGenerator(false));
 
-        for (Line line : lines.getLines()) {
-            assertThat(line.getByHeight(0)).isFalse();
-            assertThat(line.getByHeight(1)).isFalse();
+        for (List<Boolean> line : lines.toDto().getLines()) {
+            assertThat(line.get(0)).isFalse();
+            assertThat(line.get(1)).isFalse();
         }
     }
 
@@ -24,12 +24,12 @@ class LinesTest {
         Lines lines = new Lines(2, 3);
         lines.generateLegsOfLines(new MockGenerator(true));
 
-        List<Line> lineList = lines.getLines();
+        List<List<Boolean>> lineList = lines.toDto().getLines();
         assertAll(
-                () -> assertThat(lineList.get(0).getByHeight(0)).isTrue(),
-                () -> assertThat(lineList.get(0).getByHeight(1)).isTrue(),
-                () -> assertThat(lineList.get(1).getByHeight(0)).isFalse(),
-                () -> assertThat(lineList.get(1).getByHeight(1)).isFalse()
+                () -> assertThat(lineList.get(0).get(0)).isTrue(),
+                () -> assertThat(lineList.get(0).get(1)).isTrue(),
+                () -> assertThat(lineList.get(1).get(0)).isFalse(),
+                () -> assertThat(lineList.get(1).get(1)).isFalse()
         );
     }
 }

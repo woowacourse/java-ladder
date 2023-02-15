@@ -9,8 +9,8 @@ class Line {
 
 
     Line(Height height) {
-        List<Boolean> temp = new ArrayList<>(height.getH());
-        for (int i = 0; i < height.getH(); i++) {
+        List<Boolean> temp = new ArrayList<>(height.getHeight());
+        for (int i = 0; i < height.getHeight(); i++) {
             temp.add(false);
         }
         connected = temp;

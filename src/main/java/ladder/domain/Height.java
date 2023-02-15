@@ -2,18 +2,18 @@ package ladder.domain;
 
 class Height {
 
-    private final int h;
+    private final int height;
 
     Height(int height) {
         if (height <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("높이는 0보다 커야합니다");
         }
-        h = height;
+        this.height = height;
     }
 
 
-    int getH() {
-        return h;
+    int getHeight() {
+        return height;
     }
 
 }

@@ -6,6 +6,9 @@ import ladder.dto.NamesDto;
 
 public class ResultView {
 
+    private ResultView() {
+    }
+
     public static void printResult(NamesDto namesDto, LinesDto linesDto) {
         System.out.println("실행 결과");
         System.out.println();
@@ -23,24 +26,25 @@ public class ResultView {
 
     private static void printLines(LinesDto linesDto) {
         List<List<Boolean>> lines = linesDto.getLines();
-        System.out.println();
         for (int i = 0; i < linesDto.getHeight(); i++) {
-            System.out.print("    |");
-            for (int j = 0; j < lines.size(); j++) {
-
-                if (lines.get(j).get(i)) {
-                    System.out.print("-----");
-                } else {
-                    System.out.print("     ");
-                }
-                System.out.print("|");
-            }
-            System.out.println();
+            printRow(lines, i);
         }
     }
 
-    private static void printLine(List<Boolean> connected) {
+    private static void printRow(List<List<Boolean>> lines, int rowIndex) {
+        System.out.println();
+        System.out.print("    |");
+        for (int j = 0; j < lines.size(); j++) {
+            printLeg(lines, rowIndex, j);
+        }
+    }
 
+    private static void printLeg(List<List<Boolean>> lines, int rowIndex, int columnIndex) {
+        if (lines.get(columnIndex).get(rowIndex)) {
+            System.out.print("-----|");
+            return;
+        }
+        System.out.print("     |");
     }
 
     public static void printErrorMessage(Exception e) {
