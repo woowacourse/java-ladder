@@ -12,7 +12,7 @@ public class Names {
 
     public Names(List<Name> names) {
         if (names.size() < MIN_NAME_SIZE) {
-            throw new IllegalArgumentException(String.format("[ERROR] 이름은 최소 2개 이상이여햡니다. 입력값 : %d", names.size()));
+            throw new IllegalArgumentException(String.format("이름은 최소 2개 이상이여햡니다. 입력값 : %d", names.size()));
         }
         this.names = new ArrayList<>(names);
     }

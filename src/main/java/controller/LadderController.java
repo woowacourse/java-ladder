@@ -7,6 +7,7 @@ import domain.LadderHeight;
 import domain.Name;
 import domain.Names;
 import java.util.List;
+import java.util.function.Supplier;
 import utils.NumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -26,8 +27,8 @@ public class LadderController {
     }
 
     public void run() {
-        Names names = createNames();
-        LadderHeight ladderHeight = createLadderHeight();
+        Names names = repeat(this::createNames);
+        LadderHeight ladderHeight = repeat(this::createLadderHeight);
         Ladder ladder = Ladder.create(ladderHeight, names.getSize(), numberGenerator);
         outputView.printResult(names, ladder);
     }
@@ -42,5 +43,14 @@ public class LadderController {
     private LadderHeight createLadderHeight() {
         int height = inputView.sendLadderHeight();
         return new LadderHeight(height);
+    }
+
+    private <T> T repeat(Supplier<T> inputSupplier) {
+        try {
+            return inputSupplier.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return repeat(inputSupplier);
+        }
     }
 }

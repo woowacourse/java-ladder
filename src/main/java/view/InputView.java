@@ -35,7 +35,7 @@ public class InputView {
         try {
             return Integer.parseInt(rawLadderHeight);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.format("[ERROR] 사다리의 높이는 숫자여야합니다. " +
+            throw new IllegalArgumentException(String.format("사다리의 높이는 숫자여야합니다. " +
                     "입력값: %s", rawLadderHeight));
         }
     }

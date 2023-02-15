@@ -13,6 +13,7 @@ public class OutputView {
 
     private static final String PASSABLE_POINT = "|-----";
     private static final String BLOCKED_POINT = "|     ";
+    private static final String ERROR_MESSAGE_PREFIX = "[ERROR]";
 
     public void printResult(Names names,
                             Ladder ladder) {
@@ -24,6 +25,10 @@ public class OutputView {
         List<List<Point>> rows = initRows(ladderHeight);
         convertLinesToRows(lines, rows);
         printLadder(rows);
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.printf("%s %s%n", ERROR_MESSAGE_PREFIX, message);
     }
 
     private String getFormattedNames(Names names) {
