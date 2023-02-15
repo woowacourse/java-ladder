@@ -1,12 +1,22 @@
-package utils.validator;
+package domain;
 
-public class FloorValidator {
 
+public class PersonNumber {
     public static final int MIN_RANGE = 2;
     public static final int MAX_RANGE = 100;
+    private final int personNumber;
 
-    public static void validatePersonNumber(int personCount) {
-        if (personCount < MIN_RANGE || personCount > MAX_RANGE) {
+    public PersonNumber(int personNumber) {
+        validate(personNumber);
+        this.personNumber = personNumber;
+    }
+
+    public int getPersonNumber() {
+        return personNumber;
+    }
+
+    private static void validate(int personNumber) {
+        if (personNumber < MIN_RANGE || personNumber > MAX_RANGE) {
             throw new IllegalArgumentException(Message.EXCEPTION_RANGE.message);
         }
     }
