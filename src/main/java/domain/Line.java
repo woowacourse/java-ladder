@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
     private final List<Step> steps;
@@ -24,5 +25,11 @@ public class Line {
         if (steps.get(index) == Step.EXIST && steps.get(index - 1) == Step.EXIST) {
             throw new IllegalArgumentException("[ERROR] 라인에 Step이 연속될 수 없습니다.");
         }
+    }
+
+    public String asString() {
+        return "|" + steps.stream()
+                .map(Step::getShape)
+                .collect(Collectors.joining("|")) + "|";
     }
 }
