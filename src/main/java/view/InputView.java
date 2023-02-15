@@ -4,6 +4,7 @@ import domain.Name;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import utils.validator.LadderSizeValidator;
 
 public class InputView {
     private static final InputView instance = new InputView();
@@ -27,10 +28,7 @@ public class InputView {
 
     public int readLadderSize() {
         String input = scanner.nextLine();
-        int size = Integer.parseInt(input);
-        if (size < 1 || size > 100) {
-            throw new IllegalArgumentException();
-        }
-        return size;
+        LadderSizeValidator.validate(input);
+        return Integer.parseInt(input);
     }
 }
