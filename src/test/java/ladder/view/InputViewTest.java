@@ -43,11 +43,11 @@ class InputViewTest {
     @ParameterizedTest
     @DisplayName("사다리 높이가 정수가 아니면 예외처리 테스트")
     @ValueSource(strings = {"이것은 높이가 아니다\n", "0.1234\n"})
-    void notIntegerLengthTest(String input) {
+    void notIntegerHeightTest(String input) {
         InputStream in = generateUserInput(input);
         System.setIn(in);
 
-        Assertions.assertThatThrownBy(inputView::readLength)
+        Assertions.assertThatThrownBy(inputView::readHeight)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
