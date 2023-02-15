@@ -22,10 +22,6 @@ public class LadderController {
 		repeat(() -> ladder = Ladder.from(inputView.readHeight(), people.size()));
 	}
 
-	public void createLadder() {
-		ladder.makeLadder();
-	}
-
 	private void repeat(Runnable repeatable) {
 		try {
 			repeatable.run();

@@ -2,8 +2,6 @@ package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.List;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -43,11 +41,9 @@ class LadderTest {
 	void stoolNotContinuous() {
 		Ladder ladder = initLadder(4, 5);
 
-		ladder.makeLadder();
-
-		for (List<Boolean> level : ladder.getLadder())
+		for (Level level : ladder.getLadder())
 			for (int i = 0; i < level.size() - 1; i++)
-				if (level.get(i) && level.get(i + 1))
+				if (level.isStoolExist(i) && level.isStoolExist(i + 1))
 					fail("발판은 연속될 수 없다");
 	}
 
@@ -55,12 +51,8 @@ class LadderTest {
 	@Test
 	void lineMustHaveStool() {
 		Ladder ladder = initLadder(4, 6);
-		ladder.makeLadder();
 
-		for (List<Boolean> level : ladder.getLadder()) {
-			int count = (int)level.stream().filter(stool -> stool).count();
-			assertThat(count).isGreaterThan(0);
-		}
+		assertThat(ladder.getLadder()).allMatch(level -> level.countStools() > 0);
 	}
 
 	private static Ladder initLadder(int height, int participantSize) {

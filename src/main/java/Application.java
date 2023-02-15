@@ -7,6 +7,5 @@ public class Application {
 		LadderController controller = new LadderController(new InputView(), new OutputView());
 
 		controller.init();
-		controller.createLadder();
 	}
 }
