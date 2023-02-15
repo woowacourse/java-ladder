@@ -18,18 +18,25 @@ public class Floor {
         return lines;
     }
 
-    public void b(List<Integer> lineValues) {
+    public void makeFloor(List<Integer> lineValues) {
         for (int i = 0; i < lines.size(); i++) {
-            if (i == 0) {
-                lines.get(i).make(lineValues.get(i));
-                continue;
-            }
-
-            if (lines.get(i - 1).isExist()) {
-                continue;
-            }
-
-            lines.get(i).make(lineValues.get(i));
+            makeLineAt(i, lineValues.get(i));
         }
+    }
+
+    private void makeLineAt(int index, int value) {
+        if (isMakeAble(index)) {
+            lines.get(index).make(value);
+        }
+    }
+
+    private boolean isMakeAble(int index) {
+        if (index == 0) {
+            return true;
+        }
+        if (lines.get(index - 1).isExist()) {
+            return false;
+        }
+        return true;
     }
 }

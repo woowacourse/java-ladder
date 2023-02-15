@@ -22,7 +22,7 @@ public class FloorTest {
     void makeFloorTest() {
         Floor floor = new Floor(3);
         List<Integer> list = new ArrayList<>(List.of(1, 0, 1));
-        floor.b(list);
+        floor.makeFloor(list);
         assertThat(floor.getLines().get(0)).extracting("isExist").isEqualTo(true);
         assertThat(floor.getLines().get(1)).extracting("isExist").isEqualTo(false);
         assertThat(floor.getLines().get(2)).extracting("isExist").isEqualTo(true);
@@ -34,7 +34,7 @@ public class FloorTest {
     void makeNonContinuousLadderTest(){
         Floor floor = new Floor(3);
         List<Integer> list = new ArrayList<>(List.of(1,1,1));
-        floor.b(list);
+        floor.makeFloor(list);
         
         assertThat(floor.getLines().get(0)).extracting("isExist").isEqualTo(true);
         assertThat(floor.getLines().get(1)).extracting("isExist").isEqualTo(false);
