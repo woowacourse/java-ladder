@@ -6,22 +6,19 @@ import java.util.List;
 public class Line {
 
     private final List<Boolean> points;
-    private final BooleanGenerator booleanGenerator;
 
     public Line(final int personCount, final BooleanGenerator booleanGenerator) {
         this.points = new ArrayList<>();
-        this.booleanGenerator = booleanGenerator;
         for (int position = 0; position < personCount - 1; position++) {
-            points.add(decideConnection(position));
+            points.add(decideConnection(position, booleanGenerator));
         }
     }
 
     public Line(Line line) {
         this.points = new ArrayList<>(line.points);
-        this.booleanGenerator = line.booleanGenerator;
     }
 
-    private Boolean decideConnection(int position) {
+    private Boolean decideConnection(int position, BooleanGenerator booleanGenerator) {
         if (position == 0) {
             return booleanGenerator.generate();
         }
