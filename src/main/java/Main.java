@@ -8,8 +8,11 @@ import view.OutputView;
 public class Main {
 
     public static void main(String[] args) {
-        BlockController blockController = new BlockController(new InputView(new Scanner(System.in)), new OutputView(),
-            new BlockService(new RandomPassGenerator()));
+        InputView inputView = new InputView(new Scanner(System.in));
+        OutputView outputView = new OutputView();
+        BlockService blockService = new BlockService(new RandomPassGenerator());
+        BlockController blockController = new BlockController(inputView, outputView, blockService);
+
         blockController.run();
     }
 
