@@ -24,9 +24,13 @@ public class Players {
     }
 
     public void validateSize(String[] names) {
-        if (names.length < MIN_PLAYERS || names.length > MAX_PLAYERS) {
+        if (isProper(names)) {
             throw new IllegalArgumentException("[ERROR] 사용자는 2명에서 13명까지 가능합니다.");
         }
+    }
+
+    private boolean isProper(String[] names) {
+        return MAX_PLAYERS < names.length || names.length < MIN_PLAYERS;
     }
 
     private void validateDuplicate(String[] names) {
