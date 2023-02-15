@@ -14,7 +14,9 @@ class LineTest {
     @Test
     void create() {
         Line line = Line.create(3, new MockNumberGenerator(List.of(3, 4, 3)));
+
         List<Point> points = line.getPoints();
+
         assertThat(points).containsExactly(Point.BLOCKED, Point.PASSABLE, Point.BLOCKED);
     }
 
@@ -22,7 +24,9 @@ class LineTest {
     @Test
     void create_line_have_no_point() {
         Line line = Line.createWithoutPassablePoint(3);
+
         List<Point> points = line.getPoints();
+
         assertThat(points).containsExactly(Point.BLOCKED, Point.BLOCKED, Point.BLOCKED);
     }
 

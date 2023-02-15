@@ -14,6 +14,7 @@ class NamesTest {
     @Test
     void create_success() {
         List<Name> names = List.of(new Name("phobi"), new Name("neo"));
+
         assertThatNoException().isThrownBy(() -> new Names(names));
     }
 
@@ -21,6 +22,7 @@ class NamesTest {
     @Test
     void create_fail_by_not_enough_number_of_name() {
         List<Name> names = List.of(new Name("phobi"));
+
         assertThatThrownBy(() -> new Names(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름은 최소 2개 이상이여햡니다.");
@@ -30,6 +32,7 @@ class NamesTest {
     @Test
     void create_fail_by_duplicate_name() {
         List<Name> namesInput = List.of(new Name("neo"), new Name("neo"));
+
         assertThatThrownBy(() -> new Names(namesInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름은 중복 될 수 없습니다.");
@@ -40,6 +43,7 @@ class NamesTest {
     void getSize() {
         List<Name> namesInput = List.of(new Name("phobi"), new Name("neo"));
         Names names = new Names(namesInput);
+
         assertThat(names.getSize()).isEqualTo(2);
     }
 }
