@@ -14,16 +14,15 @@ public class InputView {
         this.scanner = new Scanner(System.in);
     }
 
-    //TODO: 수정할 메소드 이름 생각해보기
     public List<String> sendNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
         String rawNames = scanner.nextLine();
         return Arrays.stream(rawNames.split(NAME_DELIMITER))
+                .map(String::trim)
                 .collect(Collectors.toList());
     }
 
-    //TODO: return LadderHeight
     public int sendLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
 
