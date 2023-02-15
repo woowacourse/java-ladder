@@ -11,27 +11,23 @@ public class RandomLineStrategy implements LineStrategy {
     @Override
     public Line generate(int width) {
         Stack<Step> steps = new Stack<>();
-        while (true) {
-            if (steps.size() == width - 1) {
-                break;
-            }
-            if (steps.isEmpty()) {
-                steps.add(createRandomStep());
-            }
-            if (steps.peek() == Step.EXIST) {
-                steps.add(Step.EMPTY);
-                continue;
-            }
-            steps.add(createRandomStep());
+        while (steps.size() < width - 1) {
+            steps.add(makeProperStep(steps));
         }
         return new Line(steps);
     }
 
-    private Step createRandomStep() {
-        int number = random.nextInt(1);
-        if (number == 0) {
-            return Step.EMPTY;
+    private Step makeProperStep(Stack<Step> steps) {
+        if (steps.isEmpty() || steps.peek() == Step.EMPTY) {
+            return createRandomStep();
         }
-        return Step.EXIST;
+        return Step.EMPTY;
+    }
+
+    private Step createRandomStep() {
+        if (random.nextBoolean()) {
+            return Step.EXIST;
+        }
+        return Step.EMPTY;
     }
 }
