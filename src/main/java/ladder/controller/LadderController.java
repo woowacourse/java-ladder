@@ -1,8 +1,8 @@
-package controller;
+package ladder.controller;
 
 import ladder.domain.*;
-import view.InputView;
-import view.ResultView;
+import ladder.view.InputView;
+import ladder.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.List;

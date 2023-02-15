@@ -1,8 +1,7 @@
-package view;
+package ladder.view;
 
 import ladder.domain.Bar;
 import ladder.domain.Line;
-import ladder.domain.Name;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,8 +21,8 @@ public class ResultView {
         System.out.println(convertLadder(ladder, nameLength));
     }
 
-    public static void printError(String errorMessage){
-        System.out.println(errorMessage);
+    public static void printError(String errorMessage) {
+        System.out.println(ERROR_PREFIX + errorMessage);
     }
 
     private static String convertPlayerNames(List<String> playerNames, int nameLength) {
