@@ -18,10 +18,14 @@ public class RandomLineStrategy implements LineStrategy {
     }
 
     private Step makeProperStep(Stack<Step> steps) {
-        if (steps.isEmpty() || steps.peek() == Step.EMPTY) {
+        if (isProperSteps(steps)) {
             return createRandomStep();
         }
         return Step.EMPTY;
+    }
+
+    private boolean isProperSteps(Stack<Step> steps) {
+        return steps.isEmpty() || steps.peek() == Step.EMPTY;
     }
 
     private Step createRandomStep() {

@@ -15,16 +15,20 @@ public class Line {
         return steps.size();
     }
 
-    private static void validateContinuousStep(List<Step> steps) {
+    private void validateContinuousStep(List<Step> steps) {
         for (int index = 1; index < steps.size(); index++) {
             checkContinuous(steps, index);
         }
     }
 
-    private static void checkContinuous(List<Step> steps, int index) {
-        if (steps.get(index) == Step.EXIST && steps.get(index - 1) == Step.EXIST) {
+    private void checkContinuous(List<Step> steps, int index) {
+        if (isContinuous(steps, index)) {
             throw new IllegalArgumentException("[ERROR] 라인에 Step이 연속될 수 없습니다.");
         }
+    }
+
+    private boolean isContinuous(List<Step> steps, int index) {
+        return steps.get(index) == Step.EXIST && steps.get(index - 1) == Step.EXIST;
     }
 
     public String asString() {
