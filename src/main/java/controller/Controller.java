@@ -2,6 +2,8 @@ package controller;
 
 import model.Ladder;
 import model.LadderHeight;
+import model.Player;
+import model.Players;
 import view.InputView;
 import view.OutputView;
 
@@ -17,15 +19,21 @@ public class Controller {
         this.outputView = outputView;
     }
     public void run(){
-        List<String> playerNames = setPlayerNames();
+        List<Player> playerNames = setPlayerNames();
         Ladder ladder = new Ladder(playerNames.size(),setLadderHeight());
         outputView.printPlayerName(playerNames);
         outputView.printLadder(playerNames.size(),ladder);
     }
 
-    private List<String> setPlayerNames(){
+    private List<Player> setPlayerNames(){
         outputView.printPlayerNamesMessage();
-        return inputView.readPlayerNames();
+        try {
+            Players players = new Players(inputView.readPlayerNames());
+            return players.getPlayers();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return setPlayerNames();
+        }
     }
 
     private LadderHeight setLadderHeight() {
