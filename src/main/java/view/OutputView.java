@@ -29,7 +29,8 @@ public class OutputView {
     private static void printParticipantNames(final int maxNameLength, final List<String> names) {
         names.stream().map(name -> alignLeft(name, maxNameLength))
                 .collect(Collectors.toList())
-                .forEach(System.out::println);
+                .forEach(System.out::print);
+        System.out.println();
     }
 
     private static String alignLeft(final String name, final int length) {
@@ -44,15 +45,30 @@ public class OutputView {
 
     private static void printLine(final List<Boolean> line, final int maxLength) {
         for (Boolean isSteppable : line) {
-            if (isSteppable) {
-                String footSteps = FOOTSTEP.getShape().repeat(maxLength);
-                System.out.printf("%s%s", PILLAR.getShape(), footSteps);
-            }
-            if (!isSteppable) {
-                String footSteps = BLANK.getShape().repeat(maxLength);
-                System.out.printf("%s%s", PILLAR.getShape(), footSteps);
-            }
+            printSteppableLine(maxLength, isSteppable);
+            printUnSteppableLine(maxLength, isSteppable);
         }
         System.out.println(PILLAR.getShape());
+    }
+
+    private static void printUnSteppableLine(final int maxLength, final Boolean isSteppable) {
+        if (!isSteppable) {
+            printLine(BLANK.getShape(), maxLength);
+        }
+    }
+
+    private static void printSteppableLine(final int maxLength, final Boolean isSteppable) {
+        if (isSteppable) {
+            printLine(FOOTSTEP.getShape(), maxLength);
+        }
+    }
+
+    private static void printLine(final String shape, final int maxLength) {
+        String footSteps = shape.repeat(maxLength);
+        System.out.printf("%s%s", PILLAR.getShape(), footSteps);
+    }
+
+    public static void printErrorMessage(final String errorMessage) {
+        System.out.println(errorMessage);
     }
 }
