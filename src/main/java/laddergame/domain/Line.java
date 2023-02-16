@@ -14,23 +14,22 @@ public class Line {
         this.points = List.copyOf(createLine(pointCount, pointGenerator));
     }
 
-    // todo: point를 어디까지 적용할 것인가
     private List<Point> createLine(int pointCount, PointGenerator pointGenerator) {
-        boolean previousPoint = false;
-        List<Point> tempPoints = new ArrayList<>();
-        while (tempPoints.size() < pointCount) {
-            boolean currentPoint = selectCurrentPoint(previousPoint, pointGenerator.generate());
-            tempPoints.add(Point.findByConnectedCondition(currentPoint));
-            previousPoint = currentPoint;
+        boolean isPreviousConnected = false;
+        List<Point> points = new ArrayList<>();
+        while (points.size() < pointCount) {
+            boolean isCurrentConnected = selectCurrentPoint(isPreviousConnected, pointGenerator.generate());
+            points.add(Point.findByConnectedCondition(isCurrentConnected));
+            isPreviousConnected = isCurrentConnected;
         }
-        return tempPoints;
+        return points;
     }
 
-    private boolean selectCurrentPoint(boolean previousPoint, boolean currentPoint) {
-        if (previousPoint && currentPoint) {
+    private boolean selectCurrentPoint(boolean isPreviousConnected, boolean isCurrentConnected) {
+        if (isPreviousConnected && isCurrentConnected) {
             return false;
         }
-        return currentPoint;
+        return isCurrentConnected;
     }
 
     public List<Point> getLine() {
