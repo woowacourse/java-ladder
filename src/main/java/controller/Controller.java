@@ -20,9 +20,10 @@ public class Controller {
     }
     public void run(){
         List<Name> playerNames = setPlayerNames();
-        Ladder ladder = new Ladder(playerNames.size(),setLadderHeight());
+        LadderHeight ladderHeight = setLadderHeight();
+        Ladder ladder = new Ladder(playerNames.size(),ladderHeight);
         outputView.printPlayerName(playerNames);
-        outputView.printLadder(playerNames.size(),ladder);
+        outputView.printLadder(playerNames.size(),ladder,ladderHeight);
     }
 
     private List<Name> setPlayerNames(){

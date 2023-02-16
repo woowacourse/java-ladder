@@ -1,6 +1,7 @@
 package view;
 
 import model.Ladder;
+import model.LadderHeight;
 import model.Name;
 
 import java.util.List;
@@ -30,8 +31,8 @@ public class OutputView {
         System.out.println("");
     }
 
-    public void printLadder(int playerSize,Ladder ladder) {
-        for(int row=0; row<ladder.getLadderHeight();row++) {
+    public void printLadder(int playerSize,Ladder ladder, LadderHeight ladderHeight) {
+        for(int row=0; row<ladderHeight.getLadderHeight();row++) {
             printStartLadder();
             printConnectLadder(playerSize, ladder, row);
         }
