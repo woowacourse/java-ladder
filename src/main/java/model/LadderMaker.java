@@ -9,6 +9,7 @@ public class LadderMaker {
     private static final int HEAD_TO_BLOCK_SIZE = 1;
     private static final int HEAD_TO_LEFT_INDEX = 1;
     private static final int SECOND_BLOCK_INDEX = 1;
+    private static final int CONVERT_INDEX_VALUE = 1;
 
     private final PassGenerator generator;
     private Ladder ladder;
@@ -63,7 +64,7 @@ public class LadderMaker {
         int size = paths.size();
 
         if (size > 0) {
-            return Path.calculatePath(paths.get(size - 1), generator.generate());
+            return Path.calculatePath(paths.get(size - CONVERT_INDEX_VALUE), generator.generate());
         }
         return Path.calculatePath(generator.generate());
     }
