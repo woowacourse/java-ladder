@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-
     private final List<Boolean> parts;
 
     public Line(LineStrategy lineStrategy, int partCount) {

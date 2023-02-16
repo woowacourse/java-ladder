@@ -18,7 +18,7 @@ public class Players {
     private void validateDuplicateNames(List<String> names) {
         int distinctNameSize = new HashSet<>(names).size();
         int size = names.size();
-        if(size != distinctNameSize) {
+        if (size != distinctNameSize) {
             throw new IllegalArgumentException("이름은 중복될 수 없습니다.");
         }
     }

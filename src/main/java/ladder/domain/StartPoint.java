@@ -11,7 +11,7 @@ public class StartPoint {
     }
 
     private void validateNegativePosition(int position) {
-        if(position < 0) {
+        if (position < 0) {
             throw new IllegalStateException("플레이어의 시작 위치는 0 이상이어야 합니다.");
         }
     }

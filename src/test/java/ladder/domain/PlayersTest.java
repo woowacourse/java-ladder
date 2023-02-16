@@ -9,7 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayersTest {
-
     @Test
     @DisplayName("이름 리스트를 받아 Player들을 생성한다.")
     void players_generatePairFromNames() {

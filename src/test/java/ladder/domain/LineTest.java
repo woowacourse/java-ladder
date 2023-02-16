@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 class LineTest {
-
     @Test
     @DisplayName("LineStrategy로부터 line을 생성한다.")
     void line_generateFromLineStrategy() {

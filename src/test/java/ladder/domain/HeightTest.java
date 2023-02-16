@@ -8,7 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class HeightTest {
-
     @Test
     @DisplayName("사다리 높이가 음수이면 예외를 던진다")
     void height_throwException_if_negative() {

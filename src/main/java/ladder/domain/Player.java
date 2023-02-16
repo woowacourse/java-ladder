@@ -23,7 +23,7 @@ public class Player {
     }
 
     private void validateOutOfNameLength(String name) {
-        if(name.length() >= MAX_SIZE) {
+        if (name.length() >= MAX_SIZE) {
             throw new IllegalArgumentException("이름은 최소 1글자, 최대 5글자여야 합니다.");
         }
     }
