@@ -17,16 +17,16 @@ public enum Path {
 
     public static Path calculatePath(boolean passable) {
         return Arrays.stream(Path.values())
-            .filter(path -> path.isSameMovable(passable))
-            .findAny()
-            .orElseThrow(NotFoundPathException::new);
+                .filter(path -> path.isSameMovable(passable))
+                .findAny()
+                .orElseThrow(NotFoundPathException::new);
     }
 
     public static Path calculatePath(Path otherPath, boolean passable){
         return Arrays.stream(Path.values())
-            .filter(path -> path.isSameMovable(calculateMovable(otherPath, passable)))
-            .findAny()
-            .orElseThrow(NotFoundPathException::new);
+                .filter(path -> path.isSameMovable(calculateMovable(otherPath, passable)))
+                .findAny()
+                .orElseThrow(NotFoundPathException::new);
     }
 
     private boolean isSameMovable(boolean movable) {
