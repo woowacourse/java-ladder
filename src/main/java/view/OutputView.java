@@ -1,6 +1,5 @@
 package view;
 
-
 import domain.Line;
 import domain.Way;
 
