@@ -16,4 +16,13 @@ public class ExceptionTemplate {
             }
         }
     }
+    public static <T> T repeatAndPrintCause(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
