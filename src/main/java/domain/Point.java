@@ -9,10 +9,14 @@ public enum Point {
         this.status = status;
     }
 
+    public boolean getStatus() {
+        return status;
+    }
+
     public String toFormattedStatus() {
         if (status) {
-            return "-----";
+            return "-----|";
         }
-        return "     ";
+        return "     |";
     }
 }

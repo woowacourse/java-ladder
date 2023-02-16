@@ -6,11 +6,9 @@ import domain.Ladder;
 import domain.Line;
 import domain.Player;
 import domain.Players;
+import domain.Point;
 
 public class OutputView {
-
-    private static final String POINT = "-----|";
-    private static final String BLANK = "     |";
 
     public static void printNames(Players players) {
         players.getPlayers().stream()
@@ -31,14 +29,10 @@ public class OutputView {
     }
 
     private static void printLine(Line line) {
-        List<Boolean> points = line.getPoints();
-        String result = "    |";
-        for (Boolean point : points) {
-            if (point) {
-                result += POINT;
-                continue;
-            }
-            result += BLANK;
+        List<Point> points = line.getPoints();
+        StringBuilder result = new StringBuilder("    |");
+        for (Point point : points) {
+            result.append(point.toFormattedStatus());
         }
         System.out.println(result);
     }

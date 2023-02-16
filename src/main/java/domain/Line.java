@@ -9,7 +9,7 @@ public class Line {
 
     private static final int GENERATE_NUMBER = 1;
 
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
 
     public Line(int personCount, NumberGenerator numberGenerator) {
         generatePoints(personCount, numberGenerator);
@@ -27,17 +27,17 @@ public class Line {
 
     private void generatePoint(NumberGenerator numberGenerator) {
         if (isGenerated(numberGenerator) && !hasAdjacentPoint()) {
-            points.add(true);
+            points.add(Point.CONNECTION);
             return;
         }
-        points.add(false);
+        points.add(Point.SEPARATION);
     }
 
     private boolean hasAdjacentPoint() {
-        return !points.isEmpty() && points.get(points.size() - 1);
+        return !points.isEmpty() && points.get(points.size() - 1).getStatus();
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 }
