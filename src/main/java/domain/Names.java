@@ -2,6 +2,7 @@ package domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Names {
 
@@ -42,5 +43,25 @@ public class Names {
 
     private static boolean hasDuplication(final List<Name> names, Name target){
         return (Collections.frequency(names, target) > 1);
+    }
+
+    @Override
+    public boolean equals(Object names) {
+        if (this == names) return true;
+        if (names == null || getClass() != names.getClass()) return false;
+        Names anotherNames = (Names) names;
+        return this.names.equals(anotherNames.names);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(names);
+    }
+
+    @Override
+    public String toString() {
+        return "Names{" +
+                "names=" + names +
+                '}';
     }
 }

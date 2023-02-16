@@ -4,6 +4,7 @@ import util.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
 
@@ -47,5 +48,26 @@ public class Line {
 
     public int getWidth() {
         return this.footSteps.size();
+    }
+
+    @Override
+    public boolean equals(Object line) {
+        if (this == line) return true;
+        if (line == null || getClass() != line.getClass()) return false;
+        Line anotherLine = (Line) line;
+        return this.footSteps.equals(anotherLine.footSteps) && this.generator.equals(anotherLine.generator);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(footSteps, generator);
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "footSteps=" + footSteps +
+                ", generator=" + generator +
+                '}';
     }
 }

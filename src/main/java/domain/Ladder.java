@@ -52,4 +52,12 @@ public class Ladder {
     public int getTotalFootStepCount() {
         return getWidth() * getLineHeight();
     }
+
+    @Override
+    public String toString() {
+        return "Ladder{" +
+                "lines=" + lines +
+                ", booleanGenerator=" + booleanGenerator +
+                '}';
+    }
 }

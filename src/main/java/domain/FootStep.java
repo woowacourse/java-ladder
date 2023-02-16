@@ -10,4 +10,11 @@ public class FootStep {
     public boolean isSteppable() {
         return steppable;
     }
+
+    @Override
+    public String toString() {
+        return "FootStep{" +
+                "steppable=" + steppable +
+                '}';
+    }
 }
