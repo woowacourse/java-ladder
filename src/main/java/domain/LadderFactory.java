@@ -34,10 +34,6 @@ public class LadderFactory {
 
     private void createNonConsistScaffold(final Deque<Scaffold> scaffolds) {
         Scaffold scaffold = scaffoldGenerator.generate();
-        if (scaffolds.isEmpty()) {
-            scaffolds.add(scaffold);
-            return;
-        }
         if (scaffold == Scaffold.EXIST && scaffolds.peekLast() == Scaffold.EXIST) {
             scaffolds.add(Scaffold.NONE);
             return;
