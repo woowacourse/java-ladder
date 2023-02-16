@@ -12,12 +12,12 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(int pointSize) {
+    public Line(final int pointSize) {
         validate(pointSize);
         this.points = generatePoints(pointSize);
     }
 
-    private void validate(int pointSize) {
+    private void validate(final int pointSize) {
         if (pointSize < POINT_MIN_SIZE || pointSize > POINT_MAX_SIZE) {
             throw new IllegalArgumentException();
         }
@@ -37,7 +37,7 @@ public class Line {
         return points;
     }
 
-    public Point getPointAt(int index) {
+    public Point getPointAt(final int index) {
         return points.get(index);
     }
 

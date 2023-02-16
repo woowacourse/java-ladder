@@ -2,22 +2,22 @@ package view;
 
 public class InputViewValidator {
 
-    public static void validatePlayerNames(String input) {
+    public static void validatePlayerNames(final String input) {
         validateNotEmpty(input);
     }
 
-    public static void validateLadderHeight(String input) {
+    public static void validateLadderHeight(final String input) {
         validateNotEmpty(input);
         validateNotInteger(input);
     }
 
-    private static void validateNotEmpty(String input) {
+    private static void validateNotEmpty(final String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("입력값이 비어있습니다.");
         }
     }
 
-    public static void validateNotInteger(String input) {
+    public static void validateNotInteger(final String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException exception) {

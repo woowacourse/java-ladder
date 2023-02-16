@@ -9,12 +9,12 @@ public class LadderGame {
     private final Ladder ladder;
     private final Players players;
 
-    public LadderGame(List<String> playerNames, int ladderHeight) {
+    public LadderGame(final List<String> playerNames, final int ladderHeight) {
         ladder = new Ladder(generateLines(playerNames.size(), ladderHeight));
         players = new Players(generatePlayers(playerNames));
     }
 
-    private List<Line> generateLines(int playerSize, int ladderHeight) {
+    private List<Line> generateLines(final int playerSize, final int ladderHeight) {
         List<Line> lines = new ArrayList<>();
         for (int lineIndex = 0; lineIndex < ladderHeight; lineIndex++) {
             lines.add(new Line(playerSize - 1));
@@ -22,7 +22,7 @@ public class LadderGame {
         return lines;
     }
 
-    private List<Player> generatePlayers(List<String> playerNames) {
+    private List<Player> generatePlayers(final List<String> playerNames) {
         return playerNames.stream()
                 .map(Player::new)
                 .collect(Collectors.toList());

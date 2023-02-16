@@ -11,12 +11,12 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines) {
+    public Ladder(final List<Line> lines) {
         validate(lines);
         this.lines = new ArrayList<>(lines);
     }
 
-    private void validate(List<Line> lines) {
+    private void validate(final List<Line> lines) {
         if (lines.size() < LINE_MIN_SIZE || lines.size() > LINE_MAX_SIZE) {
             throw new IllegalArgumentException();
         }

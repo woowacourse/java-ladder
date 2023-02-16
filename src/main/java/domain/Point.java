@@ -12,18 +12,18 @@ public enum Point {
         this.isExist = isExist;
     }
 
-    public static Point generate(Point previousPoint, Random random) {
+    public static Point generate(final Point previousPoint, final Random random) {
         if (previousPoint == EXIST) {
             return NOT_EXIST;
         }
         return generate(random);
     }
 
-    public static Point generate(Random random) {
+    public static Point generate(final Random random) {
         return of(random.nextBoolean());
     }
 
-    private static Point of(boolean isExist) {
+    private static Point of(final boolean isExist) {
         if (isExist) {
             return EXIST;
         }
