@@ -3,11 +3,10 @@ package controller;
 import domain.Ladder;
 import domain.LadderFactory;
 import domain.Name;
-import view.InputView;
-import view.OutputView;
-
 import java.util.List;
 import java.util.stream.Collectors;
+import view.InputView;
+import view.OutputView;
 
 public class LadderController {
     private final LadderFactory ladderFactory;
