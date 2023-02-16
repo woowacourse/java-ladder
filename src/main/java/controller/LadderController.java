@@ -1,11 +1,13 @@
 package controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import domain.Ladder;
 import domain.LadderBuilder;
 import domain.LadderHeight;
 import domain.LadderWidth;
+import domain.ParticipantName;
 import domain.Participants;
 import domain.util.RandomPointGenerator;
 import view.InputView;
@@ -27,18 +29,18 @@ public class LadderController {
 	}
 
 	private Participants retrieveParticipants(){
-		List<String> names = retrieveParticipantsNames();
+		List<ParticipantName> names = retrieveParticipantsNames();
 		Participants participants = new Participants();
-		for (String name : names) {
+		for (ParticipantName name : names) {
 			participants.add(name);
 		}
 		return participants;
 	}
 
-	private List<String> retrieveParticipantsNames() {
+	private List<ParticipantName> retrieveParticipantsNames() {
 		try {
 			List<String> names = InputView.readParticipantsNames();
-			return names;
+			return names.stream().map(ParticipantName::new).collect(Collectors.toList());
 		} catch (IllegalArgumentException e) {
 			OutputView.printError(e.getMessage());
 			return retrieveParticipantsNames();

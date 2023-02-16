@@ -8,8 +8,8 @@ public class Participants {
 
 	private final List<ParticipantName> names = new ArrayList<>();
 
-	public void add(final String name) {
-		names.add(new ParticipantName(name));
+	public void add(final ParticipantName name) {
+		names.add(name);
 	}
 
 	public int getParticipantsNum() {
