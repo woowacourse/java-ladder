@@ -17,7 +17,7 @@ public class InputView {
         return Arrays.asList(names);
     }
 
-    public String readInput(){
+    private String readInput(){
         return scanner.nextLine();
     }
 
