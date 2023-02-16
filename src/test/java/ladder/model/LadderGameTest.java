@@ -17,7 +17,7 @@ class LadderGameTest {
     @DisplayName("플레이어가 2명 미만이면 예외처리 테스트")
     void invalidHeightTest() {
         List<PlayerName> input = new ArrayList<>(List.of(new PlayerName("이오")));
-        Assertions.assertThatThrownBy(() -> new LadderGame(input, new RandomLineCreateDecider()))
+        Assertions.assertThatThrownBy(() -> new LadderGame(input, new Height(5), new RandomLineCreateDecider()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -25,7 +25,7 @@ class LadderGameTest {
     @DisplayName("플레이어가 2명 이상이면 통과하는 테스트")
     void validHeightTest() {
         List<PlayerName> input = new ArrayList<>(List.of(new PlayerName("이오"), new PlayerName("이리내")));
-        assertThatCode(() -> new LadderGame(input, new RandomLineCreateDecider())).doesNotThrowAnyException();
+        assertThatCode(() -> new LadderGame(input, new Height(5), new RandomLineCreateDecider())).doesNotThrowAnyException();
     }
 
 
@@ -34,14 +34,12 @@ class LadderGameTest {
     void generateLadderTest() {
         List<PlayerName> input = new ArrayList<>(List.of(new PlayerName("a"), new PlayerName("asd"), new PlayerName("qwert")));
 
-        LadderGame ladderGame = new LadderGame(input, new TestLineCreateDecider(newArrayList(true, false, true)));
-        ladderGame.generateLadder(new Height(2));
+        LadderGame ladderGame = new LadderGame(input, new Height(2), new TestLineCreateDecider(newArrayList(true, false, false, true)));
+
         List<Row> rows = ladderGame.getLadder().getRows();
 
-        assertThat(rows.get(0).isPointHasLine(0)).isTrue();
-        assertThat(rows.get(0).isPointHasLine(1)).isFalse();
-        assertThat(rows.get(1).isPointHasLine(0)).isFalse();
-        assertThat(rows.get(1).isPointHasLine(1)).isTrue();
+        Assertions.assertThat(rows.get(0).getPoints()).containsExactly(true, false);
+        Assertions.assertThat(rows.get(1).getPoints()).containsExactly(false, true);
     }
 
 
