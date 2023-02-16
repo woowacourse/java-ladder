@@ -6,6 +6,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
+
     private final InputView inputView;
     private final OutputView outputView;
     private final GenerateBridgeStrategy bridgeStrategy;
@@ -35,4 +36,5 @@ public class LadderGameController {
     public void printError(Exception exception) {
         outputView.printError(exception);
     }
+
 }

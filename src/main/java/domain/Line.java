@@ -33,4 +33,5 @@ public class Line {
         return this.points.get(index)
                 .matchDirection(Direction.STRAIGHT_DOWN);
     }
+
 }

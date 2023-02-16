@@ -7,9 +7,9 @@ public class PlayerNames {
 
     private static final int PLAYER_NUMBER_LOWER_BOUND_INCLUSIVE = 2;
     private static final int PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE = 20;
-
     public static final String PLAYER_NUMBER_RANGE_ERROR_MESSAGE = "참여자 수는 2 ~ 20명만 가능합니다.";
     private static final String PLAYER_NAME_DUPLICATION_ERROR_MESSAGE = "이름은 중복될 수 없습니다.";
+
     private final List<Name> names;
 
     private PlayerNames(List<Name> names) {

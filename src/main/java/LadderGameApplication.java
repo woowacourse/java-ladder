@@ -17,6 +17,6 @@ public class LadderGameApplication {
         } catch (Exception exception) {
             ladderGameController.printError(exception);
         }
-
     }
+
 }

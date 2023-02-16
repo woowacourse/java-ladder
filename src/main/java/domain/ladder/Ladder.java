@@ -66,7 +66,6 @@ public class Ladder {
                 && endPoint.matchDirection(Direction.STRAIGHT_DOWN);
     }
 
-
     public Point getPoint(int y, int x) {
         return lines.get(x).getPoints().get(y);
     }
@@ -78,4 +77,5 @@ public class Ladder {
     public int getHeightSize() {
         return height.getHeight();
     }
+
 }

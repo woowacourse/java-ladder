@@ -15,4 +15,5 @@ public class Point {
     public void changeDirection(Direction direction) {
         this.direction = direction;
     }
+
 }

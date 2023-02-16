@@ -1,9 +1,10 @@
 package domain;
 
 public class Height {
-    public static final String HEIGHT_RANGE_ERROR_MESSAGE = "사다리 높이는 1 ~ 100만 가능합니다.";
+
     private static final int HEIGHT_LOWER_BOUND_INCLUSIVE = 1;
     private static final int HEIGHT_UPPER_BOUND_INCLUSIVE = 100;
+    public static final String HEIGHT_RANGE_ERROR_MESSAGE = "사다리 높이는 1 ~ 100만 가능합니다.";
 
     private final int height;
 
@@ -26,4 +27,5 @@ public class Height {
     public int getHeight() {
         return this.height;
     }
+
 }

@@ -27,4 +27,5 @@ public class HeightTest {
     void createHeightSuccess(int input) {
         Assertions.assertDoesNotThrow(() -> new Height(input));
     }
+
 }

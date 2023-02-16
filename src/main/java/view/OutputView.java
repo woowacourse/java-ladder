@@ -8,16 +8,17 @@ import domain.ladder.Ladder;
 
 public class OutputView {
 
-    private static final String BLANK = " ";
+    private static final int NAME_BOX_SIZE_MAX = 5;
     private static final int BRIDGE_LENGTH = 5;
+    private static final String BLANK = " ";
+    private static final String RESULT_PREFIX_MESSAGE = "실행결과";
     private static final String EMPTY_BRIDGE = BLANK.repeat(BRIDGE_LENGTH);
     private static final String BRIDGE = "-".repeat(BRIDGE_LENGTH);
     private static final String LINE_COMPONENT = "|";
     private static final String LADDER_PREFIX = BLANK.repeat(2);
-    private static final int NAME_BOX_SIZE_MAX = 5;
 
     public void printResultPrefix() {
-        System.out.println("실행결과");
+        System.out.println(RESULT_PREFIX_MESSAGE);
     }
 
     public void printPlayerNames(PlayerNames playerNames) {
@@ -34,7 +35,7 @@ public class OutputView {
         int index = NAME_BOX_SIZE_MAX;
         while (name.length() != index) {
             makeName = appendSpace(makeName, index);
-            index -= 1;
+            index--;
         }
 
         return makeName;
@@ -81,7 +82,6 @@ public class OutputView {
         System.out.print(LADDER_PREFIX);
     }
 
-
     public void printError(Exception exception) {
         printErrorMessage(exception.getMessage());
     }
@@ -89,4 +89,5 @@ public class OutputView {
     private void printErrorMessage(String message) {
         System.out.println(message);
     }
+
 }

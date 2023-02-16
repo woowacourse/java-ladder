@@ -13,9 +13,11 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class LadderTest {
-    private Ladder ladder;
+
     private static final int PLAYER_COUNT = 4;
     private static final int HEIGHT_SIZE = 5;
+
+    private Ladder ladder;
 
     @BeforeAll
     void beforeAll() {
