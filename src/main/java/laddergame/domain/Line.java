@@ -10,9 +10,6 @@ public class Line {
         if (points.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        if (points.stream().allMatch(point -> point == false)) {
-            throw new IllegalArgumentException();
-        }
         boolean isBothTrue = IntStream.range(0, points.size() - 1)
                 .anyMatch(pointIndex -> points.get(pointIndex) && points.get(pointIndex + 1));
         if (isBothTrue) {
