@@ -1,7 +1,7 @@
 package view;
 
 import model.Ladder;
-import model.Player;
+import model.Name;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class OutputView {
         System.out.println(LADDER_HEIGHT_MESSAGE);
     }
 
-    public void printPlayerName( List<Player> names){
+    public void printPlayerName( List<Name> names){
         for(int index=0; index<names.size(); index++){
             System.out.print(String.format("%"+ MAXIMUM_PLAYER_NAME +"s ",
                     names.get(index).getPlayer()));
