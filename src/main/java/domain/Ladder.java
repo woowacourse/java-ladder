@@ -13,10 +13,6 @@ public class Ladder {
 		this.lines = lines;
 	}
 
-	public List<Line> getLines() {
-		return lines;
-	}
-
 	public List<List<Point>> getLadderPoints() {
 		List<List<Point>> points = new ArrayList<>();
 		for (Line line : lines) {

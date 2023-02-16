@@ -50,6 +50,6 @@ public class OutputView {
 	}
 
 	public static void printError(String errorMsg) {
-		System.out.println(String.format(ERROR_PREFIX,errorMsg));
+		System.out.println(ERROR_PREFIX + errorMsg);
 	}
 }
