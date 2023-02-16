@@ -23,10 +23,14 @@ public class LadderGameController {
     }
 
     public void run() {
-        Players players = new Players(inputView.readUserNames());
-        Height height = new Height(inputView.readHeight());
-        Ladder ladder = generateLadder(players, height);
-        outputView.printResult(players.getPlayers(), ladder.getLines(), players.getMaxPlayerNameLength());
+        try {
+            Players players = new Players(inputView.readUserNames());
+            Height height = new Height(inputView.readHeight());
+            Ladder ladder = generateLadder(players, height);
+            outputView.printResult(players.getPlayers(), ladder.getLines(), players.getMaxPlayerNameLength());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrormessage(e.getMessage());
+        }
     }
 
     private Ladder generateLadder(Players players, Height height) {
