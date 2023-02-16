@@ -13,6 +13,7 @@ public class HeightTest {
     void validate_height_length(int input) {
         // when & then
         Assertions.assertThatThrownBy(() -> new Height(input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("사다리의 높이는 최소 1이상 최대 10이하입니다.");
     }
 }

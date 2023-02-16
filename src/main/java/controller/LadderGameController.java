@@ -18,7 +18,7 @@ public class LadderGameController {
 
     public void run() {
         Players players = makePlayers();
-        Ladder ladder = makeLadder(players.getNumberOfPlayers());
+        Ladder ladder = makeLadder(players.findNumberOfPlayers());
 
         outputView.printResult(players, ladder);
     }
