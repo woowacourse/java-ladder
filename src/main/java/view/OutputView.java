@@ -16,8 +16,10 @@ public class OutputView {
     }
 
     public void printGameResult(Ladder ladder, Users users) {
-        System.out.println("실행결과");
         int firstUserNameLength = 0;
+
+        System.out.println("실행결과");
+        System.out.println();
 
         for (int i = 0; i < users.getUsers().size(); i++) {
             User user = users.getUsers().get(i);
