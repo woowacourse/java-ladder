@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static laddergame.TestDummy.PERSON_HYENA;
-import static laddergame.TestDummy.PERSON_ROSIE;
+import static laddergame.TestDummy.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -41,5 +40,10 @@ class ParticipantsTest {
         final Participants participants = new Participants(people);
         final int totalSize = participants.getSize();
         assertThat(totalSize).isEqualTo(people.size());
+    }
+
+    @Test
+    void getNames() {
+        assertThat(PARTICIPANTS_SIZE_2.getNames()).contains("헤나", "로지");
     }
 }
