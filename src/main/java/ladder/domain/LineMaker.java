@@ -5,11 +5,10 @@ import java.util.List;
 
 public class LineMaker {
 
-    //TODO: 리팩토링
     public static List<Bar> generate(int playerCount, RandomGenerator randomGenerator) {
+        int lineSize = playerCount - 1;
         List<Bar> line = new ArrayList<>();
 
-        int lineSize = playerCount - 1;
         boolean beforeValue = false;
 
         for (int idx = 0; idx < lineSize; idx++) {
@@ -19,10 +18,11 @@ public class LineMaker {
         }
 
         return line;
+
     }
 
     private static Bar createBar(boolean beforeValue, RandomGenerator randomGenerator) {
-        if(beforeValue) {
+        if (beforeValue) {
             return Bar.UNMOVABLE_BAR;
         }
         return Bar.getBar(randomGenerator.generateBoolean());

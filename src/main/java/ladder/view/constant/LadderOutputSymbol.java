@@ -12,15 +12,16 @@ public enum LadderOutputSymbol {
         this.symbol = symbolValue;
     }
 
-    public String getSymbol() {
-        return symbol;
-    }
-
     public static String decideLadderSymbol(boolean input) {
-        if(input) {
+        if (input) {
             return BAR_SYMBOL.symbol;
         }
 
         return EMPTY_BAR_SYMBOL.symbol;
     }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
 }

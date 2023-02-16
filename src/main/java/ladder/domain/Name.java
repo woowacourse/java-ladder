@@ -5,7 +5,6 @@ import java.util.Objects;
 public class Name {
 
     //TODO: NAME의 상수 public하는 것이 맞는지
-    //TODO: 에러 메시지 상수화
 
     public static final int NAME_MAXIMUM_LENGTH = 5;
     private final String name;
