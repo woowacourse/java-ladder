@@ -18,24 +18,37 @@ public class LadderGameController {
     }
 
     public void run() {
-        List<String> names = inputView.readNames();
-        List<PlayerName> playerNames = names.stream().map(PlayerName::new).collect(Collectors.toList());
-
-        Height height = new Height(inputView.readHeight());
+        List<PlayerName> playerNames = generatePlayerNames();
+        Height height = generateHeight();
 
         LadderGame ladderGame = new LadderGame(playerNames, new RandomLineCreateDecider());
         ladderGame.generateLadder(height);
+        showResult(ladderGame);
+    }
 
-        outputView.printPlayerNames(playerNames.stream().map(PlayerName::getPlayerName).collect(Collectors.toList()));
+    private Height generateHeight() {
+        int height = inputView.readHeight();
+        return new Height(height);
+    }
+
+    private List<PlayerName> generatePlayerNames() {
+        List<String> names = inputView.readNames();
+        List<PlayerName> playerNames = names.stream()
+                .map(PlayerName::new)
+                .collect(Collectors.toList());
+        return playerNames;
+    }
+
+    private void showResult(LadderGame ladderGame) {
+        outputView.printPlayerNames(ladderGame.getPlayerNames().stream()
+                .map(PlayerName::getPlayerName)
+                .collect(Collectors.toList()));
 
         Ladder ladder = ladderGame.getLadder();
         List<Row> rows = ladder.getRows();
         for (Row row : rows) {
             outputView.printRow(row.getPoints());
-
         }
-
     }
-
 
 }
