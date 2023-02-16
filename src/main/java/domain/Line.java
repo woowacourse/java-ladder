@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final NumberGenerator numberGenerator;
+    private final TrueOrFalseGenerator trueOrFalseGenerator;
     private final List<Boolean> points;
 
-    public Line(int personCount, NumberGenerator numberGenerator) {
-        this.numberGenerator = numberGenerator;
+    public Line(int personCount, TrueOrFalseGenerator trueOrFalseGenerator) {
+        this.trueOrFalseGenerator = trueOrFalseGenerator;
         this.points = lineMaker(personCount);
     }
 
@@ -14,7 +14,7 @@ public class Line {
         List<Boolean> points = new ArrayList<>();
         points.add(false);
         for (int count = 1; count < personCount; count++) {
-            points.add(correctOverLapPoints(points.get(count - 1), changeIntToBoolean(numberGenerator.generate())));
+            points.add(correctOverLapPoints(points.get(count - 1), trueOrFalseGenerator.generate()));
         }
         points.remove(0);
         return points;
