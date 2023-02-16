@@ -14,7 +14,7 @@ public class Line {
     private Line(final int width, final PickStrategy pickStrategy) {
         this.strategy = pickStrategy;
         validateMinWidth(width);
-        this.statuses = createStatuses(width);
+        this.statuses = createStatuses(width - 1);
     }
 
     public static Line from(final int width) {

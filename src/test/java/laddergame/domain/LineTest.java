@@ -40,7 +40,7 @@ public class LineTest {
             //then
             assertThat(line)
                     .extracting("statuses")
-                    .isEqualTo(booleans);
+                    .isEqualTo(List.of(true, false));
         }
     }
 
@@ -54,6 +54,6 @@ public class LineTest {
         //then
         assertThat(line)
                 .extracting("statuses")
-                .isEqualTo(List.of(true, false, false));
+                .isEqualTo(List.of(true, false));
     }
 }
