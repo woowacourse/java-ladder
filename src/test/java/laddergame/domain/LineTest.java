@@ -24,11 +24,6 @@ class LineTest {
     }
 
     @Test
-    void throwExceptionWhenEveryPointIsFalse() {
-        assertThatThrownBy(()-> new Line(List.of(false, false)));
-    }
-
-    @Test
     void throwExceptionWhenBothTrue() {
         assertThatThrownBy(()-> new Line(List.of(true, true, false)));
     }
