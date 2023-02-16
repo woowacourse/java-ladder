@@ -11,6 +11,6 @@ public class GameController {
         final Names names = new Names(InputView.readNames());
         final Ladder ladder = new Ladder(InputView.readFloor(), names.getSize());
         OutputView.printPlayerAll(names);
-        OutputView.printLadder(names.findMaxNameLength(), ladder);
+        OutputView.printLadder(names, ladder);
     }
 }

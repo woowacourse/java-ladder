@@ -34,15 +34,17 @@ public enum OutputView {
         return String.format("%s%s", name, repeat);
     }
 
-    public static void printLadder(final int maxNameLength, final Ladder ladder) {
+    public static void printLadder(final Names names, final Ladder ladder) {
         StringBuilder result = new StringBuilder();
-        ladder.getLines().forEach(line -> result.append(makeLadderFormat(line.getStatuses(), maxNameLength)));
+        ladder.getLines().forEach(line -> result.append(makeLadderFormat(line.getStatuses(), names)));
         System.out.println(result);
     }
 
-    private static String makeLadderFormat(final List<Boolean> statuses, final int maxNameLength) {
-        final StringBuilder result = new StringBuilder(VERTICAL_LINE.ladderElement);
-        statuses.forEach(status -> result.append(makeLine(status, maxNameLength)));
+    private static String makeLadderFormat(final List<Boolean> statuses, final Names names) {
+        final StringBuilder result = new StringBuilder();
+        result.append(BLANK.ladderElement.repeat(names.getFirstNameLengthDividedByTwoRounded()));
+        result.append(VERTICAL_LINE.ladderElement);
+        statuses.forEach(status -> result.append(makeLine(status, names.findMaxNameLength())));
         result.append(System.lineSeparator());
 
         return result.toString();
