@@ -32,11 +32,11 @@ public class Ladder {
         }
     }
 
-    private static boolean lineSizeIsUnique(final List<Line> lines) {
+    private boolean lineSizeIsUnique(final List<Line> lines) {
         return linesSizeCount(lines) != UNIQUE_COUNT;
     }
 
-    private static long linesSizeCount(final List<Line> lines) {
+    private long linesSizeCount(final List<Line> lines) {
         return lines.stream()
                 .map(Line::size)
                 .distinct()
