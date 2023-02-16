@@ -5,35 +5,40 @@ import laddergame.util.NumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
+import static laddergame.domain.rung.Rung.INSUFFICIENT;
+
 public class Rungs {
 
     private final List<Rung> rungs;
-
     private final NumberGenerator rungNumberGenerator;
 
-    public Rungs(int rungCount, NumberGenerator rungNumberGenerator) {
+    private Rungs(final int rungCount, final NumberGenerator rungNumberGenerator) {
         this.rungNumberGenerator = rungNumberGenerator;
-        rungs = new ArrayList<>(rungCount);
-        makeRungs(rungCount);
+        rungs = makeRungs(rungCount);
     }
 
-    private void makeRungs(final int rungCount) {
-        for (int i = 0; i < rungCount; i++) {
-            if (i == 0) {
-                makeRung(rungNumberGenerator.generate());
-                continue;
-            }
-            if (rungs.get(i-1).isExistence()) {
-                makeRung(Rung.INSUFFICIENT);
-                continue;
-            }
-            makeRung(rungNumberGenerator.generate());
+    public static Rungs create(final int rungCount, final NumberGenerator rungNumberGenerator) {
+        return new Rungs(rungCount, rungNumberGenerator);
+    }
+
+    private List<Rung> makeRungs(final int rungCount) {
+        List<Rung> rungs = new ArrayList<>();
+        Rung firstRung = Rung.create(rungNumberGenerator.generate());
+        rungs.add(firstRung);
+
+        for (int order = 1; order < rungCount; order++) {
+            Rung previousRung = rungs.get(order - 1);
+            Rung newRung = createRung(previousRung);
+            rungs.add(newRung);
         }
+        return rungs;
     }
 
-    private void makeRung(final int material) {
-        Rung rung = new Rung(material);
-        rungs.add(rung);
+    private Rung createRung(final Rung previousRung) {
+        if (previousRung.isExistence()) {
+            return Rung.create(INSUFFICIENT);
+        }
+        return Rung.create(rungNumberGenerator.generate());
     }
 
     public List<Rung> getRungs() {

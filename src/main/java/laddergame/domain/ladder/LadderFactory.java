@@ -13,27 +13,31 @@ public class LadderFactory {
     private static final int DEFAULT_COUNT = 1;
     private final NumberGenerator rungNumberGenerator;
 
-    public LadderFactory(final NumberGenerator rungNumberGenerator) {
+    private LadderFactory(final NumberGenerator rungNumberGenerator) {
         this.rungNumberGenerator = rungNumberGenerator;
     }
 
+    public static LadderFactory create(final NumberGenerator rungNumberGenerator) {
+        return new LadderFactory(rungNumberGenerator);
+    }
+
     public Ladder createLadder(final String height, final int participantCount) {
-        int ladderHeight = convertLadderHeight(height);
+        int ladderHeight = convertToLadderHeight(height);
         List<Rungs> ladder = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-           ladder.add(new Rungs(makeRungCount(participantCount), rungNumberGenerator));
+            ladder.add(Rungs.create(makeRungCount(participantCount), rungNumberGenerator));
         }
-        return new Ladder(ladder);
+        return Ladder.create(ladder);
+    }
+
+    private int convertToLadderHeight(final String height) {
+        int ladderHeight = validateHeightType(height);
+        validateHeightRange(ladderHeight);
+        return ladderHeight;
     }
 
     private int makeRungCount(final int participantCount) {
         return participantCount - DEFAULT_COUNT;
-    }
-
-    private int convertLadderHeight(final String height) {
-        int ladderHeight = validateHeightType(height);
-        validateHeightRange(ladderHeight);
-        return ladderHeight;
     }
 
     private int validateHeightType(final String height) {

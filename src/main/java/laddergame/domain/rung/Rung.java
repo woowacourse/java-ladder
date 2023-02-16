@@ -8,19 +8,27 @@ public class Rung {
     protected static final int INSUFFICIENT = 0;
     private final boolean existence;
 
-    public Rung(final int material) {
-        if (material != SUFFICIENT && material != INSUFFICIENT) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 사다리 가로대 인자입니다.");
-        }
+    private Rung(final int material) {
+        validateMaterial(material);
         this.existence = makeRung(material);
     }
 
-    private boolean makeRung(final int material) {
-        return material == SUFFICIENT;
+    public static Rung create(final int material) {
+        return new Rung(material);
     }
 
     public boolean isExistence() {
         return existence;
+    }
+
+    private void validateMaterial(final int material) {
+        if (material != SUFFICIENT && material != INSUFFICIENT) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 사다리 가로대 인자입니다.");
+        }
+    }
+
+    private boolean makeRung(final int material) {
+        return material == SUFFICIENT;
     }
 
     @Override

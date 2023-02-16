@@ -4,8 +4,12 @@ public class Participant {
 
     private final ParticipantName participantName;
 
-    public Participant(final String name) {
-        this.participantName = new ParticipantName(name);
+    private Participant(final String name) {
+        this.participantName = ParticipantName.create(name);
+    }
+
+    public static Participant create(final String name) {
+        return new Participant(name);
     }
 
     public String getName() {
