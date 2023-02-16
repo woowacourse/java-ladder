@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.utils.LineStrategy;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGame {
     private final Ladder ladder;
@@ -16,8 +17,11 @@ public class LadderGame {
         this.lineStrategy = lineStrategy;
     }
 
-    public List<Line> getLines() {
-        return ladder.getLines();
+    public List<List<Boolean>> getLines() {
+        return ladder.getLines()
+                .stream()
+                .map(Line::getParts)
+                .collect(Collectors.toList());
     }
 
     public int getNameMaxLength() {
