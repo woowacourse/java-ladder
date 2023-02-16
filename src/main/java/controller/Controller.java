@@ -22,7 +22,7 @@ public class Controller {
     public void run(){
         Users usersName = settingUsers();
         int height = settingLadders();
-        List<Ladder> ladderResult = IntStream.rangeClosed(0, height)
+        List<Ladder> ladderResult = IntStream.rangeClosed(0, height-1)
                 .mapToObj(i -> new Ladder(getLadder(usersName)))
                 .collect(Collectors.toList());
 
