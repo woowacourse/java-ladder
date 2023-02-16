@@ -15,15 +15,19 @@ public class Line {
         }
     }
 
-    public void generateBridge(BooleanGenerator booleanGenerator) {
+    public void generate(BooleanGenerator booleanGenerator) {
         for (int bridgeIndex = 0; bridgeIndex < bridges.size(); bridgeIndex++) {
-            if (!hasSide(bridgeIndex, bridges.size() - 1)) {
-                bridges.set(bridgeIndex, booleanGenerator.generate());
-            }
+            generateBridge(booleanGenerator, bridgeIndex);
         }
     }
 
-    public boolean hasSide(int bridgeIndex, int maxIndex) {
+    private void generateBridge(BooleanGenerator booleanGenerator, int bridgeIndex) {
+        if (!hasSide(bridgeIndex, bridges.size() - 1)) {
+            bridges.set(bridgeIndex, booleanGenerator.generate());
+        }
+    }
+
+    private boolean hasSide(int bridgeIndex, int maxIndex) {
         if (bridgeIndex == 0) {
             return isBridgeInRight(bridgeIndex + 1);
         }

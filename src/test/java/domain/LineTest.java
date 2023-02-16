@@ -6,25 +6,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import util.BooleanGenerator;
+import util.FalseGenerator;
+import util.TrueGenerator;
 
 class LineTest {
-
-    static class TrueGenerator implements BooleanGenerator {
-
-        @Override
-        public boolean generate() {
-            return true;
-        }
-    }
-
-    static class FalseGenerator implements BooleanGenerator {
-
-        @Override
-        public boolean generate() {
-            return false;
-        }
-    }
 
     @ParameterizedTest
     @ValueSource(ints = {3, 5, 10})
@@ -45,7 +30,7 @@ class LineTest {
         Line line = new Line(5);
 
         //when
-        line.generateBridge(new TrueGenerator());
+        line.generate(new TrueGenerator());
 
         //then
         assertThat(line.getBridges()).containsExactly(true, false, true, false);
@@ -58,7 +43,7 @@ class LineTest {
         Line line = new Line(5);
 
         //when
-        line.generateBridge(new FalseGenerator());
+        line.generate(new FalseGenerator());
 
         //then
         assertThat(line.getBridges()).containsExactly(false, false, false, false);
