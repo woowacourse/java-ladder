@@ -1,10 +1,9 @@
 package domain;
 
-import utils.NumberGenerator;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import utils.NumberGenerator;
 
 public class Line {
 
@@ -20,12 +19,12 @@ public class Line {
         List<Point> points = new ArrayList<>();
         int numberOfPointsToGenerate = numberOfPeople - 1;
         for (int i = 0; i < numberOfPointsToGenerate; i++) {
-            addPoint(numberGenerator, points);
+            addPoint(points, numberGenerator);
         }
         return new Line(points);
     }
 
-    private static void addPoint(NumberGenerator numberGenerator, List<Point> points) {
+    private static void addPoint(List<Point> points, NumberGenerator numberGenerator) {
         if (points.isEmpty()) {
             points.add(generatePoint(numberGenerator.generate()));
             return;
@@ -47,15 +46,6 @@ public class Line {
 
     private static boolean isPreviousPointPassable(List<Point> points) {
         return points.get(points.size() - 1).isPassable();
-    }
-
-    //TODO: Ladder refactoring할 때 메소드 제거
-    public static Line createWithoutPassablePoint(int height) {
-        List<Point> points = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            points.add(generatePoint(MIN_NUMBER_RETURN_TRUE - 1));
-        }
-        return new Line(points);
     }
 
     public List<Point> getPoints() {

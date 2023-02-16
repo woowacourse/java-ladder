@@ -13,16 +13,6 @@ class LineTest {
 
     private static final int MIN_NUMBER_RETURN_TRUE = 4;
 
-    @DisplayName("통과 가능한 포인트가 없는 Line을 생성한다")
-    @Test
-    void create_line_have_no_point() {
-        Line line = Line.createWithoutPassablePoint(3);
-
-        List<Point> points = line.getPoints();
-
-        assertThat(points).containsExactly(Point.BLOCKED, Point.BLOCKED, Point.BLOCKED);
-    }
-
     @DisplayName("인자값으로 받은 numberOfPeople -1 개 만큼의 Point를 가진다")
     @Test
     void create_points_by_number_of_people_minus_1() {
