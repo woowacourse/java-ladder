@@ -8,7 +8,7 @@ import java.util.List;
 
 public class OutputView {
 
-    private static final String RESULT_ANNOUNCEMENT = "실행결과";
+    private static final String RESULT_ANNOUNCEMENT = "\n실행결과";
     private static final int INTERVAL_UNIT = 6;
     private static final String FRONT_SPACE = "    ";
     private static final String LINE_DELIMITER = "|";
