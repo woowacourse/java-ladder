@@ -1,13 +1,12 @@
 package laddergame.domain;
 
-import laddergame.TestDummy;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static laddergame.TestDummy.*;
-import static org.assertj.core.api.Assertions.*;
+import static laddergame.TestDummy.TEST_LINE_CREATOR;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineCreatorTest {
 
