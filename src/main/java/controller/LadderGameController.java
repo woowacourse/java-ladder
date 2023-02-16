@@ -1,10 +1,14 @@
 package controller;
 
+import domain.Ladder;
 import domain.LadderGame;
+import domain.Line;
+import domain.Point;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGameController {
 
@@ -19,6 +23,7 @@ public class LadderGameController {
 
     public void play() {
         ready();
+        printGeneratedLadder();
     }
 
     private void ready() {
@@ -27,7 +32,18 @@ public class LadderGameController {
         ladderGame = new LadderGame(playerNames, ladderHeight);
     }
 
-    private void printLadder() {
-
+    private void printGeneratedLadder() {
+        Ladder ladder = ladderGame.getLadder();
+        List<Line> lines = ladder.getLines();
+        List<List<Boolean>> pointValues = getPointValues(lines);
+        outputView.printGeneratedLadder(ladderGame.getPlayerNames(), pointValues);
     }
+
+    private List<List<Boolean>> getPointValues(List<Line> lines) {
+        return lines.stream()
+                .map(Line::getPoints)
+                .map(Point::convertPointsToValues)
+                .collect(Collectors.toList());
+    }
+
 }
