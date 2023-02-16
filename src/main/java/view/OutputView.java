@@ -1,5 +1,6 @@
 package view;
 
+import domain.Bridge;
 import domain.Ladder;
 
 import java.util.List;
@@ -12,16 +13,16 @@ public class OutputView {
 
     public void printUsers(List<String> users) {
         System.out.println(RESULT_MESSAGE);
-        for (String user : users) {
-            System.out.printf("%5s ", user);
+        for (String user : users) { //스트림
+            System.out.printf("%5s ", user); //상수
         }
         System.out.println();
     }
 
     public void printLadder(Ladder ladder) {
         String collect = ladder.getLadder().stream()
-                .map(i -> i ? "-".repeat(5) : " ".repeat(5))
-                .collect(Collectors.joining("|"));
+                .map(Bridge::getFormat) // 메소드 참조
+                .collect(Collectors.joining("|")); // 상수
         System.out.println(String.format(LADDER_FORMAT, collect));
     }
 }

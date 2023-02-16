@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final List<Boolean> ladder;
+    private final List<Bridge> ladder; //enum
 
-    public Ladder(List<Boolean> ladder) {
-        for (int index = 1; index < ladder.size(); index++) {
-            Boolean currentBridge = ladder.get(index);
-            Boolean previousBridge = ladder.get(index - 1);
-            if (currentBridge && previousBridge) {
+    public Ladder(List<Bridge> ladder) {
+        for (int index = 1; index < ladder.size(); index++) { //스트림
+            Bridge currentBridge = ladder.get(index);
+            Bridge previousBridge = ladder.get(index - 1);
+            if (currentBridge.getIsExist() && previousBridge.getIsExist()) {
                 throw new IllegalArgumentException("다리는 연속으로 생성되면 안됩니다.");
             }
         }
         this.ladder = ladder;
     }
 
-    public List<Boolean> getLadder() {
+    public List<Bridge> getLadder() {
         return new ArrayList<>(ladder);
     }
 }

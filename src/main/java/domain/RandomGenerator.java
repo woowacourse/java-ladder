@@ -11,18 +11,19 @@ public class RandomGenerator {
         this.random = new Random();
     }
 
-    public List<Boolean> generateLadder(int bridgeCount) {
-        List<Boolean> ladder = new ArrayList<>();
+    public List<Bridge> generateLadder(int bridgeCount) {
+        List<Bridge> ladder = new ArrayList<>();
         while (ladder.size() < bridgeCount) {
             ladder.add(generateBridge(ladder));
         }
         return ladder;
     }
 
-    private boolean generateBridge(List<Boolean> result) {
-        if (result.isEmpty() || !result.get(result.size() - 1)) {
-            return random.nextBoolean();
+    private Bridge generateBridge(List<Bridge> result) {
+//        result.get(result.size() - 1) == Bridge.NON_EXIST
+        if (result.isEmpty() || !result.get(result.size() - 1).getIsExist()) {
+            return Bridge.from(random.nextBoolean());
         }
-        return false;
+        return Bridge.NON_EXIST;
     }
 }
