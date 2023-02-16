@@ -27,11 +27,11 @@ public class Line {
         }
     }
 
-    private static void validateConsistExistScaffold(final List<Scaffold> scaffolds, final int i) {
-        if (scaffolds.get(i) != scaffolds.get(i + 1)) {
+    private static void validateConsistExistScaffold(final List<Scaffold> scaffolds, final int index) {
+        if (scaffolds.get(index) != scaffolds.get(index + 1)) {
             return;
         }
-        if (scaffolds.get(i) == Scaffold.NONE) {
+        if (scaffolds.get(index) == Scaffold.NONE) {
             return;
         }
         throw new IllegalArgumentException();
