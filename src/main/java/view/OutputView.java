@@ -37,7 +37,7 @@ public class OutputView {
     }
 
     private String selectLine(boolean line) {
-        if (line){
+        if (line) {
             return CONNECTED_LINE;
         }
         return UNCONNECTED_LINE;

@@ -1,8 +1,8 @@
 package view;
 
+import validator.InputValidator;
 import validator.dto.InputValidationRequest;
 import validator.type.ValidateType;
-import validator.InputValidator;
 
 import java.util.List;
 import java.util.Scanner;

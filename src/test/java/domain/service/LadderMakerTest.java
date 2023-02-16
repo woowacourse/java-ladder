@@ -3,7 +3,7 @@ package domain.service;
 import domain.model.Ladder;
 import domain.model.Layer;
 import domain.vo.Height;
-import domain.vo.LineCount;
+import domain.vo.Width;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,10 +21,10 @@ public class LadderMakerTest {
     void ladderMake() {
         ladderMaker = new LadderMaker(new RandomBooleanGenerator());
         Height height = new Height(5);
-        LineCount lineCount = new LineCount(5);
-        Ladder ladder = ladderMaker.make(height, lineCount);
+        Width width = new Width(5);
+        Ladder ladder = ladderMaker.make(height, width);
         assertThat(ladder.getHeight()).isEqualTo(height);
-        assertThat(ladder.getLineCount()).isEqualTo(lineCount);
+        assertThat(ladder.getLineCount()).isEqualTo(width);
     }
 
     @Test
@@ -32,8 +32,8 @@ public class LadderMakerTest {
     void ladderMakerAlwaysTrueTest() {
         ladderMaker = new LadderMaker(TRUE_BOOLEAN_GENERATOR);
         Height height = new Height(5);
-        LineCount lineCount = new LineCount(5);
-        Ladder ladder = ladderMaker.make(height, lineCount);
+        Width width = new Width(5);
+        Ladder ladder = ladderMaker.make(height, width);
         List<Layer> layers = ladder.getLayers();
         for (Layer layer : layers) {
             assertEachLineTrue(layer);
@@ -45,8 +45,8 @@ public class LadderMakerTest {
     void ladderMakerAlwaysFalseTest() {
         ladderMaker = new LadderMaker(FALSE_BOOLEAN_GENERATOR);
         Height height = new Height(5);
-        LineCount lineCount = new LineCount(5);
-        Ladder ladder = ladderMaker.make(height, lineCount);
+        Width width = new Width(5);
+        Ladder ladder = ladderMaker.make(height, width);
         List<Layer> layers = ladder.getLayers();
         for (Layer layer : layers) {
             assertEachLineFalse(layer);

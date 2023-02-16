@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Layer {
 
-    private List<Boolean> lines;
+    private final List<Boolean> lines;
 
     public Layer() {
         this.lines = new ArrayList<>();

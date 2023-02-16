@@ -3,7 +3,7 @@ package domain.service;
 import domain.model.Ladder;
 import domain.model.Layer;
 import domain.vo.Height;
-import domain.vo.LineCount;
+import domain.vo.Width;
 
 public class LadderMaker {
     private final BooleanGenerator booleanGenerator;
@@ -12,10 +12,10 @@ public class LadderMaker {
         this.booleanGenerator = booleanGenerator;
     }
 
-    public Ladder make(Height height, LineCount lineCount) {
-        Ladder ladder = new Ladder(height, lineCount);
+    public Ladder make(Height height, Width width) {
+        Ladder ladder = new Ladder(height, width);
         for (int i = 0; i < height.get(); i++) {
-            ladder.addLayer(makeLayer(lineCount.get()));
+            ladder.addLayer(makeLayer(width.get()));
         }
         return ladder;
     }

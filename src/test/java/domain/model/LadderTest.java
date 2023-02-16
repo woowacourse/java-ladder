@@ -1,7 +1,7 @@
 package domain.model;
 
 import domain.vo.Height;
-import domain.vo.LineCount;
+import domain.vo.Width;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +12,8 @@ public class LadderTest {
     @DisplayName("사다리는 input 높이의 층들을 갖는다")
     void ladder() {
         final Height height = new Height(5);
-        final LineCount lineCount = new LineCount(4);
-        Ladder ladder = new Ladder(height, lineCount);
+        final Width width = new Width(4);
+        Ladder ladder = new Ladder(height, width);
         assertThat(ladder.getHeight().get()).isEqualTo(5);
     }
 }
