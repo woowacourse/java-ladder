@@ -21,7 +21,7 @@ public class LadderGameController {
         List<String> names = inputView.readNames();
         List<PlayerName> playerNames = names.stream().map(PlayerName::new).collect(Collectors.toList());
 
-        int height = inputView.readHeight();
+        Height height = new Height(inputView.readHeight());
 
         LadderGame ladderGame = new LadderGame(playerNames, new RandomLineCreateDecider());
         ladderGame.generateLadder(height);

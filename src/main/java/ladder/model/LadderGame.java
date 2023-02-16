@@ -17,10 +17,10 @@ public class LadderGame {
         this.lineCreateDecider = lineCreateDecider;
     }
 
-    public void generateLadder(int height) {
+    public void generateLadder(Height height) {
         int personCount = playerNames.size();
         List<Raw> raws = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < height.getHeight(); i++) {
             Raw raw = new Raw(personCount);
             raw.createLineAt(0, lineCreateDecider.decide());
             for (int k = 1; k < personCount - 1; k++) {

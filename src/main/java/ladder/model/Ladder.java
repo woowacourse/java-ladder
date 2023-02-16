@@ -5,19 +5,11 @@ import java.util.List;
 
 public class Ladder {
 
-    private static final int MIN_HEIGHT = 2;
 
     private final List<Raw> raws;
 
     public Ladder(List<Raw> raws) {
-        validateHeight(raws.size());
         this.raws = raws;
-    }
-
-    private void validateHeight(int height) {
-        if (height < MIN_HEIGHT) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_INVALID_HEIGHT.getMessage());
-        }
     }
 
     public List<Raw> getRaws() {
@@ -25,16 +17,5 @@ public class Ladder {
     }
 
 
-    private enum ErrorMessage {
-        EXCEPTION_INVALID_HEIGHT("사다리 높이는 2 이상이어야 합니다.");
-        private final String message;
-
-        ErrorMessage(String message) {
-            this.message = message;
-        }
-
-        public String getMessage() {
-            return message;
-        }
-    }
 }
+
