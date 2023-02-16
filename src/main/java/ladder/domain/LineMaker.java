@@ -13,13 +13,15 @@ public class LineMaker {
     }
 
     public Line makeLine(final int playerNumber) {
-        List<Boolean> blocks = makeBlocks(playerNumber);
+        List<Boolean> blocks = makeBlocks(playerNumber - 1);
         return new Line(blocks);
     }
 
+    // TODO: 코드 줄이기
     private List<Boolean> makeBlocks(int blockCount) {
         Stack<Boolean> blocks = new Stack<>();
         blocks.push(blockGenerator.generate());
+        blockCount--;
         do {
             boolean previousBlock = blocks.peek();
             blocks.push(generateBlock(previousBlock));

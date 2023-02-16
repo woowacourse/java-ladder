@@ -30,6 +30,7 @@ public class OutputView {
 
         for (Line line : lines) {
             printOneLine(line);
+            System.out.println();
         }
     }
 

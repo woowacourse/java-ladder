@@ -14,7 +14,7 @@ public class LadderMaker {
     }
 
     private void validateLadderLength(final int playerNumber, final int height) {
-        if (height <= playerNumber - 1) {
+        if (height < playerNumber - 1) {
             throw new LadderLengthException();
         }
     }
