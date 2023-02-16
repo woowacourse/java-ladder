@@ -6,8 +6,10 @@ import laddergame.model.Persons;
 
 public class OutputView {
     private final static String VERTICAL_LINE = "|";
+    private static final String PRINT_RESULT_MSG = "실행 결과";
 
     public void printResult(Ladder ladder, Persons persons) {
+        System.out.println(System.lineSeparator()+PRINT_RESULT_MSG+System.lineSeparator());
         printPersons(persons);
         printLadder(ladder);
     }

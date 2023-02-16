@@ -20,21 +20,18 @@ public class InputView {
     }
 
     public List<String> readPersonNames() {
-        System.out.println(READ_PERSON_NAMES_MSG);
+        System.out.println(System.lineSeparator()+READ_PERSON_NAMES_MSG);
         String input = scanner.nextLine();
         validateIsBlank(input);
         return List.of(input.split(DELIMITER));
     }
 
     public int readLadderHeight() {
-        System.out.println(READ_LADDER_HEIGHT_MSG);
+        System.out.println(System.lineSeparator()+READ_LADDER_HEIGHT_MSG);
         try {
-            int ladderHeight = Integer.parseInt(scanner.nextLine());
-            scanner.close();
-            return ladderHeight;
+            return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
-            System.out.println(ERROR_PREFIX + ERROR_HEIGHT_IS_NOT_NUMBER);
-            return readLadderHeight();
+            throw new IllegalArgumentException(ERROR_HEIGHT_IS_NOT_NUMBER);
         }
     }
 }
