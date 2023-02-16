@@ -49,6 +49,7 @@ public class LadderController {
             try {
                 return supplier.get();
             } catch (IllegalArgumentException e) {
+                Logger.error(e.getMessage());
             }
         }
     }
