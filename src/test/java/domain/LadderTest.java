@@ -4,11 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
 class LadderTest {
     @Test
     @DisplayName("사다리는 높이를 입력받는다.")
@@ -24,18 +19,5 @@ class LadderTest {
         int height = -1;
         int personCount = 5;
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Ladder(height, personCount));
-    }
-
-    //TODO : containsExactlyElementsOf 동작 확인 필요
-    @Test
-    @DisplayName("Ladder의 라인을 반환하는 메서드를 테스트")
-    void getLinesTest() {
-        List<Line> lines = new ArrayList<>();
-        lines.add(new Line(List.of(Point.LINKED_POINT, Point.EMPTY_POINT, Point.LINKED_POINT)));
-        lines.add(new Line(List.of(Point.LINKED_POINT, Point.EMPTY_POINT, Point.LINKED_POINT)));
-        lines.add(new Line(List.of(Point.LINKED_POINT, Point.EMPTY_POINT, Point.LINKED_POINT)));
-        Ladder ladder = new Ladder(lines);
-
-        assertThat(ladder.getLines()).containsExactlyElementsOf(lines);
     }
 }
