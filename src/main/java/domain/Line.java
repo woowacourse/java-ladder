@@ -8,8 +8,8 @@ public class Line {
 
     private List<Block> blocks;
 
-    public Line(int playerCount, List<Block> blocks) {
-        validateLineLength(playerCount, blocks);
+    public Line(Players players, List<Block> blocks) {
+        validateLineLength(players.getPlayersSize(), blocks);
         this.blocks = blocks;
     }
 

@@ -13,9 +13,9 @@ class BlockTypeTest {
 
     @Test
     void 다리모양으로_변환한다() {
-        int playerCount = 3;
+        Players players = new Players(new ArrayList<>(List.of(new Player("judy"), new Player("ako"), new Player("pobi"))));
         List<Block> blocks = new ArrayList<>(List.of(new Block(true), new Block(false)));
-        Line line = new Line(playerCount, blocks);
+        Line line = new Line(players, blocks);
 
         List<String> result = BlockType.getBlockTypes(line);
         List<String> expect = new ArrayList<>(List.of("-----", "     "));
