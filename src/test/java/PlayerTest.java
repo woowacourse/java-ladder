@@ -9,12 +9,6 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 class PlayerTest {
-    @DisplayName("생성자 테스트")
-    @Test
-    void create() {
-        new Players(List.of("pobi", "beaver", "jena"));
-    }
-
     @Nested
     @DisplayName("플레이어 이름 길이 테스트")
     class nameLength {
