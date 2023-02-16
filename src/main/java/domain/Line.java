@@ -1,5 +1,7 @@
 package domain;
 
+import domain.validator.LineValidator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,20 +9,11 @@ import java.util.Random;
 
 public class Line {
 
-    public static final int POINT_MIN_SIZE = 1;
-    public static final int POINT_MAX_SIZE = 20;
-
     private final List<Point> points;
 
     public Line(final int pointSize) {
-        validate(pointSize);
+        LineValidator.validate(pointSize);
         this.points = generatePoints(pointSize);
-    }
-
-    private void validate(final int pointSize) {
-        if (pointSize < POINT_MIN_SIZE || pointSize > POINT_MAX_SIZE) {
-            throw new IllegalArgumentException();
-        }
     }
 
     private List<Point> generatePoints(final int pointSize) {

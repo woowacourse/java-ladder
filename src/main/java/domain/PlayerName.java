@@ -1,20 +1,14 @@
 package domain;
 
-public class PlayerName {
+import domain.validator.PlayerNameValidator;
 
-    private static final int PLAYER_NAME_MAX_LENGTH = 5;
+public class PlayerName {
 
     private final String name;
 
     public PlayerName(final String name) {
-        validate(name);
+        PlayerNameValidator.validate(name);
         this.name = name;
-    }
-
-    private void validate(final String name) {
-        if (name.isBlank() || name.length() > PLAYER_NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public String getName() {
