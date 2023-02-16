@@ -3,7 +3,6 @@ package controller;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import utils.LadderStatus;
 import view.OutputView;
 
 public class LadderControllerInvocationHandler implements InvocationHandler {

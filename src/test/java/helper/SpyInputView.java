@@ -2,7 +2,6 @@ package helper;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 import view.InputView;
 
 public class SpyInputView extends InputView {
