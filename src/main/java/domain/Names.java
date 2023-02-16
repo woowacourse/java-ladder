@@ -54,6 +54,23 @@ public class Names {
         return List.copyOf(names);
     }
 
+    public int findMaxNameLength() {
+        int maxLength = 0;
+        for (Integer nameLength : findNameLengths()) {
+            if (maxLength < nameLength) {
+                maxLength = nameLength;
+            }
+        }
+        return maxLength;
+    }
+
+    private List<Integer> findNameLengths() {
+        return this.names
+                .stream()
+                .map(Name::length)
+                .collect(Collectors.toList());
+    }
+
     @Override
     public boolean equals(Object names) {
         if (this == names) return true;

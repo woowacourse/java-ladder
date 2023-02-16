@@ -1,10 +1,11 @@
 package view;
 
-import dto.GameDto;
+import domain.Ladder;
+import domain.Names;
+import util.MessageGenerator;
 import view.constant.Sign;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static view.constant.LadderShapes.*;
 
@@ -22,25 +23,18 @@ public class OutputView {
         System.out.println(REQUEST_LADDER_HEIGHT_MESSAGE);
     }
 
-    public static void printResult(final GameDto gameDto) {
+    public static void printResult(final Names names, final Ladder ladder) {
         printResultMessage();
-        printParticipantNames(gameDto.getMaxNameLength(), gameDto.getNames());
-        printGeneratedLadder(gameDto.getGeneratedLadderInfo(), gameDto.getMaxNameLength());
+        printParticipantNames(names);
+        printGeneratedLadder(ladder.getValue(), names.findMaxNameLength());
     }
 
     private static void printResultMessage() {
         System.out.println(RESULT_MESSAGE);
     }
 
-    private static void printParticipantNames(final int maxNameLength, final List<String> names) {
-        names.stream().map(name -> alignLeft(name, maxNameLength))
-                .collect(Collectors.toList())
-                .forEach(System.out::print);
-        System.out.println();
-    }
-
-    private static String alignLeft(final String name, final int length) {
-        return String.format("%-" + length + "s ", name);
+    private static void printParticipantNames(final Names names) {
+        System.out.println(MessageGenerator.generateNamesMessage(names));
     }
 
     private static void printGeneratedLadder(final List<List<Boolean>> ladderInfo, final int maxNameLength) {
