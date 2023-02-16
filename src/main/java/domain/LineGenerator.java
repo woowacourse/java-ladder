@@ -14,13 +14,13 @@ public class LineGenerator {
         Point pastPoint = Point.EMPTY_POINT;
         while (personCount-- > 0) {
             boolean randomPoint = secureRandom.nextBoolean();
-            generateValidatePoint(randomPoint, pastPoint);
+            addValidatePoint(randomPoint, pastPoint);
             pastPoint = Point.from(randomPoint);
         }
         return line;
     }
 
-    private void generateValidatePoint(final Boolean isLink, final Point pastPoint) {
+    private void addValidatePoint(final Boolean isLink, final Point pastPoint) {
         if (pastPoint == Point.LINKED_POINT) {
             line.add(Point.EMPTY_POINT);
             return;
