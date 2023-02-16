@@ -11,16 +11,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class PlayersTest {
 
     @Test
-    @DisplayName("이름 리스트를 받아 Player와 StartPoint 쌍을 생성한다.")
+    @DisplayName("이름 리스트를 받아 Player들을 생성한다.")
     void players_generatePairFromNames() {
         // expected
         List<String> names = List.of("dochi", "vero", "tori", "adfa");
         Players players = new Players(names);
-        for(int i = 0; i < names.size(); i++) {
-            assertThat(players.getPlayerName(new StartPoint(i)))
-                    .isEqualTo(names.get(i));
-
-        }
+        assertThat(players.getPlayerNames())
+                .containsAll(names);
     }
 
     @Test
@@ -32,5 +29,27 @@ class PlayersTest {
         // expected
         assertThatThrownBy(() -> new Players(duplicateNames))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("플레이어가 없을 때 이름 최대 길이를 구하면 예외를 던진다.")
+    void players_throwException_WhenPlayersAreEmpty() {
+        // given
+        Players players = new Players(List.of());
+
+        // expected
+        assertThatThrownBy(players::getNameMaxLength)
+                .isInstanceOf(IllegalStateException.class);
+    }
+
+    @Test
+    @DisplayName("플레이어들의 이름 최대 길이를 구한다.")
+    void players_getMaxNameLength() {
+        // given
+        Players players = new Players(List.of("aaa", "bb", "c"));
+
+        // expected
+        assertThat(players.getNameMaxLength())
+                .isEqualTo(3);
     }
 }
