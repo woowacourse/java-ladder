@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 public class InputView {
 
     private static final String DELIMITER = ",";
-    private static final int MINIMUM_LADDER_HEIGHT = 1;
 
     private final Scanner scanner;
 
@@ -28,12 +27,6 @@ public class InputView {
     }
 
     public int inputHeightOfLadder() {
-        int height = scanner.nextInt();
-
-        if (height < MINIMUM_LADDER_HEIGHT) {
-            throw new IllegalArgumentException("사다리 높이는 최소 1 이상이어야 합니다.");
-        }
-
-        return height;
+        return scanner.nextInt();
     }
 }
