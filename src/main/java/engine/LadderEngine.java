@@ -4,8 +4,8 @@ import common.exception.handler.IllegalArgumentExceptionHandler;
 import domain.Ladder;
 import domain.Line;
 import domain.Person;
-import generator.RandomBridgeGenerator;
 import generator.LineGenerator;
+import generator.RandomBridgeGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -42,7 +42,7 @@ public class LadderEngine {
 
     private List<Person> convertNamesToPeople(final List<String> names) {
         return names.stream()
-                .map(Person::new)
-                .collect(Collectors.toList());
+                    .map(Person::new)
+                    .collect(Collectors.toList());
     }
 }

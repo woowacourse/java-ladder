@@ -1,8 +1,8 @@
 package domain;
 
-import static java.util.List.*;
-
 import java.util.List;
+
+import static java.util.List.copyOf;
 
 public class Line {
 

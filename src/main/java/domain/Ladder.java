@@ -1,9 +1,9 @@
 package domain;
 
+import java.util.List;
+
 import static java.util.List.copyOf;
 import static java.util.stream.Collectors.toUnmodifiableList;
-
-import java.util.List;
 
 public class Ladder {
 
@@ -30,7 +30,7 @@ public class Ladder {
 
     public List<String> getParticipantNames() {
         return people.stream()
-                .map(Person::getName)
-                .collect(toUnmodifiableList());
+                     .map(Person::getName)
+                     .collect(toUnmodifiableList());
     }
 }
