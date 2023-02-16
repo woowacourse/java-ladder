@@ -2,12 +2,11 @@ package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import domain.PlayerName;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class NameTest {
+public class PlayerNameTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", "abcdef"})
@@ -15,6 +14,7 @@ public class NameTest {
     void name_constructor_validate(String input) {
         // when & then
         assertThatThrownBy(() -> new PlayerName(input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("이름의 길이는 최소 1자 이상, 5자 이하입니다.");
     }
 }
