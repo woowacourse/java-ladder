@@ -9,27 +9,28 @@ public class OutputView {
 
     private static final String PLAYER_NAME_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
-    private static final int MAXIMUM_PLAYER_NAME_Length = 6;
 
-    private static StringBuilder stringBuilder = new StringBuilder();
+    private static final int MAXIMUM_PLAYER_NAME_SPACE = 5;
+
+    private static final StringBuilder stringBuilder = new StringBuilder();
 
     public void printPlayerNamesMessage() {
-            System.out.println(PLAYER_NAME_MESSAGE);
+        System.out.println(PLAYER_NAME_MESSAGE);
     }
 
     public void printLadderHeightMessage() {
         System.out.println(LADDER_HEIGHT_MESSAGE);
     }
 
-    public void printName(Names names){
+    public void printName(Names names) {
         System.out.println("  ");
-        names.getNames().forEach(name -> System.out.printf("%-"+ MAXIMUM_PLAYER_NAME_Length +"s",
+        names.getNames().forEach(name -> System.out.printf("%" + MAXIMUM_PLAYER_NAME_SPACE + "s ",
                 name.getName()));
-        System.out.println("");
+        System.out.println();
     }
 
-    public void printLadder(Names names,Ladder ladder, LadderHeight ladderHeight) {
-        for(int row=0; row<ladderHeight.getLadderHeight();row++) {
+    public void printLadder(Names names, Ladder ladder, LadderHeight ladderHeight) {
+        for (int row = 0; row < ladderHeight.getLadderHeight(); row++) {
             stringBuilder.append(printStartLadder());
             printConnectLadder(names.getNames().size(), ladder, row);
             stringBuilder.append(System.lineSeparator());
@@ -37,16 +38,15 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    private String printStartLadder(){
+    private String printStartLadder() {
         return Message.START_LADDER.getMessage();
     }
 
-    private void printConnectLadder(int playerSize, Ladder ladder,int row){
+    private void printConnectLadder(int playerSize, Ladder ladder, int row) {
         for (int column = 0; column < playerSize - 1; column++) {
             if (ladder.getLadder(row).getLine(column)) {
                 stringBuilder.append(Message.CONNECT_LADDER.getMessage());
-            }
-            else
+            } else
                 stringBuilder.append(Message.NO_CONNECT_LADDER.getMessage());
         }
     }
@@ -58,7 +58,7 @@ public class OutputView {
 
         private final String message;
 
-        Message(String move){
+        Message(String move) {
             this.message = move;
         }
 

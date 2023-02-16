@@ -2,7 +2,7 @@ package util;
 
 import java.util.Random;
 
-public class LineGenerator implements Generator{
+public class LineGenerator implements Generator {
     private Random random = new Random();
 
     @Override
@@ -10,4 +10,3 @@ public class LineGenerator implements Generator{
         return random.nextBoolean();
     }
 }
-

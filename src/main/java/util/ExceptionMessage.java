@@ -7,7 +7,7 @@ public enum ExceptionMessage {
 
     private final String exceptionMessage;
 
-    ExceptionMessage(String exception){
+    ExceptionMessage(String exception) {
         this.exceptionMessage = exception;
     }
 

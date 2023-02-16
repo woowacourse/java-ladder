@@ -11,14 +11,14 @@ public class Name {
 
     private final String name;
 
-    public Name(String name){
+    public Name(String name) {
         validateNameLength(name);
         validateNameHasOnlyCharacters(name);
         this.name = name;
     }
 
-    private void validateNameLength(String name){
-        if(name.length() > MAXIMUM_NAME_LENGTH) {
+    private void validateNameLength(String name) {
+        if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
@@ -30,7 +30,7 @@ public class Name {
         }
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 

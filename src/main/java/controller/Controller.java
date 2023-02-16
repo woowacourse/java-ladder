@@ -11,25 +11,24 @@ public class Controller {
     public InputView inputView;
     public OutputView outputView;
 
-    public Controller(InputView inputView,OutputView outputView){
+    public Controller(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-    public void run(){
+    public void run() {
         Names names = setNames();
         LadderHeight ladderHeight = setLadderHeight();
-        Ladder ladder = new Ladder(names,ladderHeight);
+        Ladder ladder = new Ladder(names, ladderHeight);
         outputView.printName(names);
-        outputView.printLadder(names,ladder,ladderHeight);
+        outputView.printLadder(names, ladder, ladderHeight);
     }
 
-    private Names setNames(){
+    private Names setNames() {
         outputView.printPlayerNamesMessage();
         try {
-            Names names = new Names(inputView.readPlayerNames());
-            return names;
-        }catch(Exception e){
+            return new Names(inputView.readPlayerNames());
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return setNames();
         }
@@ -38,9 +37,8 @@ public class Controller {
     private LadderHeight setLadderHeight() {
         outputView.printLadderHeightMessage();
         try {
-            LadderHeight ladderHeight = new LadderHeight(inputView.readLadderHeight());
-            return ladderHeight;
-        }catch(Exception e){
+            return new LadderHeight(inputView.readLadderHeight());
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return setLadderHeight();
         }
