@@ -15,31 +15,26 @@ public class RandomRowsGenerator {
         }
     }
 
-    private Row generateRow(int size) {
+    private Row generateRow(int width) {
         List<Foothold> row = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            row.add(getFoothold());
+        for (int i = 0; i < width; i++) {
+            row.add(generateFoothold());
         }
-        return Row.of(row, size);
+        return Row.of(row, width);
     }
 
-    private Foothold getFoothold() {
+    private Foothold generateFoothold() {
         return Foothold.from(random.nextBoolean());
     }
 
-    public Rows generateRows(int width, int height) {
-        validateHeight(height);
-
+    public Rows generateRows(Width width, Height height) {
         List<Row> rows = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            rows.add(generateValidRow(width));
+        int ladderWidth = width.getWidth();
+        int ladderHeight = height.getHeight();
+
+        for (int i = 0; i < ladderHeight; i++) {
+            rows.add(generateValidRow(ladderWidth));
         }
         return new Rows(rows);
-    }
-
-    private void validateHeight(int height) {
-        if (height <= 1) {
-            throw new IllegalArgumentException();
-        }
     }
 }
