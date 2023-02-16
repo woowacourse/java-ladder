@@ -45,4 +45,8 @@ public class User {
         }
         return nameBuilder.toString();
     }
+
+    public String getName() {
+        return name;
+    }
 }

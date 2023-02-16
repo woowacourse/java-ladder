@@ -1,22 +1,17 @@
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import domain.User;
-import domain.Users;
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import service.UserService;
-import validate.InputVerifier;
 
 class UserTest {
     public static final int NAME_LENGTH_LIMIT = 5;
-
-    InputVerifier inputVerifier = new InputVerifier();
 
     @Nested
     @DisplayName("유저 생성 테스트")
@@ -29,11 +24,10 @@ class UserTest {
         }
 
         @DisplayName("생성된 유저 객체가 올바르게 저장되는지 확인한다.")
-        @Test
-        void shouldSuccessStoreUsers() {
-            List<String> userNames = inputVerifier.convertNames(List.of("i", "am", "fun", "dino", "mango"));
-            UserService userService = new UserService(userNames);
-            assertInstanceOf(Users.class, userService.getUsers());
+        @ParameterizedTest
+        @ValueSource(strings = {"i", "am", "fun", "dino", "mango"})
+        void shouldSuccessStoreUsers(String name) {
+            assertDoesNotThrow(() -> new User(name));
         }
     }
 
@@ -44,16 +38,16 @@ class UserTest {
         @Test
         void shouldFailNameLengthOver() {
             String name = "abcdef";
-            assertThatThrownBy(() -> inputVerifier.validateNameInput(name)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(InputVerifier.NAME_LENGTH_ERROR_MESSAGE);
+            assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(User.NAME_LENGTH_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름이 0글자일 때 실패한다.")
         @Test
         void shouldFailNameLengthZero() {
             String name = "";
-            assertThatThrownBy(() -> inputVerifier.validateNameInput(name)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(InputVerifier.NAME_LENGTH_ERROR_MESSAGE);
+            assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(User.NAME_LENGTH_ERROR_MESSAGE);
         }
     }
 
@@ -64,45 +58,32 @@ class UserTest {
         @Test
         void shouldFailNameWithSpecialCharacter() {
             String name = "ab#c";
-            assertThatThrownBy(() -> inputVerifier.validateNameInput(name)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(InputVerifier.NAME_FORMAT_ERROR_MESSAGE);
+            assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름에 숫자가 포함되면 실패한다.")
         @Test
         void shouldFailNameWithNumber() {
             String name = "ab23c";
-            assertThatThrownBy(() -> inputVerifier.validateNameInput(name)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(InputVerifier.NAME_FORMAT_ERROR_MESSAGE);
+            assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름에 한글이 포함되면 실패한다.")
         @Test
         void shouldFailNameWithKorean() {
             String name = "ab가c";
-            assertThatThrownBy(() -> inputVerifier.validateNameInput(name)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(InputVerifier.NAME_FORMAT_ERROR_MESSAGE);
+            assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
         }
 
         @DisplayName("사람 이름에 공백이 포함되면 실패한다.")
         @Test
         void shouldFailNameWithBlank() {
             String name = "ab c";
-            assertThatThrownBy(() -> inputVerifier.validateNameInput(name)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(InputVerifier.NAME_FORMAT_ERROR_MESSAGE);
-        }
-    }
-
-    @Nested
-    @DisplayName("입력 문자열 분리 테스트")
-    class SplitInputTest {
-        public static final String SPLIT_DELIMITER = ",";
-
-        @DisplayName("입력받은 문자열이 " + SPLIT_DELIMITER + "를 기준으로 분리된다.")
-        @Test
-        void shouldSuccessSplitInput() {
-            String input = "abc,abcd,abcde";
-            assertThat(inputVerifier.splitNameInput(input)).contains("abc", "abcd", "abcde");
+            assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(User.NAME_FORMAT_ERROR_MESSAGE);
         }
     }
 
@@ -110,17 +91,19 @@ class UserTest {
     @DisplayName("입력받은 문자열 변환 테스트")
     class ConvertNameTest {
         @DisplayName("변환된 문자열이 최대 길이 제한과 같은지 확인한다.")
-        @Test
-        void shouldSuccessConvertNamesEqualMaxLength() {
-            List<String> names = inputVerifier.convertNames(List.of("i", "am", "fun", "dino"));
-            names.forEach(name -> assertThat(name.length()).isEqualTo(NAME_LENGTH_LIMIT));
+        @ParameterizedTest
+        @ValueSource(strings = {"i", "am", "fun", "dino", "mango"})
+        void shouldSuccessConvertNamesEqualMaxLength(String name) {
+            User user = new User(name);
+            assertThat(user.getName().length()).isEqualTo(NAME_LENGTH_LIMIT);
         }
 
         @DisplayName("입력받은 문자열이 지정된 형식에 맞게 변환되었는지 확인한다.")
-        @Test
-        void shouldSuccessConvertNames() {
-            List<String> names = List.of("i", "am", "fun", "dino", "mango");
-            assertThat(inputVerifier.convertNames(names)).isEqualTo(List.of("   i ", "  am ", " fun ", "dino ", "mango"));
+        @ParameterizedTest
+        @CsvSource(value = {"i:   i ", "am:  am ", "fun: fun ", "dino:dino ", "mango:mango"}, delimiter = ':', ignoreLeadingAndTrailingWhitespace = false)
+        void shouldSuccessConvertNames(String name, String expected) {
+            User user = new User(name);
+            assertThat(user.getName()).isEqualTo(expected);
         }
     }
 }
