@@ -1,6 +1,7 @@
 package view;
 
 import model.Ladder;
+import model.LadderStep;
 import model.Line;
 import model.Name;
 import model.Player;
@@ -39,23 +40,19 @@ public class OutputView {
 
     private void printLadderLine(Line line) {
         List<Boolean> points = line.getPoints();
-        String firstEmptyStep = String.format("%4s","    ");
-        String emptyStep = String.format("%5s","     ");
-        String existStep = String.format("%5s","-----");
-        String stepDelimiter = "|";
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(firstEmptyStep + stepDelimiter);
-
+        StringBuilder stringBuilder = new StringBuilder(LadderStep.FIRST_STEP.getStep());
         for(Boolean point : points) {
-            String nextStep = emptyStep + stepDelimiter;
-            if(point) {
-                nextStep = existStep + stepDelimiter;
-            }
-            stringBuilder.append(nextStep);
+            stringBuilder.append(makeNextStep(point));
         }
-
         System.out.println(stringBuilder);
+    }
+
+    private String makeNextStep(Boolean point) {
+        String nextStep = LadderStep.EMPTY_STEP.getStep();
+        if(point) {
+            nextStep = LadderStep.EXIST_STEP.getStep();
+        }
+        return nextStep;
     }
 
     private String makeLeftFormattingFirstName(Players players) {
