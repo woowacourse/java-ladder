@@ -19,12 +19,12 @@ public enum Bridge {
 
     private static final Map<Boolean, Bridge> bridges =
             Collections.unmodifiableMap(Stream.of(values())
-                    .collect(Collectors.toMap(Bridge::getIsExist, Function.identity())));
+                    .collect(Collectors.toMap(Bridge::isExist, Function.identity())));
 
     public static Bridge from(boolean isExist) {
         return bridges.get(isExist);
     }
-    public boolean getIsExist() {
+    public boolean isExist() {
         return isExist;
     }
 

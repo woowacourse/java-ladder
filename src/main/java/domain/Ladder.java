@@ -10,7 +10,7 @@ public class Ladder {
         for (int index = 1; index < ladder.size(); index++) { //스트림
             Bridge currentBridge = ladder.get(index);
             Bridge previousBridge = ladder.get(index - 1);
-            if (currentBridge.getIsExist() && previousBridge.getIsExist()) {
+            if (currentBridge.isExist() && previousBridge.isExist()) {
                 throw new IllegalArgumentException("다리는 연속으로 생성되면 안됩니다.");
             }
         }
