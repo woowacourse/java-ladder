@@ -1,6 +1,5 @@
 package model;
 
-import util.Generator;
 import util.LineGenerator;
 
 import java.util.ArrayList;
@@ -10,13 +9,13 @@ public class Ladder {
 
     private List<Line> ladderLine = new ArrayList<>();
 
-    public Ladder(int playerNumber,int height){
-        for(int index = 0; index<height; index++) {
-            this.ladderLine.add(new Line(playerNumber,new LineGenerator()));
+    public Ladder(Names names,LadderHeight height){
+        for(int index = 0; index<height.getLadderHeight(); index++) {
+            this.ladderLine.add(new Line(names.getNames().size(),new LineGenerator()));
         }
     }
 
     public boolean getLadderLine(int row, int column){
-        return ladderLine.get(row).getLine(column);
+            return ladderLine.get(row).getLine(column);
     }
 }

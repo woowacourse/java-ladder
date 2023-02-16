@@ -1,15 +1,15 @@
 package view;
 
 import model.Ladder;
-import model.Name;
+import model.LadderHeight;
+import model.Names;
 
-import java.util.List;
 
 public class OutputView {
 
     private static final String PLAYER_NAME_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
-    private static final int MAXIMUM_PLAYER_NAME_Length = 5;
+    private static final int MAXIMUM_PLAYER_NAME_Length = 6;
 
     private static StringBuilder stringBuilder = new StringBuilder();
 
@@ -21,15 +21,17 @@ public class OutputView {
         System.out.println(LADDER_HEIGHT_MESSAGE);
     }
 
-    public void printPlayerName( List<Name> names){
-        names.forEach(name -> System.out.printf("%-"+ MAXIMUM_PLAYER_NAME_Length +"s", name.getName()));
+    public void printName(Names names){
+        System.out.println("  ");
+        names.getNames().forEach(name -> System.out.printf("%-"+ MAXIMUM_PLAYER_NAME_Length +"s",
+                name.getName()));
         System.out.println("");
     }
 
-    public void printLadder(int playerSize,Ladder ladder, int ladderHeight) {
-        for(int row=0; row<ladderHeight;row++) {
+    public void printLadder(Names names,Ladder ladder, LadderHeight ladderHeight) {
+        for(int row=0; row<ladderHeight.getLadderHeight();row++) {
             stringBuilder.append(printStartLadder());
-            printConnectLadder(playerSize, ladder, row);
+            printConnectLadder(names.getNames().size(), ladder, row);
             stringBuilder.append(System.lineSeparator());
         }
         System.out.println(stringBuilder);

@@ -2,12 +2,9 @@ package controller;
 
 import model.Ladder;
 import model.LadderHeight;
-import model.Name;
 import model.Names;
 import view.InputView;
 import view.OutputView;
-
-import java.util.List;
 
 public class Controller {
 
@@ -18,30 +15,31 @@ public class Controller {
         this.inputView = inputView;
         this.outputView = outputView;
     }
+
     public void run(){
-        List<Name> playerNames = setPlayerNames();
-        int ladderHeight = setLadderHeight();
-        Ladder ladder = new Ladder(playerNames.size(),ladderHeight);
-        outputView.printPlayerName(playerNames);
-        outputView.printLadder(playerNames.size(),ladder,ladderHeight);
+        Names names = setNames();
+        LadderHeight ladderHeight = setLadderHeight();
+        Ladder ladder = new Ladder(names,ladderHeight);
+        outputView.printName(names);
+        outputView.printLadder(names,ladder,ladderHeight);
     }
 
-    private List<Name> setPlayerNames(){
+    private Names setNames(){
         outputView.printPlayerNamesMessage();
         try {
             Names names = new Names(inputView.readPlayerNames());
-            return names.getNames();
+            return names;
         }catch(Exception e){
             System.out.println(e.getMessage());
-            return setPlayerNames();
+            return setNames();
         }
     }
 
-    private int setLadderHeight() {
+    private LadderHeight setLadderHeight() {
         outputView.printLadderHeightMessage();
         try {
             LadderHeight ladderHeight = new LadderHeight(inputView.readLadderHeight());
-            return ladderHeight.getLadderHeight();
+            return ladderHeight;
         }catch(Exception e){
             System.out.println(e.getMessage());
             return setLadderHeight();
