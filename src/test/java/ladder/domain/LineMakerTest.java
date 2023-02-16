@@ -22,4 +22,16 @@ class LineMakerTest {
         assertThat(lineMaker.makeLine(playerNumber).getBlocks())
                 .isNotEqualTo(blocks);
     }
+
+    @Test
+    @DisplayName("<플레이어수 - 1>만큼의 블록이 생성된다.")
+    void 올바른_개수의_블록이_생성되는지_확인() {
+        List<Boolean> blocks = newArrayList(true);
+        BlockGenerator blockGenerator = new TestBlockGenerator(new ArrayList<>(blocks));
+        LineMaker lineMaker = new LineMaker(blockGenerator);
+        int playerNumber = 2;
+
+        assertThat(lineMaker.makeLine(playerNumber).getBlocks())
+                .isEqualTo(blocks);
+    }
 }

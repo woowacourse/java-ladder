@@ -21,17 +21,15 @@ public class LineMaker {
     private List<Boolean> makeBlocks(int blockCount) {
         Stack<Boolean> blocks = new Stack<>();
         blocks.push(blockGenerator.generate());
-        blockCount--;
-        do {
-            boolean previousBlock = blocks.peek();
-            blocks.push(generateBlock(previousBlock));
-            blockCount--;
-        } while (blockCount != 0);
+        while (blocks.size() != blockCount) {
+            Boolean block = generateBlock(blocks.peek());
+            blocks.push(block);
+        }
         return blocks;
     }
 
     // TODO: enum으로 처리할 필요 있음.
-    private Boolean generateBlock(boolean previousBlock) {
+    private Boolean generateBlock(Boolean previousBlock) {
         if (previousBlock) {
             return false;
         }
