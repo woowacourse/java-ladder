@@ -36,14 +36,14 @@ public class Name {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object object) {
+        if (this == object) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        Name otherName = (Name) o;
+        Name otherName = (Name) object;
         return name.equals(otherName.name);
     }
 
