@@ -8,7 +8,7 @@ import ladder.error.ErrorMessage;
 
 public class InputView {
     private static final String DELIMITER = ",";
-    private static final String NUMERIC_FORMAT = "^[0-9]*$";
+    private static final String NUMERIC_FORMAT = "^-?[0-9]*$";
 
     private static final Scanner sc = new Scanner(System.in);
 
