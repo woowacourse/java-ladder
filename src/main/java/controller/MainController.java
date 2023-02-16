@@ -51,13 +51,23 @@ public class MainController {
     }
 
     private ApplicationStatus inputName() {
-        names = inputView.readNames();
-        return ApplicationStatus.INPUT_HEIGHT;
+        try {
+            names = inputView.readNames();
+            return ApplicationStatus.INPUT_HEIGHT;
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+            return ApplicationStatus.INPUT_NAME;
+        }
     }
 
     private ApplicationStatus inputHeight() {
-        height = inputView.readHeight();
-        return ApplicationStatus.CREATE_LINES;
+        try {
+            height = inputView.readHeight();
+            return ApplicationStatus.CREATE_LINES;
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+            return ApplicationStatus.INPUT_HEIGHT;
+        }
     }
 
     private ApplicationStatus createLines() {
