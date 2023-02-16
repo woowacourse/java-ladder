@@ -28,4 +28,12 @@ public class LadderGameTest {
         assertThat(ladder.getLines().size()).isEqualTo(10);
     }
 
+    @DisplayName("Players를 생성한다.")
+    @Test
+    void generatePlayers() {
+        Players players = ladderGame.getPlayers();
+        List<String> playerNames = players.getPlayerNames();
+        assertThat(playerNames).containsExactly("a", "b", "c");
+    }
+
 }

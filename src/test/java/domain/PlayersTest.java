@@ -44,8 +44,8 @@ public class PlayersTest {
 
     @DisplayName("참여자들의 이름을 불러올 수 있다.")
     @Test
-    void getPlayersName() {
+    void getPlayerNames() {
         Players players = new Players(List.of(new Player("a"), new Player("b")));
-        assertThat(players.getPlayersName()).containsExactly("a", "b");
+        assertThat(players.getPlayerNames()).containsExactly("a", "b");
     }
 }
