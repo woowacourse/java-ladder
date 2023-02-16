@@ -3,11 +3,13 @@ package ladder.domain;
 public class Player {
     private static final int MAX_SIZE = 6;
     private final String name;
+    private final StartPoint position;
 
-    public Player(String name) {
+    public Player(String name, int startPoint) {
         validateEmptyName(name);
         validateOutOfNameLength(name);
         this.name = name;
+        this.position = new StartPoint(startPoint);
     }
 
     public String getName() {

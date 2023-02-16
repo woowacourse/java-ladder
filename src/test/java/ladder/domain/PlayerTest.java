@@ -13,7 +13,7 @@ class PlayerTest {
     @DisplayName("이름이 빈 문자열이면 예외가 발생해야 한다.")
     void name_throwExceptionIfEmptyString(String input) {
         // expected
-        assertThatThrownBy(() -> new Player(input))
+        assertThatThrownBy(() -> new Player(input, 0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -22,7 +22,7 @@ class PlayerTest {
     @DisplayName("이름은 6글자 이상이면 예외가 발생해야 한다.")
     void name_throwExceptionOver6(String input) {
         // expected
-        assertThatThrownBy(() -> new Player(input))
+        assertThatThrownBy(() -> new Player(input, 0 ))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -31,7 +31,7 @@ class PlayerTest {
     @DisplayName("이름은 최소 1글자, 최대 5글자이다.")
     void name_success(String input) {
         // expected
-        assertThatCode(() -> new Player(input))
+        assertThatCode(() -> new Player(input, 0))
                 .doesNotThrowAnyException();
     }
 }

@@ -1,20 +1,18 @@
 package ladder.domain;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
-    private final Map<StartPoint, Player> players;
+    private final List<Player> players;
 
     public Players(List<String> names) {
         validateDuplicateNames(names);
-        players = new HashMap<>();
+        players = new ArrayList<>();
 
         IntStream.range(0, names.size())
-                .forEach(index -> players.put(new StartPoint(index), new Player(names.get(index))));
+                .forEach(i -> players.add(new Player(names.get(i), i)));
     }
 
     private void validateDuplicateNames(List<String> names) {
