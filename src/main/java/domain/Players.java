@@ -5,6 +5,11 @@ import java.util.stream.Collectors;
 
 public class Players {
 
+    public static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
+    private static final int STANDARD_BLANK = 7;
+    private static final String DELIMITER = ",";
+    public static final String DELIMITER_WITH_BLANK = "\\s*,\\s*";
+
     private final List<Player> players;
 
     public Players(String names) {
@@ -15,18 +20,18 @@ public class Players {
     }
 
     private List<String> getSplitNames(String names) {
-        return List.of(names.split("\\s*,\\s*"));
+        return List.of(names.split(DELIMITER_WITH_BLANK));
     }
 
     private void validateMoreThanOnePlayer(List<String> splitNames) {
-        if (splitNames.size() < 2) {
-            throw new IllegalArgumentException("[ERROR] 플레이어는 두 명 이상 입력되어야 합니다.");
+        if (splitNames.size() < MINIMUM_NUMBER_OF_PLAYERS) {
+            throw new IllegalArgumentException("[ERROR] 플레이어는 " + MINIMUM_NUMBER_OF_PLAYERS + "명 이상 입력되어야 합니다.");
         }
     }
 
     private void validateDelimiter(String names) {
-        if (!names.contains(",")) {
-            throw new IllegalArgumentException("[ERROR] 구분자는 쉼표여야 합니다.");
+        if (!names.contains(DELIMITER)) {
+            throw new IllegalArgumentException("[ERROR] 구분자는 " + DELIMITER + "여야 합니다.");
         }
     }
 
@@ -45,7 +50,7 @@ public class Players {
 
         for (Player player : players) {
             sb.append(player.getName());
-            String blank = " ".repeat(7 - player.getName().length());
+            String blank = " ".repeat(STANDARD_BLANK - player.getName().length());
             sb.append(blank);
         }
 

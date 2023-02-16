@@ -23,7 +23,7 @@ public class PlayersTest {
 
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구분자는 쉼표여야 합니다.");
+                .hasMessage("[ERROR] 구분자는 ,여야 합니다.");
     }
 
     @Test
@@ -33,6 +33,6 @@ public class PlayersTest {
 
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 플레이어는 두 명 이상 입력되어야 합니다.");
+                .hasMessage("[ERROR] 플레이어는 2명 이상 입력되어야 합니다.");
     }
 }
