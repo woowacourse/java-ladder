@@ -1,5 +1,6 @@
 package domain;
 
+import static java.util.List.copyOf;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public class Ladder {
 
     public Ladder(final List<Person> people, final List<Line> lines) {
         validateHeightOf(lines);
-        this.lines = List.copyOf(lines);
-        this.people = List.copyOf(people);
+        this.lines = copyOf(lines);
+        this.people = copyOf(people);
     }
 
     private void validateHeightOf(final List<Line> lines) {
