@@ -10,7 +10,7 @@ public class Height {
     public Height(String height) {
         HeightValidator heightValidator = new HeightValidator();
         heightValidator.checkNumberMissMatch(height);
-        heightValidator.checkNumberRange(height);
+        heightValidator.checkNegativeNumber(height);
         this.height = Integer.parseInt(height);
     }
 
@@ -21,5 +21,4 @@ public class Height {
     public void minusHeight() {
         this.height--;
     }
-
 }

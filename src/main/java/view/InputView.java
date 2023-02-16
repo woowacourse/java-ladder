@@ -33,8 +33,7 @@ public class InputView {
         System.out.println(HEIGHT_INPUT_REQUEST);
         String inputHeight = scanner.nextLine();
         heightValidator.checkNumberMissMatch(inputHeight);
-        heightValidator.checkNumberRange(inputHeight);
+        heightValidator.checkNegativeNumber(inputHeight);
         return inputHeight;
     }
-
 }

@@ -8,6 +8,7 @@ public class OutputView {
     private static final String WAY_CHARACTER = "-";
     private static final String BLANK = " ";
     private static final String BAR = "|";
+    private static final String ERROR_PREFIX = "[ERROR]";
 
     public void printResult(List<String> playersName, List<Line> lines, int maxPlayerNameLength) {
         playersName.forEach(name -> System.out.printf("%" + maxPlayerNameLength + "s ",name));
@@ -29,5 +30,9 @@ public class OutputView {
             return WAY_CHARACTER.repeat(maxPlayerNameLength) + BAR;
         }
         return BLANK.repeat(maxPlayerNameLength) + BAR;
+    }
+
+    public void printErrormessage(String errorMessage){
+        System.out.println(ERROR_PREFIX + errorMessage);
     }
 }
