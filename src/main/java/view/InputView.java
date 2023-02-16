@@ -1,6 +1,7 @@
 package view;
 
 import exception.BlankInputException;
+import exception.WrongDelimiterException;
 import exception.WrongNumberFormatException;
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +30,7 @@ public class InputView {
 
     private void validateDelimiter(String names) {
         if (!names.contains(DELIMITER)) {
-            throw new IllegalArgumentException("이름에는 유효한 구분자가 포함되어야 합니다.");
+            throw new WrongDelimiterException();
         }
     }
 
