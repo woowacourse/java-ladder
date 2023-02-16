@@ -6,10 +6,10 @@ import utils.FootholdGenerator;
 
 public class Line {
 
-    private final List<Boolean> points;
+    private final List<Boolean> footholds;
 
     public Line(final int numberOfPlayer, final FootholdGenerator footholdGenerator) {
-        points = makePoint(numberOfPlayer, footholdGenerator);
+        footholds = makePoint(numberOfPlayer, footholdGenerator);
     }
 
     private List<Boolean> makePoint(final int numberOfPlayer, final FootholdGenerator footholdGenerator) {
@@ -29,7 +29,7 @@ public class Line {
         return points;
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    public List<Boolean> getFootholds() {
+        return footholds;
     }
 }

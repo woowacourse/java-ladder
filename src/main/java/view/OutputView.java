@@ -41,7 +41,7 @@ public class OutputView {
     }
 
     private void drawFoothold(Players players, Ladder ladder, StringBuilder ladderOutput, int i) {
-        for (Boolean isExist : ladder.getLines().existFoothold(i)) {
+        for (Boolean isExist : ladder.getLines().findSelectedLine(i)) {
             ladderOutput.append("|");
             checkExistingFoothold(players, ladderOutput, isExist);
         }

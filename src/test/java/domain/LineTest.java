@@ -23,7 +23,7 @@ public class LineTest {
         Line line = new Line(numberOfPlayer, randomFootholdGenerator);
 
         // then
-        assertThat(line.getPoints().size()).isEqualTo(expectedLineNumber);
+        assertThat(line.getFootholds().size()).isEqualTo(expectedLineNumber);
     }
 
     @Test
@@ -36,7 +36,7 @@ public class LineTest {
         Line line = new Line(numberOfPlayer, new ExistFootholdGenerator());
 
         // then
-        assertThat(line.getPoints()).containsExactly(true, false, true);
+        assertThat(line.getFootholds()).containsExactly(true, false, true);
      }
 
     @Test
@@ -49,6 +49,6 @@ public class LineTest {
         Line line = new Line(numberOfPlayer, new NonExistFootholdGenerator());
 
         // then
-        assertThat(line.getPoints()).containsExactly(false, false, false);
+        assertThat(line.getFootholds()).containsExactly(false, false, false);
     }
 }

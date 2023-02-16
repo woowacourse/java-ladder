@@ -18,7 +18,7 @@ public class LinesTest {
         Lines lines = new Lines(numberOfPlayer, height);
 
         // then
-        assertThat(lines.getLines().get(0).getPoints().size()).isEqualTo(expectedLadderWidth);
+        assertThat(lines.getLines().get(0).getFootholds().size()).isEqualTo(expectedLadderWidth);
         assertThat(lines.getLines().size()).isEqualTo(height);
     }
 }

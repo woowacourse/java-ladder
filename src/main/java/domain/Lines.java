@@ -9,8 +9,7 @@ public class Lines {
     private final List<Line> lines;
 
     public Lines(final int numberOfPlayer, final int height) {
-        List<Line> lines = makeLines(numberOfPlayer, height);
-        this.lines = lines;
+        this.lines = makeLines(numberOfPlayer, height);
     }
 
     private List<Line> makeLines(final int numberOfPlayer, final int height) {
@@ -23,11 +22,11 @@ public class Lines {
         return lines;
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public List<Boolean> findSelectedLine(final int selectedPosition) {
+        return this.lines.get(selectedPosition).getFootholds();
     }
 
-    public List<Boolean> existFoothold(int index) {
-        return this.lines.get(index).getPoints();
+    public List<Line> getLines() {
+        return lines;
     }
 }
