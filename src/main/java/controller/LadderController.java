@@ -1,10 +1,10 @@
 package controller;
 
 import domain.model.Ladder;
-import domain.vo.Height;
-import domain.vo.LineCount;
-import domain.vo.Name;
 import domain.service.LadderMaker;
+import domain.vo.Height;
+import domain.vo.Width;
+import domain.vo.Name;
 import view.InputView;
 import view.OutputView;
 
@@ -23,11 +23,12 @@ public class LadderController {
     }
 
     public void play() {
-        List<Name> names = inputView.inputNames().stream()
+        List<Name> names = inputView.inputNames()
+                .stream()
                 .map(Name::new)
                 .collect(Collectors.toList());
         int height = inputView.inputLadderHeight();
-        Ladder ladder = ladderMaker.make(new Height(height), new LineCount(names.size() - 1));
+        Ladder ladder = ladderMaker.make(new Height(height), new Width(names.size() - 1));
         outputView.printResult(names, ladder);
     }
 }
