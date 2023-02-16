@@ -4,18 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Point> points;
+    private final List<Point> line;
 
     public Line(final List<Point> points) {
-        this.points = points;
+        validateLine(points);
+        this.line = points;
     }
 
-    public Line(final int personCount) {
-        LineGenerator lineGenerator = new LineGenerator();
-        points = lineGenerator.generate(personCount);
+    public List<Point> getLine() {
+        return new ArrayList<>(line);
     }
 
-    public List<Point> getPoints() {
-        return new ArrayList<>(points);
+    private void validateLine(final List<Point> line) {
+        Point state = Point.EMPTY_POINT;
+        for (final Point point : line) {
+            state = comparePastPointAndPresentPoint(state, point);
+        }
+    }
+
+    private Point comparePastPointAndPresentPoint(Point pastPoint, final Point point) {
+        if (point.isLink() && pastPoint.isLink()) {
+            throw new IllegalArgumentException();
+        }
+        pastPoint = point;
+        return pastPoint;
     }
 }

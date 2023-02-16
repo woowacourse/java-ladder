@@ -12,10 +12,11 @@ public class Ladder {
 
     public Ladder(final int height, final int personCount) {
         validateHeight(height);
+        LineGenerator lineGenerator = new LineGenerator();
         lines = new ArrayList<>();
 
         IntStream.rangeClosed(1, height)
-                .forEach(count -> lines.add(new Line(personCount)));
+                .forEach(count -> lines.add(lineGenerator.generate(personCount)));
     }
 
     public Ladder(final List<Line> lines) {

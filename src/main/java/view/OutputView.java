@@ -41,7 +41,7 @@ public class OutputView {
         StringBuilder builder = new StringBuilder();
         builder.append(BLANK_LINE);
         builder.append(LADDER);
-        for (Point connected : line.getPoints()) {
+        for (Point connected : line.getLine()) {
             renderPoint(builder, connected);
             builder.append(LADDER);
         }
