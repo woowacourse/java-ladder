@@ -11,7 +11,6 @@ public class OutputView {
     private static final String CONNECTED_LINE = "-----";
     private static final String LADDER = "|";
 
-
     public static void printResultMessage() {
         System.out.println(RESULT_MESSAGE);
         System.out.println();
