@@ -1,26 +1,20 @@
 package view;
 
 import model.LadderHeight;
+import model.Names;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    private static final String SPLIT_DELIMITER = ",";
     private Scanner scanner;
 
     public InputView(Scanner scanner){
         this.scanner = scanner;
     }
 
-    public List<String> readPlayerNames(){
+    public Names readPlayerNames(){
         String names = scanner.nextLine();
-        return splitPlayerNames(names);
-    }
-
-    private List<String> splitPlayerNames(String names){
-        return Arrays.asList(names.split(SPLIT_DELIMITER));
+        return new Names(names);
     }
 
     public LadderHeight readLadderHeight(){
