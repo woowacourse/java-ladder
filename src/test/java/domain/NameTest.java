@@ -26,8 +26,8 @@ class NameTest {
 
     @Test
     @DisplayName("빈 문자가 들어왔을 경우 익셉션 발생")
-    void whenBlack(){
-        assertThatThrownBy(()->new Name(""))
+    void whenBlack() {
+        assertThatThrownBy(() -> new Name(""))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("한글자 이상 입력해주세요.");
     }

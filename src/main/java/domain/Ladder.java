@@ -1,7 +1,6 @@
 package domain;
 
 import util.BooleanGenerator;
-import util.RandomBooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,7 @@ public class Ladder {
     }
 
     private static void validateLadderHeight(final int height) {
-        if(height < MIN_HEIGHT || height > MAX_HEIGHT){
+        if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
             throw new IllegalArgumentException("사다리 길이는 2에서 10사이여야 합니다.");
         }
     }
@@ -64,7 +63,7 @@ public class Ladder {
         return getWidth() * getLineHeight();
     }
 
-    public List<List<Boolean>> getValue(){
+    public List<List<Boolean>> getValue() {
         return lines.stream()
                 .map(Line::getValue)
                 .collect(Collectors.toList());
