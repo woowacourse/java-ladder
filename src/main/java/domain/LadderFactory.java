@@ -1,7 +1,11 @@
 package domain;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderFactory {
 
@@ -12,27 +16,32 @@ public class LadderFactory {
     }
 
     public Ladder createLadder(final int width, final int height) {
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-
-            List<Scaffold> scaffolds = new ArrayList<>();
-
-            for (int j = 0; j < width; j++) {
-                Scaffold scaffold = scaffoldGenerator.generate();
-
-                if (scaffolds.isEmpty()) {
-                    scaffolds.add(scaffold);
-                    continue;
-                }
-
-                if (scaffold == Scaffold.EXIST && scaffolds.get(j - 1) == Scaffold.EXIST) {
-                    scaffold = Scaffold.NONE;
-                }
-                scaffolds.add(scaffold);
-            }
-
-            lines.add(new Line(scaffolds));
-        }
+        List<Line> lines = IntStream.range(0, height)
+                .mapToObj(it -> createLine(width))
+                .collect(Collectors.toUnmodifiableList());
         return new Ladder(lines);
+    }
+
+    private Line createLine(final int width) {
+        return new Line(createScaffolds(width));
+    }
+
+    private List<Scaffold> createScaffolds(final int width) {
+        Deque<Scaffold> scaffolds = new ArrayDeque<>();
+        IntStream.range(0, width).forEach(it -> createScaffold(scaffolds));
+        return new ArrayList<>(scaffolds);
+    }
+
+    private void createScaffold(final Deque<Scaffold> scaffolds) {
+        Scaffold scaffold = scaffoldGenerator.generate();
+        if (scaffolds.isEmpty()) {
+            scaffolds.add(scaffold);
+            return;
+        }
+        if (scaffold == Scaffold.EXIST && scaffolds.peekLast() == Scaffold.EXIST) {
+            scaffolds.add(Scaffold.NONE);
+            return;
+        }
+        scaffolds.add(scaffold);
     }
 }
