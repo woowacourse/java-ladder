@@ -74,4 +74,8 @@ public class Ladder {
     public List<Line> getLines() {
         return lines;
     }
+
+    public int getHeightSize() {
+        return height.getHeight();
+    }
 }
