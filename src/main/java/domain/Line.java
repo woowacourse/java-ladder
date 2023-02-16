@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 
 import domain.util.Point;
@@ -12,6 +13,6 @@ public class Line {
 	}
 
 	public List<Point> getPoints() {
-		return points;
+		return Collections.unmodifiableList(points);
 	}
 }

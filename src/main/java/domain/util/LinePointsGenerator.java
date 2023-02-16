@@ -27,5 +27,4 @@ public class LinePointsGenerator {
 			line.add(Point.ABSENCE);
 		}
 	}
-
 }
