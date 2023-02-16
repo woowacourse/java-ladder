@@ -2,7 +2,7 @@ package domain;
 
 public class Person {
 
-    private static final int NAME_MAX_LENGTH = 5;
+    public static final int NAME_MAX_LENGTH = 5;
     private static final String BLANK_NAME_ERROR = "[ERROR] 빈 문자열 입니다.";
     private static final String NAME_LENGTH_ERROR = "[ERROR] 이름 길이는 5자를 넘길 수 없습니다.";
 

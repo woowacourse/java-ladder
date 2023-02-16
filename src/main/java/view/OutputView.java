@@ -1,12 +1,14 @@
 package view;
 
 import domain.Line;
+import domain.Person;
 import java.util.List;
 
 public class OutputView {
     private static final String BRIDGE = "-----";
     private static final String VERTICAL_LINE = "|";
     private static final String BLANK_LINE = "     ";
+    private static final String BLANK = " ";
 
     public void printLadder(List<Line> lines){
         StringBuilder builder = new StringBuilder();
@@ -33,10 +35,14 @@ public class OutputView {
         StringBuilder stringBuilder = new StringBuilder();
 
         for(String name : names){
-            int length = name.length();
-            stringBuilder.append(name).append(" ".repeat(5-length));
-            stringBuilder.append(" ");
+            stringBuilder.append(name)
+                    .append(getNameBlank(name))
+                    .append(BLANK);
         }
         System.out.println(stringBuilder);
+    }
+
+    private String getNameBlank(String name) {
+        return BLANK.repeat(Person.NAME_MAX_LENGTH - name.length());
     }
 }
