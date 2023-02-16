@@ -1,6 +1,11 @@
 package ladder.view;
 
+import ladder.validator.CommonValidator;
+
 import java.util.Scanner;
+import java.util.function.Supplier;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class InputView {
     private static final Scanner sc = new Scanner(System.in);
@@ -12,6 +17,34 @@ public class InputView {
 
     public static int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return Integer.parseInt(sc.nextLine());
+        String ladderHeight = sc.nextLine();
+        validateLadderHeight(ladderHeight);
+        return Integer.parseInt(ladderHeight);
+    }
+
+    private static void validateLadderHeight(String ladderHeight) {
+        validateBlank(ladderHeight);
+        validateNonNumber(ladderHeight);
+    }
+
+    private static void validateBlank(String input) {
+        CommonValidator.validate(input);
+    }
+
+    private static void validateNonNumber(String ladderHeight) {
+        Pattern compile = Pattern.compile("\\D");
+        Matcher matcher = compile.matcher(ladderHeight);
+        if (matcher.find()) {
+            throw new IllegalArgumentException("숫자가 아닌 값은 입력할 수 없습니다.");
+        }
+    }
+
+    public static <T> T repeat(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            OutputView.printExceptionMessage(illegalArgumentException);
+            return repeat(supplier);
+        }
     }
 }
