@@ -1,3 +1,7 @@
+package domain;
+
+import util.TrueOrFalseGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 

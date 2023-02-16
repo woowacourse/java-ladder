@@ -1,5 +1,6 @@
 package view;
 
+
 import domain.Line;
 import domain.Way;
 
@@ -11,7 +12,7 @@ public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR]";
 
     public void printResult(List<String> playersName, List<Line> lines, int maxPlayerNameLength) {
-        playersName.forEach(name -> System.out.printf("%" + maxPlayerNameLength + "s ",name));
+        playersName.forEach(name -> System.out.printf("%" + maxPlayerNameLength + "s ", name));
         System.out.println();
         lines.forEach(line -> System.out.println(changeFormat(line, maxPlayerNameLength)));
     }
