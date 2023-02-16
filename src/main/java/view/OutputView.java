@@ -25,7 +25,7 @@ public class OutputView {
     public void printPlayerName( List<Name> names){
         for(int index=0; index<names.size(); index++){
             System.out.print(String.format("%"+ MAXIMUM_PLAYER_NAME +"s ",
-                    names.get(index).getPlayer()));
+                    names.get(index).getName()));
         }
         System.out.println("");
     }
