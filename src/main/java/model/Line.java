@@ -9,10 +9,9 @@ import java.util.List;
 public class Line {
     private static final int MINIMUM_LINE_SIZE = 2;
 
-    public Generator generator = new LineGenerator();
     private List<Boolean> points = new ArrayList<>();
 
-    public Line (int personCount) {
+    public Line (int personCount,Generator generator) {
         for(int column=0; column<personCount-1; column++) {
             points.add(generator.generate());
             if(validateLineMake(column)){
