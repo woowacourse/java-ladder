@@ -17,6 +17,10 @@ public class Names {
     }
 
     public List<Name> getNames() {
-        return names;
+        return new ArrayList<>(names);
+    }
+
+    public int size() {
+        return names.size();
     }
 }

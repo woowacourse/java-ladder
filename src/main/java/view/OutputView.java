@@ -1,9 +1,6 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.Name;
-import domain.Scaffold;
+import domain.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +14,7 @@ public class OutputView {
     private static final String NONE_SCAFFOLD = "     ";
     private static final String BLANK = " ";
     private static final String EMPTY = "";
-    private static final String FIRST_NAME_FORMAT = "%-6s";
+    private static final String FIRST_NAME_FORMAT = "%s  ";
     private static final String DEFAULT_NAME_FORMAT = "%5s";
     private static final Map<Scaffold, String> SCAFFOLD_STRING_MAP;
 
@@ -27,13 +24,13 @@ public class OutputView {
         SCAFFOLD_STRING_MAP.put(Scaffold.NONE, NONE_SCAFFOLD);
     }
 
-    public static void printResult(final Ladder ladder, final List<Name> names) {
+    public static void printResult(final Ladder ladder, final Names names) {
         printName(names);
         printLadder(ladder, names);
     }
 
-    public static void printName(final List<Name> names) {
-        List<String> nameValues = names.stream().map(Name::getValue).collect(Collectors.toList());
+    public static void printName(final Names names) {
+        List<String> nameValues = names.getNames().stream().map(Name::getValue).collect(Collectors.toList());
         String firstName = String.format(FIRST_NAME_FORMAT, nameValues.remove(0));
         System.out.println(makeNameFormat(nameValues, firstName));
     }
@@ -43,8 +40,8 @@ public class OutputView {
                 .collect(Collectors.joining(BLANK, firstName, EMPTY));
     }
 
-    private static void printLadder(final Ladder ladder, final List<Name> names) {
-        int length = names.get(0).getValue().length();
+    private static void printLadder(final Ladder ladder, final Names names) {
+        int length = names.firstNameLength();
         String prefixBlank = BLANK.repeat(length);
         String ladderFormat = getLadderFormat(ladder, prefixBlank);
         System.out.println(ladderFormat);

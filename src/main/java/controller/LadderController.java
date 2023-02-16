@@ -3,6 +3,7 @@ package controller;
 import domain.Ladder;
 import domain.LadderFactory;
 import domain.Name;
+import domain.Names;
 import view.InputView;
 import view.OutputView;
 
@@ -18,7 +19,10 @@ public class LadderController {
 
     public void run() {
         List<String> inputNames = InputView.inputNames();
-        List<Name> names = inputNames.stream().map(Name::new).collect(Collectors.toList());
+        Names names = new Names(inputNames.stream()
+                .map(Name::new)
+                .collect(Collectors.toList())
+        );
         int height = InputView.inputHeight();
         Ladder ladder = ladderFactory.createLadder(names.size() - 1, height);
         OutputView.printResult(ladder, names);
