@@ -12,7 +12,7 @@ public class InputView {
 
     private static final Scanner sc = new Scanner(System.in);
 
-    public static List<String> inputPlayerNames() {
+    public List<String> inputPlayerNames() {
         System.out.println(INPUT_NAMES_MESSAGE);
         String input = sc.nextLine();
         validateNull(input);
@@ -20,7 +20,7 @@ public class InputView {
         return splitInputByDelimiter(input);
     }
 
-    public static int inputHeightOfLadder() {
+    public int inputHeightOfLadder() {
         System.out.println(INPUT_HEIGHT_MESSAGE);
         try {
             String input = sc.nextLine();
@@ -32,13 +32,13 @@ public class InputView {
         }
     }
 
-    private static List<String> splitInputByDelimiter(String input) {
+    private List<String> splitInputByDelimiter(String input) {
         return Arrays.stream(input.split(DELIMITER))
                 .map(String::trim)
                 .collect(Collectors.toList());
     }
 
-    private static void validateNull(String input) {
+    private void validateNull(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("값을 입력해주세요.");
         }
