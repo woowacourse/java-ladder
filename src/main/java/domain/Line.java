@@ -28,6 +28,10 @@ public class Line {
     }
 
     private boolean hasSide(int bridgeIndex, int maxIndex) {
+        if (bridgeIndex == 0 && maxIndex == 0) {
+            return false;
+        }
+
         if (bridgeIndex == 0) {
             return isBridgeInRight(bridgeIndex + 1);
         }
