@@ -12,7 +12,7 @@ public class OutputView {
     private static final int PER_NAME_SPACE = 6;
 
     public static void printNames(List<String> names) {
-        System.out.println(parseDisplayNames(names));
+        println(parseDisplayNames(names));
     }
 
     private static String parseDisplayNames(List<String> names) {
@@ -29,10 +29,14 @@ public class OutputView {
     }
 
     public static void printLadder(Ladder ladder, int firstNameLength) {
-        System.out.println(ladder.getLines().stream()
+        println(parseLadder(ladder, firstNameLength));
+    }
+
+    private static String parseLadder(Ladder ladder, int firstNameLength) {
+        return ladder.getLines().stream()
                 .map(OutputView::parseLine)
                 .map(lineDisplay -> lineDisplay.substring(PER_NAME_SPACE - firstNameLength))
-                .collect(Collectors.joining("\n")));
+                .collect(Collectors.joining("\n"));
     }
 
     private static String parseLine(Line line) {
@@ -47,5 +51,13 @@ public class OutputView {
 
     private static BarMatcher parseBarMatcher(Bar bar) {
         return BarMatcher.valueOfBarMatcher(bar);
+    }
+
+    public static void printExceptionMessage(IllegalArgumentException illegalArgumentException) {
+        println(illegalArgumentException.getMessage());
+    }
+
+    private static void println(String message) {
+        System.out.println(message);
     }
 }
