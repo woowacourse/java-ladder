@@ -6,6 +6,7 @@ import java.util.List;
 public class Names {
 
     private static final int FIRST_NAME_INDEX = 0;
+    
     private final List<Name> names;
 
     public Names(final List<Name> names) {

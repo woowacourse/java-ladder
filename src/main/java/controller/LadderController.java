@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderController {
+
     private final LadderFactory ladderFactory;
 
     public LadderController(final LadderFactory ladderFactory) {

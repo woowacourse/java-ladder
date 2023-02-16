@@ -12,23 +12,23 @@ public class Line {
         this.scaffolds = scaffolds;
     }
 
-    private static void validate(final List<Scaffold> scaffolds) {
+    private void validate(final List<Scaffold> scaffolds) {
         validateScaffoldSizeEmpty(scaffolds);
         validateConsistExistScaffolds(scaffolds);
     }
 
-    private static void validateScaffoldSizeEmpty(final List<Scaffold> scaffolds) {
+    private void validateScaffoldSizeEmpty(final List<Scaffold> scaffolds) {
         if (scaffolds.size() == 0) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static void validateConsistExistScaffolds(final List<Scaffold> scaffolds) {
-        ArrayDeque<Scaffold> scaffoldDeque = new ArrayDeque<>(scaffolds);
+    private void validateConsistExistScaffolds(final List<Scaffold> scaffolds) {
+        Deque<Scaffold> scaffoldDeque = new ArrayDeque<>(scaffolds);
         scaffolds.forEach(it -> validateConsistExistScaffold(scaffoldDeque));
     }
 
-    private static void validateConsistExistScaffold(final Deque<Scaffold> scaffolds) {
+    private void validateConsistExistScaffold(final Deque<Scaffold> scaffolds) {
         Scaffold beforeScaffold = scaffolds.removeFirst();
         if (beforeScaffold != scaffolds.peekFirst()) {
             return;

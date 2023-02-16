@@ -1,6 +1,7 @@
 package domain;
 
 public class Name {
+
     private static final int NAME_MAX_LENGTH_INCLUSIVE = 5;
     private static final int NAME_MIN_LENGTH_INCLUSIVE = 1;
 

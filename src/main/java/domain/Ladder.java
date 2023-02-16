@@ -1,9 +1,13 @@
 package domain;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 public class Ladder {
+
+    private static final int FIRST_LINE_INDEX = 0;
 
     private final List<Line> lines;
 
@@ -12,12 +16,12 @@ public class Ladder {
         this.lines = new ArrayList<>(lines);
     }
 
-    private static void validate(final List<Line> lines) {
+    private void validate(final List<Line> lines) {
         validateLineSizeEmpty(lines);
         validateLinesSameSize(lines);
     }
 
-    private static void validateLineSizeEmpty(final List<Line> lines) {
+    private void validateLineSizeEmpty(final List<Line> lines) {
         if (lines.size() == 0) {
             throw new IllegalArgumentException();
         }
@@ -35,18 +39,12 @@ public class Ladder {
         }
     }
 
-    private static void validateLineSameSize(final List<Line> lines, final int i) {
-        if (lines.get(i).size() != lines.get(i - 1).size()) {
-            throw new IllegalArgumentException();
-        }
-    }
-
     public int getHeight() {
         return lines.size();
     }
 
     public int getWidth() {
-        return lines.get(0).size();
+        return lines.get(FIRST_LINE_INDEX).size();
     }
 
     public List<Line> getLines() {
