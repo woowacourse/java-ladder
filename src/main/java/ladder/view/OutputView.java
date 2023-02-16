@@ -7,7 +7,6 @@ import ladder.domain.Line;
 import ladder.domain.LineStatus;
 
 public class OutputView {
-
     private static final int INITIAL_PLAYER_INDEX = 0;
     private static final int EMPTY_NAME_LENGTH = 0;
     private static final long SKIP_INITIAL_PLAYER = 1L;

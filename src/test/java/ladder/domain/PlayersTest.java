@@ -38,5 +38,4 @@ public class PlayersTest {
 
         assertThat(players.getNames()).containsExactly("name1", "name2");
     }
-
 }

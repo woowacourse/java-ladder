@@ -7,6 +7,7 @@ import java.util.Deque;
 import java.util.List;
 
 public class Line {
+    
     private final List<LineStatus> statuses;
 
     public Line(final BooleanGenerator booleanGenerator, final int width) {

@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Players {
-
     private static final int PLAYERS_SIZE_LOWER_BOUND = 2;
     private static final String INVALID_PLAYERS_SIZE_MESSAGE = "참가자는 최소 두명이어야 합니다.";
     private static final String DUPLICATE_NAMES_MESSAGE = "참가자의 이름은 중복되지 않아야 합니다.";
