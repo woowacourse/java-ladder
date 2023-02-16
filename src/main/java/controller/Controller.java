@@ -20,6 +20,7 @@ public class Controller {
         Names names = setNames();
         LadderHeight ladderHeight = setLadderHeight();
         Ladder ladder = new Ladder(names, ladderHeight);
+        outputView.printResultMessage();
         outputView.printName(names);
         outputView.printLadder(names, ladder, ladderHeight);
     }

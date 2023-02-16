@@ -9,6 +9,7 @@ public class OutputView {
 
     private static final String PLAYER_NAME_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
+    private static final String RESULT_MESSAGE = "실행 결과";
 
     private static final int MAXIMUM_PLAYER_NAME_SPACE = 5;
 
@@ -20,6 +21,10 @@ public class OutputView {
 
     public void printLadderHeightMessage() {
         System.out.println(LADDER_HEIGHT_MESSAGE);
+    }
+
+    public void printResultMessage(){
+        System.out.println(System.lineSeparator()+RESULT_MESSAGE);
     }
 
     public void printName(Names names) {
