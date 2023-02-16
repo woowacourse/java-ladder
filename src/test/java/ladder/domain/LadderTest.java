@@ -42,16 +42,15 @@ public class LadderTest {
     @Test
     @DisplayName("Ladder 1층 생성 테스트")
     void makeFirstFloorTest() {
-        TestNumberGenerator testNumberGenerator = new TestNumberGenerator(List.of(1, 0, 0));
+        TestNumberGenerator testNumberGenerator = new TestNumberGenerator(List.of(1, 0, 1));
 
         Ladder ladder = new Ladder(1, new Users(List.of("1", "2", "3", "4")));
         ladder.makeFloors(testNumberGenerator);
 
-        List<Line> firstFloorLines = getFloorLines(1, ladder);
+        assertThat(ladder.getFloors().get(0).getLines())
+                .extracting("isExist")
+                .containsExactlyElementsOf(List.of(true, false, true));
 
-        assertThat(firstFloorLines.get(0).isExist()).isEqualTo(true);
-        assertThat(firstFloorLines.get(1).isExist()).isEqualTo(false);
-        assertThat(firstFloorLines.get(2).isExist()).isEqualTo(false);
     }
 
     @Test
@@ -62,16 +61,13 @@ public class LadderTest {
         Ladder ladder = new Ladder(2, new Users(List.of("1", "2", "3", "4")));
         ladder.makeFloors(testNumberGenerator);
 
-        List<Line> firstFloorLines = getFloorLines(1, ladder);
-        List<Line> secondFloorLines = getFloorLines(2, ladder);
+        assertThat(ladder.getFloors().get(0).getLines())
+                .extracting("isExist")
+                .containsExactlyElementsOf(List.of(true, false, false));
 
-        assertThat(firstFloorLines.get(0).isExist()).isEqualTo(true);
-        assertThat(firstFloorLines.get(1).isExist()).isEqualTo(false);
-        assertThat(firstFloorLines.get(2).isExist()).isEqualTo(false);
-
-        assertThat(secondFloorLines.get(0).isExist()).isEqualTo(true);
-        assertThat(secondFloorLines.get(1).isExist()).isEqualTo(false);
-        assertThat(secondFloorLines.get(2).isExist()).isEqualTo(true);
+        assertThat(ladder.getFloors().get(1).getLines())
+                .extracting("isExist")
+                .containsExactlyElementsOf(List.of(true, false, true));
 
 
     }
