@@ -1,3 +1,5 @@
+package domain;
+
 public class Height {
 
     private int height;
@@ -11,5 +13,9 @@ public class Height {
         if (height <= 0) {
             throw new IllegalArgumentException("[ERROR] 높이는 양수만 가능합니다.");
         }
+    }
+
+    public int getHeight() {
+        return this.height;
     }
 }

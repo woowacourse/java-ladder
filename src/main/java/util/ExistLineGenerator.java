@@ -1,3 +1,5 @@
+package util;
+
 public class ExistLineGenerator implements LineGenerator {
 
     @Override

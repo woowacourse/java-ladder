@@ -1,3 +1,5 @@
+package util;
+
 import java.util.Random;
 
 public class RandomLineGenerator implements LineGenerator {

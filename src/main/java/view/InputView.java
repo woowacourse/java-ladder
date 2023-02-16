@@ -1,3 +1,5 @@
+package view;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -13,7 +15,7 @@ public class InputView {
     }
 
     public static int receiveHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        System.out.println("\n최대 사다리 높이는 몇 개인가요?");
 
         String height = scanner.nextLine();
         isBlank(height);
