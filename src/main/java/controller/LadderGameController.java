@@ -9,6 +9,7 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LadderGameController {
@@ -40,6 +41,6 @@ public class LadderGameController {
             lines.add(line);
             height.minusHeight();
         }
-        return new Ladder(lines);
+        return new Ladder(Collections.unmodifiableList(lines));
     }
 }
