@@ -7,8 +7,6 @@ import view.constant.Sign;
 
 import java.util.List;
 
-import static view.constant.LadderShapes.*;
-
 public class OutputView {
 
     public static final String REQUEST_NAME_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 %s(%s)로 구분하세요)%n";
@@ -38,34 +36,10 @@ public class OutputView {
     }
 
     private static void printGeneratedLadder(final List<List<Boolean>> ladderInfo, final int maxNameLength) {
-        for (List<Boolean> line : ladderInfo) {
-            printLine(line, maxNameLength);
+        List<String> ladderMessages = MessageGenerator.generateLadderMessage(ladderInfo, maxNameLength);
+        for (String ladderMessage : ladderMessages) {
+            System.out.println(ladderMessage);
         }
-    }
-
-    private static void printLine(final List<Boolean> line, final int maxLength) {
-        for (Boolean isSteppable : line) {
-            printSteppableLine(maxLength, isSteppable);
-            printUnSteppableLine(maxLength, isSteppable);
-        }
-        System.out.println(PILLAR.getShape());
-    }
-
-    private static void printUnSteppableLine(final int maxLength, final Boolean isSteppable) {
-        if (!isSteppable) {
-            printLine(BLANK.getShape(), maxLength);
-        }
-    }
-
-    private static void printSteppableLine(final int maxLength, final Boolean isSteppable) {
-        if (isSteppable) {
-            printLine(FOOTSTEP.getShape(), maxLength);
-        }
-    }
-
-    private static void printLine(final String shape, final int maxLength) {
-        String footSteps = shape.repeat(maxLength);
-        System.out.printf("%s%s", PILLAR.getShape(), footSteps);
     }
 
     public static void printErrorMessage(final String errorMessage) {
