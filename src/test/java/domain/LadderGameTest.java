@@ -31,8 +31,7 @@ public class LadderGameTest {
     @DisplayName("Players를 생성한다.")
     @Test
     void generatePlayers() {
-        Players players = ladderGame.getPlayers();
-        List<String> playerNames = players.getPlayerNames();
+        List<String> playerNames = ladderGame.getPlayerNames();
         assertThat(playerNames).containsExactly("a", "b", "c");
     }
 
