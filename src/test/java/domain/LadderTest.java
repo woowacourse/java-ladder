@@ -22,8 +22,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 public class LadderTest {
 
     @Test
-    @DisplayName("domain.Line 을 받아 생성된다")
-    void generate_ladder_by_line() {
+    @DisplayName("Line 을 받아 생성된다")
+    void Line_을_받아_생성된다() {
         Scaffold scaffold1 = Scaffold.EXIST;
         Scaffold scaffold2 = Scaffold.NONE;
 
@@ -32,9 +32,9 @@ public class LadderTest {
         assertDoesNotThrow(() -> new Ladder(List.of(line)));
     }
 
-    @ParameterizedTest(name = "domain.Line 개수가 높이이다")
+    @ParameterizedTest(name = "Line 개수가 높이이다")
     @MethodSource("sameLengthLines")
-    void has_lines_by_height(final List<Line> lines) {
+    void Line_개수가_높이이다(final List<Line> lines) {
         Ladder ladder = new Ladder(lines);
 
         assertThat(ladder.getHeight()).isEqualTo(lines.size());
@@ -47,7 +47,7 @@ public class LadderTest {
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest(name = "사다리의 너비는 domain.Line 의 길이와 동일해야 한다")
+    @ParameterizedTest(name = "사다리의 너비는 Line 의 길이와 동일해야 한다")
     @MethodSource("sameLengthLines")
     void 사다리의_너비는_Line_의_길이와_동일해야_한다(final List<Line> lines) {
         Ladder ladder = new Ladder(lines);

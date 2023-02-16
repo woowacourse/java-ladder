@@ -38,11 +38,11 @@ public class OutputView {
                 .stream()
                 .map(Name::getValue)
                 .collect(toList());
-        String firstName = format(FIRST_NAME_FORMAT, nameValues.remove(0));
-        System.out.println(makeNameFormat(nameValues, firstName));
+        System.out.println(makeNameFormat(nameValues));
     }
 
-    private static String makeNameFormat(final List<String> nameValues, final String firstName) {
+    private static String makeNameFormat(final List<String> nameValues) {
+        String firstName = format(FIRST_NAME_FORMAT, nameValues.remove(0));
         return nameValues.stream()
                 .map(it -> format(DEFAULT_NAME_FORMAT, it))
                 .collect(joining(BLANK, firstName, EMPTY));
@@ -56,9 +56,10 @@ public class OutputView {
     }
 
     private static String makeLadderFormat(final Ladder ladder, final String prefixBlank) {
-        return ladder.getLines().stream()
-                .map(line -> makeLineFormat(prefixBlank, line)
-                ).collect(joining(LINE_BLANK));
+        return ladder.getLines()
+                .stream()
+                .map(line -> makeLineFormat(prefixBlank, line))
+                .collect(joining(LINE_BLANK));
     }
 
     private static String makeLineFormat(final String prefixBlank, final Line line) {

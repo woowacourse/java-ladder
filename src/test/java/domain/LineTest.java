@@ -82,8 +82,7 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("Line에 속한 발판은 존재하지 않는 상태는 연속으로 가질 수 있다")
-    void line_linked_nonlist() {
+    void Line_에_속한_발판은_존재하지_않는_상태는_연속으로_가질_수_있다() {
         // given
         Scaffold nonScaffold = Scaffold.NONE;
 
