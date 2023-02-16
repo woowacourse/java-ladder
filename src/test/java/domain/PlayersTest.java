@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PlayersTest {
@@ -39,5 +40,12 @@ public class PlayersTest {
         List<Player> players = List.of(new Player("a"), new Player("a"));
         assertThatThrownBy(() -> new Players(players))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("참여자들의 이름을 불러올 수 있다.")
+    @Test
+    void getPlayersName() {
+        Players players = new Players(List.of(new Player("a"), new Player("b")));
+        assertThat(players.getPlayersName()).containsExactly("a", "b");
     }
 }
