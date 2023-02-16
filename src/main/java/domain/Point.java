@@ -2,5 +2,10 @@ package domain;
 
 public enum Point {
     PASSABLE,
-    BLOCKED
+    BLOCKED;
+
+
+    public boolean isPassable() {
+        return this.equals(PASSABLE);
+    }
 }
