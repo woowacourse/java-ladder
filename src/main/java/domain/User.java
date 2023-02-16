@@ -25,4 +25,8 @@ public class User {
             throw new IllegalArgumentException(INVALID_NAME_BLANK_MESSAGE);
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
