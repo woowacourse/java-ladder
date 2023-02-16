@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static String receivePlayer() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
-        String playerNames = scanner.nextLine();
+        String playerNames = input();
         isBlank(playerNames);
 
         return playerNames;
@@ -18,7 +18,7 @@ public class InputView {
     public static int receiveHeight() {
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
 
-        String height = scanner.nextLine();
+        String height = input();
         isBlank(height);
         isDigit(height);
 
@@ -37,5 +37,9 @@ public class InputView {
         if (!isDigit) {
             throw new IllegalArgumentException("[ERROR] 정수만 입력 가능합니다.");
         }
+    }
+
+    private static String input() {
+        return scanner.nextLine();
     }
 }

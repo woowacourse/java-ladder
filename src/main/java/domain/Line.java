@@ -19,9 +19,18 @@ public class Line {
     }
 
     private void makeLine(LineGenerator lineGenerator) {
+        makeFirstLineStatus(lineGenerator);
+        makeElseLineStatus(lineGenerator);
+    }
+
+    private void makeFirstLineStatus(LineGenerator lineGenerator) {
         line.add(LineStatus.findBy(lineGenerator.generate(false)));
+    }
+
+    private void makeElseLineStatus(LineGenerator lineGenerator) {
         for (int i = 1; i < this.numberOfLine; i++) {
-            line.add(LineStatus.findBy(lineGenerator.generate(line.get(i-1).getStatus())));
+            int leftIndex = i - 1;
+            line.add(LineStatus.findBy(lineGenerator.generate(line.get(leftIndex).getStatus())));
         }
     }
 
