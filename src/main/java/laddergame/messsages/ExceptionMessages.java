@@ -12,7 +12,8 @@ public enum ExceptionMessages {
 	LINE_CREATOR_ILLEGAL_LENGTH_EXCEPTION("길이는 양수여야합니다."),
 	LADDER_PARTICIPANTS_NULL_EXCEPTION("참여자는 null이 될 수 없습니다."),
 	LADDER_HEIGHT_NULL_EXCEPTION("높이는 null이 될 수 없습니다."),
-	HEIGHT_ILLEGAL_VALUE_EXCEPTION("높이는 양수여야합니다.");
+	HEIGHT_ILLEGAL_VALUE_EXCEPTION("높이는 양수여야합니다."),
+	NAME_NOT_MACHE_EXCEPTION("이름은 1자 이상의 영문만 들어올 수 있습니다.");
 
 
 	private final String message;

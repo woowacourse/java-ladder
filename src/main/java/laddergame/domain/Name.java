@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import static laddergame.messsages.ExceptionMessages.*;
 
 public class Name {
-	private static final Pattern NAME_REGEX = Pattern.compile("([a-z]|[A-Z])*");
+	private static final Pattern NAME_REGEX = Pattern.compile("([a-z]|[A-Z])+");
 	private static final int MAX_NAME_LENGTH = 5;
 	private final String value;
 
@@ -19,7 +19,7 @@ public class Name {
 
 	private void validateMatchesPattern(final String value) {
 		if (!NAME_REGEX.matcher(value).matches()) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(NAME_NOT_MACHE_EXCEPTION.getMessage());
 		}
 	}
 
