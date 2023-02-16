@@ -15,6 +15,7 @@ public class OutputView {
 	private final static String PREFIX = "|";
 	private final static String SUFFIX = "|";
 	private final static String NEW_LINE = "\n";
+	private final static String ERROR_PREFIX = "[ERROR] ";
 
 	private final static Map<Boolean, String> LINE_MAP;
 	static {
@@ -49,6 +50,6 @@ public class OutputView {
 	}
 
 	public static void printError(String errorMsg) {
-		System.out.println(errorMsg);
+		System.out.println(String.format(ERROR_PREFIX,errorMsg));
 	}
 }

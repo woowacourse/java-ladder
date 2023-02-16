@@ -4,8 +4,8 @@ public class ParticipantName {
 
 	private static final int MIN_NAME_LENGTH = 1;
 	private static final int MAX_NAME_LENGTH = 5;
-	private static final String BLANK_PARTICIPANT_NAME_ERROR_MSG = "[ERROR]: 참가자의 이름은 공백일 수 없습니다.";
-	private static final String NAME_LENGTH_ERROR_MSG = "[ERROR]: 참가자의 이름은 1글자 이상 5글자 이하여야 한다.";
+	private static final String BLANK_PARTICIPANT_NAME_ERROR_MSG = "참가자의 이름은 공백일 수 없습니다.";
+	private static final String NAME_LENGTH_ERROR_MSG = "참가자의 이름은 1글자 이상 5글자 이하여야 한다.";
 	private final String name;
 
 	public ParticipantName(final String name) {
