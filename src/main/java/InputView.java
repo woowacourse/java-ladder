@@ -12,9 +12,27 @@ public class InputView {
         return playerNames;
     }
 
+    public static int receiveHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+
+        String height = scanner.nextLine();
+        isBlank(height);
+        isDigit(height);
+
+        return Integer.parseInt(height);
+    }
+
     private static void isBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없습니다.");
+        }
+    }
+
+    private static void isDigit(String height) {
+        boolean isDigit = height.chars()
+                .allMatch(Character::isDigit);
+        if (!isDigit) {
+            throw new IllegalArgumentException("[ERROR] 정수만 입력 가능합니다.");
         }
     }
 }

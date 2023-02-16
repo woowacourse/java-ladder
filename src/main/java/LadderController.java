@@ -14,6 +14,7 @@ public class LadderController {
     }
 
     private Ladder makeLadder() {
+        int height = InputView.receiveHeight();
     }
 
     private void printLadder(List<Player> players, Ladder ladder) {
