@@ -1,9 +1,12 @@
 package domain;
 
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import util.TrueGenerator;
 
 public class LadderTest {
     @ParameterizedTest
@@ -12,10 +15,28 @@ public class LadderTest {
     void createLadderWithEmptyLines(int ladderHeight) {
         //given
         int personCount = 5;
+        Height height = new Height(ladderHeight);
+
         //when
-        Ladder ladder = new Ladder(ladderHeight, personCount);
+        Ladder ladder = new Ladder(height, personCount);
 
         //then
         Assertions.assertThat(ladder.calculateTotalHeight()).isEqualTo(ladderHeight);
+    }
+
+    @Test
+    @DisplayName("사다리 생성 테스트")
+    void generateLadder() {
+        //given
+        int personCount = 5;
+        Height height = new Height(2);
+
+        //when
+        Ladder ladder = new Ladder(height, personCount);
+        ladder.generateLadder(new TrueGenerator());
+
+        //then
+        Assertions.assertThat(ladder.getStatus())
+                .containsExactly(List.of(true, false, true, false), List.of(true, false, true, false));
     }
 }
