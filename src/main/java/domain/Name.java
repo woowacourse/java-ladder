@@ -7,11 +7,15 @@ public class Name {
     private final String value;
 
     public Name(final String name) {
+        validateNameSize(name);
+        this.value = name;
+    }
+
+    private static void validateNameSize(String name) {
         if (name.length() < NAME_MIN_LENGTH_INCLUSIVE
                 || name.length() > NAME_MAX_LENGTH_INCLUSIVE) {
             throw new IllegalArgumentException();
         }
-        this.value = name;
     }
 
     public String getValue() {
