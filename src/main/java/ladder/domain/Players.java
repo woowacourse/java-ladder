@@ -8,6 +8,7 @@ public class Players {
     private final List<Player> players;
 
     public Players(List<String> names) {
+        validateTooLessPlayer(names);
         validateDuplicateNames(names);
         players = new ArrayList<>();
 
@@ -20,6 +21,12 @@ public class Players {
         int size = names.size();
         if (size != distinctNameSize) {
             throw new IllegalArgumentException("이름은 중복될 수 없습니다.");
+        }
+    }
+
+    private void validateTooLessPlayer(List<String> names) {
+        if (names.size() < 2) {
+            throw new IllegalArgumentException("플레이어는 2명 이상이어야 합니다.");
         }
     }
 
