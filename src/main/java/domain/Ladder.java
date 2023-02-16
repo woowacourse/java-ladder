@@ -59,10 +59,6 @@ public class Ladder {
                 .getWidth();
     }
 
-    public int getTotalFootStepCount() {
-        return getWidth() * getLineHeight();
-    }
-
     public List<List<Boolean>> getValue() {
         return lines.stream()
                 .map(Line::getValue)
