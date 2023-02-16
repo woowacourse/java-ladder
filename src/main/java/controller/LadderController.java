@@ -18,13 +18,29 @@ public class LadderController {
     }
 
     public void run() {
+        Names names = createNames();
+        int height = ladderHeight();
+        Ladder ladder = createLadder(names, height);
+        showLadder(names, ladder);
+    }
+
+    private Names createNames() {
         List<String> inputNames = InputView.inputNames();
-        Names names = new Names(inputNames.stream()
+        return new Names(inputNames.stream()
                 .map(Name::new)
                 .collect(Collectors.toList())
         );
-        int height = InputView.inputHeight();
-        Ladder ladder = ladderFactory.createLadder(names.size() - 1, height);
+    }
+
+    private int ladderHeight() {
+        return InputView.inputHeight();
+    }
+
+    private Ladder createLadder(final Names names, final int height) {
+        return ladderFactory.createLadder(names.size() - 1, height);
+    }
+
+    private static void showLadder(final Names names, final Ladder ladder) {
         OutputView.printResult(ladder, names);
     }
 }
