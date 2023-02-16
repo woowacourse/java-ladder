@@ -40,4 +40,8 @@ public class Line {
     public int size() {
         return scaffolds.size();
     }
+
+    public List<Scaffold> getScaffolds() {
+        return scaffolds;
+    }
 }

@@ -42,4 +42,8 @@ public class Ladder {
     public int getWidth() {
         return lines.get(0).size();
     }
+
+    public List<Line> getLines() {
+        return lines;
+    }
 }
