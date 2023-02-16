@@ -8,11 +8,11 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(final List<Line> lines) {
-        validateLines(lines);
+        validate(lines);
         this.lines = new ArrayList<>(lines);
     }
 
-    private static void validateLines(final List<Line> lines) {
+    private static void validate(final List<Line> lines) {
         validateLineSizeEmpty(lines);
         validateLinesSameSize(lines);
     }
@@ -24,13 +24,13 @@ public class Ladder {
     }
 
     private static void validateLinesSameSize(final List<Line> lines) {
-        for (int i = 0; i < lines.size() - 1; i++) {
+        for (int i = 1; i < lines.size(); i++) {
             validateLineSameSize(lines, i);
         }
     }
 
     private static void validateLineSameSize(final List<Line> lines, final int i) {
-        if (lines.get(i).size() != lines.get(i + 1).size()) {
+        if (lines.get(i).size() != lines.get(i - 1).size()) {
             throw new IllegalArgumentException();
         }
     }
