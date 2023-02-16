@@ -19,7 +19,7 @@ public class Line {
             return ConnectionStatus.convertConnectionStatus(booleanGenerator.generate());
         }
         if (points.get(position - 1) == ConnectionStatus.CONNECTED) {
-            return ConnectionStatus.UNCONNECTED;
+            return ConnectionStatus.DISCONNECTED;
         }
         return ConnectionStatus.convertConnectionStatus(booleanGenerator.generate());
     }

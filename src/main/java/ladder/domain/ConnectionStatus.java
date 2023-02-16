@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public enum ConnectionStatus {
 
-    CONNECTED(Boolean.TRUE), UNCONNECTED(Boolean.FALSE);
+    CONNECTED(Boolean.TRUE), DISCONNECTED(Boolean.FALSE);
 
     private final Boolean connectionStatus;
 
@@ -17,6 +17,6 @@ public enum ConnectionStatus {
         if (ConnectionStatus.CONNECTED.connectionStatus == isConnected) {
             return CONNECTED;
         }
-        return UNCONNECTED;
+        return DISCONNECTED;
     }
 }
