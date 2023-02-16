@@ -23,9 +23,15 @@ public class Ladder {
         }
     }
 
-    private static void validateLinesSameSize(final List<Line> lines) {
-        for (int i = 1; i < lines.size(); i++) {
-            validateLineSameSize(lines, i);
+    private void validateLinesSameSize(final List<Line> lines) {
+        Deque<Line> lineDeque = new ArrayDeque<>(lines);
+        lines.forEach(it -> validateLineSameSize(lineDeque));
+    }
+
+    private void validateLineSameSize(final Deque<Line> lineDeque) {
+        Line firstLine = lineDeque.removeFirst();
+        if (firstLine != lineDeque.peekFirst()) {
+            throw new IllegalArgumentException();
         }
     }
 
