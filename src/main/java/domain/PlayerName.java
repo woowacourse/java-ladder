@@ -22,6 +22,11 @@ public class PlayerName {
         return (name.length() < MINIMUM_LENGTH_OF_NAME) || (name.length() > MAXIMUM_LENGTH_OF_NAME);
     }
 
+    public int getLengthOfName() {
+        return this.name.length();
+    }
+
+
     public String getName() {
         return this.name;
     }
