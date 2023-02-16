@@ -14,9 +14,13 @@ public class Users {
     }
 
     public String getFirstUserName() {
+        validateFirstUser();
+        return users.get(0).getName();
+    }
+
+    private void validateFirstUser() {
         if (users.isEmpty()) {
             throw new NullPointerException("유저가 존재하지 않습니다.");
         }
-        return users.get(0).getName();
     }
 }
