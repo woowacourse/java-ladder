@@ -12,7 +12,7 @@ public class LadderTest {
 
     @Test
     @DisplayName("parseLadderToString은 사다리의 정보를 문자열로 변환한다.")
-    void parseLadderToStringTest() {
+    void should_convertLadderStatusToString_when_parseLadderToString() {
         LadderRowGenerator ladderRowGenerator = new TestLadderRowGenerator();
         Ladder ladder = new Ladder(ladderRowGenerator);
 
