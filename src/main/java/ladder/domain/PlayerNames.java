@@ -8,6 +8,9 @@ public class PlayerNames {
     private static final String LENGTH_EXCEPTION_MESSAGE = "[ERROR] 참여자의 이름은 1자 이상 5자 이하여야 합니다.";
     private static final String BLANK_EXCEPTION_MESSAGE = "[ERROR] 참여자의 이름은 빈 값일 수 없습니다.";
 
+    private static final int MIN_NAME_LENGTH = 1;
+    private static final int MAX_NAME_LENGTH = 5;
+
     private final List<String> names;
 
     public PlayerNames(final List<String> names) {
@@ -19,7 +22,6 @@ public class PlayerNames {
         validateBlank(names);
         validateLength(names);
     }
-
 
     private void validateBlank(final List<String> names) {
         if (isBlank(names)) {
@@ -42,8 +44,12 @@ public class PlayerNames {
 
     private boolean isWrongLength(final List<String> names) {
         long count = names.stream()
-                .filter(name -> name.length() < 1 || name.length() > 5)
+                .filter(name -> name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH)
                 .count();
         return count != 0;
+    }
+
+    public List<String> getNames() {
+        return List.copyOf(names);
     }
 }
