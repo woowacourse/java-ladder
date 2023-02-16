@@ -7,8 +7,8 @@ import java.util.List;
 public class Names {
     private final List<Name> Names = new ArrayList<>();
 
-    public Names(List<String> playerNames) {
-        for (String name : playerNames) {
+    public Names(List<String> names) {
+        for (String name : names) {
             Names.add(new Name(name));
         }
     }
