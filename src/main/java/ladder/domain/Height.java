@@ -13,14 +13,14 @@ public class Height {
         this.height = height;
     }
 
+    public int getHeight() {
+        return height;
+    }
+
     private void validate(int height) {
         if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_HEIGHT_RANGE.getMessage());
         }
-    }
-
-    public int getHeight() {
-        return height;
     }
 
 }
