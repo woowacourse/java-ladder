@@ -4,6 +4,8 @@ import laddergame.constant.ErrorMessage;
 
 public class Player {
 
+    private static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
 
     public Player(String name) {
@@ -12,7 +14,7 @@ public class Player {
     }
 
     private void validatePlayerName(String name) {
-        if (name.isBlank() || name.length() > 5) {
+        if (name.isBlank() || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.NOT_VALID_PLAYER_NAME.getMessage());
         }
     }

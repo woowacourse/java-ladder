@@ -9,23 +9,25 @@ import java.util.stream.Collectors;
 
 public class Players {
 
+    private static final int MIN_PLAYER_COUNT = 2;
+    
     private final List<Player> players;
 
     public Players(List<String> playerNames) {
-        List<Player> tempPlayers = playerNames.stream()
+        List<Player> players = playerNames.stream()
                 .map(name -> new Player(name))
                 .collect(Collectors.toUnmodifiableList());
-        validatePlayerNames(tempPlayers);
-        this.players = List.copyOf(tempPlayers);
+        validatePlayerNames(players);
+        this.players = List.copyOf(players);
     }
 
-    private void validatePlayerNames(List<Player> tempPlayers) {
-        Set<Player> nameSet = new HashSet<>(tempPlayers);
-        if (nameSet.size() != tempPlayers.size()) {
+    private void validatePlayerNames(List<Player> players) {
+        Set<Player> playerSet = new HashSet<>(players);
+        if (playerSet.size() != players.size()) {
             throw new IllegalArgumentException(ErrorMessage.PLAYER_NAME_DUPLICATED.getMessage());
         }
 
-        if (tempPlayers.size() < 2) {
+        if (players.size() < MIN_PLAYER_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.NOT_VALID_PLAYER_COUNT.getMessage());
         }
     }
