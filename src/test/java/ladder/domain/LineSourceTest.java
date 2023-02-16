@@ -1,13 +1,11 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LineSourceTest {
 
@@ -18,9 +16,9 @@ class LineSourceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0,-1,2,3,4,5,6})
+    @ValueSource(ints = {0, -1, 2, 3, 4, 5, 6})
     @DisplayName("1외의 값을 입력하면 MakeBlank를 생성한다.")
-    void MakeBlankTest(int value){
+    void MakeBlankTest(int value) {
         assertThat(LineSource.of(value)).isEqualTo(LineSource.MakeBlank);
     }
 

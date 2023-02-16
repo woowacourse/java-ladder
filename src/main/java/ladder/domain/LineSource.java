@@ -12,7 +12,7 @@ public enum LineSource {
         this.odd = odd;
     }
 
-    public static LineSource of(int number){
+    public static LineSource of(int number) {
         return Arrays.stream(LineSource.values())
                 .filter(lineSource -> lineSource.odd == number)
                 .findAny()

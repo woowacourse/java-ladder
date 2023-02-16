@@ -37,7 +37,7 @@ public class OutputView {
         for (Character name : user.getName().toCharArray()) {
             userNameSpan += userNameSpanSize(name);
         }
-        return (int)(userNameSpan);
+        return (int) (userNameSpan);
     }
 
     private static double userNameSpanSize(Character name) {
