@@ -9,6 +9,7 @@ import ladder.util.StringSplitter;
 public class Names {
 
     private static final Pattern NAMES_FORMAT = Pattern.compile("[^,]+(,[^,]+)+");
+
     private final List<Name> names;
 
     public Names(String names) {

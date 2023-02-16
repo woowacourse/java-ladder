@@ -11,7 +11,7 @@ class NameTest {
     @Test
     void 글자5초과는_에러() {
         String error = assertThrows(IllegalArgumentException.class, () -> new Name("123456")).getMessage();
-        assertThat(error).isEqualTo("글자수가 6글자를 초과했습니다");
+        assertThat(error).isEqualTo("글자수가 5글자를 초과했습니다");
     }
 
     @Test
