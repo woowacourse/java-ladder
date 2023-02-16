@@ -16,7 +16,9 @@ import view.OutputView;
 public class LadderEngine {
 
     public void start() {
-        List<Person> people = createPeopleWith(InputView.inputName());
+        List<Person> people = IllegalArgumentExceptionHandler.handleExceptionByRepeating(() ->
+                createPeopleWith(InputView.inputName())
+        );
         Ladder ladder = IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
             int height = InputView.inputMaxLadderHeight();
             List<Line> lines = makeLines(people, height);
