@@ -23,7 +23,7 @@ public class LineMaker {
 
     private static Bar createBar(boolean beforeValue, RandomGenerator randomGenerator) {
         if(beforeValue) {
-            return Bar.UNMOBABLE_BAR;
+            return Bar.UNMOVABLE_BAR;
         }
         return Bar.getBar(randomGenerator.generateBoolean());
     }

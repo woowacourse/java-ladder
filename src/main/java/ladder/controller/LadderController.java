@@ -42,9 +42,9 @@ public class LadderController {
 
     private Players createPlayers() {
         try {
-            List<String> inputNames = inputView.inputPlayerNames(); //문자인지
-            List<Player> inputPlayers = createPlayersByName(inputNames); //이름의 글자수 확인
-            return new Players(inputPlayers); //중복이름,이름 개수 확인
+            List<String> inputNames = inputView.inputPlayerNames();
+            List<Player> inputPlayers = createPlayersByName(inputNames);
+            return new Players(inputPlayers);
 
         } catch (IllegalArgumentException e) {
             resultView.printError(e.getMessage());

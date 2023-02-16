@@ -3,7 +3,7 @@ package ladder.domain;
 public enum Bar {
 
     MOVABLE_BAR(true),
-    UNMOBABLE_BAR(false);
+    UNMOVABLE_BAR(false);
 
     private final boolean value;
 
@@ -16,7 +16,7 @@ public enum Bar {
             return MOVABLE_BAR;
         }
 
-        return UNMOBABLE_BAR;
+        return UNMOVABLE_BAR;
 
     }
 
