@@ -58,7 +58,7 @@ public class OutputView {
 
     public enum Message {
         START_LADDER("   |"),
-        CONNECT_LADDER("-----|"),
+        CONNECT_LADDER("-".repeat(MAXIMUM_PLAYER_NAME_SPACE)+"|"),
         NO_CONNECT_LADDER("     |");
 
         private final String message;
