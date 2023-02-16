@@ -42,4 +42,16 @@ class PlayersTest {
         //then
         assertThat(players.getNameValues()).containsExactly("a", "ab", "abc");
     }
+
+    @Test
+    @DisplayName("플레이어는 2명 이상이여야 한다")
+    void shouldMinimum2PlayersWhenCreate() {
+        //given
+        List<String> names = new ArrayList<>(List.of("a"));
+        //when
+        //then
+        assertThatThrownBy(() -> new Players(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("플레이어는 최소 2명 이상이여야 합니다");
+    }
 }
