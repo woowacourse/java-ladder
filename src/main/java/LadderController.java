@@ -1,23 +1,25 @@
-import java.util.List;
-
 public class LadderController {
 
     public void run() {
-        // input
-        List<Player> players = makePlayers();
-        Ladder ladder = makeLadder();
+        Players players = makePlayers();
+        Ladder ladder = makeLadder(players);
         printLadder(players, ladder);
     }
 
-    private List<Player> makePlayers() {
-        String players =  InputView.receivePlayer();
+    private Players makePlayers() {
+        String playerNames =  InputView.receivePlayer();
+        return new Players(playerNames);
     }
 
-    private Ladder makeLadder() {
+    private Ladder makeLadder(Players players) {
         int height = InputView.receiveHeight();
+        return new Ladder(players.getNumberOfPlayers(), new Height(height));
     }
 
-    private void printLadder(List<Player> players, Ladder ladder) {
+    private void printLadder(Players players, Ladder ladder) {
+        OutputView.printResultMessage();
+        OutputView.printPlayers(players);
+        OutputView.printLadder(ladder);
     }
 
 }

@@ -34,4 +34,20 @@ public class Players {
                 .map(Player::new)
                 .collect(Collectors.toList());
     }
+
+    public int getNumberOfPlayers() {
+        return this.players.size();
+    }
+
+    public String getPlayersNames() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Player player : players) {
+            sb.append(player.getName());
+            String blank = " ".repeat(7 - player.getName().length());
+            sb.append(blank);
+        }
+
+        return sb.toString();
+    }
 }
