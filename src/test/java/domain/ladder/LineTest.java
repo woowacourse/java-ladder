@@ -6,8 +6,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import utils.ErrorMessage;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,13 +18,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
 
-    BooleanGenerator booleanGenerator;
+    MockBooleanGenerator booleanGenerator;
 
     @ParameterizedTest
     @ValueSource(ints = {2, 10, 30, 50})
     @DisplayName("Line의 points 크기는 참가자 수 - 1 이다")
     void validatePointSize_Success(int personCount) {
-        booleanGenerator = new MockBooleanGenerator(List.of(true, true, true, false));
+        booleanGenerator = new MockBooleanGenerator(createRandomFlag(personCount));
         Line line = new Line(personCount, booleanGenerator);
         assertThat(line.getPoints().size()).isEqualTo(personCount - 1);
     }
@@ -30,9 +33,10 @@ public class LineTest {
     @ValueSource(ints = {-1, 0, 1, 51})
     @DisplayName("참가수가 1미안 50초과이면 Line이 생성되지 않고 예외가 발생한다")
     void createLine_Fail(int personCount) {
-        booleanGenerator = new MockBooleanGenerator(List.of(true, true, true, false));
+        booleanGenerator = new MockBooleanGenerator(createRandomFlag(personCount));
         assertThatThrownBy(() -> new Line(personCount, booleanGenerator))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.PLAYER_SIZE_ERROR.getMessage());
     }
 
     @ParameterizedTest
@@ -54,6 +58,12 @@ public class LineTest {
                 Arguments.arguments(5, List.of(false, false, false, false), List.of(false, false, false, false)),
                 Arguments.arguments(6, List.of(true, true, true, true, true), List.of(true, false, true, false, true))
         );
+    }
+
+    private List<Boolean> createRandomFlag(int size) {
+        return IntStream.range(0, size)
+                .mapToObj(i -> true)
+                .collect(Collectors.toList());
     }
 
     class MockBooleanGenerator implements BooleanGenerator {
