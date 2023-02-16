@@ -16,29 +16,46 @@ public class OutputView {
     }
 
     public void printGameResult(Ladder ladder, Users users) {
-        int firstUserNameLength = 0;
-
         System.out.println("실행결과");
         System.out.println();
 
-        for (int i = 0; i < users.getUsers().size(); i++) {
-            User user = users.getUsers().get(i);
+        printUsers(users);
+
+        printLadder(ladder, users.getFirstUserName().length());
+    }
+
+    private void printUsers(Users users) {
+        StringBuilder result = new StringBuilder();
+        result.append(" ").append(users.getFirstUserName());
+        for (int index = 1; index < users.getUsers().size(); index++) {
+            User user = users.getUsers().get(index);
             String name = user.getName();
-            if (i == 0) {
-                firstUserNameLength = user.getName().length();
-                System.out.print(name + " ");
-                continue;
-            }
-            System.out.print(" ".repeat(6 - name.length()) + name);
+            result.append(" ".repeat(6 - name.length())).append(name);
         }
-        System.out.println();
+        System.out.println(result);
+    }
+
+    private void printLadder(Ladder ladder, int width) {
+        StringBuilder result = new StringBuilder();
         for (Line line : ladder.getLines()) {
-            System.out.print(" ".repeat(firstUserNameLength) + "|");
-            for (Boolean point : line.getPoints()) {
-                System.out.print(point ? "-----" : "     ");
-                System.out.print("|");
-            }
-            System.out.println();
+            result.append(" ".repeat(width)).append("|");
+            appendLine(result, line);
+            result.append("\n");
         }
+        System.out.println(result);
+    }
+
+    private void appendLine(StringBuilder result, Line line) {
+        for (Boolean point : line.getPoints()) {
+            result.append(getConnectionStatus(point));
+            result.append("|");
+        }
+    }
+
+    private String getConnectionStatus(Boolean point) {
+        if (point) {
+            return "-----";
+        }
+        return "     ";
     }
 }
