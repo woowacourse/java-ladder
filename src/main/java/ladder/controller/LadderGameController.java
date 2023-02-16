@@ -3,7 +3,6 @@ package ladder.controller;
 import ladder.domain.builder.LadderMaker;
 import ladder.domain.builder.RandomBlockGenerator;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.exception.CustomException;
 import ladder.view.InputView;
@@ -44,7 +43,7 @@ public class LadderGameController {
 
     private List<String> mapPlayersToPlayersName(Players players) {
         return players.getPlayers().stream()
-                .map(Player::getName)
+                .map(player -> player.getPlayerName().getName())
                 .collect(Collectors.toUnmodifiableList());
     }
 
