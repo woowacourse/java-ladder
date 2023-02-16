@@ -5,11 +5,17 @@ import domain.Ladder;
 import domain.Name;
 import domain.Names;
 import dto.GameDto;
-import util.RandomBooleanGenerator;
+import util.BooleanGenerator;
 import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
+
+    private final BooleanGenerator booleanGenerator;
+
+    public LadderGameController(BooleanGenerator booleanGenerator) {
+        this.booleanGenerator = booleanGenerator;
+    }
 
     public void run() {
         Names names = getNames();
@@ -21,7 +27,7 @@ public class LadderGameController {
     }
 
     private Ladder buildLadder(final Names names, final Height height) {
-        Ladder ladder = new Ladder(new RandomBooleanGenerator());
+        Ladder ladder = new Ladder(booleanGenerator);
         ladder.build(height, names.count());
         return ladder;
     }
@@ -29,7 +35,6 @@ public class LadderGameController {
     private static void printResult(final Names names, final Ladder ladder) {
         OutputView.printResult(new GameDto(names, ladder));
     }
-
 
     private Names getNames() {
         try {
