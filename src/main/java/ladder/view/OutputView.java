@@ -5,11 +5,11 @@ import ladder.domain.Bar;
 import ladder.domain.Line;
 
 public class OutputView {
-    public static final String WIDTH_PREFIX = "    ";
-    public static final String WIDTH_SUFFIX = "|";
-    public static final String MOVABLE_BAR = "|-----";
-    public static final String IMMOVABLE_BAR = "|     ";
-    public static final String BLANK = " ";
+    private static final String WIDTH_PREFIX = "    ";
+    private static final String WIDTH_SUFFIX = "|";
+    private static final String MOVABLE_BAR = "|-----";
+    private static final String IMMOVABLE_BAR = "|     ";
+    private static final String BLANK = " ";
 
     public static void printPlayers(List<String> playerNames) {
         System.out.print(playerNames.get(0));
