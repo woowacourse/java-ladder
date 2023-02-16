@@ -1,6 +1,7 @@
 package domain.ladder;
 
 import domain.generator.BooleanGenerator;
+import utils.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class Line {
     private void validate(int personCount) {
         int pointSize = personCount - 1;
         if (pointSize < POINTS_MIN_SIZE || pointSize > POINTS_MAX_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.PLAYER_SIZE_ERROR.getMessage());
         }
     }
 

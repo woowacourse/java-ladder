@@ -1,5 +1,7 @@
 package domain.player;
 
+import utils.ErrorMessage;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -22,13 +24,13 @@ public class Players {
         Set<Player> uniqueNamePlayers = new HashSet<>(players);
 
         if (uniqueNamePlayers.size() != players.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.PLAYER_DUPLICATE_ERROR.getMessage());
         }
     }
 
     private void validateSize(List<Player> players) {
         if (players.size() < MIN_PLAYER_SIZE || players.size() > MAX_PLAYER_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.PLAYER_SIZE_ERROR.getMessage());
         }
     }
 

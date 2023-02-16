@@ -1,5 +1,6 @@
 package view;
 
+import utils.ErrorMessage;
 import utils.Parser;
 
 import java.util.List;
@@ -33,13 +34,13 @@ public class InputView {
 
     private void validateDigit(String ladderHeight) {
         if (!Pattern.matches(DIGIT_REGEX ,ladderHeight)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.DIGIT_ERROR.getMessage());
         }
     }
 
     private void validateHeightRange(int height) {
         if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.HEIGHT_ERROR.getMessage());
         }
     }
 

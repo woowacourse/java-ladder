@@ -1,5 +1,7 @@
 package domain.player;
 
+import utils.ErrorMessage;
+
 import java.util.Objects;
 
 public class Player {
@@ -18,13 +20,13 @@ public class Player {
 
     private void validateLength(String name) {
         if (name.length() < 1 || name.length() > 5) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.NAME_LENGTH_ERROR.getMessage());
         }
     }
 
     private void validateSpace(String name) {
         if (name.contains(" ")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.NAME_FORMAT_ERROR.getMessage());
         }
     }
 

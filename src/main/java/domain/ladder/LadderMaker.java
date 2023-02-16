@@ -2,6 +2,7 @@ package domain.ladder;
 
 import domain.generator.BooleanGenerator;
 import domain.generator.RandomBooleanGenerator;
+import utils.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +26,7 @@ public class LadderMaker {
 
     private void validateHeight(int height) {
         if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.HEIGHT_ERROR.getMessage());
         }
     }
 }

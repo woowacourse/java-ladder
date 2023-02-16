@@ -3,6 +3,7 @@ package domain.ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import utils.ErrorMessage;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -22,7 +23,8 @@ public class LadderMakerTest {
     @DisplayName("높이가 1미만 100초과이면 예외가 발생한다.")
     void createLine_Fail(int height) {
         assertThatThrownBy(() -> ladderMaker.make(5, height))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.HEIGHT_ERROR.getMessage());
     }
 
     @ParameterizedTest

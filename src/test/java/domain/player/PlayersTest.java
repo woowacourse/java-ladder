@@ -2,6 +2,7 @@ package domain.player;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import utils.ErrorMessage;
 
 import java.util.List;
 
@@ -22,7 +23,8 @@ public class PlayersTest {
     void createPlayers_Fail() {
         List<Player> players = List.of(new Player("gray"), new Player("encho"), new Player("gray"));
         assertThatThrownBy(() -> new Players(players))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.PLAYER_DUPLICATE_ERROR.getMessage());
     }
 
     @Test
@@ -37,6 +39,7 @@ public class PlayersTest {
     void createNumberOfPlayers_Fail() {
         List<Player> players = List.of(new Player("gray"));
         assertThatThrownBy(() -> new Players(players))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.PLAYER_SIZE_ERROR.getMessage());
     }
 }
