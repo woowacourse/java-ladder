@@ -1,6 +1,5 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
@@ -19,8 +18,8 @@ public class Ladder {
         this.height = height;
     }
 
-    public List<Line> createLines() {
-        LineCreator lc = new LineCreator(new RandomBooleanGenerator());
-        return lc.createLines();
+    public List<Line> createLines(BooleanGenerator booleanGenerator) {
+        LineCreator lineCreator = new LineCreator(booleanGenerator);
+        return lineCreator.createLines(participants.getSize(), height.getValue());
     }
 }
