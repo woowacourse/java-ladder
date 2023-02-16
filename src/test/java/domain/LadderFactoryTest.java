@@ -29,7 +29,7 @@ public class LadderFactoryTest {
         LadderFactory factory = new LadderFactory(() -> Scaffold.NONE);
 
         // when & then
-        assertDoesNotThrow(() -> factory.createLadder(width, height));
+        assertDoesNotThrow(() -> factory.createLadder(width, new Height(height)));
     }
 
     @Test
@@ -40,7 +40,7 @@ public class LadderFactoryTest {
         LadderFactory factory = new LadderFactory(() -> Scaffold.NONE);
 
         // when
-        Ladder ladder = factory.createLadder(width, height);
+        Ladder ladder = factory.createLadder(width, new Height(height));
 
         // then
         assertThat(ladder.getHeight()).isEqualTo(height);
@@ -54,7 +54,7 @@ public class LadderFactoryTest {
         LadderFactory factory = new LadderFactory(() -> Scaffold.NONE);
 
         // when
-        Ladder ladder = factory.createLadder(width, height);
+        Ladder ladder = factory.createLadder(width, new Height(height));
 
         // then
         assertThat(ladder.getWidth()).isEqualTo(width);
@@ -70,7 +70,7 @@ public class LadderFactoryTest {
         LadderFactory factory = new LadderFactory(() -> scaffolds.remove(0));
 
         // when
-        Ladder ladder = factory.createLadder(width, height);
+        Ladder ladder = factory.createLadder(width, new Height(height));
 
         // then
         for (int i = 0; i < ladder.getHeight(); i++) {
@@ -110,7 +110,7 @@ public class LadderFactoryTest {
         LadderFactory factory = new LadderFactory(() -> scaffolds.remove(0));
 
         // when
-        Ladder ladder = factory.createLadder(width, height);
+        Ladder ladder = factory.createLadder(width, new Height(height));
 
         // then
         for (int i = 0; i < ladder.getHeight(); i++) {

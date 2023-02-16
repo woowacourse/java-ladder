@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Height;
 import domain.Ladder;
 import domain.LadderFactory;
 import domain.Name;
@@ -17,9 +18,11 @@ public class LadderController {
 
     public void run() {
         List<String> inputNames = InputView.inputNames();
-        List<Name> names = inputNames.stream().map(Name::new).collect(Collectors.toList());
-        int height = InputView.inputHeight();
-        Ladder ladder = ladderFactory.createLadder(names.size() - 1, height);
+        List<Name> names = inputNames.stream()
+                .map(Name::new)
+                .collect(Collectors.toList());
+        int parsedHeight = InputView.inputHeight();
+        Ladder ladder = ladderFactory.createLadder(names.size() - 1, new Height(parsedHeight));
         OutputView.printResult(ladder, names);
     }
 }

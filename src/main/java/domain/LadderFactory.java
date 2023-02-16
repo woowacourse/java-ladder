@@ -12,14 +12,14 @@ public class LadderFactory {
         this.scaffoldGenerator = scaffoldGenerator;
     }
 
-    public Ladder createLadder(final int width, final int height) {
+    public Ladder createLadder(final int width, final Height height) {
         List<Line> lines = generateLines(width, height);
         return new Ladder(lines);
     }
 
-    private List<Line> generateLines(int width, int height) {
+    private List<Line> generateLines(int width, Height height) {
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < height.getValue(); i++) {
             List<Scaffold> scaffolds = insertScaffolds(width);
             lines.add(new Line(scaffolds));
         }
