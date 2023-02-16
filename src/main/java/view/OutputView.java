@@ -1,9 +1,12 @@
 package view;
 
+import model.Ladder;
+import model.Line;
 import model.Name;
 import model.Player;
 import model.Players;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -25,6 +28,33 @@ public class OutputView {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(makeLeftFormattingFirstName(players));
         stringBuilder.append(makeRightFormattingNamesFromSecond(players));
+        System.out.println(stringBuilder);
+    }
+
+    public void printLadder(Ladder ladder) {
+        for(int index=0; index<ladder.getHeight(); index++){
+            printLadderLine(ladder.getLine(index));
+        }
+    }
+
+    private void printLadderLine(Line line) {
+        List<Boolean> points = line.getPoints();
+        String firstEmptyStep = String.format("%4s","    ");
+        String emptyStep = String.format("%5s","     ");
+        String existStep = String.format("%5s","-----");
+        String stepDelimiter = "|";
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(firstEmptyStep + stepDelimiter);
+
+        for(Boolean point : points) {
+            String nextStep = emptyStep + stepDelimiter;
+            if(point) {
+                nextStep = existStep + stepDelimiter;
+            }
+            stringBuilder.append(nextStep);
+        }
+
         System.out.println(stringBuilder);
     }
 
