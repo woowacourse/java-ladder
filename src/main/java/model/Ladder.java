@@ -15,7 +15,7 @@ public class Ladder {
         }
     }
 
-    public boolean getLadderLine(int row, int column){
-            return ladderLine.get(row).getLine(column);
+    public Line getLadder(int row){
+            return ladderLine.get(row);
     }
 }

@@ -43,7 +43,7 @@ public class OutputView {
 
     private void printConnectLadder(int playerSize, Ladder ladder,int row){
         for (int column = 0; column < playerSize - 1; column++) {
-            if (ladder.getLadderLine(row, column)) {
+            if (ladder.getLadder(row).getLine(column)) {
                 stringBuilder.append(Message.CONNECT_LADDER.getMessage());
             }
             else
