@@ -11,7 +11,6 @@ public class StringParser {
 
     public static final String SPLIT_DELIMITER = ",";
     public static final int SPLIT_LIMIT = -1;
-    public static final int ZERO = 0;
 
     public static List<String> splitByDelimiter(String input) {
         return Arrays.stream(input.split(SPLIT_DELIMITER, SPLIT_LIMIT))
@@ -28,9 +27,6 @@ public class StringParser {
     }
 
     public static String insertBlank(String input) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(" ".repeat(Math.max(ZERO, MAX_NAME_LENGTH.getValue()) - input.length()));
-        stringBuilder.append(input);
-        return stringBuilder.toString();
+        return String.format("%" + MAX_NAME_LENGTH.getValue() + "s", input);
     }
 }
