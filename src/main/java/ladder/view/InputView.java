@@ -12,4 +12,8 @@ public class InputView {
         String names = scanner.reset().nextLine();
         return Arrays.stream(names.split(",")).collect(Collectors.toList());
     }
+
+    public int readLadderHeight() {
+        return scanner.reset().nextInt();
+    }
 }
