@@ -9,9 +9,9 @@ public class LadderGame {
     private final Players players;
     private final Ladder ladder;
 
-    public LadderGame(final BooleanGenerator booleanGenerator, final List<String> names, final int height) {
-        this.players = new Players(names);
-        this.ladder = new Ladder(booleanGenerator, height, names.size() - SUBTRACT_VALUE_OF_LADDER_WIDTH);
+    public LadderGame(final BooleanGenerator booleanGenerator, final Players players, final int height) {
+        this.players = players;
+        this.ladder = new Ladder(booleanGenerator, height, players.count() - SUBTRACT_VALUE_OF_LADDER_WIDTH);
     }
 
     public List<String> getPlayers() {

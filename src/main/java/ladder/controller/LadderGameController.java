@@ -4,6 +4,7 @@ import java.util.List;
 import ladder.domain.BooleanGenerator;
 import ladder.domain.LadderGame;
 import ladder.domain.Line;
+import ladder.domain.Players;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -32,9 +33,28 @@ public class LadderGameController {
     }
 
     private LadderGame initialize() {
-        final List<String> names = inputView.readPlayerNames();
-        final int height = inputView.readLadderHeight();
+        final Players players = readPlayers();
+        final int height = readHeight();
+        
+        return new LadderGame(booleanGenerator, players, height);
+    }
 
-        return new LadderGame(booleanGenerator, names, height);
+    private Players readPlayers() {
+        try {
+            final List<String> names = inputView.readPlayerNames();
+            return new Players(names);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return readPlayers();
+        }
+    }
+
+    private int readHeight() {
+        try {
+            return inputView.readLadderHeight();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return readHeight();
+        }
     }
 }

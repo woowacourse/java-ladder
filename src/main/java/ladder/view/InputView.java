@@ -11,6 +11,8 @@ public class InputView {
     private static final int SPLIT_LIMIT = -1;
     private static final String READ_LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String INVALID_NUMBER_MESSAGE = "정수만 입력 가능합니다.";
+    private static final int HEIGHT_LOWER_BOUND = 1;
+    private static final String INVALID_HEIGHT_MESSAGE = "높이는 최소 1이상이어야 합니다.";
 
     private final Scanner scanner;
 
@@ -31,10 +33,23 @@ public class InputView {
         System.out.println(READ_LADDER_HEIGHT_MESSAGE);
         final String input = scanner.nextLine();
 
+        final int height = parseInt(input);
+        validateHeight(height);
+
+        return height;
+    }
+
+    private int parseInt(final String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_NUMBER_MESSAGE);
+        }
+    }
+
+    private void validateHeight(final int height) {
+        if (height < HEIGHT_LOWER_BOUND) {
+            throw new IllegalArgumentException(INVALID_HEIGHT_MESSAGE);
         }
     }
 }
