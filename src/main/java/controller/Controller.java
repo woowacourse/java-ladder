@@ -6,7 +6,6 @@ import view.OutputView;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Controller {
     private final InputView inputView;
@@ -19,38 +18,36 @@ public class Controller {
         this.ladderGenerator = ladderGenerator;
     }
 
-    public void run(){
+    public void run() {
         Users usersName = settingUsers();
-        int height = settingLadders();
-        List<Ladder> ladderResult = IntStream.rangeClosed(0, height-1)
-                .mapToObj(i -> new Ladder(getLadder(usersName)))
-                .collect(Collectors.toList());
-
-        Ladders ladders = new Ladders(ladderResult);
+        Ladders ladders = settingLadders();
+        ladders.make(usersName.getCount() - 1, ladderGenerator);
         outputView.printUsers(usersName);
-        ladders.getLadders().forEach(outputView::printLadder);
+        for (Ladder ladder : ladders.getLadders()) { //스트림
+            outputView.printLadder(ladder);
+        }
     }
 
-    private List<Bridge> getLadder(Users usersName) {
-        return ladderGenerator.generateLadder(usersName.getCount() - 1);
-    }
-
-    public Users settingUsers() {
+    private Users settingUsers() {
         try {
             List<String> userNames = inputView.inputUsername();
-            List<User> users = userNames.stream()
-                    .map(User::new)
-                    .collect(Collectors.toList());
-            return new Users(users);
+            return new Users(makeUsers(userNames));
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
             return settingUsers();
         }
     }
 
-    public int settingLadders() {
+    private List<User> makeUsers(List<String> userNames) {
+        return userNames.stream()
+                .map(User::new)
+                .collect(Collectors.toList());
+    }
+
+    private Ladders settingLadders() {
         try {
-            return inputView.inputLadderHeight();
+            int height = inputView.inputLadderHeight();
+            return new Ladders(new Height(height));
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
             return settingLadders();
