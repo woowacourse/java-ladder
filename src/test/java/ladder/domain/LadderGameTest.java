@@ -3,6 +3,7 @@ package ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import ladder.util.TestBooleanGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -16,9 +17,10 @@ public class LadderGameTest {
 
     @BeforeEach
     void init() {
+        final BooleanGenerator booleanGenerator = new TestBooleanGenerator(List.of(true, true));
         final List<String> names = List.of("name1", "name2");
         final int height = 2;
-        ladderGame = new LadderGame(() -> true, names, height);
+        ladderGame = new LadderGame(booleanGenerator, names, height);
     }
 
     @Test
@@ -28,9 +30,11 @@ public class LadderGameTest {
 
     @Test
     void 생성된_사다리를_반환한다() {
-        assertThat(ladderGame.getLadder()).containsExactly(
-                new Line(List.of(LineStatus.CONNECTED)),
-                new Line(List.of(LineStatus.CONNECTED))
-        );
+        assertThat(ladderGame.getLadder())
+                .extracting(Line::getLine)
+                .containsExactly(
+                        List.of(LineStatus.CONNECTED),
+                        List.of(LineStatus.CONNECTED)
+                );
     }
 }

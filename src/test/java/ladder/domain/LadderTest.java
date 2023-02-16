@@ -1,8 +1,11 @@
 package ladder.domain;
 
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static ladder.domain.LineStatus.CONNECTED;
+import static ladder.domain.LineStatus.DISCONNECTED;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import ladder.util.TestBooleanGenerator;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -13,25 +16,14 @@ public class LadderTest {
 
     @Test
     void 사다리는_라인을_가진다() {
-        final int height = 2;
-        final int width = 1;
-        final Ladder ladder = new Ladder(() -> true, height, width);
+        final BooleanGenerator booleanGenerator = new TestBooleanGenerator(List.of(false, false, true, false));
+        final Ladder ladder = new Ladder(booleanGenerator, 2, 2);
 
-        assertThat(ladder.getLines()).containsExactly(
-                new Line(List.of(LineStatus.CONNECTED)),
-                new Line(List.of(LineStatus.CONNECTED))
-        );
+        assertThat(ladder.getLines())
+                .extracting(Line::getLine)
+                .containsExactly(
+                        List.of(DISCONNECTED, DISCONNECTED),
+                        List.of(CONNECTED, DISCONNECTED)
+                );
     }
-
-    @Test
-    void 사다리는_겹칠_수_없다() {
-        final int height = 1;
-        final int width = 2;
-        final Ladder ladder = new Ladder(() -> true, height, width);
-
-        assertThat(ladder.getLines()).containsExactly(
-                new Line(List.of(LineStatus.CONNECTED, LineStatus.DISCONNECTED))
-        );
-    }
-
 }

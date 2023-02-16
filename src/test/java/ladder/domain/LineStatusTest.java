@@ -17,13 +17,13 @@ public class LineStatusTest {
         assertThat(LineStatus.from(status)).isEqualTo(result);
     }
 
-    @ParameterizedTest(name = "연결_상태인지_확인한다. 입력값:{0} 결과:{1}")
+    @ParameterizedTest(name = "연결 상태인지 확인한다. 입력값:{0} 결과:{1}")
     @CsvSource({"CONNECTED,true", "DISCONNECTED,false"})
     void 연결_상태인지_확인한다(final LineStatus status, final boolean result) {
         assertThat(status.isConnected()).isEqualTo(result);
     }
 
-    @ParameterizedTest(name = "연결_상태가_아닌지_확인한다. 입력값:{0} 결과:{1}")
+    @ParameterizedTest(name = "연결 상태가 아닌지 확인한다. 입력값:{0} 결과:{1}")
     @CsvSource({"CONNECTED,false", "DISCONNECTED,true"})
     void 연결_상태가_아닌지_확인한다(final LineStatus status, final boolean result) {
         assertThat(status.isDisconnected()).isEqualTo(result);
