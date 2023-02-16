@@ -7,12 +7,12 @@ import java.util.Scanner;
 import ladder.error.ErrorMessage;
 
 public class InputView {
-    private static final String DELIMITER = ",";
     private static final String NUMERIC_FORMAT = "^-?[0-9]*$";
+    private static final String DELIMITER = ",";
 
-    private static final Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
 
-    public static List<String> requestNames() {
+    public List<String> requestNames() {
         printMessage(Message.ASK_USER_NAMES);
 
         List<String> names = Arrays.asList(sc.nextLine().split(DELIMITER));
@@ -21,36 +21,36 @@ public class InputView {
         return names;
     }
 
-    public static int requestLadderHeight() {
+    public int requestLadderHeight() {
         printMessage(Message.ASK_LADDER_HEIGHT);
 
         String input = sc.nextLine();
-        validateNumber(input);
+        validateIsNumeric(input);
 
         return Integer.parseInt(input);
     }
 
-    private static void validateNames(List<String> names) {
+    private void validateNames(List<String> names) {
         if (hasDuplicateName(names)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATION.getMessage());
         }
     }
 
-    private static boolean hasDuplicateName(List<String> names) {
+    private boolean hasDuplicateName(List<String> names) {
         return names.size() != names.stream().distinct().count();
     }
 
-    private static void validateNumber(String input) {
+    private void validateIsNumeric(String input) {
         if (!isNumeric(input)) {
             throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC.getMessage());
         }
     }
 
-    private static boolean isNumeric(String input) {
+    private boolean isNumeric(String input) {
         return input.matches(NUMERIC_FORMAT);
     }
 
-    private static void printMessage(Message message) {
+    private void printMessage(Message message) {
         System.out.println(message.value);
     }
 

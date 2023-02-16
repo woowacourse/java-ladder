@@ -13,12 +13,12 @@ public class ResultView {
     private static final String BLANK = " ";
     private static final String NAME_FORMAT = "%5s";
 
-    public static void printResult(Names names, Ladder ladder) {
+    public void printResult(Names names, Ladder ladder) {
         printNames(names);
         printLadder(ladder, names.lengthOfFirstName());
     }
 
-    private static void printNames(Names names) {
+    private void printNames(Names names) {
         String result = names.getNames()
             .stream()
             .map(name -> String.format(NAME_FORMAT, name) + BLANK)
@@ -26,7 +26,7 @@ public class ResultView {
         System.out.println(result.trim());
     }
 
-    private static void printLadder(Ladder ladder, int lengthOfFirstName) {
+    private void printLadder(Ladder ladder, int lengthOfFirstName) {
         for (Line line : ladder) {
             String result = BLANK.repeat(lengthOfFirstName - 1);
             result += getShapeOf(line);
@@ -35,7 +35,7 @@ public class ResultView {
         }
     }
 
-    private static String getShapeOf(Line line) {
+    private String getShapeOf(Line line) {
         return line.getLine()
             .stream()
             .map(LadderFormat::getComponent)

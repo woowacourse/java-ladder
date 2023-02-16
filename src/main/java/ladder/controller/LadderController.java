@@ -11,12 +11,16 @@ import ladder.view.InputView;
 import ladder.view.ResultView;
 
 public class LadderController {
+    private final InputView inputView;
+    private final ResultView resultView;
     private final BooleanGenerator generator;
     private final Ladder ladder;
     private Names names;
     private Height height;
 
     public LadderController(BooleanGenerator generator) {
+        this.inputView = new InputView();
+        this.resultView = new ResultView();
         this.generator = generator;
         this.ladder = new Ladder();
     }
@@ -27,7 +31,7 @@ public class LadderController {
 
         createLadder(names.size());
 
-        ResultView.printResult(names, ladder);
+        resultView.printResult(names, ladder);
     }
 
     private void createNames() {
@@ -55,11 +59,11 @@ public class LadderController {
     }
 
     private List<String> readNames() {
-        return InputView.requestNames();
+        return inputView.requestNames();
     }
 
     private int readLadderHeight() {
-        return InputView.requestLadderHeight();
+        return inputView.requestLadderHeight();
     }
 
 }
