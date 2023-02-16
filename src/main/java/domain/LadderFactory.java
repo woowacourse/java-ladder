@@ -23,16 +23,16 @@ public class LadderFactory {
     }
 
     private Line createLine(final int width) {
-        return new Line(createScaffolds(width));
+        return new Line(createNonConsistScaffolds(width));
     }
 
-    private List<Scaffold> createScaffolds(final int width) {
+    private List<Scaffold> createNonConsistScaffolds(final int width) {
         Deque<Scaffold> scaffolds = new ArrayDeque<>();
-        IntStream.range(0, width).forEach(it -> createScaffold(scaffolds));
+        IntStream.range(0, width).forEach(it -> createNonConsistScaffold(scaffolds));
         return new ArrayList<>(scaffolds);
     }
 
-    private void createScaffold(final Deque<Scaffold> scaffolds) {
+    private void createNonConsistScaffold(final Deque<Scaffold> scaffolds) {
         Scaffold scaffold = scaffoldGenerator.generate();
         if (scaffolds.isEmpty()) {
             scaffolds.add(scaffold);
