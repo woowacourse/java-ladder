@@ -1,10 +1,16 @@
 package domain;
 
 public enum Point {
+
     CONNECTION(true),
     SEPARATION(false);
 
+    private static final String FORMATTED_DASH = "-----";
+    private static final String FORMATTED_BLANK = "     ";
+    private static final String DIVIDER = "|";
+
     private boolean status;
+
     Point(boolean status) {
         this.status = status;
     }
@@ -15,8 +21,8 @@ public enum Point {
 
     public String toFormattedStatus() {
         if (status) {
-            return "-----|";
+            return FORMATTED_DASH + DIVIDER;
         }
-        return "     |";
+        return FORMATTED_BLANK + DIVIDER;
     }
 }
