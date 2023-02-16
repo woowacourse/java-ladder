@@ -25,6 +25,12 @@ public class People {
 		return people.size();
 	}
 
+	public List<String> getNames() {
+		return people.stream()
+			.map(Person::getName)
+			.collect(Collectors.toList());
+	}
+
 	private static void validate(List<String> names) {
 		validateSize(names);
 		validateDuplication(names);

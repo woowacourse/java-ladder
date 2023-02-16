@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -27,6 +28,10 @@ public class Level {
 		return (int)level.stream()
 			.filter(Stool::isStool)
 			.count();
+	}
+
+	public List<Stool> getStools() {
+		return new ArrayList<>(level);
 	}
 
 	private List<Stool> initLine(int participantSize) {
