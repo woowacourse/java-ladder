@@ -1,6 +1,8 @@
 package domain;
 
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public enum Point {
     EXIST(true),
@@ -34,4 +36,9 @@ public enum Point {
         return this.isExist;
     }
 
+    public static List<Boolean> convertPointsToValues(List<Point> points) {
+        return points.stream()
+                .map(Point::isExist)
+                .collect(Collectors.toUnmodifiableList());
+    }
 }
