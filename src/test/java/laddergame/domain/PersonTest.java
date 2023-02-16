@@ -2,6 +2,8 @@ package laddergame.domain;
 
 import org.junit.jupiter.api.Test;
 
+import static laddergame.TestDummy.PERSON_ROSIE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -30,5 +32,10 @@ class PersonTest {
 	void create() {
 		final String name = "12345";
 		assertDoesNotThrow(() -> new Person(name));
+	}
+
+	@Test
+	void getName() {
+		assertThat(PERSON_ROSIE.getName()).isEqualTo("로지");
 	}
 }
