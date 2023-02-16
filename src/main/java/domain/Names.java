@@ -8,7 +8,10 @@ import java.util.stream.Collectors;
 public class Names {
 
     public static final int MAX_SIZE = 10;
-    public static final int MIN_SIZE = 1;
+    public static final int MIN_SIZE = 2;
+    public static final String INVALID_NAMES_SIZE_ERROR_MESSAGE = "최소" + MIN_SIZE + "최대 " + MAX_SIZE + "명 이하 참가자가 필요합니다.";
+    public static final String DUPLICATED_ERROR_MESSAGE = "중복된 사람은 참여할 수 없습니다.";
+
     private final List<Name> names;
 
     public Names(final List<Name> names) {
@@ -17,40 +20,33 @@ public class Names {
     }
 
     private static void validateNames(final List<Name> names) {
+        validateNamesSize(names);
         validateDuplicated(names);
-        validateMinSize(names);
-        validateMaxSize(names);
     }
 
-    private static void validateMaxSize(final List<Name> names) {
-        if (names.size() > MAX_SIZE) {
-            throw new IllegalArgumentException("최대 10명 이하 참가자가 필요합니다.");
-        }
-    }
-
-    private static void validateMinSize(final List<Name> names) {
-        if (names.size() == MIN_SIZE) {
-            throw new IllegalArgumentException("최소 2명이상 참가자가 필요합니다.");
+    private static void validateNamesSize(final List<Name> names) {
+        if (names.size() < MIN_SIZE || names.size() > MAX_SIZE) {
+            throw new IllegalArgumentException(INVALID_NAMES_SIZE_ERROR_MESSAGE);
         }
     }
 
     private static void validateDuplicated(final List<Name> names) {
         names.forEach(target -> {
             if (hasDuplication(names, target)) {
-                throw new IllegalArgumentException("중복된 사람은 참여할 수 없습니다.");
+                throw new IllegalArgumentException(DUPLICATED_ERROR_MESSAGE);
             }
         });
     }
 
-    private static boolean hasDuplication(final List<Name> names, Name target){
+    private static boolean hasDuplication(final List<Name> names, Name target) {
         return (Collections.frequency(names, target) > 1);
     }
 
-    public int count(){
+    public int count() {
         return this.names.size();
     }
 
-    public List<String> getNames(){
+    public List<String> getNames() {
         List<String> names = this.names.stream()
                 .map(Name::getValue)
                 .collect(Collectors.toList());

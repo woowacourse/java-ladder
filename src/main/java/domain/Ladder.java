@@ -10,6 +10,8 @@ public class Ladder {
 
     public static final int MAX_HEIGHT = 10;
     public static final int MIN_HEIGHT = 2;
+    public static final String INVALID_LADDER_HEIGHT_ERROR_MESSAGE = "사다리 길이는" + MIN_HEIGHT + "에서 " + MAX_HEIGHT + "사이여야 합니다.";
+
     private final List<Line> lines = new ArrayList<>();
     private final BooleanGenerator booleanGenerator;
 
@@ -19,7 +21,7 @@ public class Ladder {
 
     private static void validateLadderHeight(final int height) {
         if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
-            throw new IllegalArgumentException("사다리 길이는 2에서 10사이여야 합니다.");
+            throw new IllegalArgumentException(INVALID_LADDER_HEIGHT_ERROR_MESSAGE);
         }
     }
 

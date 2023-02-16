@@ -1,6 +1,7 @@
 package view;
 
 import dto.GameDto;
+import view.constant.Sign;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,12 +9,17 @@ import java.util.stream.Collectors;
 import static view.constant.LadderShapes.*;
 
 public class OutputView {
+
+    public static final String REQUEST_NAME_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 %s(%s)로 구분하세요)%n";
+    public static final String REQUEST_LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
+    public static final String RESULT_MESSAGE = "실행결과";
+
     public static void printRequestNames() {
-        System.out.printf("참여할 사람 이름을 입력하세요. (이름은 %s(%s)로 구분하세요)%n", "쉼표", ",");
+        System.out.printf(REQUEST_NAME_MESSAGE, Sign.COMMA.getKorean(), Sign.COMMA.getShape());
     }
 
     public static void printRequestLadderHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        System.out.println(REQUEST_LADDER_HEIGHT_MESSAGE);
     }
 
     public static void printResult(final GameDto gameDto) {
@@ -23,7 +29,7 @@ public class OutputView {
     }
 
     private static void printResultMessage() {
-        System.out.println("실행결과");
+        System.out.println(RESULT_MESSAGE);
     }
 
     private static void printParticipantNames(final int maxNameLength, final List<String> names) {
