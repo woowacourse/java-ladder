@@ -13,10 +13,12 @@ public class InputView {
 
     public List<String> readNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        String input = readLine();
+        return getValidResult(readLine());
+    }
+
+    private List<String> getValidResult(String input) {
         validateDelimiter(input);
-        List<String> result = Arrays.stream(input.split(DELIMITER))
-            .collect(Collectors.toList());
+        List<String> result = toNames(input);
         validatePersonCount(result);
         validateDuplicate(result);
         return result;
@@ -27,14 +29,20 @@ public class InputView {
     }
 
     private void validateDelimiter(String input) {
-        if (input.endsWith(",")) {
+        if (input.endsWith(DELIMITER)) {
             throw new IllegalArgumentException(",로 끝날 수 없습니다");
         }
     }
 
+    private List<String> toNames(String names) {
+        return Arrays.stream(names.split(DELIMITER))
+            .collect(Collectors.toList());
+    }
+
     private void validatePersonCount(List<String> result) {
         if (result.size() < MIN_PERSON_COUNT) {
-            throw new IllegalArgumentException("사람은 두 명 이상이어야 합니다.");
+            throw new IllegalArgumentException(
+                String.format("사람은 %d명 이상이어야 합니다.", MIN_PERSON_COUNT));
         }
     }
 
@@ -46,8 +54,14 @@ public class InputView {
 
     public int readLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
+        String input = readLine();
+        validateNumberFormat(input);
+        return Integer.parseInt(input);
+    }
+
+    private void validateNumberFormat(String input) {
         try {
-            return Integer.parseInt(readLine());
+            Integer.parseInt(input);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException("숫자를 입력해야 합니다.", exception);
         }
