@@ -14,11 +14,7 @@ public class Ladder {
     private final List<Line> lines = new ArrayList<>();
     private final BooleanGenerator booleanGenerator;
 
-    public Ladder() {
-        this.booleanGenerator = new RandomBooleanGenerator();
-    }
-
-    public Ladder(BooleanGenerator booleanGenerator) {
+    public Ladder(final BooleanGenerator booleanGenerator) {
         this.booleanGenerator = booleanGenerator;
     }
 
@@ -28,7 +24,7 @@ public class Ladder {
         }
     }
 
-    public void build(final int height){
+    public void build(final int height) {
         for (int i = 0; i < height; i++) {
             this.lines.add(new Line(() -> false));
         }
@@ -39,12 +35,12 @@ public class Ladder {
         return this.lines.size();
     }
 
-    public void build(int height, int width) {
+    public void build(final int height, final int width) {
         validateLadderHeight(height);
         generateLines(height, width, booleanGenerator);
     }
 
-    private void generateLines(int height, int width, BooleanGenerator booleanGenerator) {
+    private void generateLines(final int height, final int width, BooleanGenerator booleanGenerator) {
         for (int currentHeight = 0; currentHeight < height; currentHeight++) {
             Line currentLine = new Line(booleanGenerator);
             generateFootsteps(width, currentLine);
@@ -52,8 +48,8 @@ public class Ladder {
         }
     }
 
-    private static void generateFootsteps(int width, Line line) {
-        for (int currentWidth = 0; currentWidth < width; currentWidth++) {
+    private static void generateFootsteps(final int width, final Line line) {
+        for (int currentWidth = 0; currentWidth < width - 1; currentWidth++) {
             line.generateFootStep();
         }
     }

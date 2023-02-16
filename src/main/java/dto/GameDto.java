@@ -14,11 +14,11 @@ public class GameDto {
         this.ladderDto = makeLadderDTO(ladder);
     }
 
-    private NamesDto makeNameDTO(Names names){
+    private NamesDto makeNameDTO(final Names names){
         return NamesDto.from(names);
     }
 
-    private LadderDto makeLadderDTO(Ladder ladder){
+    private LadderDto makeLadderDTO(final Ladder ladder){
         return LadderDto.from(ladder);
     }
 

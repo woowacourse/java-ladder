@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 public class NamesDto {
     private final List<String> names;
 
-    private NamesDto(List<String> names) {
+    private NamesDto(final List<String> names) {
         this.names = names;
     }
 
-    public static NamesDto from(Names names){
+    public static NamesDto from(final Names names){
         return new NamesDto(names.getNames());
     }
 

@@ -14,7 +14,7 @@ public class Name {
         this.name = name;
     }
 
-    public static List<Name> of(List<String> names) {
+    public static List<Name> of(final List<String> names) {
         return names.stream().map(Name::new)
                 .collect(Collectors.toList());
     }

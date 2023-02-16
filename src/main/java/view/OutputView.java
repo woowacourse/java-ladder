@@ -16,7 +16,7 @@ public class OutputView {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
     }
 
-    public static void printResult(GameDto gameDto) {
+    public static void printResult(final GameDto gameDto) {
         printResultMessage();
         printParticipantNames(gameDto.getMaxNameLength(), gameDto.getNames());
         printGeneratedLadder(gameDto.getGeneratedLadderInfo(), gameDto.getMaxNameLength());
@@ -26,23 +26,23 @@ public class OutputView {
         System.out.println("실행결과");
     }
 
-    private static void printParticipantNames(int maxNameLength, List<String> names) {
+    private static void printParticipantNames(final int maxNameLength, final List<String> names) {
         names.stream().map(name -> alignLeft(name, maxNameLength))
                 .collect(Collectors.toList())
                 .forEach(System.out::println);
     }
 
-    private static String alignLeft(String name, int length) {
-        return String.format("%-" + length + "s", name);
+    private static String alignLeft(final String name, final int length) {
+        return String.format("%-" + length + "s ", name);
     }
 
-    private static void printGeneratedLadder(List<List<Boolean>> ladderInfo, int maxNameLength) {
+    private static void printGeneratedLadder(final List<List<Boolean>> ladderInfo, final int maxNameLength) {
         for (List<Boolean> line : ladderInfo) {
             printLine(line, maxNameLength);
         }
     }
 
-    private static void printLine(List<Boolean> line, int maxLength) {
+    private static void printLine(final List<Boolean> line, final int maxLength) {
         for (Boolean isSteppable : line) {
             if (isSteppable) {
                 String footSteps = FOOTSTEP.getShape().repeat(maxLength);

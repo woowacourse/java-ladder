@@ -7,11 +7,11 @@ import java.util.List;
 public class LadderDto {
     private final List<List<Boolean>> ladderInfo;
 
-    private LadderDto(List<List<Boolean>> ladderInfo) {
+    private LadderDto(final List<List<Boolean>> ladderInfo) {
         this.ladderInfo = ladderInfo;
     }
 
-    public static LadderDto from(Ladder ladder){
+    public static LadderDto from(final Ladder ladder){
         return new LadderDto((ladder.getValue()));
     }
 
