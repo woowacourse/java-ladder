@@ -34,4 +34,11 @@ public class NameTest {
         Name name = new Name(input);
         Assertions.assertThat(name.getValue()).isEqualTo(input);
     }
+
+    @ParameterizedTest(name = "생성 시 파라미터로 받은 이름을 값으로 가진다")
+    @ValueSource(strings = {"일", "두울", "세글자", "네에글자", "다섯글자끝"})
+    void 글자_수를_구할_수_있다(final String input) {
+        Name name = new Name(input);
+        Assertions.assertThat(name.length()).isEqualTo(input.length());
+    }
 }
