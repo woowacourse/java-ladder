@@ -1,5 +1,6 @@
 package ladder.view;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,7 +19,8 @@ public class InputView {
     public static int inputFloorHeight(){
         try{
             System.out.println("최대 사다리 높이는 몇 개인가요?");
-           return scanner.nextInt();
+            scanner.nextInt();
+           return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e){
             throw new IllegalArgumentException("층수는 숫자를 입력해야 합니다.");
         }
