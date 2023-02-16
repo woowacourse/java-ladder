@@ -7,8 +7,6 @@ import model.Players;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
-
 public class Controller {
 
     public InputView inputView;
@@ -23,6 +21,7 @@ public class Controller {
         LadderHeight ladderHeight = setLadderHeight();
         Ladder ladder = new Ladder(players, ladderHeight);
         outputView.printAllPlayerNames(players);
+        outputView.printLadder(ladder);
     }
 
     private Names setPlayerNames(){
