@@ -1,8 +1,12 @@
 package domain;
 
+import static utils.ErrorMessage.NOT_FOUND_USER;
+
 import java.util.List;
 
 public class Users {
+    private final int FIRST = 0;
+
     private final List<User> users;
 
     public Users(List<User> users) {
@@ -15,12 +19,12 @@ public class Users {
 
     public String getFirstUserName() {
         validateFirstUser();
-        return users.get(0).getName();
+        return users.get(FIRST).getName();
     }
 
     private void validateFirstUser() {
         if (users.isEmpty()) {
-            throw new NullPointerException("유저가 존재하지 않습니다.");
+            throw new NullPointerException(NOT_FOUND_USER.getMessage());
         }
     }
 }
