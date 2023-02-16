@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 
 public class Line {
@@ -22,16 +24,16 @@ public class Line {
     }
 
     private static void validateConsistExistScaffolds(final List<Scaffold> scaffolds) {
-        for (int i = 1; i < scaffolds.size(); i++) {
-            validateConsistExistScaffold(scaffolds, i);
-        }
+        ArrayDeque<Scaffold> scaffoldDeque = new ArrayDeque<>(scaffolds);
+        scaffolds.forEach(it -> validateConsistExistScaffold(scaffoldDeque));
     }
 
-    private static void validateConsistExistScaffold(final List<Scaffold> scaffolds, final int i) {
-        if (scaffolds.get(i) != scaffolds.get(i - 1)) {
+    private static void validateConsistExistScaffold(final Deque<Scaffold> scaffolds) {
+        Scaffold beforeScaffold = scaffolds.removeFirst();
+        if (beforeScaffold != scaffolds.peekFirst()) {
             return;
         }
-        if (scaffolds.get(i) == Scaffold.NONE) {
+        if (beforeScaffold == Scaffold.NONE) {
             return;
         }
         throw new IllegalArgumentException();
