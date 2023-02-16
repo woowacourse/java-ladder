@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class Line {
 
     public Line(final List<Scaffold> scaffolds) {
         validate(scaffolds);
-        this.scaffolds = scaffolds;
+        this.scaffolds = new ArrayList<>(scaffolds);
     }
 
     private void validate(final List<Scaffold> scaffolds) {
@@ -45,6 +46,6 @@ public class Line {
     }
 
     public List<Scaffold> getScaffolds() {
-        return scaffolds;
+        return new ArrayList<>(scaffolds);
     }
 }
