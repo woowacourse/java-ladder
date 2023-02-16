@@ -4,15 +4,19 @@ import java.util.Random;
 
 public class RandomDataGenerator implements RandomGenerator {
 
+    private final Random random;
+
+    public RandomDataGenerator() {
+        this.random = new Random();
+    }
+
     @Override
     public boolean generateBoolean() {
-        Random random = new Random();
         return random.nextBoolean();
     }
 
     @Override
     public int generateNumber(int min, int max) {
-        Random random = new Random();
         return random.nextInt(max - min + 1) + min;
     }
 
