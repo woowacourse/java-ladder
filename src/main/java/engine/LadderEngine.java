@@ -16,7 +16,7 @@ import view.OutputView;
 public class LadderEngine {
 
     public void start() {
-        List<Person> people = convertNamesToPeople(InputView.inputName());
+        List<Person> people = createPeopleWith(InputView.inputName());
         Ladder ladder = IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
             int height = InputView.inputMaxLadderHeight();
             List<Line> lines = makeLines(people, height);
@@ -35,7 +35,7 @@ public class LadderEngine {
         return lines;
     }
 
-    private List<Person> convertNamesToPeople(final List<String> names) {
+    private List<Person> createPeopleWith(final List<String> names) {
         return names.stream()
                 .map(Person::new)
                 .collect(Collectors.toList());
