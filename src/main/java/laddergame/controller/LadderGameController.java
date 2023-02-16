@@ -3,14 +3,12 @@ package laddergame.controller;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderFactory;
 import laddergame.domain.participant.Participant;
-import laddergame.domain.participant.ParticipantName;
 import laddergame.domain.participant.Participants;
 import laddergame.domain.rung.RungNumberGenerator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 import laddergame.view.message.Message;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +31,7 @@ public class LadderGameController {
         List<String> participantNames = getParticipantNames(participants);
 
         outputView.printParticipants(participantNames);
-
+        outputView.printLadder(ladder.getLadder(), participantNames);
     }
 
     private Participants getParticipants() {
