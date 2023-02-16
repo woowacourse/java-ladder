@@ -5,7 +5,9 @@ import java.util.List;
 
 public class Participants {
 
-	// TODO: magic number 1, 5를 상수화
+	private static final int MIN_NAME_LENGTH = 1;
+	private static final int MAX_NAME_LENGTH = 5;
+
 	private final List<String> names = new ArrayList<>();
 
 	public void add(final String name) {
@@ -16,13 +18,13 @@ public class Participants {
 
 	private void validateIsBlank(final String name) {
 		if (name.isBlank()) {
-			throw new IllegalArgumentException("참가자의 이름은 공백일 수 없습니다.");
+			throw new IllegalArgumentException("[ERROR]: 참가자의 이름은 공백일 수 없습니다.");
 		}
 	}
 
 	private void validateNameLength(final String name) {
-		if (1 > name.length() || name.length() > 5) {
-			throw new IllegalArgumentException("참가자의 이름은 1글자 이상 5글자 이하여야 한다.");
+		if (MIN_NAME_LENGTH > name.length() || name.length() > MAX_NAME_LENGTH) {
+			throw new IllegalArgumentException("[ERROR]: 참가자의 이름은 1글자 이상 5글자 이하여야 한다.");
 		}
 	}
 
