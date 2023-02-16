@@ -15,15 +15,15 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 @DisplayName("Name 은")
 public class NameTest {
 
-    @ParameterizedTest(name = "다섯 글자가 최대이다")
+    @ParameterizedTest(name = "다섯글자가 최대이다")
     @ValueSource(strings = {"일", "두울", "세글자", "네에글자", "다섯글자끝"})
-    void Name_은_5_글자가_최대이다(final String name) {
+    void 다섯글자가_최대이다(final String name) {
         assertDoesNotThrow(() -> new Name(name));
     }
 
-    @ParameterizedTest(name = "공백 혹은 다섯글자를 초과시 에러를 발생시킨다")
+    @ParameterizedTest(name = "다섯글자 초과 혹은 공백일 수 없다")
     @ValueSource(strings = {"", "여섯글자에요"})
-    void Name_은_다섯글자_초과_혹은_공백일_수_없다(final String name) {
+    void 다섯글자_초과_혹은_공백일_수_없다(final String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class);
     }
