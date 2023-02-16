@@ -1,12 +1,11 @@
 package controller;
 
-import domain.Ladder;
-import domain.Ladders;
-import domain.RandomGenerator;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Controller {
     private final InputView inputView;
@@ -18,18 +17,22 @@ public class Controller {
     }
 
     public void run(){
-        List<String> usersName = settingUsers();
+        Users usersName = settingUsers();
         Ladders ladders = settingLadders();
-        ladders.make(usersName.size()-1);
+        ladders.make(usersName.getCount()-1);
         outputView.printUsers(usersName);
-        for (Ladder ladder : ladders.getLadders()) {
+        for (Ladder ladder : ladders.getLadders()) { //스트림
             outputView.printLadder(ladder);
         }
     }
 
-    public List<String> settingUsers() {
+    public Users settingUsers() {
         try {
-            return inputView.inputUsername();
+            List<String> userNames = inputView.inputUsername();
+            List<User> users = userNames.stream()
+                    .map(User::new)
+                    .collect(Collectors.toList());
+            return new Users(users);
         } catch (IllegalArgumentException e) {
             return settingUsers();
         }
@@ -38,7 +41,7 @@ public class Controller {
     public Ladders settingLadders() {
         try {
             int height = inputView.inputLadderHeight();
-            return new Ladders(height, new RandomGenerator());
+            return new Ladders(height, new LadderGenerator());
         } catch (IllegalArgumentException e) {
             return settingLadders();
         }

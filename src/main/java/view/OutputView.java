@@ -2,8 +2,9 @@ package view;
 
 import domain.Bridge;
 import domain.Ladder;
+import domain.User;
+import domain.Users;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -11,10 +12,10 @@ public class OutputView {
     private static final String LADDER_FORMAT = "    |%s|";
     private static final String RESULT_MESSAGE = "\n실행결과";
 
-    public void printUsers(List<String> users) {
+    public void printUsers(Users users) {
         System.out.println(RESULT_MESSAGE);
-        for (String user : users) { //스트림
-            System.out.printf("%5s ", user); //상수
+        for (User user : users.getUsers()) { //스트림
+            System.out.printf("%5s ", user.getName()); //상수
         }
         System.out.println();
     }
