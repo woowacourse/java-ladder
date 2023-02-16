@@ -3,7 +3,7 @@ package laddergame.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import static laddergame.ExceptionTemplate.repeat;
+import static laddergame.utils.ExceptionTemplate.repeat;
 import static laddergame.messsages.ExceptionMessages.LINE_CREATOR_BOOLEAN_GENERATOR_NULL_EXCEPTION;
 import static laddergame.messsages.ExceptionMessages.LINE_CREATOR_ILLEGAL_LENGTH_EXCEPTION;
 

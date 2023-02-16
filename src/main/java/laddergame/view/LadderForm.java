@@ -1,4 +1,4 @@
-package laddergame;
+package laddergame.view;
 
 import laddergame.domain.Line;
 

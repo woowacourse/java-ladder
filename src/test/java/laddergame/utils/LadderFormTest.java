@@ -1,6 +1,7 @@
-package laddergame;
+package laddergame.utils;
 
 import laddergame.domain.Line;
+import laddergame.view.LadderForm;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

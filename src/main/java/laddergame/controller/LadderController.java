@@ -1,6 +1,6 @@
 package laddergame.controller;
 
-import laddergame.LadderForm;
+import laddergame.view.LadderForm;
 import laddergame.domain.*;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
