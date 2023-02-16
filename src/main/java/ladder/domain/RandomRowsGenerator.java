@@ -7,7 +7,7 @@ import java.util.Random;
 public class RandomRowsGenerator {
     private static final Random random = new Random();
 
-    public Row generateValidRow(int size) {
+    private Row generateValidRow(int size) {
         try {
             return generateRow(size);
         } catch (IllegalArgumentException e) {
