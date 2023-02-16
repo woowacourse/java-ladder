@@ -1,45 +1,42 @@
 package view.output;
 
-import domain.Ladder;
 import domain.Line;
+import domain.Map;
 import domain.Participants;
-import java.util.List;
 
 public class OutputView {
 
     private static final String RESULT_MESSAGE = "\n실행결과\n";
 
-    public void printMap(Participants participants, Ladder ladder) {
+    public void printMap(Participants participants, Map map) {
         System.out.println(RESULT_MESSAGE);
         StringBuilder mapResult = new StringBuilder();
         setNames(mapResult, participants);
-        setLadder(mapResult, ladder);
+        setLadder(mapResult, map);
         System.out.print(mapResult);
     }
 
     private void setNames(StringBuilder mapResult, Participants participants) {
-        participants.getParticipantsNames();
-        for (String participantsName : participants.getParticipantsNames()) {
-            mapResult.append(reformatName(participantsName));
-        }
-        mapResult.append("\n");
+        participants.getParticipantsNames()
+            .forEach((participantName) -> mapResult.append(reformatName(participantName)));
+        mapResult.replace(mapResult.length() - 2, mapResult.length(), System.lineSeparator());
     }
 
-    private void setLadder(StringBuilder mapResult, Ladder ladder) {
-        List<Line> lines = ladder.getLines();
-        for (Line line : lines) {
-            mapResult.append(reformatLadder(line));
-        }
+    private void setLadder(StringBuilder mapResult, Map map) {
+        map.getLines().forEach((line) -> mapResult.append(reformatLine(line)));
     }
 
     private String reformatName(String name) {
+        if (name.length() < 5) {
+            name += " ";
+        }
         return String.format("%5s ", name);
     }
 
-    private String reformatLadder(Line line) {
+    private String reformatLine(Line line) {
+        final StringBuilder result = new StringBuilder();
         final String startLine = "    |";
         final String endLine = "|";
-        StringBuilder result = new StringBuilder();
         result.append(startLine);
         for (Boolean status : line.getStatus()) {
             result.append(reformatStatus(status));
@@ -53,11 +50,9 @@ public class OutputView {
         final boolean isConnected = true;
         final String connected = "-----";
         final String disConnected = "     ";
-
         if (status == isConnected) {
             return connected;
         }
-
         return disConnected;
     }
 }

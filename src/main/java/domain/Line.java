@@ -1,15 +1,18 @@
 package domain;
 
 import exception.InvalidLineWeightException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
 import util.BooleanGenerator;
 
 public class Line {
 
-    private final boolean[] status;
+    private final List<Boolean> status = new ArrayList<>();
 
-    public Line(int weight) {
+    public Line(int weight, BooleanGenerator booleanGenerator) {
         validate(weight);
-        status = new boolean[weight];
+        generate(weight, booleanGenerator);
     }
 
     private void validate(int weight) {
@@ -24,23 +27,21 @@ public class Line {
         return minHeight <= weight && weight <= maxHeight;
     }
 
-    public void generate(BooleanGenerator booleanGenerator) {
-        for (int index = 0; index < status.length; index++) {
-            status[index] = generateStatus(index, booleanGenerator);
-        }
+    public void generate(int weight, BooleanGenerator booleanGenerator) {
+        IntStream.range(0, weight).forEach((index) -> status.add(generateStatus(index, booleanGenerator)));
     }
 
     private boolean generateStatus(int index, BooleanGenerator booleanGenerator) {
         final int firstIndex = 0;
         final boolean connected = true;
         final int prev = index - 1;
-        if (index != firstIndex && status[prev] == connected) {
+        if (index != firstIndex && status.get(prev) == connected) {
             return false;
         }
         return booleanGenerator.generate();
     }
 
-    public boolean[] getStatus() {
-        return status;
+    public List<Boolean> getStatus() {
+        return List.copyOf(status);
     }
 }
