@@ -10,9 +10,16 @@ public class Person {
 	private final String name;
 
 	public Person(final String name) {
+		validateNameNull(name);
 		validateNameBlank(name);
 		validateNameOverLength(name);
 		this.name = name;
+	}
+
+	private void validateNameNull(final String name) {
+		if (name == null) {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	private void validateNameBlank(final String name) {
