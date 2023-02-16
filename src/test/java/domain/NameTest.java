@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("이름은 ")
+@DisplayName("사용자의 이름은 ")
 class NameTest {
 
     @DisplayName("5자 이하이다.")
