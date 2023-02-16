@@ -1,7 +1,7 @@
 package view;
 
 import domain.Line;
-import util.Way;
+import domain.Way;
 
 import java.util.List;
 
