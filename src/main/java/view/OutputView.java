@@ -13,22 +13,28 @@ public class OutputView {
     public void printLadder(List<Line> lines){
         StringBuilder builder = new StringBuilder();
 
-        for (int i = 0; i < lines.size(); i++) {
-            Line line = lines.get(i);
-            builder.append(VERTICAL_LINE);
-            for (int j = 0; j < line.getPointsSize(); j++) {
-                Boolean state = line.getPoints().get(j);
-                if (state){
-                    builder.append(BRIDGE);
-                }
-                if (!state) {
-                    builder.append(BLANK_LINE);
-                }
-                builder.append(VERTICAL_LINE);
-            }
-            builder.append("\n");
+        for (Line line : lines) {
+            printLine(builder, line);
         }
         System.out.println(builder);
+    }
+
+    private void printLine(StringBuilder builder, Line line) {
+        builder.append(VERTICAL_LINE);
+        for (int pointIndex = 0; pointIndex < line.getPointsSize(); pointIndex++) {
+            printPoint(builder, line, pointIndex);
+        }
+        builder.append("\n");
+    }
+
+    private void printPoint(StringBuilder builder, Line line, int pointIndex) {
+        if (line.isMovablePoint(pointIndex)) {
+            builder.append(BRIDGE);
+        }
+        if (!line.isMovablePoint(pointIndex)) {
+            builder.append(BLANK_LINE);
+        }
+        builder.append(VERTICAL_LINE);
     }
 
     public void printPersonNames(List<String> names){

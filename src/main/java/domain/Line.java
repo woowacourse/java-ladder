@@ -49,4 +49,7 @@ public class Line {
         return points.size();
     }
 
+    public boolean isMovablePoint(int pointIndex) {
+        return points.get(pointIndex);
+    }
 }
