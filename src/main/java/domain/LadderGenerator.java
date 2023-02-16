@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomGenerator {
+public class LadderGenerator {
     private final Random random;
 
-    public RandomGenerator() {
+    public LadderGenerator() {
         this.random = new Random();
     }
 
