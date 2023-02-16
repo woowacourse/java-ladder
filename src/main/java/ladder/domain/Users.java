@@ -32,13 +32,15 @@ public class Users {
     }
 
     private void validateDuplication(List<String> userNames) {
-        int inputNamesSize = userNames.size();
-        long unDuplicationNamesSize = userNames.stream()
-                .distinct()
-                .count();
-        if (inputNamesSize != unDuplicationNamesSize) {
+        if (userNames.size() != getUnDuplicationNamesSize(userNames)) {
             throw new IllegalArgumentException(USERS_DUPLICATED_ERROR_MESSAGE);
         }
+    }
+
+    private long getUnDuplicationNamesSize(final List<String> userNames) {
+        return userNames.stream()
+                .distinct()
+                .count();
     }
 
     public List<User> getUsers() {
