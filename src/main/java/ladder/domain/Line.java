@@ -7,7 +7,7 @@ import java.util.Deque;
 import java.util.List;
 
 public class Line {
-    
+
     private final List<LineStatus> statuses;
 
     public Line(final BooleanGenerator booleanGenerator, final int width) {
@@ -24,10 +24,14 @@ public class Line {
 
     private LineStatus generateLineStatus(final BooleanGenerator booleanGenerator, final Deque<LineStatus> statuses) {
         final boolean status = booleanGenerator.generate();
-        if (statuses.isEmpty() || statuses.getLast().isDisconnected()) {
+        if (isConnectable(statuses)) {
             return LineStatus.from(status);
         }
         return LineStatus.DISCONNECTED;
+    }
+
+    private boolean isConnectable(final Deque<LineStatus> statuses) {
+        return statuses.isEmpty() || statuses.getLast().isDisconnected();
     }
 
     public List<LineStatus> getLine() {
