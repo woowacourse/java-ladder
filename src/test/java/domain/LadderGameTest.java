@@ -10,15 +10,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGameTest {
 
-    List<String> playerNames;
-    int lineMaxSize;
     LadderGame ladderGame;
 
     @BeforeEach
     void before() {
         List<String> playerNames = List.of("a", "b", "c");
-        int lineMaxSize = 10;
-        ladderGame = new LadderGame(playerNames, lineMaxSize);
+        int ladderHeight = 10;
+        ladderGame = new LadderGame(playerNames, ladderHeight);
     }
 
     @DisplayName("Ladder를 생성한다.")

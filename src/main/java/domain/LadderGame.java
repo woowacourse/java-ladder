@@ -9,14 +9,14 @@ public class LadderGame {
     private final Ladder ladder;
     private final Players players;
 
-    public LadderGame(List<String> playerNames, int lineMaxSize) {
-        ladder = new Ladder(generateLines(playerNames.size(), lineMaxSize));
+    public LadderGame(List<String> playerNames, int ladderHeight) {
+        ladder = new Ladder(generateLines(playerNames.size(), ladderHeight));
         players = new Players(generatePlayers(playerNames));
     }
 
-    private List<Line> generateLines(int playerSize, int lineMaxSize) {
+    private List<Line> generateLines(int playerSize, int ladderHeight) {
         List<Line> lines = new ArrayList<>();
-        for (int lineIndex = 0; lineIndex < lineMaxSize; lineIndex++) {
+        for (int lineIndex = 0; lineIndex < ladderHeight; lineIndex++) {
             lines.add(new Line(playerSize - 1));
         }
         return lines;
