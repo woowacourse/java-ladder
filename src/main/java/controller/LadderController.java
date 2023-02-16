@@ -3,8 +3,8 @@ package controller;
 import domain.model.Ladder;
 import domain.service.LadderMaker;
 import domain.vo.Height;
-import domain.vo.Width;
 import domain.vo.Name;
+import domain.vo.Width;
 import view.InputView;
 import view.OutputView;
 
