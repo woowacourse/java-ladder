@@ -13,6 +13,7 @@ public class OutputView {
     private static final int DEFAULT_NAME_LENGTH = 7;
 
     public static void printPlayers(List<String> playerNames) {
+        System.out.println();
         System.out.print(playerNames.get(0));
         for (int i = 1; i < playerNames.size(); i++) {
             printNameOnSquares(playerNames.get(i));
@@ -46,5 +47,10 @@ public class OutputView {
             return;
         }
         System.out.print(IMMOVABLE_BAR);
+    }
+
+    public static void announceExecution() {
+        System.out.println();
+        System.out.println("실행결과");
     }
 }
