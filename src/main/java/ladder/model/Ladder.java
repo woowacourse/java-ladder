@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Ladder {
 
+    private static final int MIN_HEIGHT = 2;
     private final List<Raw> ladder;
 
     public Ladder(List<Raw> ladder) {
@@ -13,7 +14,7 @@ public class Ladder {
     }
 
     private void validateHeight(int height) {
-        if (height < ConstantNumber.MIN_HEIGHT.getNumber()) {
+        if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException(ErrorMessage.EXCEPTION_INVALID_HEIGHT.getMessage());
         }
     }
@@ -28,21 +29,6 @@ public class Ladder {
 
         public String getMessage() {
             return message;
-        }
-    }
-
-    private enum ConstantNumber {
-
-        MIN_HEIGHT(2);
-
-        private final int number;
-
-        ConstantNumber(int number) {
-            this.number = number;
-        }
-
-        public int getNumber() {
-            return number;
         }
     }
 }
