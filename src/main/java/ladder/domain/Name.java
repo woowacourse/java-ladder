@@ -13,25 +13,36 @@ public class Name {
         this.name = name;
     }
 
+    public int length() {
+        return name.length();
+    }
+
     private void validate(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException(ErrorMessage.NAME_IS_NULL.getMessage());
-        }
-        if (name.isBlank() || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_LENGTH.getMessage());
-        }
+        validateDoesNotContainComma(name);
+        validateLength(name);
+        validateNotNull(name);
+    }
+
+    private void validateDoesNotContainComma(String name) {
         if (name.contains(COMMA)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_FORMAT.getMessage());
         }
     }
 
-    public int length() {
-        return name.length();
+    private void validateLength(String name) {
+        if (name.isBlank() || name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_LENGTH.getMessage());
+        }
+    }
+
+    private void validateNotNull(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException(ErrorMessage.NAME_IS_NULL.getMessage());
+        }
     }
 
     @Override
     public String toString() {
         return this.name;
     }
-
 }
