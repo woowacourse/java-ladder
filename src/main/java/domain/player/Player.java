@@ -1,37 +1,18 @@
 package domain.player;
 
-import utils.ErrorMessage;
-
 import java.util.Objects;
 
 public class Player {
 
-    private final String name;
+    private final Name name;
 
     public Player(String name) {
-        validate(name);
-        this.name = name;
+        this.name = new Name(name);
     }
 
-    private void validate(String name) {
-        validateLength(name);
-        validateSpace(name);
-    }
-
-    private void validateLength(String name) {
-        if (name.length() < 1 || name.length() > 5) {
-            throw new IllegalArgumentException(ErrorMessage.NAME_LENGTH_ERROR.getMessage());
-        }
-    }
-
-    private void validateSpace(String name) {
-        if (name.contains(" ")) {
-            throw new IllegalArgumentException(ErrorMessage.NAME_FORMAT_ERROR.getMessage());
-        }
-    }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     @Override
@@ -43,11 +24,11 @@ public class Player {
             return false;
         }
         Player player = (Player) o;
-        return Objects.equals(name, player.name);
+        return Objects.equals(name.getName(), player.name.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name.getName());
     }
 }
