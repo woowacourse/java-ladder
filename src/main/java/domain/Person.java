@@ -1,5 +1,7 @@
 package domain;
 
+import exception.Error;
+
 public class Person {
 	private final String name;
 
@@ -15,7 +17,7 @@ public class Person {
 	private void validate(String name) {
 		name = name.trim();
 		if (name.length() < 1 || name.length() > 5) {
-			throw new IllegalArgumentException("이름은 1 ~ 5글자만 가능합니다");
+			throw new IllegalArgumentException(Error.INVALID_NAME_LENGTH.getMessage());
 		}
 	}
 }
