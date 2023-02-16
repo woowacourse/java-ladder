@@ -1,45 +1,40 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 import ladder.utils.BarGenerator;
 import ladder.utils.BooleanGenerator;
 
 public class Line {
-    private final Bars bars;
-    private final BooleanGenerator booleanGenerator;
+    private final List<Bar> bars;
 
     public Line(int size) {
         this(size, new BarGenerator());
     }
 
     public Line(int size, BooleanGenerator booleanGenerator) {
-        this.booleanGenerator = booleanGenerator;
-        this.bars = new Bars(generateBars(size));
+        this.bars = generateBars(size, booleanGenerator);
     }
 
-    private List<Bar> generateBars(int size) {
-        List<Bar> bars = new ArrayList<>();
-        bars.add(generateBar());
-        for (int i = 1; i < size; i++) {
-            Bar existBar = getAppropriateBar(bars.get(i - 1));
-            bars.add(existBar);
+    private List<Bar> generateBars(int size, BooleanGenerator booleanGenerator) {
+        Deque<Bar> bars = new LinkedList<>();
+        for (int i = 0; i < size; i++) {
+            bars.add(getAppropriateBar(bars, booleanGenerator));
         }
-        return bars;
+        return new ArrayList<>(bars);
     }
 
-    private Bar generateBar() {
-        return Bar.of(booleanGenerator.generate());
-    }
-
-    private Bar getAppropriateBar(Bar beforeBar) {
-        if (beforeBar.isMovable()) {
-            return Bar.IMMOVABLE;
+    private Bar getAppropriateBar(Deque<Bar> bars, BooleanGenerator booleanGenerator) {
+        if (bars.isEmpty() || bars.getLast().isImmovable()) {
+            return Bar.of(booleanGenerator.generate());
         }
-        return generateBar();
+        return Bar.IMMOVABLE;
     }
 
     public List<Bar> getBars() {
-        return bars.getUnmodifiableList();
+        return Collections.unmodifiableList(bars);
     }
 }

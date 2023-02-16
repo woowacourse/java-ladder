@@ -1,25 +1,21 @@
 package ladder.domain;
 
-import java.util.Arrays;
-
 public enum Bar {
-    MOVABLE(true),
-    IMMOVABLE(false);
-
-    private final boolean isMovable;
-
-    Bar(boolean isMovable) {
-        this.isMovable = isMovable;
-    }
+    MOVABLE,
+    IMMOVABLE;
 
     public static Bar of(boolean isMovable) {
-        return Arrays.stream(Bar.values())
-                .filter(bar -> bar.isMovable == isMovable)
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+        if (isMovable) {
+            return MOVABLE;
+        }
+        return IMMOVABLE;
     }
 
     public boolean isMovable() {
-        return this.isMovable;
+        return this == MOVABLE;
+    }
+
+    public boolean isImmovable() {
+        return this == IMMOVABLE;
     }
 }
