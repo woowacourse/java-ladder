@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderMakerTest {
 
-    private LadderMaker ladderMaker = new LadderMaker();
+    private LadderMaker ladderMaker = new LadderMaker(new RandomBlockGenerator());
 
     @Test
     @DisplayName("사다리 길이는 <플레이어 수 - 1> 이상이 아닌 경우 예외가 발생한다.")

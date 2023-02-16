@@ -1,9 +1,6 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderMaker;
-import ladder.domain.Player;
-import ladder.domain.Players;
+import ladder.domain.*;
 import ladder.exception.CustomException;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -32,8 +29,8 @@ public class LadderGameController {
 
     private Ladder initLadder(int playerNumber) {
         try {
-            int height = InputView.inputLadderHeight();
-            LadderMaker ladderMaker = new LadderMaker();
+            final int height = InputView.inputLadderHeight();
+            LadderMaker ladderMaker = new LadderMaker(new RandomBlockGenerator());
             return ladderMaker.makeLadder(playerNumber, height);
         } catch (CustomException e) {
             OutputView.printErrorMessage(e);

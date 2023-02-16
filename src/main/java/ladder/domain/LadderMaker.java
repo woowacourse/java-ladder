@@ -7,6 +7,12 @@ import java.util.List;
 
 public class LadderMaker {
 
+    private final BlockGenerator blockGenerator;
+
+    public LadderMaker(BlockGenerator blockGenerator) {
+        this.blockGenerator = blockGenerator;
+    }
+
     public Ladder makeLadder(final int playerNumber, final int height) {
         validateLadderLength(playerNumber, height);
         final List<Line> lines = generateEachLines(playerNumber, height);
@@ -21,7 +27,7 @@ public class LadderMaker {
 
     private List<Line> generateEachLines(final int playerNumber, final int height) {
         List<Line> lines = new ArrayList<>();
-        LineMaker lineMaker = new LineMaker(new RandomBlockGenerator());
+        LineMaker lineMaker = new LineMaker(blockGenerator);
 
         for (int i = 0; i < height; i++) {
             lines.add(lineMaker.makeLine(playerNumber));
