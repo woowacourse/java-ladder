@@ -3,7 +3,8 @@ package utils;
 public enum LadderStatus {
 
     INPUT_PARTICIPANT_NAMES,
-    INPUT_LADDER_HEIGHT,
+    GENERATE_LADDER,
+    PRINT_LADDER,
     APPLICATION_EXIT;
 
     public boolean canPlay() {
