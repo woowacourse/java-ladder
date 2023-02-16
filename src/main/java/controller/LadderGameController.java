@@ -42,8 +42,4 @@ public class LadderGameController {
             return makeLadder(numberOfPlayers);
         }
     }
-
-    private void printResult() {
-
-    }
 }

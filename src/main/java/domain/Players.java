@@ -53,8 +53,8 @@ public class Players {
         return this.players.size();
     }
 
-    public Player findFirstPlayer() {
-        return this.players.get(0);
+    public String findFirstPlayerName() {
+        return this.players.get(0).getName();
     }
 
     public int findLengthOfFirstPlayerName() {

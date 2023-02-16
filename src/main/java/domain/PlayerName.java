@@ -26,7 +26,6 @@ public class PlayerName {
         return this.name.length();
     }
 
-
     public String getName() {
         return this.name;
     }

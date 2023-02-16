@@ -14,11 +14,11 @@ public enum LadderSymbol {
         this.symbol = symbol;
     }
 
-    public static String draw(String symbol, int repeatedNumber) {
+    public static String draw(final String symbol, final int repeatedNumber) {
         return find(symbol).symbol.repeat(repeatedNumber);
     }
 
-    private static LadderSymbol find(String symbol) {
+    private static LadderSymbol find(final String symbol) {
         return Arrays.stream(values())
                 .filter(value -> value.symbol.equals(symbol))
                 .findAny()
