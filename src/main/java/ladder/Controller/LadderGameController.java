@@ -21,8 +21,7 @@ public class LadderGameController {
         List<PlayerName> playerNames = generatePlayerNames();
         Height height = generateHeight();
 
-        LadderGame ladderGame = new LadderGame(playerNames, new RandomLineCreateDecider());
-        ladderGame.generateLadder(height);
+        LadderGame ladderGame = new LadderGame(playerNames, height, new RandomLineCreateDecider());
         showResult(ladderGame);
     }
 

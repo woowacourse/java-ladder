@@ -8,21 +8,24 @@ public class Row {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    public Row(int personCount) {
+    public Row(int personCount, LineCreateDecider lineCreateDecider) {
         for (int i = 0; i < personCount - 1; i++) {
-            points.add(false);
+            createLineAt(i, lineCreateDecider.decide());
         }
     }
 
-    public void createLineAt(int point, boolean isCreated) {
-        points.set(point, isCreated);
+    private void createLineAt(int point, boolean isCreated) {
+        if(isLeftPointHasLine(point)){
+            points.add(false);
+            return;
+        }
+        points.add(isCreated);
     }
 
-    public boolean isPointHasLine(int point) {
-        return points.get(point);
-    }
-
-    public boolean isLeftPointHasLine(int point) {
+    private boolean isLeftPointHasLine(int point) {
+        if(point == 0){
+            return false;
+        }
         return points.get(point - 1);
     }
 
