@@ -9,7 +9,7 @@ public class LadderMaker {
 
     public Ladder makeLadder(final int playerNumber, final int height) {
         validateLadderLength(playerNumber, height);
-        List<Line> lines = generateEachLines(playerNumber, height);
+        final List<Line> lines = generateEachLines(playerNumber, height);
         return new Ladder(lines);
     }
 

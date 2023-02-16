@@ -22,14 +22,14 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printPlayersName(List<String> playersName) {
+    public static void printPlayersName(final List<String> playersName) {
         for (String name: playersName) {
             System.out.print(name + " ");
         }
         System.out.println();
     }
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadder(final Ladder ladder) {
         List<Line> lines = ladder.getLines();
 
         for (Line line : lines) {
@@ -38,7 +38,7 @@ public class OutputView {
         }
     }
 
-    private static void printOneLine(Line line) {
+    private static void printOneLine(final Line line) {
         printLadderFrame();
         for (Boolean block : line.getBlocks()) {
             printBlock(block);
@@ -46,7 +46,7 @@ public class OutputView {
         }
     }
 
-    private static void printBlock(Boolean block) {
+    private static void printBlock(final Boolean block) {
         if (block) {
             System.out.print(LADDER_BLOCK);
             return;

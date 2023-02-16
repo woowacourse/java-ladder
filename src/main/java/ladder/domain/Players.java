@@ -11,7 +11,7 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(List<String> playerNames) {
+    public Players(final List<String> playerNames) {
         validatePlayerNumber(playerNames);
 
         players = playerNames.stream()
@@ -19,14 +19,14 @@ public class Players {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private void validatePlayerNumber(List<String> playerNames) {
+    private void validatePlayerNumber(final List<String> playerNames) {
         if (playerNames.size() < PLAYER_MINIMUM_NUMBER) {
             throw new PlayerNumberException();
         }
     }
 
     public List<Player> getPlayers() {
-        return players;
+        return List.copyOf(players);
     }
 
     public int size() {

@@ -9,12 +9,12 @@ public class Player {
 
     private final String name;
 
-    public Player(String name) {
+    public Player(final String name) {
         validatePlayerName(name);
         this.name = name;
     }
 
-    private void validatePlayerName(String name) {
+    private void validatePlayerName(final String name) {
         if (name.length() < MINIMUM_NAME_LENGTH || name.length() > MAXIMUM_NAME_LENGTH) {
             throw new PlayerNameLengthException();
         }

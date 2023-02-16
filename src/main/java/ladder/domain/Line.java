@@ -1,17 +1,16 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
 
-    private List<Boolean> blocks = new ArrayList<>();
+    private final List<Boolean> blocks;
 
-    public Line(List<Boolean> blocks) {
-        this.blocks = blocks;
+    public Line(final List<Boolean> blocks) {
+        this.blocks = List.copyOf(blocks);
     }
 
     public List<Boolean> getBlocks() {
-        return blocks;
+        return List.copyOf(blocks);
     }
 }

@@ -7,10 +7,10 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(final List<Line> lines) {
-        this.lines = lines;
+        this.lines = List.copyOf(lines);
     }
 
     public List<Line> getLines() {
-        return lines;
+        return List.copyOf(lines);
     }
 }
