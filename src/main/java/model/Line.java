@@ -1,7 +1,6 @@
 package model;
 
 import util.Generator;
-import util.LineGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.List;
 public class Line {
     private static final int MINIMUM_LINE_SIZE = 2;
 
-    private List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points = new ArrayList<>();
 
     public Line (int personCount,Generator generator) {
         for(int column=0; column<personCount-1; column++) {
@@ -22,7 +21,7 @@ public class Line {
 
     private boolean validateLineMake(int column){
         if(points.size()>=MINIMUM_LINE_SIZE){
-            if(validateContinuousLine(column) && validateTrueLine(column)){
+            if(validateConnectLine(column) && validateTrueLine(column)){
                 points.remove(column);
                 return true;
             }
@@ -30,7 +29,7 @@ public class Line {
         return false;
     }
 
-    private boolean validateContinuousLine(int column){
+    private boolean validateConnectLine(int column){
         return points.get(column).equals(points.get(column-1));
     }
 
