@@ -6,11 +6,11 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
-import strategy.FixedPassGenerator;
+import helper.StubPassGenerator;
 
 class LadderMakerTest {
 
-    private final LadderMaker ladderMaker = new LadderMaker(new FixedPassGenerator(false));
+    private final LadderMaker ladderMaker = new LadderMaker(new StubPassGenerator(false));
 
     @Test
     void initLadder_메소드는_Height와_참가자_수를_입력하면_ladder를_초기화_한다() {
