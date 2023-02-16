@@ -3,14 +3,16 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Row {
 
-    public static final int BUFFER_COUNT = 1;
-    private final List<Boolean> connected;
+    private static final int BUFFER_COUNT = 1;
+
+    private final List<Leg> connected;
 
     Row(int width) {
-        connected = new ArrayList<>(Collections.nCopies(width + BUFFER_COUNT, false));
+        connected = new ArrayList<>(Collections.nCopies(width + BUFFER_COUNT, Leg.EMPTY));
     }
 
     void generateLeg(Generator generator) {
@@ -21,16 +23,19 @@ class Row {
 
     private void connect(Generator generator, int index) {
         if (shouldConnect(generator, index)) {
-            connected.set(index, true);
+            connected.set(index, Leg.CONNECT);
         }
     }
 
     private boolean shouldConnect(Generator generator, int index) {
         int adjacentIndex = index - 1;
-        return generator.generate() && !connected.get(adjacentIndex);
+        return generator.generate() && connected.get(adjacentIndex) == Leg.EMPTY;
     }
 
     List<Boolean> toDto() {
-        return connected.subList(BUFFER_COUNT, connected.size());
+        return connected.subList(BUFFER_COUNT, connected.size())
+                .stream()
+                .map(Leg::getIsConnected)
+                .collect(Collectors.toList());
     }
 }
