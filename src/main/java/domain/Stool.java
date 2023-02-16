@@ -3,8 +3,7 @@ package domain;
 import java.util.Arrays;
 
 public enum Stool {
-	EXIST(true),
-	EMPTY(false);
+	EXIST(true), EMPTY(false);
 
 	private final boolean isExist;
 

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import exception.Error;
+
 public class Ladder {
 	private final List<Level> levels;
 
@@ -20,7 +22,7 @@ public class Ladder {
 
 	private static void validate(int height) {
 		if (height < 1 || height > 100)
-			throw new IllegalArgumentException("높이는 1부터 100까지만 가능합니다");
+			throw new IllegalArgumentException(Error.HEIGHT_RANGE_FROM_1_TO_100.getMessage());
 	}
 
 	public int getHeight() {
