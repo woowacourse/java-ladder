@@ -1,4 +1,6 @@
-package domain;
+package generator;
+
+import domain.Bridge;
 
 import java.util.Random;
 

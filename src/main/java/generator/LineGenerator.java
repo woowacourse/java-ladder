@@ -1,7 +1,6 @@
 package generator;
 
 import domain.Bridge;
-import domain.BridgeGenerator;
 import domain.Line;
 
 import java.util.ArrayList;

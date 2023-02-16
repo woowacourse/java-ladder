@@ -4,7 +4,7 @@ import common.exception.handler.IllegalArgumentExceptionHandler;
 import domain.Ladder;
 import domain.Line;
 import domain.Person;
-import domain.RandomBridgeGenerator;
+import generator.RandomBridgeGenerator;
 import generator.LineGenerator;
 import view.InputView;
 import view.OutputView;
