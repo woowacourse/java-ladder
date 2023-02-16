@@ -9,9 +9,9 @@ public enum Way {
     MAXNAMELENGTH4(4, "----", "    "),
     MAXNAMELENGTH5(5, "-----", "     ");
 
-    private int maxNameLength;
-    private String way;
-    private String blank;
+    private final int maxNameLength;
+    private final String way;
+    private final String blank;
 
     Way(int maxNameLength, String way, String blank) {
         this.maxNameLength = maxNameLength;

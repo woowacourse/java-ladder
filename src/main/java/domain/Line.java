@@ -7,10 +7,14 @@ public class Line {
 
     public Line(int personCount, TrueOrFalseGenerator trueOrFalseGenerator) {
         this.trueOrFalseGenerator = trueOrFalseGenerator;
-        this.points = lineMaker(personCount);
+        this.points = makeLine(personCount);
     }
 
-    private List<Boolean> lineMaker(int personCount) {
+    public List<Boolean> getPoints() {
+        return points;
+    }
+
+    private List<Boolean> makeLine(int personCount) {
         List<Boolean> points = new ArrayList<>();
         points.add(false);
         for (int count = 1; count < personCount; count++) {
@@ -26,12 +30,4 @@ public class Line {
         }
         return false;
     }
-
-    private boolean changeIntToBoolean(int randomNumber) {
-        if (randomNumber == Path.GO.getGoNumberValue()) {
-            return Path.GO.getGoBooleanValue();
-        }
-        return Path.STOP.getGoBooleanValue();
-    }
-
 }

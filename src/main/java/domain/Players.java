@@ -26,6 +26,4 @@ public class Players {
     public List<String> getPlayers() {
         return players;
     }
-
-
 }

@@ -9,5 +9,4 @@ public class Application {
                 new LadderGameController(new InputView(), new OutputView(), new RandomTrueOrFalseGenerator());
         ladderGameController.run();
     }
-
 }

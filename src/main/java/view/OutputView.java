@@ -6,7 +6,6 @@ import util.Way;
 import java.util.List;
 
 public class OutputView {
-    private static final String WAY_CHARACTER = "-";
     private static final String BLANK = " ";
     private static final String BAR = "|";
     private static final String ERROR_PREFIX = "[ERROR]";
@@ -17,15 +16,6 @@ public class OutputView {
         lines.forEach(line -> System.out.println(changeFormat(line, maxPlayerNameLength)));
     }
 
-    private String changeFormat(Line line, int maxPlayerNameLength) {
-        List<Boolean> points = line.getPoints();
-        StringBuilder ladderLine = new StringBuilder(BLANK.repeat(maxPlayerNameLength-1)+BAR);
-        for (Boolean point : points) {
-            ladderLine.append(printLine(point, maxPlayerNameLength));
-        }
-        return ladderLine.toString();
-    }
-
     public String printLine(Boolean point, int maxPlayerNameLength) {
         if (point) {
             return Way.valueOf(maxPlayerNameLength).getWay() + BAR;
@@ -33,7 +23,16 @@ public class OutputView {
         return Way.valueOf(maxPlayerNameLength).getBlank() + BAR;
     }
 
-    public void printErrormessage(String errorMessage){
+    public void printErrormessage(String errorMessage) {
         System.out.println(ERROR_PREFIX + errorMessage);
+    }
+
+    private String changeFormat(Line line, int maxPlayerNameLength) {
+        List<Boolean> points = line.getPoints();
+        StringBuilder ladderLine = new StringBuilder(BLANK.repeat(maxPlayerNameLength - 1) + BAR);
+        for (Boolean point : points) {
+            ladderLine.append(printLine(point, maxPlayerNameLength));
+        }
+        return ladderLine.toString();
     }
 }
