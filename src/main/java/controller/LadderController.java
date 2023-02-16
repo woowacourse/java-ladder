@@ -2,7 +2,6 @@ package controller;
 
 import domain.ladder.Ladder;
 import domain.ladder.LadderMaker;
-import domain.ladder.Line;
 import domain.player.Player;
 import domain.player.Players;
 import utils.Log;

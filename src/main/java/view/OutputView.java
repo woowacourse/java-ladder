@@ -2,8 +2,8 @@ package view;
 
 import domain.ladder.Ladder;
 import domain.ladder.Line;
-import domain.player.Player;
 import domain.ladder.Point;
+import domain.player.Player;
 
 import java.util.List;
 
