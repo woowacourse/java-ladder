@@ -9,6 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class NameTest {
 	@Test
+	void throwExceptionWhenNameIsEmpty() {
+		final String valueEmpty = "";
+		assertThatThrownBy(() -> new Name(valueEmpty))
+				.isInstanceOf(IllegalArgumentException.class);
+	}
+	@Test
 	void throwExceptionWhenNameIsBlank() {
 		final String valueBlank = " ";
 		assertThatThrownBy(() -> new Name(valueBlank))
