@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -9,11 +10,11 @@ public class Line {
     public static final int POINT_MIN_SIZE = 1;
     public static final int POINT_MAX_SIZE = 20;
 
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Point> points;
 
     public Line(int pointSize) {
         validate(pointSize);
-        generatePoints(pointSize);
+        this.points = generatePoints(pointSize);
     }
 
     private void validate(int pointSize) {
@@ -22,24 +23,25 @@ public class Line {
         }
     }
 
-    private void generatePoints(final int pointSize) {
+    private List<Point> generatePoints(final int pointSize) {
         // TODO: Random 객체 외부에서 주입받아서 사용하도록 수정
         Random random = new Random();
-
+        List<Point> points = new ArrayList<>();
         for (int i = 0; i < pointSize; i++) {
-            boolean leftPoint = false;
-            boolean currentPoint = false;
+            Point currentPoint = Point.generate(random);
             if (i - 1 >= 0) {
-                leftPoint = points.get(i - 1);
-            }
-            if (!leftPoint) {
-                currentPoint = random.nextBoolean();
+                currentPoint = Point.generate(points.get(i - 1), random);
             }
             points.add(currentPoint);
         }
+        return points;
     }
 
-    public boolean getPointAt(int index) {
+    public Point getPointAt(int index) {
         return points.get(index);
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }
