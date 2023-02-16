@@ -1,17 +1,17 @@
 package domain;
 
+import java.util.Collections;
+import java.util.List;
+
 public class Ladder {
 
-    private final int height;
+    private final List<Line> lines;
 
-    public Ladder(int height) {
-        validateHeight(height);
-        this.height = height;
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
-    private void validateHeight(int height) {
-        if (height < 1 || height > 100) {
-            throw new IllegalArgumentException();
-        }
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }
