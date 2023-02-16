@@ -27,4 +27,8 @@ public class Person {
 				MessageFormat.format(PERSON_NAME_OVER_LENGTH_EXCEPTION.getMessage(), MAX_NAME_LENGTH));
 		}
 	}
+
+	public String getName() {
+		return name;
+	}
 }
