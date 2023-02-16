@@ -41,7 +41,7 @@ public class LadderController {
         return ladderFactory.createLadder(names.size() - 1, height);
     }
 
-    private static void showLadder(final Names names, final Ladder ladder) {
+    private void showLadder(final Names names, final Ladder ladder) {
         OutputView.printResult(ladder, names);
     }
 }
