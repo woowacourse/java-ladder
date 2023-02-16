@@ -1,4 +1,6 @@
-package model;
+package helper;
+
+import model.Height;
 
 public class FakeHeight extends Height {
 
