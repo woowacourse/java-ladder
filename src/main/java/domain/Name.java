@@ -25,4 +25,8 @@ public class Name {
             throw new IllegalArgumentException();
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
