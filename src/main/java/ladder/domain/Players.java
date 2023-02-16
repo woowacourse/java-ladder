@@ -20,9 +20,9 @@ public class Players {
     }
 
     private List<Player> generatePlayer(List<String> names) {
-       return names.stream()
+        return names.stream()
                 .map(Player::new)
-               .collect(Collectors.toList());
+                .collect(Collectors.toList());
     }
 
     public int getSize() {
