@@ -1,6 +1,8 @@
 package ladder.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Raw {
@@ -8,7 +10,7 @@ public class Raw {
     private final List<Boolean> points = new ArrayList<>();
 
     public Raw(int personCount) {
-        for (int i = 0; i < personCount; i++) {
+        for (int i = 0; i < personCount - 1; i++) {
             points.add(false);
         }
     }
@@ -23,6 +25,10 @@ public class Raw {
 
     public boolean isLeftPointHasLine(int point) {
         return points.get(point - 1);
+    }
+
+    public List<Boolean> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
 }
