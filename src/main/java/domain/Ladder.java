@@ -5,6 +5,7 @@ import util.RandomBooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
 
@@ -65,6 +66,12 @@ public class Ladder {
 
     public int getTotalFootStepCount() {
         return getWidth() * getLineHeight();
+    }
+
+    public List<List<Boolean>> getValue(){
+        return lines.stream()
+                .map(Line::getValue)
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -5,6 +5,7 @@ import util.BooleanGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Line {
 
@@ -48,6 +49,12 @@ public class Line {
 
     public int getWidth() {
         return this.footSteps.size();
+    }
+
+    public List<Boolean> getValue(){
+        return List.copyOf(footSteps.stream()
+                .map(FootStep::isSteppable)
+                .collect(Collectors.toList()));
     }
 
     @Override

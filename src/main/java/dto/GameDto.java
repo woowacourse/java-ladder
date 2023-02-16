@@ -1,12 +1,23 @@
 package dto;
 
+import domain.Ladder;
+import domain.Names;
+
 public class GameDto {
     private final NamesDto namesDto;
     private final LadderDto ladderDto;
 
-    public GameDto(NamesDto namesDto, LadderDto ladderDto) {
-        this.namesDto = namesDto;
-        this.ladderDto = ladderDto;
+    public GameDto(Names names, Ladder ladder) {
+        this.namesDto = makeNameDTO(names);
+        this.ladderDto = makeLadderDTO(ladder);
+    }
+
+    private NamesDto makeNameDTO(Names names){
+        return NamesDto.from(names);
+    }
+
+    private LadderDto makeLadderDTO(Ladder ladder){
+        return LadderDto.from(ladder);
     }
 
     public LadderDto getLadderDto() {

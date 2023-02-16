@@ -1,6 +1,8 @@
 package domain;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Name {
 
@@ -10,6 +12,11 @@ public class Name {
     public Name(final String name) {
         validateName(name);
         this.name = name;
+    }
+
+    public static List<Name> of(List<String> names) {
+        return names.stream().map(Name::new)
+                .collect(Collectors.toList());
     }
 
     private void validateName(final String name) {
@@ -27,6 +34,10 @@ public class Name {
         if (name.isBlank()) {
             throw new IllegalArgumentException("한글자 이상 입력해주세요.");
         }
+    }
+
+    public String getValue(){
+        return this.name;
     }
 
     @Override

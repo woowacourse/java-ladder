@@ -3,6 +3,7 @@ package domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Names {
 
@@ -43,6 +44,18 @@ public class Names {
 
     private static boolean hasDuplication(final List<Name> names, Name target){
         return (Collections.frequency(names, target) > 1);
+    }
+
+    public int count(){
+        return this.names.size();
+    }
+
+    public List<String> getNames(){
+        List<String> names = this.names.stream()
+                .map(Name::getValue)
+                .collect(Collectors.toList());
+
+        return List.copyOf(names);
     }
 
     @Override
