@@ -16,6 +16,12 @@ public class ResultView {
     private static final String CONNECTED_MARKER = "-----";
     private static final String DISCONNECTED_MARKER = "     ";
 
+    private static final String EXECUTION_MESSAGE = System.lineSeparator() + "실행결과" + System.lineSeparator();
+
+    public static void printExecutionMessage() {
+        System.out.println(EXECUTION_MESSAGE);
+    }
+
     public static void printPlayerNames(List<String> names) {
         StringJoiner playerNames = new StringJoiner(NAME_DELIMITER);
         for (String name : names) {
