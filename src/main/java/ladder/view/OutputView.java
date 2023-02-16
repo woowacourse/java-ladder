@@ -9,12 +9,29 @@ public class OutputView {
 
     private OutputView() {
     }
+
     public static OutputView getInstance() {
         return INSTANCE;
     }
 
-    public void printPlayerNames(List<String> playerNames){
-        playerNames.stream().forEach(name->System.out.print(String.format("%6s", name)));
+    public void printPlayerNames(List<String> playerNames) {
+        System.out.print("  ");
+        playerNames.stream().forEach(name -> System.out.print(String.format("%-6s", name)));
     }
+
+    public void printRaw(List<Boolean> points) {
+        System.out.println();
+        System.out.print("  |");
+        for (boolean point : points) {
+            if(point){
+                System.out.print("-----|");
+            }
+            if(!point){
+                System.out.print("     |");
+            }
+        }
+    }
+
+
 
 }
