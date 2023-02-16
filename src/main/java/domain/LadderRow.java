@@ -1,8 +1,11 @@
 package domain;
 
+import utils.constants.ErrorMessages;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static utils.constants.ErrorMessages.*;
 import static utils.constants.LadderFormat.*;
 
 public class LadderRow {
@@ -15,17 +18,14 @@ public class LadderRow {
     }
 
     private void validate(final List<Boolean> lines) {
-        boolean flag = false;
         for (int i = 0; i < lines.size() - 1; i++) {
-            Boolean current = lines.get(i);
-            Boolean next = lines.get(i + 1);
-            if (current == next && current) {
-                flag = true;
-                break;
-            }
+            isAllTrue(lines.get(i), lines.get(i + 1));
         }
-        if (flag) {
-            throw new IllegalArgumentException();
+    }
+
+    private void isAllTrue(boolean current, boolean next) {
+        if (current && next) {
+            throw new IllegalArgumentException(CONSECUTIVE_LINE.getMessage());
         }
     }
 
