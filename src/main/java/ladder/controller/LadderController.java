@@ -22,12 +22,30 @@ public class LadderController {
     }
 
     public void execute() {
-        this.names = new Names(readNames());
-        this.height = new Height(readLadderHeight());
+        createNames();
+        createHeight();
 
         createLadder(names.size());
 
         ResultView.printResult(names, ladder);
+    }
+
+    private void createNames() {
+        try {
+            this.names = new Names(readNames());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            createNames();
+        }
+    }
+
+    private void createHeight() {
+        try {
+            this.height = new Height(readLadderHeight());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            createHeight();
+        }
     }
 
     private void createLadder(int personCount) {
@@ -37,22 +55,11 @@ public class LadderController {
     }
 
     private List<String> readNames() {
-        try {
-            return InputView.requestNames();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readNames();
-        }
+        return InputView.requestNames();
     }
 
     private int readLadderHeight() {
-        try {
-            return InputView.requestLadderHeight();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readLadderHeight();
-        }
+        return InputView.requestLadderHeight();
     }
-
 
 }
