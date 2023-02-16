@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import exception.WrongRangeLadderHeightException;
 import helper.FakeHeight;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
@@ -15,8 +16,7 @@ class HeightTest {
     @Test
     void 생성자는_0_이하의_값이_주어지면_Exception이_발생한다() {
         assertThatThrownBy(() -> new Height(0))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("사다리 높이는 최소 1 이상이어야 합니다.");
+                .isInstanceOf(WrongRangeLadderHeightException.class);
     }
 
     @Test
