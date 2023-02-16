@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class LadderGame {
+public class LadderGame {
 
     private List<Player> players;
     private Ladder ladder;
