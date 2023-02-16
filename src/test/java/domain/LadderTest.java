@@ -75,7 +75,7 @@ public class LadderTest {
         );
     }
 
-    @ParameterizedTest(name = "사다리에 속한 domain.Line 은 모두 길이가 같아야 한다")
+    @ParameterizedTest(name = "사다리에 속한 Line 은 모두 길이가 같아야 한다")
     @MethodSource("differentSizeLines")
     void 사다리에_속한_Line_은_모두_길이가_같아야_한다(final List<Line> lines) {
         Assertions.assertThatThrownBy(() ->
