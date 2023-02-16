@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -11,6 +12,6 @@ public class Line {
     }
 
     public List<Path> getLine() {
-        return line;
+        return Collections.unmodifiableList(line);
     }
 }

@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Names {
@@ -11,6 +12,6 @@ public class Names {
     }
 
     public List<Name> getNames() {
-        return names;
+        return Collections.unmodifiableList(names);
     }
 }
