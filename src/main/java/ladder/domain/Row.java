@@ -7,10 +7,10 @@ import java.util.List;
 class Row {
 
     public static final int BUFFER_COUNT = 1;
-    private final List<Boolean> connected;
+    private final List<Leg> connected;
 
     Row(int width) {
-        connected = new ArrayList<>(Collections.nCopies(width + BUFFER_COUNT, false));
+        connected = new ArrayList<>(Collections.nCopies(width + BUFFER_COUNT, Leg.BLANK));
     }
 
     void generateLeg(Generator generator) {
@@ -21,16 +21,16 @@ class Row {
 
     private void connect(Generator generator, int index) {
         if (shouldConnect(generator, index)) {
-            connected.set(index, true);
+            connected.set(index, Leg.CONNECTED);
         }
     }
 
     private boolean shouldConnect(Generator generator, int index) {
         int adjacentIndex = index - 1;
-        return generator.generate() && !connected.get(adjacentIndex);
+        return generator.generate() && (connected.get(adjacentIndex)==Leg.BLANK);
     }
 
-    List<Boolean> toDto() {
+    List<Leg> toDto() {
         return connected.subList(BUFFER_COUNT, connected.size());
     }
 }
