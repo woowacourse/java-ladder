@@ -25,7 +25,6 @@ public class OutputView {
         System.out.println(RESULT_INFO_MSG);
     }
 
-    // todo: List<String> or List<Player>
     public static void printPlayerNames(List<String> playerNames) {
         for (String name : playerNames) {
             System.out.print(String.format(PLAYER_NAME_FORMAT, name));

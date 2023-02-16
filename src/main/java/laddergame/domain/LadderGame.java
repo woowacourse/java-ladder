@@ -12,7 +12,7 @@ public class LadderGame {
     }
 
     public void makeLadder(int height) {
-        ladder = new Ladder(players.size(), new LadderHeight(height));
+        ladder = new Ladder(players.size(), height);
     }
 
     public List<String> getPlayerNames() {

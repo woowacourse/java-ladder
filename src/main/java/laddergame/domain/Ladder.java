@@ -8,17 +8,20 @@ import java.util.List;
 
 public class Ladder {
 
-    private final PointGenerator pointGenerator;
     private final List<Line> lines;
 
-    // todo: pointGenerator를 어디에서 관리할 것인가
-    public Ladder(int playerCount, LadderHeight ladderHeight) {
-        pointGenerator = new RandomPointGenerator();
-        List<Line> tempLines = new ArrayList<>();
-        while (!ladderHeight.isMaxHeight(tempLines.size())) {
-            tempLines.add(new Line(playerCount, pointGenerator));
+    // todo: pointGenerator를 어디에서 관리할 것인가 -> LadderGame vs Ladder
+    public Ladder(int playerCount, int height) {
+        this.lines = List.copyOf(generateLines(playerCount, new LadderHeight(height)));
+    }
+
+    private List<Line> generateLines(int playerCount, LadderHeight ladderHeight) {
+        PointGenerator pointGenerator = new RandomPointGenerator();
+        List<Line> lines = new ArrayList<>();
+        while (!ladderHeight.isMaxHeight(lines.size())) {
+            lines.add(new Line(playerCount, pointGenerator));
         }
-        this.lines = List.copyOf(tempLines);
+        return lines;
     }
 
     public List<Line> getLadder() {
