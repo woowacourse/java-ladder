@@ -6,12 +6,14 @@ import java.util.stream.Collectors;
 
 public class LadderGame {
 
-    private final List<Name> players;
+    private final Players players;
 
-    public LadderGame(List<String> players) {
-        this.players = players.stream()
-                .map(Name::new)
+    public LadderGame(List<String> names) {
+        List<Player> players = names.stream()
+                .map(Player::new)
                 .collect(Collectors.toList());
+
+        this.players = new Players(players);
     }
 
     public List<Line> play(int height) {
@@ -23,5 +25,9 @@ public class LadderGame {
         }
 
         return result;
+    }
+
+    public List<String> getPlayerNames() {
+        return players.getNames();
     }
 }

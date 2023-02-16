@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Players {
 
@@ -17,5 +18,15 @@ public class Players {
         if (players.size() < MIN_PLAYER_COUNT) {
             throw new IllegalArgumentException("참가자는 1명이하일 수 없습니다.");
         }
+    }
+
+    public List<String> getNames() {
+        return players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
+    }
+
+    public int size() {
+        return players.size();
     }
 }
