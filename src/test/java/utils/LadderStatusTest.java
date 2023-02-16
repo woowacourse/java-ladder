@@ -17,7 +17,7 @@ class LadderStatusTest {
     }
 
     @ParameterizedTest
-    @EnumSource(names = {"INPUT_PARTICIPANT_NAMES", "INPUT_LADDER_HEIGHT"})
+    @EnumSource(names = {"INPUT_PARTICIPANT_NAMES", "GENERATE_LADDER", "PRINT_LADDER"})
     void canPlay_메소드는_RadderStatus가_APPLICATION_EXIT가_아니라면_true를_반환한다(LadderStatus ladderStatus) {
         assertThat(ladderStatus.canPlay()).isTrue();
     }
