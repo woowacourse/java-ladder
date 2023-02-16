@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static laddergame.domain.message.ErrorMessage.INVALID_DUPLICATE_NAME;
+import static laddergame.domain.message.ErrorMessage.INVALID_PARTICIPANT_COUNT;
+
 public class Participants {
 
     private static final String DELIMITER = ",";
@@ -31,14 +34,14 @@ public class Participants {
 
     private void validateParticipantCount(List<String> participantNames) {
         if (participantNames.size() == MIN_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 참여자는 최소 한 명 이상 입력해야 합니다.");
+            throw new IllegalArgumentException(INVALID_PARTICIPANT_COUNT.getMessage());
         }
     }
 
     private void validateDuplicateName(List<String> participantNames) {
         int uniqueCount = (int) participantNames.stream().distinct().count();
         if (uniqueCount != participantNames.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 이름을 입력할 수 없습니다.");
+            throw new IllegalArgumentException(INVALID_DUPLICATE_NAME.getMessage());
         }
     }
 

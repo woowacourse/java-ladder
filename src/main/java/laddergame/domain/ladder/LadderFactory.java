@@ -6,6 +6,9 @@ import laddergame.util.NumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
+import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_RANGE;
+import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_TYPE;
+
 public class LadderFactory {
 
     private static final int MIN_HEIGHT = 1;
@@ -44,13 +47,13 @@ public class LadderFactory {
         try {
             return Integer.parseInt(height);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 사다리 높이는 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException(INVALID_HEIGHT_TYPE.getMessage());
         }
     }
 
     private void validateHeightRange(final int height) {
         if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
-            throw new IllegalArgumentException("[ERROR] 사다리 높이는 1~10000 사이의 값만 가질 수 있습니다.");
+            throw new IllegalArgumentException(INVALID_HEIGHT_RANGE.getMessage());
         }
     }
 }

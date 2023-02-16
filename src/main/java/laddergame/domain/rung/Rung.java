@@ -2,6 +2,8 @@ package laddergame.domain.rung;
 
 import java.util.Objects;
 
+import static laddergame.domain.message.ErrorMessage.INVALID_MATERIAL;
+
 public class Rung {
 
     protected static final int SUFFICIENT = 1;
@@ -23,7 +25,7 @@ public class Rung {
 
     private void validateMaterial(final int material) {
         if (material != SUFFICIENT && material != INSUFFICIENT) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 사다리 가로대 인자입니다.");
+            throw new IllegalArgumentException(INVALID_MATERIAL.getMessage());
         }
     }
 
