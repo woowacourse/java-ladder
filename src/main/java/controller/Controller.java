@@ -6,24 +6,33 @@ import view.OutputView;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Controller {
     private final InputView inputView;
     private final OutputView outputView;
+    private final LadderGenerator ladderGenerator;
 
-    public Controller(InputView inputView, OutputView outputView) {
+    public Controller(InputView inputView, OutputView outputView, LadderGenerator ladderGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.ladderGenerator = ladderGenerator;
     }
 
     public void run(){
         Users usersName = settingUsers();
-        Ladders ladders = settingLadders();
-        ladders.make(usersName.getCount()-1);
+        int height = settingLadders();
+        List<Ladder> ladderResult = IntStream.rangeClosed(0, height)
+                .mapToObj(i -> new Ladder(getLadder(usersName)))
+                .collect(Collectors.toList());
+
+        Ladders ladders = new Ladders(ladderResult);
         outputView.printUsers(usersName);
-        for (Ladder ladder : ladders.getLadders()) { //스트림
-            outputView.printLadder(ladder);
-        }
+        ladders.getLadders().forEach(outputView::printLadder);
+    }
+
+    private List<Bridge> getLadder(Users usersName) {
+        return ladderGenerator.generateLadder(usersName.getCount() - 1);
     }
 
     public Users settingUsers() {
@@ -38,10 +47,10 @@ public class Controller {
         }
     }
 
-    public Ladders settingLadders() {
+    public int settingLadders() {
         try {
-            int height = inputView.inputLadderHeight();
-            return new Ladders(height, new LadderGenerator());
+            return inputView.inputLadderHeight();
+//            return new Ladders(height, new LadderGenerator());
         } catch (IllegalArgumentException e) {
             return settingLadders();
         }
