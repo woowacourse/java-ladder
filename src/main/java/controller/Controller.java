@@ -7,6 +7,7 @@ import domain.LadderRow;
 import domain.User;
 import domain.Users;
 import utils.LadderRowGenerator;
+import utils.RandomLadderRowGenerator;
 import utils.StringParser;
 import utils.constants.Validator;
 import view.InputView;
@@ -15,10 +16,12 @@ import view.OutputView;
 public class Controller {
     private final Ladder ladder;
     private final Users users;
+    private final LadderRowGenerator ladderRowGenerator;
 
-    public Controller(Ladder ladder, Users users) {
+    public Controller(Ladder ladder, Users users,LadderRowGenerator ladderRowGenerator) {
         this.ladder = ladder;
         this.users = users;
+        this.ladderRowGenerator = ladderRowGenerator;
     }
 
     public void run() {
@@ -53,7 +56,7 @@ public class Controller {
     private void addLadder(int ladderHeight, int userCount) {
         Validator.validateLadderHeight(ladderHeight);
         for (int i = 0; i < ladderHeight; i++) {
-            LadderRow line = LadderRowGenerator.generate(userCount);
+            LadderRow line = ladderRowGenerator.generate(userCount);
             ladder.add(line);
         }
     }
