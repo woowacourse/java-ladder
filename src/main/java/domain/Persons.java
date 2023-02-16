@@ -1,7 +1,9 @@
 package domain;
 
-import java.util.ArrayList;
+import exception.ErrorCode;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Persons {
     private final List<Person> persons;
@@ -12,13 +14,32 @@ public class Persons {
     }
 
     private void validate(List<Person> persons) {
-        List<String> validatedNames = new ArrayList<>();
-        for (Person person : persons) {
-            String name = person.getName();
-            if (validatedNames.contains(name)) {
-                throw new IllegalArgumentException();
-            }
-            validatedNames.add(name);
+        if (isNameDuplicate(persons)) {
+            throw new IllegalArgumentException(ErrorCode.NAME_DUPLICATE.getMessage());
         }
+    }
+
+    private boolean isNameDuplicate(List<Person> names) {
+        return names.size() != names.stream()
+                .map(Person::getName)
+                .distinct()
+                .count();
+    }
+
+    public List<String> getAllPersonNames() {
+        return persons.stream()
+                .map(Person::getName)
+                .collect(Collectors.toList());
+    }
+
+    public int getLongestPersonNameLength() {
+        List<Integer> namesLength = getAllPersonNames().stream()
+                .map(String::length)
+                .collect(Collectors.toList());
+        return Collections.max(namesLength);
+    }
+
+    public int getTotalPersonCount() {
+        return persons.size();
     }
 }
