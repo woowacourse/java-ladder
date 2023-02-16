@@ -28,10 +28,18 @@ public class RandomRowsGenerator {
     }
 
     public Rows generateRows(int width, int height) {
+        validateHeight(height);
+
         List<Row> rows = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             rows.add(generateValidRow(width));
         }
         return new Rows(rows);
+    }
+
+    private void validateHeight(int height) {
+        if (height <= 1) {
+            throw new IllegalArgumentException();
+        }
     }
 }
