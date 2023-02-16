@@ -16,6 +16,13 @@ class NameTest {
 	}
 
 	@Test
+	void throwExceptionWhenNameIsNotAlphabet() {
+		final String valueBlank = "한글훈글";
+		assertThatThrownBy(() -> new Name(valueBlank))
+				.isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
 	void throwExceptionWhenNameIsNull() {
 		assertThatThrownBy(() -> new Name(null))
 			.isInstanceOf(IllegalArgumentException.class);
@@ -23,14 +30,14 @@ class NameTest {
 
 	@Test
 	void throwExceptionWhenNameOverLength() {
-		final String value = "123456";
+		final String value = "rosieee";
 		assertThatThrownBy(() -> new Name(value))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
 	@Test
 	void create() {
-		final String value = "12345";
+		final String value = "rosie";
 		assertDoesNotThrow(() -> new Name(value));
 	}
 
