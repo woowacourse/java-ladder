@@ -19,17 +19,17 @@ public class Ladder {
     }
 
     private static void validate(int height, int personCount) {
-        validateHeight(height);
-        validateHeightCompareWithPersonCount(height, personCount);
+        validateHeightGreaterThanLowerBound(height);
+        validatePersonCountLessThanHeight(height, personCount);
     }
 
-    private static void validateHeightCompareWithPersonCount(int height, int personCount) {
+    private static void validatePersonCountLessThanHeight(int height, int personCount) {
         if (height < personCount) {
             throw new IllegalArgumentException(HEIGHT_IS_LOWER_THAN_PERSON_COUNT_MESSAGE);
         }
     }
 
-    private static void validateHeight(int height) {
+    private static void validateHeightGreaterThanLowerBound(int height) {
         if (height < HEIGHT_LOWER_BOUND) {
             throw new IllegalArgumentException(NOT_NATURAL_NUMBER_MESSAGE);
         }
