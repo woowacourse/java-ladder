@@ -1,5 +1,7 @@
 package domain.ladder;
 
+import utils.ErrorMessage;
+
 import java.util.Arrays;
 
 public enum Point {
@@ -19,7 +21,7 @@ public enum Point {
         return Arrays.stream(values())
                 .filter(point -> point.flag == flag)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("일치하는 객체가 존재하지 않습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.POINT_NOT_FOUND_ERROR.getMessage()));
     }
 
     public String getMessage() {
