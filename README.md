@@ -7,8 +7,8 @@
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
 
 ## 입력
-- [ ] 참여자 이름을 입력받는다.
- - [ ] 이름은 쉼표로 구분되어 입력받는다.
+- [x] 참여자 이름을 입력받는다.
+ - [x] 이름은 쉼표로 구분되어 입력받는다.
 
 - [ ] 최대 사다리 높이를 입력받는다.
  - [ ] 사다리 높이는 숫자가 아닌 문자이면 예외를 던진다.
