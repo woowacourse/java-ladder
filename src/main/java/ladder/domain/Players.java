@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.exception.PlayerNameLengthException;
 import ladder.exception.PlayerNumberException;
 
 import java.util.List;
@@ -24,5 +23,13 @@ public class Players {
         if (playerNames.size() < PLAYER_MINIMUM_NUMBER) {
             throw new PlayerNumberException();
         }
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public int size() {
+        return players.size();
     }
 }

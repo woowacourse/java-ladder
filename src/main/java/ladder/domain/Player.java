@@ -19,4 +19,8 @@ public class Player {
             throw new PlayerNameLengthException();
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
