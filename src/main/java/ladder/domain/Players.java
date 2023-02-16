@@ -16,7 +16,7 @@ public class Players {
 
     private void validatePlayers(List<Player> players) {
         if (players.size() < MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException("참가자는 1명이하일 수 없습니다.");
+            throw new IllegalArgumentException("참가자는 2명 이상이어야 합니다.");
         }
     }
 
