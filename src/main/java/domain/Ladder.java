@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
+    private static final String INVALID_BRIDGE_MESSAGE = "다리는 연속으로 생성되면 안됩니다.";
     private final List<Bridge> ladder;
 
     public Ladder(List<Bridge> ladder) {
@@ -17,7 +18,7 @@ public class Ladder {
         Bridge currentBridge = ladder.get(index);
         Bridge previousBridge = ladder.get(index - 1);
         if (currentBridge.isExist() && previousBridge.isExist()) {
-            throw new IllegalArgumentException("다리는 연속으로 생성되면 안됩니다.");
+            throw new IllegalArgumentException(INVALID_BRIDGE_MESSAGE);
         }
     }
 
