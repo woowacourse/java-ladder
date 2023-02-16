@@ -19,7 +19,7 @@ public class Ladder {
 
     private void addLine() {
         RandomLineMaker randomLineMaker = new RandomLineMaker();
-        for (int i = 0; i < height.getHeight(); i++) {
+        for (int line = 0; line < height.getHeight(); line++) {
             lines.add(new Line(randomLineMaker, userCount));
         }
     }
