@@ -43,8 +43,9 @@ public class PlayerNamesTest {
     @Test
     void createPlayerNumberOverNumberFail() {
         List<String> input = new ArrayList<>();
-        for (int i = 0; i < 21; i++) {
-            input.add(String.valueOf(i + 'a'));
+        char toCharacter = 'a';
+        for (int asciiNumber = 0; asciiNumber < 21; asciiNumber++) {
+            input.add(String.valueOf(asciiNumber + toCharacter));
         }
 
         assertThatThrownBy(() -> PlayerNames.from(input))

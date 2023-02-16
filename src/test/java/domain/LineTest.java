@@ -29,7 +29,7 @@ public class LineTest {
 
     @Test
     @DisplayName("지정한 위치의 방향이 직진방향인지 확인")
-    void existHorizontalLineAtSuccess() {
+    void isPointDirectionStraightSuccess() {
         Line line = Line.fromHeight(new Height(5));
         Direction rightDown = Direction.RIGHT_DOWN;
 

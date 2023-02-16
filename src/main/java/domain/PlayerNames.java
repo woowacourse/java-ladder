@@ -47,7 +47,7 @@ public class PlayerNames {
         }
     }
 
-    private static boolean isOutOfRange(int playerNumber) {
+    private boolean isOutOfRange(int playerNumber) {
         return !(PLAYER_NUMBER_LOWER_BOUND_INCLUSIVE <= playerNumber
                 && playerNumber <= PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE);
     }

@@ -41,7 +41,7 @@ public class PlayerName {
     }
 
     public String getPlayerName() {
-        return playerName;
+        return this.playerName;
     }
 
 }

@@ -15,13 +15,9 @@ public class Line {
     public static Line fromHeight(Height height) {
         List<Point> points = new ArrayList<>();
         IntStream.range(0, height.getHeight())
-                .forEach(i -> points.add(new Point(Direction.STRAIGHT_DOWN)));
+                .forEach(it -> points.add(new Point(Direction.STRAIGHT_DOWN)));
 
         return new Line(points);
-    }
-
-    public List<Point> getPoints() {
-        return this.points;
     }
 
     public void changePointDirectionAt(Direction direction, int index) {
@@ -32,6 +28,10 @@ public class Line {
     public boolean isPointDirectionStraight(int index) {
         return this.points.get(index)
                 .matchDirection(Direction.STRAIGHT_DOWN);
+    }
+
+    public List<Point> getPoints() {
+        return this.points;
     }
 
 }

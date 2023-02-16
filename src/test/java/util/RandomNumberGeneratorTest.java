@@ -7,10 +7,11 @@ import org.junit.jupiter.api.RepeatedTest;
 class RandomNumberGeneratorTest {
 
     @RepeatedTest(100)
-    void test() {
-        int i = RandomNumberGenerator.pickRandomNumberInRange(1, 1);
-        assertThat(i).isGreaterThanOrEqualTo(1);
-        assertThat(i).isLessThanOrEqualTo(1);
+    void pickRandomNumberInRangeSuccess() {
+        int targetNumber = 1;
+        int number = RandomNumberGenerator.pickRandomNumberInRange(targetNumber, targetNumber);
+        assertThat(number).isGreaterThanOrEqualTo(targetNumber);
+        assertThat(number).isLessThanOrEqualTo(targetNumber);
     }
 
 }

@@ -48,20 +48,32 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("사다리의 다리는 중복해서 생성 불가")
-    void buildBridgeFail() {
+    @DisplayName("이미 다리가 건설 된 지점을 끝 점으로 다리 생성 불가")
+    void buildBridgeFail1() {
         Point startPoint = ladder.getPoint(0, 1);
         Point endPoint = ladder.getPoint(0, 2);
         ladder.buildBridge(startPoint, endPoint);
 
         Point previousStartPoint = ladder.getPoint(0, 0);
-        Point nextEndPoint = ladder.getPoint(0, 3);
         ladder.buildBridge(previousStartPoint, startPoint);
-        ladder.buildBridge(endPoint, nextEndPoint);
 
         assertThat(startPoint.matchDirection(Direction.RIGHT_DOWN)).isTrue();
         assertThat(endPoint.matchDirection(Direction.LEFT_DOWN)).isTrue();
         assertThat(previousStartPoint.matchDirection(Direction.STRAIGHT_DOWN)).isTrue();
+    }
+
+    @Test
+    @DisplayName("이미 다리가 건설 된 지점을 시작점으로 다리 생성 불가")
+    void buildBridgeFail2() {
+        Point startPoint = ladder.getPoint(0, 1);
+        Point endPoint = ladder.getPoint(0, 2);
+        ladder.buildBridge(startPoint, endPoint);
+
+        Point nextEndPoint = ladder.getPoint(0, 3);
+        ladder.buildBridge(endPoint, nextEndPoint);
+
+        assertThat(startPoint.matchDirection(Direction.RIGHT_DOWN)).isTrue();
+        assertThat(endPoint.matchDirection(Direction.LEFT_DOWN)).isTrue();
         assertThat(nextEndPoint.matchDirection(Direction.STRAIGHT_DOWN)).isTrue();
     }
 

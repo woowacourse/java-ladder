@@ -22,7 +22,7 @@ public class LadderGameController {
         Height height = inputView.requestLadderHeight();
 
         Ladder ladder = Ladder.of(playerNames, height, bridgeStrategy);
-        ladder.shuffleLadder();
+        ladder.buildBridges();
 
         printLadderGameResult(playerNames, ladder);
     }

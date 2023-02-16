@@ -30,7 +30,7 @@ public class Ladder {
         return new Ladder(lines, height, generateBridgeStrategy);
     }
 
-    public void shuffleLadder() {
+    public void buildBridges() {
         for (int lineAt = 0; lineAt < lines.size() - 1; lineAt++) {
             Line startLine = lines.get(lineAt);
             Line endLine = lines.get(lineAt + 1);
@@ -66,16 +66,18 @@ public class Ladder {
                 && endPoint.matchDirection(Direction.STRAIGHT_DOWN);
     }
 
-    public Point getPoint(int y, int x) {
-        return lines.get(x).getPoints().get(y);
+    public Point getPoint(int pointAt, int lineAt) {
+        return this.lines.get(lineAt)
+                .getPoints()
+                .get(pointAt);
     }
 
     public List<Line> getLines() {
-        return lines;
+        return this.lines;
     }
 
     public int getHeightSize() {
-        return height.getHeight();
+        return this.height.getHeight();
     }
 
 }

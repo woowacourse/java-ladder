@@ -25,7 +25,11 @@ public class OutputView {
         for (PlayerName playerName : playerNames.getPlayerNames()) {
             System.out.print(formatPlayerName(playerName.getPlayerName()) + BLANK);
         }
-        System.out.println();
+        breakLine();
+    }
+
+    private void breakLine() {
+        System.out.print(System.lineSeparator());
     }
 
     public String formatPlayerName(String playerName) {
@@ -57,13 +61,13 @@ public class OutputView {
         for (int pointAt = 0; pointAt < ladder.getHeightSize(); pointAt++) {
             printLadderPrefix();
             printSingleLadder(ladder, lineAmount, pointAt);
-            System.out.println();
+            breakLine();
         }
     }
 
     private void printSingleLadder(Ladder ladder, int lineAmount, int pointAt) {
         for (int lineAt = 0; lineAt < lineAmount; lineAt++) {
-            Point point = ladder.getLines().get(lineAt).getPoints().get(pointAt);
+            Point point = ladder.getPoint(pointAt, lineAt);
             printPointDirection(point);
         }
     }
