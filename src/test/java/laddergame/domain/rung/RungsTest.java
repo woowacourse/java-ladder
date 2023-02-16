@@ -27,9 +27,9 @@ public class RungsTest {
     @ValueSource(ints = {1, 2, 3, 4, 5})
     @DisplayName("Rungs 객체가 정상적으로 생성되는지 테스트한다.")
     void create_test(int rungCount) {
-        assertDoesNotThrow(() -> new Rungs(rungCount, rungNumberGenerator));
+        assertDoesNotThrow(() -> Rungs.create(rungCount, rungNumberGenerator));
 
-        assertThat(new Rungs(rungCount, rungNumberGenerator))
+        assertThat(Rungs.create(rungCount, rungNumberGenerator))
                 .isInstanceOf(Rungs.class);
     }
 
@@ -38,7 +38,7 @@ public class RungsTest {
     @DisplayName("Rungs 객체 내부의 리스트의 길이가 rungCount와 같은지 확인한다.")
     void create_rung_size_test(int rungCount) {
         // when
-        Rungs rungs = new Rungs(rungCount, rungNumberGenerator);
+        Rungs rungs = Rungs.create(rungCount, rungNumberGenerator);
         List<Rung> specificRungs = rungs.getRungs();
 
         // then
@@ -51,7 +51,7 @@ public class RungsTest {
     @DisplayName("NumberGenerator에 따라 Rungs의 형태가 달라지는지 확인한다.")
     void create_rungs_test_by_number_generator(int rungCount, NumberGenerator numberGenerator, List<Rung> expectedRungs) {
         // given
-        Rungs rungs = new Rungs(rungCount, numberGenerator);
+        Rungs rungs = Rungs.create(rungCount, numberGenerator);
 
         // when
         List<Rung> actualRungs = rungs.getRungs();
@@ -65,14 +65,14 @@ public class RungsTest {
         final NumberGenerator insufficientMaterialGenerator = () -> 0;
 
         return Stream.of(
-                Arguments.arguments(1, sufficientMaterialGenerator, List.of(new Rung(1))),
-                Arguments.arguments(2, sufficientMaterialGenerator, List.of(new Rung(1), new Rung(0))),
-                Arguments.arguments(3, sufficientMaterialGenerator, List.of(new Rung(1), new Rung(0), new Rung(1))),
-                Arguments.arguments(4, sufficientMaterialGenerator, List.of(new Rung(1), new Rung(0), new Rung(1), new Rung(0))),
-                Arguments.arguments(1, insufficientMaterialGenerator, List.of(new Rung(0))),
-                Arguments.arguments(2, insufficientMaterialGenerator, List.of(new Rung(0), new Rung(0))),
-                Arguments.arguments(3, insufficientMaterialGenerator, List.of(new Rung(0), new Rung(0), new Rung(0))),
-                Arguments.arguments(4, insufficientMaterialGenerator, List.of(new Rung(0), new Rung(0), new Rung(0), new Rung(0)))
+                Arguments.arguments(1, sufficientMaterialGenerator, List.of(Rung.create(1))),
+                Arguments.arguments(2, sufficientMaterialGenerator, List.of(Rung.create(1), Rung.create(0))),
+                Arguments.arguments(3, sufficientMaterialGenerator, List.of(Rung.create(1), Rung.create(0), Rung.create(1))),
+                Arguments.arguments(4, sufficientMaterialGenerator, List.of(Rung.create(1), Rung.create(0), Rung.create(1), Rung.create(0))),
+                Arguments.arguments(1, insufficientMaterialGenerator, List.of(Rung.create(0))),
+                Arguments.arguments(2, insufficientMaterialGenerator, List.of(Rung.create(0), Rung.create(0))),
+                Arguments.arguments(3, insufficientMaterialGenerator, List.of(Rung.create(0), Rung.create(0), Rung.create(0))),
+                Arguments.arguments(4, insufficientMaterialGenerator, List.of(Rung.create(0), Rung.create(0), Rung.create(0), Rung.create(0)))
         );
     }
 }
