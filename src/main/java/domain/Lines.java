@@ -17,5 +17,4 @@ public class Lines {
     public List<Line> getLines() {
         return lines;
     }
-
 }

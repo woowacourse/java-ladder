@@ -44,6 +44,4 @@ public class Name {
             this.message = String.format(BASE_MESSAGE, String.format(message, replaces));
         }
     }
-
-
 }
