@@ -2,7 +2,6 @@ package view;
 
 import domain.Ladder;
 import domain.Name;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +12,9 @@ public class OutputView {
     private static final String BLANK = " ";
 
     private static final StringBuilder stringBuilder = new StringBuilder();
+
+    private OutputView() {
+    }
 
     public static void printResult(final Ladder ladder, final List<Name> playerNames) {
         String initBlank = BLANK.repeat(playerNames.get(0).getValue().length());
@@ -31,6 +33,7 @@ public class OutputView {
         }
         System.out.println();
     }
+
     private static void addBlanks(List<String> makeNames, List<String> nameValues) {
         for (String name : nameValues) {
             int addBlankSize = 5 - name.length();

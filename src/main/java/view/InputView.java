@@ -12,6 +12,9 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    private InputView() {
+    }
+
     public static List<String> inputNames() {
         System.out.println(INPUT_NAMES);
         String input = scanner.nextLine();
