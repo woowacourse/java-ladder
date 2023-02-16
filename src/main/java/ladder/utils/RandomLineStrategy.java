@@ -1,21 +1,18 @@
 package ladder.utils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class RandomLineStrategy implements LineStrategy {
 
-    Random random = new Random();
+    private final Random random = new Random();
 
     @Override
-    public List<Boolean> generate(int lineLength) {
+    public List<Boolean> generate(int partCount) {
         List<Boolean> line = new ArrayList<>();
-        while(line.size() < lineLength) {
+        while (line.size() < partCount) {
             boolean current = random.nextBoolean();
             line.add(current);
-            if(current && (line.size() == lineLength - 1)) {
+            if (current && (line.size() == partCount - 1)) {
                 line.add(false);
             }
         }
