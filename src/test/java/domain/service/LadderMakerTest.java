@@ -1,10 +1,13 @@
 package domain.service;
 
 import domain.model.Ladder;
+import domain.model.Layer;
 import domain.vo.Height;
 import domain.vo.LineCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
