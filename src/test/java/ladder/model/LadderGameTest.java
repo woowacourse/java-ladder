@@ -35,7 +35,7 @@ class LadderGameTest {
         List<PlayerName> input = new ArrayList<>(List.of(new PlayerName("a"), new PlayerName("asd"), new PlayerName("qwert")));
 
         LadderGame ladderGame = new LadderGame(input, new TestLineCreateDecider(newArrayList(true, false, true)));
-        ladderGame.generateLadder(2);
+        ladderGame.generateLadder(new Height(2));
         List<Raw> raws = ladderGame.getLadder().getRaws();
 
         assertThat(raws.get(0).isPointHasLine(0)).isTrue();
