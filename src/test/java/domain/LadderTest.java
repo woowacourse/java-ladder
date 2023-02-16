@@ -1,3 +1,5 @@
+package domain;
+
 import domain.Bridge;
 import domain.Ladder;
 import org.assertj.core.api.Assertions;

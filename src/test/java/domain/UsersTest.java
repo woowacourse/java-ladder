@@ -1,3 +1,5 @@
+package domain;
+
 import domain.User;
 import domain.Users;
 import org.junit.jupiter.api.Assertions;
