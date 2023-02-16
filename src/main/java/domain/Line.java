@@ -24,13 +24,9 @@ public class Line {
     }
 
     private void validateNotSerial(final Bridge currentBridge, final Bridge nextBridge) {
-        if (isSerial(currentBridge, nextBridge)) {
+        if (currentBridge.isSerialWith(nextBridge)) {
             throw new IllegalArgumentException("브릿지는 연속으로 생성될 수 없습니다");
         }
-    }
-
-    private boolean isSerial(final Bridge currentBridge, final Bridge nextBridge) {
-        return currentBridge == Bridge.EXIST && nextBridge == Bridge.EXIST;
     }
 
     public List<Bridge> getBridges() {
