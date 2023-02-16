@@ -7,7 +7,7 @@ public class Person {
 
 	public Person(String name) {
 		validate(name);
-		this.name = name;
+		this.name = name.trim();
 	}
 
 	public String getName() {
