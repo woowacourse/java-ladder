@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import static ladder.domain.Bar.IMMOVABLE;
 import static ladder.domain.Bar.MOVABLE;
@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.Line;
 import ladder.utils.BooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
