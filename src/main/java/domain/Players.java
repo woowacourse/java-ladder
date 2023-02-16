@@ -8,7 +8,8 @@ public class Players {
     public static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
     private static final int STANDARD_BLANK = 7;
     private static final String DELIMITER = ",";
-    public static final String DELIMITER_WITH_BLANK = "\\s*,\\s*";
+    private static final String DELIMITER_WITH_BLANK = "\\s*,\\s*";
+    private static final String INPUT_PLAYER_ERROR_MESSAGE = "[ERROR] 구분자 ,를 이용하여 두 명 이상 입력해야 합니다.";
 
     private final List<Player> players;
 
@@ -25,13 +26,13 @@ public class Players {
 
     private void validateMoreThanOnePlayer(List<String> splitNames) {
         if (splitNames.size() < MINIMUM_NUMBER_OF_PLAYERS) {
-            throw new IllegalArgumentException("[ERROR] 플레이어는 " + MINIMUM_NUMBER_OF_PLAYERS + "명 이상 입력되어야 합니다.");
+            throw new IllegalArgumentException(INPUT_PLAYER_ERROR_MESSAGE);
         }
     }
 
     private void validateDelimiter(String names) {
         if (!names.contains(DELIMITER)) {
-            throw new IllegalArgumentException("[ERROR] 구분자는 " + DELIMITER + "여야 합니다.");
+            throw new IllegalArgumentException(INPUT_PLAYER_ERROR_MESSAGE);
         }
     }
 

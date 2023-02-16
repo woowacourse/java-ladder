@@ -23,16 +23,16 @@ public class PlayersTest {
 
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구분자는 ,여야 합니다.");
+                .hasMessage("[ERROR] 구분자 ,를 이용하여 두 명 이상 입력해야 합니다.");
     }
 
     @Test
     @DisplayName("플레이어 수가 한명일 경우 예외 발생")
     void validateMoreThanOnePlayer() {
-        String names = "roy,";
+        String names = "roy";
 
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 플레이어는 2명 이상 입력되어야 합니다.");
+                .hasMessage("[ERROR] 구분자 ,를 이용하여 두 명 이상 입력해야 합니다.");
     }
 }
