@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.constant.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,6 +21,8 @@ class PlayerTest {
     @ParameterizedTest(name = "{0} 라는 이름으로 Player를 생성할 경우 예외가 발생한다.")
     @ValueSource(strings = {"  ", "test11"})
     void playerCreateExceptionTest(String playerName) {
-        assertThatThrownBy(() -> new Player(playerName)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Player(playerName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.NOT_VALID_PLAYER_NAME.getMessage());
     }
 }
