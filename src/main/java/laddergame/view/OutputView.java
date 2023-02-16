@@ -34,6 +34,10 @@ public enum OutputView {
         System.out.println(result);
     }
 
+    public static void printMessage(final String message) {
+        System.out.println("[ERROR] " + message + System.lineSeparator());
+    }
+
     private static String makeNameFormat(final int maxNameLength, final String name) {
         int count = maxNameLength - name.length();
         final String repeat = BLANK.ladderElement.repeat(count);
@@ -62,5 +66,4 @@ public enum OutputView {
 
         return BLANK.ladderElement.repeat(maxNameLength) + VERTICAL_LINE.ladderElement;
     }
-
 }
