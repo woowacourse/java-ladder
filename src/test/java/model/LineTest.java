@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import util.Connection;
 import util.Generator;
 
 import java.util.ArrayList;
@@ -22,23 +21,23 @@ public class LineTest {
     }
 
     @ParameterizedTest(name = "라인 랜덤 생성 성공 테스트 inputType={0}")
-    @CsvSource(value = {"0:false", "1:true"}, delimiter = ':')
-    void createLineRandomTest(int input, boolean result){
-        List<Integer> randomLine = new ArrayList<>(Arrays.asList(input));
+    @CsvSource(value = {"false:false", "true:true"}, delimiter = ':')
+    void createLineRandomTest(boolean input, boolean result){
+        List<Boolean> randomLine = new ArrayList<>(Arrays.asList(input));
         TestLineGenerator testlineGenerator = new TestLineGenerator(randomLine);
 
-        assertThat(Connection.valueOf(testlineGenerator.generate()).getStatus()).isEqualTo(result);
+        assertThat(testlineGenerator.generate()).isEqualTo(result);
     }
 
     static class TestLineGenerator implements Generator {
-        private final List<Integer> lines;
+        private final List<Boolean> lines;
 
-        public TestLineGenerator(List<Integer> lines) {
+        public TestLineGenerator(List<Boolean> lines) {
             this.lines = lines;
         }
 
         @Override
-        public int generate() {
+        public boolean generate() {
             return lines.remove(0);
         }
     }
