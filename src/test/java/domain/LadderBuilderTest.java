@@ -27,14 +27,15 @@ class LadderBuilderTest {
 		int width = 3;
 		LadderBuilder builder = new LadderBuilder();
 		Ladder ladder = builder.build(height, width, new PresentPointGenerator());
-		assertThat(ladder.getLines().get(0).getPoints()).containsExactly(
+		assertThat(ladder.getLadderPoints()).containsExactly(
+		List.of(
 			Point.PRESENCE, Point.ABSENCE, Point.PRESENCE
-		);
-		assertThat(ladder.getLines().get(1).getPoints()).containsExactly(
+		),
+		List.of(
 			Point.PRESENCE, Point.ABSENCE, Point.PRESENCE
-		);
-		assertThat(ladder.getLines().get(2).getPoints()).containsExactly(
+		),
+		List.of(
 			Point.PRESENCE, Point.ABSENCE, Point.PRESENCE
-		);
+		));
 	}
 }
