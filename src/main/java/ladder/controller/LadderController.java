@@ -1,8 +1,6 @@
 package ladder.controller;
 
-import ladder.domain.People;
-import ladder.domain.RandomRowsGenerator;
-import ladder.domain.Rows;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -20,11 +18,30 @@ public class LadderController {
     }
 
     public void run() {
-        List<String> names = inputView.inputParticipants();
-        People players = People.from(names);
-        int ladderHeight = inputView.inputHeight();
-        Rows rows = randomRowsGenerator.generateRows(players.getPeopleSize() - 1, ladderHeight);
+        try {
+            Players players = enroll();
+            Rows rows = makeLadder(players.getPlayersSize());
+            printLadderResult(players, rows);
+        } catch (IllegalArgumentException e) {
+            resultView.printErrorMessage(e.getMessage());
+        }
+
+    }
+
+    private void printLadderResult(Players players, Rows rows) {
         resultView.printNames(players.getNames());
         resultView.printLadder(rows.getState());
+    }
+
+    private Rows makeLadder(int playersSize) {
+        Height height = new Height(inputView.inputHeight());
+        Width width = new Width(playersSize - 1);
+        return randomRowsGenerator.generateRows(width, height);
+    }
+
+    private Players enroll() {
+        List<String> names = inputView.inputParticipants();
+        Players players = Players.from(names);
+        return players;
     }
 }
