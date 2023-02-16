@@ -34,7 +34,7 @@ public class PlayerName {
             this.message = message;
         }
 
-        public String getMessage() {
+        private String getMessage() {
             return message;
         }
     }

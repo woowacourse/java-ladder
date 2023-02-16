@@ -6,16 +6,19 @@ import java.util.List;
 
 public class Row {
 
+    private static final int FIRST_POINT = 0;
     private final List<Boolean> points = new ArrayList<>();
 
     public Row(int personCount, LineCreateDecider lineCreateDecider) {
-        for (int i = 0; i < personCount - 1; i++) {
+        int pointCount = personCount - 1;
+
+        for (int i = 0; i < pointCount; i++) {
             createLineAt(i, lineCreateDecider.decide());
         }
     }
 
     private void createLineAt(int point, boolean isCreated) {
-        if(isLeftPointHasLine(point)){
+        if (isLeftPointHasLine(point)) {
             points.add(false);
             return;
         }
@@ -23,7 +26,7 @@ public class Row {
     }
 
     private boolean isLeftPointHasLine(int point) {
-        if(point == 0){
+        if (point == FIRST_POINT) {
             return false;
         }
         return points.get(point - 1);

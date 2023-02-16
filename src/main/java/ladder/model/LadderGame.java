@@ -6,7 +6,6 @@ import java.util.List;
 public class LadderGame {
 
     private static final int MIN_PLAYER_COUNT = 2;
-
     private final List<PlayerName> playerNames;
     private final Height height;
     private final LineCreateDecider lineCreateDecider;
@@ -20,6 +19,12 @@ public class LadderGame {
         this.ladder = generateLadder();
     }
 
+    private void validatePlayerCount(List<PlayerName> playerNames) {
+        if (playerNames.size() < MIN_PLAYER_COUNT) {
+            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_INVALID_PLAYER_COUNT.getMessage());
+        }
+    }
+
     public Ladder generateLadder() {
         int personCount = playerNames.size();
         List<Row> rows = new ArrayList<>();
@@ -27,13 +32,6 @@ public class LadderGame {
             rows.add(new Row(personCount, lineCreateDecider));
         }
         return new Ladder(rows);
-    }
-
-
-    private void validatePlayerCount(List<PlayerName> playerNames) {
-        if (playerNames.size() < MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_INVALID_PLAYER_COUNT.getMessage());
-        }
     }
 
     public List<PlayerName> getPlayerNames() {
@@ -52,7 +50,7 @@ public class LadderGame {
             this.message = message;
         }
 
-        public String getMessage() {
+        private String getMessage() {
             return message;
         }
     }

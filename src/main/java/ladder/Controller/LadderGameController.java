@@ -25,17 +25,17 @@ public class LadderGameController {
         showResult(ladderGame);
     }
 
-    private Height generateHeight() {
-        int height = inputView.readHeight();
-        return new Height(height);
-    }
-
     private List<PlayerName> generatePlayerNames() {
         List<String> names = inputView.readNames();
         List<PlayerName> playerNames = names.stream()
                 .map(PlayerName::new)
                 .collect(Collectors.toList());
         return playerNames;
+    }
+
+    private Height generateHeight() {
+        int height = inputView.readHeight();
+        return new Height(height);
     }
 
     private void showResult(LadderGame ladderGame) {

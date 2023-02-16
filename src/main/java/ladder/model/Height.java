@@ -1,8 +1,6 @@
 package ladder.model;
 
 public class Height {
-
-
     private static final int MIN_HEIGHT = 2;
     private final int height;
 
@@ -29,7 +27,7 @@ public class Height {
             this.message = message;
         }
 
-        public String getMessage() {
+        private String getMessage() {
             return message;
         }
     }

@@ -10,16 +10,15 @@ public class InputView {
     private static final InputView INSTANCE = new InputView();
     private static final Pattern NUMBER_REGEX = Pattern.compile("^-?[0-9]+$");
 
-    private InputView() {
-    }
+    private InputView() {}
 
     public static InputView getInstance() {
         return INSTANCE;
     }
 
-
     public List<String> readNames() {
         System.out.println(InputMessage.INPUT_NAMES.getMessage());
+
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
@@ -40,8 +39,10 @@ public class InputView {
 
     public int readHeight() {
         System.out.println(InputMessage.INPUT_HEIGHT.getMessage());
+
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
+
         validateHeight(input);
         return Integer.parseInt(input);
     }
@@ -80,7 +81,6 @@ public class InputView {
         public String getMessage() {
             return message;
         }
-
 
     }
 

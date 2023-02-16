@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Ladder {
 
-
     private final List<Row> rows;
 
     public Ladder(List<Row> rows) {
@@ -15,6 +14,4 @@ public class Ladder {
         return rows;
     }
 
-
 }
-

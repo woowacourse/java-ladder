@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public void printPlayerNames(List<String> playerNames) {
-        playerNames.stream().forEach(name -> System.out.print(String.format("%-6s", name)));
+        playerNames.forEach(name -> System.out.printf("%-6s", name));
     }
 
     public void printRow(List<Boolean> points) {
@@ -37,11 +37,11 @@ public class OutputView {
             this.mark = mark;
         }
 
-        public String getMark() {
+        private String getMark() {
             return mark;
         }
 
-        public static String getRowMark(boolean hasLine) {
+        private static String getRowMark(boolean hasLine) {
             if (hasLine) return ROW_LINE.mark;
             return ROW_EMPTY.mark;
         }
