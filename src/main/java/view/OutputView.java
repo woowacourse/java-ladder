@@ -10,6 +10,7 @@ public class OutputView {
     public static final String FIRST_FORMAT = "%-5s";
     public static final String MIDDLE_FORMAT = "%6s";
     public static final String LAST_FORMAT = "%5s";
+    public static final String VERTICAL_BAR = "|";
 
     private static void middlePlayersPrint(List<String> names, int index) {
         if (isMiddlePlayer(names, index)) {
@@ -49,4 +50,17 @@ public class OutputView {
     private static boolean isLastPlayer(List<String> names, int index) {
         return index == names.size() - 1;
     }
+
+    public void printLadders(List<Line> lines) {
+        System.out.println();
+        for (Line line : lines) {
+            printLine(line);
+        }
+    }
+
+    private void printLine(Line line) {
+        List<String> ladders = BlockType.getBlockTypes(line);
+        System.out.println("    " + VERTICAL_BAR + String.join(VERTICAL_BAR, ladders) + VERTICAL_BAR);
+    }
+
 }
