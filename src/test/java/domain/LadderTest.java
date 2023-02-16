@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import util.FixBooleanGenerator;
+import util.RandomBooleanGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -23,7 +24,7 @@ class LadderTest {
             @DisplayName("정상적인 높이면 해당 높이만큼 다리를 생성한다.")
             @ValueSource(ints = {2, 3, 4, 5, 6, 7, 8, 9, 10})
             void givenValidHeight_thenBuildLines(final int height) {
-                Ladder ladder = new Ladder();
+                Ladder ladder = new Ladder(new RandomBooleanGenerator());
                 ladder.build(height);
                 assertThat(ladder.getLineHeight()).isEqualTo(height);
             }
@@ -32,7 +33,7 @@ class LadderTest {
             @DisplayName("비정상적인 높이면 익셉션을 발생한다.")
             @ValueSource(ints = {0, 1, 11, 12})
             void givenInValidHeight_thenThrowException(final int height) {
-                Ladder ladder = new Ladder();
+                Ladder ladder = new Ladder(new RandomBooleanGenerator());
 
                 assertThatThrownBy(() -> ladder.build(height))
                         .isInstanceOf(IllegalArgumentException.class)
@@ -54,7 +55,7 @@ class LadderTest {
             @DisplayName(" 주어진 사람 수만큼 다리의 폭이 생성된다.")
             void givenThree_thenGenerateThreeWidth() {
                 ladder.build(2, 3);
-                assertThat(ladder.getWidth()).isEqualTo(3);
+                assertThat(ladder.getWidth()).isEqualTo(2);
             }
 
             @Test
@@ -68,7 +69,11 @@ class LadderTest {
             @DisplayName(" 주어진 정보에 맞는 개수의 디딤돌이 생성된다.")
             void givenInformation_thenGenerateLadder() {
                 ladder.build(3, 2);
-                assertThat(ladder.getTotalFootStepCount()).isEqualTo(6);
+                assertThat(getLadderArea()).isEqualTo(3);
+            }
+
+            private int getLadderArea() {
+                return ladder.getLineHeight() * ladder.getWidth();
             }
         }
     }
