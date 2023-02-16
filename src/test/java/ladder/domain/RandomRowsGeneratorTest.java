@@ -1,27 +1,20 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RandomRowsGeneratorTest {
-    @Test
-    public void 랜덤_Row_생성() {
-        assertThat(new RandomRowsGenerator().generateValidRow(3).getRow()).hasSize(3);
+    @ParameterizedTest(name = "너비: {0}, 높이: {1}이면 높이가 {2}인 사다리 생성된다.")
+    @CsvSource({"2,2,2", "2,3,3", "3,5,5"})
+    public void Rows_생성_success(int width, int height, int expected) {
+        List<Row> rows = new RandomRowsGenerator()
+                .generateRows(new Width(width), new Height(height))
+                .getRows();
 
-    }
-
-    @Test
-    public void 랜덤_Row_생성2() {
-        assertThat(new RandomRowsGenerator().generateValidRow(4).getRow()).hasSize(4);
-    }
-
-    @Test
-    public void 랜덤_Rows_생성() {
-        List<Row> rows = new RandomRowsGenerator().generateRows(new Width(2), new Height(2)).getRows();
-        assertThat(rows).hasSize(2);
+        assertThat(rows).hasSize(expected);
     }
 }
