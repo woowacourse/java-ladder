@@ -1,8 +1,9 @@
 package domain;
 
-import java.util.ArrayList;
+import factory.LadderFactory;
+import factory.PlayersFactory;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderGame {
 
@@ -10,22 +11,8 @@ public class LadderGame {
     private final Players players;
 
     public LadderGame(final List<String> playerNames, final int ladderHeight) {
-        ladder = new Ladder(generateLines(playerNames.size(), ladderHeight));
-        players = new Players(generatePlayers(playerNames));
-    }
-
-    private List<Line> generateLines(final int playerSize, final int ladderHeight) {
-        List<Line> lines = new ArrayList<>();
-        for (int lineIndex = 0; lineIndex < ladderHeight; lineIndex++) {
-            lines.add(new Line(playerSize - 1));
-        }
-        return lines;
-    }
-
-    private List<Player> generatePlayers(final List<String> playerNames) {
-        return playerNames.stream()
-                .map(Player::new)
-                .collect(Collectors.toList());
+        ladder = LadderFactory.generate(playerNames.size(), ladderHeight);
+        players = PlayersFactory.generate(playerNames);
     }
 
     public Ladder getLadder() {
@@ -35,4 +22,5 @@ public class LadderGame {
     public List<String> getPlayerNames() {
         return players.getPlayerNames();
     }
+
 }
