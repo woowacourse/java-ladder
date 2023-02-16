@@ -19,4 +19,8 @@ public enum Foothold {
                 .findAny()
                 .get();
     }
+
+    public String getMark() {
+        return mark;
+    }
 }

@@ -23,4 +23,8 @@ public class Person {
             throw new IllegalArgumentException();
         }
     }
+
+    public String getName(){
+        return name;
+    }
 }
