@@ -4,13 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
+    private final static int DIFFERENCE_BETWEEN_FLOOR_AND_USERS = 1;
     private List<Floor> floors = new ArrayList<>();
 
-    public Ladder(int size, int width) {
+    public Ladder(int size, Users users) {
         validateSize(size);
+        int width = calculateWidth(users);
         for (int i = 0; i < size; i++) {
             floors.add(new Floor(width));
         }
+    }
+
+    private int calculateWidth(Users users) {
+        return users.getUsers().size() - DIFFERENCE_BETWEEN_FLOOR_AND_USERS;
     }
 
 
