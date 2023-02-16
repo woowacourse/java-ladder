@@ -17,6 +17,7 @@ public class OutputView {
     private static final String STRING_FORMAT = "s";
     private static final String LINE_STATUS_MESSAGE_FORMAT = "%s|";
     private static final String NEXT_LINE = "\n";
+    private static final String ERROR_MESSAGE = "[ERROR] ";
 
     public void printResult(final List<String> players, final List<Line> ladder) {
         System.out.println(GAME_RESULT_MESSAGE);
@@ -75,5 +76,9 @@ public class OutputView {
             return generateRepeatedLineStatusMessage(CONNECTED_SYMBOL, maxNameLength);
         }
         return generateRepeatedLineStatusMessage(EMPTY_SYMBOL, maxNameLength);
+    }
+
+    public void printError(final String message) {
+        System.out.println(ERROR_MESSAGE + message);
     }
 }
