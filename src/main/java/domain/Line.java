@@ -1,44 +1,37 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
 
-    private final List<Boolean> points;
+    private final List<Boolean> movements;
 
-    public Line(int personCount) {
-        this.points = new ArrayList<>();
-        for (int i = 0; i < personCount - 1; i++) {
-            points.add(false);
+    public Line(List<Boolean> movements) {
+        validate(movements);
+        this.movements = movements;
+    }
+
+    private void validate(List<Boolean> movements) {
+        int initialIndex = 0;
+        Boolean previousMovement = movements.get(initialIndex);
+
+        for (int i = initialIndex + 1; i < movements.size(); i++) {
+            validateSequential(previousMovement, movements.get(i));
+            previousMovement = movements.get(i);
         }
     }
 
-    public Line(List<Boolean> points) {
-        validate(points);
-        this.points = points;
-    }
-
-    private void validate(List<Boolean> points) {
-        Boolean flag = points.get(0);
-
-        for (int i = 1; i < points.size(); i++) {
-            validateSequential(points, flag, i);
-            flag = points.get(i);
+    private void validateSequential(Boolean previousMovement, Boolean currentMovement) {
+        if (previousMovement & currentMovement) {
+            throw new IllegalArgumentException("가로라인이 연속될 수 없습니다.");
         }
     }
 
-    private void validateSequential(List<Boolean> points, Boolean flag, int index) {
-        if (points.get(index) & flag) {
-            throw new IllegalArgumentException("연속된 true가 나올 수 없습니다.");
-        }
-    }
-
-    public List<Boolean> getPoints() {
-        return points;
+    public List<Boolean> getMovements() {
+        return movements;
     }
 
     public int size() {
-        return points.size();
+        return movements.size();
     }
 }

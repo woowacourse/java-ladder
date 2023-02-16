@@ -16,7 +16,7 @@ public class OutputView {
 
     public void printLadder(Ladder ladder) {
         for (Line line : ladder.getLines()) {
-            List<String> collect = getHorizonLine(line.getPoints());
+            List<String> collect = getHorizonLine(line.getMovements());
             System.out.printf("    |%s|%n", String.join(DELIMITER, collect));
         }
     }

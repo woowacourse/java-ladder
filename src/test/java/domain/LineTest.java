@@ -11,13 +11,6 @@ import org.junit.jupiter.api.Test;
 class LineTest {
 
     @Test
-    @DisplayName("사람수에 따라 라인을 생성한다. (라인수 = 사람수 - 1)")
-    void createLine() {
-        Line line = new Line(3);
-        assertThat(line.size()).isEqualTo(2);
-    }
-
-    @Test
     @DisplayName("true가 연속으로 두 개 나오면 예외를 발생시킨다.")
     void exceptionTest() {
         assertThatThrownBy(() -> new Line(List.of(true, true, false)))
