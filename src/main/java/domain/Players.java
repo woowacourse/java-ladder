@@ -1,10 +1,14 @@
 package domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Players {
+
+    private static final int MIN_PLAYER_SIZE = 2;
+    private static final int MAX_PLAYER_SIZE = 50;
 
     private final List<Player> players;
 
@@ -23,8 +27,12 @@ public class Players {
     }
 
     private void validateSize(List<Player> players) {
-        if (players.size() < 2 || players.size() > 50) {
+        if (players.size() < MIN_PLAYER_SIZE || players.size() > MAX_PLAYER_SIZE) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 }
