@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 public class LadderFactoryTest {
 
     @Test
-    void LadderFactory는_가로와_세로를_받아_사다리를_생성한다() {
+    void LadderFactory_는_가로와_세로를_받아_사다리를_생성한다() {
         // given
         int width = 5;
         int height = 10;
@@ -33,7 +33,7 @@ public class LadderFactoryTest {
     }
 
     @Test
-    void createLadder_를_통해_생성된_Ladder_는_높이가_height_이다() {
+    void createLadder_를_통해_생성된_Ladder는_높이가_height_이다() {
         // given
         int width = 5;
         int height = 10;
@@ -57,13 +57,12 @@ public class LadderFactoryTest {
         Ladder ladder = factory.createLadder(width, height);
 
         // then
-
         assertThat(ladder.getWidth()).isEqualTo(width);
     }
 
     @ParameterizedTest(name = "createLadder 시 ScaffoldGenerator 가 생성해준 값으로 생성한다")
     @MethodSource("scaffolds")
-    void createLadder시_ScaffoldGenerator가_생성해준_값으로_생성한다(final List<Scaffold> scaffolds) {
+    void createLadder_시_ScaffoldGenerator_가_생성해준_값으로_생성한다(final List<Scaffold> scaffolds) {
         // given
         int width = 2;
         int height = 2;
@@ -98,14 +97,15 @@ public class LadderFactoryTest {
         );
     }
 
-    @DisplayName("createLadder 시 ScaffoldGenerator 가 연속으로 EXIST를 생성할 경우, 나중에 생성된 값이 NONE으로 설정된다")
     @Test
-    void createLadder_consist_test() {
+    void createLadder_는_Scaffold_Generator_가_연속으로_EXIST_를_생성시_나중에_생성된_값이_NONE으로_설정된다() {
         // given
         int width = 2;
         int height = 2;
-        List<Scaffold> scaffolds = new ArrayList<>(List.of(Scaffold.EXIST, Scaffold.EXIST, Scaffold.EXIST, Scaffold.EXIST));
-        List<Scaffold> assertScaffolds = new ArrayList<>(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE));
+        List<Scaffold> scaffolds = new ArrayList<>(
+                List.of(Scaffold.EXIST, Scaffold.EXIST, Scaffold.EXIST, Scaffold.EXIST));
+        List<Scaffold> assertScaffolds = new ArrayList<>(
+                List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE));
 
         LadderFactory factory = new LadderFactory(() -> scaffolds.remove(0));
 
