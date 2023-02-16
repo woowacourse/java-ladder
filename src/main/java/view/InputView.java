@@ -48,7 +48,7 @@ public class InputView {
     }
 
     private static void validateSeparatorShape(final String input) {
-        if (input.contains(SEPARATOR)) {
+        if (!input.contains(SEPARATOR)) {
             throw new IllegalArgumentException(SEPARATOR + "로 이름으 구분해주세요");
         }
     }
