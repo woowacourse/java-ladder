@@ -1,5 +1,7 @@
 package view;
 
+import exception.BlankInputException;
+import exception.WrongNumberFormatException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -18,15 +20,37 @@ public class InputView {
     public List<String> inputNameOfParticipants() {
         String names = scanner.nextLine();
 
-        if (!names.contains(DELIMITER)) {
-            throw new IllegalArgumentException("이름에는 유효한 구분자가 포함되어야 합니다.");
-        }
+        validateBlank(names);
+        validateDelimiter(names);
 
         return Arrays.stream(names.split(DELIMITER))
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    private void validateDelimiter(String names) {
+        if (!names.contains(DELIMITER)) {
+            throw new IllegalArgumentException("이름에는 유효한 구분자가 포함되어야 합니다.");
+        }
+    }
+
     public int inputHeightOfLadder() {
-        return scanner.nextInt();
+        String inputHeight = scanner.nextLine();
+
+        validateBlank(inputHeight);
+        return mapToHeightNumber(inputHeight);
+    }
+
+    private int mapToHeightNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new WrongNumberFormatException();
+        }
+    }
+
+    private void validateBlank(String input) {
+        if (input.isBlank()) {
+            throw new BlankInputException();
+        }
     }
 }
