@@ -16,7 +16,7 @@ public class RandomLineMaker implements LineMaker {
     public List<Boolean> generateLine(int userCount) {
         List<Boolean> points = new ArrayList<>();
         for (int point = 1; point < userCount; point++) {
-            points.add(generateNumber(1));
+            points.add(generateNumber(2));
         }
 
         return points;
