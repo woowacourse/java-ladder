@@ -5,6 +5,7 @@ import java.util.List;
 import domain.Ladder;
 import domain.LadderBuilder;
 import domain.LadderHeight;
+import domain.LadderWidth;
 import domain.Participants;
 import domain.util.RandomPointGenerator;
 import view.InputView;
@@ -15,10 +16,14 @@ public class LadderController {
 	public void buildLadder() {
 		Participants participants = retrieveParticipants();
 		LadderHeight height = new LadderHeight(retrieveLadderHeight());
-		int width = participants.getParticipantsNum() - 1;
+		LadderWidth width = participatnsNum2LadderWidth(participants.getParticipantsNum());
 		LadderBuilder ladderBuilder = new LadderBuilder();
 		Ladder ladder = ladderBuilder.build(height, width, new RandomPointGenerator());
 		OutputView.printResult(participants.getNames(),ladder.getLadderPoints());
+	}
+
+	private LadderWidth participatnsNum2LadderWidth(int participantsNum){
+		return new LadderWidth( participantsNum - 1);
 	}
 
 	private Participants retrieveParticipants(){

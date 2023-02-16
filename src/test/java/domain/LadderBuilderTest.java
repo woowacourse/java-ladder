@@ -24,7 +24,7 @@ class LadderBuilderTest {
 	@DisplayName("사다리 생성 테스트")
 	void buildLadderTest() {
 		LadderHeight height = new LadderHeight(3);
-		int width = 3;
+		LadderWidth width = new LadderWidth(3);
 		LadderBuilder builder = new LadderBuilder();
 		Ladder ladder = builder.build(height, width, new PresentPointGenerator());
 		assertThat(ladder.getLadderPoints()).containsExactly(
