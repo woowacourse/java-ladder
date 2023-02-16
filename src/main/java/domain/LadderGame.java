@@ -1,18 +1,15 @@
 package domain;
 
-import factory.LadderFactory;
-import factory.PlayersFactory;
-
 import java.util.List;
 
 public class LadderGame {
 
-    private final Ladder ladder;
     private final Players players;
+    private final Ladder ladder;
 
-    public LadderGame(final List<String> playerNames, final int ladderHeight) {
-        ladder = LadderFactory.generate(playerNames.size(), ladderHeight);
-        players = PlayersFactory.generate(playerNames);
+    public LadderGame(final Players players, final Ladder ladder) {
+        this.players = players;
+        this.ladder = ladder;
     }
 
     public Ladder getLadder() {
