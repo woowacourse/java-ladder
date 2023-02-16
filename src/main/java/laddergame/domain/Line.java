@@ -5,30 +5,35 @@ import java.util.List;
 
 public class Line {
 
-    private static final String MIN_WIDTH_MESSAGE = "너비는 1보다 작을 수 없습니다.";
-    private static final int MIN_WIDTH = 1;
+    private static final int MIN_STATUS = 1;
+    private static final int FIRST_STATUS = 0;
 
     private final List<Boolean> statuses;
     private final PickStrategy strategy;
 
-    private Line(final int width, final PickStrategy pickStrategy) {
+    private Line(final int numberOfPlayers, final PickStrategy pickStrategy) {
         this.strategy = pickStrategy;
-        validateMinWidth(width);
-        this.statuses = createStatuses(width);
+        int numberOfStatus = numberOfPlayers - 1;
+        validateNumberOfStatus(numberOfStatus);
+        this.statuses = createStatuses(numberOfStatus);
     }
 
-    public static Line from(final int width) {
-        return new Line(width, new RandomBooleanPicker());
+    public static Line from(final int numberOfPlayers) {
+        return new Line(numberOfPlayers, new RandomBooleanPicker());
     }
 
-    public static Line of(final int width, final PickStrategy pickStrategy) {
-        return new Line(width, pickStrategy);
+    public static Line of(final int numberOfPlayers, final PickStrategy pickStrategy) {
+        return new Line(numberOfPlayers, pickStrategy);
     }
 
-    private List<Boolean> createStatuses(int width) {
+    public List<Boolean> getStatuses() {
+        return new ArrayList<>(statuses);
+    }
+
+    private List<Boolean> createStatuses(int numberOfStatus) {
         List<Boolean> statuses = new ArrayList<>();
 
-        for (int i = 0; i < width; i++) {
+        for (int i = 0; i < numberOfStatus; i++) {
             statuses.add(createLineStatus(statuses, i));
         }
 
@@ -38,7 +43,7 @@ public class Line {
     private boolean createLineStatus(final List<Boolean> statuses, final int index) {
         final boolean pick = strategy.pick();
 
-        if (index == 0) {
+        if (index == FIRST_STATUS) {
             return pick;
         }
 
@@ -50,12 +55,13 @@ public class Line {
     }
 
     private static boolean isOverlap(final List<Boolean> statuses, final boolean pick) {
-        return statuses.get(statuses.size() - 1) && pick;
+        int lastIndex = statuses.size() - 1;
+        return statuses.get(lastIndex) && pick;
     }
 
-    private void validateMinWidth(final int width) {
-        if (width < MIN_WIDTH) {
-            throw new IllegalStateException(MIN_WIDTH_MESSAGE);
+    private void validateNumberOfStatus(final int numberOfStatus) {
+        if (numberOfStatus < MIN_STATUS) {
+            throw new IllegalStateException("Player는 2명보다 작을 수 없습니다.");
         }
     }
 }

@@ -13,7 +13,7 @@ public class RandomBooleanPicker implements PickStrategy {
             random = SecureRandom.getInstanceStrong();
         } catch (NoSuchAlgorithmException e) {
             System.out.println(e.getMessage());
-            throw new IllegalStateException(e);
+            throw new IllegalStateException("랜덤 객체를 생성할 수 없습니다.");
         }
     }
 
