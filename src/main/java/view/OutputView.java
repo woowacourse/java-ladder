@@ -9,6 +9,7 @@ import model.Path;
 
 public class OutputView {
 
+    private static final String EXCEPTION_FORMAT = "[ERROR] %s";
     private static final String PARTICIPANT_NAME_FORMAT = "%-5s ";
     private static final String PARTICIPANT_NAME_FORMAT_FOR_LAST_INDEX = "%4s";
     private static final String LEFT_LEG = "    |";
@@ -68,6 +69,11 @@ public class OutputView {
     private void printPath(Path path) {
         print(path.getLog());
         print(LEG);
+    }
+
+    public void printExceptionMessage(String message) {
+        print(String.format(EXCEPTION_FORMAT, message));
+        print(LINE_FEED);
     }
 
     private void print(String message) {
