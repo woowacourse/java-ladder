@@ -11,7 +11,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class NamesTest {
 
-    // 사람 수는 2명 이상 100명 이하여야 한다.
     @ParameterizedTest(name = "사람 수는 2명 이상 100명 이하여야 한다.")
     @ValueSource(ints = {1, 101})
     void createNamesFailTest(int size) {

@@ -1,6 +1,7 @@
 package ladder.util;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,8 @@ class BooleanGeneratorTest {
     @Test
     void generateRandomBooleanTest() {
         BooleanGenerator generator = new RandomBooleanGenerator();
-        Assertions.assertThat(generator.generate())
+
+        assertThat(generator.generate())
             .isExactlyInstanceOf(Boolean.class);
     }
 }

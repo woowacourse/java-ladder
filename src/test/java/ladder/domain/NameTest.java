@@ -26,18 +26,21 @@ class NameTest {
     @Test
     @DisplayName("이름은 빈 문자열일 수 없다.")
     void createNameFailByEmptyInputTest() {
-        assertThatThrownBy(() -> new Name("")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Name(""))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("이름은 null일 수 없다.")
     void createNameFailByNullTest() {
-        assertThatThrownBy(() -> new Name(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Name(null))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("이름에 쉼표(,)가 포함될 수 없다.")
     void createNameFailByIncludingCommaTest() {
-        assertThatThrownBy(() -> new Name("yo,me")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Name("yo,me"))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 }
