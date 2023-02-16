@@ -8,10 +8,6 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
-    public static final int MAX_HEIGHT = 10;
-    public static final int MIN_HEIGHT = 2;
-    public static final String INVALID_LADDER_HEIGHT_ERROR_MESSAGE = "사다리 길이는" + MIN_HEIGHT + "에서 " + MAX_HEIGHT + "사이여야 합니다.";
-
     private final List<Line> lines = new ArrayList<>();
     private final BooleanGenerator booleanGenerator;
 
@@ -19,30 +15,21 @@ public class Ladder {
         this.booleanGenerator = booleanGenerator;
     }
 
-    private static void validateLadderHeight(final int height) {
-        if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
-            throw new IllegalArgumentException(INVALID_LADDER_HEIGHT_ERROR_MESSAGE);
-        }
-    }
-
-    public void build(final int height) {
-        for (int i = 0; i < height; i++) {
-            this.lines.add(new Line(() -> false));
-        }
-        validateLadderHeight(height);
-    }
-
     public int getLineHeight() {
         return this.lines.size();
     }
 
-    public void build(final int height, final int width) {
-        validateLadderHeight(height);
+    public void build(final Height height, final int width) {
         generateLines(height, width, booleanGenerator);
     }
 
-    private void generateLines(final int height, final int width, BooleanGenerator booleanGenerator) {
-        for (int currentHeight = 0; currentHeight < height; currentHeight++) {
+    private void generateLines(final Height height, final int width, BooleanGenerator booleanGenerator) {
+//        for (int currentHeight = 0; currentHeight < height; currentHeight++) {
+//            Line currentLine = new Line(booleanGenerator);
+//            generateFootsteps(width, currentLine);
+//            this.lines.add(currentLine);
+//        }
+        while(height.isNotBottom()){
             Line currentLine = new Line(booleanGenerator);
             generateFootsteps(width, currentLine);
             this.lines.add(currentLine);

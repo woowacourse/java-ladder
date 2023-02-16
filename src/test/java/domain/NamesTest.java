@@ -47,7 +47,7 @@ class NamesTest {
         void whenOnlyOnePerson() {
             assertThatThrownBy(() -> getNamesInstance("pobi"))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("최소 2명이상 참가자가 필요합니다.");
+                    .hasMessage("최소 2명이상 최대 10명 이하 참가자가 필요합니다.");
         }
 
         @Test
@@ -69,7 +69,7 @@ class NamesTest {
         void whenOverElevenPerson() {
             assertThatThrownBy(() -> getNamesInstance("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("최대 10명 이하 참가자가 필요합니다.");
+                    .hasMessage("최소 2명이상 최대 10명 이하 참가자가 필요합니다.");
         }
     }
 }
