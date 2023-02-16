@@ -15,15 +15,23 @@ public class LadderController {
     }
 
     private Players makePlayers() {
-        String playerNames = InputView.receivePlayer();
-
-        return new Players(playerNames);
+        try {
+            String playerNames = InputView.receivePlayer();
+            return new Players(playerNames);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return makePlayers();
+        }
     }
 
     private Ladder makeLadder(Players players) {
-        int height = InputView.receiveHeight();
-
-        return new Ladder(players.getNumberOfPlayers(), new Height(height));
+        try {
+            int height = InputView.receiveHeight();
+            return new Ladder(players.getNumberOfPlayers(), new Height(height));
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return makeLadder(players);
+        }
     }
 
     private void printLadder(Players players, Ladder ladder) {

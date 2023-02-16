@@ -17,4 +17,8 @@ public class OutputView {
             System.out.println(ladderLine);
         }
     }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
