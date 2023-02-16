@@ -10,7 +10,7 @@ public class LineTest {
     @DisplayName("1을 받으면 true가 된다.")
     void makeTrue() {
         Line line = new Line();
-        line.make(1);
+        line.make(LineSource.of(1));
 
         Assertions.assertThat(line)
                 .extracting("isExist")

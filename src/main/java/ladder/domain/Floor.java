@@ -28,7 +28,7 @@ public class Floor {
 
     private void makeLineAt(int index, int value) {
         if (isMakeAble(index)) {
-            lines.get(index).make(value);
+            lines.get(index).make(LineSource.of(value));
         }
     }
 
