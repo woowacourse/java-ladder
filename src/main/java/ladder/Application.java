@@ -1,2 +1,10 @@
-package ladder;public class Application {
+package ladder;
+
+import ladder.controller.LadderGameController;
+
+public class Application {
+
+    public static void main(String[] args) {
+        new LadderGameController().start();
+    }
 }
