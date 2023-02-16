@@ -38,7 +38,7 @@ public class Names {
 
     private void validateCountOfNames(List<String> names) {
         if (names.size() < MIN_NAMES_COUNT || names.size() > MAX_NAMES_COUNT) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_PEOPLE_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PEOPLE_COUNT.getMessage());
         }
     }
 }
