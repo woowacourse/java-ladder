@@ -27,12 +27,12 @@ public class Ladder {
     }
 
     private void validateLinesSameSize(final List<Line> lines) {
-        if (lineSizeIsUnique(lines)) {
+        if (lineSizeNotUnique(lines)) {
             throw new IllegalArgumentException();
         }
     }
 
-    private boolean lineSizeIsUnique(final List<Line> lines) {
+    private boolean lineSizeNotUnique(final List<Line> lines) {
         return linesSizeCount(lines) != UNIQUE_COUNT;
     }
 
