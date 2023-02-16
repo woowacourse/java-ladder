@@ -11,33 +11,41 @@ public class LineCreator {
 
     private final BooleanGenerator booleanGenerator;
 
-    public LineCreator(BooleanGenerator booleanGenerator) {
-        if (booleanGenerator == null) {
-            throw new IllegalArgumentException(LINE_CREATOR_BOOLEAN_GENERATOR_NULL_EXCEPTION.getMessage());
-        }
+    public LineCreator(final BooleanGenerator booleanGenerator) {
+        validateNotNull(booleanGenerator);
         this.booleanGenerator = booleanGenerator;
     }
 
-    public List<Line> createLines(int width, int height) {
-        if (width <= 0 || height <= 0) {
-            throw new IllegalArgumentException(LINE_CREATOR_ILLEGAL_LENGTH_EXCEPTION.getMessage());
-        }
+    public List<Line> createLines(final int width, final int height) {
+        validatePositive(width, height);
 
-        List<Line> lines = new ArrayList<>();
+        final List<Line> lines = new ArrayList<>();
         for (int count = 0; count < height; count++) {
-            Line line = repeat(() -> createLine(width));
+            final Line line = repeat(() -> createLine(width));
             lines.add(line);
         }
 
         return lines;
     }
 
-    private Line createLine(int width) {
-        List<Boolean> points = new ArrayList<>();
+    private Line createLine(final int width) {
+        final List<Boolean> points = new ArrayList<>();
         for (int count = 0; count < width; count++) {
             points.add(booleanGenerator.generate());
         }
 
         return new Line(points);
+    }
+
+    private void validateNotNull(final BooleanGenerator booleanGenerator) {
+        if (booleanGenerator == null) {
+            throw new IllegalArgumentException(LINE_CREATOR_BOOLEAN_GENERATOR_NULL_EXCEPTION.getMessage());
+        }
+    }
+
+    private void validatePositive(final int width, final int height) {
+        if (width <= 0 || height <= 0) {
+            throw new IllegalArgumentException(LINE_CREATOR_ILLEGAL_LENGTH_EXCEPTION.getMessage());
+        }
     }
 }

@@ -16,7 +16,7 @@ public class InputView {
     public List<String> readNames() {
         System.out.println(ANNOUNCE_READ_NAMES.getMessage());
         try {
-            return Arrays.stream(reader.readLine().split(","))
+            return Arrays.stream(reader.readLine().split("\\s*,\\s*"))
                     .collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException(e);

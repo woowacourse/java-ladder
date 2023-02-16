@@ -11,18 +11,22 @@ public class Ladder {
 
 
     public Ladder(final Participants participants, final Height height) {
+        validateNotNull(participants, height);
+        this.participants = participants;
+        this.height = height;
+    }
+
+    private void validateNotNull(final Participants participants, final Height height) {
         if (participants == null) {
             throw new IllegalArgumentException(LADDER_PARTICIPANTS_NULL_EXCEPTION.getMessage());
         }
         if (height == null) {
             throw new IllegalArgumentException(LADDER_HEIGHT_NULL_EXCEPTION.getMessage());
         }
-        this.participants = participants;
-        this.height = height;
     }
 
-    public List<Line> createLines(BooleanGenerator booleanGenerator) {
-        LineCreator lineCreator = new LineCreator(booleanGenerator);
+    public List<Line> createLines(final BooleanGenerator booleanGenerator) {
+        final LineCreator lineCreator = new LineCreator(booleanGenerator);
         return lineCreator.createLines(participants.getSize() - 1, height.getValue());
     }
 }

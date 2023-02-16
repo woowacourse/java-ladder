@@ -9,14 +9,22 @@ import static laddergame.messsages.ExceptionMessages.PARTICIPANTS_NULL_EXCEPTION
 public class Participants {
     private final List<Name> names;
 
-    public Participants(List<Name> names) {
-        if (names == null) {
-            throw new IllegalArgumentException(PARTICIPANTS_NULL_EXCEPTION.getMessage());
-        }
+    public Participants(final List<Name> names) {
+        validateNotNull(names);
+        validateNotEmpty(names);
+        this.names = names;
+    }
+
+    private void validateNotEmpty(final List<Name> names) {
         if (names.isEmpty()) {
             throw new IllegalArgumentException(PARTICIPANTS_EMPTY_EXCEPTION.getMessage());
         }
-        this.names = names;
+    }
+
+    private void validateNotNull(final List<Name> names) {
+        if (names == null) {
+            throw new IllegalArgumentException(PARTICIPANTS_NULL_EXCEPTION.getMessage());
+        }
     }
 
     public int getSize() {

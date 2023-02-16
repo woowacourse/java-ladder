@@ -6,11 +6,11 @@ public class Height {
     private final int value;
 
     public Height(final int value) {
-        validateHeight(value);
+        validatePositive(value);
         this.value = value;
     }
 
-    private void validateHeight(final int value) {
+    private void validatePositive(final int value) {
         if (value <= 0) {
             throw new IllegalArgumentException(HEIGHT_ILLEGAL_VALUE_EXCEPTION.getMessage());
         }

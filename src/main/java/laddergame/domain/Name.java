@@ -11,25 +11,25 @@ public class Name {
 	private final String value;
 
 	public Name(final String value) {
-		validateNull(value);
-		validatePattern(value);
-		validateOverLength(value);
+		validateNotNull(value);
+		validateMatchesPattern(value);
+		validateNotOverLength(value);
 		this.value = value;
 	}
 
-	private void validatePattern(final String value) {
+	private void validateMatchesPattern(final String value) {
 		if (!NAME_REGEX.matcher(value).matches()) {
 			throw new IllegalArgumentException();
 		}
 	}
 
-	private void validateNull(final String value) {
+	private void validateNotNull(final String value) {
 		if (value == null) {
 			throw new IllegalArgumentException(NAME_NULL_EXCEPTION.getMessage());
 		}
 	}
 
-	private void validateOverLength(final String value) {
+	private void validateNotOverLength(final String value) {
 		if (value.length() > MAX_NAME_LENGTH) {
 			throw new IllegalArgumentException(
 				MessageFormat.format(NAME_OVER_LENGTH_EXCEPTION.getMessage(), MAX_NAME_LENGTH));
