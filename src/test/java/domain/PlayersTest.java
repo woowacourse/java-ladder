@@ -19,7 +19,7 @@ public class PlayersTest {
     void playerSizeNotMoreThan20() {
         List<Player> players = new ArrayList<>();
         for (int i = 0; i < 21; i++) {
-            players.add(new Player("test"));
+            players.add(new Player(String.valueOf(i)));
         }
         assertThatThrownBy(() -> new Players(players))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -34,6 +34,17 @@ public class PlayersTest {
         assertThatThrownBy(() -> new Players(players))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("참여자 수는 1명 이상 20명 이하입니다.");
+    }
+
+    @DisplayName("참여자 수는 1명 이상 20명 이하이다.")
+    @ValueSource(ints = {1, 10, 20})
+    @ParameterizedTest
+    void playerSizeTest(int playerSize) {
+        List<Player> players = new ArrayList<>();
+        for (int i = 0; i < playerSize; i++) {
+            players.add(new Player(String.valueOf(i)));
+        }
+        assertThat(new Players(players).getPlayerNames().size()).isEqualTo(playerSize);
     }
 
     @DisplayName("참여자 이름이 중복될 수 없다.")

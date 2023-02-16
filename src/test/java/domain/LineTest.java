@@ -2,6 +2,8 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -24,6 +26,14 @@ public class LineTest {
                 .hasMessageContaining("포인트 범위는 0부터 19까지입니다.");
     }
 
+    @DisplayName("라인의 포인트 개수는 0이상 19이하이다.")
+    @ValueSource(ints = {0, 10, 19})
+    @ParameterizedTest
+    void pointSizeTest(int pointSize) {
+        Line line = new Line(pointSize);
+        assertThat(line.getPoints().size()).isEqualTo(pointSize);
+    }
+
     @DisplayName("사다리의 포인트가 true인 지점은 연속될 수 없다.")
     @Test
     void pointNotContinuous() {
@@ -34,12 +44,5 @@ public class LineTest {
             Point right = line.getPointAt(i + 1);
             assertThat(left.isExist() && right.isExist()).isFalse();
         }
-    }
-
-    @DisplayName("사다리는 포인트를 생성하여 갖는다.")
-    @Test
-    void generatePoints() {
-        Line line = new Line(10);
-        assertThat(line.getPoints().size()).isEqualTo(10);
     }
 }
