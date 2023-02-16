@@ -7,13 +7,13 @@ import model.LadderMaker;
 import view.InputView;
 import view.OutputView;
 
-public class BlockController {
+public class LadderController {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final LadderMaker ladderMaker;
 
-    public BlockController(InputView inputView, OutputView outputView, LadderMaker ladderMaker) {
+    public LadderController(InputView inputView, OutputView outputView, LadderMaker ladderMaker) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.ladderMaker = ladderMaker;
