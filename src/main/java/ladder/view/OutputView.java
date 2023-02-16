@@ -24,7 +24,7 @@ public class OutputView {
     }
 
     public static void printPlayersName(final List<String> playersName) {
-        for (String name: playersName) {
+        for (String name : playersName) {
             System.out.print(name + " ");
         }
         System.out.println();
