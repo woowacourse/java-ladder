@@ -36,6 +36,6 @@ public class LadderController {
     private void printResult() {
         OutputView.printResultMessage();
         OutputView.printUserNames(users.getUsersName());
-        OutputView.printResult(ladder.getLines());
+        OutputView.printResult(ladder.getLadder());
     }
 }

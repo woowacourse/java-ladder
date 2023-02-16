@@ -19,17 +19,13 @@ public class Ladder {
                 .forEach(count -> lines.add(lineGenerator.generate(personCount)));
     }
 
-    public Ladder(final List<Line> lines) {
-        this.lines = lines;
-    }
-
     public void validateHeight(final int height) {
         if (height < MINIMUM_HEIGHT) {
             throw new IllegalArgumentException(ErrorMessage.LADDER_HEIGHT_EXCEPTION.getMessage());
         }
     }
 
-    public List<Line> getLines() {
+    public List<Line> getLadder() {
         return new ArrayList<>(lines);
     }
 }
