@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.domain.Bar;
+
 import java.util.Arrays;
 
 public enum BarMatcher {
@@ -15,15 +17,15 @@ public enum BarMatcher {
         this.barDisplay = barDisplay;
     }
 
-    public static BarMatcher valueOfBarMatcher(boolean isExistBar) {
+    public static BarMatcher valueOfBarMatcher(Bar bar) {
         return Arrays.stream(values())
-                .filter(barMatcher -> barMatcher.isSameBar(isExistBar))
+                .filter(barMatcher -> barMatcher.isSameBar(bar))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 값입니다."));
     }
 
-    private boolean isSameBar(boolean isExistBar) {
-        return this.isExistBar == isExistBar;
+    private boolean isSameBar(Bar bar) {
+        return this.isExistBar == bar.isExistBar();
     }
 
     public String getBarDisplay() {
