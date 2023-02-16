@@ -15,9 +15,9 @@ public class LadderFactory {
         this.scaffoldGenerator = scaffoldGenerator;
     }
 
-    public Ladder createLadder(final int width, final int height) {
-        List<Line> lines = IntStream.range(0, height)
-                .mapToObj(it -> createLine(width))
+    public Ladder createLadder(final Width width, final Height height) {
+        List<Line> lines = IntStream.range(0, height.value())
+                .mapToObj(it -> createLine(width.value()))
                 .collect(Collectors.toUnmodifiableList());
         return new Ladder(lines);
     }

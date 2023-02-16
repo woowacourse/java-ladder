@@ -22,7 +22,7 @@ public class Ladder {
 
     private void validateLineSizeEmpty(final List<Line> lines) {
         if (lines.size() == 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("사다리의 높이는 1 이상이어야 합니다");
         }
     }
 
@@ -43,15 +43,15 @@ public class Ladder {
                 .count();
     }
 
-    public int getHeight() {
-        return lines.size();
+    public Height getHeight() {
+        return Height.of(lines.size());
     }
 
-    public int getWidth() {
-        return lines.get(FIRST_LINE_INDEX).size();
+    public Width getWidth() {
+        return Width.of(lines.get(FIRST_LINE_INDEX).size());
     }
 
     public List<Line> getLines() {
-        return lines;
+        return new ArrayList<>(lines);
     }
 }

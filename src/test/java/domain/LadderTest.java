@@ -39,7 +39,7 @@ public class LadderTest {
         Ladder ladder = new Ladder(lines);
 
         // when & then
-        assertThat(ladder.getHeight()).isEqualTo(lines.size());
+        assertThat(ladder.getHeight().value()).isEqualTo(lines.size());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class LadderTest {
         Ladder ladder = new Ladder(lines);
 
         // when & then
-        assertThat(ladder.getWidth()).isEqualTo(lines.get(0).size());
+        assertThat(ladder.getWidth().value()).isEqualTo(lines.get(0).size());
     }
 
     private static Stream<Arguments> sameLengthLines() {

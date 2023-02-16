@@ -21,8 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 @DisplayName("LadderFactory 는")
 public class LadderFactoryTest {
 
-    private final int width = 5;
-    private final int height = 10;
+    private final Width width = Width.of(5);
+    private final Height height = Height.of(10);
     private final LadderFactory factory = new LadderFactory(() -> Scaffold.NONE);
 
     @Test
@@ -53,8 +53,8 @@ public class LadderFactoryTest {
     @MethodSource("scaffolds")
     void createLadder_시_ScaffoldGenerator_가_생성해준_값으로_생성한다(final List<Scaffold> scaffolds) {
         // given
-        int width = 2;
-        int height = 2;
+        Width width = Width.of(2);
+        Height height = Height.of(2);
         ArrayList<Scaffold> assertScaffolds = new ArrayList<>(scaffolds);
         LadderFactory factory = new LadderFactory(() -> scaffolds.remove(0));
 
@@ -86,8 +86,8 @@ public class LadderFactoryTest {
     @Test
     void createLadder_consist_test() {
         // given
-        int width = 2;
-        int height = 2;
+        Width width = Width.of(2);
+        Height height = Height.of(2);
         List<Scaffold> scaffolds = new ArrayList<>(List.of(Scaffold.EXIST, Scaffold.EXIST, Scaffold.EXIST, Scaffold.EXIST));
         List<Scaffold> assertScaffolds = new ArrayList<>(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE));
         LadderFactory factory = new LadderFactory(() -> scaffolds.remove(0));

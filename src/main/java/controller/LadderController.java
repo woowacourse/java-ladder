@@ -1,13 +1,12 @@
 package controller;
 
-import domain.Ladder;
-import domain.LadderFactory;
-import domain.Name;
-import domain.Names;
+import common.Logger;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class LadderController {
@@ -19,9 +18,9 @@ public class LadderController {
     }
 
     public void run() {
-        Names names = createNames();
-        int height = ladderHeight();
-        Ladder ladder = createLadder(names, height);
+        Names names = inputWithExceptionHandle(this::createNames);
+        Height height = inputWithExceptionHandle(this::ladderHeight);
+        Ladder ladder = createLadder(Width.of(names.size() - 1), height);
         showLadder(names, ladder);
     }
 
@@ -33,15 +32,24 @@ public class LadderController {
         );
     }
 
-    private int ladderHeight() {
-        return InputView.inputHeight();
+    private Height ladderHeight() {
+        return Height.of(InputView.inputHeight());
     }
 
-    private Ladder createLadder(final Names names, final int height) {
-        return ladderFactory.createLadder(names.size() - 1, height);
+    private Ladder createLadder(final Width width, final Height height) {
+        return ladderFactory.createLadder(width, height);
     }
 
     private void showLadder(final Names names, final Ladder ladder) {
         OutputView.printResult(ladder, names);
+    }
+
+    private <T> T inputWithExceptionHandle(final Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+            }
+        }
     }
 }
