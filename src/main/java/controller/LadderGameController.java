@@ -23,12 +23,11 @@ public class LadderGameController {
 
     public void initialize() {
         users = initializeUsers();
-        Height height = initializeHeight();
-        ladder = createLadder(users.getPersonCount(), height);
+        ladder = createLadder(users.getPersonCount(), initializeHeight());
     }
 
     public void run() {
-        outputView.printLadderGameResult(users, ladder);
+        outputView.printLadderGameResult(users);
         outputView.printLadder(ladder);
     }
 
@@ -36,8 +35,7 @@ public class LadderGameController {
         try {
             List<String> userNames = inputView.inputUserName();
             return new Users(createUsers(userNames));
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return initializeUsers();
         }
     }
@@ -61,7 +59,8 @@ public class LadderGameController {
 
     public Ladder createLadder(int personCount, Height height) {
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height.getHeight(); i++) {
+        int ladderHeight = height.getHeight();
+        while (ladderHeight-- > 0) {
             lines.add(new Line(personCount));
         }
         return new Ladder(lines, height);

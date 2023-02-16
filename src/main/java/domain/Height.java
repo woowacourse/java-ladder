@@ -3,6 +3,7 @@ package domain;
 public class Height {
     public static final String HEIGHT_FORMAT_ERROR_MESSAGE = "[ERROR] 사다리 높이는 숫자만 가능합니다.";
     public static final String INPUT_NOTHING_ERROR_MESSAGE = "[ERROR] 값을 입력하지 않았습니다.";
+    public static final String HEIGHT_REGEX_FORMAT = "^[0-9]*$";
 
     private final int height;
 
@@ -12,7 +13,7 @@ public class Height {
     }
 
     private void validateHeightFormat(String heightInput) {
-        if (!heightInput.matches("^[0-9]*$")) {
+        if (!heightInput.matches(HEIGHT_REGEX_FORMAT)) {
             throw new IllegalArgumentException(HEIGHT_FORMAT_ERROR_MESSAGE);
         }
     }

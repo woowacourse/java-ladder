@@ -7,6 +7,5 @@ public class ConsoleApplication {
         LadderGameController ladderGameController = new LadderGameController(new InputView(), new OutputView());
         ladderGameController.initialize();
         ladderGameController.run();
-
     }
 }

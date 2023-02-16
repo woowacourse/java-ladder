@@ -15,15 +15,15 @@ public enum PointStatus {
     }
 
     public static String printStatus(boolean point, int width) {
-        StringBuilder msg = new StringBuilder();
-        String temp = Arrays.stream(PointStatus.values())
+        StringBuilder stringBuilder = new StringBuilder();
+        String statusMessage = Arrays.stream(PointStatus.values())
                 .filter(pointStatus -> pointStatus.point == point)
                 .findAny()
                 .orElse(BLANK)
                 .message;
         while (width-- > 0) {
-            msg.append(temp);
+            stringBuilder.append(statusMessage);
         }
-        return msg.toString();
+        return stringBuilder.toString();
     }
 }

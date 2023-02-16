@@ -2,10 +2,11 @@ package domain;
 
 public class User {
     private static final int MIN_NAME_LENGTH = 1;
-    private static final int MAX_NAME_LENGTH = 5;
+    public static final int MAX_NAME_LENGTH = 5;
     public static final String NAME_LENGTH_ERROR_MESSAGE =
             "[ERROR] 사람 이름은 " + MIN_NAME_LENGTH + "~" + MAX_NAME_LENGTH + "글자로 입력해 주세요.";
     public static final String NAME_FORMAT_ERROR_MESSAGE = "[ERROR] 사람 이름은 영문자만 가능합니다.";
+    private static final String NAME_REGEX_FORMAT = "^[a-zA-z]*$";
 
     private final String name;
 
@@ -26,7 +27,7 @@ public class User {
     }
 
     private void validateNameFormat(String name) {
-        if (!name.matches("^[a-zA-z]*$")) {
+        if (!name.matches(NAME_REGEX_FORMAT)) {
             throw new IllegalArgumentException(NAME_FORMAT_ERROR_MESSAGE);
         }
     }
