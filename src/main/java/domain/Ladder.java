@@ -15,24 +15,19 @@ public class Ladder {
         this.ladderHeight = ladderHeight;
     }
 
-    public static Ladder create(LadderHeight ladderHeight,
-                                int numberOfPeople,
+    public static Ladder create(int numberOfPeople,
+                                LadderHeight ladderHeight,
                                 NumberGenerator numberGenerator) {
         List<Line> lines = new ArrayList<>();
         Ladder ladder = new Ladder(lines, ladderHeight);
-        ladder.addUntilLastLine(numberOfPeople, numberGenerator);
-        ladder.addLastLine();
+        ladder.addLines(numberOfPeople, numberGenerator);
         return ladder;
     }
 
-    private void addUntilLastLine(int numberOfPeople, NumberGenerator numberGenerator) {
-        for (int i = 0; i < numberOfPeople - 1; i++) {
-            lines.add(Line.create(ladderHeight.getLadderHeight(), numberGenerator));
+    private void addLines(int numberOfPeople, NumberGenerator numberGenerator) {
+        for (int i = 0; i < getLadderHeight(); i++) {
+            lines.add(Line.create(numberOfPeople, numberGenerator));
         }
-    }
-
-    private void addLastLine() {
-        lines.add(Line.createWithoutPassablePoint(ladderHeight.getLadderHeight()));
     }
 
     public List<Line> getLines() {
