@@ -5,7 +5,7 @@ import ladder.domain.BooleanGenerator;
 
 public class TestBooleanGenerator implements BooleanGenerator {
 
-    private List<Boolean> booleans;
+    private final List<Boolean> booleans;
     private int index = 0;
 
     public TestBooleanGenerator(final List<Boolean> booleans) {
