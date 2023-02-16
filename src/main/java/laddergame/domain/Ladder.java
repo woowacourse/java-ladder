@@ -7,6 +7,7 @@ import java.util.List;
 public class Ladder {
 
     private static final int MIN_HEIGHT = 1;
+
     private final List<Line> lines;
 
     public Ladder(final int height, final int numberOfPlayers) {
