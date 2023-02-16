@@ -3,6 +3,8 @@ package dto;
 import domain.Ladder;
 import domain.Names;
 
+import java.util.List;
+
 public class GameDto {
     private final NamesDto namesDto;
     private final LadderDto ladderDto;
@@ -20,11 +22,15 @@ public class GameDto {
         return LadderDto.from(ladder);
     }
 
-    public LadderDto getLadderDto() {
-        return ladderDto;
+    public List<String> getNames(){
+        return namesDto.getNames();
     }
 
-    public NamesDto getNamesDto() {
-        return namesDto;
+    public int getMaxNameLength(){
+        return this.namesDto.getMaxNameLength();
+    }
+
+    public List<List<Boolean>> getGeneratedLadderInfo(){
+        return this.ladderDto.getLadderInfo();
     }
 }
