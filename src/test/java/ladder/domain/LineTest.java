@@ -23,8 +23,8 @@ public class LineTest {
         BooleanGenerator booleanGenerator = new IntendedBooleanGenerator();
 
         Line line = new Line(3, booleanGenerator);
-        List<Boolean> lineStatus = line.getLineStatus();
+        List<ConnectionStatus> lineStatus = line.getLineStatus();
 
-        Assertions.assertThat(lineStatus).containsExactly(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE);
+        Assertions.assertThat(lineStatus).containsExactly(ConnectionStatus.CONNECTED, ConnectionStatus.UNCONNECTED, ConnectionStatus.CONNECTED);
     }
 }

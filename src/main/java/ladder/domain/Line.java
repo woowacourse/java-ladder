@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Line {
 
-    private final List<Boolean> points;
+    private final List<ConnectionStatus> points;
 
     public Line(final int width, final BooleanGenerator booleanGenerator) {
         this.points = new ArrayList<>();
@@ -14,17 +14,17 @@ public class Line {
         }
     }
 
-    private Boolean decideConnection(int position, BooleanGenerator booleanGenerator) {
+    private ConnectionStatus decideConnection(int position, BooleanGenerator booleanGenerator) {
         if (position == 0) {
-            return booleanGenerator.generate();
+            return ConnectionStatus.convertConnectionStatus(booleanGenerator.generate());
         }
-        if (points.get(position - 1) == Boolean.TRUE) {
-            return Boolean.FALSE;
+        if (points.get(position - 1) == ConnectionStatus.CONNECTED) {
+            return ConnectionStatus.UNCONNECTED;
         }
-        return booleanGenerator.generate();
+        return ConnectionStatus.convertConnectionStatus(booleanGenerator.generate());
     }
 
-    public List<Boolean> getLineStatus() {
+    public List<ConnectionStatus> getLineStatus() {
         return List.copyOf(points);
     }
 }

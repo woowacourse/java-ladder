@@ -27,7 +27,7 @@ public class LadderMakerTest {
 
         Ladder ladder = ladderMaker.generate();
         List<Line> lines = ladder.getLines();
-        List<Boolean> lineStatus = lines.get(0).getLineStatus();
+        List<ConnectionStatus> lineStatus = lines.get(0).getLineStatus();
 
         assertEquals(lines.size(), 4);
         assertEquals(lineStatus.size(), 3);
