@@ -7,11 +7,11 @@ public class Ladder {
 
     private static final int MIN_HEIGHT = 2;
 
-    private final List<Raw> ladder;
+    private final List<Raw> raws;
 
-    public Ladder(List<Raw> ladder) {
-        validateHeight(ladder.size());
-        this.ladder = ladder;
+    public Ladder(List<Raw> raws) {
+        validateHeight(raws.size());
+        this.raws = raws;
     }
 
     private void validateHeight(int height) {
@@ -21,7 +21,7 @@ public class Ladder {
     }
 
     public List<Raw> getRaws() {
-        return ladder;
+        return raws;
     }
 
 
