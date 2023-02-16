@@ -10,9 +10,9 @@ public class Ladder {
     private final Height height;
     private final int userCount;
 
-    public Ladder(int height, int userCount) {
+    public Ladder(Height height, int userCount) {
         this.lines = new ArrayList<>();
-        this.height = new Height(height);
+        this.height = height;
         this.userCount = userCount;
         addLine();
     }
