@@ -10,26 +10,26 @@ public class LadderController {
     private Ladder ladder;
 
     public void run() {
-        generateUsers();
-        generateLadder();
+        initUsers();
+        initLadder();
         printResult();
     }
 
-    private void generateUsers() {
+    private void initUsers() {
         try {
             users = new Users(InputView.readUserNames());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            generateUsers();
+            initUsers();
         }
     }
 
-    private void generateLadder() {
+    private void initLadder() {
         try {
             ladder = new Ladder(InputView.readLadderHeight(), users.size());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            generateLadder();
+            initLadder();
         }
     }
 
