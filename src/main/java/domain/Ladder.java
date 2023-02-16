@@ -8,8 +8,8 @@ import domain.numbergenerator.NumberGenerator;
 public class Ladder {
 
     private static final int HEIGHT_LOWER_BOUND = 1;
-    private static final String NOT_NATURAL_NUMBER_MESSAGE = "사다리의 높이는 자연수이어야 합니다.";
-    private static final String HEIGHT_IS_LOWER_THAN_PERSON_COUNT_MESSAGE = "사다리의 높이는 참가자 수 이상이어야 합니다.";
+    private static final String NOT_NATURAL_NUMBER_ERROR_MESSAGE = "사다리의 높이는 자연수이어야 합니다.";
+    private static final String HEIGHT_IS_LOWER_THAN_PERSON_COUNT_ERROR_MESSAGE = "사다리의 높이는 참가자 수 이상이어야 합니다.";
 
     private final List<Line> ladder = new ArrayList<>();
 
@@ -25,13 +25,13 @@ public class Ladder {
 
     private static void validatePersonCountLessThanHeight(int height, int personCount) {
         if (height < personCount) {
-            throw new IllegalArgumentException(HEIGHT_IS_LOWER_THAN_PERSON_COUNT_MESSAGE);
+            throw new IllegalArgumentException(HEIGHT_IS_LOWER_THAN_PERSON_COUNT_ERROR_MESSAGE);
         }
     }
 
     private static void validateHeightGreaterThanLowerBound(int height) {
         if (height < HEIGHT_LOWER_BOUND) {
-            throw new IllegalArgumentException(NOT_NATURAL_NUMBER_MESSAGE);
+            throw new IllegalArgumentException(NOT_NATURAL_NUMBER_ERROR_MESSAGE);
         }
     }
 
