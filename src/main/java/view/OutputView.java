@@ -8,11 +8,15 @@ public class OutputView {
 
     public static void printLadder(final Ladder ladder) {
         System.out.println("실행결과");
+        printParticipantNamesOf(ladder);
+        printLinesOf(ladder);
+    }
+
+    private static void printParticipantNamesOf(Ladder ladder) {
         for (String name : ladder.getParticipantNames()) {
             System.out.print(name + "\t");
         }
         System.out.println();
-        printLinesOf(ladder);
     }
 
     private static void printLinesOf(final Ladder ladder) {
