@@ -50,4 +50,19 @@ public class NamesTest {
         assertThat(maxNameLength).isEqualTo(3);
     }
 
+    @Test
+    @DisplayName("가장 첫번째 이름의 길이를 2로 나누고 반올림한 값을 반환한다.")
+    void givenNames_thenFirstNameLengthDividedByTwoRounded() {
+        //given
+        final List<String> names = List.of("에단", "준팍", "블랙캣");
+        final Names names1 = new Names(names);
+
+        //when
+        int firstNameLengthDividedByTwoRounded = names1.getFirstNameLengthDividedByTwoRounded();
+
+        //then
+        assertThat(firstNameLengthDividedByTwoRounded).isEqualTo(1);
+
+    }
+
 }

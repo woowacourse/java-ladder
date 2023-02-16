@@ -35,4 +35,8 @@ public class Names {
                 .max()
                 .orElseThrow(() -> new IllegalStateException());
     }
+
+    public int getFirstNameLengthDividedByTwoRounded() {
+        return Math.round(names.get(0).getNameLength() / 2);
+    }
 }
