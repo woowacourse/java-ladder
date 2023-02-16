@@ -12,6 +12,10 @@ public class OutputView {
     private static final String LADDER_BLOCK = "-----";
     private static final String LADDER_EMPTY_BLOCK = "     ";
 
+    public static void printErrorMessage(Exception exception) {
+        System.out.println(exception.getMessage());
+    }
+
     public static void printGameResultHeader() {
         System.out.println();
         System.out.println(GAME_RESULT_HEADER_MESSAGE);

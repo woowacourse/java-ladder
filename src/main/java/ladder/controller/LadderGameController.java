@@ -4,6 +4,7 @@ import ladder.domain.Ladder;
 import ladder.domain.LadderMaker;
 import ladder.domain.Player;
 import ladder.domain.Players;
+import ladder.exception.CustomException;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -20,14 +21,24 @@ public class LadderGameController {
     }
 
     private Players initPlayers() {
-        List<String> playerNames = InputView.inputPlayer();
-        return new Players(playerNames);
+        try {
+            List<String> playerNames = InputView.inputPlayer();
+            return new Players(playerNames);
+        } catch (CustomException e) {
+            OutputView.printErrorMessage(e);
+            return initPlayers();
+        }
     }
 
     private Ladder initLadder(int playerNumber) {
-        int height = InputView.inputLadderHeight();
-        LadderMaker ladderMaker = new LadderMaker();
-        return ladderMaker.makeLadder(playerNumber, height);
+        try {
+            int height = InputView.inputLadderHeight();
+            LadderMaker ladderMaker = new LadderMaker();
+            return ladderMaker.makeLadder(playerNumber, height);
+        } catch (CustomException e) {
+            OutputView.printErrorMessage(e);
+            return initLadder(playerNumber);
+        }
     }
 
     private List<String> mapPlayersToPlayersName(Players players) {
