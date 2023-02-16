@@ -14,6 +14,7 @@ public class OutputView {
     private static final String LEFT_LEG = "    |";
     private static final String LEG = "|";
     private static final String LINE_FEED = "\n";
+    private static final int CONVERT_INDEX_VALUE = 1;
 
     public void noticeInputParticipants() {
         notice("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -33,8 +34,10 @@ public class OutputView {
     }
 
     public void printNameOfParticipants(Names names) {
-        IntStream.range(0, names.getNames().size())
-                .mapToObj(i -> calculateNameLog(names.getNames().get(i).getName(), names.getNames().size(), i))
+        int totalSize = names.getTotalParticipantSize();
+
+        IntStream.range(0, totalSize)
+                .mapToObj(index -> calculateNameLog(names.getNameOfIndex(index), totalSize, index))
                 .forEach(this::print);
         print(LINE_FEED);
     }
@@ -47,7 +50,7 @@ public class OutputView {
     }
 
     private boolean isLastParticipant(int totalSize, int index) {
-        return totalSize - 1 != index;
+        return totalSize - CONVERT_INDEX_VALUE != index;
     }
 
     public void printLadder(Ladder ladder) {

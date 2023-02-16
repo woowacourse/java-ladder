@@ -14,4 +14,14 @@ public class Names {
     public List<Name> getNames() {
         return Collections.unmodifiableList(names);
     }
+
+    public String getNameOfIndex(int index) {
+        Name target = names.get(index);
+
+        return target.getName();
+    }
+
+    public int getTotalParticipantSize() {
+        return names.size();
+    }
 }
