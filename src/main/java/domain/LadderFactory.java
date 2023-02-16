@@ -20,34 +20,34 @@ public class LadderFactory {
 
     private void insertLines(int width, int height, List<Line> lines) {
         for (int i = 0; i < height; i++) {
-            List<Scaffold> scaffolds = insertScaffold(width);
+            List<Scaffold> scaffolds = insertScaffolds(width);
             lines.add(new Line(scaffolds));
         }
     }
 
-    private List<Scaffold> insertScaffold(int width) {
+    private List<Scaffold> insertScaffolds(int width) {
         List<Scaffold> scaffolds = new ArrayList<>();
-        generateScaffold(width, scaffolds);
+        generateScaffolds(width, scaffolds);
         return scaffolds;
     }
 
-    private void generateScaffold(int width, List<Scaffold> scaffolds) {
+    private void generateScaffolds(int width, List<Scaffold> scaffolds) {
         IntStream.range(0, width).forEach(value -> {
-            createConsecutiveScaffold(scaffolds, value);
+            insertDiscontinuousScaffold(scaffolds, value);
         });
     }
 
-    private void createConsecutiveScaffold(List<Scaffold> scaffolds, int value) {
+    private void insertDiscontinuousScaffold(List<Scaffold> scaffolds, int value) {
         Scaffold scaffold = scaffoldGenerator.generate();
         if (scaffolds.isEmpty()) {
             scaffolds.add(scaffold);
             return;
         }
-        scaffold = validateConsecutiveScaffold(scaffolds, value, scaffold);
+        scaffold = generateDiscontinuousScaffold(scaffolds, value, scaffold);
         scaffolds.add(scaffold);
     }
 
-    private static Scaffold validateConsecutiveScaffold(List<Scaffold> scaffolds, int j, Scaffold scaffold) {
+    private static Scaffold generateDiscontinuousScaffold(List<Scaffold> scaffolds, int j, Scaffold scaffold) {
         if (scaffold == Scaffold.EXIST && scaffolds.get(j - 1) == Scaffold.EXIST) {
             scaffold = Scaffold.NONE;
         }
