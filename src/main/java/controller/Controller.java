@@ -20,7 +20,7 @@ public class Controller {
     }
     public void run(){
         List<Name> playerNames = setPlayerNames();
-        LadderHeight ladderHeight = setLadderHeight();
+        int ladderHeight = setLadderHeight();
         Ladder ladder = new Ladder(playerNames.size(),ladderHeight);
         outputView.printPlayerName(playerNames);
         outputView.printLadder(playerNames.size(),ladder,ladderHeight);
@@ -37,10 +37,11 @@ public class Controller {
         }
     }
 
-    private LadderHeight setLadderHeight() {
+    private int setLadderHeight() {
         outputView.printLadderHeightMessage();
         try {
-            return inputView.readLadderHeight();
+            LadderHeight ladderHeight = new LadderHeight(inputView.readLadderHeight());
+            return ladderHeight.getLadderHeight();
         }catch(Exception e){
             System.out.println(e.getMessage());
             return setLadderHeight();

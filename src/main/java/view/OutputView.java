@@ -31,8 +31,8 @@ public class OutputView {
         System.out.println("");
     }
 
-    public void printLadder(int playerSize,Ladder ladder, LadderHeight ladderHeight) {
-        for(int row=0; row<ladderHeight.getLadderHeight();row++) {
+    public void printLadder(int playerSize,Ladder ladder, int ladderHeight) {
+        for(int row=0; row<ladderHeight;row++) {
             printStartLadder();
             printConnectLadder(playerSize, ladder, row);
         }

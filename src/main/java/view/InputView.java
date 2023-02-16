@@ -24,10 +24,9 @@ public class InputView {
         return Arrays.asList(names.split(SPLIT_DELIMITER));
     }
 
-    public LadderHeight readLadderHeight(){
+    public int readLadderHeight(){
         try {
-            LadderHeight height = new LadderHeight(Integer.parseInt(scanner.nextLine()));
-            return height;
+            return Integer.parseInt(scanner.nextLine());
         }catch(Exception e){
             throw new IllegalStateException(ExceptionMessage.EXCEPTION_LADDER_HEIGHT.getExceptionMessage());
         }

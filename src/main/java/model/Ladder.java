@@ -7,8 +7,8 @@ public class Ladder {
 
     private List<Line> ladderLine = new ArrayList<>();
 
-    public Ladder(int playerNumber,LadderHeight height){
-        for(int index = 0; index<height.getLadderHeight(); index++) {
+    public Ladder(int playerNumber,int height){
+        for(int index = 0; index<height; index++) {
             this.ladderLine.add(new Line(playerNumber));
         }
     }
