@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.exception.CustomException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -11,7 +12,7 @@ public class InputValidatorTest {
     void 문자열이_입력되면_예외_발생() {
         String input = "abc";
         assertThatThrownBy(() -> InputValidator.validateInteger(input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(CustomException.class);
     }
 
     @Test

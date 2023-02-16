@@ -17,7 +17,7 @@ class LineMakerTest {
         List<Boolean> blocks = newArrayList(true, true);
         BlockGenerator blockGenerator = new TestBlockGenerator(blocks);
         LineMaker lineMaker = new LineMaker(blockGenerator);
-        int playerNumber = blocks.size() - 1;
+        int playerNumber = blocks.size() + 1;
 
         assertThat(lineMaker.makeLine(playerNumber).getBlocks())
                 .isNotEqualTo(blocks);
