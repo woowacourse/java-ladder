@@ -1,13 +1,15 @@
 package view;
 
+import common.exception.handler.IllegalArgumentExceptionHandler;
+import utils.ScannerUtil;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Supplier;
-
-import utils.ScannerUtil;
 
 public class InputView {
+
+    private static final int MIN_PARTICIPANTS = 2;
 
     public static List<String> inputName() {
         return handleExceptionByRepeating(() -> {
@@ -27,6 +29,12 @@ public class InputView {
 
     private static List<String> splitNames(final String input) {
         return List.of(input.split(","));
+    }
+
+    private static void validateParticipantSize(final List<String> participantNames) {
+        if (participantNames.size() < MIN_PARTICIPANTS) {
+            throw new IllegalArgumentException("참가자는 2명 이상이어야 합니다");
+        }
     }
 
     private static void validateNoDuplicated(List<?> names) {
