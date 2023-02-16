@@ -20,6 +20,6 @@ public class Ladder {
 
     public List<Line> createLines(BooleanGenerator booleanGenerator) {
         LineCreator lineCreator = new LineCreator(booleanGenerator);
-        return lineCreator.createLines(participants.getSize(), height.getValue());
+        return lineCreator.createLines(participants.getSize() - 1, height.getValue());
     }
 }
