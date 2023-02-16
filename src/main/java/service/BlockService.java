@@ -2,6 +2,7 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Ladder;
 import model.Line;
 import model.Name;
 import model.Names;
@@ -13,7 +14,9 @@ public class BlockService {
     private static final int HEAD_TO_BLOCK_SIZE = 1;
     private static final int HEAD_TO_LEFT_INDEX = 1;
     private static final int SECOND_BLOCK_INDEX = 1;
+
     private final PassGenerator generator;
+    private Ladder ladder;
 
     public BlockService(PassGenerator generator) {
         this.generator = generator;
@@ -43,4 +46,34 @@ public class BlockService {
         return new Names(names);
     }
 
+    public void initLadder(int height, int peopleCount) {
+        List<Line> lines = new ArrayList<>();
+
+        while (height-- > 0) {
+            lines.add(initLine(peopleCount));
+        }
+        ladder = new Ladder(lines);
+    }
+
+    private Line initLine(int peopleCount) {
+        List<Path> paths = new ArrayList<>();
+
+        while (--peopleCount > 0) {
+            paths.add(generatePath(paths));
+        }
+        return new Line(paths);
+    }
+
+    private Path generatePath(List<Path> paths) {
+        int size = paths.size();
+
+        if (size > 0) {
+            return Path.calculatePath(paths.get(size - 1), generator.generate());
+        }
+        return Path.calculatePath(generator.generate());
+    }
+
+    public Ladder getLadder() {
+        return ladder;
+    }
 }

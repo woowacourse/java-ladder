@@ -1,5 +1,6 @@
 package controller;
 
+import model.Ladder;
 import model.Line;
 import model.Names;
 import service.BlockService;
@@ -26,13 +27,9 @@ public class BlockController {
 
         outputView.noticeResult();
         outputView.printNameOfParticipants(names);
-        calculateLadderResult(names, heightOfLadder);
-    }
+        blockService.initLadder(heightOfLadder, names.getNames().size());
 
-    private void calculateLadderResult(Names names, int heightOfLadder) {
-        for (int i = 0; i < heightOfLadder; i++) {
-            Line line = blockService.initBlocks(names.getNames().size());
-            outputView.printBlocks(line);
-        }
+        Ladder ladder = blockService.getLadder();
+        outputView.printLadder(ladder);
     }
 }
