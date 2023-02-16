@@ -1,18 +1,20 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
 
-    private final List<Line> lines;
+    private final List<Line> ladder;
 
     public Ladder(List<Line> lines) {
-        this.lines = new ArrayList<>(lines);
+        this.ladder = new ArrayList<>(lines);
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public List<Line> getLadder() {
+        return Collections.unmodifiableList(ladder);
     }
+
 
 }

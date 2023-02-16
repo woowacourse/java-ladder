@@ -1,6 +1,14 @@
 package ladder.controller;
 
-import ladder.domain.*;
+import ladder.domain.Bar;
+import ladder.domain.Height;
+import ladder.domain.Ladder;
+import ladder.domain.Line;
+import ladder.domain.LineMaker;
+import ladder.domain.Name;
+import ladder.domain.Player;
+import ladder.domain.Players;
+import ladder.domain.RandomGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -28,7 +36,22 @@ public class LadderController {
 
         Ladder ladder = createLadder(players, heightOfLadder);
 
-        resultView.printLadder(players.getNames(), Name.NAME_MAXIMUM_LENGTH, ladder.getLines());
+        resultView.printLadder(players.getNames(), showLadder(ladder), Name.NAME_MAXIMUM_LENGTH);
+    }
+
+    private List<List<Boolean>> showLadder(Ladder ladder) {
+        List<List<Boolean>> ladderData = new ArrayList<>();
+
+        List<Line> lines = ladder.getLadder();
+        for (Line line : lines) {
+            List<Boolean> lineData = line.getLine().stream()
+                    .map(Bar::getValue)
+                    .collect(Collectors.toList());
+
+            ladderData.add(lineData);
+        }
+
+        return ladderData;
     }
 
     private Players createPlayersUntilNoException() {
@@ -60,7 +83,7 @@ public class LadderController {
 
     private Height decideHeightOfLadderUntilNoException() {
         Height height = null;
-        while(height == null) {
+        while (height == null) {
             height = decideHeightOfLadder();
         }
 
