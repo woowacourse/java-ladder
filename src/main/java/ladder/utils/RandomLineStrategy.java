@@ -7,10 +7,10 @@ public class RandomLineStrategy implements LineStrategy {
     private final Random random = new Random();
 
     @Override
-    public List<Boolean> generate(int partCount) {
-        List<Boolean> line = makeRandomLine(partCount);
+    public List<Boolean> generate(int sectionCount) {
+        List<Boolean> line = makeRandomLine(sectionCount);
 
-        IntStream.range(0, partCount - 1).forEach(i -> {
+        IntStream.range(0, sectionCount - 1).forEach(i -> {
             if (line.get(i) && line.get(i + 1)) {
                 line.set(i + 1, false);
             }
@@ -18,9 +18,9 @@ public class RandomLineStrategy implements LineStrategy {
         return line;
     }
 
-    private List<Boolean> makeRandomLine(int partCount) {
+    private List<Boolean> makeRandomLine(int sectionCount) {
         List<Boolean> line = new ArrayList<>();
-        for (int i = 0; i < partCount; i++) {
+        for (int i = 0; i < sectionCount; i++) {
             line.add(random.nextBoolean());
         }
         return line;

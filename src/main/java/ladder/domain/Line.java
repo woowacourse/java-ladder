@@ -6,13 +6,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> parts;
+    private final List<Boolean> sections;
 
-    public Line(LineStrategy lineStrategy, int partCount) {
-        this.parts = lineStrategy.generate(partCount);
+    public Line(LineStrategy lineStrategy, int sectionCount) {
+        this.sections = lineStrategy.generate(sectionCount);
     }
 
-    public List<Boolean> getParts() {
-        return Collections.unmodifiableList(parts);
+    public List<Boolean> getSections() {
+        return Collections.unmodifiableList(sections);
     }
 }

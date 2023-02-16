@@ -15,9 +15,9 @@ public class Ladder {
         this.lines = new ArrayList<>();
     }
 
-    public void assignLines(LineStrategy lineStrategy, int partCount) {
+    public void assignLines(LineStrategy lineStrategy, int sectionCount) {
         for (int i = 0; i < maxHeight.getHeight(); i++) {
-            lines.add(new Line(lineStrategy, partCount));
+            lines.add(new Line(lineStrategy, sectionCount));
         }
     }
 

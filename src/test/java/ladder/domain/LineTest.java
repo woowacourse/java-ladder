@@ -19,6 +19,6 @@ class LineTest {
         Line line = new Line(fixedLineStrategy, 4);
 
         // expected
-        Assertions.assertThat(line.getParts()).containsExactly(true, false, true, false);
+        Assertions.assertThat(line.getSections()).containsExactly(true, false, true, false);
     }
 }
