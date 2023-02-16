@@ -1,17 +1,21 @@
 package generator;
 
 import domain.Bridge;
+import domain.BridgeGenerator;
 import domain.Line;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class LineGenerator {
 
-    private static final Random RANDOM = new Random();
+    private final BridgeGenerator bridgeGenerator;
 
-    public static Line generate(final int personCount) {
+    public LineGenerator(BridgeGenerator bridgeGenerator) {
+        this.bridgeGenerator = bridgeGenerator;
+    }
+
+    public Line generate(final int personCount) {
         List<Bridge> newBridges = new ArrayList<>();
 
         for (int i = 0; i < personCount - 1; i++) {
@@ -21,16 +25,12 @@ public class LineGenerator {
         return new Line(newBridges);
     }
 
-    private static Bridge getNextBridge(final List<Bridge> bridges) {
+    private Bridge getNextBridge(final List<Bridge> bridges) {
         if (hasLeftBridge(bridges)) {
             return Bridge.EMPTY;
         }
 
-        if (RANDOM.nextBoolean()) {
-            return Bridge.EXIST;
-        }
-
-        return Bridge.EMPTY;
+        return bridgeGenerator.generate();
     }
 
     private static boolean hasLeftBridge(final List<Bridge> bridges) {

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Line {
 
-    private List<Bridge> bridges;
+    private final List<Bridge> bridges;
 
     public Line(final List<Bridge> bridges) {
 

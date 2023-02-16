@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import domain.Ladder;
 import domain.Line;
 import domain.Person;
+import domain.RandomBridgeGenerator;
 import generator.LineGenerator;
 import view.InputView;
 import view.OutputView;
@@ -27,8 +28,9 @@ public class LadderEngine {
 
     private List<Line> makeLines(final List<Person> people, final int height) {
         List<Line> lines = new ArrayList<>();
+        LineGenerator lineGenerator = new LineGenerator(new RandomBridgeGenerator());
         for (int i = 0; i < height; i++) {
-            Line line = LineGenerator.generate(people.size());
+            Line line = lineGenerator.generate(people.size());
             lines.add(line);
         }
         return lines;
