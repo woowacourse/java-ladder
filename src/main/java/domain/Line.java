@@ -5,6 +5,7 @@ import java.util.Deque;
 import java.util.List;
 
 public class Line {
+
     private final List<Scaffold> scaffolds;
 
     public Line(final List<Scaffold> scaffolds) {

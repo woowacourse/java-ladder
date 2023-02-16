@@ -1,9 +1,10 @@
 package view;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+
+import static java.util.Arrays.asList;
 
 public class InputView {
 
@@ -13,8 +14,7 @@ public class InputView {
     public static List<String> inputNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
-        String[] split = input.split(DELIMITER);
-        return new ArrayList<>(Arrays.asList(split));
+        return new ArrayList<>(asList(input.split(DELIMITER)));
     }
 
     public static int inputHeight() {

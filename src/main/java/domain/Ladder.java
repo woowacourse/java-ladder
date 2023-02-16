@@ -30,7 +30,7 @@ public class Ladder {
         if (lineSizeIsUnique(lines)) {
             throw new IllegalArgumentException();
         }
-    }정
+    }
 
     private static boolean lineSizeIsUnique(final List<Line> lines) {
         return linesSizeCount(lines) != UNIQUE_COUNT;

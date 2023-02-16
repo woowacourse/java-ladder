@@ -90,7 +90,6 @@ public class LadderFactoryTest {
         int height = 2;
         List<Scaffold> scaffolds = new ArrayList<>(List.of(Scaffold.EXIST, Scaffold.EXIST, Scaffold.EXIST, Scaffold.EXIST));
         List<Scaffold> assertScaffolds = new ArrayList<>(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE));
-
         LadderFactory factory = new LadderFactory(() -> scaffolds.remove(0));
 
         // when
