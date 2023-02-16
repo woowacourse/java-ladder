@@ -7,9 +7,10 @@ import java.util.stream.Collectors;
 import utils.StringParser;
 
 public class Users {
+
     private final List<User> users = new ArrayList<>();
 
-    public void add(User user) {
+    public void add(final User user) {
         users.add(user);
     }
 

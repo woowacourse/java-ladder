@@ -4,7 +4,7 @@ import java.util.List;
 
 public class OutputView {
 
-    public static void printErrorMessage(Exception exception) {
+    public static void printErrorMessage(final Exception exception) {
         System.out.println(exception.getMessage());
     }
 
@@ -12,12 +12,12 @@ public class OutputView {
         System.out.println("\n실행결과\n");
     }
 
-    public static void printUserNames(List<String> userNames) {
+    public static void printUserNames(final List<String> userNames) {
         String parsedUserNames = String.join(" ", userNames);
         System.out.println(parsedUserNames);
     }
 
-    public static void printLadder(List<String> ladder) {
+    public static void printLadder(final List<String> ladder) {
         ladder.forEach(System.out::println);
     }
 }

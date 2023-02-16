@@ -10,10 +10,11 @@ import view.InputView;
 import view.OutputView;
 
 public class Controller {
+
     private final Ladder ladder;
     private final Users users;
 
-    public Controller(Ladder ladder, Users users) {
+    public Controller(final Ladder ladder, final Users users) {
         this.ladder = ladder;
         this.users = users;
     }

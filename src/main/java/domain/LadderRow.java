@@ -9,14 +9,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderRow {
-    List<Boolean> lines;
 
-    public LadderRow(List<Boolean> lines) {
+    private final List<Boolean> lines;
+
+    public LadderRow(final List<Boolean> lines) {
         validate(lines);
         this.lines = lines;
     }
 
-    private void validate(List<Boolean> lines) {
+    private void validate(final List<Boolean> lines) {
         boolean flag = false;
         for (int i = 0; i < lines.size() - 1; i++) {
             Boolean current = lines.get(i);
@@ -36,7 +37,7 @@ public class LadderRow {
         return formatParsedLine(parsedLine);
     }
 
-    private static String formatParsedLine(List<String> parsedLine) {
+    private String formatParsedLine(final List<String> parsedLine) {
         StringBuilder stringBuilder = new StringBuilder(START_DELIMITER.getFormat());
         stringBuilder.append(String.join(DELIMITER.getFormat(), parsedLine));
         stringBuilder.append(DELIMITER.getFormat());
@@ -49,7 +50,7 @@ public class LadderRow {
                 .collect(Collectors.toList());
     }
 
-    private String convertLineStatus(boolean existed) {
+    private String convertLineStatus(final boolean existed) {
         if (existed) {
             return EXISTED_LINE.getFormat();
         }

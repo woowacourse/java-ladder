@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import utils.constants.ErrorMessages;
 
 class StringParserTest {
+
     @Test
     @DisplayName("콤마를 기준으로 사람이름을 분리한다.")
     void splitByDelimiterTest() {
