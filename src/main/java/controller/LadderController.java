@@ -48,7 +48,8 @@ public class LadderController {
     }
 
     private Ladder ladderRequest(int peopleCount) {
-        return new Ladder(peopleCount, inputView.readLadderHeight(),
+        return new Ladder(peopleCount,
+            inputView.readLadderHeight(),
             new RandomBridgeGenerator());
     }
 }

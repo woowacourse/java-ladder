@@ -13,7 +13,8 @@ public class Ladder {
         validateHeight(maxHeight);
         this.lines = new ArrayList<>(maxHeight);
         for (int i = 0; i < maxHeight; i++) {
-            lines.add(new Line(generator.generate(personCount)));
+            List<Boolean> movements = generator.generate(personCount);
+            lines.add(new Line(movements));
         }
     }
 
