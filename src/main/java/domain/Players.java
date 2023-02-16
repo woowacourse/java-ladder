@@ -58,7 +58,7 @@ public class Players {
     }
 
     public int findLengthOfFirstPlayerName() {
-        return this.players.get(0).getPlayerName().getLengthOfName();
+        return this.players.get(0).getLengthOfPlayerName();
     }
 
     public List<Player> getPlayers() {

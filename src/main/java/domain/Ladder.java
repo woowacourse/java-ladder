@@ -11,7 +11,7 @@ public class Ladder {
     }
 
     public int findLadderHeight() {
-        return height.getHeight();
+        return this.height.getHeight();
     }
 
     public Lines getLines() {

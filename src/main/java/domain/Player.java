@@ -12,7 +12,7 @@ public class Player {
         return this.playerName.getName();
     }
 
-    public PlayerName getPlayerName() {
-        return playerName;
+    public int getLengthOfPlayerName() {
+        return this.playerName.getLengthOfName();
     }
 }
