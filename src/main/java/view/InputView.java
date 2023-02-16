@@ -25,7 +25,7 @@ public class InputView {
         return Integer.parseInt(height);
     }
 
-    private void validateHeightInput (String height) {
+    private void validateHeightInput(String height) {
         try {
             Integer.parseInt(height);
         } catch (Exception e) {

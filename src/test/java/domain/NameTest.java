@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("이름은 ")
 class NameTest {
+
     @DisplayName("5자 이하이다.")
     @Test
     public void nameTest_5() {
