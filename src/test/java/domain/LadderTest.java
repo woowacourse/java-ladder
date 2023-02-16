@@ -1,6 +1,8 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,6 +17,22 @@ class LadderTest {
         Ladder ladder = new Ladder(4, height, new RandomBridgeGenerator());
         assertThat(ladder.getHeight()).isEqualTo(height);
     }
+
+    @DisplayName("사다리의 높이가 1 이상 10 이하가 아니면 예외가 발생한다.")
+    @ParameterizedTest(name = "{index} : 현재 사다리 높이 = {0}")
+    @ValueSource(ints = {-1, 0, 11})
+    void ladder_invalid_test(int height) {
+        assertThatThrownBy(() -> new Ladder(4, height, new RandomBridgeGenerator()))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("사다리의 높이가 1 이상 10 이하이면 사다리를 생성한다.")
+    @ParameterizedTest(name = "{index} : 현재 사다리 높이 = {0}")
+    @ValueSource(ints = {1, 5, 10})
+    void ladder_valid_test(int height) {
+        assertDoesNotThrow(() -> new Ladder(4, height, new RandomBridgeGenerator()));
+    }
+
 
     @DisplayName("사람 {수 -1} 길이의 사다리의 폭을 생성한다")
     @ParameterizedTest(name = "{index} : 사다리의 폭의 길이는 {0}-1 이다 ")
