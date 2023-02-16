@@ -12,24 +12,23 @@ public class LineMaker {
     }
 
     public Line makeLine(final int playerNumber) {
-        final List<Boolean> blocks = makeBlocks(playerNumber - 1);
+        final List<Block> blocks = makeBlocks(playerNumber - 1);
         return new Line(blocks);
     }
 
-    private List<Boolean> makeBlocks(int blockCount) {
-        Stack<Boolean> blocks = new Stack<>();
+    private List<Block> makeBlocks(int blockCount) {
+        Stack<Block> blocks = new Stack<>();
         blocks.push(blockGenerator.generate());
         while (blocks.size() != blockCount) {
-            Boolean block = generateBlock(blocks.peek());
+            Block block = generateBlock(blocks.peek());
             blocks.push(block);
         }
         return List.copyOf(blocks);
     }
 
-    // TODO: enum으로 처리할 필요 있음.
-    private Boolean generateBlock(Boolean previousBlock) {
-        if (previousBlock) {
-            return false;
+    private Block generateBlock(Block previousBlock) {
+        if (previousBlock.isExistBlock()) {
+            return Block.EMPTY;
         }
         return blockGenerator.generate();
     }

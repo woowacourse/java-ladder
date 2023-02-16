@@ -14,7 +14,7 @@ class LineMakerTest {
     @Test
     @DisplayName("라인에 연속해서 블록이 놓인다면 다시 블록을 놓는다.")
     void 올바른_라인이_생성되는지_테스트() {
-        List<Boolean> blocks = newArrayList(true, true);
+        List<Block> blocks = newArrayList(Block.EXIST, Block.EXIST);
         BlockGenerator blockGenerator = new TestBlockGenerator(blocks);
         LineMaker lineMaker = new LineMaker(blockGenerator);
         int playerNumber = blocks.size() + 1;
@@ -26,7 +26,7 @@ class LineMakerTest {
     @Test
     @DisplayName("<플레이어수 - 1>만큼의 블록이 생성된다.")
     void 올바른_개수의_블록이_생성되는지_확인() {
-        List<Boolean> blocks = newArrayList(true);
+        List<Block> blocks = newArrayList(Block.EXIST);
         BlockGenerator blockGenerator = new TestBlockGenerator(new ArrayList<>(blocks));
         LineMaker lineMaker = new LineMaker(blockGenerator);
         int playerNumber = 2;

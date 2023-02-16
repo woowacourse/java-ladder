@@ -4,7 +4,6 @@ import ladder.exception.PlayerNameLengthException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Java6Assertions.assertThatCode;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 

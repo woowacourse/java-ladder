@@ -11,7 +11,8 @@ public class RandomBlockGenerator implements BlockGenerator {
     }
 
     @Override
-    public boolean generate() {
-        return random.nextBoolean();
+    public Block generate() {
+        int blockCategoryCount = Block.values().length;
+        return Block.of(random.nextInt(blockCategoryCount));
     }
 }

@@ -4,14 +4,14 @@ import java.util.List;
 
 public class TestBlockGenerator implements BlockGenerator {
 
-    private final List<Boolean> blocks;
+    private final List<Block> blocks;
 
-    public TestBlockGenerator(List<Boolean> blocks) {
+    public TestBlockGenerator(List<Block> blocks) {
         this.blocks = blocks;
     }
 
     @Override
-    public boolean generate() {
+    public Block generate() {
         return blocks.remove(0);
     }
 }

@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Line {
 
-    private final List<Boolean> blocks;
+    private final List<Block> blocks;
 
-    public Line(final List<Boolean> blocks) {
+    public Line(final List<Block> blocks) {
         this.blocks = List.copyOf(blocks);
     }
 
-    public List<Boolean> getBlocks() {
+    public List<Block> getBlocks() {
         return List.copyOf(blocks);
     }
 }
