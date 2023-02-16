@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Names {
-    private List<Name> Names = new ArrayList<>();
+    private final List<Name> Names = new ArrayList<>();
 
     public Names(List<String> playerNames) {
         for (String name : playerNames) {
