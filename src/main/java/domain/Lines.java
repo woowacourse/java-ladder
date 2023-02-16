@@ -12,6 +12,10 @@ public class Lines {
         this.lines = makeLines(numberOfPlayer, height);
     }
 
+    public Lines(final List<Line> lines) {
+        this.lines = lines;
+    }
+
     private List<Line> makeLines(final int numberOfPlayer, final int height) {
         List<Line> lines = new ArrayList<>();
 
