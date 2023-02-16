@@ -1,6 +1,7 @@
 package view;
 
 import domain.Line;
+import util.Way;
 
 import java.util.List;
 
@@ -27,9 +28,9 @@ public class OutputView {
 
     public String printLine(Boolean point, int maxPlayerNameLength) {
         if (point) {
-            return WAY_CHARACTER.repeat(maxPlayerNameLength) + BAR;
+            return Way.valueOf(maxPlayerNameLength).getWay() + BAR;
         }
-        return BLANK.repeat(maxPlayerNameLength) + BAR;
+        return Way.valueOf(maxPlayerNameLength).getBlank() + BAR;
     }
 
     public void printErrormessage(String errorMessage){
