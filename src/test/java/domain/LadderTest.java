@@ -26,24 +26,9 @@ class LadderTest {
         assertThat(numberOfPoint).isEqualTo(1);
     }
 
-    @DisplayName("마지막 라인은 모든 point가 false이다")
-    @Test
-    void last_line_have_false_only() {
-        Ladder ladder = createLadder(3,3);
-
-        List<Line> lines = ladder.getLines();
-        List<Point> points = getLastLinePoints(lines);
-
-        assertThat(points).containsExactly(Point.BLOCKED, Point.BLOCKED, Point.BLOCKED);
-    }
-
-    private Ladder createLadder(int height, int numberOfLine) {
+    private Ladder createLadder(int numberOfPeople, int height) {
         LadderHeight ladderHeight = new LadderHeight(height);
-        Ladder ladder = Ladder.create(ladderHeight, numberOfLine, new RandomNumberGenerator());
+        Ladder ladder = Ladder.create(numberOfPeople, ladderHeight, new RandomNumberGenerator());
         return ladder;
-    }
-
-    private List<Point> getLastLinePoints(List<Line> lines) {
-        return lines.get(lines.size() - 1).getPoints();
     }
 }
