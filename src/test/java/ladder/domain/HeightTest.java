@@ -9,12 +9,12 @@ class HeightTest {
 
     @Test
     void 높이_양수_아닐때_에러() {
-        assertThrows(IllegalArgumentException.class, () -> new Height(0));
+        assertThrows(IllegalArgumentException.class, () -> Height.validateHeight(0));
     }
 
     @Test
     void 높이_양수_통과() {
-        assertDoesNotThrow(() -> new Height(1));
+        assertDoesNotThrow(() -> Height.validateHeight(1));
     }
 
 }
