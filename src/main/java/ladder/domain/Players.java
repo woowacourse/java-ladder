@@ -69,4 +69,8 @@ public class Players {
                 .map(Player::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public int numberOfPlayers() {
+        return players.size();
+    }
 }

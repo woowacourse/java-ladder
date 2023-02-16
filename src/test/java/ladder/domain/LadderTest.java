@@ -21,7 +21,9 @@ class LadderTest {
                 RIGHT, STAY, STAY, RIGHT, RIGHT, STAY, RIGHT, STAY, RIGHT, RIGHT);
         final DirectionGenerator directionGenerator = new TestDirectionGenerator(directions);
         final LineGenerator lineGenerator = new LineGenerator(directionGenerator);
-        final Ladder ladder = new Ladder(lineGenerator, 4, 5);
+        final Height height = new Height(5);
+        
+        final Ladder ladder = new Ladder(lineGenerator, 4, height);
 
         assertThat(ladder.getLines()).hasSize(5);
     }
