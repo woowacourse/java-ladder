@@ -31,4 +31,8 @@ public class LadderGameController {
         outputView.printPlayerNames(playerNames);
         outputView.printResult(ladder);
     }
+
+    public void printError(Exception exception) {
+        outputView.printError(exception);
+    }
 }

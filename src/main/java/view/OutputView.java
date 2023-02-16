@@ -82,4 +82,11 @@ public class OutputView {
     }
 
 
+    public void printError(Exception exception) {
+        printErrorMessage(exception.getMessage());
+    }
+
+    private void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }
