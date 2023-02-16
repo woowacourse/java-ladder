@@ -5,7 +5,7 @@ import java.util.List;
 import utils.RandomNumberGenerator;
 
 public class Line {
-    private List<Boolean> points;
+    private final List<Boolean> points;
 
     public Line(int personCount) {
         this.points = createLine(personCount);
@@ -26,5 +26,9 @@ public class Line {
             return false;
         }
         return randomNumberGenerator.isPoint();
+    }
+
+    public List<Boolean> getPoints() {
+        return points;
     }
 }
