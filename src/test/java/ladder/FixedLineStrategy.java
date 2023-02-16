@@ -5,14 +5,18 @@ import ladder.utils.LineStrategy;
 import java.util.List;
 
 public class FixedLineStrategy implements LineStrategy {
-    private final List<Boolean> line;
+    private final List<List<Boolean>> lines;
+    private int generateCount;
 
-    public FixedLineStrategy(List<Boolean> line) {
-        this.line = line;
+    public FixedLineStrategy(List<List<Boolean>> line) {
+        this.lines = line;
+        this.generateCount = 0;
     }
 
     @Override
     public List<Boolean> generate(int lineLength) {
+        List<Boolean> line = lines.get(generateCount);
+        ++generateCount;
         return line;
     }
 }

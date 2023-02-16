@@ -13,7 +13,7 @@ class LineTest {
     @DisplayName("LineStrategy로부터 line을 생성한다.")
     void line_generateFromLineStrategy() {
         // given
-        List<Boolean> parts = List.of(true, false, true, false);
+        List<List<Boolean>> parts = List.of(List.of(true, false, true, false));
         FixedLineStrategy fixedLineStrategy = new FixedLineStrategy(parts);
 
         // when
