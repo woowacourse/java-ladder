@@ -40,6 +40,6 @@ public class Players {
     public List<String> getPlayerNames() {
         return players.stream()
                 .map(Player::getName)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 }
