@@ -14,27 +14,9 @@ public class OutputView {
         StringBuilder builder = new StringBuilder();
 
         for (Line line : lines) {
-            printLine(builder, line);
+            appendLine(builder, line);
         }
         System.out.println(builder);
-    }
-
-    private void printLine(StringBuilder builder, Line line) {
-        builder.append(VERTICAL_LINE);
-        for (int pointIndex = 0; pointIndex < line.getPointsSize(); pointIndex++) {
-            printPoint(builder, line, pointIndex);
-        }
-        builder.append("\n");
-    }
-
-    private void printPoint(StringBuilder builder, Line line, int pointIndex) {
-        if (line.isMovablePoint(pointIndex)) {
-            builder.append(BRIDGE);
-        }
-        if (!line.isMovablePoint(pointIndex)) {
-            builder.append(BLANK_LINE);
-        }
-        builder.append(VERTICAL_LINE);
     }
 
     public void printPersonNames(List<String> names){
@@ -46,6 +28,24 @@ public class OutputView {
                     .append(BLANK);
         }
         System.out.println(stringBuilder);
+    }
+
+    private void appendLine(StringBuilder builder, Line line) {
+        builder.append(VERTICAL_LINE);
+        for (int pointIndex = 0; pointIndex < line.getPointsSize(); pointIndex++) {
+            appendPoint(builder, line, pointIndex);
+        }
+        builder.append("\n");
+    }
+
+    private void appendPoint(StringBuilder builder, Line line, int pointIndex) {
+        if (line.isMovablePoint(pointIndex)) {
+            builder.append(BRIDGE);
+        }
+        if (!line.isMovablePoint(pointIndex)) {
+            builder.append(BLANK_LINE);
+        }
+        builder.append(VERTICAL_LINE);
     }
 
     private String getNameBlank(String name) {
