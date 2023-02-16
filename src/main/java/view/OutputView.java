@@ -18,15 +18,20 @@ public class OutputView {
 	}
 
 	private void printLadder(List<List<Boolean>> ladder) {
-		String temp = ladder.stream()
-			.map(level -> "    |" + level.stream()
-				.map(stool -> {
-					if (stool)
-						return "-----";
-					return "     ";
-				})
-				.collect(Collectors.joining("|")) + "|")
-			.collect(Collectors.joining("\n"));
-		System.out.println(temp);
+		ladder.stream()
+			.map(OutputView::makeLevelView)
+			.forEach(System.out::println);
+	}
+
+	private static String makeLevelView(List<Boolean> level) {
+		return "    |" + level.stream()
+			.map(OutputView::makeStoolView)
+			.collect(Collectors.joining("|")) + "|";
+	}
+
+	private static String makeStoolView(Boolean stool) {
+		if (stool)
+			return "-----";
+		return "     ";
 	}
 }
