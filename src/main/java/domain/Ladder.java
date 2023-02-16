@@ -6,10 +6,9 @@ import java.util.List;
 import domain.util.Point;
 
 public class Ladder {
-
 	List<Line> lines;
 
-	public Ladder(List<Line> lines) {
+	public Ladder(final List<Line> lines) {
 		this.lines = lines;
 	}
 

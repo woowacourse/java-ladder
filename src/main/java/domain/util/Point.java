@@ -6,7 +6,7 @@ public enum Point {
 
 	private boolean presence;
 
-	Point(boolean presence){
+	Point(final boolean presence){
 		this.presence = presence;
 	}
 

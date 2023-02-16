@@ -7,7 +7,7 @@ public class LinePointsGenerator {
 	private final int width;
 	private final PointGenerator pointGenerator;
 
-	public LinePointsGenerator(int width, PointGenerator pointGenerator) {
+	public LinePointsGenerator(final int width, PointGenerator pointGenerator) {
 		this.width = width;
 		this.pointGenerator = pointGenerator;
 	}
@@ -21,7 +21,7 @@ public class LinePointsGenerator {
 		return line;
 	}
 
-	private void addAbsenceIfPresenceIsAdded(List<Point> line, Point point) {
+	private void addAbsenceIfPresenceIsAdded(final List<Point> line, final Point point) {
 		if (line.size() == this.width) return;
 		if (point.isPresent()) {
 			line.add(Point.ABSENCE);

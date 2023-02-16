@@ -8,7 +8,6 @@ import domain.util.Point;
 import domain.util.PointGenerator;
 
 public class LadderBuilder {
-
 	public Ladder build(LadderHeight ladderHeight, LadderWidth ladderWidth, PointGenerator pointGenerator){
 		LinePointsGenerator linePointsGenerator = new LinePointsGenerator(ladderWidth.getWidth(), pointGenerator);
 		List<Line> lines = new ArrayList<>();

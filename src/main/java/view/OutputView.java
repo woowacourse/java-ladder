@@ -22,14 +22,12 @@ public class OutputView {
 		LINE_MAP = Map.of(true, PRESENT_LINE, false, ABSENT_LINE);
 	}
 
-	public static void printResult(List<String> names, List<List<Point>> ladderPoints) {
-		String stringifiedNames = getStringifiedNames(names);
-		String stringifiedLadder = getStringifiedLadder(ladderPoints);
-		System.out.println(stringifiedNames);
-		System.out.println(stringifiedLadder);
+	public static void printResult(final List<String> names, final List<List<Point>> ladderPoints) {
+		System.out.println(getStringifiedNames(names));
+		System.out.println(getStringifiedLadder(ladderPoints));
 	}
 
-	private static String getStringifiedNames(List<String> names) {
+	private static String getStringifiedNames(final List<String> names) {
 		StringBuilder sb = new StringBuilder();
 		for (String name : names) {
 			sb.append(String.format(RIGHT_ALIGN_PLACEHOLDER, name));
@@ -37,7 +35,7 @@ public class OutputView {
 		return sb.toString();
 	}
 
-	private static String getStringifiedLadder(List<List<Point>> ladderPoints) {
+	private static String getStringifiedLadder(final List<List<Point>> ladderPoints) {
 		StringBuilder lineBuilder = new StringBuilder();
 		for (List<Point> linePoints : ladderPoints) {
 			lineBuilder.append(ABSENT_LINE);
@@ -49,7 +47,7 @@ public class OutputView {
 		return lineBuilder.toString();
 	}
 
-	public static void printError(String errorMsg) {
+	public static void printError(final String errorMsg) {
 		System.out.println(ERROR_PREFIX + errorMsg);
 	}
 }
