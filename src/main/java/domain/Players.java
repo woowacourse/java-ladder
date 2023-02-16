@@ -1,14 +1,17 @@
 package domain;
 
+import laddervalidate.PlayerNameValidator;
+
 import java.util.List;
 
 public class Players {
+    PlayerNameValidator playerNameValidator = new PlayerNameValidator();
     private final List<String> players;
 
     public Players(List<String> players) {
-        checkPlayerCount(players);
-        checkPlayerNameLength(players);
-        checkDuplicatePlayers(players);
+        playerNameValidator.checkPlayerCount(players);
+        playerNameValidator.checkPlayerNameLength(players);
+        playerNameValidator.checkDuplicatePlayers(players);
         this.players = players;
     }
 
@@ -24,23 +27,5 @@ public class Players {
         return players;
     }
 
-    private void checkPlayerCount(List<String> players) {
-        if (players.size() < 2 || players.size() > 12) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void checkPlayerNameLength(List<String> players){
-        if (players.stream()
-                .anyMatch(player -> player.length() > 5 || player.replaceAll(" ", "").isEmpty())){
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void checkDuplicatePlayers(List<String> players) {
-        if (players.stream().distinct().count() != players.size()){
-            throw new IllegalArgumentException();
-        }
-    }
 
 }
