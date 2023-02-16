@@ -1,7 +1,6 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
@@ -28,14 +27,11 @@ class LadderBuilderTest {
 		LadderBuilder builder = new LadderBuilder();
 		Ladder ladder = builder.build(height, width, new PresentPointGenerator());
 		assertThat(ladder.getLadderPoints()).containsExactly(
-		List.of(
-			Point.PRESENCE, Point.ABSENCE, Point.PRESENCE
-		),
-		List.of(
-			Point.PRESENCE, Point.ABSENCE, Point.PRESENCE
-		),
-		List.of(
-			Point.PRESENCE, Point.ABSENCE, Point.PRESENCE
-		));
+				List.of(
+						Point.PRESENCE, Point.ABSENCE, Point.PRESENCE),
+				List.of(
+						Point.PRESENCE, Point.ABSENCE, Point.PRESENCE),
+				List.of(
+						Point.PRESENCE, Point.ABSENCE, Point.PRESENCE));
 	}
 }
