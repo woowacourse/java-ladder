@@ -36,22 +36,7 @@ public class LadderController {
 
         Ladder ladder = createLadder(players, heightOfLadder);
 
-        resultView.printLadder(players.getNames(), showLadder(ladder), Name.NAME_MAXIMUM_LENGTH);
-    }
-
-    private List<List<Boolean>> showLadder(Ladder ladder) {
-        List<List<Boolean>> ladderData = new ArrayList<>();
-
-        List<Line> lines = ladder.getLadder();
-        for (Line line : lines) {
-            List<Boolean> lineData = line.getLine().stream()
-                    .map(Bar::getValue)
-                    .collect(Collectors.toList());
-
-            ladderData.add(lineData);
-        }
-
-        return ladderData;
+        resultView.printLadder(players, ladder);
     }
 
     private Players createPlayersUntilNoException() {
