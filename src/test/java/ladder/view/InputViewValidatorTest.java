@@ -1,0 +1,23 @@
+package ladder.view;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class InputViewValidatorTest {
+
+    @Test
+    @DisplayName("참여자의 수가 10000명을 넘으면 예외를 던진다.")
+    void exceedMaxPlayerCountTest() {
+        int count = 10001;
+
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () ->  InputViewValidator.validateNamesCount(count))
+                .getMessage().equals("[ERROR] 참여자의 수는 10000명 이하여야합니다.");
+    }
+}
