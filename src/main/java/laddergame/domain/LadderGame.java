@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.util.RandomPointGenerator;
+
 import java.util.List;
 
 public class LadderGame {
@@ -12,7 +14,7 @@ public class LadderGame {
     }
 
     public void makeLadder(int height) {
-        ladder = new Ladder(players.size(), height);
+        ladder = new Ladder(players.size(), height, new RandomPointGenerator());
     }
 
     public List<String> getPlayerNames() {
