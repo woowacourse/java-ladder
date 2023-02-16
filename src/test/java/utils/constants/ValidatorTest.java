@@ -3,6 +3,8 @@ package utils.constants;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,5 +41,14 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateLadderHeight(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessages.NUMBER_FORMAT.getMessage());
+    }
+
+    @Test
+    @DisplayName("중복된 값이 리스트에있으면 예외를 던진다")
+    void validateDuplicationTest() {
+        List<String> inputs = List.of("pobi", "pobi", "crong");
+        assertThatThrownBy(() -> Validator.validateDuplication(inputs))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessages.DUPLICATED_INPUT.getMessage());
     }
 }

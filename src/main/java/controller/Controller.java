@@ -31,6 +31,7 @@ public class Controller {
     private void createUser() {
         try {
             List<String> userNames = InputView.readUserNames();
+            Validator.validateDuplication(userNames);
             userNames.forEach(userName -> users.add(new User(userName)));
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception);
