@@ -62,5 +62,4 @@ public class OutputView {
         List<String> ladders = BlockType.getBlockTypes(line);
         System.out.println("    " + VERTICAL_BAR + String.join(VERTICAL_BAR, ladders) + VERTICAL_BAR);
     }
-
 }
