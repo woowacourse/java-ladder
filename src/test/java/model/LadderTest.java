@@ -10,6 +10,6 @@ public class LadderTest {
     void createLadderTest(){
         int playerNumber = 1;
         Assertions.assertThatNoException().isThrownBy(()->{Ladder ladderHeight =
-                new Ladder(playerNumber,new LadderHeight(5));});
+                new Ladder(playerNumber,5);});
     }
 }
