@@ -15,7 +15,7 @@ class LineTest {
     void exceptionTest() {
         assertThatThrownBy(() -> new Line(List.of(true, true, false)))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("연속된 true가 나올 수 없습니다.");
+            .hasMessage("가로라인이 연속될 수 없습니다.");
     }
 
     @Test
