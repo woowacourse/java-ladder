@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +23,10 @@ public class Names {
         if (names.size() < MIN_NAMES_COUNT || names.size() > MAX_NAMES_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PEOPLE_NUMBER.getMessage());
         }
+    }
+
+    public int lengthOfFirstName(){
+        return names.get(0).length();
     }
 
     public List<Name> getNames() {

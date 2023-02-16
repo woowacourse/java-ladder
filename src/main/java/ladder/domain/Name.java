@@ -25,6 +25,10 @@ public class Name {
         }
     }
 
+    public int length() {
+        return name.length();
+    }
+
     @Override
     public String toString() {
         return this.name;

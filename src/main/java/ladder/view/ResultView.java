@@ -11,23 +11,24 @@ public class ResultView {
     private static final int WIDTH = 5;
     private static final String LEG = "|";
     private static final String BLANK = " ";
-    private static final String NAME_FORMAT = "%6s";
+    private static final String NAME_FORMAT = "%5s";
 
     public static void printResult(Names names, Ladder ladder) {
         printNames(names);
-        printLadder(ladder);
+        printLadder(ladder, names.lengthOfFirstName());
     }
 
     private static void printNames(Names names) {
-        String result = names.getNames().stream()
-            .map(name -> String.format(NAME_FORMAT, name))
+        String result = names.getNames()
+            .stream()
+            .map(name -> String.format(NAME_FORMAT, name) + BLANK)
             .collect(Collectors.joining());
-        System.out.println(result);
+        System.out.println(result.trim());
     }
 
-    private static void printLadder(Ladder ladder) {
+    private static void printLadder(Ladder ladder, int lengthOfFirstName) {
         for (Line line : ladder) {
-            String result = BLANK.repeat(WIDTH);
+            String result = BLANK.repeat(lengthOfFirstName - 1);
             result += getShapeOf(line);
             result += LEG;
             System.out.println(result);
@@ -35,7 +36,8 @@ public class ResultView {
     }
 
     private static String getShapeOf(Line line) {
-        return line.getLine().stream()
+        return line.getLine()
+            .stream()
             .map(LadderFormat::getComponent)
             .map(component -> LEG + component.repeat(WIDTH))
             .collect(Collectors.joining());
