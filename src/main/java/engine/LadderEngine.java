@@ -1,9 +1,6 @@
 package engine;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import common.exception.handler.IllegalArgumentExceptionHandler;
 import domain.Ladder;
 import domain.Line;
 import domain.Person;
@@ -12,16 +9,23 @@ import generator.LineGenerator;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class LadderEngine {
 
     public void start() {
+
         List<Person> people = convertNamesToPeople(InputView.inputName());
 
-        int height = InputView.inputMaxLadderHeight();
-
-        List<Line> lines = makeLines(people, height);
-
-        Ladder ladder = new Ladder(people, lines);
+        Ladder ladder = IllegalArgumentExceptionHandler.handleExceptionByRepeating(
+                () -> {
+                    int height = InputView.inputMaxLadderHeight();
+                    List<Line> lines = makeLines(people, height);
+                    return new Ladder(people, lines);
+                }
+        );
 
         OutputView.printLadder(ladder);
     }

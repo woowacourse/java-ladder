@@ -12,12 +12,13 @@ public class InputView {
     private static final int MIN_PARTICIPANTS = 2;
 
     public static List<String> inputName() {
-        return handleExceptionByRepeating(() -> {
+        return IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
             System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
             String input = ScannerUtil.nextLine();
 
             List<String> names = splitNames(input);
             validateNoDuplicated(names);
+            validateParticipantSize(names);
             return names;
         });
     }
@@ -46,14 +47,5 @@ public class InputView {
     private static boolean hasDuplicated(final List<?> target) {
         Set<?> duplicateRemoval = new HashSet<>(target);
         return target.size() != duplicateRemoval.size();
-    }
-
-    private static <T> T handleExceptionByRepeating(final Supplier<T> supplier) {
-        try {
-            return supplier.get();
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-            return handleExceptionByRepeating(supplier);
-        }
     }
 }
