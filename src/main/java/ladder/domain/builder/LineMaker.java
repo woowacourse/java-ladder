@@ -1,4 +1,7 @@
-package ladder.domain;
+package ladder.domain.builder;
+
+import ladder.domain.ladder.Block;
+import ladder.domain.ladder.Line;
 
 import java.util.List;
 import java.util.Stack;

@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.builder;
+
+import ladder.domain.ladder.Block;
 
 import java.util.Random;
 

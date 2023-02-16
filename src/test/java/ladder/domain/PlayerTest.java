@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.player.Player;
 import ladder.exception.PlayerNameLengthException;
 import org.junit.jupiter.api.Test;
 

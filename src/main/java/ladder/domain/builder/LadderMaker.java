@@ -1,5 +1,7 @@
-package ladder.domain;
+package ladder.domain.builder;
 
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
 import ladder.exception.LadderLengthException;
 
 import java.util.ArrayList;

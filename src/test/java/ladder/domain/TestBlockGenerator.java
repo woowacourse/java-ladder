@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.domain.builder.BlockGenerator;
+import ladder.domain.ladder.Block;
+
 import java.util.List;
 
 public class TestBlockGenerator implements BlockGenerator {

@@ -1,8 +1,8 @@
 package ladder.view;
 
-import ladder.domain.Block;
-import ladder.domain.Ladder;
-import ladder.domain.Line;
+import ladder.domain.ladder.Block;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
 
 import java.util.List;
 
