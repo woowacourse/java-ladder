@@ -8,6 +8,8 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private static final int MINIMUM_HEIGHT = 1;
+    private static final int MAXIMUM_HEIGHT = 100;
+
     private final List<Line> lines;
 
     public Ladder(final int height, final int personCount) {
@@ -24,12 +26,12 @@ public class Ladder {
     }
 
     public void validateHeight(final int height) {
-        if (height < MINIMUM_HEIGHT) {
+        if (MINIMUM_HEIGHT > height || height > MAXIMUM_HEIGHT) {
             throw new IllegalArgumentException(ErrorMessage.LADDER_HEIGHT_EXCEPTION.getMessage());
         }
     }
 
-    public List<Line> getLines() {
+    public List<Line> getLadder() {
         return new ArrayList<>(lines);
     }
 }
