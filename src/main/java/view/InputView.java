@@ -13,6 +13,7 @@ public class InputView {
 
 	public static List<String> readParticipantsNames() {
 		String line = scanner.nextLine();
+		System.out.println();
 		String[] names = line.split(DELIMITER);
 		validateBlankedName(names);
 		return Arrays.stream(names)
@@ -27,7 +28,9 @@ public class InputView {
 	}
 
 	public static int readHeight() {
+		System.out.println(LADDER_HEIGHT_REQUEST_MSG);
 		String line = scanner.nextLine();
+		System.out.println();
 		validateIsNatural(line);
 		return Integer.parseInt(line);
 	}
