@@ -5,14 +5,19 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
+
+    private static List<Line> getFloorLines(int pos, Ladder ladder) {
+        return ladder.getFloors().get(pos - 1).getLines();
+    }
 
     @Test
     @DisplayName("0이하의 값으로 Ladder생성시 예외가 발생한다.")
     void inValidLadderSizeTest() {
-        assertThatThrownBy(() -> new Ladder(0, new Users(List.of("1","2"))))
+        assertThatThrownBy(() -> new Ladder(0, new Users(List.of("1", "2"))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -49,7 +54,6 @@ public class LadderTest {
         assertThat(firstFloorLines.get(2).isExist()).isEqualTo(false);
     }
 
-
     @Test
     @DisplayName("Ladder 생성 테스트")
     void makeFloorTest() {
@@ -70,11 +74,6 @@ public class LadderTest {
         assertThat(secondFloorLines.get(2).isExist()).isEqualTo(true);
 
 
-    }
-
-
-    private static List<Line> getFloorLines(int pos, Ladder ladder) {
-        return ladder.getFloors().get(pos - 1).getLines();
     }
 
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Floor {
 
+    private static final int FIRST_LINE = 0;
+    private static final int INDEX_DIFFERENCE = 1;
     private final List<Line> lines = new ArrayList<>();
 
 
@@ -31,12 +33,12 @@ public class Floor {
     }
 
     private boolean isMakeAble(int index) {
-        if (index == 0) {
+        if (index == FIRST_LINE) {
             return true;
         }
-        if (lines.get(index - 1).isExist()) {
-            return false;
-        }
-        return true;
+
+        int previousIndex = index - INDEX_DIFFERENCE;
+
+        return !lines.get(previousIndex).isExist();
     }
 }

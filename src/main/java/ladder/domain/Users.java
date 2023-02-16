@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 public class Users {
 
     private static final int MINIMUM_SIZE = 2;
+    private static final String USERS_SIZE_ERROR_MESSAGE = "유저는 한명보다 많아야 합니다.";
+    private static final String USERS_DUPLICATED_ERROR_MESSAGE = "중복된 이름을 입력할 수 없습니다.";
     private final List<User> users;
 
     public Users(List<String> userNames) {
@@ -24,16 +26,18 @@ public class Users {
     }
 
     private void validateSize(List<String> userNames) {
-        if (userNames.size() < MINIMUM_SIZE){
-            throw new IllegalArgumentException("유저는 한명보다 많아야 합니다.");
+        if (userNames.size() < MINIMUM_SIZE) {
+            throw new IllegalArgumentException(USERS_SIZE_ERROR_MESSAGE);
         }
     }
 
     private void validateDuplication(List<String> userNames) {
         int inputNamesSize = userNames.size();
-        long unDuplicationNamesSize = userNames.stream().distinct().count();
-        if(inputNamesSize != unDuplicationNamesSize){
-            throw new IllegalArgumentException("중복된 이름을 입력할 수 없습니다.");
+        long unDuplicationNamesSize = userNames.stream()
+                .distinct()
+                .count();
+        if (inputNamesSize != unDuplicationNamesSize) {
+            throw new IllegalArgumentException(USERS_DUPLICATED_ERROR_MESSAGE);
         }
     }
 

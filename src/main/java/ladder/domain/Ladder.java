@@ -5,7 +5,9 @@ import java.util.List;
 
 public class Ladder {
     private final static int DIFFERENCE_BETWEEN_FLOOR_AND_USERS = 1;
-    private List<Floor> floors = new ArrayList<>();
+    private static final int MINIMUM_SIZE = 0;
+    private static final String LADDER_SIZE_ERROR_MESSAGE = "사다리의 높이는 1이상 입니다.";
+    private final List<Floor> floors = new ArrayList<>();
 
     public Ladder(int size, Users users) {
         validateSize(size);
@@ -41,8 +43,8 @@ public class Ladder {
     }
 
     private void validateSize(int size) {
-        if (size <= 0) {
-            throw new IllegalArgumentException("사다리의 높이는 1이상 입니다.");
+        if (size <= MINIMUM_SIZE) {
+            throw new IllegalArgumentException(LADDER_SIZE_ERROR_MESSAGE);
         }
     }
 

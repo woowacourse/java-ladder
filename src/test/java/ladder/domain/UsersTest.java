@@ -13,7 +13,7 @@ public class UsersTest {
 
     @Test
     @DisplayName("정상 Users 생성 테스트")
-    void checkValidUsersTest(){
+    void checkValidUsersTest() {
         List<String> users = List.of("가", "가나", "가나다");
         Users testUsers = new Users(users);
         assertThat(testUsers.getUsers().size())
@@ -23,7 +23,7 @@ public class UsersTest {
     @Test
     @DisplayName("비정상 유저이름 입력시 Users 예외 테스트")
     void invalidUsersTest() {
-        List<String> users = List.of("가나","여섯자리이름");
+        List<String> users = List.of("가나", "여섯자리이름");
         assertThatThrownBy(() -> new Users(users))
                 .isInstanceOf(IllegalArgumentException.class);
 
@@ -32,7 +32,7 @@ public class UsersTest {
     @Test
     @DisplayName("중복된 유저 입력시 Users 예외 테스트")
     void invalidDuplicationUsersTest() {
-        List<String> users = List.of("가나","가나");
+        List<String> users = List.of("가나", "가나");
         assertThatThrownBy(() -> new Users(users))
                 .isInstanceOf(IllegalArgumentException.class);
     }
