@@ -2,8 +2,8 @@ package domain;
 
 public enum Scaffold {
 
-    EXIST("----"),
-    NONE("    ");
+    EXIST("-----"),
+    NONE("     ");
 
     private final String status;
 
