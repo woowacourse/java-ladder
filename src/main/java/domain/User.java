@@ -1,6 +1,6 @@
 package domain;
 
-import utils.constants.Validator;
+import utils.Validator;
 
 public class User {
     private final String name;

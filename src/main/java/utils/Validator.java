@@ -1,4 +1,4 @@
-package utils.constants;
+package utils;
 
 import static utils.constants.ErrorMessages.DUPLICATED_INPUT;
 import static utils.constants.ErrorMessages.NAME_LENGTH;

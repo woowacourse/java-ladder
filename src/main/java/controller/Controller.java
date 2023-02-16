@@ -3,11 +3,9 @@ package controller;
 import java.util.List;
 
 import domain.Ladder;
-import domain.LadderRow;
 import domain.User;
 import domain.Users;
-import utils.LadderRowGenerator;
-import utils.constants.Validator;
+import utils.Validator;
 import view.InputView;
 import view.OutputView;
 
