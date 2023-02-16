@@ -5,12 +5,20 @@ import java.util.List;
 
 public class Names {
 
+    private static final int MIN_PERSON_COUNT_INCLUSIVE = 2;
     private static final int FIRST_NAME_INDEX = 0;
-    
+
     private final List<Name> names;
 
     public Names(final List<Name> names) {
+        validate(names);
         this.names = new ArrayList<>(names);
+    }
+
+    private void validate(final List<Name> names) {
+        if (names.size() < MIN_PERSON_COUNT_INCLUSIVE) {
+            throw new IllegalArgumentException("2명 이상의 사람들을 입력해주세요");
+        }
     }
 
     public int firstNameLength() {

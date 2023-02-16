@@ -5,13 +5,17 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.Arrays.stream;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -25,6 +29,21 @@ class NamesTest {
     void Name_List_를_통해_생성된다() {
         // when & then
         assertDoesNotThrow(() -> new Names(nameList1));
+    }
+
+    @ParameterizedTest(name = "이름의 수가 2개 미만인 경우 예외가 발생한다")
+    @MethodSource("lessThan2SizeNames")
+    void Name_의_수가_2개_미만인_경우_예외가_발생한다(final List<Name> names) {
+        // when & then
+        assertThatThrownBy(() -> new Names(names))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    static Stream<Arguments> lessThan2SizeNames() {
+        return Stream.of(
+                Arguments.of(List.of()),
+                Arguments.of(List.of(new Name("1")))
+        );
     }
 
     @ParameterizedTest(name = "첫 이름의 글자 수를 구할 수 있다")
