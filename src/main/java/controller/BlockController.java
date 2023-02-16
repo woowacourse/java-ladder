@@ -1,9 +1,8 @@
 package controller;
 
 import model.Ladder;
-import model.Line;
 import model.Names;
-import service.BlockService;
+import model.LadderMaker;
 import view.InputView;
 import view.OutputView;
 
@@ -11,25 +10,25 @@ public class BlockController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final BlockService blockService;
+    private final LadderMaker ladderMaker;
 
-    public BlockController(InputView inputView, OutputView outputView, BlockService blockService) {
+    public BlockController(InputView inputView, OutputView outputView, LadderMaker ladderMaker) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.blockService = blockService;
+        this.ladderMaker = ladderMaker;
     }
 
     public void run() {
         outputView.noticeInputParticipants();
-        Names names = blockService.generateNames(inputView.inputNameOfParticipants());
+        Names names = ladderMaker.generateNames(inputView.inputNameOfParticipants());
         outputView.noticeInputHeightOfLadder();
         int heightOfLadder = inputView.inputHeightOfLadder();
 
         outputView.noticeResult();
         outputView.printNameOfParticipants(names);
-        blockService.initLadder(heightOfLadder, names.getNames().size());
+        ladderMaker.initLadder(heightOfLadder, names.getNames().size());
 
-        Ladder ladder = blockService.getLadder();
+        Ladder ladder = ladderMaker.getLadder();
         outputView.printLadder(ladder);
     }
 }

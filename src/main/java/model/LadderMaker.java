@@ -1,15 +1,10 @@
-package service;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.Ladder;
-import model.Line;
-import model.Name;
-import model.Names;
-import model.Path;
 import strategy.PassGenerator;
 
-public class BlockService {
+public class LadderMaker {
 
     private static final int HEAD_TO_BLOCK_SIZE = 1;
     private static final int HEAD_TO_LEFT_INDEX = 1;
@@ -18,7 +13,7 @@ public class BlockService {
     private final PassGenerator generator;
     private Ladder ladder;
 
-    public BlockService(PassGenerator generator) {
+    public LadderMaker(PassGenerator generator) {
         this.generator = generator;
     }
 
