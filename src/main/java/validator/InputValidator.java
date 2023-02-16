@@ -1,6 +1,6 @@
 package validator;
 
-import dto.InputValidationRequest;
+import validator.dto.InputValidationRequest;
 
 public interface InputValidator {
 

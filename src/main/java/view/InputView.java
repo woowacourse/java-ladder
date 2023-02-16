@@ -1,7 +1,7 @@
 package view;
 
-import dto.InputValidationRequest;
-import type.ValidateType;
+import validator.dto.InputValidationRequest;
+import validator.type.ValidateType;
 import validator.InputValidator;
 
 import java.util.List;

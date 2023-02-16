@@ -1,7 +1,7 @@
 package validator;
 
-import dto.InputValidationRequest;
-import type.ValidateType;
+import validator.dto.InputValidationRequest;
+import validator.type.ValidateType;
 
 import java.util.regex.Pattern;
 

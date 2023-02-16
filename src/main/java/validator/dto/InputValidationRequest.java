@@ -1,6 +1,6 @@
-package dto;
+package validator.dto;
 
-import type.ValidateType;
+import validator.type.ValidateType;
 
 import java.util.List;
 
