@@ -25,7 +25,6 @@ public class OutputView {
 
     private void printPlayerNames(List<String> playerNames, int nameFormatSize) {
         StringBuilder stringBuilder = new StringBuilder();
-        printLine(String.join(" ", playerNames));
         String nameFormat = String.format("%%%ds", nameFormatSize);
         playerNames.forEach((playerName) -> {
             stringBuilder.append(String.format(nameFormat, playerName));
