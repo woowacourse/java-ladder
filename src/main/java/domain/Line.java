@@ -12,32 +12,31 @@ public class Line {
 
     private final List<Point> points;
 
-    private Line() {
-        this.points = new ArrayList<>();
+    private Line(List<Point> points) {
+        this.points = new ArrayList<>(points);
     }
 
     public static Line create(int height, NumberGenerator numberGenerator) {
-        Line line = new Line();
+        List<Point> points = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            line.addPoint(numberGenerator.generate());
+            points.add(generatePoint(numberGenerator.generate()));
         }
-        return line;
+        return new Line(points);
     }
 
-    private void addPoint(int number) {
+    private static Point generatePoint(int number) {
         if (number >= MIN_NUMBER_RETURN_TRUE) {
-            points.add(Point.PASSABLE);
-            return;
+            return Point.PASSABLE;
         }
-        points.add(Point.BLOCKED);
+        return Point.BLOCKED;
     }
 
     public static Line createWithoutPassablePoint(int height) {
-        Line line = new Line();
+        List<Point> points = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            line.addPoint(MIN_NUMBER_RETURN_TRUE - 1);
+            points.add(generatePoint(MIN_NUMBER_RETURN_TRUE - 1));
         }
-        return line;
+        return new Line(points);
     }
 
     public int getPointSize() {
