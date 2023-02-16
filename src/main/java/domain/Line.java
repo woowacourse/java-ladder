@@ -17,18 +17,26 @@ public class Line {
         return points;
     }
 
+    public int getPointsSize() {
+        return points.size();
+    }
+
+    public boolean isMovablePoint(int pointIndex) {
+        return points.get(pointIndex);
+    }
+
     private void addPoints(int personCount, RandomGenerator generator) {
         addRandomPoint(generator);
-        for (int index = 1; index < personCount - 1; index++) {
-            addConditionPoint(generator, index);
+        for (int pointIndex = 1; pointIndex < personCount - 1; pointIndex++) {
+            addConditionalPoint(generator, pointIndex);
         }
     }
 
-    private void addConditionPoint(RandomGenerator generator, int index) {
-        if(isSuccessive(index)){
+    private void addConditionalPoint(RandomGenerator generator, int pointIndex) {
+        if(isSuccessive(pointIndex)){
             addPoint(UNMOVABLE_STATE.getState());
         }
-        if(!isSuccessive(index)){
+        if(!isSuccessive(pointIndex)){
             addRandomPoint(generator);
         }
     }
@@ -44,12 +52,5 @@ public class Line {
     private void addPoint(boolean state) {
         points.add(state);
     }
-
-    public int getPointsSize() {
-        return points.size();
-    }
-
-    public boolean isMovablePoint(int pointIndex) {
-        return points.get(pointIndex);
-    }
+    
 }
