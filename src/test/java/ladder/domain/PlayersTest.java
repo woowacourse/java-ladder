@@ -38,4 +38,11 @@ public class PlayersTest {
 
         assertThat(players.getNames()).containsExactly("name1", "name2");
     }
+
+    @Test
+    void 참가_인원을_반환한다() {
+        final Players players = new Players(List.of("name1", "name2"));
+
+        assertThat(players.count()).isEqualTo(2);
+    }
 }
