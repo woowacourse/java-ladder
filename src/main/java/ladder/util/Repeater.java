@@ -9,11 +9,16 @@ public class Repeater {
     }
 
     public static <T> T repeatIfError(Supplier<T> operation, Consumer<Exception> handler) {
-        try {
-            return operation.get();
-        } catch (Exception e) {
-            handler.accept(e);
-            return repeatIfError(operation, handler);
+        boolean shouldRepeat = true;
+        T result = null;
+        while (shouldRepeat) {
+            try {
+                result = operation.get();
+                shouldRepeat = false;
+            } catch (Exception e) {
+                handler.accept(e);
+            }
         }
+        return result;
     }
 }
