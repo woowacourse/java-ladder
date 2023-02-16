@@ -6,6 +6,21 @@
 
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
 
+## 설계 그래프
+```mermaid
+graph TD
+A[LadderGame] --> B(Ladder)
+B --> C[Line]
+D[Players] --> P[Player]
+P --> S[StartPoint]
+P --> N[Name]
+B --> H[Height]
+A -.-> LS[LineStrategy]
+A --> D
+B -.-> LS
+C --> LS
+```
+
 ## 입력
 - [x] 참여자 이름을 입력받는다.
  - [x] 이름은 쉼표로 구분되어 입력받는다.
