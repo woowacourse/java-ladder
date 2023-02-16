@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import strategy.PassGenerator;
 
 public class LadderMaker {
@@ -9,18 +10,23 @@ public class LadderMaker {
     private static final int CONVERT_INDEX_VALUE = 1;
 
     private final PassGenerator generator;
+    private Names participants;
     private Ladder ladder;
 
     public LadderMaker(PassGenerator generator) {
         this.generator = generator;
     }
 
-    public Names generateNames(List<String> input){
-        List<Name> names = new ArrayList<>();
-        for (String name : input) {
-            names.add(new Name(name));
-        }
-        return new Names(names);
+    public void initParticipants(List<String> inputNames) {
+        List<Name> participantsName = inputNames.stream()
+                .map(Name::new)
+                .collect(Collectors.toList());
+
+        this.participants = new Names(participantsName);
+    }
+
+    public Names getParticipantsName() {
+        return participants;
     }
 
     public void initLadder(Height height, int peopleCount) {

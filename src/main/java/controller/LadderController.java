@@ -21,14 +21,15 @@ public class LadderController {
 
     public void run() {
         outputView.noticeInputParticipants();
-        Names names = ladderMaker.generateNames(inputView.inputNameOfParticipants());
+        ladderMaker.initParticipants(inputView.inputNameOfParticipants());
+        Names participantsName = ladderMaker.getParticipantsName();
         outputView.noticeInputHeightOfLadder();
         int heightOfLadder = inputView.inputHeightOfLadder();
 
         outputView.noticeResult();
-        outputView.printNameOfParticipants(names);
+        outputView.printNameOfParticipants(participantsName);
         Height height = new Height(heightOfLadder);
-        ladderMaker.initLadder(height, names.getTotalParticipantSize());
+        ladderMaker.initLadder(height, participantsName.getTotalParticipantSize());
 
         Ladder ladder = ladderMaker.getLadder();
         outputView.printLadder(ladder);
