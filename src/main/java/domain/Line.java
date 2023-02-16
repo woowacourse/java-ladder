@@ -3,10 +3,9 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Line {
+import static domain.LineState.UNMOVABLE_STATE;
 
-    private static final int POSSIBLE_STATE = 1;
-    private static final int IMPOSSIBLE_STATE = 0;
+public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
@@ -19,28 +18,31 @@ public class Line {
     }
 
     private void addPoints(int personCount, RandomGenerator generator) {
-        addPoint(generator.generate());
+        addRandomPoint(generator);
         for (int index = 1; index < personCount - 1; index++) {
             addConditionPoint(generator, index);
         }
     }
 
     private void addConditionPoint(RandomGenerator generator, int index) {
-        if(points.get(index -1)){
-            addPoint(IMPOSSIBLE_STATE);
+        if(isSuccessive(index)){
+            addPoint(UNMOVABLE_STATE.getState());
         }
-        if(!points.get(index -1)){
-            addPoint(generator.generate());
+        if(!isSuccessive(index)){
+            addRandomPoint(generator);
         }
     }
 
-    private void addPoint(int state) {
-        if (state == POSSIBLE_STATE) {
-            points.add(true);
-        }
-        if (state == IMPOSSIBLE_STATE) {
-            points.add(false);
-        }
+    private boolean isSuccessive(int index){
+        return points.get(index - 1);
+    }
+
+    private void addRandomPoint(RandomGenerator generator) {
+        addPoint(LineState.of(generator.generate()).getState());
+    }
+
+    private void addPoint(boolean state) {
+        points.add(state);
     }
 
     public int getPointsSize() {
