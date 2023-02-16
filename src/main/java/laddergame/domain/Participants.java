@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Participants {
     private final List<Person> people;
@@ -17,5 +18,11 @@ public class Participants {
 
     public int getSize() {
         return people.size();
+    }
+
+    public List<String> getNames() {
+        return people.stream()
+                .map(Person::getName)
+                .collect(Collectors.toUnmodifiableList());
     }
 }
