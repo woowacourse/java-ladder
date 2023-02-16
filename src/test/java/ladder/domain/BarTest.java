@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class BarTest {
+public class BarTest {
     public static final Bar FALSE = new Bar(() -> false);
     public static final Bar TRUE = new Bar(() -> true);
 
