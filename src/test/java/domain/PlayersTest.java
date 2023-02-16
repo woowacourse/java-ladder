@@ -18,7 +18,8 @@ public class PlayersTest {
 
         // when & then
         assertThatThrownBy(() -> new Players(playerNames))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참여 가능한 플레이어의 수는 2명이상 10명이하 입니다.");
     }
 
     @Test
@@ -32,7 +33,8 @@ public class PlayersTest {
 
         // when & then
         assertThatThrownBy(() -> new Players(playerNames))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참여 가능한 플레이어의 수는 2명이상 10명이하 입니다.");
     }
 
     @Test
@@ -44,18 +46,19 @@ public class PlayersTest {
 
         // when & then
         assertThatThrownBy(() -> new Players(playerNames))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참가한 플레이어의 이름 중 중복된 이름이 존재하면 안됩니다.");
     }
 
     @Test
     @DisplayName("플레이어 중 가장 긴 이름의 길이를 반환한다.")
     void returns_longest_players_name() {
         // given
-        String bob = "bob";
-        String popo = "popo";
-        String dolbi = "dolbi";
-        List<String> playerNames = List.of(bob, popo, dolbi);
-        int expectedLongestLengthOfName = dolbi.length();
+        String player1 = "bob";
+        String player2 = "popo";
+        String playerHavingLongestName = "dolbi";
+        List<String> playerNames = List.of(player1, player2, playerHavingLongestName);
+        int expectedLongestLengthOfName = playerHavingLongestName.length();
 
         Players players = new Players(playerNames);
 

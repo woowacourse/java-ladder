@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 public class Players {
 
+    private static final int MINIMUM_LENGTH_OF_PLAYER = 2;
+    private static final int MAXIMUM_LENGTH_OF_PLAYER = 10;
+
     private final List<Player> players;
 
     public Players(final List<String> playerNames) {
@@ -15,28 +18,27 @@ public class Players {
         this.players = makePlayers(playerNames);
     }
 
-    // TODO: 예외 메시지 작성
     private void validateNumberOfPlayers(final List<String> playerNames) {
-        if (playerNames.size() <= 1 || playerNames.size() > 10) {
-            throw new IllegalArgumentException();
+        if (isNotPermittedNumberOfPlayers(playerNames)) {
+            throw new IllegalArgumentException("참여 가능한 플레이어의 수는 2명이상 10명이하 입니다.");
         }
     }
 
-    private void validateDuplicatedPlayers(final List<String> playerNames) {
-        Set<String> nameWithoutDuplicated = new HashSet<>();
+    private boolean isNotPermittedNumberOfPlayers(List<String> playerNames) {
+        return (playerNames.size() < MINIMUM_LENGTH_OF_PLAYER) || (playerNames.size() > MAXIMUM_LENGTH_OF_PLAYER);
+    }
 
-        for (String playerName : playerNames) {
-            nameWithoutDuplicated.add(playerName);
-        }
+    private void validateDuplicatedPlayers(final List<String> playerNames) {
+        Set<String> nameWithoutDuplicated = new HashSet<>(playerNames);
 
         if (playerNames.size() != nameWithoutDuplicated.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("참가한 플레이어의 이름 중 중복된 이름이 존재하면 안됩니다.");
         }
     }
 
     private List<Player> makePlayers(final List<String> playerNames) {
         return playerNames.stream()
-                .map(name -> new Player(name))
+                .map(Player::new)
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -47,7 +49,7 @@ public class Players {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public int getNumberOfPlayers() {
+    public int findNumberOfPlayers() {
         return this.players.size();
     }
 
