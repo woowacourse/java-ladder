@@ -5,10 +5,10 @@ import laddervalidate.PlayerNameValidator;
 import java.util.List;
 
 public class Players {
-    PlayerNameValidator playerNameValidator = new PlayerNameValidator();
     private final List<String> players;
 
     public Players(List<String> players) {
+        PlayerNameValidator playerNameValidator = new PlayerNameValidator();
         playerNameValidator.checkPlayerCount(players);
         playerNameValidator.checkPlayerNameLength(players);
         playerNameValidator.checkDuplicatePlayers(players);
