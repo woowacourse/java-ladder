@@ -23,7 +23,16 @@ public class Players {
         }
     }
 
-    public String getPlayerName(StartPoint startPoint) {
-        return players.get(startPoint).getName();
+    public List<String> getPlayerNames() {
+        return players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
+    }
+
+    public int getNameMaxLength() {
+        return this.players.stream()
+                .map(player -> player.getName().length())
+                .max(Integer::compareTo)
+                .orElseThrow(() -> new IllegalStateException("플레이어가 존재하지 않습니다."));
     }
 }
