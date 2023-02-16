@@ -37,4 +37,5 @@ public class Line {
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
+
 }

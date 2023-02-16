@@ -33,4 +33,5 @@ public class PlayerNameTest {
         assertThatNoException()
                 .isThrownBy(() -> new Player(playerName));
     }
+
 }

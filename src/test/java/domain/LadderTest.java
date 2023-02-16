@@ -47,4 +47,5 @@ public class LadderTest {
         Ladder ladder = new Ladder(lines);
         assertThat(ladder.getLines().size()).isEqualTo(lineSize);
     }
+
 }

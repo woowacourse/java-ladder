@@ -41,4 +41,5 @@ public enum Point {
                 .map(Point::isExist)
                 .collect(Collectors.toUnmodifiableList());
     }
+
 }

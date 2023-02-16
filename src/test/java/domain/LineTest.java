@@ -45,4 +45,5 @@ public class LineTest {
             assertThat(left.isExist() && right.isExist()).isFalse();
         }
     }
+
 }

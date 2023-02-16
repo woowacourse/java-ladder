@@ -24,4 +24,5 @@ public class InputViewValidator {
             throw new IllegalArgumentException("사다리 높이는 숫자만 입력할 수 있습니다.");
         }
     }
+
 }

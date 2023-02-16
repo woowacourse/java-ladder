@@ -49,4 +49,5 @@ public class InputViewTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         inputView = new InputView(new Scanner(System.in));
     }
+
 }

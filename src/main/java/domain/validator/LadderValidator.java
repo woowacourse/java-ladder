@@ -14,4 +14,5 @@ public class LadderValidator {
             throw new IllegalArgumentException("사다리의 높이는 1이상 30이하여야 합니다.");
         }
     }
+
 }

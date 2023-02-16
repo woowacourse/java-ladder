@@ -17,4 +17,5 @@ public class PlayersFactory {
                 .map(Player::new)
                 .collect(Collectors.toUnmodifiableList());
     }
+
 }

@@ -16,4 +16,5 @@ public enum PointUi {
         }
         return NOT_EXIST.signature;
     }
+
 }

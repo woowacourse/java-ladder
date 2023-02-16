@@ -62,4 +62,5 @@ public class PlayersTest {
         Players players = new Players(List.of(new Player("a"), new Player("b")));
         assertThat(players.getPlayerNames()).containsExactly("a", "b");
     }
+
 }

@@ -1,7 +1,7 @@
 package domain;
 
 public class Player {
-    
+
     private final PlayerName name;
 
     public Player(final String name) {
@@ -11,4 +11,5 @@ public class Player {
     public String getName() {
         return name.getName();
     }
+
 }
