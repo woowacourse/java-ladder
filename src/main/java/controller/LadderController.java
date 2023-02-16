@@ -16,11 +16,21 @@ public class LadderController {
     }
 
     private void generateUsers() {
-        users = new Users(InputView.readUserNames());
+        try {
+            users = new Users(InputView.readUserNames());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            generateUsers();
+        }
     }
 
     private void generateLadder() {
-        ladder = new Ladder(InputView.readLadderHeight(), users.size());
+        try {
+            ladder = new Ladder(InputView.readLadderHeight(), users.size());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            generateLadder();
+        }
     }
 
     private void printResult() {
