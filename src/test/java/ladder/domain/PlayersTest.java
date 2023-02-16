@@ -17,7 +17,7 @@ public class PlayersTest {
     void 참가자가_한_명_이하인_경우_예외를_던진다() {
         assertThatThrownBy(() -> new Players(List.of("name")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참가자는 최소 두명이어야 합니다.");
+                .hasMessage("참가자는 최소 2명이어야 합니다.");
     }
 
     @Test

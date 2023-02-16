@@ -12,7 +12,7 @@ public class InputView {
     private static final String READ_LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String INVALID_NUMBER_MESSAGE = "정수만 입력 가능합니다.";
     private static final int HEIGHT_LOWER_BOUND = 1;
-    private static final String INVALID_HEIGHT_MESSAGE = "높이는 최소 1이상이어야 합니다.";
+    private static final String INVALID_HEIGHT_MESSAGE = "높이는 최소 " + HEIGHT_LOWER_BOUND + "이상이어야 합니다.";
 
     private final Scanner scanner;
 
