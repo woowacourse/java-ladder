@@ -1,6 +1,9 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import domain.util.Point;
 
 public class Ladder {
 
@@ -12,5 +15,13 @@ public class Ladder {
 
 	public List<Line> getLines() {
 		return lines;
+	}
+
+	public List<List<Point>> getLadderPoints() {
+		List<List<Point>> points = new ArrayList<>();
+		for (Line line : lines) {
+			points.add(line.getPoints());
+		}
+		return points;
 	}
 }
