@@ -4,20 +4,22 @@ import java.util.List;
 
 public class Line {
 
-    private final Points points;
+    private static final int MIN_PLAYER_COUNT = 2;
+
+    private final Bars bars;
 
     public Line(int playerCount) {
         validatePlayerCount(playerCount);
-        points = new Points(new RandomPointGenerator(), playerCount - 1);
+        bars = new Bars(new RandomPointGenerator(), playerCount - 1);
     }
 
     private void validatePlayerCount(int playerCount) {
-        if (playerCount <= 1) {
+        if (playerCount < MIN_PLAYER_COUNT) {
             throw new IllegalArgumentException("참가자는 1명이하일 수 없습니다.");
         }
     }
 
-    public List<Boolean> toUnmodifiablePoints() {
-        return points.toUnmodifiablePoints();
+    public List<Boolean> toUnmodifiableBars() {
+        return bars.toUnmodifiableBars();
     }
 }

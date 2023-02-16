@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Points {
+public class Bars {
 
     private final List<Boolean> points = new ArrayList<>();
     private final RandomGenerator randomGenerator;
 
-    public Points(RandomGenerator randomPointGenerator, int count) {
+    public Bars(RandomGenerator randomPointGenerator, int count) {
         randomGenerator = randomPointGenerator;
         initialize(count);
     }
@@ -24,7 +24,7 @@ public class Points {
         }
     }
 
-    public List<Boolean> toUnmodifiablePoints() {
+    public List<Boolean> toUnmodifiableBars() {
         return Collections.unmodifiableList(points);
     }
 }

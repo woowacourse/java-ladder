@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Queue;
 import org.junit.jupiter.api.Test;
 
-class PointsTest {
+class BarsTest {
 
     @Test
     void 주어진_개수만큼_좌표값을_생성한다() {
-        Points points = new Points(new RandomPointGenerator(), 5);
+        Bars bars = new Bars(new RandomPointGenerator(), 5);
 
-        assertThat(points.toUnmodifiablePoints()).hasSize(5);
+        assertThat(bars.toUnmodifiableBars()).hasSize(5);
     }
 
     @Test
@@ -23,9 +23,9 @@ class PointsTest {
 
         Queue<Boolean> queue = new LinkedList<>(expected);
 
-        Points points = new Points(new MockedPointGenerator(queue), 5);
+        Bars bars = new Bars(new MockedPointGenerator(queue), 5);
 
-        assertThat(points.toUnmodifiablePoints()).containsExactly(true, false, true, false, true);
+        assertThat(bars.toUnmodifiableBars()).containsExactly(true, false, true, false, true);
 
     }
 

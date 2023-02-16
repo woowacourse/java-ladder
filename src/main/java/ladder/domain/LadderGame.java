@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 public class LadderGame {
 
     private final List<Name> players;
-    private List<Line> lines;
 
     public LadderGame(List<String> players) {
         this.players = players.stream()

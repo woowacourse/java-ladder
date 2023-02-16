@@ -34,7 +34,7 @@ public class OutputView {
     }
 
     private static String extractLine(Line line) {
-        List<Boolean> points = line.toUnmodifiablePoints();
+        List<Boolean> points = line.toUnmodifiableBars();
         StringJoiner result = new StringJoiner(VERTICAL, NONE + VERTICAL, VERTICAL);
 
         for (Boolean point : points) {
