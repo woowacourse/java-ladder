@@ -13,7 +13,6 @@ public class RandomBridgeGenerator implements BridgeGenerator {
         if (RANDOM.nextBoolean()) {
             return Bridge.EXIST;
         }
-
         return Bridge.EMPTY;
     }
 }

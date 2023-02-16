@@ -9,9 +9,7 @@ public class Line {
     private final List<Bridge> bridges;
 
     public Line(final List<Bridge> bridges) {
-
         validateBridges(bridges);
-
         this.bridges = copyOf(bridges);
     }
 

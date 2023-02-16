@@ -12,7 +12,6 @@ public class OutputView {
             System.out.print(name + "\t");
         }
         System.out.println();
-
         printLinesOf(ladder);
     }
 

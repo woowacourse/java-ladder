@@ -16,11 +16,9 @@ public class LineGenerator {
 
     public Line generate(final int personCount) {
         List<Bridge> newBridges = new ArrayList<>();
-
         for (int i = 0; i < personCount - 1; i++) {
             newBridges.add(getNextBridge(newBridges));
         }
-
         return new Line(newBridges);
     }
 
@@ -28,7 +26,6 @@ public class LineGenerator {
         if (hasLeftBridge(bridges)) {
             return Bridge.EMPTY;
         }
-
         return bridgeGenerator.generate();
     }
 
