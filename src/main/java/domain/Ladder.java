@@ -1,12 +1,11 @@
 package domain;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 
 public class Ladder {
 
+    private static final int UNIQUE_COUNT = 1;
     private static final int FIRST_LINE_INDEX = 0;
 
     private final List<Line> lines;
@@ -28,15 +27,20 @@ public class Ladder {
     }
 
     private void validateLinesSameSize(final List<Line> lines) {
-        Deque<Line> lineDeque = new ArrayDeque<>(lines);
-        lines.forEach(it -> validateLineSameSize(lineDeque));
-    }
-
-    private void validateLineSameSize(final Deque<Line> lineDeque) {
-        Line firstLine = lineDeque.removeFirst();
-        if (firstLine != lineDeque.peekFirst()) {
+        if (lineSizeIsUnique(lines)) {
             throw new IllegalArgumentException();
         }
+    }정
+
+    private static boolean lineSizeIsUnique(final List<Line> lines) {
+        return linesSizeCount(lines) != UNIQUE_COUNT;
+    }
+
+    private static long linesSizeCount(final List<Line> lines) {
+        return lines.stream()
+                .map(Line::size)
+                .distinct()
+                .count();
     }
 
     public int getHeight() {
