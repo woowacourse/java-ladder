@@ -11,9 +11,14 @@ import java.util.stream.Collectors;
 
 public abstract class AbstractTestFixture {
 
-    public List<Bridge> convert(Boolean... flag) {
-        return Arrays.stream(flag)
-                     .map(qqq -> qqq ? Bridge.EXIST : Bridge.EMPTY)
+    public List<Bridge> convert(Boolean... flags) {
+        return Arrays.stream(flags)
+                     .map((flag) -> {
+                         if (flag) {
+                             return Bridge.EXIST;
+                         }
+                         return Bridge.EMPTY;
+                     })
                      .collect(Collectors.toList());
     }
 
@@ -21,7 +26,7 @@ public abstract class AbstractTestFixture {
         return List.of(new Person("aa"));
     }
 
-    public List<Line> createLines(int height) {
+    public List<Line> createLines(final int height) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             lines.add(new Line(convert(true, false, true)));
