@@ -8,11 +8,11 @@ public enum ErrorMessage {
     INVALID_PERSON_NAME("참가자의 이름은 1이상 5이하입니다. 다시 입력해주세요."),
     DUPLICATE_NAME("중복되는 이름이 존재합니다. 다시 입력해주세요");
 
+    private final String message;
+
     ErrorMessage(String message) {
         this.message = message;
     }
-
-    private final String message;
 
     public String getMessage() {
         return message;

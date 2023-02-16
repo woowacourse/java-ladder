@@ -18,25 +18,26 @@ public class Participants {
         joinAllParticipants(participantNames);
     }
 
-    private void joinAllParticipants(String participantNames) {
-        splitNames(participantNames).forEach((name) -> people.add(new Person(name)));
-    }
-
     private void validate(String participantNames) {
         if (!isExist(participantNames)) {
             throw new EmpytInputException();
         }
         List<String> splitNames = splitNames(participantNames);
-        if (!isUnique(splitNames)) {
-            throw new DuplicateNameException();
-        }
         if (isValidCount(splitNames)) {
             throw new InvalidParticipantsCountException();
+        }
+        if (!isUnique(splitNames)) {
+            throw new DuplicateNameException();
         }
     }
 
     private boolean isExist(String participantNames) {
         return participantNames != null && !participantNames.isBlank();
+    }
+
+    private List<String> splitNames(String participantNames) {
+        final String delimiter = ",";
+        return List.of(participantNames.split(delimiter, -1));
     }
 
     private boolean isValidCount(List<String> names) {
@@ -50,9 +51,8 @@ public class Participants {
         return uniqueNames.size() == names.size();
     }
 
-    private List<String> splitNames(String participantNames) {
-        final String delimiter = ",";
-        return List.of(participantNames.split(delimiter, -1));
+    private void joinAllParticipants(String participantNames) {
+        splitNames(participantNames).forEach((name) -> people.add(new Person(name)));
     }
 
     public int getParticipantCount() {

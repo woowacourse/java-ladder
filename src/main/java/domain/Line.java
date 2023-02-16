@@ -33,8 +33,8 @@ public class Line {
 
     private boolean generateStatus(int index, BooleanGenerator booleanGenerator) {
         final int firstIndex = 0;
-        final boolean connected = true;
         final int prev = index - 1;
+        final boolean connected = true;
         if (index != firstIndex && status.get(prev) == connected) {
             return false;
         }

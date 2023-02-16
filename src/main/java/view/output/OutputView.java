@@ -22,15 +22,15 @@ public class OutputView {
         mapResult.replace(mapResult.length() - 2, mapResult.length(), System.lineSeparator());
     }
 
-    private void setLadder(StringBuilder mapResult, Map map) {
-        map.getLines().forEach((line) -> mapResult.append(reformatLine(line)));
-    }
-
     private String reformatName(String name) {
         if (name.length() < 5) {
             name += " ";
         }
         return String.format("%5s ", name);
+    }
+
+    private void setLadder(StringBuilder mapResult, Map map) {
+        map.getLines().forEach((line) -> mapResult.append(reformatLine(line)));
     }
 
     private String reformatLine(Line line) {
