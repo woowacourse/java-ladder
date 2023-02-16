@@ -12,7 +12,7 @@ public class PlayersTest {
 
     @Test
     @DisplayName("사람의 수가 1명 이하이면 예외를 던진다.")
-    void players_constructor_validate() {
+    void throws_exception_number_of_player_under_two() {
         // given
         List<String> playerNames = List.of("pobi");
 
@@ -23,8 +23,8 @@ public class PlayersTest {
     }
 
     @Test
-    @DisplayName("사람의 수가 10명 이상이면 예외를 던진다.")
-    void players_constructor_validate_over() {
+    @DisplayName("사람의 수가 10명 보다 크면 예외를 던진다.")
+    void throws_exception_number_of_players_over_ten() {
         // given
         List<String> playerNames = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
@@ -39,7 +39,7 @@ public class PlayersTest {
 
     @Test
     @DisplayName("중복된 사람의 이름이 있으면 예외를 던진다.")
-    void throws_exception_duplicated_name() {
+    void throws_exception_when_existing_duplicated_name() {
         // given
         String duplicatedName = "pobi";
         List<String> playerNames = List.of(duplicatedName, duplicatedName);
@@ -52,7 +52,7 @@ public class PlayersTest {
 
     @Test
     @DisplayName("플레이어 중 가장 긴 이름의 길이를 반환한다.")
-    void returns_longest_players_name() {
+    void returns_longest_length_of_player_name() {
         // given
         String player1 = "bob";
         String player2 = "popo";
@@ -67,5 +67,54 @@ public class PlayersTest {
 
         // then
         assertThat(longestLengthOfName).isEqualTo(expectedLongestLengthOfName);
+    }
+
+    @Test
+    @DisplayName("참여한 플레이어의 수를 반환하다.")
+    void returns_number_of_players() {
+        // given
+        String player1 = "bob";
+        String player2 = "popo";
+        String playerHavingLongestName = "dolbi";
+        List<String> playerNames = List.of(player1, player2, playerHavingLongestName);
+        Players players = new Players(playerNames);
+        int expectedResult = players.getPlayers().size();
+
+        // when
+        int numberOfPlayer = players.findNumberOfPlayers();
+
+        // then
+        assertThat(numberOfPlayer).isEqualTo(expectedResult);
+    }
+
+    @Test
+    @DisplayName("참여한 플레이어들 중 첫번째 플레이어의 이름을 반환하다.")
+    void returns_name_of_first_player() {
+        // given
+        String firstPlayerName = "bob";
+        String normalPlayer = "popo";
+        List<String> playerNames = List.of(firstPlayerName, normalPlayer);
+        Players players = new Players(playerNames);
+
+        // when
+        String expectedResult = players.findFirstPlayerName();
+
+        // then
+        assertThat(expectedResult).isEqualTo(firstPlayerName);
+    }
+
+    @Test
+    @DisplayName("참여한 플레이어들 중 첫번째 플레이어의 이름의 길이를 반환하다.")
+    void returns_length_of_first_player_name() {
+        String firstPlayerName = "bob";
+        String normalPlayer = "popo";
+        List<String> playerNames = List.of(firstPlayerName, normalPlayer);
+        Players players = new Players(playerNames);
+
+        // when
+        int expectedResult = players.findLengthOfFirstPlayerName();
+
+        // then
+        assertThat(expectedResult).isEqualTo(firstPlayerName.length());
     }
 }

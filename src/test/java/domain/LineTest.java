@@ -14,7 +14,7 @@ public class LineTest {
 
     @Test
     @DisplayName("Line은 사람 수 -1만큼의 길이로 생성된다.")
-    void create_line_by_player_numbers() {
+    void create_line_by_player_numbers_minus_one() {
         // given
         int numberOfPlayer = 3;
         int expectedLineNumber = numberOfPlayer - 1;

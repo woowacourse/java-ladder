@@ -5,20 +5,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import util.ExistFootholdGenerator;
 import util.NonExistFootholdGenerator;
 
 public class LinesTest {
-    @Test
-    @DisplayName("Lines는 4명의 플레이어와 5의 높이가 주어졌을 때, 생성을 확인한다.")
-    void make_lines() {
+
+    @ParameterizedTest
+    @CsvSource({"4, 5", "3, 3", "5, 3"})
+    @DisplayName("n명의 플레이어와 m의 높이가 주어졌을 때, Lines 생성을 확인한다.")
+    void returns_lines(int numberOfPlayers, int height) {
         // given
-        int numberOfPlayer = 4;
-        int height = 5;
-        int expectedLadderWidth = numberOfPlayer - 1;
+        int expectedLadderWidth = numberOfPlayers - 1;
 
         // when
-        Lines lines = new Lines(numberOfPlayer, height);
+        Lines lines = new Lines(numberOfPlayers, height);
 
         // then
         assertThat(lines.getLines().get(0).getFootholds().size()).isEqualTo(expectedLadderWidth);
@@ -38,6 +40,5 @@ public class LinesTest {
 
         // then
         assertThat(selectedNotEmptyLine).containsExactly(false, false, false);
-
     }
 }

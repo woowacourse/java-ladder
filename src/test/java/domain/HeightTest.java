@@ -10,9 +10,9 @@ public class HeightTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 11})
     @DisplayName("높이는 1이상 10이하가 아니면 예외를 던진다.")
-    void validate_height_length(int input) {
+    void throws_exception_when_invalidate_range_of_height(int height) {
         // when & then
-        Assertions.assertThatThrownBy(() -> new Height(input))
+        Assertions.assertThatThrownBy(() -> new Height(height))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("사다리의 높이는 최소 1이상 최대 10이하입니다.");
     }
