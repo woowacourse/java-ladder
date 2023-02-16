@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -26,5 +27,18 @@ public class PersonsTest {
         Person oing = new Person("oing");
 
         assertDoesNotThrow(() -> new Persons(List.of(baron, oing)));
+    }
+
+    @Test
+    @DisplayName("가장 이름이 긴 사용자의 이름 길이를 반환한다")
+    void checkLongestNameLength() {
+        //given
+        Person baron = new Person("baron");
+        Person oing = new Person("oing");
+        Persons persons = new Persons(List.of(baron, oing));
+
+        //when
+        //then
+        assertThat(persons.getLongestPersonNameLength()).isEqualTo(5);
     }
 }
