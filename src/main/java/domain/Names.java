@@ -15,4 +15,8 @@ public class Names {
     public int firstNameLength() {
         return names.get(FIRST_NAME_INDEX).length();
     }
+
+    public List<Name> getNames() {
+        return names;
+    }
 }
