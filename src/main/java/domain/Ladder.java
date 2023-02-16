@@ -5,15 +5,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Ladder {
-    private List<LadderRow> ladderRows = new ArrayList<>();
+import utils.LadderRowGenerator;
 
-    public void add(LadderRow line) {
-        ladderRows.add(line);
+public class Ladder {
+    private final List<LadderRow> ladderRows = new ArrayList<>();
+    private final LadderRowGenerator ladderRowGenerator;
+
+    public Ladder(LadderRowGenerator ladderRowGenerator) {
+        this.ladderRowGenerator = ladderRowGenerator;
     }
 
-    public List<LadderRow> getLadderRows() {
-        return Collections.unmodifiableList(ladderRows);
+    public void create(int ladderHeight, int userCount) {
+        for (int i = 0; i < ladderHeight; i++) {
+            LadderRow line = ladderRowGenerator.generate(userCount);
+            ladderRows.add(line);
+        }
     }
 
     public List<String> parseLadderToString() {

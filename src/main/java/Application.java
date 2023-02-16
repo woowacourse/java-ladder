@@ -6,11 +6,12 @@ import utils.RandomLadderRowGenerator;
 
 public class Application {
     public static void main(String[] args) {
-        Ladder ladder = new Ladder();
-        Users users = new Users();
         LadderRowGenerator ladderRowGenerator = new RandomLadderRowGenerator();
 
-        Controller controller = new Controller(ladder, users, ladderRowGenerator);
+        Ladder ladder = new Ladder(ladderRowGenerator);
+        Users users = new Users();
+
+        Controller controller = new Controller(ladder, users);
         controller.run();
     }
 }

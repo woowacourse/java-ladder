@@ -14,12 +14,10 @@ import view.OutputView;
 public class Controller {
     private final Ladder ladder;
     private final Users users;
-    private final LadderRowGenerator ladderRowGenerator;
 
-    public Controller(Ladder ladder, Users users,LadderRowGenerator ladderRowGenerator) {
+    public Controller(Ladder ladder, Users users) {
         this.ladder = ladder;
         this.users = users;
-        this.ladderRowGenerator = ladderRowGenerator;
     }
 
     public void run() {
@@ -43,19 +41,12 @@ public class Controller {
     private void createLadder() {
         try {
             int ladderHeight = InputView.readLadderHeight();
+            Validator.validateLadderHeight(ladderHeight);
             int userCount = users.getSize();
-            addLadder(ladderHeight, userCount);
+            ladder.create(ladderHeight, userCount);
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception);
             createLadder();
-        }
-    }
-
-    private void addLadder(int ladderHeight, int userCount) {
-        Validator.validateLadderHeight(ladderHeight);
-        for (int i = 0; i < ladderHeight; i++) {
-            LadderRow line = ladderRowGenerator.generate(userCount);
-            ladder.add(line);
         }
     }
 
