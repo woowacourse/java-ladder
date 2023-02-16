@@ -11,7 +11,7 @@ import view.OutputView;
 
 public class LadderController {
 
-    private NumberGenerator numberGenerator = new RandomNumberGenerator();
+    private final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     public void run() {
         Players players = generatePlayers();
