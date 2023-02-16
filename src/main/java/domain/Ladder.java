@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import util.RandomLineGenerator;
 
 public class Ladder {
 
@@ -25,6 +26,7 @@ public class Ladder {
 
     public List<String> getLadderLines() {
         List<String> ladderLines = new ArrayList<>();
+
         for (Line line : lines) {
             ladderLines.add(line.getLineStatus());
         }

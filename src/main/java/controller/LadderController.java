@@ -15,12 +15,14 @@ public class LadderController {
     }
 
     private Players makePlayers() {
-        String playerNames =  InputView.receivePlayer();
+        String playerNames = InputView.receivePlayer();
+
         return new Players(playerNames);
     }
 
     private Ladder makeLadder(Players players) {
         int height = InputView.receiveHeight();
+
         return new Ladder(players.getNumberOfPlayers(), new Height(height));
     }
 
@@ -29,5 +31,4 @@ public class LadderController {
         OutputView.printPlayers(players);
         OutputView.printLadder(ladder);
     }
-
 }

@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import util.LineGenerator;
 
 public class Line {
 

@@ -1,5 +1,8 @@
 package view;
 
+import domain.Ladder;
+import domain.Players;
+
 public class OutputView {
 
     public static void printResultMessage() {

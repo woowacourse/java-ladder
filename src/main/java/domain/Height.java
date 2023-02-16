@@ -2,7 +2,7 @@ package domain;
 
 public class Height {
 
-    private int height;
+    private final int height;
 
     public Height(int height) {
         validatePositiveNumber(height);

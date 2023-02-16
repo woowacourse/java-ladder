@@ -2,7 +2,6 @@ package domain;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import domain.Height;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,6 @@ public class HeightTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 높이는 양수만 가능합니다.");
     }
-
 
     @Test
     @DisplayName("높이가 양수 인 경우 정상적인 객체 생성 확인")
