@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
 public class Players {
 
     private static final int MIN_PLAYER_COUNT = 2;
-    
+
     private final List<Player> players;
 
     public Players(List<String> playerNames) {
         List<Player> players = playerNames.stream()
-                .map(name -> new Player(name))
+                .map(Player::new)
                 .collect(Collectors.toUnmodifiableList());
         validatePlayerNames(players);
         this.players = List.copyOf(players);
@@ -38,7 +38,7 @@ public class Players {
 
     public List<String> getPlayerNames() {
         return players.stream()
-                .map(player -> player.getName())
+                .map(Player::getName)
                 .collect(Collectors.toList());
     }
 }
