@@ -28,14 +28,13 @@ public class OutputView {
         List<Line> lines = ladder.getLines();
 
         for (Line line : lines) {
-            List<Boolean> points = line.getPoints();
-            showPoints(points);
+            showPoints(line.getPoints());
             System.out.println();
         }
     }
 
     private void showPoints(List<Boolean> points) {
-        System.out.printf(LINE_SPACE_MESSAGE + LINE_BAR_MESSAGE);
+        System.out.print(LINE_SPACE_MESSAGE + LINE_BAR_MESSAGE);
         for (Boolean point : points) {
             printMessageFormat(Point.getPoint(point).getMessage() + LINE_BAR_MESSAGE, POINT_SHOW_FORMAT);
         }
