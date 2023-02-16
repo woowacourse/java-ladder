@@ -7,8 +7,6 @@ import domain.LadderRow;
 import domain.User;
 import domain.Users;
 import utils.LadderRowGenerator;
-import utils.RandomLadderRowGenerator;
-import utils.StringParser;
 import utils.constants.Validator;
 import view.InputView;
 import view.OutputView;
@@ -67,7 +65,7 @@ public class Controller {
     }
 
     private void printLadder() {
-        List<String> ladders = StringParser.parseLadderToString(ladder);
-        OutputView.printLadder(ladders);
+        List<String> ladderMap = ladder.parseLadderToString();
+        OutputView.printLadder(ladderMap);
     }
 }

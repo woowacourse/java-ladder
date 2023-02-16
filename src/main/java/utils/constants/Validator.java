@@ -1,7 +1,11 @@
 package utils.constants;
 
-import static utils.constants.ErrorMessages.*;
-import static utils.constants.GameRules.*;
+import static utils.constants.ErrorMessages.DUPLICATED_INPUT;
+import static utils.constants.ErrorMessages.NAME_LENGTH;
+import static utils.constants.ErrorMessages.NUMBER_FORMAT;
+import static utils.constants.GameRules.MAX_LADDER_HEIGHT;
+import static utils.constants.GameRules.MAX_NAME_LENGTH;
+import static utils.constants.GameRules.MIN_LADDER_HEIGHT;
 
 import java.util.HashSet;
 import java.util.List;

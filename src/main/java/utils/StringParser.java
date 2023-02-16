@@ -2,17 +2,10 @@ package utils;
 
 import static utils.constants.ErrorMessages.NUMBER_FORMAT;
 import static utils.constants.GameRules.MAX_NAME_LENGTH;
-import static utils.constants.LadderFormat.DELIMITER;
-import static utils.constants.LadderFormat.EXISTED_LINE;
-import static utils.constants.LadderFormat.NON_EXISTED_LINE;
-import static utils.constants.LadderFormat.START_DELIMITER;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import domain.Ladder;
-import domain.LadderRow;
 
 public class StringParser {
 
@@ -21,7 +14,7 @@ public class StringParser {
     public static final int ZERO = 0;
 
     public static List<String> splitByDelimiter(String input) {
-        return Arrays.asList(input.split(SPLIT_DELIMITER, SPLIT_LIMIT)).stream()
+        return Arrays.stream(input.split(SPLIT_DELIMITER, SPLIT_LIMIT))
                 .map(name -> name.replace(" ", ""))
                 .collect(Collectors.toUnmodifiableList());
     }
@@ -39,30 +32,5 @@ public class StringParser {
         stringBuilder.append(" ".repeat(Math.max(ZERO, MAX_NAME_LENGTH.getValue()) - input.length()));
         stringBuilder.append(input);
         return stringBuilder.toString();
-    }
-
-    public static List<String> parseLadderToString(Ladder ladder) {
-        List<LadderRow> lines = ladder.getLadderRows();
-        return lines.stream()
-                .map(StringParser::parseLineToString)
-                .collect(Collectors.toUnmodifiableList());
-    }
-
-    private static String parseLineToString(LadderRow line) {
-        List<Boolean> existedLine = line.getLines();
-        List<String> parsedLine = existedLine.stream()
-                .map(StringParser::convertLineStatus)
-                .collect(Collectors.toList());
-        StringBuilder stringBuilder = new StringBuilder(START_DELIMITER.getFormat());
-        stringBuilder.append(String.join(DELIMITER.getFormat(), parsedLine));
-        stringBuilder.append(DELIMITER.getFormat());
-        return stringBuilder.toString();
-    }
-
-    private static String convertLineStatus(boolean existed) {
-        if (existed) {
-            return EXISTED_LINE.getFormat();
-        }
-        return NON_EXISTED_LINE.getFormat();
     }
 }
