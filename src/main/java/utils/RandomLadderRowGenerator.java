@@ -1,12 +1,12 @@
 package utils;
 
+import domain.LadderRow;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import domain.LadderRow;
-
-public class RandomLadderRowGenerator implements LadderRowGenerator{
+public class RandomLadderRowGenerator implements LadderRowGenerator {
 
     private static final Random RANDOM = new Random();
 

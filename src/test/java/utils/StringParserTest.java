@@ -1,16 +1,15 @@
 package utils;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-import java.util.List;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
 import utils.constants.ErrorMessages;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class StringParserTest {
 
@@ -55,7 +54,7 @@ class StringParserTest {
     }
 
     @ParameterizedTest(name = "문자열에 공백을 삽입하여 5글자로 만든다.")
-    @ValueSource(strings = {"a","adf","asdfg"})
+    @ValueSource(strings = {"a", "adf", "asdfg"})
     void insertBlankTest(String input) {
         String result = StringParser.insertBlank(input);
 

@@ -1,11 +1,11 @@
 package utils;
 
-import static utils.constants.ErrorMessages.NUMBER_FORMAT;
-import static utils.constants.GameRules.MAX_NAME_LENGTH;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static utils.constants.ErrorMessages.NUMBER_FORMAT;
+import static utils.constants.GameRules.MAX_NAME_LENGTH;
 
 public class StringParser {
 

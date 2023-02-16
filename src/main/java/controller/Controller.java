@@ -1,13 +1,13 @@
 package controller;
 
-import java.util.List;
-
 import domain.Ladder;
 import domain.User;
 import domain.Users;
 import utils.Validator;
 import view.InputView;
 import view.OutputView;
+
+import java.util.List;
 
 public class Controller {
 

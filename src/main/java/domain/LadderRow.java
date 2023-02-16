@@ -1,12 +1,9 @@
 package domain;
 
-import static utils.constants.LadderFormat.DELIMITER;
-import static utils.constants.LadderFormat.EXISTED_LINE;
-import static utils.constants.LadderFormat.NON_EXISTED_LINE;
-import static utils.constants.LadderFormat.START_DELIMITER;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static utils.constants.LadderFormat.*;
 
 public class LadderRow {
 

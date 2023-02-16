@@ -1,10 +1,10 @@
 package domain;
 
+import utils.StringParser;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import utils.StringParser;
 
 public class Users {
 
