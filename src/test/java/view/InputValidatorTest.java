@@ -13,4 +13,12 @@ class InputValidatorTest {
         InputValidator inputValidator = new InputValidator();
         Assertions.assertThrows(IllegalArgumentException.class, () -> inputValidator.validateHeight(height));
     }
+
+    @ParameterizedTest(name = "입력된 유저 이름 = {0}")
+    @DisplayName("이름 입력시 한글이 있을 경우 예외를 반환한다")
+    @ValueSource(strings = {"한", "多", "한dad", "□"})
+    void nonAsciiUsersName(String userName) {
+        InputValidator inputValidator = new InputValidator();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> inputValidator.validateAscii(userName));
+    }
 }

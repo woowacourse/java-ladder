@@ -16,6 +16,7 @@ public class InputView {
         System.out.println(USER_NAMES_GUIDE_MESSAGE);
         String names = scanner.nextLine();
         System.out.println();
+        inputValidator.validateAscii(names);
         return Arrays.stream(names.split(DELIMITER))
                 .collect(Collectors.toUnmodifiableList());
     }
