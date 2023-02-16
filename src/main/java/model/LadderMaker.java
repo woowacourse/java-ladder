@@ -6,9 +6,6 @@ import strategy.PassGenerator;
 
 public class LadderMaker {
 
-    private static final int HEAD_TO_BLOCK_SIZE = 1;
-    private static final int HEAD_TO_LEFT_INDEX = 1;
-    private static final int SECOND_BLOCK_INDEX = 1;
     private static final int CONVERT_INDEX_VALUE = 1;
 
     private final PassGenerator generator;
@@ -16,22 +13,6 @@ public class LadderMaker {
 
     public LadderMaker(PassGenerator generator) {
         this.generator = generator;
-    }
-
-    public Line initBlocks(int peopleCount) {
-        Path firstPath = Path.calculatePath(generator.generate());
-        List<Path> blocks = new ArrayList<>();
-        blocks.add(firstPath);
-        return new Line(generateBlocks(peopleCount, blocks));
-    }
-
-    private List<Path> generateBlocks(int peopleCount, List<Path> blocks) {
-        for (int i = SECOND_BLOCK_INDEX; i < peopleCount - HEAD_TO_BLOCK_SIZE; i++) {
-            Path leftPath = blocks.get(i - HEAD_TO_LEFT_INDEX);
-            Path rightPath = Path.calculatePath(leftPath, generator.generate());
-            blocks.add(rightPath);
-        }
-        return blocks;
     }
 
     public Names generateNames(List<String> input){
@@ -42,10 +23,10 @@ public class LadderMaker {
         return new Names(names);
     }
 
-    public void initLadder(int height, int peopleCount) {
+    public void initLadder(Height height, int peopleCount) {
         List<Line> lines = new ArrayList<>();
 
-        while (height-- > 0) {
+        while (height.isContinueMakeLadder()) {
             lines.add(initLine(peopleCount));
         }
         ladder = new Ladder(lines);

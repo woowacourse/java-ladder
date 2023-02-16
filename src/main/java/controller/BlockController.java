@@ -1,5 +1,6 @@
 package controller;
 
+import model.Height;
 import model.Ladder;
 import model.Names;
 import model.LadderMaker;
@@ -26,7 +27,8 @@ public class BlockController {
 
         outputView.noticeResult();
         outputView.printNameOfParticipants(names);
-        ladderMaker.initLadder(heightOfLadder, names.getNames().size());
+        Height height = new Height(heightOfLadder);
+        ladderMaker.initLadder(height, names.getTotalParticipantSize());
 
         Ladder ladder = ladderMaker.getLadder();
         outputView.printLadder(ladder);
