@@ -41,4 +41,7 @@ public class Name {
                 && name.length() <= NAME_MAX_SIZE_INCLUSIVE);
     }
 
+    public String getName() {
+        return name;
+    }
 }

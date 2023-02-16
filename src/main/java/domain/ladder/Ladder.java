@@ -3,7 +3,7 @@ package domain.ladder;
 import domain.Direction;
 import domain.Height;
 import domain.Line;
-import domain.PlayerNumber;
+import domain.PlayerNames;
 import domain.Point;
 import domain.ladder.strategy.GenerateBridgeStrategy;
 import java.util.ArrayList;
@@ -22,9 +22,9 @@ public class Ladder {
         this.generateBridgeStrategy = generateBridgeStrategy;
     }
 
-    public static Ladder of(PlayerNumber playerNumber, Height height, GenerateBridgeStrategy generateBridgeStrategy) {
+    public static Ladder of(PlayerNames playerNames, Height height, GenerateBridgeStrategy generateBridgeStrategy) {
         List<Line> lines = new ArrayList<>();
-        IntStream.range(0, playerNumber.getLineNumber())
+        IntStream.range(0, playerNames.getNames().size())
                 .forEach(it -> lines.add(Line.fromHeight(height)));
 
         return new Ladder(lines, height, generateBridgeStrategy);
