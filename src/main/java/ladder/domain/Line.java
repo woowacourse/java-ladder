@@ -10,8 +10,7 @@ public class Line {
     private final BooleanGenerator booleanGenerator;
 
     public Line(int size) {
-        this.booleanGenerator = new BarGenerator();
-        generateBars(size);
+        this(size, new BarGenerator());
     }
 
     public Line(int size, BooleanGenerator booleanGenerator) {
