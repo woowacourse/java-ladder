@@ -21,14 +21,7 @@ class RandomRowsGeneratorTest {
 
     @Test
     public void 랜덤_Rows_생성() {
-        List<Row> rows = new RandomRowsGenerator().generateRows(2, 2).getRows();
+        List<Row> rows = new RandomRowsGenerator().generateRows(new Width(2), new Height(2)).getRows();
         assertThat(rows).hasSize(2);
-    }
-
-    @Test
-    public void 사다리_높이_예외던지기() {
-        assertThatThrownBy(() -> new RandomRowsGenerator().generateRows(2, 1))
-                .isInstanceOf(IllegalArgumentException.class);
-
     }
 }
