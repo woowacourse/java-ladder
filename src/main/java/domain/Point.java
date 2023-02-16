@@ -9,7 +9,7 @@ public enum Point {
     private static final String FORMATTED_BLANK = "     ";
     private static final String DIVIDER = "|";
 
-    private boolean status;
+    private final boolean status;
 
     Point(boolean status) {
         this.status = status;
