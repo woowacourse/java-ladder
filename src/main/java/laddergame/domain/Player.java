@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.constant.ErrorMessage;
+
 public class Player {
 
     private final String name;
@@ -11,7 +13,7 @@ public class Player {
 
     private void validatePlayerName(String name) {
         if (name.isBlank() || name.length() > 5) {
-            throw new IllegalArgumentException("[ERROR] 플레이어 이름은 공백이 아닌 5글자 이하여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_PLAYER_NAME.getMessage());
         }
     }
 

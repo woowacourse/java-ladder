@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.constant.ErrorMessage;
+
 import java.util.Arrays;
 
 public enum Point {
@@ -18,7 +20,7 @@ public enum Point {
         return Arrays.stream(Point.values())
                 .filter(point -> point.isConnected == condition)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 올바른 값이 아닙니다."));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_VALID_ARGUMENT.getMessage()));
     }
 
     public String getDisplayFormat() {

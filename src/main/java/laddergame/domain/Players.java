@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.constant.ErrorMessage;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,11 +22,11 @@ public class Players {
     private void validatePlayerNames(List<Player> tempPlayers) {
         Set<Player> nameSet = new HashSet<>(tempPlayers);
         if (nameSet.size() != tempPlayers.size()) {
-            throw new IllegalArgumentException("[ERROR] 플레이어 이름이 중복되었습니다.");
+            throw new IllegalArgumentException(ErrorMessage.PLAYER_NAME_DUPLICATED.getMessage());
         }
 
         if (tempPlayers.size() < 2) {
-            throw new IllegalArgumentException("[ERROR] 2명 이상의 플레이어가 필요합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_PLAYER_COUNT.getMessage());
         }
     }
 
