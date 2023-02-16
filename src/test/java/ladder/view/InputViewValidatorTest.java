@@ -16,8 +16,18 @@ class InputViewValidatorTest {
     void exceedMaxPlayerCountTest() {
         int count = 10001;
 
-        Assertions.assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalArgumentException.class,
                 () ->  InputViewValidator.validateNamesCount(count))
                 .getMessage().equals("[ERROR] 참여자의 수는 10000명 이하여야합니다.");
+    }
+
+    @Test
+    @DisplayName("사다리의 높이는 숫자여아한다.")
+    void ladderHeightIsNumericTest() {
+        String ladderHeight = "abc";
+
+        assertThrows(IllegalArgumentException.class,
+                () -> InputViewValidator.validateNumeric(ladderHeight))
+                .getMessage().equals("[ERROR] 숫자만 입력해야합니다.");
     }
 }
