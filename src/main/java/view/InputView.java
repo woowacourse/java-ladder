@@ -1,7 +1,5 @@
 package view;
 
-import domain.Validator;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -22,9 +20,7 @@ public class InputView {
     public int inputLadderHeight() {
         try {
             System.out.println(LADDERS_HEIGHT_INPUT_GUIDE_MESSAGE);
-            int height = Integer.parseInt(sc.nextLine());
-            Validator.validateLadderHeight(height);
-            return height;
+            return Integer.parseInt(sc.nextLine());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_HEIGHT_FORMAT_MESSAGE);
         }
