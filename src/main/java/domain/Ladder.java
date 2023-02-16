@@ -33,8 +33,18 @@ public class Ladder {
     }
 
     public void buildBridge(int y, int x) {
-        lines.get(x).getPoints().get(y).changeDirection(Direction.RIGHT_DOWN);
-        lines.get(x + 1).getPoints().get(y).changeDirection(Direction.LEFT_DOWN);
+        Point startPoint = lines.get(x).getPoints().get(y);
+        Point endPoint = lines.get(x + 1).getPoints().get(y);
+
+        if (hasNotBridge(startPoint, endPoint)) {
+            startPoint.changeDirection(Direction.RIGHT_DOWN);
+            endPoint.changeDirection(Direction.LEFT_DOWN);
+        }
+    }
+
+    private boolean hasNotBridge(Point startPoint, Point endPoint) {
+        return startPoint.matchDirection(Direction.STRAIGHT_DOWN)
+                && endPoint.matchDirection(Direction.STRAIGHT_DOWN);
     }
 
     public boolean isBuildable() {

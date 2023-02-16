@@ -39,6 +39,26 @@ public class LadderTest {
     }
 
     @Test
+    @DisplayName("사다리의 다리는 중복해서 생성 불가")
+    void createHorizontalLineAtFail() {
+        int playerCount = 4;
+        int heightSize = 3;
+        PlayerNumber playerNumber = new PlayerNumber(playerCount);
+        Height height = new Height(heightSize);
+
+        Ladder ladder = Ladder.of(playerNumber, height);
+        ladder.buildBridge(0, 1);
+
+        ladder.buildBridge(0, 0);
+        ladder.buildBridge(0, 2);
+
+        ladder.getPoint(0, 0).matchDirection(Direction.STRAIGHT_DOWN);
+        ladder.getPoint(0, 1).matchDirection(Direction.RIGHT_DOWN);
+        ladder.getPoint(0, 2).matchDirection(Direction.LEFT_DOWN);
+        ladder.getPoint(0, 3).matchDirection(Direction.STRAIGHT_DOWN);
+    }
+
+    @Test
     @DisplayName("사다리의 다리 생성")
     void shuffleLadderSuccess() {
         int playerCount = 3;
