@@ -1,14 +1,14 @@
 package view;
 
 import domain.Direction;
-import domain.Name;
+import domain.PlayerName;
 import domain.PlayerNames;
 import domain.Point;
 import domain.ladder.Ladder;
 
 public class OutputView {
 
-    private static final int NAME_BOX_SIZE_MAX = 5;
+    private static final int PLAYER_NAME_BOX_SIZE_MAX = 5;
     private static final int BRIDGE_LENGTH = 5;
     private static final String BLANK = " ";
     private static final String RESULT_PREFIX_MESSAGE = "실행결과";
@@ -22,35 +22,34 @@ public class OutputView {
     }
 
     public void printPlayerNames(PlayerNames playerNames) {
-        for (Name playerName : playerNames.getNames()) {
-            System.out.print(makeName(playerName) + BLANK);
+        for (PlayerName playerName : playerNames.getPlayerNames()) {
+            System.out.print(formatPlayerName(playerName.getPlayerName()) + BLANK);
         }
         System.out.println();
     }
 
-    public String makeName(Name playerName) {
-        String name = playerName.getName();
-        String makeName = name;
+    public String formatPlayerName(String playerName) {
+        String formatPlayerName = playerName;
 
-        int index = NAME_BOX_SIZE_MAX;
-        while (name.length() != index) {
-            makeName = appendSpace(makeName, index);
+        int index = PLAYER_NAME_BOX_SIZE_MAX;
+        while (playerName.length() != index) {
+            formatPlayerName = appendSpace(formatPlayerName, index);
             index--;
         }
 
-        return makeName;
+        return formatPlayerName;
     }
 
-    private String appendSpace(String makeName, int i) {
-        if (isFirstAppendable(i)) {
-            return BLANK + makeName;
+    private String appendSpace(String formatPlayerName, int index) {
+        if (isFirstAppendable(index)) {
+            return BLANK + formatPlayerName;
         }
 
-        return makeName + BLANK;
+        return formatPlayerName + BLANK;
     }
 
-    private boolean isFirstAppendable(int i) {
-        return i % 2 == 0;
+    private boolean isFirstAppendable(int index) {
+        return index % 2 == 0;
     }
 
     public void printResult(Ladder ladder) {

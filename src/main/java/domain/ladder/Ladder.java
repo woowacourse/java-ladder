@@ -24,7 +24,7 @@ public class Ladder {
 
     public static Ladder of(PlayerNames playerNames, Height height, GenerateBridgeStrategy generateBridgeStrategy) {
         List<Line> lines = new ArrayList<>();
-        IntStream.range(0, playerNames.getNames().size())
+        IntStream.range(0, playerNames.getPlayerNames().size())
                 .forEach(it -> lines.add(Line.fromHeight(height)));
 
         return new Ladder(lines, height, generateBridgeStrategy);

@@ -10,33 +10,33 @@ public class PlayerNames {
     public static final String PLAYER_NUMBER_RANGE_ERROR_MESSAGE = "참여자 수는 2 ~ 20명만 가능합니다.";
     private static final String PLAYER_NAME_DUPLICATION_ERROR_MESSAGE = "이름은 중복될 수 없습니다.";
 
-    private final List<Name> names;
+    private final List<PlayerName> playerNames;
 
-    private PlayerNames(List<Name> names) {
-        validate(names);
-        this.names = names;
+    private PlayerNames(List<PlayerName> playerNames) {
+        validate(playerNames);
+        this.playerNames = playerNames;
     }
 
-    public static PlayerNames from(List<String> playerNames) {
-        List<Name> names = playerNames.stream()
-                .map(Name::new)
+    public static PlayerNames from(List<String> names) {
+        List<PlayerName> playerNames = names.stream()
+                .map(PlayerName::new)
                 .collect(Collectors.toList());
 
-        return new PlayerNames(names);
+        return new PlayerNames(playerNames);
     }
 
-    private void validate(List<Name> names) {
-        validateDuplication(names);
-        validatePlayerNumber(names.size());
+    private void validate(List<PlayerName> playerNames) {
+        validateDuplication(playerNames);
+        validatePlayerNumber(playerNames.size());
     }
 
-    private void validateDuplication(List<Name> names) {
-        int duplicationSize = names.stream()
-                .map(Name::getName)
+    private void validateDuplication(List<PlayerName> playerNames) {
+        int duplicationSize = playerNames.stream()
+                .map(PlayerName::getPlayerName)
                 .collect(Collectors.toSet())
                 .size();
 
-        if (duplicationSize != names.size()) {
+        if (duplicationSize != playerNames.size()) {
             throw new IllegalArgumentException(PLAYER_NAME_DUPLICATION_ERROR_MESSAGE);
         }
     }
@@ -52,8 +52,8 @@ public class PlayerNames {
                 && playerNumber <= PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE);
     }
 
-    public List<Name> getNames() {
-        return this.names;
+    public List<PlayerName> getPlayerNames() {
+        return this.playerNames;
     }
 
 }
