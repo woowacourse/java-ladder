@@ -15,7 +15,7 @@ public class Line {
 
     public Line (int personCount) {
         for(int column=0; column<personCount-1; column++) {
-            points.add(Connection.valueOf(generator.generate()).getStatus());
+            points.add(generator.generate());
             if(validateLineMake(column)){
                 column--;
             }
