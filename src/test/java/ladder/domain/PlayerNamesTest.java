@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,5 +32,4 @@ class PlayerNamesTest {
                 .getMessage()
                 .equals("[ERROR] 참여자의 이름은 빈 값일 수 없습니다.");
     }
-
 }
