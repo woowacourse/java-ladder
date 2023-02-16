@@ -2,8 +2,8 @@ package domain;
 
 public class PlayerName {
 
-    private final static int MINIMUM_LENGTH_OF_NAME = 1;
-    private final static int MAXIMUM_LENGTH_OF_NAME = 5;
+    private static final int MINIMUM_LENGTH_OF_NAME = 1;
+    private static final int MAXIMUM_LENGTH_OF_NAME = 5;
 
     private final String name;
 
