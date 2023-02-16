@@ -6,14 +6,14 @@ public class LadderGame {
 
     private final PlayerNames playerNames;
     private final Ladder ladder;
-    private final LadderProperty ladderProperty;
+    private final LadderSize ladderSize;
 
     public LadderGame(List<String> names, int height) {
         this.playerNames = new PlayerNames(names);
-        this.ladderProperty = new LadderProperty(names.size() - 1, height);
+        this.ladderSize = new LadderSize(names.size() - 1, height);
 
         BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
-        LadderMaker ladderMaker = new LadderMaker(ladderProperty, booleanGenerator);
+        LadderMaker ladderMaker = new LadderMaker(ladderSize, booleanGenerator);
 
         this.ladder = ladderMaker.generate();
     }

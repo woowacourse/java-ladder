@@ -1,6 +1,6 @@
 package ladder.domain;
 
-public class LadderProperty {
+public class LadderSize {
 
     private static final int MIN_HEIGHT = 1;
     private static final int MAX_HEIGHT = 1000;
@@ -9,7 +9,7 @@ public class LadderProperty {
     private final int width;
     private final int height;
 
-    public LadderProperty(final int width, final int height) {
+    public LadderSize(final int width, final int height) {
         this.width = width;
         validateHeight(height);
         this.height = height;
