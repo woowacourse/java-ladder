@@ -2,14 +2,18 @@ package view;
 
 import exception.BlankInputException;
 import exception.WrongDelimiterException;
+import exception.WrongLanguageException;
 import exception.WrongNumberFormatException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class InputView {
 
+    private static final Pattern LANGUAGE_PATTERN = Pattern.compile(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*");
     private static final String DELIMITER = ",";
 
     private final Scanner scanner;
@@ -23,6 +27,7 @@ public class InputView {
 
         validateBlank(names);
         validateDelimiter(names);
+        validateLanguage(names);
 
         return Arrays.stream(names.split(DELIMITER))
                 .collect(Collectors.toUnmodifiableList());
@@ -31,6 +36,14 @@ public class InputView {
     private void validateDelimiter(String names) {
         if (!names.contains(DELIMITER)) {
             throw new WrongDelimiterException();
+        }
+    }
+
+    private void validateLanguage(String names) {
+        Matcher matcher = LANGUAGE_PATTERN.matcher(names);
+
+        if (matcher.matches()) {
+            throw new WrongLanguageException();
         }
     }
 
