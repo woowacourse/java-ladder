@@ -43,6 +43,7 @@ public class Controller {
                     .collect(Collectors.toList());
             return new Users(users);
         } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
             return settingUsers();
         }
     }
@@ -50,8 +51,8 @@ public class Controller {
     public int settingLadders() {
         try {
             return inputView.inputLadderHeight();
-//            return new Ladders(height, new LadderGenerator());
         } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
             return settingLadders();
         }
     }
