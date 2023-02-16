@@ -30,7 +30,7 @@ public class NameTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1234", " ", "@#$@", "abs@#"})
-    @DisplayName("사람 이름은 문자로만 이루어져야 한다.")
+    @DisplayName("사람 이름은 문자로만 이루어져 있는지 확인하는 기능 테스트")
     void validateNameHasOnlyCharacters(String inputName) {
         //When
         Throwable result = catchThrowable(()->{Name name = new Name(inputName);});
@@ -42,5 +42,16 @@ public class NameTest {
     @Test
     @Disabled("단순 getter 메서드는 테스트하지 않는다.")
     void getName() {
+    }
+
+    @Test
+    @DisplayName("사람 이름 간 비교하는 기능 테스트")
+    void compareNameTest() {
+        //Given
+        Name name = new Name("pobi");
+
+        //Then
+        assertThat(name).isEqualTo(new Name("pobi"));
+        assertThat(name).isNotEqualTo(new Name("neo"));
     }
 }
