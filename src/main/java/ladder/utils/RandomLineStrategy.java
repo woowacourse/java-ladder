@@ -12,7 +12,7 @@ public class RandomLineStrategy implements LineStrategy {
         while (line.size() < partCount) {
             boolean current = random.nextBoolean();
             line.add(current);
-            if (current && (line.size() == partCount - 1)) {
+            if (current && (line.size() <= partCount - 1)) {
                 line.add(false);
             }
         }
