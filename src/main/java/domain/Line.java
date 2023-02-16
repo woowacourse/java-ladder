@@ -44,4 +44,8 @@ public class Line {
     private boolean isStartEdge() {
         return this.footSteps.size() == 0;
     }
+
+    public int getWidth() {
+        return this.footSteps.size();
+    }
 }
