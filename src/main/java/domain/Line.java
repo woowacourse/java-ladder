@@ -15,10 +15,9 @@ public class Line {
         this.points = new ArrayList<>(points);
     }
 
-    public static Line create(int numberOfPeople, NumberGenerator numberGenerator) {
+    public static Line create(int width, NumberGenerator numberGenerator) {
         List<Point> points = new ArrayList<>();
-        int numberOfPointsToGenerate = numberOfPeople - 1;
-        for (int i = 0; i < numberOfPointsToGenerate; i++) {
+        for (int i = 0; i < width; i++) {
             addPoint(points, numberGenerator);
         }
         return new Line(points);

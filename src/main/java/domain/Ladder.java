@@ -20,13 +20,13 @@ public class Ladder {
                                 NumberGenerator numberGenerator) {
         List<Line> lines = new ArrayList<>();
         Ladder ladder = new Ladder(lines, ladderHeight);
-        ladder.addLines(numberOfPeople, numberGenerator);
+        ladder.addLines(numberOfPeople - 1, numberGenerator);
         return ladder;
     }
 
-    private void addLines(int numberOfPeople, NumberGenerator numberGenerator) {
+    private void addLines(int width, NumberGenerator numberGenerator) {
         for (int i = 0; i < getLadderHeight(); i++) {
-            lines.add(Line.create(numberOfPeople, numberGenerator));
+            lines.add(Line.create(width, numberGenerator));
         }
     }
 
