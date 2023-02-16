@@ -1,3 +1,4 @@
+import controller.LadderGameController;
 import domain.ladder.strategy.GenerateBridgeStrategy;
 import domain.ladder.strategy.RandomGenerateBridgeStrategy;
 import view.InputView;

@@ -1,3 +1,5 @@
+package controller;
+
 import domain.Height;
 import domain.PlayerNames;
 import domain.ladder.Ladder;
