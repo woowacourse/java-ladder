@@ -23,11 +23,11 @@ public class LadderController {
     }
 
     public void run() {
-        final List<Person> people = inputView.readNames()
+        final List<Name> names = inputView.readNames()
                 .stream()
-                .map(Person::new)
+                .map(Name::new)
                 .collect(Collectors.toList());
-        final Participants participants = new Participants(people);
+        final Participants participants = new Participants(names);
 
         final Height height = new Height(inputView.readHeight());
         final Ladder ladder = new Ladder(participants, height);

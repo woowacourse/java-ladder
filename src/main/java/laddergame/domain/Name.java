@@ -5,37 +5,37 @@ import java.text.MessageFormat;
 import static laddergame.messsages.ExceptionMessages.PERSON_NAME_BLANK_EXCEPTION;
 import static laddergame.messsages.ExceptionMessages.PERSON_NAME_OVER_LENGTH_EXCEPTION;
 
-public class Person {
+public class Name {
 	private static final int MAX_NAME_LENGTH = 5;
-	private final String name;
+	private final String value;
 
-	public Person(final String name) {
-		validateNameNull(name);
-		validateNameBlank(name);
-		validateNameOverLength(name);
-		this.name = name;
+	public Name(final String value) {
+		validateNull(value);
+		validateBlank(value);
+		validateOverLength(value);
+		this.value = value;
 	}
 
-	private void validateNameNull(final String name) {
-		if (name == null) {
+	private void validateNull(final String value) {
+		if (value == null) {
 			throw new IllegalArgumentException();
 		}
 	}
 
-	private void validateNameBlank(final String name) {
-		if (name.isBlank()) {
+	private void validateBlank(final String value) {
+		if (value.isBlank()) {
 			throw new IllegalArgumentException(PERSON_NAME_BLANK_EXCEPTION.getMessage());
 		}
 	}
 
-	private void validateNameOverLength(final String name) {
-		if (name.length() > MAX_NAME_LENGTH) {
+	private void validateOverLength(final String value) {
+		if (value.length() > MAX_NAME_LENGTH) {
 			throw new IllegalArgumentException(
 				MessageFormat.format(PERSON_NAME_OVER_LENGTH_EXCEPTION.getMessage(), MAX_NAME_LENGTH));
 		}
 	}
 
-	public String getName() {
-		return name;
+	public String getValue() {
+		return value;
 	}
 }

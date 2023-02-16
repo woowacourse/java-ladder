@@ -22,7 +22,7 @@ class LadderTest {
 
     @Test
     void throwExceptionWhenHeightIsNull() {
-        final Participants participants = new Participants(List.of(PERSON_HYENA));
+        final Participants participants = new Participants(List.of(NAME_HYENA));
         final Height height = null;
 
         assertThatThrownBy(() -> new Ladder(participants, height))
@@ -31,7 +31,7 @@ class LadderTest {
 
     @Test
     void create() {
-        final Participants participants = new Participants(List.of(PERSON_HYENA, PERSON_ROSIE));
+        final Participants participants = new Participants(List.of(NAME_HYENA, NAME_ROSIE));
         final Height height = new Height(2);
 
         assertDoesNotThrow(() -> new Ladder(participants, height));

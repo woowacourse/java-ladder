@@ -13,33 +13,34 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 class ParticipantsTest {
     @Test
     void create() {
-        final List<Person> people = List.of(new Person("hyena"), new Person("rosie"));
+        final List<Name> names = List.of(new Name("hyena"), new Name("rosie"));
 
-        assertDoesNotThrow(() -> new Participants(people));
+        assertDoesNotThrow(() -> new Participants(names));
     }
 
     @Test
     void throwExceptionWhenPeopleIsEmpty() {
-        final List<Person> people = List.of();
+        final List<Name> names = List.of();
 
-        assertThatThrownBy(() -> new Participants(people))
+        assertThatThrownBy(() -> new Participants(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void throwExceptionWhenPeopleIsNull() {
-        final List<Person> people = null;
+        final List<Name> names = null;
 
-        assertThatThrownBy(() -> new Participants(people))
+        assertThatThrownBy(() -> new Participants(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void getSize() {
-        final List<Person> people = List.of(PERSON_ROSIE, PERSON_HYENA);
-        final Participants participants = new Participants(people);
+        final List<Name> names = List.of(NAME_ROSIE, NAME_HYENA);
+        final Participants participants = new Participants(names);
         final int totalSize = participants.getSize();
-        assertThat(totalSize).isEqualTo(people.size());
+
+        assertThat(totalSize).isEqualTo(names.size());
     }
 
     @Test

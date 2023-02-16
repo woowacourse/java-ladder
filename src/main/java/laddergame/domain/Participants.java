@@ -4,25 +4,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Participants {
-    private final List<Person> people;
+    private final List<Name> names;
 
-    public Participants(List<Person> people) {
-        if (people == null) {
+    public Participants(List<Name> names) {
+        if (names == null) {
             throw new IllegalArgumentException();
         }
-        if (people.isEmpty()) {
+        if (names.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        this.people = people;
+        this.names = names;
     }
 
     public int getSize() {
-        return people.size();
+        return names.size();
     }
 
     public List<String> getNames() {
-        return people.stream()
-                .map(Person::getName)
+        return names.stream()
+                .map(Name::getValue)
                 .collect(Collectors.toUnmodifiableList());
     }
 }
