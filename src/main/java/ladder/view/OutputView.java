@@ -19,19 +19,18 @@ public class OutputView {
         playerNames.stream().forEach(name -> System.out.print(String.format("%-6s", name)));
     }
 
-    public void printRaw(List<Boolean> points) {
+    public void printRow(List<Boolean> points) {
         System.out.println();
         System.out.print("  |");
         for (boolean point : points) {
-            if(point){
+            if (point) {
                 System.out.print("-----|");
             }
-            if(!point){
+            if (!point) {
                 System.out.print("     |");
             }
         }
     }
-
 
 
 }
