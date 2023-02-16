@@ -15,6 +15,7 @@ public class LadderGameController {
         Height height = makeLadderHeight();
         Ladder ladder = new Ladder(height, persons);
         outputView.printResult(ladder, persons);
+        inputView.closeScanner();
     }
 
     private Persons makePersons() {

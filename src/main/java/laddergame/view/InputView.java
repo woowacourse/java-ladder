@@ -29,12 +29,14 @@ public class InputView {
     public int readLadderHeight() {
         System.out.println(READ_LADDER_HEIGHT_MSG);
         try {
-            int ladderHeight = Integer.parseInt(scanner.nextLine());
-            scanner.close();
-            return ladderHeight;
+            return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
             System.out.println(ERROR_PREFIX + ERROR_HEIGHT_IS_NOT_NUMBER);
             return readLadderHeight();
         }
+    }
+
+    public void closeScanner() {
+        scanner.close();
     }
 }
