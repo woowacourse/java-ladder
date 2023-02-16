@@ -27,8 +27,8 @@ public class InputView {
         printMessage(HEIGHT_INPUT_MESSAGE);
         String ladderHeight = scanner.nextLine();
         validateDigit(ladderHeight);
-        validateHeightRange(Integer.valueOf(ladderHeight));
-        return Integer.valueOf(ladderHeight);
+        validateHeightRange(Integer.parseInt(ladderHeight));
+        return Integer.parseInt(ladderHeight);
     }
 
     private void validateDigit(String ladderHeight) {

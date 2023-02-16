@@ -1,4 +1,6 @@
-package domain;
+package domain.ladder;
+
+import domain.generator.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +27,7 @@ public class Line {
     private void createPoints(int personCount, BooleanGenerator booleanGenerator) {
         int pointsSize = personCount - 1;
         for (int index = 0; index < pointsSize; index++) {
-            boolean flag = booleanGenerator.generate();
-            addPoint(index, flag);
+            addPoint(index, booleanGenerator.generate());
         }
     }
 

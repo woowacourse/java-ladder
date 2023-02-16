@@ -1,9 +1,9 @@
 package controller;
 
-import domain.LadderMaker;
-import domain.Line;
-import domain.Player;
-import domain.Players;
+import domain.ladder.LadderMaker;
+import domain.ladder.Line;
+import domain.player.Player;
+import domain.player.Players;
 import utils.Log;
 import view.InputView;
 import view.OutputView;
@@ -18,14 +18,14 @@ public class LadderController {
 
     public void run() {
         Players players = getPlayers();
-        int ladderHeight = getLadderHeight();
         LadderMaker ladderMaker = new LadderMaker();
+        int ladderHeight = getLadderHeight();
+
         List<Line> lines = ladderMaker.make(players.getPlayers().size(), ladderHeight);
         outputView.showResultMessage();
         outputView.showPlayers(players.getPlayers());
         outputView.showLadder(lines);
     }
-
 
     public Players getPlayers() {
         try {
@@ -46,10 +46,9 @@ public class LadderController {
     }
 
     private Players createPlayers() {
-        List<Player> players = inputView.readNames()
+        return new Players(inputView.readNames()
                 .stream()
                 .map(Player::new)
-                .collect(Collectors.toList());
-        return new Players(players);
+                .collect(Collectors.toList()));
     }
 }

@@ -1,4 +1,7 @@
-package domain;
+package domain.ladder;
+
+import domain.generator.BooleanGenerator;
+import domain.generator.RandomBooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;

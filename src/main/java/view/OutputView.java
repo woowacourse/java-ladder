@@ -1,8 +1,8 @@
 package view;
 
-import domain.Line;
-import domain.Player;
-import domain.Point;
+import domain.ladder.Line;
+import domain.player.Player;
+import domain.ladder.Point;
 
 import java.util.List;
 
@@ -16,9 +16,7 @@ public class OutputView {
     }
 
     public void showPlayers(List<Player> players) {
-        for (Player player : players) {
-            printMessageFormat(player.getName(), "%5s ");
-        }
+        players.forEach(player -> printMessageFormat(player.getName(), "%5s "));
         System.out.println();
     }
 
