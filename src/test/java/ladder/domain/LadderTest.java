@@ -18,8 +18,8 @@ public class LadderTest {
         final Ladder ladder = new Ladder(() -> true, height, width);
 
         assertThat(ladder.getLines()).containsExactly(
-                new Line(List.of(LineStatus.GO)),
-                new Line(List.of(LineStatus.GO))
+                new Line(List.of(LineStatus.CONNECTED)),
+                new Line(List.of(LineStatus.CONNECTED))
         );
     }
 
@@ -30,7 +30,7 @@ public class LadderTest {
         final Ladder ladder = new Ladder(() -> true, height, width);
 
         assertThat(ladder.getLines()).containsExactly(
-                new Line(List.of(LineStatus.GO, LineStatus.STOP))
+                new Line(List.of(LineStatus.CONNECTED, LineStatus.DISCONNECTED))
         );
     }
 

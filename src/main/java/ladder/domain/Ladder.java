@@ -28,10 +28,10 @@ class Ladder {
     }
 
     private LineStatus generate(final BooleanGenerator booleanGenerator, final Deque<LineStatus> statuses) {
-        if (statuses.isEmpty() || statuses.getLast() == LineStatus.STOP) {
+        if (statuses.isEmpty() || statuses.getLast().isDisconnected()) {
             return LineStatus.from(booleanGenerator.generate());
         }
-        return LineStatus.STOP;
+        return LineStatus.DISCONNECTED;
     }
 
     public List<Line> getLines() {

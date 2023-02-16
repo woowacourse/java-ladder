@@ -29,8 +29,8 @@ public class LadderGameTest {
     @Test
     void 생성된_사다리를_반환한다() {
         assertThat(ladderGame.getLadder()).containsExactly(
-                new Line(List.of(LineStatus.GO)),
-                new Line(List.of(LineStatus.GO))
+                new Line(List.of(LineStatus.CONNECTED)),
+                new Line(List.of(LineStatus.CONNECTED))
         );
     }
 }

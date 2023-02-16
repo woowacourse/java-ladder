@@ -72,7 +72,7 @@ public class OutputView {
     }
 
     private String generateLineStatusMessage(final int maxNameLength, final LineStatus lineStatus) {
-        if (LineStatus.GO == lineStatus) {
+        if (lineStatus.isConnected()) {
             return generateRepeatedLineStatusMessage(CONNECTED_SYMBOL, maxNameLength);
         }
         return generateRepeatedLineStatusMessage(EMPTY_SYMBOL, maxNameLength);

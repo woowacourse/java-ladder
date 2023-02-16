@@ -1,13 +1,21 @@
 package ladder.domain;
 
 public enum LineStatus {
-    GO,
-    STOP;
+    CONNECTED,
+    DISCONNECTED;
 
     public static LineStatus from(final boolean status) {
         if (status) {
-            return GO;
+            return CONNECTED;
         }
-        return STOP;
+        return DISCONNECTED;
+    }
+
+    public boolean isConnected() {
+        return this == CONNECTED;
+    }
+
+    public boolean isDisconnected() {
+        return this == DISCONNECTED;
     }
 }
