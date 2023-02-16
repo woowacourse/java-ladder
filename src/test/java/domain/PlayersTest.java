@@ -2,22 +2,18 @@ package domain;
 
 import org.junit.jupiter.api.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class PlayersTest {
     Players players;
-    List<Player> playerList;
+    List<Player> playerList ;
 
     @BeforeAll
     void initSetting(){
-        Player judy = new Player("judy");
-        Player ako = new Player("ako");
-        Player pobi = new Player("pobi");
-
-        playerList.add(judy);
-        playerList.add(ako);
-        playerList.add(pobi);
+        playerList = new ArrayList<>(List.of(new Player("judy"), new Player("ako"), new Player("pobi")));
     }
 
     @Test
