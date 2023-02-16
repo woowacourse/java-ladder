@@ -42,7 +42,7 @@ public class Name {
     }
 
     private boolean hasExceedLength(final String value) {
-        return value.length() > NAME_MAX_LENGTH;
+        return NAME_MAX_LENGTH < value.length();
     }
 
     public String getValue() {

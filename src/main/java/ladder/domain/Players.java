@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.text.MessageFormat;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -58,10 +57,6 @@ public class Players {
 
     private boolean isDuplicate(final List<Player> players, final Set<Player> uniquePlayers) {
         return players.size() != uniquePlayers.size();
-    }
-
-    public List<Player> getPlayers() {
-        return Collections.unmodifiableList(players);
     }
 
     public List<String> getPlayerNames() {

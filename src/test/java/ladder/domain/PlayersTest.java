@@ -35,8 +35,7 @@ class PlayersTest {
     void validPlayerSize(final List<String> names, final String[] expected) {
         final Players players = new Players(names);
 
-        assertThat(players.getPlayers())
-                .extracting(Player::getName)
+        assertThat(players.getPlayerNames())
                 .containsExactly(expected);
     }
 

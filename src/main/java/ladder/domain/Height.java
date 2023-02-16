@@ -27,7 +27,7 @@ public class Height {
     }
 
     private boolean hasLong(final int value) {
-        return value > MAXIMUM_HEIGHT;
+        return MAXIMUM_HEIGHT < value;
     }
 
     public int getValue() {

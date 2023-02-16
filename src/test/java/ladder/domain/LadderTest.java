@@ -5,6 +5,7 @@ import static ladder.domain.Direction.STAY;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
+import java.util.List;
 import ladder.domain.generator.DirectionGenerator;
 import ladder.domain.generator.LineGenerator;
 import ladder.domain.generator.TestDirectionGenerator;
@@ -21,9 +22,10 @@ class LadderTest {
                 RIGHT, STAY, STAY, RIGHT, RIGHT, STAY, RIGHT, STAY, RIGHT, RIGHT);
         final DirectionGenerator directionGenerator = new TestDirectionGenerator(directions);
         final LineGenerator lineGenerator = new LineGenerator(directionGenerator);
+        final Players players = new Players(List.of("pobi", "crong"));
         final Height height = new Height(5);
-        
-        final Ladder ladder = new Ladder(lineGenerator, 4, height);
+
+        final Ladder ladder = new Ladder(lineGenerator, players, height);
 
         assertThat(ladder.getLines()).hasSize(5);
     }

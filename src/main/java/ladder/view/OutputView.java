@@ -20,7 +20,7 @@ public class OutputView {
     private static final String LADDER = "|";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
-    public void printLadderClimbing(final Players players, final Ladder ladder) {
+    public void printLadderResult(final Players players, final Ladder ladder) {
         System.out.println(EXECUTION_RESULT + LINE_BREAK);
         printPlayerNames(players);
         printLadder(ladder);
@@ -28,14 +28,13 @@ public class OutputView {
 
     private void printPlayerNames(final Players players) {
         final List<String> playerNames = players.getPlayerNames();
-        final int size = playerNames.size();
-        System.out.println(getFormattedPlayerNames(playerNames, size));
+        System.out.println(getFormattedPlayerNames(playerNames));
     }
 
-    private String getFormattedPlayerNames(final List<String> playerNames, final int size) {
+    private String getFormattedPlayerNames(final List<String> playerNames) {
         final StringJoiner joiner = new StringJoiner(BLANK);
 
-        for (String playerName : playerNames) {
+        for (final String playerName : playerNames) {
             joiner.add(String.format(RIGHT_ALIGN, playerName));
         }
 

@@ -24,8 +24,8 @@ public class LadderController {
     public void run() {
         final Players players = retry(Players::new, inputView::readPlayerNames);
         final Height height = retry(Height::new, inputView::readHeight);
-        final Ladder ladder = new Ladder(lineGenerator, players.numberOfPlayers(), height);
-        outputView.printLadderClimbing(players, ladder);
+        final Ladder ladder = new Ladder(lineGenerator, players, height);
+        outputView.printLadderResult(players, ladder);
     }
 
     private <T, R> R retry(final Function<T, R> function, final Supplier<T> supplier) {

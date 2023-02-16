@@ -28,7 +28,7 @@ public class InputView {
 
     private List<String> parsePlayerNames(final String input) {
         return Arrays.stream(input.split(DELIMITER, LIMIT))
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public int readHeight() {
