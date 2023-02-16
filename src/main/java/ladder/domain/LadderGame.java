@@ -1,27 +1,24 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderGame {
 
-    private List<Player> players;
+    private static final int SUBTRACT_VALUE_OF_LADDER_WIDTH = 1;
+
+    private Players players;
     private Ladder ladder;
 
     public LadderGame(final BooleanGenerator booleanGenerator, final List<String> names, final int height) {
-        this.players = names.stream()
-                .map(Player::new)
-                .collect(Collectors.toList());
-        this.ladder = new Ladder(booleanGenerator, height, players.size() - 1);
+        this.players = new Players(names);
+        this.ladder = new Ladder(booleanGenerator, height, names.size() - SUBTRACT_VALUE_OF_LADDER_WIDTH);
     }
 
     public List<String> getPlayers() {
-        return players.stream()
-                .map(Player::getName)
-                .collect(Collectors.toUnmodifiableList());
+        return players.getNames();
     }
 
     public List<Line> getLadder() {
-        return this.ladder.getLines();
+        return ladder.getLines();
     }
 }
