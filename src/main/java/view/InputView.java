@@ -25,7 +25,7 @@ public class InputView {
         return ScannerUtil.nextInt();
     }
 
-    private static List<String> splitNames(String input) {
+    private static List<String> splitNames(final String input) {
         return List.of(input.split(","));
     }
 
@@ -35,12 +35,12 @@ public class InputView {
         }
     }
 
-    private static boolean hasDuplicated(List<?> target) {
+    private static boolean hasDuplicated(final List<?> target) {
         Set<?> duplicateRemoval = new HashSet<>(target);
         return target.size() != duplicateRemoval.size();
     }
 
-    private static <T> T handleExceptionByRepeating(Supplier<T> supplier) {
+    private static <T> T handleExceptionByRepeating(final Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException exception) {

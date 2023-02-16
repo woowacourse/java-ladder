@@ -11,13 +11,13 @@ public class Ladder {
     private final List<Person> people;
     private final List<Line> lines;
 
-    public Ladder(List<Person> people, List<Line> lines) {
+    public Ladder(final List<Person> people, final List<Line> lines) {
         validateHeightOf(lines);
-        this.lines = lines;
-        this.people = people;
+        this.lines = List.copyOf(lines);
+        this.people = List.copyOf(people);
     }
 
-    private void validateHeightOf(List<Line> lines) {
+    private void validateHeightOf(final List<Line> lines) {
         if (lines.size() <= MIN_HEIGHT) {
             throw new IllegalArgumentException("높이는 양수만 가능합니다");
         }

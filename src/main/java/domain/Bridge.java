@@ -7,7 +7,7 @@ public enum Bridge {
 
     private final String display;
 
-    Bridge(String display) {
+    Bridge(final String display) {
         this.display = display;
     }
 

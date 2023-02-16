@@ -25,7 +25,7 @@ public class LadderEngine {
         OutputView.printLadder(ladder);
     }
 
-    private List<Line> makeLines(List<Person> people, int height) {
+    private List<Line> makeLines(final List<Person> people, final int height) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             Line line = LineGenerator.generate(people.size());
@@ -34,7 +34,7 @@ public class LadderEngine {
         return lines;
     }
 
-    private List<Person> convertNamesToPeople(List<String> names) {
+    private List<Person> convertNamesToPeople(final List<String> names) {
         return names.stream()
                 .map(Person::new)
                 .collect(Collectors.toList());

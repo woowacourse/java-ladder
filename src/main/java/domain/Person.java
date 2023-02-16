@@ -14,13 +14,13 @@ public class Person {
         this.name = name;
     }
 
-    private void validateMinNameLength(String name) {
+    private void validateMinNameLength(final String name) {
         if (name.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException(NAME_LENGTH_EXCEPTION_MESSAGE);
         }
     }
 
-    private void validateMaxNameLength(String name) {
+    private void validateMaxNameLength(final String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(NAME_LENGTH_EXCEPTION_MESSAGE);
         }

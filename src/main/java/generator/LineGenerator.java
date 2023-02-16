@@ -11,7 +11,7 @@ public class LineGenerator {
 
     private static final Random RANDOM = new Random();
 
-    public static Line generate(int personCount) {
+    public static Line generate(final int personCount) {
         List<Bridge> newBridges = new ArrayList<>();
 
         for (int i = 0; i < personCount - 1; i++) {
@@ -21,14 +21,19 @@ public class LineGenerator {
         return new Line(newBridges);
     }
 
-    private static Bridge getNextBridge(List<Bridge> bridges) {
+    private static Bridge getNextBridge(final List<Bridge> bridges) {
         if (hasLeftBridge(bridges)) {
             return Bridge.EMPTY;
         }
-        return RANDOM.nextBoolean() ? Bridge.EXIST : Bridge.EMPTY;
+
+        if (RANDOM.nextBoolean()) {
+            return Bridge.EXIST;
+        }
+
+        return Bridge.EMPTY;
     }
 
-    private static boolean hasLeftBridge(List<Bridge> bridges) {
+    private static boolean hasLeftBridge(final List<Bridge> bridges) {
         if (bridges.isEmpty()) {
             return false;
         }
