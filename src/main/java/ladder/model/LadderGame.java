@@ -19,18 +19,22 @@ public class LadderGame {
 
     public void generateLadder(Height height) {
         int personCount = playerNames.size();
-        List<Raw> raws = new ArrayList<>();
+        List<Row> rows = new ArrayList<>();
         for (int i = 0; i < height.getHeight(); i++) {
-            Raw raw = new Raw(personCount);
-            raw.createLineAt(0, lineCreateDecider.decide());
-            for (int k = 1; k < personCount - 1; k++) {
-                if (!raw.isLeftPointHasLine(k)) {
-                    raw.createLineAt(k, lineCreateDecider.decide());
-                }
-            }
-            raws.add(raw);
+            rows.add(generateRow(personCount));
         }
-        this.ladder = new Ladder(raws);
+        this.ladder = new Ladder(rows);
+    }
+
+    private Row generateRow(int personCount) {
+        Row row = new Row(personCount);
+        row.createLineAt(0, lineCreateDecider.decide());
+        for (int k = 1; k < personCount - 1; k++) {
+            if (!row.isLeftPointHasLine(k)) {
+                row.createLineAt(k, lineCreateDecider.decide());
+            }
+        }
+        return row;
     }
 
     private void validatePlayerCount(List<PlayerName> playerNames) {

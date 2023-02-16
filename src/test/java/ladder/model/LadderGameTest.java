@@ -36,12 +36,12 @@ class LadderGameTest {
 
         LadderGame ladderGame = new LadderGame(input, new TestLineCreateDecider(newArrayList(true, false, true)));
         ladderGame.generateLadder(new Height(2));
-        List<Raw> raws = ladderGame.getLadder().getRaws();
+        List<Row> rows = ladderGame.getLadder().getRows();
 
-        assertThat(raws.get(0).isPointHasLine(0)).isTrue();
-        assertThat(raws.get(0).isPointHasLine(1)).isFalse();
-        assertThat(raws.get(1).isPointHasLine(0)).isFalse();
-        assertThat(raws.get(1).isPointHasLine(1)).isTrue();
+        assertThat(rows.get(0).isPointHasLine(0)).isTrue();
+        assertThat(rows.get(0).isPointHasLine(1)).isFalse();
+        assertThat(rows.get(1).isPointHasLine(0)).isFalse();
+        assertThat(rows.get(1).isPointHasLine(1)).isTrue();
     }
 
 

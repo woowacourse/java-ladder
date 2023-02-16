@@ -1,19 +1,18 @@
 package ladder.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
 
 
-    private final List<Raw> raws;
+    private final List<Row> rows;
 
-    public Ladder(List<Raw> raws) {
-        this.raws = raws;
+    public Ladder(List<Row> rows) {
+        this.rows = rows;
     }
 
-    public List<Raw> getRaws() {
-        return raws;
+    public List<Row> getRows() {
+        return rows;
     }
 
 

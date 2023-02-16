@@ -29,9 +29,9 @@ public class LadderGameController {
         outputView.printPlayerNames(playerNames.stream().map(PlayerName::getPlayerName).collect(Collectors.toList()));
 
         Ladder ladder = ladderGame.getLadder();
-        List<Raw> raws = ladder.getRaws();
-        for (Raw raw : raws) {
-            outputView.printRaw(raw.getPoints());
+        List<Row> rows = ladder.getRows();
+        for (Row row : rows) {
+            outputView.printRow(row.getPoints());
 
         }
 

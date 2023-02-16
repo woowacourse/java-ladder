@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class RawTest {
+class RowTest {
 
 
     @Test
@@ -14,9 +14,9 @@ class RawTest {
         int personCount = 5;
         int point = 0;
         boolean isCreated = true;
-        Raw raw = new Raw(personCount);
-        raw.createLineAt(point, isCreated);
-        assertThat(raw.isPointHasLine(point)).isTrue();
+        Row row = new Row(personCount);
+        row.createLineAt(point, isCreated);
+        assertThat(row.isPointHasLine(point)).isTrue();
     }
 
     @Test
@@ -24,9 +24,9 @@ class RawTest {
     void checkLeftPointHasLineTest() {
         int personCount = 5;
         int point = 1;
-        Raw raw = new Raw(personCount);
-        raw.createLineAt(point - 1, true);
-        assertThat(raw.isLeftPointHasLine(point)).isTrue();
+        Row row = new Row(personCount);
+        row.createLineAt(point - 1, true);
+        assertThat(row.isLeftPointHasLine(point)).isTrue();
 
     }
 
