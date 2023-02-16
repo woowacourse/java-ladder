@@ -12,12 +12,13 @@ public class OutputView {
     private static final String EXECUTION_RESULT = "실행결과";
     private static final String LINE_BREAK = "\n";
     private static final String FOOTHOLD = "-----";
-    private static final String EMPTY_FOOTHOLD = "     ";
+    private static final String BLANK_FOOTHOLD = "     ";
     private static final int FORMAT_LENGTH = 5;
-    private static final String LEFT_ALIGN = "%-" + FORMAT_LENGTH + "s";
     private static final String RIGHT_ALIGN = "%" + FORMAT_LENGTH + "s";
-    private static final String NAME_DELIMITER = " ";
-    private static final String LADDER_DELIMITER = "|";
+    private static final String BLANK = " ";
+    private static final String EMPTY = "";
+    private static final String LADDER = "|";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     public void printLadderClimbing(final Players players, final Ladder ladder) {
         System.out.println(EXECUTION_RESULT + LINE_BREAK);
@@ -32,12 +33,11 @@ public class OutputView {
     }
 
     private String getFormattedPlayerNames(final List<String> playerNames, final int size) {
-        final StringJoiner joiner = new StringJoiner(NAME_DELIMITER);
+        final StringJoiner joiner = new StringJoiner(BLANK);
 
-        for (int i = 0; i < size - 1; i++) {
-            joiner.add(String.format(LEFT_ALIGN, playerNames.get(i)));
+        for (String playerName : playerNames) {
+            joiner.add(String.format(RIGHT_ALIGN, playerName));
         }
-        joiner.add(String.format(RIGHT_ALIGN, playerNames.get(size - 1)));
 
         return joiner.toString();
     }
@@ -52,7 +52,7 @@ public class OutputView {
 
     private void printLine(final Line line) {
         final List<Direction> directions = line.getDirections();
-        final StringJoiner stringJoiner = new StringJoiner(LADDER_DELIMITER);
+        final StringJoiner stringJoiner = new StringJoiner(LADDER, EMPTY, LADDER);
 
         for (final Direction direction : directions) {
             stringJoiner.add(getFoothold(direction));
@@ -66,6 +66,10 @@ public class OutputView {
             return FOOTHOLD;
         }
 
-        return EMPTY_FOOTHOLD;
+        return BLANK_FOOTHOLD;
+    }
+
+    public void printErrorMessage(final String errorMessage) {
+        System.out.println(ERROR_PREFIX + errorMessage);
     }
 }
