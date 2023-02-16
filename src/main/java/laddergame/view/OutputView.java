@@ -1,6 +1,7 @@
 package laddergame.view;
 
 import laddergame.domain.Ladder;
+import laddergame.domain.Names;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,41 +17,43 @@ public enum OutputView {
         this.ladderElement = ladderElement;
     }
 
-    public static void printPlayerAll(List<String> players) {
-        final String allPlayerName = players.stream()
-                .map(player -> makeNameFormat(player))
+    public static void printPlayerAll(final Names names) {
+
+        System.out.println("실행결과" + System.lineSeparator());
+        final String allPlayerName = names.getNames().stream()
+                .map(player -> makeNameFormat(names.findMaxNameLength(), player))
                 .collect(Collectors.joining(BLANK.ladderElement));
 
         System.out.println(allPlayerName);
     }
 
-    private static String makeNameFormat(String name) {
-        int count = 5 - name.length();
+    private static String makeNameFormat(final int maxNameLength, final String name) {
+        int count = maxNameLength - name.length();
         final String repeat = BLANK.ladderElement.repeat(count);
 
         return String.format("%s%s", name, repeat);
     }
 
     public static void printLadder(final int maxNameLength, final Ladder ladder) {
-        StringBuilder result = new StringBuilder(VERTICAL_LINE.ladderElement);
+        StringBuilder result = new StringBuilder();
         ladder.getLines().forEach(line -> result.append(makeLadderFormat(line.getStatuses(), maxNameLength)));
         System.out.println(result);
     }
 
     private static String makeLadderFormat(final List<Boolean> statuses, final int maxNameLength) {
-        final StringBuilder result = new StringBuilder();
+        final StringBuilder result = new StringBuilder(VERTICAL_LINE.ladderElement);
         statuses.forEach(status -> result.append(makeLine(status, maxNameLength)));
-        result.append(VERTICAL_LINE.ladderElement);
+        result.append(System.lineSeparator());
 
         return result.toString();
     }
 
     private static String makeLine(final Boolean status, final int maxNameLength) {
         if (status) {
-            return HORIZONTAL_LINE.ladderElement.repeat(maxNameLength);
+            return HORIZONTAL_LINE.ladderElement.repeat(maxNameLength) + VERTICAL_LINE.ladderElement;
         }
 
-        return BLANK.ladderElement.repeat(maxNameLength);
+        return BLANK.ladderElement.repeat(maxNameLength) + VERTICAL_LINE.ladderElement;
     }
 
 }
