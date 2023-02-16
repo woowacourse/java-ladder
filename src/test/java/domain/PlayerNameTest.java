@@ -14,14 +14,16 @@ public class PlayerNameTest {
     @Test
     void playerNameNotMoreThan5() {
         assertThatThrownBy(() -> new PlayerName("abcdef"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참여자 이름은 최대 5글자까지 가능합니다.");
     }
 
     @DisplayName("참여자 이름은 빈 문자열일 수 없다.")
     @Test
     void playerNameNotBlank() {
         assertThatThrownBy(() -> new Player(""))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참여자 이름은 공백일 수 없습니다.");
     }
 
     @DisplayName("참여자 이름은 1글자 이상 5글자 이하이다.")

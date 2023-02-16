@@ -22,7 +22,8 @@ public class InputViewTest {
     void playerNameInputNotEmpty() {
         initInput("\n");
         assertThatThrownBy(() -> inputView.readPlayerNames())
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("입력값이 비어있습니다.");
     }
 
     @DisplayName("사람 이름은 쉼표(,)를 기준으로 구분한다")
@@ -40,7 +41,8 @@ public class InputViewTest {
     void validateLadderHeightNotInteger(String input) {
         initInput(input);
         assertThatThrownBy(() -> inputView.readLadderHeight())
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("사다리 높이는 숫자만 입력할 수 있습니다.");
     }
 
     private void initInput(String input) {

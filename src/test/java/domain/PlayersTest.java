@@ -22,7 +22,8 @@ public class PlayersTest {
             players.add(new Player("test"));
         }
         assertThatThrownBy(() -> new Players(players))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참여자 수는 1명 이상 20명 이하입니다.");
     }
 
     @DisplayName("참여자가 0명 이하일 수 없다.")
@@ -31,7 +32,8 @@ public class PlayersTest {
     void playerSizeNotLessThan1() {
         List<Player> players = Collections.emptyList();
         assertThatThrownBy(() -> new Players(players))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참여자 수는 1명 이상 20명 이하입니다.");
     }
 
     @DisplayName("참여자 이름이 중복될 수 없다.")
@@ -39,7 +41,8 @@ public class PlayersTest {
     void playerNameNotDuplicated() {
         List<Player> players = List.of(new Player("a"), new Player("a"));
         assertThatThrownBy(() -> new Players(players))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참여자 이름은 중복될 수 없습니다.");
     }
 
     @DisplayName("참여자들의 이름을 불러올 수 있다.")

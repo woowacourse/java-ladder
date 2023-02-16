@@ -19,7 +19,8 @@ public class LadderTest {
             lines.add(new Line(10));
         }
         Assertions.assertThatThrownBy(() -> new Ladder(lines))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("사다리의 높이는 1이상 30이하여야 합니다.");
     }
 
     @DisplayName("사다리의 최대 높이는 1보다 작을 수 없다.")
@@ -27,6 +28,7 @@ public class LadderTest {
     void lineSizeNotLessThan1() {
         List<Line> lines = Collections.emptyList();
         Assertions.assertThatThrownBy(() -> new Ladder(lines))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("사다리의 높이는 1이상 30이하여야 합니다.");
     }
 }
