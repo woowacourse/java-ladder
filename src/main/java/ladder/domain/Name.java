@@ -13,6 +13,9 @@ class Name {
 
     private void validateName(String name) {
         //todo 형식2
+        if (name == null) {
+            throw new IllegalArgumentException("이름이 null이 되면 안됩니다");
+        }
         if (isOverLength(name)) {
             throw new IllegalArgumentException("글자수가 5글자를 초과했습니다");
         }
