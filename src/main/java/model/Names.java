@@ -4,20 +4,28 @@ package model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Names {
 
     private static final String NAMES_DELIMITER = ",";
     private static final String regularExpressionForWhiteSpaceNearbyComma = "\\s*,\\s*";
 
-    private final List<String> names;
+    private final List<Name> names = new ArrayList<>();
 
     public Names(String inputNames) {
-        names = splitInputNames(inputNames);
+        List<String> splitNames = splitInputNames(inputNames);
+        for(String name : splitNames) {
+            names.add(new Name(name));
+        }
     }
 
-    public List<String> getNames() {
-        return new ArrayList<>(names);
+    public Name getName(int index) {
+        return names.get(index);
+    }
+
+    public int size() {
+        return names.size();
     }
 
     private List<String> splitInputNames(String inputNames) {
