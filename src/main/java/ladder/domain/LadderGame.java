@@ -8,13 +8,11 @@ import java.util.stream.Collectors;
 public class LadderGame {
     private final Ladder ladder;
     private final Players players;
-    private final LineStrategy lineStrategy;
 
     public LadderGame(List<String> names, int height, LineStrategy lineStrategy) {
         this.players = new Players(names);
         this.ladder = new Ladder(height);
         ladder.assignLines(lineStrategy, names.size() - 1);
-        this.lineStrategy = lineStrategy;
     }
 
     public List<List<Boolean>> getLines() {
