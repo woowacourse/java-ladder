@@ -10,6 +10,7 @@ public class OutputView {
 
     public static void printLadder(List<String> names, List<List<Boolean>> lines, int nameMaxLength) {
         System.out.println("실행결과");
+        System.out.println();
         printNames(names, nameMaxLength);
         printLines(lines, nameMaxLength);
     }
