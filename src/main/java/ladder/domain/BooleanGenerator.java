@@ -1,5 +1,5 @@
 package ladder.domain;
 
-interface BooleanGenerator {
+public interface BooleanGenerator {
     boolean generate();
 }
