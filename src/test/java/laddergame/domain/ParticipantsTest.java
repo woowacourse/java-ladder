@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 class ParticipantsTest {
     @Test
     void create() {
-        final List<Person> people = List.of(new Person("헤나"), new Person("로지"));
+        final List<Person> people = List.of(new Person("hyena"), new Person("rosie"));
 
         assertDoesNotThrow(() -> new Participants(people));
     }
@@ -44,6 +44,6 @@ class ParticipantsTest {
 
     @Test
     void getNames() {
-        assertThat(PARTICIPANTS_SIZE_2.getNames()).contains("헤나", "로지");
+        assertThat(PARTICIPANTS_SIZE_2.getNames()).contains("hyena", "rosie");
     }
 }

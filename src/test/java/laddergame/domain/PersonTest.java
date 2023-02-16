@@ -36,6 +36,6 @@ class PersonTest {
 
 	@Test
 	void getName() {
-		assertThat(PERSON_ROSIE.getName()).isEqualTo("로지");
+		assertThat(PERSON_ROSIE.getName()).isEqualTo("rosie");
 	}
 }
