@@ -14,7 +14,13 @@ public class LadderTest {
     @Test
     @DisplayName("Ladder 객체 생성 성공 테스트")
     void createLadderTest() {
-        assertThatNoException().isThrownBy(()->{Ladder ladder = new Ladder(new LadderHeight(5));});
+        //Given
+        Names names = new Names("pobi, neo, hiiro");
+        Players players = new Players(names);
+        LadderHeight ladderHeight = new LadderHeight(5);
+
+        //Then
+        assertThatNoException().isThrownBy(()->{Ladder ladder = new Ladder(players, ladderHeight);});
     }
 
     @Test
