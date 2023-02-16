@@ -1,6 +1,5 @@
 package model;
 
-import util.Connection;
 import util.Generator;
 import util.LineGenerator;
 
@@ -33,17 +32,11 @@ public class Line {
     }
 
     private boolean validateContinuousLine(int column){
-        if(points.get(column) == points.get(column-1)){
-            return true;
-        }
-        return false;
+        return points.get(column).equals(points.get(column-1));
     }
 
     private boolean validateTrueLine(int index){
-        if(points.get(index)==true){
-            return true;
-        }
-        return false;
+        return points.get(index);
     }
 
     public boolean getLine(int column){

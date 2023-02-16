@@ -1,6 +1,7 @@
 package view;
 
 import model.LadderHeight;
+import util.ExceptionMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +9,6 @@ import java.util.Scanner;
 
 public class InputView {
     private static final String SPLIT_DELIMITER = ",";
-    private static final String EXCEPTION_LADDER_HEIGHT = "[ERROR] 1 이상의 숫자만 입력 가능합니다.";
     private Scanner scanner;
 
     public InputView(Scanner scanner){
@@ -29,7 +29,7 @@ public class InputView {
             LadderHeight height = new LadderHeight(Integer.parseInt(scanner.nextLine()));
             return height;
         }catch(Exception e){
-            throw new IllegalStateException(EXCEPTION_LADDER_HEIGHT);
+            throw new IllegalStateException(ExceptionMessage.EXCEPTION_LADDER_HEIGHT.getExceptionMessage());
         }
     }
 }
