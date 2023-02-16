@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,6 +20,23 @@ public class Name {
         return name;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if(this == object) {
+            return true;
+        }
+        if(object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        Name otherName = (Name) object;
+        return Objects.equals(name, otherName.getName());
+    }
+
     private void validateNameLength(String name){
         if(name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException();
@@ -31,5 +49,4 @@ public class Name {
             throw new IllegalArgumentException();
         }
     }
-
 }
