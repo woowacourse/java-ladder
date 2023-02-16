@@ -15,18 +15,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
     private Generator generator;
+
     @Test
     @DisplayName("Line 객체 생성 성공 테스트")
-    void createLineTest(){
-        List<Boolean> randomLine = new ArrayList<>(Arrays.asList(false,true));
+    void createLineTest() {
+        List<Boolean> randomLine = new ArrayList<>(Arrays.asList(false, true));
         generator = new TestLineGenerator(randomLine);
-        Assertions.assertThatNoException().isThrownBy(()->{new Line(2,generator);});
+        Assertions.assertThatNoException().isThrownBy(() -> {
+            new Line(2, generator);
+        });
     }
 
     @ParameterizedTest(name = "라인 랜덤 생성 성공 테스트 inputType={0}")
     @CsvSource(value = {"false:false", "true:true"}, delimiter = ':')
-    void createLineRandomTest(boolean input, boolean result){
-        List<Boolean> randomLine = new ArrayList<>(Arrays.asList(input));
+    void createLineRandomTest(boolean input, boolean result) {
+        List<Boolean> randomLine = new ArrayList<>(List.of(input));
         generator = new TestLineGenerator(randomLine);
 
         assertThat(generator.generate()).isEqualTo(result);

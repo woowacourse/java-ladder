@@ -10,15 +10,15 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 public class LadderHeightTest {
     @Test
     @DisplayName("LadderHeight 객체 생성 성공 테스트")
-    void createLadderHeightTest(){
-        Assertions.assertThatNoException().isThrownBy(()->{new LadderHeight(5);});
+    void createLadderHeightTest() {
+        Assertions.assertThatNoException().isThrownBy(() -> new LadderHeight(5));
     }
 
     @Test
     @DisplayName("LadderHeight가 1 미만일 경우 실패 테스트")
     void validateLadderHeightTest() {
         //When
-        Throwable result = catchThrowable(()->{new LadderHeight(0);});
+        Throwable result = catchThrowable(() -> new LadderHeight(0));
 
         //Then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
