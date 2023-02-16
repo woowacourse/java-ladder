@@ -9,7 +9,7 @@ public class GameController {
 
     public void process() {
         final Names names = new Names(InputView.readNames());
-        final Ladder ladder = new Ladder(InputView.readFloor(), names.getSize());
+        final Ladder ladder = new Ladder(InputView.readHeight(), names.getSize());
         OutputView.printPlayerAll(names);
         OutputView.printLadder(names, ladder);
     }

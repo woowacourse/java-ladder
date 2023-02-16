@@ -13,20 +13,20 @@ import static org.assertj.core.api.Assertions.*;
 public class LineTest {
 
     @Nested
-    static class LineWidthTest {
+    static class LineStatusTest {
 
         @ParameterizedTest
-        @DisplayName("최소 너비가 한 칸 이상이면 Line이 생성된다.")
-        @ValueSource(ints = {1, 5, 10})
-        void givenOneMoreWidth_thenCreateLine(final int width) {
-            assertThatCode(() -> Line.from(width))
+        @DisplayName("Players가 두 명 이상이면 Line이 생성된다.")
+        @ValueSource(ints = {2, 5, 10})
+        void givenTwoMorePlayers_thenCreateLine(final int numberOfPlayers) {
+            assertThatCode(() -> Line.from(numberOfPlayers))
                     .doesNotThrowAnyException();
         }
 
         @Test
-        @DisplayName("너비가 1 미만이면 예외가 발생한다")
-        void givenOneLessWidth_thenFail() {
-            assertThatThrownBy(() -> Line.from(0))
+        @DisplayName("Player가 2명 미만이면 예외가 발생한다")
+        void givenTwoLessPlayers_thenFail() {
+            assertThatThrownBy(() -> Line.from(1))
                     .isInstanceOf(IllegalStateException.class);
         }
 
@@ -34,8 +34,8 @@ public class LineTest {
         @DisplayName("라인이 생성되면 List<Boolean>이 생성된다.")
         void givenLine_thenCreateBooleanList() {
             //given
-            final List<Boolean> booleans = List.of(true, false, false);
-            final Line line = Line.of(3, new TestBooleanPicker(booleans));
+            final List<Boolean> statuses = List.of(true, false, false);
+            final Line line = Line.of(statuses.size(), new TestBooleanPicker(statuses));
 
             //then
             assertThat(line)
@@ -48,8 +48,8 @@ public class LineTest {
     @DisplayName("라인이 겹치지 않는다.")
     void givenLine_thenNotOverLap() {
         //given
-        final List<Boolean> booleans = List.of(true, true, false);
-        final Line line = Line.of(3, new TestBooleanPicker(booleans));
+        final List<Boolean> statuses = List.of(true, true, false);
+        final Line line = Line.of(statuses.size(), new TestBooleanPicker(statuses));
 
         //then
         assertThat(line)

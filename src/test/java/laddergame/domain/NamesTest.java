@@ -1,6 +1,5 @@
 package laddergame.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +20,7 @@ public class NamesTest {
         final Names result = new Names(names);
 
         //then
-        Assertions.assertThat(result.getNames())
+        assertThat(result.getNames())
                 .isEqualTo(names);
     }
 
@@ -33,32 +32,33 @@ public class NamesTest {
 
         //then
         assertThatThrownBy((() -> new Names(wrongSizeList)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("최소 2명 이상의 플레이어가 필요합니다.");
     }
 
     @Test
     @DisplayName("가장 긴 이름의 길이를 반환한다.")
-    void giveNames_thenReturnMaxNameLength() {
+    void givenNames_thenReturnMaxNameLength() {
         //given
-        final List<String> names = List.of("에단", "준팍", "블랙캣");
-        final Names names1 = new Names(names);
+        final List<String> input = List.of("에단", "준팍", "블랙캣");
+        final Names names = new Names(input);
 
         //when
-        final int maxNameLength = names1.findMaxNameLength();
+        final int maxNameLength = names.findMaxNameLength();
 
         //then
-        assertThat(maxNameLength).isEqualTo(3);
+        assertThat(maxNameLength).isEqualTo("블랙캣".length());
     }
 
     @Test
     @DisplayName("가장 첫번째 이름의 길이를 2로 나누고 반올림한 값을 반환한다.")
     void givenNames_thenFirstNameLengthDividedByTwoRounded() {
         //given
-        final List<String> names = List.of("에단", "준팍", "블랙캣");
-        final Names names1 = new Names(names);
+        final List<String> input = List.of("에단", "준팍", "블랙캣");
+        final Names names = new Names(input);
 
         //when
-        int firstNameLengthDividedByTwoRounded = names1.getFirstNameLengthDividedByTwoRounded();
+        int firstNameLengthDividedByTwoRounded = names.getFirstNameLengthDividedByTwoRounded();
 
         //then
         assertThat(firstNameLengthDividedByTwoRounded).isEqualTo(1);

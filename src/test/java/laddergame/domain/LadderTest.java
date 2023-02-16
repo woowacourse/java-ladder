@@ -5,30 +5,28 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.function.IntPredicate;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class LadderTest {
 
     @Test
-    @DisplayName("층수가 1미만이면 예외가 발생한다.")
-    void givenUnderOneFloor_thenFail() {
+    @DisplayName("높이가 1미만이면 예외가 발생한다.")
+    void givenUnderOneHeight_thenFail() {
         //then
         assertThatThrownBy(() -> new Ladder(0, 3))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("최소 높이가 1이상이어야 합니다.");
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 5, 100})
-    @DisplayName("층수가 1이상이면 List<Line>이 생성된다.")
-    void givenOverOneFloor_thenSuccess(int floor) {
+    @DisplayName("높이가 1이상이면 List<Line>이 생성된다.")
+    void givenOverOneHeight_thenSuccess(int height) {
         //given
-        final Ladder ladder = new Ladder(floor, 3);
+        final Ladder ladder = new Ladder(height, 3);
 
         //then
-        assertThat(ladder.getLines()).hasSize(floor);
+        assertThat(ladder.getLines()).hasSize(height);
     }
 }

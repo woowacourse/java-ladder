@@ -19,12 +19,22 @@ class NameTest {
                     .doesNotThrowAnyException();
         }
 
+        @DisplayName("공백이 들어오면 예외가 발생한다")
+        @ParameterizedTest
+        @ValueSource(strings = {"", " "})
+        void givenBlankChar_thenFailed(final String name) {
+            assertThatThrownBy(() -> new Name(name))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("공백은 이름이 될 수 없습니다.");
+        }
+
         @DisplayName("1미만 5글자 초과 글자가 들어오면 예외가 발생한다")
         @ParameterizedTest
-        @ValueSource(strings = {"", " ", "에단준팍짱짱", "준팍에단고마원"})
+        @ValueSource(strings = {"에단준팍짱짱", "준팍에단고마원"})
         void givenFiveMoreChar_thenFailed(final String name) {
             assertThatThrownBy(() -> new Name(name))
-                    .isInstanceOf(IllegalArgumentException.class);
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("1이상 5글자 이하의 이름을 입력해 주세요.");
         }
     }
 
