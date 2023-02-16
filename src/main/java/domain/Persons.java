@@ -8,7 +8,18 @@ public class Persons {
     private final List<Person> persons = new ArrayList<>();
 
     public Persons(List<String> names) {
+        validateDuplicateName(names);
         addPerson(names);
+    }
+
+    private static void validateDuplicateName(List<String> names) {
+        if (isDuplicated(names)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static boolean isDuplicated(List<String> names) {
+        return names.size() != names.stream().distinct().count();
     }
 
     public List<Person> getPersons() {
