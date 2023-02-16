@@ -1,6 +1,5 @@
-import domain.Ladder;
-import domain.Line;
-import domain.Point;
+package domain;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
