@@ -29,8 +29,9 @@ public class NamesTest {
     @Test
     @DisplayName("Names 객체 생성 성공 테스트")
     void createNamesTest() {
-        assertThatNoException().isThrownBy(()->{
-            Names names = new Names("pobi, neo, conan");});
+        assertThatNoException().isThrownBy(() -> {
+            Names names = new Names("pobi, neo, conan");
+        });
     }
 
     @ParameterizedTest
@@ -41,8 +42,9 @@ public class NamesTest {
         Names names = new Names(inputValue);
 
         //Then
-        IntStream.range(0,names.size())
-                .forEach((index)->{assertThat(names.getName(index)).isEqualTo(expectedResult.get(index));});
+        IntStream.range(0, names.size())
+                .forEach((index) -> {
+                    assertThat(names.getName(index)).isEqualTo(expectedResult.get(index));
+                });
     }
-
 }

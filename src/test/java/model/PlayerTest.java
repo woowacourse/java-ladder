@@ -24,6 +24,6 @@ public class PlayerTest {
         Name result = player.getName();
 
         //Then
-        assertThat(result.getName()).isEqualTo("pobi");
+        assertThat(result).isEqualTo(new Name("pobi"));
     }
 }

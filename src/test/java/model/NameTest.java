@@ -14,15 +14,19 @@ public class NameTest {
 
     @Test
     @DisplayName("Name 객체 생성 성공 테스트")
-    void createNameTest(){
-        Assertions.assertThatNoException().isThrownBy(()->{Name name = new Name("ocean");});
+    void createNameTest() {
+        Assertions.assertThatNoException().isThrownBy(() -> {
+            Name name = new Name("ocean");
+        });
     }
 
     @Test
     @DisplayName("이름 값 길이 제한으로 인한 Player 객체 생성 실패 테스트")
-    void limitPlayerNameLengthTest(){
+    void limitPlayerNameLengthTest() {
         //When
-        Throwable result = catchThrowable(()->{Name name = new Name("woowacourse");});
+        Throwable result = catchThrowable(() -> {
+            Name name = new Name("woowacourse");
+        });
 
         //Then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
@@ -33,7 +37,9 @@ public class NameTest {
     @DisplayName("사람 이름은 문자로만 이루어져 있는지 확인하는 기능 테스트")
     void validateNameHasOnlyCharacters(String inputName) {
         //When
-        Throwable result = catchThrowable(()->{Name name = new Name(inputName);});
+        Throwable result = catchThrowable(() -> {
+            Name name = new Name(inputName);
+        });
 
         //Then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);

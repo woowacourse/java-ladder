@@ -6,7 +6,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.stream.IntStream;
 
 public class LadderTest {
@@ -20,7 +19,9 @@ public class LadderTest {
         LadderHeight ladderHeight = new LadderHeight(5);
 
         //Then
-        assertThatNoException().isThrownBy(()->{Ladder ladder = new Ladder(players, ladderHeight);});
+        assertThatNoException().isThrownBy(() -> {
+            Ladder ladder = new Ladder(players, ladderHeight);
+        });
     }
 
     @Test
