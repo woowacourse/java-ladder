@@ -3,46 +3,38 @@ package laddergame.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
+import static laddergame.ExceptionTemplate.repeat;
 public class LineCreator {
 
     private final BooleanGenerator booleanGenerator;
 
     public LineCreator(BooleanGenerator booleanGenerator) {
+        if (booleanGenerator == null) {
+            throw new IllegalArgumentException();
+        }
         this.booleanGenerator = booleanGenerator;
     }
 
     public List<Line> createLines(int width, int height) {
-        List<Line> lines = new ArrayList<>();
-        LineCreator lineCreator = new LineCreator(booleanGenerator);
-        for (int i = 0; i < height; i++) {
+        if (width <= 0 || height <= 0) {
+            throw new IllegalArgumentException();
+        }
 
-            Line line = lineCreator.create(booleanGenerator, width);
+        List<Line> lines = new ArrayList<>();
+        for (int count = 0; count < height; count++) {
+            Line line = repeat(() -> createLine(width));
             lines.add(line);
         }
+
         return lines;
     }
 
-    //
-    public Line create(int participantsSize) {
-//        while (true) {
-//            try {
-//                return createLine(booleanGenerator, participantsSize);
-//            } catch (IllegalArgumentException ignored) {
-//                /* ignored */
-//            }
-//        }
+    private Line createLine(int width) {
+        List<Boolean> points = new ArrayList<>();
+        for (int count = 0; count < width; count++) {
+            points.add(booleanGenerator.generate());
+        }
+
+        return new Line(points);
     }
-//
-//    private static Line createLine(BooleanGenerator booleanGenerator, int participantsSize) {
-//        List<Boolean> points = new ArrayList<>();
-//        for (int count = 0; count < participantsSize; count++) {
-//            points.add(booleanGenerator.generate());
-//        }
-//        return new Line(points);
-//    }
-//
 }
