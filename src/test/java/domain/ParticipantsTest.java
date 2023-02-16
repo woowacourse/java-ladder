@@ -1,5 +1,6 @@
 package domain;
 
+import exception.DuplicateNameException;
 import exception.EmpytInputException;
 import exception.InvalidParticipantsCountException;
 import java.util.List;
@@ -45,19 +46,19 @@ class ParticipantsTest {
             .isExactlyInstanceOf(InvalidParticipantsCountException.class);
     }
 
+
+    @DisplayName("참가자 이름 중 중복된 이름이 있는 경우 오류를 던진다.")
+    @Test
+    void nameIdentifier() {
+        Assertions.assertThatThrownBy(() -> new Participants("ab,ab"))
+            .isExactlyInstanceOf(DuplicateNameException.class);
+    }
+
     @DisplayName("입력받은 참가자들의 이름을 참가자를 가진 리스트로 만들어 준다.(중복 없음)")
     @Test
     void joinAllWithoutDuplicate() {
         Participants participants = new Participants("a,b,c,d,e");
         List<String> participantsName = participants.getParticipantsNames();
         Assertions.assertThat(participantsName).containsExactly("a", "b", "c", "d", "e");
-    }
-
-    @DisplayName("입력받은 참가자들의 이름을 참가자를 가진 리스트로 만들어 준다.(중복 있음)")
-    @Test
-    void joinAllWithDuplicate() {
-        Participants participants = new Participants("a,a,b,b,c");
-        List<String> participantsName = participants.getParticipantsNames();
-        Assertions.assertThat(participantsName).containsExactly("a", "a-2", "b", "b-2", "c");
     }
 }

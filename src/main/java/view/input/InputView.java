@@ -1,11 +1,11 @@
 package view.input;
 
+import exception.DuplicateNameException;
 import exception.EmpytInputException;
 import exception.InvalidLadderHeightException;
 import exception.InvalidLineWeightException;
 import exception.InvalidParticipantsCountException;
 import exception.InvalidPersonNameException;
-import exception.NameContainsIdentifierException;
 import java.util.Scanner;
 
 public class InputView {
@@ -32,20 +32,20 @@ public class InputView {
         if (exception instanceof EmpytInputException) {
             System.out.println(ErrorMessage.EMPTY_INPUT.getMessage());
         }
-        if (exception instanceof InvalidLineWeightException) {
-            System.out.println(ErrorMessage.INVALID_LINE_WEIGHT.getMessage());
-        }
-        if (exception instanceof InvalidLadderHeightException) {
-            System.out.println(ErrorMessage.INVALID_LADDER_HEIGHT.getMessage());
-        }
         if (exception instanceof InvalidParticipantsCountException) {
             System.out.println(ErrorMessage.INVALID_PARTICIPANT_COUNT.getMessage());
         }
         if (exception instanceof InvalidPersonNameException) {
             System.out.println(ErrorMessage.INVALID_PERSON_NAME.getMessage());
         }
-        if (exception instanceof NameContainsIdentifierException) {
-            System.out.println(ErrorMessage.CONTAINS_DUPLICATE_IDENTIFIER.getMessage());
+        if (exception instanceof DuplicateNameException) {
+            System.out.println(ErrorMessage.DUPLICATE_NAME.getMessage());
+        }
+        if (exception instanceof InvalidLineWeightException) {
+            System.out.println(ErrorMessage.INVALID_LINE_WEIGHT.getMessage());
+        }
+        if (exception instanceof InvalidLadderHeightException) {
+            System.out.println(ErrorMessage.INVALID_LADDER_HEIGHT.getMessage());
         }
     }
 

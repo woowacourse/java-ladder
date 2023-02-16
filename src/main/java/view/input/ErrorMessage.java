@@ -6,7 +6,7 @@ public enum ErrorMessage {
     INVALID_LADDER_HEIGHT("사다리의 높이는 1이상 10이하의 숫자입니다. 다시 입력해주세요."),
     INVALID_PARTICIPANT_COUNT("참가자는 1명이상 10이하입니다. 다시 입력해주세요."),
     INVALID_PERSON_NAME("참가자의 이름은 1이상 5이하입니다. 다시 입력해주세요."),
-    CONTAINS_DUPLICATE_IDENTIFIER("이름에는 -를 포함할 수 없습니다. 다시 입력해주세요");
+    DUPLICATE_NAME("중복되는 이름이 존재합니다. 다시 입력해주세요");
 
     ErrorMessage(String message) {
         this.message = message;
