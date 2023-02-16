@@ -24,4 +24,15 @@ public class Names {
         return names.stream().map(Name::getName)
                 .collect(Collectors.toList());
     }
+
+    public int getSize() {
+        return names.size();
+    }
+
+    public int findMaxNameLength() {
+        return names.stream()
+                .mapToInt(Name::getNameLength)
+                .max()
+                .orElseThrow(() -> new IllegalStateException());
+    }
 }
