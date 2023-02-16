@@ -22,10 +22,6 @@ public class Persons {
         return names.size() != names.stream().distinct().count();
     }
 
-    public List<Person> getPersons() {
-        return persons;
-    }
-
     private void addPerson(List<String> names) {
         for (String name : names) {
             persons.add(new Person(name));
