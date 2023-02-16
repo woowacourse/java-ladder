@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import ladder.error.ErrorMessage;
 
 public class Names {
+    private static final int FIRST_NAME_INDEX = 0;
     private static final int MIN_NAMES_COUNT = 2;
     private static final int MAX_NAMES_COUNT = 100;
 
@@ -19,14 +20,8 @@ public class Names {
             .collect(Collectors.toList());
     }
 
-    private void validate(List<String> names) {
-        if (names.size() < MIN_NAMES_COUNT || names.size() > MAX_NAMES_COUNT) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_PEOPLE_NUMBER.getMessage());
-        }
-    }
-
-    public int lengthOfFirstName(){
-        return names.get(0).length();
+    public int lengthOfFirstName() {
+        return names.get(FIRST_NAME_INDEX).length();
     }
 
     public List<Name> getNames() {
@@ -37,4 +32,13 @@ public class Names {
         return names.size();
     }
 
+    private void validate(List<String> names) {
+        validateCountOfNames(names);
+    }
+
+    private void validateCountOfNames(List<String> names) {
+        if (names.size() < MIN_NAMES_COUNT || names.size() > MAX_NAMES_COUNT) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PEOPLE_NUMBER.getMessage());
+        }
+    }
 }
