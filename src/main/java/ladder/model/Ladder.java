@@ -6,6 +6,7 @@ import java.util.List;
 public class Ladder {
 
     private static final int MIN_HEIGHT = 2;
+
     private final List<Raw> ladder;
 
     public Ladder(List<Raw> ladder) {
@@ -18,6 +19,11 @@ public class Ladder {
             throw new IllegalArgumentException(ErrorMessage.EXCEPTION_INVALID_HEIGHT.getMessage());
         }
     }
+
+    public List<Raw> getRaws() {
+        return ladder;
+    }
+
 
     private enum ErrorMessage {
         EXCEPTION_INVALID_HEIGHT("사다리 높이는 2 이상이어야 합니다.");
