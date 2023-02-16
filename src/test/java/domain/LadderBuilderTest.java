@@ -23,7 +23,7 @@ class LadderBuilderTest {
 	@Test
 	@DisplayName("사다리 생성 테스트")
 	void buildLadderTest() {
-		int height = 3;
+		LadderHeight height = new LadderHeight(3);
 		int width = 3;
 		LadderBuilder builder = new LadderBuilder();
 		Ladder ladder = builder.build(height, width, new PresentPointGenerator());

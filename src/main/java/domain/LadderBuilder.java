@@ -9,9 +9,10 @@ import domain.util.PointGenerator;
 
 public class LadderBuilder {
 
-	public Ladder build(int height, int width, PointGenerator pointGenerator){
+	public Ladder build(LadderHeight ladderHeight, int width, PointGenerator pointGenerator){
 		LinePointsGenerator linePointsGenerator = new LinePointsGenerator(width, pointGenerator);
 		List<Line> lines = new ArrayList<>();
+		int height = ladderHeight.getHeight();
 		for (int i = 0; i < height; i++){
 			List<Point> points = linePointsGenerator.generateLine();
 			Line line = new Line(points);
