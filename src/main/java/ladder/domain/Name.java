@@ -18,9 +18,9 @@ public class Name {
     }
 
     private void validate(String name) {
+        validateNotNull(name);
         validateDoesNotContainComma(name);
         validateLength(name);
-        validateNotNull(name);
     }
 
     private void validateDoesNotContainComma(String name) {
