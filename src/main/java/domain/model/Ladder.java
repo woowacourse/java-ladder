@@ -1,14 +1,17 @@
 package domain.model;
 
+import domain.vo.Height;
+import domain.vo.LineCount;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final int height;
-    private final int lineCount;
+    private final Height height;
+    private final LineCount lineCount;
     private List<Layer> layers;
 
-    public Ladder(int height, int lineCount) {
+    public Ladder(final Height height, final LineCount lineCount) {
         this.height = height;
         this.lineCount = lineCount;
         this.layers = new ArrayList<>();
@@ -18,11 +21,11 @@ public class Ladder {
         return this.layers;
     }
 
-    public int getHeight() {
+    public Height getHeight() {
         return this.height;
     }
 
-    public int getLineCount() {
+    public LineCount getLineCount() {
         return this.lineCount;
     }
 

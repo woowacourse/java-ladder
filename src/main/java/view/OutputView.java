@@ -2,7 +2,7 @@ package view;
 
 import domain.model.Ladder;
 import domain.model.Layer;
-import domain.model.Name;
+import domain.vo.Name;
 
 import java.util.List;
 
@@ -45,8 +45,8 @@ public class OutputView {
     private void printNames(final List<Name> names) {
         StringBuilder sb = new StringBuilder();
         names.forEach(name -> {
-            int difference = INTERVAL_UNIT - name.getName().length();
-            sb.append(name.getName()).append(" ".repeat(difference));
+            int difference = INTERVAL_UNIT - name.get().length();
+            sb.append(name.get()).append(" ".repeat(difference));
         });
         System.out.println(sb);
     }
