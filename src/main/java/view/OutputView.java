@@ -10,58 +10,51 @@ import java.util.stream.Collectors;
 public class OutputView {
 
     private static final String BAR = "|";
+    private static final String BLANK = " ";
 
     private static final StringBuilder stringBuilder = new StringBuilder();
 
-    /**
-     * pobi  honux crong   jk
-     * |-----|     |-----|
-     * |     |-----|     |
-     * |-----|     |     |
-     * |     |-----|     |
-     * |-----|     |-----|
-     */
-    public static void printResult(final Ladder ladder, final List<Name> names) {
-        printName(names);
-        int length = names.get(0).getValue().length();
-        String blank = " ".repeat(length);
+    public static void printResult(final Ladder ladder, final List<Name> playerNames) {
+        String initBlank = BLANK.repeat(playerNames.get(0).getValue().length());
+        printNames(playerNames);
+        printLadder(ladder, initBlank);
+    }
+
+    public static void printNames(final List<Name> playerNames) {
+        List<String> names = new ArrayList<>();
+        List<String> nameValues = playerNames.stream().map(Name::getValue).collect(Collectors.toList());
+        String remove = nameValues.remove(0);
+        String firstName = remove + BLANK;
+        names.add(firstName);
+        addBlanks(names, nameValues);
+        for (int i = 0; i < names.size(); i++) {
+            System.out.print(names.get(i) + BLANK);
+        }
+        System.out.println();
+    }
+    private static void printLadder(Ladder ladder, String initBlank) {
         for (int i = 0; i < ladder.getHeight(); i++) {
-            stringBuilder.append(blank);
+            stringBuilder.append(initBlank);
             stringBuilder.append(BAR);
-            for (int j = 0; j < ladder.getWidth(); j++) {
-                stringBuilder.append(ladder.getLines().get(i).getScaffolds().get(j).getStatus() + BAR);
-                String s = stringBuilder.toString();
-                System.out.print(s);
-                stringBuilder.delete(0, s.length());
-            }
+            addLinesToStringBuilder(ladder, i);
             System.out.println();
         }
     }
 
-    public static void printName(final List<Name> names) {
-        List<String> makeNames = new ArrayList<>();
-        List<String> nameValues = names.stream().map(Name::getValue).collect(Collectors.toList());
-        String remove = nameValues.remove(0);
-        int addBlankSize = 5 - remove.length();
-        String blank = " ";
-        String result = "";
-        for (int i = 0; i < addBlankSize; i++) {
-            result += blank;
-        }
-        String firstName = remove + blank;
-        makeNames.add(firstName);
-
+    private static void addBlanks(List<String> makeNames, List<String> nameValues) {
         for (String name : nameValues) {
-            addBlankSize = 5 - name.length();
-            result = "";
-            for (int i = 0; i < addBlankSize; i++) {
-                result += blank;
-            }
+            int addBlankSize = 5 - name.length();
+            String result = BLANK.repeat(addBlankSize);
             makeNames.add(result + name);
         }
-        for (int i = 0; i < makeNames.size(); i++) {
-            System.out.print(makeNames.get(i) + " ");
+    }
+
+    private static void addLinesToStringBuilder(Ladder ladder, int i) {
+        for (int j = 0; j < ladder.getWidth(); j++) {
+            stringBuilder.append(ladder.getLines().get(i).getScaffolds().get(j).getStatus() + BAR);
+            String lineResult = stringBuilder.toString();
+            System.out.print(lineResult);
+            stringBuilder.delete(0, lineResult.length());
         }
-        System.out.println();
     }
 }
