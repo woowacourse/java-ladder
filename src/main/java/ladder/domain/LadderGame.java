@@ -25,4 +25,8 @@ public class LadderGame {
     public int getNameMaxLength() {
         return players.getNameMaxLength();
     }
+
+    public List<String> getPlayerNames() {
+        return players.getPlayerNames();
+    }
 }
