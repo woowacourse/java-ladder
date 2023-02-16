@@ -25,6 +25,6 @@ public class LineTest {
         Line line = new Line(3, booleanGenerator);
         List<ConnectionStatus> lineStatus = line.getLineStatus();
 
-        Assertions.assertThat(lineStatus).containsExactly(ConnectionStatus.CONNECTED, ConnectionStatus.UNCONNECTED, ConnectionStatus.CONNECTED);
+        Assertions.assertThat(lineStatus).containsExactly(ConnectionStatus.CONNECTED, ConnectionStatus.DISCONNECTED, ConnectionStatus.CONNECTED);
     }
 }
