@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -26,7 +25,6 @@ class PlayerNameTest {
     void validNameLengthTest(String input) {
         assertThatCode(() -> new PlayerName(input)).doesNotThrowAnyException();
     }
-
 
     @ParameterizedTest
     @DisplayName("이름 공백을 제거 테스트")

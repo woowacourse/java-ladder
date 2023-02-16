@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.util.Lists.newArrayList;
 
@@ -27,7 +26,6 @@ class LadderGameTest {
         List<PlayerName> input = new ArrayList<>(List.of(new PlayerName("이오"), new PlayerName("이리내")));
         assertThatCode(() -> new LadderGame(input, new Height(5), new RandomLineCreateDecider())).doesNotThrowAnyException();
     }
-
 
     @Test
     @DisplayName("사다리 생성 테스트")

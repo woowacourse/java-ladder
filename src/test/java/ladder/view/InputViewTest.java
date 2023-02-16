@@ -26,7 +26,6 @@ class InputViewTest {
         System.setIn(in);
 
         assertThat(inputView.readNames().size()).isEqualTo(4);
-
     }
 
     @Test
