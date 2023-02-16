@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,10 +18,6 @@ public class Players {
 
     public int getSize() {
         return players.size();
-    }
-
-    public List<Player> getPlayers() {
-        return Collections.unmodifiableList(players);
     }
 
     public List<String> getNameValues() {

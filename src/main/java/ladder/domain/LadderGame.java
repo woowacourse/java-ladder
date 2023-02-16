@@ -4,6 +4,8 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderGame {
+    private static final int DIFFERENCE_PLAYERS_AND_BARS = 1;
+
     private final Players players;
     private final Ladder ladder;
 
@@ -13,7 +15,7 @@ public class LadderGame {
     }
 
     private int getCountOfBars() {
-        return this.players.getSize() - 1;
+        return this.players.getSize() - DIFFERENCE_PLAYERS_AND_BARS;
     }
 
     public void play() {

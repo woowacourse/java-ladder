@@ -10,6 +10,7 @@ public class OutputView {
     private static final String MOVABLE_BAR = "|-----";
     private static final String IMMOVABLE_BAR = "|     ";
     private static final String BLANK = " ";
+    private static final int DEFAULT_NAME_LENGTH = 7;
 
     public static void printPlayers(List<String> playerNames) {
         System.out.print(playerNames.get(0));
@@ -21,7 +22,7 @@ public class OutputView {
 
     private static void printNameOnSquares(String playerName) {
         int nameLength = playerName.length();
-        System.out.print(BLANK.repeat(7 - nameLength));
+        System.out.print(BLANK.repeat(DEFAULT_NAME_LENGTH - nameLength));
         System.out.print(playerName);
     }
 
