@@ -21,7 +21,7 @@ public class LadderGenerator {
 
     private Bridge generateBridge(List<Bridge> result) {
 //        result.get(result.size() - 1) == Bridge.NON_EXIST
-        if (result.isEmpty() || !result.get(result.size() - 1).getIsExist()) {
+        if (result.isEmpty() || !result.get(result.size() - 1).isExist()) {
             return Bridge.from(random.nextBoolean());
         }
         return Bridge.NON_EXIST;
