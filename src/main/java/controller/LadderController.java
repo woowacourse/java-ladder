@@ -1,5 +1,6 @@
 package controller;
 
+import domain.ladder.Ladder;
 import domain.ladder.LadderMaker;
 import domain.ladder.Line;
 import domain.player.Player;
@@ -8,23 +9,28 @@ import utils.Log;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private final LadderMaker ladderMaker = new LadderMaker();
 
     public void run() {
         Players players = getPlayers();
-        LadderMaker ladderMaker = new LadderMaker();
+        int personCount = players.getPlayers().size();
         int ladderHeight = getLadderHeight();
 
-        List<Line> lines = ladderMaker.make(players.getPlayers().size(), ladderHeight);
+        Ladder ladder = new Ladder(ladderMaker.make(personCount, ladderHeight));
+
+        showResult(players, ladder);
+    }
+
+    private void showResult(Players players, Ladder ladder) {
         outputView.showResultMessage();
         outputView.showPlayers(players.getPlayers());
-        outputView.showLadder(lines);
+        outputView.showLadder(ladder);
     }
 
     public Players getPlayers() {
