@@ -1,10 +1,7 @@
 package view;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 import domain.util.Point;
@@ -49,5 +46,9 @@ public class OutputView {
 			lineBuilder.append(collectedLine).append(NEW_LINE);
 		}
 		return lineBuilder.toString();
+	}
+
+	public static void printError(String errorMsg) {
+		System.out.println(errorMsg);
 	}
 }

@@ -25,5 +25,13 @@ public class Participants {
 			throw new IllegalArgumentException("참가자의 이름은 1글자 이상 5글자 이하여야 한다.");
 		}
 	}
+
+	public int getParticipantsNum() {
+		return names.size();
+	}
+
+	public List<String> getNames(){
+		return this.names;
+	}
 }
 
