@@ -4,22 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladders {
+    private static final int LADDER_MIN_HEIGHT = 1;
+    private static final int LADDER_MAX_HEIGHT = 10;
+    private static final String INVALID_LADDER_HEIGHT_MESSAGE ="사다리 높이는 1~10 사이 정수만 가능합니다.";
     private final int height;
     private final List<Ladder> ladders;
-    private final RandomGenerator randomGenerator;
+    private final LadderGenerator ladderGenerator;
 
-    public Ladders(int height, RandomGenerator randomGenerator) {
-        if (height < 1 || height > 10) {
-            throw new IllegalArgumentException("사다리 높이는 1에서 10");
-        }
+    public Ladders(int height, LadderGenerator ladderGenerator) {
+        validateLadderHeight(height);
         this.height = height;
         this.ladders = new ArrayList<>();
-        this.randomGenerator = randomGenerator;
+        this.ladderGenerator = ladderGenerator;
+    }
+
+    private void validateLadderHeight(int height) {
+        if (height < LADDER_MIN_HEIGHT || height > LADDER_MAX_HEIGHT) {
+            throw new IllegalArgumentException(INVALID_LADDER_HEIGHT_MESSAGE);
+        }
     }
 
     public void make(int width) {
-        for (int index = 0; index < height; index++) {
-            ladders.add(new Ladder(randomGenerator.generateLadder(width)));
+        for (int floor = 0; floor < height; floor++) {
+            ladders.add(new Ladder(ladderGenerator.generateLadder(width)));
         }
     }
 
