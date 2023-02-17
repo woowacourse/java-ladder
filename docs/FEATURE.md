@@ -3,7 +3,7 @@
 - [x] LinesDto 명칭 변경
 - [x] 파일 끝에 개행 추가
 - [x] 접근 제어자 변경
-- [ ] Height 를 rows 로 이동
+- [x] Height 를 rows 로 이동
 - [ ] static 메서드 제거
 - [ ] 재귀로 에러 핸들링 확인해보기
 - [ ] numberFormatException 검증 추가

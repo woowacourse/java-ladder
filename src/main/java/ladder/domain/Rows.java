@@ -10,12 +10,19 @@ public class Rows {
     private final List<Row> rows;
 
     public Rows(int height, int width) {
-        Height.validateHeight(height);
+        validateHeight(height);
         rows = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             rows.add(new Row(width));
         }
     }
+
+    private void validateHeight(int height) {
+        if (height <= 0) {
+            throw new IllegalArgumentException("높이는 0보다 커댜 합니다");
+        }
+    }
+
 
     public void generateLegsOfLines(Generator generator) {
         rows.forEach(row -> row.generateLeg(generator));
