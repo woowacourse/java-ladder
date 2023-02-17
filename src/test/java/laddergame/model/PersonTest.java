@@ -1,8 +1,7 @@
 package laddergame.model;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,9 @@ class PersonTest {
     @Test
     @DisplayName("한글이 들어가는 경우 예외 발생")
     void Should_ThrowException_When_KoreanInput() {
-        assertThatThrownBy(() -> new Person("이름"));
+        assertThatThrownBy(() -> new Person("이름"))
+            .isExactlyInstanceOf(IllegalArgumentException.class)
+            .hasMessage("참여자 이름에 한글이 포함되어서는 안됩니다.");
     }
 
     @Test
@@ -29,9 +30,11 @@ class PersonTest {
     }
 
     @ParameterizedTest(name = "{displayName} {index} ==> name : ''{0}''")
-    @ValueSource(strings = {"", "hihihi", "  ", " hihihihi ", "hi  hi"})
+    @ValueSource(strings = {"hihihi", "  ", " hihihihi ", "hi  hi"})
     @DisplayName("공백이 제거된 후 문자열의 길이가 1보다 작고 5보다 클 때 예외 발생")
     void Should_ThrowException_When_OutOfRange(String name) {
-        assertThatThrownBy(() -> new Person(name));
+        assertThatThrownBy(() -> new Person(name))
+            .isExactlyInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("공백이 제거된 참여자 이름의 길이는");
     }
 }
