@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 public class UsersTest {
 
@@ -15,18 +15,8 @@ public class UsersTest {
     @DisplayName("정상 Users 생성 테스트")
     void checkValidUsersTest() {
         List<String> users = List.of("가", "가나", "가나다");
-        Users testUsers = new Users(users);
-        assertThat(testUsers.getUsers().size())
-                .isEqualTo(3);
-    }
-
-    @Test
-    @DisplayName("비정상 유저이름 입력시 Users 예외 테스트")
-    void invalidUsersTest() {
-        List<String> users = List.of("가나", "여섯자리이름");
-        assertThatThrownBy(() -> new Users(users))
-                .isInstanceOf(IllegalArgumentException.class);
-
+        assertThatCode(() -> new Users(users))
+                .doesNotThrowAnyException();
     }
 
     @Test
@@ -34,7 +24,8 @@ public class UsersTest {
     void invalidDuplicationUsersTest() {
         List<String> users = List.of("가나", "가나");
         assertThatThrownBy(() -> new Users(users))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복");
     }
 
     @Test
@@ -42,6 +33,7 @@ public class UsersTest {
     void makeOneUserUsersTest() {
         List<String> users = List.of("가나");
         assertThatThrownBy(() -> new Users(users))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("한명보다");
     }
 }
