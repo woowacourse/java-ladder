@@ -1,7 +1,6 @@
 package domain;
 
 import util.RandomValueGenerator;
-import util.RandomValueGeneratorImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +15,8 @@ public class Line {
     private final List<Boolean> points = new ArrayList<>();
     private final RandomValueGenerator randomValueGenerator;
 
-    public Line(int personCount, RandomValueGeneratorImpl impl) {
-        this.randomValueGenerator = impl;
+    public Line(int personCount) {
+        this.randomValueGenerator = new RandomValueGenerator();
         calculatePoints(personCount);
     }
 

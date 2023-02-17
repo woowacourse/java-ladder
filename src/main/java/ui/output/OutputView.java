@@ -22,7 +22,7 @@ public class OutputView {
     }
 
     private static void printNames(Peoples peoples) {
-        Integer maxNameLength = getMaxNameLength(peoples);
+        int maxNameLength = getMaxNameLength(peoples);
         for (People people : peoples.getPeoples()) {
             calculateNameLength(maxNameLength, people.getName());
         }

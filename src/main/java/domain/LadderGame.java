@@ -1,7 +1,5 @@
 package domain;
 
-import util.RandomValueGeneratorImpl;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +19,9 @@ public class LadderGame {
     }
 
     public Lines createLines(int width, int height) {
-        RandomValueGeneratorImpl impl = new RandomValueGeneratorImpl();
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(width, impl));
+            lines.add(new Line(width));
         }
         return new Lines(lines);
     }
