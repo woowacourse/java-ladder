@@ -11,7 +11,7 @@ public class LineGenerator {
     public Line generate(final int personCount) {
         Deque<Link> line = new LinkedList<>();
         line.add(Link.from(secureRandom.nextBoolean()));
-        for (int index = 1; index < personCount; index++) {
+        for (int index = 1; index < personCount - 1; index++) {
             addValidateLink(line);
         }
         return new Line(List.copyOf(line));
