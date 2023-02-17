@@ -20,8 +20,8 @@ public class PlayerTest {
     @DisplayName("6글자 이상 입력될 경우 예외 발생")
     void errorAboutNameLimit() {
         String inputName = "abcdef";
-        assertThatThrownBy(() ->
-                new Player(inputName)).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> new Player(inputName))
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 사람 이름은 최대 5글자 입니다.");
     }
 }
