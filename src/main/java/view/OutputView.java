@@ -48,12 +48,15 @@ public class OutputView {
         List<Point> points = line.getPoints();
         StringBuilder result = new StringBuilder(LINE_START_FORMAT);
         for (Point point : points) {
-            if (point.isConnection()) {
-                result.append(FORMATTED_DASH + DIVIDER);
-                continue;
-            }
-            result.append(FORMATTED_BLANK + DIVIDER);
+            result.append(toFormattedStatus(point));
         }
         System.out.println(result);
+    }
+
+    private static String toFormattedStatus(Point point) {
+        if (point.isConnection()) {
+            return FORMATTED_DASH + DIVIDER;
+        }
+        return FORMATTED_BLANK + DIVIDER;
     }
 }
