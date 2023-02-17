@@ -8,22 +8,11 @@ public class InputView {
     private static final InputView instance = new InputView();
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static InputView getInstance() {
-        return instance;
-    }
-
     private InputView() {
     }
 
-    public Names readNames() {
-        String input = readInput(Message.INPUT_NAMES.message);
-        return new Names(input);
-    }
-
-    public Height readHeight() {
-        String input = readInput(Message.INPUT_LADDER_SIZE.message);
-        return new Height(parseHeight(input));
-
+    public static InputView getInstance() {
+        return instance;
     }
 
     private static int parseHeight(String input) {
@@ -37,6 +26,17 @@ public class InputView {
     private static String readInput(String message) {
         System.out.println(message);
         return scanner.nextLine();
+    }
+
+    public Names readNames() {
+        String input = readInput(Message.INPUT_NAMES.message);
+        return new Names(input);
+    }
+
+    public Height readHeight() {
+        String input = readInput(Message.INPUT_LADDER_SIZE.message);
+        return new Height(parseHeight(input));
+
     }
 
     private enum Message {
