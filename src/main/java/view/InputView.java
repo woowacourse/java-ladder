@@ -10,7 +10,7 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
         String playerNames = input();
-        isBlank(playerNames);
+        validateBlank(playerNames);
 
         return playerNames;
     }
@@ -19,19 +19,19 @@ public class InputView {
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
 
         String height = input();
-        isBlank(height);
-        isDigit(height);
+        validateBlank(height);
+        validateDigit(height);
 
         return Integer.parseInt(height);
     }
 
-    private static void isBlank(String input) {
+    private static void validateBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없습니다.");
         }
     }
 
-    private static void isDigit(String height) {
+    private static void validateDigit(String height) {
         boolean isDigit = height.chars()
                 .allMatch(Character::isDigit);
         if (!isDigit) {
