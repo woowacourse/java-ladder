@@ -20,7 +20,7 @@ class LineTest {
         @Test
         @DisplayName(" 있는 디딤돌이면 지금 다리는 디딤돌이 생성되는 것이 허용되지 않는다.")
         void givenCrossablePreviousFootstep_thenUncrossableCurrentFootStep() {
-            Line line = new Line(new FixBooleanGenerator(true));
+            Line line = Line.of(new FixBooleanGenerator(true));
 
             line.generateFootStep();
             line.generateFootStep();
@@ -31,7 +31,7 @@ class LineTest {
         @ParameterizedTest(name = " 없는 디딤돌이면 지금 다리는 디딤돌이 생성되는 것이 허용된다.")
         @ValueSource(booleans = {true, false})
         void givenUnCrossablePreviousFootstep_thenNotUncrossableCurrentFootStep(boolean value) {
-            Line line = new Line(new FixBooleanGenerator(false, value));
+            Line line = Line.of(new FixBooleanGenerator(false, value));
 
             line.generateFootStep();
             line.generateFootStep();
@@ -48,7 +48,7 @@ class LineTest {
         void crossableFootStepCase(String condition, boolean value) {
             BooleanGenerator trueGenerator = new FixBooleanGenerator(value);
 
-            Line line = new Line(trueGenerator);
+            Line line = Line.of(trueGenerator);
             line.generateFootStep();
 
             assertThat(line.isSteppableAt(0))

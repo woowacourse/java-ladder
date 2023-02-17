@@ -14,8 +14,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class NamesTest {
 
     private Names getNamesInstance(String... names) {
-        return new Names(Stream.of(names)
-                .map(Name::new)
+        return Names.of(Stream.of(names)
+                .map(Name::of)
                 .collect(Collectors.toList()));
     }
 

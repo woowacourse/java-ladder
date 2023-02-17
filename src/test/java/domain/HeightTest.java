@@ -16,7 +16,7 @@ class HeightTest {
         @DisplayName("정상적인 높이면 허용한다.")
         @ValueSource(ints = {2, 3, 4, 5, 6, 7, 8, 9, 10})
         void givenValidHeight_thenSuccess(final int height) {
-            assertThatCode(() -> new Height(height))
+            assertThatCode(() -> Height.of(height))
                     .doesNotThrowAnyException();
         }
 
@@ -24,7 +24,7 @@ class HeightTest {
         @DisplayName("비정상적인 높이면 익셉션을 발생한다.")
         @ValueSource(ints = {0, 1, 11, 12})
         void givenInValidHeight_thenThrowException(final int height) {
-            assertThatThrownBy(() -> new Height(height))
+            assertThatThrownBy(() -> Height.of(height))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("사다리 길이는 2에서 10사이여야 합니다.");
         }

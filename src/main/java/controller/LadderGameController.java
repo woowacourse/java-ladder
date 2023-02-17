@@ -26,7 +26,7 @@ public class LadderGameController {
     }
 
     private Ladder buildLadder(final Names names, final Height height) {
-        Ladder ladder = new Ladder(booleanGenerator);
+        Ladder ladder = Ladder.of(booleanGenerator);
         ladder.build(height, names.count());
         return ladder;
     }
@@ -38,7 +38,7 @@ public class LadderGameController {
     private Names getNames() {
         try {
             OutputView.printRequestNames();
-            return new Names(Name.of(InputView.getNames()));
+            return Names.of(Name.ofMultiple(InputView.getNames()));
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getNames();
@@ -48,7 +48,7 @@ public class LadderGameController {
     private Height getHeight() {
         try {
             OutputView.printRequestLadderHeight();
-            return new Height(InputView.getHeight());
+            return Height.of(InputView.getHeight());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getHeight();

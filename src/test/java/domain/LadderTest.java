@@ -26,27 +26,27 @@ class LadderTest {
 
             @BeforeEach
             void setUp() {
-                ladder = new Ladder(new FixBooleanGenerator(true, false, false, false, true, false));
+                ladder = Ladder.of(new FixBooleanGenerator(true, false, false, false, true, false));
             }
 
             @Test
             @DisplayName(" 주어진 사람 수만큼 다리의 폭이 생성된다.")
             void givenThree_thenGenerateThreeWidth() {
-                ladder.build(new Height(2), 3);
+                ladder.build(Height.of(2), 3);
                 assertThat(ladder.getWidth()).isEqualTo(2);
             }
 
             @Test
             @DisplayName(" 주어진 다리 높이만큼 다리가 생성된다.")
             void givenThreeHeight_thenGenerateThreeHeight() {
-                ladder.build(new Height(3), 2);
+                ladder.build(Height.of(3), 2);
                 assertThat(ladder.getLineHeight()).isEqualTo(3);
             }
 
             @Test
             @DisplayName(" 주어진 정보에 맞는 개수의 디딤돌이 생성된다.")
             void givenInformation_thenGenerateLadder() {
-                ladder.build(new Height(3), 2);
+                ladder.build(Height.of(3), 2);
                 assertThat(getLadderArea()).isEqualTo(3);
             }
 

@@ -11,8 +11,12 @@ public class Ladder {
     private final List<Line> lines = new ArrayList<>();
     private final BooleanGenerator booleanGenerator;
 
-    public Ladder(final BooleanGenerator booleanGenerator) {
+    private Ladder(final BooleanGenerator booleanGenerator) {
         this.booleanGenerator = booleanGenerator;
+    }
+
+    public static Ladder of(final BooleanGenerator booleanGenerator) {
+        return new Ladder(booleanGenerator);
     }
 
     public int getLineHeight() {
@@ -24,13 +28,8 @@ public class Ladder {
     }
 
     private void generateLines(final Height height, final int width, BooleanGenerator booleanGenerator) {
-//        for (int currentHeight = 0; currentHeight < height; currentHeight++) {
-//            Line currentLine = new Line(booleanGenerator);
-//            generateFootsteps(width, currentLine);
-//            this.lines.add(currentLine);
-//        }
         while(height.isNotBottom()){
-            Line currentLine = new Line(booleanGenerator);
+            Line currentLine = Line.of(booleanGenerator);
             generateFootsteps(width, currentLine);
             this.lines.add(currentLine);
         }

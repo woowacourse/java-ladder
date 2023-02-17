@@ -14,9 +14,13 @@ public class Names {
 
     private final List<Name> names;
 
-    public Names(final List<Name> names) {
-        validateNames(names);
+    private Names(final List<Name> names) {
         this.names = names;
+    }
+
+    public static Names of(final List<Name> names) {
+        validateNames(names);
+        return new Names(names);
     }
 
     private static void validateNames(final List<Name> names) {

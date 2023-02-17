@@ -9,9 +9,13 @@ public class Height {
     private final int targetHeight;
     private int currentHeight = 0;
 
-    public Height(final int height){
-        validateLadderHeight(height);
+    private Height(final int height){
         this.targetHeight = height;
+    }
+
+    public static Height of(final int height){
+        validateLadderHeight(height);
+        return new Height(height);
     }
 
     private static void validateLadderHeight(final int height) {

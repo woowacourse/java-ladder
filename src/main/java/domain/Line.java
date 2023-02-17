@@ -12,8 +12,12 @@ public class Line {
     private final List<FootStep> footSteps = new ArrayList<>();
     private final BooleanGenerator generator;
 
-    public Line(final BooleanGenerator generator) {
+    private Line(final BooleanGenerator generator) {
         this.generator = generator;
+    }
+
+    public static Line of(final BooleanGenerator generator) {
+        return new Line(generator);
     }
 
     public boolean isSteppableAt(final int index) {
@@ -37,10 +41,10 @@ public class Line {
 
     private void addFootStep(final boolean isPreviousFootStepSteppable) {
         if (isPreviousFootStepSteppable) {
-            this.footSteps.add(new FootStep(false));
+            this.footSteps.add(FootStep.of(false));
             return;
         }
-        this.footSteps.add(new FootStep(generator.generate()));
+        this.footSteps.add(FootStep.of(generator.generate()));
     }
 
     private boolean isStartEdge() {

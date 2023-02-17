@@ -11,17 +11,21 @@ public class Name {
     public static final String LENGTH_BLACK_ERROR_MESSAGE = "한글자 이상 입력해주세요.";
     private final String name;
 
-    public Name(final String name) {
-        validateName(name);
+    private Name(final String name) {
         this.name = name;
     }
 
-    public static List<Name> of(final List<String> names) {
+    public static Name of(final String name) {
+        validateName(name);
+        return new Name(name);
+    }
+
+    public static List<Name> ofMultiple(final List<String> names) {
         return names.stream().map(Name::new)
                 .collect(Collectors.toList());
     }
 
-    private void validateName(final String name) {
+    private static void validateName(final String name) {
         validateBlank(name);
         validateMaxLength(name);
     }
