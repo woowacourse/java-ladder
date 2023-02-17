@@ -7,7 +7,7 @@ public class Person {
     private final static int MAX_NAME_LENGTH = 5;
     private final static String ERROR_NAME_IS_KOREAN = "참여자 이름에 한글이 포함되어서는 안됩니다.";
     private final static String ERROR_NAME_OUT_OF_LENGTH =
-            "공백이 제거된 참여자 이름의 길이는 " + MIN_NAME_LENGTH + "보다 크고 " + MAX_NAME_LENGTH + "보다 작아야 합니다.";
+        "공백이 제거된 참여자 이름의 길이는 " + MIN_NAME_LENGTH + "보다 크고 " + MAX_NAME_LENGTH + "보다 작아야 합니다.";
 
     private final String name;
 
@@ -25,7 +25,8 @@ public class Person {
     }
 
     private static void validateTrimLength(String name) {
-        if (name.trim().length() < MIN_NAME_LENGTH || name.trim().length() > MAX_NAME_LENGTH) {
+        int nameLength = name.trim().length();
+        if (nameLength < MIN_NAME_LENGTH || nameLength > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(ERROR_NAME_OUT_OF_LENGTH);
         }
     }
