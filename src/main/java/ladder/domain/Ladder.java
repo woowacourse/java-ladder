@@ -1,8 +1,8 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.function.BinaryOperator;
 
 public class Ladder {
 
@@ -43,9 +43,6 @@ public class Ladder {
         return values;
     }
 
-    public List<Floor> getFloors() {
-        return floors;
-    }
 
     private void validateSize(int size) {
 
@@ -54,4 +51,7 @@ public class Ladder {
         }
     }
 
+    public List<Floor> getFloors() {
+        return Collections.unmodifiableList(floors);
+    }
 }
