@@ -1,24 +1,24 @@
 package domain;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 public class LineGenerator {
     private final SecureRandom secureRandom = new SecureRandom();
 
     public Line generate(final int personCount) {
-        final List<Link> line = new ArrayList<>();
-        Link previousLink = Link.UNLINKED;
-        for (int i = 0; i < personCount; i++) {
-            addValidatedLink(line, previousLink);
-            previousLink = line.get(i);
+        Deque<Link> line = new LinkedList<>();
+        line.add(Link.from(secureRandom.nextBoolean()));
+        for (int index = 1; index < personCount; index++) {
+            addValidateLink(line);
         }
-        return new Line(line);
+        return new Line(List.copyOf(line));
     }
 
-    private void addValidatedLink(final List<Link> line, final Link previousLink) {
-        if (previousLink.isLink()) {
+    private void addValidateLink(final Deque<Link> line) {
+        if (line.getLast() == Link.LINKED) {
             line.add(Link.UNLINKED);
             return;
         }
