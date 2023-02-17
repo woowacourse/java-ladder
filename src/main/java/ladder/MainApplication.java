@@ -16,16 +16,6 @@ public class MainApplication {
         OutputView.printResult(users, ladder);
     }
 
-    private static Ladder inputLadder(Users users) {
-
-        try {
-            return new Ladder(InputView.inputFloorHeight(), users);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputLadder(users);
-        }
-    }
-
     private static Users inputUsers() {
 
         try {
@@ -33,6 +23,16 @@ public class MainApplication {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputUsers();
+        }
+    }
+
+    private static Ladder inputLadder(Users users) {
+
+        try {
+            return new Ladder(InputView.inputFloorHeight(), users);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputLadder(users);
         }
     }
 }
