@@ -26,20 +26,18 @@ public class Persons {
                 .count();
     }
 
-    public List<String> getAllPersonNames() {
-        return persons.stream()
-                .map(Person::getName)
-                .collect(Collectors.toList());
-    }
-
     public int getLongestPersonNameLength() {
-        List<Integer> namesLength = getAllPersonNames().stream()
-                .map(String::length)
+        List<Integer> namesLength = persons.stream()
+                .map(person -> person.getName().length())
                 .collect(Collectors.toList());
         return Collections.max(namesLength);
     }
 
     public int getTotalPersonCount() {
         return persons.size();
+    }
+
+    public List<Person> getPersons() {
+        return persons;
     }
 }

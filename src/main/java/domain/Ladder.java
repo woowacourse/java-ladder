@@ -2,7 +2,6 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import util.BooleanGenerator;
 
 public class Ladder {
@@ -25,9 +24,7 @@ public class Ladder {
         return lines.size();
     }
 
-    public List<List<Boolean>> getStatus() {
-        return lines.stream()
-                .map(Line::getBridges)
-                .collect(Collectors.toList());
+    public List<Line> getLines() {
+        return lines;
     }
 }
