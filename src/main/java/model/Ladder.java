@@ -7,15 +7,19 @@ import java.util.List;
 
 public class Ladder {
 
-    private final List<Line> ladderLine = new ArrayList<>();
+    private final List<Line> ladder = new ArrayList<>();
 
-    public Ladder(Names names, LadderHeight height) {
+    public Ladder(int personCount, LadderHeight height) {
         for (int index = 0; index < height.getLadderHeight(); index++) {
-            this.ladderLine.add(new Line(names.getNames().size(), new LineGenerator()));
+            this.ladder.add(makeLadderLine(personCount));
         }
     }
 
+    private Line makeLadderLine(int personCount) {
+        return new Line(personCount, new LineGenerator());
+    }
+
     public Line getLadder(int row) {
-        return ladderLine.get(row);
+        return ladder.get(row);
     }
 }

@@ -17,4 +17,7 @@ public class Names {
         return Collections.unmodifiableList(Names);
     }
 
+    public int getNamesSize() {
+        return Names.size();
+    }
 }

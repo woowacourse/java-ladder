@@ -19,7 +19,7 @@ public class Controller {
     public void run() {
         Names names = setNames();
         LadderHeight ladderHeight = setLadderHeight();
-        Ladder ladder = new Ladder(names, ladderHeight);
+        Ladder ladder = new Ladder(names.getNamesSize(), ladderHeight);
         outputView.printResultMessage();
         outputView.printName(names);
         outputView.printLadder(names, ladder, ladderHeight);
@@ -44,4 +44,5 @@ public class Controller {
             return setLadderHeight();
         }
     }
+
 }
