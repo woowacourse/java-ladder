@@ -1,10 +1,10 @@
 package generator;
 
-import domain.Bridge;
-import domain.Line;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import domain.Bridge;
+import domain.Line;
 
 public class LineGenerator {
 
@@ -16,23 +16,19 @@ public class LineGenerator {
 
     public Line generate(final int personCount) {
         List<Bridge> newBridges = new ArrayList<>();
+        Bridge lastBridge = Bridge.EMPTY;
         for (int i = 0; i < personCount - 1; i++) {
-            newBridges.add(getNextBridge(newBridges));
+            Bridge nextBridge = getNextBridgeAfter(lastBridge);
+            newBridges.add(nextBridge);
+            lastBridge = nextBridge;
         }
         return new Line(newBridges);
     }
 
-    private Bridge getNextBridge(final List<Bridge> bridges) {
-        if (hasLeftBridge(bridges)) {
+    private Bridge getNextBridgeAfter(final Bridge lastBridge) {
+        if (lastBridge == Bridge.EXIST) {
             return Bridge.EMPTY;
         }
         return bridgeGenerator.generate();
-    }
-
-    private static boolean hasLeftBridge(final List<Bridge> bridges) {
-        if (bridges.isEmpty()) {
-            return false;
-        }
-        return bridges.get(bridges.size() - 1) == Bridge.EXIST;
     }
 }
