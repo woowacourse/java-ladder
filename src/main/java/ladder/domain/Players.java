@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
+    private static final int MIN_PLAYER_COUNT = 2;
     private final List<Player> players;
 
     public Players(List<String> names) {
@@ -25,7 +26,7 @@ public class Players {
     }
 
     private void validateTooLessPlayer(List<String> names) {
-        if (names.size() < 2) {
+        if (names.size() < MIN_PLAYER_COUNT) {
             throw new IllegalArgumentException("플레이어는 2명 이상이어야 합니다.");
         }
     }
