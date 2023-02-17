@@ -25,9 +25,7 @@ public class PlayersTest {
     @Test
     @DisplayName("모든 조건을 충족한 경우 Players 객체가 생성된다.")
     void playersInitiatorTest() {
-        List<Player> players = createPlayersByNames(correctPlayerNames);
-
-        assertDoesNotThrow(() -> new Players(players));
+        assertDoesNotThrow(() -> Players.create(correctPlayerNames));
     }
 
     @Test
@@ -35,9 +33,7 @@ public class PlayersTest {
     void validateDuplicatedName() {
         List<String> playerNames = List.of("pobi", "pobi", "crong");
 
-        List<Player> duplicatedPlayers = createPlayersByNames(playerNames);
-
-        assertThatThrownBy(() -> new Players(duplicatedPlayers))
+        assertThatThrownBy(() -> Players.create(playerNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -50,9 +46,7 @@ public class PlayersTest {
         void validateOnePlayer() {
             List<String> playerNames = List.of("pobi");
 
-            List<Player> onePlayer = createPlayersByNames(playerNames);
-
-            assertThatThrownBy(() -> new Players(onePlayer))
+            assertThatThrownBy(() -> Players.create(playerNames))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -61,9 +55,7 @@ public class PlayersTest {
         void validateZeroPlayer() {
             List<String> playerNames = Collections.emptyList();
 
-            List<Player> zeroPlayer = createPlayersByNames(playerNames);
-
-            assertThatThrownBy(() -> new Players(zeroPlayer))
+            assertThatThrownBy(() -> Players.create(playerNames))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -71,16 +63,12 @@ public class PlayersTest {
     @Test
     @DisplayName("플레이어의 수 반환 테스트")
     void getCountTest() {
-        List<Player> players = createPlayersByNames(correctPlayerNames);
-
-        assertThat(new Players(players).count()).isEqualTo(correctPlayerNames.size());
+        assertThat(Players.create(correctPlayerNames).count()).isEqualTo(correctPlayerNames.size());
     }
 
     @Test
     @DisplayName("플레이어 이름 리스트 반환 테스트")
     void getNameTest() {
-        List<Player> players = createPlayersByNames(correctPlayerNames);
-
-        assertThat(new Players(players).getNames()).isEqualTo(correctPlayerNames);
+        assertThat(Players.create(correctPlayerNames).getNames()).isEqualTo(correctPlayerNames);
     }
 }
