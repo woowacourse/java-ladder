@@ -33,7 +33,7 @@ public class OutputView {
         printLadder(ladder, names);
     }
 
-    public static void printNames(final Names names) {
+    private static void printNames(final Names names) {
         List<String> nameValues = names.getNames()
                 .stream()
                 .map(Name::getValue)
