@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class LadderTest {
     private final int heightOfLadder = 5;
     private final int playerCount = 5;
@@ -14,13 +16,15 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 생성을 테스트")
     void ladderInitiatorTest() {
-        List<Line> lines = new ArrayList<>();
+        Assertions.assertDoesNotThrow(() -> Ladder.create(playerCount, heightOfLadder));
+    }
 
-        for (int i = 0; i < heightOfLadder; i++) {
-            List<Bar> bars = LineMaker.generate(playerCount, new MockRandomDataGenerator());
-            lines.add(new Line(bars));
-        }
+    @Test
+    @DisplayName("사다리 사이즈 getterTest")
+    void ladderGetValueTest() {
+        Ladder ladder = Ladder.create(playerCount, heightOfLadder);
 
-        Assertions.assertDoesNotThrow(() -> new Ladder(lines));
+        assertThat(ladder.getLadder().size()).isEqualTo(heightOfLadder);
     }
 }
+
