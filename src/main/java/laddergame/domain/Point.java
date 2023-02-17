@@ -5,15 +5,13 @@ import laddergame.constant.ErrorMessage;
 import java.util.Arrays;
 
 public enum Point {
-    CONNECT(true, "-"),
-    DISCONNECT(false, " ");
+    CONNECT(true),
+    DISCONNECT(false);
 
     private final boolean isConnected;
-    private final String displayFormat;
 
-    Point(boolean isConnected, String displayFormat) {
+    Point(boolean isConnected) {
         this.isConnected = isConnected;
-        this.displayFormat = displayFormat;
     }
 
     public static Point findByConnectedCondition(boolean condition) {
@@ -23,7 +21,7 @@ public enum Point {
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_VALID_ARGUMENT.getMessage()));
     }
 
-    public String getDisplayFormat(int length) {
-        return displayFormat.repeat(length);
+    public boolean isConnected() {
+        return isConnected;
     }
 }
