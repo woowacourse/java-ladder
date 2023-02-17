@@ -29,13 +29,13 @@ public class OutputView {
     private void printLadder(Ladder ladder, int lengthOfFirstName) {
         for (Line line : ladder) {
             String result = BLANK.repeat(lengthOfFirstName - 1);
-            result += getShapeOf(line);
+            result += shapeOf(line);
             result += LEG;
             System.out.println(result);
         }
     }
 
-    private String getShapeOf(Line line) {
+    private String shapeOf(Line line) {
         return line.getLine()
             .stream()
             .map(LadderFormat::getComponent)
