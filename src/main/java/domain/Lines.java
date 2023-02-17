@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import domain.generator.RandomFootholdGenerator;
@@ -32,6 +33,6 @@ public class Lines {
     }
 
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(this.lines);
     }
 }

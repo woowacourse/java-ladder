@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import domain.generator.FootholdGenerator;
@@ -54,6 +55,6 @@ public class Line {
     }
 
     public List<Boolean> getFootholds() {
-        return footholds;
+        return Collections.unmodifiableList(this.footholds);
     }
 }
