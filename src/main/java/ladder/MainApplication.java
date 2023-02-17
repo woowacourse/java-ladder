@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.Ladder;
-import ladder.domain.RandomLineGenerator;
+import ladder.domain.generator.RandomLineGenerator;
 import ladder.domain.Users;
 import ladder.view.InputView;
 import ladder.view.OutputView;

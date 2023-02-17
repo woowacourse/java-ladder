@@ -1,6 +1,7 @@
 package ladder.domain;
 
-import java.util.ArrayList;
+import ladder.domain.generator.LineGenerator;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,8 +20,23 @@ public class Ladder {
         validateSize(height);
         int width = calculateWidth(users);
 
-        this.floors = Stream.generate(
-                () -> new Floor(generateValues(lineGenerator, width))
+        this.floors = generateFloors(height, lineGenerator, width);
+    }
+
+    private void validateSize(int height) {
+
+        if (height < MINIMUM_HEIGHT) {
+            throw new IllegalArgumentException(LADDER_SIZE_ERROR_MESSAGE);
+        }
+    }
+
+    private int calculateWidth(Users users) {
+        return users.getUsers().size() - DIFFERENCE_BETWEEN_FLOOR_AND_USERS;
+    }
+
+    private List<Floor> generateFloors(int height, LineGenerator lineGenerator, int width) {
+        return Stream.generate(
+                        () -> new Floor(generateValues(lineGenerator, width))
                 )
                 .limit(height)
                 .collect(Collectors.toList());
@@ -30,17 +46,6 @@ public class Ladder {
         return Stream.generate(lineGenerator::generate)
                 .limit(width)
                 .collect(Collectors.toList());
-    }
-
-    private int calculateWidth(Users users) {
-        return users.getUsers().size() - DIFFERENCE_BETWEEN_FLOOR_AND_USERS;
-    }
-
-    private void validateSize(int height) {
-
-        if (height < MINIMUM_HEIGHT) {
-            throw new IllegalArgumentException(LADDER_SIZE_ERROR_MESSAGE);
-        }
     }
 
     public List<Floor> getFloors() {

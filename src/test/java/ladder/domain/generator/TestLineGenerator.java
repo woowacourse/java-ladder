@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.generator;
+
+import ladder.domain.generator.LineGenerator;
 
 import java.util.List;
 

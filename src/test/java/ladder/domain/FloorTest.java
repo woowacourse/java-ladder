@@ -18,11 +18,9 @@ public class FloorTest {
 
         Floor floor = new Floor(list);
 
-
         assertThat(floor.getPoints())
                 .containsExactly(true, false, true);
     }
-
 
     @Test
     @DisplayName("같은 층에서 Point.FILLED가 연속해서 생기지 않는다.")
@@ -31,7 +29,6 @@ public class FloorTest {
         List<Boolean> list = new ArrayList<>(List.of(true, true, true));
 
         Floor floor = new Floor(list);
-
 
         assertThat(floor.getPoints())
                 .containsExactly(true, false, true);

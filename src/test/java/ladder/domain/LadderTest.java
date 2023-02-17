@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.domain.generator.LineGenerator;
+import ladder.domain.generator.RandomLineGenerator;
+import ladder.domain.generator.TestLineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -70,7 +73,6 @@ public class LadderTest {
 
         assertThat(ladder.getFloors().get(1).getPoints())
                 .containsExactlyElementsOf(List.of(true, false, true));
-
 
     }
 
