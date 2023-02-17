@@ -2,7 +2,8 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import utils.RandomFootholdGenerator;
+
+import domain.generator.RandomFootholdGenerator;
 
 public class Lines {
 

@@ -1,4 +1,4 @@
-package utils;
+package domain.generator;
 
 public interface FootholdGenerator {
 

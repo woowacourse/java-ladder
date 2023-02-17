@@ -1,6 +1,4 @@
-package util;
-
-import utils.FootholdGenerator;
+package domain.generator;
 
 public class ExistFootholdGenerator implements FootholdGenerator {
 

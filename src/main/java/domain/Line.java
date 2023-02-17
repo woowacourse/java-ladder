@@ -2,7 +2,8 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import utils.FootholdGenerator;
+
+import domain.generator.FootholdGenerator;
 
 public class Line {
 

@@ -4,10 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import util.ExistFootholdGenerator;
-import util.NonExistFootholdGenerator;
-import utils.FootholdGenerator;
-import utils.RandomFootholdGenerator;
+
+import domain.generator.ExistFootholdGenerator;
+import domain.generator.FootholdGenerator;
+import domain.generator.NonExistFootholdGenerator;
+import domain.generator.RandomFootholdGenerator;
 
 public class LineTest {
     FootholdGenerator randomFootholdGenerator = new RandomFootholdGenerator();
