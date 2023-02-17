@@ -23,7 +23,9 @@ public class LadderEngine {
 
     public void start() {
 
-        People people = convertNamesToPeople(InputView.inputName());
+        People people = IllegalArgumentExceptionHandler.handleExceptionByRepeating(
+                () -> convertNamesToPeople(InputView.inputName())
+        );
 
         Ladder ladder = IllegalArgumentExceptionHandler.handleExceptionByRepeating(
                 () -> {
