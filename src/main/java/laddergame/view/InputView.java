@@ -19,6 +19,10 @@ public class InputView {
         }
     }
 
+    public void printErrorMsg(String errorMessage) {
+        System.out.println(ERROR_PREFIX + errorMessage);
+    }
+
     public List<String> readPersonNames() {
         System.out.println(READ_PERSON_NAMES_MSG);
         String input = scanner.nextLine();
