@@ -21,19 +21,19 @@ public class Names {
                 .collect(Collectors.toList());
     }
 
-    private static void validateNames(String names) {
+    private void validateNames(String names) {
         //todo 형식1 : 형식2 와 비교했을 때, 어떤 메서드가 더 적절한 것 같나요?
         validateNull(names);
         validateFormat(names);
     }
 
-    private static void validateFormat(String names) {
+    private void validateFormat(String names) {
         if (!NAMES_FORMAT.matcher(names).matches()) {
             throw new IllegalArgumentException("이름이 형식과 맞지 않습니다");
         }
     }
 
-    private static void validateNull(String names) {
+    private void validateNull(String names) {
         if (names == null) {
             throw new IllegalArgumentException("이름이 null 입니다");
         }
