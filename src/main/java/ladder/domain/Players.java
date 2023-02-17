@@ -34,7 +34,6 @@ public class Players {
     public List<String> getPlayerNames() {
         return players.stream()
                 .map(Player::getName)
-                .map(Name::getName)
                 .collect(Collectors.toList());
     }
 

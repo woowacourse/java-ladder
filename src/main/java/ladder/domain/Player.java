@@ -9,8 +9,8 @@ public class Player {
         this.position = new StartPoint(startPoint);
     }
 
-    public Name getName() {
-        return name;
+    public String getName() {
+        return name.getName();
     }
 
     public int getNameLength() {
