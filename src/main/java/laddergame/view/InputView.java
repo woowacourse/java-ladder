@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
     private static final String SPLIT_DELIMITER = ",";
     private static final String NATURAL_NUMBER_REGEX = "^[1-9]+[0-9]*$";
 
     public static List<String> inputPlayerNames() {
-        String playerNames = scanner.nextLine();
+        String playerNames = SCANNER.nextLine();
         validateBlankInput(playerNames);
         return Arrays.asList(playerNames.split(SPLIT_DELIMITER));
     }
@@ -24,7 +24,7 @@ public class InputView {
     }
 
     public static int inputLadderHeight() {
-        String ladderHeight = scanner.nextLine();
+        String ladderHeight = SCANNER.nextLine();
         validateNaturalNumber(ladderHeight);
         return Integer.parseInt(ladderHeight);
     }
