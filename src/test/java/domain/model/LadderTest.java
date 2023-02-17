@@ -14,6 +14,6 @@ public class LadderTest {
         final Height height = new Height(5);
         final Width width = new Width(4);
         Ladder ladder = new Ladder(height, width);
-        assertThat(ladder.getHeight().get()).isEqualTo(5);
+        assertThat(ladder.getHeightInt()).isEqualTo(5);
     }
 }

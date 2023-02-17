@@ -21,12 +21,12 @@ public class Ladder {
         return this.layers;
     }
 
-    public Height getHeight() {
-        return this.height;
+    public int getHeightInt() {
+        return this.height.get();
     }
 
-    public Width getLineCount() {
-        return this.width;
+    public int getLineCountInt() {
+        return this.width.get();
     }
 
     public void addLayer(Layer layer) {
