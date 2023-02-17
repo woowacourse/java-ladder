@@ -1,12 +1,13 @@
 package laddergame.view;
 
 import java.util.List;
+
 import laddergame.model.Ladder;
 import laddergame.model.Persons;
 
 public class OutputView {
-    private final static String RESULT_MSG = "실행결과";
-    private final static String VERTICAL_LINE = "|";
+    private static final String RESULT_MSG = "실행결과";
+    private static final String VERTICAL_LINE = "|";
 
     public void printResult(Ladder ladder, Persons persons) {
         System.out.println(RESULT_MSG);
