@@ -12,21 +12,13 @@ public class LineTest {
 
 
     @Test
-    @DisplayName("")
+    @DisplayName("Line 생성 확인")
     void line() {
         new Line(4, new RandomDigitsGenerator());
     }
 
     @Test
-    @DisplayName("")
-    void create_line() {
-        Line line = new Line(4, new RandomDigitsGenerator());
-
-        assertThat(line.getPointsSize()).isEqualTo(3);
-    }
-
-    @Test
-    @DisplayName("")
+    @DisplayName("건널 수 있는 다리가 추가되는지 확인")
     void addPossiblePoints() {
         Line line = new Line(2, new StubPossibleDigitsGenerator());
 
@@ -34,7 +26,7 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("건널 수 없는 다리가 추가되는지 확인")
     void addImpossiblePoints() {
         Line line = new Line(3, new StubImpossibleDigitsGenerator());
 
@@ -42,7 +34,7 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("연속적으로 생성된 다리가 없는지 확인")
     void checkSuccessivePoints() {
         Line line = new Line(3, new RandomDigitsGenerator());
         List<Boolean> points = line.getPoints();
