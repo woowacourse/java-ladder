@@ -4,7 +4,6 @@ import java.util.List;
 
 import ladder.domain.Height;
 import ladder.domain.Ladder;
-import ladder.domain.Line;
 import ladder.domain.Names;
 import ladder.util.BooleanGenerator;
 import ladder.view.InputView;
@@ -14,48 +13,48 @@ public class LadderController {
     private final InputView inputView;
     private final OutputView outputView;
     private final BooleanGenerator generator;
-    private final Ladder ladder;
-    private Names names;
-    private Height height;
 
     public LadderController(BooleanGenerator generator) {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.generator = generator;
-        this.ladder = new Ladder();
     }
 
     public void execute() {
-        createNames();
-        createHeight();
+        Names names = createNames();
+        Height height = createHeight();
 
-        createLadder(names.size());
+        assert names != null;
+        assert height != null;
+        Ladder ladder = createLadder(names, height);
 
         outputView.printResult(names, ladder);
     }
 
-    private void createNames() {
+    private Names createNames() {
+        Names names = null;
         try {
-            this.names = new Names(readNames());
+            names = new Names(readNames());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             createNames();
         }
+        return names;
     }
 
-    private void createHeight() {
+    private Height createHeight() {
+        Height height = null;
         try {
-            this.height = new Height(readLadderHeight());
+            height = new Height(readLadderHeight());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             createHeight();
         }
+        return height;
     }
 
-    private void createLadder(int personCount) {
-        for (int i = 0; i < height.getHeight(); i++) {
-            ladder.addLine(new Line(personCount, generator));
-        }
+    private Ladder createLadder(Names names, Height height) {
+        return new Ladder(names.size(), height.getHeight(), generator);
     }
 
     private List<String> readNames() {
