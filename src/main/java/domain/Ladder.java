@@ -24,6 +24,7 @@ public class Ladder {
     public int calculateTotalHeight() {
         return lines.size();
     }
+
     public List<List<Boolean>> getStatus() {
         return lines.stream()
                 .map(Line::getBridges)
