@@ -9,11 +9,19 @@ public class Players {
     private static final int MINIMUM_COUNT_OF_PLAYERS = 2;
     private final List<Player> players;
 
-    public Players(List<Player> players) {
+    private Players(List<Player> players) {
         validateDuplicatedNames(players);
         validateCountOfPlayers(players);
 
         this.players = new ArrayList<>(players);
+    }
+
+    public static Players create(List<String> playerNames) {
+        List<Player> players =  playerNames.stream()
+                .map(playerName -> new Player(new Name(playerName)))
+                .collect(Collectors.toList());
+
+        return new Players(players);
     }
 
     public int count() {

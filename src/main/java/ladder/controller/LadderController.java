@@ -5,8 +5,6 @@ import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.LineMaker;
-import ladder.domain.Name;
-import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.domain.RandomGenerator;
 import ladder.view.InputView;
@@ -14,7 +12,6 @@ import ladder.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderController {
 
@@ -33,7 +30,6 @@ public class LadderController {
     public void run() {
         Players players = createPlayersUntilNoException();
         Height heightOfLadder = decideHeightOfLadderUntilNoException();
-
         Ladder ladder = createLadder(players, heightOfLadder);
 
         resultView.printLadder(players, ladder);
@@ -41,7 +37,6 @@ public class LadderController {
 
     private Players createPlayersUntilNoException() {
         Players players = null;
-
         while (players == null) {
             players = createPlayers();
         }
@@ -51,19 +46,11 @@ public class LadderController {
     private Players createPlayers() {
         try {
             List<String> inputNames = inputView.inputPlayerNames();
-            List<Player> inputPlayers = createPlayersByName(inputNames);
-            return new Players(inputPlayers);
-
+            return Players.create(inputNames);
         } catch (IllegalArgumentException e) {
             resultView.printError(e.getMessage());
             return null;
         }
-    }
-
-    private List<Player> createPlayersByName(List<String> inputNames) {
-        return inputNames.stream()
-                .map(inputName -> new Player(new Name(inputName)))
-                .collect(Collectors.toList());
     }
 
     private Height decideHeightOfLadderUntilNoException() {
@@ -88,6 +75,7 @@ public class LadderController {
         }
     }
 
+    //TODO: LADDER나 LADDERMAKER로 넣어버리기
     private Ladder createLadder(Players players, Height height) {
         List<Line> lines = new ArrayList<>();
 
