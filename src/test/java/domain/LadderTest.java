@@ -12,27 +12,33 @@ class LadderTest {
     void returns_height_of_ladder() {
         // given
         int givenHeight = 5;
-        Ladder ladder = new Ladder(4, givenHeight);
+        int givenNumberOfPlayer = 3;
+        Lines lines = new Lines(givenNumberOfPlayer, givenHeight);
+        Height height = new Height(givenHeight);
+        Ladder ladder = new Ladder(lines, height);
 
         // when
-        int expectedResult = ladder.findLadderHeight();
+        int expectedHeight = ladder.findLadderHeight();
 
         // then
-        assertThat(expectedResult).isEqualTo(givenHeight);
+        assertThat(expectedHeight).isEqualTo(givenHeight);
     }
 
     @Test
     @DisplayName("Lines의 정보를 반환한다.")
     void returns_lines() {
         // given
-        int height = 5;
-        Ladder ladder = new Ladder(4, height);
+        int givenHeight = 5;
+        int givenNumberOfPlayer = 3;
+        Lines lines = new Lines(givenNumberOfPlayer, givenHeight);
+        Height height = new Height(givenHeight);
+        Ladder ladder = new Ladder(lines, height);
 
         // when
-        Lines lines = ladder.getLines();
+        Lines expectedLines = ladder.getLines();
 
         // then
-        assertThat(lines.getLines().size()).isEqualTo(height);
+        assertThat(expectedLines.getLines().size()).isEqualTo(givenHeight);
     }
 
 }

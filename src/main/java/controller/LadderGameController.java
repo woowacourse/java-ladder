@@ -1,6 +1,8 @@
 package controller;
 
+import domain.Height;
 import domain.Ladder;
+import domain.Lines;
 import domain.Players;
 import java.util.List;
 import view.InputView;
@@ -36,7 +38,8 @@ public class LadderGameController {
     private Ladder makeLadder(int numberOfPlayers) {
         try {
             int ladderHeight = inputView.readHeight();
-            return new Ladder(numberOfPlayers, ladderHeight);
+            Ladder ladder = new Ladder(new Lines(numberOfPlayers, ladderHeight), new Height(ladderHeight));
+            return ladder;
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return makeLadder(numberOfPlayers);
