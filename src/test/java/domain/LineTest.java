@@ -15,10 +15,10 @@ import static org.assertj.core.api.Assertions.*;
 class LineTest {
 
     @Nested
-    @DisplayName(" 이전 다리가 이전 다리가 건널 수")
+    @DisplayName("이전 다리가 이전 다리가 건널 수 ")
     class GenerateFootsteps {
         @Test
-        @DisplayName(" 있는 디딤돌이면 지금 다리는 디딤돌이 생성되는 것이 허용되지 않는다.")
+        @DisplayName("있는 디딤돌이면 지금 다리는 디딤돌이 생성되는 것이 허용되지 않는다.")
         void givenCrossablePreviousFootstep_thenUncrossableCurrentFootStep() {
             Line line = Line.of(new FixBooleanGenerator(true));
 
@@ -28,7 +28,7 @@ class LineTest {
             assertThat(line.isSteppableAt(1)).isFalse();
         }
 
-        @ParameterizedTest(name = " 없는 디딤돌이면 지금 다리는 디딤돌이 생성되는 것이 허용된다.")
+        @ParameterizedTest(name = "없는 디딤돌이면 지금 다리는 디딤돌이 생성되는 것이 허용된다.")
         @ValueSource(booleans = {true, false})
         void givenUnCrossablePreviousFootstep_thenNotUncrossableCurrentFootStep(boolean value) {
             Line line = Line.of(new FixBooleanGenerator(false, value));
@@ -41,9 +41,9 @@ class LineTest {
     }
 
     @Nested
-    @DisplayName(" 만약 특정 다리가")
+    @DisplayName("만약 특정 다리가 ")
     class SteepableInfomation {
-        @ParameterizedTest(name = " {0}으면 {1}를 반환하다.")
+        @ParameterizedTest(name = "{0}으면 {1}를 반환하다.")
         @CsvSource(value = {"있,true", "없,false"})
         void crossableFootStepCase(String condition, boolean value) {
             BooleanGenerator trueGenerator = new FixBooleanGenerator(value);

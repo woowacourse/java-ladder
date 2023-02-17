@@ -43,7 +43,7 @@ class NamesTest {
     class SizeCase {
 
         @Test
-        @DisplayName(" 1명이면 익셉션이 발생한다.")
+        @DisplayName("1명이면 익셉션이 발생한다.")
         void whenOnlyOnePerson() {
             assertThatThrownBy(() -> getNamesInstance("pobi"))
                     .isInstanceOf(IllegalArgumentException.class)
@@ -51,21 +51,21 @@ class NamesTest {
         }
 
         @Test
-        @DisplayName(" 2명이면 성공적으로 생성된다.")
+        @DisplayName("2명이면 성공적으로 생성된다.")
         void whenOverTwoPerson() {
             assertThatCode(() -> getNamesInstance("pobi", "honux"))
                     .doesNotThrowAnyException();
         }
 
         @Test
-        @DisplayName(" 10명이면 성공적으로 생성된다.")
+        @DisplayName("10명이면 성공적으로 생성된다.")
         void whenUnderTenPerson() {
             assertThatCode(() -> getNamesInstance("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"))
                     .doesNotThrowAnyException();
         }
 
         @Test
-        @DisplayName(" 11명 이상이면 익셉션이 발생한다.")
+        @DisplayName("11명 이상이면 익셉션이 발생한다.")
         void whenOverElevenPerson() {
             assertThatThrownBy(() -> getNamesInstance("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"))
                     .isInstanceOf(IllegalArgumentException.class)
