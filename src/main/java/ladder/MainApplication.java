@@ -12,7 +12,6 @@ public class MainApplication {
 
         Users users = inputUsers();
         Ladder ladder = inputLadder(users);
-        ladder.makeFloors(new RandomLineGenerator());
         OutputView.printResult(users, ladder);
     }
 
@@ -29,7 +28,7 @@ public class MainApplication {
     private static Ladder inputLadder(Users users) {
 
         try {
-            return new Ladder(InputView.inputFloorHeight(), users);
+            return new Ladder(InputView.inputFloorHeight(), users, new RandomLineGenerator());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputLadder(users);
