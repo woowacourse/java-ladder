@@ -10,13 +10,22 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LadderTest extends AbstractTestFixture {
 
     @ParameterizedTest(name = "사다리의 높이는 양수만 가능하다")
     @ValueSource(ints = {1, 999})
     void test_ladder_height_success(int height) {
-        assertThatNoException().isThrownBy(() -> new Ladder(createDefaultPerson(), createLines(height)));
+        //given
+        List<Line> lines = createLines(height);
+        People defaultPerson = createDefaultPerson();
+
+        //when
+        Ladder ladder = new Ladder(defaultPerson, lines);
+
+        //then
+        assertEquals(ladder.getLines().size(), height);
     }
 
     @Test
