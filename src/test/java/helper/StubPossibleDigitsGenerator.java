@@ -4,7 +4,7 @@ import domain.RandomGenerator;
 
 public class StubPossibleDigitsGenerator implements RandomGenerator {
     @Override
-    public int generate() {
-        return 1;
+    public boolean generate() {
+        return true;
     }
 }

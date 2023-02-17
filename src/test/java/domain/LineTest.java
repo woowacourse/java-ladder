@@ -14,7 +14,7 @@ public class LineTest {
     @Test
     @DisplayName("Line 생성 확인")
     void line() {
-        new Line(4, new RandomDigitsGenerator());
+        new Line(4, new RandomPointGenerator());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class LineTest {
     @Test
     @DisplayName("연속적으로 생성된 다리가 없는지 확인")
     void checkSuccessivePoints() {
-        Line line = new Line(3, new RandomDigitsGenerator());
+        Line line = new Line(3, new RandomPointGenerator());
         List<Boolean> points = line.getPoints();
 
         for (int index = 0; index < points.size() - 1; index++) {
