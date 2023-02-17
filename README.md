@@ -37,3 +37,7 @@
 - [ ] 방어적 복사 적용
 - [ ] 테스트 케이스 보강
 - [X] name String 원시값 포장
+
+# 추가 변경
+
+- [X] 랜덤 생성을 nextInt에서 nextBoolean 으로 변경

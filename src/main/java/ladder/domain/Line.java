@@ -2,13 +2,10 @@ package ladder.domain;
 
 public class Line {
 
-    private boolean isExist = false;
+    private boolean isExist;
 
-    public void make(LineSource lineSource) {
-
-        if (lineSource == LineSource.MakeLine) {
-            isExist = true;
-        }
+    public void make(Boolean value) {
+        isExist = value;
     }
 
     public boolean isExist() {

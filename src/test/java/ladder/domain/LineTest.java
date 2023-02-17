@@ -12,7 +12,7 @@ public class LineTest {
     @DisplayName("1을 받으면 true가 된다.")
     void makeTrue() {
         Line line = new Line();
-        line.make(LineSource.of(1));
+        line.make(true);
 
         assertThat(line.isExist())
                 .isEqualTo(true);
@@ -22,7 +22,7 @@ public class LineTest {
     @DisplayName("0을 받으면 false가 된다.")
     void makeFalse() {
         var line = new Line();
-        line.make(LineSource.of(0));
+        line.make(false);
 
         assertThat(line.isExist())
                 .isEqualTo(false);

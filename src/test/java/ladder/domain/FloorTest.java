@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,7 +26,7 @@ public class FloorTest {
 
         Floor floor = new Floor(3);
 
-        List<Integer> list = new ArrayList<>(List.of(1, 0, 1));
+        List<Boolean> list = new ArrayList<>(List.of(true, false, true));
         floor.makeFloor(list);
 
         assertThat(
@@ -42,7 +43,7 @@ public class FloorTest {
     void makeNonContinuousLadderTest() {
         Floor floor = new Floor(3);
 
-        List<Integer> list = new ArrayList<>(List.of(1, 1, 1));
+        List<Boolean> list = new ArrayList<>(List.of(true, true, true));
         floor.makeFloor(list);
 
         assertThat(

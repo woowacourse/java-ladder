@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BinaryOperator;
 
 public class Ladder {
 
@@ -24,22 +25,22 @@ public class Ladder {
         return users.getUsers().size() - DIFFERENCE_BETWEEN_FLOOR_AND_USERS;
     }
 
-    public void makeFloors(NumberGenerator numberGenerator) {
+    public void makeFloors(LineGenerator lineGenerator) {
 
         for (Floor floor : floors) {
             floor.makeFloor(
-                    generateFloorNumbers(numberGenerator, floor)
+                    generateFloorNumbers(lineGenerator, floor)
             );
         }
     }
 
-    private List<Integer> generateFloorNumbers(NumberGenerator numberGenerator, Floor floor) {
+    private List<Boolean> generateFloorNumbers(LineGenerator lineGenerator, Floor floor) {
 
-        List<Integer> numbers = new ArrayList<>();
+        List<Boolean> values = new ArrayList<>();
         for (int i = 0; i < floor.getLines().size(); i++) {
-            numbers.add(numberGenerator.generate());
+            values.add(lineGenerator.generate());
         }
-        return numbers;
+        return values;
     }
 
     public List<Floor> getFloors() {

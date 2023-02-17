@@ -21,17 +21,17 @@ public class Floor {
         return lines;
     }
 
-    public void makeFloor(List<Integer> lineValues) {
+    public void makeFloor(List<Boolean> lineValues) {
 
         for (int i = 0; i < lines.size(); i++) {
             makeLineAt(i, lineValues.get(i));
         }
     }
 
-    private void makeLineAt(int index, int value) {
+    private void makeLineAt(int index, boolean value) {
 
         if (isMakeAble(index)) {
-            lines.get(index).make(LineSource.of(value));
+            lines.get(index).make(value);
         }
     }
 

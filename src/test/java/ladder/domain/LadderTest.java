@@ -43,7 +43,7 @@ public class LadderTest {
     @Test
     @DisplayName("Ladder 정상 생성 테스트")
     void makeFloorTest() {
-        List list = List.of(1, 0, 1);
+        List list = List.of(true, false, true);
         TestLineGenerator testNumberGenerator = new TestLineGenerator(list);
         Ladder ladder = new Ladder(1, new Users(List.of("1", "2", "3", "4")));
 
@@ -62,7 +62,7 @@ public class LadderTest {
     @DisplayName("Ladder 정상 생성 테스트2")
     void makeFloorTest2() {
 
-        TestLineGenerator testNumberGenerator = new TestLineGenerator(List.of(1, 0, 0, 1, 1, 1));
+        TestLineGenerator testNumberGenerator = new TestLineGenerator(List.of(true, false, false, true, true, true));
         Ladder ladder = new Ladder(2, new Users(List.of("1", "2", "3", "4")));
 
         ladder.makeFloors(testNumberGenerator);
