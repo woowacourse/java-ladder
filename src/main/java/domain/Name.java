@@ -1,6 +1,7 @@
 package domain;
 
 public class Name {
+    private static final String ERROR_NAME_LENGTH = "[ERROR] 이름의 길이는 5자까지 입력 가능합니다";
     private static final int NAME_MAX_LENGTH_INCLUSIVE = 5;
     private static final int NAME_MIN_LENGTH_INCLUSIVE = 1;
 
@@ -14,7 +15,7 @@ public class Name {
     private static void validateNameSize(String name) {
         if (name.length() < NAME_MIN_LENGTH_INCLUSIVE
                 || name.length() > NAME_MAX_LENGTH_INCLUSIVE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_NAME_LENGTH);
         }
     }
 
