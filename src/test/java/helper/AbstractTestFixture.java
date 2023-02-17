@@ -2,6 +2,7 @@ package helper;
 
 import domain.Bridge;
 import domain.Line;
+import domain.People;
 import domain.Person;
 
 import java.util.ArrayList;
@@ -22,8 +23,8 @@ public abstract class AbstractTestFixture {
                      .collect(Collectors.toList());
     }
 
-    public List<Person> createDefaultPerson() {
-        return List.of(new Person("aa"));
+    public People createDefaultPerson() {
+        return new People(List.of(new Person("aa"), new Person("bb")));
     }
 
     public List<Line> createLines(final int height) {

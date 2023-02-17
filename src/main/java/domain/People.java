@@ -32,4 +32,8 @@ public class People {
         Set<Person> duplicateRemoval = new HashSet<>(people);
         return duplicateRemoval.size() != people.size();
     }
+
+    public List<Person> getParticipants() {
+        return people;
+    }
 }

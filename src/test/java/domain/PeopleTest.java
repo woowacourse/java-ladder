@@ -15,7 +15,7 @@ class PeopleTest extends AbstractTestFixture {
     @DisplayName("peopleConstructor() : 참가자가 2명 미만이면 IllegalArgumentException을 반환합니다.")
     void test_peopleConstructor_participantSize_IllegalArgumentException() throws Exception {
         //given
-        List<Person> defaultPeople = createDefaultPerson();
+        List<Person> defaultPeople = List.of(new Person("aa"));
 
         //when & then
         assertThrows(IllegalArgumentException.class,
