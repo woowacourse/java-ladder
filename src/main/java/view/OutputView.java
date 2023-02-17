@@ -1,7 +1,6 @@
 package view;
 
 import domain.Ladder;
-import domain.LadderSymbol;
 import domain.Player;
 import domain.Players;
 

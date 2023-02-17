@@ -16,10 +16,10 @@ public class Line {
 
     private List<Boolean> makeFootholds(final int numberOfPlayer, final FootholdGenerator footholdGenerator) {
         List<Boolean> footholds = new ArrayList<>();
-        int numberOfPoint = numberOfPlayer - 1;
+        int numberOfFoothold = numberOfPlayer - 1;
 
         footholds.add(footholdGenerator.generate());
-        makeOtherFootholds(footholdGenerator, footholds, numberOfPoint);
+        makeOtherFootholds(footholdGenerator, footholds, numberOfFoothold);
 
         return footholds;
     }
