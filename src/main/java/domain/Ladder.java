@@ -40,7 +40,7 @@ public class Ladder {
     private void generateLadder(int height, int personCount) {
         BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
         for (int i = 0; i < height; i++) {
-            ladder.add(new Line(personCount, booleanGenerator));
+            ladder.add(new Line(booleanGenerator, personCount));
         }
     }
 

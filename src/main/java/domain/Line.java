@@ -8,10 +8,9 @@ import domain.numbergenerator.BooleanGenerator;
 public class Line {
 
     private final BooleanGenerator booleanGenerator;
-
     private final List<Point> points = new ArrayList<>();
 
-    public Line(int personCount, BooleanGenerator booleanGenerator) {
+    public Line(BooleanGenerator booleanGenerator, int personCount) {
         this.booleanGenerator = booleanGenerator;
         generatePoints(personCount);
     }
