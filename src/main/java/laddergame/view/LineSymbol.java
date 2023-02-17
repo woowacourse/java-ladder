@@ -16,13 +16,12 @@ public enum LineSymbol {
 
     public static LineSymbol findByBool(Boolean bool) {
         return Arrays.stream(LineSymbol.values())
-                .filter(linesymbol -> linesymbol.bool.equals(bool))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR]"));
+            .filter(linesymbol -> linesymbol.bool.equals(bool))
+            .findAny()
+            .orElseThrow(() -> new IllegalArgumentException("[ERROR]"));
     }
 
     public String getSymbol() {
         return symbol;
     }
 }
-
