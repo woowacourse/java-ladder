@@ -17,18 +17,18 @@ public class Names {
         validate(this.names.size());
     }
 
+    private static void validate(int personNumber) {
+        if (personNumber < MIN_RANGE || personNumber > MAX_RANGE) {
+            throw new IllegalArgumentException(Message.EXCEPTION_RANGE.message);
+        }
+    }
+
     public List<Name> getNames() {
         return names;
     }
 
     public int getPersonNumber() {
         return names.size();
-    }
-
-    private static void validate(int personNumber) {
-        if (personNumber < MIN_RANGE || personNumber > MAX_RANGE) {
-            throw new IllegalArgumentException(Message.EXCEPTION_RANGE.message);
-        }
     }
 
 

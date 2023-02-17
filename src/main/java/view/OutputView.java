@@ -8,11 +8,11 @@ public class OutputView {
 
     private static final OutputView instance = new OutputView();
 
-    public static OutputView getInstance() {
-        return instance;
+    private OutputView() {
     }
 
-    private OutputView() {
+    public static OutputView getInstance() {
+        return instance;
     }
 
     public void printExceptionMessage(IllegalArgumentException exception) {
