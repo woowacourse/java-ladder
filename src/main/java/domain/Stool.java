@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.Arrays;
-
 public enum Stool {
 	EXIST(true), EMPTY(false);
 
@@ -12,10 +10,10 @@ public enum Stool {
 	}
 
 	public static Stool of(boolean isExist) {
-		return Arrays.stream(Stool.values())
-			.filter(stool -> stool.isExist == isExist)
-			.findAny()
-			.get();
+		if (isExist)
+			return Stool.EXIST;
+
+		return Stool.EMPTY;
 	}
 
 	public boolean isExist() {

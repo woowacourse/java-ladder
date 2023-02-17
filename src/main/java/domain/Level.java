@@ -1,60 +1,45 @@
 package domain;
 
+import util.StoolGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Level {
-	private final Random random = new Random();
-	private final List<Stool> level;
+    private final List<Stool> level;
 
-	public Level(int participantsSize) {
-		this.level = initLine(participantsSize);
-		makeStools();
-	}
+    public Level(int participantsSize, StoolGenerator stoolGenerator) {
+        this.level = initLine(participantsSize);
+        makeStools(stoolGenerator);
+    }
 
-	private List<Stool> initLine(int participantSize) {
-		return Stream.generate(() -> Stool.EMPTY)
-				.limit(participantSize - 1)
-				.collect(Collectors.toList());
-	}
+    private List<Stool> initLine(int participantSize) {
+        return Stream.generate(() -> Stool.EMPTY)
+                .limit(participantSize - 1)
+                .collect(Collectors.toList());
+    }
 
-	private void makeStools() {
-		IntStream.range(0, level.size()).forEach(this::makeStool);
+    private void makeStools(StoolGenerator stoolGenerator) {
+        level.set(0, stoolGenerator.next());
 
-		if (isNotValidLevel()) {
-			makeStools();
-		}
-	}
+        IntStream.range(0, level.size() - 1)
+                .forEach(index -> makeStool(index, stoolGenerator));
+    }
 
-	private void makeStool(int index) {
-		if (index == 0 || !isStoolExist(index - 1)) {
-			level.set(index, Stool.of(random.nextBoolean()));
-		}
-	}
+    private void makeStool(int index, StoolGenerator stoolGenerator) {
+        if (!level.get(index).isExist()) {
+            level.set(index + 1, stoolGenerator.next());
+        }
+    }
 
-	public boolean isStoolExist(int index) {
-		return level.get(index).isExist();
-	}
+    public int size() {
+        return level.size();
+    }
 
-	private boolean isNotValidLevel() {
-		return countStools() == 0;
-	}
-
-	public int countStools() {
-		return (int) level.stream()
-				.filter(Stool::isExist)
-				.count();
-	}
-
-	public int size() {
-		return level.size();
-	}
-
-	public List<Stool> getStools() {
-		return new ArrayList<>(level);
-	}
+    public List<Stool> getStools() {
+        return new ArrayList<>(level);
+    }
 }

@@ -1,6 +1,7 @@
 package domain;
 
 import exception.Error;
+import util.StoolGenerator;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -18,10 +19,10 @@ public class Ladder {
 		this.levels = level;
 	}
 
-	public static Ladder from(int height, int participantSize) {
+	public static Ladder from(int height, int participantSize, StoolGenerator stoolGenerator) {
 		validate(height);
 
-		return Stream.generate(() -> new Level(participantSize))
+		return Stream.generate(() -> new Level(participantSize, stoolGenerator))
 				.limit(height)
 				.collect(collectingAndThen(toList(), Ladder::new));
 	}

@@ -4,6 +4,7 @@ import domain.Ladder;
 import domain.Level;
 import domain.People;
 import domain.Stool;
+import util.StoolGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -13,18 +14,20 @@ import java.util.stream.Collectors;
 public class LadderController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final StoolGenerator stoolGenerator;
 
     private People people;
     private Ladder ladder;
 
-    public LadderController(InputView inputView, OutputView outputView) {
+    public LadderController(InputView inputView, OutputView outputView, StoolGenerator stoolGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.stoolGenerator = stoolGenerator;
     }
 
     public void init() {
         repeat(() -> people = People.from(inputView.readNames()));
-        repeat(() -> ladder = Ladder.from(inputView.readHeight(), people.size()));
+        repeat(() -> ladder = Ladder.from(inputView.readHeight(), people.size(), stoolGenerator));
     }
 
     private void repeat(Runnable repeatable) {

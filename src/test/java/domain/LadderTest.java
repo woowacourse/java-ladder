@@ -4,8 +4,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import util.RandomStoolGenerator;
+import util.StoolGenerator;
 
-import static org.assertj.core.api.Assertions.*;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("사다리는 ")
 class LadderTest {
@@ -22,7 +27,7 @@ class LadderTest {
 	@ParameterizedTest
 	@ValueSource(ints = {-2, 101})
 	void heightNot1_100(int height) {
-		assertThatThrownBy(() -> Ladder.from(height, 5))
+		assertThatThrownBy(() -> Ladder.from(height, 5, new RandomStoolGenerator()))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessage("[ERROR] 높이는 1부터 100까지만 가능합니다");
 	}
@@ -41,10 +46,9 @@ class LadderTest {
 	void stoolNotContinuous() {
 		Ladder ladder = initLadder(4, 5);
 
-		for (Level level : ladder.getLevels())
-			for (int i = 0; i < level.size() - 1; i++)
-				if (level.isStoolExist(i) && level.isStoolExist(i + 1))
-					fail("발판은 연속될 수 없다");
+		assertThat(ladder.getLevels())
+				.allSatisfy(level -> assertThat(level.getStools())
+						.doesNotContainSequence(Stool.EXIST, Stool.EXIST));
 	}
 
 	@DisplayName("한 라인에는 반드시 하나의 발판이 있어야 한다")
@@ -52,10 +56,22 @@ class LadderTest {
 	void lineMustHaveStool() {
 		Ladder ladder = initLadder(4, 6);
 
-		assertThat(ladder.getLevels()).allMatch(level -> level.countStools() > 0);
+		assertThat(ladder.getLevels())
+				.allSatisfy(level -> assertThat(level.getStools()).contains(Stool.EXIST));
 	}
 
 	private static Ladder initLadder(int height, int participantSize) {
-		return Ladder.from(height, participantSize);
+		return Ladder.from(height, participantSize, new TestGenerator());
+	}
+
+	private static class TestGenerator implements StoolGenerator {
+		List<Stool> stools = List.of(Stool.EXIST, Stool.EMPTY);
+		int index = 1;
+
+		@Override
+		public Stool next() {
+			index = (index + 1) % 2;
+			return stools.get(index);
+		}
 	}
 }
