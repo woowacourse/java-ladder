@@ -1,12 +1,12 @@
 package view;
 
-import common.exception.handler.IllegalArgumentExceptionHandler;
-import utils.ScannerUtil;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import common.exception.handler.IllegalArgumentExceptionHandler;
+import utils.ScannerUtil;
 
 public class InputView {
 
@@ -38,8 +38,8 @@ public class InputView {
         }
     }
 
-    private static void validateDistinct(List<?> names) {
-        if (hasDuplicateIn(names)) {
+    private static void validateDistinct(Collection<?> collection) {
+        if (hasDuplicateIn(collection)) {
             throw new IllegalArgumentException("이름은 중복될 수 없습니다.");
         }
     }
