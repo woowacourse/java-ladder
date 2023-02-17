@@ -2,8 +2,8 @@ package view;
 
 import domain.model.Ladder;
 import domain.model.Layer;
+import domain.type.Line;
 import domain.vo.Name;
-
 import java.util.List;
 
 public class OutputView {
@@ -31,13 +31,14 @@ public class OutputView {
     private void printLayer(Layer layer) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(FRONT_SPACE).append(LINE_DELIMITER);
-        List<Boolean> lines = layer.getLines();
-        lines.forEach(line -> stringBuilder.append(selectLine(line)).append(LINE_DELIMITER));
+        List<Line> lines = layer.getLines();
+        lines.forEach(
+            line -> stringBuilder.append(selectLine(Line.CONNECTED)).append(LINE_DELIMITER));
         System.out.println(stringBuilder);
     }
 
-    private String selectLine(boolean line) {
-        if (line) {
+    private String selectLine(Line line) {
+        if (line.equals(Line.CONNECTED)) {
             return CONNECTED_LINE;
         }
         return UNCONNECTED_LINE;

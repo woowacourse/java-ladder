@@ -1,29 +1,30 @@
 package domain.model;
 
+import domain.type.Line;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Layer {
 
-    private final List<Boolean> lines;
+    private final List<Line> lines;
 
     public Layer() {
         this.lines = new ArrayList<>();
     }
 
-    public void makeLine(final boolean condition) {
-        if (condition && lines.isEmpty()) {
-            lines.add(true);
+    public void makeLine(final Line line) {
+        if (line.equals(Line.CONNECTED) && lines.isEmpty()) {
+            lines.add(line);
             return;
         }
-        if (condition && !lines.get(lines.size() - 1)) {
-            lines.add(true);
+        if (line.equals(Line.CONNECTED) && !lines.get(lines.size() - 1).equals(Line.UNCONNECTED)) {
+            lines.add(line);
             return;
         }
-        lines.add(false);
+        lines.add(Line.UNCONNECTED);
     }
 
-    public List<Boolean> getLines() {
-        return lines;
+    public List<Line> getLines() {
+        return new ArrayList<>(lines);
     }
 }
