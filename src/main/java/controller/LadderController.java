@@ -45,12 +45,11 @@ public class LadderController {
     }
 
     private <T> T inputWithExceptionHandle(final Supplier<T> supplier) {
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (IllegalArgumentException e) {
-                Logger.error(e.getMessage());
-            }
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            Logger.error(e.getMessage());
+            return inputWithExceptionHandle(supplier);
         }
     }
 }
