@@ -21,7 +21,7 @@ public class Ladder {
     }
 
     private void validateLineSizeEmpty(final List<Line> lines) {
-        if (lines.size() == 0) {
+        if (lines.isEmpty()) {
             throw new IllegalArgumentException("사다리의 높이는 1 이상이어야 합니다");
         }
     }
