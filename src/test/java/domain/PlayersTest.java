@@ -5,10 +5,21 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class PlayersTest {
+
+    String firstPlayerName;
+    String secondPlayerName;
+
+    @BeforeEach
+    void setUp() {
+        firstPlayerName = "bob";
+        secondPlayerName = "popo";
+    }
 
     @Test
     @DisplayName("사람의 수가 1명 이하이면 예외를 던진다.")
@@ -54,10 +65,8 @@ public class PlayersTest {
     @DisplayName("플레이어 중 가장 긴 이름의 길이를 반환한다.")
     void returns_longest_length_of_player_name() {
         // given
-        String player1 = "bob";
-        String player2 = "popo";
         String playerHavingLongestName = "dolbi";
-        List<String> playerNames = List.of(player1, player2, playerHavingLongestName);
+        List<String> playerNames = List.of(firstPlayerName, secondPlayerName, playerHavingLongestName);
         int expectedLongestLengthOfName = playerHavingLongestName.length();
 
         Players players = new Players(playerNames);
@@ -73,10 +82,8 @@ public class PlayersTest {
     @DisplayName("참여한 플레이어의 수를 반환하다.")
     void returns_number_of_players() {
         // given
-        String player1 = "bob";
-        String player2 = "popo";
         String playerHavingLongestName = "dolbi";
-        List<String> playerNames = List.of(player1, player2, playerHavingLongestName);
+        List<String> playerNames = List.of(firstPlayerName, secondPlayerName, playerHavingLongestName);
         Players players = new Players(playerNames);
         int expectedResult = players.getPlayers().size();
 
@@ -91,9 +98,7 @@ public class PlayersTest {
     @DisplayName("참여한 플레이어들 중 첫번째 플레이어의 이름을 반환하다.")
     void returns_name_of_first_player() {
         // given
-        String firstPlayerName = "bob";
-        String normalPlayer = "popo";
-        List<String> playerNames = List.of(firstPlayerName, normalPlayer);
+        List<String> playerNames = List.of(firstPlayerName, secondPlayerName);
         Players players = new Players(playerNames);
 
         // when
@@ -106,9 +111,7 @@ public class PlayersTest {
     @Test
     @DisplayName("참여한 플레이어들 중 첫번째 플레이어의 이름의 길이를 반환하다.")
     void returns_length_of_first_player_name() {
-        String firstPlayerName = "bob";
-        String normalPlayer = "popo";
-        List<String> playerNames = List.of(firstPlayerName, normalPlayer);
+        List<String> playerNames = List.of(firstPlayerName, secondPlayerName);
         Players players = new Players(playerNames);
 
         // when
