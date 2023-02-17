@@ -4,15 +4,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
-
-    private static List<Line> getFloorLines(int pos, Ladder ladder) {
-        return ladder.getFloors().get(pos - 1).getLines();
-    }
 
     @Test
     @DisplayName("0이하의 값으로 Ladder생성시 예외가 발생한다.")
@@ -22,51 +19,66 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("1이상의 값으로 Ladder생성 시 사이즈 테스트")
+    @DisplayName("ladder 생성시 1이상의 height를 입력하면 정상 생성된다..")
     void checkValidLadderSizeTest() {
-        assertThat(new Ladder(3, new Users(List.of("1", "2"))).getFloors().size())
-                .isEqualTo(3);
+        var users = new Users(List.of("1", "2"));
+        var ladder = new Ladder(1, users);
+
+        assertThat(ladder.getFloors().size()).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("Ladder 가로 사이즈 테스트")
+    @DisplayName("Ladder 생성시 users보다 1작은 width로 생성된다.")
     void checkLadderWidthTest() {
-        Ladder ladder = new Ladder(3, new Users(List.of("1", "2", "3")));
-        List<Floor> floors = ladder.getFloors();
+        var users = new Users(List.of("1", "2", "3"));
 
+        var ladder = new Ladder(3, users);
+
+        List<Floor> floors = ladder.getFloors();
         for (Floor floor : floors) {
-            assertThat(floor.getLines().size()).isEqualTo(2);
+            assertThat(floor.getLines().size()).isEqualTo(users.getUsers().size() - 1);
         }
     }
 
     @Test
-    @DisplayName("Ladder 1층 생성 테스트")
-    void makeFirstFloorTest() {
-        TestNumberGenerator testNumberGenerator = new TestNumberGenerator(List.of(1, 0, 1));
-
+    @DisplayName("Ladder 정상 생성 테스트")
+    void makeFloorTest() {
+        List list = List.of(1, 0, 1);
+        TestLineGenerator testNumberGenerator = new TestLineGenerator(list);
         Ladder ladder = new Ladder(1, new Users(List.of("1", "2", "3", "4")));
+
         ladder.makeFloors(testNumberGenerator);
 
-        assertThat(ladder.getFloors().get(0).getLines())
-                .extracting("isExist")
+        assertThat(
+                ladder.getFloors().get(0).getLines().stream()
+                        .map(Line::isExist)
+                        .collect(Collectors.toList())
+        )
                 .containsExactlyElementsOf(List.of(true, false, true));
 
     }
 
     @Test
-    @DisplayName("Ladder 생성 테스트")
-    void makeFloorTest() {
-        TestNumberGenerator testNumberGenerator = new TestNumberGenerator(List.of(1, 0, 0, 1, 1, 1));
+    @DisplayName("Ladder 정상 생성 테스트2")
+    void makeFloorTest2() {
+
+        TestLineGenerator testNumberGenerator = new TestLineGenerator(List.of(1, 0, 0, 1, 1, 1));
         Ladder ladder = new Ladder(2, new Users(List.of("1", "2", "3", "4")));
 
         ladder.makeFloors(testNumberGenerator);
 
-        assertThat(ladder.getFloors().get(0).getLines())
-                .extracting("isExist")
+        assertThat(
+                ladder.getFloors().get(0).getLines().stream()
+                        .map(Line::isExist)
+                        .collect(Collectors.toList())
+        )
                 .containsExactlyElementsOf(List.of(true, false, false));
 
-        assertThat(ladder.getFloors().get(1).getLines())
-                .extracting("isExist")
+        assertThat(
+                ladder.getFloors().get(1).getLines().stream()
+                .map(Line::isExist)
+                .collect(Collectors.toList())
+        )
                 .containsExactlyElementsOf(List.of(true, false, true));
 
 

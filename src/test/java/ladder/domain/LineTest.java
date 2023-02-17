@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
+
 public class LineTest {
 
     @Test
@@ -12,8 +14,17 @@ public class LineTest {
         Line line = new Line();
         line.make(LineSource.of(1));
 
-        Assertions.assertThat(line)
-                .extracting("isExist")
+        assertThat(line.isExist())
                 .isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("0을 받으면 false가 된다.")
+    void makeFalse() {
+        var line = new Line();
+        line.make(LineSource.of(0));
+
+        assertThat(line.isExist())
+                .isEqualTo(false);
     }
 }
