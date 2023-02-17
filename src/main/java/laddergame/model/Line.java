@@ -39,8 +39,8 @@ public class Line {
         return line;
     }
 
-    private static boolean makePoint(List<Boolean> line, int i) {
-        if (line.get(i - 1)) {
+    private static boolean makePoint(List<Boolean> line, int thisPoint) {
+        if (line.get(thisPoint - 1)) {
             return false;
         }
         return random.nextBoolean();
