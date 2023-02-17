@@ -1,22 +1,16 @@
 package ladder.domain;
 
 public class Height {
+    private static final int MIN_SIZE = 2;
     private final int height;
 
     public Height(int height) {
-        validateNegative(height);
-        validateTooSmall(height);
+        validateRange(height);
         this.height = height;
     }
 
-    private void validateNegative(int height) {
-        if (height < 0) {
-            throw new IllegalArgumentException("높이는 음수일 수 없습니다.");
-        }
-    }
-
-    private void validateTooSmall(int height) {
-        if (height <= 1) {
+    private void validateRange(int height) {
+        if (height < MIN_SIZE ) {
             throw new IllegalArgumentException("높이는 2 이상이어야 합니다.");
         }
     }
