@@ -23,19 +23,32 @@ public class LadderEngine {
 
     public void start() {
 
-        People people = IllegalArgumentExceptionHandler.handleExceptionByRepeating(
+        People people = makePeople();
+        Ladder ladder = makesLadder(people);
+
+        OutputView.printLadder(ladder);
+    }
+
+    private People makePeople() {
+        return IllegalArgumentExceptionHandler.handleExceptionByRepeating(
                 () -> convertNamesToPeople(InputView.inputName())
         );
+    }
 
-        Ladder ladder = IllegalArgumentExceptionHandler.handleExceptionByRepeating(
+    private People convertNamesToPeople(final List<String> names) {
+        return new People(names.stream()
+                               .map(Person::new)
+                               .collect(Collectors.toList()));
+    }
+
+    private Ladder makesLadder(People people) {
+        return IllegalArgumentExceptionHandler.handleExceptionByRepeating(
                 () -> {
                     int height = InputView.inputMaxLadderHeight();
                     List<Line> lines = makeLines(people, height);
                     return new Ladder(people, lines);
                 }
         );
-
-        OutputView.printLadder(ladder);
     }
 
     private List<Line> makeLines(final People people, final int height) {
@@ -47,11 +60,5 @@ public class LadderEngine {
         }
 
         return lines;
-    }
-
-    private People convertNamesToPeople(final List<String> names) {
-        return new People(names.stream()
-                               .map(Person::new)
-                               .collect(Collectors.toList()));
     }
 }
