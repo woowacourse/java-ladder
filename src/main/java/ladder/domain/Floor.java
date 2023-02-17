@@ -6,46 +6,31 @@ import java.util.stream.Collectors;
 
 public class Floor {
 
-    private static final int FIRST_LINE = 0;
-    private static final int INDEX_DIFFERENCE = 1;
+    private static final int SECOND_INDEX_OF_FLOOR = 1;
+    private final List<Point> points;
 
-    private final List<Line> lines = new ArrayList<>();
+    public Floor(List<Boolean> values) {
 
-    public Floor(int width) {
+        List<Point> points = values.stream()
+                .map(Point::of)
+                .collect(Collectors.toList());
 
-        for (int i = 0; i < width; i++) {
-            lines.add(new Line());
+        removeContinuousLine(points);
+
+        this.points = points;
+    }
+
+    private void removeContinuousLine(List<Point> pointCandidate) {
+        for (int i = SECOND_INDEX_OF_FLOOR; i < pointCandidate.size(); i++) {
+            if (pointCandidate.get(i - 1).equals(Point.FILLED)) {
+                pointCandidate.set(i, Point.EMPTY);
+            }
         }
     }
 
-    public void makeFloor(List<Boolean> lineValues) {
-
-        for (int i = 0; i < lines.size(); i++) {
-            makeLineAt(i, lineValues.get(i));
-        }
-    }
-
-    private void makeLineAt(int index, boolean value) {
-
-        if (isMakeAble(index)) {
-            lines.get(index).make(value);
-        }
-    }
-
-    private boolean isMakeAble(int index) {
-
-        if (index == FIRST_LINE) {
-            return true;
-        }
-
-        int previousIndex = index - INDEX_DIFFERENCE;
-
-        return !lines.get(previousIndex).isExist();
-    }
-
-    public List<Boolean> getLines() {
-        return lines.stream()
-                .map(Line::isExist)
+    public List<Boolean> getPoints() {
+        return points.stream()
+                .map(Point::isExist)
                 .collect(Collectors.toList());
     }
 }
