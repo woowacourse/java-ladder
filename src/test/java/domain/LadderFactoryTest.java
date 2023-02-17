@@ -55,7 +55,7 @@ public class LadderFactoryTest {
         // given
         Width width = Width.of(2);
         Height height = Height.of(2);
-        ArrayList<Scaffold> assertScaffolds = new ArrayList<>(scaffolds);
+        List<Scaffold> assertScaffolds = new ArrayList<>(scaffolds);
         LadderFactory factory = new LadderFactory(() -> scaffolds.remove(0));
 
         // when
