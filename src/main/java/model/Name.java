@@ -19,7 +19,7 @@ public class Name {
 
     private void validateNameLength(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_NAME_LENGTH.getExceptionMessage());
         }
     }
 
