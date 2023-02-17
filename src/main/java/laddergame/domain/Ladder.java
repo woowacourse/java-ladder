@@ -17,7 +17,7 @@ public class Ladder {
 
     private List<Line> generateLines(int playerCount, PointGenerator pointGenerator) {
         List<Line> lines = new ArrayList<>();
-        while (!ladderHeight.isMaxHeight(lines.size())) {
+        while (!ladderHeight.isEqualTo(lines.size())) {
             lines.add(new Line(playerCount, pointGenerator));
         }
         return lines;

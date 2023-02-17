@@ -22,6 +22,6 @@ class LadderHeightTest {
     void isMaxLadderHeightTest(int ladderSize, boolean expectedResult) {
         int height = 4;
         LadderHeight ladderHeight = new LadderHeight(height);
-        assertThat(ladderHeight.isMaxHeight(ladderSize)).isEqualTo(expectedResult);
+        assertThat(ladderHeight.isEqualTo(ladderSize)).isEqualTo(expectedResult);
     }
 }
