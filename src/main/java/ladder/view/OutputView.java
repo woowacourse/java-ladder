@@ -7,7 +7,7 @@ import ladder.domain.LadderFormat;
 import ladder.domain.Line;
 import ladder.domain.Names;
 
-public class ResultView {
+public class OutputView {
     private static final int WIDTH = 5;
     private static final String LEG = "|";
     private static final String BLANK = " ";
@@ -41,5 +41,9 @@ public class ResultView {
             .map(LadderFormat::getComponent)
             .map(component -> LEG + component.repeat(WIDTH))
             .collect(Collectors.joining());
+    }
+
+    public void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
     }
 }

@@ -8,11 +8,11 @@ import ladder.domain.Line;
 import ladder.domain.Names;
 import ladder.util.BooleanGenerator;
 import ladder.view.InputView;
-import ladder.view.ResultView;
+import ladder.view.OutputView;
 
 public class LadderController {
     private final InputView inputView;
-    private final ResultView resultView;
+    private final OutputView outputView;
     private final BooleanGenerator generator;
     private final Ladder ladder;
     private Names names;
@@ -20,7 +20,7 @@ public class LadderController {
 
     public LadderController(BooleanGenerator generator) {
         this.inputView = new InputView();
-        this.resultView = new ResultView();
+        this.outputView = new OutputView();
         this.generator = generator;
         this.ladder = new Ladder();
     }
@@ -31,14 +31,14 @@ public class LadderController {
 
         createLadder(names.size());
 
-        resultView.printResult(names, ladder);
+        outputView.printResult(names, ladder);
     }
 
     private void createNames() {
         try {
             this.names = new Names(readNames());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e);
             createNames();
         }
     }
@@ -47,7 +47,7 @@ public class LadderController {
         try {
             this.height = new Height(readLadderHeight());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e);
             createHeight();
         }
     }
