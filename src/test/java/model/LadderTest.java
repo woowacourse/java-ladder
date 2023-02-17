@@ -10,7 +10,8 @@ public class LadderTest {
     @Test
     @DisplayName("Ladder 객체 생성 성공 테스트")
     void createLadderTest() {
-        Names name = new Names(List.of("ocean"));
-        Assertions.assertThatNoException().isThrownBy(() -> new Ladder(name, new LadderHeight(5)));
+        Names names = new Names(List.of("ocean"));
+        Assertions.assertThatNoException().isThrownBy(() -> new Ladder(names.getNamesSize(),
+                new LadderHeight(5)));
     }
 }
