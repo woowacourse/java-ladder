@@ -6,19 +6,17 @@
 
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
 
-
 ## 요구사항 목록
 
 ### 주요 객체 속성, 역할
 #### Player
-- [X] `Name`을 가진다.
-
-#### Name
+- [X] 이름을 가진다.
 - [X] 참여할 사람에 null 값이 주어지면 `IllegalArgumentException` 예외가 발생한다.
 - [X] 참여할 사람의 이름이 공백이면 `IllegalArgumentException` 예외가 발생한다.
 - [X] 5자리를 초과하면 `IllegalArgumentException` 예외가 발생한다.
 
 #### Players
+- [X] `Player`들을 가진다.
 - [X] 참여할 사람은 최소 2명에서 최대 13명이다.
 - [X] 정해진 인원수 범위를 벗어나면 `IllegalArgumentException` 예외가 발생한다.
 - [X] 참여할 사람의 이름이 중복되면 `IllegalArgumentException` 예외가 발생한다.
