@@ -8,7 +8,7 @@ public class InputValidator {
         try {
             return Integer.parseInt(height);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.LADDER_HEIGHT_NON_NUMERIC_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.LADDER_HEIGHT_EXCEPTION.getMessage());
         }
     }
 
