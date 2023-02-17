@@ -7,7 +7,7 @@
 - [x] static 메서드 제거
 - [ ] 재귀로 에러 핸들링 확인해보기
 - [x] numberFormatException 검증 추가
-- [ ] assertThatThrownBy 추가
+- [x] assertThatThrownBy 추가
 
 # 기능 목록
 
