@@ -1,6 +1,6 @@
 package ladder.domain;
 
-public interface Generator {
+interface Generator {
 
     boolean generate();
 }
