@@ -52,9 +52,7 @@ class LineTest {
 
         @Override
         public int generate() {
-            Integer value = values.get(index);
-            index++;
-            return value;
+            return values.get(index++);
         }
     }
 }
