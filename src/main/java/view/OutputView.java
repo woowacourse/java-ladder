@@ -3,6 +3,7 @@ package view;
 import model.Ladder;
 import model.LadderHeight;
 import model.Names;
+import util.LadderPrintMessage;
 
 
 public class OutputView {
@@ -44,32 +45,17 @@ public class OutputView {
     }
 
     private String printStartLadder() {
-        return Message.START_LADDER.getMessage();
+        return LadderPrintMessage.START_LADDER.getMessage();
     }
 
     private void printConnectLadder(int playerSize, Ladder ladder, int row) {
         for (int column = 0; column < playerSize - 1; column++) {
             if (ladder.getLadder(row).getLine(column)) {
-                stringBuilder.append(Message.CONNECT_LADDER.getMessage());
+                stringBuilder.append(LadderPrintMessage.CONNECT_LADDER.getMessage());
             } else
-                stringBuilder.append(Message.NO_CONNECT_LADDER.getMessage());
+                stringBuilder.append(LadderPrintMessage.NO_CONNECT_LADDER.getMessage());
         }
     }
 
-    public enum Message {
-        START_LADDER("   |"),
-        CONNECT_LADDER("-".repeat(MAXIMUM_PLAYER_NAME_SPACE)+"|"),
-        NO_CONNECT_LADDER("     |");
 
-        private final String message;
-
-        Message(String move) {
-            this.message = move;
-        }
-
-        public String getMessage() {
-            return message;
-        }
-
-    }
 }
