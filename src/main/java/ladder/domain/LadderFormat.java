@@ -18,7 +18,7 @@ public enum LadderFormat {
         return Arrays.stream(values())
             .filter(format -> format.condition == condition)
             .findAny()
-            .get()
+            .orElseThrow()
             .component;
     }
 }
