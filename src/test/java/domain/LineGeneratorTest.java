@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class LineGeneratorTest {
     private final LineGenerator lineGenerator = new LineGenerator();
+
     @ParameterizedTest
     @DisplayName("랜덤으로 생성된 Line의 길이가 맞는지 테스트")
     @ValueSource(ints = {1, 2, 3, 4, 5})

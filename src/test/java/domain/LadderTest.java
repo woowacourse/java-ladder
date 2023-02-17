@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class LadderTest {
     private final int validatePersonCount = 5;
+
     @Test
     @DisplayName("사다리의 높이로 1~100 사이의 수를 입력받는다.")
     void ladderTest() {
