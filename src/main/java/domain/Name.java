@@ -21,7 +21,7 @@ public class Name {
     }
 
     public static List<Name> ofMultiple(final List<String> names) {
-        return names.stream().map(Name::new)
+        return names.stream().map(Name::of)
                 .collect(Collectors.toList());
     }
 

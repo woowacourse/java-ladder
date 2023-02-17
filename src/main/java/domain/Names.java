@@ -23,6 +23,12 @@ public class Names {
         return new Names(names);
     }
 
+    public static Names ofValues(final List<String> nameValues) {
+        List<Name> names = Name.ofMultiple(nameValues);
+        validateNames(names);
+        return new Names(names);
+    }
+
     private static void validateNames(final List<Name> names) {
         validateNamesSize(names);
         validateDuplicated(names);

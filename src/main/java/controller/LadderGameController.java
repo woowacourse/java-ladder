@@ -2,7 +2,6 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
-import domain.Name;
 import domain.Names;
 import util.BooleanGenerator;
 import view.InputView;
@@ -38,7 +37,7 @@ public class LadderGameController {
     private Names getNames() {
         try {
             OutputView.printRequestNames();
-            return Names.of(Name.ofMultiple(InputView.getNames()));
+            return Names.ofValues(InputView.getNames());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getNames();
