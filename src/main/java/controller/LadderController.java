@@ -7,6 +7,7 @@ import domain.LadderHeight;
 import domain.Name;
 import domain.Names;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Supplier;
 import utils.NumberGenerator;
 import view.InputView;
@@ -47,6 +48,7 @@ public class LadderController {
     }
 
     private <T> T repeat(Supplier<T> inputSupplier) {
+        Objects.requireNonNull(inputSupplier);
         try {
             return inputSupplier.get();
         } catch (IllegalArgumentException e) {
