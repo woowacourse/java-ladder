@@ -3,18 +3,20 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class PlayerTest {
 
     @DisplayName("사람 이름의 앞 뒤 공백은 무시한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"  kong", "kong  ", " ko ng ", "    kong   "})
-    void validateTest(String name) {
-        assertThatCode(() -> new Player(name))
-                .doesNotThrowAnyException();
+    @CsvSource({"'  kong',kong", "'kong  ',kong", "' ko ng ',ko ng", "'    kong   ',kong"})
+    void validateTest(String name, String expected) {
+        Player player = new Player(name);
+        Assertions.assertThat(player.getName()).isEqualTo(expected);
     }
 
     @DisplayName("사람 이름은 1글자에서 5글자 사이이다.")
