@@ -48,7 +48,7 @@ public class Line {
     }
 
     private void addRandomPoint(RandomGenerator generator) {
-        addPoint(LineState.of(generator.generate()).getState());
+        addPoint(generator.generate());
     }
 
     private void addPoint(boolean state) {

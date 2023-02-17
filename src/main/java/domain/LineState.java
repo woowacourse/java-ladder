@@ -1,14 +1,12 @@
 package domain;
 
 public enum LineState {
-    MOVABLE_STATE(1, true),
-    UNMOVABLE_STATE(0, false);
+    MOVABLE_STATE(true),
+    UNMOVABLE_STATE(false);
 
-    private final int value;
     private final boolean state;
 
-    LineState(int value, boolean state) {
-        this.value = value;
+    LineState(boolean state) {
         this.state = state;
     }
 
@@ -16,12 +14,4 @@ public enum LineState {
         return state;
     }
 
-    public static LineState of(int value) {
-        for (LineState lineState : LineState.values()) {
-            if (lineState.value == value) {
-                return lineState;
-            }
-        }
-        throw new IllegalArgumentException();
-    }
 }
