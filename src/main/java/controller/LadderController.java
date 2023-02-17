@@ -26,28 +26,37 @@ public class LadderController {
 
         ladderGame = new LadderGame(persons, height);
         ladderGame.run();
-        outputView.printLadder(ladderGame.getAllPlayers(), ladderGame.getLadderStatus(), persons.getLongestPersonNameLength());
+        outputView.printLadder(ladderGame.getAllPlayers(), ladderGame.getLadderStatus(),
+                persons.getLongestPersonNameLength());
     }
 
     private Persons requestPlayerName() {
+        Persons personNames = null;
+        while (personNames == null) {
+            personNames = readPersonNames();
+        }
+        return personNames;
+    }
+
+    private Persons readPersonNames() {
         try {
-            String inputNames = inputView.requestNames();
-            List<Person> personNames = Arrays.stream(inputNames.split(NAME_DELIMITER))
+            List<Person> personNames = Arrays.stream(inputView.requestNames().split(NAME_DELIMITER))
                     .map(Person::new)
                     .collect(Collectors.toList());
             return new Persons(personNames);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
-            return requestPlayerName();
         }
+        return null;
     }
 
     private Height requestLadderHeight() {
-        try {
-            return new Height(validateNumber(inputView.requestLadderHeight()));
-        } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception.getMessage());
-            return requestLadderHeight();
+        while (true) {
+            try {
+                return new Height(validateNumber(inputView.requestLadderHeight()));
+            } catch (IllegalArgumentException exception) {
+                outputView.printErrorMessage(exception.getMessage());
+            }
         }
     }
 
