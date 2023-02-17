@@ -16,7 +16,7 @@ public class OutputView {
     private static final StringBuilder playerNamesOutput = new StringBuilder();
 
     public void printResult(final Players players, final Ladder ladder) {
-        System.out.println("실행결과");
+        System.out.println(NEW_LINE + "실행결과" + NEW_LINE);
 
         StringBuilder playerNames = makePlayerNamesOutput(players);
         System.out.println(playerNames);
@@ -25,7 +25,7 @@ public class OutputView {
         System.out.println(ladderOutput);
     }
 
-    public StringBuilder makePlayerNamesOutput(final Players players) {
+    private StringBuilder makePlayerNamesOutput(final Players players) {
         int longestPlayerName = players.findLongestPlayerName();
 
         drawFirstPlayerName(players);
@@ -66,7 +66,7 @@ public class OutputView {
                 .append(BLANK);
     }
 
-    public StringBuilder makeLadderOutput(final Players players, final Ladder ladder) {
+    private StringBuilder makeLadderOutput(final Players players, final Ladder ladder) {
         for (int heightIndex = 0; heightIndex < ladder.findLadderHeight(); heightIndex++) {
             int lengthOfFirstPlayerName = players.findLengthOfFirstPlayerName();
 
