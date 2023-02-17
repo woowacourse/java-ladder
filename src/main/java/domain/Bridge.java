@@ -12,7 +12,7 @@ public enum Bridge {
     }
 
     public boolean isSerialWith(Bridge next) {
-        return this == EXIST && this == next;
+        return this == EXIST && next == EXIST;
     }
 
     public String getDisplay() {
