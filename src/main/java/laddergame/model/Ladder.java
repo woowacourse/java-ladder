@@ -10,10 +10,14 @@ public class Ladder {
     public Ladder(Height height, Persons persons) {
         this.height = height;
         List<Line> ladder = new ArrayList<>();
+        makeLadder(persons, ladder);
+        this.ladder = ladder;
+    }
+
+    private void makeLadder(Persons persons, List<Line> ladder) {
         for (int i = 0; i < this.height.getHeight(); i++) {
             ladder.add(new Line(persons.getSize()));
         }
-        this.ladder = ladder;
     }
 
     public int getSize() {
