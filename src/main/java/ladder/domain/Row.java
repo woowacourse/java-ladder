@@ -28,7 +28,7 @@ class Row {
     }
 
     private boolean shouldConnect(Generator generator, int index) {
-        int adjacentIndex = index - 1;
+        var adjacentIndex = index - 1;
         return generator.generate() && connected.get(adjacentIndex) == Leg.EMPTY;
     }
 

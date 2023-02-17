@@ -22,6 +22,10 @@ public class InputView {
         if (!NUMBER.matcher(height).matches()) {
             throw new IllegalArgumentException("입력은 숫자여야 합니다");
         }
-        return Integer.parseInt(height);
+        try {
+            return Integer.parseInt(height);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("int 형의 범위를 벗어났습니다");
+        }
     }
 }
