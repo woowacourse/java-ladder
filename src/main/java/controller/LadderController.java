@@ -16,34 +16,45 @@ public class LadderController {
     private final OutputView outputView;
     private final StoolGenerator stoolGenerator;
 
-    private People people;
-    private Ladder ladder;
-
     public LadderController(InputView inputView, OutputView outputView, StoolGenerator stoolGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.stoolGenerator = stoolGenerator;
     }
 
-    public void init() {
-        repeat(() -> people = People.from(inputView.readNames()));
-        repeat(() -> ladder = Ladder.from(inputView.readHeight(), people.size(), stoolGenerator));
+    public void run() {
+        People people = initPeople();
+        Ladder ladder = initLadder(people.size());
+
+        showLadder(people, ladder);
+        getLadder(ladder);
     }
 
-    private void repeat(Runnable repeatable) {
+    private People initPeople() {
         try {
-            repeatable.run();
+            return People.from(inputView.readNames());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            repeat(repeatable);
+
+            return initPeople();
         }
     }
 
-    public void showLadder() {
-        outputView.printResult(people.getNames(), getLadder());
+    private Ladder initLadder(int participantsSize) {
+        try {
+            return Ladder.from(inputView.readHeight(), participantsSize, stoolGenerator);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+
+            return initLadder(participantsSize);
+        }
     }
 
-    private List<List<Boolean>> getLadder() {
+    private void showLadder(People people, Ladder ladder) {
+        outputView.printResult(people.getNames(), getLadder(ladder));
+    }
+
+    private List<List<Boolean>> getLadder(Ladder ladder) {
         return ladder.getLevels().stream()
                 .map(this::getLevel)
                 .collect(Collectors.toList());
