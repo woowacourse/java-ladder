@@ -17,8 +17,8 @@ public class Line {
 
     public static Line create(int numberOfPeople, NumberGenerator numberGenerator) {
         List<Point> points = new ArrayList<>();
-        int numberOfPointsToGenerate = numberOfPeople - 1;
-        for (int i = 0; i < numberOfPointsToGenerate; i++) {
+        int width = numberOfPeople - 1;
+        for (int i = 0; i < width; i++) {
             addPoint(points, numberGenerator);
         }
         return new Line(points);
