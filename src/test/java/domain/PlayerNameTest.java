@@ -12,11 +12,23 @@ public class PlayerNameTest {
     @ParameterizedTest
     @ValueSource(strings = {"", "abcdef"})
     @DisplayName("플레이어의 이름은 1자 이상, 5자 이하가 아니면 예외를 던진다. -> 실패 케이스")
-    void name_constructor_validate(String input) {
+    void throws_exception_when_name_has_invalidate_range_of_length(String givenName) {
         // when & then
-        assertThatThrownBy(() -> new PlayerName(input))
+        assertThatThrownBy(() -> new PlayerName(givenName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름의 길이는 최소 1자 이상, 5자 이하입니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "bb", "ccc", "dddd", "eeeee"})
+    @DisplayName("플레이어의 이름은 1자 이상, 5자 이하가 아니면 예외를 던진다. -> 실패 케이스")
+    void throws_not_exception_when_name_has_validate_range_of_length(String givenName) {
+        // when
+        PlayerName playerName = new PlayerName(givenName);
+
+        // then
+        assertThat(playerName.getName()).isEqualTo(givenName);
+
     }
 
     @Test
