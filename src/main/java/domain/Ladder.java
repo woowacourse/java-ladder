@@ -13,7 +13,7 @@ public class Ladder {
     private final LadderHeight ladderHeight;
 
     private Ladder(List<Line> lines, LadderHeight ladderHeight) {
-        this.lines = lines;
+        this.lines = new ArrayList<>(lines);
         this.ladderHeight = ladderHeight;
     }
 
