@@ -7,6 +7,9 @@ import static domain.LineState.UNMOVABLE_STATE;
 
 public class Line {
 
+    private static final int FIRST_INDEX = 1;
+    private static final int LAST_INDEX_OFFSET = 1;
+
     private final List<Boolean> points = new ArrayList<>();
 
     public Line(int personCount, RandomGenerator generator) {
@@ -27,7 +30,7 @@ public class Line {
 
     private void addPoints(int personCount, RandomGenerator generator) {
         addRandomPoint(generator);
-        for (int pointIndex = 1; pointIndex < personCount - 1; pointIndex++) {
+        for (int pointIndex = FIRST_INDEX; pointIndex < personCount - LAST_INDEX_OFFSET; pointIndex++) {
             addConditionalPoint(generator, pointIndex);
         }
     }
