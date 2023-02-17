@@ -7,11 +7,9 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import utils.booleanGenerator.BooleanGenerator;
 import utils.booleanGenerator.RandomBooleanGenerator;
-import utils.booleanGenerator.TrueBooleanGenerator;
 
 class LineTest {
     private final BooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
-    private final BooleanGenerator trueBooleanGenerator = new TrueBooleanGenerator();
 
     @Nested
     class pointsTest {
