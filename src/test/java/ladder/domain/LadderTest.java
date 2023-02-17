@@ -13,6 +13,7 @@ public class LadderTest {
     @Test
     @DisplayName("0이하의 값으로 Ladder생성시 예외가 발생한다.")
     void inValidLadderSizeTest() {
+
         assertThatThrownBy(() -> new Ladder(0, new Users(List.of("1", "2"))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -20,6 +21,7 @@ public class LadderTest {
     @Test
     @DisplayName("ladder 생성시 1이상의 height를 입력하면 정상 생성된다..")
     void checkValidLadderSizeTest() {
+
         var users = new Users(List.of("1", "2"));
         var ladder = new Ladder(1, users);
 
@@ -29,6 +31,7 @@ public class LadderTest {
     @Test
     @DisplayName("Ladder 생성시 users보다 1작은 width로 생성된다.")
     void checkLadderWidthTest() {
+
         var users = new Users(List.of("1", "2", "3"));
 
         var ladder = new Ladder(3, users);
@@ -42,10 +45,11 @@ public class LadderTest {
     @Test
     @DisplayName("Ladder 정상 생성 테스트")
     void makeFloorTest() {
+
         List list = List.of(true, false, true);
         TestLineGenerator testNumberGenerator = new TestLineGenerator(list);
-        Ladder ladder = new Ladder(1, new Users(List.of("1", "2", "3", "4")));
 
+        Ladder ladder = new Ladder(1, new Users(List.of("1", "2", "3", "4")));
         ladder.makeFloors(testNumberGenerator);
 
         assertThat(ladder.getFloors().get(0).getLines())

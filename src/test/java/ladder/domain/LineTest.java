@@ -9,8 +9,9 @@ import static org.assertj.core.api.Assertions.*;
 public class LineTest {
 
     @Test
-    @DisplayName("1을 받으면 true가 된다.")
+    @DisplayName("라인 생성 true 케이스")
     void makeTrue() {
+
         Line line = new Line();
         line.make(true);
 
@@ -19,9 +20,10 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("0을 받으면 false가 된다.")
+    @DisplayName("라인 생성 false 케이스")
     void makeFalse() {
-        var line = new Line();
+
+        Line line = new Line();
         line.make(false);
 
         assertThat(line.isExist())

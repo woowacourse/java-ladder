@@ -11,9 +11,9 @@ public class Floor {
 
     private final List<Line> lines = new ArrayList<>();
 
-    public Floor(int lineSize) {
+    public Floor(int width) {
 
-        for (int i = 0; i < lineSize; i++) {
+        for (int i = 0; i < width; i++) {
             lines.add(new Line());
         }
     }

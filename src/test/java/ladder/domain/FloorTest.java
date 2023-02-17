@@ -15,6 +15,7 @@ public class FloorTest {
     @Test
     @DisplayName("Floor가 생성자에서 받은 value의 크기를 가진 lines를 생성한다.")
     void makeFloorBySize() {
+
         Floor floor = new Floor(3);
 
         assertThat(floor.getLines().size()).isEqualTo(3);
@@ -37,6 +38,7 @@ public class FloorTest {
     @Test
     @DisplayName("같은 층에서 Line이 연속해서 생기지 않는다.")
     void makeNonContinuousLadderTest() {
+
         Floor floor = new Floor(3);
 
         List<Boolean> list = new ArrayList<>(List.of(true, true, true));
