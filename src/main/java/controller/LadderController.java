@@ -26,7 +26,7 @@ public class LadderController {
 
     private void initLadder() {
         try {
-            ladder = new Ladder(InputView.readLadderHeight(), users.size());
+            ladder = Ladder.generateByHeightPersonCount(InputView.readLadderHeight(), users.size());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             initLadder();
