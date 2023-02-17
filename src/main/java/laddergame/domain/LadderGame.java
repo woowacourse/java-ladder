@@ -6,15 +6,12 @@ import java.util.List;
 
 public class LadderGame {
 
-    private Players players;
-    private Ladder ladder;
+    private final Players players;
+    private final Ladder ladder;
 
-    public void setPlayers(List<String> playerNames) {
-        players = new Players(playerNames);
-    }
-
-    public void makeLadder(int height) {
-        ladder = new Ladder(players.size(), height, new RandomPointGenerator());
+    public LadderGame(Players players, int ladderHeight) {
+        this.players = players;
+        this.ladder = new Ladder(players.size(), ladderHeight, new RandomPointGenerator());
     }
 
     public List<String> getPlayerNames() {

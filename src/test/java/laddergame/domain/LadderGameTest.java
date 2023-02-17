@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LadderGameTest {
 
@@ -15,9 +15,7 @@ class LadderGameTest {
         List<String> playerNames = List.of("pobi", "honux", "crong", "jk");
         int height = 5;
         assertDoesNotThrow(() -> {
-            LadderGame ladderGame = new LadderGame();
-            ladderGame.setPlayers(playerNames);
-            ladderGame.makeLadder(height);
+            new LadderGame(new Players(playerNames), 5);
         });
     }
 
