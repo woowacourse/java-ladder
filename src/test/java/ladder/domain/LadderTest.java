@@ -57,8 +57,8 @@ public class LadderTest {
     @DisplayName("Ladder 생성 테스트")
     void makeFloorTest() {
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(List.of(1, 0, 0, 1, 1, 1));
-
         Ladder ladder = new Ladder(2, new Users(List.of("1", "2", "3", "4")));
+
         ladder.makeFloors(testNumberGenerator);
 
         assertThat(ladder.getFloors().get(0).getLines())

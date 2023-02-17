@@ -12,7 +12,7 @@ public class FloorTest {
 
     @Test
     @DisplayName("사이즈를 입력 받는 층 생성 테스트")
-    void makeFloorBySIze() {
+    void makeFloorBySize() {
         Floor floor = new Floor(3);
         assertThat(floor.getLines().size()).isEqualTo(3);
     }

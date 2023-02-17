@@ -9,6 +9,7 @@ import ladder.view.OutputView;
 public class MainController {
 
     public static void main(String[] args) {
+
         Users users = inputUsers();
         Ladder ladder = inputLadder(users);
         ladder.makeFloors(new RandomNumberGenerator());
@@ -16,6 +17,7 @@ public class MainController {
     }
 
     private static Ladder inputLadder(Users users) {
+
         try {
             return new Ladder(InputView.inputFloorHeight(), users);
         } catch (IllegalArgumentException e) {
@@ -25,6 +27,7 @@ public class MainController {
     }
 
     private static Users inputUsers() {
+
         try {
             return new Users(InputView.inputUserNames());
         } catch (IllegalArgumentException e) {
