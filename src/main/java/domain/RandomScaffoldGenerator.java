@@ -8,13 +8,12 @@ public class RandomScaffoldGenerator implements ScaffoldGenerator {
 
     @Override
     public Scaffold generate() {
-        if (fiftyPercent()) {
+        if (isTrue()) {
             return Scaffold.EXIST;
         }
         return Scaffold.NONE;
     }
-
-    private boolean fiftyPercent() {
+    private boolean isTrue() {
         return random.nextBoolean();
     }
 }
