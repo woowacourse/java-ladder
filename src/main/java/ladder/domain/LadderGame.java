@@ -11,8 +11,7 @@ public class LadderGame {
 
     public LadderGame(List<String> names, int height, LineStrategy lineStrategy) {
         this.players = new Players(names);
-        this.ladder = new Ladder(height);
-        ladder.assignLines(lineStrategy, names.size() - 1);
+        this.ladder = new Ladder(names.size(), height, lineStrategy);
     }
 
     public List<List<Boolean>> getLines() {
