@@ -8,11 +8,11 @@ public class Player {
         this.playerName = new PlayerName(playerName);
     }
 
-    public String getName() {
-        return this.playerName.getName();
-    }
-
     public int getLengthOfPlayerName() {
         return this.playerName.getLengthOfName();
+    }
+
+    public String getName() {
+        return this.playerName.getName();
     }
 }

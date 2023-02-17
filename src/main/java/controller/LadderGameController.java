@@ -33,7 +33,7 @@ public class LadderGameController {
         }
     }
 
-    private Ladder makeLadder(int numberOfPlayers) {
+    private Ladder makeLadder(final int numberOfPlayers) {
         try {
             int ladderHeight = inputView.readHeight();
             return new Ladder(numberOfPlayers, ladderHeight);
