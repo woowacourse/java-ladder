@@ -40,7 +40,7 @@ public class Players {
 
     public int getNameMaxLength() {
         return this.players.stream()
-                .map(player -> player.getName().getName().length())
+                .map(Player::getNameLength)
                 .max(Integer::compareTo)
                 .orElseThrow(() -> new IllegalStateException("플레이어가 존재하지 않습니다."));
     }

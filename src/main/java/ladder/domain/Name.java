@@ -25,4 +25,8 @@ public class Name {
     public String getName() {
         return name;
     }
+
+    public int getNameLength() {
+        return name.length();
+    }
 }
