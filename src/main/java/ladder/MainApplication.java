@@ -1,4 +1,4 @@
-package ladder.controller;
+package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.RandomNumberGenerator;
@@ -6,7 +6,7 @@ import ladder.domain.Users;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-public class MainController {
+public class MainApplication {
 
     public static void main(String[] args) {
 
