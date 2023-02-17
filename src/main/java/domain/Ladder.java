@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import domain.numbergenerator.BooleanGenerator;
+import domain.numbergenerator.RandomBooleanGenerator;
 
 public class Ladder {
 
@@ -14,9 +15,9 @@ public class Ladder {
 
     private final List<Line> ladder = new ArrayList<>();
 
-    public Ladder(int height, int personCount, BooleanGenerator booleanGenerator) {
+    public Ladder(int height, int personCount) {
         validate(height, personCount);
-        generateLadder(height, personCount, booleanGenerator);
+        generateLadder(height, personCount);
     }
 
     private static void validate(int height, int personCount) {
@@ -36,7 +37,8 @@ public class Ladder {
         }
     }
 
-    private void generateLadder(int height, int personCount, BooleanGenerator booleanGenerator) {
+    private void generateLadder(int height, int personCount) {
+        BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
         for (int i = 0; i < height; i++) {
             ladder.add(new Line(personCount, booleanGenerator));
         }
