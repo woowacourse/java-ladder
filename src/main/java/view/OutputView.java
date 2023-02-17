@@ -13,6 +13,9 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final String LINE_START_FORMAT = "    |";
     private static final String NAME_START_FORMAT = "  ";
+    private static final String FORMATTED_DASH = "-----";
+    private static final String FORMATTED_BLANK = "     ";
+    private static final String DIVIDER = "|";
     private static final int DIVISOR = 2;
     private static final int DEFAULT_PADDING = 2;
     private static final int FLAG = 1;
@@ -45,7 +48,11 @@ public class OutputView {
         List<Point> points = line.getPoints();
         StringBuilder result = new StringBuilder(LINE_START_FORMAT);
         for (Point point : points) {
-            result.append(point.toFormattedStatus());
+            if (point.isConnection()) {
+                result.append(FORMATTED_DASH + DIVIDER);
+                continue;
+            }
+            result.append(FORMATTED_BLANK + DIVIDER);
         }
         System.out.println(result);
     }
