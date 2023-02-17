@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.utils.BooleanGenerator;
+import ladder.utils.RandomGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,20 +28,20 @@ class LineTest {
         // given
         List<Boolean> determinedBars = new ArrayList<>(List.of(true, true));
         // when
-        Line line = new Line(3, new DeterminedBooleanGenerator(determinedBars));
+        Line line = new Line(3, new DeterminedRandomGenerator(determinedBars));
         // then
         assertThat(line.getBars()).containsExactly(MOVABLE, IMMOVABLE, MOVABLE);
     }
 
-    static class DeterminedBooleanGenerator implements BooleanGenerator {
+    static class DeterminedRandomGenerator implements RandomGenerator {
         private final List<Boolean> bars;
 
-        public DeterminedBooleanGenerator(List<Boolean> bars) {
+        public DeterminedRandomGenerator(List<Boolean> bars) {
             this.bars = bars;
         }
 
         @Override
-        public boolean generate() {
+        public Boolean generate() {
             return bars.remove(0);
         }
     }

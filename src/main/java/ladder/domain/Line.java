@@ -5,31 +5,31 @@ import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
-import ladder.utils.BarGenerator;
 import ladder.utils.BooleanGenerator;
+import ladder.utils.RandomGenerator;
 
 public class Line {
     private final List<Bar> bars;
 
     public Line(int size) {
-        this(size, new BarGenerator());
+        this(size, new BooleanGenerator());
     }
 
-    public Line(int size, BooleanGenerator booleanGenerator) {
-        this.bars = generateBars(size, booleanGenerator);
+    public Line(int size, RandomGenerator randomGenerator) {
+        this.bars = generateBars(size, randomGenerator);
     }
 
-    private List<Bar> generateBars(int size, BooleanGenerator booleanGenerator) {
+    private List<Bar> generateBars(int size, RandomGenerator randomGenerator) {
         Deque<Bar> bars = new LinkedList<>();
         for (int i = 0; i < size; i++) {
-            bars.add(getAppropriateBar(bars, booleanGenerator));
+            bars.add(getAppropriateBar(bars, randomGenerator));
         }
         return new ArrayList<>(bars);
     }
 
-    private Bar getAppropriateBar(Deque<Bar> bars, BooleanGenerator booleanGenerator) {
+    private Bar getAppropriateBar(Deque<Bar> bars, RandomGenerator randomGenerator) {
         if (bars.isEmpty() || bars.getLast().isImmovable()) {
-            return Bar.of(booleanGenerator.generate());
+            return Bar.of(randomGenerator.generate());
         }
         return Bar.IMMOVABLE;
     }
