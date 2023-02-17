@@ -1,9 +1,9 @@
 package domain;
 
+import exception.Error;
+
 import java.util.List;
 import java.util.stream.Collectors;
-
-import exception.Error;
 
 public class People {
 	private static final int MIN_PEOPLE_SIZE_INCLUSIVE = 2;
@@ -29,19 +29,24 @@ public class People {
 	}
 
 	private static void validateSize(List<String> names) {
-		if (names.size() < MIN_PEOPLE_SIZE_INCLUSIVE)
+		if (names.size() < MIN_PEOPLE_SIZE_INCLUSIVE) {
 			throw new IllegalArgumentException(Error.LACK_OF_PEOPLE.getMessage());
-		if (names.size() > MAX_PEOPLE_SIZE_INCLUSIVE)
+		}
+
+		if (names.size() > MAX_PEOPLE_SIZE_INCLUSIVE) {
 			throw new IllegalArgumentException(Error.TOO_MANY_PEOPLE.getMessage());
+		}
 	}
 
 	private static void validateDuplication(List<String> names) {
-		int distinctCount = (int)names.stream()
-			.map(String::trim)
-			.distinct()
-			.count();
-		if (distinctCount != names.size())
+		int distinctCount = (int) names.stream()
+				.map(String::trim)
+				.distinct()
+				.count();
+
+		if (distinctCount != names.size()) {
 			throw new IllegalArgumentException(Error.DUPLICATED_NAME.getMessage());
+		}
 	}
 
 	public int size() {

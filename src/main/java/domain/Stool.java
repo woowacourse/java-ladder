@@ -18,7 +18,7 @@ public enum Stool {
 			.get();
 	}
 
-	public boolean isStool() {
+	public boolean isExist() {
 		return this.isExist;
 	}
 }

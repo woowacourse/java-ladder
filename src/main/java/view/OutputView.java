@@ -10,28 +10,29 @@ public class OutputView {
 		printLadder(ladder);
 	}
 
-	private static String makeLevelView(List<Boolean> level) {
-		return "    |" + level.stream()
-			.map(OutputView::makeStoolView)
-			.collect(Collectors.joining("|")) + "|";
-	}
-
-	private static String makeStoolView(boolean stool) {
-		if (stool)
-			return "-----";
-		return "     ";
-	}
-
 	private void printNames(List<String> names) {
 		names.stream()
-			.map(name -> String.format("%6s", name))
-			.forEach(System.out::print);
+				.map(name -> String.format("%6s", name))
+				.forEach(System.out::print);
+
 		System.out.println();
 	}
 
 	private void printLadder(List<List<Boolean>> ladder) {
 		ladder.stream()
-			.map(OutputView::makeLevelView)
-			.forEach(System.out::println);
+				.map(this::makeLevelView)
+				.forEach(System.out::println);
+	}
+
+	private String makeLevelView(List<Boolean> level) {
+		return "    |" + level.stream()
+				.map(this::makeStoolView)
+				.collect(Collectors.joining("|")) + "|";
+	}
+
+	private String makeStoolView(boolean stool) {
+		if (stool)
+			return "-----";
+		return "     ";
 	}
 }

@@ -1,11 +1,12 @@
 package domain;
 
-import static org.assertj.core.api.AssertionsForInterfaceTypes.*;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThatThrownBy;
 
 @DisplayName("사람 이름은 ")
 class PersonTest {
@@ -23,8 +24,8 @@ class PersonTest {
 	@ValueSource(strings = {"", "  ", "helloWorld"})
 	void nameLengthNot1_5(String name) {
 		assertThatThrownBy(() -> new Person(name))
-			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("이름은 1 ~ 5글자만 가능합니다");
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("[ERROR] 이름은 1 ~ 5글자만 가능합니다");
 	}
 
 }

@@ -7,6 +7,7 @@ public class Person {
 
 	public Person(String name) {
 		validate(name);
+
 		this.name = name.trim();
 	}
 
@@ -16,6 +17,7 @@ public class Person {
 
 	private void validate(String name) {
 		name = name.trim();
+
 		if (name.length() < 1 || name.length() > 5) {
 			throw new IllegalArgumentException(Error.INVALID_NAME_LENGTH.getMessage());
 		}

@@ -1,11 +1,11 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.*;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("사다리는 ")
 class LadderTest {
@@ -23,8 +23,8 @@ class LadderTest {
 	@ValueSource(ints = {-2, 101})
 	void heightNot1_100(int height) {
 		assertThatThrownBy(() -> Ladder.from(height, 5))
-			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("높이는 1부터 100까지만 가능합니다");
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("[ERROR] 높이는 1부터 100까지만 가능합니다");
 	}
 
 	@DisplayName("참여자수 - 1 만큼의 열을 가진다")
@@ -41,7 +41,7 @@ class LadderTest {
 	void stoolNotContinuous() {
 		Ladder ladder = initLadder(4, 5);
 
-		for (Level level : ladder.getLadder())
+		for (Level level : ladder.getLevels())
 			for (int i = 0; i < level.size() - 1; i++)
 				if (level.isStoolExist(i) && level.isStoolExist(i + 1))
 					fail("발판은 연속될 수 없다");
@@ -52,7 +52,7 @@ class LadderTest {
 	void lineMustHaveStool() {
 		Ladder ladder = initLadder(4, 6);
 
-		assertThat(ladder.getLadder()).allMatch(level -> level.countStools() > 0);
+		assertThat(ladder.getLevels()).allMatch(level -> level.countStools() > 0);
 	}
 
 	private static Ladder initLadder(int height, int participantSize) {
