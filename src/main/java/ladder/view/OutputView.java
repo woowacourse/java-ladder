@@ -65,7 +65,7 @@ public class OutputView {
 
         System.out.print(BLANK_SPACE.repeat(BLOCK_SIZE_EXCEPT_DELIMITER));
         System.out.print(DELIMITER);
-        for (Boolean line : floor.getLines()) {
+        for (Boolean line : floor.getPoints()) {
             printLine(line);
         }
     }
