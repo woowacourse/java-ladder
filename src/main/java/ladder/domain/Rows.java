@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import ladder.dto.LinesDto;
+import ladder.dto.RowsDto;
 
 public class Rows {
 
@@ -21,8 +21,8 @@ public class Rows {
         rows.forEach(row -> row.generateLeg(generator));
     }
 
-    public LinesDto toDto() {
-        return new LinesDto(rows.stream()
+    public RowsDto toDto() {
+        return new RowsDto(rows.stream()
                 .map(Row::toDto)
                 .collect(Collectors.toList()));
     }

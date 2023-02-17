@@ -1,18 +1,18 @@
 package ladder.view;
 
 import java.util.List;
-import ladder.dto.LinesDto;
 import ladder.dto.NamesDto;
+import ladder.dto.RowsDto;
 
 public class ResultView {
 
     private ResultView() {
     }
 
-    public static void printResult(NamesDto namesDto, LinesDto linesDto) {
+    public static void printResult(NamesDto namesDto, RowsDto rowsDto) {
         printResultTitle();
         printNames(namesDto);
-        printLines(linesDto);
+        printLines(rowsDto);
     }
 
     private static void printResultTitle() {
@@ -28,22 +28,22 @@ public class ResultView {
         System.out.printf("%-6s", name);
     }
 
-    private static void printLines(LinesDto linesDto) {
+    private static void printLines(RowsDto rowsDto) {
         System.out.println();
-        List<List<Boolean>> lines = linesDto.getLines();
-        lines.forEach(ResultView::printLine);
+        List<List<Boolean>> rows = rowsDto.getRows();
+        rows.forEach(ResultView::printLine);
     }
 
-    private static void printLine(List<Boolean> line) {
+    private static void printLine(List<Boolean> row) {
         System.out.print("|");
-        for (int i = 0; i < line.size(); i++) {
-            printLeg(line, i);
+        for (int i = 0; i < row.size(); i++) {
+            printLeg(row, i);
         }
         System.out.println();
     }
 
-    private static void printLeg(List<Boolean> line, int index) {
-        if (line.get(index)) {
+    private static void printLeg(List<Boolean> row, int index) {
+        if (row.get(index)) {
             System.out.print("-----|");
             return;
         }
