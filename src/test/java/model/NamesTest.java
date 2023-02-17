@@ -12,7 +12,7 @@ public class NamesTest {
     @Test
     @DisplayName("Names 객체 생성 성공 테스트")
     void createNamesTest() {
-        Names names = new Names(Arrays.asList("pobi", "crong", "honux"));
+        Names names = new Names("pobi,crong,honux");
 
         assertThat(names.getNames().size()).isEqualTo(3);
     }
