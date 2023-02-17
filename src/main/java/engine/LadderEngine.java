@@ -15,6 +15,12 @@ import java.util.stream.Collectors;
 
 public class LadderEngine {
 
+    private final LineGenerator lineGenerator;
+
+    public LadderEngine(LineGenerator lineGenerator) {
+        this.lineGenerator = lineGenerator;
+    }
+
     public void start() {
 
         List<Person> people = convertNamesToPeople(InputView.inputName());
@@ -32,7 +38,6 @@ public class LadderEngine {
 
     private List<Line> makeLines(final List<Person> people, final int height) {
         List<Line> lines = new ArrayList<>();
-        LineGenerator lineGenerator = new LineGenerator(new RandomBridgeGenerator());
         for (int i = 0; i < height; i++) {
             Line line = lineGenerator.generate(people.size());
             lines.add(line);
