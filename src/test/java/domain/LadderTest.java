@@ -10,15 +10,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class LadderTest {
 
     @Test
-    @DisplayName("")
+    @DisplayName("Ladder 생성 확인")
     void ladder() {
         new Ladder(4, 4, new RandomDigitsGenerator());
     }
 
     @ParameterizedTest
     @ValueSource(ints = {0, -1})
-    @DisplayName("")
-    void invalid_height(int height) {
+    @DisplayName("높이에 0이하의 값을 입력하면 예외 발생")
+    void validateHeight(int height) {
         assertThatThrownBy(() -> new Ladder(height, 4, new RandomDigitsGenerator()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
