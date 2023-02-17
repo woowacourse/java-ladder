@@ -13,7 +13,7 @@ public class NameTest {
     void makeNameLengthFailure() {
         String wrongName = "abcdef";
         assertThatThrownBy(() -> new Name(wrongName))
-                .isInstanceOf(IllegalArgumentException.class);
+                .hasMessage("이름 길이는 1 ~ 5 사이여야 합니다.");
     }
 
     @Test
