@@ -2,7 +2,7 @@ package view;
 
 import domain.*;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +23,7 @@ public class OutputView {
     private static final Map<Scaffold, String> SCAFFOLD_STRING_MAP;
 
     static {
-        SCAFFOLD_STRING_MAP = new HashMap<>();
+        SCAFFOLD_STRING_MAP = new EnumMap<>(Scaffold.class);
         SCAFFOLD_STRING_MAP.put(Scaffold.EXIST, EXIST_SCAFFOLD);
         SCAFFOLD_STRING_MAP.put(Scaffold.NONE, NONE_SCAFFOLD);
     }
