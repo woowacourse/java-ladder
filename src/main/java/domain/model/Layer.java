@@ -1,6 +1,7 @@
 package domain.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Layer {
@@ -24,6 +25,6 @@ public class Layer {
     }
 
     public List<Boolean> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 }
