@@ -1,5 +1,6 @@
 package model;
 
+import util.ExceptionMessage;
 import util.Generator;
 
 import java.util.ArrayList;
@@ -9,22 +10,31 @@ public class Line {
     private static final int MINIMUM_LINE_SIZE = 2;
 
     private final List<Boolean> points = new ArrayList<>();
-
     public Line(int personCount, Generator generator) {
         for (int column = 0; column < personCount - 1; column++) {
             points.add(generator.generate());
-            if (validateLineMake(column)) {
-                column--;
-            }
+            column = checkColumn(column);
         }
+    }
+
+    private int checkColumn(int column) {
+        if (validateLineMake(column)) {
+            column--;
+        }
+        return column;
     }
 
     private boolean validateLineMake(int column) {
         if (points.size() >= MINIMUM_LINE_SIZE) {
-            if (validateConnectLine(column) && validateTrueLine(column)) {
-                points.remove(column);
-                return true;
-            }
+            return validateRetryLineMake(column);
+        }
+        return false;
+    }
+
+    private boolean validateRetryLineMake(int column){
+        if (validateConnectLine(column) && validateTrueLine(column)) {
+            points.remove(column);
+            return true;
         }
         return false;
     }
