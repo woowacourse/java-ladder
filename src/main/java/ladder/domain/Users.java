@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Users {
 
     private static final int MINIMUM_SIZE = 2;
-    private static final String USERS_SIZE_ERROR_MESSAGE = "유저는 한명보다 많아야 합니다.";
+    private static final String USERS_SIZE_ERROR_MESSAGE = "유저는 " + MINIMUM_SIZE + "명 미만일 수 없습니다.";
     private static final String USERS_DUPLICATED_ERROR_MESSAGE = "중복된 이름을 입력할 수 없습니다.";
     private final List<User> users;
 
