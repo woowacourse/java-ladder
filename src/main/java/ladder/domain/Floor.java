@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Floor {
 
@@ -15,10 +16,6 @@ public class Floor {
         for (int i = 0; i < lineSize; i++) {
             lines.add(new Line());
         }
-    }
-
-    public List<Line> getLines() {
-        return lines;
     }
 
     public void makeFloor(List<Boolean> lineValues) {
@@ -44,5 +41,11 @@ public class Floor {
         int previousIndex = index - INDEX_DIFFERENCE;
 
         return !lines.get(previousIndex).isExist();
+    }
+
+    public List<Boolean> getLines() {
+        return lines.stream()
+                .map(Line::isExist)
+                .collect(Collectors.toList());
     }
 }

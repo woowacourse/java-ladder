@@ -65,14 +65,14 @@ public class OutputView {
 
         System.out.print(BLANK_SPACE.repeat(BLOCK_SIZE_EXCEPT_DELIMITER));
         System.out.print(DELIMITER);
-        for (Line line : floor.getLines()) {
+        for (Boolean line : floor.getLines()) {
             printLine(line);
         }
     }
 
-    private static void printLine(Line line) {
+    private static void printLine(Boolean line) {
 
-        if (line.isExist()) {
+        if (line) {
             System.out.print(LINE_COMPONENT.repeat(BLOCK_SIZE_EXCEPT_DELIMITER));
             System.out.print(DELIMITER);
             return;

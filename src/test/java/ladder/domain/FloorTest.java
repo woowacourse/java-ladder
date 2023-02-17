@@ -29,11 +29,7 @@ public class FloorTest {
         List<Boolean> list = new ArrayList<>(List.of(true, false, true));
         floor.makeFloor(list);
 
-        assertThat(
-                floor.getLines().stream()
-                        .map(Line::isExist)
-                        .collect(Collectors.toList())
-        )
+        assertThat(floor.getLines())
                 .containsExactly(true, false, true);
     }
 
@@ -46,11 +42,7 @@ public class FloorTest {
         List<Boolean> list = new ArrayList<>(List.of(true, true, true));
         floor.makeFloor(list);
 
-        assertThat(
-                floor.getLines().stream()
-                        .map(Line::isExist)
-                        .collect(Collectors.toList())
-        )
+        assertThat(floor.getLines())
                 .containsExactly(true, false, true);
     }
 

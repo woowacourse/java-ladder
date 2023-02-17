@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -49,11 +48,7 @@ public class LadderTest {
 
         ladder.makeFloors(testNumberGenerator);
 
-        assertThat(
-                ladder.getFloors().get(0).getLines().stream()
-                        .map(Line::isExist)
-                        .collect(Collectors.toList())
-        )
+        assertThat(ladder.getFloors().get(0).getLines())
                 .containsExactlyElementsOf(List.of(true, false, true));
 
     }
@@ -67,18 +62,10 @@ public class LadderTest {
 
         ladder.makeFloors(testNumberGenerator);
 
-        assertThat(
-                ladder.getFloors().get(0).getLines().stream()
-                        .map(Line::isExist)
-                        .collect(Collectors.toList())
-        )
+        assertThat(ladder.getFloors().get(0).getLines())
                 .containsExactlyElementsOf(List.of(true, false, false));
 
-        assertThat(
-                ladder.getFloors().get(1).getLines().stream()
-                .map(Line::isExist)
-                .collect(Collectors.toList())
-        )
+        assertThat(ladder.getFloors().get(1).getLines())
                 .containsExactlyElementsOf(List.of(true, false, true));
 
 
