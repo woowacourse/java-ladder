@@ -11,11 +11,11 @@ public class Names {
     private final List<Name> names;
 
     public Names(final List<Name> names) {
-        validate(names);
+        validateSize(names);
         this.names = new ArrayList<>(names);
     }
 
-    private void validate(final List<Name> names) {
+    private void validateSize(final List<Name> names) {
         if (names.size() < MIN_PERSON_COUNT_INCLUSIVE) {
             throw new IllegalArgumentException("2명 이상의 사람들을 입력해주세요");
         }
