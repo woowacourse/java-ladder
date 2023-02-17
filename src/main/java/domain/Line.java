@@ -35,17 +35,17 @@ public class Line {
     private void createOtherFootholds(final FootholdGenerator footholdGenerator, final List<Boolean> footholds,
                                       final int numberOfPoint) {
         for (int i = 1; i < numberOfPoint; i++) {
-            boolean random = footholdGenerator.generate();
-            createFootholdWithoutFirst(footholds, i, random);
+            boolean isExistFoothold = footholdGenerator.generate();
+            createFootholdWithoutFirst(footholds, i, isExistFoothold);
         }
     }
 
-    private void createFootholdWithoutFirst(final List<Boolean> points, final int index, final boolean isExisting) {
-        if (isConsecutiveExistingFoothold(points, index, isExisting)) {
+    private void createFootholdWithoutFirst(final List<Boolean> points, final int index, final boolean isExistFoothold) {
+        if (isConsecutiveExistingFoothold(points, index, isExistFoothold)) {
             points.add(false);
             return;
         }
-        points.add(isExisting);
+        points.add(isExistFoothold);
     }
 
     private boolean isConsecutiveExistingFoothold(final List<Boolean> points, final int index, final boolean random) {
