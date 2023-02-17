@@ -23,7 +23,7 @@ public class OutputView {
     }
 
     private String getFormattedNames(Names names) {
-        return names.getNames().stream()
+        return names.stream()
                 .map(name -> String.format("%-5s", name.getName()))
                 .collect(Collectors.joining(" "));
     }

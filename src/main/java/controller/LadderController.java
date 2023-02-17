@@ -29,7 +29,7 @@ public class LadderController {
     public void run() {
         Names names = repeat(this::createNames);
         LadderHeight ladderHeight = repeat(this::createLadderHeight);
-        Ladder ladder = Ladder.create(names.getSize(),ladderHeight,  numberGenerator);
+        Ladder ladder = Ladder.create(names.size(),ladderHeight,  numberGenerator);
 
         outputView.printResult(names, ladder);
     }

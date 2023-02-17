@@ -44,6 +44,6 @@ class NamesTest {
         List<Name> namesInput = List.of(new Name("phobi"), new Name("neo"));
         Names names = new Names(namesInput);
 
-        assertThat(names.getSize()).isEqualTo(2);
+        assertThat(names.size()).isEqualTo(2);
     }
 }
