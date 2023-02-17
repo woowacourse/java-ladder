@@ -14,6 +14,13 @@ public class LineGenerator {
         this.bridgeGenerator = bridgeGenerator;
     }
 
+    private static boolean hasLeftBridge(final List<Bridge> bridges) {
+        if (bridges.isEmpty()) {
+            return false;
+        }
+        return bridges.get(bridges.size() - 1) == Bridge.EXIST;
+    }
+
     public Line generate(final int personCount) {
         List<Bridge> newBridges = new ArrayList<>();
 
@@ -30,12 +37,5 @@ public class LineGenerator {
         }
 
         return bridgeGenerator.generate();
-    }
-
-    private static boolean hasLeftBridge(final List<Bridge> bridges) {
-        if (bridges.isEmpty()) {
-            return false;
-        }
-        return bridges.get(bridges.size() - 1) == Bridge.EXIST;
     }
 }
