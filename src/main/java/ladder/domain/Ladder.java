@@ -8,8 +8,19 @@ public class Ladder {
 
     private final List<Line> ladder;
 
-    public Ladder(List<Line> lines) {
+    private Ladder(List<Line> lines) {
         this.ladder = new ArrayList<>(lines);
+    }
+
+    public static Ladder create(int count, int height) {
+        List<Line> lines = new ArrayList<>();
+
+        for (int idx = 0; idx < height; idx++) {
+            List<Bar> bars = LineMaker.generate(count, new RandomDataGenerator());
+            lines.add(new Line(bars));
+        }
+
+        return new Ladder(lines);
     }
 
     public List<Line> getLadder() {

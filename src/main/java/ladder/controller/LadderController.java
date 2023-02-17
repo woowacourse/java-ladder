@@ -30,7 +30,7 @@ public class LadderController {
     public void run() {
         Players players = createPlayersUntilNoException();
         Height heightOfLadder = decideHeightOfLadderUntilNoException();
-        Ladder ladder = createLadder(players, heightOfLadder);
+        Ladder ladder = Ladder.create(players.count(), heightOfLadder.getHeight());
 
         resultView.printLadder(players, ladder);
     }
@@ -58,7 +58,6 @@ public class LadderController {
         while (height == null) {
             height = decideHeightOfLadder();
         }
-
         return height;
     }
 
@@ -66,24 +65,10 @@ public class LadderController {
         try {
             int inputMaximumHeight = inputView.inputHeightOfLadder();
             int height = randomIntegerGenerator.generateNumber(MINIMUM_HEIGHT, inputMaximumHeight);
-
             return new Height(height);
-
         } catch (IllegalArgumentException e) {
             resultView.printError(e.getMessage());
             return null;
         }
-    }
-
-    //TODO: LADDER나 LADDERMAKER로 넣어버리기
-    private Ladder createLadder(Players players, Height height) {
-        List<Line> lines = new ArrayList<>();
-
-        for (int idx = 0; idx < height.getHeight(); idx++) {
-            List<Bar> bars = LineMaker.generate(players.count(), randomIntegerGenerator);
-            lines.add(new Line(bars));
-        }
-
-        return new Ladder(lines);
     }
 }
