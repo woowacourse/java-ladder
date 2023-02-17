@@ -11,10 +11,6 @@ public enum Point {
         this.status = status;
     }
 
-    public boolean getStatus() {
-        return status;
-    }
-
     public boolean isConnection() {
         return status;
     }

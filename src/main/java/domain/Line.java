@@ -34,7 +34,7 @@ public class Line {
     }
 
     private boolean hasAdjacentPoint() {
-        return !points.isEmpty() && points.get(points.size() - 1).getStatus();
+        return !points.isEmpty() && points.get(points.size() - 1).isConnection();
     }
 
     public List<Point> getPoints() {
