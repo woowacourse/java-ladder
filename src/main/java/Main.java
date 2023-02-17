@@ -1,13 +1,12 @@
 import controller.LadderController;
-import domain.LadderFactory;
-import domain.RandomScaffoldGenerator;
-import domain.ScaffoldGenerator;
 
 public class Main {
     public static void main(String[] args) {
-        ScaffoldGenerator scaffoldGenerator = new RandomScaffoldGenerator();
-        LadderFactory ladderFactory = new LadderFactory(scaffoldGenerator);
-        LadderController ladderController = new LadderController(ladderFactory);
-        ladderController.run();
+        LadderController ladderController = new LadderController();
+        try {
+            ladderController.run();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
