@@ -7,6 +7,8 @@ import utils.NumberGenerator;
 
 public class Ladder {
 
+    private static final int NUMBER_OF_PEOPLE_TO_WIDTH_SCALE = 1;
+
     private final List<Line> lines;
     private final LadderHeight ladderHeight;
 
@@ -20,7 +22,7 @@ public class Ladder {
                                 NumberGenerator numberGenerator) {
         List<Line> lines = new ArrayList<>();
         Ladder ladder = new Ladder(lines, ladderHeight);
-        ladder.addLines(numberOfPeople - 1, numberGenerator);
+        ladder.addLines(numberOfPeople - NUMBER_OF_PEOPLE_TO_WIDTH_SCALE, numberGenerator);
         return ladder;
     }
 
