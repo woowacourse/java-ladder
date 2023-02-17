@@ -17,6 +17,10 @@ public class Name {
         return name.length();
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void validate(String name) {
         validateNotNull(name);
         validateDoesNotContainComma(name);
@@ -41,8 +45,4 @@ public class Name {
         }
     }
 
-    @Override
-    public String toString() {
-        return this.name;
-    }
 }
