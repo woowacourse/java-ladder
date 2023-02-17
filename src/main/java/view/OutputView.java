@@ -5,7 +5,6 @@ import domain.Lines;
 import domain.Names;
 
 public class OutputView {
-
     private static final OutputView instance = new OutputView();
 
     private OutputView() {
@@ -43,7 +42,6 @@ public class OutputView {
         }
         return Message.EMPTY_ROW_LADDER.message;
     }
-
 
     private enum Message {
         OUTPUT_RESULT("실행결과\n"),

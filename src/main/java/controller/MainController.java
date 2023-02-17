@@ -10,14 +10,13 @@ import view.InputView;
 import view.OutputView;
 
 public class MainController {
-
     private final InputView inputView;
     private final OutputView outputView;
-    private Map<ApplicationStatus, Supplier<ApplicationStatus>> gameGuide;
+    private final Map<ApplicationStatus, Supplier<ApplicationStatus>> gameGuide;
+
     private Names names;
     private Height height;
     private Lines lines;
-
 
     public MainController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;

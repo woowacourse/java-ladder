@@ -28,5 +28,4 @@ class NameTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Name(name));
     }
-
 }

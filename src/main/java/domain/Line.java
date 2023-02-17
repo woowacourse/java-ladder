@@ -6,6 +6,7 @@ import utils.booleanGenerator.BooleanGenerator;
 
 public class Line {
     private final BooleanGenerator generator;
+
     List<Boolean> points = new ArrayList<>();
 
     public Line(int personNumber, BooleanGenerator generator) {
