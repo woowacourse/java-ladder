@@ -28,7 +28,7 @@ public class Ladder {
 
     private void validateLinesSameSize(final List<Line> lines) {
         if (lineSizeNotUnique(lines)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("사다리의 가로 줄은 모두 동일한 길이를 가져야 합니다.");
         }
     }
 
