@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import domain.numbergenerator.NumberGenerator;
+import domain.numbergenerator.BooleanGenerator;
 
 public class Ladder {
 
@@ -14,9 +14,9 @@ public class Ladder {
 
     private final List<Line> ladder = new ArrayList<>();
 
-    public Ladder(int height, int personCount, NumberGenerator numberGenerator) {
+    public Ladder(int height, int personCount, BooleanGenerator booleanGenerator) {
         validate(height, personCount);
-        generateLadder(height, personCount, numberGenerator);
+        generateLadder(height, personCount, booleanGenerator);
     }
 
     private static void validate(int height, int personCount) {
@@ -36,9 +36,9 @@ public class Ladder {
         }
     }
 
-    private void generateLadder(int height, int personCount, NumberGenerator numberGenerator) {
+    private void generateLadder(int height, int personCount, BooleanGenerator booleanGenerator) {
         for (int i = 0; i < height; i++) {
-            ladder.add(new Line(personCount, numberGenerator));
+            ladder.add(new Line(personCount, booleanGenerator));
         }
     }
 

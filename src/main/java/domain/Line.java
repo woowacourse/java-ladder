@@ -3,30 +3,28 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.numbergenerator.NumberGenerator;
+import domain.numbergenerator.BooleanGenerator;
 
 public class Line {
 
-    private static final int GENERATE_NUMBER = 1;
-
     private final List<Point> points = new ArrayList<>();
 
-    public Line(int personCount, NumberGenerator numberGenerator) {
+    public Line(int personCount, BooleanGenerator numberGenerator) {
         generatePoints(personCount, numberGenerator);
     }
 
-    private boolean isGenerated(NumberGenerator numberGenerator) {
-        return numberGenerator.generate() == GENERATE_NUMBER;
+    private boolean isGenerated(BooleanGenerator numberGenerator) {
+        return numberGenerator.generate();
     }
 
-    private void generatePoints(int personCount, NumberGenerator numberGenerator) {
+    private void generatePoints(int personCount, BooleanGenerator booleanGenerator) {
         for (int i = 0; i < personCount - 1; i++) {
-            generatePoint(numberGenerator);
+            generatePoint(booleanGenerator);
         }
     }
 
-    private void generatePoint(NumberGenerator numberGenerator) {
-        if (isGenerated(numberGenerator) && !hasAdjacentPoint()) {
+    private void generatePoint(BooleanGenerator booleanGenerator) {
+        if (isGenerated(booleanGenerator) && !hasAdjacentPoint()) {
             points.add(Point.CONNECTION);
             return;
         }

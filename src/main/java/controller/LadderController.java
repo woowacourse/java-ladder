@@ -4,15 +4,15 @@ import java.util.List;
 
 import domain.Ladder;
 import domain.Players;
-import domain.numbergenerator.NumberGenerator;
-import domain.numbergenerator.RandomNumberGenerator;
+import domain.numbergenerator.BooleanGenerator;
+import domain.numbergenerator.RandomBooleanGenerator;
 import utils.Log;
 import view.InputView;
 import view.OutputView;
 
 public class LadderController {
 
-    private final NumberGenerator numberGenerator = new RandomNumberGenerator();
+    private final BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
 
     public void run() {
         Players players = generatePlayers();
@@ -34,7 +34,7 @@ public class LadderController {
     private Ladder generateLadder(int personCount) {
         try {
             int height = InputView.readHeight();
-            return new Ladder(height, personCount, numberGenerator);
+            return new Ladder(height, personCount, booleanGenerator);
         } catch (IllegalArgumentException exception) {
             Log.log(exception.getMessage());
             return generateLadder(personCount);
