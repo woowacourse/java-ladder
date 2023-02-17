@@ -18,6 +18,8 @@ public class RandomPointGeneratorTest {
     void generate() {
         RandomPointGenerator generator = new RandomPointGenerator();
         boolean generate = generator.generate();
-        Assertions.assertThat(generate || !generate);
+
+        Assertions.assertThat(generate == LineState.MOVABLE_STATE.getState()
+                || generate == LineState.UNMOVABLE_STATE.getState());
     }
 }
