@@ -3,7 +3,7 @@ package view;
 import java.util.List;
 import java.util.Scanner;
 
-import utils.Parser;
+import domain.StringParser;
 
 public class InputView {
 
@@ -16,7 +16,7 @@ public class InputView {
     public static List<String> readNames() {
         System.out.println(READ_NAMES_MESSAGE);
         String line = scanner.next();
-        return Parser.parse(line, NAME_DELIMITER);
+        return StringParser.splitByComma(line, NAME_DELIMITER);
     }
 
     public static int readHeight() {
