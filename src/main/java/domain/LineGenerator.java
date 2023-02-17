@@ -6,25 +6,25 @@ import java.util.List;
 
 public class LineGenerator {
     private final SecureRandom secureRandom = new SecureRandom();
-    private List<Point> line;
+    private List<Link> line;
 
-    public List<Point> generate(int personCount) {
+    public List<Link> generate(int personCount) {
         personCount--;
         line = new ArrayList<>();
-        Point pastPoint = Point.EMPTY_POINT;
+        Link pastLink = Link.UNLINKED;
         while (personCount-- > 0) {
             boolean randomPoint = secureRandom.nextBoolean();
-            addValidatePoint(randomPoint, pastPoint);
-            pastPoint = Point.from(randomPoint);
+            addValidatePoint(randomPoint, pastLink);
+            pastLink = Link.from(randomPoint);
         }
         return line;
     }
 
-    private void addValidatePoint(final Boolean isLink, final Point pastPoint) {
-        if (pastPoint == Point.LINKED_POINT) {
-            line.add(Point.EMPTY_POINT);
+    private void addValidatePoint(final Boolean isLink, final Link pastLink) {
+        if (pastLink == Link.LINKED) {
+            line.add(Link.UNLINKED);
             return;
         }
-        line.add(Point.from(isLink));
+        line.add(Link.from(isLink));
     }
 }
