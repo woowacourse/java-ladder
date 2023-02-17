@@ -15,7 +15,7 @@ public class Line {
         generatePoints(personCount, numberGenerator);
     }
 
-    private static boolean isGenerated(NumberGenerator numberGenerator) {
+    private boolean isGenerated(NumberGenerator numberGenerator) {
         return numberGenerator.generate() == GENERATE_NUMBER;
     }
 
