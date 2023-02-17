@@ -4,22 +4,18 @@ import exception.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Ladder {
     private static final int MINIMUM_HEIGHT = 1;
+    private static final LineGenerator LINE_GENERATOR = new LineGenerator();
     private final List<Line> lines;
 
     public Ladder(final int height, final int personCount) {
         validateHeight(height);
         lines = new ArrayList<>();
-
-        IntStream.rangeClosed(1, height)
-                .forEach(count -> lines.add(new Line(personCount)));
-    }
-
-    public Ladder(final List<Line> lines) {
-        this.lines = lines;
+        for (int index = 0; index < height; index++) {
+            lines.add(LINE_GENERATOR.generate(personCount));
+        }
     }
 
     public void validateHeight(final int height) {

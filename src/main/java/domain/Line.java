@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
@@ -10,12 +9,7 @@ public class Line {
         this.links = links;
     }
 
-    public Line(final int personCount) {
-        LineGenerator lineGenerator = new LineGenerator();
-        links = lineGenerator.generate(personCount);
-    }
-
-    public List<Link> getPoints() {
-        return new ArrayList<>(links);
+    public List<Link> getLinks() {
+        return List.copyOf(links);
     }
 }
