@@ -5,7 +5,7 @@
 - [x] 접근 제어자 변경
 - [x] Height 를 rows 로 이동
 - [x] static 메서드 제거
-- [ ] 재귀로 에러 핸들링 확인해보기
+- [x] indent 1로 만들기
 - [x] numberFormatException 검증 추가
 - [x] assertThatThrownBy 추가
 
