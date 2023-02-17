@@ -63,7 +63,7 @@ public class LineTest {
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest(name = "domain.Line 에 속한 발판은 존재하는 상태를 연속으로 가질 수 없다")
+    @ParameterizedTest(name = "Line에 속한 발판은 존재하는 상태를 연속으로 가질 수 없다")
     @MethodSource("consistExistScaffolds")
     void Line_에_속한_발판은_존재하는_상태를_연속으로_가질_수_없다(final List<Scaffold> scaffolds) {
         // when & then
@@ -81,7 +81,7 @@ public class LineTest {
     }
 
     @Test
-    void Line에_속한_발판은_존재하지_않는_상태를_연속으로_가질수_있다() {
+    void Line_에_속한_발판은_존재하지_않는_상태를_연속으로_가질수_있다() {
         // given
         Scaffold nonScaffold = Scaffold.NONE;
 
