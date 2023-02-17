@@ -10,23 +10,23 @@ import static org.assertj.core.api.Assertions.*;
 public class PersonTest {
 
     @Test
-    @DisplayName("")
+    @DisplayName("Person 생성 확인")
     void person(){
         new Person("무민");
     }
 
     @Test
-    @DisplayName("")
-    void name_6(){
+    @DisplayName("이름에 6글자 이상 입력시 예외 발생")
+    void validateNameLength(){
         assertThatThrownBy(() -> new Person("123456"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    @DisplayName("")
+
     @ParameterizedTest
     @ValueSource(strings = {""," ","   "})
-    void name_blank(String blankName){
+    @DisplayName("이름에 공백 입력시 예외 발생")
+    void validateBlankName(String blankName){
         assertThatThrownBy(() -> new Person(blankName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }
