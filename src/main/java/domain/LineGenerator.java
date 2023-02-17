@@ -9,15 +9,17 @@ public class LineGenerator {
     private final SecureRandom secureRandom = new SecureRandom();
 
     public Line generate(final int personCount) {
-        Deque<Link> line = new LinkedList<>();
-        line.add(Link.from(secureRandom.nextBoolean()));
+        final Deque<Link> line = new LinkedList<>();
+        if (personCount != 1) {
+            line.add(Link.from(secureRandom.nextBoolean()));
+        }
         for (int index = 1; index < personCount - 1; index++) {
-            addValidateLink(line);
+            addValidatedLink(line);
         }
         return new Line(List.copyOf(line));
     }
 
-    private void addValidateLink(final Deque<Link> line) {
+    private void addValidatedLink(final Deque<Link> line) {
         if (line.getLast() == Link.LINKED) {
             line.add(Link.UNLINKED);
             return;
