@@ -29,8 +29,8 @@ public class Ladder {
         }
     }
 
-    private static void validateLineSameSize(final List<Line> lines, final int i) {
-        if (lines.get(i).size() != lines.get(i + 1).size()) {
+    private static void validateLineSameSize(final List<Line> lines, final int index) {
+        if (lines.get(index).size() != lines.get(index + 1).size()) {
             throw new IllegalArgumentException();
         }
     }
