@@ -1,5 +1,6 @@
 package view;
 
+import exception.ErrorCode;
 import java.util.Scanner;
 
 public class InputView {
@@ -15,8 +16,16 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public String requestLadderHeight() {
+    public int requestLadderHeight() {
         System.out.println(REQUEST_LADDER_HEIGHT);
-        return scanner.nextLine();
+        return validateOnlyNumber(scanner.nextLine());
+    }
+
+    private int validateOnlyNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException(ErrorCode.NUMBER_NOT_INTEGER.getMessage());
+        }
     }
 }

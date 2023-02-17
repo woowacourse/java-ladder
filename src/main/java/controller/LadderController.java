@@ -4,7 +4,6 @@ import domain.Height;
 import domain.LadderGame;
 import domain.Person;
 import domain.Persons;
-import exception.ErrorCode;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,20 +50,7 @@ public class LadderController {
     }
 
     private Height requestLadderHeight() {
-        while (true) {
-            try {
-                return new Height(validateNumber(inputView.requestLadderHeight()));
-            } catch (IllegalArgumentException exception) {
-                outputView.printErrorMessage(exception.getMessage());
-            }
-        }
+        return new Height(inputView.requestLadderHeight());
     }
 
-    private int validateNumber(String height) {
-        try {
-            return Integer.parseInt(height);
-        } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ErrorCode.NUMBER_NOT_INTEGER.getMessage());
-        }
-    }
 }
