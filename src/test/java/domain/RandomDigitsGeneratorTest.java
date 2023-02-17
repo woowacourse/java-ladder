@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 public class RandomDigitsGeneratorTest {
 
     @Test
-    @DisplayName("")
+    @DisplayName("randomDigitsGenerator 생성 확인")
     void randomDigitsGenerator(){
         new RandomDigitsGenerator();
     }
 
     @RepeatedTest(50)
-    @DisplayName("")
+    @DisplayName("랜덤값 생성이 올바르게(0 or 1) 되고 있는지 확인")
     void generate() {
         RandomDigitsGenerator generator = new RandomDigitsGenerator();
 
