@@ -13,13 +13,11 @@ import view.OutputView;
 
 public class LadderController {
     private static final String NAME_DELIMITER = ",";
-    private final InputView inputView;
-    private final OutputView outputView;
+    private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
     private LadderGame ladderGame;
 
     public LadderController() {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
     }
 
     public void play() {
