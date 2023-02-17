@@ -15,12 +15,11 @@ class HeightTest {
         Assertions.assertDoesNotThrow(() -> new Height(height));
     }
 
-    @DisplayName("1 미만 100 초과의 사다리 높이는 예외 처리한다.")
+    @DisplayName("사다리 높이가 1 미만 100 초과인 경우 예외 처리한다.")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 101, 102})
     void invalidHeightTest(int height) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Height(height));
     }
-
 }

@@ -13,7 +13,7 @@ class LineTest {
 
     @Nested
     class pointsTest {
-        @DisplayName("연속 true를 테스트한다.")
+        @DisplayName("연속적으로 true가 발생해도 사다리는 정상적으로 생성된다.")
         @Test
         void trueSequenceTest() {
             assertDoesNotThrow(() -> new Line(3, randomBooleanGenerator));
