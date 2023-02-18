@@ -24,8 +24,7 @@ public class Name {
     }
 
     private void validateNameHasOnlyCharacters(String name) {
-        Matcher matcher = pattern.matcher(name);
-        if (!matcher.matches()) {
+        if (name.isEmpty() || !name.chars().allMatch(Character::isAlphabetic)) {
             throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_NAME_PATTERN.getExceptionMessage());
         }
     }
