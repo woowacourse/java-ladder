@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Height;
 import domain.Ladder;
 import domain.User;
 import domain.Users;
@@ -21,7 +22,8 @@ public class Controller {
 
     public void run() {
         createUser();
-        createLadder();
+        Height height = getHeight();
+        createLadder(height);
         printUsers();
         printLadder();
     }
@@ -37,15 +39,23 @@ public class Controller {
         }
     }
 
-    private void createLadder() {
+    private Height getHeight() {
         try {
-            int ladderHeight = InputView.readLadderHeight();
-            Validator.validateLadderHeight(ladderHeight);
+            int height = InputView.readLadderHeight();
+            return new Height(height);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return getHeight();
+        }
+    }
+
+    private void createLadder(Height height) {
+        try {
             int userCount = users.getSize();
-            ladder.create(ladderHeight, userCount);
-        } catch (IllegalArgumentException exception) {
-            OutputView.printErrorMessage(exception);
-            createLadder();
+            ladder.create(height.getHeight(), userCount);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            createLadder(height);
         }
     }
 

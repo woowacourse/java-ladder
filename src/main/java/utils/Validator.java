@@ -15,13 +15,6 @@ public class Validator {
         }
     }
 
-    public static void validateLadderHeight(final int ladderHeight) {
-        if (ladderHeight < MIN_LADDER_HEIGHT.getValue()
-                || ladderHeight > MAX_LADDER_HEIGHT.getValue()) {
-            throw new IllegalArgumentException(NUMBER_FORMAT.getMessage());
-        }
-    }
-
     public static void validateDuplication(final List<String> inputs) {
         Set<String> inputsWithoutDuplication = new HashSet<>(inputs);
         if (inputs.size() != inputsWithoutDuplication.size()) {

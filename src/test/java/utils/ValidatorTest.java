@@ -31,21 +31,6 @@ class ValidatorTest {
                 .hasMessageContaining("[ERROR]");
     }
 
-    @ParameterizedTest(name = "사다리 높이가 1 이상, 10 이하면 예외가 던지지 않는다. 입력값 = {0}")
-    @ValueSource(ints = {1, 3, 10})
-    void should_notThrowException_when_ladderHeightIsValid(int ladderHeight) {
-        assertThatCode(() -> Validator.validateLadderHeight(ladderHeight))
-                .doesNotThrowAnyException();
-    }
-
-    @ParameterizedTest(name = "사다리 높이가 1 미만, 10 초과면 예외를 던진다. 입력값 = {0}")
-    @ValueSource(ints = {0, 11, -1})
-    void should_throwException_when_ladderHeightIsInvalid(int ladderHeight) {
-        assertThatThrownBy(() -> Validator.validateLadderHeight(ladderHeight))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.NUMBER_FORMAT.getMessage());
-    }
-
     @Test
     @DisplayName("중복된 값이 있다면 예외를 던진다.")
     void should_throwException_when_duplicatedValues() {
