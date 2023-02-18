@@ -13,7 +13,7 @@ public class Rung {
 
     private Rung(final int material) {
         validateMaterial(material);
-        this.exists = makeRung(material);
+        this.exists = canMakeRung(material);
     }
 
     public static Rung create(final int material) {
@@ -30,7 +30,7 @@ public class Rung {
         }
     }
 
-    private boolean makeRung(final int material) {
+    private boolean canMakeRung(final int material) {
         return material == SUFFICIENT;
     }
 
