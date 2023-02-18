@@ -1,9 +1,6 @@
 package controller;
 
-import domain.Height;
-import domain.Ladder;
-import domain.Line;
-import domain.Players;
+import domain.*;
 import util.TrueOrFalseGenerator;
 import view.InputView;
 import view.OutputView;
@@ -17,6 +14,8 @@ public class LadderGameController {
     private final OutputView outputView;
     private final TrueOrFalseGenerator trueOrFalseGenerator;
 
+    private static final int FIRST_INDEX=0;
+
     public LadderGameController(InputView inputView, OutputView outputView, TrueOrFalseGenerator trueOrFalseGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
@@ -24,22 +23,27 @@ public class LadderGameController {
     }
 
     public void run() {
-        try {
-            Players players = new Players(inputView.readUserNames());
-            Height height = new Height(inputView.readHeight());
-            Ladder ladder = generateLadder(players, height);
-            outputView.printResult(players.getPlayers(), ladder.getLines(), players.getMaxPlayerNameLength());
-        } catch (IllegalArgumentException e) {
-            outputView.printErrormessage(e.getMessage());
+        Players players = generatePlayers(inputView.readUserNames());
+        Height height = new Height(inputView.readHeight());
+        Ladder ladder = generateLadder(players, height);
+        outputView.printResult(players.getPlayers(), ladder.getLines(), players.getMaxPlayerNameLength());
+    }
+
+    private Players generatePlayers(List<String> playersName) {
+        List<Player> players = new ArrayList<>();
+        for (String playerName : playersName) {
+            players.add(new Player(new PlayerName(playerName)));
         }
+        return new Players(players);
     }
 
     private Ladder generateLadder(Players players, Height height) {
         List<Line> lines = new ArrayList<>();
-        while (height.isPossibleCount()) {
+        int count = FIRST_INDEX;
+        while (height.isSameHeight(count)) {
             Line line = new Line(players.getPlayersCount(), trueOrFalseGenerator);
             lines.add(line);
-            height.minusHeight();
+            count++;
         }
         return new Ladder(Collections.unmodifiableList(lines));
     }
