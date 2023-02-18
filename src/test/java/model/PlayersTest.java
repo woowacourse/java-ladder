@@ -30,16 +30,16 @@ public class PlayersTest {
         assertThatNoException().isThrownBy(() -> new Players(names));
     }
 
-    @ParameterizedTest
-    @MethodSource("AllLadderGamePlayerInfo")
-    @DisplayName("사다리 게임 전체 참여자 정보 생성 기능 테스트")
-    void makeAllPlayerTest(Names names, List<Player> expectedResult) {
+    @Test
+    @DisplayName("사다리 게임 전체 참여자 명단을 반환하는 기능 테스트")
+    void getAllPlayerNamesTest() {
         //given
-        Players players = new Players(names);
+        Players players = new Players(new Names("pobi, neo, hiiro"));
+
+        //when
+        List<String> result = players.getAllPlayerNames();
 
         //then
-        IntStream.range(0, players.size()).forEach((index) -> {
-            assertThat(players.getPlayer(index).getName()).isEqualTo(expectedResult.get(index).getName());
-        });
+        assertThat(result).isEqualTo(List.of("pobi", "neo", "hiiro"));
     }
 }
