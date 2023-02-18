@@ -33,12 +33,11 @@ public class Line {
     }
 
     private void addConditionalPoint(RandomGenerator generator, int pointIndex) {
-        if(isSuccessive(pointIndex)){
+        if (isSuccessive(pointIndex)) {
             addPoint(UNMOVABLE_STATE.getState());
+            return;
         }
-        if(!isSuccessive(pointIndex)){
-            addRandomPoint(generator);
-        }
+        addRandomPoint(generator);
     }
 
     private boolean isSuccessive(int index){
