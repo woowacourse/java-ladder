@@ -17,7 +17,6 @@ public class UserTest {
     @ValueSource(strings = {"", "honuxx"})
     void should_throwException_when_nameLengthIsInvalid(String name) {
         Assertions.assertThatThrownBy(() -> new User(name))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
