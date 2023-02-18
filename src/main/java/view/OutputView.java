@@ -1,5 +1,6 @@
 package view;
 
+import domain.LadderStep;
 import domain.Line;
 import domain.Lines;
 import domain.Names;
@@ -31,8 +32,9 @@ public class OutputView {
         for (Line line : lines.getLines()) {
             StringBuilder ladderDisplay = new StringBuilder();
             ladderDisplay.append(Message.COLUMN_LADDER.message);
-            line.getPoints()
-                    .forEach(isPoint -> ladderDisplay.append(getPointString(isPoint)));
+            line.getLadderSteps()
+                    .stream().map(LadderStep::exists)
+                    .forEach(exists -> ladderDisplay.append(getPointString(exists)));
             System.out.println(ladderDisplay);
         }
     }

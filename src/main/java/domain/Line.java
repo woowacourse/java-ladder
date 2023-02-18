@@ -6,23 +6,23 @@ import utils.booleanGenerator.BooleanGenerator;
 
 public class Line {
     private final BooleanGenerator generator;
-    List<Boolean> points = new ArrayList<>();
+    List<LadderStep> ladderSteps = new ArrayList<>();
 
     public Line(int lineNumber, BooleanGenerator generator) {
         this.generator = generator;
         for (int index = 0; index < lineNumber; index++) {
-            points.add(getPoint(index));
+            ladderSteps.add(getPoint(index));
         }
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    public List<LadderStep> getLadderSteps() {
+        return ladderSteps;
     }
 
-    private boolean getPoint(int index) {
-        if (index > 0 && points.get(index - 1)) {
-            return false;
+    private LadderStep getPoint(int index) {
+        if (index > 0 && ladderSteps.get(index - 1).exists()) {
+            return LadderStep.from(false);
         }
-        return generator.generate();
+        return LadderStep.from(generator.generate());
     }
 }
