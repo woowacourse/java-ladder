@@ -18,8 +18,7 @@ public class LadderGameController {
     }
     public void run(){
         Players players= new Players(setPlayerNames());
-        LadderHeight ladderHeight = setLadderHeight();
-        Ladder ladder = new Ladder(players, ladderHeight);
+        Ladder ladder = new Ladder(players, setLadderHeight());
         outputView.printAllPlayerNames(players);
         outputView.printLadder(ladder);
     }

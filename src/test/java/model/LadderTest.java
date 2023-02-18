@@ -20,7 +20,7 @@ public class LadderTest {
 
         //Then
         assertThatNoException().isThrownBy(() -> {
-            Ladder ladder = new Ladder(players, ladderHeight);
+            new Ladder(players, ladderHeight);
         });
     }
 

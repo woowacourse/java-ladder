@@ -39,9 +39,8 @@ public class OutputView {
     }
 
     private void printLadderLine(Line line) {
-        List<Boolean> points = line.getPoints();
         StringBuilder stringBuilder = new StringBuilder(LadderStep.FIRST_STEP.getStep());
-        for(Boolean point : points) {
+        for(Boolean point : line.getPoints()) {
             stringBuilder.append(makeNextStep(point));
         }
         System.out.println(stringBuilder);

@@ -29,7 +29,7 @@ public class PlayersTest {
     void createPlayersTest() {
         Names names = new Names("pobi, neo, hiiro");
         assertThatNoException().isThrownBy(() -> {
-            Players players = new Players(names);
+            new Players(names);
         });
     }
 

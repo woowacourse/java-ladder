@@ -15,7 +15,7 @@ public class LineTest {
     @DisplayName("Line 객체 생성 성공 테스트")
     void createLineTest() {
         assertThatNoException().isThrownBy(() -> {
-            Line line = new Line(new TestPointGenerator(new ArrayList<>(List.of(false, true, false))), 4);
+            new Line(new TestPointGenerator(new ArrayList<>(List.of(false, true, false))), 4);
         });
     }
 

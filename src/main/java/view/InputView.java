@@ -13,12 +13,10 @@ public class InputView {
     }
 
     public Names readPlayerNames(){
-        String names = scanner.nextLine();
-        return new Names(names);
+        return new Names(scanner.nextLine());
     }
 
     public LadderHeight readLadderHeight(){
-        LadderHeight height = new LadderHeight(scanner.nextInt());
-        return height;
+        return new LadderHeight(scanner.nextInt());
     }
 }

@@ -16,7 +16,7 @@ public class NameTest {
     @DisplayName("Name 객체 생성 성공 테스트")
     void createNameTest() {
         Assertions.assertThatNoException().isThrownBy(() -> {
-            Name name = new Name("ocean");
+            new Name("ocean");
         });
     }
 
@@ -25,7 +25,7 @@ public class NameTest {
     void limitPlayerNameLengthTest() {
         //When
         Throwable result = catchThrowable(() -> {
-            Name name = new Name("woowacourse");
+            new Name("woowacourse");
         });
 
         //Then
@@ -38,7 +38,7 @@ public class NameTest {
     void validateNameHasOnlyCharacters(String inputName) {
         //When
         Throwable result = catchThrowable(() -> {
-            Name name = new Name(inputName);
+            new Name(inputName);
         });
 
         //Then

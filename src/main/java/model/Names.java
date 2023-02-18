@@ -14,8 +14,7 @@ public class Names {
     private final List<Name> names = new ArrayList<>();
 
     public Names(String inputNames) {
-        List<String> splitNames = splitInputNames(inputNames);
-        for(String name : splitNames) {
+        for(String name : splitInputNames(inputNames)) {
             names.add(new Name(name));
         }
     }

@@ -13,7 +13,7 @@ public class LadderHeightTest {
     @DisplayName("LadderHeight 객체 생성 성공 테스트")
     void createLadderHeightTest() {
         Assertions.assertThatNoException().isThrownBy(() -> {
-            LadderHeight ladderHeight = new LadderHeight(5);
+            new LadderHeight(5);
         });
     }
 
@@ -22,7 +22,7 @@ public class LadderHeightTest {
     void validateLadderHeightTest() {
         //When
         Throwable result = catchThrowable(() -> {
-            LadderHeight ladderHeight = new LadderHeight(0);
+            new LadderHeight(0);
         });
 
         //Then

@@ -30,7 +30,7 @@ public class NamesTest {
     @DisplayName("Names 객체 생성 성공 테스트")
     void createNamesTest() {
         assertThatNoException().isThrownBy(() -> {
-            Names names = new Names("pobi, neo, conan");
+            new Names("pobi, neo, conan");
         });
     }
 
