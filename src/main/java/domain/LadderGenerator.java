@@ -6,10 +6,10 @@ import java.util.Random;
 
 public class LadderGenerator {
     private final Random random = new Random();
-    private static final LadderGenerator ladderGenerator = new LadderGenerator();
+    private static final LadderGenerator INSTANCE = new LadderGenerator();
 
     public static LadderGenerator getInstance() {
-        return ladderGenerator;
+        return INSTANCE;
     }
 
     public List<Bridge> generateLadder(int bridgeCount) {
