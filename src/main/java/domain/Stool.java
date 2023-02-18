@@ -15,7 +15,7 @@ public enum Stool {
 		return Arrays.stream(Stool.values())
 			.filter(stool -> stool.isExist == isExist)
 			.findAny()
-			.get();
+			.orElseThrow();
 	}
 
 	public boolean isStool() {
