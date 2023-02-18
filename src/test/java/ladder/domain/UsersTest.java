@@ -39,6 +39,6 @@ public class UsersTest {
 
         assertThatThrownBy(() -> new Users(users))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("한명보다");
+                .hasMessageContaining("명 미만");
     }
 }

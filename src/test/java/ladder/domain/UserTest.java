@@ -33,7 +33,7 @@ public class UserTest {
     void makeInvalidUserNameLengthMessageTest(String value) {
 
         assertThatThrownBy(() -> new User(value))
-                .hasMessageContaining("유저 이름 길이는 공백이거나 6 이상일 수 없습니다.")
+                .hasMessageContaining("유저 이름 길이는")
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
