@@ -19,7 +19,7 @@ public class OutputView {
 
 	private final static Map<Boolean, String> LINE_MAP = Map.of(true, PRESENT_LINE, false, ABSENT_LINE);
 
-	public static void printResult(List<String> names, List<List<Point>> ladderPoints) {
+	public static void printLadder(List<String> names, List<List<Point>> ladderPoints) {
 		String stringifiedNames = getStringifiedNames(names);
 		String stringifiedLadder = getStringifiedLadder(ladderPoints);
 		System.out.println(stringifiedNames);
