@@ -13,6 +13,7 @@ public class LadderGenerator {
     }
 
     public List<Bridge> generateLadder(int bridgeCount) {
+        validateBridgeCountRange(bridgeCount);
         List<Bridge> ladder = new ArrayList<>();
         while (ladder.size() < bridgeCount) {
             ladder.add(generateBridge(ladder));
@@ -25,5 +26,11 @@ public class LadderGenerator {
             return Bridge.from(random.nextBoolean());
         }
         return Bridge.NON_EXIST;
+    }
+
+    private void validateBridgeCountRange(int bridgeCount) {
+        if (bridgeCount > 9 || bridgeCount < 1) {
+            throw new IllegalArgumentException("");
+        }
     }
 }
