@@ -1,8 +1,7 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
-import ladder.domain.builder.BlockGenerator;
-import ladder.domain.builder.LineMaker;
-import ladder.domain.ladder.Block;
+import ladder.domain.ladder.builder.BlockGenerator;
+import ladder.domain.ladder.builder.LineMaker;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

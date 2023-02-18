@@ -1,4 +1,4 @@
-package ladder.domain.builder;
+package ladder.domain.ladder.builder;
 
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;

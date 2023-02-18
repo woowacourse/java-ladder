@@ -1,7 +1,7 @@
 package ladder.controller;
 
-import ladder.domain.builder.LadderMaker;
-import ladder.domain.builder.RandomBlockGenerator;
+import ladder.domain.ladder.builder.LadderMaker;
+import ladder.domain.ladder.builder.RandomBlockGenerator;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Players;
 import ladder.exception.CustomException;
