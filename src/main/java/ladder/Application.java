@@ -9,7 +9,11 @@ public class Application {
 
     public static void main(String[] args) {
         LadderController ladderController = new LadderController(
-                new InputView(), new ResultView(), new RandomDataGenerator());
+                new InputView(),
+                new ResultView(),
+                new RandomDataGenerator());
+
         ladderController.run();
     }
+
 }

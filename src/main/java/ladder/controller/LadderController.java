@@ -7,40 +7,29 @@ import ladder.domain.RandomGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LadderController {
 
-    private static final int MINIMUM_HEIGHT = 1;
-
     private final InputView inputView;
     private final ResultView resultView;
-    private final RandomGenerator randomIntegerGenerator;
+    private final RandomGenerator randomGenerator;
 
-    public LadderController(InputView inputView, ResultView resultView, RandomGenerator randomIntegerGenerator) {
+    public LadderController(InputView inputView, ResultView resultView, RandomGenerator randomGenerator) {
         this.inputView = inputView;
         this.resultView = resultView;
-        this.randomIntegerGenerator = randomIntegerGenerator;
+        this.randomGenerator = randomGenerator;
     }
 
     public void run() {
-        Players players = createPlayersUntilNoException();
-        Height heightOfLadder = decideHeightOfLadderUntilNoException();
+        Players players = newPlayersUntilNoException();
+        Height heightOfLadder = newHeightOfLadderUntilNoException();
         Ladder ladder = Ladder.create(players.count(), heightOfLadder.getHeight());
 
         resultView.printLadder(players, ladder);
     }
 
-    private Players createPlayersUntilNoException() {
-        Players players = null;
-        while (players == null) {
-            players = createPlayers();
-        }
-        return players;
-    }
-
-    private Players createPlayers() {
+    private Players newPlayers() {
         try {
             List<String> inputNames = inputView.inputPlayerNames();
             return Players.create(inputNames);
@@ -59,4 +48,21 @@ public class LadderController {
             return null;
         }
     }
+
+    private Players newPlayersUntilNoException() {
+        Players players = null;
+        while (players == null) {
+            players = newPlayers();
+        }
+        return players;
+    }
+
+    private Height newHeightOfLadderUntilNoException() {
+        Height height = null;
+        while (height == null) {
+            height = newHeightOfLadder();
+        }
+        return height;
+    }
+
 }
