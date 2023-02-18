@@ -28,32 +28,32 @@ public class LadderController {
     }
 
     public void run() {
-        Names names = repeat(this::createNames);
-        LadderHeight ladderHeight = repeat(this::createLadderHeight);
-        Ladder ladder = Ladder.create(names.size(),ladderHeight,  numberGenerator);
+        Names names = createNames();
+        LadderHeight ladderHeight = createLadderHeight();
+        Ladder ladder = Ladder.create(names.size(), ladderHeight, numberGenerator);
 
         outputView.printResult(names, ladder);
     }
 
     private Names createNames() {
-        List<String> rawNames = inputView.sendNames();
-        return rawNames.stream()
-                .map(Name::new)
-                .collect(collectingAndThen(toList(), Names::new));
+        try {
+            List<String> rawNames = inputView.sendNames();
+            return rawNames.stream()
+                    .map(Name::new)
+                    .collect(collectingAndThen(toList(), Names::new));
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return createNames();
+        }
     }
 
     private LadderHeight createLadderHeight() {
-        int height = inputView.sendLadderHeight();
-        return new LadderHeight(height);
-    }
-
-    private <T> T repeat(Supplier<T> inputSupplier) {
-        Objects.requireNonNull(inputSupplier);
         try {
-            return inputSupplier.get();
+            int height = inputView.sendLadderHeight();
+            return new LadderHeight(height);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return repeat(inputSupplier);
+            return createLadderHeight();
         }
     }
 }
