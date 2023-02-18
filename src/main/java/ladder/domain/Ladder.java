@@ -8,15 +8,15 @@ import java.util.List;
 
 public class Ladder {
     private final List<Line> lines;
-    private final Height maxHeight;
+    private final Height height;
 
     public Ladder(int height) {
-        this.maxHeight = new Height(height);
+        this.height = new Height(height);
         this.lines = new ArrayList<>();
     }
 
     public void assignLines(LineStrategy lineStrategy, int sectionCount) {
-        for (int i = 0; i < maxHeight.getHeight(); i++) {
+        for (int i = 0; i < height.getHeight(); i++) {
             lines.add(new Line(lineStrategy, sectionCount));
         }
     }
