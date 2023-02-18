@@ -1,4 +1,4 @@
-package ladder.utils;
+package ladder.domain;
 
 import java.util.List;
 

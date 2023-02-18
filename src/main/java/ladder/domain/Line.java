@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.utils.LineStrategy;
-
 import java.util.Collections;
 import java.util.List;
 

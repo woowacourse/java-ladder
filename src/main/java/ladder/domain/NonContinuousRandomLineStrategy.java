@@ -1,4 +1,4 @@
-package ladder.utils;
+package ladder.domain;
 
 import java.util.*;
 import java.util.stream.IntStream;

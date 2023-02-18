@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.utils.LineStrategy;
+import ladder.domain.LineStrategy;
 
 import java.util.List;
 

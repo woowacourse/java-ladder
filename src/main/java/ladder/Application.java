@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.LadderGame;
-import ladder.utils.NonContinuousRandomLineStrategy;
+import ladder.domain.NonContinuousRandomLineStrategy;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
