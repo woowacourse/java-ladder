@@ -18,23 +18,22 @@ public class LadderGameController {
     }
 
     public void run() {
-        List<Player> players = generatePlayerNames();
+        Players players = generatePlayers();
         Height height = generateHeight();
 
-        LadderGame ladderGame = generateLadderGame(players, height);
-        showResult(ladderGame);
+        LadderGenerator ladderGenerator = new LadderGenerator(new RandomLineCreateDecider());
+        showResult(players, ladderGenerator.generateLadder(players.size(), height));
     }
 
-    private List<Player> generatePlayerNames() {
+    private Players generatePlayers() {
         try{
             List<String> names = inputView.readNames();
-            List<Player> players = names.stream()
+            return new Players(names.stream()
                     .map(Player::new)
-                    .collect(Collectors.toList());
-            return players;
+                    .collect(Collectors.toList()));
         }catch(IllegalArgumentException exception){
             outputView.printExceptionMessage(exception.getMessage());
-            return generatePlayerNames();
+            return generatePlayers();
         }
     }
 
@@ -48,23 +47,11 @@ public class LadderGameController {
         }
     }
 
-    private LadderGame generateLadderGame(List<Player> players, Height height) {
-        try{
-            return new LadderGame(players, height, new RandomLineCreateDecider());
-        }catch(IllegalArgumentException exception){
-            outputView.printExceptionMessage(exception.getMessage());
-            List<Player> retryNames = generatePlayerNames();
-            Height retryHeight = generateHeight();
-            return generateLadderGame(retryNames, retryHeight);
-        }
-    }
-
-    private void showResult(LadderGame ladderGame) {
-        outputView.printPlayerNames(ladderGame.getPlayerNames().stream()
+    private void showResult(Players players, Ladder ladder) {
+        outputView.printPlayerNames(players.getPlayers().stream()
                 .map(Player::getPlayerName)
                 .collect(Collectors.toList()));
 
-        Ladder ladder = ladderGame.getLadder();
         List<Row> rows = ladder.getRows();
         for (Row row : rows) {
             outputView.printRow(row.getPoints());

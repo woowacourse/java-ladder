@@ -3,35 +3,20 @@ package ladder.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LadderGame {
+public class LadderGenerator {
 
-    private final Players players;
-    private final Height height;
     private final LineCreateDecider lineCreateDecider;
-    private final Ladder ladder;
 
-    public LadderGame(Players players, Height height, LineCreateDecider lineCreateDecider) {
-        this.players = players;
-        this.height = height;
+    public LadderGenerator(LineCreateDecider lineCreateDecider) {
         this.lineCreateDecider = lineCreateDecider;
-        this.ladder = generateLadder();
     }
 
-    public Ladder generateLadder() {
-        int personCount = players.size();
+    public Ladder generateLadder(int personCount, Height height) {
         List<Row> rows = new ArrayList<>();
         for (int i = 0; i < height.getHeight(); i++) {
             rows.add(new Row(personCount, lineCreateDecider));
         }
         return new Ladder(rows);
-    }
-
-    public Players getPlayers() {
-        return players;
-    }
-
-    public Ladder getLadder() {
-        return ladder;
     }
 
 }
