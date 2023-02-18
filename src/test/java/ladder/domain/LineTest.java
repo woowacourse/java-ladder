@@ -1,11 +1,12 @@
 package ladder.domain;
 
 import ladder.FixedLineStrategy;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
     @Test
@@ -19,6 +20,6 @@ class LineTest {
         Line line = new Line(fixedLineStrategy, 4);
 
         // expected
-        Assertions.assertThat(line.getSections()).containsExactly(true, false, true, false);
+        assertThat(line.getSections()).containsExactly(true, false, true, false);
     }
 }
