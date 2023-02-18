@@ -14,30 +14,34 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(final List<String> names) {
-        validate(names);
-        this.players = generatePlayers(names);
+    private Players(final List<Player> players) {
+        this.players = players;
     }
 
-    private void validate(final List<String> names) {
+    public static Players from(final List<String> names) {
+        validate(names);
+        return new Players(toPlayers(names));
+    }
+
+    private static void validate(final List<String> names) {
         validatePlayersSize(names);
         validateDuplicateNames(names);
     }
 
-    private void validatePlayersSize(final List<String> names) {
+    private static void validatePlayersSize(final List<String> names) {
         if (names.size() < PLAYERS_SIZE_LOWER_BOUND) {
             throw new IllegalArgumentException(INVALID_PLAYERS_SIZE_MESSAGE);
         }
     }
 
-    private void validateDuplicateNames(final List<String> names) {
+    private static void validateDuplicateNames(final List<String> names) {
         final Set<String> nonDuplicateNames = new HashSet<>(names);
         if (nonDuplicateNames.size() != names.size()) {
             throw new IllegalArgumentException(DUPLICATE_NAMES_MESSAGE);
         }
     }
 
-    private List<Player> generatePlayers(final List<String> names) {
+    private static List<Player> toPlayers(final List<String> names) {
         return names.stream()
                 .map(Player::new)
                 .collect(toList());

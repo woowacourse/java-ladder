@@ -35,14 +35,13 @@ public class LadderGameController {
     private LadderGame initialize() {
         final Players players = readPlayers();
         final int height = readHeight();
-        
+
         return new LadderGame(booleanGenerator, players, height);
     }
 
     private Players readPlayers() {
         try {
-            final List<String> names = inputView.readPlayerNames();
-            return new Players(names);
+            return Players.from(inputView.readPlayerNames());
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return readPlayers();

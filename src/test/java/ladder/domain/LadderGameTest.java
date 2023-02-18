@@ -18,7 +18,7 @@ public class LadderGameTest {
     @BeforeEach
     void init() {
         final BooleanGenerator booleanGenerator = new TestBooleanGenerator(List.of(true, true));
-        final Players players = new Players(List.of("name1", "name2"));
+        final Players players = Players.from(List.of("name1", "name2"));
         final int height = 2;
         ladderGame = new LadderGame(booleanGenerator, players, height);
     }
