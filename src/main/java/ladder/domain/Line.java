@@ -8,7 +8,7 @@ public class Line {
 
     public Line(int playerCount) {
         validatePlayerCount(playerCount);
-        bars = new Bars(new RandomPointGenerator(), playerCount - 1);
+        bars = new Bars(new RandomBarGenerator(), playerCount - 1);
     }
 
     private void validatePlayerCount(int playerCount) {

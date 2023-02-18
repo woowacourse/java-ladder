@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Bars {
 
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> bars = new ArrayList<>();
     private final RandomGenerator randomGenerator;
 
     public Bars(RandomGenerator randomPointGenerator, int count) {
@@ -15,16 +15,16 @@ public class Bars {
     }
 
     private void initialize(int count) {
-        Boolean flag = false;
+        boolean previousValue = false;
 
         for (int i = 0; i < count; i++) {
-            Boolean generate = randomGenerator.generate(flag);
-            points.add(generate);
-            flag = generate;
+            Boolean generatedBar = randomGenerator.generate(previousValue);
+            bars.add(generatedBar);
+            previousValue = generatedBar;
         }
     }
 
     public List<Boolean> toUnmodifiableBars() {
-        return Collections.unmodifiableList(points);
+        return Collections.unmodifiableList(bars);
     }
 }

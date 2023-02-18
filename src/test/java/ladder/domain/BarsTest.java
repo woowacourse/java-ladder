@@ -14,7 +14,7 @@ class BarsTest {
 
     @Test
     void 주어진_개수만큼_좌표값을_생성한다() {
-        Bars bars = new Bars(new RandomPointGenerator(), 5);
+        Bars bars = new Bars(new RandomBarGenerator(), 5);
 
         assertThat(bars.toUnmodifiableBars()).hasSize(5);
     }

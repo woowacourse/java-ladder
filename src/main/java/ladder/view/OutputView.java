@@ -17,8 +17,8 @@ import ladder.domain.Line;
 public class OutputView {
 
     private static final String VERTICAL = "|";
-    private static final String HORIZON = "-----";
-    private static final String NONE = "     ";
+    private static final String BAR_EXIST = "-----";
+    private static final String BAR_NONE = "     ";
     private static final String MESSAGE_GAME_RESULT = "실행 결과";
 
     public static void showGameResult(List<String> players, List<Line> lines) {
@@ -34,20 +34,20 @@ public class OutputView {
     }
 
     private static String extractLine(Line line) {
-        List<Boolean> points = line.toUnmodifiableBars();
-        StringJoiner result = new StringJoiner(VERTICAL, NONE + VERTICAL, VERTICAL);
+        List<Boolean> bars = line.toUnmodifiableBars();
+        StringJoiner result = new StringJoiner(VERTICAL, BAR_NONE + VERTICAL, VERTICAL);
 
-        for (Boolean point : points) {
-            String pointFormat = toPointFormat(point);
+        for (Boolean bar : bars) {
+            String pointFormat = toBarFormat(bar);
             result.add(pointFormat);
         }
         return result.toString();
     }
 
-    private static String toPointFormat(Boolean point) {
-        if (point) {
-            return HORIZON;
+    private static String toBarFormat(Boolean bar) {
+        if (bar) {
+            return BAR_EXIST;
         }
-        return NONE;
+        return BAR_NONE;
     }
 }
