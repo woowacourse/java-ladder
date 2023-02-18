@@ -33,17 +33,21 @@ public class Ladder {
             throw new IllegalArgumentException("boolean 생성기는 null이 될 수 없습니다.");
         }
     }
+
     public void createLines() {
         lines = new ArrayList<>();
-        for (int count = 0; count < height.getValue(); count++) {
+
+        int heightLength = height.getValue();
+
+        while (heightLength-- > 0) {
             final Line line = retryOnRuntimeException(() -> createLine(participants.getSize() - 1));
             lines.add(line);
         }
     }
 
-    private Line createLine(final int width) {
+    private Line createLine(int width) {
         final List<Boolean> points = new ArrayList<>();
-        for (int count = 0; count < width; count++) {
+        while (width-- > 0) {
             points.add(booleanGenerator.generate());
         }
 
