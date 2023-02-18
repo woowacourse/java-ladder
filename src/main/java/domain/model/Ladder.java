@@ -25,7 +25,7 @@ public class Ladder {
         return this.height;
     }
 
-    public Width getLineCount() {
+    public Width getWidth() {
         return this.width;
     }
 
