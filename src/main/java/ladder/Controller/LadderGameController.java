@@ -4,8 +4,6 @@ import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,20 +18,20 @@ public class LadderGameController {
     }
 
     public void run() {
-        List<PlayerName> playerNames = generatePlayerNames();
+        List<Player> players = generatePlayerNames();
         Height height = generateHeight();
 
-        LadderGame ladderGame = generateLadderGame(playerNames, height);
+        LadderGame ladderGame = generateLadderGame(players, height);
         showResult(ladderGame);
     }
 
-    private List<PlayerName> generatePlayerNames() {
+    private List<Player> generatePlayerNames() {
         try{
             List<String> names = inputView.readNames();
-            List<PlayerName> playerNames = names.stream()
-                    .map(PlayerName::new)
+            List<Player> players = names.stream()
+                    .map(Player::new)
                     .collect(Collectors.toList());
-            return playerNames;
+            return players;
         }catch(IllegalArgumentException exception){
             outputView.printExceptionMessage(exception.getMessage());
             return generatePlayerNames();
@@ -50,12 +48,12 @@ public class LadderGameController {
         }
     }
 
-    private LadderGame generateLadderGame(List<PlayerName> playerNames, Height height) {
+    private LadderGame generateLadderGame(List<Player> players, Height height) {
         try{
-            return new LadderGame(playerNames, height, new RandomLineCreateDecider());
+            return new LadderGame(players, height, new RandomLineCreateDecider());
         }catch(IllegalArgumentException exception){
             outputView.printExceptionMessage(exception.getMessage());
-            List<PlayerName> retryNames = generatePlayerNames();
+            List<Player> retryNames = generatePlayerNames();
             Height retryHeight = generateHeight();
             return generateLadderGame(retryNames, retryHeight);
         }
@@ -63,7 +61,7 @@ public class LadderGameController {
 
     private void showResult(LadderGame ladderGame) {
         outputView.printPlayerNames(ladderGame.getPlayerNames().stream()
-                .map(PlayerName::getPlayerName)
+                .map(Player::getPlayerName)
                 .collect(Collectors.toList()));
 
         Ladder ladder = ladderGame.getLadder();

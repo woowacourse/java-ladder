@@ -1,13 +1,13 @@
 package ladder.model;
 
-public class PlayerName {
+public class Player {
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
 
     private final String playerName;
 
-    public PlayerName(String playerName) {
+    public Player(String playerName) {
         playerName = removeWhiteSpace(playerName);
         validatePlayerNameLength(playerName);
         this.playerName = playerName;
