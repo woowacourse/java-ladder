@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final int MAX_NAME_SIZE = 5;
     private static final int FIRST_NAME_INDEX = 0;
     private static final double INIT_SPAN = 0.0;
     private static final int ONE_BLOCK_SIZE = 10;
@@ -23,8 +22,6 @@ public class OutputView {
     private static final String NON_EXIST_SCAFFOLD_MATERIAL = " ";
     private static final String BAR = "|";
     private static final String BLANK = " ";
-
-    private static final StringBuilder stringBuilder = new StringBuilder();
 
     private OutputView() {
     }
@@ -52,7 +49,6 @@ public class OutputView {
 
     private static double userNameSpanSize(Character name) {
         String detectingLetter = String.valueOf(name);
-
         if (Pattern.matches(KOREAN_MATCH_REGEX, detectingLetter)) {
             return KOREAN_SPAN;
         }
@@ -75,7 +71,6 @@ public class OutputView {
     }
 
     private static void printLine(Scaffold scaffold) {
-
         if (scaffold.getStatus()) {
             System.out.print(EXIST_SCAFFOLD_MATERIAL.repeat(BLOCK_SIZE_EXCEPT_DELIMITER));
             System.out.print(BAR);
