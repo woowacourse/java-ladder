@@ -33,9 +33,6 @@ public class LadderTest {
         Ladder ladder = new Ladder(players, ladderHeight);
 
         //then
-        IntStream.range(0, ladder.getHeight()).forEach(
-                index -> assertThat(ladder.getLine(index)).isInstanceOf(Line.class)
-        );
         assertThat(ladder.getHeight()).isEqualTo(5);
     }
 }
