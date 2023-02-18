@@ -13,16 +13,19 @@ public class Players {
 
     public Players(final List<String> playerNames) {
         validatePlayerNumber(playerNames);
-
-        players = playerNames.stream()
-                .map(Player::new)
-                .collect(Collectors.toUnmodifiableList());
+        players = mapPlayerNamesToPlayers(playerNames);
     }
 
     private void validatePlayerNumber(final List<String> playerNames) {
         if (playerNames.size() < PLAYER_MINIMUM_NUMBER) {
             throw new PlayerNumberException();
         }
+    }
+
+    private List<Player> mapPlayerNamesToPlayers(List<String> playerNames) {
+        return playerNames.stream()
+                .map(Player::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public List<Player> getPlayers() {
