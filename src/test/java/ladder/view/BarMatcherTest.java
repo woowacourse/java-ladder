@@ -1,12 +1,10 @@
 package ladder.view;
 
-import ladder.domain.Bar;
 import ladder.domain.BarTest;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class BarMatcherTest {
 
@@ -17,7 +15,8 @@ class BarMatcherTest {
         BarMatcher trueBarMatcher = BarMatcher.valueOfBarMatcher(BarTest.TRUE);
 
         // then
-        Assertions.assertThat(trueBarMatcher.getBarDisplay()).isEqualTo("-----");
+        assertThat(trueBarMatcher.getBarDisplay())
+                .isEqualTo("-----");
     }
 
     @Test
@@ -27,6 +26,7 @@ class BarMatcherTest {
         BarMatcher falseBarMatcher = BarMatcher.valueOfBarMatcher(BarTest.FALSE);
 
         // then
-        Assertions.assertThat(falseBarMatcher.getBarDisplay()).isEqualTo("     ");
+        assertThat(falseBarMatcher.getBarDisplay())
+                .isEqualTo("     ");
     }
 }

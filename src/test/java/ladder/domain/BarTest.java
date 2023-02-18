@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.*;
+
 public class BarTest {
     public static final Bar FALSE = new Bar(() -> false);
     public static final Bar TRUE = new Bar(() -> true);
@@ -17,6 +19,7 @@ public class BarTest {
         Bar bar = new Bar(() -> isExist);
 
         // then
-        Assertions.assertThat(bar.isExistBar()).isEqualTo(isExist);
+        assertThat(bar.isExistBar())
+                .isEqualTo(isExist);
     }
 }

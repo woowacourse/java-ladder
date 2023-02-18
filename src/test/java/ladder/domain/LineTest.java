@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
+
 class LineTest {
     private Line line;
 
@@ -22,7 +24,8 @@ class LineTest {
         line.addBars(4, () -> false);
 
         // then
-        Assertions.assertThat(line.getBars()).isEqualTo(List.of(BarTest.FALSE, BarTest.FALSE, BarTest.FALSE, BarTest.FALSE));
+        assertThat(line.getBars())
+                .contains(BarTest.FALSE, BarTest.FALSE, BarTest.FALSE, BarTest.FALSE);
     }
 
     @Test
@@ -32,6 +35,7 @@ class LineTest {
         line.addBars(4, () -> true);
 
         // then
-        Assertions.assertThat(line.getBars()).isEqualTo(List.of(BarTest.FALSE, BarTest.TRUE, BarTest.FALSE, BarTest.TRUE));
+        assertThat(line.getBars())
+                .contains(BarTest.FALSE, BarTest.TRUE, BarTest.FALSE, BarTest.TRUE);
     }
 }

@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
+
 class LadderTest {
     @Test
     @DisplayName("사다리 높이만큼 라인을 생성한다.")
@@ -12,6 +14,7 @@ class LadderTest {
         Ladder ladder = new Ladder(() -> true, 5, 4);
 
         // then
-        Assertions.assertThat(ladder.getLines().size()).isEqualTo(5);
+        assertThat(ladder.getLines())
+                .hasSize(5);
     }
 }
