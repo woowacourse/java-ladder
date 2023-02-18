@@ -52,6 +52,6 @@ public class Participants {
     }
 
     public List<Participant> getParticipants() {
-        return participants;
+        return List.copyOf(participants);
     }
 }

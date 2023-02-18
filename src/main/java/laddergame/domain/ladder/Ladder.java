@@ -17,6 +17,6 @@ public class Ladder {
     }
 
     public List<Rungs> getLadder() {
-        return ladder;
+        return List.copyOf(ladder);
     }
 }

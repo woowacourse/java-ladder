@@ -42,6 +42,6 @@ public class Rungs {
     }
 
     public List<Rung> getRungs() {
-        return rungs;
+        return List.copyOf(rungs);
     }
 }
