@@ -16,6 +16,33 @@ public class Level {
 		makeStools();
 	}
 
+	private List<Stool> initLine(int participantSize) {
+		return IntStream.range(0, participantSize - 1)
+			.mapToObj(o -> Stool.EMPTY)
+			.collect(Collectors.toList());
+	}
+
+	private void makeStools() {
+		level.set(0, Stool.of(random.nextBoolean()));
+		IntStream.range(1, level.size()).forEach(this::makeStool);
+
+		if (isNotValidLevel())
+			makeStools();
+	}
+
+	private boolean isNotValidLevel() {
+		return (int)level.stream()
+			.filter(Stool::isStool)
+			.count() == 0;
+	}
+
+	private void makeStool(int index) {
+		if (getStool(index - 1).isStool())
+			return;
+
+		level.set(index, Stool.of(random.nextBoolean()));
+	}
+
 	public int size() {
 		return level.size();
 	}
@@ -32,33 +59,6 @@ public class Level {
 
 	public List<Stool> getStools() {
 		return new ArrayList<>(level);
-	}
-
-	private List<Stool> initLine(int participantSize) {
-		return IntStream.range(0, participantSize - 1)
-			.mapToObj(o -> Stool.EMPTY)
-			.collect(Collectors.toList());
-	}
-
-	private void makeStools() {
-		level.set(0, Stool.of(random.nextBoolean()));
-		IntStream.range(1, level.size()).forEach(this::makeStool);
-
-		if (isNotValidLevel())
-			makeStools();
-	}
-
-	private void makeStool(int index) {
-		if (getStool(index - 1).isStool())
-			return;
-
-		level.set(index, Stool.of(random.nextBoolean()));
-	}
-
-	private boolean isNotValidLevel() {
-		return (int)level.stream()
-			.filter(Stool::isStool)
-			.count() == 0;
 	}
 
 	private Stool getStool(int index) {
