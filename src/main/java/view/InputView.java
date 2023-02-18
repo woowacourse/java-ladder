@@ -2,8 +2,6 @@ package view;
 
 import util.ExceptionMessage;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -14,8 +12,7 @@ public class InputView {
     }
 
     public String readPlayerNames() {
-        String names = scanner.nextLine();
-        return names;
+        return scanner.nextLine();
     }
 
     public int readLadderHeight() {
