@@ -8,6 +8,7 @@ public class Rung {
 
     protected static final int SUFFICIENT = 1;
     protected static final int INSUFFICIENT = 0;
+
     private final boolean existence;
 
     private Rung(final int material) {

@@ -14,6 +14,7 @@ public class LadderFactory {
     private static final int MIN_HEIGHT = 1;
     private static final int MAX_HEIGHT = 10_000;
     private static final int DEFAULT_COUNT = 1;
+
     private final NumberGenerator rungNumberGenerator;
 
     private LadderFactory(final NumberGenerator rungNumberGenerator) {
