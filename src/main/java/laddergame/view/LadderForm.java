@@ -55,19 +55,19 @@ public enum LadderForm {
     }
 
     private static void appendRowEmpty(final StringBuilder ladderBuilder,
-                                       final boolean point,
+                                       final boolean isRowFilled,
                                        final int maxNameLength
     ) {
-        if (point == false) {
+        if (!isRowFilled) {
             ladderBuilder.append(LADDER_ROW_EMPTY.unit.repeat(maxNameLength));
         }
     }
 
     private static void appendRowFilled(final StringBuilder ladderBuilder,
-                                        final boolean point,
+                                        final boolean isRowFilled,
                                         final int maxNameLength
     ) {
-        if (point == true) {
+        if (isRowFilled) {
             ladderBuilder.append(LADDER_ROW_FILLED.unit.repeat(maxNameLength));
         }
     }
