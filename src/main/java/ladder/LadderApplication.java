@@ -10,27 +10,11 @@ import ladder.view.OutputView;
 public class LadderApplication {
 
     public static void main(String[] args) {
-        LadderController ladderController = new LadderController(inputView(), outputView(), lineGenerator());
+        final var inputView = new InputView(new Scanner(System.in));
+        final var outputView = new OutputView();
+        final var lineGenerator = new LineGenerator(new RandomDirectionGenerator());
+
+        LadderController ladderController = new LadderController(inputView, outputView, lineGenerator);
         ladderController.run();
-    }
-
-    private static InputView inputView() {
-        return new InputView(scanner());
-    }
-
-    private static Scanner scanner() {
-        return new Scanner(System.in);
-    }
-
-    private static OutputView outputView() {
-        return new OutputView();
-    }
-
-    private static LineGenerator lineGenerator() {
-        return new LineGenerator(directionGenerator());
-    }
-
-    private static RandomDirectionGenerator directionGenerator() {
-        return new RandomDirectionGenerator();
     }
 }
