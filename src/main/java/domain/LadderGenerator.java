@@ -5,10 +5,11 @@ import java.util.List;
 import java.util.Random;
 
 public class LadderGenerator {
-    private final Random random;
+    private final Random random = new Random();
+    private static final LadderGenerator ladderGenerator = new LadderGenerator();
 
-    public LadderGenerator() {
-        this.random = new Random();
+    public static LadderGenerator getInstance() {
+        return ladderGenerator;
     }
 
     public List<Bridge> generateLadder(int bridgeCount) {
