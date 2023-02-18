@@ -21,7 +21,7 @@ public class Line {
 
     private void validateScaffoldSizeEmpty(final List<Scaffold> scaffolds) {
         if (scaffolds.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("사다리의 가로 길이는 0일수 없습니다.");
         }
     }
 
