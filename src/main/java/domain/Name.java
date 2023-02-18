@@ -1,6 +1,7 @@
 package domain;
 
-import static utils.ErrorMessage.INVALID_USER_NAME_LENGTH;
+import static utils.ErrorMessage.INVALID_USER_NAME_LENGTH_BY_MAXIMUM_LIMIT;
+import static utils.ErrorMessage.INVALID_USER_NAME_LENGTH_BY_MINIMUM_LIMIT;
 
 public class Name {
 
@@ -11,15 +12,24 @@ public class Name {
 
     public Name(String name) {
         name = name.trim();
-        validateNameLength(name);
+        validateNameLengthByMinimumLimit(name);
+        validateNameLengthByMaximumLimit(name);
         this.name = name;
     }
 
-    private void validateNameLength(String name) {
-        if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH) {
+    private void validateNameLengthByMinimumLimit(String name) {
+        if (name.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException(
-                String.format(INVALID_USER_NAME_LENGTH.getMessage(),
-                    MIN_NAME_LENGTH, MAX_NAME_LENGTH));
+                String.format(INVALID_USER_NAME_LENGTH_BY_MINIMUM_LIMIT.getMessage(),
+                    MIN_NAME_LENGTH));
+        }
+    }
+
+    private void validateNameLengthByMaximumLimit(String name) {
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(
+                String.format(INVALID_USER_NAME_LENGTH_BY_MAXIMUM_LIMIT.getMessage(),
+                    MAX_NAME_LENGTH));
         }
     }
 
