@@ -11,7 +11,7 @@ import laddergame.view.OutputView;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static laddergame.view.message.Message.*;
+import static laddergame.view.message.Message.RESULT_GUIDE;
 
 public class LadderGameController {
 
@@ -26,14 +26,13 @@ public class LadderGameController {
     public void start() {
         Participants participants = createParticipants();
         LadderFactory ladderFactory = createLadderFactory();
-        Ladder ladder = createLadderBy(participants, ladderFactory);
+        Ladder ladder = createLadder(participants, ladderFactory);
         printGameResult(participants, ladder);
     }
 
     private Participants createParticipants() {
         return inputView.getInputWithRetry(() -> {
-            OutputView.print(INPUT_PARTICIPANT_NAMES_GUIDE.getMessage());
-            String participantNames = inputView.readConsole();
+            String participantNames = inputView.getParticipantNames();
             return Participants.create(participantNames);
         });
     }
@@ -43,10 +42,9 @@ public class LadderGameController {
         return LadderFactory.create(rungNumberGenerator);
     }
 
-    private Ladder createLadderBy(final Participants participants, final LadderFactory ladderFactory) {
+    private Ladder createLadder(final Participants participants, final LadderFactory ladderFactory) {
         return inputView.getInputWithRetry(() -> {
-            OutputView.print(INPUT_LADDER_MAX_HEIGHT_GUIDE.getMessage());
-            String maxLadderHeight = inputView.readConsole();
+            String maxLadderHeight = inputView.getMaxLadderHeight();
             return ladderFactory.createLadder(maxLadderHeight, participants.size());
         });
     }
