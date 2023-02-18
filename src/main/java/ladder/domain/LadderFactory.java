@@ -13,10 +13,10 @@ public class LadderFactory {
     private final Players players;
     private final LineStrategy lineStrategy;
 
-    public LadderFactory(int height, String[] playerNames, LineStrategy lineStrategy) {
-        validatePlayersCount(height, playerNames.length);
-        this.height = new Height(height);
-        this.players = new Players(playerNames);
+    public LadderFactory(Height height, Players players, LineStrategy lineStrategy) {
+        validatePlayersCount(height.getHeight(), players.getPlayersCount());
+        this.height = height;
+        this.players = players;
         this.lineStrategy = lineStrategy;
     }
 

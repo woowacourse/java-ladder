@@ -10,20 +10,20 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 public class LadderFactoryTest {
-    private final int height = 4;
-    private final String[] playerNames = {"glen", "doggy"};
+    private final Height height = new Height(4);
+    private final Players players = new Players(new String[]{"glen", "doggy"});
     private final LineStrategy lineStrategy = new CustomLineStrategy(List.of(Step.EXIST));
-    private final LadderFactory ladderFactory = new LadderFactory(height, playerNames, lineStrategy);
+    private final LadderFactory ladderFactory = new LadderFactory(height, players, lineStrategy);
 
     @Test
     @DisplayName("입력된 사다리의 높이가 인원 수보다 작으면 예외가 발생한다.")
     void create_heightMinPlayersCount() {
         // given
-        int height = 1;
+        Height height = new Height(1);
 
         // expect
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new LadderFactory(height, playerNames, lineStrategy);
+            new LadderFactory(height, players, lineStrategy);
         }).withMessage("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
     }
 
@@ -31,11 +31,11 @@ public class LadderFactoryTest {
     @DisplayName("입력된 사다리의 높이가 인원 수의 2배보다 크면 예외가 발생한다.")
     void create_heightMaxPlayersCount() {
         // given
-        int height = 5;
+        Height height = new Height(5);
 
         // expect
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new LadderFactory(height, playerNames, lineStrategy);
+            new LadderFactory(height, players, lineStrategy);
         }).withMessage("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
     }
 
