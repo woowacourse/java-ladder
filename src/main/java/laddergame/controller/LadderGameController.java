@@ -4,7 +4,7 @@ import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderFactory;
 import laddergame.domain.participant.Participant;
 import laddergame.domain.participant.Participants;
-import laddergame.domain.rung.RungNumberGenerator;
+import laddergame.domain.rung.RungGenerator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -38,8 +38,8 @@ public class LadderGameController {
     }
 
     private LadderFactory createLadderFactory() {
-        RungNumberGenerator rungNumberGenerator = new RungNumberGenerator();
-        return LadderFactory.create(rungNumberGenerator);
+        RungGenerator rungGenerator = new RungGenerator();
+        return LadderFactory.create(rungGenerator);
     }
 
     private Ladder createLadder(final Participants participants, final LadderFactory ladderFactory) {

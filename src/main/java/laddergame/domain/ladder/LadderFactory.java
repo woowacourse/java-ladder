@@ -1,7 +1,7 @@
 package laddergame.domain.ladder;
 
 import laddergame.domain.rung.Rungs;
-import laddergame.util.NumberGenerator;
+import laddergame.util.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,21 +16,21 @@ public class LadderFactory {
     private static final int MIN_HEIGHT = 1;
     private static final int MAX_HEIGHT = 10_000;
     private static final int DEFAULT_COUNT = 1;
-    private static final Map<NumberGenerator, LadderFactory> CACHE = new HashMap<>();
+    private static final Map<BooleanGenerator, LadderFactory> CACHE = new HashMap<>();
 
-    private final NumberGenerator rungNumberGenerator;
+    private final BooleanGenerator rungBooleanGenerator;
 
-    private LadderFactory(final NumberGenerator rungNumberGenerator) {
-        this.rungNumberGenerator = rungNumberGenerator;
+    private LadderFactory(final BooleanGenerator rungBooleanGenerator) {
+        this.rungBooleanGenerator = rungBooleanGenerator;
     }
 
-    public static LadderFactory create(final NumberGenerator rungNumberGenerator) {
-        if (CACHE.containsKey(rungNumberGenerator)) {
-            return CACHE.get(rungNumberGenerator);
+    public static LadderFactory create(final BooleanGenerator rungBooleanGenerator) {
+        if (CACHE.containsKey(rungBooleanGenerator)) {
+            return CACHE.get(rungBooleanGenerator);
         }
 
-        LadderFactory ladderFactory = new LadderFactory(rungNumberGenerator);
-        CACHE.put(rungNumberGenerator, ladderFactory);
+        LadderFactory ladderFactory = new LadderFactory(rungBooleanGenerator);
+        CACHE.put(rungBooleanGenerator, ladderFactory);
         return ladderFactory;
     }
 
@@ -38,7 +38,7 @@ public class LadderFactory {
         int ladderHeight = convertToLadderHeight(height);
         List<Rungs> ladder = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            ladder.add(Rungs.create(makeRungCount(participantCount), rungNumberGenerator));
+            ladder.add(Rungs.create(makeRungCount(participantCount), rungBooleanGenerator));
         }
         return Ladder.create(ladder);
     }

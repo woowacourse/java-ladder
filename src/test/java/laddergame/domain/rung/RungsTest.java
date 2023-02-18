@@ -1,6 +1,6 @@
 package laddergame.domain.rung;
 
-import laddergame.util.NumberGenerator;
+import laddergame.util.BooleanGenerator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInstance;
@@ -18,21 +18,21 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class RungsTest {
 
-    private NumberGenerator rungNumberGenerator;
+    private BooleanGenerator rungGenerator;
 
     @BeforeAll
     void init() {
-        rungNumberGenerator = new RungNumberGenerator();
+        rungGenerator = new RungGenerator();
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5})
     @DisplayName("Rungs 객체가 정상적으로 생성된다면, 예외가 발생하지 않는다.")
     void create_thenSuccess(final int rungCount) {
-        assertThatCode(() -> Rungs.create(rungCount, rungNumberGenerator))
+        assertThatCode(() -> Rungs.create(rungCount, rungGenerator))
                 .doesNotThrowAnyException();
 
-        assertThat(Rungs.create(rungCount, rungNumberGenerator))
+        assertThat(Rungs.create(rungCount, rungGenerator))
                 .isInstanceOf(Rungs.class);
     }
 
@@ -41,7 +41,7 @@ public class RungsTest {
     @DisplayName("Rungs의 Rung 리스트의 길이는 rung의 개수와 동일해야 한다.")
     void getRungs_whenGetRungsSize_thenReturnRungCount(final int rungCount) {
         // when
-        Rungs rungs = Rungs.create(rungCount, rungNumberGenerator);
+        Rungs rungs = Rungs.create(rungCount, rungGenerator);
         List<Rung> specificRungs = rungs.getRungs();
 
         // then
@@ -53,10 +53,10 @@ public class RungsTest {
     @MethodSource("getTestRungsWithNumberGenerator")
     @DisplayName("NumberGenerator의 반환값에 따라, 생성되는 Rungs의 형태가 달라진다.")
     void getRungs_whenCreateWithNumberGenerator_thenReturnRungs(final int rungCount,
-                                                              final NumberGenerator numberGenerator,
+                                                              final BooleanGenerator booleanGenerator,
                                                               final List<Rung> expectedRungs) {
         // given
-        Rungs rungs = Rungs.create(rungCount, numberGenerator);
+        Rungs rungs = Rungs.create(rungCount, booleanGenerator);
 
         // when
         List<Rung> actualRungs = rungs.getRungs();
@@ -66,18 +66,18 @@ public class RungsTest {
     }
 
     private static Stream<Arguments> getTestRungsWithNumberGenerator() {
-        final NumberGenerator sufficientMaterialGenerator = () -> 1;
-        final NumberGenerator insufficientMaterialGenerator = () -> 0;
+        final BooleanGenerator sufficientMaterialGenerator = () -> true;
+        final BooleanGenerator insufficientMaterialGenerator = () -> false;
 
         return Stream.of(
-                Arguments.arguments(1, sufficientMaterialGenerator, List.of(Rung.create(1))),
-                Arguments.arguments(2, sufficientMaterialGenerator, List.of(Rung.create(1), Rung.create(0))),
-                Arguments.arguments(3, sufficientMaterialGenerator, List.of(Rung.create(1), Rung.create(0), Rung.create(1))),
-                Arguments.arguments(4, sufficientMaterialGenerator, List.of(Rung.create(1), Rung.create(0), Rung.create(1), Rung.create(0))),
-                Arguments.arguments(1, insufficientMaterialGenerator, List.of(Rung.create(0))),
-                Arguments.arguments(2, insufficientMaterialGenerator, List.of(Rung.create(0), Rung.create(0))),
-                Arguments.arguments(3, insufficientMaterialGenerator, List.of(Rung.create(0), Rung.create(0), Rung.create(0))),
-                Arguments.arguments(4, insufficientMaterialGenerator, List.of(Rung.create(0), Rung.create(0), Rung.create(0), Rung.create(0)))
+                Arguments.arguments(1, sufficientMaterialGenerator, List.of(Rung.create(true))),
+                Arguments.arguments(2, sufficientMaterialGenerator, List.of(Rung.create(true), Rung.create(false))),
+                Arguments.arguments(3, sufficientMaterialGenerator, List.of(Rung.create(true), Rung.create(false), Rung.create(true))),
+                Arguments.arguments(4, sufficientMaterialGenerator, List.of(Rung.create(true), Rung.create(false), Rung.create(true), Rung.create(false))),
+                Arguments.arguments(1, insufficientMaterialGenerator, List.of(Rung.create(false))),
+                Arguments.arguments(2, insufficientMaterialGenerator, List.of(Rung.create(false), Rung.create(false))),
+                Arguments.arguments(3, insufficientMaterialGenerator, List.of(Rung.create(false), Rung.create(false), Rung.create(false))),
+                Arguments.arguments(4, insufficientMaterialGenerator, List.of(Rung.create(false), Rung.create(false), Rung.create(false), Rung.create(false)))
         );
     }
 }

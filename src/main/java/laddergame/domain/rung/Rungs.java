@@ -1,6 +1,6 @@
 package laddergame.domain.rung;
 
-import laddergame.util.NumberGenerator;
+import laddergame.util.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,20 +10,20 @@ import static laddergame.domain.rung.Rung.INSUFFICIENT;
 public class Rungs {
 
     private final List<Rung> rungs;
-    private final NumberGenerator rungNumberGenerator;
+    private final BooleanGenerator rungGenerator;
 
-    private Rungs(final int rungCount, final NumberGenerator rungNumberGenerator) {
-        this.rungNumberGenerator = rungNumberGenerator;
+    private Rungs(final int rungCount, final BooleanGenerator rungGenerator) {
+        this.rungGenerator = rungGenerator;
         rungs = makeRungs(rungCount);
     }
 
-    public static Rungs create(final int rungCount, final NumberGenerator rungNumberGenerator) {
-        return new Rungs(rungCount, rungNumberGenerator);
+    public static Rungs create(final int rungCount, final BooleanGenerator rungBooleanGenerator) {
+        return new Rungs(rungCount, rungBooleanGenerator);
     }
 
     private List<Rung> makeRungs(final int rungCount) {
         List<Rung> rungs = new ArrayList<>();
-        Rung firstRung = Rung.create(rungNumberGenerator.generate());
+        Rung firstRung = Rung.create(rungGenerator.generate());
         rungs.add(firstRung);
 
         for (int order = 1; order < rungCount; order++) {
@@ -38,7 +38,7 @@ public class Rungs {
         if (previousRung.isExistence()) {
             return Rung.create(INSUFFICIENT);
         }
-        return Rung.create(rungNumberGenerator.generate());
+        return Rung.create(rungGenerator.generate());
     }
 
     public List<Rung> getRungs() {

@@ -5,34 +5,23 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static laddergame.domain.message.ErrorMessage.INVALID_MATERIAL;
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class RungTest {
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 1})
-    @DisplayName("0 혹은 1이 입력되면, 예외가 발생하지 않는다.")
-    void create_thenSuccess(final int validNumber) {
+    @ValueSource(booleans = {true, false})
+    @DisplayName("true 혹은 false가 입력되면, 예외가 발생하지 않는다.")
+    void create_thenSuccess(final boolean validNumber) {
         assertThatCode(() -> Rung.create(validNumber))
                 .doesNotThrowAnyException();
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-1, 2, 3, 4})
-    @DisplayName("0 혹은 1이 아닌 값이 입력되면, 예외가 발생한다.")
-    void create_givenNotZeroOrOne_thenFail(final int invalidNumber) {
-        assertThatThrownBy(() -> Rung.create(invalidNumber))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(INVALID_MATERIAL.getMessage());
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = {"0:false", "1:true"}, delimiter = ':')
-    @DisplayName("0이 입력되면 false, 1이 입력되면 true를 반환한다.")
-    void isExistence_whenGivenZeroOrOne_thenReturnFalseOrTrue(final int material, final boolean expectedValue) {
+    @CsvSource(value = {"true:true", "false:false"}, delimiter = ':')
+    @DisplayName("true가 입력되면 true, false가 입력되면 false를 반환한다.")
+    void isExistence_givenTrueOrFalse_thenReturnFalseOrTrue(final boolean material, final boolean expectedValue) {
         // given
         Rung rung = Rung.create(material);
 

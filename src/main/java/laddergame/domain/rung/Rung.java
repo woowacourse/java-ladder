@@ -2,36 +2,22 @@ package laddergame.domain.rung;
 
 import java.util.Objects;
 
-import static laddergame.domain.message.ErrorMessage.INVALID_MATERIAL;
-
 public class Rung {
 
-    protected static final int SUFFICIENT = 1;
-    protected static final int INSUFFICIENT = 0;
+    protected static final boolean INSUFFICIENT = false;
 
     private final boolean existence;
 
-    private Rung(final int material) {
-        validateMaterial(material);
-        this.existence = makeRung(material);
+    private Rung(final boolean material) {
+        this.existence = material;
     }
 
-    public static Rung create(final int material) {
+    public static Rung create(final boolean material) {
         return new Rung(material);
     }
 
     public boolean isExistence() {
         return existence;
-    }
-
-    private void validateMaterial(final int material) {
-        if (material != SUFFICIENT && material != INSUFFICIENT) {
-            throw new IllegalArgumentException(INVALID_MATERIAL.getMessage());
-        }
-    }
-
-    private boolean makeRung(final int material) {
-        return material == SUFFICIENT;
     }
 
     @Override
