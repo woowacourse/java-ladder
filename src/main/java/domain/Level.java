@@ -2,7 +2,7 @@ package domain;
 
 import util.StoolGenerator;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -40,6 +40,6 @@ public class Level {
     }
 
     public List<Stool> getStools() {
-        return new ArrayList<>(level);
+        return Collections.unmodifiableList(level);
     }
 }

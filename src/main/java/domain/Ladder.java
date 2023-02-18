@@ -3,6 +3,7 @@ package domain;
 import exception.Error;
 import util.StoolGenerator;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -42,6 +43,6 @@ public class Ladder {
 	}
 
 	public List<Level> getLevels() {
-		return levels;
+		return Collections.unmodifiableList(levels);
 	}
 }
