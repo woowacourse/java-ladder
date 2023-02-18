@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum LadderForm {
-    LADDER_ROW_FILLED("-----"),
+    LADDER_ROW_RUNG("-----"),
     LADDER_ROW_EMPTY("     "),
     LADDER_COL("|");
 
@@ -37,9 +37,9 @@ public enum LadderForm {
     }
 
     private static void joinRowUnits(final StringBuilder ladderBuilder, final Line line) {
-        line.getPoints().forEach(point -> {
-            appendRowFilled(ladderBuilder, point);
-            appendRowEmpty(ladderBuilder, point);
+        line.getRungExistsAtColumn().forEach(rungExistsAtColumn -> {
+            appendRowFilled(ladderBuilder, rungExistsAtColumn);
+            appendRowEmpty(ladderBuilder, rungExistsAtColumn);
             ladderBuilder.append(LADDER_COL.unit);
         });
     }
@@ -52,7 +52,7 @@ public enum LadderForm {
 
     private static void appendRowFilled(StringBuilder ladderBuilder, Boolean point) {
         if (point.equals(true)) {
-            ladderBuilder.append(LADDER_ROW_FILLED.unit);
+            ladderBuilder.append(LADDER_ROW_RUNG.unit);
         }
     }
 }
