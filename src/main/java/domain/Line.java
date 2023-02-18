@@ -5,7 +5,6 @@ import domain.validator.LineValidator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
 
@@ -17,13 +16,11 @@ public class Line {
     }
 
     private List<Point> generatePoints(final int pointSize) {
-        // TODO: Random 객체 외부에서 주입받아서 사용하도록 수정
-        Random random = new Random();
         List<Point> points = new ArrayList<>();
         for (int i = 0; i < pointSize; i++) {
-            Point currentPoint = Point.generate(random);
+            Point currentPoint = Point.generate();
             if (i - 1 >= 0) {
-                currentPoint = Point.generate(points.get(i - 1), random);
+                currentPoint = Point.generate(points.get(i - 1));
             }
             points.add(currentPoint);
         }

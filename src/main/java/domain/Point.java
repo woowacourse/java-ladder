@@ -14,14 +14,16 @@ public enum Point {
         this.isExist = isExist;
     }
 
-    public static Point generate(final Point previousPoint, final Random random) {
+    private static final Random random = new Random();
+
+    public static Point generate(final Point previousPoint) {
         if (previousPoint == EXIST) {
             return NOT_EXIST;
         }
-        return generate(random);
+        return generate();
     }
 
-    public static Point generate(final Random random) {
+    public static Point generate() {
         return of(random.nextBoolean());
     }
 
