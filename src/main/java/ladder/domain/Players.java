@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import static java.text.MessageFormat.format;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -33,10 +31,9 @@ public class Players {
 
     private void validatePlayerSize(final List<Player> players) {
         if (hasSmallSize(players) || hasLargeSize(players)) {
-            throw new IllegalArgumentException(format(
-                    "플레이어는 " + MINIMUM_PLAYER_SIZE + "명 이상, "
-                            + MAXIMUM_PLAYER_SIZE + "명 이하만 가능합니다."
-                            + " 현재 입력한 플레이어 수는 {0}명 입니다.", players.size()));
+            throw new IllegalArgumentException(
+                    "플레이어는 " + MINIMUM_PLAYER_SIZE + "명 이상, " + MAXIMUM_PLAYER_SIZE + "명 이하만 가능합니다."
+                            + " 현재 입력한 플레이어 수는 " + players.size() + "명 입니다.");
         }
     }
 

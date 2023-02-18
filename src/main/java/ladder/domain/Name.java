@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import static java.text.MessageFormat.format;
-
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -24,7 +22,7 @@ public class Name {
 
     private void validateFormat(final String value) {
         if (isNotEnglish(value)) {
-            throw new IllegalArgumentException(format("사람 이름은 영문자만 가능합니다. 현재 입력은 {0} 입니다.", value));
+            throw new IllegalArgumentException("사람 이름은 영문자만 가능합니다. 현재 입력은 " + value + " 입니다.");
         }
     }
 
@@ -34,8 +32,7 @@ public class Name {
 
     private void validateLength(final String value) {
         if (hasExceedLength(value)) {
-            throw new IllegalArgumentException(
-                    format("사람 이름은 " + NAME_MAX_LENGTH + "글자까지 가능합니다. 현재 입력은 {0} 입니다.", value));
+            throw new IllegalArgumentException("사람 이름은 " + NAME_MAX_LENGTH + "글자까지 가능합니다. 현재 입력은 " + value + " 입니다.");
         }
     }
 

@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import static java.text.MessageFormat.format;
-
 public class Height {
 
     private static final int MINIMUM_HEIGHT = 2;
@@ -16,9 +14,8 @@ public class Height {
 
     private void validate(final int value) {
         if (hasShort(value) || hasLong(value)) {
-            throw new IllegalArgumentException(
-                    format("높이는 " + MINIMUM_HEIGHT + "이상, " + MAXIMUM_HEIGHT + "이하여야 합니다."
-                            + " 현재 높이는 {0}입니다.", value));
+            throw new IllegalArgumentException("높이는 " + MINIMUM_HEIGHT + "이상, " + MAXIMUM_HEIGHT + "이하여야 합니다."
+                    + " 현재 높이는 " + value + "입니다.");
         }
     }
 
