@@ -35,11 +35,11 @@ public class Names {
     private enum Message {
         EXCEPTION_RANGE("%d명 이상 %d명 이하의 사람 수를 입력해 주세요.", MIN_RANGE, MAX_RANGE);
 
-        public static final String BASE_MESSAGE = "[ERROR] %s";
+        public static final String _FORMAT = "[ERROR] %s";
         private final String message;
 
         Message(String message, Object... replaces) {
-            this.message = String.format(BASE_MESSAGE, String.format(message, replaces));
+            this.message = String.format(_FORMAT, String.format(message, replaces));
         }
     }
 }

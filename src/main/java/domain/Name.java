@@ -37,11 +37,11 @@ public class Name {
         EXCEPTION_NAME_LENGTH("%d글자 이상 %d글자 이하의 이름만 입력해주세요.", MIN_LENGTH, MAX_LENGTH),
         EXCEPTION_NAME_BLANK("빈 이름(공백)은 입력이 불가능합니다.");
 
-        public static final String BASE_MESSAGE = "[ERROR] %s";
+        public static final String _FORMAT = "[ERROR] %s";
         private final String message;
 
         Message(String message, Object... replaces) {
-            this.message = String.format(BASE_MESSAGE, String.format(message, replaces));
+            this.message = String.format(_FORMAT, String.format(message, replaces));
         }
     }
 }
