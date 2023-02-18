@@ -4,37 +4,18 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.util.Lists.newArrayList;
 
-class LadderGameTest {
-
-    @Test
-    @DisplayName("플레이어가 2명 미만이면 예외처리 테스트")
-    void invalidHeightTest() {
-        List<Player> input = new ArrayList<>(List.of(new Player("이오")));
-        Assertions.assertThatThrownBy(() -> new LadderGame(input, new Height(5), new RandomLineCreateDecider()))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("플레이어가 2명 이상이면 통과하는 테스트")
-    void validHeightTest() {
-        List<Player> input = new ArrayList<>(List.of(new Player("이오"), new Player("이리내")));
-        assertThatCode(() -> new LadderGame(input, new Height(5), new RandomLineCreateDecider())).doesNotThrowAnyException();
-    }
+class LadderGeneratorTest {
 
     @Test
     @DisplayName("사다리 생성 테스트")
     void generateLadderTest() {
-        List<Player> input = new ArrayList<>(List.of(new Player("a"), new Player("asd"), new Player("qwert")));
+        LadderGenerator ladderGenerator = new LadderGenerator(new TestLineCreateDecider(newArrayList(true, false, false, true)));
 
-        LadderGame ladderGame = new LadderGame(input, new Height(2), new TestLineCreateDecider(newArrayList(true, false, false, true)));
-
-        List<Row> rows = ladderGame.getLadder().getRows();
+        List<Row> rows = ladderGenerator.generateLadder(3, new Height(2)).getRows();
 
         Assertions.assertThat(rows.get(0).getPoints()).containsExactly(true, false);
         Assertions.assertThat(rows.get(1).getPoints()).containsExactly(false, true);
