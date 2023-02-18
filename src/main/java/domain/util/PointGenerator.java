@@ -1,5 +1,12 @@
 package domain.util;
 
 public interface PointGenerator {
-	public Point generate();
+	static PointGenerator getInstance(boolean isRandom) {
+		if (isRandom) {
+			return new RandomPointGenerator();
+		}
+		return new FixedPresencePointGenerator();
+	}
+
+	Point generate();
 }
