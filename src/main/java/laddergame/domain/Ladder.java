@@ -10,8 +10,8 @@ public class Ladder {
     private final List<Line> lines;
     private final LadderHeight ladderHeight;
 
-    public Ladder(int playerCount, int height, PointGenerator pointGenerator) {
-        this.ladderHeight = new LadderHeight(height);
+    public Ladder(int playerCount, LadderHeight ladderHeight, PointGenerator pointGenerator) {
+        this.ladderHeight = ladderHeight;
         this.lines = List.copyOf(generateLines(playerCount, pointGenerator));
     }
 

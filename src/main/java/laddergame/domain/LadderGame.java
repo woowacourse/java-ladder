@@ -11,7 +11,7 @@ public class LadderGame {
 
     public LadderGame(Players players, int ladderHeight) {
         this.players = players;
-        this.ladder = new Ladder(players.size(), ladderHeight, new RandomPointGenerator());
+        this.ladder = new Ladder(players.size(), new LadderHeight(ladderHeight), new RandomPointGenerator());
     }
 
     public List<String> getPlayerNames() {

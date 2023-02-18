@@ -13,7 +13,7 @@ class LadderTest {
     void ladderCreateTest() {
         int playerCount = 4;
         int height = 5;
-        Ladder ladder = new Ladder(playerCount, height, new RandomPointGenerator());
+        Ladder ladder = new Ladder(playerCount, new LadderHeight(height), new RandomPointGenerator());
         assertThat(ladder.getLadder().size()).isEqualTo(height);
     }
 }
