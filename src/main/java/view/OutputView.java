@@ -66,11 +66,11 @@ public class OutputView {
         System.out.print(BLANK.repeat(BLOCK_SIZE_EXCEPT_DELIMITER));
         System.out.print(BAR);
         for (Scaffold scaffold : line.getScaffolds()) {
-            printLine(scaffold);
+            printScaffold(scaffold);
         }
     }
 
-    private static void printLine(Scaffold scaffold) {
+    private static void printScaffold(Scaffold scaffold) {
         if (scaffold.getStatus()) {
             System.out.print(EXIST_SCAFFOLD_MATERIAL.repeat(BLOCK_SIZE_EXCEPT_DELIMITER));
             System.out.print(BAR);
