@@ -13,7 +13,7 @@ public enum Bridge {
     private final boolean isExist;
     private final String format;
 
-    private Bridge(boolean isExist, String format) {
+    Bridge(boolean isExist, String format) {
         this.isExist = isExist;
         this.format = format;
     }
