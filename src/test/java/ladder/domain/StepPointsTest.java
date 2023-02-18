@@ -3,6 +3,7 @@ package ladder.domain;
 import static ladder.domain.StepPoint.EXIST;
 import static ladder.domain.StepPoint.NONE;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,13 +23,23 @@ class StepPointsTest {
     }
 
     @Test
-    void 디딤대_좌표값은_랜덤하게_생성된다() {
+    void 디딤대_좌표값은_주어진_생성방식에_따라_생성된다() {
         List<StepPoint> expected = List.of(EXIST, NONE, EXIST, NONE, EXIST);
 
         Queue<StepPoint> generateValues = new LinkedList<>(expected);
         StepPoints stepPoints = new StepPoints(new MockedPointGenerator(generateValues), 5);
 
         assertThat(stepPoints.toUnmodifiableStepPoints()).isEqualTo(expected);
+    }
+
+    @Test
+    void 디딤대는_연속될_수_없다() {
+        List<StepPoint> expected = List.of(EXIST, EXIST);
+
+        Queue<StepPoint> generateValues = new LinkedList<>(expected);
+
+        assertThatThrownBy(() -> new StepPoints(new MockedPointGenerator(generateValues), 2))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     private class MockedPointGenerator implements StepPointGenerator {
