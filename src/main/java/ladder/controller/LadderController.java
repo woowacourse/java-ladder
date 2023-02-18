@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
-import ladder.domain.generator.LineGenerator;
+import ladder.domain.generator.LadderGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -13,19 +13,19 @@ public class LadderController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final LineGenerator lineGenerator;
+    private final LadderGenerator ladderGenerator;
 
-    public LadderController(final InputView inputView, final OutputView outputView, final LineGenerator lineGenerator) {
+    public LadderController(final InputView inputView, final OutputView outputView,
+                            final LadderGenerator ladderGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lineGenerator = lineGenerator;
+        this.ladderGenerator = ladderGenerator;
     }
 
     public void run() {
         final Players players = generate(inputView::readPlayerNames, Players::new);
         final Height height = generate(inputView::readHeight, Height::new);
-
-        final Ladder ladder = new Ladder(lineGenerator, players, height);
+        final Ladder ladder = ladderGenerator.generate(players, height);
         outputView.printLadderResult(players, ladder);
     }
 
