@@ -49,7 +49,20 @@ public class LadderController {
     }
 
     private Height requestLadderHeight() {
-        return new Height(inputView.requestLadderHeight());
+        Height height = null;
+        while (height == null) {
+            height = readHeight();
+        }
+        return height;
+    }
+
+    private Height readHeight() {
+        try {
+            return new Height(inputView.requestLadderHeight());
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+        }
+        return null;
     }
 
 }
