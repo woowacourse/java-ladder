@@ -17,8 +17,8 @@ public class Rungs {
         rungs = makeRungs(rungCount);
     }
 
-    public static Rungs create(final int rungCount, final BooleanGenerator rungBooleanGenerator) {
-        return new Rungs(rungCount, rungBooleanGenerator);
+    public static Rungs create(final int rungCount, final BooleanGenerator rungGenerator) {
+        return new Rungs(rungCount, rungGenerator);
     }
 
     private List<Rung> makeRungs(final int rungCount) {

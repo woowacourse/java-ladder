@@ -17,19 +17,19 @@ public class LadderFactory {
     private static final int DEFAULT_COUNT = 1;
     private static final Map<BooleanGenerator, LadderFactory> CACHE = new HashMap<>();
 
-    private final BooleanGenerator rungBooleanGenerator;
+    private final BooleanGenerator rungGenerator;
 
-    private LadderFactory(final BooleanGenerator rungBooleanGenerator) {
-        this.rungBooleanGenerator = rungBooleanGenerator;
+    private LadderFactory(final BooleanGenerator rungGenerator) {
+        this.rungGenerator = rungGenerator;
     }
 
-    public static LadderFactory create(final BooleanGenerator rungBooleanGenerator) {
-        if (CACHE.containsKey(rungBooleanGenerator)) {
-            return CACHE.get(rungBooleanGenerator);
+    public static LadderFactory create(final BooleanGenerator rungGenerator) {
+        if (CACHE.containsKey(rungGenerator)) {
+            return CACHE.get(rungGenerator);
         }
 
-        LadderFactory ladderFactory = new LadderFactory(rungBooleanGenerator);
-        CACHE.put(rungBooleanGenerator, ladderFactory);
+        LadderFactory ladderFactory = new LadderFactory(rungGenerator);
+        CACHE.put(rungGenerator, ladderFactory);
         return ladderFactory;
     }
 
@@ -37,7 +37,7 @@ public class LadderFactory {
         int ladderHeight = convertToLadderHeight(height);
         List<Rungs> ladder = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            ladder.add(Rungs.create(makeRungCount(participantCount), rungBooleanGenerator));
+            ladder.add(Rungs.create(makeRungCount(participantCount), rungGenerator));
         }
         return Ladder.create(ladder);
     }
