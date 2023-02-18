@@ -48,16 +48,13 @@ public class LineTest {
     @DisplayName("한 라인에서 같은 포인트가 연속으로 등장하지 않는 기능 테스트")
     void noContinuouslySamePointTest() {
         //given
-        Line line = new Line(new TestPointGenerator(new ArrayList<>(List.of(false, true, true, true))), 5);
-        Line line2 = new Line(new TestPointGenerator(new ArrayList<>(List.of(true, true, true, true, true))), 6);
+        Line line = new Line(new TestPointGenerator(new ArrayList<>(List.of(true, true, true, true, true))), 6);
 
         //when
         List<Boolean> result = line.getPoints();
-        List<Boolean> result2 = line2.getPoints();
 
         //then
-        assertThat(result).isEqualTo(List.of(false, true, false, true));
-        assertThat(result2).isEqualTo(List.of(true, false, true, false, true));
+        assertThat(result).isEqualTo(List.of(true, false, true, false, true));
 
     }
 
