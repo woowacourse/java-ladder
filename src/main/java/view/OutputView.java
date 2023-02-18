@@ -14,12 +14,12 @@ import utils.LadderFormat;
 
 public class OutputView {
 
-    private final String USER_ENTER_NOTICE_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private final String LADDER_HEIGHT_ENTER_NOTICE_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
-    private final String FINAL_RESULT = "실행결과";
-    private final char NEXT_LINE = '\n';
+    private static final String USER_ENTER_NOTICE_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String LADDER_HEIGHT_ENTER_NOTICE_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
+    private static final String FINAL_RESULT = "실행결과";
+    private static final char NEXT_LINE = '\n';
 
-    private final int SECOND_USER_INDEX = 1;
+    private static final int SECOND_USER_INDEX = 1;
 
     public void printEnterUserNotice() {
         System.out.println(USER_ENTER_NOTICE_MESSAGE);

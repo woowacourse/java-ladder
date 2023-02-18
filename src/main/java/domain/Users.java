@@ -5,7 +5,7 @@ import static utils.ErrorMessage.NOT_FOUND_USER;
 import java.util.List;
 
 public class Users {
-    private final int FIRST = 0;
+    private static final int FIRST = 0;
 
     private final List<User> users;
 
