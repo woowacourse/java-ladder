@@ -8,20 +8,16 @@ public class Participants {
     private final List<Name> names;
 
     public Participants(final List<Name> names) {
-        validateNotNull(names);
-        validateNotEmpty(names);
+        validate(names);
         this.names = names;
     }
 
-    private void validateNotEmpty(final List<Name> names) {
-        if (names.isEmpty()) {
-            throw new IllegalArgumentException("참여자 이름 목록은 비어있을 수 없습니다.");
-        }
-    }
-
-    private void validateNotNull(final List<Name> names) {
+    private void validate(List<Name> names) {
         if (Objects.isNull(names)) {
             throw new IllegalArgumentException("참여자 이름 목록은 null이 될 수 없습니다.");
+        }
+        if (names.isEmpty()) {
+            throw new IllegalArgumentException("참여자 이름 목록은 비어있을 수 없습니다.");
         }
     }
 

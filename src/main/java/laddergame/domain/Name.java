@@ -9,29 +9,21 @@ public class Name {
 	private static final int MAX_NAME_LENGTH = 5;
 	private final String value;
 
-	public Name(final String value) {
-		validateNotNull(value);
-		validateMatchesPattern(value);
-		validateNotOverLength(value);
-		this.value = value;
+	public Name(final String name) {
+		validate(name);
+		this.value = name;
 	}
 
-	private void validateMatchesPattern(final String value) {
-		if (!NAME_REGEX.matcher(value).matches()) {
-			throw new IllegalArgumentException("이름은 공백이 될 수 없습니다.");
-		}
-	}
-
-	private void validateNotNull(final String value) {
+	private void validate(final String value) {
 		if (Objects.isNull(value)) {
 			throw new IllegalArgumentException("이름은 null이 될 수 없습니다.");
 		}
-	}
-
-	private void validateNotOverLength(final String value) {
 		if (value.length() > MAX_NAME_LENGTH) {
 			throw new IllegalArgumentException(
-				MessageFormat.format("이름은 {0}글자를 초과할 수 없습니다.", MAX_NAME_LENGTH));
+					MessageFormat.format("이름은 {0}글자를 초과할 수 없습니다.", MAX_NAME_LENGTH));
+		}
+		if (!NAME_REGEX.matcher(value).matches()) {
+			throw new IllegalArgumentException("이름은 영어로만 이루어져야합니다.");
 		}
 	}
 
