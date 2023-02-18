@@ -22,7 +22,7 @@ class PrizesTest {
 
         //then
         assertThat(users.getSize())
-                .isEqualTo(prizes.getPrizes().size());
+                .isEqualTo(prizes.getSize());
 
     }
 
