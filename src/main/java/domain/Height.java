@@ -1,24 +1,18 @@
 package domain;
 
-import laddervalidate.HeightValidator;
+import domain.validator.HeightValidator;
 
 public class Height {
-    private static final int FINISH_NUMBER = 0;
 
-    private int height;
+    private final int height;
 
-    public Height(String height) {
+    public Height(int height) {
         HeightValidator heightValidator = new HeightValidator();
-        heightValidator.checkNumberMissMatch(height);
         heightValidator.checkNegativeNumber(height);
-        this.height = Integer.parseInt(height);
+        this.height = height;
     }
 
-    public boolean isPossibleCount() {
-        return this.height > FINISH_NUMBER;
-    }
-
-    public void minusHeight() {
-        this.height--;
+    public boolean isSameHeight(int count) {
+        return count < height;
     }
 }
