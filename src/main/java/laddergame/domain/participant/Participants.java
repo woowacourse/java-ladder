@@ -16,6 +16,7 @@ public class Participants {
 
     private Participants(final String names) {
         List<String> participantNames = splitNames(names);
+        participantNames = trimNames(participantNames);
         validateParticipantCount(participantNames);
         validateDuplicateName(participantNames);
         participants = makeParticipants(participantNames);
@@ -33,13 +34,19 @@ public class Participants {
         return Arrays.asList(names.split(DELIMITER));
     }
 
-    private void validateParticipantCount(List<String> participantNames) {
+    private List<String> trimNames(final List<String> participantNames) {
+        return participantNames.stream()
+                .map(String::trim)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private void validateParticipantCount(final List<String> participantNames) {
         if (participantNames.size() == MIN_COUNT) {
             throw new IllegalArgumentException(INVALID_PARTICIPANT_COUNT.getMessage());
         }
     }
 
-    private void validateDuplicateName(List<String> participantNames) {
+    private void validateDuplicateName(final List<String> participantNames) {
         int uniqueCount = (int) participantNames.stream().distinct().count();
         if (uniqueCount != participantNames.size()) {
             throw new IllegalArgumentException(INVALID_DUPLICATE_NAME.getMessage());

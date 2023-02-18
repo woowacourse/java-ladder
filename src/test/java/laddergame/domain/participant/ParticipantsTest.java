@@ -13,21 +13,21 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 public class ParticipantsTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"pobi,pobi"})
-    @DisplayName("입력받은 이름에 중복값이 존재하면, 예외가 발생한다.")
-    void create_givenDuplicatedNames_thenFail(final String names)  {
-        assertThatThrownBy(() -> Participants.create(names))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_DUPLICATE_NAME.getMessage());
-    }
-
-    @ParameterizedTest
     @ValueSource(strings = {"pobi"})
     @DisplayName("입력받은 참여자의 수가 1명이면, 예외가 발생한다.")
     void create_givenSingleCountParticipant_thenFail(final String names) {
         assertThatThrownBy(() -> Participants.create(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_PARTICIPANT_COUNT.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi,pobi", "pobi, pobi, pobi "})
+    @DisplayName("입력받은 이름에 중복값이 존재하면, 예외가 발생한다.")
+    void create_givenDuplicatedNames_thenFail(final String names)  {
+        assertThatThrownBy(() -> Participants.create(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_DUPLICATE_NAME.getMessage());
     }
 
     @ParameterizedTest

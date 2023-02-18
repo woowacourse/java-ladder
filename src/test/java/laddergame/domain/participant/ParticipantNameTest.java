@@ -29,7 +29,7 @@ public class ParticipantNameTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", " ", "pobi ", "po bi", " po y", " p o ", " pobi"})
+    @ValueSource(strings = {"", " ", "po bi", " po y", " p o "})
     @DisplayName("이름에 공백이 포함되면, 예외가 발생한다.")
     void create_givenIncludedBlankName_thenFail(final String invalidName) {
         assertThatThrownBy(() -> ParticipantName.create(invalidName))
