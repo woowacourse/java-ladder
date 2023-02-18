@@ -25,10 +25,7 @@ public class LadderController {
 
 	private Participants retrieveParticipants() {
 		List<ParticipantName> names = retrieveParticipantsNames();
-		Participants participants = new Participants();
-		for (ParticipantName name : names) {
-			participants.add(name);
-		}
+		Participants participants = new Participants(names);
 		return participants;
 	}
 
