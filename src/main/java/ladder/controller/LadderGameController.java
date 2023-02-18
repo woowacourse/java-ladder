@@ -41,16 +41,16 @@ public class LadderGameController {
         }
     }
 
-    private List<String> mapPlayersToPlayersName(Players players) {
-        return players.getPlayers().stream()
-                .map(player -> player.getPlayerName().getName())
-                .collect(Collectors.toUnmodifiableList());
-    }
-
     private void showResult(Players players, Ladder ladder) {
         List<String> playersName = mapPlayersToPlayersName(players);
         OutputView.printGameResultHeader();
         OutputView.printPlayersName(playersName);
         OutputView.printLadder(ladder);
+    }
+
+    private List<String> mapPlayersToPlayersName(Players players) {
+        return players.getPlayers().stream()
+                .map(player -> player.getPlayerName().getName())
+                .collect(Collectors.toUnmodifiableList());
     }
 }
