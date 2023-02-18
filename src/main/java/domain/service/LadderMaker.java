@@ -12,7 +12,7 @@ public class LadderMaker {
         this.booleanGenerator = booleanGenerator;
     }
 
-    public Ladder make(Height height, Width width) {
+    public Ladder make(final Height height, final Width width) {
         Ladder ladder = new Ladder(height, width);
         for (int i = 0; i < height.get(); i++) {
             ladder.addLayer(makeLayer(width.get()));
@@ -20,7 +20,7 @@ public class LadderMaker {
         return ladder;
     }
 
-    private Layer makeLayer(int lineCount) {
+    private Layer makeLayer(final int lineCount) {
         Layer layer = new Layer();
         for (int i = 0; i < lineCount; i++) {
             layer.makeLine(booleanGenerator.generate());
