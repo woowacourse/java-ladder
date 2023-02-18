@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import javax.sound.sampled.Line;
 import java.util.List;
 
 /**
@@ -15,7 +14,7 @@ import java.util.List;
  */
 public class LineTest {
 
-    private final List<Boolean> line;
+    private Line line;
 
     @BeforeEach
     void init() {
@@ -25,9 +24,9 @@ public class LineTest {
     @DisplayName("이전 가로가 True면 다음 가로는 무조건 False이다.")
     @Test
     void 사다리_순서를_계산한다() {
-        for (int i = 0; i < line.size() - 1; i++) {
-            if (line.get(i) == true) {
-                Assertions.assertThat(line.get(i + 1)).isFalse();
+        for (int i = 0; i < line.getLine().size() - 1; i++) {
+            if (line.getLine().get(i) == true) {
+                Assertions.assertThat(line.getLine().get(i + 1)).isFalse();
             }
         }
     }
