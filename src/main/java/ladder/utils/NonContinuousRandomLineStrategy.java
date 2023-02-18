@@ -3,7 +3,7 @@ package ladder.utils;
 import java.util.*;
 import java.util.stream.IntStream;
 
-public class RandomLineStrategy implements LineStrategy {
+public class NonContinuousRandomLineStrategy implements LineStrategy {
     private final Random random = new Random();
 
     @Override
