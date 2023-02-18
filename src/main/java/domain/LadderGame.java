@@ -11,7 +11,7 @@ public class LadderGame {
 
     public LadderGame(final Players players, final int ladderHeight) {
         this.players = players;
-        this.ladder = LadderFactory.generate(players.getPlayerSize(), ladderHeight);
+        this.ladder = LadderFactory.of(players.getPlayerSize(), ladderHeight);
     }
 
     public Ladder getLadder() {
