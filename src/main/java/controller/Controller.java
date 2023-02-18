@@ -18,8 +18,9 @@ public class Controller {
 
     public void run() {
         Users usersName = settingUsers();
-        int bridgeCount = usersName.getCount() - 1;
-        Ladders ladders = new Ladders(settingHeight(), new LadderGenerator(bridgeCount));
+        Item item = new Item(inputView.inputResult(),usersName.getCount());
+        Ladders ladders = new Ladders(usersName.getCount(),settingHeight(), new RandomGenerator());
+
         outputView.printUsers(usersName);
         outputView.printLadders(ladders);
     }
