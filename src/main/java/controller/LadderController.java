@@ -17,7 +17,7 @@ public class LadderController {
 	public void buildLadder() {
 		Participants participants = retrieveParticipants();
 		LadderHeight height = new LadderHeight(retrieveLadderHeight());
-		LadderWidth width = participatnsNum2LadderWidth(participants.getParticipantsNum());
+		LadderWidth width = getWidthFromParticipantsNum(participants.getParticipantsNum());
 		LadderBuilder ladderBuilder = new LadderBuilder();
 		Ladder ladder = ladderBuilder.build(height, width, new RandomPointGenerator());
 		OutputView.printResult(participants.getNames(), ladder.getLadderPoints());
@@ -48,7 +48,7 @@ public class LadderController {
 		}
 	}
 
-	private LadderWidth participatnsNum2LadderWidth(final int participantsNum) {
+	private LadderWidth getWidthFromParticipantsNum(final int participantsNum) {
 		return new LadderWidth( participantsNum - 1);
 	}
 }
