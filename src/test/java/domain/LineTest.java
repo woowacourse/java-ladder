@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import util.FalseGenerator;
+import util.RandomBooleanGenerator;
 import util.TrueGenerator;
 
 class LineTest {
@@ -17,7 +18,7 @@ class LineTest {
     void createSpaceTest(int personCount) {
         //given
         //when
-        Line line = new Line(personCount);
+        Line line = Line.generateWithBridges(new RandomBooleanGenerator(), personCount);
 
         //then
         assertThat(line.getBridges().size()).isEqualTo(personCount - 1);
@@ -27,10 +28,10 @@ class LineTest {
     @DisplayName("BooleanGenerator 결과가 항상 true 일 때 다리 생성 테스트")
     void alwaysTrueCreateBridge() {
         //given
-        Line line = new Line(5);
+        int personCount = 5;
 
         //when
-        line.generate(new TrueGenerator());
+        Line line = Line.generateWithBridges(new TrueGenerator(), personCount);
 
         //then
         assertThat(line.getBridges()).containsExactly(true, false, true, false);
@@ -40,10 +41,10 @@ class LineTest {
     @DisplayName("BooleanGenerator 결과가 항상 false 일 때 다리 생성 테스트")
     void alwaysFalseCreateBridge() {
         //given
-        Line line = new Line(5);
+        int personCount = 5;
 
         //when
-        line.generate(new FalseGenerator());
+        Line line = Line.generateWithBridges(new FalseGenerator(), personCount);
 
         //then
         assertThat(line.getBridges()).containsExactly(false, false, false, false);

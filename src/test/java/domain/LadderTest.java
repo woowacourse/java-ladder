@@ -15,7 +15,7 @@ public class LadderTest {
         Height height = new Height(ladderHeight);
 
         //when
-        Ladder ladder = new Ladder(height, personCount);
+        Ladder ladder = Ladder.generateRandomly(height, personCount);
 
         //then
         Assertions.assertThat(ladder.calculateTotalHeight()).isEqualTo(ladderHeight);
