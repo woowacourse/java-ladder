@@ -25,8 +25,8 @@ public class LadderController {
     }
 
     public void run() {
-        final Participants participants = retryOnRuntimeExceptionWithMessage(this::getParticipants);
-        final Height height = retryOnRuntimeExceptionWithMessage(this::getHeight);
+        final Participants participants = retryOnRuntimeExceptionWithMessage(() -> new Participants(readNames()));
+        final Height height = retryOnRuntimeExceptionWithMessage(() -> new Height(inputView.readHeight()));
 
         final Ladder ladder = new Ladder(participants, height);
 
@@ -34,15 +34,10 @@ public class LadderController {
         outputView.printResult(LadderForm.joinUnitsFrom(participants.getNames(), lines));
     }
 
-    private Participants getParticipants() {
-        final List<Name> names = inputView.readNames()
+    private List<Name> readNames() {
+        return inputView.readNames()
                 .stream()
                 .map(Name::new)
                 .collect(Collectors.toList());
-        return new Participants(names);
-    }
-
-    private Height getHeight() {
-        return new Height(inputView.readHeight());
     }
 }
