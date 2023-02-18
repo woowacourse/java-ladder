@@ -4,12 +4,12 @@ public class LadderFactory {
     private static final int MAX_HEIGHT_RATIO = 2;
 
     private final Height height;
-    private final int width;
+    private final Players players;
 
-    public LadderFactory(int height, int width) {
-        validatePlayersCount(height, width);
+    public LadderFactory(int height, String[] playerNames) {
+        validatePlayersCount(height, playerNames.length);
         this.height = new Height(height);
-        this.width = width;
+        this.players = new Players(playerNames);
     }
 
     private void validatePlayersCount(int height, int playersCount) {
