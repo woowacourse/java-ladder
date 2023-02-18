@@ -23,7 +23,7 @@ public class LineTest {
     }
 
     @Test
-    void 가로_라인의_상태가_연속으로_연결됨_상태일_수_없다() {
+    void 가로_라인의_상태가_연속해서_연결될_수_없다() {
         final BooleanGenerator booleanGenerator = new TestBooleanGenerator(List.of(true, true, true, true, true));
         final Line line = new Line(booleanGenerator, 5);
 
