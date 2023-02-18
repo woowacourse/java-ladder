@@ -1,6 +1,6 @@
 package domain;
 
-import static java.util.List.*;
+import static java.util.List.copyOf;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class Line {
 
     private void validateNotSerial(final Bridge currentBridge, final Bridge nextBridge) {
         if (currentBridge.isSerialWith(nextBridge)) {
-            throw new IllegalArgumentException("브릿지는 연속으로 생성될 수 없습니다");
+            throw new IllegalArgumentException("연속인 브릿지가 존재합니다");
         }
     }
 
