@@ -31,6 +31,6 @@ public class Participants {
     public List<String> getNames() {
         return names.stream()
                 .map(Name::getValue)
-                .collect(Collectors.toUnmodifiableList());
+                .collect(Collectors.toList());
     }
 }
