@@ -21,17 +21,21 @@
 - [X] 정해진 인원수 범위를 벗어나면 `IllegalArgumentException` 예외가 발생한다.
 - [X] 참여할 사람의 이름이 중복되면 `IllegalArgumentException` 예외가 발생한다.
 
+#### LadderFactory
+- [x] (사용자가 입력한) 높이를 가진다.
+  - [x] 최소 사다리의 높이는 참여하는 사람의 인원 수 이다.
+  - [x] 최대 사다리의 높이는 참여하는 사람의 인원 수의 2배이다.
+  - [X] 입력되는 사다리의 높이가 최소, 최대 범위를 벗어나면 `IllegalArgumentException` 예외가 발생한다.
+- [x] 폭(참여 인원)을 가진다.
+- [ ] 높이와 폭을 이용해 Ladder를 만들어 반환한다.
+
 #### Ladder
 - [X] 여러 개의 `Line`을 가진다.
-- [ ] 높이를 가진다.
-- [ ] 최소 사다리의 높이는 참여하는 사람의 인원 수 이다.
-- [ ] 최대 사다리의 높이는 참여하는 사람의 인원 수의 2배이다.
-- [X] 입력되는 사다리의 높이가 최소, 최대 범위 값을 벗어나면  `IllegalArgumentException` 예외가 발생한다.
 
 #### Line
 - [x] 여러 개의 `Step`을 가진다.
-- [ ] 폭을 가진다.
 - [x] 건널 수 있는 `Step`이 연달아 존재하지 않는다.
+  - [x] 연달아 존재한다면 `IllegalArgumentException` 예외가 발생한다.
 
 #### Height
 - [X] 양의 정수 외의 값이 입력되면 `IllegalArgumentException` 예외가 발생한다.
