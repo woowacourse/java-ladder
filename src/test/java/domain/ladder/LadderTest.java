@@ -1,7 +1,11 @@
-package domain;
+package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.Direction;
+import domain.Height;
+import domain.PlayerNames;
+import domain.Point;
 import domain.ladder.Ladder;
 import domain.ladder.strategy.AlwaysGenerateBridgeStrategy;
 import java.util.List;
