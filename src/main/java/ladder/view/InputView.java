@@ -13,6 +13,7 @@ public class InputView {
     private static final String INVALID_NUMBER_MESSAGE = "정수만 입력 가능합니다.";
     private static final int HEIGHT_LOWER_BOUND = 1;
     private static final String INVALID_HEIGHT_MESSAGE = "높이는 최소 1이상이어야 합니다.";
+    private static final String INVALID_MAXIMUM_HEIGHT_MESSAGE = "사다리 높이는 최대 100까지 가능합니다.";
 
     private final Scanner scanner;
 
@@ -41,9 +42,17 @@ public class InputView {
 
     private int parseInt(final String input) {
         try {
-            return Integer.parseInt(input);
+            int integerInput = Integer.parseInt(input);
+            validateInteger(integerInput);
+            return integerInput;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_NUMBER_MESSAGE);
+        }
+    }
+
+    private void validateInteger(final long integerInput) {
+        if (integerInput > 100) {
+            throw new IllegalArgumentException(INVALID_MAXIMUM_HEIGHT_MESSAGE);
         }
     }
 

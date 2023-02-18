@@ -13,6 +13,7 @@ public class OutputView {
     private static final String INIT_NAME_FORMAT = "%s ";
     private static final long SKIP_INITIAL_PLAYER = 1L;
     private static final String CONNECTED_SYMBOL = "-";
+    private static final String DISCONNECTED_SYMBOL = " ";
     private static final String EMPTY_SYMBOL = " ";
     private static final String NAME_MESSAGE_FORMAT = " %%%ds";
     private static final String LINE_STATUS_MESSAGE_FORMAT = "%s|";
@@ -76,7 +77,7 @@ public class OutputView {
         if (lineStatus.isConnected()) {
             return generateRepeatedLineStatusMessage(CONNECTED_SYMBOL, maxNameLength);
         }
-        return generateRepeatedLineStatusMessage(EMPTY_SYMBOL, maxNameLength);
+        return generateRepeatedLineStatusMessage(DISCONNECTED_SYMBOL, maxNameLength);
     }
 
     public void printError(final String message) {
