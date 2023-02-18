@@ -1,5 +1,7 @@
 package view;
 
+import exception.Error;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +19,7 @@ public class InputView {
 
 			return Integer.parseInt(scanner.nextLine());
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("높이는 숫자를 입력해야 합니다");
+			throw new IllegalArgumentException(Error.NOT_A_NUMBER.getMessage());
 		}
 	}
 }
