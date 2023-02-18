@@ -24,19 +24,20 @@ public class LadderController {
 	}
 
 	private Participants retrieveParticipants() {
-		List<ParticipantName> names = retrieveParticipantsNames();
-		Participants participants = new Participants(names);
-		return participants;
+		try {
+			List<ParticipantName> names = retrieveParticipantsNames();
+			return new Participants(names);
+		} catch (IllegalArgumentException e) {
+			OutputView.printError(e.getMessage());
+			return retrieveParticipants();
+		}
 	}
 
 	private List<ParticipantName> retrieveParticipantsNames() {
-		try {
-			List<String> names = InputView.readParticipantsNames();
-			return names.stream().map(ParticipantName::new).collect(Collectors.toList());
-		} catch (IllegalArgumentException e) {
-			OutputView.printError(e.getMessage());
-			return retrieveParticipantsNames();
-		}
+		List<String> names = InputView.readParticipantsNames();
+		return names.stream()
+			.map(ParticipantName::new)
+			.collect(Collectors.toList());
 	}
 
 	private int retrieveLadderHeight() {
