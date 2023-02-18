@@ -13,8 +13,7 @@ public class OutputView {
     private static final String GAME_RESULT_MESSAGE = "\n실행결과";
     private static final String CONNECTED_SYMBOL = "-";
     private static final String EMPTY_SYMBOL = " ";
-    private static final String NAME_MESSAGE_FORMAT = " %";
-    private static final String STRING_FORMAT = "s";
+    private static final String NAME_MESSAGE_FORMAT = " %%%ds";
     private static final String LINE_STATUS_MESSAGE_FORMAT = "%s|";
     private static final String NEXT_LINE = "\n";
     private static final String ERROR_MESSAGE = "[ERROR] ";
@@ -46,7 +45,8 @@ public class OutputView {
     }
 
     private String generateNameMessage(final String name, int maxNameLength) {
-        return String.format(NAME_MESSAGE_FORMAT + maxNameLength + STRING_FORMAT, name);
+        String format = String.format(NAME_MESSAGE_FORMAT, maxNameLength);
+        return String.format(format, name);
     }
 
     private String findInitialPlayerName(final List<String> players) {
