@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
+	private static final String STOOL_EMPTY = "     ";
+	private static final String STOOL_EXIST = "-----";
+
 	public void printError(String message) {
 		System.out.println(message);
 	}
@@ -36,7 +39,8 @@ public class OutputView {
 
 	private String makeStoolView(boolean stool) {
 		if (stool)
-			return "-----";
-		return "     ";
+			return STOOL_EXIST;
+
+		return STOOL_EMPTY;
 	}
 }
