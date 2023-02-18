@@ -3,6 +3,7 @@ package domain.validator;
 import domain.Player;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PlayersValidator {
     private static final int PLAYER_MIN_COUNT = 2;
@@ -26,7 +27,10 @@ public class PlayersValidator {
     }
 
     private void checkDuplicatePlayers(List<Player> players) {
-        if (players.stream().distinct().count() != players.size()) {
+        List<String> playerNames = players.stream()
+                .map(player -> player.getPlayerName().getName())
+                .collect(Collectors.toList());
+        if (playerNames.stream().distinct().count() !=players.size()) {
             throw new IllegalArgumentException(PLAYER_NAME_DUPLICATE_ERROR_MESSAGE);
         }
     }
