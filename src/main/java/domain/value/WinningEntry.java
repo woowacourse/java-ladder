@@ -1,5 +1,7 @@
 package domain.value;
 
+import java.util.Objects;
+
 public class WinningEntry {
 
     private final String value;
@@ -17,5 +19,18 @@ public class WinningEntry {
 
     public String value() {
         return value;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (!(o instanceof WinningEntry)) return false;
+        WinningEntry that = (WinningEntry) o;
+        return Objects.equals(value, that.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }

@@ -1,6 +1,5 @@
 package domain.value;
 
-import domain.value.WinningEntry;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -36,5 +35,17 @@ public class WinningEntryTest {
         // then
         assertThat(winningEntry.value())
                 .isEqualTo(entry);
+    }
+
+    @ParameterizedTest(name = "값이 동일하면 동등하다")
+    @ValueSource(strings = {"말랑", "바다"})
+    void 값이_동일하면_동등하다(final String entry) {
+        // when
+        WinningEntry winningEntry1 = new WinningEntry(entry);
+        WinningEntry winningEntry2 = new WinningEntry(entry);
+
+        // then
+        assertThat(winningEntry1)
+                .isEqualTo(winningEntry2);
     }
 }
