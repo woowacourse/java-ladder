@@ -16,4 +16,27 @@ public class LadderTest {
         Ladder ladder = new Ladder(height, width);
         assertThat(ladder.getHeight().get()).isEqualTo(5);
     }
+
+    @Test
+    @DisplayName("사다리에 층을 추가하는 테스트")
+    void addLayer() {
+        Layer layer = new Layer();
+        layer.makeLine(true);
+
+        Ladder ladder = new Ladder(new Height(5), new Width(5));
+
+        ladder.addLayer(layer);
+
+        assertThat(matchLayers(ladder, layer)).isEqualTo(true);
+    }
+
+    private boolean matchLayers(Ladder ladder, Layer layer) {
+        if (ladder.getLayers().isEmpty()) {
+            return false;
+        }
+
+        return ladder.getLayers()
+                .stream()
+                .allMatch(it -> it.equals(layer));
+    }
 }
