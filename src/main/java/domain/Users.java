@@ -10,6 +10,7 @@ public class Users {
     private final List<User> users;
 
     public Users(List<User> users) {
+        validateSameName(users);
         validateUserCount(users);
         this.users = users;
     }
@@ -17,6 +18,12 @@ public class Users {
     private void validateUserCount(List<User> users) {
         if (users.size() < USER_COUNT_MIN_RANGE || users.size() > USER_COUNT_MAX_RANGE) {
             throw new IllegalArgumentException(INVALID_USER_COUNT_MESSAGE);
+        }
+    }
+
+    private void validateSameName(List<User> users) {
+        if(users.size() != users.stream().distinct().count()){
+            throw new IllegalArgumentException("중복된 이름이 존재합니다.");
         }
     }
 
