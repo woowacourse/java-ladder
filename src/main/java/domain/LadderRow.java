@@ -1,12 +1,9 @@
 package domain;
 
-import utils.constants.ErrorMessages;
+import static utils.constants.ErrorMessages.CONSECUTIVE_LINE;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static utils.constants.ErrorMessages.*;
-import static utils.constants.LadderFormat.*;
 
 public class LadderRow {
 
@@ -29,28 +26,7 @@ public class LadderRow {
         }
     }
 
-    public String parseLineToString() {
-        List<String> parsedLine = getParsedLine();
-        return formatParsedLine(parsedLine);
-    }
-
-    private String formatParsedLine(final List<String> parsedLine) {
-        StringBuilder stringBuilder = new StringBuilder(START_DELIMITER.getFormat());
-        stringBuilder.append(String.join(DELIMITER.getFormat(), parsedLine));
-        stringBuilder.append(DELIMITER.getFormat());
-        return stringBuilder.toString();
-    }
-
-    private List<String> getParsedLine() {
-        return lines.stream()
-                .map(this::convertLineStatus)
-                .collect(Collectors.toList());
-    }
-
-    private String convertLineStatus(final boolean existed) {
-        if (existed) {
-            return EXISTED_LINE.getFormat();
-        }
-        return NON_EXISTED_LINE.getFormat();
+    public List<Boolean> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }

@@ -21,9 +21,11 @@ public class Controller {
     public void run() {
         Users users = getUsers();
         Height height = getHeight();
+
         createLadder(users, height);
-        printUsers(users);
-        printLadder();
+
+        OutputView.printUserNames(users);
+        OutputView.printLadder(ladder);
     }
 
     private Users getUsers() {
@@ -57,15 +59,5 @@ public class Controller {
             OutputView.printErrorMessage(e);
             createLadder(users, height);
         }
-    }
-
-    private void printUsers(Users users) {
-        List<String> userNames = users.getUserNames();
-        OutputView.printUserNames(userNames);
-    }
-
-    private void printLadder() {
-        List<String> ladderMap = ladder.parseLadderToString();
-        OutputView.printLadder(ladderMap);
     }
 }
