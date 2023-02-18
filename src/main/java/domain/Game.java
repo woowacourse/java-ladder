@@ -106,6 +106,6 @@ public class Game {
     }
 
     private List<Boolean> findFootholdsOfHeight(int indexOfHeight) {
-        return this.ladder.findFootholdsOfHeight(indexOfHeight);
+        return this.ladder.findLineUsingIndexOfHeight(indexOfHeight);
     }
 }

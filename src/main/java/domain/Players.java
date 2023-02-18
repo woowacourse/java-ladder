@@ -50,10 +50,6 @@ public class Players {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public int getIndexOfPlayer(String name) {
-        return this.players.indexOf(name);
-    }
-
     public int findNumberOfPlayers() {
         return this.players.size();
     }

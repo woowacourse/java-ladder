@@ -16,8 +16,8 @@ public class Ladder {
         return this.height.getHeight();
     }
 
-    public List<Boolean> findFootholdsOfHeight(int indexOfHeight) {
-        return this.lines.findFootholdsOfHeight(indexOfHeight);
+    public List<Boolean> findLineUsingIndexOfHeight(int indexOfHeight) {
+        return this.lines.findLineUsingIndexOfHeight(indexOfHeight);
     }
 
     public Lines getLines() {
