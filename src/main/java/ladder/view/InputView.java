@@ -9,7 +9,8 @@ import java.util.regex.Pattern;
 
 public class InputView {
     private static final Scanner sc = new Scanner(System.in);
-
+    public static final Pattern NOT_NUMERIC_FORMAT = Pattern.compile("\\D");
+    
     public static String inputPeopleNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String inputPeopleNames = sc.nextLine();
@@ -30,8 +31,7 @@ public class InputView {
     }
 
     private static void validateNonNumber(String ladderHeight) {
-        Pattern compile = Pattern.compile("\\D");
-        Matcher matcher = compile.matcher(ladderHeight);
+        Matcher matcher = NOT_NUMERIC_FORMAT.matcher(ladderHeight);
         if (matcher.find()) {
             throw new IllegalArgumentException("숫자가 아닌 값은 입력할 수 없습니다.");
         }
