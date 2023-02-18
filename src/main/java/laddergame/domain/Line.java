@@ -61,7 +61,7 @@ public class Line {
 
     private void validateNumberOfExistences(final int numberOfExistences) {
         if (numberOfExistences < MIN_NUMBER_OF_EXISTENCES) {
-            throw new IllegalStateException("Line의 길이는 1보다 작을 수 없습니다.");
+            throw new IllegalStateException(String.format("Line의 길이는 %d보다 작을 수 없습니다.", MIN_NUMBER_OF_EXISTENCES));
         }
     }
 }

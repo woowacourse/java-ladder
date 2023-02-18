@@ -24,10 +24,14 @@ public class LineTest {
         }
 
         @Test
-        @DisplayName("Player가 2명 미만이면 예외가 발생한다")
+        @DisplayName("Line의 길이가 1보다 작으면 예외가 발생한다.")
         void givenTwoLessPlayers_thenFail() {
-            assertThatThrownBy(() -> Line.from(1))
-                    .isInstanceOf(IllegalStateException.class);
+
+            final int minNumberOfExistences = 1;
+
+            assertThatThrownBy(() -> Line.from(minNumberOfExistences))
+                    .isInstanceOf(IllegalStateException.class)
+                    .hasMessage(String.format("Line의 길이는 %d보다 작을 수 없습니다.", minNumberOfExistences));
         }
 
         @Test
