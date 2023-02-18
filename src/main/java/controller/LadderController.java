@@ -24,7 +24,7 @@ public class LadderController {
 
     public void run() {
         Names names = inputWithExceptionHandle(this::createNames);
-        WinningEntries winningEntries = inputWithExceptionHandle(this::createWinningEntries);
+        WinningEntries winningEntries = inputWithExceptionHandle(() -> createWinningEntries(names.size()));
         Height height = inputWithExceptionHandle(this::ladderHeight);
         Ladder ladder = createLadder(Width.of(names.size() - 1), height);
         showLadder(names, ladder, winningEntries);
@@ -40,8 +40,11 @@ public class LadderController {
         );
     }
 
-    private WinningEntries createWinningEntries() {
+    private WinningEntries createWinningEntries(final int size) {
         List<String> winningEntries = InputView.inputWinningEntries();
+        if (size != winningEntries.size()) {
+            throw new IllegalArgumentException("당첨 항목의 수는 이름의 수와 동일해야 합니다");
+        }
         return new WinningEntries(winningEntries.stream()
                 .map(WinningEntry::new)
                 .collect(Collectors.toList())
