@@ -34,7 +34,7 @@ public class LadderController {
         try {
             return People.from(inputView.readNames());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printError(e.getMessage());
 
             return initPeople();
         }
@@ -44,7 +44,7 @@ public class LadderController {
         try {
             return Ladder.from(inputView.readHeight(), participantsSize, stoolGenerator);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printError(e.getMessage());
 
             return initLadder(participantsSize);
         }

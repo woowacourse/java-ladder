@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
+	public void printError(String message) {
+		System.out.println(message);
+	}
+
 	public void printResult(List<String> names, List<List<Boolean>> ladder) {
 		System.out.println("\n실행결과\n");
 		printNames(names);
