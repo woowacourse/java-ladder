@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 public class UsersTest {
@@ -19,7 +20,9 @@ public class UsersTest {
     @ParameterizedTest
     @MethodSource("usersSameNameFailParameter")
     void usersSameNameFailTest(List<User> input) {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Users(input));
+        assertThatThrownBy(() -> new Users(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복된 이름이 존재합니다.");
     }
 
     @DisplayName("입력된 유저의 수가 1~10명 사이가 아니면 예외가 발생한다.")
