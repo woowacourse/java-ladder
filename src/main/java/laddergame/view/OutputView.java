@@ -5,8 +5,8 @@ import laddergame.domain.rung.Rungs;
 
 import java.util.List;
 import java.util.StringJoiner;
-import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.joining;
 import static laddergame.view.message.LadderMessage.*;
 
 public class OutputView {
@@ -15,13 +15,13 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printParticipants(final List<String> participantNames) {
+    public void printParticipantNames(final List<String> participantNames) {
         String paddedParticipantNames = makePaddedParticipantNames(participantNames);
         print(paddedParticipantNames.trim());
     }
 
     public void printLadder(final List<Rungs> ladder, final List<String> participantNames) {
-        int firstNameLength = getLengthOfFirstParticipantName(participantNames);
+        int firstNameLength = getFirstParticipantNameLength(participantNames);
         String ladderMessage = makeLadderMessage(ladder, firstNameLength);
         print(ladderMessage);
     }
@@ -29,32 +29,32 @@ public class OutputView {
     private String makePaddedParticipantNames(final List<String> participantNames) {
         return participantNames.stream()
                 .map(this::getPaddedName)
-                .collect(Collectors.joining());
+                .collect(joining());
     }
 
     private String getPaddedName(final String participantName) {
         return String.format("%6s", participantName);
     }
 
-    private int getLengthOfFirstParticipantName(final List<String> participantNames) {
+    private int getFirstParticipantNameLength(final List<String> participantNames) {
         String firstParticipantName = participantNames.get(0);
         return firstParticipantName.length();
     }
 
     private String makeLadderMessage(final List<Rungs> ladder, final int firstNameLength) {
         return ladder.stream()
-                .map(Rungs::getRungs)
-                .map(rungs -> {
+                .map(ladderRungs -> {
+                    List<Rung> rungs = ladderRungs.getRungs();
                     StringJoiner ladderMessage = new StringJoiner("", LADDER_PADDING.getMessage().repeat(firstNameLength), "\n");
                     ladderMessage.add(makeRungsMessage(rungs));
                     return ladderMessage.toString();
-                }).collect(Collectors.joining());
+                }).collect(joining());
     }
 
     private String makeRungsMessage(final List<Rung> rungs) {
         return rungs.stream()
                 .map(rung -> makeRungMessage(rung.isExistence()))
-                .collect(Collectors.joining(LADDER_FRAME.getMessage(), LADDER_FRAME.getMessage(), LADDER_FRAME.getMessage()));
+                .collect(joining(LADDER_FRAME.getMessage(), LADDER_FRAME.getMessage(), LADDER_FRAME.getMessage()));
     }
 
     private String makeRungMessage(final boolean isExistence) {
