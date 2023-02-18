@@ -1,8 +1,8 @@
-package laddervalidate;
+package view;
 
 import java.util.List;
 
-public class PlayerNameValidator {
+public class InputPlayerNameValidator {
     private static final int PLAYER_MIN_COUNT = 2;
     private static final int PLAYER_MAX_COUNT = 12;
     private static final int PLAYER_NAME_MAX_SIZE = 5;

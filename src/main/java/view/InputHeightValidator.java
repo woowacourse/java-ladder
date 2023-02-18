@@ -1,8 +1,8 @@
-package laddervalidate;
+package view;
 
 import java.util.regex.Pattern;
 
-public class HeightValidator {
+public class InputHeightValidator {
 
     public static final String NOT_NUMBER_ERROR_MESSAGE = "숫자만 입력해주세요.";
     public static final String NOT_POSITIVE_ERROR_MESSAGE = "양의 정수만 입력해주세요.";
