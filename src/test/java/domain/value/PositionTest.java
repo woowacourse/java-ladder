@@ -55,4 +55,21 @@ class PositionTest {
         assertThat(position1)
                 .isEqualTo(position2);
     }
+
+    @ParameterizedTest(name = "Direction 을 받아 해당 방향으로 움직일 수 있다")
+    @ValueSource(ints = {-100, -1, 0, 1, 100})
+    void Direction_을_받아_해당_방향으로_움직일_수_있다(final int value) {
+        // given
+        Position position = Position.of(value);
+
+        // when
+        Position moveRight = position.move(Direction.RIGHT);
+        Position moveLeft = position.move(Direction.LEFT);
+        Position moveNone = position.move(Direction.NONE);
+
+        // then
+        assertThat(moveRight.value()).isEqualTo(position.value() + 1);
+        assertThat(moveLeft.value()).isEqualTo(position.value() - 1);
+        assertThat(moveNone).isEqualTo(position);
+    }
 }
