@@ -16,9 +16,9 @@ public enum Foothold {
 
     public static Foothold from(boolean state) {
         return Arrays.stream(Foothold.values())
-                .filter((foothold) -> foothold.state == state)
-                .findAny()
-                .get();
+                     .filter((foothold) -> foothold.state == state)
+                     .findAny()
+                     .get();
     }
 
     public String getMark() {

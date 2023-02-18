@@ -17,8 +17,8 @@ public class Players {
 
     public static Players from(List<String> names) {
         return names.stream()
-                .map(Player::new)
-                .collect(collectingAndThen(toUnmodifiableList(), Players::new));
+                    .map(Player::new)
+                    .collect(collectingAndThen(toUnmodifiableList(), Players::new));
     }
 
     private void validateSize(List<Player> players) {
@@ -34,7 +34,7 @@ public class Players {
 
     public List<String> getNames() {
         return players.stream()
-                .map(Player::getName)
-                .collect(toUnmodifiableList());
+                      .map(Player::getName)
+                      .collect(toUnmodifiableList());
     }
 }

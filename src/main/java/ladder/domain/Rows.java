@@ -17,7 +17,7 @@ public class Rows {
 
     public List<List<Foothold>> getState() {
         return rows.stream()
-                .map(Row::getRow)
-                .collect(toUnmodifiableList());
+                   .map(Row::getRow)
+                   .collect(toUnmodifiableList());
     }
 }

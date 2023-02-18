@@ -17,14 +17,14 @@ public class ResultView {
 
     public void printLadder(List<List<Foothold>> state) {
         state.stream()
-                .map(this::generateRow)
-                .forEach(System.out::println);
+             .map(this::generateRow)
+             .forEach(System.out::println);
     }
 
     private String generateRow(List<Foothold> row) {
         return row.stream()
-                .map(Foothold::getMark)
-                .collect(Collectors.joining("|", "     |", "|"));
+                  .map(Foothold::getMark)
+                  .collect(Collectors.joining("|", "     |", "|"));
     }
 
     public void printErrorMessage(String message) {
