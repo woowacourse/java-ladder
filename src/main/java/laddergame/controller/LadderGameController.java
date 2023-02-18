@@ -1,7 +1,11 @@
 package laddergame.controller;
 
+import laddergame.domain.Ladder;
 import laddergame.domain.LadderGame;
+import laddergame.domain.LadderHeight;
+import laddergame.domain.LadderMaker;
 import laddergame.domain.Players;
+import laddergame.util.RandomBooleanGenerator;
 import laddergame.util.RepeatValidator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
@@ -13,7 +17,10 @@ public class LadderGameController {
     public void run() {
         Players players = RepeatValidator.readUntilValidate(this::readPlayers);
         int height = RepeatValidator.readUntilValidate(this::readLadderHeight);
-        LadderGame ladderGame = new LadderGame(players, height);
+
+        LadderMaker ladderMaker = new LadderMaker(new RandomBooleanGenerator());
+        Ladder ladder = ladderMaker.make(players.size(), new LadderHeight(height));
+        LadderGame ladderGame = new LadderGame(players, ladder);
 
         printLadderResult(ladderGame);
     }
