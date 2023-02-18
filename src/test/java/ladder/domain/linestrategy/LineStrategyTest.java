@@ -6,11 +6,11 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import ladder.domain.Line;
 import ladder.domain.Step;
-import java.util.List;
 import ladder.domain.strategy.linestrategy.LineStrategy;
 import ladder.domain.strategy.linestrategy.RandomLineStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import java.util.List;
 
 class LineStrategyTest {
 

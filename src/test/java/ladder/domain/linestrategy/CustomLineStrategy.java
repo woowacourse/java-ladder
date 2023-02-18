@@ -2,9 +2,9 @@ package ladder.domain.linestrategy;
 
 import ladder.domain.Line;
 import ladder.domain.Step;
+import ladder.domain.strategy.linestrategy.LineStrategy;
 import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.strategy.linestrategy.LineStrategy;
 
 public class CustomLineStrategy implements LineStrategy {
     private final List<Step> mockSteps;
