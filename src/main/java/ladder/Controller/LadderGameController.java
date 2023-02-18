@@ -4,7 +4,6 @@ import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import javax.sound.sampled.Line;
 import java.util.List;
 import java.util.stream.Collectors;
 
