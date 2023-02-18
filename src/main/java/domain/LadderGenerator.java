@@ -3,7 +3,7 @@ package domain;
 import java.util.List;
 
 @FunctionalInterface
-public interface BridgeGenerator {
+public interface LadderGenerator {
 
     List<Boolean> generate(int count);
 }
