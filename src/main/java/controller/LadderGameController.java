@@ -7,12 +7,12 @@ import model.Players;
 import view.InputView;
 import view.OutputView;
 
-public class Controller {
+public class LadderGameController {
 
     public InputView inputView;
     public OutputView outputView;
 
-    public Controller(InputView inputView,OutputView outputView){
+    public LadderGameController(InputView inputView, OutputView outputView){
         this.inputView = inputView;
         this.outputView = outputView;
     }
