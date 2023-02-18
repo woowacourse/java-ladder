@@ -16,7 +16,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("addBars()은 랜덤 값이 false로 나올 때, 생성되는 bars")
+    @DisplayName("addBars()은 랜덤 값이 false로 나오면, 존재하지 않는 Bar로 모두 채워진 bars가 나온다.")
     void test_1() {
         // when
         line.addBars(4, () -> false);
@@ -26,7 +26,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("addBars()은 랜덤 값이 true로 나올 때, 생성되는 bars")
+    @DisplayName("addBars()은 랜덤 값이 true로 나오면, 존재하지 않는 Bar와 존재하는 Bar가 번갈아가면서 채워진 bars가 나온다.")
     void test_2() {
         // when
         line.addBars(4, () -> true);
@@ -34,17 +34,4 @@ class LineTest {
         // then
         Assertions.assertThat(line.getBars()).isEqualTo(List.of(BarTest.FALSE, BarTest.TRUE, BarTest.FALSE, BarTest.TRUE));
     }
-
-//    @Test
-//    @DisplayName("addRandom()은 랜덤값을 더해준다.")
-//    void test_2() {
-//        // given
-//        Line line = new Line(4);
-//
-//        // when
-//        line.addRandom(() -> true);
-//
-//        // then
-//        Assertions.assertThat(line.getLine()).isEqualTo(List.of(false, true));
-//    }
 }
