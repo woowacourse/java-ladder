@@ -8,12 +8,9 @@ public class RandomScaffoldGenerator implements ScaffoldGenerator {
 
     @Override
     public Scaffold generate() {
-        if (isTrue()) {
+        if (random.nextBoolean()) {
             return Scaffold.EXIST;
         }
         return Scaffold.NONE;
-    }
-    private boolean isTrue() {
-        return random.nextBoolean();
     }
 }
