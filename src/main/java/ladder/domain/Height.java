@@ -12,8 +12,8 @@ public class Height {
         this.height = height;
     }
 
-    public static Height create(int maxHeight, RandomGenerator randomGenerator) {
-        int height = randomGenerator.generateNumber(MINIMUM_HEIGHT, maxHeight);
+    public static Height create(int maxHeight, ValueGenerator valueGenerator) {
+        int height = valueGenerator.generateNumber(MINIMUM_HEIGHT, maxHeight);
 
         return new Height(height);
     }

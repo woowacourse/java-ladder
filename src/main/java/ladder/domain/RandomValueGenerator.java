@@ -2,11 +2,11 @@ package ladder.domain;
 
 import java.util.Random;
 
-public class RandomDataGenerator implements RandomGenerator {
+public class RandomValueGenerator implements ValueGenerator {
 
     private final Random random;
 
-    public RandomDataGenerator() {
+    public RandomValueGenerator() {
         this.random = new Random();
     }
 

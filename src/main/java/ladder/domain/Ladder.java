@@ -16,7 +16,7 @@ public class Ladder {
         List<Line> lines = new ArrayList<>();
 
         for (int idx = 0; idx < height; idx++) {
-            List<Bar> bars = LineMaker.generate(count, new RandomDataGenerator());
+            List<Bar> bars = LineMaker.generate(count, new RandomValueGenerator());
             lines.add(new Line(bars));
         }
 

@@ -1,6 +1,6 @@
 package ladder.domain;
 
-public interface RandomGenerator {
+public interface ValueGenerator {
 
     boolean generateBoolean();
 

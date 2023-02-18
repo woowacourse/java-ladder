@@ -3,7 +3,7 @@ package ladder.controller;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
-import ladder.domain.RandomGenerator;
+import ladder.domain.ValueGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -11,13 +11,13 @@ public class LadderController {
 
     private final InputView inputView;
     private final ResultView resultView;
-    private final RandomGenerator randomGenerator;
+    private final ValueGenerator valueGenerator;
     private final ExceptionProcess exceptionProcess;
 
-    public LadderController(InputView inputView, ResultView resultView, RandomGenerator randomGenerator) {
+    public LadderController(InputView inputView, ResultView resultView, ValueGenerator valueGenerator) {
         this.inputView = inputView;
         this.resultView = resultView;
-        this.randomGenerator = randomGenerator;
+        this.valueGenerator = valueGenerator;
         this.exceptionProcess = new ExceptionProcess(resultView);
     }
 
@@ -27,7 +27,7 @@ public class LadderController {
                 Players::create);
         Height heightOfLadder = exceptionProcess.repeat(
                 inputView::inputHeightOfLadder,
-                input -> Height.create(input, randomGenerator));
+                input -> Height.create(input, valueGenerator));
         Ladder ladder = Ladder.create(players.count(), heightOfLadder.getHeight());
 
         resultView.printLadder(players, ladder);

@@ -5,14 +5,14 @@ import java.util.List;
 
 public class LineMaker {
 
-    public static List<Bar> generate(int playerCount, RandomGenerator randomGenerator) {
+    public static List<Bar> generate(int playerCount, ValueGenerator valueGenerator) {
         int lineSize = playerCount - 1;
         List<Bar> line = new ArrayList<>();
 
         boolean beforeValue = false;
 
         for (int idx = 0; idx < lineSize; idx++) {
-            Bar currentBar = createBar(beforeValue, randomGenerator);
+            Bar currentBar = createBar(beforeValue, valueGenerator);
             line.add(currentBar);
             beforeValue = currentBar.getValue();
         }
@@ -21,11 +21,11 @@ public class LineMaker {
 
     }
 
-    private static Bar createBar(boolean beforeValue, RandomGenerator randomGenerator) {
+    private static Bar createBar(boolean beforeValue, ValueGenerator valueGenerator) {
         if (beforeValue) {
             return Bar.UNMOVABLE_BAR;
         }
-        return Bar.getBar(randomGenerator.generateBoolean());
+        return Bar.getBar(valueGenerator.generateBoolean());
     }
 
 }
