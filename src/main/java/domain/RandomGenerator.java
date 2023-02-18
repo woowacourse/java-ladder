@@ -1,11 +1,10 @@
 package domain;
 
 import java.util.Random;
-import java.util.function.Supplier;
 
-public class RandomGenerator implements Supplier<Boolean> {
+public class RandomGenerator implements BooleanGenerator {
     @Override
-    public Boolean get() {
+    public boolean get() {
         return new Random().nextBoolean();
     }
 }
