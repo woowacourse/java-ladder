@@ -21,7 +21,7 @@ public class WinningEntries {
     }
 
     public List<WinningEntry> winningEntries() {
-        return winningEntries;
+        return new ArrayList<>(winningEntries);
     }
 
     public int size() {
