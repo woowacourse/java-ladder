@@ -45,25 +45,27 @@ public enum OutputView {
         return String.format("%s%s", name, repeat);
     }
 
-    private static String makeLadderFormat(final List<Boolean> statuses, final Names names) {
-        final StringBuilder result = new StringBuilder();
-        result.append(createStartBlank(names));
-        result.append(VERTICAL_LINE.ladderElement);
-        statuses.forEach(status -> result.append(makeLine(status, names.findMaxNameLength())));
+    private static String makeLadderFormat(final List<Boolean> line, final Names names) {
+        final StringBuilder result = new StringBuilder(setUpLadder(names.getFirstNameLengthDividedByTwoRounded()));
+
+        line.forEach(existences -> result.append(makeLine(existences, names.findMaxNameLength())));
         result.append(System.lineSeparator());
 
         return result.toString();
     }
 
-    private static String createStartBlank(final Names names) {
-        return BLANK.ladderElement.repeat(names.getFirstNameLengthDividedByTwoRounded());
+    private static String setUpLadder(final int numberOfBlanks) {
+        return String.format("%s%s", BLANK.ladderElement.repeat(numberOfBlanks), VERTICAL_LINE.ladderElement);
     }
 
-    private static String makeLine(final Boolean status, final int maxNameLength) {
-        if (status) {
-            return HORIZONTAL_LINE.ladderElement.repeat(maxNameLength) + VERTICAL_LINE.ladderElement;
-        }
+    private static String makeLine(final Boolean existences, final int maxNameLength) {
+        return String.format("%s%s", visualizeExistences(existences).repeat(maxNameLength), VERTICAL_LINE.ladderElement);
+    }
 
-        return BLANK.ladderElement.repeat(maxNameLength) + VERTICAL_LINE.ladderElement;
+    private static String visualizeExistences(final boolean existences) {
+        if (existences) {
+            return HORIZONTAL_LINE.ladderElement;
+        }
+        return BLANK.ladderElement;
     }
 }
