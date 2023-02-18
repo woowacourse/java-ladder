@@ -38,7 +38,7 @@
     - 해당 패키지의 클래스들은 범용적인가?
 - [ ] `LadderSizeValidator`의 `validateIntRange` 로직 확인하기
 - [ ] 접근 제어자 확인하기
-- [ ] format에 해당하는 변수에는 `_FORMAT`을 달아 명확히 하기
+- [x] format에 해당하는 변수에는 `_FORMAT`을 달아 명확히 하기
 - [ ] 결과 출력 개행 알아보기
 - [ ] `Floors`에서 `RandomBooleanGenerator` 생성 책임 분리하기
 - [ ] 변수명을 통해 예측할 수 있도록 수정하기
