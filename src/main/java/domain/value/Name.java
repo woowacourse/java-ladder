@@ -21,7 +21,7 @@ public class Name {
         }
     }
 
-    public String getValue() {
+    public String value() {
         return value;
     }
 
@@ -34,11 +34,11 @@ public class Name {
         if (this == o) return true;
         if (!(o instanceof Name)) return false;
         Name name = (Name) o;
-        return Objects.equals(getValue(), name.getValue());
+        return Objects.equals(value(), name.value());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getValue());
+        return Objects.hash(value());
     }
 }

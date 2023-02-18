@@ -1,5 +1,6 @@
 package view;
 
+import controller.response.GoDownLadderResponse;
 import domain.Ladder;
 import domain.Line;
 import domain.Scaffold;
@@ -27,6 +28,7 @@ public class OutputView {
     private static final String FIRST_NAME_FORMAT = "%s  ";
     private static final String DEFAULT_NAME_FORMAT = "%5s";
     private static final String DEFAULT_WINNING_ENTRY_FORMAT = "%5s";
+    private static final String NAME_AND_WINNING_ENTRY_FORMAT = "%s : %s";
     private static final Map<Scaffold, String> SCAFFOLD_STRING_MAP;
 
     static {
@@ -35,7 +37,7 @@ public class OutputView {
         SCAFFOLD_STRING_MAP.put(Scaffold.NONE, NONE_SCAFFOLD);
     }
 
-    public static void printResult(final Ladder ladder, final Names names, final WinningEntries winningEntries) {
+    public static void printCreatedLadder(final Ladder ladder, final Names names, final WinningEntries winningEntries) {
         printNames(names);
         printLadder(ladder, names.firstNameLength());
         printWinningEntries(winningEntries);
@@ -44,7 +46,7 @@ public class OutputView {
     private static void printNames(final Names names) {
         List<String> nameValues = names.getNames()
                 .stream()
-                .map(Name::getValue)
+                .map(Name::value)
                 .collect(toList());
         System.out.println(makeNameFormat(nameValues));
     }
@@ -82,5 +84,18 @@ public class OutputView {
                 .map(it -> format(DEFAULT_WINNING_ENTRY_FORMAT, it))
                 .collect(joining(BLANK));
         System.out.println(winningEntriesMessage);
+    }
+
+    public static void showGoDownLadderResult(final GoDownLadderResponse response) {
+        System.out.println("\n실행 결과");
+        Map<Name, WinningEntry> nameWinningEntryMap = response.nameWinningEntryMap();
+        String result = nameWinningEntryMap
+                .keySet().stream()
+                .map(name ->
+                        format(NAME_AND_WINNING_ENTRY_FORMAT,
+                                name.value(),
+                                nameWinningEntryMap.get(name).value())
+                ).collect(joining(LINE_BLANK));
+        System.out.println(result);
     }
 }

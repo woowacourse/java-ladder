@@ -37,7 +37,7 @@ public class NameTest {
         Name name = new Name(input);
 
         // when & then
-        assertThat(name.getValue()).isEqualTo(input);
+        assertThat(name.value()).isEqualTo(input);
     }
 
     @ParameterizedTest(name = "생성 시 파라미터로 받은 이름을 값으로 가진다")

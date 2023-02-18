@@ -1,6 +1,7 @@
 package controller;
 
 import common.Logger;
+import controller.response.GoDownLadderResponse;
 import domain.Ladder;
 import domain.LadderFactory;
 import domain.value.*;
@@ -12,6 +13,8 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class LadderController {
+
+    private static final Name ALL_SHOW = new Name("all");
 
     private final LadderFactory ladderFactory;
 
@@ -25,6 +28,8 @@ public class LadderController {
         Height height = inputWithExceptionHandle(this::ladderHeight);
         Ladder ladder = createLadder(Width.of(names.size() - 1), height);
         showLadder(names, ladder, winningEntries);
+
+        doDownLadderRepeat(names, winningEntries, ladder);
     }
 
     private Names createNames() {
@@ -52,7 +57,36 @@ public class LadderController {
     }
 
     private void showLadder(final Names names, final Ladder ladder, final WinningEntries winningEntries) {
-        OutputView.printResult(ladder, names, winningEntries);
+        OutputView.printCreatedLadder(ladder, names, winningEntries);
+    }
+
+    private void doDownLadderRepeat(final Names names, final WinningEntries winningEntries, final Ladder ladder) {
+        List<Position> wantToKnowResultPositions;
+        do {
+            wantToKnowResultPositions = inputWithExceptionHandle(() -> wantToKnowResultPositions(names));
+            GoDownLadderResponse goDownLadderResponse = goDownLadderResponse(names, winningEntries, ladder, wantToKnowResultPositions);
+            OutputView.showGoDownLadderResult(goDownLadderResponse);
+        } while (wantToKnowResultPositions.size() <= 1);
+    }
+
+    private List<Position> wantToKnowResultPositions(final Names names) {
+        Name wantToKnowResultName = new Name(InputView.inputWantToKnowResultName());
+        if (wantToKnowResultName.equals(ALL_SHOW)) {
+            return names.getNames().stream()
+                    .map(names::indexOf)
+                    .map(Position::of)
+                    .collect(Collectors.toList());
+        }
+        return List.of(Position.of(names.indexOf(wantToKnowResultName)));
+    }
+
+    private GoDownLadderResponse goDownLadderResponse(final Names names, final WinningEntries winningEntries, final Ladder ladder, final List<Position> wantToKnowResultPositions) {
+        return new GoDownLadderResponse(wantToKnowResultPositions.stream()
+                .collect(Collectors.toUnmodifiableMap(
+                        position -> names.get(position.value()),
+                        position -> winningEntries.get(ladder.goDown(position).value())
+                ))
+        );
     }
 
     private <T> T inputWithExceptionHandle(final Supplier<T> supplier) {
