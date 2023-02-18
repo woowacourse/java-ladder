@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.ladder.Ladder;
+import ladder.domain.valueGenerator.MockValueGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,13 +15,13 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 생성을 테스트")
     void ladderInitiatorTest() {
-        Assertions.assertDoesNotThrow(() -> Ladder.create(playerCount, heightOfLadder));
+        Assertions.assertDoesNotThrow(() -> Ladder.create(playerCount, heightOfLadder, new MockValueGenerator()));
     }
 
     @Test
     @DisplayName("사다리 사이즈 getterTest")
     void ladderGetValueTest() {
-        Ladder ladder = Ladder.create(playerCount, heightOfLadder);
+        Ladder ladder = Ladder.create(playerCount, heightOfLadder, new MockValueGenerator());
 
         assertThat(ladder.getLadder().size()).isEqualTo(heightOfLadder);
     }

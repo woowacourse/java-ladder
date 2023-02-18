@@ -15,7 +15,7 @@ public enum LadderOutputSymbol {
     }
 
     public static String decideLadderSymbol(Bar bar) {
-        if (bar == Bar.MOVABLE_BAR) {
+        if (bar.equals(Bar.MOVABLE_BAR)) {
             return BAR_SYMBOL.symbol;
         }
         return EMPTY_BAR_SYMBOL.symbol;

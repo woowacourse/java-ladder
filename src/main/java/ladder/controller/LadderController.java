@@ -28,7 +28,7 @@ public class LadderController {
         Height heightOfLadder = exceptionProcess.repeat(
                 inputView::inputHeightOfLadder,
                 input -> Height.create(input, valueGenerator));
-        Ladder ladder = Ladder.create(players.count(), heightOfLadder.getHeight());
+        Ladder ladder = Ladder.create(players.count(), heightOfLadder.getHeight(), valueGenerator);
 
         resultView.printLadder(players, ladder);
     }

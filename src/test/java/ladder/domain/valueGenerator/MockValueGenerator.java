@@ -1,8 +1,6 @@
 package ladder.domain.valueGenerator;
 
-import ladder.domain.valueGenerator.ValueGenerator;
-
-public class MockValueDataGenerator implements ValueGenerator {
+public class MockValueGenerator implements ValueGenerator {
 
     @Override
     public boolean generateBoolean() {

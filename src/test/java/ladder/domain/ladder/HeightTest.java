@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.domain.valueGenerator.MockValueDataGenerator;
+import ladder.domain.valueGenerator.MockValueGenerator;
 import ladder.domain.valueGenerator.ValueGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +16,7 @@ public class HeightTest {
     @BeforeEach
     void setup() {
         heightValue = 3;
-        valueGenerator = new MockValueDataGenerator();
+        valueGenerator = new MockValueGenerator();
         height = Height.create(heightValue, valueGenerator);
     }
 

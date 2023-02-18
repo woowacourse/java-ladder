@@ -27,6 +27,7 @@ public class LineMaker {
         if (beforeValue) {
             return Bar.UNMOVABLE_BAR;
         }
+
         return Bar.getBar(valueGenerator.generateBoolean());
     }
 

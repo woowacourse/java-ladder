@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.domain.valueGenerator.MockValueDataGenerator;
+import ladder.domain.valueGenerator.MockValueGenerator;
 import ladder.domain.valueGenerator.ValueGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +19,7 @@ public class LineMakerTest {
     @BeforeEach
     void setup() {
         playerCount = 5;
-        valueGenerator = new MockValueDataGenerator();
+        valueGenerator = new MockValueGenerator();
     }
 
     @Test
