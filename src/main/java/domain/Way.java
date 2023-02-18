@@ -1,34 +1,24 @@
 package domain;
 
-import java.util.Arrays;
 
 public enum Way {
-    MAXNAMELENGTH1(1, "-", " "),
-    MAXNAMELENGTH2(2, "--", "  "),
-    MAXNAMELENGTH3(3, "---", "   "),
-    MAXNAMELENGTH4(4, "----", "    "),
-    MAXNAMELENGTH5(5, "-----", "     ");
+    PASS( "-", true),
+    NOT_PASS(" ", false);
 
-    private final int maxNameLength;
     private final String way;
-    private final String blank;
+    private final boolean isExist;
 
-    Way(int maxNameLength, String way, String blank) {
-        this.maxNameLength = maxNameLength;
+    Way( String way, boolean isExist) {
         this.way = way;
-        this.blank = blank;
+        this.isExist = isExist;
     }
 
-    public String getWay() {
-        return way;
+    public static String tranceFrom(boolean isExist) {
+        if (isExist == PASS.isExist) {
+            return PASS.way;
+        }
+        return NOT_PASS.way;
     }
 
-    public String getBlank() {
-        return blank;
-    }
-
-    public static Way valueOf(int maxNameLength) {
-        return Arrays.stream(Way.values())
-                .filter(e -> e.maxNameLength == maxNameLength).findAny().orElseThrow();
-    }
 }
+
