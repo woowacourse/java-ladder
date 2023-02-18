@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class PlayerNames {
-    private static final String NAMES_INPUT_FORM = "([a-zA-Z]{1,5})(,[a-zA-Z]{1,5})*";
+    private static final Pattern INPUT_NAMES_FORMAT = Pattern.compile("([a-zA-Z]{1,5})(,[a-zA-Z]{1,5})*");
     private static final int MINIMUM_PLAYER_NUMBER = 2;
     private static final int MAXIMUM_PLAYER_NUMBER = 100;
     
@@ -32,7 +32,7 @@ public class PlayerNames {
     }
     
     private void validateNamesInputForm(String names) {
-        Matcher matcher = Pattern.compile(NAMES_INPUT_FORM).matcher(names);
+        Matcher matcher = INPUT_NAMES_FORMAT.matcher(names);
         if (!matcher.matches()) {
             throw new IllegalArgumentException("입력된 플레이어들의 이름 형식이 올바르지 않습니다.");
         }
