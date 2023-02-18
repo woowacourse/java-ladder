@@ -1,4 +1,4 @@
-package ladder.Controller;
+package ladder.controller;
 
 import ladder.model.*;
 import ladder.view.InputView;
