@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 
 public class LineTest {
 
-    @DisplayName("사다리 타기가 정상적으로 동작하려면 라인이 겹치지 않도록 해야 한다.")
+    @DisplayName("인접한 왼쪽 가로줄에 연결구조가 있다면 현재 가로줄에서는 연결구조를 놓지 않는다.")
     @Test
     void createLineTest() {
         Line line = new Line(4, new TestNumberGenerator(Lists.newArrayList(1, 1, 1)));
         assertThat(line.getPoints()).containsExactly(Point.CONNECTION, Point.SEPARATION, Point.CONNECTION);
     }
 
-    @DisplayName("라인이 겹치지 않으면 사다리가 정상적으로 생성된다.")
+    @DisplayName("인접한 왼쪽 가로줄의 연결구조가 없다면 현재 가로줄에서는 전달받은 값을 통해 연결구조를 놓을지 말지 결정한다.")
     @Test
     void createLineTest2() {
         Line line = new Line(4, new TestNumberGenerator(Lists.newArrayList(1, 0, 0)));
