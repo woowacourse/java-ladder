@@ -27,10 +27,9 @@ public class OutputView {
         }
     }
 
-    public void printExceptionMessage(String message){
+    public void printExceptionMessage(String message) {
         System.out.println(message);
     }
-
 
     private enum LadderMark {
         ROW_LINE("-----"),

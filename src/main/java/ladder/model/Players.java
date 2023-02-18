@@ -9,7 +9,7 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(List<Player> players){
+    public Players(List<Player> players) {
         validatePlayerCount(players);
         this.players = players;
     }
@@ -20,11 +20,11 @@ public class Players {
         }
     }
 
-    public int size(){
+    public int size() {
         return players.size();
     }
 
-    public List<Player> getPlayers(){
+    public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
     }
 
