@@ -6,7 +6,7 @@ import java.util.List;
 public class Users {
     private static final int USER_COUNT_MIN_RANGE = 2;
     private static final int USER_COUNT_MAX_RANGE = 10;
-    private static final String INVALID_USER_COUNT_MESSAGE = "유저는 최소 2명 이상이다.";
+    private static final String INVALID_USER_COUNT_MESSAGE = "유저는 2~10명 까지만 가능합니다.";
     private final List<User> users;
 
     public Users(List<User> users) {
