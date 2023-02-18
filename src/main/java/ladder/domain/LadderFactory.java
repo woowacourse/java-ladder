@@ -1,15 +1,23 @@
 package ladder.domain;
 
+import static java.util.stream.Collectors.toList;
+
+import ladder.domain.strategy.linestrategy.LineStrategy;
+import java.util.List;
+import java.util.stream.IntStream;
+
 public class LadderFactory {
     private static final int MAX_HEIGHT_RATIO = 2;
 
     private final Height height;
     private final Players players;
+    private final LineStrategy lineStrategy;
 
-    public LadderFactory(int height, String[] playerNames) {
+    public LadderFactory(int height, String[] playerNames, LineStrategy lineStrategy) {
         validatePlayersCount(height, playerNames.length);
         this.height = new Height(height);
         this.players = new Players(playerNames);
+        this.lineStrategy = lineStrategy;
     }
 
     private void validatePlayersCount(int height, int playersCount) {
@@ -18,7 +26,16 @@ public class LadderFactory {
         }
     }
 
-    private static boolean isProperRange(int height, int playersCount) {
+    private boolean isProperRange(int height, int playersCount) {
         return playersCount * MAX_HEIGHT_RATIO < height || height < playersCount;
+    }
+
+    public Ladder makeLadder() {
+        int width = players.getPlayersCount();
+
+        List<Line> lines = IntStream.range(0, height.getHeight())
+                .mapToObj(x -> lineStrategy.generate(width))
+                .collect(toList());
+        return new Ladder(lines);
     }
 }
