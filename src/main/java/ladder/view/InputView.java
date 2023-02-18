@@ -13,7 +13,7 @@ public class InputView {
     public static String inputPeopleNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String inputPeopleNames = sc.nextLine();
-        validateBlank(inputPeopleNames);
+        CommonValidator.validateBlank(inputPeopleNames);
         return inputPeopleNames;
     }
 
@@ -25,12 +25,8 @@ public class InputView {
     }
 
     private static void validateLadderHeight(String ladderHeight) {
-        validateBlank(ladderHeight);
+        CommonValidator.validateBlank(ladderHeight);
         validateNonNumber(ladderHeight);
-    }
-
-    private static void validateBlank(String input) {
-        CommonValidator.validate(input);
     }
 
     private static void validateNonNumber(String ladderHeight) {
