@@ -17,17 +17,14 @@ public class InputView {
         System.out.println(NAME_INPUT_REQUEST);
         String inputUserNames = scanner.nextLine();
         List<String> playersNames = splitInputUserNames(inputUserNames);
-        inputPlayerNameValidator.checkDuplicatePlayers(playersNames);
-        inputPlayerNameValidator.checkPlayerNameLength(playersNames);
-        inputPlayerNameValidator.checkPlayerCount(playersNames);
+        inputPlayerNameValidator.checkPlayer(playersNames);
         return playersNames;
     }
 
     public int readHeight() {
         System.out.println(HEIGHT_INPUT_REQUEST);
         String inputHeight = scanner.nextLine();
-        inputHeightValidator.checkNumberMissMatch(inputHeight);
-        inputHeightValidator.checkNegativeNumber(inputHeight);
+        inputHeightValidator.checkHeight(inputHeight);
         return Integer.parseInt(inputHeight);
     }
 

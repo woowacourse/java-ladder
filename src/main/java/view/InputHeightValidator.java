@@ -1,21 +1,31 @@
 package view;
 
-import java.util.regex.Pattern;
 
 public class InputHeightValidator {
 
-    public static final String NOT_NUMBER_ERROR_MESSAGE = "숫자만 입력해주세요.";
     public static final String NOT_POSITIVE_ERROR_MESSAGE = "양의 정수만 입력해주세요.";
+    public static final String BLANK_MESSAGE = "입력값이 비어있습니다.";
+    public static final String NULL_MESSAGE = "아무것도 입력하지 않았습니다.";
 
-    public void checkNumberMissMatch(String height) {
-        if (!Pattern.matches("^[0-9]*$", height)) {
-            throw new IllegalArgumentException(NOT_NUMBER_ERROR_MESSAGE);
-        }
+    public void checkHeight(String height) {
+        checkNegativeNumber(height);
+        checkNotEmpty(height);
+        checkNull(height);
     }
 
-    public void checkNegativeNumber(String height) {
+    private void checkNegativeNumber(String height) {
         if (Integer.parseInt(height) <= 0) {
             throw new IllegalArgumentException(NOT_POSITIVE_ERROR_MESSAGE);
+        }
+    }
+    private static void checkNotEmpty(String height) {
+        if (height.isBlank()) {
+            throw new IllegalArgumentException(BLANK_MESSAGE);
+        }
+    }
+    private static void checkNull(String height) {
+        if (height==null) {
+            throw new IllegalArgumentException(NULL_MESSAGE);
         }
     }
 }
