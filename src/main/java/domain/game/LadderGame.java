@@ -3,7 +3,8 @@ package domain.game;
 import domain.ladder.Ladder;
 import domain.value.*;
 
-import java.util.stream.Collectors;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class LadderGame {
 
@@ -30,14 +31,13 @@ public class LadderGame {
 
     private LadderGameResult goDownForAllParticipants() {
         state.set(GameState.END);
-        return new LadderGameResult(names.names()
-                .stream()
-                .collect(Collectors.toUnmodifiableMap(
-                        name -> name,
-                        name -> winningEntries.get(
-                                ladder.goDown(Position.of(names.indexOf(name))).value()
-                        )))
-        );
+        Map<Name, WinningEntry> result = new LinkedHashMap<>();
+        for (Name name : names.names()) {
+            Position start = Position.of(names.indexOf(name));
+            WinningEntry winningEntry = winningEntries.get(ladder.goDown(start).value());
+            result.put(name, winningEntry);
+        }
+        return new LadderGameResult(result);
     }
 
     private LadderGameResult goDownForParticipant(final Name name) {

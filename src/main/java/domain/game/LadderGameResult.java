@@ -19,14 +19,6 @@ public class LadderGameResult {
         nameWinningEntryMap.put(name, winningEntry);
     }
 
-    public Map<Name, WinningEntry> nameWinningEntryMap() {
-        return nameWinningEntryMap;
-    }
-
-    public boolean containsName(final Name name) {
-        return nameWinningEntryMap.containsKey(name);
-    }
-
     public Set<Name> names() {
         return nameWinningEntryMap.keySet();
     }
