@@ -6,6 +6,13 @@
 
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
 
+## 리팩터링 목록
+
+- [ ] 테스트 리팩터링
+- [ ] 참가자들 일급 컬렉션
+- [ ] 참가자 이름이 같으면 같은 참가자로 취급
+- [x] 예외 핸들러에서 예외 출력을 OutputView로 위임
+
 ## 기능 목록
 
 ### Person

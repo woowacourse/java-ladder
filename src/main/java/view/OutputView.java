@@ -6,6 +6,8 @@ import domain.Line;
 
 public class OutputView {
 
+    private static final String EXCEPTION_PREFIX = "[ERROR] ";
+
     public static void printLadder(final Ladder ladder) {
         System.out.println("실행결과");
         printParticipantNamesOf(ladder);
@@ -32,5 +34,9 @@ public class OutputView {
             System.out.print(bridge.getDisplay());
             System.out.print("|");
         }
+    }
+
+    public static void printException(Exception exception) {
+        System.out.println(EXCEPTION_PREFIX + exception.getMessage());
     }
 }
