@@ -1,7 +1,7 @@
 package laddergame.utils;
 
 import laddergame.domain.Line;
-import laddergame.view.LadderForm;
+import laddergame.view.LadderFormGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +20,7 @@ class LadderFormTest {
         final Line line2 = new Line(List.of(true));
         final List<Line> lines = List.of(line, line2);
         final List<String> names = PARTICIPANTS_SIZE_2.getNames();
-        final String ladderForm = LadderForm.joinUnitsFrom(names, lines);
-        assertThat(ladderForm).contains(" rosie hyena\n     |-----|\n     |-----|");
+        final String ladderFormGenerator = LadderFormGenerator.generate(names, lines);
+        assertThat(ladderFormGenerator).contains(" rosie hyena\n     |-----|\n     |-----|");
     }
 }

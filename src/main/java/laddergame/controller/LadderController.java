@@ -2,7 +2,7 @@ package laddergame.controller;
 
 import laddergame.domain.*;
 import laddergame.view.InputView;
-import laddergame.view.LadderForm;
+import laddergame.view.LadderFormGenerator;
 import laddergame.view.OutputView;
 
 import java.util.List;
@@ -31,7 +31,7 @@ public class LadderController {
         final Ladder ladder = new Ladder(participants, height, booleanGenerator);
 
         final List<Line> lines = ladder.getLines();
-        outputView.printResult(LadderForm.joinUnitsFrom(participants.getNames(), lines));
+        outputView.printResult(LadderFormGenerator.generate(participants.getNames(), lines));
     }
 
     private List<Name> readNames() {
