@@ -12,9 +12,9 @@ class NamesSplitorTest {
     @DisplayName("입력받은 이름들을 ,를 기준으로 나눈다.")
     void test_() {
         // given & when
-        List<String> expected = List.of("채채", "아벨");
+        List<String> expected = List.of("chech", "abel");
 
         // then
-        Assertions.assertThat(NamesSplitor.split("채채,아벨")).isEqualTo(expected);
+        Assertions.assertThat(NamesSplitor.split("chech,abel")).isEqualTo(expected);
     }
 }
