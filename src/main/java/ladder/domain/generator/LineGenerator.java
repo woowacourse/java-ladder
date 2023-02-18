@@ -18,7 +18,9 @@ public class LineGenerator {
 
     private List<Direction> generateDirections(final DirectionGenerator directionGenerator, final int directionCount) {
         final List<Direction> directions = new ArrayList<>();
-        generateDirectionsStrategy(directionGenerator, directions, directionCount);
+        while (directions.size() < directionCount) {
+            generateDirectionsStrategy(directionGenerator, directions, directionCount);
+        }
         return directions;
     }
 
@@ -29,7 +31,6 @@ public class LineGenerator {
             return;
         }
         addDirections(directionGenerator, directions);
-        generateDirectionsStrategy(directionGenerator, directions, directionCount);
     }
 
     private void addStayIfNotEnough(final List<Direction> directions, final int directionCount) {
