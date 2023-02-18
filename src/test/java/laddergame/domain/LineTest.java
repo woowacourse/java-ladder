@@ -35,6 +35,8 @@ public class LineTest {
         void givenLine_thenCreateBooleanList() {
             //given
             final List<Boolean> statuses = List.of(true, false, false);
+            
+            //when
             final Line line = Line.of(statuses.size(), new TestBooleanPicker(statuses));
 
             //then
