@@ -6,25 +6,32 @@ import java.util.List;
 
 public class StepPoints {
 
-    private final List<Boolean> stepPoints = new ArrayList<>();
-    private final RandomGenerator randomGenerator;
+    private final List<StepPoint> stepPoints = new ArrayList<>();
+    private final StepPointGenerator stepPointGenerator;
 
-    public StepPoints(RandomGenerator randomPointGenerator, int count) {
-        randomGenerator = randomPointGenerator;
+    public StepPoints(StepPointGenerator stepPointGenerator, int count) {
+        this.stepPointGenerator = stepPointGenerator;
         initialize(count);
     }
 
     private void initialize(int count) {
-        boolean previousValue = false;
+        StepPoint previousPoint = StepPoint.NONE;
 
         for (int i = 0; i < count; i++) {
-            boolean generatedPoint = randomGenerator.generate(previousValue);
+            StepPoint generatedPoint = stepPointGenerator.generate(previousPoint);
+            validateStepPoint(previousPoint, generatedPoint);
             stepPoints.add(generatedPoint);
-            previousValue = generatedPoint;
+            previousPoint = generatedPoint;
         }
     }
 
-    public List<Boolean> toUnmodifiableStepPoints() {
+    private void validateStepPoint(StepPoint previous, StepPoint toAdd) {
+        if (previous.isContinuous(toAdd)) {
+            throw new IllegalArgumentException("디딤대는 연속적으로 존재할 수 없습니다.");
+        }
+    }
+
+    public List<StepPoint> toUnmodifiableStepPoints() {
         return Collections.unmodifiableList(stepPoints);
     }
 }

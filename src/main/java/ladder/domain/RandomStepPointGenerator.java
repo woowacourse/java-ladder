@@ -2,15 +2,15 @@ package ladder.domain;
 
 import java.util.Random;
 
-public class RandomStepPointGenerator implements RandomGenerator {
+public class RandomStepPointGenerator implements StepPointGenerator {
 
     private static final Random random = new Random();
 
     @Override
-    public Boolean generate(boolean previousValue) {
-        if (previousValue) {
-            return false;
+    public StepPoint generate(StepPoint previousValue) {
+        if (previousValue == StepPoint.EXIST) {
+            return StepPoint.NONE;
         }
-        return random.nextBoolean();
+        return StepPoint.convert(random.nextBoolean());
     }
 }

@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import static ladder.domain.StepPoint.EXIST;
+import static ladder.domain.StepPoint.NONE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.LinkedList;
@@ -13,35 +15,32 @@ import org.junit.jupiter.api.Test;
 class StepPointsTest {
 
     @Test
-    void 주어진_개수만큼_좌표값을_생성한다() {
+    void 주어진_개수만큼_디딤대_좌표값을_생성한다() {
         StepPoints stepPoints = new StepPoints(new RandomStepPointGenerator(), 5);
 
         assertThat(stepPoints.toUnmodifiableStepPoints()).hasSize(5);
     }
 
     @Test
-    void 좌표값은_랜덤하게_생성된다() {
+    void 디딤대_좌표값은_랜덤하게_생성된다() {
+        List<StepPoint> expected = List.of(EXIST, NONE, EXIST, NONE, EXIST);
 
-        List<Boolean> expected = List.of(true, false, true, false, true);
+        Queue<StepPoint> generateValues = new LinkedList<>(expected);
+        StepPoints stepPoints = new StepPoints(new MockedPointGenerator(generateValues), 5);
 
-        Queue<Boolean> queue = new LinkedList<>(expected);
-
-        StepPoints stepPoints = new StepPoints(new MockedPointGenerator(queue), 5);
-
-        assertThat(stepPoints.toUnmodifiableStepPoints()).containsExactly(true, false, true, false, true);
-
+        assertThat(stepPoints.toUnmodifiableStepPoints()).isEqualTo(expected);
     }
 
-    private class MockedPointGenerator implements RandomGenerator {
+    private class MockedPointGenerator implements StepPointGenerator {
 
-        private final Queue<Boolean> queue;
+        private final Queue<StepPoint> queue;
 
-        MockedPointGenerator(Queue<Boolean> queue) {
-            this.queue = queue;
+        MockedPointGenerator(Queue<StepPoint> generateValues) {
+            this.queue = generateValues;
         }
 
         @Override
-        public Boolean generate(boolean before) {
+        public StepPoint generate(StepPoint previousValue) {
             return queue.poll();
         }
     }

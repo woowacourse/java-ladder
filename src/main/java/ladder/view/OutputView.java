@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 import ladder.domain.Line;
+import ladder.domain.StepPoint;
 
 /*
  * pobi  honux crong   jk
@@ -34,18 +35,18 @@ public class OutputView {
     }
 
     private static String extractLine(Line line) {
-        List<Boolean> stepPoints = line.toUnmodifiableStepPoints();
+        List<StepPoint> stepPoints = line.toUnmodifiableStepPoints();
         StringJoiner result = new StringJoiner(VERTICAL, STEP_NONE + VERTICAL, VERTICAL);
 
-        for (Boolean stepPoint : stepPoints) {
-            String stepPointFormat = toStepPointFormat(stepPoint);
+        for (StepPoint point : stepPoints) {
+            String stepPointFormat = toStepPointFormat(point);
             result.add(stepPointFormat);
         }
         return result.toString();
     }
 
-    private static String toStepPointFormat(boolean stepPoint) {
-        if (stepPoint) {
+    private static String toStepPointFormat(StepPoint point) {
+        if (point == StepPoint.EXIST) {
             return STEP_EXIST;
         }
         return STEP_NONE;

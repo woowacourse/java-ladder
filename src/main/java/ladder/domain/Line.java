@@ -17,7 +17,7 @@ public class Line {
         }
     }
 
-    public List<Boolean> toUnmodifiableStepPoints() {
+    public List<StepPoint> toUnmodifiableStepPoints() {
         return stepPoints.toUnmodifiableStepPoints();
     }
 }
