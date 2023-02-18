@@ -39,6 +39,15 @@ class ParticipantsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("이름 목록이 2명 미만일 경우 예외가 발생한다.")
+    @Test
+    void throwExceptionWhenNamesHasSizeLessThanTwo() {
+        final List<Name> names = List.of(NAME_HYENA);
+
+        assertThatThrownBy(() -> new Participants(names))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("이름 목록의 크기를 가져온다.")
     @Test
     void getSize() {
