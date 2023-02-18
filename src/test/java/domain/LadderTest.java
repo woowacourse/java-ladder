@@ -29,7 +29,6 @@ class LadderTest extends AbstractTestFixture {
     @Test
     @DisplayName("Line들로 Ladder를 생성한다")
     void test_createLadder_with_lines() {
-        // given
         List<Line> lines = List.of(
                 new Line(convert(true, false, true)),
                 new Line(convert(false, true, false)),
@@ -38,7 +37,6 @@ class LadderTest extends AbstractTestFixture {
                 new Line(convert(true, false, true))
         );
 
-        // when & then
         assertThatNoException().isThrownBy(() -> new Ladder(createDefaultPerson(), lines));
     }
 }
