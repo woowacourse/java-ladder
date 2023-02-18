@@ -31,7 +31,7 @@ public class LadderGameController {
     }
 
     private Participants createParticipants() {
-        return inputView.getUserInput(() -> {
+        return inputView.getInputWithRetry(() -> {
             OutputView.print(INPUT_PARTICIPANT_NAMES_GUIDE.getMessage());
             String participantNames = inputView.readConsole();
             return Participants.create(participantNames);
@@ -44,7 +44,7 @@ public class LadderGameController {
     }
 
     private Ladder createLadderBy(final Participants participants, final LadderFactory ladderFactory) {
-        return inputView.getUserInput(() -> {
+        return inputView.getInputWithRetry(() -> {
             OutputView.print(INPUT_LADDER_MAX_HEIGHT_GUIDE.getMessage());
             String maxLadderHeight = inputView.readConsole();
             return ladderFactory.createLadder(maxLadderHeight, participants.size());

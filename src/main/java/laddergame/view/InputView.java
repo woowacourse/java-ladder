@@ -22,12 +22,12 @@ public class InputView {
         return null;
     }
 
-    public <T> T getUserInput(Supplier<T> inputReader) {
+    public <T> T getInputWithRetry(Supplier<T> inputReader) {
         try {
             return inputReader.get();
         } catch (IllegalArgumentException e) {
             OutputView.print(e.getMessage());
-            return getUserInput(inputReader);
+            return getInputWithRetry(inputReader);
         }
     }
 }
