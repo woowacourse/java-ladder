@@ -16,11 +16,16 @@ class LadderFormTest {
     @DisplayName("생성한다.")
     @Test
     void joinUnitsFrom() {
+        //given
         final Line line = new Line(List.of(true));
         final Line line2 = new Line(List.of(true));
         final List<Line> lines = List.of(line, line2);
         final List<String> names = PARTICIPANTS_SIZE_2.getNames();
+
+        //when
         final String ladderFormGenerator = LadderFormGenerator.generate(names, lines);
+
+        //then
         assertThat(ladderFormGenerator).contains(" rosie hyena\n     |-----|\n     |-----|");
     }
 }
