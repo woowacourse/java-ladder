@@ -40,7 +40,8 @@ public class LadderGameController {
 
     private List<User> generateUsers(List<String> userNames) {
         return userNames.stream()
-                .map(username -> new User(new Name(username)))
+                .map(Name::new)
+                .map(User::new)
                 .collect(Collectors.toUnmodifiableList());
     }
 

@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Users {
     private final int FIRST = 0;
-
     private final List<User> users;
 
     public Users(List<User> users) {
