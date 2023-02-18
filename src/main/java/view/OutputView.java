@@ -2,6 +2,7 @@ package view;
 
 import domain.Bridge;
 import domain.Ladder;
+import domain.Ladders;
 import domain.Users;
 
 import java.util.stream.Collectors;
@@ -25,6 +26,10 @@ public class OutputView {
                 .map(Bridge::getFormat)
                 .collect(Collectors.joining(BRIDGE_DELIMITER));
         System.out.printf(LADDER_FORMAT, collect);
+    }
+
+    public void printLadders(Ladders ladders) {
+        ladders.getLadders().forEach(this::printLadder);
     }
 
     public void printExceptionMessage(String errorMessage) {
