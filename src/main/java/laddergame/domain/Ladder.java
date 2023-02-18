@@ -9,7 +9,6 @@ public class Ladder {
     private final Participants participants;
     private final Height height;
 
-
     public Ladder(final Participants participants, final Height height) {
         validateNotNull(participants, height);
         this.participants = participants;
