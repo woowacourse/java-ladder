@@ -27,5 +27,4 @@ public class HeightTest {
         Height height = new Height(parsedHeight);
         Assertions.assertThat(height.getValue()).isEqualTo(parsedHeight);
     }
-
 }

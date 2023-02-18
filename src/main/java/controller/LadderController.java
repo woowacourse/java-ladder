@@ -2,7 +2,6 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
-import domain.LadderFactory;
 import domain.Name;
 import domain.Names;
 import domain.RandomScaffoldGenerator;
@@ -16,15 +15,16 @@ import view.OutputView;
 public class LadderController {
 
     private final ScaffoldGenerator scaffoldGenerator = new RandomScaffoldGenerator();
-    private final LadderFactory ladderFactory = new LadderFactory(scaffoldGenerator);
 
     public void run() {
-        List<String> inputNames = InputView.inputNames();
-        Names names = new Names(inputNames.stream()
+        final List<String> inputNames = InputView.inputNames();
+        final Names names = new Names(inputNames.stream()
                 .map(Name::new)
                 .collect(Collectors.toList()));
-        int parsedHeight = InputView.inputHeight();
-        Ladder ladder = ladderFactory.createLadder(new Width(names.size() - 1), new Height(parsedHeight));
+        final int parsedHeight = InputView.inputHeight();
+        final Height height = new Height(parsedHeight);
+        final Width width = new Width(names.size() - 1);
+        final Ladder ladder = new Ladder(width, height, scaffoldGenerator);
         OutputView.printResult(ladder, names);
     }
 }

@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayList;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -10,6 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
 import java.util.stream.Stream;
+import util.TestScaffoldGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -20,74 +23,52 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 @DisplayName("Line 은")
 public class LineTest {
 
-    @Test
-    void 발판들을_받아_생성된다() {
-        // given
-        Scaffold scaffold1 = Scaffold.NONE;
-        Scaffold scaffold2 = Scaffold.EXIST;
-        Scaffold scaffold3 = Scaffold.NONE;
 
-        // when & then
-        assertDoesNotThrow(() ->
-                new Line(List.of(scaffold1, scaffold2, scaffold3))
-        );
+    @Test
+    void Width_와_ScaffoldGenerator_를_받아_생성된다() {
+        // given
+        final ScaffoldGenerator scaffoldGenerator = new RandomScaffoldGenerator();
+        final Width width = new Width(4);
+
+        //then
+        assertDoesNotThrow(() -> new Line(width, scaffoldGenerator));
     }
 
-    @ParameterizedTest(name = "발판은 입력받은 숫자만큼의 크기를 가진다 status : {0}")
-    @MethodSource("scaffolds")
-    void 발판은_입력받은_숫자만큼의_크기를_가진다(final List<Scaffold> scaffolds) {
+    @Test
+    void 입력받은_Width_만큼의_크기를_가진다() {
+        //given
+        final ScaffoldGenerator scaffoldGenerator = new RandomScaffoldGenerator();
+        final Width width = new Width(4);
+
         // when
-        Line line = new Line(scaffolds);
+        Line line = new Line(width, scaffoldGenerator);
 
         // then
-        assertThat(line.size()).isEqualTo(scaffolds.size());
-    }
-
-    private static Stream<Arguments> scaffolds() {
-        return Stream.of(
-                Arguments.of(List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST)),
-                Arguments.of(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST)),
-                Arguments.of(List.of(Scaffold.NONE, Scaffold.NONE)),
-                Arguments.of(List.of(Scaffold.EXIST))
-        );
+        assertThat(line.size()).isEqualTo(width.getValue());
     }
 
     @Test
-    void 발판의_개수는_1개_이상이어야_한다() {
+    void 너비를_받아_라인상태값을_생성한다() {
         // given
-        List<Scaffold> scaffolds = List.of();
+        final TestScaffoldGenerator testScaffoldGenerator = new TestScaffoldGenerator(List.of(true, false, true, false));
+        final Width width = new Width(4);
+        // when
+        final Line line = new Line(width, testScaffoldGenerator);
 
-        // when & then
-        assertThatThrownBy(() ->
-                new Line(scaffolds)
-        ).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @ParameterizedTest(name = "Line에 속한 발판은 존재하는 상태를 연속으로 가질 수 없다 scaffolds : {0}")
-    @MethodSource("consistExistScaffolds")
-    void Line_에_속한_발판은_존재하는_상태를_연속으로_가질_수_없다(final List<Scaffold> scaffolds) {
-        // when & then
-        assertThatThrownBy(() ->
-                new Line(scaffolds)
-        ).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    private static Stream<Arguments> consistExistScaffolds() {
-        return Stream.of(
-                Arguments.of(List.of(Scaffold.EXIST, Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST)),
-                Arguments.of(List.of(Scaffold.EXIST, Scaffold.EXIST, Scaffold.EXIST)),
-                Arguments.of(List.of(Scaffold.EXIST, Scaffold.EXIST))
-        );
+        //then
+        assertThat(line.getScaffolds()).containsExactly(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE);
     }
 
     @Test
-    void Line_에_속한_발판은_존재하지_않는_상태를_연속으로_가질수_있다() {
+    void 연속해서_존재하는_Scaffold를_가질_수_없다() {
         // given
-        Scaffold nonScaffold = Scaffold.NONE;
+        final TestScaffoldGenerator testScaffoldGenerator = new TestScaffoldGenerator(List.of(true, true, true, true));
+        final Width width = new Width(4);
 
-        // when & then
-        assertDoesNotThrow(() ->
-                new Line(List.of(nonScaffold, nonScaffold))
-        );
+        // when
+        final Line line = new Line(width, testScaffoldGenerator);
+
+        // then
+        assertThat(line.getScaffolds()).containsExactly(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE);
     }
 }

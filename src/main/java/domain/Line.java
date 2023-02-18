@@ -1,13 +1,33 @@
 package domain;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Line {
     private final List<Scaffold> scaffolds;
 
-    public Line(final List<Scaffold> scaffolds) {
+    public Line(final Width width, final ScaffoldGenerator scaffoldGenerator) {
+        this.scaffolds = createLine(width, scaffoldGenerator);
         validateScaffolds(scaffolds);
-        this.scaffolds = scaffolds;
+    }
+
+    public List<Scaffold> createLine(final Width width, final ScaffoldGenerator scaffoldGenerator) {
+        Deque<Scaffold> scaffolds = new ArrayDeque<>();
+        for (int i = 0; i < width.getValue(); i++) {
+            scaffolds.add(createNonConsistScaffold(scaffoldGenerator, scaffolds));
+        }
+        return new ArrayList<>(scaffolds);
+    }
+
+    private Scaffold createNonConsistScaffold(final ScaffoldGenerator scaffoldGenerator, final Deque<Scaffold> scaffolds) {
+        Scaffold scaffold = scaffoldGenerator.generate();
+        if (scaffold == Scaffold.EXIST && scaffolds.peekLast() == Scaffold.EXIST) {
+            return Scaffold.NONE;
+        }
+        return scaffold;
     }
 
     private static void validateScaffolds(final List<Scaffold> scaffolds) {
