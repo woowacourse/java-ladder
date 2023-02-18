@@ -18,7 +18,7 @@ public class Players {
                 .map(Player::new)
                 .collect(Collectors.toUnmodifiableList());
         validatePlayerNames(players);
-        this.players = List.copyOf(players);
+        this.players = players;
     }
 
     private void validatePlayerNames(List<Player> players) {
