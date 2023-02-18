@@ -2,7 +2,7 @@ package domain.generator;
 
 import java.util.Random;
 
-public class RandomFootholdGenerator implements FootholdGenerator {
+public class RandomConnectionGenerator implements ConnectionGenerator {
 
     private final Random random = new Random();
 

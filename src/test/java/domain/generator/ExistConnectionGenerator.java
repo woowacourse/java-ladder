@@ -1,6 +1,6 @@
 package domain.generator;
 
-public class ExistFootholdGenerator implements FootholdGenerator {
+public class ExistConnectionGenerator implements ConnectionGenerator {
 
     @Override
     public boolean generate() {

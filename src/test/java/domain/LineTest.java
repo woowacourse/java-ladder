@@ -5,13 +5,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import domain.generator.ExistFootholdGenerator;
-import domain.generator.FootholdGenerator;
-import domain.generator.NonExistFootholdGenerator;
-import domain.generator.RandomFootholdGenerator;
+import domain.generator.ExistConnectionGenerator;
+import domain.generator.ConnectionGenerator;
+import domain.generator.NonExistConnectionGenerator;
+import domain.generator.RandomConnectionGenerator;
 
 public class LineTest {
-    FootholdGenerator randomFootholdGenerator = new RandomFootholdGenerator();
+    ConnectionGenerator randomConnectionGenerator = new RandomConnectionGenerator();
 
     @Test
     @DisplayName("Line은 사람 수 -1만큼의 길이로 생성된다.")
@@ -21,35 +21,35 @@ public class LineTest {
         int expectedLineNumber = numberOfPlayer - 1;
 
         // when
-        Line line = new Line(numberOfPlayer, randomFootholdGenerator);
+        Line line = new Line(numberOfPlayer, randomConnectionGenerator);
 
         // then
-        assertThat(line.getFootholds().size()).isEqualTo(expectedLineNumber);
+        assertThat(line.getConnections().size()).isEqualTo(expectedLineNumber);
     }
 
     @Test
-    @DisplayName("발판은 연속으로 생성될 수 없다.")
-    void can_not_have_consecutive_foothold() {
+    @DisplayName("사다리의 가로 줄은 연속으로 생성될 수 없다.")
+    void can_not_have_consecutive_connection() {
         // given
         int numberOfPlayer = 4;
 
         // when
-        Line line = new Line(numberOfPlayer, new ExistFootholdGenerator());
+        Line line = new Line(numberOfPlayer, new ExistConnectionGenerator());
 
         // then
-        assertThat(line.getFootholds()).containsExactly(true, false, true);
+        assertThat(line.getConnections()).containsExactly(true, false, true);
      }
 
     @Test
-    @DisplayName("발판은 존재하지 않아도 생성될 수 있다.")
-    void can_generate_without_foothold() {
+    @DisplayName("사다리의 가로 줄은 존재하지 않아도 생성될 수 있다.")
+    void can_generate_without_connection() {
         // given
         int numberOfPlayer = 4;
 
         // when
-        Line line = new Line(numberOfPlayer, new NonExistFootholdGenerator());
+        Line line = new Line(numberOfPlayer, new NonExistConnectionGenerator());
 
         // then
-        assertThat(line.getFootholds()).containsExactly(false, false, false);
+        assertThat(line.getConnections()).containsExactly(false, false, false);
     }
 }

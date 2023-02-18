@@ -5,7 +5,7 @@ import java.util.Arrays;
 public enum LadderSymbol {
 
     BLANK(" "),
-    FOOTHOLD("-"),
+    CONNECTION("-"),
     BAR("|");
 
     private final String symbol;

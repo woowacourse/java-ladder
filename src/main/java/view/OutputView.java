@@ -9,7 +9,7 @@ public class OutputView {
     private static final int MAXIMUM_LENGTH_OF_NAME = 5;
     private static final int BOUNDARY_OF_NAME_LENGTH = 4;
     private static final String BLANK = " ";
-    private static final String FOOTHOLD = "-";
+    private static final String CONNECTION = "-";
     private static final String BAR = "|";
     private static final String NEW_LINE = System.getProperty("line.separator");
     private static final StringBuilder ladderOutput = new StringBuilder();
@@ -93,13 +93,13 @@ public class OutputView {
     private void drawInnerLadder(final Players players, final Ladder ladder, final int heightIndex) {
         for (Boolean isExistFoothold : ladder.getLines().findSelectedLine(heightIndex)) {
             ladderOutput.append(BAR);
-            drawExistingFoothold(players, isExistFoothold);
+            drawExistingConnection(players, isExistFoothold);
         }
     }
 
-    private void drawExistingFoothold(final Players players, final Boolean isExistFoothold) {
+    private void drawExistingConnection(final Players players, final Boolean isExistFoothold) {
         if (isExistFoothold) {
-            ladderOutput.append(FOOTHOLD.repeat(players.findLongestPlayerName()));
+            ladderOutput.append(CONNECTION.repeat(players.findLongestPlayerName()));
             return;
         }
         ladderOutput.append(BLANK.repeat(players.findLongestPlayerName()));

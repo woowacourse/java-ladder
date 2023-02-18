@@ -1,6 +1,6 @@
 package domain.generator;
 
-public interface FootholdGenerator {
+public interface ConnectionGenerator {
 
     boolean generate();
 }

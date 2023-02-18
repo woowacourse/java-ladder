@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import domain.generator.ExistFootholdGenerator;
-import domain.generator.NonExistFootholdGenerator;
+import domain.generator.ExistConnectionGenerator;
+import domain.generator.NonExistConnectionGenerator;
 
 public class LinesTest {
 
@@ -24,7 +24,7 @@ public class LinesTest {
         Lines lines = new Lines(numberOfPlayers, height);
 
         // then
-        assertThat(lines.getLines().get(0).getFootholds().size()).isEqualTo(expectedLadderWidth);
+        assertThat(lines.getLines().get(0).getConnections().size()).isEqualTo(expectedLadderWidth);
         assertThat(lines.getLines().size()).isEqualTo(height);
     }
 
@@ -32,8 +32,8 @@ public class LinesTest {
     @DisplayName("Lines에서 해당하는 번호의 Line을 가져올 수 있다.")
     void returns_selected_position_of_lines() {
         // given
-        Line emptyLine = new Line(4, new ExistFootholdGenerator());
-        Line notEmptyLine = new Line(4, new NonExistFootholdGenerator());
+        Line emptyLine = new Line(4, new ExistConnectionGenerator());
+        Line notEmptyLine = new Line(4, new NonExistConnectionGenerator());
         Lines lines = new Lines(List.of(emptyLine, notEmptyLine, emptyLine));
 
         // when
