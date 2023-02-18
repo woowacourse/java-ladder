@@ -52,5 +52,4 @@ public class OutputView {
         return UNCONNECTED_LINE;
     }
 
-
 }
