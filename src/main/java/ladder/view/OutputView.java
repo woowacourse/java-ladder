@@ -11,8 +11,6 @@ public class OutputView {
 
     private static final String EXECUTION_RESULT = "실행결과";
     private static final String LINE_BREAK = "\n";
-    private static final String FOOTHOLD = "-----";
-    private static final String BLANK_FOOTHOLD = "     ";
     private static final int FORMAT_LENGTH = 5;
     private static final String RIGHT_ALIGN = "%" + FORMAT_LENGTH + "s";
     private static final String BLANK = " ";
@@ -54,18 +52,10 @@ public class OutputView {
         final StringJoiner stringJoiner = new StringJoiner(LADDER, EMPTY, LADDER);
 
         for (final Direction direction : directions) {
-            stringJoiner.add(getFoothold(direction));
+            stringJoiner.add(direction.getFoothold());
         }
 
         System.out.println(stringJoiner);
-    }
-
-    private String getFoothold(final Direction direction) {
-        if (direction.equals(Direction.LEFT)) {
-            return FOOTHOLD;
-        }
-
-        return BLANK_FOOTHOLD;
     }
 
     public void printErrorMessage(final String errorMessage) {
