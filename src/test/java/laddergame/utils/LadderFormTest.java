@@ -7,12 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static laddergame.TestDummy.PARTICIPANTS_SIZE_2;
+import static laddergame.fixture.ParticipantsFixture.PARTICIPANTS_SIZE_2;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("사다리 형식")
 class LadderFormTest {
-
     @DisplayName("생성한다.")
     @Test
     void joinUnitsFrom() {
