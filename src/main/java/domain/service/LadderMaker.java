@@ -14,8 +14,8 @@ public class LadderMaker {
 
     public Ladder make(final Height height, final Width width) {
         Ladder ladder = new Ladder(height, width);
-        for (int i = 0; i < height.get(); i++) {
-            ladder.addLayer(makeLayer(width.get()));
+        for (int i = 0; i < height.getValue(); i++) {
+            ladder.addLayer(makeLayer(width.getValue()));
         }
         return ladder;
     }

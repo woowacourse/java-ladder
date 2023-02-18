@@ -18,7 +18,7 @@ public class Height {
         }
     }
 
-    public int get() {
+    public int getValue() {
         return value;
     }
 }

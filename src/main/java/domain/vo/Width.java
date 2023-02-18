@@ -19,7 +19,7 @@ public class Width {
         }
     }
 
-    public int get() {
+    public int getValue() {
         return value;
     }
 }
