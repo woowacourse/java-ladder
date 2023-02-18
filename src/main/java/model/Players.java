@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
@@ -19,5 +20,11 @@ public class Players {
 
     public Player getPlayer(int index) {
         return players.get(index);
+    }
+
+    public List<String> getAllPlayerNames() {
+        return players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
     }
 }
