@@ -1,9 +1,9 @@
 package ladder.controller;
 
-import ladder.domain.Height;
-import ladder.domain.Ladder;
-import ladder.domain.Players;
-import ladder.domain.ValueGenerator;
+import ladder.domain.ladder.Height;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.player.Players;
+import ladder.domain.valueGenerator.ValueGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 

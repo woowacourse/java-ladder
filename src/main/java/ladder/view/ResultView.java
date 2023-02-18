@@ -1,9 +1,12 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.ladder.Bar;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
+import ladder.domain.player.Name;
+import ladder.domain.player.Players;
 import ladder.view.constant.LadderOutputSymbol;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 import static ladder.view.constant.LadderOutputSymbol.LADDER_VERTICAL_SYMBOL;

@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.valueGenerator;
+
+import ladder.domain.valueGenerator.ValueGenerator;
 
 public class MockValueDataGenerator implements ValueGenerator {
 
