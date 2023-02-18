@@ -1,7 +1,5 @@
 package domain.value;
 
-import domain.value.Name;
-import domain.value.Names;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -86,5 +84,22 @@ class NamesTest {
 
         // then
         assertThat(size).isEqualTo(actualLength);
+    }
+
+    @ParameterizedTest(name = "동명이인이_포함된_경우_예외를_발생시킨다.")
+    @CsvSource(value = {
+            "바다,바다:3",
+            "바다,말랑,바다,토끼:4",
+    }, delimiter = ':')
+    void 동명이인이_포함된_경우_예외를_발생시킨다(final String nameValues) {
+        // given
+        List<Name> names = stream(nameValues.split(","))
+                .map(Name::new)
+                .collect(Collectors.toList());
+
+        // when & then
+        assertThatThrownBy(() ->
+                new Names(names)
+        ).isInstanceOf(IllegalArgumentException.class);
     }
 }

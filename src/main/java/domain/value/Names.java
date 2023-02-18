@@ -1,6 +1,7 @@
 package domain.value;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Names {
@@ -11,8 +12,15 @@ public class Names {
     private final List<Name> names;
 
     public Names(final List<Name> names) {
+        validateDuplicateName(names);
         validateSize(names);
         this.names = new ArrayList<>(names);
+    }
+
+    private void validateDuplicateName(final List<Name> names) {
+        if (names.size() != new HashSet<>(names).size()) {
+            throw new IllegalArgumentException("동명이인은 불가능합니다.");
+        }
     }
 
     private void validateSize(final List<Name> names) {
