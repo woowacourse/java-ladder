@@ -21,7 +21,7 @@ public class OutputView {
     public void printResult(Names names, Lines lines) {
         System.out.println(Message.OUTPUT_RESULT.message);
         names.getNames()
-                .forEach(name -> System.out.printf("%-5s", name.getName()));
+                .forEach(name -> System.out.printf(Message.NAME_FORMAT.message, name.getName()));
         System.out.println();
         Lines(lines);
     }
@@ -45,6 +45,7 @@ public class OutputView {
 
     private enum Message {
         OUTPUT_RESULT("실행결과\n"),
+        NAME_FORMAT("%-5s"),
         COLUMN_LADDER("  |"),
         ROW_LADDER("-----|"),
         EMPTY_ROW_LADDER("     |");

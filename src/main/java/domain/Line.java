@@ -5,13 +5,15 @@ import java.util.List;
 import utils.booleanGenerator.BooleanGenerator;
 
 public class Line {
+    private static final int PERSON_COUNT_POINT_SIZE_DIFFERENCE = 1;
+
     private final BooleanGenerator generator;
 
     List<Boolean> points = new ArrayList<>();
 
     public Line(int personNumber, BooleanGenerator generator) {
         this.generator = generator;
-        int pointSize = personNumber - 1;
+        int pointSize = personNumber - PERSON_COUNT_POINT_SIZE_DIFFERENCE;
         for (int index = 0; index < pointSize; index++) {
             points.add(getPoint(index));
         }
