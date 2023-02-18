@@ -4,6 +4,8 @@ import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,21 +23,42 @@ public class LadderGameController {
         List<PlayerName> playerNames = generatePlayerNames();
         Height height = generateHeight();
 
-        LadderGame ladderGame = new LadderGame(playerNames, height, new RandomLineCreateDecider());
+        LadderGame ladderGame = generateLadderGame(playerNames, height);
         showResult(ladderGame);
     }
 
     private List<PlayerName> generatePlayerNames() {
-        List<String> names = inputView.readNames();
-        List<PlayerName> playerNames = names.stream()
-                .map(PlayerName::new)
-                .collect(Collectors.toList());
-        return playerNames;
+        try{
+            List<String> names = inputView.readNames();
+            List<PlayerName> playerNames = names.stream()
+                    .map(PlayerName::new)
+                    .collect(Collectors.toList());
+            return playerNames;
+        }catch(IllegalArgumentException exception){
+            outputView.printExceptionMessage(exception.getMessage());
+            return generatePlayerNames();
+        }
     }
 
     private Height generateHeight() {
-        int height = inputView.readHeight();
-        return new Height(height);
+        try{
+            int height = inputView.readHeight();
+            return new Height(height);
+        }catch(IllegalArgumentException exception){
+            outputView.printExceptionMessage(exception.getMessage());
+            return generateHeight();
+        }
+    }
+
+    private LadderGame generateLadderGame(List<PlayerName> playerNames, Height height) {
+        try{
+            return new LadderGame(playerNames, height, new RandomLineCreateDecider());
+        }catch(IllegalArgumentException exception){
+            outputView.printExceptionMessage(exception.getMessage());
+            List<PlayerName> retryNames = generatePlayerNames();
+            Height retryHeight = generateHeight();
+            return generateLadderGame(retryNames, retryHeight);
+        }
     }
 
     private void showResult(LadderGame ladderGame) {
