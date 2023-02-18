@@ -14,20 +14,23 @@ public class Line {
         this.statuses = statuses;
     }
 
-    public static Line generate(final BooleanGenerator generator, final int width) {
-        return new Line(generateLine(generator, width));
+    public static Line generate(final BooleanGenerator booleanGenerator, final int width) {
+        return new Line(generateLine(booleanGenerator, width));
     }
 
-    private static List<LineStatus> generateLine(final BooleanGenerator generator, final int width) {
+    private static List<LineStatus> generateLine(final BooleanGenerator booleanGenerator, final int width) {
         final Deque<LineStatus> statuses = new ArrayDeque<>();
         while (statuses.size() < width) {
-            statuses.add(generateLineStatus(generator, statuses));
+            statuses.add(generateLineStatus(booleanGenerator, statuses));
         }
         return new ArrayList<>(statuses);
     }
 
-    private static LineStatus generateLineStatus(final BooleanGenerator generator, final Deque<LineStatus> statuses) {
-        final boolean status = generator.generate();
+    private static LineStatus generateLineStatus(
+            final BooleanGenerator booleanGenerator,
+            final Deque<LineStatus> statuses
+    ) {
+        final boolean status = booleanGenerator.generate();
         if (isConnectable(statuses)) {
             return LineStatus.from(status);
         }
