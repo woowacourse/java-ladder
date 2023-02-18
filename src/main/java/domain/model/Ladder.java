@@ -10,12 +10,11 @@ import java.util.List;
 public class Ladder {
     private final Height height;
     private final Width width;
-    private final List<Layer> layers;
+    private final List<Layer> layers = new ArrayList<>();
 
     public Ladder(final Height height, final Width width) {
         this.height = height;
         this.width = width;
-        this.layers = new ArrayList<>();
     }
 
     public List<Layer> getLayers() {
