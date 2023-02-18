@@ -5,6 +5,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
+    private static final int MINIMUM_LADDER_HEIGHT = 1;
+    private static final int MAXIMUM_LADDER_HEIGHT = 100;
+    
     private final List<Line> lines;
 
     public Ladder(BarGenerator barGenerator, int ladderHeight, int peopleSize) {
@@ -19,7 +22,7 @@ public class Ladder {
     }
 
     private void validateRange(int ladderHeight) {
-        if (ladderHeight < 1 || ladderHeight > 100) {
+        if (ladderHeight < MINIMUM_LADDER_HEIGHT || ladderHeight > MAXIMUM_LADDER_HEIGHT) {
             throw new IllegalArgumentException("사다리 높이는 1이상 100 이하만 입력할 수 있습니다.");
         }
     }
