@@ -49,7 +49,7 @@ public class LadderController {
 
     private Ladder ladderRequest(int peopleCount) {
         return new Ladder(peopleCount,
-            inputView.readLadderHeight(),
+            inputView.readLadderHeightAndTransform(),
             new RandomBridgeGenerator());
     }
 }

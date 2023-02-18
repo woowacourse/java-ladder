@@ -11,7 +11,7 @@ public class InputView {
     public static final String DELIMITER = ",";
 
     public List<String> readNames() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        System.out.printf("참여할 사람 이름을 입력하세요. (이름은 쉼표(%s)로 구분하세요)%n", DELIMITER);
         return getValidResult(readLine());
     }
 
@@ -28,15 +28,14 @@ public class InputView {
 
     private void validateDelimiter(String input) {
         if (input.endsWith(DELIMITER)) {
-            throw new IllegalArgumentException(",로 끝날 수 없습니다");
+            throw new IllegalArgumentException(String.format("%s로 끝날 수 없습니다", DELIMITER));
         }
     }
 
     private List<String> toNames(String names) {
         return Arrays.stream(names.split(DELIMITER))
-            .collect(Collectors.toList());
+                .collect(Collectors.toList());
     }
-
 
 
     private void validateDuplicate(List<String> result) {
@@ -45,16 +44,14 @@ public class InputView {
         }
     }
 
-    public int readLadderHeight() {
+    public int readLadderHeightAndTransform() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        String input = readLine();
-        validateNumberFormat(input);
-        return Integer.parseInt(input);
+        return toNumber(readLine());
     }
 
-    private void validateNumberFormat(String input) {
+    private int toNumber(String input) {
         try {
-            Integer.parseInt(input);
+            return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException("숫자를 입력해야 합니다.", exception);
         }
