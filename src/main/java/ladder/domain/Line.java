@@ -13,16 +13,16 @@ public class Line {
 
     public void addBars(int peopleSize, BarGenerator barGenerator) {
         IntStream.range(0, peopleSize - 1)
-                .forEach(count -> addBar(barGenerator));
+                .forEach(count -> addCorrectBar(barGenerator));
     }
 
-    private void addBar(BarGenerator barGenerator) {
+    private void addCorrectBar(BarGenerator barGenerator) {
         if (lastBar().isExistBar()) {
-            addFalse();
+            addNotExistedBar();
             return;
         }
 
-        addRandom(barGenerator);
+        addBar(barGenerator);
     }
 
     private Bar lastBar() {
@@ -33,11 +33,11 @@ public class Line {
         return bars.size() - 1;
     }
 
-    private void addRandom(BarGenerator barGenerator) {
+    private void addBar(BarGenerator barGenerator) {
         bars.add(new Bar(barGenerator));
     }
 
-    private void addFalse() {
+    private void addNotExistedBar() {
         bars.add(new Bar(false));
     }
 
