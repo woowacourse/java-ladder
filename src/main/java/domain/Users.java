@@ -24,7 +24,7 @@ public class Users {
 
     private void validateFirstUser() {
         if (users.isEmpty()) {
-            throw new NullPointerException(NOT_FOUND_USER.getMessage());
+            throw new IllegalArgumentException(NOT_FOUND_USER.getMessage());
         }
     }
 }
