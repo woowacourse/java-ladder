@@ -18,8 +18,8 @@ public class Controller {
 
     public void run() {
         Users usersName = settingUsers();
-        Ladders ladders = settingLadders();
-        ladders.make(usersName.getCount() - 1, LadderGenerator.getInstance());
+        Ladders ladders = settingLadders(usersName.getCount() - 1);
+        ladders.make(LadderGenerator.getInstance());
         outputView.printUsers(usersName);
         for (Ladder ladder : ladders.getLadders()) {
             outputView.printLadder(ladder);
@@ -42,13 +42,13 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
-    private Ladders settingLadders() {
+    private Ladders settingLadders(int width) {
         try {
             int height = inputView.inputLadderHeight();
-            return new Ladders(new Height(height));
+            return new Ladders(new Height(height), width);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
-            return settingLadders();
+            return settingLadders(width);
         }
     }
 }
