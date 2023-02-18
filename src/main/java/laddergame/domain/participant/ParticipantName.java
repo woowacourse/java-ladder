@@ -21,7 +21,7 @@ public class ParticipantName {
     }
 
     private void validateNameBlank(final String name) {
-        if (name.indexOf(INVALID_INCLUSION) != -1) {
+        if (name.isBlank() || name.indexOf(INVALID_INCLUSION) != -1) {
             throw new IllegalArgumentException(INVALID_NAME_BLANK.getMessage());
         }
     }
