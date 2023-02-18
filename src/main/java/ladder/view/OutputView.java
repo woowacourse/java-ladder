@@ -19,7 +19,7 @@ public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
 
     public void printLadderResult(final Players players, final Ladder ladder) {
-        System.out.println(EXECUTION_RESULT + LINE_BREAK);
+        System.out.println(LINE_BREAK + EXECUTION_RESULT + LINE_BREAK);
         printPlayerNames(players);
         printLadder(ladder);
     }
