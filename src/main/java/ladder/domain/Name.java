@@ -13,9 +13,8 @@ public class Name {
     private final String value;
 
     public Name(final String value) {
-        final String trimValue = value.trim();
-        validate(trimValue);
-        this.value = trimValue;
+        validate(value);
+        this.value = value;
     }
 
     private void validate(final String value) {
