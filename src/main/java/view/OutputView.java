@@ -126,8 +126,8 @@ public class OutputView {
 
         drawFirstLadderResult(ladderResults);
 
-        for (int i = 1; i < ladderResults.getResults().size(); i++) {
-            appendLadderResults(longestPlayerName, ladderResults.getResults().get(i));
+        for (int i = 1; i < ladderResults.getLadderResults().size(); i++) {
+            appendLadderResults(longestPlayerName, ladderResults.getLadderResults().get(i));
         }
 
         return ladderResultsOutput;

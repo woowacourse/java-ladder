@@ -43,7 +43,7 @@ public class LadderResultsTest {
         LadderResults ladderResults = new LadderResults(givenLadderResults, playerNumber);
 
         // then
-        assertThat(ladderResults.getResults().size()).isEqualTo(playerNumber);
+        assertThat(ladderResults.getLadderResults().size()).isEqualTo(playerNumber);
     }
 
     @Test

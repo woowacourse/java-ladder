@@ -5,6 +5,7 @@ import domain.Height;
 import domain.Ladder;
 import domain.LadderResults;
 import domain.Lines;
+import domain.Player;
 import domain.Players;
 import java.util.List;
 import view.InputView;
@@ -25,16 +26,28 @@ public class LadderGameController {
 
         // Todo: players의 참여자 수에 의존하는 문제.. (추후 리팩토링)
         LadderResults ladderResults = makeLadderResults(players.findNumberOfPlayers());
-
         Ladder ladder = makeLadder(players.findNumberOfPlayers());
 
         outputView.printLadderGameStatus(players, ladder, ladderResults);
 
-        Game game = new Game(ladder, players);
-        int[] resultOfGame = game.findPlayerResult();
+        Game game = new Game(ladder, players, ladderResults);
+        printResultOfPlayer(players);
+    }
 
-        for (int i : resultOfGame) {
-            System.out.print(i + " ");
+    private void printResultOfPlayer(Players players) {
+        while (true) {
+            String command = makeCommand();
+
+            if (command.equals("all")) {
+                for (Player player : players.getPlayers()) {
+                    System.out.println(player.getName() + " " + player.getResult());
+                }
+                return;
+            }
+
+            System.out.println("\n실행 결과");
+            Player player = players.findPlayer(command);
+            System.out.println(player.getName() + " " + player.getResult());
         }
     }
 
@@ -66,6 +79,16 @@ public class LadderGameController {
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return makeLadder(numberOfPlayers);
+        }
+    }
+
+    private String makeCommand() {
+        try {
+            String command = inputView.readCommand();
+            return command;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return makeCommand();
         }
     }
 }

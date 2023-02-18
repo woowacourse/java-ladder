@@ -1,16 +1,15 @@
 package domain;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderResults {
 
-    private final List<LadderResult> results;
+    private final HashMap<Integer, LadderResult> ladderResults;
 
     public LadderResults(final List<String> results, final int numberOfPlayer) {
         validate(results, numberOfPlayer);
-        this.results = makeResults(results);
+        this.ladderResults = makeResults(results);
     }
 
     // Todo: 예외 메시지 추가하기
@@ -20,24 +19,32 @@ public class LadderResults {
         }
     }
 
-    private List<LadderResult> makeResults(final List<String> results) {
-        return results.stream()
-                .map(LadderResult::new)
-                .collect(Collectors.toList());
+    private HashMap<Integer, LadderResult> makeResults(final List<String> results) {
+        HashMap<Integer, LadderResult> ladderResults = new HashMap<>();
+
+        for (int i = 0; i < results.size(); i++) {
+            ladderResults.put(i, new LadderResult(results.get(i)));
+        }
+
+        return ladderResults;
     }
 
     public String findFirstResult() {
-        return this.getResults().get(0).getResult();
-    }
-
-    public List<LadderResult> getResults() {
-        return Collections.unmodifiableList(this.results);
+        return this.ladderResults.get(0).getResult();
     }
 
     public int findLongestLadderResults() {
-        return this.getResults().stream()
+        return this.ladderResults.values().stream()
                 .mapToInt(ladderResult -> ladderResult.getResult().length())
                 .max()
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public String getLadderResultOfIndex(int index) {
+        return ladderResults.get(index).getResult();
+    }
+
+    public HashMap<Integer, LadderResult> getLadderResults() {
+        return ladderResults;
     }
 }

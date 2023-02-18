@@ -50,6 +50,10 @@ public class Players {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
+    public int getIndexOfPlayer(String name) {
+        return this.players.indexOf(name);
+    }
+
     public int findNumberOfPlayers() {
         return this.players.size();
     }
@@ -60,6 +64,14 @@ public class Players {
 
     public int findLengthOfFirstPlayerName() {
         return this.players.get(0).getLengthOfPlayerName();
+    }
+
+
+    public Player findPlayer(String name) {
+        return players.stream()
+                .filter(player -> player.getName().equals(name))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public List<Player> getPlayers() {

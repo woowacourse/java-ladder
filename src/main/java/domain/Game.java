@@ -6,22 +6,29 @@ public class Game {
 
     private final Ladder ladder;
     private final Players players;
+    private final LadderResults ladderResults;
 
-    public Game(final Ladder ladder, final Players players) {
+    public Game(final Ladder ladder, final Players players, final LadderResults ladderResults) {
         this.ladder = ladder;
         this.players = players;
+        this.ladderResults = ladderResults;
+        this.findPlayerResult();
     }
 
-    public int[] findPlayerResult() {
-        int[] players = new int[this.players.findNumberOfPlayers()];
+    public void findPlayerResult() {
+        int[] results = new int[this.players.findNumberOfPlayers()];
 
-        initPlayerPosition(players);
+        initPlayerPosition(results);
 
         for (int height = 0; height < ladder.findLadderHeight(); height++) {
-            moveStepOfLadder(players, height);
+            moveStepOfLadder(results, height);
         }
 
-        return players;
+        // 데이터 채우기
+        for(int i=0; i<players.findNumberOfPlayers(); i++) {
+            String result = ladderResults.getLadderResultOfIndex(results[i]);
+            players.getPlayers().get(i).addResult(result);
+        }
     }
 
     private void moveStepOfLadder(final int[] players, final int height) {
