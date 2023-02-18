@@ -10,12 +10,10 @@ import java.util.stream.Collectors;
 public class Players {
     private static final int MIN_PLAYERS = 2;
     private static final int MAX_PLAYERS = 13;
-    private static final String DELIMITER = ",";
 
     private final List<Player> players;
 
-    public Players(String input) {
-        String[] names = input.split(DELIMITER);
+    public Players(String[] names) {
         validateSize(names);
         validateDuplicate(names);
         this.players = Arrays.stream(names)

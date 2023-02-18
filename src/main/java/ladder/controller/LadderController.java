@@ -16,7 +16,7 @@ public class LadderController {
     }
 
     public void run() {
-        String inputNames = ladderView.readPlayerNames();
+        String[] inputNames = ladderView.readPlayerNames();
         int inputHeight = ladderView.readLadderHeight();
         Players players = new Players(inputNames);
         Height height = new Height(inputHeight);

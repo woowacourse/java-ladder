@@ -3,7 +3,7 @@ package ladder.view;
 import java.util.List;
 
 public class LadderView {
-    public String readPlayerNames() {
+    public String[] readPlayerNames() {
         return InputView.readPlayerNames();
     }
 
