@@ -65,7 +65,7 @@ public class LadderController {
         do {
             wantToKnowResultPositions = inputWithExceptionHandle(() -> wantToKnowResultPositions(names));
             GoDownLadderResponse goDownLadderResponse = goDownLadderResponse(names, winningEntries, ladder, wantToKnowResultPositions);
-            OutputView.showGoDownLadderResult(goDownLadderResponse);
+            OutputView.printGoDownLadderResult(goDownLadderResponse);
         } while (wantToKnowResultPositions.size() <= 1);
     }
 

@@ -86,7 +86,7 @@ public class OutputView {
         System.out.println(winningEntriesMessage);
     }
 
-    public static void showGoDownLadderResult(final GoDownLadderResponse response) {
+    public static void printGoDownLadderResult(final GoDownLadderResponse response) {
         System.out.println("\n실행 결과");
         Map<Name, WinningEntry> nameWinningEntryMap = response.nameWinningEntryMap();
         String result = nameWinningEntryMap
