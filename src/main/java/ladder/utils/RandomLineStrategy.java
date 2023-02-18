@@ -10,12 +10,19 @@ public class RandomLineStrategy implements LineStrategy {
     public List<Boolean> generate(int sectionCount) {
         List<Boolean> line = makeRandomLine(sectionCount);
 
-        IntStream.range(0, sectionCount - 1).forEach(i -> {
-            if (line.get(i) && line.get(i + 1)) {
-                line.set(i + 1, false);
-            }
-        });
+        IntStream.range(0, sectionCount - 1)
+                .forEach(idx -> {convertDiscontinuous(line, idx);});
         return line;
+    }
+
+    private void convertDiscontinuous(List<Boolean> line, int idx) {
+        if (isContinuous(line, idx)) {
+            line.set(idx + 1, false);
+        }
+    }
+
+    public boolean isContinuous(List<Boolean> line, int idx) {
+        return line.get(idx) && line.get(idx + 1);
     }
 
     private List<Boolean> makeRandomLine(int sectionCount) {
