@@ -30,7 +30,7 @@ public enum OutputView {
 
     public static void printLadder(final Names names, final Ladder ladder) {
         StringBuilder result = new StringBuilder();
-        ladder.getLines().forEach(line -> result.append(makeLadderFormat(line.getStatuses(), names)));
+        ladder.getLadder().forEach(line -> result.append(makeLadderFormat(line.getStatuses(), names)));
         System.out.println(result);
     }
 

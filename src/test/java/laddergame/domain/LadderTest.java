@@ -27,6 +27,6 @@ public class LadderTest {
         final Ladder ladder = new Ladder(height, 3);
 
         //then
-        assertThat(ladder.getLines()).hasSize(height);
+        assertThat(ladder.getLadder()).hasSize(height);
     }
 }

@@ -15,7 +15,7 @@ public class Ladder {
         this.lines = createLines(height, numberOfPlayers);
     }
 
-    public List<Line> getLines() {
+    public List<Line> getLadder() {
         return Collections.unmodifiableList(lines);
     }
 
