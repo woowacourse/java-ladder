@@ -44,12 +44,12 @@ public class PlayerNames {
     }
     
     private void validateDuplicateNames(List<String> splitedNames) {
-        if (deleteDuplicateNames(splitedNames) != splitedNames.size()) {
+        if (getDistinctNamesNumber(splitedNames) != splitedNames.size()) {
             throw new IllegalArgumentException("중복된 이름은 입력할 수 없습니다.");
         }
     }
     
-    private int deleteDuplicateNames(List<String> splitedNames) {
+    private int getDistinctNamesNumber(List<String> splitedNames) {
         return (int) splitedNames.stream()
                 .distinct()
                 .count();
