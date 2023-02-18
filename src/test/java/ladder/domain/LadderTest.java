@@ -21,7 +21,7 @@ class LadderTest {
     void create_success() {
         // expect
         assertThatNoException().isThrownBy(() -> {
-            new Ladder(makeLines(), 3);
+            new Ladder(makeLines());
         });
     }
 }
