@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Names {
     private static final String NAMES_DELIMITER = ",";
@@ -17,6 +18,12 @@ public class Names {
 
     public Name getName(int index) {
         return names.get(index);
+    }
+
+    public List<String> getValues() {
+        return names.stream()
+                .map(Name::getValue)
+                .collect(Collectors.toList());
     }
 
     public int size() {
