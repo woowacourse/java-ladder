@@ -29,11 +29,11 @@ public class OutputView {
 
     public void printLines(Lines lines) {
         for (Line line : lines.getLines()) {
-            StringBuilder result = new StringBuilder();
-            result.append(Message.COLUMN_LADDER.message);
+            StringBuilder ladderDisplay = new StringBuilder();
+            ladderDisplay.append(Message.COLUMN_LADDER.message);
             line.getPoints()
-                    .forEach(isPoint -> result.append(getPointString(isPoint)));
-            System.out.println(result);
+                    .forEach(isPoint -> ladderDisplay.append(getPointString(isPoint)));
+            System.out.println(ladderDisplay);
         }
     }
 
@@ -46,7 +46,7 @@ public class OutputView {
 
 
     private enum Message {
-        OUTPUT_RESULT("실행결과\n"),
+        OUTPUT_RESULT("실행결과" + System.lineSeparator()),
         COLUMN_LADDER("  |"),
         ROW_LADDER("-----|"),
         EMPTY_ROW_LADDER("     |");
