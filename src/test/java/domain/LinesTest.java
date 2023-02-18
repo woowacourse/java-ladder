@@ -11,7 +11,7 @@ import utils.booleanGenerator.RandomBooleanGenerator;
 
 class LinesTest {
 
-    private BooleanGenerator booleanGenerator= new RandomBooleanGenerator();
+    private BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
 
     @DisplayName("1이상 100이하 층 수를 테스트한다.")
     @ParameterizedTest

@@ -15,7 +15,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public void printExceptionMessage(IllegalArgumentException exception) {
+    public void printExceptionMessage(Exception exception) {
         System.out.println(exception.getMessage());
     }
 

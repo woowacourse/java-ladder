@@ -4,7 +4,6 @@ import domain.Height;
 import domain.Lines;
 import domain.Names;
 import utils.booleanGenerator.BooleanGenerator;
-import utils.booleanGenerator.RandomBooleanGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -22,10 +21,14 @@ public class MainController {
     }
 
     public void start() {
-        Names names = inputView.readNames();
-        Height height = inputView.readHeight();
-        int lineNumber = names.getPersonNumber() - 1;
-        Lines lines = new Lines(lineNumber, height.getHeight(), booleanGenerator);
-        outputView.printResult(names, lines);
+        try {
+            Names names = inputView.readNames();
+            Height height = inputView.readHeight();
+            int lineNumber = names.getPersonNumber() - 1;
+            Lines lines = new Lines(lineNumber, height.getHeight(), booleanGenerator);
+            outputView.printResult(names, lines);
+        } catch (Exception exception) {
+            outputView.printExceptionMessage(exception);
+        }
     }
 }
