@@ -28,8 +28,7 @@ public class OutputView {
         finallyResult.append(makePlayerNamesOutput(players))
                 .append(NEW_LINE)
                 .append(makeLadderOutput(players, ladder))
-                .append(makeLadderResultOutput(ladderResults))
-                .append(NEW_LINE);
+                .append(makeLadderResults(ladderResults));
 
         System.out.println(finallyResult);
     }
@@ -41,7 +40,6 @@ public class OutputView {
 
         for (int i = 1; i < players.getPlayers().size(); i++) {
             appendPlayerNames(longestPlayerName, players.getPlayers().get(i));
-
         }
 
         return playerNamesOutput;
@@ -120,45 +118,13 @@ public class OutputView {
                 .append(NEW_LINE);
     }
 
-    public StringBuilder makeLadderResultOutput(final LadderResults ladderResults) {
-        int longestPlayerName = ladderResults.findLongestLadderResults();
-
-        drawFirstLadderResult(ladderResults);
-
-        for (int i = 1; i < ladderResults.getLadderResults().size(); i++) {
-            appendLadderResults(longestPlayerName, ladderResults.getLadderResults().get(i));
+    public String makeLadderResults(LadderResults ladderResults) {
+        for (final LadderResult ladderResult : ladderResults.getLadderResults().values()) {
+            ladderResultsOutput.append(
+                    String.format("%-" + (MAXIMUM_LENGTH_OF_NAME + 1) + "s", ladderResult.getResult()));
         }
-
-        return ladderResultsOutput;
-    }
-
-    private void drawFirstLadderResult(final LadderResults ladderResults) {
-        ladderResultsOutput.append(ladderResults.findFirstResult())
-                .append(BLANK);
-    }
-
-    private void appendLadderResults(final int longestResult, final LadderResult ladderResult) {
-        if (isMaximumLengthOfResult(ladderResult)) {
-            drawResultWhenMaximumLength(ladderResult);
-            return;
-        }
-        drawLadderResult(longestResult, ladderResult);
-    }
-
-    private boolean isMaximumLengthOfResult(final LadderResult ladderResult) {
-        return ladderResult.getLengthOfLadderResult() == MAXIMUM_LENGTH_OF_NAME;
-    }
-
-    private void drawResultWhenMaximumLength(final LadderResult ladderResult) {
-        ladderResultsOutput.append(BLANK)
-                .append(ladderResult.getResult());
-    }
-
-    private void drawLadderResult(final int longestResult, final LadderResult ladderResult) {
-        int numberOfBlank = longestResult - ladderResult.getResult().length();
-        ladderResultsOutput.append(LadderSymbol.draw(BLANK, numberOfBlank))
-                .append(ladderResult.getResult())
-                .append(BLANK);
+        ladderResultsOutput.append(NEW_LINE);
+        return ladderResultsOutput.toString();
     }
 
     public void printResult(final Players players, final String command) {

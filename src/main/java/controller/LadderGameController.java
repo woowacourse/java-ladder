@@ -22,15 +22,12 @@ public class LadderGameController {
 
     public void run() {
         Players players = makePlayers();
-
         LadderResults ladderResults = makeLadderResults(players.findNumberOfPlayers());
         Ladder ladder = makeLadder(players.findNumberOfPlayers());
-
-        outputView.printLadderGameStatus(players, ladder, ladderResults);
-
         Game game = new Game(ladder, players, ladderResults);
         game.calculateResultOfPlayer();
 
+        outputView.printLadderGameStatus(players, ladder, ladderResults);
         printResultOfPlayer(players);
     }
 
@@ -38,7 +35,7 @@ public class LadderGameController {
         String command = "";
 
         while (!command.equals("all")) {
-            command = inputView.readName();
+            command = makeCommand();
             outputView.printResult(players, command);
         }
     }
