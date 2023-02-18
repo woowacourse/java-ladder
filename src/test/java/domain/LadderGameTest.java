@@ -1,6 +1,5 @@
 package domain;
 
-import factory.LadderFactory;
 import factory.PlayersFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,10 +16,9 @@ public class LadderGameTest {
     @BeforeEach
     void before() {
         List<String> playerNames = List.of("a", "b", "c");
-        Players players = PlayersFactory.generate(playerNames);
         int ladderHeight = 10;
-        Ladder ladder = LadderFactory.generate(playerNames.size(), ladderHeight);
-        ladderGame = new LadderGame(players, ladder);
+        Players players = PlayersFactory.generate(playerNames);
+        ladderGame = new LadderGame(players, ladderHeight);
     }
 
     @DisplayName("Ladder를 생성한다.")

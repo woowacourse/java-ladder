@@ -1,5 +1,7 @@
 package domain;
 
+import factory.LadderFactory;
+
 import java.util.List;
 
 public class LadderGame {
@@ -7,9 +9,9 @@ public class LadderGame {
     private final Players players;
     private final Ladder ladder;
 
-    public LadderGame(final Players players, final Ladder ladder) {
+    public LadderGame(final Players players, final int ladderHeight) {
         this.players = players;
-        this.ladder = ladder;
+        this.ladder = LadderFactory.generate(players.getPlayerSize(), ladderHeight);
     }
 
     public Ladder getLadder() {

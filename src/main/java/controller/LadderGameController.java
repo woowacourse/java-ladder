@@ -1,7 +1,6 @@
 package controller;
 
 import domain.*;
-import factory.LadderFactory;
 import factory.PlayersFactory;
 import view.InputView;
 import view.OutputView;
@@ -14,6 +13,7 @@ public class LadderGameController {
     private final InputView inputView;
     private final OutputView outputView;
     private LadderGame ladderGame;
+    private Players players;
 
     public LadderGameController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
@@ -27,10 +27,9 @@ public class LadderGameController {
 
     private void ready() {
         List<String> playerNames = inputView.readPlayerNames();
-        Players players = PlayersFactory.generate(playerNames);
         int ladderHeight = inputView.readLadderHeight();
-        Ladder ladder = LadderFactory.generate(playerNames.size(), ladderHeight);
-        ladderGame = new LadderGame(players, ladder);
+        players = PlayersFactory.generate(playerNames);
+        ladderGame = new LadderGame(players, ladderHeight);
     }
 
     private void printGeneratedLadder() {

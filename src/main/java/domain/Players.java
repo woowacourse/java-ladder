@@ -21,4 +21,8 @@ public class Players {
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    public int getPlayerSize() {
+        return players.size();
+    }
+
 }
