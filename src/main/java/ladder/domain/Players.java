@@ -9,12 +9,12 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(List<Player> players) {
+    public Players(final List<Player> players) {
         validatePlayers(players);
         this.players = players;
     }
 
-    private void validatePlayers(List<Player> players) {
+    private void validatePlayers(final List<Player> players) {
         if (players.size() < MIN_PLAYER_COUNT) {
             throw new IllegalArgumentException("참가자는 " + MIN_PLAYER_COUNT + "명 이상이어야 합니다.");
         }

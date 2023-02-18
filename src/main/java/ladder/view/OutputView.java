@@ -13,7 +13,7 @@ public class OutputView {
     private static final String NONE = "     ";
     private static final String MESSAGE_GAME_RESULT = "실행 결과";
 
-    public void showGameResult(List<String> players, List<Line> lines) {
+    public void showGameResult(final List<String> players, final List<Line> lines) {
         String result = players.stream()
                 .map(name -> String.format("%5s", name))
                 .collect(Collectors.joining());
@@ -25,7 +25,7 @@ public class OutputView {
                 .forEach(System.out::println);
     }
 
-    private String extractLine(Line line) {
+    private String extractLine(final Line line) {
         List<Boolean> points = line.toUnmodifiableLine();
         StringJoiner result = new StringJoiner(VERTICAL, NONE + VERTICAL, VERTICAL);
 
@@ -36,7 +36,7 @@ public class OutputView {
         return result.toString();
     }
 
-    private String toPointFormat(Boolean point) {
+    private String toPointFormat(final Boolean point) {
         if (point) {
             return HORIZON;
         }

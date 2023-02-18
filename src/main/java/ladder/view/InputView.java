@@ -20,7 +20,7 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    private void validateNumber(String input) {
+    private void validateNumber(final String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
