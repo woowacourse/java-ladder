@@ -63,7 +63,7 @@ public class Players {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public int numberOfPlayers() {
+    public int size() {
         return players.size();
     }
 }
