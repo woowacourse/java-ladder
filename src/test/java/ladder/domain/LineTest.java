@@ -33,7 +33,7 @@ class LineTest {
         assertThat(line.getBars()).containsExactly(MOVABLE, IMMOVABLE, MOVABLE);
     }
 
-    static class DeterminedRandomGenerator implements RandomGenerator {
+    static class DeterminedRandomGenerator implements RandomGenerator<Boolean> {
         private final List<Boolean> bars;
 
         public DeterminedRandomGenerator(List<Boolean> bars) {

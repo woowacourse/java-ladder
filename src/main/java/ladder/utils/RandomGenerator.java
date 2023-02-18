@@ -1,6 +1,6 @@
 package ladder.utils;
 
-public interface RandomGenerator {
+public interface RandomGenerator<T> {
 
-    <T> T generate();
+    T generate();
 }

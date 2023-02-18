@@ -15,11 +15,11 @@ public class Line {
         this(size, new BooleanGenerator());
     }
 
-    public Line(int size, RandomGenerator randomGenerator) {
+    public Line(int size, RandomGenerator<Boolean> randomGenerator) {
         this.bars = generateBars(size, randomGenerator);
     }
 
-    private List<Bar> generateBars(int size, RandomGenerator randomGenerator) {
+    private List<Bar> generateBars(int size, RandomGenerator<Boolean> randomGenerator) {
         Deque<Bar> bars = new LinkedList<>();
         for (int i = 0; i < size; i++) {
             bars.add(getAppropriateBar(bars, randomGenerator));
@@ -27,7 +27,7 @@ public class Line {
         return new ArrayList<>(bars);
     }
 
-    private Bar getAppropriateBar(Deque<Bar> bars, RandomGenerator randomGenerator) {
+    private Bar getAppropriateBar(Deque<Bar> bars, RandomGenerator<Boolean> randomGenerator) {
         if (bars.isEmpty() || bars.getLast().isImmovable()) {
             return Bar.of(randomGenerator.generate());
         }
