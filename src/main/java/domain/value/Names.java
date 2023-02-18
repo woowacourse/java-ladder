@@ -42,7 +42,11 @@ public class Names {
     }
 
     public int indexOf(final Name name) {
-        return names.indexOf(name);
+        int index = names.indexOf(name);
+        if (index < 0) {
+            throw new IllegalArgumentException("없는 이름입니다");
+        }
+        return index;
     }
 
     public Name get(final int index) {

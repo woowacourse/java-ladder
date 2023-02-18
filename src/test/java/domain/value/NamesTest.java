@@ -118,6 +118,20 @@ class NamesTest {
         assertThat(names.indexOf(new Name(nameValue))).isEqualTo(index);
     }
 
+    @Test
+    void indexOf_는_없는_이름에_대해서는_예외를_반환한다() {
+        // given
+        Names names = new Names(List.of(new Name("말랑"), new Name("바다")));
+
+        // when & then
+        assertThatThrownBy(() ->
+                names.indexOf(new Name("말랑이"))
+        ).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() ->
+                names.indexOf(new Name("말랑 "))
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
+
     @ParameterizedTest(name = "특정 순서에 해당하는 이름을 알 수 있다. 예를 들어 [{0}] 에서 [{1}]의 위치에 존재하는 이름은 [{2}] 이다.")
     @CsvSource(value = {
             "바다,말랑:0:바다",
