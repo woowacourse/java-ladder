@@ -15,7 +15,7 @@ public class ParticipantsTest {
     @ParameterizedTest
     @ValueSource(strings = {"pobi,pobi"})
     @DisplayName("입력받은 이름에 중복값이 존재하면, 예외가 발생한다.")
-    void name_duplicate_error_test(String names)  {
+    void create_givenDuplicatedNames_thenFail(final String names)  {
         assertThatThrownBy(() -> Participants.create(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_DUPLICATE_NAME.getMessage());
@@ -24,7 +24,7 @@ public class ParticipantsTest {
     @ParameterizedTest
     @ValueSource(strings = {"pobi"})
     @DisplayName("입력받은 참여자의 수가 1명이면, 예외가 발생한다.")
-    void participant_single_count_error_test(String names) {
+    void create_givenSingleCountParticipant_thenFail(final String names) {
         assertThatThrownBy(() -> Participants.create(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_PARTICIPANT_COUNT.getMessage());
@@ -32,8 +32,8 @@ public class ParticipantsTest {
 
     @ParameterizedTest
     @CsvSource(value = {"pobi,jiwon,hoocu:3", "choco,jelly,pen,water:4"}, delimiter=':')
-    @DisplayName("참여자 이름의 수에 따라, 참여자 수의 반환값이 달라진다.")
-    void participant_size_test(String names, int expectedSize) {
+    @DisplayName("참여자 이름의 수만큼 참여자가 생성된다.")
+    void size_givenParticipantNames_thenReturnParticipantCount(final String names, final int expectedSize) {
         // given
         Participants participants = Participants.create(names);
 
