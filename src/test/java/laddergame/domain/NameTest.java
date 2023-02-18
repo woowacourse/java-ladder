@@ -13,7 +13,7 @@ class NameTest {
     static class NameLengthTest {
         @DisplayName("1 이상 5 이하 글자가 들어오면 name이 정상적으로 생성된다.")
         @ParameterizedTest
-        @ValueSource(strings = {"에단", "준팍"})
+        @ValueSource(strings = {"김", "준팍", "스티브잡스"})
         void givenOneMoreFiveLess_thenSuccess(final String name) {
             assertThatCode(() -> new Name(name))
                     .doesNotThrowAnyException();
