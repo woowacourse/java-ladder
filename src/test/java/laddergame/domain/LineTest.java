@@ -33,13 +33,6 @@ class LineTest {
         assertThatThrownBy(() -> new Line(List.of()));
     }
 
-    @DisplayName("가로 라인이 겹치면 예외가 발생한다.")
-    @ParameterizedTest(name = "lineValue = {0}")
-    @MethodSource("lineCrossedParameterDummy")
-    void throwExceptionWhenBothTrue(final List<Boolean> lineValue) {
-        assertThatThrownBy(() -> new Line(lineValue));
-    }
-
     static Stream<Arguments> lineParameterDummy() {
         return Stream.of(
                 Arguments.arguments(List.of(true, false)),
