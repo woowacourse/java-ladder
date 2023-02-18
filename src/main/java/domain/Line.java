@@ -32,13 +32,10 @@ public class Line {
 
     private void validateConsistExistScaffold(final Deque<Scaffold> scaffolds) {
         Scaffold beforeScaffold = scaffolds.removeFirst();
-        if (beforeScaffold != scaffolds.peekFirst()) {
-            return;
+        if (beforeScaffold == scaffolds.peekFirst()
+                && beforeScaffold == Scaffold.EXIST) {
+            throw new IllegalArgumentException();
         }
-        if (beforeScaffold == Scaffold.NONE) {
-            return;
-        }
-        throw new IllegalArgumentException();
     }
 
     public int size() {
