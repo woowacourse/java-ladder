@@ -15,6 +15,16 @@ public class InputView {
         return instance;
     }
 
+    public Names readNames() {
+        String input = readInput(Message.INPUT_NAMES.message);
+        return new Names(input);
+    }
+
+    public Height readHeight() {
+        String input = readInput(Message.INPUT_LADDER_SIZE.message);
+        return new Height(parseHeight(input));
+    }
+
     private static int parseHeight(String input) {
         try {
             return Integer.parseInt(input);
@@ -26,17 +36,6 @@ public class InputView {
     private static String readInput(String message) {
         System.out.println(message);
         return scanner.nextLine();
-    }
-
-    public Names readNames() {
-        String input = readInput(Message.INPUT_NAMES.message);
-        return new Names(input);
-    }
-
-    public Height readHeight() {
-        String input = readInput(Message.INPUT_LADDER_SIZE.message);
-        return new Height(parseHeight(input));
-
     }
 
     private enum Message {

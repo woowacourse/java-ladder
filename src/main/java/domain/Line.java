@@ -6,8 +6,7 @@ import utils.booleanGenerator.BooleanGenerator;
 
 public class Line {
     private final BooleanGenerator generator;
-
-    List<Boolean> line;
+    private final List<Boolean> line = new ArrayList<>();
 
     public Line(int lineSize, BooleanGenerator generator) {
         this.generator = generator;
@@ -19,7 +18,6 @@ public class Line {
     }
 
     private void generateLine(int lineSize) {
-        line = new ArrayList<>();
         for (int index = 0; index < lineSize; index++) {
             line.add(getPoint(index));
         }
