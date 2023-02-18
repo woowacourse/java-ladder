@@ -8,10 +8,9 @@ public class Line {
     private final BooleanGenerator generator;
     List<Boolean> points = new ArrayList<>();
 
-    public Line(int personNumber, BooleanGenerator generator) {
+    public Line(int lineNumber, BooleanGenerator generator) {
         this.generator = generator;
-        int pointSize = personNumber - 1;
-        for (int index = 0; index < pointSize; index++) {
+        for (int index = 0; index < lineNumber; index++) {
             points.add(getPoint(index));
         }
     }

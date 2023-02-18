@@ -13,7 +13,8 @@ public class MainController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private Map<ApplicationStatus, Supplier<ApplicationStatus>> gameGuide;
+
+    private final Map<ApplicationStatus, Supplier<ApplicationStatus>> gameGuide;
     private Names names;
     private Height height;
     private Lines lines;
@@ -71,7 +72,8 @@ public class MainController {
     }
 
     private ApplicationStatus createLines() {
-        lines = new Lines(names.getPersonNumber(), height.getHeight());
+        int lineNumber = names.getPersonNumber() - 1;
+        lines = new Lines(lineNumber, height.getHeight());
         return ApplicationStatus.PRINT_RESULT;
     }
 

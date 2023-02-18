@@ -22,5 +22,4 @@ class HeightTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Height(height));
     }
-
 }

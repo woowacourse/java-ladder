@@ -24,10 +24,10 @@ public class OutputView {
         names.getNames()
                 .forEach(name -> System.out.printf("%-5s", name.getName()));
         System.out.println();
-        Lines(lines);
+        printLines(lines);
     }
 
-    public void Lines(Lines lines) {
+    public void printLines(Lines lines) {
         for (Line line : lines.getLines()) {
             StringBuilder result = new StringBuilder();
             result.append(Message.COLUMN_LADDER.message);
