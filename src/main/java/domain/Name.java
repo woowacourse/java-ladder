@@ -21,10 +21,19 @@ public class Name {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH) {
+        if (isLongerThanMaxLength(name) || isShorterThanMinLength(name)) {
             throw new IllegalArgumentException(INVALID_USER_NAME_LENGTH.getMessage());
         }
     }
+
+    private boolean isShorterThanMinLength(String name) {
+        return name.length() < MIN_NAME_LENGTH;
+    }
+
+    private boolean isLongerThanMaxLength(String name) {
+        return name.length() > MAX_NAME_LENGTH;
+    }
+
 
     private void validateNameFormat(String name) {
         if (name.contains(BLANK)) {
