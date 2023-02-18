@@ -24,4 +24,14 @@ public class Ladders {
     public List<Ladder> getLadders() {
         return ladders;
     }
+
+    public int getResult(int current) {
+        for (int i = getHeight()-1; i > 0; i--) {
+            current+=ladders.get(i)
+                    .getLadder()
+                    .get(current)
+                    .getMove();
+        }
+        return current;
+    }
 }
