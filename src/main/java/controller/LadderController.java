@@ -13,13 +13,18 @@ import view.OutputView;
 public class LadderController {
 	private final InputView inputView;
 	private final OutputView outputView;
-
 	private People people;
 	private Ladder ladder;
 
 	public LadderController(InputView inputView, OutputView outputView) {
 		this.inputView = inputView;
 		this.outputView = outputView;
+	}
+
+	private List<Boolean> getLevel(Level level) {
+		return level.getStools().stream()
+			.map(Stool::isStool)
+			.collect(Collectors.toList());
 	}
 
 	public void init() {
@@ -33,13 +38,7 @@ public class LadderController {
 
 	private List<List<Boolean>> getLadder() {
 		return ladder.getLadder().stream()
-			.map(LadderController::getLevel)
-			.collect(Collectors.toList());
-	}
-
-	private static List<Boolean> getLevel(Level level) {
-		return level.getStools().stream()
-			.map(Stool::isStool)
+			.map(this::getLevel)
 			.collect(Collectors.toList());
 	}
 

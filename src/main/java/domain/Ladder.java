@@ -1,8 +1,9 @@
 package domain;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import exception.Error;
 
@@ -15,14 +16,15 @@ public class Ladder {
 
 	public static Ladder from(int height, int participantSize) {
 		validate(height);
-		return new Ladder(IntStream.range(0, height)
-			.mapToObj(o -> new Level(participantSize))
-			.collect(Collectors.toList()));
+		return Stream.generate(() -> new Level(participantSize))
+			.limit(height)
+			.collect(collectingAndThen(toList(), Ladder::new));
 	}
 
 	private static void validate(int height) {
-		if (height < 1 || height > 100)
+		if (height < 1 || height > 100) {
 			throw new IllegalArgumentException(Error.HEIGHT_RANGE_FROM_1_TO_100.getMessage());
+		}
 	}
 
 	public int getHeight() {
