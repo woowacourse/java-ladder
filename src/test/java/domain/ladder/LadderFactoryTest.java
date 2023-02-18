@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import domain.value.Height;
 import domain.value.Width;

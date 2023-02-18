@@ -2,8 +2,8 @@ package controller;
 
 import common.Logger;
 import controller.response.GoDownLadderResponse;
-import domain.Ladder;
-import domain.LadderFactory;
+import domain.ladder.Ladder;
+import domain.ladder.LadderFactory;
 import domain.value.*;
 import view.InputView;
 import view.OutputView;

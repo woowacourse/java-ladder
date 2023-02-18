@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 public interface ScaffoldGenerator {
 

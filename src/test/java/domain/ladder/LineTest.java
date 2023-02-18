@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import domain.value.Direction;
 import domain.value.Position;

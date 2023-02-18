@@ -1,9 +1,9 @@
 package view;
 
 import controller.response.GoDownLadderResponse;
-import domain.Ladder;
-import domain.Line;
-import domain.Scaffold;
+import domain.ladder.Ladder;
+import domain.ladder.Line;
+import domain.ladder.Scaffold;
 import domain.value.Name;
 import domain.value.Names;
 import domain.value.WinningEntries;

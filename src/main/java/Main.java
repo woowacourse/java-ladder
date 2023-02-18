@@ -1,7 +1,7 @@
 import controller.LadderController;
-import domain.LadderFactory;
-import domain.RandomScaffoldGenerator;
-import domain.ScaffoldGenerator;
+import domain.ladder.LadderFactory;
+import domain.ladder.RandomScaffoldGenerator;
+import domain.ladder.ScaffoldGenerator;
 
 public class Main {
 
