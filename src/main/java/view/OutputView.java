@@ -29,7 +29,7 @@ public class OutputView {
     }
 
     public void printLadders(Ladders ladders) {
-        ladders.getLadders().forEach(this::printLadder);
+        ladders.get().forEach(this::printLadder);
     }
 
     public void printExceptionMessage(String errorMessage) {
