@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 import ladder.error.ErrorMessage;
 
 public class Height {
@@ -23,4 +25,18 @@ public class Height {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Height height = (Height)o;
+        return this.height == height.height;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash();
+    }
 }
