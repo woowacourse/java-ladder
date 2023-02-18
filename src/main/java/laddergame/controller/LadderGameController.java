@@ -15,14 +15,17 @@ import java.util.List;
 public class LadderGameController {
 
     public void run() {
+        LadderGame ladderGame = initLadderGame();
+        printLadderResult(ladderGame);
+    }
+
+    private LadderGame initLadderGame() {
         Players players = RepeatValidator.readUntilValidate(this::readPlayers);
         int height = RepeatValidator.readUntilValidate(this::readLadderHeight);
 
         LadderMaker ladderMaker = new LadderMaker(new RandomBooleanGenerator());
         Ladder ladder = ladderMaker.make(players.size(), new LadderHeight(height));
-        LadderGame ladderGame = new LadderGame(players, ladder);
-
-        printLadderResult(ladderGame);
+        return new LadderGame(players, ladder);
     }
 
     private Players readPlayers() {
