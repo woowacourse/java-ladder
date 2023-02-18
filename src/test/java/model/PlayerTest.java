@@ -20,9 +20,9 @@ public class PlayerTest {
         Player player = new Player(new Name("pobi"));
 
         //when
-        Name result = player.getName();
+        String result = player.getName();
 
         //then
-        assertThat(result).isEqualTo(new Name("pobi"));
+        assertThat(result).isEqualTo("pobi");
     }
 }
