@@ -18,11 +18,11 @@ public class RandomRowsGenerator {
         return new Rows(rows);
     }
 
-    private Row generateValidRow(int size) {
+    private Row generateValidRow(int width) {
         try {
-            return generateRow(size);
+            return generateRow(width);
         } catch (IllegalArgumentException e) {
-            return generateValidRow(size);
+            return generateValidRow(width);
         }
     }
 

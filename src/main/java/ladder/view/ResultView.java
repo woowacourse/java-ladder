@@ -10,7 +10,7 @@ public class ResultView {
 
     public void printNames(List<String> names) {
         for (String name : names) {
-            System.out.print(String.format("%6s", name));
+            System.out.printf("%6s", name);
         }
         System.out.println();
     }

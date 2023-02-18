@@ -27,13 +27,17 @@ public class Row {
         int initialPosition = 0;
         int lastPosition = row.size() - 2;
         for (int position = initialPosition; position <= lastPosition; position++) {
-            if (isConsecutiveStep(row, position)) {
-                throw new IllegalArgumentException(CONSECUTIVE_FOOTHOLD_ERROR_MESSAGE);
-            }
+            checkConsecutiveSteps(row, position);
         }
     }
 
-    private boolean isConsecutiveStep(List<Foothold> row, int position) {
+    private void checkConsecutiveSteps(List<Foothold> row, int position) {
+        if (isConsecutiveSteps(row, position)) {
+            throw new IllegalArgumentException(CONSECUTIVE_FOOTHOLD_ERROR_MESSAGE);
+        }
+    }
+
+    private boolean isConsecutiveSteps(List<Foothold> row, int position) {
         return row.get(position) == Foothold.Y
                 && row.get(position + 1) == Foothold.Y;
     }
