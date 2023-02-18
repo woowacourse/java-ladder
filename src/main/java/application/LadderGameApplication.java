@@ -1,4 +1,4 @@
-package controller;
+package application;
 
 import static java.util.stream.Collectors.*;
 
@@ -12,15 +12,15 @@ import utils.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
-public class LadderController {
+public class LadderGameApplication {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final NumberGenerator numberGenerator;
 
-    public LadderController(InputView inputView,
-                            OutputView outputView,
-                            NumberGenerator numberGenerator) {
+    public LadderGameApplication(InputView inputView,
+                                 OutputView outputView,
+                                 NumberGenerator numberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.numberGenerator = numberGenerator;
