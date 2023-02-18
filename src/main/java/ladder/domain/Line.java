@@ -8,7 +8,6 @@ import ladder.util.BooleanGenerator;
 
 public class Line implements Iterable<Boolean> {
     private static final int FIRST_CELL_INDEX = 0;
-
     private final List<Boolean> line = new ArrayList<>();
     private final BooleanGenerator generator;
 
@@ -38,7 +37,11 @@ public class Line implements Iterable<Boolean> {
     }
 
     private boolean existLineAtLeftCell(int cellIndex) {
-        return cellIndex != FIRST_CELL_INDEX && line.get(cellIndex - 1);
+        return cellIndex != FIRST_CELL_INDEX && line.get(beforeIndexOf(cellIndex));
+    }
+
+    private int beforeIndexOf(int index) {
+        return index - 1;
     }
 
     @Override
