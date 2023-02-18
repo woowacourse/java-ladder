@@ -16,10 +16,10 @@ public class OutputView {
     }
 
     private static void printNames(List<String> names, int nameMaxLength) {
-        String nameLine = names.stream()
+        String playerNames = names.stream()
                 .map(name -> String.format("%" + (nameMaxLength + 1) + "s", name))
                 .collect(Collectors.joining());
-        System.out.println(nameLine);
+        System.out.println(playerNames);
     }
 
     private static void printLines(List<List<Boolean>> lines, int nameMaxLength) {
