@@ -12,10 +12,10 @@ public class LadderGenerator {
         return INSTANCE;
     }
 
-    public List<Bridge> generateLadder(int bridgeCount) {
-        validateBridgeCountRange(bridgeCount);
+    public List<Bridge> generateLadder(int width) {
+        validateBridgeCountRange(width);
         List<Bridge> ladder = new ArrayList<>();
-        while (ladder.size() < bridgeCount) {
+        while (ladder.size() < width) {
             ladder.add(generateBridge(ladder));
         }
         return ladder;
