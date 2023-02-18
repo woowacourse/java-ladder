@@ -2,6 +2,7 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
+import domain.LadderResults;
 import domain.Lines;
 import domain.Players;
 import java.util.List;
@@ -20,6 +21,10 @@ public class LadderGameController {
 
     public void run() {
         Players players = makePlayers();
+
+        // Todo: players의 참여자 수에 의존하는 문제.. (추후 리팩토링)
+        LadderResults ladderResults = makeLadderResults(players.findNumberOfPlayers());
+
         Ladder ladder = makeLadder(players.findNumberOfPlayers());
 
         outputView.printResult(players, ladder);
@@ -32,6 +37,16 @@ public class LadderGameController {
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return makePlayers();
+        }
+    }
+
+    private LadderResults makeLadderResults(int numberOfPlayer) {
+        try {
+            List<String> ladderResults = inputView.readLadderResults();
+            return new LadderResults(ladderResults, numberOfPlayer);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return makeLadderResults(numberOfPlayer);
         }
     }
 

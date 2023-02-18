@@ -18,9 +18,9 @@ public class LadderResultsTest {
         // given
         int notMatchedPlayerNumber = playerNumber - 1;
 
-        List<LadderResult> givenLadderResults = new ArrayList<>();
+        List<String> givenLadderResults = new ArrayList<>();
         for (int i = 0; i < notMatchedPlayerNumber; i++) {
-            givenLadderResults.add(new LadderResult(String.valueOf(i)));
+            givenLadderResults.add(String.valueOf(i));
         }
 
         // when && then
@@ -33,9 +33,9 @@ public class LadderResultsTest {
     @DisplayName("결과의 수가 플레이어의 수와 같다면 예외가 발생하지 않는다.")
     void throws_not_exception_when_results_matched_with_player_numbers(int playerNumber) {
         // given
-        List<LadderResult> givenLadderResults = new ArrayList<>();
+        List<String> givenLadderResults = new ArrayList<>();
         for (int i = 0; i < playerNumber; i++) {
-            givenLadderResults.add(new LadderResult(String.valueOf(i)));
+            givenLadderResults.add(String.valueOf(i));
         }
 
         // when
