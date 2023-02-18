@@ -5,17 +5,17 @@ import java.util.List;
 
 public class Line {
 
-    private static final int MIN_STATUS = 1;
-    private static final int FIRST_STATUS = 0;
+    private static final int MIN_NUMBER_OF_EXISTENCES = 1;
+    private static final int FIRST_INDEX_OF_EXISTENCES = 0;
 
-    private final List<Boolean> statuses;
+    private final List<Boolean> line;
     private final PickStrategy strategy;
 
     private Line(final int numberOfPlayers, final PickStrategy pickStrategy) {
         this.strategy = pickStrategy;
-        int numberOfStatus = numberOfPlayers - 1;
-        validateNumberOfStatus(numberOfStatus);
-        this.statuses = createStatuses(numberOfStatus);
+        int numberOfExistences = numberOfPlayers - 1;
+        validateNumberOfExistences(numberOfExistences);
+        this.line = createLine(numberOfExistences);
     }
 
     public static Line from(final int numberOfPlayers) {
@@ -26,42 +26,42 @@ public class Line {
         return new Line(numberOfPlayers, pickStrategy);
     }
 
-    public List<Boolean> getStatuses() {
-        return new ArrayList<>(statuses);
+    public List<Boolean> getLine() {
+        return new ArrayList<>(line);
     }
 
-    private List<Boolean> createStatuses(int numberOfStatus) {
-        List<Boolean> statuses = new ArrayList<>();
+    private List<Boolean> createLine(final int numberOfStatus) {
+        List<Boolean> line = new ArrayList<>();
 
         for (int i = 0; i < numberOfStatus; i++) {
-            statuses.add(createLineStatus(statuses, i));
+            line.add(checkExistence(line, i));
         }
 
-        return statuses;
+        return line;
     }
 
-    private boolean createLineStatus(final List<Boolean> statuses, final int index) {
+    private boolean checkExistence(final List<Boolean> line, final int index) {
         final boolean pick = strategy.pick();
 
-        if (index == FIRST_STATUS) {
+        if (index == FIRST_INDEX_OF_EXISTENCES) {
             return pick;
         }
 
-        if (isOverlap(statuses, pick)) {
+        if (isOverlap(line, pick)) {
             return false;
         }
 
         return pick;
     }
 
-    private static boolean isOverlap(final List<Boolean> statuses, final boolean pick) {
-        int lastIndex = statuses.size() - 1;
-        return statuses.get(lastIndex) && pick;
+    private static boolean isOverlap(final List<Boolean> line, final boolean pick) {
+        int lastIndex = line.size() - 1;
+        return line.get(lastIndex) && pick;
     }
 
-    private void validateNumberOfStatus(final int numberOfStatus) {
-        if (numberOfStatus < MIN_STATUS) {
-            throw new IllegalStateException("Player는 2명보다 작을 수 없습니다.");
+    private void validateNumberOfExistences(final int numberOfExistences) {
+        if (numberOfExistences < MIN_NUMBER_OF_EXISTENCES) {
+            throw new IllegalStateException("Line의 길이는 1보다 작을 수 없습니다.");
         }
     }
 }

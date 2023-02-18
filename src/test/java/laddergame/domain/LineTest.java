@@ -41,7 +41,7 @@ public class LineTest {
 
             //then
             assertThat(line)
-                    .extracting("statuses")
+                    .extracting(Line::getLine)
                     .isEqualTo(List.of(true, false));
         }
     }
@@ -55,7 +55,7 @@ public class LineTest {
 
         //then
         assertThat(line)
-                .extracting("statuses")
+                .extracting(Line::getLine)
                 .isEqualTo(List.of(true, false));
     }
 }
