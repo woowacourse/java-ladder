@@ -18,9 +18,7 @@ public class NameTest {
     @Test
     @DisplayName("Name 객체 생성 성공 테스트")
     void createNameTest() {
-        Assertions.assertThatNoException().isThrownBy(() -> {
-            new Name("ocean");
-        });
+        Assertions.assertThatNoException().isThrownBy(() -> new Name("ocean"));
     }
 
     @Test

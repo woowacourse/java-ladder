@@ -27,9 +27,7 @@ public class PlayersTest {
     @DisplayName("Players 객체 생성 성공 테스트")
     void createPlayersTest() {
         Names names = new Names("pobi, neo, hiiro");
-        assertThatNoException().isThrownBy(() -> {
-            new Players(names);
-        });
+        assertThatNoException().isThrownBy(() -> new Players(names));
     }
 
     @ParameterizedTest

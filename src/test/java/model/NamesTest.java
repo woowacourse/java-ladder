@@ -28,9 +28,7 @@ public class NamesTest {
     @Test
     @DisplayName("Names 객체 생성 성공 테스트")
     void createNamesTest() {
-        assertThatNoException().isThrownBy(() -> {
-            new Names("pobi, neo, conan");
-        });
+        assertThatNoException().isThrownBy(() -> new Names("pobi, neo, conan"));
     }
 
     @ParameterizedTest

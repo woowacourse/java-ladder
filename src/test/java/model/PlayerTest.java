@@ -10,9 +10,7 @@ public class PlayerTest {
     @Test
     @DisplayName("Player 객체 생성 성공 테스트")
     void createPlayerTest() {
-        Assertions.assertThatNoException().isThrownBy(() -> {
-            new Player(new Name("pobi"));
-        });
+        Assertions.assertThatNoException().isThrownBy(() -> new Player(new Name("pobi")));
     }
 
     @Test
