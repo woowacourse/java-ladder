@@ -58,8 +58,7 @@ public class LineTest {
 
     }
 
-    private class TestPointGenerator implements PointGenerator {
-
+    private static class TestPointGenerator implements PointGenerator {
         private final List<Boolean> points;
 
         public TestPointGenerator(List<Boolean> points) {
