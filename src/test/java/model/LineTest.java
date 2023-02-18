@@ -28,20 +28,20 @@ public class LineTest {
         List<Boolean> result = line.getPoints();
 
         //then
-        assertThat(result.size()).isEqualTo(3);
+        assertThat(result).isEqualTo(List.of(false, true, false));
     }
 
     @Test
     @DisplayName("각 포인트들은 랜덤하게 만드는 기능 테스트")
     void makePointsRandomlyTest() {
         //given
-        Line line = new Line(new TestPointGenerator(new ArrayList<>(List.of(false, true, false))), 4);
+        Line line = new Line(new RandomPointGenerator(), 4);
 
         //when
         List<Boolean> result = line.getPoints();
 
         //then
-        assertThat(result).isEqualTo(List.of(false, true, false));
+        assertThat(result.size()).isEqualTo(3);
     }
 
     @Test
