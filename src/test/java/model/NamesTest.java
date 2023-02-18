@@ -16,12 +16,9 @@ import java.util.stream.Stream;
 public class NamesTest {
     private static Stream<Arguments> provideNamesInputValues() {
         return Stream.of(
-                Arguments.of("hiiro", List.of(new Name("hiiro"))),
-                Arguments.of("pobi, neo, conan",
-                        List.of(new Name("pobi"), new Name("neo"), new Name("conan"))),
+                Arguments.of("hiiro", List.of("hiiro")),
                 Arguments.of("pobi, neo, conan, ocean, hiiro",
-                        List.of(new Name("pobi"), new Name("neo"), new Name("conan"), new Name("ocean"),
-                                new Name("hiiro")))
+                        List.of("pobi", "neo", "conan", "ocean", "hiiro"))
         );
     }
 
@@ -34,14 +31,11 @@ public class NamesTest {
     @ParameterizedTest
     @MethodSource("provideNamesInputValues")
     @DisplayName("참여자 이름은 쉼표를 기준으로 입력받는 기능 테스트")
-    void splitNamesByCommas(String inputValue, List<Name> expectedResult) {
+    void splitNamesByCommas(String inputValue, List<String> expectedResult) {
         //given
         Names names = new Names(inputValue);
 
         //then
-        IntStream.range(0, names.size())
-                .forEach(index ->
-                        assertThat(names.getName(index)).isEqualTo(expectedResult.get(index))
-                );
+        assertThat(names.getValues()).isEqualTo(expectedResult);
     }
 }
