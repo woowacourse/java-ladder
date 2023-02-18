@@ -31,8 +31,12 @@ public class Name {
         }
     }
 
-    public String getName() {
+    public String value() {
         return name;
+    }
+
+    public int length() {
+        return name.length();
     }
 
     @Override
