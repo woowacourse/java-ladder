@@ -35,9 +35,9 @@ public class LineTest {
         );
     }
 
-    @ParameterizedTest(name = "발판은 입력받은 숫자만큼의 크기를 가진다")
+    @ParameterizedTest(name = "Line 은 입력받은 발판만큼의 크기를 가진다")
     @MethodSource("scaffolds")
-    void 발판은_입력받은_숫자만큼의_크기를_가진다(final List<Scaffold> scaffolds) {
+    void Line_은_입력받은_발판_만큼의_크기를_가진다(final List<Scaffold> scaffolds) {
         // when
         Line line = new Line(scaffolds);
 
