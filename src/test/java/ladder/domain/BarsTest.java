@@ -1,13 +1,14 @@
 package ladder.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator;
-import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class BarsTest {
@@ -28,7 +29,7 @@ class BarsTest {
 
         Bars bars = new Bars(new MockedPointGenerator(queue), 5);
 
-        assertThat(bars.toUnmodifiableBars()).containsExactly(true, false, true, false, true);
+        assertThat(bars.toUnmodifiableBars()).isEqualTo(expected);
 
     }
 
