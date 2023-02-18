@@ -1,11 +1,11 @@
 package domain;
 
-public enum Point {
+public enum LinePoint {
 
     PASSABLE,
     BLOCKED;
 
-    public static Point from(int number) {
+    public static LinePoint from(int number) {
         if (canGeneratePassable(number)) {
             return PASSABLE;
         }

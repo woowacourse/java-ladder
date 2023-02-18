@@ -3,7 +3,7 @@ package view;
 import domain.Ladder;
 import domain.Line;
 import domain.Names;
-import domain.Point;
+import domain.LinePoint;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,8 +40,8 @@ public class OutputView {
         System.out.println(EDGE_OF_POINT);
     }
 
-    private void printPoint(Point point) {
-        if (point.equals(Point.PASSABLE)) {
+    private void printPoint(LinePoint point) {
+        if (point.isPassable()) {
             System.out.print(EDGE_OF_POINT + PASSABLE_POINT);
             return;
         }

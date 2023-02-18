@@ -13,18 +13,18 @@ class LineTest {
 
     private static final int MIN_NUMBER_RETURN_TRUE = 4;
 
-    @DisplayName("인자값으로 받은 width의 개수 만큼의 Point를 가진다")
+    @DisplayName("인자값으로 받은 width의 개수 만큼의 LinePoint를 가진다")
     @Test
     void create_points_by_input_width() {
         int width = 3;
         Line line = Line.create(new RandomNumberGenerator(),width);
 
-        List<Point> points = line.getPoints();
+        List<LinePoint> points = line.getPoints();
 
         assertThat(points.size()).isEqualTo(width);
     }
 
-    @DisplayName("Point 들은 연속된 PASSABLE 을 가질 수 없다.")
+    @DisplayName("LinePoint 들은 연속된 PASSABLE 을 가질 수 없다.")
     @Test
     void points_can_not_have_two_consecutive_PASSABLE() {
         List<Integer> orderOfNumber = List.of(
@@ -33,9 +33,9 @@ class LineTest {
                 MIN_NUMBER_RETURN_TRUE);
 
         Line line = Line.create(new MockNumberGenerator(orderOfNumber),3);
-        List<Point> points = line.getPoints();
+        List<LinePoint> points = line.getPoints();
 
-        assertThat(points).containsExactly(Point.PASSABLE, Point.BLOCKED, Point.PASSABLE);
+        assertThat(points).containsExactly(LinePoint.PASSABLE, LinePoint.BLOCKED, LinePoint.PASSABLE);
     }
 
     /**
