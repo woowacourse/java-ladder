@@ -18,7 +18,7 @@ public class StepPoints {
         boolean previousValue = false;
 
         for (int i = 0; i < count; i++) {
-            Boolean generatedPoint = randomGenerator.generate(previousValue);
+            boolean generatedPoint = randomGenerator.generate(previousValue);
             stepPoints.add(generatedPoint);
             previousValue = generatedPoint;
         }

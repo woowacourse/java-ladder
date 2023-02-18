@@ -44,7 +44,7 @@ public class OutputView {
         return result.toString();
     }
 
-    private static String toStepPointFormat(Boolean stepPoint) {
+    private static String toStepPointFormat(boolean stepPoint) {
         if (stepPoint) {
             return STEP_EXIST;
         }
