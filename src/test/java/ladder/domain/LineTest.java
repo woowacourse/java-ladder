@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -29,7 +30,9 @@ class LineTest {
         List<Boolean> expected = List.of(true, false, true);
         Line line = new Line(new MockedPointGenerator(dummy), dummy.size());
 
-        assertThat(line.toUnmodifiableLine())
+        assertThat(line.toUnmodifiableLine().stream()
+                .map(Point::isAvailable)
+                .collect(Collectors.toList()))
                 .isEqualTo(expected);
     }
 

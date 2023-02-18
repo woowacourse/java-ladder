@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Line;
+import ladder.domain.Point;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -26,18 +27,18 @@ public class OutputView {
     }
 
     private String extractLine(final Line line) {
-        List<Boolean> points = line.toUnmodifiableLine();
+        List<Point> points = line.toUnmodifiableLine();
         StringJoiner result = new StringJoiner(VERTICAL, NONE + VERTICAL, VERTICAL);
 
-        for (Boolean point : points) {
+        for (Point point : points) {
             String pointFormat = toPointFormat(point);
             result.add(pointFormat);
         }
         return result.toString();
     }
 
-    private String toPointFormat(final Boolean point) {
-        if (point) {
+    private String toPointFormat(final Point point) {
+        if (point == Point.AVAILABLE) {
             return HORIZON;
         }
         return NONE;

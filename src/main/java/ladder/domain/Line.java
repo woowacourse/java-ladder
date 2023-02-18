@@ -7,7 +7,7 @@ import java.util.List;
 public class Line {
 
     private final int width;
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
     private final RandomGenerator<Boolean> pointGenerator;
 
     public Line(final RandomGenerator<Boolean> pointGenerator, final int width) {
@@ -29,11 +29,12 @@ public class Line {
         }
     }
 
-    private Boolean generatePoint(final int index) {
+    private Point generatePoint(final int index) {
         if (isPossible(index)) {
-            return pointGenerator.generate();
+            Boolean generate = pointGenerator.generate();
+            return Point.from(generate);
         }
-        return false;
+        return Point.DISABLE;
     }
 
     private Boolean isPossible(final int index) {
@@ -41,10 +42,10 @@ public class Line {
             return true;
         }
 
-        return !points.get(index - 1);
+        return !points.get(index - 1).isAvailable();
     }
 
-    public List<Boolean> toUnmodifiableLine() {
+    public List<Point> toUnmodifiableLine() {
         return Collections.unmodifiableList(points);
     }
 }
