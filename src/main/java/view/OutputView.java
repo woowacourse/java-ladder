@@ -1,10 +1,10 @@
 package view;
 
+import domain.util.Point;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import domain.util.Point;
 
 public class OutputView {
 
@@ -17,10 +17,7 @@ public class OutputView {
 	private final static String NEW_LINE = "\n";
 	private final static String ERROR_PREFIX = "[ERROR] ";
 
-	private final static Map<Boolean, String> LINE_MAP;
-	static {
-		LINE_MAP = Map.of(true, PRESENT_LINE, false, ABSENT_LINE);
-	}
+	private final static Map<Boolean, String> LINE_MAP = Map.of(true, PRESENT_LINE, false, ABSENT_LINE);
 
 	public static void printResult(List<String> names, List<List<Point>> ladderPoints) {
 		String stringifiedNames = getStringifiedNames(names);
