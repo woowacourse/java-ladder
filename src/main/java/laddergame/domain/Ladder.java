@@ -15,14 +15,14 @@ public class Ladder {
     private List<Line> lines;
 
     public Ladder(final Participants participants, final Height height, final BooleanGenerator booleanGenerator) {
-        validateNotNull(participants, height, booleanGenerator);
+        validate(participants, height, booleanGenerator);
         this.participants = participants;
         this.height = height;
         this.booleanGenerator = booleanGenerator;
         createLines();
     }
 
-    private void validateNotNull(final Participants participants, final Height height, final BooleanGenerator booleanGenerator) {
+    private void validate(final Participants participants, final Height height, final BooleanGenerator booleanGenerator) {
         if (Objects.isNull(participants)) {
             throw new IllegalArgumentException("참여자는 null이 될 수 없습니다.");
         }
