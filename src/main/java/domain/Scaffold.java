@@ -2,16 +2,16 @@ package domain;
 
 public enum Scaffold {
 
-    EXIST("-----"),
-    NONE("     ");
+    EXIST(true),
+    NONE(false);
 
-    private final String status;
+    private final boolean status;
 
-    Scaffold(final String status) {
+    Scaffold(final boolean status) {
         this.status = status;
     }
 
-    public String getStatus() {
+    public boolean getStatus() {
         return this.status;
     }
 }

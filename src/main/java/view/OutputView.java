@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 public class OutputView {
     private static final int MAX_NAME_SIZE = 5;
     private static final int FIRST_NAME_INDEX = 0;
+    private static final String EXIST_SCAFFOLD = "-----";
+    private static final String NON_EXIST_SCAFFOLD = "     ";
     private static final String BAR = "|";
     private static final String BLANK = " ";
 
@@ -53,12 +55,19 @@ public class OutputView {
         }
     }
 
-    private static void printLinesByStringBuilder(Ladder ladder, int i) {
+    private static void printLinesByStringBuilder(Ladder ladder, int lineIndex) {
         for (int j = 0; j < ladder.getWidth(); j++) {
-            stringBuilder.append(ladder.getLines().get(i).getScaffolds().get(j).getStatus() + BAR);
+            addScaffoldByScaffoldStatus(ladder, lineIndex, j);
             String lineResult = stringBuilder.toString();
             System.out.print(lineResult);
             stringBuilder.delete(0, lineResult.length());
         }
+    }
+
+    private static StringBuilder addScaffoldByScaffoldStatus(Ladder ladder, int lineIndex, int scaffoldIndex) {
+        if (ladder.getLines().get(lineIndex).getScaffolds().get(scaffoldIndex).getStatus()) {
+            return stringBuilder.append(EXIST_SCAFFOLD + BAR);
+        }
+        return stringBuilder.append(NON_EXIST_SCAFFOLD + BAR);
     }
 }
