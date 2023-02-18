@@ -13,9 +13,7 @@ public class OutputView {
     private static final String RESULT_MESSAGE = "실행 결과";
 
     private static final int MAXIMUM_PLAYER_NAME_SPACE = 5;
-
-    private static final StringBuilder stringBuilder = new StringBuilder();
-
+    private static StringBuilder stringBuilder;
     public void printPlayerNamesMessage() {
         System.out.println(PLAYER_NAME_MESSAGE);
     }
@@ -36,6 +34,7 @@ public class OutputView {
     }
 
     public void printLadder(Names names, Ladder ladder, LadderHeight ladderHeight) {
+        stringBuilder = new StringBuilder();
         for (int row = 0; row < ladderHeight.getLadderHeight(); row++) {
             stringBuilder.append(printStartLadder());
             printConnectLadder(names.getNames().size(), ladder, row);
