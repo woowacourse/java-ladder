@@ -4,6 +4,7 @@ import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import javax.sound.sampled.Line;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,10 +12,12 @@ public class LadderGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final LineCreateDecider lineCreateDecider;
 
-    public LadderGameController(InputView inputView, OutputView outputView) {
+    public LadderGameController(InputView inputView, OutputView outputView, LineCreateDecider lineCreateDecider) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.lineCreateDecider = lineCreateDecider;
     }
 
     public void run() {
@@ -48,7 +51,7 @@ public class LadderGameController {
     }
 
     private Ladder generateLadder(Players players, Height height) {
-        LadderGenerator ladderGenerator = new LadderGenerator(new RandomLineCreateDecider());
+        LadderGenerator ladderGenerator = new LadderGenerator(lineCreateDecider);
         return ladderGenerator.generateLadder(players.size(), height);
     }
 
