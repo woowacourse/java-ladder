@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class User {
     private static final int USER_NAME_MIN_LENGTH = 1;
     private static final int USER_NAME_MAX_LENGTH = 5;
@@ -35,5 +37,18 @@ public class User {
         return "User{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(name, user.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
