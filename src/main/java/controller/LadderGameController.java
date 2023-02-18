@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Game;
 import domain.Height;
 import domain.Ladder;
 import domain.LadderResults;
@@ -28,6 +29,13 @@ public class LadderGameController {
         Ladder ladder = makeLadder(players.findNumberOfPlayers());
 
         outputView.printLadderGameStatus(players, ladder, ladderResults);
+
+        Game game = new Game(ladder, players);
+        int[] resultOfGame = game.findPlayerResult();
+
+        for (int i : resultOfGame) {
+            System.out.print(i + " ");
+        }
     }
 
     private Players makePlayers() {
@@ -50,7 +58,7 @@ public class LadderGameController {
         }
     }
 
-    private Ladder makeLadder(int numberOfPlayers) {
+    private Ladder makeLadder(final int numberOfPlayers) {
         try {
             int ladderHeight = inputView.readHeight();
             Ladder ladder = new Ladder(new Lines(numberOfPlayers, ladderHeight), new Height(ladderHeight));

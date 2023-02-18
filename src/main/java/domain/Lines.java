@@ -34,4 +34,8 @@ public class Lines {
     public List<Line> getLines() {
         return Collections.unmodifiableList(this.lines);
     }
+
+    public List<Boolean> findFootholdsOfHeight(int indexOfHeight) {
+        return this.lines.get(indexOfHeight).getFootholds();
+    }
 }
