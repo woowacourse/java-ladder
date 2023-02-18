@@ -1,12 +1,14 @@
 package laddergame.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Line {
 
     private static final int MIN_NUMBER_OF_EXISTENCES = 1;
     private static final int FIRST_INDEX_OF_EXISTENCES = 0;
+    private static final int ABSENCE_OF_TRUE = 1;
 
     private final List<Boolean> line;
     private final PickStrategy strategy;
@@ -32,12 +34,17 @@ public class Line {
 
     private List<Boolean> createLine(final int numberOfStatus) {
         List<Boolean> line = new ArrayList<>();
-
         for (int i = 0; i < numberOfStatus; i++) {
             line.add(checkExistence(line, i));
         }
-
+        if (isAllFalse(numberOfStatus, line)) {
+            return createLine(numberOfStatus);
+        }
         return line;
+    }
+
+    private static boolean isAllFalse(final int numberOfStatus, final List<Boolean> line) {
+        return new HashSet<>(line).size() == ABSENCE_OF_TRUE && numberOfStatus > MIN_NUMBER_OF_EXISTENCES;
     }
 
     private boolean checkExistence(final List<Boolean> line, final int index) {
