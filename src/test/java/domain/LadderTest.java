@@ -9,9 +9,34 @@ import utils.LadderRowGenerator;
 
 public class LadderTest {
 
+    @Test
+    @DisplayName("사다리의 가로 길이는 (사람 수 - 1)과 같다.")
+    void should_ladderWidthIsSameToUserCount_when_ladderCreated() {
+        LadderRowGenerator ladderRowGenerator = new TestLadderRowGenerator();
+        int userCount = 4;
+
+        Ladder ladder = new Ladder(userCount, 5, ladderRowGenerator);
+        LadderRow ladderRow = ladder.getLadderRows().get(0);
+        int ladderWidth = ladderRow.getLines().size();
+
+        assertThat(ladderWidth).isEqualTo(userCount - 1);
+    }
+
+    @Test
+    @DisplayName("사다리의 세로 길이는 사다리의 높이와 같다.")
+    void should_ladderHeightIsSameToHeight_when_ladderCreated() {
+        LadderRowGenerator ladderRowGenerator = new TestLadderRowGenerator();
+        int height = 5;
+
+        Ladder ladder = new Ladder(4, height, ladderRowGenerator);
+        int ladderHeight = ladder.getLadderRows().size();
+
+        assertThat(ladderHeight).isEqualTo(height);
+    }
+
     static class TestLadderRowGenerator implements LadderRowGenerator {
 
-        private final List<List<Boolean>> ladder = List.of(
+        private final List<List<Boolean>> ladderRows = List.of(
                 List.of(true, false, true),
                 List.of(false, true, false),
                 List.of(true, false, false),
@@ -23,7 +48,7 @@ public class LadderTest {
 
         @Override
         public LadderRow generate(int userCount) {
-            return new LadderRow(ladder.get(index++));
+            return new LadderRow(ladderRows.get(index++));
         }
     }
 }

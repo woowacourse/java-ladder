@@ -7,15 +7,15 @@ import utils.LadderRowGenerator;
 
 public class Ladder {
 
-    private final List<LadderRow> ladderRows = new ArrayList<>();
-    private final LadderRowGenerator ladderRowGenerator;
+    private final List<LadderRow> ladderRows;
 
-    public Ladder(final LadderRowGenerator ladderRowGenerator) {
-        this.ladderRowGenerator = ladderRowGenerator;
+    public Ladder(final int userCount, final int height, final LadderRowGenerator ladderRowGenerator) {
+        ladderRows = new ArrayList<>();
+        create(userCount, height, ladderRowGenerator);
     }
 
-    public void create(final int ladderHeight, final int userCount) {
-        for (int i = 0; i < ladderHeight; i++) {
+    private void create(final int userCount, final int height, final LadderRowGenerator ladderRowGenerator) {
+        for (int i = 0; i < height; i++) {
             LadderRow line = ladderRowGenerator.generate(userCount);
             ladderRows.add(line);
         }
