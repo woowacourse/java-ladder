@@ -1,6 +1,8 @@
 package view;
 
 import domain.*;
+import domain.value.Name;
+import domain.value.Names;
 
 import java.util.EnumMap;
 import java.util.List;

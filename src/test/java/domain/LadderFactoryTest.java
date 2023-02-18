@@ -1,5 +1,7 @@
 package domain;
 
+import domain.value.Height;
+import domain.value.Width;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;

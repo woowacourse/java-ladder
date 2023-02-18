@@ -1,23 +1,23 @@
-package domain;
+package domain.value;
 
 import java.util.Objects;
 
-public class Height {
+public class Width {
 
     private final int value;
 
-    private Height(final int value) {
+    private Width(final int value) {
         validate(value);
         this.value = value;
     }
 
-    public static Height of(final int value) {
-        return new Height(value);
+    public static Width of(final int value) {
+        return new Width(value);
     }
 
     private void validate(final int value) {
         if (value <= 0) {
-            throw new IllegalArgumentException("높이는 1 이상이어야 합니다.");
+            throw new IllegalArgumentException("너비는 1 이상이어야 합니다.");
         }
     }
 
@@ -28,9 +28,9 @@ public class Height {
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
-        if (!(o instanceof Height)) return false;
-        Height height = (Height) o;
-        return value == height.value;
+        if (!(o instanceof Width)) return false;
+        Width width = (Width) o;
+        return value == width.value;
     }
 
     @Override

@@ -2,6 +2,10 @@ package controller;
 
 import common.Logger;
 import domain.*;
+import domain.value.Height;
+import domain.value.Name;
+import domain.value.Names;
+import domain.value.Width;
 import view.InputView;
 import view.OutputView;
 

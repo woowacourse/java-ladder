@@ -1,5 +1,8 @@
 package domain;
 
+import domain.value.Height;
+import domain.value.Width;
+
 import java.util.ArrayList;
 import java.util.List;
 
