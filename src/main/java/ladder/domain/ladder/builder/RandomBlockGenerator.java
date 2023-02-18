@@ -2,11 +2,15 @@ package ladder.domain.ladder.builder;
 
 import ladder.domain.ladder.Block;
 
+import java.util.List;
 import java.util.Random;
 
 public class RandomBlockGenerator implements BlockGenerator {
 
+    private static final List<Block> BLOCKS = List.of(Block.values());
+
     private final Random random;
+
 
     public RandomBlockGenerator() {
         this.random = new Random();
@@ -14,7 +18,7 @@ public class RandomBlockGenerator implements BlockGenerator {
 
     @Override
     public Block generate() {
-        int blockCategoryCount = Block.values().length;
-        return Block.of(random.nextInt(blockCategoryCount));
+        int randomIndex = random.nextInt(BLOCKS.size());
+        return BLOCKS.get(randomIndex);
     }
 }
