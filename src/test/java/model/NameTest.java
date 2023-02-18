@@ -11,7 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 public class NameTest {
-
     @Test
     @DisplayName("Name 객체 생성 성공 테스트")
     void createNameTest() {
@@ -23,12 +22,12 @@ public class NameTest {
     @Test
     @DisplayName("이름 값 길이 제한으로 인한 Player 객체 생성 실패 테스트")
     void limitPlayerNameLengthTest() {
-        //When
+        //when
         Throwable result = catchThrowable(() -> {
             new Name("woowacourse");
         });
 
-        //Then
+        //then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -36,12 +35,12 @@ public class NameTest {
     @ValueSource(strings = {"1234", " ", "@#$@", "abs@#"})
     @DisplayName("사람 이름은 문자로만 이루어져 있는지 확인하는 기능 테스트")
     void validateNameHasOnlyCharacters(String inputName) {
-        //When
+        //when
         Throwable result = catchThrowable(() -> {
             new Name(inputName);
         });
 
-        //Then
+        //then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -53,10 +52,10 @@ public class NameTest {
     @Test
     @DisplayName("사람 이름 간 비교하는 기능 테스트")
     void compareNameTest() {
-        //Given
+        //given
         Name name = new Name("pobi");
 
-        //Then
+        //then
         assertThat(name).isEqualTo(new Name("pobi"));
         assertThat(name).isNotEqualTo(new Name("neo"));
     }

@@ -8,15 +8,15 @@ import java.util.Scanner;
 public class InputView {
     private Scanner scanner;
 
-    public InputView(Scanner scanner){
+    public InputView(Scanner scanner) {
         this.scanner = scanner;
     }
 
-    public Names readPlayerNames(){
+    public Names readPlayerNames() {
         return new Names(scanner.nextLine());
     }
 
-    public LadderHeight readLadderHeight(){
+    public LadderHeight readLadderHeight() {
         return new LadderHeight(scanner.nextInt());
     }
 }

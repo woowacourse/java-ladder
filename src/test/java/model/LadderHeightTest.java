@@ -20,12 +20,12 @@ public class LadderHeightTest {
     @Test
     @DisplayName("LadderHeight가 1 미만일 경우 실패 테스트")
     void validateLadderHeightTest() {
-        //When
+        //when
         Throwable result = catchThrowable(() -> {
             new LadderHeight(0);
         });
 
-        //Then
+        //then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
     }
 

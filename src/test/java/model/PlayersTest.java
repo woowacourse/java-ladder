@@ -15,7 +15,6 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class PlayersTest {
-
     private static Stream<Arguments> AllLadderGamePlayerInfo() {
         return Stream.of(
                 Arguments.of(new Names("pobi, neo, hiiro"),
@@ -37,10 +36,10 @@ public class PlayersTest {
     @MethodSource("AllLadderGamePlayerInfo")
     @DisplayName("사다리 게임 전체 참여자 정보 생성 기능 테스트")
     void makeAllPlayerTest(Names names, List<Player> expectedResult) {
-        //Given
+        //given
         Players players = new Players(names);
 
-        //Then
+        //then
         IntStream.range(0, players.size()).forEach((index) -> {
             assertThat(players.getPlayer(index).getName()).isEqualTo(expectedResult.get(index).getName());
         });

@@ -7,23 +7,24 @@ import org.junit.jupiter.api.Test;
 import org.assertj.core.api.Assertions;
 
 public class PlayerTest {
-
     @Test
     @DisplayName("Player 객체 생성 성공 테스트")
-    void createPlayerTest(){
-        Assertions.assertThatNoException().isThrownBy(()->{new Player(new Name("pobi"));});
+    void createPlayerTest() {
+        Assertions.assertThatNoException().isThrownBy(() -> {
+            new Player(new Name("pobi"));
+        });
     }
 
     @Test
     @DisplayName("참여자의 이름 정보를 조회할 수 있는 기능 테스트")
     void getPlayerNameTest() {
-        //Given
+        //given
         Player player = new Player(new Name("pobi"));
 
-        //When
+        //when
         Name result = player.getName();
 
-        //Then
+        //then
         assertThat(result).isEqualTo(new Name("pobi"));
     }
 }

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LineTest {
-
     @Test
     @DisplayName("Line 객체 생성 성공 테스트")
     void createLineTest() {
@@ -22,41 +21,41 @@ public class LineTest {
     @Test
     @DisplayName("사다리 한 라인에 존재하는 포인트들을 만드는 기능 테스트")
     void makePointsInLineTest() {
-        //Given
+        //given
         Line line = new Line(new TestPointGenerator(new ArrayList<>(List.of(false, true, false))), 4);
 
-        //When
+        //when
         List<Boolean> result = line.getPoints();
 
-        //Then
+        //then
         assertThat(result.size()).isEqualTo(3);
     }
 
     @Test
     @DisplayName("각 포인트들은 랜덤하게 만드는 기능 테스트")
     void makePointsRandomlyTest() {
-        //Given
+        //given
         Line line = new Line(new TestPointGenerator(new ArrayList<>(List.of(false, true, false))), 4);
 
-        //When
+        //when
         List<Boolean> result = line.getPoints();
 
-        //Then
+        //then
         assertThat(result).isEqualTo(List.of(false, true, false));
     }
 
     @Test
     @DisplayName("한 라인에서 같은 포인트가 연속으로 등장하지 않는 기능 테스트")
     void noContinuouslySamePointTest() {
-        //Given
+        //given
         Line line = new Line(new TestPointGenerator(new ArrayList<>(List.of(false, true, true, true))), 5);
         Line line2 = new Line(new TestPointGenerator(new ArrayList<>(List.of(true, true, true, true, true))), 6);
 
-        //When
+        //when
         List<Boolean> result = line.getPoints();
         List<Boolean> result2 = line2.getPoints();
 
-        //Then
+        //then
         assertThat(result).isEqualTo(List.of(false, true, false, true));
         assertThat(result2).isEqualTo(List.of(true, false, true, false, true));
 

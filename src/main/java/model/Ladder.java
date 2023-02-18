@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
-
     private final List<Line> lines = new ArrayList<>();
 
     public Ladder(Players players, LadderHeight ladderHeight) {
@@ -16,13 +15,11 @@ public class Ladder {
         return lines.get(index);
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return lines.size();
     }
 
     private void makeLadderLines(int playersSize, int height) {
-        IntStream.range(0, height).forEach(
-                (index) -> lines.add(new Line(new RandomPointGenerator(), playersSize))
-        );
+        IntStream.range(0, height).forEach(index -> lines.add(new Line(new RandomPointGenerator(), playersSize)));
     }
 }
