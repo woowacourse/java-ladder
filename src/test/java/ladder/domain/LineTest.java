@@ -14,7 +14,7 @@ class LineTest {
     void 라인은_주어진_사람보다_하나_적은_좌표값을_가진다() {
         Line line = new Line(5);
 
-        assertThat(line.toUnmodifiableBars())
+        assertThat(line.toUnmodifiableStepPoints())
                 .hasSize(4);
     }
 

@@ -17,8 +17,8 @@ import ladder.domain.Line;
 public class OutputView {
 
     private static final String VERTICAL = "|";
-    private static final String BAR_EXIST = "-----";
-    private static final String BAR_NONE = "     ";
+    private static final String STEP_EXIST = "-----";
+    private static final String STEP_NONE = "     ";
     private static final String MESSAGE_GAME_RESULT = "실행 결과";
 
     public static void showGameResult(List<String> players, List<Line> lines) {
@@ -34,20 +34,20 @@ public class OutputView {
     }
 
     private static String extractLine(Line line) {
-        List<Boolean> bars = line.toUnmodifiableBars();
-        StringJoiner result = new StringJoiner(VERTICAL, BAR_NONE + VERTICAL, VERTICAL);
+        List<Boolean> stepPoints = line.toUnmodifiableStepPoints();
+        StringJoiner result = new StringJoiner(VERTICAL, STEP_NONE + VERTICAL, VERTICAL);
 
-        for (Boolean bar : bars) {
-            String pointFormat = toBarFormat(bar);
-            result.add(pointFormat);
+        for (Boolean stepPoint : stepPoints) {
+            String stepPointFormat = toStepPointFormat(stepPoint);
+            result.add(stepPointFormat);
         }
         return result.toString();
     }
 
-    private static String toBarFormat(Boolean bar) {
-        if (bar) {
-            return BAR_EXIST;
+    private static String toStepPointFormat(Boolean stepPoint) {
+        if (stepPoint) {
+            return STEP_EXIST;
         }
-        return BAR_NONE;
+        return STEP_NONE;
     }
 }

@@ -4,11 +4,11 @@ import java.util.List;
 
 public class Line {
 
-    private final Bars bars;
+    private final StepPoints stepPoints;
 
     public Line(int playerCount) {
         validatePlayerCount(playerCount);
-        bars = new Bars(new RandomBarGenerator(), playerCount - 1);
+        stepPoints = new StepPoints(new RandomStepPointGenerator(), playerCount - 1);
     }
 
     private void validatePlayerCount(int playerCount) {
@@ -17,7 +17,7 @@ public class Line {
         }
     }
 
-    public List<Boolean> toUnmodifiableBars() {
-        return bars.toUnmodifiableBars();
+    public List<Boolean> toUnmodifiableStepPoints() {
+        return stepPoints.toUnmodifiableStepPoints();
     }
 }

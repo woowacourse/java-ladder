@@ -10,13 +10,13 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class BarsTest {
+class StepPointsTest {
 
     @Test
     void 주어진_개수만큼_좌표값을_생성한다() {
-        Bars bars = new Bars(new RandomBarGenerator(), 5);
+        StepPoints stepPoints = new StepPoints(new RandomStepPointGenerator(), 5);
 
-        assertThat(bars.toUnmodifiableBars()).hasSize(5);
+        assertThat(stepPoints.toUnmodifiableStepPoints()).hasSize(5);
     }
 
     @Test
@@ -26,9 +26,9 @@ class BarsTest {
 
         Queue<Boolean> queue = new LinkedList<>(expected);
 
-        Bars bars = new Bars(new MockedPointGenerator(queue), 5);
+        StepPoints stepPoints = new StepPoints(new MockedPointGenerator(queue), 5);
 
-        assertThat(bars.toUnmodifiableBars()).containsExactly(true, false, true, false, true);
+        assertThat(stepPoints.toUnmodifiableStepPoints()).containsExactly(true, false, true, false, true);
 
     }
 
