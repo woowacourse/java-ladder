@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class DefaultLadderGenerator implements LadderGenerator {
+public class RandomGenerateStrategy implements GenerateStrategy {
 
     private static final Random random = new Random();
 

@@ -10,10 +10,10 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(int personCount, int maxHeight, LadderGenerator generator) {
+    public Ladder(int personCount, int maxHeight, GenerateStrategy strategy) {
         validateHeight(maxHeight);
         this.lines = new ArrayList<>(maxHeight);
-        initLines(personCount, maxHeight, generator);
+        initLines(personCount, maxHeight, strategy);
     }
 
     private void validateHeight(int maxHeight) {
@@ -23,10 +23,9 @@ public class Ladder {
         }
     }
 
-    private void initLines(int personCount, int maxHeight, LadderGenerator generator) {
+    private void initLines(int personCount, int maxHeight, GenerateStrategy strategy) {
         for (int i = 0; i < maxHeight; i++) {
-            List<Boolean> movements = generator.generate(personCount);
-            lines.add(new Line(movements));
+            lines.add(new Line(personCount, strategy));
         }
     }
 

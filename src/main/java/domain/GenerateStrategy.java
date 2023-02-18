@@ -3,7 +3,7 @@ package domain;
 import java.util.List;
 
 @FunctionalInterface
-public interface LadderGenerator {
+public interface GenerateStrategy {
 
     List<Boolean> generate(int count);
 }

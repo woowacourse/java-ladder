@@ -3,7 +3,7 @@ package controller;
 import domain.Ladder;
 import domain.People;
 import domain.Person;
-import domain.DefaultLadderGenerator;
+import domain.RandomGenerateStrategy;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -50,6 +50,6 @@ public class LadderController {
     private Ladder ladderRequest(int peopleCount) {
         return new Ladder(peopleCount,
             inputView.readLadderHeightAndTransform(),
-            new DefaultLadderGenerator());
+            new RandomGenerateStrategy());
     }
 }
