@@ -3,7 +3,7 @@ package domain;
 import static utils.ErrorMessage.INVALID_LADDER_HEIGHT_RANGE;
 
 public class Height {
-    public final static int MIN_HEIGHT = 1;
+    private final int MIN_HEIGHT = 1;
 
     private final int height;
 
@@ -14,7 +14,8 @@ public class Height {
 
     private void validateHeight(int height) {
         if (height < MIN_HEIGHT) {
-            throw new IllegalArgumentException(INVALID_LADDER_HEIGHT_RANGE.getMessage());
+            throw new IllegalArgumentException(
+                String.format(INVALID_LADDER_HEIGHT_RANGE.getMessage(), MIN_HEIGHT));
         }
     }
 
