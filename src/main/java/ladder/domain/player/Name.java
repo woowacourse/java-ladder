@@ -4,9 +4,8 @@ import java.util.Objects;
 
 public class Name {
 
-    //TODO: NAME의 상수 public하는 것이 맞는지
-
     public static final int NAME_MAXIMUM_LENGTH = 5;
+
     private final String name;
 
     public Name(String name) {
@@ -24,7 +23,6 @@ public class Name {
         }
     }
 
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

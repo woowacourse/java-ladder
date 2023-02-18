@@ -1,6 +1,5 @@
 package ladder.domain.player;
 
-import ladder.domain.player.Name;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -24,20 +23,20 @@ public class NameTest {
         assertThat(name).isEqualTo(other);
     }
 
-    @DisplayName("플레이어 이름 생성할 때")
+    @DisplayName("이름 생성할 때")
     @Nested
-    class PlayerInitiatorTest {
+    class NameInitiatorTest {
         @DisplayName("1자 이상 5자 이하 일 떄 정상 작동한다.")
         @ParameterizedTest(name = "inputName = {0}")
         @ValueSource(strings = {"가", "가나", "가나다라마"})
-        void createPlayerNameTest(String name) {
+        void createNameTest(String name) {
             Assertions.assertDoesNotThrow(() -> new Name(name));
         }
 
         @DisplayName("공백, 빈문자열이거나 5자 초과 떄 예외가 발생한다.")
         @ParameterizedTest(name = "inputName = {0}")
         @ValueSource(strings = {"", "    ", "가나다라마바", "가나다라마바사아자차"})
-        void createPlayerNameExceptionTest(String name) {
+        void createNameExceptionTest(String name) {
             assertThatThrownBy(() -> new Name(name))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("플레이어의 이름은 1자 이상 5자 이하여야 합니다.");

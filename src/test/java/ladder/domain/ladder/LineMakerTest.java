@@ -31,7 +31,6 @@ public class LineMakerTest {
     @RepeatedTest(100)
     @DisplayName("생성된 Line의 가로가 겹치지 않는지 확인한다.")
     void generateLineTest() {
-        // 리스트가 연속된 true값을 갖지 않은지.
         List<Bar> bars = LineMaker.generate(playerCount, valueGenerator);
 
         for (int idx = 0; idx < bars.size() - 1; idx++) {
