@@ -27,20 +27,11 @@ public class LadderMaker {
     }
 
     private List<Point> createLine(int pointCount) {
-        boolean isPreviousConnected = false;
         List<Point> points = new ArrayList<>();
         while (points.size() < pointCount) {
-            boolean isCurrentConnected = selectCurrentPoint(isPreviousConnected, pointGenerator.generate());
-            points.add(Point.findByConnectedCondition(isCurrentConnected));
-            isPreviousConnected = isCurrentConnected;
+            boolean connectedCondition = pointGenerator.generate();
+            points.add(Point.findByConnectedCondition(connectedCondition));
         }
         return points;
-    }
-
-    private boolean selectCurrentPoint(boolean isPreviousConnected, boolean isCurrentConnected) {
-        if (isPreviousConnected && isCurrentConnected) {
-            return false;
-        }
-        return isCurrentConnected;
     }
 }
