@@ -7,8 +7,7 @@ import java.util.Arrays;
 public enum BarMatcher {
     TRUE(true, "-----"),
     FALSE(false, "     ");
-
-
+    
     private final boolean isExistBar;
     private final String barDisplay;
 
