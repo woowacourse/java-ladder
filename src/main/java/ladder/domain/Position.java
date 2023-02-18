@@ -2,10 +2,10 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class StartPoint {
+public class Position {
     private final int position;
 
-    public StartPoint(int position) {
+    public Position(int position) {
         validateNegativePosition(position);
         this.position = position;
     }
@@ -20,7 +20,7 @@ public class StartPoint {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        StartPoint that = (StartPoint) o;
+        Position that = (Position) o;
         return position == that.position;
     }
 
