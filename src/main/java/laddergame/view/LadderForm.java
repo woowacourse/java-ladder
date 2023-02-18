@@ -13,6 +13,7 @@ public enum LadderForm {
 
     private static final String NAMES_EMPTY_EXCEPTION = "이름 목록은 비어있을 수 없습니다.";
     private static final String NAME_BLANK_FILL_FORM = "%{0}s";
+
     private final String unit;
 
     LadderForm(final String unit) {
