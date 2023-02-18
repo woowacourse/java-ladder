@@ -26,7 +26,7 @@ public class Line {
 
     private static void addPoint(List<Point> points, NumberGenerator numberGenerator) {
         if (points.isEmpty()) {
-            points.add(generatePoint(numberGenerator.generate()));
+            points.add(Point.of(numberGenerator.generate()));
             return;
         }
 
@@ -34,14 +34,7 @@ public class Line {
             points.add(Point.BLOCKED);
             return;
         }
-        points.add(generatePoint(numberGenerator.generate()));
-    }
-
-    private static Point generatePoint(int number) {
-        if (number >= MIN_NUMBER_RETURN_TRUE) {
-            return Point.PASSABLE;
-        }
-        return Point.BLOCKED;
+        points.add(Point.of(numberGenerator.generate()));
     }
 
     private static boolean isPreviousPointPassable(List<Point> points) {
