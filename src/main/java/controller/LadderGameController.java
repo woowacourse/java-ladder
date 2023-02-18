@@ -19,7 +19,7 @@ public class LadderGameController {
     public void run() {
         Players players = new Players(setPlayerNames());
         Ladder ladder = new Ladder(players, setLadderHeight());
-        outputView.printAllPlayerNames(players);
+        outputView.printAllPlayerNames(players.getAllPlayerNames());
         outputView.printLadder(ladder);
     }
 
