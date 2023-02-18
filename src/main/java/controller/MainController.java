@@ -70,7 +70,8 @@ public class MainController {
     }
 
     private ApplicationStatus createLines() {
-        lines = new Lines(names.getPersonNumber(), height.getHeight());
+        int lineSize = names.getPersonNumber() - 1;
+        lines = new Lines(lineSize, height.getHeight());
         return ApplicationStatus.PRINT_RESULT;
     }
 

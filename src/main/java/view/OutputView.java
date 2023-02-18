@@ -30,7 +30,7 @@ public class OutputView {
         for (Line line : lines.getLines()) {
             StringBuilder result = new StringBuilder();
             result.append(Message.COLUMN_LADDER.message);
-            line.getPoints()
+            line.getLine()
                     .forEach(isPoint -> result.append(getPointString(isPoint)));
             System.out.println(result);
         }
