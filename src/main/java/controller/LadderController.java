@@ -12,7 +12,11 @@ import view.OutputView;
 
 public class LadderController {
 
-    private final NumberGenerator numberGenerator = new RandomNumberGenerator();
+    private final NumberGenerator numberGenerator;
+
+    public LadderController(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
+    }
 
     public void run() {
         Players players = generatePlayers();
