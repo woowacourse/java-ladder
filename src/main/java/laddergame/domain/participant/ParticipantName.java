@@ -7,6 +7,7 @@ public class ParticipantName {
 
     private static final char INVALID_INCLUSION = ' ';
     private static final int MAX_LENGTH = 5;
+
     private final String name;
 
     private ParticipantName(final String name) {

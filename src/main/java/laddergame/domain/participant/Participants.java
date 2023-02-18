@@ -11,6 +11,7 @@ public class Participants {
 
     private static final String DELIMITER = ",";
     private static final int MIN_COUNT = 1;
+
     private final List<Participant> participants;
 
     private Participants(final String names) {
