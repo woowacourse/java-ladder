@@ -26,4 +26,17 @@ public class LadderTest {
                         List.of(CONNECTED, DISCONNECTED)
                 );
     }
+
+    @Test
+    void 높이와_너비를_받아_사다리를_생성한다() {
+        final BooleanGenerator booleanGenerator = new TestBooleanGenerator(List.of(false, false, true, false));
+        final Ladder ladder = Ladder.generate(booleanGenerator, 2, 2);
+
+        assertThat(ladder.getLines())
+                .extracting(Line::getLine)
+                .containsExactly(
+                        List.of(DISCONNECTED, DISCONNECTED),
+                        List.of(CONNECTED, DISCONNECTED)
+                );
+    }
 }
