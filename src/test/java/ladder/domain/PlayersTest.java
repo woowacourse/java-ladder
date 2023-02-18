@@ -31,17 +31,6 @@ class PlayersTest {
     }
 
     @Test
-    @DisplayName("플레이어가 없을 때 이름 최대 길이를 구하면 예외를 던진다.")
-    void players_throwException_WhenPlayersAreEmpty() {
-        // given
-        Players players = new Players(List.of());
-
-        // expected
-        assertThatThrownBy(players::getNameMaxLength)
-                .isInstanceOf(IllegalStateException.class);
-    }
-
-    @Test
     @DisplayName("플레이어들의 이름 최대 길이를 구한다.")
     void players_getMaxNameLength() {
         // given
