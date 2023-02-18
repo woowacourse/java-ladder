@@ -22,7 +22,7 @@ public class InputView {
     }
 
     public String getMaxLadderHeight() {
-        OutputView.print(INPUT_LADDER_MAX_HEIGHT_GUIDE.getMessage());
+        OutputView.print(System.lineSeparator() + INPUT_LADDER_MAX_HEIGHT_GUIDE.getMessage());
         return readConsole();
     }
 

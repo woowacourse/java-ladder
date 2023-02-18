@@ -45,7 +45,7 @@ public class OutputView {
         return ladder.stream()
                 .map(ladderRungs -> {
                     List<Rung> rungs = ladderRungs.getRungs();
-                    StringJoiner ladderMessage = new StringJoiner("", LADDER_PADDING.getMessage().repeat(firstNameLength), "\n");
+                    StringJoiner ladderMessage = new StringJoiner("", LADDER_PADDING.getMessage().repeat(firstNameLength), System.lineSeparator());
                     ladderMessage.add(makeRungsMessage(rungs));
                     return ladderMessage.toString();
                 }).collect(joining());
