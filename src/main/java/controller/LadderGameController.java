@@ -32,7 +32,7 @@ public class LadderGameController {
     private Players generatePlayers(List<String> playersName) {
         List<Player> players = new ArrayList<>();
         for (String playerName : playersName) {
-            players.add(new Player(new PlayerName(playerName)));
+            players.add(new Player(playerName));
         }
         return new Players(players);
     }

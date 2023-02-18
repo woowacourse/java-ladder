@@ -4,8 +4,8 @@ package domain;
 public class Player {
     private final PlayerName name;
 
-    public Player(PlayerName playerName) {
-        this.name = playerName;
+    public Player(String playerName) {
+        this.name = new PlayerName(playerName);
     }
 
     public PlayerName getPlayerName() {
