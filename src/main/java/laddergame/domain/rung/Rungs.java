@@ -5,7 +5,7 @@ import laddergame.util.BooleanGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-import static laddergame.domain.rung.Rung.INSUFFICIENT;
+import static laddergame.domain.rung.RungMaterial.INSUFFICIENT;
 
 public class Rungs {
 
@@ -36,7 +36,7 @@ public class Rungs {
 
     private Rung createRung(final Rung previousRung) {
         if (previousRung.isExistence()) {
-            return Rung.create(INSUFFICIENT);
+            return Rung.create(INSUFFICIENT.getMaterial());
         }
         return Rung.create(rungGenerator.generate());
     }

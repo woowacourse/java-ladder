@@ -4,8 +4,6 @@ import java.util.Objects;
 
 public class Rung {
 
-    protected static final boolean INSUFFICIENT = false;
-
     private final boolean existence;
 
     private Rung(final boolean material) {
