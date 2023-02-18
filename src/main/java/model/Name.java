@@ -18,7 +18,7 @@ public class Name {
         this.name = name;
     }
 
-    public String getName() {
+    public String getValue() {
         return name;
     }
 
@@ -36,7 +36,7 @@ public class Name {
             return false;
         }
         Name otherName = (Name) object;
-        return Objects.equals(name, otherName.getName());
+        return Objects.equals(name, otherName.getValue());
     }
 
     private void validateNameLength(String name) {
