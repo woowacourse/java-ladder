@@ -15,7 +15,7 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printParticipants(final List<String> participantNames) {
+    public void printParticipantNames(final List<String> participantNames) {
         String paddedParticipantNames = makePaddedParticipantNames(participantNames);
         print(paddedParticipantNames.trim());
     }
