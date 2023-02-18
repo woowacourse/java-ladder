@@ -1,15 +1,22 @@
 package ladder;
 
-import ladder.controller.LadderController;
-import ladder.service.LadderService;
+import ladder.domain.Height;
+import ladder.domain.Ladder;
+import ladder.domain.LadderFactory;
+import ladder.domain.Players;
+import ladder.domain.strategy.linestrategy.LineStrategy;
 import ladder.domain.strategy.linestrategy.RandomLineStrategy;
-import ladder.view.LadderView;
+import ladder.view.InputView;
+import ladder.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        LadderService ladderService = new LadderService(new RandomLineStrategy());
-        LadderView ladderView = new LadderView();
-        LadderController ladderController = new LadderController(ladderService, ladderView);
-        ladderController.run();
+        Players players = new Players(InputView.readPlayerNames());
+        Height height = new Height(InputView.readLadderHeight());
+        LineStrategy lineStrategy = new RandomLineStrategy();
+
+        LadderFactory ladderFactory = new LadderFactory(height, players, lineStrategy);
+        Ladder ladder = ladderFactory.makeLadder();
+        OutputView.printResult(players.asString(), ladder.asString());
     }
 }
