@@ -18,8 +18,8 @@ public class Controller {
 
     public void run() {
         Users usersName = settingUsers();
-        Ladders ladders = settingLadders();
-        ladders.make(new LadderGenerator(usersName.getCount() - 1));
+        int bridgeCount = usersName.getCount() - 1;
+        Ladders ladders = new Ladders(settingHeight(), new LadderGenerator(bridgeCount));
         outputView.printUsers(usersName);
         outputView.printLadders(ladders);
     }
@@ -40,13 +40,13 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
-    private Ladders settingLadders() {
+    private Height settingHeight() {
         try {
             int height = inputView.inputLadderHeight();
-            return new Ladders(new Height(height));
+            return new Height(height);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
-            return settingLadders();
+            return settingHeight();
         }
     }
 }
