@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -11,18 +13,38 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LineTest {
 
     @Test
-    void 라인은_주어진_사람보다_하나_적은_좌표값을_가진다() {
-        Line line = new Line(5);
+    void 라인의_넓이가_1_미만이면_예외() {
+        int width = -1;
+        List<Boolean> dummy = List.of(true, false, true, false, true);
 
-        assertThat(line.toUnmodifiableBars())
-                .hasSize(4);
+        assertThatThrownBy(() -> {
+            new Line(new MockedPointGenerator(dummy), width);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("라인의 넓이는 1이상이어야 합니다.");
     }
 
     @Test
-    void 주어진_사람이_한명_이하면_예외() {
-        assertThatThrownBy(() -> {
-            new Line(1);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참가자는 2명 이상이어야 합니다.");
+    void 라인은_연속된_True를_가지지_않는다() {
+        List<Boolean> dummy = List.of(true, true, true);
+        List<Boolean> expected = List.of(true, false, true);
+        Line line = new Line(new MockedPointGenerator(dummy), dummy.size());
+
+        assertThat(line.toUnmodifiableLine())
+                .isEqualTo(expected);
+    }
+
+    private static class MockedPointGenerator implements RandomGenerator<Boolean> {
+
+        private final List<Boolean> dummy;
+        private int index = 0;
+
+        private MockedPointGenerator(final List<Boolean> dummy) {
+            this.dummy = dummy;
+        }
+
+        @Override
+        public Boolean generate() {
+            return dummy.get(index++);
+        }
     }
 }

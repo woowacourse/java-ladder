@@ -1,26 +1,28 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderGame {
 
     private final Players players;
+    private Lines lines;
 
-    public LadderGame(List<String> names) {
-        List<Player> players = names.stream()
-                .map(Player::new)
-                .collect(Collectors.toList());
-
-        this.players = new Players(players);
+    public LadderGame(Players players, int height) {
+        initializeLines(height);
+        this.players = players;
     }
 
-    public List<Line> play(int height) {
-        Lines lines = new Lines(players.size(), height);
-        return lines.toUnModifiableLines();
+    private void initializeLines(int height) {
+        int width = players.size() - 1;
+        this.lines = new Lines(height, width);
     }
 
-    public List<String> getPlayerNames() {
-        return players.getNames();
+    public List<Player> toUnmodifiablePlayers() {
+        return players.toUnmodifiablePlayers();
+    }
+
+    public List<Line> toUnmodifiableLines() {
+        return Collections.unmodifiableList(lines.toUnModifiableLines());
     }
 }

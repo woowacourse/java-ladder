@@ -1,7 +1,7 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Players {
 
@@ -16,14 +16,12 @@ public class Players {
 
     private void validatePlayers(List<Player> players) {
         if (players.size() < MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException("참가자는 2명 이상이어야 합니다.");
+            throw new IllegalArgumentException("참가자는 " + MIN_PLAYER_COUNT + "명 이상이어야 합니다.");
         }
     }
 
-    public List<String> getNames() {
-        return players.stream()
-                .map(Player::getName)
-                .collect(Collectors.toList());
+    public List<Player> toUnmodifiablePlayers() {
+        return Collections.unmodifiableList(players);
     }
 
     public int size() {
