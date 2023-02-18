@@ -1,6 +1,6 @@
 package view;
 
-import controller.response.GoDownLadderResponse;
+import domain.game.LadderGameResult;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.ladder.Scaffold;
@@ -44,7 +44,7 @@ public class OutputView {
     }
 
     private static void printNames(final Names names) {
-        List<String> nameValues = names.getNames()
+        List<String> nameValues = names.names()
                 .stream()
                 .map(Name::value)
                 .collect(toList());
@@ -89,16 +89,15 @@ public class OutputView {
         System.out.println(winningEntriesMessage);
     }
 
-    public static void printGoDownLadderResult(final GoDownLadderResponse response) {
+    public static void printGoDownLadderResultForName(final LadderGameResult result) {
         System.out.println("\n실행 결과");
-        Map<Name, WinningEntry> nameWinningEntryMap = response.nameWinningEntryMap();
-        String result = nameWinningEntryMap
-                .keySet().stream()
+        String message = result.names()
+                .stream()
                 .map(name ->
                         format(NAME_AND_WINNING_ENTRY_FORMAT,
                                 name.value(),
-                                nameWinningEntryMap.get(name).value())
+                                result.get(name).value())
                 ).collect(joining(LINE_BLANK));
-        System.out.println(result);
+        System.out.println(message);
     }
 }

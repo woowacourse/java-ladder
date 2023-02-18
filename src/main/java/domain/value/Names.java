@@ -33,7 +33,7 @@ public class Names {
         return names.get(FIRST_NAME_INDEX).length();
     }
 
-    public List<Name> getNames() {
+    public List<Name> names() {
         return new ArrayList<>(names);
     }
 

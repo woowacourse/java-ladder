@@ -1,7 +1,8 @@
 package controller;
 
 import common.Logger;
-import controller.response.GoDownLadderResponse;
+import domain.game.LadderGame;
+import domain.game.LadderGameResult;
 import domain.ladder.Ladder;
 import domain.ladder.LadderFactory;
 import domain.value.*;
@@ -14,8 +15,6 @@ import java.util.stream.Collectors;
 
 public class LadderController {
 
-    private static final Name ALL_SHOW = new Name("all");
-
     private final LadderFactory ladderFactory;
 
     public LadderController(final LadderFactory ladderFactory) {
@@ -23,13 +22,14 @@ public class LadderController {
     }
 
     public void run() {
-        Names names = inputWithExceptionHandle(this::createNames);
-        WinningEntries winningEntries = inputWithExceptionHandle(() -> createWinningEntries(names.size()));
-        Height height = inputWithExceptionHandle(this::ladderHeight);
+        Names names = withExceptionHandle(this::createNames);
+        WinningEntries winningEntries = withExceptionHandle(() -> createWinningEntries(names.size()));
+        Height height = withExceptionHandle(this::ladderHeight);
         Ladder ladder = createLadder(Width.of(names.size() - 1), height);
         showLadder(names, ladder, winningEntries);
 
-        doDownLadderRepeat(names, winningEntries, ladder);
+        LadderGame ladderGame = new LadderGame(ladder, names, winningEntries);
+        playGame(ladderGame);
     }
 
     private Names createNames() {
@@ -63,41 +63,25 @@ public class LadderController {
         OutputView.printCreatedLadder(ladder, names, winningEntries);
     }
 
-    private void doDownLadderRepeat(final Names names, final WinningEntries winningEntries, final Ladder ladder) {
-        List<Position> wantToKnowResultPositions;
-        do {
-            wantToKnowResultPositions = inputWithExceptionHandle(() -> wantToKnowResultPositions(names));
-            GoDownLadderResponse goDownLadderResponse = goDownLadderResponse(names, winningEntries, ladder, wantToKnowResultPositions);
-            OutputView.printGoDownLadderResult(goDownLadderResponse);
-        } while (wantToKnowResultPositions.size() <= 1);
-    }
-
-    private List<Position> wantToKnowResultPositions(final Names names) {
-        Name wantToKnowResultName = new Name(InputView.inputWantToKnowResultName());
-        if (wantToKnowResultName.equals(ALL_SHOW)) {
-            return names.getNames().stream()
-                    .map(names::indexOf)
-                    .map(Position::of)
-                    .collect(Collectors.toList());
+    private void playGame(final LadderGame ladderGame) {
+        while (!ladderGame.isEnd()) {
+            LadderGameResult ladderGameResult = withExceptionHandle(() -> goDownLadder(ladderGame));
+            OutputView.printGoDownLadderResultForName(ladderGameResult);
         }
-        return List.of(Position.of(names.indexOf(wantToKnowResultName)));
     }
 
-    private GoDownLadderResponse goDownLadderResponse(final Names names, final WinningEntries winningEntries, final Ladder ladder, final List<Position> wantToKnowResultPositions) {
-        return new GoDownLadderResponse(wantToKnowResultPositions.stream()
-                .collect(Collectors.toUnmodifiableMap(
-                        position -> names.get(position.value()),
-                        position -> winningEntries.get(ladder.goDown(position).value())
-                ))
-        );
+    private LadderGameResult goDownLadder(final LadderGame ladderGame) {
+        String input = InputView.inputWantToKnowResultName();
+        Name name = new Name(input);
+        return ladderGame.goDownLadder(name);
     }
 
-    private <T> T inputWithExceptionHandle(final Supplier<T> supplier) {
+    private <T> T withExceptionHandle(final Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
             Logger.error(e.getMessage());
-            return inputWithExceptionHandle(supplier);
+            return withExceptionHandle(supplier);
         }
     }
 }
