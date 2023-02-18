@@ -6,6 +6,7 @@ import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
 import ladder.domain.generator.LadderGenerator;
+import ladder.domain.generator.LineGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -25,7 +26,7 @@ public class LadderController {
     public void run() {
         final Players players = generate(inputView::readPlayerNames, Players::new);
         final Height height = generate(inputView::readHeight, Height::new);
-        final Ladder ladder = ladderGenerator.generate(players, height);
+        final Ladder ladder = ladderGenerator.generate(new LineGenerator(), players, height);
         outputView.printLadderResult(players, ladder);
     }
 

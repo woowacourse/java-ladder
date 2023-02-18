@@ -11,29 +11,25 @@ import ladder.domain.Line;
 
 public class LineGenerator {
 
-    private final DirectionGenerator directionGenerator;
-
-    public LineGenerator(final DirectionGenerator directionGenerator) {
-        this.directionGenerator = directionGenerator;
+    public Line generate(final DirectionGenerator directionGenerator, final int directionCount) {
+        final List<Direction> directions = generateDirections(directionGenerator, directionCount);
+        return new Line(directions);
     }
 
-    public Line generate(final int directionCount) {
-        return new Line(generateDirections(directionCount));
-    }
-
-    private List<Direction> generateDirections(final int directionCount) {
+    private List<Direction> generateDirections(final DirectionGenerator directionGenerator, final int directionCount) {
         final List<Direction> directions = new ArrayList<>();
-        generateDirectionsStrategy(directions, directionCount);
+        generateDirectionsStrategy(directionGenerator, directions, directionCount);
         return directions;
     }
 
-    private void generateDirectionsStrategy(final List<Direction> directions, final int directionCount) {
+    private void generateDirectionsStrategy(final DirectionGenerator directionGenerator,
+                                            final List<Direction> directions, final int directionCount) {
         if (directions.size() >= directionCount - 1) {
             addStayIfNotEnough(directions, directionCount);
             return;
         }
-        addDirections(directions);
-        generateDirectionsStrategy(directions, directionCount);
+        addDirections(directionGenerator, directions);
+        generateDirectionsStrategy(directionGenerator, directions, directionCount);
     }
 
     private void addStayIfNotEnough(final List<Direction> directions, final int directionCount) {
@@ -46,7 +42,7 @@ public class LineGenerator {
         return directions.size() == directionCount - 1;
     }
 
-    private void addDirections(final List<Direction> directions) {
+    private void addDirections(final DirectionGenerator directionGenerator, final List<Direction> directions) {
         final Direction direction = directionGenerator.generate();
 
         directions.add(direction);

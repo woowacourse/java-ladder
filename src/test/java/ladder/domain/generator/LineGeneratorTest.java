@@ -31,8 +31,8 @@ class LineGeneratorTest {
     @DisplayName("발판이 정상적으로 만들어진다.")
     void validLine(final List<Direction> directions, final Direction[] expected, final int directionCount) {
         final DirectionGenerator directionGenerator = new TestDirectionGenerator(directions);
-        final LineGenerator lineGenerator = new LineGenerator(directionGenerator);
-        final Line result = lineGenerator.generate(directionCount);
+        final LineGenerator lineGenerator = new LineGenerator();
+        final Line result = lineGenerator.generate(directionGenerator, directionCount);
 
         assertThat(result.getDirections()).containsExactly(expected);
     }
