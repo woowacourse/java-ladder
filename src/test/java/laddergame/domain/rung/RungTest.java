@@ -14,24 +14,24 @@ public class RungTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, 1})
-    @DisplayName("0 혹은 1이 입력되면, 사다리 가로대가 생성된다.")
-    void create_test(int validNumber) {
-        assertDoesNotThrow(() -> Rung.create(validNumber));
+    @DisplayName("0 혹은 1이 입력되면, 예외가 발생하지 않는다.")
+    void does_not_throws_exception_if_input_is_0_or_1(int validMaterial) {
+        assertDoesNotThrow(() -> Rung.create(validMaterial));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 2, 3, 4})
-    @DisplayName("0 혹은 1이 아닌 값이 입력되면, 예외가 발생한다.")
-    void create_error_test(int errorNumber) {
-        assertThatThrownBy(() -> Rung.create(errorNumber))
+    @DisplayName("0 혹은 1을 제외한 다른 값이 입력되면, 예외가 발생한다.")
+    void throws_exception_if_input_is_not_0_or_1(int invalidMaterial) {
+        assertThatThrownBy(() -> Rung.create(invalidMaterial))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INVALID_MATERIAL.getMessage());
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1:true", "0:false"}, delimiter = ':')
-    @DisplayName("0 혹은 1이 아닌 값이 입력되면, 예외가 발생한다.")
-    void make_rung_error_test(int material, boolean expectedValue) {
+    @CsvSource(value = {"0:false", "1:true"}, delimiter = ':')
+    @DisplayName("0이 입력되면 존재하지 않고, 1이 입력되면 존재하는지 확인한다.")
+    void does_not_exists_if_input_is_0_and_exists_if_input_is_1(int material, boolean expectedValue) {
         // given
         Rung rung = Rung.create(material);
 
