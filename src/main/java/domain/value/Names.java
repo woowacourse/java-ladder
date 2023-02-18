@@ -40,4 +40,12 @@ public class Names {
     public int size() {
         return names.size();
     }
+
+    public int indexOf(final Name name) {
+        return names.indexOf(name);
+    }
+
+    public Name get(final int index) {
+        return names.get(index);
+    }
 }

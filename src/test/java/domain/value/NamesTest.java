@@ -102,4 +102,34 @@ class NamesTest {
                 new Names(names)
         ).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest(name = "특정 이름의 위치를 알 수 있다. 예를 들어 [{0}] 에서 [{1}]의 위치는 [{2}] 이다.")
+    @CsvSource(value = {
+            "바다,말랑:바다:0",
+            "바다,말랑,산,토끼,당근:산:2",
+    }, delimiter = ':')
+    void 특정_이름의_위치를_알_수_있다(final String nameValues, final String nameValue, final int index) {
+        // given
+        Names names = new Names(stream(nameValues.split(","))
+                .map(Name::new)
+                .collect(Collectors.toList()));
+
+        // when & then
+        assertThat(names.indexOf(new Name(nameValue))).isEqualTo(index);
+    }
+
+    @ParameterizedTest(name = "특정 순서에 해당하는 이름을 알 수 있다. 예를 들어 [{0}] 에서 [{1}]의 위치에 존재하는 이름은 [{2}] 이다.")
+    @CsvSource(value = {
+            "바다,말랑:0:바다",
+            "바다,말랑,산,토끼,당근:2:산",
+    }, delimiter = ':')
+    void 특정_순서에_해당하는_이름을_알_수_있다(final String nameValues, final int index, final String nameValue) {
+        // given
+        Names names = new Names(stream(nameValues.split(","))
+                .map(Name::new)
+                .collect(Collectors.toList()));
+
+        // when & then
+        assertThat(names.get(index)).isEqualTo(new Name(nameValue));
+    }
 }
