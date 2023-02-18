@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -43,5 +44,37 @@ public class LadderResultsTest {
 
         // then
         assertThat(ladderResults.getResults().size()).isEqualTo(playerNumber);
+    }
+
+    @Test
+    @DisplayName("사다리 게임의 결과물 중 가장 첫 번째 결과물을 반환한다.")
+    void returns_first_ladder_result() {
+        // given
+        String firstResult = "꽝";
+        String secondResult = "3000";
+        List<String> ladderResults = List.of(firstResult, secondResult);
+        LadderResults givenLadderResults = new LadderResults(ladderResults, ladderResults.size());
+
+        // when
+        String firstThingOfLadderResult = givenLadderResults.findFirstResult();
+
+        // then
+        assertThat(firstThingOfLadderResult).isEqualTo(firstResult);
+    }
+
+    @Test
+    @DisplayName("사다리 게임의 결과물 중 가장 긴 이름의 결과물의 크기를 반환한다.")
+    void returns_size_of_longest_ladder_result() {
+        // given
+        String normalResult = "꽝";
+        String longestResult = "3000";
+        List<String> ladderResults = List.of(normalResult, longestResult);
+        LadderResults givenLadderResults = new LadderResults(ladderResults, ladderResults.size());
+
+        // when
+        int sizeOfLongestLadderResults = givenLadderResults.findLongestLadderResults();
+
+        // then
+        assertThat(sizeOfLongestLadderResults).isEqualTo(longestResult.length());
     }
 }

@@ -26,7 +26,18 @@ public class LadderResults {
                 .collect(Collectors.toList());
     }
 
+    public String findFirstResult() {
+        return this.getResults().get(0).getResult();
+    }
+
     public List<LadderResult> getResults() {
         return Collections.unmodifiableList(this.results);
+    }
+
+    public int findLongestLadderResults() {
+        return this.getResults().stream()
+                .mapToInt(ladderResult -> ladderResult.getResult().length())
+                .max()
+                .orElseThrow(IllegalArgumentException::new);
     }
 }

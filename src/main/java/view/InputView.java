@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class InputView {
 
     private static final String SPLIT_DELIMITER = ",";
+    private static final String NEW_LINE = System.getProperty("line.separator");
 
     private final Scanner reader = new Scanner(System.in);
 
@@ -18,14 +19,14 @@ public class InputView {
     }
 
     public int readHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        System.out.println(NEW_LINE + "최대 사다리 높이는 몇 개인가요?");
         String height = reader.next();
         int ladderHeight = validateIntegerInput(height);
         return ladderHeight;
     }
 
     public List<String> readLadderResults() {
-        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        System.out.println(NEW_LINE + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String ladderResults = reader.next();
         return splitInput(ladderResults);
     }

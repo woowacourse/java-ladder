@@ -1,6 +1,8 @@
 package view;
 
 import domain.Ladder;
+import domain.LadderResult;
+import domain.LadderResults;
 import domain.LadderSymbol;
 import domain.Player;
 import domain.Players;
@@ -14,16 +16,20 @@ public class OutputView {
     private static final String BAR = "|";
     private static final String NEW_LINE = System.getProperty("line.separator");
     private static final StringBuilder ladderOutput = new StringBuilder();
+    private static final StringBuilder ladderResultsOutput = new StringBuilder();
     private static final StringBuilder playerNamesOutput = new StringBuilder();
+    private static final StringBuilder finallyResult = new StringBuilder();
 
-    public void printResult(final Players players, final Ladder ladder) {
-        System.out.println("실행결과");
+    public void printLadderGameStatus(final Players players, final Ladder ladder, final LadderResults ladderResults) {
+        System.out.println(NEW_LINE + "사다리 결과");
 
-        StringBuilder playerNames = makePlayerNamesOutput(players);
-        System.out.println(playerNames);
+        finallyResult.append(makePlayerNamesOutput(players))
+                .append(NEW_LINE)
+                .append(makeLadderOutput(players, ladder))
+                .append(makeLadderResultOutput(ladderResults))
+                .append(NEW_LINE);
 
-        StringBuilder ladderOutput = makeLadderOutput(players, ladder);
-        System.out.println(ladderOutput);
+        System.out.println(finallyResult);
     }
 
     public StringBuilder makePlayerNamesOutput(final Players players) {
@@ -33,6 +39,7 @@ public class OutputView {
 
         for (int i = 1; i < players.getPlayers().size(); i++) {
             appendPlayerNames(longestPlayerName, players.getPlayers().get(i));
+
         }
 
         return playerNamesOutput;
@@ -109,5 +116,49 @@ public class OutputView {
     private void drawBarAtLast() {
         ladderOutput.append(BAR)
                 .append(NEW_LINE);
+    }
+
+
+
+
+    public StringBuilder makeLadderResultOutput(final LadderResults ladderResults) {
+        int longestPlayerName = ladderResults.findLongestLadderResults();
+
+        drawFirstLadderResult(ladderResults);
+
+        for (int i = 1; i < ladderResults.getResults().size(); i++) {
+            appendLadderResults(longestPlayerName, ladderResults.getResults().get(i));
+        }
+
+        return ladderResultsOutput;
+    }
+
+    private void drawFirstLadderResult(final LadderResults ladderResults) {
+        ladderResultsOutput.append(ladderResults.findFirstResult())
+                .append(BLANK);
+    }
+
+    private void appendLadderResults(final int longestResult, final LadderResult ladderResult) {
+        if (isMaximumLengthOfResult(ladderResult)) {
+            drawResultWhenMaximumLength(ladderResult);
+            return;
+        }
+        drawLadderResult(longestResult,ladderResult);
+    }
+
+    private boolean isMaximumLengthOfResult(final LadderResult ladderResult) {
+        return ladderResult.getLengthOfLadderResult() == MAXIMUM_LENGTH_OF_NAME;
+    }
+
+    private void drawResultWhenMaximumLength(final LadderResult ladderResult) {
+        ladderResultsOutput.append(BLANK)
+                .append(ladderResult.getResult());
+    }
+
+    private void drawLadderResult(final int longestResult, final LadderResult ladderResult) {
+        int numberOfBlank = longestResult - ladderResult.getResult().length();
+        ladderResultsOutput.append(LadderSymbol.draw(BLANK, numberOfBlank))
+                .append(ladderResult.getResult())
+                .append(BLANK);
     }
 }
