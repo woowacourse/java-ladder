@@ -1,38 +1,34 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
-public class LadderGenerator implements Generator<Bridge> {
-    private final Random random;
-    private final int bridgeCount;
+public class LadderGenerator {
+    private final List<Position> ladder;
 
-    public LadderGenerator(int bridgeCount) {
-        this.random = new Random();
-        this.bridgeCount=bridgeCount;
+    public LadderGenerator(int bridgeCount, BooleanGenerator randomGenerator) {
+        this.ladder = new ArrayList<>();
+        generate(randomGenerator, bridgeCount);
     }
 
-    @Override
-    public List<Bridge> generate() {
-        List<Bridge> ladder = new ArrayList<>();
-        while (ladder.size() < bridgeCount) {
-            ladder.add(generateBridge(ladder));
+    private void generate(BooleanGenerator randomGenerator, int bridgeCount) {
+        while (ladder.size() < bridgeCount - 1) {
+            ladder.addAll(requirement(randomGenerator));
         }
-        return ladder;
+        if (ladder.size() != bridgeCount) {
+            ladder.add(Position.DOWN);
+        }
     }
 
-    private Bridge generateBridge(List<Bridge> result) {
-        if (generateCondition(result)) {
-            return Bridge.from(random.nextBoolean());
+    private List<Position> requirement(BooleanGenerator randomGenerator) {
+        if (randomGenerator.get()) {
+            return Arrays.asList(Position.LEFT, Position.RIGHT);
         }
-        return Bridge.NON_EXIST;
+        return Arrays.asList(Position.DOWN);
     }
 
-    private boolean generateCondition(List<Bridge> result) {
-        if (result.isEmpty() || !result.get(result.size() - 1).isExist()) {
-            return true;
-        }
-        return false;
+    public List<Position> getLadder() {
+        return new ArrayList<>(ladder);
     }
 }
