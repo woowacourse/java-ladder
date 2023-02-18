@@ -2,12 +2,12 @@ package laddergame.utils;
 
 import java.util.function.Supplier;
 
-public class ExceptionTemplate {
+public class RetryUtils {
 
-    private ExceptionTemplate() {
+    private RetryUtils() {
     }
 
-    public static <T> T repeat(Supplier<T> supplier) {
+    public static <T> T retryOnRuntimeException(Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();
@@ -16,7 +16,7 @@ public class ExceptionTemplate {
             }
         }
     }
-    public static <T> T repeatAndPrintCause(Supplier<T> supplier) {
+    public static <T> T retryOnRuntimeExceptionWithMessage(Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();

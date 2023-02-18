@@ -8,7 +8,7 @@ import laddergame.view.OutputView;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static laddergame.utils.ExceptionTemplate.repeatAndPrintCause;
+import static laddergame.utils.RetryUtils.retryOnRuntimeExceptionWithMessage;
 
 public class LadderController {
     private final InputView inputView;
@@ -25,8 +25,8 @@ public class LadderController {
     }
 
     public void run() {
-        final Participants participants = repeatAndPrintCause(this::getParticipants);
-        final Height height = repeatAndPrintCause(this::getHeight);
+        final Participants participants = retryOnRuntimeExceptionWithMessage(this::getParticipants);
+        final Height height = retryOnRuntimeExceptionWithMessage(this::getHeight);
 
         final Ladder ladder = new Ladder(participants, height);
 

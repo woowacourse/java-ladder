@@ -5,7 +5,7 @@ import java.util.List;
 
 import static laddergame.messsages.ExceptionMessages.LINE_CREATOR_BOOLEAN_GENERATOR_NULL_EXCEPTION;
 import static laddergame.messsages.ExceptionMessages.LINE_CREATOR_ILLEGAL_LENGTH_EXCEPTION;
-import static laddergame.utils.ExceptionTemplate.repeat;
+import static laddergame.utils.RetryUtils.retryOnRuntimeException;
 
 public class LineCreator {
 
@@ -21,7 +21,7 @@ public class LineCreator {
 
         final List<Line> lines = new ArrayList<>();
         for (int count = 0; count < height; count++) {
-            final Line line = repeat(() -> createLine(width));
+            final Line line = retryOnRuntimeException(() -> createLine(width));
             lines.add(line);
         }
 
