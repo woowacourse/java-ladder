@@ -20,7 +20,7 @@ public class Line {
     }
 
     private void validateScaffoldSizeEmpty(final List<Scaffold> scaffolds) {
-        if (scaffolds.size() == 0) {
+        if (scaffolds.isEmpty()) {
             throw new IllegalArgumentException();
         }
     }
