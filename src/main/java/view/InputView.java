@@ -15,7 +15,7 @@ public class InputView {
     }
 
     public List<String> sendNames() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        System.out.println(String.format("참여할 사람 이름을 입력하세요. (이름은 쉼표(%s)로 구분하세요)", NAME_DELIMITER));
 
         String rawNames = scanner.nextLine();
         return Arrays.stream(rawNames.split(NAME_DELIMITER))
