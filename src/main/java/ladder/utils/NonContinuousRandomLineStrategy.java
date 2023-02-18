@@ -4,15 +4,16 @@ import java.util.*;
 import java.util.stream.IntStream;
 
 public class NonContinuousRandomLineStrategy implements LineStrategy {
+    private static final boolean FILLED = true;
     private final Random random = new Random();
 
     @Override
     public List<Boolean> generate(int sectionCount) {
         List<Boolean> line = makeRandomLine(sectionCount);
 
-        IntStream.range(0, sectionCount - 1).forEach(i -> {
-            if (line.get(i) && line.get(i + 1)) {
-                line.set(i + 1, false);
+        IntStream.range(0, sectionCount - 1).forEach(index -> {
+            if (line.get(index) == FILLED && line.get(index + 1) == FILLED) {
+                line.set(index + 1, false);
             }
         });
         return line;
