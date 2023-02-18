@@ -6,17 +6,17 @@ import java.util.List;
 
 public class Ladder {
 
-    private final List<Rungs> ladder;
+    private final List<Rungs> ladderRungs;
 
-    private Ladder(final List<Rungs> ladder) {
-        this.ladder = ladder;
+    private Ladder(final List<Rungs> ladderRungs) {
+        this.ladderRungs = ladderRungs;
     }
 
-    public static Ladder create(final List<Rungs> ladder) {
-        return new Ladder(ladder);
+    protected static Ladder create(final List<Rungs> ladderRungs) {
+        return new Ladder(ladderRungs);
     }
 
-    public List<Rungs> getLadder() {
-        return List.copyOf(ladder);
+    public List<Rungs> getLadderRungs() {
+        return List.copyOf(ladderRungs);
     }
 }
