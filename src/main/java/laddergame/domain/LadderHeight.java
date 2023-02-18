@@ -8,7 +8,7 @@ public class LadderHeight {
         this.height = ladderHeight;
     }
 
-    public boolean isMaxHeight(int ladderSize) {
-        return height == ladderSize;
+    public boolean isMaxHeight(int ladderHeight) {
+        return height == ladderHeight;
     }
 }
