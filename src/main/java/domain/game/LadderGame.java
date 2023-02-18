@@ -12,14 +12,13 @@ public class LadderGame {
     private final Ladder ladder;
     private final Names names;
     private final WinningEntries winningEntries;
-
-    private GameStatus status;
+    private final State state;
 
     public LadderGame(final Ladder ladder, final Names names, final WinningEntries winningEntries) {
         this.ladder = ladder;
         this.names = names;
         this.winningEntries = winningEntries;
-        status = GameStatus.PREPARED;
+        state = State.prepared();
     }
 
     public LadderGameResult goDownLadder(final Name name) {
@@ -30,7 +29,7 @@ public class LadderGame {
     }
 
     private LadderGameResult goDownForAllParticipants() {
-        status = GameStatus.END;
+        state.set(GameState.END);
         return new LadderGameResult(names.names()
                 .stream()
                 .collect(Collectors.toUnmodifiableMap(
@@ -42,7 +41,7 @@ public class LadderGame {
     }
 
     private LadderGameResult goDownForParticipant(final Name name) {
-        status = GameStatus.PROCEEDING;
+        state.set(GameState.PROCEEDING);
         Position start = Position.of(names.indexOf(name));
         Position end = ladder.goDown(start);
         WinningEntry winningEntry = winningEntries.get(end.value());
@@ -50,6 +49,6 @@ public class LadderGame {
     }
 
     public boolean isEnd() {
-        return this.status == GameStatus.END;
+        return state.isEnd();
     }
 }
