@@ -2,30 +2,51 @@ package view;
 
 import domain.Ladder;
 import domain.Line;
+import domain.Name;
 import domain.Names;
 import domain.Point;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
 
     private static final String EDGE_OF_POINT = "|";
-    private static final String PASSABLE_POINT = "-----";
-    private static final String BLOCKED_POINT = "     ";
+    private static final String PASSABLE_POINT = "----------";
+    private static final String BLOCKED_POINT = "          ";
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
+    private static final String BLANK_AFTER_NAME = " ";
 
     public void printResult(Names names,
                             Ladder ladder) {
         System.out.println("실행결과");
 
-        System.out.println(getFormattedNames(names));
+        printFormattedNames(names);
         printLadder(ladder);
     }
 
-    private String getFormattedNames(Names names) {
-        return names.stream()
-                .map(name -> String.format("%-5s", name.getName()))
-                .collect(Collectors.joining(" "));
+    private void printFormattedNames(Names names) {
+        int numberOfStandardBlanks = EDGE_OF_POINT.length() + PASSABLE_POINT.length();
+        names.stream().forEach(name -> {
+            int numberOfBlanksAfterName = getNumberOfBlanksAfterName(name, numberOfStandardBlanks);
+            System.out.print(name.value());
+            System.out.print(BLANK_AFTER_NAME.repeat(numberOfBlanksAfterName));
+        });
+        System.out.println();
+    }
+
+    private int getNumberOfBlanksAfterName(Name name, int numberOfStandardBlanks) {
+        int numberOfKoreanChars = getNumberOfKoreanChars(name);
+        return numberOfStandardBlanks - (numberOfKoreanChars / 2) - name.length();
+    }
+
+    private int getNumberOfKoreanChars(Name name) {
+        try {
+            return name.value().getBytes("euc-kr").length - name.length();
+        } catch (UnsupportedEncodingException e) {
+            printErrorMessage("지원하지 않는 언어 형식으로 이름이 깨져보일 수 있습니다.");
+            return name.value().getBytes(StandardCharsets.UTF_8).length - name.length();
+        }
     }
 
     private void printLadder(Ladder ladder) {
