@@ -1,5 +1,7 @@
 package ladder.view.constant;
 
+import ladder.domain.Bar;
+
 public enum LadderOutputSymbol {
 
     BAR_SYMBOL("-"),
@@ -12,11 +14,10 @@ public enum LadderOutputSymbol {
         this.symbol = symbolValue;
     }
 
-    public static String decideLadderSymbol(boolean input) {
-        if (input) {
+    public static String decideLadderSymbol(Bar bar) {
+        if (bar == Bar.MOVABLE_BAR) {
             return BAR_SYMBOL.symbol;
         }
-
         return EMPTY_BAR_SYMBOL.symbol;
     }
 

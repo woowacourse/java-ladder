@@ -49,7 +49,7 @@ public class ResultView {
 
     private String convertBarSymbol(Bar bar) {
         return LadderOutputSymbol
-                .decideLadderSymbol(bar.getValue())
+                .decideLadderSymbol(bar)
                 .repeat(Name.NAME_MAXIMUM_LENGTH);
     }
 
