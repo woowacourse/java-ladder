@@ -9,11 +9,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class HeightTest {
     private int heightValue;
     private Height height;
+    private RandomGenerator randomGenerator;
 
     @BeforeEach
     void setup() {
-        heightValue = 5;
-        height = new Height(heightValue);
+        heightValue = 3;
+        randomGenerator = new MockRandomDataGenerator();
+        height = Height.create(heightValue, randomGenerator);
     }
 
     @Test
@@ -25,7 +27,7 @@ public class HeightTest {
     @Test
     @DisplayName("Height 객체 equals 테스트")
     void equalsTest() {
-        Height other = new Height(heightValue);
+        Height other = Height.create(heightValue, randomGenerator);
         assertThat(height).isEqualTo(other);
     }
 }

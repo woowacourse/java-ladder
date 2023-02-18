@@ -1,10 +1,7 @@
 package ladder.controller;
 
-import ladder.domain.Bar;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.LineMaker;
 import ladder.domain.Players;
 import ladder.domain.RandomGenerator;
 import ladder.view.InputView;
@@ -53,19 +50,10 @@ public class LadderController {
         }
     }
 
-    private Height decideHeightOfLadderUntilNoException() {
-        Height height = null;
-        while (height == null) {
-            height = decideHeightOfLadder();
-        }
-        return height;
-    }
-
-    private Height decideHeightOfLadder() {
+    private Height newHeightOfLadder() {
         try {
             int inputMaximumHeight = inputView.inputHeightOfLadder();
-            int height = randomIntegerGenerator.generateNumber(MINIMUM_HEIGHT, inputMaximumHeight);
-            return new Height(height);
+            return Height.create(inputMaximumHeight, randomGenerator);
         } catch (IllegalArgumentException e) {
             resultView.printError(e.getMessage());
             return null;

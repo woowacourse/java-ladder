@@ -4,10 +4,18 @@ import java.util.Objects;
 
 public class Height {
 
+    private static final int MINIMUM_HEIGHT = 1;
+
     private final int height;
 
-    public Height(int height) {
+    private Height(int height) {
         this.height = height;
+    }
+
+    public static Height create(int maxHeight, RandomGenerator randomGenerator) {
+        int height = randomGenerator.generateNumber(MINIMUM_HEIGHT, maxHeight);
+
+        return new Height(height);
     }
 
     public int getHeight() {
