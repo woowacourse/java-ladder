@@ -1,5 +1,8 @@
 package domain;
 
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+
 public enum LineState {
     MOVABLE_STATE(1, true),
     UNMOVABLE_STATE(0, false);
@@ -17,11 +20,14 @@ public enum LineState {
     }
 
     public static LineState of(int value) {
-        for (LineState lineState : LineState.values()) {
-            if (lineState.value == value) {
-                return lineState;
-            }
+        try {
+            return Arrays.stream(LineState.values())
+                    .filter(s -> s.value == value)
+                    .findAny()
+                    .get();
+        } catch (NoSuchElementException e) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 오류 발생 ");
         }
-        throw new IllegalArgumentException();
     }
+
 }
