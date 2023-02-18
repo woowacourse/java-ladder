@@ -1,6 +1,7 @@
 package domain;
 
 import domain.value.Direction;
+import domain.value.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -119,17 +120,17 @@ public class LineTest {
                 ));
 
         // when & then
-        assertThat(line.directionOfScaffoldExist(0))
+        assertThat(line.directionOfScaffoldExist(Position.of(0)))
                 .isEqualTo(Direction.NONE);
-        assertThat(line.directionOfScaffoldExist(1))
+        assertThat(line.directionOfScaffoldExist(Position.of(1)))
                 .isEqualTo(Direction.RIGHT);
-        assertThat(line.directionOfScaffoldExist(2))
+        assertThat(line.directionOfScaffoldExist(Position.of(2)))
                 .isEqualTo(Direction.LEFT);
-        assertThat(line.directionOfScaffoldExist(3))
+        assertThat(line.directionOfScaffoldExist(Position.of(3)))
                 .isEqualTo(Direction.NONE);
-        assertThat(line.directionOfScaffoldExist(4))
+        assertThat(line.directionOfScaffoldExist(Position.of(4)))
                 .isEqualTo(Direction.RIGHT);
-        assertThat(line.directionOfScaffoldExist(5))
+        assertThat(line.directionOfScaffoldExist(Position.of(5)))
                 .isEqualTo(Direction.LEFT);
     }
 
@@ -148,10 +149,10 @@ public class LineTest {
 
         // when & then
         assertThatThrownBy(() ->
-                line.directionOfScaffoldExist(-1)
+                line.directionOfScaffoldExist(Position.of(-1))
         ).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() ->
-                line.directionOfScaffoldExist(-6)
+                line.directionOfScaffoldExist(Position.of(6))
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }

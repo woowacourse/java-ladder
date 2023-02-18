@@ -1,6 +1,7 @@
 package domain;
 
 import domain.value.Direction;
+import domain.value.Position;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class Line {
         return new ArrayList<>(scaffolds);
     }
 
-    public Direction directionOfScaffoldExist(final int position) {
+    public Direction directionOfScaffoldExist(final Position position) {
         validatePosition(position);
         if (isLastPosition(position)) {
             return lastScaffoldExistDirection(position);
@@ -59,39 +60,39 @@ public class Line {
         return middleScaffoldExistDirection(position);
     }
 
-    private void validatePosition(final int position) {
-        if (scaffolds.size() < position || position < 0) {
+    private void validatePosition(final Position position) {
+        if (scaffolds.size() < position.value() || position.isNegative()) {
             throw new IllegalArgumentException("Scaffold 탐색을 위한 시작 위치가 잘못되었습니다.");
         }
     }
 
-    private boolean isLastPosition(final int position) {
-        return position == scaffolds.size();
+    private boolean isLastPosition(final Position position) {
+        return position.value() == scaffolds.size();
     }
 
-    private boolean isFirstPosition(final int position) {
-        return position == 0;
+    private boolean isFirstPosition(final Position position) {
+        return position.value() == 0;
     }
 
-    private Direction firstScaffoldExistDirection(final int position) {
-        if (scaffolds.get(position) == Scaffold.EXIST) {
+    private Direction firstScaffoldExistDirection(final Position position) {
+        if (scaffolds.get(position.value()) == Scaffold.EXIST) {
             return Direction.RIGHT;
         }
         return Direction.NONE;
     }
 
-    private Direction lastScaffoldExistDirection(final int position) {
-        if (scaffolds.get(position - 1) == Scaffold.EXIST) {
+    private Direction lastScaffoldExistDirection(final Position position) {
+        if (scaffolds.get(position.value() - 1) == Scaffold.EXIST) {
             return Direction.LEFT;
         }
         return Direction.NONE;
     }
 
-    private Direction middleScaffoldExistDirection(final int position) {
-        if (scaffolds.get(position) == Scaffold.EXIST) {
+    private Direction middleScaffoldExistDirection(final Position position) {
+        if (scaffolds.get(position.value()) == Scaffold.EXIST) {
             return Direction.RIGHT;
         }
-        if (scaffolds.get(position - 1) == Scaffold.EXIST) {
+        if (scaffolds.get(position.value() - 1) == Scaffold.EXIST) {
             return Direction.LEFT;
         }
         return Direction.NONE;
