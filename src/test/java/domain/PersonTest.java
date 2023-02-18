@@ -1,7 +1,6 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,7 +25,9 @@ public class PersonTest {
     void createNameWithCorrectLength(String name) {
         //given
         //when
+        Person person = new Person(name);
+
         //then
-        assertDoesNotThrow(() -> new Person(name));
+        assertThat(person.getName()).isEqualTo(name);
     }
 }

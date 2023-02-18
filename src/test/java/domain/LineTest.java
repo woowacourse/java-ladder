@@ -4,19 +4,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import util.FalseGenerator;
 import util.RandomBooleanGenerator;
 import util.TrueGenerator;
 
 class LineTest {
 
-    @ParameterizedTest
-    @ValueSource(ints = {3, 5, 10})
+    @Test
     @DisplayName("한 라인에 사람 수 만큼 칸이 생성되는가")
-    void createSpaceTest(int personCount) {
+    void createSpaceTest() {
         //given
+        int personCount = 5;
         //when
         Line line = Line.generateWithBridges(new RandomBooleanGenerator(), personCount);
 

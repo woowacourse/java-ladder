@@ -1,8 +1,6 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -12,10 +10,13 @@ public class PersonsTest {
     @Test
     @DisplayName("중복된 이름은 안된다")
     void duplicateName() {
+        //given
         Person baron1 = new Person("baron");
         Person baron2 = new Person("baron");
         Person oing = new Person("oing");
 
+        //when
+        //then
         assertThatThrownBy(() -> new Persons(List.of(baron1, baron2, oing)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -23,10 +24,15 @@ public class PersonsTest {
     @Test
     @DisplayName("중복이 아닌 이름은 가능하다")
     void notDuplicateName() {
+        //given
         Person baron = new Person("baron");
         Person oing = new Person("oing");
 
-        assertDoesNotThrow(() -> new Persons(List.of(baron, oing)));
+        //when
+        Persons persons = new Persons(List.of(baron, oing));
+
+        //then
+        assertThat(persons.getTotalPersonCount()).isEqualTo(2);
     }
 
     @Test
