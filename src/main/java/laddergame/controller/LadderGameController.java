@@ -11,7 +11,7 @@ import laddergame.view.OutputView;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static laddergame.view.message.Message.*;
+import static laddergame.view.message.Message.RESULT_GUIDE;
 
 public class LadderGameController {
 
@@ -31,9 +31,8 @@ public class LadderGameController {
     }
 
     private Participants createParticipants() {
-        return inputView.getUserInput(() -> {
-            OutputView.print(INPUT_PARTICIPANT_NAMES_GUIDE.getMessage());
-            String participantNames = inputView.readConsole();
+        return inputView.repeatUntilGettingValidValue(() -> {
+            String participantNames = inputView.readParticipantNames();
             return Participants.create(participantNames);
         });
     }
@@ -44,9 +43,8 @@ public class LadderGameController {
     }
 
     private Ladder createLadderBy(final Participants participants, final LadderFactory ladderFactory) {
-        return inputView.getUserInput(() -> {
-            OutputView.print(INPUT_LADDER_MAX_HEIGHT_GUIDE.getMessage());
-            String maxLadderHeight = inputView.readConsole();
+        return inputView.repeatUntilGettingValidValue(() -> {
+            String maxLadderHeight = inputView.readMaxLadderHeight();
             return ladderFactory.createLadder(maxLadderHeight, participants.size());
         });
     }
