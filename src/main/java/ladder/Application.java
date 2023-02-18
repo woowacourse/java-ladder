@@ -2,7 +2,7 @@ package ladder;
 
 import ladder.controller.LadderController;
 import ladder.service.LadderService;
-import ladder.util.RandomLineStrategy;
+import ladder.domain.strategy.linestrategy.RandomLineStrategy;
 import ladder.view.LadderView;
 
 public class Application {

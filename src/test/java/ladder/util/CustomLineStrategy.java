@@ -4,7 +4,7 @@ import ladder.domain.Line;
 import ladder.domain.Step;
 import java.util.ArrayList;
 import java.util.List;
-import ladder.util.LineStrategy;
+import ladder.domain.strategy.linestrategy.LineStrategy;
 
 public class CustomLineStrategy implements LineStrategy {
     private final List<Step> mockSteps;

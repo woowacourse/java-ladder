@@ -5,7 +5,7 @@ import ladder.domain.Ladder;
 import ladder.domain.Line;
 import java.util.ArrayList;
 import java.util.List;
-import ladder.util.LineStrategy;
+import ladder.domain.strategy.linestrategy.LineStrategy;
 
 public class LadderService {
     private final LineStrategy lineStrategy;
