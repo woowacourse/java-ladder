@@ -1,6 +1,6 @@
 package domain;
 
-import domain.value.Direction;
+import domain.value.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -107,5 +107,45 @@ public class LadderTest {
                 Arguments.of(List.of(line1, line1, line2)),
                 Arguments.of(List.of(line3, line3, line3, line4))
         );
+    }
+
+    /**
+     * 0     1     2     3
+     * |-----|     |-----|
+     * |     |-----|     |
+     * |-----|     |     |
+     * |     |-----|     |
+     * |-----|     |-----|
+     * 0     1     2     3
+     * <p>
+     * 0 에서 내려가는 경우 -> 0
+     * 1 에서 내려가는 경우 -> 3
+     * 2 에서 내려가는 경우 -> 2
+     * 3 에서 내려가는 경우 -> 1
+     */
+    @Test
+    void goDown_은_특정_시작_위치로부터_내려갈_수_있으며_사다리를_다_내려갔을때의_위치를_반환한다() {
+        // given
+        /*
+         * |-----|     |-----|
+         * |     |-----|     |
+         * |-----|     |     |
+         * |     |-----|     |
+         * |-----|     |-----|
+         */
+        List<Line> lines = List.of(
+                new Line(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST)),
+                new Line(List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE)),
+                new Line(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.NONE)),
+                new Line(List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE)),
+                new Line(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST))
+        );
+        Ladder ladder = new Ladder(lines);
+
+        // when & then
+        assertThat(ladder.goDown(Position.of(0))).isEqualTo(Position.of(0));
+        assertThat(ladder.goDown(Position.of(1))).isEqualTo(Position.of(3));
+        assertThat(ladder.goDown(Position.of(2))).isEqualTo(Position.of(2));
+        assertThat(ladder.goDown(Position.of(3))).isEqualTo(Position.of(1));
     }
 }

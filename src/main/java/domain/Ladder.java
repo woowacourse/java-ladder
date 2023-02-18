@@ -1,9 +1,13 @@
 package domain;
 
+import domain.value.Direction;
 import domain.value.Height;
+import domain.value.Position;
 import domain.value.Width;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 public class Ladder {
@@ -56,5 +60,32 @@ public class Ladder {
 
     public List<Line> getLines() {
         return new ArrayList<>(lines);
+    }
+
+    /**
+     * 주어진 위치에서부터 사다리를 타고 내려갔을때의 위치를 반환한다.
+     * <p>
+     * 예시:
+     * 0     1     2     3
+     * |-----|     |-----|
+     * |     |-----|     |
+     * |-----|     |     |
+     * |     |-----|     |
+     * |-----|     |-----|
+     * 0     1     2     3
+     * <p>
+     * 0 에서 내려가는 경우 -> 0
+     * 1 에서 내려가는 경우 -> 3
+     * 2 에서 내려가는 경우 -> 2
+     * 3 에서 내려가는 경우 -> 1
+     */
+    public Position goDown(Position position) {
+        Deque<Line> linesForGoDown = new ArrayDeque<>(lines);
+        while (!linesForGoDown.isEmpty()) {
+            Line line = linesForGoDown.removeFirst();
+            Direction direction = line.directionOfScaffoldExist(position);
+            position = position.move(direction);
+        }
+        return position;
     }
 }
