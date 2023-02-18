@@ -47,7 +47,7 @@ class LadderTest {
 					fail("발판은 연속될 수 없다");
 	}
 
-	@DisplayName("한 라인에는 반드시 하나의 발판이 있어야 한다")
+	@DisplayName("한 행에는 반드시 하나의 발판이 있어야 한다")
 	@Test
 	void lineMustHaveStool() {
 		Ladder ladder = initLadder(4, 6);
