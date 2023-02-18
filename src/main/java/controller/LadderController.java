@@ -13,6 +13,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderController {
+    private static final int MINUS_VALUE_FOR_LADDER_WIDTH = 1;
 
     private final ScaffoldGenerator scaffoldGenerator = new RandomScaffoldGenerator();
 
@@ -23,7 +24,7 @@ public class LadderController {
                 .collect(Collectors.toList()));
         final int parsedHeight = InputView.inputHeight();
         final Height height = new Height(parsedHeight);
-        final Width width = new Width(names.size() - 1);
+        final Width width = new Width(names.size() - MINUS_VALUE_FOR_LADDER_WIDTH);
         final Ladder ladder = new Ladder(width, height, scaffoldGenerator);
         OutputView.printResult(ladder, names);
     }
