@@ -28,9 +28,10 @@ public class LadderController {
 
     }
 
-    private void printLadderResult(Players players, Rows rows) {
-        resultView.printNames(players.getNames());
-        resultView.printLadder(rows.getState());
+    private Players enroll() {
+        List<String> names = inputView.inputParticipants();
+        Players players = Players.from(names);
+        return players;
     }
 
     private Rows makeLadder(int playersSize) {
@@ -39,9 +40,8 @@ public class LadderController {
         return randomRowsGenerator.generateRows(width, height);
     }
 
-    private Players enroll() {
-        List<String> names = inputView.inputParticipants();
-        Players players = Players.from(names);
-        return players;
+    private void printLadderResult(Players players, Rows rows) {
+        resultView.printNames(players.getNames());
+        resultView.printLadder(rows.getState());
     }
 }
