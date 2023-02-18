@@ -21,7 +21,7 @@ public class Ladder {
 
     private void validateNumberOfHeight(final int height) {
         if (height < MIN_HEIGHT) {
-            throw new IllegalArgumentException("최소 높이가 1이상이어야 합니다.");
+            throw new IllegalArgumentException(String.format("최소 높이가 %d이상이어야 합니다.", MIN_HEIGHT));
         }
     }
 
