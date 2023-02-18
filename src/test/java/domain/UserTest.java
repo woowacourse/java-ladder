@@ -1,20 +1,19 @@
 package domain;
 
-import domain.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class UserTest {
     @DisplayName("유저 이름이 1글자에서 5글자 사이가 아니면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"123456", ""})
     void userNameLengthFailTest(String name) {
-        assertThrows(IllegalArgumentException.class,
-                () -> new User(name));
+        assertThatThrownBy(() -> new User(name))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("유저 이름이 1글자에서 5글자 사이면 정상적으로 수행된다.")
@@ -28,9 +27,7 @@ public class UserTest {
     @ParameterizedTest
     @ValueSource(strings = {" ", "  ", "    "})
     void userBlankTest(String name) {
-        assertThrows(IllegalArgumentException.class,
-                () -> new User(name));
+        assertThatThrownBy(() -> new User(name))
+                .isInstanceOf(IllegalArgumentException.class);
     }
-
-
 }
