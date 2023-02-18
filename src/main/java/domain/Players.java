@@ -37,6 +37,11 @@ public class Players {
         }
     }
 
+    public boolean isContainsPlayer(String command) {
+        return this.players.stream()
+                .anyMatch(player -> player.getName().equals(command));
+    }
+
     private List<Player> makePlayers(final List<String> playerNames) {
         return playerNames.stream()
                 .map(Player::new)
