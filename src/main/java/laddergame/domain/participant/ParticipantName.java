@@ -11,6 +11,7 @@ public class ParticipantName {
     private final String name;
 
     private ParticipantName(final String name) {
+        validateNameNullOrEmpty(name);
         validateNameBlank(name);
         validateNameLength(name);
         this.name = name;
@@ -18,6 +19,12 @@ public class ParticipantName {
 
     public static ParticipantName create(final String name) {
         return new ParticipantName(name);
+    }
+
+    private void validateNameNullOrEmpty(final String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
     }
 
     private void validateNameBlank(final String name) {
