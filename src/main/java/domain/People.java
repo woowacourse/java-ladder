@@ -30,9 +30,9 @@ public class People {
 
 	private static void validateSize(List<String> names) {
 		if (names.size() < MIN_PEOPLE_SIZE_INCLUSIVE)
-			throw new IllegalArgumentException(Error.LACK_OF_PEOPLE.getMessage());
+			throw new IllegalArgumentException(Error.PEOPLE_FROM_2_TO_10.getMessage());
 		if (names.size() > MAX_PEOPLE_SIZE_INCLUSIVE)
-			throw new IllegalArgumentException(Error.TOO_MANY_PEOPLE.getMessage());
+			throw new IllegalArgumentException(Error.PEOPLE_FROM_2_TO_10.getMessage());
 	}
 
 	private static void validateDuplication(List<String> names) {
