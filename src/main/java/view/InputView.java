@@ -13,12 +13,18 @@ public class InputView {
 
     public String requestNames() {
         System.out.println(REQUEST_NAME);
-        return scanner.nextLine();
+        return readInput();
     }
 
     public int requestLadderHeight() {
         System.out.println(REQUEST_LADDER_HEIGHT);
-        return validateOnlyNumber(scanner.nextLine());
+        return validateOnlyNumber(readInput());
+    }
+
+    private String readInput() {
+        String input = scanner.nextLine();
+        validateNonEmptyValue(input);
+        return input;
     }
 
     private int validateOnlyNumber(String input) {
@@ -26,6 +32,12 @@ public class InputView {
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ErrorCode.NUMBER_NOT_INTEGER.getMessage());
+        }
+    }
+
+    private void validateNonEmptyValue(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException(ErrorCode.EMPTY_INPUT.getMessage());
         }
     }
 }
