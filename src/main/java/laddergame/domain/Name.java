@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 import java.text.MessageFormat;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class Name {
@@ -22,7 +23,7 @@ public class Name {
 	}
 
 	private void validateNotNull(final String value) {
-		if (value == null) {
+		if (Objects.isNull(value)) {
 			throw new IllegalArgumentException("이름은 null이 될 수 없습니다.");
 		}
 	}

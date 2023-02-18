@@ -2,6 +2,7 @@ package laddergame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static laddergame.utils.RetryUtils.retryOnRuntimeException;
 
@@ -36,7 +37,7 @@ public class LineCreator {
     }
 
     private void validateNotNull(final BooleanGenerator booleanGenerator) {
-        if (booleanGenerator == null) {
+        if (Objects.isNull(booleanGenerator)) {
             throw new IllegalArgumentException("boolean generator는 null이 될 수 없습니다.");
         }
     }

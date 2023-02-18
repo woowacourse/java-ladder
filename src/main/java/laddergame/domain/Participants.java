@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -19,7 +20,7 @@ public class Participants {
     }
 
     private void validateNotNull(final List<Name> names) {
-        if (names == null) {
+        if (Objects.isNull(names)) {
             throw new IllegalArgumentException("참여자 이름 목록은 null이 될 수 없습니다.");
         }
     }
