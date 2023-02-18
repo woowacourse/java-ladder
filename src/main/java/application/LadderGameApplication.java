@@ -9,6 +9,7 @@ import domain.Names;
 import java.util.List;
 import java.util.function.Supplier;
 import utils.NumberGenerator;
+import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -16,20 +17,16 @@ public class LadderGameApplication {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final NumberGenerator numberGenerator;
 
-    public LadderGameApplication(InputView inputView,
-                                 OutputView outputView,
-                                 NumberGenerator numberGenerator) {
+    public LadderGameApplication(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.numberGenerator = numberGenerator;
     }
 
     public void run() {
         Names names = repeat(this::createNames);
         LadderHeight ladderHeight = repeat(this::createLadderHeight);
-        Ladder ladder = Ladder.create(names.getSize(),ladderHeight,  numberGenerator);
+        Ladder ladder = Ladder.create(names.getSize(),ladderHeight,  new RandomNumberGenerator());
 
         outputView.printResult(names, ladder);
     }
