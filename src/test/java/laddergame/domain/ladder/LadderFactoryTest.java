@@ -1,5 +1,7 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.exception.RangeException;
+import laddergame.domain.exception.TypeException;
 import laddergame.domain.rung.RungGenerator;
 import laddergame.util.BooleanGenerator;
 import org.junit.jupiter.api.BeforeAll;
@@ -8,8 +10,6 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_RANGE;
-import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_TYPE;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -46,7 +46,8 @@ public class LadderFactoryTest {
         // when & then
         assertThatThrownBy(() -> ladderFactory.createLadder(ladderHeight, participantCount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_HEIGHT_TYPE.getMessage());
+                .isExactlyInstanceOf(TypeException.class)
+                .hasMessage(TypeException.errorMessage);
     }
 
     @ParameterizedTest
@@ -56,6 +57,7 @@ public class LadderFactoryTest {
         // when & then
         assertThatThrownBy(() -> ladderFactory.createLadder(ladderHeight, participantCount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_HEIGHT_RANGE.getMessage());
+                .isExactlyInstanceOf(RangeException.class)
+                .hasMessage(String.format(RangeException.errorMessage, 1, 10_000));
     }
 }

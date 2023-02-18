@@ -1,11 +1,10 @@
 package laddergame.domain.participant;
 
+import laddergame.domain.exception.BlankException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static laddergame.domain.message.ErrorMessage.INVALID_NAME_BLANK;
-import static laddergame.domain.message.ErrorMessage.INVALID_NANE_LENGTH;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -25,7 +24,7 @@ public class ParticipantNameTest {
     void create_givenInvalidLengthName_thenFail(final String invalidName) {
         assertThatThrownBy(() -> ParticipantName.create(invalidName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_NANE_LENGTH.getMessage());
+                .hasMessage(ParticipantName.INVALID_NANE_LENGTH);
     }
 
     @ParameterizedTest
@@ -34,6 +33,7 @@ public class ParticipantNameTest {
     void create_givenIncludedBlankName_thenFail(final String invalidName) {
         assertThatThrownBy(() -> ParticipantName.create(invalidName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_NAME_BLANK.getMessage());
+                .isExactlyInstanceOf(BlankException.class)
+                .hasMessage(BlankException.errorMessage);
     }
 }

@@ -1,5 +1,7 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.exception.RangeException;
+import laddergame.domain.exception.TypeException;
 import laddergame.domain.rung.Rungs;
 import laddergame.util.BooleanGenerator;
 
@@ -7,9 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_RANGE;
-import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_TYPE;
 
 public class LadderFactory {
 
@@ -57,13 +56,13 @@ public class LadderFactory {
         try {
             return Integer.parseInt(height);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_HEIGHT_TYPE.getMessage());
+            throw new TypeException();
         }
     }
 
     private void validateHeightRange(final int height) {
         if (height < MIN_HEIGHT || MAX_HEIGHT < height) {
-            throw new IllegalArgumentException(INVALID_HEIGHT_RANGE.getMessage());
+            throw new RangeException(MIN_HEIGHT, MAX_HEIGHT);
         }
     }
 }

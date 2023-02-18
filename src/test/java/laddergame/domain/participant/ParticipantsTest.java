@@ -1,12 +1,11 @@
 package laddergame.domain.participant;
 
+import laddergame.domain.exception.DuplicateException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static laddergame.domain.message.ErrorMessage.INVALID_DUPLICATE_NAME;
-import static laddergame.domain.message.ErrorMessage.INVALID_PARTICIPANT_COUNT;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -18,20 +17,21 @@ public class ParticipantsTest {
     void create_givenSingleCountParticipant_thenFail(final String names) {
         assertThatThrownBy(() -> Participants.create(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_PARTICIPANT_COUNT.getMessage());
+                .hasMessage(Participants.INVALID_PARTICIPANT_COUNT);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"pobi,pobi", "pobi, pobi, pobi "})
     @DisplayName("입력받은 이름에 중복값이 존재하면, 예외가 발생한다.")
-    void create_givenDuplicatedNames_thenFail(final String names)  {
+    void create_givenDuplicatedNames_thenFail(final String names) {
         assertThatThrownBy(() -> Participants.create(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_DUPLICATE_NAME.getMessage());
+                .isExactlyInstanceOf(DuplicateException.class)
+                .hasMessage(DuplicateException.errorMessage);
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"pobi,jiwon,hoocu:3", "choco,jelly,pen,water:4"}, delimiter=':')
+    @CsvSource(value = {"pobi,jiwon,hoocu:3", "choco,jelly,pen,water:4"}, delimiter = ':')
     @DisplayName("참여자 이름의 수만큼 참여자가 생성된다.")
     void size_givenParticipantNames_thenReturnParticipantCount(final String names, final int expectedSize) {
         // given
