@@ -20,7 +20,7 @@ public class LineTest {
     @Test
     @DisplayName("")
     void create_line() {
-        Line line = new Line(4, new RandomDigitsGenerator());
+        Line line = new Line(3, new RandomDigitsGenerator());
 
         assertThat(line.getPointsSize()).isEqualTo(3);
     }
@@ -28,7 +28,7 @@ public class LineTest {
     @Test
     @DisplayName("")
     void addPossiblePoints() {
-        Line line = new Line(2, new StubPossibleDigitsGenerator());
+        Line line = new Line(1, new StubPossibleDigitsGenerator());
 
         assertThat(line.getPoints()).containsExactly(true);
     }
@@ -36,7 +36,7 @@ public class LineTest {
     @Test
     @DisplayName("")
     void addImpossiblePoints() {
-        Line line = new Line(3, new StubImpossibleDigitsGenerator());
+        Line line = new Line(2, new StubImpossibleDigitsGenerator());
 
         assertThat(line.getPoints()).containsExactly(false, false);
     }
