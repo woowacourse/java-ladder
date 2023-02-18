@@ -12,10 +12,9 @@ public class Game {
         this.ladder = ladder;
         this.players = players;
         this.ladderResults = ladderResults;
-        this.findPlayerResult();
     }
 
-    public void findPlayerResult() {
+    public void calculateResultOfPlayer() {
         int[] results = new int[this.players.findNumberOfPlayers()];
 
         initPlayerPosition(results);

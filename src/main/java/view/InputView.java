@@ -31,7 +31,7 @@ public class InputView {
         return splitInput(ladderResults);
     }
 
-    public String readCommand() {
+    public String readName() {
         System.out.println("결과를 보고 싶은 사람은?");
         return reader.next();
     }

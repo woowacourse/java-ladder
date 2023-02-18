@@ -6,6 +6,7 @@ import domain.LadderResults;
 import domain.LadderSymbol;
 import domain.Player;
 import domain.Players;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -14,6 +15,7 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final String FOOTHOLD = "-";
     private static final String BAR = "|";
+    private static final String DELIMITER = " : ";
     private static final String NEW_LINE = System.getProperty("line.separator");
     private static final StringBuilder ladderOutput = new StringBuilder();
     private static final StringBuilder ladderResultsOutput = new StringBuilder();
@@ -118,9 +120,6 @@ public class OutputView {
                 .append(NEW_LINE);
     }
 
-
-
-
     public StringBuilder makeLadderResultOutput(final LadderResults ladderResults) {
         int longestPlayerName = ladderResults.findLongestLadderResults();
 
@@ -143,7 +142,7 @@ public class OutputView {
             drawResultWhenMaximumLength(ladderResult);
             return;
         }
-        drawLadderResult(longestResult,ladderResult);
+        drawLadderResult(longestResult, ladderResult);
     }
 
     private boolean isMaximumLengthOfResult(final LadderResult ladderResult) {
@@ -160,5 +159,30 @@ public class OutputView {
         ladderResultsOutput.append(LadderSymbol.draw(BLANK, numberOfBlank))
                 .append(ladderResult.getResult())
                 .append(BLANK);
+    }
+
+    public void printResult(final Players players, final String command) {
+        System.out.println(NEW_LINE + "실행 결과");
+        System.out.println(drawResult(players, command));
+        System.out.println();
+    }
+
+    private String drawResult(final Players players, final String command) {
+        if (command.equals("all")) {
+            return players.getPlayers().stream()
+                    .map(OutputView::drawPlayerNameAndResult)
+                    .collect(Collectors.joining(NEW_LINE));
+        }
+        return drawResult(players.findPlayer(command));
+    }
+
+    private static String drawResult(final Player player) {
+        return player.getResult();
+    }
+
+    private static String drawPlayerNameAndResult(final Player player) {
+        StringBuilder output = new StringBuilder();
+        output.append(player.getName() + DELIMITER + player.getResult());
+        return output.toString();
     }
 }
