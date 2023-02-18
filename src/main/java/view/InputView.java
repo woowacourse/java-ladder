@@ -6,6 +6,7 @@ import validator.type.ValidateType;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
     private static final String INPUT_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -21,7 +22,14 @@ public class InputView {
 
     public List<String> inputNames() {
         System.out.println(INPUT_NAMES_MESSAGE);
-        return List.of(scanner.nextLine().trim().split(NAME_DELIMITER));
+        List<String> names = List.of(scanner.nextLine().split(NAME_DELIMITER));
+        return trimNames(names);
+    }
+
+    private List<String> trimNames(List<String> names) {
+        return names.stream()
+                .map(String::trim)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public int inputLadderHeight() {
