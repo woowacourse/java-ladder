@@ -4,8 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class PlayerTest {
     @ParameterizedTest
@@ -31,7 +31,6 @@ class PlayerTest {
     @DisplayName("이름은 최소 1글자, 최대 5글자이다.")
     void name_success(String input) {
         // expected
-        assertThatCode(() -> new Player(input, 0))
-                .doesNotThrowAnyException();
+        assertDoesNotThrow(() -> new Player(input, 0));
     }
 }
