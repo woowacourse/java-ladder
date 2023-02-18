@@ -3,9 +3,9 @@ package view;
 
 public class InputHeightValidator {
 
-    public static final String NOT_POSITIVE_ERROR_MESSAGE = "양의 정수만 입력해주세요.";
-    public static final String BLANK_MESSAGE = "입력값이 비어있습니다.";
-    public static final String NULL_MESSAGE = "아무것도 입력하지 않았습니다.";
+    public static final String NOT_POSITIVE_ERROR_MESSAGE = "[ERROR] 양의 정수만 입력해주세요.";
+    public static final String BLANK_MESSAGE = "[ERROR] 입력값이 비어있습니다.";
+    public static final String NULL_MESSAGE = "[ERROR] 아무것도 입력하지 않았습니다.";
 
     public void checkHeight(String height) {
         checkNegativeNumber(height);

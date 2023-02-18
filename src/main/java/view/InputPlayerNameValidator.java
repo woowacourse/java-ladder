@@ -8,11 +8,11 @@ public class InputPlayerNameValidator {
     private static final int PLAYER_NAME_MAX_SIZE = 5;
     private static final String BLANK = " ";
     private static final String NON_BLANK = "";
-    public static final String PLAYER_COUNT_ERROR_MESSAGE = "플레이어 수는 2~12명만 입력 가능합니다.";
-    public static final String PLAYER_NAME_LENGTH_ERROR_MESSAGE = "플레이어 이름음 1~5글자만 가능합니다.";
-    public static final String PLAYER_NAME_DUPLICATE_ERROR_MESSAGE = "플레이어의 이름은 중복이 불가능합니다.";
-    public static final String BLANK_MESSAGE = "입력값이 비어있습니다.";
-    public static final String NULL_MESSAGE = "아무것도 입력하지 않았습니다.";
+    public static final String PLAYER_COUNT_ERROR_MESSAGE = "[ERROR] 플레이어 수는 2~12명만 입력 가능합니다.";
+    private static final String PLAYER_NAME_LENGTH_ERROR_MESSAGE = "[ERROR] 플레이어 이름음 1~5글자만 가능합니다.";
+    private static final String PLAYER_NAME_DUPLICATE_ERROR_MESSAGE = "[ERROR] 플레이어의 이름은 중복이 불가능합니다.";
+    private static final String BLANK_MESSAGE = "[ERROR] 입력값이 비어있습니다.";
+    private static final String NULL_MESSAGE = "[ERROR] 아무것도 입력하지 않았습니다.";
 
     public void checkPlayer(List<String> players) {
         checkNotEmpty(players);

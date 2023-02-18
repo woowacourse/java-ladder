@@ -1,29 +1,30 @@
 package domain;
 
-import laddervalidate.PlayerNameValidator;
+import domain.validator.PlayersValidator;
 
 import java.util.List;
 
 public class Players {
-    private final List<String> players;
+    private final List<Player> players;
 
-    public Players(List<String> players) {
-        PlayerNameValidator playerNameValidator = new PlayerNameValidator();
-        playerNameValidator.checkPlayerCount(players);
-        playerNameValidator.checkPlayerNameLength(players);
-        playerNameValidator.checkDuplicatePlayers(players);
+    public Players(List<Player> players) {
+        PlayersValidator playersValidator = new PlayersValidator();
+        playersValidator.checkPlayers(players);
         this.players = players;
     }
 
     public int getMaxPlayerNameLength() {
-        return players.stream().mapToInt(String::length).max().orElse(0);
+        return players.stream()
+                .mapToInt(player -> player.getPlayerName().getNameSize())
+                .max()
+                .orElseThrow();
     }
 
     public int getPlayersCount() {
         return players.size();
     }
 
-    public List<String> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 }
