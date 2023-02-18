@@ -2,7 +2,7 @@ package helper;
 
 import domain.Bridge;
 import domain.Line;
-import domain.Person;
+import domain.Participant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,8 +22,14 @@ public abstract class AbstractTestFixture {
                      .collect(Collectors.toList());
     }
 
-    public List<Person> createDefaultPerson() {
-        return List.of(new Person("aa"));
+    public List<Participant> createDefaultPerson() {
+        return List.of(new Participant("aa"));
+    }
+
+    public List<Participant> createPersonFrom(String... names) {
+        return Arrays.stream(names)
+                .map(Participant::new)
+                .collect(Collectors.toList());
     }
 
     public List<Line> createLines(final int height) {
