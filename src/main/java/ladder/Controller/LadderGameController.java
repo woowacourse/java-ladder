@@ -20,31 +20,36 @@ public class LadderGameController {
     public void run() {
         Players players = generatePlayers();
         Height height = generateHeight();
+        Ladder ladder = generateLadder(players, height);
 
-        LadderGenerator ladderGenerator = new LadderGenerator(new RandomLineCreateDecider());
-        showResult(players, ladderGenerator.generateLadder(players.size(), height));
+        showResult(players, ladder);
     }
 
     private Players generatePlayers() {
-        try{
+        try {
             List<String> names = inputView.readNames();
             return new Players(names.stream()
                     .map(Player::new)
                     .collect(Collectors.toList()));
-        }catch(IllegalArgumentException exception){
+        } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
             return generatePlayers();
         }
     }
 
     private Height generateHeight() {
-        try{
+        try {
             int height = inputView.readHeight();
             return new Height(height);
-        }catch(IllegalArgumentException exception){
+        } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
             return generateHeight();
         }
+    }
+
+    private Ladder generateLadder(Players players, Height height) {
+        LadderGenerator ladderGenerator = new LadderGenerator(new RandomLineCreateDecider());
+        return ladderGenerator.generateLadder(players.size(), height);
     }
 
     private void showResult(Players players, Ladder ladder) {
