@@ -10,9 +10,11 @@ public class InputView {
     private static final String DELIMITER = ",";
     private static final int SPLIT_LIMIT = -1;
     private static final String READ_LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
-    private static final String INVALID_NUMBER_MESSAGE = "정수만 입력 가능합니다.";
-    private static final int HEIGHT_LOWER_BOUND = 1;
-    private static final String INVALID_HEIGHT_MESSAGE = "높이는 최소 " + HEIGHT_LOWER_BOUND + "이상이어야 합니다.";
+    private static final int LADDER_HEIGHT_LOWER_BOUND = 1;
+    private static final int LADDER_HEIGHT_UPPER_BOUND = 100;
+    private static final String INVALID_NUMBER_MESSAGE = LADDER_HEIGHT_UPPER_BOUND + " 이하의 정수만 입력 가능합니다.";
+    private static final String INVALID_HEIGHT_MESSAGE =
+            "높이는 최소 " + LADDER_HEIGHT_LOWER_BOUND + "이상, " + LADDER_HEIGHT_UPPER_BOUND + "이하여야 합니다.";
 
     private final Scanner scanner;
 
@@ -48,8 +50,12 @@ public class InputView {
     }
 
     private void validateHeight(final int height) {
-        if (height < HEIGHT_LOWER_BOUND) {
+        if (isInvalidHeight(height)) {
             throw new IllegalArgumentException(INVALID_HEIGHT_MESSAGE);
         }
+    }
+
+    private boolean isInvalidHeight(final int height) {
+        return height < LADDER_HEIGHT_LOWER_BOUND || LADDER_HEIGHT_UPPER_BOUND < height;
     }
 }
