@@ -13,7 +13,7 @@ public class Line {
         addPoint(lineMaker.generateLine(userCount));
     }
 
-    public void addPoint(List<Boolean> randomPoints) {
+    private void addPoint(List<Boolean> randomPoints) {
         for (Boolean randomPoint : randomPoints) {
             points.add(convertPoint(randomPoint));
         }
