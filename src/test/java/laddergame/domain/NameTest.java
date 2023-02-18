@@ -13,7 +13,7 @@ class NameTest {
     static class NameLengthTest {
         @DisplayName("1 이상 5 이하 글자가 들어오면 name이 정상적으로 생성된다.")
         @ParameterizedTest
-        @ValueSource(strings = {"에단", "준팍"})
+        @ValueSource(strings = {"준", "준팍에단짱"})
         void givenOneMoreFiveLess_thenSuccess(final String name) {
             assertThatCode(() -> new Name(name))
                     .doesNotThrowAnyException();
@@ -28,9 +28,9 @@ class NameTest {
                     .hasMessage("공백은 이름이 될 수 없습니다.");
         }
 
-        @DisplayName("1미만 5글자 초과 글자가 들어오면 예외가 발생한다")
+        @DisplayName("5글자 초과 글자가 들어오면 예외가 발생한다")
         @ParameterizedTest
-        @ValueSource(strings = {"에단준팍짱짱", "준팍에단고마원"})
+        @ValueSource(strings = {"에단준팍짱짱", "준팍에단고마워"})
         void givenFiveMoreChar_thenFailed(final String name) {
             assertThatThrownBy(() -> new Name(name))
                     .isInstanceOf(IllegalArgumentException.class)
