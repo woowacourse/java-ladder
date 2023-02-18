@@ -1,8 +1,12 @@
 package view;
 
-import domain.*;
+import domain.Ladder;
+import domain.Line;
+import domain.Scaffold;
 import domain.value.Name;
 import domain.value.Names;
+import domain.value.WinningEntries;
+import domain.value.WinningEntry;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -22,6 +26,7 @@ public class OutputView {
     private static final String LINE_BLANK = "\n";
     private static final String FIRST_NAME_FORMAT = "%s  ";
     private static final String DEFAULT_NAME_FORMAT = "%5s";
+    private static final String DEFAULT_WINNING_ENTRY_FORMAT = "%5s";
     private static final Map<Scaffold, String> SCAFFOLD_STRING_MAP;
 
     static {
@@ -30,9 +35,10 @@ public class OutputView {
         SCAFFOLD_STRING_MAP.put(Scaffold.NONE, NONE_SCAFFOLD);
     }
 
-    public static void printResult(final Ladder ladder, final Names names) {
+    public static void printResult(final Ladder ladder, final Names names, final WinningEntries winningEntries) {
         printNames(names);
-        printLadder(ladder, names);
+        printLadder(ladder, names.firstNameLength());
+        printWinningEntries(winningEntries);
     }
 
     private static void printNames(final Names names) {
@@ -50,9 +56,8 @@ public class OutputView {
                 .collect(joining(BLANK, firstName, EMPTY));
     }
 
-    private static void printLadder(final Ladder ladder, final Names names) {
-        int length = names.firstNameLength();
-        String prefixBlank = BLANK.repeat(length);
+    private static void printLadder(final Ladder ladder, final int prefixBlackLength) {
+        String prefixBlank = BLANK.repeat(prefixBlackLength);
         String ladderFormat = makeLadderFormat(ladder, prefixBlank);
         System.out.println(ladderFormat);
     }
@@ -69,5 +74,13 @@ public class OutputView {
                 .stream()
                 .map(SCAFFOLD_STRING_MAP::get)
                 .collect(joining(BAR, prefixBlank + BAR, BAR));
+    }
+
+    private static void printWinningEntries(final WinningEntries winningEntries) {
+        String winningEntriesMessage = winningEntries.winningEntries().stream()
+                .map(WinningEntry::value)
+                .map(it -> format(DEFAULT_WINNING_ENTRY_FORMAT, it))
+                .collect(joining(BLANK));
+        System.out.println(winningEntriesMessage);
     }
 }

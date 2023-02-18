@@ -1,11 +1,9 @@
 package controller;
 
 import common.Logger;
-import domain.*;
-import domain.value.Height;
-import domain.value.Name;
-import domain.value.Names;
-import domain.value.Width;
+import domain.Ladder;
+import domain.LadderFactory;
+import domain.value.*;
 import view.InputView;
 import view.OutputView;
 
@@ -23,15 +21,24 @@ public class LadderController {
 
     public void run() {
         Names names = inputWithExceptionHandle(this::createNames);
+        WinningEntries winningEntries = inputWithExceptionHandle(this::createWinningEntries);
         Height height = inputWithExceptionHandle(this::ladderHeight);
         Ladder ladder = createLadder(Width.of(names.size() - 1), height);
-        showLadder(names, ladder);
+        showLadder(names, ladder, winningEntries);
     }
 
     private Names createNames() {
         List<String> inputNames = InputView.inputNames();
         return new Names(inputNames.stream()
                 .map(Name::new)
+                .collect(Collectors.toList())
+        );
+    }
+
+    private WinningEntries createWinningEntries() {
+        List<String> winningEntries = InputView.inputWinningEntries();
+        return new WinningEntries(winningEntries.stream()
+                .map(WinningEntry::new)
                 .collect(Collectors.toList())
         );
     }
@@ -44,8 +51,8 @@ public class LadderController {
         return ladderFactory.createLadder(width, height);
     }
 
-    private void showLadder(final Names names, final Ladder ladder) {
-        OutputView.printResult(ladder, names);
+    private void showLadder(final Names names, final Ladder ladder, final WinningEntries winningEntries) {
+        OutputView.printResult(ladder, names, winningEntries);
     }
 
     private <T> T inputWithExceptionHandle(final Supplier<T> supplier) {

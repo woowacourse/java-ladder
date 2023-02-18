@@ -17,6 +17,12 @@ public class InputView {
         return new ArrayList<>(asList(input.split(DELIMITER)));
     }
 
+    public static List<String> inputWinningEntries() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String input = scanner.nextLine();
+        return new ArrayList<>(asList(input.split(DELIMITER)));
+    }
+
     public static int inputHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String input = scanner.nextLine();
