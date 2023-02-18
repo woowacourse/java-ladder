@@ -24,7 +24,7 @@ public class Player {
     }
 
     private boolean isNameLengthIncludedInRange(String playerName) {
-        return MIN_LENGTH < playerName.length() && playerName.length() < MAX_LENGTH;
+        return MIN_LENGTH <= playerName.length() && playerName.length() <= MAX_LENGTH;
     }
 
     public String getPlayerName() {
