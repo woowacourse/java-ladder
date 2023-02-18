@@ -27,7 +27,7 @@ public class WinningEntryTest {
     }
 
     @ParameterizedTest(name = "문자열(ex: {arguments})을 통해 생성된다.")
-    @ValueSource(strings = {"2단계도", "잘", "부탁드려요", "바다!", "너무", "감사합니다:)"})
+    @ValueSource(strings = {"2단계도", "잘", "부탁드려요", "바다!", "너무", "감사합니다"})
     void 문자열을_통해_생성된다(final String entry) {
         // when
         WinningEntry winningEntry = new WinningEntry(entry);
@@ -47,5 +47,14 @@ public class WinningEntryTest {
         // then
         assertThat(winningEntry1)
                 .isEqualTo(winningEntry2);
+    }
+
+    @ParameterizedTest(name = "0글자이거나, 5글자를 초과하는 값(ex: {0})이 들어오면 예외가 발생한다")
+    @ValueSource(strings = {"", "안녕하세요오"})
+    void createFail(final String value) {
+        // when & then
+        assertThatThrownBy(() ->
+                new WinningEntry(value)
+        ).isInstanceOf(IllegalArgumentException.class);
     }
 }
