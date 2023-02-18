@@ -20,7 +20,7 @@ public class Name {
     }
 
     private void validateNameHasOnlyCharacters(String name) {
-        if (name.isEmpty() || !name.chars().allMatch(Character::isAlphabetic)) {
+        if (name.isBlank() || !name.chars().allMatch(Character::isAlphabetic)) {
             throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_NAME_PATTERN.getExceptionMessage());
         }
     }
