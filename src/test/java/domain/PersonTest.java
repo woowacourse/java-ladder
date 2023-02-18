@@ -24,7 +24,6 @@ class PersonTest {
 	void nameLengthNot1_5(String name) {
 		assertThatThrownBy(() -> new Person(name))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("이름은 1 ~ 5글자만 가능합니다");
+			.hasMessage("[ERROR] 이름은 1 ~ 5글자만 가능합니다");
 	}
-
 }

@@ -24,7 +24,7 @@ class LadderTest {
 	void heightNot1_100(int height) {
 		assertThatThrownBy(() -> Ladder.from(height, 5))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("높이는 1부터 100까지만 가능합니다");
+			.hasMessage("[ERROR] 높이는 1부터 100까지만 가능합니다");
 	}
 
 	@DisplayName("참여자수 - 1 만큼의 열을 가진다")
