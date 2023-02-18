@@ -1,5 +1,8 @@
 package laddergame.domain;
 
+import laddergame.fixture.HeightFixture;
+import laddergame.fixture.NameFixture;
+import laddergame.fixture.ParticipantsFixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,11 +13,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static laddergame.fixture.BooleanGeneratorFixture.TEST_BOOLEAN_GENERATOR;
-import static laddergame.fixture.HeightFixture.*;
-import static laddergame.fixture.NameFixture.NAME_HYENA;
-import static laddergame.fixture.NameFixture.NAME_ROSIE;
-import static laddergame.fixture.ParticipantsFixture.PARTICIPANTS_SIZE_2;
-import static laddergame.fixture.ParticipantsFixture.PARTICIPANTS_SIZE_3;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -26,17 +24,18 @@ class LadderTest {
     void throwExceptionWhenParticipantIsNull() {
         final Participants participants = null;
 
-        assertThatThrownBy(() -> new Ladder(participants, HEIGHT_VALUE_1))
+        assertThatThrownBy(() -> new Ladder(participants, HeightFixture.getHeightValue1()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("높이가 null이면 예외가 발생한다.")
     @Test
     void throwExceptionWhenHeightIsNull() {
-        final Participants participants = new Participants(List.of(NAME_ROSIE, NAME_HYENA));
+        final Participants participants
+                = new Participants(List.of(NameFixture.getNameRosie(), NameFixture.getNameHyena()));
         final Height height = null;
 
-        assertThatThrownBy(() -> new Ladder(participants, null))
+        assertThatThrownBy(() -> new Ladder(participants, height))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -69,14 +68,14 @@ class LadderTest {
 
     static Stream<Arguments> ladderParameterDummy() {
         return Stream.of(
-                Arguments.arguments(PARTICIPANTS_SIZE_2, HEIGHT_VALUE_1),
-                Arguments.arguments(PARTICIPANTS_SIZE_2, HEIGHT_VALUE_2),
-                Arguments.arguments(PARTICIPANTS_SIZE_2, HEIGHT_VALUE_3),
-                Arguments.arguments(PARTICIPANTS_SIZE_2, HEIGHT_VALUE_4),
-                Arguments.arguments(PARTICIPANTS_SIZE_3, HEIGHT_VALUE_1),
-                Arguments.arguments(PARTICIPANTS_SIZE_3, HEIGHT_VALUE_2),
-                Arguments.arguments(PARTICIPANTS_SIZE_3, HEIGHT_VALUE_3),
-                Arguments.arguments(PARTICIPANTS_SIZE_3, HEIGHT_VALUE_4)
+                Arguments.arguments(ParticipantsFixture.getParticipantsSize2(), HeightFixture.getHeightValue1()),
+                Arguments.arguments(ParticipantsFixture.getParticipantsSize2(), HeightFixture.getHeightValue2()),
+                Arguments.arguments(ParticipantsFixture.getParticipantsSize2(), HeightFixture.getHeightValue3()),
+                Arguments.arguments(ParticipantsFixture.getParticipantsSize2(), HeightFixture.getHeightValue4()),
+                Arguments.arguments(ParticipantsFixture.getParticipantsSize3(), HeightFixture.getHeightValue1()),
+                Arguments.arguments(ParticipantsFixture.getParticipantsSize3(), HeightFixture.getHeightValue2()),
+                Arguments.arguments(ParticipantsFixture.getParticipantsSize3(), HeightFixture.getHeightValue3()),
+                Arguments.arguments(ParticipantsFixture.getParticipantsSize3(), HeightFixture.getHeightValue4())
         );
     }
 }
