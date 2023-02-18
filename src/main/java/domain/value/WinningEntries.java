@@ -27,4 +27,8 @@ public class WinningEntries {
     public int size() {
         return winningEntries.size();
     }
+
+    public WinningEntry get(final int value) {
+        return winningEntries.get(value);
+    }
 }

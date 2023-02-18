@@ -73,4 +73,18 @@ class WinningEntriesTest {
         assertThat(size).isEqualTo(actualLength);
     }
 
+    @ParameterizedTest(name = "특정 순서에 해당하는 당첨항목을 알 수 있다. 예를 들어 [{0}] 에서 [{1}]의 위치에 존재하는 당첨항목은 [{2}] 이다.")
+    @CsvSource(value = {
+            "바다,말랑:0:바다",
+            "바다,말랑,산,토끼,당근:2:산",
+    }, delimiter = ':')
+    void 특정_순서에_해당하는_당첨항목을_알_수_있다(final String entryValues, final int index, final String entryValue) {
+        // given
+        WinningEntries winningEntries = new WinningEntries(stream(entryValues.split(","))
+                .map(WinningEntry::new)
+                .collect(Collectors.toList()));
+
+        // when & then
+        assertThat(winningEntries.get(index)).isEqualTo(new WinningEntry(entryValue));
+    }
 }
