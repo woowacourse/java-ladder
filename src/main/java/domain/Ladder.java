@@ -8,11 +8,10 @@ public class Ladder {
     public static final int MAX_RANGE = 10;
     public static final int MIN_RANGE = 1;
 
-    private final List<Line> lines;
+    private final List<Line> lines = new ArrayList<>();
 
     public Ladder(int personCount, int maxHeight, GenerateStrategy strategy) {
         validateHeight(maxHeight);
-        this.lines = new ArrayList<>(maxHeight);
         initLines(personCount, maxHeight, strategy);
     }
 
