@@ -10,22 +10,18 @@ import java.util.stream.Collectors;
 public class Controller {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LadderGenerator ladderGenerator;
 
-    public Controller(InputView inputView, OutputView outputView, LadderGenerator ladderGenerator) {
+    public Controller(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.ladderGenerator = ladderGenerator;
     }
 
     public void run() {
         Users usersName = settingUsers();
         Ladders ladders = settingLadders();
-        ladders.make(usersName.getCount() - 1, ladderGenerator);
+        ladders.make(new LadderGenerator(usersName.getCount() - 1));
         outputView.printUsers(usersName);
-        for (Ladder ladder : ladders.getLadders()) { //스트림
-            outputView.printLadder(ladder);
-        }
+        outputView.printLadders(ladders);
     }
 
     private Users settingUsers() {
