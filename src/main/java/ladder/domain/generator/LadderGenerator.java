@@ -18,11 +18,11 @@ public class LadderGenerator {
     public Ladder generate(final Players players, final Height height) {
         final List<Line> lines = new ArrayList<>();
         final int numberOfPlayers = players.numberOfPlayers();
+        int count = height.getValue();
 
-        for (int i = 0; i < height.getValue(); i++) {
+        while (count-- > 0) {
             lines.add(lineGenerator.generate(numberOfPlayers));
         }
-
         return new Ladder(lines);
     }
 }
