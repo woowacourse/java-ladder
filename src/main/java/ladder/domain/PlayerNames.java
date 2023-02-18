@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 public class PlayerNames {
     private static final String NAMES_INPUT_FORM = "([a-zA-Z]{1,5})(,[a-zA-Z]{1,5})*";
+    private static final int MINIMUM_PLAYER_NUMBER = 2;
+    private static final int MAXIMUM_PLAYER_NUMBER = 100;
     
     private final List<String> names;
     
@@ -24,7 +26,7 @@ public class PlayerNames {
     }
     
     private void validateRange(List<String> splitedNames) {
-        if (splitedNames.size() < 2 || splitedNames.size() > 100) {
+        if (splitedNames.size() < MINIMUM_PLAYER_NUMBER || splitedNames.size() > MAXIMUM_PLAYER_NUMBER) {
             throw new IllegalArgumentException("이름의 수가 2이상 100이하여야 합니다.");
         }
     }
