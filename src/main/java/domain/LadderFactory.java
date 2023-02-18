@@ -1,7 +1,10 @@
 package domain;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderFactory {
@@ -12,43 +15,29 @@ public class LadderFactory {
         this.scaffoldGenerator = scaffoldGenerator;
     }
 
-
     public Ladder createLadder(final Width width, final Height height) {
-        List<Line> lines = generateLines(width, height);
+        List<Line> lines = IntStream.range(0, height.getValue())
+                .mapToObj(it -> createLine(width.getValue()))
+                .collect(Collectors.toUnmodifiableList());
         return new Ladder(lines);
     }
 
-    private List<Line> generateLines(Width width, Height height) {
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height.getValue(); i++) {
-            List<Scaffold> scaffolds = generateScaffolds(width);
-            lines.add(new Line(scaffolds));
-        }
-        return lines;
+    private Line createLine(final int width) {
+        return new Line(createNonConsistScaffolds(width));
     }
 
-    private List<Scaffold> generateScaffolds(Width width) {
-        List<Scaffold> scaffolds = new ArrayList<>();
-        IntStream.range(0, width.getValue()).forEach(index -> {
-            insertDiscontinuousScaffold(scaffolds, index);
-        });
-        return scaffolds;
+    private List<Scaffold> createNonConsistScaffolds(final int width) {
+        Deque<Scaffold> scaffolds = new ArrayDeque<>();
+        IntStream.range(0, width).forEach(it -> createNonConsistScaffold(scaffolds));
+        return new ArrayList<>(scaffolds);
     }
 
-    private void insertDiscontinuousScaffold(List<Scaffold> scaffolds, int index) {
+    private void createNonConsistScaffold(final Deque<Scaffold> scaffolds) {
         Scaffold scaffold = scaffoldGenerator.generate();
-        if (scaffolds.isEmpty()) {
-            scaffolds.add(scaffold);
+        if (scaffold == Scaffold.EXIST && scaffolds.peekLast() == Scaffold.EXIST) {
+            scaffolds.add(Scaffold.NONE);
             return;
         }
-        scaffold = generateDiscontinuousScaffold(scaffolds, index, scaffold);
         scaffolds.add(scaffold);
-    }
-
-    private static Scaffold generateDiscontinuousScaffold(List<Scaffold> scaffolds, int scaffoldIndex, Scaffold scaffold) {
-        if (scaffold == Scaffold.EXIST && scaffolds.get(scaffoldIndex - 1) == Scaffold.EXIST) {
-            scaffold = Scaffold.NONE;
-        }
-        return scaffold;
     }
 }
