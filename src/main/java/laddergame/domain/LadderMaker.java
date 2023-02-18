@@ -1,16 +1,16 @@
 package laddergame.domain;
 
-import laddergame.util.PointGenerator;
+import laddergame.util.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LadderMaker {
 
-    private final PointGenerator pointGenerator;
+    private final BooleanGenerator booleanGenerator;
 
-    public LadderMaker(PointGenerator pointGenerator) {
-        this.pointGenerator = pointGenerator;
+    public LadderMaker(BooleanGenerator booleanGenerator) {
+        this.booleanGenerator = booleanGenerator;
     }
 
     public Ladder make(int playerCount, LadderHeight ladderHeight) {
@@ -29,7 +29,7 @@ public class LadderMaker {
     private List<Point> createLine(int pointCount) {
         List<Point> points = new ArrayList<>();
         while (points.size() < pointCount) {
-            boolean connectedCondition = pointGenerator.generate();
+            boolean connectedCondition = booleanGenerator.generate();
             points.add(Point.findByConnectedCondition(connectedCondition));
         }
         return points;

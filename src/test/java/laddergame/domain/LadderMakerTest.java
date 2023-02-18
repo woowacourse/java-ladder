@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.util.RandomPointGenerator;
+import laddergame.util.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ class LadderMakerTest {
     void makeLadderTest() {
         int playerCount = 4;
         LadderHeight ladderHeight = new LadderHeight(5);
-        LadderMaker randomLadderMaker = new LadderMaker(new RandomPointGenerator());
+        LadderMaker randomLadderMaker = new LadderMaker(new RandomBooleanGenerator());
         Ladder ladder = randomLadderMaker.make(playerCount, ladderHeight);
 
         int expectedLadderSize = 5;

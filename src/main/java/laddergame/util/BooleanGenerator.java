@@ -1,5 +1,5 @@
 package laddergame.util;
 
-public interface PointGenerator {
+public interface BooleanGenerator {
     boolean generate();
 }

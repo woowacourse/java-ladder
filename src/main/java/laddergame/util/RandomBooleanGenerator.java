@@ -2,7 +2,7 @@ package laddergame.util;
 
 import java.util.Random;
 
-public class RandomPointGenerator implements PointGenerator {
+public class RandomBooleanGenerator implements BooleanGenerator {
 
     private static final Random RANDOM = new Random();
 
