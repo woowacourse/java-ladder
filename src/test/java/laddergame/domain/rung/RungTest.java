@@ -36,7 +36,7 @@ public class RungTest {
         Rung rung = Rung.create(material);
 
         // when
-        boolean actualValue = rung.isExistence();
+        boolean actualValue = rung.exists();
 
         // then
         assertThat(actualValue).isEqualTo(expectedValue);

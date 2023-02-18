@@ -35,7 +35,7 @@ public class Rungs {
     }
 
     private Rung createRung(final Rung previousRung) {
-        if (previousRung.isExistence()) {
+        if (previousRung.exists()) {
             return Rung.create(INSUFFICIENT);
         }
         return Rung.create(rungNumberGenerator.generate());

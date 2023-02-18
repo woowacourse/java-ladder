@@ -53,7 +53,7 @@ public class OutputView {
 
     private String makeRungsMessage(final List<Rung> rungs) {
         return rungs.stream()
-                .map(rung -> makeRungMessage(rung.isExistence()))
+                .map(rung -> makeRungMessage(rung.exists()))
                 .collect(Collectors.joining(LADDER_FRAME.getMessage(), LADDER_FRAME.getMessage(), LADDER_FRAME.getMessage()));
     }
 

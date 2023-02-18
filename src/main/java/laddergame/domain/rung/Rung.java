@@ -9,19 +9,19 @@ public class Rung {
     protected static final int SUFFICIENT = 1;
     protected static final int INSUFFICIENT = 0;
 
-    private final boolean existence;
+    private final boolean exists;
 
     private Rung(final int material) {
         validateMaterial(material);
-        this.existence = makeRung(material);
+        this.exists = makeRung(material);
     }
 
     public static Rung create(final int material) {
         return new Rung(material);
     }
 
-    public boolean isExistence() {
-        return existence;
+    public boolean exists() {
+        return exists;
     }
 
     private void validateMaterial(final int material) {
@@ -43,11 +43,11 @@ public class Rung {
             return false;
         }
         Rung rung = (Rung) diffRung;
-        return existence == rung.existence;
+        return exists == rung.exists;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(existence);
+        return Objects.hash(exists);
     }
 }
