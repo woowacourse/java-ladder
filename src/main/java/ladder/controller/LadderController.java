@@ -7,62 +7,30 @@ import ladder.domain.RandomGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.List;
-
 public class LadderController {
 
     private final InputView inputView;
     private final ResultView resultView;
     private final RandomGenerator randomGenerator;
+    private final ExceptionProcess exceptionProcess;
 
     public LadderController(InputView inputView, ResultView resultView, RandomGenerator randomGenerator) {
         this.inputView = inputView;
         this.resultView = resultView;
         this.randomGenerator = randomGenerator;
+        this.exceptionProcess = new ExceptionProcess(resultView);
     }
 
     public void run() {
-        Players players = newPlayersUntilNoException();
-        Height heightOfLadder = newHeightOfLadderUntilNoException();
+        Players players = exceptionProcess.repeat(
+                inputView::inputPlayerNames,
+                Players::create);
+        Height heightOfLadder = exceptionProcess.repeat(
+                inputView::inputHeightOfLadder,
+                input -> Height.create(input, randomGenerator));
         Ladder ladder = Ladder.create(players.count(), heightOfLadder.getHeight());
 
         resultView.printLadder(players, ladder);
-    }
-
-    private Players newPlayers() {
-        try {
-            List<String> inputNames = inputView.inputPlayerNames();
-            return Players.create(inputNames);
-        } catch (IllegalArgumentException e) {
-            resultView.printError(e.getMessage());
-            return null;
-        }
-    }
-
-    private Height newHeightOfLadder() {
-        try {
-            int inputMaximumHeight = inputView.inputHeightOfLadder();
-            return Height.create(inputMaximumHeight, randomGenerator);
-        } catch (IllegalArgumentException e) {
-            resultView.printError(e.getMessage());
-            return null;
-        }
-    }
-
-    private Players newPlayersUntilNoException() {
-        Players players = null;
-        while (players == null) {
-            players = newPlayers();
-        }
-        return players;
-    }
-
-    private Height newHeightOfLadderUntilNoException() {
-        Height height = null;
-        while (height == null) {
-            height = newHeightOfLadder();
-        }
-        return height;
     }
 
 }
