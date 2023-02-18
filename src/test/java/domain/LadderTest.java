@@ -1,45 +1,21 @@
 package domain;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.api.Test;
 
-import java.util.List;
-import java.util.stream.Stream;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class LadderTest {
-    @DisplayName("사다리 생성시 연속된 다리가 있을경우 예외가 발생한다.")
-    @ParameterizedTest
-    @MethodSource("ladderGeneratorFailParameter")
-    void validateLadderBridgeTest(List<Bridge> input) {
-        Assertions.assertThatThrownBy(() -> new Ladder(input))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
+class LadderTest {
 
-    @DisplayName("사다리 생성시 연속된 다리가 없을경우 정상적으로 수행된다.")
-    @ParameterizedTest
-    @MethodSource("ladderGeneratorSuccessParameter")
-    void validateLadderBridgeFailTest(List<Bridge> input) {
-        Assertions.assertThatCode(() -> new Ladder(input)).doesNotThrowAnyException();
-    }
+    @Test
+    void getLadder() {
+        Queue<Boolean> randomNumber = new LinkedList<>();
+        Arrays.asList(true, true, false).forEach(randomNumber::add);
+        Ladder ladder = new Ladder(5, new CustomRandomGenerator(randomNumber));
 
-    static Stream<Arguments> ladderGeneratorFailParameter() {
-        return Stream.of(
-                Arguments.of(List.of(Bridge.EXIST, Bridge.EXIST, Bridge.NON_EXIST)),
-                Arguments.of(List.of(Bridge.NON_EXIST, Bridge.EXIST, Bridge.EXIST)),
-                Arguments.of(List.of(Bridge.NON_EXIST, Bridge.NON_EXIST, Bridge.EXIST, Bridge.EXIST)),
-                Arguments.of(List.of(Bridge.NON_EXIST, Bridge.EXIST, Bridge.EXIST, Bridge.NON_EXIST))
-        );
-    }
-
-    static Stream<Arguments> ladderGeneratorSuccessParameter() {
-        return Stream.of(
-                Arguments.of(List.of(Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST)),
-                Arguments.of(List.of(Bridge.NON_EXIST, Bridge.NON_EXIST, Bridge.EXIST)),
-                Arguments.of(List.of(Bridge.NON_EXIST, Bridge.NON_EXIST, Bridge.NON_EXIST)),
-                Arguments.of(List.of(Bridge.NON_EXIST, Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST))
-        );
+        Assertions.assertThat(ladder.getLadder())
+                .isEqualTo(Arrays.asList(Position.LEFT, Position.RIGHT, Position.LEFT, Position.RIGHT, Position.DOWN));
     }
 }

@@ -1,28 +1,34 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Ladder {
-    private static final String INVALID_BRIDGE_MESSAGE = "다리는 연속으로 생성되면 안됩니다.";
-    private final List<Bridge> ladder;
+    private final List<Position> ladder;
 
-    public Ladder(List<Bridge> ladder) {
-        for (int index = 1; index < ladder.size(); index++) {
-            validateLadder(ladder, index);
-        }
-        this.ladder = ladder;
+    public Ladder(int width, BooleanGenerator randomGenerator) {
+        this.ladder = new ArrayList<>();
+        generate(randomGenerator, width);
     }
 
-    private void validateLadder(List<Bridge> ladder, int index) {
-        Bridge currentBridge = ladder.get(index);
-        Bridge previousBridge = ladder.get(index - 1);
-        if (currentBridge.isExist() && previousBridge.isExist()) {
-            throw new IllegalArgumentException(INVALID_BRIDGE_MESSAGE);
+    private void generate(BooleanGenerator randomGenerator, int width) {
+        while (ladder.size() < width - 1) {
+            ladder.addAll(requirement(randomGenerator));
+        }
+        if (ladder.size() != width) {
+            ladder.add(Position.DOWN);
         }
     }
 
-    public List<Bridge> getLadder() {
+    private List<Position> requirement(BooleanGenerator randomGenerator) {
+        if (randomGenerator.get()) {
+            return Arrays.asList(Position.LEFT, Position.RIGHT);
+        }
+        return Arrays.asList(Position.DOWN);
+    }
+
+    public List<Position> getLadder() {
         return new ArrayList<>(ladder);
     }
 }
