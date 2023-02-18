@@ -1,5 +1,7 @@
 package domain;
 
+import domain.value.Direction;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -44,5 +46,47 @@ public class Line {
 
     public List<Scaffold> getScaffolds() {
         return new ArrayList<>(scaffolds);
+    }
+
+    public Direction directionOfScaffoldExist(final int position) {
+        if (isLastPosition(position)) {
+            return lastScaffoldExistDirection(position);
+        }
+        if (isFirstPosition(position)) {
+            return firstScaffoldExistDirection(position);
+        }
+        return middleScaffoldExistDirection(position);
+    }
+
+    private Direction firstScaffoldExistDirection(final int position) {
+        if (scaffolds.get(position) == Scaffold.EXIST) {
+            return Direction.RIGHT;
+        }
+        return Direction.NONE;
+    }
+
+    private Direction lastScaffoldExistDirection(final int position) {
+        if (scaffolds.get(position - 1) == Scaffold.EXIST) {
+            return Direction.LEFT;
+        }
+        return Direction.NONE;
+    }
+
+    private Direction middleScaffoldExistDirection(final int position) {
+        if (scaffolds.get(position) == Scaffold.EXIST) {
+            return Direction.RIGHT;
+        }
+        if (scaffolds.get(position - 1) == Scaffold.EXIST) {
+            return Direction.LEFT;
+        }
+        return Direction.NONE;
+    }
+
+    private boolean isLastPosition(final int position) {
+        return position == scaffolds.size();
+    }
+
+    private boolean isFirstPosition(final int position) {
+        return position == 0;
     }
 }

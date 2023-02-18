@@ -1,5 +1,6 @@
 package domain;
 
+import domain.value.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -106,5 +107,45 @@ public class LadderTest {
                 Arguments.of(List.of(line1, line1, line2)),
                 Arguments.of(List.of(line3, line3, line3, line4))
         );
+    }
+
+    /**
+     * 0     1     2     3     4     5
+     * |     |-----|     |     |-----|
+     * <p>
+     * 위 상황인 경우,
+     * 0 -> NONE,
+     * 1 -> RIGHT,
+     * 2 -> LEFT
+     * 3 -> NONE,
+     * 4 -> RIGHT,
+     * 5 -> LEFT
+     */
+    @Test
+    void directionOfScaffoldExist_는_주어진_위치로부터_Scaffold_가_존재하는_방향을_반환한다() {
+        // given
+        Line line =
+                // 모양:  |     |-----|     |     |-----|
+                new Line(List.of(
+                        Scaffold.NONE,
+                        Scaffold.EXIST,
+                        Scaffold.NONE,
+                        Scaffold.NONE,
+                        Scaffold.EXIST
+                ));
+
+        // when & then
+        assertThat(line.directionOfScaffoldExist(0))
+                .isEqualTo(Direction.NONE);
+        assertThat(line.directionOfScaffoldExist(1))
+                .isEqualTo(Direction.RIGHT);
+        assertThat(line.directionOfScaffoldExist(2))
+                .isEqualTo(Direction.LEFT);
+        assertThat(line.directionOfScaffoldExist(3))
+                .isEqualTo(Direction.NONE);
+        assertThat(line.directionOfScaffoldExist(4))
+                .isEqualTo(Direction.RIGHT);
+        assertThat(line.directionOfScaffoldExist(5))
+                .isEqualTo(Direction.LEFT);
     }
 }
