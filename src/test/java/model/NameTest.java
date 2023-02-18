@@ -40,7 +40,7 @@ public class NameTest {
 
     @Test
     @Disabled("단순 getter 메서드는 테스트하지 않는다.")
-    void getName() {
+    void getValueTest() {
     }
 
     @Test
