@@ -25,7 +25,7 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final String EMPTY = "";
     private static final String LINE_BLANK = "\n";
-    private static final String FIRST_NAME_FORMAT = "%s  ";
+    private static final String FIRST_NAME_FORMAT = "%s ";
     private static final String DEFAULT_NAME_FORMAT = "%5s";
     private static final String DEFAULT_WINNING_ENTRY_FORMAT = "%5s";
     private static final String NAME_AND_WINNING_ENTRY_FORMAT = "%s : %s";
@@ -39,8 +39,8 @@ public class OutputView {
 
     public static void printCreatedLadder(final Ladder ladder, final Names names, final WinningEntries winningEntries) {
         printNames(names);
-        printLadder(ladder, names.firstNameLength());
-        printWinningEntries(winningEntries);
+        printLadder(ladder, names.firstNameLength() - 1);
+        printWinningEntries(winningEntries, names.firstNameLength() - 1);
     }
 
     private static void printNames(final Names names) {
@@ -78,11 +78,14 @@ public class OutputView {
                 .collect(joining(BAR, prefixBlank + BAR, BAR));
     }
 
-    private static void printWinningEntries(final WinningEntries winningEntries) {
-        String winningEntriesMessage = winningEntries.winningEntries().stream()
+    private static void printWinningEntries(final WinningEntries winningEntries, final int prefixBlackLength) {
+        String prefixBlank = BLANK.repeat(prefixBlackLength);
+        List<WinningEntry> winningEntryList = winningEntries.winningEntries();
+        WinningEntry firstWinningEntry = winningEntryList.remove(0);
+        String winningEntriesMessage = winningEntryList.stream()
                 .map(WinningEntry::value)
                 .map(it -> format(DEFAULT_WINNING_ENTRY_FORMAT, it))
-                .collect(joining(BLANK));
+                .collect(joining(BLANK, prefixBlank + firstWinningEntry.value() + BLANK, EMPTY));
         System.out.println(winningEntriesMessage);
     }
 
