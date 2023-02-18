@@ -1,17 +1,12 @@
 package controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import domain.Ladder;
-import domain.LadderBuilder;
-import domain.LadderHeight;
-import domain.LadderWidth;
-import domain.ParticipantName;
-import domain.Participants;
+import domain.*;
 import domain.util.RandomPointGenerator;
 import view.InputView;
 import view.OutputView;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderController {
 
@@ -19,8 +14,7 @@ public class LadderController {
 		Participants participants = retrieveParticipants();
 		LadderHeight height = new LadderHeight(retrieveLadderHeight());
 		LadderWidth width = participatnsNum2LadderWidth(participants.getParticipantsNum());
-		LadderBuilder ladderBuilder = new LadderBuilder();
-		Ladder ladder = ladderBuilder.build(height, width, new RandomPointGenerator());
+        Ladder ladder = Ladder.build(height, width, new RandomPointGenerator());
 		OutputView.printResult(participants.getNames(),ladder.getLadderPoints());
 	}
 
