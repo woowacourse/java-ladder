@@ -9,7 +9,6 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
     public static final String DELIMITER = ",";
-    public static final int MIN_PERSON_COUNT = 2;
 
     public List<String> readNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -19,7 +18,6 @@ public class InputView {
     private List<String> getValidResult(String input) {
         validateDelimiter(input);
         List<String> result = toNames(input);
-        validatePersonCount(result);
         validateDuplicate(result);
         return result;
     }
@@ -39,12 +37,7 @@ public class InputView {
             .collect(Collectors.toList());
     }
 
-    private void validatePersonCount(List<String> result) {
-        if (result.size() < MIN_PERSON_COUNT) {
-            throw new IllegalArgumentException(
-                String.format("사람은 %d명 이상이어야 합니다.", MIN_PERSON_COUNT));
-        }
-    }
+
 
     private void validateDuplicate(List<String> result) {
         if (result.size() != result.stream().distinct().count()) {
