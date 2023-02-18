@@ -1,4 +1,4 @@
-package ladder.util;
+package ladder.domain.linestrategy;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;

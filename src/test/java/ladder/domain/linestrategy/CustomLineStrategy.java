@@ -1,4 +1,4 @@
-package ladder.util;
+package ladder.domain.linestrategy;
 
 import ladder.domain.Line;
 import ladder.domain.Step;
