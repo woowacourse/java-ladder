@@ -7,6 +7,7 @@ import java.util.List;
 public class Row {
 
     private static final int FIRST_POINT = 0;
+
     private final List<Boolean> points = new ArrayList<>();
 
     public Row(int personCount, LineCreateDecider lineCreateDecider) {

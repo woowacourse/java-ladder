@@ -4,6 +4,7 @@ public class PlayerName {
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
+
     private final String playerName;
 
     public PlayerName(String playerName) {

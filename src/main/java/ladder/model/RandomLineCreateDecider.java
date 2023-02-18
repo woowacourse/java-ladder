@@ -5,6 +5,7 @@ import java.security.SecureRandom;
 public class RandomLineCreateDecider implements LineCreateDecider {
 
     private static final int MAX_RANDOM_INT = 2;
+
     private static final SecureRandom secureRandom = new SecureRandom();
 
     @Override

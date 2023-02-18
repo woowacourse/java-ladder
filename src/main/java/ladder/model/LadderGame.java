@@ -6,6 +6,7 @@ import java.util.List;
 public class LadderGame {
 
     private static final int MIN_PLAYER_COUNT = 2;
+
     private final List<PlayerName> playerNames;
     private final Height height;
     private final LineCreateDecider lineCreateDecider;
