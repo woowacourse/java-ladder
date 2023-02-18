@@ -4,45 +4,36 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.Direction;
 import domain.Height;
+import domain.Line;
 import domain.PlayerNames;
 import domain.Point;
-import domain.ladder.Ladder;
 import domain.ladder.strategy.AlwaysGenerateBridgeStrategy;
 import java.util.List;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
+import util.TestDataManager;
 
-@TestInstance(Lifecycle.PER_CLASS)
 public class LadderTest {
-
-    private static final int PLAYER_COUNT = 4;
-    private static final int HEIGHT_SIZE = 5;
-
-    private Ladder ladder;
-
-    @BeforeAll
-    void beforeAll() {
-        PlayerNames playerNames = PlayerNames.from(List.of("pobi", "crong", "honux", "jk"));
-        Height height = new Height(HEIGHT_SIZE);
-
-        ladder = Ladder.of(playerNames, height, new AlwaysGenerateBridgeStrategy());
-    }
 
     @Test
     @DisplayName("게임 참여자 수와 높이에 따라 사다리 생성")
     void createLadderSuccess() {
-        assertThat(ladder.getLines())
-                .hasSize(PLAYER_COUNT);
-        assertThat(ladder.getLines().get(0).getPoints())
-                .hasSize(HEIGHT_SIZE);
+        List<String> players = List.of("pobi", "conan");
+        PlayerNames playerNames = PlayerNames.from(players);
+        int heightSize = 4;
+        Height height = new Height(heightSize);
+
+        Ladder ladder = Ladder.of(playerNames, height, new AlwaysGenerateBridgeStrategy());
+
+        List<Line> linesInLadder = ladder.getLines();
+        assertThat(linesInLadder).hasSize(players.size());
+        assertThat(ladder.getHeightSize()).isEqualTo(heightSize);
     }
 
     @Test
     @DisplayName("사다리의 다리 생성")
     void buildBridgeSuccess() {
+        Ladder ladder = TestDataManager.ladderFromHeight(4);
         Point startPoint = ladder.getPoint(0, 1);
         Point endPoint = ladder.getPoint(0, 2);
         ladder.buildBridge(startPoint, endPoint);
@@ -54,6 +45,7 @@ public class LadderTest {
     @Test
     @DisplayName("이미 다리가 건설 된 지점을 끝 점으로 다리 생성 불가")
     void buildBridgeFail1() {
+        Ladder ladder = TestDataManager.ladderFromHeight(4);
         Point startPoint = ladder.getPoint(0, 1);
         Point endPoint = ladder.getPoint(0, 2);
         ladder.buildBridge(startPoint, endPoint);
@@ -69,6 +61,7 @@ public class LadderTest {
     @Test
     @DisplayName("이미 다리가 건설 된 지점을 시작점으로 다리 생성 불가")
     void buildBridgeFail2() {
+        Ladder ladder = TestDataManager.ladderFromHeight(4);
         Point startPoint = ladder.getPoint(0, 1);
         Point endPoint = ladder.getPoint(0, 2);
         ladder.buildBridge(startPoint, endPoint);
