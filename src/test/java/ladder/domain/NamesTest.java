@@ -9,6 +9,8 @@ import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import ladder.error.ErrorMessage;
+
 class NamesTest {
 
     @ParameterizedTest(name = "사람 수는 2명 이상 100명 이하여야 한다.")
@@ -17,7 +19,8 @@ class NamesTest {
         List<String> userNames = createUserNamesBySize(size);
 
         assertThatThrownBy(() -> new Names(userNames))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(ErrorMessage.INVALID_PEOPLE_COUNT.getMessage());
     }
 
     @ParameterizedTest(name = "사람 수는 2명 이상 100명 이하여야 한다.")
