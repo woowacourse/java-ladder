@@ -10,8 +10,8 @@ import static laddergame.utils.RetryUtils.retryOnRuntimeException;
 public class Ladder {
     private final Participants participants;
     private final Height height;
-
     private final BooleanGenerator booleanGenerator;
+
     private List<Line> lines;
 
     public Ladder(final Participants participants, final Height height, final BooleanGenerator booleanGenerator) {

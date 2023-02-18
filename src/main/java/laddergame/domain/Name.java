@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public class Name {
 	private static final Pattern NAME_REGEX = Pattern.compile("([a-z]|[A-Z])+");
 	private static final int MAX_NAME_LENGTH = 5;
+
 	private final String value;
 
 	public Name(final String name) {
