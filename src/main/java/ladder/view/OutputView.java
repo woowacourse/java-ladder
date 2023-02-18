@@ -7,37 +7,38 @@ import ladder.domain.Line;
 import ladder.domain.LineStatus;
 
 public class OutputView {
+    private static final String GAME_RESULT_MESSAGE = System.lineSeparator() + "실행결과";
     private static final int INITIAL_PLAYER_INDEX = 0;
     private static final int EMPTY_NAME_LENGTH = 0;
+    private static final String INIT_NAME_FORMAT = "%s ";
     private static final long SKIP_INITIAL_PLAYER = 1L;
-    private static final String GAME_RESULT_MESSAGE = "\n실행결과";
     private static final String CONNECTED_SYMBOL = "-";
     private static final String EMPTY_SYMBOL = " ";
     private static final String NAME_MESSAGE_FORMAT = " %%%ds";
     private static final String LINE_STATUS_MESSAGE_FORMAT = "%s|";
-    private static final String NEXT_LINE = "\n";
+    private static final String NEXT_LINE = System.lineSeparator();
     private static final String ERROR_MESSAGE = "[ERROR] ";
 
-    public void printResult(final List<String> players, final List<Line> ladder) {
+    public void printResult(final List<String> playerNames, final List<Line> ladder) {
         System.out.println(GAME_RESULT_MESSAGE);
 
-        final int maxNameLength = calculateMaxNameLength(players);
-        System.out.println(generateNameMessages(players, maxNameLength));
+        final int maxNameLength = getMaxNameLength(playerNames);
+        System.out.println(generateNameMessages(playerNames, maxNameLength));
 
-        final String initialPlayerName = findInitialPlayerName(players);
+        final String initialPlayerName = findInitialPlayerName(playerNames);
         System.out.println(generateLadderMessage(initialPlayerName.length(), maxNameLength, ladder));
     }
 
-    private int calculateMaxNameLength(final List<String> players) {
-        return players.stream()
+    private int getMaxNameLength(final List<String> playerNames) {
+        return playerNames.stream()
                 .map(String::length)
                 .max(Integer::compareTo)
                 .orElse(EMPTY_NAME_LENGTH);
     }
 
-    private String generateNameMessages(final List<String> players, final int maxNameLength) {
-        final String initialPlayerName = findInitialPlayerName(players) + EMPTY_SYMBOL;
-        final String nameMessage = players.stream()
+    private String generateNameMessages(final List<String> playerNames, final int maxNameLength) {
+        final String initialPlayerName = String.format(INIT_NAME_FORMAT, findInitialPlayerName(playerNames));
+        final String nameMessage = playerNames.stream()
                 .skip(SKIP_INITIAL_PLAYER)
                 .map(name -> generateNameMessage(name, maxNameLength))
                 .collect(joining());
@@ -49,8 +50,8 @@ public class OutputView {
         return String.format(format, name);
     }
 
-    private String findInitialPlayerName(final List<String> players) {
-        return players.get(INITIAL_PLAYER_INDEX);
+    private String findInitialPlayerName(final List<String> playerNames) {
+        return playerNames.get(INITIAL_PLAYER_INDEX);
     }
 
     private String generateLadderMessage(final int initialNameLength, final int maxNameLength, final List<Line> lines) {

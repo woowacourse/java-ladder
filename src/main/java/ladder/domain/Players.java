@@ -38,7 +38,7 @@ public class Players {
     private List<Player> generatePlayers(final List<String> names) {
         return names.stream()
                 .map(Player::new)
-                .collect(Collectors.toUnmodifiableList());
+                .collect(Collectors.toList());
     }
 
     public List<String> getNames() {

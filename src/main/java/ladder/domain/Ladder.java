@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import static java.util.stream.Collectors.toUnmodifiableList;
+import static java.util.stream.Collectors.toList;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +17,7 @@ class Ladder {
     private List<Line> generateLines(final BooleanGenerator booleanGenerator, final int height, final int width) {
         return Stream.generate(() -> new Line(booleanGenerator, width))
                 .limit(height)
-                .collect(toUnmodifiableList());
+                .collect(toList());
     }
 
     public List<Line> getLines() {
