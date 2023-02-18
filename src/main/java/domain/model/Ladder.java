@@ -17,6 +17,10 @@ public class Ladder {
         this.width = width;
     }
 
+    public void addLayer(Layer layer) {
+        layers.add(layer);
+    }
+
     public List<Layer> getLayers() {
         return Collections.unmodifiableList(layers);
     }
@@ -27,10 +31,6 @@ public class Ladder {
 
     public Width getWidth() {
         return this.width;
-    }
-
-    public void addLayer(Layer layer) {
-        layers.add(layer);
     }
 
 }
