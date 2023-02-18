@@ -22,18 +22,19 @@ public class LadderController {
     }
 
     public void run() {
-        final Players players = retry(Players::new, inputView::readPlayerNames);
-        final Height height = retry(Height::new, inputView::readHeight);
+        final Players players = generate(inputView::readPlayerNames, Players::new);
+        final Height height = generate(inputView::readHeight, Height::new);
+
         final Ladder ladder = new Ladder(lineGenerator, players, height);
         outputView.printLadderResult(players, ladder);
     }
 
-    private <T, R> R retry(final Function<T, R> function, final Supplier<T> supplier) {
+    private <T, R> R generate(final Supplier<T> supplier, final Function<T, R> function) {
         try {
             return function.apply(supplier.get());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return retry(function, supplier);
+            return generate(supplier, function);
         }
     }
 }
