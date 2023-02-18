@@ -1,22 +1,13 @@
 package ladder.domain.ladder;
 
-import java.util.Arrays;
-
 public enum Block {
-    EMPTY(0),
-    EXIST(1);
+    EMPTY(false),
+    EXIST(true);
 
-    private final int status;
+    private final boolean isExist;
 
-    Block(int status) {
-        this.status = status;
-    }
-
-    public static Block of(int status) {
-        return Arrays.stream(Block.values())
-                .filter(block -> block.status == status)
-                .findFirst()
-                .orElseThrow(RuntimeException::new);
+    Block(boolean isExist) {
+        this.isExist = isExist;
     }
 
     public boolean isExistBlock() {

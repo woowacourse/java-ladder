@@ -14,7 +14,8 @@ public class RandomBlockGenerator implements BlockGenerator {
 
     @Override
     public Block generate() {
-        int blockCategoryCount = Block.values().length;
-        return Block.of(random.nextInt(blockCategoryCount));
+        Block[] blocks = Block.values();
+        int randomIndex = random.nextInt(blocks.length);
+        return blocks[randomIndex];
     }
 }
