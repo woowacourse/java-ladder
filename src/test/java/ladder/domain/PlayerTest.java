@@ -14,7 +14,8 @@ class PlayerTest {
     void name_throwExceptionIfEmptyString(String input) {
         // expected
         assertThatThrownBy(() -> new Player(input, 0))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 빈 문자일 수 없습니다.");
     }
 
     @ParameterizedTest
@@ -23,7 +24,8 @@ class PlayerTest {
     void name_throwExceptionOver6(String input) {
         // expected
         assertThatThrownBy(() -> new Player(input, 0 ))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 최대 5글자이어야 합니다.");
     }
 
     @ParameterizedTest
