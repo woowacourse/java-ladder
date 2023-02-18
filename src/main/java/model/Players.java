@@ -18,10 +18,6 @@ public class Players {
         return players.size();
     }
 
-    public Player getPlayer(int index) {
-        return players.get(index);
-    }
-
     public List<String> getAllPlayerNames() {
         return players.stream()
                 .map(Player::getName)

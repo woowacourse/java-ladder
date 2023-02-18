@@ -5,24 +5,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class PlayersTest {
-    private static Stream<Arguments> AllLadderGamePlayerInfo() {
-        return Stream.of(
-                Arguments.of(new Names("pobi, neo, hiiro"),
-                        new ArrayList<>(List.of(new Player(new Name("pobi")),
-                                new Player(new Name("neo")), new Player(new Name("hiiro")))))
-        );
-    }
-
     @Test
     @DisplayName("Players 객체 생성 성공 테스트")
     void createPlayersTest() {
