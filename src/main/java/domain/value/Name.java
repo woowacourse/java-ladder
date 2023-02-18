@@ -1,5 +1,7 @@
 package domain.value;
 
+import java.util.Objects;
+
 public class Name {
 
     private static final int NAME_MAX_LENGTH_INCLUSIVE = 5;
@@ -25,5 +27,18 @@ public class Name {
 
     public int length() {
         return value.length();
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Name)) return false;
+        Name name = (Name) o;
+        return Objects.equals(getValue(), name.getValue());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getValue());
     }
 }

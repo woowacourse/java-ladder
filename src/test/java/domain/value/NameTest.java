@@ -1,6 +1,5 @@
 package domain.value;
 
-import domain.value.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -49,5 +48,16 @@ public class NameTest {
 
         // when & then
         assertThat(name.length()).isEqualTo(input.length());
+    }
+
+    @ParameterizedTest(name = "이름이 같은 경우, 동등하다")
+    @ValueSource(strings = {"말랑", "바다"})
+    void 이름이_같은_경우_동등하다(final String value) {
+        // given
+        Name name1 = new Name(value);
+        Name name2 = new Name(value);
+
+        // when & then
+        assertThat(name1).isEqualTo(name2);
     }
 }
