@@ -1,8 +1,8 @@
 package domain;
 
 public enum Position {
-    LEFT(-1,"     ",true),
-    RIGHT(1,"-----",false),
+    LEFT(1,"     ",true),
+    RIGHT(-1,"-----",false),
     DOWN(0,"     ",true);
 
     private final int move;
