@@ -15,13 +15,13 @@ public class LaddersTest {
     @DisplayName("사다리 높이가 1~10을 벗어나면 예외가 발생한다.")
     void LadderHeightFailTest(int height) {
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> new Ladders(new Height(height)));
+                () -> new Ladders(new Height(height), new LadderGenerator(height)));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 10})
     @DisplayName("사다리 높이가 1~10 사이면 정상적으로 수행된다.")
     void LadderHeightSuccessTest(int height) {
-        assertThatCode(() -> new Ladders(new Height(height))).doesNotThrowAnyException();
+        assertThatCode(() -> new Ladders(new Height(height), new LadderGenerator(height))).doesNotThrowAnyException();
     }
 }
