@@ -6,6 +6,8 @@ import domain.Names;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.function.Supplier;
+import utils.booleanGenerator.BooleanGenerator;
+import utils.booleanGenerator.RandomBooleanGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -70,8 +72,9 @@ public class MainController {
     }
 
     private ApplicationStatus createLines() {
+        BooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
         int lineSize = names.getPersonNumber() - 1;
-        lines = new Lines(lineSize, height.getHeight());
+        lines = new Lines(lineSize, height.getHeight(), randomBooleanGenerator);
         return ApplicationStatus.PRINT_RESULT;
     }
 

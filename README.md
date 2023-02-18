@@ -40,7 +40,7 @@
 - [x] 접근 제어자 확인하기
 - [x] format에 해당하는 변수에는 `_FORMAT`을 달아 명확히 하기
 - [ ] 결과 출력 개행 알아보기
-- [ ] `Floors`에서 `RandomBooleanGenerator` 생성 책임 분리하기
+- [x] `Lines`에서 `RandomBooleanGenerator` 생성 책임 분리하기
 - [ ] 변수명을 통해 예측할 수 있도록 수정하기
 - [x] 매직넘버 상수화하기
 - [x] 메서드 및 생성자 순서 지키기
