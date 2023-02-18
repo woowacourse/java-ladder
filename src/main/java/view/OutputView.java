@@ -8,8 +8,8 @@ import java.util.List;
 
 public class OutputView {
 
-    private static final String RESULT_ANNOUNCEMENT = "\n실행결과";
     private static final int INTERVAL_UNIT = 6;
+    private static final String RESULT_ANNOUNCEMENT = "\n실행결과";
     private static final String FRONT_SPACE = "    ";
     private static final String LINE_DELIMITER = "|";
     private static final String CONNECTED_LINE = "-----";
@@ -22,6 +22,15 @@ public class OutputView {
         printLadder(ladder);
     }
 
+    private void printNames(final List<Name> names) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n");
+        names.forEach(name -> {
+            int difference = INTERVAL_UNIT - name.get().length();
+            stringBuilder.append(name.get()).append(NAME_SPACE.repeat(difference));
+        });
+        System.out.println(stringBuilder);
+    }
     private void printLadder(Ladder ladder) {
         for (Layer layer : ladder.getLayers()) {
             printLayer(layer);
@@ -43,13 +52,5 @@ public class OutputView {
         return UNCONNECTED_LINE;
     }
 
-    private void printNames(final List<Name> names) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\n");
-        names.forEach(name -> {
-            int difference = INTERVAL_UNIT - name.get().length();
-            stringBuilder.append(name.get()).append(NAME_SPACE.repeat(difference));
-        });
-        System.out.println(stringBuilder);
-    }
+
 }

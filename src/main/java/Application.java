@@ -14,14 +14,9 @@ public class Application {
         ladderController.play();
     }
 
-    private static LadderMaker makeLadderMaker() {
-        return new LadderMaker(new RandomBooleanGenerator());
-    }
-
     private static InputView makeInputView() {
         return new InputView(makeInputValidator());
     }
-
     private static InputValidator makeInputValidator() {
         InputValidator emptyInputValidatorChain = new EmptyInputValidatorChain();
         InputValidator notIntegerValidatorChain = new NotIntegerValidatorChain();
@@ -30,4 +25,9 @@ public class Application {
         emptyInputValidatorChain.setNext(notIntegerValidatorChain);
         return emptyInputValidatorChain;
     }
+
+    private static LadderMaker makeLadderMaker() {
+        return new LadderMaker(new RandomBooleanGenerator());
+    }
+
 }
