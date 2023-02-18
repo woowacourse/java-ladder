@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.Bar;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
+import ladder.domain.PlayerNames;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,8 +12,8 @@ import java.util.stream.IntStream;
 public class OutputView {
     private static final int PER_NAME_SPACE = 6;
 
-    public static void printNames(List<String> names) {
-        println(parseDisplayNames(names));
+    public static void printNames(PlayerNames playerNames) {
+        println(parseDisplayNames(playerNames.getNames()));
     }
 
     private static String parseDisplayNames(List<String> names) {
