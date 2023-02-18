@@ -17,7 +17,7 @@ class LineTest {
     @Test
     void create_points_by_input_width() {
         int width = 3;
-        Line line = Line.create(width, new RandomNumberGenerator());
+        Line line = Line.create(new RandomNumberGenerator(),width);
 
         List<Point> points = line.getPoints();
 
@@ -32,7 +32,7 @@ class LineTest {
                 MIN_NUMBER_RETURN_TRUE,
                 MIN_NUMBER_RETURN_TRUE);
 
-        Line line = Line.create(3, new MockNumberGenerator(orderOfNumber));
+        Line line = Line.create(new MockNumberGenerator(orderOfNumber),3);
         List<Point> points = line.getPoints();
 
         assertThat(points).containsExactly(Point.PASSABLE, Point.BLOCKED, Point.PASSABLE);

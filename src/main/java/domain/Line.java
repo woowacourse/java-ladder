@@ -1,13 +1,10 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import utils.NumberGenerator;
 
 public class Line {
-
-    private static final int MIN_NUMBER_RETURN_TRUE = 4;
 
     private final List<Point> points;
 
@@ -15,17 +12,17 @@ public class Line {
         this.points = new ArrayList<>(points);
     }
 
-    public static Line create(int width, NumberGenerator numberGenerator) {
-        List<Point> points = new ArrayList<>();
+    public static Line create(NumberGenerator numberGenerator, int width) {
+        List<Point> linePoints = new ArrayList<>();
         for (int i = 0; i < width; i++) {
-            addPoint(points, numberGenerator);
+            addPoint(numberGenerator, linePoints);
         }
-        return new Line(points);
+        return new Line(linePoints);
     }
 
-    private static void addPoint(List<Point> points, NumberGenerator numberGenerator) {
+    private static void addPoint(NumberGenerator numberGenerator, List<Point> points) {
         if (points.isEmpty()) {
-            points.add(generatePoint(numberGenerator.generate()));
+            points.add(Point.from(numberGenerator.generate()));
             return;
         }
 
@@ -33,14 +30,7 @@ public class Line {
             points.add(Point.BLOCKED);
             return;
         }
-        points.add(generatePoint(numberGenerator.generate()));
-    }
-
-    private static Point generatePoint(int number) {
-        if (number >= MIN_NUMBER_RETURN_TRUE) {
-            return Point.PASSABLE;
-        }
-        return Point.BLOCKED;
+        points.add(Point.from(numberGenerator.generate()));
     }
 
     private static boolean isPreviousPointPassable(List<Point> points) {
@@ -48,6 +38,6 @@ public class Line {
     }
 
     public List<Point> getPoints() {
-        return Collections.unmodifiableList(points);
+        return points;
     }
 }

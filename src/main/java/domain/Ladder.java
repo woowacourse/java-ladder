@@ -21,22 +21,16 @@ public class Ladder {
                                 LadderHeight ladderHeight,
                                 NumberGenerator numberGenerator) {
         List<Line> lines = new ArrayList<>();
-        Ladder ladder = new Ladder(lines, ladderHeight);
-        ladder.addLines(numberOfPeople - NUMBER_OF_PEOPLE_TO_WIDTH_SCALE, numberGenerator);
-        return ladder;
-    }
+        int width = numberOfPeople - NUMBER_OF_PEOPLE_TO_WIDTH_SCALE;
 
-    private void addLines(int width, NumberGenerator numberGenerator) {
-        for (int i = 0; i < getLadderHeight(); i++) {
-            lines.add(Line.create(width, numberGenerator));
+        for (int i = 0; i < ladderHeight.getLadderHeight(); i++) {
+            lines.add(Line.create(numberGenerator, width));
         }
+
+        return new Ladder(lines, ladderHeight);
     }
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
-    }
-
-    public int getLadderHeight() {
-        return ladderHeight.getLadderHeight();
     }
 }
