@@ -28,9 +28,9 @@ public class LadderTest {
                 .hasMessage("사다리의 높이는 참가자 수 이상이어야 합니다.");
     }
 
-    @DisplayName("사다리 높이가 정상적으로 입력되면 사다리를 생성한다.")
+    @DisplayName("사다리 높이가 참가자 수 이상인 경우에는 사다리를 생성한다.")
     @ParameterizedTest
-    @CsvSource(value = {"4:3", "14:5"}, delimiter = ':')
+    @CsvSource(value = {"4:3", "5:5"}, delimiter = ':')
     void createLadderTest3(int height, int personCount) {
         assertThatCode(() -> new Ladder(height, personCount, new RandomNumberGenerator()))
                 .doesNotThrowAnyException();
