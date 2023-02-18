@@ -1,7 +1,5 @@
 package laddergame.domain;
 
-import static laddergame.messsages.ExceptionMessages.HEIGHT_ILLEGAL_VALUE_EXCEPTION;
-
 public class Height {
     private final int value;
 
@@ -12,7 +10,7 @@ public class Height {
 
     private void validatePositive(final int value) {
         if (value <= 0) {
-            throw new IllegalArgumentException(HEIGHT_ILLEGAL_VALUE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException("높이는 양수여야합니다.");
         }
     }
 

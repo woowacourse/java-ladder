@@ -3,9 +3,6 @@ package laddergame.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static laddergame.messsages.ExceptionMessages.PARTICIPANTS_EMPTY_EXCEPTION;
-import static laddergame.messsages.ExceptionMessages.PARTICIPANTS_NULL_EXCEPTION;
-
 public class Participants {
     private final List<Name> names;
 
@@ -17,13 +14,13 @@ public class Participants {
 
     private void validateNotEmpty(final List<Name> names) {
         if (names.isEmpty()) {
-            throw new IllegalArgumentException(PARTICIPANTS_EMPTY_EXCEPTION.getMessage());
+            throw new IllegalArgumentException("참여자 이름 목록은 비어있을 수 없습니다.");
         }
     }
 
     private void validateNotNull(final List<Name> names) {
         if (names == null) {
-            throw new IllegalArgumentException(PARTICIPANTS_NULL_EXCEPTION.getMessage());
+            throw new IllegalArgumentException("참여자 이름 목록은 null이 될 수 없습니다.");
         }
     }
 
