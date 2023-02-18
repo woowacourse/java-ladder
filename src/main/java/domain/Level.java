@@ -12,7 +12,7 @@ public class Level {
 	private final List<Stool> level;
 
 	public Level(int participantsSize) {
-		this.level = initLine(participantsSize);
+		level = initLine(participantsSize);
 		makeStools();
 	}
 
