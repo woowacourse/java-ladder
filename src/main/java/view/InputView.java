@@ -26,8 +26,8 @@ public class InputView {
         }
     }
 
-    public List<String> inputResult(){
-        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    public List<String> inputResult() {
+        System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         return Arrays.asList(sc.nextLine().split(USER_NAME_SPLIT_CHARACTER, USER_NAME_SPLIT_LIMIT));
     }
 }
