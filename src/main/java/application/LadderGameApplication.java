@@ -8,7 +8,6 @@ import domain.Name;
 import domain.Names;
 import java.util.List;
 import java.util.function.Supplier;
-import utils.NumberGenerator;
 import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -32,14 +31,14 @@ public class LadderGameApplication {
     }
 
     private Names createNames() {
-        List<String> rawNames = inputView.sendNames();
+        List<String> rawNames = inputView.readNames();
         return rawNames.stream()
                 .map(Name::new)
                 .collect(collectingAndThen(toList(), Names::new));
     }
 
     private LadderHeight createLadderHeight() {
-        int height = inputView.sendLadderHeight();
+        int height = inputView.readLadderHeight();
         return new LadderHeight(height);
     }
 
