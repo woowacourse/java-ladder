@@ -10,7 +10,8 @@ public class InputView {
     private static final InputView INSTANCE = new InputView();
     private static final Pattern NUMBER_REGEX = Pattern.compile("^-?[0-9]+$");
 
-    private InputView() {}
+    private InputView() {
+    }
 
     public static InputView getInstance() {
         return INSTANCE;
@@ -44,6 +45,7 @@ public class InputView {
         String input = scanner.nextLine();
 
         validateHeight(input);
+        validateBigHeight(input);
         return Integer.parseInt(input);
     }
 
@@ -53,8 +55,17 @@ public class InputView {
         }
     }
 
+    private void validateBigHeight(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_BIG_INTEGER.getMessage());
+        }
+    }
+
     private enum ErrorMessage {
         EXCEPTION_DUPLICATED_NAME("이름은 중복될 수 없습니다."),
+        EXCEPTION_BIG_INTEGER("사다리 높이가 너무 높습니다. 사다리 높이는 100 이하를 권장합니다."),
         EXCEPTION_NOT_INTEGER("정수가 아닙니다.");
         private final String message;
 
