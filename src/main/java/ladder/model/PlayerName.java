@@ -18,9 +18,13 @@ public class PlayerName {
     }
 
     private void validatePlayerNameLength(String playerName) {
-        if (playerName.length() < MIN_LENGTH || playerName.length() > MAX_LENGTH) {
+        if (!isNameLengthIncludedInRange(playerName)) {
             throw new IllegalArgumentException(ErrorMessage.EXCEPTION_INVALID_LENGTH_NAME.getMessage());
         }
+    }
+
+    private boolean isNameLengthIncludedInRange(String playerName) {
+        return playerName.length() < MIN_LENGTH || playerName.length() > MAX_LENGTH;
     }
 
     public String getPlayerName() {
