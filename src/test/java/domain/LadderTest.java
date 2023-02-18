@@ -14,15 +14,17 @@ class LadderTest {
     @DisplayName("다리가 높이와 라인 수를 입력받고, 각 라인들에 높이만큼의 크기를 가진 Point 리스트를 생성한다")
     @Test
     void create_success() {
+        // given
         Ladder ladder = createLadder(3,3);
 
+        // when
         List<Line> lines = ladder.getLines();
-
         int numberOfPoint = lines.stream()
                 .map(line -> line.getPoints().size())
                 .collect(Collectors.toSet())
                 .size();
 
+        // then
         assertThat(numberOfPoint).isEqualTo(1);
     }
 
