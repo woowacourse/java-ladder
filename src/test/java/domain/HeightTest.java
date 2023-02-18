@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 @DisplayName("Height 은")
 public class HeightTest {
 
-    @ParameterizedTest(name = "높이가 1 이상이어야 한다")
+    @ParameterizedTest(name = "높이가 1 이상이어야 한다 height = {0}")
     @ValueSource(ints = {-1, 0, -100})
     void 높이가_1_이상이어야_한다(final int height) {
         assertThatThrownBy(() -> new Height(height))

@@ -1,9 +1,12 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import java.util.ArrayList;
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -25,5 +28,10 @@ public class NamesTest {
     @Test
     void Name_이_둘_미만이면_에러를_던진다() {
         assertThatThrownBy(() -> new Names(failNames)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 크기를_알_수_있다() {
+        assertThat(successNames.size()).isEqualTo(2);
     }
 }
