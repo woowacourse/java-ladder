@@ -46,8 +46,8 @@ public class OutputView {
     }
 
     private String generateNameMessage(final String name, int maxNameLength) {
-        String format = String.format(NAME_MESSAGE_FORMAT, maxNameLength);
-        return String.format(format, name);
+        String maxNameLengthFormat = String.format(NAME_MESSAGE_FORMAT, maxNameLength);
+        return String.format(maxNameLengthFormat, name);
     }
 
     private String findInitialPlayerName(final List<String> playerNames) {
