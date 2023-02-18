@@ -8,14 +8,24 @@ import util.BooleanGenerator;
 public class Line {
     private final List<Boolean> bridges;
 
-    public Line(int personCount) {
+    private Line(int personCount) {
         this.bridges = new ArrayList<>();
+        initializeEmptyLine(personCount);
+    }
+
+    public static Line generateWithBridges(BooleanGenerator booleanGenerator, int personCount) {
+        Line line = new Line(personCount);
+        line.generate(booleanGenerator);
+        return line;
+    }
+
+    private void initializeEmptyLine(int personCount) {
         for (int index = 0; index < personCount - 1; index++) {
             bridges.add(false);
         }
     }
 
-    public void generate(BooleanGenerator booleanGenerator) {
+    private void generate(BooleanGenerator booleanGenerator) {
         for (int bridgeIndex = 0; bridgeIndex < bridges.size(); bridgeIndex++) {
             generateBridge(booleanGenerator, bridgeIndex);
         }

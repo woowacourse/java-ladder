@@ -3,20 +3,24 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import util.BooleanGenerator;
+import util.RandomBooleanGenerator;
 
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(Height height, int personCount) {
+    private Ladder() {
         this.lines = new ArrayList<>();
-        for (int index = 0; index < height.getHeight(); index++) {
-            lines.add(new Line(personCount));
-        }
     }
 
-    public void generateLadder(BooleanGenerator booleanGenerator) {
-        for (Line line : lines) {
-            line.generate(booleanGenerator);
+    public static Ladder generateRandomly(Height height, int personCount) {
+        Ladder ladder = new Ladder();
+        ladder.generate(new RandomBooleanGenerator(), height.getHeight(), personCount);
+        return ladder;
+    }
+
+    private void generate(BooleanGenerator booleanGenerator, int height, int personCount) {
+        for (int index = 0; index < height; index++) {
+            lines.add(Line.generateWithBridges(booleanGenerator, personCount));
         }
     }
 

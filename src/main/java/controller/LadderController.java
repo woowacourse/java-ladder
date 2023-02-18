@@ -24,7 +24,6 @@ public class LadderController {
         Height height = requestLadderHeight();
 
         ladderGame = new LadderGame(persons, height);
-        ladderGame.run();
         outputView.printLadder(ladderGame.getAllPlayers(), ladderGame.getLadderStatus(),
                 persons.getLongestPersonNameLength());
     }
