@@ -28,9 +28,9 @@ public class LadderController {
         final Participants participants = retryOnRuntimeExceptionWithMessage(() -> new Participants(readNames()));
         final Height height = retryOnRuntimeExceptionWithMessage(() -> new Height(inputView.readHeight()));
 
-        final Ladder ladder = new Ladder(participants, height);
+        final Ladder ladder = new Ladder(participants, height, booleanGenerator);
 
-        final List<Line> lines = ladder.createLines(booleanGenerator);
+        final List<Line> lines = ladder.getLines();
         outputView.printResult(LadderForm.joinUnitsFrom(participants.getNames(), lines));
     }
 
