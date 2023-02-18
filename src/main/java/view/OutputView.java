@@ -33,16 +33,13 @@ public class OutputView {
     }
 
     public void printLadder(Ladder ladder) {
-        for(int index=0; index<ladder.getHeight(); index++){
-            printLadderLine(ladder.getLine(index));
-        }
+        IntStream.range(0, ladder.getHeight())
+                .forEach(index -> printLadderLine(ladder.getLine(index)));
     }
 
     private void printLadderLine(Line line) {
         StringBuilder stringBuilder = new StringBuilder(LadderStep.FIRST_STEP.getStep());
-        for(Boolean point : line.getPoints()) {
-            stringBuilder.append(makeNextStep(point));
-        }
+        line.getPoints().forEach(point -> stringBuilder.append(makeNextStep(point)));
         System.out.println(stringBuilder);
     }
 

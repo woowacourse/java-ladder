@@ -17,9 +17,8 @@ public class Line {
 
     private void createPoints(PointGenerator pointGenerator, int personCount) {
         points.add(pointGenerator.generate());
-        for (int index = 0; index < calculatePointsCount(personCount) - 1; index++) {
-            points.add(makePointAvoidingTrueRepetition(pointGenerator, index));
-        }
+        IntStream.range(0, calculatePointsCount(personCount) - 1)
+                .forEach(index -> points.add(makePointAvoidingTrueRepetition(pointGenerator, index)));
     }
 
     private int calculatePointsCount(int personCount) {
