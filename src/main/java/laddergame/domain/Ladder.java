@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Ladder {
     private static final String LADDER_PARTICIPANTS_NULL_EXCEPTION = "참여자는 null이 될 수 없습니다.";
@@ -16,10 +17,10 @@ public class Ladder {
     }
 
     private void validateNotNull(final Participants participants, final Height height) {
-        if (participants == null) {
+        if (Objects.isNull(participants)) {
             throw new IllegalArgumentException(LADDER_PARTICIPANTS_NULL_EXCEPTION);
         }
-        if (height == null) {
+        if (Objects.isNull(height)) {
             throw new IllegalArgumentException(LADDER_HEIGHT_NULL_EXCEPTION);
         }
     }
