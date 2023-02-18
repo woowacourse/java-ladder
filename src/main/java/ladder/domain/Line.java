@@ -11,18 +11,18 @@ public class Line implements Iterable<Boolean> {
     private final List<Boolean> line = new ArrayList<>();
     private final BooleanGenerator generator;
 
-    public Line(int personCount, BooleanGenerator generator) {
+    public Line(int numberOfPeople, BooleanGenerator generator) {
         this.generator = generator;
 
-        createLine(personCount);
+        createLine(numberOfPeople);
     }
 
     public List<Boolean> getLine() {
         return line;
     }
 
-    private void createLine(int personCount) {
-        for (int cell = FIRST_CELL_INDEX; cell < personCount - 1; cell++) {
+    private void createLine(int numberOfPeople) {
+        for (int cell = FIRST_CELL_INDEX; cell < numberOfPeople - 1; cell++) {
             createLineAtCell(cell);
         }
     }

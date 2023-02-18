@@ -16,7 +16,7 @@ public class InputView {
         printMessage(Message.ASK_USER_NAMES);
 
         List<String> names = Arrays.asList(sc.nextLine().split(DELIMITER));
-        validateNames(names);
+        validateNoDuplication(names);
 
         return names;
     }
@@ -30,7 +30,7 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    private void validateNames(List<String> names) {
+    private void validateNoDuplication(List<String> names) {
         if (hasDuplicateName(names)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATION.getMessage());
         }

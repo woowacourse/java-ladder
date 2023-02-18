@@ -7,8 +7,8 @@ import ladder.error.ErrorMessage;
 
 public class Names {
     private static final int FIRST_NAME_INDEX = 0;
-    private static final int MIN_NAMES_COUNT = 2;
-    private static final int MAX_NAMES_COUNT = 100;
+    private static final int MIN_NUMBER_OF_PEOPLE = 2;
+    private static final int MAX_NUMBER_OF_PEOPLE = 100;
 
     private final List<Name> names;
 
@@ -33,11 +33,11 @@ public class Names {
     }
 
     private void validate(List<String> names) {
-        validateCountOfNames(names);
+        validateNumberOfPeople(names);
     }
 
-    private void validateCountOfNames(List<String> names) {
-        if (names.size() < MIN_NAMES_COUNT || names.size() > MAX_NAMES_COUNT) {
+    private void validateNumberOfPeople(List<String> names) {
+        if (names.size() < MIN_NUMBER_OF_PEOPLE || names.size() > MAX_NUMBER_OF_PEOPLE) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PEOPLE_COUNT.getMessage());
         }
     }

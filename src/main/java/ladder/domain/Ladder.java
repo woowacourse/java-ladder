@@ -9,14 +9,14 @@ import ladder.util.BooleanGenerator;
 public class Ladder implements Iterable<Line> {
     private final List<Line> ladder;
 
-    public Ladder(int personCount, int height, BooleanGenerator generator) {
+    public Ladder(int numberOfPeople, int ladderHeight, BooleanGenerator generator) {
         ladder = new ArrayList<>();
-        createLadder(personCount, height, generator);
+        createLadder(numberOfPeople, ladderHeight, generator);
     }
 
-    private void createLadder(int personCount, int height, BooleanGenerator generator) {
-        for (int i = 0; i < height; i++) {
-            addLine(new Line(personCount, generator));
+    private void createLadder(int numberOfPeople, int ladderHeight, BooleanGenerator generator) {
+        for (int i = 0; i < ladderHeight; i++) {
+            addLine(new Line(numberOfPeople, generator));
         }
     }
 

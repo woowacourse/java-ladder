@@ -2,7 +2,7 @@ package ladder.controller;
 
 import java.util.List;
 
-import ladder.domain.Height;
+import ladder.domain.LadderHeight;
 import ladder.domain.Ladder;
 import ladder.domain.Names;
 import ladder.util.BooleanGenerator;
@@ -22,11 +22,11 @@ public class LadderController {
 
     public void execute() {
         Names names = createNames();
-        Height height = createHeight();
+        LadderHeight ladderHeight = createLadderHeight();
 
         assert names != null;
-        assert height != null;
-        Ladder ladder = createLadder(names, height);
+        assert ladderHeight != null;
+        Ladder ladder = createLadder(names, ladderHeight);
 
         outputView.printResult(names, ladder);
     }
@@ -42,19 +42,19 @@ public class LadderController {
         return names;
     }
 
-    private Height createHeight() {
-        Height height = null;
+    private LadderHeight createLadderHeight() {
+        LadderHeight ladderHeight = null;
         try {
-            height = new Height(readLadderHeight());
+            ladderHeight = new LadderHeight(readLadderHeight());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            createHeight();
+            createLadderHeight();
         }
-        return height;
+        return ladderHeight;
     }
 
-    private Ladder createLadder(Names names, Height height) {
-        return new Ladder(names.size(), height.getHeight(), generator);
+    private Ladder createLadder(Names names, LadderHeight ladderHeight) {
+        return new Ladder(names.size(), ladderHeight.getLadderHeight(), generator);
     }
 
     private List<String> readNames() {

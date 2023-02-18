@@ -8,12 +8,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import ladder.error.ErrorMessage;
 
-class HeightTest {
+class LadderHeightTest {
 
     @ParameterizedTest(name = "높이는 자연수여야 한다.")
     @ValueSource(ints = {-1, 0, 10001})
     void validateHeightFailTest(int height) {
-        assertThatThrownBy(() -> new Height(height))
+        assertThatThrownBy(() -> new LadderHeight(height))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage(ErrorMessage.INVALID_HEIGHT_RANGE.getMessage());
     }
@@ -21,6 +21,6 @@ class HeightTest {
     @ParameterizedTest(name = "높이는 1부터 10000까지의 자연수여야 한다.")
     @ValueSource(ints = {1, 10000})
     void validateHeightSuccessTest(int height) {
-        assertDoesNotThrow(() -> new Height(height));
+        assertDoesNotThrow(() -> new LadderHeight(height));
     }
 }

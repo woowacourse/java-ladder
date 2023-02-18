@@ -5,8 +5,6 @@ import ladder.util.RandomBooleanGenerator;
 
 public class Application {
     public static void main(String[] args) {
-        LadderController ladderController = new LadderController(new RandomBooleanGenerator());
-
-        ladderController.execute();
+        new LadderController(new RandomBooleanGenerator()).execute();
     }
 }
