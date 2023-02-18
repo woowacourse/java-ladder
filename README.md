@@ -63,3 +63,4 @@
 - [ ] `booleanGenerator`를 현재 `Line`에서 생성해 사용하는 것이 적절할까? 주입받는다면 어디부터 받아야할까?
 - [ ] `Controller`에 필드가 많은 것에 대해 어떻게 해결해야 할까?
 - [ ] 현재 사용하는 MVC 패턴의 `Controller`의 모습은 괜찮은 걸까? 
+- [ ] `point`의 `true`, `false`도 `EXISTS`, `NONE`으로 포장할 수 있지 않을까?
