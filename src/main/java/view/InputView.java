@@ -15,13 +15,13 @@ public class InputView {
 
     public static List<String> readNames() {
         System.out.println(READ_NAMES_MESSAGE);
-        String line = scanner.next();
+        String line = scanner.nextLine();
         return Parser.parse(line, NAME_DELIMITER);
     }
 
     public static int readHeight() {
         System.out.println(READ_HEIGHT_MESSAGE);
-        String line = scanner.next();
+        String line = scanner.nextLine();
         try {
             return Integer.parseInt(line);
         } catch (NumberFormatException exception) {
