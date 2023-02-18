@@ -1,8 +1,8 @@
 package ladder;
 
 import ladder.domain.Ladder;
-import ladder.domain.generator.RandomLineGenerator;
 import ladder.domain.Users;
+import ladder.domain.generator.RandomPointGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -11,8 +11,8 @@ public class MainApplication {
     public static void main(String[] args) {
 
         Users users = inputUsers();
-        Ladder ladder = inputLadder(users);
-        OutputView.printResult(users, ladder);
+        Ladder ladder = createLadder(users);
+        OutputView.printLadder(users, ladder);
     }
 
     private static Users inputUsers() {
@@ -25,13 +25,13 @@ public class MainApplication {
         }
     }
 
-    private static Ladder inputLadder(Users users) {
+    private static Ladder createLadder(Users users) {
 
         try {
-            return new Ladder(InputView.inputFloorHeight(), users, new RandomLineGenerator());
+            return new Ladder(InputView.inputFloorHeight(), users, new RandomPointGenerator());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputLadder(users);
+            return createLadder(users);
         }
     }
 }

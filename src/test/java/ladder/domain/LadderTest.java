@@ -1,25 +1,26 @@
 package ladder.domain;
 
-import ladder.domain.generator.LineGenerator;
-import ladder.domain.generator.RandomLineGenerator;
-import ladder.domain.generator.TestLineGenerator;
+import ladder.domain.generator.PointGenerator;
+import ladder.domain.generator.RandomPointGenerator;
+import ladder.domain.generator.TestPointGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.function.BinaryOperator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
 
-    private final LineGenerator lineGenerator = new RandomLineGenerator();
+    private final PointGenerator pointGenerator = new RandomPointGenerator();
 
     @Test
     @DisplayName("0이하의 값으로 Ladder생성시 예외가 발생한다.")
     void inValidLadderSizeTest() {
 
-        assertThatThrownBy(() -> new Ladder(0, new Users(List.of("1", "2")), lineGenerator))
+        assertThatThrownBy(() -> new Ladder(0, new Users(List.of("1", "2")), pointGenerator))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -28,7 +29,7 @@ public class LadderTest {
     void checkValidLadderSizeTest() {
 
         var users = new Users(List.of("1", "2"));
-        var ladder = new Ladder(1, users, lineGenerator);
+        var ladder = new Ladder(1, users, pointGenerator);
 
         assertThat(ladder.getFloors().size()).isEqualTo(1);
     }
@@ -39,7 +40,7 @@ public class LadderTest {
 
         var users = new Users(List.of("1", "2", "3"));
 
-        var ladder = new Ladder(3, users, lineGenerator);
+        var ladder = new Ladder(3, users, pointGenerator);
 
         List<Floor> floors = ladder.getFloors();
         for (Floor floor : floors) {
@@ -51,8 +52,8 @@ public class LadderTest {
     @DisplayName("Ladder 정상 생성 테스트")
     void makeFloorTest() {
 
-        List list = List.of(true, false, true);
-        TestLineGenerator testLineGenerator = new TestLineGenerator(list);
+        List<Boolean> list = List.of(true, false, true);
+        TestPointGenerator testLineGenerator = new TestPointGenerator(list);
 
         Ladder ladder = new Ladder(1, new Users(List.of("1", "2", "3", "4")), testLineGenerator);
 
@@ -65,7 +66,7 @@ public class LadderTest {
     @DisplayName("Ladder 정상 생성 테스트2")
     void makeFloorTest2() {
 
-        TestLineGenerator testLineGenerator = new TestLineGenerator(List.of(true, false, false, true, true, true));
+        TestPointGenerator testLineGenerator = new TestPointGenerator(List.of(true, false, false, true, true, true));
         Ladder ladder = new Ladder(2, new Users(List.of("1", "2", "3", "4")), testLineGenerator);
 
         assertThat(ladder.getFloors().get(0).getPoints())

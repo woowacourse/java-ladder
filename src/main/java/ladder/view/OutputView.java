@@ -1,6 +1,9 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.Floor;
+import ladder.domain.Ladder;
+import ladder.domain.User;
+import ladder.domain.Users;
 
 import java.util.regex.Pattern;
 
@@ -19,7 +22,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printResult(Users users, Ladder ladder) {
+    public static void printLadder(Users users, Ladder ladder) {
 
         printUsersName(users);
         System.out.println();
