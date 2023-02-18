@@ -11,7 +11,7 @@ public class Name {
 
     public Name(final String name) {
         validateName(name);
-        this.name = name.trim();
+        this.name = name;
     }
 
     private void validateName(final String name) {

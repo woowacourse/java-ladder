@@ -8,7 +8,7 @@ import static java.util.stream.Collectors.toList;
 public class Names {
     private static final int MIN_NUMBER_OF_PLAYERS = 2;
     private static final int HALF = 2;
-    
+
     private final List<Name> names;
 
     public Names(final List<String> names) {
@@ -40,7 +40,7 @@ public class Names {
 
     private static List<Name> createNames(final List<String> names) {
         return names.stream()
-                .map(Name::new)
+                .map(name -> new Name(name.trim()))
                 .collect(toList());
     }
 
