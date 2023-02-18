@@ -9,9 +9,8 @@ public class Application {
         LadderRowGenerator ladderRowGenerator = new RandomLadderRowGenerator();
 
         Ladder ladder = new Ladder(ladderRowGenerator);
-        Users users = new Users();
 
-        Controller controller = new Controller(ladder, users);
+        Controller controller = new Controller(ladder);
         controller.run();
     }
 }

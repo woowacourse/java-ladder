@@ -1,17 +1,25 @@
 package domain;
 
-import utils.StringParser;
-
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+import utils.StringParser;
 
 public class Users {
 
-    private final List<User> users = new ArrayList<>();
+    private final List<User> users;
 
-    public void add(final User user) {
-        users.add(user);
+    public Users(final List<User> users) {
+        validate(users);
+        this.users = List.copyOf(users);
+    }
+
+    private void validate(final List<User> users) {
+        Set<User> notDuplicatedUsers = new HashSet<>(users);
+        if (users.size() != notDuplicatedUsers.size()) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public int getSize() {

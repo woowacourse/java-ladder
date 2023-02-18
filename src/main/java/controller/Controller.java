@@ -4,7 +4,7 @@ import domain.Height;
 import domain.Ladder;
 import domain.User;
 import domain.Users;
-import utils.Validator;
+import java.util.stream.Collectors;
 import view.InputView;
 import view.OutputView;
 
@@ -13,29 +13,29 @@ import java.util.List;
 public class Controller {
 
     private final Ladder ladder;
-    private final Users users;
 
-    public Controller(final Ladder ladder, final Users users) {
+    public Controller(final Ladder ladder) {
         this.ladder = ladder;
-        this.users = users;
     }
 
     public void run() {
-        createUser();
+        Users users = getUsers();
         Height height = getHeight();
-        createLadder(height);
-        printUsers();
+        createLadder(users, height);
+        printUsers(users);
         printLadder();
     }
 
-    private void createUser() {
+    private Users getUsers() {
         try {
             List<String> userNames = InputView.readUserNames();
-            Validator.validateDuplication(userNames);
-            userNames.forEach(userName -> users.add(new User(userName)));
-        } catch (IllegalArgumentException exception) {
-            OutputView.printErrorMessage(exception);
-            createUser();
+            List<User> users = userNames.stream()
+                    .map(User::new)
+                    .collect(Collectors.toList());
+            return new Users(users);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return getUsers();
         }
     }
 
@@ -49,17 +49,17 @@ public class Controller {
         }
     }
 
-    private void createLadder(Height height) {
+    private void createLadder(Users users, Height height) {
         try {
             int userCount = users.getSize();
             ladder.create(height.getHeight(), userCount);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            createLadder(height);
+            createLadder(users, height);
         }
     }
 
-    private void printUsers() {
+    private void printUsers(Users users) {
         List<String> userNames = users.getUserNames();
         OutputView.printUserNames(userNames);
     }
