@@ -1,9 +1,11 @@
 package ladder.domain;
 
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toUnmodifiableList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Players {
     private static final int PLAYERS_SIZE_LOWER_BOUND = 2;
@@ -38,13 +40,13 @@ public class Players {
     private List<Player> generatePlayers(final List<String> names) {
         return names.stream()
                 .map(Player::new)
-                .collect(Collectors.toUnmodifiableList());
+                .collect(toList());
     }
 
     public List<String> getNames() {
         return players.stream()
                 .map(Player::getName)
-                .collect(Collectors.toUnmodifiableList());
+                .collect(toUnmodifiableList());
     }
 
     public int count() {
