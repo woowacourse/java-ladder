@@ -27,8 +27,8 @@
   - [x] 최대 사다리의 높이는 참여하는 사람의 인원 수의 2배이다.
   - [X] 입력되는 사다리의 높이가 최소, 최대 범위를 벗어나면 `IllegalArgumentException` 예외가 발생한다.
 - [x] 폭(참여 인원)을 가진다.
-- [ ] LineStrategy를 가진다.
-- [ ] 높이와 폭을 이용해 Ladder를 만들어 반환한다.
+- [x] LineStrategy를 가진다.
+- [x] 높이와 폭을 이용해 Ladder를 만들어 반환한다.
 
 
 #### Ladder
