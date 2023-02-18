@@ -16,26 +16,26 @@ public class Name {
     }
 
     private void validate(String name) {
-        validateBlank(name);
-        validateLength(name);
+        validateInvalidBlankName(name);
+        validateInvalidateLengthName(name);
     }
 
-    private void validateLength(String name) {
+    private void validateInvalidateLengthName(String name) {
         if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(Message.EXCEPTION_NAME_LENGTH.message);
+            throw new IllegalArgumentException(Message.EXCEPTION_INVALID_NAME_LENGTH.message);
         }
     }
 
-    private void validateBlank(String name) {
+    private void validateInvalidBlankName(String name) {
         if (name.isBlank()) {
-            throw new IllegalArgumentException(Message.EXCEPTION_NAME_BLANK.message);
+            throw new IllegalArgumentException(Message.EXCEPTION_INVALID_NAME_BLANK.message);
         }
     }
 
     private enum Message {
 
-        EXCEPTION_NAME_LENGTH("%d글자 이상 %d글자 이하의 이름만 입력해주세요.", MIN_LENGTH, MAX_LENGTH),
-        EXCEPTION_NAME_BLANK("빈 이름(공백)은 입력이 불가능합니다.");
+        EXCEPTION_INVALID_NAME_LENGTH("%d글자 이상 %d글자 이하의 이름만 입력해주세요.", MIN_LENGTH, MAX_LENGTH),
+        EXCEPTION_INVALID_NAME_BLANK("빈 이름(공백)은 입력이 불가능합니다.");
 
         public static final String _FORMAT = "[ERROR] %s";
         private final String message;
