@@ -13,7 +13,8 @@ public class Names {
     public Names(String names) {
         this.names = new ArrayList<>();
         for (String name : names.split(NAME_DELIMITER)) {
-            this.names.add(new Name(name.trim()));
+            name = name.trim();
+            this.names.add(new Name(name));
         }
         validate(this.names.size());
     }

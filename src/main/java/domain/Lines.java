@@ -9,8 +9,10 @@ public class Lines {
 
     public Lines(int personNumber, int linesHeight) {
         Height height = new Height(linesHeight);
+        RandomBooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
         for (int i = 0; i < height.getHeight(); i++) {
-            lines.add(new Line(personNumber, new RandomBooleanGenerator()));
+            Line line = new Line(personNumber, randomBooleanGenerator);
+            lines.add(line);
         }
     }
 
