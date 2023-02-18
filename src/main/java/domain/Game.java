@@ -20,37 +20,53 @@ public class Game {
         initPlayerPosition(results);
 
         for (int height = 0; height < ladder.findLadderHeight(); height++) {
-            moveStepOfLadder(results, height);
+            moveLadder(results, height);
         }
 
-        // 데이터 채우기
-        for(int i=0; i<players.findNumberOfPlayers(); i++) {
-            String result = ladderResults.getLadderResultOfIndex(results[i]);
-            players.getPlayers().get(i).addResult(result);
+        addResultToPlayer(results);
+    }
+
+    private void initPlayerPosition(final int[] players) {
+        for (int i = 0; i < this.players.findNumberOfPlayers(); i++) {
+            players[i] = i;
         }
     }
 
-    private void moveStepOfLadder(final int[] players, final int height) {
+    private void moveLadder(final int[] players, final int height) {
         List<Boolean> footholdsOfHeight = findFootholdsOfHeight(height);
 
         for (int index = 0; index < players.length; index++) {
-            if (isFirstIndexOfLadder(players[index])) {
-                moveAtFirstOfLadder(players, footholdsOfHeight, index);
-                continue;
-            }
-
-            if (isEndIndexOfLadder(players, index)) {
-                moveEndOfIndex(players, footholdsOfHeight, index);
-                continue;
-            }
-
-            moveBodyOfLadder(players, footholdsOfHeight, index);
+            moveLine(players, footholdsOfHeight, index);
         }
+    }
+
+    private void moveLine(final int[] players, final List<Boolean> footholdsOfHeight, final int index) {
+        if (isFirstIndexOfLadder(players[index])) {
+            moveAtFirstOfLadder(players, footholdsOfHeight, index);
+            return;
+        }
+
+        if (isEndIndexOfLadder(players, index)) {
+            moveEndOfIndex(players, footholdsOfHeight, index);
+            return;
+        }
+
+        moveBodyOfLadder(players, footholdsOfHeight, index);
+    }
+
+    private boolean isFirstIndexOfLadder(final int index) {
+        return index == 0;
     }
 
     private void moveAtFirstOfLadder(final int[] players, final List<Boolean> footholdsOfHeight, final int index) {
         if (footholdsOfHeight.get(0) == true) {
             moveNextIndex(players, index);
+        }
+    }
+
+    private void moveEndOfIndex(final int[] players, final List<Boolean> footholdsOfHeight, final int index) {
+        if (footholdsOfHeight.get(footholdsOfHeight.size() - 1)) {
+            movePrevIndex(players, index);
         }
     }
 
@@ -62,14 +78,6 @@ public class Game {
         }
     }
 
-    private void movePrevIndex(final int[] players, final int index) {
-        players[index]--;
-    }
-
-    private void moveNextIndex(final int[] players, final int index) {
-        players[index]++;
-    }
-
     private boolean isExistFootholdNextIndex(final List<Boolean> footholdsOfHeight, final int players) {
         return footholdsOfHeight.get(players) == true;
     }
@@ -78,23 +86,22 @@ public class Game {
         return footholdsOfHeight.get(players - 1) == true;
     }
 
-    private boolean isFirstIndexOfLadder(final int players) {
-        return players == 0;
+    private void movePrevIndex(final int[] players, final int index) {
+        players[index]--;
+    }
+
+    private void moveNextIndex(final int[] players, final int index) {
+        players[index]++;
     }
 
     private boolean isEndIndexOfLadder(final int[] players, final int index) {
         return players[index] == players.length - 1;
     }
 
-    private void moveEndOfIndex(final int[] players, final List<Boolean> footholdsOfHeight, final int index) {
-        if (footholdsOfHeight.get(footholdsOfHeight.size() - 1)) {
-            movePrevIndex(players, index);
-        }
-    }
-
-    private void initPlayerPosition(final int[] players) {
-        for (int i = 0; i < this.players.findNumberOfPlayers(); i++) {
-            players[i] = i;
+    private void addResultToPlayer(final int[] results) {
+        for (int i = 0; i < players.findNumberOfPlayers(); i++) {
+            String result = ladderResults.getLadderResultOfIndex(results[i]);
+            players.getPlayers().get(i).addResult(result);
         }
     }
 
