@@ -36,12 +36,6 @@ public class Position {
     }
 
     public Position move(final Direction direction) {
-        if (direction == Direction.LEFT) {
-            return new Position(this.value - 1);
-        }
-        if (direction == Direction.RIGHT) {
-            return new Position(this.value + 1);
-        }
-        return this;
+        return new Position(direction.move(this.value));
     }
 }
