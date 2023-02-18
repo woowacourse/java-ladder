@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Ladders {
     private final Height height;
-    private final int width;
+    private final Width width;
     private final List<Ladder> ladders;
 
-    public Ladders(Height height, int width) {
+    public Ladders(Height height, Width width) {
         this.height = height;
         this.width = width;
         this.ladders = new ArrayList<>();
@@ -16,7 +16,7 @@ public class Ladders {
 
     public void make(LadderGenerator ladderGenerator) {
         for (int floor = 0; floor < height.getHeight(); floor++) {
-            ladders.add(new Ladder(ladderGenerator.generateLadder(width)));
+            ladders.add(new Ladder(ladderGenerator.generateLadder(width.getWidth())));
         }
     }
 

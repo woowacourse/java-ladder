@@ -17,10 +17,11 @@ public class Controller {
     }
 
     public void run() {
-        Users usersName = settingUsers();
-        Ladders ladders = settingLadders(usersName.getCount() - 1);
+        Users users = settingUsers();
+        Width width = new Width(users.getCount() - 1);
+        Ladders ladders = settingLadders(width);
         ladders.make(LadderGenerator.getInstance());
-        outputView.printUsers(usersName);
+        outputView.printUsers(users);
         for (Ladder ladder : ladders.getLadders()) {
             outputView.printLadder(ladder);
         }
@@ -42,7 +43,7 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
-    private Ladders settingLadders(int width) {
+    private Ladders settingLadders(Width width) {
         try {
             int height = inputView.inputLadderHeight();
             return new Ladders(new Height(height), width);
