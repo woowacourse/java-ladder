@@ -3,6 +3,7 @@ package domain;
 public class Height {
     public static final String HEIGHT_FORMAT_ERROR_MESSAGE = "[ERROR] 사다리 높이는 숫자만 가능합니다.";
     public static final String INPUT_NOTHING_ERROR_MESSAGE = "[ERROR] 값을 입력하지 않았습니다.";
+    public static final int MIN_HEIGHT = 0;
     public static final String HEIGHT_REGEX_FORMAT = "^[0-9]*$";
 
     private final int height;

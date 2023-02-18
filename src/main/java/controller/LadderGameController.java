@@ -7,6 +7,7 @@ import domain.User;
 import domain.Users;
 import java.util.ArrayList;
 import java.util.List;
+import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -58,10 +59,11 @@ public class LadderGameController {
     }
 
     public Ladder createLadder(int personCount, Height height) {
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         List<Line> lines = new ArrayList<>();
         int ladderHeight = height.getHeight();
         while (ladderHeight-- > 0) {
-            lines.add(new Line(personCount));
+            lines.add(new Line(personCount, randomNumberGenerator));
         }
         return new Ladder(lines, height);
     }

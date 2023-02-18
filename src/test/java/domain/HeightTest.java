@@ -1,3 +1,5 @@
+package domain;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -7,7 +9,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import validate.InputVerifier;
 
 public class HeightTest {
     @Nested
@@ -19,7 +20,7 @@ public class HeightTest {
         void shouldFailHeightWithNotNumber(String heightInput) {
             assertThatThrownBy(() -> new Height(heightInput)).isInstanceOf(
                             IllegalArgumentException.class)
-                    .hasMessageContaining(InputVerifier.HEIGHT_FORMAT_ERROR_MESSAGE);
+                    .hasMessageContaining(Height.HEIGHT_FORMAT_ERROR_MESSAGE);
         }
 
         @DisplayName("사다리 높이 입력에 아무 값을 입력하지 않으면 실패한다.")
@@ -27,7 +28,7 @@ public class HeightTest {
         void shouldFailHeightWithNothing() {
             assertThatThrownBy(() -> new Height("")).isInstanceOf(
                             IllegalArgumentException.class)
-                    .hasMessageContaining(InputVerifier.INPUT_NOTHING_ERROR_MESSAGE);
+                    .hasMessageContaining(Height.INPUT_NOTHING_ERROR_MESSAGE);
         }
     }
 
@@ -40,10 +41,10 @@ public class HeightTest {
         void shouldFailHeightWithNegativeNumber(String heightInput) {
             assertThatThrownBy(() -> new Height(heightInput)).isInstanceOf(
                             IllegalArgumentException.class)
-                    .hasMessageContaining(InputVerifier.HEIGHT_FORMAT_ERROR_MESSAGE);
+                    .hasMessageContaining(Height.HEIGHT_FORMAT_ERROR_MESSAGE);
         }
 
-        @DisplayName("사다리 높이가 " + InputVerifier.MIN_HEIGHT + "이상이면 성공한다.")
+        @DisplayName("사다리 높이가 " + Height.MIN_HEIGHT + "이상이면 성공한다.")
         @ParameterizedTest
         @ValueSource(strings = {"0", "3", "10"})
         void shouldSuccessHeightCorrectBoundary(String heightInput) {

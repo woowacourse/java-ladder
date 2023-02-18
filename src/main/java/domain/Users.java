@@ -1,7 +1,7 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Users {
     private final List<User> users;
@@ -15,10 +15,8 @@ public class Users {
     }
 
     public List<String> getUserNames() {
-        List<String> userNames = new ArrayList<>();
-        for (User user : users) {
-            userNames.add(user.getName());
-        }
-        return userNames;
+        return users.stream()
+                .map(User::getName)
+                .collect(Collectors.toList());
     }
 }

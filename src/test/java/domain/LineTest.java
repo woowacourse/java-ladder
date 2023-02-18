@@ -1,12 +1,12 @@
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+package domain;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import domain.Line;
-import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.FixedNumberGenerator;
+import utils.RandomNumberGenerator;
 
 public class LineTest {
     @DisplayName("생성한 값이 1이면 point가 생성된다.")
@@ -26,6 +26,7 @@ public class LineTest {
     @DisplayName("라인 생성 확인 테스트")
     @Test
     void shouldSuccessLine() {
-        assertDoesNotThrow(() -> new Line(4));
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        assertDoesNotThrow(() -> new Line(4, randomNumberGenerator));
     }
 }
