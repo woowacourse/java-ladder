@@ -7,8 +7,6 @@ import utils.NumberGenerator;
 
 public class Line {
 
-    private static final int MIN_NUMBER_RETURN_TRUE = 4;
-
     private final List<Point> points;
 
     private Line(List<Point> points) {
