@@ -10,10 +10,6 @@ public class Line {
 
     private final List<LineStatus> statuses;
 
-    public Line(final BooleanGenerator booleanGenerator, final int width) {
-        this.statuses = generateLine(booleanGenerator, width);
-    }
-
     private Line(final List<LineStatus> statuses) {
         this.statuses = statuses;
     }

@@ -15,7 +15,7 @@ class Ladder {
     }
 
     private List<Line> generateLines(final BooleanGenerator booleanGenerator, final int height, final int width) {
-        return Stream.generate(() -> new Line(booleanGenerator, width))
+        return Stream.generate(() -> Line.generate(booleanGenerator, width))
                 .limit(height)
                 .collect(toList());
     }
