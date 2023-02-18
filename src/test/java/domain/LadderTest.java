@@ -148,4 +148,26 @@ public class LadderTest {
         assertThat(line.directionOfScaffoldExist(5))
                 .isEqualTo(Direction.LEFT);
     }
+
+    @Test
+    void directionOfScaffoldExist_로_주어지는_위치가_0보다_작거나_전체_Scaffold_수보다_큰_경우_예외가_발생한다() {
+        // given
+        Line line =
+                // 모양:  |     |-----|     |     |-----|
+                new Line(List.of(
+                        Scaffold.NONE,
+                        Scaffold.EXIST,
+                        Scaffold.NONE,
+                        Scaffold.NONE,
+                        Scaffold.EXIST
+                ));
+
+        // when & then
+        assertThatThrownBy(() ->
+                line.directionOfScaffoldExist(-1)
+        ).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() ->
+                line.directionOfScaffoldExist(-6)
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
 }

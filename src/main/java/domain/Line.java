@@ -49,6 +49,7 @@ public class Line {
     }
 
     public Direction directionOfScaffoldExist(final int position) {
+        validatePosition(position);
         if (isLastPosition(position)) {
             return lastScaffoldExistDirection(position);
         }
@@ -56,6 +57,20 @@ public class Line {
             return firstScaffoldExistDirection(position);
         }
         return middleScaffoldExistDirection(position);
+    }
+
+    private void validatePosition(final int position) {
+        if (scaffolds.size() < position || position < 0) {
+            throw new IllegalArgumentException("Scaffold 탐색을 위한 시작 위치가 잘못되었습니다.");
+        }
+    }
+
+    private boolean isLastPosition(final int position) {
+        return position == scaffolds.size();
+    }
+
+    private boolean isFirstPosition(final int position) {
+        return position == 0;
     }
 
     private Direction firstScaffoldExistDirection(final int position) {
@@ -80,13 +95,5 @@ public class Line {
             return Direction.LEFT;
         }
         return Direction.NONE;
-    }
-
-    private boolean isLastPosition(final int position) {
-        return position == scaffolds.size();
-    }
-
-    private boolean isFirstPosition(final int position) {
-        return position == 0;
     }
 }
