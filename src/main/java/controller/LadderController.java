@@ -7,6 +7,7 @@ import domain.Name;
 import domain.Names;
 import domain.RandomScaffoldGenerator;
 import domain.ScaffoldGenerator;
+import domain.Width;
 import java.util.List;
 import java.util.stream.Collectors;
 import view.InputView;
@@ -23,7 +24,7 @@ public class LadderController {
                 .map(Name::new)
                 .collect(Collectors.toList()));
         int parsedHeight = InputView.inputHeight();
-        Ladder ladder = ladderFactory.createLadder(names.size() - 1, new Height(parsedHeight));
+        Ladder ladder = ladderFactory.createLadder(new Width(names.size() - 1), new Height(parsedHeight));
         OutputView.printResult(ladder, names);
     }
 }

@@ -29,18 +29,18 @@ public class LadderFactoryTest {
         LadderFactory factory = new LadderFactory(() -> Scaffold.NONE);
 
         // when & then
-        assertDoesNotThrow(() -> factory.createLadder(width, new Height(height)));
+        assertDoesNotThrow(() -> factory.createLadder(new Width(width), new Height(height)));
     }
 
     @Test
-    void createLadder_를_통해_생성된_Ladder는_높이가_height_이다() {
+    void createLadder_를_통해_생성된_Ladder_는_높이가_height_이다() {
         // given
         int width = 5;
         int height = 10;
         LadderFactory factory = new LadderFactory(() -> Scaffold.NONE);
 
         // when
-        Ladder ladder = factory.createLadder(width, new Height(height));
+        Ladder ladder = factory.createLadder(new Width(width), new Height(height));
 
         // then
         assertThat(ladder.getHeight()).isEqualTo(height);
@@ -54,13 +54,13 @@ public class LadderFactoryTest {
         LadderFactory factory = new LadderFactory(() -> Scaffold.NONE);
 
         // when
-        Ladder ladder = factory.createLadder(width, new Height(height));
+        Ladder ladder = factory.createLadder(new Width(width), new Height(height));
 
         // then
         assertThat(ladder.getWidth()).isEqualTo(width);
     }
 
-    @ParameterizedTest(name = "createLadder 시 ScaffoldGenerator 가 생성해준 값으로 생성한다")
+    @ParameterizedTest(name = "createLadder 시 ScaffoldGenerator 가 생성해준 값으로 생성된다")
     @MethodSource("scaffolds")
     void createLadder_시_ScaffoldGenerator_가_생성해준_값으로_생성한다(final List<Scaffold> scaffolds) {
         // given
@@ -70,7 +70,7 @@ public class LadderFactoryTest {
         LadderFactory factory = new LadderFactory(() -> scaffolds.remove(0));
 
         // when
-        Ladder ladder = factory.createLadder(width, new Height(height));
+        Ladder ladder = factory.createLadder(new Width(width), new Height(height));
 
         // then
         for (int i = 0; i < ladder.getHeight(); i++) {
@@ -110,7 +110,7 @@ public class LadderFactoryTest {
         LadderFactory factory = new LadderFactory(() -> scaffolds.remove(0));
 
         // when
-        Ladder ladder = factory.createLadder(width, new Height(height));
+        Ladder ladder = factory.createLadder(new Width(width), new Height(height));
 
         // then
         for (int i = 0; i < ladder.getHeight(); i++) {
