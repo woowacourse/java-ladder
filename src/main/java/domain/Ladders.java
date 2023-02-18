@@ -12,9 +12,9 @@ public class Ladders {
         this.ladders = new ArrayList<>();
     }
 
-    public void make(int width, LadderGenerator ladderGenerator) {
+    public void make(LadderGenerator ladderGenerator) {
         for (int floor = 0; floor < height.getHeight(); floor++) {
-            ladders.add(new Ladder(ladderGenerator.generateLadder(width)));
+            ladders.add(new Ladder(ladderGenerator.generate()));
         }
     }
 
