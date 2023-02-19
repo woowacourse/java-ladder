@@ -33,17 +33,12 @@ public class LadderGameApplication {
     }
 
     private Players createPlayers() {
-        List<String> rawNames = inputView.readNames();
-        return rawNames.stream()
-                .map(Name::new)
+        List<Name> names = inputView.readNames();
+        return names.stream()
                 .map(Player::new)
                 .collect(collectingAndThen(toList(), Players::new));
     }
 
-    private LadderHeight createLadderHeight() {
-        int height = inputView.readLadderHeight();
-        return new LadderHeight(height);
-    }
 
     private <T> T repeat(Supplier<T> inputSupplier) {
         try {

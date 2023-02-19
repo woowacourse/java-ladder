@@ -1,5 +1,7 @@
 package view;
 
+import domain.LadderHeight;
+import domain.Name;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -14,12 +16,13 @@ public class InputView {
         this.scanner = new Scanner(System.in);
     }
 
-    public List<String> readNames() {
+    public List<Name> readNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
         String rawNames = scanner.nextLine();
         return Arrays.stream(rawNames.split(NAME_DELIMITER))
                 .map(String::trim)
+                .map(Name::new)
                 .collect(Collectors.toList());
     }
 
