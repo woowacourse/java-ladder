@@ -47,7 +47,8 @@ public class Line {
     }
 
     private static void validateConsistExistScaffolds(final List<Scaffold> scaffolds) {
-        for (int i = 0; i < scaffolds.size() - 1; i++) {
+        int lineSize = scaffolds.size() - 1;
+        for (int i = 0; i < lineSize; i++) {
             validateConsistExistScaffold(scaffolds, i);
         }
     }
