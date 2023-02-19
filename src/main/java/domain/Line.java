@@ -18,20 +18,20 @@ public class Line {
     public List<Scaffold> createLine(final Width width, final ScaffoldGenerator scaffoldGenerator) {
         Deque<Scaffold> scaffolds = new ArrayDeque<>();
         for (int i = 0; i < width.getValue(); i++) {
-            scaffolds.add(createNonConsistScaffold(scaffoldGenerator, scaffolds));
+            scaffolds.add(createScaffold(scaffoldGenerator, scaffolds));
         }
         return new ArrayList<>(scaffolds);
     }
 
-    private Scaffold createNonConsistScaffold(final ScaffoldGenerator scaffoldGenerator, final Deque<Scaffold> scaffolds) {
+    private Scaffold createScaffold(final ScaffoldGenerator scaffoldGenerator, final Deque<Scaffold> scaffolds) {
         Scaffold scaffold = scaffoldGenerator.generate();
-        if (isScaffoldContinuous(scaffold, scaffolds)) {
+        if (isScaffoldExistContinually(scaffold, scaffolds)) {
             return Scaffold.NONE;
         }
         return scaffold;
     }
 
-    private static boolean isScaffoldContinuous(Scaffold scaffold, final Deque<Scaffold> scaffolds){
+    private static boolean isScaffoldExistContinually(Scaffold scaffold, final Deque<Scaffold> scaffolds){
         return scaffold == Scaffold.EXIST && scaffolds.peekLast() == Scaffold.EXIST;
     }
 
