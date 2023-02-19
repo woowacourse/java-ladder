@@ -12,7 +12,7 @@ public class BarTest {
     @CsvSource(value = {"true, true", "false, false"})
     @DisplayName("인자로 전달된 boolean에 해당하는 enum 상수가 반환되는지 확인한다")
     void BarInitiatorTest(boolean inputValue, boolean expected) {
-        assertThat(Bar.getBar(inputValue).getValue())
+        assertThat(Bar.from(inputValue).getValue())
                 .isEqualTo(expected);
     }
 

@@ -11,7 +11,7 @@ public enum Bar {
         this.value = value;
     }
 
-    public static Bar getBar(boolean movable) {
+    public static Bar from(boolean movable) {
         if (movable) {
             return MOVABLE_BAR;
         }
