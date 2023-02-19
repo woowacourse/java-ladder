@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 public class LineGeneratorTest {
-    private final LineGenerator lineGenerator = new LineGenerator();
+    private final LineGenerator lineGenerator = new LineGenerator(new RandomLinkGenerator());
 
     @RepeatedTest(100)
     @DisplayName("랜덤으로 생성된 Line이 유효한지 테스트")

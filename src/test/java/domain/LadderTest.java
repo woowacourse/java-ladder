@@ -10,7 +10,7 @@ class LadderTest {
     void ladderTest() {
         int height = 4;
         int personCount = 5;
-        Assertions.assertDoesNotThrow(() -> Ladder.generateByHeightPersonCount(height, personCount));
+        Assertions.assertDoesNotThrow(() -> new Ladder(height, personCount, new RandomLinkGenerator()));
     }
 
     @Test
@@ -19,6 +19,6 @@ class LadderTest {
         int height = -1;
         int personCount = 5;
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> Ladder.generateByHeightPersonCount(height, personCount));
+                () -> new Ladder(height, personCount, new RandomLinkGenerator()));
     }
 }

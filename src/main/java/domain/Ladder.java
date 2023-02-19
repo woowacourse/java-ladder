@@ -7,34 +7,28 @@ import java.util.List;
 
 public class Ladder {
     private static final int MINIMUM_HEIGHT = 1;
-    private static final LineGenerator LINE_GENERATOR = new LineGenerator();
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines) {
-        this.lines = lines;
-    }
-
-    public static Ladder generateByHeightPersonCount(final int height, final int personCount) {
-        final List<Line> lines = new ArrayList<>();
+    public Ladder(final int height, final int personCount, final LinkGenerator linkGenerator) {
+        this.lines = new ArrayList<>();
         validateHeight(height);
-        generateLines(lines, height, personCount);
-        return new Ladder(lines);
+        generateLines(height, personCount, new LineGenerator(linkGenerator));
     }
 
-    private static void generateLines(final List<Line> lines, final int height, final int personCount) {
+    private void generateLines(final int height, final int personCount, final LineGenerator lineGenerator) {
         for (int index = 0; index < height; index++) {
-            lines.add(LINE_GENERATOR.generate(personCount));
+            lines.add(lineGenerator.generate(personCount));
         }
     }
 
-    public static void validateHeight(final int height) {
+    public void validateHeight(final int height) {
         if (height < MINIMUM_HEIGHT) {
             throw new IllegalArgumentException(ErrorMessage.LADDER_HEIGHT_EXCEPTION.getMessage());
         }
     }
 
     public List<Line> getLines() {
-        return new ArrayList<>(lines);
+        return List.copyOf(lines);
     }
 }
 
