@@ -32,6 +32,11 @@ public class InputView {
         return ScannerUtil.nextInt();
     }
 
+    public static String inputShowResultPerson() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return ScannerUtil.nextLine();
+    }
+
     private static List<String> split(final String input) {
         return List.of(input.split(INPUT_DELIM));
     }
