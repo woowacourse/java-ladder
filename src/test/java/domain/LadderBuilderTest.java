@@ -1,9 +1,9 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,15 +27,25 @@ class LadderBuilderTest {
 		LadderWidth width = new LadderWidth(3);
 		LadderBuilder builder = new LadderBuilder();
 		Ladder ladder = builder.build(height, width, new PresentPointGenerator());
-		assertThat(ladder.getLadderPoints()).containsExactly(
-		List.of(
-			Point.PRESENCE, Point.ABSENCE, Point.PRESENCE
-		),
-		List.of(
-			Point.PRESENCE, Point.ABSENCE, Point.PRESENCE
-		),
-		List.of(
-			Point.PRESENCE, Point.ABSENCE, Point.PRESENCE
-		));
+		List<List<Point>> points2D = changeToPoints2D(ladder);
+
+		assertThat(points2D).containsExactly(
+			List.of(
+				Point.PRESENCE, Point.ABSENCE, Point.PRESENCE
+			),
+			List.of(
+				Point.PRESENCE, Point.ABSENCE, Point.PRESENCE
+			),
+			List.of(
+				Point.PRESENCE, Point.ABSENCE, Point.PRESENCE
+			));
+	}
+
+	private List<List<Point>> changeToPoints2D(Ladder ladder) {
+		List<Line> lines = ladder.getLines();
+		List<List<Point>> points2D = lines.stream()
+			.map(line -> line.getPoints())
+			.collect(Collectors.toList());
+		return points2D;
 	}
 }

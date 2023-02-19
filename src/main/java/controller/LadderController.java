@@ -20,7 +20,7 @@ public class LadderController {
 		LadderWidth width = getWidthFromParticipantsNum(participants.getParticipantsNum());
 		LadderBuilder ladderBuilder = new LadderBuilder();
 		Ladder ladder = ladderBuilder.build(height, width, new RandomPointGenerator());
-		OutputView.printResult(participants.getNames(), ladder.getLadderPoints());
+		OutputView.printResult(participants, ladder);
 	}
 
 	private Participants retrieveParticipants() {
