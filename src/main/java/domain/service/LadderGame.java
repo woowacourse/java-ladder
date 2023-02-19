@@ -8,36 +8,43 @@ import java.util.List;
 
 public class LadderGame {
     private int maxPosition;
-    public LadderGame (final int maxPosition){
+
+    public LadderGame(final int maxPosition) {
         this.maxPosition = maxPosition;
     }
-    public LadderGame(){}
-    public void playLadderGame(List<Player> players,Ladder ladder){
+
+    public void playLadderGame(List<Player> players, Ladder ladder) {
         players.forEach(player -> {
-            ladder.getLayers().forEach(layer->{
-                movePlayer(player,layer);
-            });
+            movePlayer(ladder, player);
         });
     }
-    private void movePlayer(Player player, Layer layer){
-        if(player.getPosition() == 0 && layer.getLines().get(0)){
+
+    private void movePlayer(Ladder ladder, Player player) {
+        ladder.getLayers().forEach(layer -> {
+            movePlayerOneLayer(player, layer);
+        });
+    }
+
+    private void movePlayerOneLayer(Player player, Layer layer) {
+        if (player.getPosition() == 0 && layer.getLines().get(0)) {
             player.moveRight();
             return;
         }
-        if(player.getPosition()==maxPosition && layer.getLines().get(maxPosition-1)){
+        if (player.getPosition() == maxPosition && layer.getLines().get(maxPosition - 1)) {
             player.moveLeft();
             return;
         }
-        if(player.getPosition()!=0 && player.getPosition()!=maxPosition) {
-            moveNonZeroOrMaxPositionPlayer(player,layer);
+        if (player.getPosition() != 0 && player.getPosition() != maxPosition) {
+            moveNonZeroOrMaxPositionPlayer(player, layer);
         }
     }
-    private void moveNonZeroOrMaxPositionPlayer(Player player, Layer layer){
+
+    private void moveNonZeroOrMaxPositionPlayer(Player player, Layer layer) {
         if (layer.getLines().get(player.getPosition() - 1)) {
             player.moveLeft();
             return;
         }
-        if (layer.getLines().get(player.getPosition())){
+        if (layer.getLines().get(player.getPosition())) {
             player.moveRight();
         }
     }

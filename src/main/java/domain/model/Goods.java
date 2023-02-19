@@ -7,15 +7,17 @@ public class Goods {
     private final Name name;
 
     private final Position position;
-    public Goods(final Name name, final Position position){
+
+    public Goods(final Name name, final Position position) {
         this.name = name;
         this.position = position;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name.get();
     }
-    public int getPosition(){
+
+    public int getPosition() {
         return this.position.get();
     }
 }

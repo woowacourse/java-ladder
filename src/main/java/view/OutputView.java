@@ -19,13 +19,11 @@ public class OutputView {
     private static final String NAME_SPACE = " ";
     private static final String PRINT_RESULT_MASSAGE = "실행 결과";
 
-    public void printLadderResult(List<Name> names, Ladder ladder) {
+    public void printLadderResult() {
         System.out.println(RESULT_ANNOUNCEMENT);
-        printNames(names);
-        printLadder(ladder);
     }
 
-    private void printLadder(Ladder ladder) {
+    public void printLadder(Ladder ladder) {
         for (Layer layer : ladder.getLayers()) {
             printLayer(layer);
         }
@@ -46,7 +44,7 @@ public class OutputView {
         return UNCONNECTED_LINE;
     }
 
-    private void printNames(final List<Name> names) {
+    public void printNames(final List<Name> names) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\n");
         names.forEach(name -> {
@@ -55,17 +53,20 @@ public class OutputView {
         });
         System.out.println(stringBuilder);
     }
-    public void printResult(){
+
+    public void printResult() {
         System.out.println(PRINT_RESULT_MASSAGE);
     }
-    public void printTargetResult(Goods goods){
-        System.out.println(goods.getName());
+
+    public void printTargetResult(String goodsName) {
+        System.out.println(goodsName);
     }
-    public void printAllTargetResult(List<Player> playerList,List<Goods> goodsList){
+
+    public void printAllTargetResult(List<Player> playerList, List<Name> goodsList) {
         Player player;
         for (int i = 0; i < playerList.size(); i++) {
             player = playerList.get(i);
-            System.out.println(player.getName() + " : " + goodsList.get(player.getPosition()));
+            System.out.println(player.getName() + " : " + goodsList.get(player.getPosition()).get());
         }
     }
 }
