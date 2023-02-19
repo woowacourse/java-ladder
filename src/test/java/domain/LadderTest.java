@@ -3,15 +3,14 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.ladder.Ladder;
-import domain.ladder.strategy.AlwaysGenerateBridgeStrategy;
+
 import java.util.List;
-import org.junit.jupiter.api.BeforeAll;
+
+import domain.ladder.strategy.GenerateBridgeStrategy;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
 
-@TestInstance(Lifecycle.PER_CLASS)
 public class LadderTest {
 
     private static final int PLAYER_COUNT = 4;
@@ -19,8 +18,8 @@ public class LadderTest {
 
     private Ladder ladder;
 
-    @BeforeAll
-    void beforeAll() {
+    @BeforeEach
+    void beforeEach() {
         PlayerNames playerNames = PlayerNames.from(List.of("pobi", "crong", "honux", "jk"));
         Height height = new Height(HEIGHT_SIZE);
 
@@ -30,10 +29,11 @@ public class LadderTest {
     @Test
     @DisplayName("게임 참여자 수와 높이에 따라 사다리 생성")
     void createLadderSuccess() {
-        assertThat(ladder.getLines())
-                .hasSize(PLAYER_COUNT);
-        assertThat(ladder.getLines().get(0).getPoints())
-                .hasSize(HEIGHT_SIZE);
+        int lineCount = ladder.getLines().size();
+        int lineHeight = ladder.getHeightSize();
+
+        assertThat(lineCount).isEqualTo(PLAYER_COUNT);
+        assertThat(lineHeight).isEqualTo(HEIGHT_SIZE);
     }
 
     @Test
@@ -75,6 +75,15 @@ public class LadderTest {
         assertThat(startPoint.matchDirection(Direction.RIGHT_DOWN)).isTrue();
         assertThat(endPoint.matchDirection(Direction.LEFT_DOWN)).isTrue();
         assertThat(nextEndPoint.matchDirection(Direction.STRAIGHT_DOWN)).isTrue();
+    }
+
+}
+
+class AlwaysGenerateBridgeStrategy implements GenerateBridgeStrategy {
+
+    @Override
+    public boolean isGeneratedBridge() {
+        return true;
     }
 
 }

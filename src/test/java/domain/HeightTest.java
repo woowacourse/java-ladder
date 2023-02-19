@@ -1,11 +1,11 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("높이")
 public class HeightTest {
@@ -25,7 +25,9 @@ public class HeightTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 100})
     void createHeightSuccess(int input) {
-        Assertions.assertDoesNotThrow(() -> new Height(input));
+        Height height = new Height(input);
+
+        assertThat(height.getHeight()).isEqualTo(input);
     }
 
 }
