@@ -8,9 +8,9 @@ public class Line {
     private final BooleanGenerator generator;
     List<LadderStep> ladderSteps = new ArrayList<>();
 
-    public Line(int lineNumber, BooleanGenerator generator) {
+    public Line(int count, BooleanGenerator generator) {
         this.generator = generator;
-        for (int index = 0; index < lineNumber; index++) {
+        for (int index = 0; index < count; index++) {
             ladderSteps.add(getPoint(index));
         }
     }

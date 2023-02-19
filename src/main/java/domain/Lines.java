@@ -7,10 +7,10 @@ import utils.booleanGenerator.BooleanGenerator;
 public class Lines {
     private final List<Line> lines = new ArrayList<>();
 
-    public Lines(int lineNumber, int linesHeight, BooleanGenerator booleanGenerator) {
-        Height height = new Height(linesHeight);
-        for (int i = 0; i < height.getHeight(); i++) {
-            lines.add(new Line(lineNumber, booleanGenerator));
+    public Lines(int count, int height, BooleanGenerator booleanGenerator) {
+        Height linesHeight = new Height(height);
+        for (int i = 0; i < linesHeight.getHeight(); i++) {
+            lines.add(new Line(count, booleanGenerator));
         }
     }
 
