@@ -13,7 +13,7 @@ public class BridgeJudgeTest {
     List<Boolean> bridges;
 
     @Test
-    @DisplayName("flag가 true이고 인덱스가 0이면 true가 반환된다")
+    @DisplayName("랜덤값이 true가 나와 다리를 생성하려고 할 때, 가장 왼쪽의 다리이면 다리를 생성할 수 있다.")
     void getTrueIfFlagTrueIndexZero() {
         bridges = new ArrayList<>();
         boolean flag = true;
@@ -23,7 +23,7 @@ public class BridgeJudgeTest {
     }
 
     @Test
-    @DisplayName("flag가 true이고 이전 인덱스의 flag가 false이면 true가 반환된다.")
+    @DisplayName("랜덤값이 true가 나와 다리를 생성하려고 할 때, 옆에 같은 높이에 다리가 없으면 다리를 생성할 수 있다.")
     void getTrueIfFlagTruePriorIndexFalse() {
         bridges = new ArrayList<>(List.of(true, false));
         boolean flag = true;
@@ -33,7 +33,7 @@ public class BridgeJudgeTest {
     }
 
     @Test
-    @DisplayName("flag가 false이면 반드시 false가 반환된다")
+    @DisplayName("랜덤값이 false가 나오면 다리를 생성할 수 없다.")
     void getFalseIfFlagFalse() {
         bridges = new ArrayList<>(List.of(true, false));
         boolean flag = false;
@@ -43,7 +43,7 @@ public class BridgeJudgeTest {
     }
 
     @Test
-    @DisplayName("flag가 true이고 이전 인덱스의 flag가 true이면 false가 반환된다.")
+    @DisplayName("랜덤값이 true가 나와 다리를 생성하려고 할 때, 옆에 같은 높이에 다리가 있으면 다리를 생성할 수 없다.")
     void getFalseIfFlagTruePriorIndexTrue() {
         bridges = new ArrayList<>(List.of(false, true));
         boolean flag = true;

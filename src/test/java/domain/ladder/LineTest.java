@@ -22,7 +22,7 @@ public class LineTest {
     MockBooleanGenerator booleanGenerator;
 
     @Test
-    @DisplayName("Line의 bridges 크기는 참가자 수 - 1 이다")
+    @DisplayName("Line의 크기는 참가자 수 - 1 이다")
     void validateBridgeSize_Success() {
         booleanGenerator = new MockBooleanGenerator(createRandomFlag(5));
         Line line = new Line(5, booleanGenerator);
