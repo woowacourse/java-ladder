@@ -19,6 +19,5 @@ public class WidthTest {
     @ValueSource(strings = {"0", "100"})
     void makeWidthFailure(int provided) {
         assertThatThrownBy(() -> new Width(provided)).hasMessage("참여자의 수는 2~100명 입니다.");
-                //isInstanceOf(IllegalArgumentException.class);
     }
 }
