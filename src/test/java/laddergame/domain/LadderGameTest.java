@@ -21,5 +21,4 @@ class LadderGameTest {
             LadderGame ladderGame = new LadderGame(players, ladder);
         });
     }
-
 }
