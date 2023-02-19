@@ -1,6 +1,5 @@
 package view;
 
-import domain.BlockType;
 import domain.Line;
 import domain.Players;
 

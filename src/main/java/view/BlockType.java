@@ -1,5 +1,6 @@
-package domain;
+package view;
 
+import domain.Line;
 import java.util.List;
 import java.util.stream.Collectors;
 
