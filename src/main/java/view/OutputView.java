@@ -10,7 +10,7 @@ import java.util.List;
 
 public class OutputView {
 
-    private static final String RESULT_ANNOUNCEMENT = "\n사다리 결과";
+    private static final String RESULT_ANNOUNCEMENT = "\n사다리 결과\n";
     private static final int INTERVAL_UNIT = 6;
     private static final String FRONT_SPACE = "    ";
     private static final String LINE_DELIMITER = "|";
@@ -46,7 +46,6 @@ public class OutputView {
 
     public void printNames(final List<Name> names) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\n");
         names.forEach(name -> {
             int difference = INTERVAL_UNIT - name.get().length();
             stringBuilder.append(name.get()).append(NAME_SPACE.repeat(difference));
