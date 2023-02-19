@@ -1,5 +1,6 @@
 package view;
 
+import domain.Line;
 import domain.Link;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -13,7 +14,7 @@ class LineRenderTest {
     void renderLineTest() {
         final List<Link> links = List.of(Link.LINKED, Link.UNLINKED, Link.LINKED);
         final String expectedResult = "     |-----|     |-----|";
-        Assertions.assertThat(LineRender.render(links))
+        Assertions.assertThat(LineRender.render(new Line(links)))
                 .isEqualTo(expectedResult);
     }
 }

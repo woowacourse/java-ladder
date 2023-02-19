@@ -19,7 +19,7 @@ public class OutputView {
 
     public static void printResult(final List<Line> lines) {
         for (final Line line : lines) {
-            System.out.println(LineRender.render(line.getLinks()));
+            System.out.println(LineRender.render(line));
         }
     }
 

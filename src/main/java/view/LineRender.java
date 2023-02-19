@@ -1,18 +1,18 @@
 package view;
 
+import domain.Line;
 import domain.Link;
-import java.util.List;
 
 public class LineRender {
     private static final String BLANK_LINE = "     ";
     private static final String CONNECTED_LINE = "-----";
     private static final String LADDER = "|";
 
-    public static String render(final List<Link> line) {
+    public static String render(final Line line) {
         final StringBuilder builder = new StringBuilder();
         builder.append(BLANK_LINE);
         builder.append(LADDER);
-        for (final Link connected : line) {
+        for (final Link connected : line.getLinks()) {
             renderPoint(builder, connected);
             builder.append(LADDER);
         }
