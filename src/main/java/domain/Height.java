@@ -24,11 +24,11 @@ public class Height {
     protected enum Message {
         EXCEPTION_RANGE("%d 이상 %d 이하의 자연수만 입력해 주세요.", MIN_RANGE, MAX_RANGE);
 
-        public static final String _FORMAT_BASE_MESSAGE = "[ERROR] %s";
+        public static final String BASE_MESSAGE_FORMAT = "[ERROR] %s";
         private final String message;
 
         Message(String message, Object... replaces) {
-            this.message = String.format(_FORMAT_BASE_MESSAGE, String.format(message, replaces));
+            this.message = String.format(BASE_MESSAGE_FORMAT, String.format(message, replaces));
         }
     }
 }
