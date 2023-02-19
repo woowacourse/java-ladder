@@ -2,6 +2,8 @@ package ladder.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import ladder.domain.Height;
+import ladder.domain.Ladder;
 import ladder.domain.Players;
 import ladder.util.RandomLineStrategy;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,5 +30,19 @@ class LadderServiceTest {
 
         // then
         assertThat(players.getPlayers()).hasSize(2);
+    }
+
+    @Test
+    @DisplayName("사다리가 정상적으로 생성되어야 한다.")
+    void createLadder_success() {
+        // given
+        Height height = new Height(5);
+
+        // when
+        Ladder ladder = ladderService.createLadder(height, 5);
+
+        // then
+        assertThat(ladder.getHeight())
+                .isEqualTo(5);
     }
 }

@@ -23,6 +23,10 @@ public class Ladder {
         return playersCount * MAX_HEIGHT_RATIO < height || height < playersCount;
     }
 
+    public int getHeight() {
+        return lines.size();
+    }
+
     public List<String> asString() {
         return lines.stream()
                 .map(Line::asString)
