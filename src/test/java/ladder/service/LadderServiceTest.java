@@ -20,7 +20,7 @@ class LadderServiceTest {
 
     @Test
     @DisplayName("사용자 이름이 입력되면 콤마(,) 로 구분한다.")
-    void create_usingComma() {
+    void createPlayers_usingComma() {
         // given
         String input = "glen,doggy";
 

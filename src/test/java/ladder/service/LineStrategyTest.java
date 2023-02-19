@@ -32,11 +32,12 @@ class LineStrategyTest {
 
         // when
         Line line = lineStrategy.generate(4);
+        List<Step> steps = line.getSteps();
 
         // then
         assertThat(line.getSize())
                 .isEqualTo(3);
-        assertThat(line.asString())
-                .isEqualTo("|-----|     |-----|");
+        assertThat(steps)
+                .isEqualTo(List.of(Step.EXIST, Step.EMPTY, Step.EXIST));
     }
 }
