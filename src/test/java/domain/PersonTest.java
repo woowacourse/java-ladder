@@ -15,7 +15,7 @@ class PersonTest {
 
     @DisplayName("사람이름이 요구사항에 충족할 경우.")
     @TestFactory
-    Stream<DynamicTest> nameSuccess() {
+    Stream<DynamicTest> createSuccess() {
         return Stream.of(
             dynamicTest("영어로만 이루어진 1글자의 이름", () -> {
                 Person person = new Person("a");
@@ -31,7 +31,7 @@ class PersonTest {
 
     @DisplayName("사람이름이 요구사항에 맞지 않는 경우")
     @TestFactory
-    Stream<DynamicTest> testDynamicTest() {
+    Stream<DynamicTest> createFail() {
         return Stream.of(
             dynamicTest("null 일 때", () -> assertThatThrownBy(() -> new Person(null))
                 .isExactlyInstanceOf(EmpytInputException.class)),

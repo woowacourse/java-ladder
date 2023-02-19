@@ -14,7 +14,7 @@ class ParticipantsTest {
 
     @DisplayName("참가자의 수가 요구사항에 충족할 경우")
     @TestFactory
-    Stream<DynamicTest> participantsSuccess() {
+    Stream<DynamicTest> createSuccess() {
         return Stream.of(
             dynamicTest("참가자의 수가 2명인 경우 (최소)", () -> {
                 Participants participants = new Participants("split,jamie");
@@ -29,7 +29,7 @@ class ParticipantsTest {
 
     @DisplayName("참가자들이 요구사항에 맞지 않는 경우")
     @TestFactory
-    Stream<DynamicTest> participantsFail() {
+    Stream<DynamicTest> createFail() {
         return Stream.of(
             dynamicTest("참가자의 수가 1명인 경우", () -> Assertions.assertThatThrownBy(() -> new Participants("split"))
                 .isExactlyInstanceOf(InvalidParticipantsCountException.class)),
