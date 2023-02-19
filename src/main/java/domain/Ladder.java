@@ -11,11 +11,26 @@ public class Ladder {
 
     private final People people;
     private final List<Line> lines;
+    private List<String> resultCandidates; //TODO : 재할당 금지 + 불변성 보장 해야함
+
+    public Ladder(final People people, final List<Line> lines, final List<String> resultCandidates) {
+        validateHeightOf(lines);
+        validateEqualsSizeOf(people, resultCandidates);
+        this.lines = copyOf(lines);
+        this.people = people;
+        this.resultCandidates = copyOf(resultCandidates);
+    }
 
     public Ladder(final People people, final List<Line> lines) {
         validateHeightOf(lines);
         this.lines = copyOf(lines);
         this.people = people;
+    }
+
+    private void validateEqualsSizeOf(People people, List<String> resultCandidates) {
+        if (people.getParticipantsSize() != resultCandidates.size()) {
+            throw new IllegalArgumentException("실행 결과 개수는 참가자 수와 같아야합니다.");
+        }
     }
 
     private void validateHeightOf(final List<Line> lines) {

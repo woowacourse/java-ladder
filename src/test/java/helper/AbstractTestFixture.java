@@ -34,4 +34,22 @@ public abstract class AbstractTestFixture {
         }
         return lines;
     }
+
+    public List<String> createResultCandidates(int size) {
+        List<String> candidates = new ArrayList<>();
+
+        for (int i = 0; i < size; i++) {
+            candidates.add(getResultCandidate(i));
+        }
+
+        return candidates;
+    }
+
+    private String getResultCandidate(int count) {
+        if (count % 2 == 0) {
+            return "꽝";
+        }
+
+        return String.valueOf(count * 1000);
+    }
 }
