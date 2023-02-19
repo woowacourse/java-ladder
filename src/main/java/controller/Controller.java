@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
+
+    public static final int FIRST_FLOOR = 0;
+    public static final int SECOND_BLOCK = 1;
+
     private InputView inputView;
     private OutputView outputView;
     private BooleanGenerator booleanGenerator;
@@ -30,7 +34,7 @@ public class Controller {
 
     private List<Line> generateLadder(int ladderHeight, Players players) {
         List<Line> list = new ArrayList<>();
-        for (int i = 0; i < ladderHeight; i++) {
+        for (int i = FIRST_FLOOR; i < ladderHeight; i++) {
             Line line = generateLine(players);
             list.add(line);
         }
@@ -46,9 +50,9 @@ public class Controller {
     private List<Block> createBlocks(Players players, Block preBlock) {
         List<Block> blocks = new ArrayList<>(List.of(preBlock));
 
-        int bound = players.getPlayersSize() - 1;
-        for (int i = 1; i < bound; i++) {
-            Block nextBlock = Block.createNextBlock(blocks.get(i-1), booleanGenerator);
+        int LineLength = players.getPlayersSize() - 1;
+        for (int i = SECOND_BLOCK; i < LineLength; i++) {
+            Block nextBlock = Block.createNextBlock(blocks.get(i - 1), booleanGenerator);
             blocks.add(nextBlock);
         }
         return blocks;
