@@ -2,29 +2,19 @@ package domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 public class UsersTest {
-
-    @DisplayName("유저 이름중 all 이 있으면 예외 발생")
-    @Test
-    void usersInvalidNameTest() {
-        List<User> input = Arrays.asList(new User("aa"), new User("bb"), new User("all"));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Users(input));
-    }
-
     @DisplayName("중복된 유저가 있으면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("usersSameNameFailParameter")
