@@ -6,25 +6,28 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class PersonTest {
 
-    @Test
-    @DisplayName("")
-    void person(){
-        new Person("무민");
+    @ParameterizedTest
+    @DisplayName("참여자 이름이 5자 이하고 공백이 아닌 경우 예외가 발생하지 않는다.")
+    @ValueSource(strings = {"무","12345","루 쿠  "})
+    void person(String name) {
+        assertDoesNotThrow(() -> new Person(name));
     }
 
     @Test
-    @DisplayName("")
-    void name_6(){
+    @DisplayName("참여자 이름이 5자를 초과하면 예외가 발생한다.")
+    void name_6() {
         assertThatThrownBy(() -> new Person("123456"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    @DisplayName("")
+
+    @DisplayName("참여자 이름이 공백이면 에외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {""," ","   "})
-    void name_blank(String blankName){
+    @ValueSource(strings = {"", " ", "   "})
+    void name_blank(String blankName) {
         assertThatThrownBy(() -> new Person(blankName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
