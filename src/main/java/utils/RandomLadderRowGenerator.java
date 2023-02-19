@@ -11,20 +11,20 @@ public class RandomLadderRowGenerator implements LadderRowGenerator{
     private static final Random RANDOM = new Random();
 
     public LadderRow generate(int userCount) {
-        List<Boolean> lines = getLines(userCount);
-        return new LadderRow(lines);
+        List<Boolean> ladderRow = getBars(userCount);
+        return new LadderRow(ladderRow);
     }
 
-    private List<Boolean> getLines(int userCount) {
-        List<Boolean> lines = new ArrayList<>();
+    private List<Boolean> getBars(int userCount) {
+        List<Boolean> bars = new ArrayList<>();
         boolean previousBar = RANDOM.nextBoolean();
-        lines.add(previousBar);
+        bars.add(previousBar);
         for (int i = 0; i < userCount - 2; i++) {
             boolean nextBar = convertBoolean(previousBar);
-            lines.add(nextBar);
+            bars.add(nextBar);
             previousBar = nextBar;
         }
-        return lines;
+        return bars;
     }
 
     private boolean convertBoolean(boolean comparedBoolean) {

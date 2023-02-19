@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderRow {
-    List<Boolean> lines;
+    List<Boolean> bars;
 
     public LadderRow(List<Boolean> lines) {
         validate(lines);
-        this.lines = lines;
+        this.bars = lines;
     }
 
     private void validate(List<Boolean> lines) {
@@ -48,7 +48,7 @@ public class LadderRow {
     }
 
     private List<String> getParsedLine() {
-        return lines.stream()
+        return bars.stream()
                 .map(this::convertLineStatus)
                 .collect(Collectors.toList());
     }

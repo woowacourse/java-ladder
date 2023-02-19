@@ -13,7 +13,7 @@ public class Users {
         users.add(user);
     }
 
-    public int getSize() {
+    public int getUserCount() {
         return users.size();
     }
 

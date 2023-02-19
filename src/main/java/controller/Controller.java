@@ -40,7 +40,7 @@ public class Controller {
         try {
             int ladderHeight = InputView.readLadderHeight();
             Validator.validateLadderHeight(ladderHeight);
-            int userCount = users.getSize();
+            int userCount = users.getUserCount();
             ladder.create(ladderHeight, userCount);
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception);
