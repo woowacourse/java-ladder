@@ -1,60 +1,48 @@
 package ladder.controller;
 
-import java.util.List;
-
 import ladder.domain.Height;
-import ladder.domain.Ladder;
-import ladder.domain.Line;
+import ladder.domain.LadderGame;
 import ladder.domain.Names;
 import ladder.util.BooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
+import java.util.List;
+
 public class LadderController {
     private final InputView inputView;
     private final ResultView resultView;
     private final BooleanGenerator generator;
-    private final Ladder ladder;
-    private Names names;
-    private Height height;
 
     public LadderController(BooleanGenerator generator) {
         this.inputView = new InputView();
         this.resultView = new ResultView();
         this.generator = generator;
-        this.ladder = new Ladder();
     }
 
     public void execute() {
-        createNames();
-        createHeight();
+        LadderGame ladderGame = new LadderGame(createNames(), createHeight(), generator);
 
-        createLadder(names.size());
+        ladderGame.run();
 
-        resultView.printResult(names, ladder);
+        resultView.printResult(ladderGame.getParticipants(), ladderGame.getLadder());
     }
 
-    private void createNames() {
+    private Names createNames() {
         try {
-            this.names = new Names(readNames());
+            return new Names(readNames());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            createNames();
+            return createNames();
         }
     }
 
-    private void createHeight() {
+    private Height createHeight() {
         try {
-            this.height = new Height(readLadderHeight());
+            return new Height(readLadderHeight());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            createHeight();
-        }
-    }
-
-    private void createLadder(int personCount) {
-        for (int i = 0; i < height.getHeight(); i++) {
-            ladder.addLine(new Line(personCount, generator));
+            return createHeight();
         }
     }
 

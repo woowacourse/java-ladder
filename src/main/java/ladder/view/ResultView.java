@@ -1,11 +1,11 @@
 package ladder.view;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Names;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class ResultView {
     private static final int WIDTH = 5;
@@ -14,15 +14,17 @@ public class ResultView {
     private static final String NAME_FORMAT = "%5s";
 
     public void printResult(Names names, Ladder ladder) {
+        System.out.println("실행결과\n");
+
         printNames(names);
         printLadder(ladder, names.lengthOfFirstName());
     }
 
     private void printNames(Names names) {
         String result = names.getNames()
-            .stream()
-            .map(name -> String.format(NAME_FORMAT, name) + BLANK)
-            .collect(Collectors.joining());
+                .stream()
+                .map(name -> String.format(NAME_FORMAT, name) + BLANK)
+                .collect(Collectors.joining());
         System.out.println(result.trim());
     }
 
@@ -37,13 +39,13 @@ public class ResultView {
 
     private String getShapeOf(Line line) {
         return line.getLine()
-            .stream()
-            .map(LadderFormat::getComponent)
-            .map(component -> LEG + component.repeat(WIDTH))
-            .collect(Collectors.joining());
+                .stream()
+                .map(LadderFormat::getComponent)
+                .map(component -> LEG + component.repeat(WIDTH))
+                .collect(Collectors.joining());
     }
 
-    private enum LadderFormat{
+    private enum LadderFormat {
         LINE(Boolean.TRUE, "-"),
         BLANK(Boolean.FALSE, " ");
 
