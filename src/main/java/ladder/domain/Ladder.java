@@ -6,10 +6,10 @@ import java.util.List;
 
 public class Ladder {
 
-    private final List<Line> ladder;
+    private final List<Line> lines;
 
     public Ladder(final int numberOfPlayers, final int heightOfLadder, final RandomGenerator randomGenerator) {
-        this.ladder = createLadder(numberOfPlayers, heightOfLadder, randomGenerator);
+        this.lines = createLadder(numberOfPlayers, heightOfLadder, randomGenerator);
     }
 
     private List<Line> createLadder(final int numberOfPlayers, final int heightOfLadder, final RandomGenerator randomGenerator) {
@@ -25,7 +25,7 @@ public class Ladder {
     }
 
     public List<Line> getLinesOfLadder() {
-        return Collections.unmodifiableList(ladder);
+        return Collections.unmodifiableList(lines);
     }
 
 

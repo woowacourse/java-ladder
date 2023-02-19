@@ -6,10 +6,10 @@ import java.util.List;
 
 public class Line {
 
-    private final List<Bar> line;
+    private final List<Bar> bars;
 
     public Line(final int numberOfPlayers, final RandomGenerator randomGenerator) {
-        line = createLine(numberOfPlayers, randomGenerator);
+        bars = createLine(numberOfPlayers, randomGenerator);
     }
 
     private List<Bar> createLine(final int widthOfLadder, final RandomGenerator randomGenerator) {
@@ -33,7 +33,7 @@ public class Line {
     }
 
     public List<Bar> getLine() {
-        return Collections.unmodifiableList(line);
+        return Collections.unmodifiableList(bars);
     }
 
 }
