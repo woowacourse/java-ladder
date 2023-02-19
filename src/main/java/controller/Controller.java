@@ -23,13 +23,26 @@ public class Controller {
         outputView.printLadderResultBoard(users, items, ladders);
         Result result = new Result(users, items, ladders);
 
+        resultProcess(result);
+    }
+
+    private void resultProcess(Result result) {
         while (true) {
-            String query = inputView.inputWinner();
-            if (query.equals("all")) {
-                outputView.printUsersResult(result);
-                continue;
+            try {
+                String query = inputView.inputWinner();
+                if (query.equals("end")){
+                    break;
+                }
+                if (query.equals("all")) {
+                    outputView.printUsersResult(result);
+                    continue;
+                }
+                outputView.printUserResult(result.getItem(new User(query)));
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e.getMessage());
+                resultProcess(result);
+                break;
             }
-            outputView.printUserResult(result.getItem(new User(query)));
         }
     }
 
