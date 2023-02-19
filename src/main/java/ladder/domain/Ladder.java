@@ -24,6 +24,14 @@ public class Ladder {
         return lines;
     }
 
+    public int moveThrough(int startPoint) {
+        int position = startPoint;
+        for (Line line: lines) {
+            position = line.moveFrom(position);
+        }
+        return position;
+    }
+
     public List<List<Boolean>> getLines() {
         return lines.stream()
                 .map(Line::getLine)
