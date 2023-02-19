@@ -30,7 +30,6 @@ public class Controller {
                 continue;
             }
             outputView.printUserResult(result.getItem(new User(query)));
-
         }
     }
 
