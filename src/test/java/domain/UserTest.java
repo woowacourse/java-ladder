@@ -1,7 +1,8 @@
 package domain;
 
-import domain.User;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -32,5 +33,10 @@ public class UserTest {
                 () -> new User(name));
     }
 
+    @DisplayName("유저 이름중 all 이 있으면 예외 발생")
+    @Test
+    void usersInvalidNameTest() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new User("all"));
+    }
 
 }
