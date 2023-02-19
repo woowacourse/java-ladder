@@ -1,5 +1,6 @@
 package domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -9,7 +10,7 @@ import java.util.Queue;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
-
+    @DisplayName("사다리 한줄이 제대로 생성이 되는지 테스트 합니다.")
     @Test
     void getLadder() {
         Queue<Boolean> randomNumber = new LinkedList<>();
