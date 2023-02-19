@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatNoException;
@@ -49,5 +50,37 @@ class LadderTest extends AbstractTestFixture {
 
         // when & then
         assertThatNoException().isThrownBy(() -> new Ladder(createDefaultPerson(), lines));
+    }
+
+    @Test
+    @DisplayName("People 객체는 immutable 하다.")
+    void test_immutable_person() throws Exception {
+        //given
+        List<Person> person = new ArrayList<>();
+        person.add(new Person("aaa"));
+        person.add(new Person("bbb"));
+
+        List<Line> lines = List.of(
+                new Line(convert(true, false, true)),
+                new Line(convert(false, true, false)),
+                new Line(convert(true, false, true)),
+                new Line(convert(false, true, false)),
+                new Line(convert(true, false, true))
+        );
+
+        People people = new People(person);
+
+        Ladder ladder = new Ladder(people, lines);
+
+        int beforePeopleSize = people.getParticipantsSize();
+
+        //when
+
+        person.remove(0);
+
+        int afterPeopleSize = ladder.getParticipantNames().size();
+
+        //then
+        assertEquals(beforePeopleSize, afterPeopleSize);
     }
 }
