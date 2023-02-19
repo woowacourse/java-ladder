@@ -1,8 +1,5 @@
 package view;
 
-import static utils.constants.LadderFormat.EXISTED_LINE;
-import static utils.constants.LadderFormat.NON_EXISTED_LINE;
-
 import domain.Ladder;
 import domain.LadderRow;
 import domain.Line;
@@ -12,16 +9,19 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    private static final String RESULT_MESSAGE = "실행결과";
     private static final String LADDER_DELIMITER = "|";
     private static final String PREFIX_LADDER_DELIMITER = "    " + LADDER_DELIMITER;
     private static final String USER_DELIMITER = " ";
+    private static final String EXIST_LINE_SYMBOL = "-----";
+    private static final String NOT_EXIST_LINE_SYMBOL = "     ";
 
     public static void printErrorMessage(final Exception exception) {
         System.out.println(exception.getMessage());
     }
 
     public static void printResultMessage() {
-        System.out.println("\n실행결과\n");
+        System.out.println(RESULT_MESSAGE);
     }
 
     public static void printUserNames(final Users users) {
@@ -54,8 +54,8 @@ public class OutputView {
 
     private static String lineToLineFormat(final Line line) {
         if (line == Line.EXIST) {
-            return EXISTED_LINE.getFormat();
+            return EXIST_LINE_SYMBOL;
         }
-        return NON_EXISTED_LINE.getFormat();
+        return NOT_EXIST_LINE_SYMBOL;
     }
 }

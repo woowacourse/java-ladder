@@ -1,15 +1,14 @@
 package utils;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import utils.constants.ErrorMessages;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.*;
 
 class StringParserTest {
 
@@ -48,8 +47,7 @@ class StringParserTest {
     @CsvSource({"3.3", "asd", "''", "///.w.w"})
     void should_throwException_when_inputIsNotInteger(String input) {
         assertThatThrownBy(() -> StringParser.parseToInteger(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.NUMBER_FORMAT.getMessage());
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest(name = "문자열에 공백을 삽입하여 5글자로 만든다.")

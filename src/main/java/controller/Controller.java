@@ -4,12 +4,11 @@ import domain.Height;
 import domain.Ladder;
 import domain.User;
 import domain.Users;
+import java.util.List;
 import java.util.stream.Collectors;
 import utils.LadderRowGenerator;
 import view.InputView;
 import view.OutputView;
-
-import java.util.List;
 
 public class Controller {
 

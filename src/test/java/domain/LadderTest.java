@@ -1,6 +1,7 @@
 package domain;
 
-import static domain.Line.*;
+import static domain.Line.EXIST;
+import static domain.Line.NOT_EXIST;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
