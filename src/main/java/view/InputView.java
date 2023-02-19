@@ -10,10 +10,12 @@ import java.util.stream.Collectors;
 
 public class InputView {
     private static final String USER_NAME_INPUT_GUIDE_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String ITEM_INPUT_GUIDE_MESSAGE = "\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String LADDERS_HEIGHT_INPUT_GUIDE_MESSAGE = "\n최대 사다리 높이는 몇 개인가요?";
+    private static final String RESULT_INPUT_GUIDE_MESSAGE = "\n결과를 보고 싶은 사람은?";
+    private static final String INVALID_HEIGHT_FORMAT_MESSAGE = "사다리 높이는 정수만 입력가능합니다.";
     private static final String USER_NAME_SPLIT_CHARACTER = ",";
     private static final int USER_NAME_SPLIT_LIMIT = -1;
-    private static final String INVALID_HEIGHT_FORMAT_MESSAGE = "사다리 높이는 정수만 입력가능합니다.";
     private final Scanner sc = new Scanner(System.in);
 
     public List<User> inputUserName() {
@@ -34,7 +36,7 @@ public class InputView {
     }
 
     public List<Item> inputItem() {
-        System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        System.out.println(ITEM_INPUT_GUIDE_MESSAGE);
         List<String> items = Arrays.asList(sc.nextLine().split(USER_NAME_SPLIT_CHARACTER, USER_NAME_SPLIT_LIMIT));
         return items.stream()
                 .map(Item::new)
@@ -42,7 +44,7 @@ public class InputView {
     }
 
     public String inputWinner() {
-        System.out.println("\n결과를 보고 싶은 사람은?");
+        System.out.println(RESULT_INPUT_GUIDE_MESSAGE);
         return sc.nextLine();
     }
 }
