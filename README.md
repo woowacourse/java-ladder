@@ -43,12 +43,12 @@
 - [x] 메소드 10 라인 이내로 작성
 ---
 **1단계 리뷰에 따른 리팩터링**
-- [ ] 불필요한 Wrapping Class 제거
-- [ ] public으로 선언되어 있지만, 외부에서 사용하지 않는 메소드 접근제어자 private으로 변경
-- [ ] `Name.validateNameLength()` 메소드 분리
-- [ ] 현재 상수 final로 선언 -> static final로 수정
-- [ ] `@ParameterizedTest` 활용한 테스트 작성
-- [ ] 잘못된 입력 받으면 종료하지 않고, 올바른 값을 입력할 때까지 재입력
+- [x] 불필요한 Wrapping Class 제거
+- [x] public으로 선언되어 있지만, 외부에서 사용하지 않는 메소드 접근제어자 private으로 변경
+- [x] `Name.validateNameLength()` 메소드 분리
+- [x] 현재 상수 final로 선언 -> static final로 수정
+- [x] `@ParameterizedTest` 활용한 테스트 작성
+- [x] 잘못된 입력 받으면 종료하지 않고, 올바른 값을 입력할 때까지 재입력
 
 ### 추후 고려사항
 - 참가자
