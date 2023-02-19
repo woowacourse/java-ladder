@@ -34,9 +34,17 @@ public class LadderGameController {
 
     private LadderGame initialize() {
         final Players players = readPlayers();
-        final int height = readHeight();
-        
-        return new LadderGame(booleanGenerator, players, height);
+        return initializeLadderGame(players);
+    }
+
+    private LadderGame initializeLadderGame(final Players players) {
+        try {
+            final int height = inputView.readLadderHeight();
+            return new LadderGame(booleanGenerator, players, height);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return initializeLadderGame(players);
+        }
     }
 
     private Players readPlayers() {
@@ -46,15 +54,6 @@ public class LadderGameController {
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return readPlayers();
-        }
-    }
-
-    private int readHeight() {
-        try {
-            return inputView.readLadderHeight();
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return readHeight();
         }
     }
 }
