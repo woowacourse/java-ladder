@@ -12,7 +12,7 @@ public class InputView {
     private static final String INPUT_LADDER_HEIGHT_MESSAGE = "\n최대 사다리 높이는 몇 개인가요?";
     private static final String NAME_DELIMITER = ",";
     private static final String INPUT_GOODS_MASSAGE = "\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
-    private static final String INPUT_TARGET_RESULT_MASSAGE = "결과를 보고 싶은 사람은?";
+    private static final String INPUT_TARGET_RESULT_MASSAGE = "\n결과를 보고 싶은 사람은?";
     private final InputValidator validator;
     private final Scanner scanner = new Scanner(System.in);
 

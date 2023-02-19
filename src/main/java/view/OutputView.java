@@ -17,7 +17,7 @@ public class OutputView {
     private static final String CONNECTED_LINE = "-----";
     private static final String UNCONNECTED_LINE = "     ";
     private static final String NAME_SPACE = " ";
-    private static final String PRINT_RESULT_MASSAGE = "실행 결과";
+    private static final String PRINT_RESULT_MASSAGE = "\n실행 결과";
 
     public void printLadderResult() {
         System.out.println(RESULT_ANNOUNCEMENT);

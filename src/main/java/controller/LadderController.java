@@ -43,6 +43,7 @@ public class LadderController {
         outputView.printLadder(ladder);
         outputView.printNames(goodsList);
         LadderGame ladderGame = new LadderGame(players.size() - 1);
+        outputView.printResult();
         ladderGame.playLadderGame(playerMaker.getPlayerList(), ladder);
         showTargetResult(playerMaker.getPlayerList(), goodsList);
     }
