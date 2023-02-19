@@ -6,12 +6,12 @@ import ladder.view.ResultView;
 
 import java.util.List;
 
-public class LadderController {
+public class LadderGame {
     private final InputView inputView;
     private final ResultView resultView;
     private final RandomRowsGenerator randomRowsGenerator;
 
-    public LadderController(InputView inputView, ResultView resultView, RandomRowsGenerator randomRowsGenerator) {
+    public LadderGame(InputView inputView, ResultView resultView, RandomRowsGenerator randomRowsGenerator) {
         this.inputView = inputView;
         this.resultView = resultView;
         this.randomRowsGenerator = randomRowsGenerator;
@@ -20,8 +20,8 @@ public class LadderController {
     public void run() {
         try {
             Players players = enroll();
-            Rows rows = makeLadder(players.getPlayersSize());
-            printLadderResult(players, rows);
+            Ladder ladder = makeLadder(players.getPlayersSize());
+            printLadderResult(players, ladder);
         } catch (IllegalArgumentException e) {
             resultView.printErrorMessage(e.getMessage());
         }
@@ -34,14 +34,14 @@ public class LadderController {
         return players;
     }
 
-    private Rows makeLadder(int playersSize) {
+    private Ladder makeLadder(int playersSize) {
         Height height = new Height(inputView.inputHeight());
         Width width = new Width(playersSize - 1);
         return randomRowsGenerator.generateRows(width, height);
     }
 
-    private void printLadderResult(Players players, Rows rows) {
+    private void printLadderResult(Players players, Ladder ladder) {
         resultView.printNames(players.getNames());
-        resultView.printLadder(rows.getState());
+        resultView.printLadder(ladder.getState());
     }
 }

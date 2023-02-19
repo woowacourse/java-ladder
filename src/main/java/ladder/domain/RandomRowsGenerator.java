@@ -7,7 +7,7 @@ import java.util.Random;
 public class RandomRowsGenerator {
     private static final Random random = new Random();
 
-    public Rows generateRows(Width width, Height height) {
+    public Ladder generateRows(Width width, Height height) {
         List<Row> rows = new ArrayList<>();
         int ladderWidth = width.getWidth();
         int ladderHeight = height.getHeight();
@@ -15,7 +15,7 @@ public class RandomRowsGenerator {
         for (int i = 0; i < ladderHeight; i++) {
             rows.add(generateValidRow(ladderWidth));
         }
-        return new Rows(rows);
+        return new Ladder(rows);
     }
 
     private Row generateValidRow(int size) {
