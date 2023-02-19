@@ -11,26 +11,16 @@ import java.util.Queue;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class LineTest {
 
     @Test
     void 라인은_주어진_폭_만큼의_디딤대_좌표값_개수를_가진다() {
-        Line line = Line.of(new RandomStepPointGenerator(), 5);
+        Line line = Line.of(new RandomStepPointGenerator(), new LineWidth(5));
 
         assertThat(line.toUnmodifiableStepPoints())
                 .hasSize(5);
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {-1, 0})
-    void 주어진_폭이_1_미만이면_예외(int width) {
-        assertThatThrownBy(() -> Line.of(new RandomStepPointGenerator(), width))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사다리 폭은 1 이상이어야 합니다.");
     }
 
     @Test
@@ -38,7 +28,7 @@ class LineTest {
         List<StepPoint> expected = List.of(EXIST, NONE, EXIST, NONE, EXIST);
 
         Queue<StepPoint> generateValues = new LinkedList<>(expected);
-        Line line = Line.of(new MockedPointGenerator(generateValues), 5);
+        Line line = Line.of(new MockedPointGenerator(generateValues), new LineWidth(expected.size()));
 
         assertThat(line.toUnmodifiableStepPoints()).isEqualTo(expected);
     }
@@ -49,7 +39,7 @@ class LineTest {
 
         Queue<StepPoint> generateValues = new LinkedList<>(expected);
 
-        assertThatThrownBy(() -> Line.of(new MockedPointGenerator(generateValues), 2))
+        assertThatThrownBy(() -> Line.of(new MockedPointGenerator(generateValues), new LineWidth(expected.size())))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

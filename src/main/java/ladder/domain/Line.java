@@ -11,15 +11,8 @@ public class Line {
         this.stepPoints = stepPoints;
     }
 
-    public static Line of(StepPointGenerator stepPointGenerator, int width) {
-        validateWidth(width);
-        return new Line(generateStepPoints(stepPointGenerator, width));
-    }
-
-    private static void validateWidth(int width) {
-        if (width <= 0) {
-            throw new IllegalArgumentException("사다리 폭은 1 이상이어야 합니다.");
-        }
+    public static Line of(StepPointGenerator stepPointGenerator, LineWidth width) {
+        return new Line(generateStepPoints(stepPointGenerator, width.get()));
     }
 
     private static List<StepPoint> generateStepPoints(StepPointGenerator stepPointGenerator, int width) {
