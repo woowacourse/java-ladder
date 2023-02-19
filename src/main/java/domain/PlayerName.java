@@ -7,7 +7,7 @@ public class PlayerName {
     private static final int PLAYER_NAME_MIN_SIZE_INCLUSIVE = 1;
     private static final int PLAYER_NAME_MAX_SIZE_INCLUSIVE = 5;
     private static final String PLAYER_NAME_SIZE_ERROR_MESSAGE = "이름은 1 ~ 5 글자여야 합니다.";
-    private static final String VALUE_ERROR_MESSAGE = "이름은 문자만 숫자로 가능합니다.";
+    private static final String VALUE_ERROR_MESSAGE = "이름은 영어나 숫자로만 가능합니다.";
     private static final String VALID_WORD_REGEX = "(\\w)+";
     private static final Pattern PLAYER_NAME_PATTERN = Pattern.compile(VALID_WORD_REGEX);
 
