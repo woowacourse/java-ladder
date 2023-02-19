@@ -22,9 +22,6 @@ public class Name {
     }
 
     private void validateName(final String value) {
-        if (value == null) {
-            throw new IllegalArgumentException(NAME_NULL_EXCEPTION);
-        }
         if (!NAME_REGEX.matcher(value).matches()) {
             throw new IllegalArgumentException(NAME_NOT_MACHE_EXCEPTION);
         }
