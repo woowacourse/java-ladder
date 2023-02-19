@@ -78,4 +78,8 @@ public class Ladder {
 
         return index;
     }
+
+    public List<String> getResultCandidates() {
+        return resultCandidates;
+    }
 }

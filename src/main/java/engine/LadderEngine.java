@@ -11,6 +11,7 @@ import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderEngine {
@@ -28,6 +29,22 @@ public class LadderEngine {
         Ladder ladder = makesLadder(people, resultCandidates);
 
         OutputView.printLadder(ladder);
+
+        Map<String, String> result = ladder.getLadderMatchingResult();
+
+        printResult(result);
+    }
+
+    private void printResult(Map<String, String> result) {
+        while (true) {
+            String name = InputView.inputShowResultPerson();
+
+            OutputView.printLadderResult(result, name);
+
+            if (name.equals("all")) {
+                break;
+            }
+        }
     }
 
     private List<String> makeResultCandidates() {
