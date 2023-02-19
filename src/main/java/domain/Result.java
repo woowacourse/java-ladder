@@ -2,6 +2,7 @@ package domain;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Result {
     private static final String INVALID_USER_MESSAGE = "참가자가 존재하지 않습니다.";
@@ -18,9 +19,9 @@ public class Result {
         this.ladders = ladders;
     }
 
-    public String getItem(User user) {
+    public HashMap<User, Item> getItem(User user) {
         generateResult(user);
-        return result.get(user).getItem();
+        return new LinkedHashMap<>(Map.of(user,result.get(user)));
     }
 
     public HashMap<User, Item> getItemsALL() {
