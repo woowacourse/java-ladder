@@ -14,11 +14,8 @@ public class LadderGame {
         this.ladder = new Ladder(names.size(), height, lineStrategy);
     }
 
-    public List<List<Boolean>> getLines() {
-        return ladder.getLines()
-                .stream()
-                .map(Line::getSections)
-                .collect(Collectors.toList());
+    public List<List<Boolean>> getLadder() {
+        return ladder.getLines();
     }
 
     public int getNameMaxLength() {

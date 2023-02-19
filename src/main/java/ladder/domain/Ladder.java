@@ -3,8 +3,8 @@ package ladder.domain;
 import ladder.utils.LineStrategy;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
@@ -24,7 +24,9 @@ public class Ladder {
         return lines;
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public List<List<Boolean>> getLines() {
+        return lines.stream()
+                .map(Line::getLine)
+                .collect(Collectors.toUnmodifiableList());
     }
 }
