@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Line {
+    private static final String ERROR_SCAFFOLD_EMPTY = "[ERROR] 발판이 생성되지 않았습니다";
+    private static final String ERROR_SCAFFOLD_SEQUENT = "[ERROR] 발판이 연속으로 생성되었습니다";
     private final List<Scaffold> scaffolds;
 
     public Line(final Width width, final ScaffoldGenerator scaffoldGenerator) {
@@ -36,8 +38,8 @@ public class Line {
     }
 
     private static void validateScaffoldSizeEmpty(final List<Scaffold> scaffolds) {
-        if (scaffolds.size() == 0) {
-            throw new IllegalArgumentException();
+        if (scaffolds.isEmpty()) {
+            throw new IllegalArgumentException(ERROR_SCAFFOLD_EMPTY);
         }
     }
 
@@ -54,7 +56,7 @@ public class Line {
         if (scaffolds.get(index) == Scaffold.NONE) {
             return;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(ERROR_SCAFFOLD_SEQUENT);
     }
 
     public int size() {
