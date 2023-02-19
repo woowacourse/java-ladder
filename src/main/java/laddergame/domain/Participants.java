@@ -8,12 +8,12 @@ public class Participants {
 
     private final Names names;
 
-    public Participants(final Names names) {
+    public Participants(final List<String> names) {
         validateParticipants(names);
-        this.names = names;
+        this.names = new Names(names);
     }
 
-    private void validateParticipants(final Names names) {
+    private void validateParticipants(final List<String> names) {
         if (names == null) {
             throw new IllegalArgumentException(PARTICIPANTS_NULL_EXCEPTION);
         }
