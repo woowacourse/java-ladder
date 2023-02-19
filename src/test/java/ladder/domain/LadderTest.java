@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
 
@@ -32,6 +32,7 @@ public class LadderTest {
 
         Ladder ladder = new Ladder(lines);
         List<Line> copiedLines = ladder.getLines();
-        assertEquals(5, copiedLines.size());
+
+        assertThat(copiedLines.size()).isEqualTo(5);
     }
 }
