@@ -14,7 +14,6 @@ public class Player {
         return name.getName();
     }
 
-
     @Override
     public boolean equals(Object other) {
         if (this == other) {

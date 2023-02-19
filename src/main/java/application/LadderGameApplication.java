@@ -41,11 +41,12 @@ public class LadderGameApplication {
 
 
     private <T> T repeat(Supplier<T> inputSupplier) {
-        try {
-            return inputSupplier.get();
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return repeat(inputSupplier);
+        while (true) {
+            try {
+                return inputSupplier.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
         }
     }
 }
