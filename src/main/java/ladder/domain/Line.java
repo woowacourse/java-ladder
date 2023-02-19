@@ -24,11 +24,11 @@ public class Line implements Iterable<Boolean> {
 
     private void createLine(int personCount) {
         for (int cell = FIRST_CELL_INDEX; cell < personCount - 1; cell++) {
-            createLineAtCell(cell);
+            createDiscontinuousLineAtCell(cell);
         }
     }
 
-    private void createLineAtCell(int cellIndex) {
+    private void createDiscontinuousLineAtCell(int cellIndex) {
         if (existLineAtLeftCell(cellIndex)) {
             line.add(Boolean.FALSE);
             return;
