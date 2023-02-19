@@ -1,21 +1,34 @@
 package domain;
 
-import static utils.ErrorMessage.INVALID_LADDER_HEIGHT_RANGE;
+import static utils.ErrorMessage.INVALID_LADDER_HEIGHT_BY_MAXIMUM_LIMIT;
+import static utils.ErrorMessage.INVALID_LADDER_HEIGHT_BY_MINIMUM_LIMIT;
 
 public class Height {
-    private final int MIN_HEIGHT = 1;
 
+    private final int MINIMUM_HEIGHT_LIMIT = 1;
+    private final int MAXIMUM_HEIGHT_LIMIT = 100;
     private final int height;
 
     public Height(int height) {
-        validateHeight(height);
+        validateHeightByMinimumLimit(height);
+        validateHeightByMaximumLimit(height);
+
         this.height = height;
     }
 
-    private void validateHeight(int height) {
-        if (height < MIN_HEIGHT) {
+    private void validateHeightByMinimumLimit(int height) {
+        if (height < MINIMUM_HEIGHT_LIMIT) {
             throw new IllegalArgumentException(
-                String.format(INVALID_LADDER_HEIGHT_RANGE.getMessage(), MIN_HEIGHT));
+                String.format(INVALID_LADDER_HEIGHT_BY_MINIMUM_LIMIT.getMessage(),
+                    MINIMUM_HEIGHT_LIMIT));
+        }
+    }
+
+    private void validateHeightByMaximumLimit(int height) {
+        if (height > MAXIMUM_HEIGHT_LIMIT) {
+            throw new IllegalArgumentException(
+                String.format(INVALID_LADDER_HEIGHT_BY_MAXIMUM_LIMIT.getMessage(),
+                    MAXIMUM_HEIGHT_LIMIT));
         }
     }
 
