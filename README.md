@@ -55,5 +55,5 @@
 - [x] `LineTest`의 연속된 `true`값을 테스트하기 위해 `TrueBooleanGenerator` 클래스 사용하기
 - [x] 메서드명 컨벤션 지키기 (카멜케이스)
 - [x] 예외 메시지 검증 추가하기
-- [ ] `LinesTest` 테스트 수정하기
+- [x] `LinesTest` 테스트 수정하기
 - [x] `NamesTest` 100명 초과 테스트 추가하기
