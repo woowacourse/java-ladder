@@ -1,4 +1,4 @@
-package domain.numbergenerator;
+package domain;
 
 import java.util.List;
 

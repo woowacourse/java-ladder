@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import domain.numbergenerator.BooleanGenerator;
-import domain.numbergenerator.RandomBooleanGenerator;
-
 public class Ladder {
 
     private static final int HEIGHT_LOWER_BOUND = 1;

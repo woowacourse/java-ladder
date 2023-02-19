@@ -3,8 +3,6 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.numbergenerator.BooleanGenerator;
-
 public class Line {
 
     private final BooleanGenerator booleanGenerator;

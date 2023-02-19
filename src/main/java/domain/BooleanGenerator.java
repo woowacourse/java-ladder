@@ -1,4 +1,4 @@
-package domain.numbergenerator;
+package domain;
 
 public interface BooleanGenerator {
 
