@@ -25,7 +25,7 @@ class ParticipantTest {
     }
 
     @ParameterizedTest(name = "이름이 같으면 같은 참가자이다")
-    @CsvSource(value = {"땡칠,땡칠,true", "땡칠,땡구,false"}, delimiter = ',')
+    @CsvSource(value = {"땡칠,땡칠,true", "땡칠,땡구,false"})
     void participant_distinguished_by_their_name(String name, String otherName, boolean isTwoEquals) {
         assertThat(new Participant(name).equals(new Participant(otherName)))
                 .isEqualTo(isTwoEquals);
