@@ -16,8 +16,8 @@ public class Line {
         List<Bar> bars = new ArrayList<>();
 
         for (int idx = 0; idx < widthOfLadder; idx++) {
-            Bar bar = createBar(bars, idx, randomGenerator);
-            bars.add(bar);
+            Bar newBar = createBar(bars, idx, randomGenerator);
+            bars.add(newBar);
         }
 
         return bars;
@@ -26,10 +26,10 @@ public class Line {
 
     private Bar createBar(List<Bar> bars, int index, RandomGenerator randomGenerator) {
         if (bars.isEmpty() || bars.get(index - 1) == Bar.UNMOVABLE_BAR) {
-            return Bar.UNMOVABLE_BAR;
+            return Bar.from(randomGenerator.generateBoolean());
         }
 
-        return Bar.from(randomGenerator.generateBoolean());
+        return Bar.UNMOVABLE_BAR;
     }
 
     public List<Bar> getLine() {
