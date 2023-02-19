@@ -2,6 +2,11 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.ladder.Ladder;
+import domain.ladder.LadderGenerator;
+import domain.ladder.LadderHeight;
+import domain.ladder.Line;
+import domain.ladder.LineGenerator;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;

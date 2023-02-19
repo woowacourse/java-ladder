@@ -1,7 +1,7 @@
 package view;
 
-import domain.LadderHeight;
-import domain.Name;
+import domain.ladder.LadderHeight;
+import domain.player.Name;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;

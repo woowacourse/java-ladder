@@ -1,6 +1,6 @@
 import application.LadderGameApplication;
-import domain.LadderGenerator;
-import domain.LineGenerator;
+import domain.ladder.LadderGenerator;
+import domain.ladder.LineGenerator;
 import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;

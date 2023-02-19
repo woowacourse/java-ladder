@@ -1,9 +1,9 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.LinePoint;
-import domain.Players;
+import domain.ladder.Ladder;
+import domain.ladder.Line;
+import domain.ladder.LinePoint;
+import domain.player.Players;
 import java.util.List;
 import java.util.stream.Collectors;
 

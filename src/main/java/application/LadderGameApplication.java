@@ -3,12 +3,12 @@ package application;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-import domain.Ladder;
-import domain.LadderGenerator;
-import domain.LadderHeight;
-import domain.Name;
-import domain.Player;
-import domain.Players;
+import domain.ladder.Ladder;
+import domain.ladder.LadderGenerator;
+import domain.ladder.LadderHeight;
+import domain.player.Name;
+import domain.player.Player;
+import domain.player.Players;
 import java.util.List;
 import java.util.function.Supplier;
 import view.InputView;
