@@ -11,16 +11,16 @@ public class Ladder {
     private final List<Line> lines;
     private final Height maxHeight;
 
-    public Ladder(final int columnCount, final int height, final LineStrategy lineStrategy) {
+    public Ladder(final int width, final int height, final LineStrategy lineStrategy) {
         this.maxHeight = new Height(height);
-        this.lines = assignLines(columnCount, lineStrategy);
+        this.lines = assignLines(width, lineStrategy);
     }
 
-    private List<Line> assignLines(final int columnCount, final LineStrategy lineStrategy) {
+    private List<Line> assignLines(final int width, final LineStrategy lineStrategy) {
         List<Line> lines = new ArrayList<>();
 
         IntStream.range(0, maxHeight.getHeight())
-                .forEach(i -> lines.add(new Line(lineStrategy, columnCount - 1)));
+                .forEach(i -> lines.add(new Line(lineStrategy, width - 1)));
         return lines;
     }
 
