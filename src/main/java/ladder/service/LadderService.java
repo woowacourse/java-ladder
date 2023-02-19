@@ -9,9 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import ladder.domain.Player;
 import ladder.domain.Players;
+import ladder.domain.Result;
+import ladder.domain.Results;
 
 public class LadderService {
     private static final String PLAYERS_STRING_DELIMITER = ",";
+    private static final String RESULTS_STRING_DELIMITER = ",";
 
     private final LineStrategy lineStrategy;
 
@@ -33,5 +36,13 @@ public class LadderService {
                 .map(Player::new)
                 .collect(Collectors.toList());
         return new Players(players);
+    }
+
+    public Results createResults(String resultsInput, int playerCount) {
+        String[] resultsStrings = resultsInput.split(RESULTS_STRING_DELIMITER);
+        List<Result> results = Arrays.stream(resultsStrings)
+                .map(Result::new)
+                .collect(Collectors.toList());
+        return new Results(results, playerCount);
     }
 }

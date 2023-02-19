@@ -2,9 +2,12 @@ package ladder.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
+import ladder.domain.Result;
+import ladder.domain.Results;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,7 +31,8 @@ class LadderServiceTest {
         Players players = ladderService.createPlayers(input);
 
         // then
-        assertThat(players.getPlayers()).hasSize(2);
+        assertThat(players.getPlayers())
+                .hasSize(2);
     }
 
     @Test
@@ -43,5 +47,21 @@ class LadderServiceTest {
         // then
         assertThat(ladder.getHeight())
                 .isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("실행 결과가 입력되면 콤마(,) 로 구분한다.")
+    void createResults_usingComma() {
+        // given
+        String input = "꽝,5000,꽝,3000";
+
+        // when
+        Results results = ladderService.createResults(input, 4);
+
+        // then
+        assertThat(results.getResultsCount())
+                .isEqualTo(4);
+        assertThat(results.getResults())
+                .isEqualTo(List.of(new Result("꽝"), new Result("5000"), new Result("꽝"), new Result("3000")));
     }
 }
