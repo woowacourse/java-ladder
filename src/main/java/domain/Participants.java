@@ -55,11 +55,11 @@ public class Participants {
         splitNames(participantNames).forEach((name) -> people.add(new Person(name)));
     }
 
-    public int getParticipantCount() {
+    public int getCount() {
         return people.size();
     }
 
-    public List<String> getParticipantsNames() {
+    public List<String> getNames() {
         return people.stream().map(Person::getName).collect(Collectors.toList());
     }
 }

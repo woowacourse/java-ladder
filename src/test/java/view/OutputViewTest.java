@@ -24,7 +24,7 @@ class OutputViewTest {
         setOutput();
         OutputView outputView = new OutputView();
         Participants participants = new Participants("jamie,split,pobi");
-        Map map = new Map("4", participants.getParticipantCount(), () -> true);
+        Map map = new Map("4", participants.getCount(), () -> true);
         outputView.printMap(participants, map);
         Assertions.assertThat(byteArrayOutputStream.toString()).isEqualTo("\n실행결과\n\n"
             + "jamie split pobi\n"
@@ -40,7 +40,7 @@ class OutputViewTest {
         setOutput();
         OutputView outputView = new OutputView();
         Participants participants = new Participants("jamie,split,pobi");
-        Map map = new Map("4", participants.getParticipantCount(), () -> false);
+        Map map = new Map("4", participants.getCount(), () -> false);
         outputView.printMap(participants, map);
         Assertions.assertThat(byteArrayOutputStream.toString()).isEqualTo("\n실행결과\n\n"
             + "jamie split pobi\n"

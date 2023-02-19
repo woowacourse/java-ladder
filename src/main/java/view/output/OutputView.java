@@ -17,7 +17,7 @@ public class OutputView {
     }
 
     private void setNames(StringBuilder mapResult, Participants participants) {
-        participants.getParticipantsNames()
+        participants.getNames()
             .forEach((participantName) -> mapResult.append(reformatName(participantName)));
         mapResult.replace(mapResult.length() - 2, mapResult.length(), System.lineSeparator());
     }
