@@ -2,22 +2,16 @@ package laddergame.util;
 
 import laddergame.view.OutputView;
 
+import java.util.function.Supplier;
+
 public class RepeatValidator {
 
-    public static void runUntilValidate(InputFunction inputFunction) {
-        boolean isSuccess = false;
-        while (!isSuccess) {
-            isSuccess = tryInputFunction(inputFunction);
-        }
-    }
-
-    private static boolean tryInputFunction(InputFunction inputFunction) {
+    public static <T> T retryUntilValidate(Supplier<T> supplier) {
         try {
-            inputFunction.run();
-            return true;
-        } catch (RuntimeException exception) {
+            return supplier.get();
+        } catch (IllegalArgumentException exception) {
             OutputView.printErrorMsg(exception.getMessage());
-            return false;
+            return retryUntilValidate(supplier);
         }
     }
 }

@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.util.RandomPointGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,9 +16,9 @@ class LadderGameTest {
         List<String> playerNames = List.of("pobi", "honux", "crong", "jk");
         int height = 5;
         assertDoesNotThrow(() -> {
-            LadderGame ladderGame = new LadderGame();
-            ladderGame.setPlayers(playerNames);
-            ladderGame.makeLadder(height);
+            Players players = new Players(playerNames);
+            Ladder ladder = new Ladder(players.size(), height, new RandomPointGenerator());
+            LadderGame ladderGame = new LadderGame(players, ladder);
         });
     }
 
