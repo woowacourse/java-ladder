@@ -17,19 +17,19 @@ public enum LadderShape {
     private final String shape;
 
     public static StringBuilder getLineForm(List<Boolean> points) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(FIRST_WALL.shape);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(FIRST_WALL.shape);
         for (boolean point : points) {
-            appendLineForm(point, sb);
+            appendLineForm(point, stringBuilder);
         }
-        return sb;
+        return stringBuilder;
     }
 
-    private static void appendLineForm(boolean point, StringBuilder sb) {
+    private static void appendLineForm(boolean point, StringBuilder stringBuilder) {
         if (point) {
-            sb.append(CONNECT.shape).append(WALL.shape);
+            stringBuilder.append(CONNECT.shape).append(WALL.shape);
             return;
         }
-        sb.append(DISCONNECT.shape).append(WALL.shape);
+        stringBuilder.append(DISCONNECT.shape).append(WALL.shape);
     }
 }
