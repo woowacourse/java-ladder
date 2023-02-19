@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class StringParser {
 
-    private static final String NOT_INTEGER_ERROR = "입력값은 정수여야 합니다.";
+    private static final String NOT_INTEGER_ERROR = "[ERROR] 입력값은 정수여야 합니다.";
     private static final String INSERT_BLANK_FORMAT = "%5s";
     private static final String BLANK = " ";
     private static final String EMPTY = "";

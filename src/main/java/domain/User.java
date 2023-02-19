@@ -4,7 +4,8 @@ import java.util.Objects;
 
 public class User {
 
-    public static final int NAME_LENGTH_UPPER_BOUND = 5;
+    private static final String INVALID_NAME_ERROR = "[ERROR] 이름의 길이는 1 ~ 5글자 사이여야 합니다.";
+    private static final int NAME_LENGTH_UPPER_BOUND = 5;
     private final String name;
 
     public User(final String name) {
@@ -14,7 +15,7 @@ public class User {
 
     private void validate(final String name) {
         if (name.isEmpty() || name.length() > NAME_LENGTH_UPPER_BOUND) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_NAME_ERROR);
         }
     }
 
