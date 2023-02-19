@@ -5,7 +5,6 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Controller {
     private final InputView inputView;
@@ -17,28 +16,35 @@ public class Controller {
     }
 
     public void run() {
-        Users usersName = settingUsers();
-        Item item = new Item(inputView.inputResult(),usersName.getCount());
-        Ladders ladders = new Ladders(usersName.getCount(),settingHeight(), new RandomGenerator());
+        Users users = settingUsers();
+        Items items = settingItems(users);
+        Ladders ladders = new Ladders(users.getCount(), settingHeight(), new RandomGenerator());
 
-        outputView.printUsers(usersName);
-        outputView.printLadders(ladders);
+        outputView.printLadderResult(users, items, ladders);
+        Result result = new Result(users, items, ladders);
+
+        while (true) {
+            System.out.println(result.getItem(new User(inputView.inputWinner())));
+        }
     }
 
     private Users settingUsers() {
         try {
-            List<String> userNames = inputView.inputUsername();
-            return new Users(makeUsers(userNames));
+            List<User> userNames = inputView.inputUserName();
+            return new Users(userNames);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
             return settingUsers();
         }
     }
 
-    private List<User> makeUsers(List<String> userNames) {
-        return userNames.stream()
-                .map(User::new)
-                .collect(Collectors.toList());
+    private Items settingItems(Users users) {
+        try {
+            return new Items(inputView.inputItem(), users);
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
+            return settingItems(users);
+        }
     }
 
     private Height settingHeight() {
