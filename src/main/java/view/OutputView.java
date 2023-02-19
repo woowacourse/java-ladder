@@ -31,6 +31,7 @@ public class OutputView {
         });
         System.out.println(stringBuilder);
     }
+
     private void printLadder(Ladder ladder) {
         for (Layer layer : ladder.getLayers()) {
             printLayer(layer);

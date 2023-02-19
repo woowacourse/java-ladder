@@ -11,6 +11,7 @@ public class InputValidators implements InputValidator {
     public InputValidators(List<InputValidator> values) {
         this.values = values;
     }
+
     @Override
     public void validate(InputValidationRequest request) throws IllegalArgumentException {
         values.forEach(value -> value.validate(request));
