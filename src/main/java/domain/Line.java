@@ -16,8 +16,8 @@ public class Line {
     private final List<Boolean> points = new ArrayList<>();
     private final RandomValueGenerator randomValueGenerator;
 
-    public Line(int personCount, RandomValueGeneratorImpl impl) {
-        this.randomValueGenerator = impl;
+    public Line(int personCount, RandomValueGenerator generator) {
+        this.randomValueGenerator = generator;
         calculatePoints(personCount);
     }
 
