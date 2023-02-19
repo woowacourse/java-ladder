@@ -6,23 +6,23 @@ public class Height {
     private static final int MIN_HEIGHT_INCLUSIVE = 2;
     private static final int MAX_HEIGHT_INCLUSIVE = 100;
 
-    private final int height;
+    private final int value;
 
-    public Height(int height) {
-        validateHeightSize(height);
-        this.height = height;
+    public Height(int value) {
+        validateHeightSize(value);
+        this.value = value;
     }
 
-    private static void validateHeightSize(int height) {
-        if (height < MIN_HEIGHT_INCLUSIVE) {
+    private static void validateHeightSize(int value) {
+        if (value < MIN_HEIGHT_INCLUSIVE) {
             throw new IllegalArgumentException(ERROR_MIN_HEIGHT);
         }
-        if (height > MAX_HEIGHT_INCLUSIVE) {
+        if (value > MAX_HEIGHT_INCLUSIVE) {
             throw new IllegalArgumentException(ERROR_MAX_HEIGHT);
         }
     }
 
     public int getValue() {
-        return this.height;
+        return this.value;
     }
 }

@@ -13,8 +13,7 @@ public class Name {
     }
 
     private static void validateNameSize(String name) {
-        if (name.length() < NAME_MIN_LENGTH_INCLUSIVE
-                || name.length() > NAME_MAX_LENGTH_INCLUSIVE) {
+        if (name.length() < NAME_MIN_LENGTH_INCLUSIVE || name.length() > NAME_MAX_LENGTH_INCLUSIVE) {
             throw new IllegalArgumentException(ERROR_NAME_LENGTH);
         }
     }
