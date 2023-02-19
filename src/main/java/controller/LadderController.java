@@ -16,7 +16,7 @@ import view.OutputView;
 public class LadderController {
 	public void makeLadder() {
 		Participants participants = retrieveParticipants();
-		Ladder ladder = makeLadder(participants);
+		Ladder ladder = buildLadder(participants);
 		OutputView.printResult(participants, ladder);
 	}
 
@@ -37,9 +37,9 @@ public class LadderController {
 			.collect(Collectors.toList());
 	}
 
-	private Ladder makeLadder(Participants participants) {
+	private Ladder buildLadder(Participants participants) {
 		LadderHeight height = retrieveLadderHeight();
-		LadderWidth width = getWidthFromParticipantsNum(participants.getParticipantsNum());
+		LadderWidth width = changeIntoWidth(participants.getParticipantsNum());
 		return new LadderBuilder().build(height, width, new RandomPointGenerator());
 	}
 
@@ -52,7 +52,7 @@ public class LadderController {
 		}
 	}
 
-	private LadderWidth getWidthFromParticipantsNum(final int participantsNum) {
+	private LadderWidth changeIntoWidth(final int participantsNum) {
 		return new LadderWidth( participantsNum - 1);
 	}
 }
