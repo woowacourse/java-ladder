@@ -12,9 +12,17 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("이름 목록")
 class NamesTest {
+    @DisplayName("생성된다.")
+    @ParameterizedTest
+    @MethodSource("namesDummy")
+    void create(final List<Name> names) {
+        assertDoesNotThrow(() -> new Names(names));
+    }
+
     @DisplayName("Name 리스트가 null일 경우 예외가 발생한다.")
     @Test
     void throwExceptionWhenNamesIsNull() {
@@ -26,7 +34,7 @@ class NamesTest {
 
     @DisplayName("Name 리스트가 2명 미만일 경우 예외가 발생한다.")
     @ParameterizedTest
-    @MethodSource("namesParameterDummy")
+    @MethodSource("namesWrongParameterDummy")
     void throwExceptionWhenNamesHasSizeLessThan2(final List<Name> names) {
         assertThatThrownBy(() -> new Names(names))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -53,7 +61,7 @@ class NamesTest {
         assertThat(findNames).containsExactlyElementsOf(inputNames);
     }
 
-    static Stream<Arguments> namesParameterDummy() {
+    static Stream<Arguments> namesWrongParameterDummy() {
         return Stream.of(
                 Arguments.arguments(List.of(NameFixture.createNameRosie())),
                 Arguments.arguments(List.of(NameFixture.createNameHyena())),
