@@ -34,7 +34,6 @@ public class Name {
         return name.length() > MAX_NAME_LENGTH;
     }
 
-
     private void validateNameFormat(String name) {
         if (name.contains(BLANK)) {
             throw new IllegalArgumentException(INVALID_USER_NAME_FORMAT.getMessage());
