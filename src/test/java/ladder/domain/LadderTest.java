@@ -13,7 +13,7 @@ class LadderTest {
     @Test
     void 사다리는_주어진_높이만큼의_라인을_가진다() {
         int height = 3;
-        Ladder ladder = new Ladder(3, height);
+        Ladder ladder = Ladder.of(3, height);
         List<Line> lines = ladder.toUnModifiableLines();
 
         assertThat(lines.size()).isEqualTo(height);
@@ -22,7 +22,7 @@ class LadderTest {
     @Test
     void 사다리는_참여자_수_보다_1_작은_폭을_가진다() {
         int playerCount = 3;
-        Ladder ladder = new Ladder(playerCount, 3);
+        Ladder ladder = Ladder.of(playerCount, 3);
         List<Line> lines = ladder.toUnModifiableLines();
         Line line = lines.get(0);
 

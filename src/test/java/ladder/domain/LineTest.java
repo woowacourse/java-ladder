@@ -19,7 +19,7 @@ class LineTest {
 
     @Test
     void 라인은_주어진_폭_만큼의_디딤대_좌표값_개수를_가진다() {
-        Line line = new Line(new RandomStepPointGenerator(), 5);
+        Line line = Line.of(new RandomStepPointGenerator(), 5);
 
         assertThat(line.toUnmodifiableStepPoints())
                 .hasSize(5);
@@ -28,16 +28,9 @@ class LineTest {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0})
     void 주어진_폭이_1_미만이면_예외(int width) {
-        assertThatThrownBy(() -> new Line(new RandomStepPointGenerator(), width))
+        assertThatThrownBy(() -> Line.of(new RandomStepPointGenerator(), width))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 폭은 1 이상이어야 합니다.");
-    }
-
-    @Test
-    void 주어진_개수만큼_디딤대_좌표값을_생성한다() {
-        Line line = new Line(new RandomStepPointGenerator(), 5);
-
-        assertThat(line.toUnmodifiableStepPoints()).hasSize(5);
     }
 
     @Test
@@ -45,7 +38,7 @@ class LineTest {
         List<StepPoint> expected = List.of(EXIST, NONE, EXIST, NONE, EXIST);
 
         Queue<StepPoint> generateValues = new LinkedList<>(expected);
-        Line line = new Line(new MockedPointGenerator(generateValues), 5);
+        Line line = Line.of(new MockedPointGenerator(generateValues), 5);
 
         assertThat(line.toUnmodifiableStepPoints()).isEqualTo(expected);
     }
@@ -56,7 +49,7 @@ class LineTest {
 
         Queue<StepPoint> generateValues = new LinkedList<>(expected);
 
-        assertThatThrownBy(() -> new Line(new MockedPointGenerator(generateValues), 2))
+        assertThatThrownBy(() -> Line.of(new MockedPointGenerator(generateValues), 2))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -73,6 +66,4 @@ class LineTest {
             return queue.poll();
         }
     }
-
-
 }

@@ -6,13 +6,18 @@ import java.util.List;
 
 public class Ladder {
 
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
-    public Ladder(int playerCount, int height) {
-        StepPointGenerator stepPointGenerator = new RandomStepPointGenerator();
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public static Ladder of(int playerCount, int height) {
+        List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(stepPointGenerator, playerCount - 1));
+            lines.add(Line.of(new RandomStepPointGenerator(), playerCount - 1));
         }
+        return new Ladder(lines);
     }
 
     public List<Line> toUnModifiableLines() {
