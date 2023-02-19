@@ -32,7 +32,7 @@ public class Name {
         }
     }
 
-    private enum Message {
+    protected enum Message {
 
         EXCEPTION_INVALID_NAME_LENGTH("%d글자 이상 %d글자 이하의 이름만 입력해주세요.", MIN_LENGTH, MAX_LENGTH),
         EXCEPTION_INVALID_NAME_BLANK("빈 이름(공백)은 입력이 불가능합니다.");

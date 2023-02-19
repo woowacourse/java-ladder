@@ -19,7 +19,7 @@ public class Names {
     }
 
     public List<Name> getNames() {
-        return names;
+        return new ArrayList<>(names);
     }
 
     public int getPersonNumber() {
@@ -33,7 +33,7 @@ public class Names {
     }
 
 
-    private enum Message {
+    protected enum Message {
         EXCEPTION_RANGE("%d명 이상 %d명 이하의 사람 수를 입력해 주세요.", MIN_RANGE, MAX_RANGE);
 
         public static final String _FORMAT = "[ERROR] %s";

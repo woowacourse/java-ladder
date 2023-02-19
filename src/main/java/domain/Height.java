@@ -21,7 +21,7 @@ public class Height {
         return height;
     }
 
-    private enum Message {
+    protected enum Message {
         EXCEPTION_RANGE("%d 이상 %d 이하의 자연수만 입력해 주세요.", MIN_RANGE, MAX_RANGE);
 
         public static final String _FORMAT = "[ERROR] %s";
