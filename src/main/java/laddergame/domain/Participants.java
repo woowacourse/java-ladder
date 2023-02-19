@@ -1,21 +1,23 @@
 package laddergame.domain;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Participants {
-    private static final String PARTICIPANTS_NULL_EXCEPTION = "참여자 이름 목록은 null이 될 수 없습니다.";
+    private static final String PARTICIPANTS_EMPTY_EXCEPTION = "입력된 참여자 이름 목록이 비어있을 수 없습니다.";
 
     private final Names names;
 
-    public Participants(final List<String> names) {
+    public Participants(final List<String> nameValues) {
+        final List<String> names = Optional.ofNullable(nameValues).orElse(List.of());
         validateParticipants(names);
         this.names = new Names(names);
     }
 
     private void validateParticipants(final List<String> names) {
-        if (names == null) {
-            throw new IllegalArgumentException(PARTICIPANTS_NULL_EXCEPTION);
+        if (names.isEmpty()) {
+            throw new IllegalArgumentException(PARTICIPANTS_EMPTY_EXCEPTION);
         }
     }
 
