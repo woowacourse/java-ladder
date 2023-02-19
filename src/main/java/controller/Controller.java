@@ -22,20 +22,12 @@ public class Controller {
 
     public void run() {
         List<String> playerNames = inputView.readPlayerName();
-        Players players = new Players(generatePlayers(playerNames));
+        Players players = Players.generatePlayer(playerNames);
 
         int ladderHeight = inputView.readLadderHeight();
         List<Line> ladder = generateLadder(ladderHeight, players);
 
         printResult(players, ladder);
-    }
-
-    private List<Player> generatePlayers(List<String> playerNames) {
-        List<Player> players = new ArrayList<>();
-        for (String playerName : playerNames) {
-            players.add(new Player(playerName));
-        }
-        return players;
     }
 
     private List<Line> generateLadder(int ladderHeight, Players players) {

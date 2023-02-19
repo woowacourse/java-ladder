@@ -13,6 +13,13 @@ public class Players {
         this.players = validatePlayersSize(players);
     }
 
+    public static Players generatePlayer(List<String> playerNames) {
+        List<Player> players = playerNames.stream()
+            .map(Player::new)
+            .collect(Collectors.toList());
+        return new Players(players);
+    }
+
     private List<Player> validatePlayersSize(List<Player> players) {
         if (players.size() < PLAYERS_MIN_SIZE) {
             throw new IllegalArgumentException(PLAYERS_SIZE_ERROR_MESSAGE);
