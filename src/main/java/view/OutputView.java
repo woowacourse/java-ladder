@@ -1,16 +1,14 @@
 package view;
 
+import static domain.LadderFormat.getConnectionStatus;
 import static domain.Name.MAX_NAME_LENGTH;
-import static utils.LadderFormat.LADDER_COLUMN;
-import static utils.LadderFormat.NON_CONNECTION;
-import static utils.LadderFormat.CONNECTION;
+import static domain.LadderFormat.LADDER_COLUMN;
 
 import domain.Ladder;
 import domain.Line;
 import domain.User;
 import domain.Users;
 import java.util.List;
-import utils.LadderFormat;
 
 public class OutputView {
 
@@ -61,7 +59,7 @@ public class OutputView {
         StringBuilder result = new StringBuilder();
         for (Line line : ladder.getLines()) {
             result.append(BLANK.repeat(width))
-                .append(LADDER_COLUMN);
+                .append(LADDER_COLUMN.getFormat());
             appendLine(result, line);
             result.append(NEXT_LINE);
         }
@@ -71,15 +69,7 @@ public class OutputView {
     private void appendLine(StringBuilder result, Line line) {
         for (Boolean point : line.getPoints()) {
             result.append(getConnectionStatus(point));
-            result.append(LADDER_COLUMN);
+            result.append(LADDER_COLUMN.getFormat());
         }
     }
-
-    private LadderFormat getConnectionStatus(Boolean point) {
-        if (point) {
-            return CONNECTION;
-        }
-        return NON_CONNECTION;
-    }
-
 }
