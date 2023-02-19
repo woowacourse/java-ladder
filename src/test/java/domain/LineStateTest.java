@@ -24,7 +24,7 @@ public class LineStateTest {
 
     @DisplayName("값이 0과 1이 아닌 경우 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(ints = {-1,2})
+    @ValueSource(ints = {-1, 2})
     void value_else_Excpetion(int value) {
         assertThatThrownBy(() -> LineState.of(value).getState())
                 .isInstanceOf(IllegalArgumentException.class);

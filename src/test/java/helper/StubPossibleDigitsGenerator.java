@@ -7,4 +7,5 @@ public class StubPossibleDigitsGenerator implements RandomGenerator {
     public int generate() {
         return 1;
     }
+
 }

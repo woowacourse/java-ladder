@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LadderTest {
     private final RandomDigitsGenerator randomDigitsGenerator = new RandomDigitsGenerator();
-    
+
     @DisplayName("사다리를 생성한다.")
     @Test
     void create_ladder() {
