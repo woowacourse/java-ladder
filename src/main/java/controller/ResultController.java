@@ -8,6 +8,7 @@ import view.OutputView;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.concurrent.Callable;
 
 public class ResultController {
     private final InputView inputView;
@@ -21,13 +22,9 @@ public class ResultController {
     }
 
     public void run() {
-        Status status = Status.CONTINUE;
+        Status status;
         do {
-            try {
-                status = process();
-            } catch (IllegalArgumentException e) {
-                outputView.printExceptionMessage(e.getMessage());
-            }
+            status = repeatUntil(()->process());
         } while (status.isCONTINUE());
     }
 
@@ -47,6 +44,15 @@ public class ResultController {
             return result.getItemsALL();
         }
         return result.getItem(new User(command));
+    }
+
+    private <T> T repeatUntil(Callable<T> runnable) {
+        try {
+            return runnable.call();
+        } catch (Exception e) {
+            outputView.printExceptionMessage(e.getMessage());
+            return repeatUntil(runnable);
+        }
     }
 
     private enum Status {

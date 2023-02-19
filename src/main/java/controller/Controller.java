@@ -4,7 +4,7 @@ import domain.*;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
+import java.util.function.Supplier;
 
 public class Controller {
     private final InputView inputView;
@@ -16,42 +16,23 @@ public class Controller {
     }
 
     public void run() {
-        Users users = settingUsers();
-        Items items = settingItems(users);
-        Ladders ladders = new Ladders(users.getCount(), settingHeight(), new RandomGenerator());
+        Users users = repeatUntil(() -> new Users(inputView.inputUserName()));
+        Items items = repeatUntil(()->new Items(inputView.inputItem(), users));
+        Ladders ladders = new Ladders(users.getCount()
+                , repeatUntil(() -> new Height(inputView.inputLadderHeight()))
+                , new RandomGenerator());
 
         outputView.printLadderResultBoard(users, items, ladders);
         Result result = new Result(users, items, ladders);
-
         new ResultController(inputView, outputView, result).run();
     }
 
-    private Users settingUsers() {
+    private <T> T repeatUntil(Supplier<T> runnable) {
         try {
-            List<User> userNames = inputView.inputUserName();
-            return new Users(userNames);
-        } catch (IllegalArgumentException e) {
+            return runnable.get();
+        } catch (Exception e) {
             outputView.printExceptionMessage(e.getMessage());
-            return settingUsers();
-        }
-    }
-
-    private Items settingItems(Users users) {
-        try {
-            return new Items(inputView.inputItem(), users);
-        } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
-            return settingItems(users);
-        }
-    }
-
-    private Height settingHeight() {
-        try {
-            int height = inputView.inputLadderHeight();
-            return new Height(height);
-        } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
-            return settingHeight();
+            return repeatUntil(runnable);
         }
     }
 }
