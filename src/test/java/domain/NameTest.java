@@ -16,9 +16,17 @@ class NameTest {
         assertThatNoException().isThrownBy(() -> new Name("name"));
     }
 
+    @DisplayName("이름이 null이면 예외를 반환한다.")
+    @Test
+    void create_fail_by_null_value() {
+        assertThatThrownBy(() -> new Name(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("이름은 null일 수 없습니다.");
+    }
+
     @DisplayName("이름이 공백이면 예외를 반환한다.")
     @ParameterizedTest
-    @ValueSource(strings = {""," ","  "})
+    @ValueSource(strings = {"", " ", "  "})
     void create_fail_by_blank_name(String wrongName) {
         assertThatThrownBy(() -> new Name(wrongName))
                 .isInstanceOf(IllegalArgumentException.class)

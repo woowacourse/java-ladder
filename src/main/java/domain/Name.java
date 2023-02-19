@@ -14,6 +14,10 @@ public class Name {
     }
 
     private void validate(String name) {
+        if (Objects.isNull(name)) {
+            throw new IllegalArgumentException("이름은 null일 수 없습니다.");
+        }
+
         if (name.isBlank()) {
             throw new IllegalArgumentException(String.format("이름은 공백이거나 비어있을 수 없습니다. 입력값 : %s", name));
         }
