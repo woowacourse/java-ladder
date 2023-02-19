@@ -16,7 +16,7 @@ class ResultTest {
     void init() {
         Users users = new Users(List.of(new User("aa"), new User("bb"), new User("cc")));
 
-        Items items = new Items(List.of(new Item("1"), new Item("2"), new Item("3")), users.getCount());
+        Items items = new Items(List.of(new Item("1"), new Item("2"), new Item("3")), users);
 
         Queue<Boolean> randomNumber = new LinkedList<>();
         Arrays.asList(false, true, true, true).forEach(randomNumber::add);
