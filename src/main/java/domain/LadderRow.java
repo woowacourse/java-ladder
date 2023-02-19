@@ -17,18 +17,22 @@ public class LadderRow {
     }
 
     private void validate(List<Boolean> lines) {
-        boolean flag = false;
-        for (int i = 0; i < lines.size() - 1; i++) {
+        int limit = lines.size() - 1;
+        for (int i = 0; i < limit; i++) {
             Boolean current = lines.get(i);
             Boolean next = lines.get(i + 1);
-            if (current == next && current) {
-                flag = true;
-                break;
-            }
+            checkIsTrueInRow(current, next);
         }
-        if (flag) {
+    }
+
+    private void checkIsTrueInRow(Boolean current, Boolean next) {
+        if (isAllTrue(current, next)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private boolean isAllTrue(Boolean current, Boolean next) {
+        return current == next && current;
     }
 
     public String parseLineToString() {
