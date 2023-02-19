@@ -14,10 +14,6 @@ public class OutputView {
         return instance;
     }
 
-    public void printExceptionMessage(IllegalArgumentException exception) {
-        System.out.println(exception.getMessage());
-    }
-
     public void printResult(Names names, Lines lines) {
         System.out.println(Message.OUTPUT_RESULT.message);
         names.getNames()
