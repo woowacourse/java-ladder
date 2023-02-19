@@ -20,7 +20,8 @@ class NamesTest {
     @ValueSource(strings = {"깃짱", "제리"})
     void underflowNamesTest(String names) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Names(names));
+                .isThrownBy(() -> new Names(names))
+                .withMessageContainingAll("[ERROR]", "이하의 사람 수를 입력해 주세요.");
     }
 
     @DisplayName("사람의 수가 100명 초과인 경우 예외처리한다.")
@@ -29,6 +30,7 @@ class NamesTest {
     void overflowNamesTest(String names) {
         int repeatCount = 101;
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Names(names.repeat(repeatCount)));
+                .isThrownBy(() -> new Names(names.repeat(repeatCount)))
+                .withMessageContainingAll("[ERROR]", "이하의 사람 수를 입력해 주세요.");
     }
 }

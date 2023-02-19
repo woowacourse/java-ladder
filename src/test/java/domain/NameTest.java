@@ -20,7 +20,8 @@ class NameTest {
     @ValueSource(strings = {"깃짱깃짱깃짱", "제리제리제리"})
     void invalidNameLengthTest(String name) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Name(name));
+                .isThrownBy(() -> new Name(name))
+                .withMessageContainingAll("[ERROR]", "글자 이하의 이름만 입력해주세요.");
     }
 
     @DisplayName("사람의 이름이 빈 문자열(공백)이거나 1글자 미만인 경우 예외처리한다.")
@@ -28,6 +29,7 @@ class NameTest {
     @ValueSource(strings = {"", " ", "   "})
     void invalidBlankNameTest(String name) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Name(name));
+                .isThrownBy(() -> new Name(name))
+                .withMessageContainingAll("[ERROR]", "빈 이름(공백)은 입력이 불가능합니다.");
     }
 }

@@ -20,6 +20,7 @@ class HeightTest {
     @ValueSource(ints = {-1, 0, 101, 102})
     void invalidHeightTest(int height) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Height(height));
+                .isThrownBy(() -> new Height(height))
+                .withMessageContainingAll("[ERROR]", "자연수만 입력해 주세요.");
     }
 }
