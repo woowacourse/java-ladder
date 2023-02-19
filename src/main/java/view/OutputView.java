@@ -66,7 +66,7 @@ public class OutputView {
     }
 
     private boolean isMaximumLengthOfPlayerName(final Player player) {
-        return player.getLengthOfPlayerName() == MAXIMUM_LENGTH_OF_NAME;
+        return player.getName().length() == MAXIMUM_LENGTH_OF_NAME;
     }
 
     private void drawPlayerNameWhenMaximumLength(final Player player) {
@@ -98,7 +98,7 @@ public class OutputView {
     }
 
     private int findLengthOfFirstPlayerName(final Players players) {
-        return players.getPlayers().get(0).getLengthOfPlayerName();
+        return players.getPlayers().get(0).getName().length();
     }
 
     private void drawSpaceAtFirst(final int lengthOfFirstPlayerName) {
