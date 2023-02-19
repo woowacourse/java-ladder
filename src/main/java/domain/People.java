@@ -8,7 +8,10 @@ public class People {
 
     private final List<Person> people;
 
-    public People(List<Person> people) {
+    public People(List<String> names) {
+        List<Person> people = names.stream()
+                .map(Person::new)
+                .collect(Collectors.toList());
         validatePersonCount(people);
         this.people = people;
     }

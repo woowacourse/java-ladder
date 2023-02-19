@@ -41,10 +41,7 @@ public class LadderController {
     }
 
     private People nameRequest() {
-        List<Person> collect = inputView.readNames().stream()
-            .map(Person::new)
-            .collect(Collectors.toList());
-        return new People(collect);
+        return new People(inputView.readNames());
     }
 
     private Ladder ladderRequest(int peopleCount) {

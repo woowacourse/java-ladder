@@ -17,9 +17,9 @@ class PeopleTest {
     @ParameterizedTest
     @ValueSource(ints = {2, 3, 10})
     void success(int value) {
-        List<Person> people = new ArrayList<>();
+        List<String> people = new ArrayList<>();
         for (int i = 0; i < value; i++) {
-            people.add(new Person("hi" + value));
+            people.add("hi" + value);
         }
         assertDoesNotThrow(() -> new People(people));
     }
@@ -28,9 +28,9 @@ class PeopleTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 1})
     void fail(int value) {
-        List<Person> people = new ArrayList<>();
+        List<String> people = new ArrayList<>();
         for (int i = 0; i < value; i++) {
-            people.add(new Person("hi" + value));
+            people.add("hi" + value);
         }
         assertThatThrownBy(() -> new People(people))
                 .isInstanceOf(IllegalArgumentException.class)
