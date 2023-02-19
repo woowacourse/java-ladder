@@ -8,6 +8,7 @@ import static utils.LadderFormat.CONNECTION;
 
 import domain.Ladder;
 import domain.Line;
+import domain.Point;
 import domain.User;
 import domain.Users;
 import utils.LadderFormat;
@@ -59,8 +60,8 @@ public class OutputView {
     }
 
     private void appendLine(StringBuilder result, Line line) {
-        for (Boolean point : line.getPoints()) {
-            result.append(getConnectionStatus(point));
+        for (Point point : line.getPoints()) {
+            result.append(getConnectionStatus(point.isConnected()));
             result.append(LADDER_COLUMN);
         }
     }

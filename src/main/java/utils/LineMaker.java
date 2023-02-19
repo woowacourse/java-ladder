@@ -1,9 +1,10 @@
 package utils;
 
+import domain.Point;
 import java.util.List;
 
 public interface LineMaker {
 
-    List<Boolean> generateLine(int userCount);
+    List<Point> generateLine(int userCount);
 
 }

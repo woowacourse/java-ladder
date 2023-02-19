@@ -6,31 +6,33 @@ import utils.LineMaker;
 
 public class Line {
 
-    private final List<Boolean> points;
+    private final List<Point> points;
 
     public Line(LineMaker lineMaker, int userCount) {
         this.points = new ArrayList<>();
         addPoint(lineMaker.generateLine(userCount));
     }
 
-    private void addPoint(List<Boolean> randomPoints) {
-        for (Boolean randomPoint : randomPoints) {
+    private void addPoint(List<Point> randomPoints) {
+        for (Point randomPoint : randomPoints) {
             points.add(convertPoint(randomPoint));
         }
     }
 
-    private boolean convertPoint(Boolean randomPoint) {
+    private Point convertPoint(Point randomPoint) {
         if (checkFront()) {
-            return false;
+            return new Point(false);
         }
         return randomPoint;
     }
 
     private boolean checkFront() {
-        return !points.isEmpty() && points.get(points.size() - 1);
+        int lastIndex = points.size() - 1;
+
+        return !points.isEmpty() && points.get(lastIndex).isConnected();
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 

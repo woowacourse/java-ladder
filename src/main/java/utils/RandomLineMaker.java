@@ -1,5 +1,6 @@
 package utils;
 
+import domain.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,16 +15,18 @@ public class RandomLineMaker implements LineMaker {
     }
 
     @Override
-    public List<Boolean> generateLine(int userCount) {
-        List<Boolean> points = new ArrayList<>();
+    public List<Point> generateLine(int userCount) {
+        List<Point> points = new ArrayList<>();
         for (int point = 1; point < userCount; point++) {
-            points.add(generateNumber(BOUND + 1));
+            points.add(generatePoint(BOUND + 1));
         }
 
         return points;
     }
 
-    public boolean generateNumber(int bound) {
-        return random.nextInt(bound) == BOUND;
+    public Point generatePoint(int bound) {
+        boolean isConnected = random.nextInt(bound) == BOUND;
+
+        return new Point(isConnected);
     }
 }
