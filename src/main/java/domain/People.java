@@ -36,4 +36,8 @@ public class People {
     public List<Person> getParticipants() {
         return people;
     }
+
+    public int getParticipantsSize() {
+        return people.size();
+    }
 }

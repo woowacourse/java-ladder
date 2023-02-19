@@ -55,7 +55,7 @@ public class LadderEngine {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            Line line = lineGenerator.generate(people.getParticipants().size());
+            Line line = lineGenerator.generate(people.getParticipantsSize());
             lines.add(line);
         }
 
