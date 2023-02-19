@@ -6,7 +6,6 @@ import laddergame.view.LadderForm;
 import laddergame.view.OutputView;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static laddergame.utils.ExceptionTemplate.repeatAndPrintCause;
 
@@ -25,24 +24,12 @@ public class LadderController {
     }
 
     public void run() {
-        final Participants participants = repeatAndPrintCause(this::getParticipants);
-        final Height height = repeatAndPrintCause(this::getHeight);
+        final Participants participants = repeatAndPrintCause(() -> new Participants(inputView.readNames()));
+        final Height height = repeatAndPrintCause(() -> new Height(inputView.readHeight()));
 
         final Ladder ladder = new Ladder(participants, height);
 
         final List<Line> lines = ladder.createLines(booleanGenerator);
         outputView.printResult(LadderForm.joinUnitsFrom(participants.getNames(), lines));
-    }
-
-    private Participants getParticipants() {
-        final List<Name> names = inputView.readNames()
-                .stream()
-                .map(Name::new)
-                .collect(Collectors.toList());
-        return new Participants(names);
-    }
-
-    private Height getHeight() {
-        return new Height(inputView.readHeight());
     }
 }
