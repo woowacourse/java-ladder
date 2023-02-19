@@ -24,9 +24,16 @@ public class LadderEngine {
     public void start() {
 
         People people = makePeople();
-        Ladder ladder = makesLadder(people);
+        List<String> resultCandidates = makeResultCandidates();
+        Ladder ladder = makesLadder(people, resultCandidates);
 
         OutputView.printLadder(ladder);
+    }
+
+    private List<String> makeResultCandidates() {
+        return IllegalArgumentExceptionHandler.handleExceptionByRepeating(
+                InputView::inputResultCandidates
+        );
     }
 
     private People makePeople() {
@@ -41,12 +48,12 @@ public class LadderEngine {
                                .collect(Collectors.toList()));
     }
 
-    private Ladder makesLadder(People people) {
+    private Ladder makesLadder(People people, List<String> resultCandidates) {
         return IllegalArgumentExceptionHandler.handleExceptionByRepeating(
                 () -> {
                     int height = InputView.inputMaxLadderHeight();
                     List<Line> lines = makeLines(people, height);
-                    return new Ladder(people, lines);
+                    return new Ladder(people, lines, resultCandidates);
                 }
         );
     }

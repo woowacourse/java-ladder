@@ -13,7 +13,7 @@ public class Ladder {
 
     private final People people;
     private final List<Line> lines;
-    private List<String> resultCandidates; //TODO : 재할당 금지 + 불변성 보장 해야함
+    private final List<String> resultCandidates;
 
     public Ladder(final People people, final List<Line> lines, final List<String> resultCandidates) {
         validateHeightOf(lines);
@@ -21,12 +21,6 @@ public class Ladder {
         this.lines = copyOf(lines);
         this.people = people;
         this.resultCandidates = copyOf(resultCandidates);
-    }
-
-    public Ladder(final People people, final List<Line> lines) {
-        validateHeightOf(lines);
-        this.lines = copyOf(lines);
-        this.people = people;
     }
 
     private void validateEqualsSizeOf(People people, List<String> resultCandidates) {

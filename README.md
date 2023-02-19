@@ -23,7 +23,7 @@
 - [x] 사다리 게임 실제로 시작하기
 
 ### Ladder refactoring
-- [ ] resultCandidates 불변성 및 재할당 불가 상태로 변경
+- [x] resultCandidates 불변성 및 재할당 불가 상태로 변기
 
 ## Bridge
 - [x] 브릿지는 연속으로 생성될 수 없다.
@@ -33,7 +33,7 @@
 ## Input
 - [x] 사람 이름은 "," 로 구분
 - [x] 최대 사다리 높이
-- [ ] 사다리 실행 결과 입력
+- [x] 사다리 실행 결과 입력
 
 ## Output
 - [x] 사다리 출력
