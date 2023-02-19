@@ -1,18 +1,17 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Floor {
 
     private static final int SECOND_INDEX_OF_FLOOR = 1;
     private final List<Point> points;
 
-    public Floor(List<Boolean> values) {
+    public Floor(List<Point> values) {
 
-        List<Point> points = values.stream()
-                .map(Point::of)
-                .collect(Collectors.toList());
+        List<Point> points = new ArrayList<>(values);
 
         removeContinuousLine(points);
 
@@ -27,9 +26,7 @@ public class Floor {
         }
     }
 
-    public List<Boolean> getPoints() {
-        return points.stream()
-                .map(Point::isExist)
-                .collect(Collectors.toList());
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }

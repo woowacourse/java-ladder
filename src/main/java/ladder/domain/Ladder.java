@@ -42,8 +42,9 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    private List<Boolean> generateValues(PointGenerator pointGenerator, int width) {
+    private List<Point> generateValues(PointGenerator pointGenerator, int width) {
         return Stream.generate(pointGenerator::generate)
+                .map(Point::of)
                 .limit(width)
                 .collect(Collectors.toList());
     }

@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Floor;
-import ladder.domain.Ladder;
-import ladder.domain.User;
-import ladder.domain.Users;
+import ladder.domain.*;
 
 import java.util.regex.Pattern;
 
@@ -68,14 +65,14 @@ public class OutputView {
 
         System.out.print(BLANK_SPACE.repeat(BLOCK_SIZE_EXCEPT_DELIMITER));
         System.out.print(DELIMITER);
-        for (Boolean point : floor.getPoints()) {
+        for (Point point : floor.getPoints()) {
             printLine(point);
         }
     }
 
-    private static void printLine(Boolean point) {
+    private static void printLine(Point point) {
 
-        if (point) {
+        if (point.isExist()) {
             System.out.print(LINE_COMPONENT.repeat(BLOCK_SIZE_EXCEPT_DELIMITER));
             System.out.print(DELIMITER);
             return;
