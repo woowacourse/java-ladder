@@ -31,7 +31,8 @@ public class InputView {
         for (String name : names) {
             validator.validate(
                     new InputValidationRequest(
-                            List.of(ValidateType.DUPLICATE_VALUE), name
+                            List.of(ValidateType.DUPLICATE_VALUE),
+                            name
                     )
             );
         }
