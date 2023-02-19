@@ -3,7 +3,8 @@ package ladder.domain;
 import java.util.Arrays;
 
 public enum Foothold {
-    Y(true, "-----"), N(false, "     ");
+    Y(true, "-----"),
+    N(false, "     ");
 
     private final boolean state;
     private final String mark;

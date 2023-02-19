@@ -7,6 +7,17 @@ import java.util.Random;
 public class RandomRowsGenerator {
     private static final Random random = new Random();
 
+    public Rows generateRows(Width width, Height height) {
+        List<Row> rows = new ArrayList<>();
+        int ladderWidth = width.getWidth();
+        int ladderHeight = height.getHeight();
+
+        for (int i = 0; i < ladderHeight; i++) {
+            rows.add(generateValidRow(ladderWidth));
+        }
+        return new Rows(rows);
+    }
+
     private Row generateValidRow(int size) {
         try {
             return generateRow(size);
@@ -25,16 +36,5 @@ public class RandomRowsGenerator {
 
     private Foothold generateFoothold() {
         return Foothold.from(random.nextBoolean());
-    }
-
-    public Rows generateRows(Width width, Height height) {
-        List<Row> rows = new ArrayList<>();
-        int ladderWidth = width.getWidth();
-        int ladderHeight = height.getHeight();
-
-        for (int i = 0; i < ladderHeight; i++) {
-            rows.add(generateValidRow(ladderWidth));
-        }
-        return new Rows(rows);
     }
 }
