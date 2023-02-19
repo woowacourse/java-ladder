@@ -15,11 +15,20 @@ class NamesTest {
         Assertions.assertDoesNotThrow(() -> new Names(names));
     }
 
-    @DisplayName("사람의 수가 2명 미만 100명 초과인 경우 예외 처리한다.")
+    @DisplayName("사람의 수가 2명 미만인 경우 예외 처리한다.")
     @ParameterizedTest
     @ValueSource(strings = {"깃짱", "제리"})
-    void invalidNamesTest(String names) {
+    void underflowNamesTest(String names) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Names(names));
+    }
+
+    @DisplayName("사람의 수가 100명 초과인 경우 예외처리한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"깃짱,", "제리,"})
+    void overflowNamesTest(String names) {
+        int repeatCount = 101;
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Names(names.repeat(repeatCount)));
     }
 }
