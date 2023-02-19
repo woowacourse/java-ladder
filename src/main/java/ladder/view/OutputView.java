@@ -21,7 +21,7 @@ public class OutputView {
     private void printNames(Names names) {
         String result = names.getNames()
             .stream()
-            .map(name -> String.format(NAME_FORMAT, name) + BLANK)
+            .map(name -> String.format(NAME_FORMAT, name.getName()) + BLANK)
             .collect(Collectors.joining());
         System.out.println(result.trim());
     }
