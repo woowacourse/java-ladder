@@ -7,16 +7,24 @@ import java.util.stream.Collectors;
 public class Participants {
 	private static final int MIN_PARTICIPANTS = 2;
 	private static final String NAME_NUMBER_ERROR_MSG = "최소 두 명 이상의 참가자 이름을 입력해야 합니다.";
+	private static final String NAME_DUPLICATED_ERROR_MSG = "중복된 참가자 이름을 사용할 수 없습니다.";
 	private final List<ParticipantName> names;
 
 	public Participants(final List<String> participantNames) {
 		validateNameCount(participantNames);
+		validateDuplicatedNames(participantNames);
 		names = wrapParticipantNames(participantNames);
 	}
 
 	private void validateNameCount(final List<String> participantNames) {
 		if (participantNames.size() < MIN_PARTICIPANTS) {
 			throw new IllegalArgumentException(NAME_NUMBER_ERROR_MSG);
+		}
+	}
+
+	private void validateDuplicatedNames(final List<String> participantNames) {
+		if (participantNames.size() != participantNames.stream().distinct().count()) {
+			throw new IllegalArgumentException(NAME_DUPLICATED_ERROR_MSG);
 		}
 	}
 
