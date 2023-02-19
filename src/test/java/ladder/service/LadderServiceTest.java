@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
-import ladder.util.RandomLineStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

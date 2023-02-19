@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import ladder.domain.Player;
 import ladder.domain.Players;
-import ladder.util.LineStrategy;
 
 public class LadderService {
     private static final String PLAYERS_STRING_DELIMITER = ",";
