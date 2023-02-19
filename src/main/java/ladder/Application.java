@@ -13,6 +13,6 @@ public class Application {
         List<String> names = InputView.readNames();
         int height = InputView.readLadderHeight();
         LadderGame game = new LadderGame(names, height, lineStrategy);
-        OutputView.printLadder(game.getPlayerNames(), game.getLadder(), game.getNameMaxLength());
+        OutputView.printLadder(game.getPlayerNames(), game.getLadder());
     }
 }
