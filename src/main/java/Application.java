@@ -1,10 +1,7 @@
 import controller.LadderController;
 import domain.service.LadderMaker;
 import domain.service.RandomBooleanGenerator;
-import validator.EmptyInputValidatorChain;
-import validator.InputValidator;
-import validator.NotIntegerValidatorChain;
-import validator.SuccessInputValidatorChain;
+import validator.*;
 import view.InputView;
 import view.OutputView;
 
@@ -18,12 +15,10 @@ public class Application {
         return new InputView(makeInputValidator());
     }
     private static InputValidator makeInputValidator() {
-        InputValidator emptyInputValidatorChain = new EmptyInputValidatorChain();
-        InputValidator notIntegerValidatorChain = new NotIntegerValidatorChain();
-        InputValidator successInputValidatorChain = new SuccessInputValidatorChain();
-        notIntegerValidatorChain.setNext(successInputValidatorChain);
-        emptyInputValidatorChain.setNext(notIntegerValidatorChain);
-        return emptyInputValidatorChain;
+        return InputValidator.builder()
+                .add(new EmptyInputValidatorChain())
+                .add(new NotIntegerValidatorChain())
+                .build();
     }
 
     private static LadderMaker makeLadderMaker() {

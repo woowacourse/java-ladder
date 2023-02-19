@@ -35,7 +35,12 @@ public class InputView {
     public int inputLadderHeight() {
         System.out.println(INPUT_LADDER_HEIGHT_MESSAGE);
         String input = scanner.nextLine();
-        validator.validate(new InputValidationRequest(List.of(ValidateType.EMPTY_VALUE, ValidateType.INTEGER_VALUE), input));
+        validator.validate(
+                new InputValidationRequest(
+                        List.of(ValidateType.EMPTY_VALUE, ValidateType.INTEGER_VALUE),
+                        input
+                )
+        );
         return Integer.parseInt(input);
     }
 }
