@@ -26,6 +26,7 @@ public class Name {
     protected enum Message {
 
         EXCEPTION_INVALID_NAME_LENGTH("%d글자 이상 %d글자 이하의 이름만 입력해주세요.", MIN_LENGTH, MAX_LENGTH);
+
         public static final String BASE_MESSAGE_FORMAT = "[ERROR] %s";
         private final String message;
 

@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import domain.booleanGenerator.BooleanGenerator;
-import domain.booleanGenerator.RandomBooleanGenerator;
-import domain.booleanGenerator.TrueBooleanGenerator;
+import domain.booleangenerator.BooleanGenerator;
+import domain.booleangenerator.RandomBooleanGenerator;
+import domain.booleangenerator.TrueBooleanGenerator;
 
 class LineTest {
     private final BooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();

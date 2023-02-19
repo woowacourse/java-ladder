@@ -2,7 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import domain.booleanGenerator.BooleanGenerator;
+import domain.booleangenerator.BooleanGenerator;
 
 public class Line {
     private final BooleanGenerator generator;
