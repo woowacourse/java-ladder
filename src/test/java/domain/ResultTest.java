@@ -3,10 +3,7 @@ package domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -29,12 +26,12 @@ class ResultTest {
 
     @Test
     void getItem() {
-        assertThat(result.getItem(new User("cc"))).isEqualTo("2");
+        assertThat(result.getItem(new User("cc"))).isEqualTo(new LinkedHashMap<>(Map.of(new User("cc"), new Item("2"))));
     }
 
     @Test
     void getItemFailTest() {
-        assertThatThrownBy(()->result.getItem(new User("dd")))
+        assertThatThrownBy(() -> result.getItem(new User("dd")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
