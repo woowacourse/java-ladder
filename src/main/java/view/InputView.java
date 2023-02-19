@@ -38,6 +38,13 @@ public class InputView {
         return input;
     }
 
+    public List<String> getGoals() {
+        String input = inputReader.readInput();
+
+        validateSeparatorShape(input);
+        return getSeparated(input);
+    }
+
     private static void validatePositiveInteger(final int input) {
         if (input < 1) {
             throw new IllegalArgumentException(POSITIVE_INTEGER_ERROR_MESSAGE);
