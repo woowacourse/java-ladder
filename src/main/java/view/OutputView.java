@@ -3,6 +3,7 @@ package view;
 import domain.Bridge;
 import domain.Ladder;
 import domain.Line;
+import domain.Participants;
 
 public class OutputView {
 
@@ -12,7 +13,7 @@ public class OutputView {
 
     public static void printLadder(final Ladder ladder) {
         System.out.println("실행결과");
-        printParticipantNamesOf(ladder);
+        printNamesOf(ladder.getParticipants());
         printLinesOf(ladder);
     }
 
@@ -20,8 +21,8 @@ public class OutputView {
         System.out.println(EXCEPTION_PREFIX + exception.getMessage());
     }
 
-    private static void printParticipantNamesOf(Ladder ladder) {
-        for (String name : ladder.getParticipants().getNames()) {
+    private static void printNamesOf(Participants participants) {
+        for (String name : participants.getNames()) {
             System.out.print(name + "\t");
         }
         System.out.println();

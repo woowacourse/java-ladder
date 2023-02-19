@@ -13,11 +13,13 @@
   - [x] LineGeneratorTest BridgeGenerator 변수로, 변수명 수정
 - [x] 참가자들 일급 컬렉션
 - [x] 참가자 이름이 같으면 같은 참가자로 취급
-- [x] 참가자 표현을 Person 에서 Participant로 변경
-- [x] 예외 핸들러에서 예외 출력을 OutputView로 위임
-- [x] 사다리 표현 방식을 View로 옮긴다.
+- [x] 참가자 클래스명을 Person 에서 Participant로 변경
 - [x] `Bridge == EXIST` 대신 doesExist() 메서드 사용
+- [x] 예외 핸들러에서 예외 출력을 OutputView로 위임
+- [x] Bridge 표현 방식을 OutputView로 옮긴다.
 - [x] LadderEngine::makeLines 인자 간략화(참가자 수만 전달)
+- [x] `OutputView::printParticipantNamesOf(ladder)` 메서드명 및 인자
+  - printParticipantNamesOf(ladder) -> printNamesOf(participants) 
 
 ## 기능 목록
 
