@@ -17,6 +17,10 @@ public class Line {
     }
 
     public boolean isSteppableAt(final int index) {
+        if(this.footSteps.isEmpty()){
+            return false;
+        }
+
         return this.footSteps
                 .get(index)
                 .isSteppable();
@@ -44,10 +48,14 @@ public class Line {
     }
 
     private boolean isStartEdge() {
-        return this.footSteps.size() == 0;
+        return this.footSteps.isEmpty();
     }
 
     public int getWidth() {
+        if(this.footSteps.isEmpty()){
+            return 0;
+        }
+
         return this.footSteps.size();
     }
 
