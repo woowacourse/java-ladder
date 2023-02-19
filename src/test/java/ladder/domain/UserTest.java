@@ -1,11 +1,13 @@
 package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class UserTest {
 
@@ -37,4 +39,12 @@ public class UserTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("user의 y위치 초기값은 0이다.")
+    void userInitPosition2() {
+
+        var user = new User("test");
+
+        assertThat(user.getyPosition()).isEqualTo(0);
+    }
 }
