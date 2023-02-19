@@ -1,12 +1,10 @@
 package ladder.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.assertThatNoException;
 
+import java.util.List;
 import ladder.domain.Line;
 import ladder.domain.Step;
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,28 +23,20 @@ class LineStrategyTest {
         assertThat(line.getSize())
                 .isEqualTo(4);
     }
-    
-    @Test
-    @DisplayName("Line의 Step이 연속되면 안된다.")
-    void create_continuousStep() {
-        // given
-        LineStrategy lineStrategy = new CustomLineStrategy(List.of(Step.EMPTY, Step.EXIST, Step.EXIST));
-
-        // expect
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            lineStrategy.generate(4);
-        }).withMessage("[ERROR] 라인에 Step이 연속될 수 없습니다.");
-    }
 
     @Test
-    @DisplayName("Line이 정상적으로 생성되어야 한다.")
-    void create_success() {
+    @DisplayName("사용자 정의 Line의 생성이 정상적으로 되어야 한다.")
+    void create_customSuccess() {
         // given
-        CustomLineStrategy lineStrategy = new CustomLineStrategy(List.of(Step.EMPTY, Step.EXIST, Step.EMPTY));
+        LineStrategy lineStrategy = new CustomLineStrategy(List.of(Step.EXIST, Step.EMPTY, Step.EXIST));
 
-        // expect
-        assertThatNoException().isThrownBy(() -> {
-            lineStrategy.generate(4);
-        });
+        // when
+        Line line = lineStrategy.generate(4);
+
+        // then
+        assertThat(line.getSize())
+                .isEqualTo(3);
+        assertThat(line.asString())
+                .isEqualTo("|-----|     |-----|");
     }
 }
