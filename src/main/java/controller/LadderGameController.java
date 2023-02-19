@@ -23,18 +23,10 @@ public class LadderGameController {
     }
 
     public void run() {
-        Players players = generatePlayers(inputView.readUserNames());
+        Players players = Players.generatePlayers(inputView.readUserNames());
         Height height = new Height(inputView.readHeight());
         Ladder ladder = generateLadder(players, height);
         outputView.printResult(players, ladder);
-    }
-
-    private Players generatePlayers(List<String> playersName) {
-        List<Player> players = new ArrayList<>();
-        for (String playerName : playersName) {
-            players.add(new Player(playerName));
-        }
-        return new Players(players);
     }
 
     private Ladder generateLadder(Players players, Height height) {

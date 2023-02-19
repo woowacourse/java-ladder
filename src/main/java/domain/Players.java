@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Players {
@@ -15,6 +16,14 @@ public class Players {
     public Players(List<Player> players) {
         checkPlayers(players);
         this.players = players;
+    }
+
+    public static Players generatePlayers(List<String> playersName) {
+        List<Player> players = new ArrayList<>();
+        for (String playerName : playersName) {
+            players.add(new Player(playerName));
+        }
+        return new Players(players);
     }
 
     public int getMaxPlayerNameLength() {
