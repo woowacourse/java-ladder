@@ -4,13 +4,13 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 import domain.Ladder;
+import domain.LadderGenerator;
 import domain.LadderHeight;
 import domain.Name;
 import domain.Player;
 import domain.Players;
 import java.util.List;
 import java.util.function.Supplier;
-import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -18,16 +18,19 @@ public class LadderGameApplication {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final LadderGenerator ladderGenerator;
 
-    public LadderGameApplication(InputView inputView, OutputView outputView) {
+
+    public LadderGameApplication(InputView inputView, OutputView outputView, LadderGenerator ladderGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.ladderGenerator = ladderGenerator;
     }
 
     public void run() {
         Players players = repeat(this::createPlayers);
         LadderHeight ladderHeight = repeat(inputView::readLadderHeight);
-        Ladder ladder = Ladder.create(players.size(), ladderHeight, new RandomNumberGenerator());
+        Ladder ladder = ladderGenerator.generate(players.size(), ladderHeight);
 
         outputView.printResult(players, ladder);
     }

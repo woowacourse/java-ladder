@@ -1,21 +1,22 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.RandomNumberGenerator;
 
-import java.util.List;
-import java.util.stream.Collectors;
+class LadderGeneratorTest {
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-class LadderTest {
+    private final LadderGenerator ladderGenerator = new LadderGenerator(new RandomNumberGenerator());
 
     @DisplayName("다리가 높이와 라인 수를 입력받고, 각 라인들에 높이만큼의 크기를 가진 Point 리스트를 생성한다")
     @Test
     void create_success() {
         // given
-        Ladder ladder = createLadder(3,3);
+        Ladder ladder = ladderGenerator.generate(3, new LadderHeight(3));
 
         // when
         List<Line> lines = ladder.getLines();
@@ -28,9 +29,4 @@ class LadderTest {
         assertThat(numberOfPoint).isEqualTo(1);
     }
 
-    private Ladder createLadder(int numberOfPeople, int height) {
-        LadderHeight ladderHeight = new LadderHeight(height);
-        Ladder ladder = Ladder.create(numberOfPeople, ladderHeight, new RandomNumberGenerator());
-        return ladder;
-    }
 }
