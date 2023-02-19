@@ -9,7 +9,7 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         RandomBooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
-        RadderGameController radderGameController = new RadderGameController();
-        radderGameController.play(inputView, outputView, randomBooleanGenerator);
+        RadderGameController radderGameController = new RadderGameController(inputView, outputView);
+        radderGameController.play(randomBooleanGenerator);
     }
 }

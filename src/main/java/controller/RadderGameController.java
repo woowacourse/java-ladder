@@ -8,33 +8,41 @@ import view.output.OutputView;
 
 public class RadderGameController {
 
-    public void play(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
-        Participants participants = makeParticipants(inputView);
-        Map map = generateMap(inputView, participants, booleanGenerator);
-        showMap(outputView, participants, map);
+    private final InputView inputView;
+    private final OutputView outputView;
+
+    public RadderGameController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
-    private Participants makeParticipants(InputView inputView) {
+    public void play(BooleanGenerator booleanGenerator) {
+        Participants participants = makeParticipants();
+        Map map = generateMap(participants, booleanGenerator);
+        showMap(participants, map);
+    }
+
+    private Participants makeParticipants() {
         try {
             String participantsName = inputView.enterParticipantsName();
             return new Participants(participantsName);
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
-            return makeParticipants(inputView);
+            return makeParticipants();
         }
     }
 
-    private Map generateMap(InputView inputView, Participants participants, BooleanGenerator booleanGenerator) {
+    private Map generateMap(Participants participants, BooleanGenerator booleanGenerator) {
         try {
             String height = inputView.enterHeight();
-            return new Map(height, participants.getParticipantCount(), booleanGenerator);
+            return new Map(height, participants.getCount(), booleanGenerator);
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
-            return generateMap(inputView, participants, booleanGenerator);
+            return generateMap(participants, booleanGenerator);
         }
     }
 
-    private void showMap(OutputView outputView, Participants participants, Map map) {
+    private void showMap(Participants participants, Map map) {
         outputView.printMap(participants, map);
     }
 }
