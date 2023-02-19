@@ -15,6 +15,9 @@ public class OutputView {
     private static final String PLAYER_NAME_FORMAT = "%" + NAME_SPACING + "s";
     private static final String LADDER_FORMAT = "%s|";
 
+    private OutputView() {
+    }
+
     public static void printPlayerNamesRequestMsg() {
         System.out.println(PLAYER_NAMES_REQUEST_MSG);
     }

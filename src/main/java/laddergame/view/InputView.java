@@ -11,6 +11,9 @@ public class InputView {
     private static final String SPLIT_DELIMITER = ",";
     private static final String NATURAL_NUMBER_REGEX = "^[1-9]+[0-9]*$";
 
+    private InputView() {
+    }
+
     public static List<String> inputPlayerNames() {
         String playerNames = scanner.nextLine();
         validateBlankInput(playerNames);
