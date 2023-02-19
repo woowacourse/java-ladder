@@ -19,7 +19,7 @@ public class Players {
 
     public int getMaxPlayerNameLength() {
         return players.stream()
-                .mapToInt(player -> player.getPlayerName().getNameSize())
+                .mapToInt(player -> player.getPlayerName().length())
                 .max()
                 .orElseThrow();
     }
@@ -59,7 +59,7 @@ public class Players {
     }
 
     private static void checkBlank(Player player) {
-        if (player.getPlayerName().getName().isBlank()) {
+        if (player.getPlayerName().isBlank()) {
             throw new IllegalArgumentException(BLANK_MESSAGE);
         }
     }

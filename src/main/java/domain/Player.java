@@ -10,8 +10,8 @@ public class Player {
         this.name = new PlayerName(playerName);
     }
 
-    public PlayerName getPlayerName() {
-        return name;
+    public String getPlayerName() {
+        return name.getName();
     }
 
     @Override

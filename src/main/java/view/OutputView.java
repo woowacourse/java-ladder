@@ -1,8 +1,8 @@
 package view;
 
+import domain.Ladder;
 import domain.Line;
-import domain.Player;
-import domain.Way;
+import domain.Players;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final String BAR = "|";
 
-    public void printResult(List<Player> players, List<Line> lines, int maxPlayerNameLength) {
-        players.forEach(name -> System.out.printf("%" + maxPlayerNameLength + "s ",name.getPlayerName().getName()));
+    public void printResult(Players players, Ladder ladder) {
+        players.getPlayers().forEach(name -> System.out.printf("%" + players.getMaxPlayerNameLength() + "s ",name.getPlayerName()));
         System.out.println();
-        lines.forEach(line -> System.out.println(changeFormat(line, maxPlayerNameLength)));
+        ladder.getLines().forEach(line -> System.out.println(changeFormat(line, players.getMaxPlayerNameLength())));
     }
 
     private String changeFormat(Line line, int maxPlayerNameLength) {

@@ -26,7 +26,7 @@ public class LadderGameController {
         Players players = generatePlayers(inputView.readUserNames());
         Height height = new Height(inputView.readHeight());
         Ladder ladder = generateLadder(players, height);
-        outputView.printResult(players.getPlayers(), ladder.getLines(), players.getMaxPlayerNameLength());
+        outputView.printResult(players, ladder);
     }
 
     private Players generatePlayers(List<String> playersName) {
