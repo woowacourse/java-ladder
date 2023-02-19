@@ -9,6 +9,14 @@ public class Main {
                 new OutputView()
         );
 
-        controller.run();
+        execute(controller);
+    }
+
+    private static void execute(LadderGameController controller) {
+        try {
+            controller.run();
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+        }
     }
 }
