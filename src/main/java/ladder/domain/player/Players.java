@@ -22,7 +22,7 @@ public class Players {
         }
     }
 
-    private List<Player> mapPlayerNamesToPlayers(List<String> playerNames) {
+    private List<Player> mapPlayerNamesToPlayers(final List<String> playerNames) {
         return playerNames.stream()
                 .map(Player::new)
                 .collect(Collectors.toUnmodifiableList());

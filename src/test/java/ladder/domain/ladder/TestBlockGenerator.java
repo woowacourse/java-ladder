@@ -1,7 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.builder.BlockGenerator;
-import ladder.domain.ladder.Block;
+import ladder.domain.rule.BlockGenerator;
 
 import java.util.List;
 
