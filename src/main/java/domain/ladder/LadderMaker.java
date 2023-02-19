@@ -14,12 +14,12 @@ public class LadderMaker {
     private static final int MAX_HEIGHT = 100;
 
     private final List<Line> lines = new ArrayList<>();
-    private final BooleanGenerator randomBooleanGenerator = () -> new Random().nextBoolean();
+    private final BooleanGenerator randomBridgeGenerator = () -> new Random().nextBoolean();
 
     public List<Line> make(int personCount, int height) {
         validateHeight(height);
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(personCount, randomBooleanGenerator));
+            lines.add(new Line(personCount, randomBridgeGenerator));
         }
         return Collections.unmodifiableList(lines);
     }
