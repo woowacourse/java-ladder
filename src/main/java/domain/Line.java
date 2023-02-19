@@ -14,6 +14,7 @@ public class Line {
 
     public static Line create(NumberGenerator numberGenerator, int width) {
         List<LinePoint> linePoints = new ArrayList<>();
+
         for (int i = 0; i < width; i++) {
             addPoint(numberGenerator, linePoints);
         }
@@ -26,14 +27,15 @@ public class Line {
             return;
         }
 
-        if (isPreviousPointPassable(points)) {
+        if (isLastPointPassable(points)) {
             points.add(LinePoint.BLOCKED);
             return;
         }
+
         points.add(LinePoint.from(numberGenerator.generate()));
     }
 
-    private static boolean isPreviousPointPassable(List<LinePoint> points) {
+    private static boolean isLastPointPassable(List<LinePoint> points) {
         return points.get(points.size() - 1).isPassable();
     }
 
