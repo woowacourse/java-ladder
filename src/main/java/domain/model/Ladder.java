@@ -4,6 +4,8 @@ import domain.vo.Height;
 import domain.vo.Width;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -11,26 +13,27 @@ public class Ladder {
     private final Width width;
     private final List<Layer> layers;
 
-    public Ladder(final Height height, final Width width) {
+    private Ladder(final Height height, final Width width, List<Layer> layers) {
         this.height = height;
         this.width = width;
-        this.layers = new ArrayList<>();
+        this.layers = layers;
     }
 
-    public void addLayer(Layer layer) {
-        layers.add(layer);
+    public static Ladder makeLadder(Height height, Width width) {
+        List<Layer> layers = IntStream.range(0, height.get())
+            .mapToObj(index -> Layer.makeLayerByRandom(width.get())).collect(Collectors.toList());
+        return new Ladder(height, width, layers);
     }
 
     public List<Layer> getLayers() {
-        return this.layers;
+        return new ArrayList<>(layers);
     }
 
     public Height getHeight() {
         return this.height;
     }
 
-    public Width getLineCount() {
-        return this.width;
+    public Width getWidth() {
+        return width;
     }
-
 }
