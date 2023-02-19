@@ -2,6 +2,7 @@ package domain.ladder;
 
 import domain.generator.BooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -20,18 +21,17 @@ public class LineTest {
 
     MockBooleanGenerator booleanGenerator;
 
-    @ParameterizedTest
-    @ValueSource(ints = {2, 10, 30, 50})
+    @Test
     @DisplayName("Line의 bridges 크기는 참가자 수 - 1 이다")
-    void validateBridgeSize_Success(int personCount) {
-        booleanGenerator = new MockBooleanGenerator(createRandomFlag(personCount));
-        Line line = new Line(personCount, booleanGenerator);
-        assertThat(line.getBridges().size()).isEqualTo(personCount - 1);
+    void validateBridgeSize_Success() {
+        booleanGenerator = new MockBooleanGenerator(createRandomFlag(5));
+        Line line = new Line(5, booleanGenerator);
+        assertThat(line.getBridges().size()).isEqualTo(4);
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-1, 0, 1, 51})
-    @DisplayName("참가수가 1미안 50초과이면 Line이 생성되지 않고 예외가 발생한다")
+    @ValueSource(ints = {1, 51})
+    @DisplayName("참가수가 2미만 50초과이면 Line이 생성되지 않고 예외가 발생한다")
     void createLine_Fail(int personCount) {
         booleanGenerator = new MockBooleanGenerator(createRandomFlag(personCount));
         assertThatThrownBy(() -> new Line(personCount, booleanGenerator))

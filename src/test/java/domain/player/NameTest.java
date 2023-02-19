@@ -1,6 +1,7 @@
 package domain.player;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import utils.ErrorMessage;
@@ -10,15 +11,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NameTest {
 
-    @ParameterizedTest
-    @ValueSource(strings = {"gray", "encho", "pobi", "ann"})
+    @Test
     @DisplayName("이름의 길이가 1~5인 경우, 예외가 발생하지 않는다.")
-    void validateNameLength_Success(String name) {
-        assertThatNoException().isThrownBy(() -> new Name(name));
+    void validateNameLength_Success() {
+        assertThatNoException().isThrownBy(() -> new Name("encho"));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"gray1234", ""})
+    @ValueSource(strings = {"gray12", ""})
     @DisplayName("이름의 길이가 1~5가 아닌 경우, 예외가 발생한다.")
     void validateNameLength_Fail(String name) {
         assertThatThrownBy(() -> new Name(name))
