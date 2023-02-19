@@ -35,8 +35,8 @@ public class PlayersTest {
     @DisplayName("플레이어의 수 반환 테스트")
     void getCountTest() {
 
-        assertThat(new Players(correctPlayerNames)
-                .count()).isEqualTo(correctPlayerNames.size());
+        assertThat(new Players(correctPlayerNames).findNumberOfPlayers())
+                .isEqualTo(correctPlayerNames.size());
     }
 
     @Test

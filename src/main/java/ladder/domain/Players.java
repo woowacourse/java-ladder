@@ -15,7 +15,7 @@ public class Players {
         createPlayersByName(playerNames);
     }
 
-    public int count() {
+    public int findNumberOfPlayers() {
         return players.size();
     }
 

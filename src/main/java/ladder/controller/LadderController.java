@@ -95,7 +95,7 @@ public class LadderController {
         List<Line> lines = new ArrayList<>();
 
         for (int idx = 0; idx < height.getHeight(); idx++) {
-            List<Bar> bars = LineMaker.generate(players.count(), randomIntegerGenerator);
+            List<Bar> bars = LineMaker.generate(players.findNumberOfPlayers(), randomIntegerGenerator);
             lines.add(new Line(bars));
         }
 
