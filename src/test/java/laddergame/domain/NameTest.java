@@ -3,7 +3,7 @@ package laddergame.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,7 +15,7 @@ class NameTest {
 
     @DisplayName("값이 비어있거나 공백이면 예외가 발생한다.")
     @ParameterizedTest(name = "value = {0}")
-    @NullAndEmptySource
+    @EmptySource
     void throwExceptionWhenNameIsEmpty(final String value) {
         assertThatThrownBy(() -> new Name(value))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -29,11 +29,13 @@ class NameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("값이 null이면 예외가 발생한다.")
+    @DisplayName("값이 null이면 기본 이름이 입력으로 대체된다.")
     @Test
     void throwExceptionWhenNameIsNull() {
-        assertThatThrownBy(() -> new Name(null))
-                .isInstanceOf(IllegalArgumentException.class);
+        final Name name = new Name(null);
+        final String defaultName = name.getValue();
+
+        assertThat(defaultName).isEqualTo("ANONY");
     }
 
     @DisplayName("값이 길이를 초과하면 예외가 발생한다.")

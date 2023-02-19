@@ -10,14 +10,15 @@ import java.util.List;
 import static laddergame.fixture.LineCreatorFixture.TEST_LINE_CREATOR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @DisplayName("라인 Creator")
 class LineCreatorTest {
-    @DisplayName("BooleanGenerator가 null이면 예외가 발생한다.")
+    @DisplayName("BooleanGenerator가 null이면 RandomBooleanGenerator를 주입한다.")
     @Test
     void throwExceptionWhenBooleanGeneratorIsNull() {
         final BooleanGenerator generator = null;
-        assertThatThrownBy(() -> new LineCreator(generator));
+        assertDoesNotThrow(() -> new LineCreator(generator));
     }
 
     @DisplayName("가로 길이가 0 이하이면 예외가 발생한다.")

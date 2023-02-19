@@ -31,8 +31,8 @@ class LadderTest {
     @DisplayName("높이가 null이면 예외가 발생한다.")
     @Test
     void throwExceptionWhenHeightIsNull() {
-        final Participants participants
-                = new Participants(List.of(NameFixture.createNameRosie(), NameFixture.createNameHyena()));
+        final List<String> names = List.of(NameFixture.createNameHyena().getValue(), NameFixture.createNameRosie().getValue());
+        final Participants participants = new Participants(names);
         final Height height = null;
 
         assertThatThrownBy(() -> new Ladder(participants, height))
