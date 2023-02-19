@@ -43,9 +43,8 @@ class LadderBuilderTest {
 
 	private List<List<Point>> changeToPoints2D(Ladder ladder) {
 		List<Line> lines = ladder.getLines();
-		List<List<Point>> points2D = lines.stream()
-			.map(line -> line.getPoints())
+		return lines.stream()
+			.map(Line::getPoints)
 			.collect(Collectors.toList());
-		return points2D;
 	}
 }

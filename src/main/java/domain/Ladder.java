@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-	private List<Line> lines;
+	private final List<Line> lines;
 
 	public Ladder(final List<Line> lines) {
 		this.lines = lines;
