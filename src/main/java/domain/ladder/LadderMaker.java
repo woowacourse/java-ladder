@@ -1,7 +1,6 @@
 package domain.ladder;
 
 import domain.generator.BooleanGenerator;
-import utils.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;

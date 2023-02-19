@@ -30,7 +30,7 @@ public class InputView {
     }
 
     private void validateDigit(String ladderHeight) {
-        if (!Pattern.matches(DIGIT_REGEX ,ladderHeight)) {
+        if (!Pattern.matches(DIGIT_REGEX, ladderHeight)) {
             throw new IllegalArgumentException(ErrorMessage.DIGIT_ERROR.getMessage());
         }
     }

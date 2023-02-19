@@ -3,14 +3,10 @@ package controller;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.LadderMaker;
-import domain.ladder.Line;
-import domain.player.Player;
 import domain.player.Players;
 import utils.Log;
 import view.InputView;
 import view.OutputView;
-
-import java.util.stream.Collectors;
 
 public class LadderController {
 
