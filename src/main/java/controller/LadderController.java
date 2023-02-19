@@ -1,6 +1,5 @@
 package controller;
 
-import domain.model.Goods;
 import domain.model.Ladder;
 import domain.model.Player;
 import domain.service.LadderGame;
@@ -43,7 +42,6 @@ public class LadderController {
         outputView.printLadder(ladder);
         outputView.printNames(goodsList);
         LadderGame ladderGame = new LadderGame(players.size() - 1);
-        outputView.printResult();
         ladderGame.playLadderGame(playerMaker.getPlayerList(), ladder);
         showTargetResult(playerMaker.getPlayerList(), goodsList);
     }
@@ -51,6 +49,7 @@ public class LadderController {
 
     private void showTargetResult(List<Player> players, List<Name> goodsList) {
         String input = inputView.inputTargetResult();
+        outputView.printResult();
         if (input.equals("all")) {
             outputView.printAllTargetResult(players, goodsList);
             return;

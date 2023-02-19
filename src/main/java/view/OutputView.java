@@ -1,6 +1,5 @@
 package view;
 
-import domain.model.Goods;
 import domain.model.Ladder;
 import domain.model.Layer;
 import domain.model.Player;
@@ -12,7 +11,7 @@ public class OutputView {
 
     private static final String RESULT_ANNOUNCEMENT = "\n사다리 결과\n";
     private static final int INTERVAL_UNIT = 6;
-    private static final String FRONT_SPACE = "    ";
+    private static final String FRONT_SPACE = "     ";
     private static final String LINE_DELIMITER = "|";
     private static final String CONNECTED_LINE = "-----";
     private static final String UNCONNECTED_LINE = "     ";
@@ -48,7 +47,7 @@ public class OutputView {
         StringBuilder stringBuilder = new StringBuilder();
         names.forEach(name -> {
             int difference = INTERVAL_UNIT - name.get().length();
-            stringBuilder.append(name.get()).append(NAME_SPACE.repeat(difference));
+            stringBuilder.append(NAME_SPACE.repeat(difference)).append(name.get());
         });
         System.out.println(stringBuilder);
     }

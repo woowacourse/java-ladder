@@ -1,6 +1,5 @@
 package domain.service;
 
-import domain.model.Ladder;
 import domain.vo.Height;
 import domain.vo.Width;
 import org.junit.jupiter.api.DisplayName;
