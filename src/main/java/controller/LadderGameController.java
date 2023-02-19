@@ -10,9 +10,11 @@ import view.OutputView;
 public class LadderGameController {
 
     private final BooleanGenerator booleanGenerator;
+    private final InputView inputView;
 
-    public LadderGameController(BooleanGenerator booleanGenerator) {
+    public LadderGameController(BooleanGenerator booleanGenerator, InputView inputView) {
         this.booleanGenerator = booleanGenerator;
+        this.inputView = inputView;
     }
 
     public void run() {
@@ -37,7 +39,7 @@ public class LadderGameController {
     private Names getNames() {
         try {
             OutputView.printRequestNames();
-            return Names.ofValues(InputView.getNames());
+            return Names.ofValues(inputView.getNames());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getNames();
@@ -47,7 +49,7 @@ public class LadderGameController {
     private Height getHeight() {
         try {
             OutputView.printRequestLadderHeight();
-            return Height.of(InputView.getHeight());
+            return Height.of(inputView.getHeight());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getHeight();
