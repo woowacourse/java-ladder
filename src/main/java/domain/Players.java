@@ -25,7 +25,7 @@ public class Players {
         }
     }
 
-    private boolean isNotPermittedNumberOfPlayers(List<String> playerNames) {
+    private boolean isNotPermittedNumberOfPlayers(final List<String> playerNames) {
         return (playerNames.size() < MINIMUM_LENGTH_OF_PLAYER) || (playerNames.size() > MAXIMUM_LENGTH_OF_PLAYER);
     }
 
@@ -37,7 +37,7 @@ public class Players {
         }
     }
 
-    public boolean isContainsPlayer(String command) {
+    public boolean isContainsPlayer(final String command) {
         return this.players.stream()
                 .anyMatch(player -> player.getName().equals(command));
     }
@@ -68,7 +68,7 @@ public class Players {
     }
 
 
-    public Player findPlayer(String name) {
+    public Player findPlayer(final String name) {
         return players.stream()
                 .filter(player -> player.getName().equals(name))
                 .findFirst()

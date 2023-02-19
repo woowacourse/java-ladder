@@ -24,6 +24,7 @@ public class LadderGameController {
         Players players = makePlayers();
         LadderResults ladderResults = makeLadderResults(players.findNumberOfPlayers());
         Ladder ladder = makeLadder(players.findNumberOfPlayers());
+
         Game game = new Game(ladder, players, ladderResults);
         game.calculateResultOfPlayer();
 
@@ -31,7 +32,7 @@ public class LadderGameController {
         printResultOfPlayer(players);
     }
 
-    private void printResultOfPlayer(Players players) {
+    private void printResultOfPlayer(final Players players) {
         String command = "";
 
         while (!command.equals("all")) {
@@ -50,7 +51,7 @@ public class LadderGameController {
         }
     }
 
-    private LadderResults makeLadderResults(int numberOfPlayer) {
+    private LadderResults makeLadderResults(final int numberOfPlayer) {
         try {
             List<String> ladderResults = inputView.readLadderResults();
             return new LadderResults(ladderResults, numberOfPlayer);

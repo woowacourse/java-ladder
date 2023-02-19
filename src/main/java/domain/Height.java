@@ -18,7 +18,7 @@ public class Height {
         }
     }
 
-    private boolean isNotPermittedLengthOfHeight(int height) {
+    private boolean isNotPermittedLengthOfHeight(final int height) {
         return (height < MINIMUM_LENGTH_OF_HEIGHT) || (height > MAXIMUM_LENGTH_OF_HEIGHT);
     }
 

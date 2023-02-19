@@ -40,7 +40,7 @@ public class LadderResults {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public String getLadderResultOfIndex(int index) {
+    public String getLadderResultOfIndex(final int index) {
         return ladderResults.get(index).getResult();
     }
 
