@@ -23,9 +23,7 @@ public class OutputView {
     }
 
     private void printLadder(Ladder ladder) {
-        for (Layer layer : ladder.getLayers()) {
-            printLayer(layer);
-        }
+        ladder.getLayers().forEach(this::printLayer);
     }
 
     private void printLayer(Layer layer) {
@@ -33,7 +31,7 @@ public class OutputView {
         stringBuilder.append(FRONT_SPACE).append(LINE_DELIMITER);
         List<Line> lines = layer.getLines();
         lines.forEach(
-            line -> stringBuilder.append(selectLine(Line.CONNECTED)).append(LINE_DELIMITER));
+            line -> stringBuilder.append(selectLine(line)).append(LINE_DELIMITER));
         System.out.println(stringBuilder);
     }
 
