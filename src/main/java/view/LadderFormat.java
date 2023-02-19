@@ -1,4 +1,4 @@
-package utils.constants;
+package view;
 
 public enum LadderFormat {
     START_DELIMITER("    |"),

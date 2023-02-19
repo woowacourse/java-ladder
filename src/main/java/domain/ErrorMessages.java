@@ -1,4 +1,4 @@
-package utils.constants;
+package domain;
 
 public enum ErrorMessages {
     NAME_LENGTH("이름은 1글자 이상 5글자 이하여야 합니다."),

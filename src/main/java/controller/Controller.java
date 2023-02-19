@@ -5,7 +5,7 @@ import java.util.List;
 import domain.Ladder;
 import domain.User;
 import domain.Users;
-import utils.constants.Validator;
+import utils.validator.Validator;
 import view.InputView;
 import view.OutputView;
 

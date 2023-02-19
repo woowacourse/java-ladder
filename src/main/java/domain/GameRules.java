@@ -1,4 +1,4 @@
-package utils.constants;
+package domain;
 
 public enum GameRules {
 
