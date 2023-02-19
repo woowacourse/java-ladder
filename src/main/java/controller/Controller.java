@@ -24,8 +24,7 @@ public class Controller {
 
         Ladder ladder = createLadder(users, height);
 
-        OutputView.printUserNames(users);
-        OutputView.printLadder(ladder);
+        OutputView.printResult(users, ladder);
     }
 
     private Users getUsers() {

@@ -20,16 +20,19 @@ public class OutputView {
         System.out.println(exception.getMessage());
     }
 
-    public static void printResultMessage() {
+    public static void printResult(final Users users, final Ladder ladder) {
         System.out.println(RESULT_MESSAGE);
+        printUserNames(users);
+        printLadder(ladder);
     }
 
-    public static void printUserNames(final Users users) {
+    private static void printUserNames(final Users users) {
         String userNames = String.join(USER_DELIMITER, users.getUserNames());
         System.out.println(userNames);
     }
 
-    public static void printLadder(final Ladder ladder) {
+
+    private static void printLadder(final Ladder ladder) {
         List<String> ladderFormat = getLadderFormat(ladder);
         ladderFormat.forEach(System.out::println);
     }
