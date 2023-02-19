@@ -67,7 +67,6 @@ public class Players {
         return this.players.get(0).getLengthOfPlayerName();
     }
 
-
     public Player findPlayer(final String name) {
         return players.stream()
                 .filter(player -> player.getName().equals(name))
