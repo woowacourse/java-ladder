@@ -12,7 +12,7 @@ public class Line {
         this.sections = lineStrategy.generate(sectionCount);
     }
 
-    public List<Boolean> getSections() {
+    public List<Boolean> getLine() {
         return Collections.unmodifiableList(sections);
     }
 }
