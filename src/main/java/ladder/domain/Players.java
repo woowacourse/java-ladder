@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,9 +21,11 @@ public class Players {
     }
 
     private List<Player> generatePlayer(List<String> names) {
-        return names.stream()
-                .map(Player::new)
-                .collect(Collectors.toList());
+        List<Player> players = new ArrayList<>();
+        for (String name : names) {
+            players.add(new Player(name, 0));
+        }
+        return players;
     }
 
     public int getSize() {

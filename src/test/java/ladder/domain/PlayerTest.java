@@ -8,12 +8,12 @@ import org.junit.jupiter.api.Test;
 class PlayerTest {
 
     @Test
-    @DisplayName("이름을 입력받아 Player를 생성한다")
-    public void shouldCreatePlayerWhenInputName() {
+    @DisplayName("이름과 위치를 입력받아 Player를 생성한다")
+    public void shouldCreatePlayerWhenInputNameAndPosition() {
         // given
         // when
         // then
-        assertDoesNotThrow(() -> new Player("name"));
+        assertDoesNotThrow(() -> new Player("name",0));
     }
 
 }
