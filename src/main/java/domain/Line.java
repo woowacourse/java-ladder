@@ -36,4 +36,12 @@ public class Line {
     public List<Bridge> getBridges() {
         return bridges;
     }
+
+    public boolean hasRightBridge(int index) {
+        return index < bridges.size() && bridges.get(index) != Bridge.EMPTY;
+    }
+
+    public boolean hasLeftBridge(int index) {
+        return index - 1 >= 0 && bridges.get(index - 1) != Bridge.EMPTY;
+    }
 }

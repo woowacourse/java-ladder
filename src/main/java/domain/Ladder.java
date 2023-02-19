@@ -1,6 +1,8 @@
 package domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.util.List.copyOf;
 import static java.util.stream.Collectors.toUnmodifiableList;
@@ -48,5 +50,38 @@ public class Ladder {
                      .stream()
                      .map(Person::getName)
                      .collect(toUnmodifiableList());
+    }
+
+    public Map<String, String> getLadderMatchingResult() {
+
+        Map<String, String> result = new HashMap<>();
+
+        List<String> participantNames = getParticipantNames();
+
+        for (int start = 0; start < participantNames.size(); start++) {
+
+            String name = participantNames.get(start);
+            int index = start;
+
+            for (Line line : lines) {
+                index = moveBridge(index, line);
+            }
+
+            result.put(name, resultCandidates.get(index));
+        }
+
+        return result;
+    }
+
+    private int moveBridge(int index, Line line) {
+        if (line.hasLeftBridge(index)) {
+            return index - 1;
+        }
+
+        if (line.hasRightBridge(index)) {
+            return index + 1;
+        }
+
+        return index;
     }
 }
