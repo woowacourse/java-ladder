@@ -22,4 +22,25 @@ public class Line {
     public List<Bridge> getBridges() {
         return bridges;
     }
+
+    public int move(int index) {
+
+        for (Bridge bridge : bridges) {
+            index = moveBridge(index, bridge);
+        }
+
+        return index;
+    }
+
+    private int moveBridge(int index, Bridge bridge) {
+        if (bridge.hasLeftBridge(index)) {
+            return index - 1;
+        }
+
+        if (bridge.hasRightBridge(index)) {
+            return index + 1;
+        }
+
+        return index;
+    }
 }

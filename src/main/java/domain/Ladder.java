@@ -48,28 +48,13 @@ public class Ladder {
         for (int start = 0; start < participantNames.size(); start++) {
 
             String name = participantNames.get(start);
-            int index = start;
 
-            for (Bridge bridge : line.getBridges()) {
-                index = moveBridge(index, bridge);
-            }
+            int index = line.move(start);
 
             result.put(name, resultCandidates.get(index));
         }
 
         return result;
-    }
-
-    private int moveBridge(int index, Bridge bridge) {
-        if (bridge.hasLeftBridge(index)) {
-            return index - 1;
-        }
-
-        if (bridge.hasRightBridge(index)) {
-            return index + 1;
-        }
-
-        return index;
     }
 
     public List<String> getResultCandidates() {

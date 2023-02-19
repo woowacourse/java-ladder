@@ -28,7 +28,7 @@
 
 ### Ladder refactoring
 - [x] resultCandidates 불변성 및 재할당 불가 상태로 변경
-- [ ] List<Bridge> -> Line 일급 컬렉션으로 변경
+- [x] List<Bridge> -> Line 일급 컬렉션으로 변경
 
 ## Bridge
 - [x] 브릿지는 연속으로 생성될 수 없다.
