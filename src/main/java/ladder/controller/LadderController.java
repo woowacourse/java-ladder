@@ -18,8 +18,6 @@ import java.util.stream.Collectors;
 
 public class LadderController {
 
-    private static final int MINIMUM_HEIGHT = 1;
-
     private final InputView inputView;
     private final ResultView resultView;
     private final RandomGenerator randomIntegerGenerator;
@@ -92,9 +90,7 @@ public class LadderController {
 
     private Height decideHeightOfLadder() {
         try {
-            int inputMaximumHeight = inputView.inputHeightOfLadder();
-            int height = randomIntegerGenerator.generateNumber(MINIMUM_HEIGHT, inputMaximumHeight);
-
+            int height = inputView.inputHeightOfLadder();
             return new Height(height);
 
         } catch (IllegalArgumentException e) {
