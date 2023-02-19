@@ -11,13 +11,20 @@ public class OutputView {
 
     public static void printLadder(final Ladder ladder) {
         System.out.println("사다리 결과");
-        for (String name : ladder.getParticipantNames()) {
-            System.out.print(name + "\t");
-        }
+
+        printParticipantsOf(ladder);
+
         System.out.println();
 
         printLinesOf(ladder);
+
         printResultCandidateOf(ladder);
+    }
+
+    private static void printParticipantsOf(Ladder ladder) {
+        for (String name : ladder.getParticipantNames()) {
+            System.out.print(name + "\t");
+        }
     }
 
     private static void printResultCandidateOf(Ladder ladder) {
@@ -27,6 +34,7 @@ public class OutputView {
             System.out.print(resultCandidate + "\t");
         }
 
+        System.out.println();
     }
 
     public static void printLadderResult(Map<String, String> result, String name) {
