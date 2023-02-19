@@ -91,13 +91,9 @@ public class OutputView {
 
     public static void printGoDownLadderResultForName(final LadderGameResult result) {
         System.out.println("\n실행 결과");
-        String message = result.names()
-                .stream()
-                .map(name ->
-                        format(NAME_AND_WINNING_ENTRY_FORMAT,
-                                name.value(),
-                                result.get(name).value())
-                ).collect(joining(LINE_BLANK));
-        System.out.println(message);
+        result.nameWinningEntryMap()
+                .forEach((name, value) ->
+                        System.out.println(format(NAME_AND_WINNING_ENTRY_FORMAT, name.value(), value.value()))
+                );
     }
 }

@@ -90,9 +90,9 @@ class LadderGameTest {
 
         // when & then
         LadderGameResult result1 = ladderGame.goDownLadder(말랑);
-        assertThat(result1.get(말랑)).isEqualTo(말랑당첨);
+        assertThat(result1.nameWinningEntryMap().get(말랑)).isEqualTo(말랑당첨);
         LadderGameResult result2 = ladderGame.goDownLadder(바다);
-        assertThat(result2.get(바다)).isEqualTo(바다당첨);
+        assertThat(result2.nameWinningEntryMap().get(바다)).isEqualTo(바다당첨);
     }
 
     @Test

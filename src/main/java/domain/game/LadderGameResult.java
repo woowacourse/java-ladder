@@ -5,7 +5,6 @@ import domain.value.WinningEntry;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class LadderGameResult {
     private final Map<Name, WinningEntry> nameWinningEntryMap;
@@ -19,11 +18,7 @@ public class LadderGameResult {
         nameWinningEntryMap.put(name, winningEntry);
     }
 
-    public Set<Name> names() {
-        return nameWinningEntryMap.keySet();
-    }
-
-    public WinningEntry get(final Name name) {
-        return nameWinningEntryMap.get(name);
+    public Map<Name, WinningEntry> nameWinningEntryMap() {
+        return nameWinningEntryMap;
     }
 }
