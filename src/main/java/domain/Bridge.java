@@ -4,11 +4,11 @@ import java.util.List;
 
 import static java.util.List.copyOf;
 
-public class Line {
+public class Bridge {
 
     private final List<BridgeStatus> bridges;
 
-    public Line(final List<BridgeStatus> bridges) {
+    public Bridge(final List<BridgeStatus> bridges) {
 
         validateBridges(bridges);
 

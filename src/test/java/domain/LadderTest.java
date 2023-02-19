@@ -21,12 +21,12 @@ class LadderTest extends AbstractTestFixture {
     @ValueSource(ints = {1, 999})
     void test_ladder_height_success(int height) {
         //given
-        List<Line> lines = createLines(height);
+        List<Bridge> bridges = createLines(height);
         People defaultPerson = createDefaultPerson();
         List<String> resultCandidates = createResultCandidates(defaultPerson.getParticipantsSize());
 
         //when
-        Ladder ladder = new Ladder(defaultPerson, lines, resultCandidates);
+        Ladder ladder = new Ladder(defaultPerson, bridges, resultCandidates);
 
         //then
         assertEquals(ladder.getLines().size(), height);
@@ -48,17 +48,17 @@ class LadderTest extends AbstractTestFixture {
     @DisplayName("Line들로 Ladder를 생성한다")
     void test_createLadder_with_lines() {
         // given
-        List<Line> lines = List.of(
-                new Line(convert(true, false, true)),
-                new Line(convert(false, true, false)),
-                new Line(convert(true, false, true)),
-                new Line(convert(false, true, false)),
-                new Line(convert(true, false, true))
+        List<Bridge> bridges = List.of(
+                new Bridge(convert(true, false, true)),
+                new Bridge(convert(false, true, false)),
+                new Bridge(convert(true, false, true)),
+                new Bridge(convert(false, true, false)),
+                new Bridge(convert(true, false, true))
         );
 
         // when & then
         assertThatNoException().isThrownBy(() -> new Ladder(createDefaultPerson(),
-                                                            lines,
+                                                            bridges,
                                                             createResultCandidates(2))
         );
     }
@@ -71,17 +71,17 @@ class LadderTest extends AbstractTestFixture {
         person.add(new Person("aaa"));
         person.add(new Person("bbb"));
 
-        List<Line> lines = List.of(
-                new Line(convert(true, false, true)),
-                new Line(convert(false, true, false)),
-                new Line(convert(true, false, true)),
-                new Line(convert(false, true, false)),
-                new Line(convert(true, false, true))
+        List<Bridge> bridges = List.of(
+                new Bridge(convert(true, false, true)),
+                new Bridge(convert(false, true, false)),
+                new Bridge(convert(true, false, true)),
+                new Bridge(convert(false, true, false)),
+                new Bridge(convert(true, false, true))
         );
 
         People people = new People(person);
 
-        Ladder ladder = new Ladder(people, lines, createResultCandidates(people.getParticipantsSize()));
+        Ladder ladder = new Ladder(people, bridges, createResultCandidates(people.getParticipantsSize()));
 
         int beforePeopleSize = people.getParticipantsSize();
 
@@ -100,7 +100,7 @@ class LadderTest extends AbstractTestFixture {
     @DisplayName("실행 결과의 개수는 참가자 수와 같지 않으면 IllegalArgumentException 를 던진다.")
     void test_equalsResultSizeAndPeopleSize_IllegalArgumentException(int size) throws Exception {
         //given
-        List<Line> lines = createLines(5);
+        List<Bridge> bridges = createLines(5);
 
         People people = new People(
                 List.of(new Person("aa"),
@@ -112,7 +112,7 @@ class LadderTest extends AbstractTestFixture {
         List<String> resultCandidates = createResultCandidates(size);
 
         //when & then
-        assertThatThrownBy(() -> new Ladder(people, lines, resultCandidates))
+        assertThatThrownBy(() -> new Ladder(people, bridges, resultCandidates))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("실행 결과 개수는 참가자 수와 같아야합니다.");
     }
@@ -126,19 +126,19 @@ class LadderTest extends AbstractTestFixture {
                                            new Person("crong"),
                                            new Person("jk")));
 
-        List<Line> lines = List.of(
-                new Line(convert(false, true, false)),
-                new Line(convert(true, false, true)),
-                new Line(convert(false, true, false)),
-                new Line(convert(true, false, true)),
-                new Line(convert(false, false, false))
+        List<Bridge> bridges = List.of(
+                new Bridge(convert(false, true, false)),
+                new Bridge(convert(true, false, true)),
+                new Bridge(convert(false, true, false)),
+                new Bridge(convert(true, false, true)),
+                new Bridge(convert(false, false, false))
         );
 
         List<String> resultCandidate = List.of("꽝", "5000", "1000", "3000");
 
         //when
 
-        Ladder ladder = new Ladder(people, lines, resultCandidate);
+        Ladder ladder = new Ladder(people, bridges, resultCandidate);
 
         Map<String, String> result = ladder.getLadderMatchingResult();
 
@@ -169,19 +169,19 @@ class LadderTest extends AbstractTestFixture {
                                            new Person("crong"),
                                            new Person("jk")));
 
-        List<Line> lines = List.of(
-                new Line(convert(true, false, true)),
-                new Line(convert(false, true, false)),
-                new Line(convert(true, false, false)),
-                new Line(convert(false, true, false)),
-                new Line(convert(true, false, true))
+        List<Bridge> bridges = List.of(
+                new Bridge(convert(true, false, true)),
+                new Bridge(convert(false, true, false)),
+                new Bridge(convert(true, false, false)),
+                new Bridge(convert(false, true, false)),
+                new Bridge(convert(true, false, true))
         );
 
         List<String> resultCandidate = List.of("꽝", "5000", "꽝", "3000");
 
         //when
 
-        Ladder ladder = new Ladder(people, lines, resultCandidate);
+        Ladder ladder = new Ladder(people, bridges, resultCandidate);
 
         Map<String, String> result = ladder.getLadderMatchingResult();
 

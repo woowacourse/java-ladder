@@ -1,8 +1,8 @@
 package view;
 
+import domain.Bridge;
 import domain.BridgeStatus;
 import domain.Ladder;
-import domain.Line;
 
 import java.util.List;
 import java.util.Map;
@@ -55,15 +55,15 @@ public class OutputView {
     }
 
     private static void printLinesOf(final Ladder ladder) {
-        for (Line line : ladder.getLines()) {
+        for (Bridge bridge : ladder.getLines()) {
             System.out.print("\t|");
-            printBridgesOf(line);
+            printBridgesOf(bridge);
             System.out.println();
         }
     }
 
-    private static void printBridgesOf(final Line line) {
-        for (BridgeStatus bridgeStatus : line.getBridges()) {
+    private static void printBridgesOf(final Bridge bridge) {
+        for (BridgeStatus bridgeStatus : bridge.getBridges()) {
             System.out.print(bridgeStatus.getDisplay());
             System.out.print("|");
         }

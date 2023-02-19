@@ -1,7 +1,7 @@
 package generator;
 
 import domain.BridgeStatus;
-import domain.Line;
+import domain.Bridge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +21,14 @@ public class LineGenerator {
         return bridgeStatuses.get(bridgeStatuses.size() - 1) == BridgeStatus.EXIST;
     }
 
-    public Line generate(final int personCount) {
+    public Bridge generate(final int personCount) {
         List<BridgeStatus> newBridgeStatuses = new ArrayList<>();
 
         for (int i = 0; i < personCount - 1; i++) {
             newBridgeStatuses.add(getNextBridge(newBridgeStatuses));
         }
 
-        return new Line(newBridgeStatuses);
+        return new Bridge(newBridgeStatuses);
     }
 
     private BridgeStatus getNextBridge(final List<BridgeStatus> bridgeStatuses) {

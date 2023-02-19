@@ -9,7 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LineTest extends AbstractTestFixture {
+class BridgeTest extends AbstractTestFixture {
 
     @Test
     @DisplayName("3개의 브릿지가 연속될 경우 IllegalArgumentException을 반환한다")
@@ -61,13 +61,13 @@ class LineTest extends AbstractTestFixture {
     }
 
     private void testAssertThrowsIllegalArgumentException(List<BridgeStatus> bridgeStatuses) {
-        assertThatThrownBy(() -> new Line(bridgeStatuses))
+        assertThatThrownBy(() -> new Bridge(bridgeStatuses))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     private void testAssertNotThrowsException(List<BridgeStatus> bridgeStatuses) {
         assertThatNoException().isThrownBy(
-                () -> new Line(bridgeStatuses)
+                () -> new Bridge(bridgeStatuses)
         );
     }
 }

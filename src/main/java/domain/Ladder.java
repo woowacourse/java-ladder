@@ -12,13 +12,13 @@ public class Ladder {
     private static final int MIN_HEIGHT = 0;
 
     private final People people;
-    private final List<Line> lines;
+    private final List<Bridge> bridges;
     private final List<String> resultCandidates;
 
-    public Ladder(final People people, final List<Line> lines, final List<String> resultCandidates) {
-        validateHeightOf(lines);
+    public Ladder(final People people, final List<Bridge> bridges, final List<String> resultCandidates) {
+        validateHeightOf(bridges);
         validateEqualsSizeOf(people, resultCandidates);
-        this.lines = copyOf(lines);
+        this.bridges = copyOf(bridges);
         this.people = people;
         this.resultCandidates = copyOf(resultCandidates);
     }
@@ -29,14 +29,14 @@ public class Ladder {
         }
     }
 
-    private void validateHeightOf(final List<Line> lines) {
-        if (lines.size() <= MIN_HEIGHT) {
+    private void validateHeightOf(final List<Bridge> bridges) {
+        if (bridges.size() <= MIN_HEIGHT) {
             throw new IllegalArgumentException("높이는 양수만 가능합니다");
         }
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public List<Bridge> getLines() {
+        return bridges;
     }
 
     public List<String> getParticipantNames() {
@@ -57,8 +57,8 @@ public class Ladder {
             String name = participantNames.get(start);
             int index = start;
 
-            for (Line line : lines) {
-                index = moveBridge(index, line);
+            for (Bridge bridge : bridges) {
+                index = moveBridge(index, bridge);
             }
 
             result.put(name, resultCandidates.get(index));
@@ -67,12 +67,12 @@ public class Ladder {
         return result;
     }
 
-    private int moveBridge(int index, Line line) {
-        if (line.hasLeftBridge(index)) {
+    private int moveBridge(int index, Bridge bridge) {
+        if (bridge.hasLeftBridge(index)) {
             return index - 1;
         }
 
-        if (line.hasRightBridge(index)) {
+        if (bridge.hasRightBridge(index)) {
             return index + 1;
         }
 

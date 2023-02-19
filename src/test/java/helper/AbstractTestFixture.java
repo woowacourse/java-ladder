@@ -1,7 +1,7 @@
 package helper;
 
 import domain.BridgeStatus;
-import domain.Line;
+import domain.Bridge;
 import domain.People;
 import domain.Person;
 
@@ -27,12 +27,12 @@ public abstract class AbstractTestFixture {
         return new People(List.of(new Person("aa"), new Person("bb")));
     }
 
-    public List<Line> createLines(final int height) {
-        List<Line> lines = new ArrayList<>();
+    public List<Bridge> createLines(final int height) {
+        List<Bridge> bridges = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(convert(true, false, true)));
+            bridges.add(new Bridge(convert(true, false, true)));
         }
-        return lines;
+        return bridges;
     }
 
     public List<String> createResultCandidates(int size) {

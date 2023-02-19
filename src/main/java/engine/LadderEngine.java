@@ -2,7 +2,7 @@ package engine;
 
 import common.exception.handler.IllegalArgumentExceptionHandler;
 import domain.Ladder;
-import domain.Line;
+import domain.Bridge;
 import domain.People;
 import domain.Person;
 import generator.LineGenerator;
@@ -71,20 +71,20 @@ public class LadderEngine {
         return IllegalArgumentExceptionHandler.handleExceptionByRepeating(
                 () -> {
                     int height = InputView.inputMaxLadderHeight();
-                    List<Line> lines = makeLines(people, height);
-                    return new Ladder(people, lines, resultCandidates);
+                    List<Bridge> bridges = makeLines(people, height);
+                    return new Ladder(people, bridges, resultCandidates);
                 }
         );
     }
 
-    private List<Line> makeLines(final People people, final int height) {
-        List<Line> lines = new ArrayList<>();
+    private List<Bridge> makeLines(final People people, final int height) {
+        List<Bridge> bridges = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            Line line = lineGenerator.generate(people.getParticipantsSize());
-            lines.add(line);
+            Bridge bridge = lineGenerator.generate(people.getParticipantsSize());
+            bridges.add(bridge);
         }
 
-        return lines;
+        return bridges;
     }
 }
