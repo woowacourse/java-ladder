@@ -19,7 +19,6 @@ public class User {
         this.name = name;
     }
 
-
     private void validateNameLength(String name) {
         if (USER_NAME_MIN_LENGTH > name.length() || USER_NAME_MAX_LENGTH < name.length()) {
             throw new IllegalArgumentException(INVALID_NAME_LENGTH_MESSAGE);
