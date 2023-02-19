@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Persons {
 
@@ -15,12 +16,9 @@ public class Persons {
     }
 
     public List<String> getPersonsName() {
-        List<String> names = new ArrayList<>();
-
-        for (Person person : persons) {
-            names.add(person.getName());
-        }
-        return names;
+        return persons.stream()
+                .map(s -> s.getName())
+                .collect(Collectors.toList());
     }
 
     private void validateDuplicateName(List<String> names) {
