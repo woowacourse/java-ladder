@@ -26,8 +26,11 @@ public class InputView {
 
         String input = scanner.nextLine();
         validateIsNumeric(input);
-
-        return Integer.parseInt(input);
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_HEIGHT_RANGE.getMessage());
+        }
     }
 
     private void validateNames(List<String> names) {
