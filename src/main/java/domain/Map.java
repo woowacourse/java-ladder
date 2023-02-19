@@ -48,7 +48,8 @@ public class Map {
     }
 
     private Ladder generate(BooleanGenerator booleanGenerator) {
-        List<Line> lines = IntStream.range(0, height).mapToObj((count) -> new Line(lineWeight, booleanGenerator))
+        List<Line> lines = IntStream.range(0, height)
+            .mapToObj((count) -> new Line(lineWeight, booleanGenerator))
             .collect(Collectors.toList());
         return new Ladder(lines);
     }

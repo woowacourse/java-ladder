@@ -60,6 +60,8 @@ public class Participants {
     }
 
     public List<String> getNames() {
-        return people.stream().map(Person::getName).collect(Collectors.toList());
+        return people.stream()
+            .map(Person::getName)
+            .collect(Collectors.toList());
     }
 }
