@@ -1,9 +1,6 @@
 package view;
 
-import domain.Ladder;
-import domain.Ladders;
-import domain.Position;
-import domain.Users;
+import domain.*;
 
 import java.util.stream.Collectors;
 
@@ -27,11 +24,16 @@ public class OutputView {
         System.out.println(result);
     }
 
+    public void printItems(Items items){
+        items.getItems()
+                .forEach(item -> System.out.printf("USER_NAME_FORMAT", item.getItem()));
+    }
+
     public String printLadder(Ladder ladder) {
         return ladder.getLadder()
                 .stream()
                 .map(Position::getFormat)
-                .collect(Collectors.joining(BRIDGE_DELIMITER))+BRIDGE_DELIMITER;
+                .collect(Collectors.joining(BRIDGE_DELIMITER)) + BRIDGE_DELIMITER;
     }
 
     public void printExceptionMessage(String errorMessage) {
