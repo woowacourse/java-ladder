@@ -45,12 +45,11 @@ public class Controller {
     private List<Block> createBlocks(Players players, Block preBlock) {
         List<Block> blocks = new ArrayList<>(List.of(preBlock));
 
-        IntStream.range(1, players.getPlayersSize() - 1)
-                .mapToObj(i -> new Block(booleanGenerator.generate()))
-                .forEach(nextBlock -> {
-                    nextBlock.comparePreBlock(preBlock);
-                    blocks.add(nextBlock);
-                });
+        int bound = players.getPlayersSize() - 1;
+        for (int i = 1; i < bound; i++) {
+            Block nextBlock = Block.createNextBlock(blocks.get(i-1), booleanGenerator);
+            blocks.add(nextBlock);
+        }
         return blocks;
     }
 

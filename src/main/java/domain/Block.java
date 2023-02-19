@@ -1,16 +1,17 @@
 package domain;
 
 public class Block {
-    private boolean isCross;
+    private final boolean isCross;
 
     public Block(boolean isCross) {
         this.isCross = isCross;
     }
 
-    public void comparePreBlock(Block preBlock) {
+    public static Block createNextBlock(Block preBlock, BooleanGenerator booleanGenerator) {
         if (preBlock.isCross) {
-            this.isCross = false;
+            return new Block(false);
         }
+        return new Block(booleanGenerator.generate());
     }
 
     public boolean getIsCross() {
