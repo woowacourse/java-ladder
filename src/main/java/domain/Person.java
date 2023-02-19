@@ -5,6 +5,8 @@ import exception.InvalidPersonNameException;
 
 public class Person {
 
+    public static final int MIN_LENGTH = 1;
+    public static final int MAX_LENGTH = 5;
     private final String name;
 
     public Person(String name) {
@@ -26,9 +28,7 @@ public class Person {
     }
 
     private boolean isInvalidLength(String name) {
-        final int minLength = 1;
-        final int maxLength = 5;
-        return name.length() < minLength || name.length() > maxLength;
+        return name.length() < MIN_LENGTH || name.length() > MAX_LENGTH;
     }
 
     public String getName() {

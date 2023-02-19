@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 
 public class Participants {
 
+    public static final int MIN_PARTICIPANT_COUNT = 2;
+    public static final int MAX_PARTICIPANT_COUNT = 10;
+    public static final String DELIMITER = ",";
     private final List<Person> people = new ArrayList<>();
 
     public Participants(String participantNames) {
@@ -34,14 +37,11 @@ public class Participants {
     }
 
     private List<String> splitNames(String participantNames) {
-        final String delimiter = ",";
-        return List.of(participantNames.split(delimiter, -1));
+        return List.of(participantNames.split(DELIMITER));
     }
 
     private boolean isInvalidCount(List<String> names) {
-        final int minParticipantCount = 2;
-        final int maxParticipantCount = 10;
-        return names.size() < minParticipantCount || names.size() > maxParticipantCount;
+        return names.size() < MIN_PARTICIPANT_COUNT || names.size() > MAX_PARTICIPANT_COUNT;
     }
 
     private boolean isDuplicate(List<String> names) {

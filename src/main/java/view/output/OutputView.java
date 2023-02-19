@@ -6,12 +6,18 @@ import domain.Participants;
 
 public class OutputView {
 
+    private static final String ABLE_TO_MOVE = "-----";
+    private static final String DISABLE_TO_MOVE = "     ";
+    private static final String LINE_START = "    |";
+    private static final String BLOCK_DELIMITER = "|";
     private static final String RESULT_MESSAGE = "\n실행결과\n";
+    private static final boolean CONNECTED = true;
 
     public void printMap(Participants participants, Map map) {
         System.out.println(RESULT_MESSAGE);
         StringBuilder mapResult = new StringBuilder();
         setNames(mapResult, participants);
+        mapResult.append(System.lineSeparator());
         setLadder(mapResult, map);
         System.out.print(mapResult);
     }
@@ -19,13 +25,9 @@ public class OutputView {
     private void setNames(StringBuilder mapResult, Participants participants) {
         participants.getNames()
             .forEach((participantName) -> mapResult.append(reformatName(participantName)));
-        mapResult.replace(mapResult.length() - 2, mapResult.length(), System.lineSeparator());
     }
 
     private String reformatName(String name) {
-        if (name.length() < 5) {
-            name += " ";
-        }
         return String.format("%5s ", name);
     }
 
@@ -35,24 +37,18 @@ public class OutputView {
 
     private String reformatLine(Line line) {
         final StringBuilder result = new StringBuilder();
-        final String startLine = "    |";
-        final String endLine = "|";
-        result.append(startLine);
+        result.append(LINE_START);
         for (Boolean block : line.getBlocks()) {
-            result.append(reformatStatus(block));
-            result.append(endLine);
+            result.append(reformatStatus(block)).append(BLOCK_DELIMITER);
         }
         result.append(System.lineSeparator());
         return result.toString();
     }
 
     private String reformatStatus(Boolean status) {
-        final boolean isConnected = true;
-        final String connected = "-----";
-        final String disConnected = "     ";
-        if (status == isConnected) {
-            return connected;
+        if (status == CONNECTED) {
+            return ABLE_TO_MOVE;
         }
-        return disConnected;
+        return DISABLE_TO_MOVE;
     }
 }

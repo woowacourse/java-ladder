@@ -9,6 +9,10 @@ import util.BooleanGenerator;
 
 public class Map {
 
+    private static final int MIN_LADDER_COUNT = 1;
+    private static final int MAX_LADDER_COUNT = 10;
+    private static final int MIN_LINE_WEIGHT = 1;
+    private static final int MAX_LINE_WEIGHT = 9;
     private final int height;
     private final int lineWeight;
     private final Ladder ladder;
@@ -40,15 +44,11 @@ public class Map {
     }
 
     private boolean isInValidHeight(int heightInput) {
-        final int minLadderCount = 1;
-        final int maxLadderCount = 10;
-        return minLadderCount > heightInput || heightInput > maxLadderCount;
+        return MIN_LADDER_COUNT > heightInput || heightInput > MAX_LADDER_COUNT;
     }
 
     private boolean isInvalidWeight(int lineWeight) {
-        final int minLineWeight = 1;
-        final int maxLineWeight = 9;
-        return minLineWeight > lineWeight || lineWeight > maxLineWeight;
+        return MIN_LINE_WEIGHT > lineWeight || lineWeight > MAX_LINE_WEIGHT;
     }
 
     private Ladder generate(BooleanGenerator booleanGenerator) {

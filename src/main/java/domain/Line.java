@@ -8,6 +8,10 @@ import util.BooleanGenerator;
 
 public class Line {
 
+    private static final int MIN_HEIGHT = 1;
+    private static final int MAX_HEIGHT = 9;
+    private static final int FIRST_INDEX = 0;
+    private static final boolean CONNECTED = true;
     private final List<Boolean> blocks = new ArrayList<>();
 
     public Line(int weight, BooleanGenerator booleanGenerator) {
@@ -22,9 +26,7 @@ public class Line {
     }
 
     private boolean isInvalidWeight(int weight) {
-        final int minHeight = 1;
-        final int maxHeight = 9;
-        return minHeight > weight || weight > maxHeight;
+        return MIN_HEIGHT > weight || weight > MAX_HEIGHT;
     }
 
     public void generate(int weight, BooleanGenerator booleanGenerator) {
@@ -33,10 +35,8 @@ public class Line {
     }
 
     private boolean generateStatus(int index, BooleanGenerator booleanGenerator) {
-        final int firstIndex = 0;
         final int prev = index - 1;
-        final boolean connected = true;
-        if (index != firstIndex && blocks.get(prev) == connected) {
+        if (index != FIRST_INDEX && blocks.get(prev) == CONNECTED) {
             return false;
         }
         return booleanGenerator.generate();
