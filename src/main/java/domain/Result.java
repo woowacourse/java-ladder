@@ -11,7 +11,6 @@ public class Result {
     private final Items items;
     private final Ladders ladders;
 
-
     public Result(Users users, Items items, Ladders ladders) {
         this.result = new LinkedHashMap<>();
         this.users = users;
@@ -21,7 +20,7 @@ public class Result {
 
     public HashMap<User, Item> getItem(User user) {
         generateResult(user);
-        return new LinkedHashMap<>(Map.of(user,result.get(user)));
+        return new LinkedHashMap<>(Map.of(user, result.get(user)));
     }
 
     public HashMap<User, Item> getItemsALL() {
@@ -39,7 +38,7 @@ public class Result {
     }
 
     private void validateInvalidUser(User user) {
-        if (!users.getUsers().contains(user)){
+        if (!users.getUsers().contains(user)) {
             throw new IllegalArgumentException(INVALID_USER_MESSAGE);
         }
     }
