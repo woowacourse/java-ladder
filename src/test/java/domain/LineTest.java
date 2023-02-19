@@ -11,10 +11,12 @@ import helper.StubImpossibleDigitsGenerator;
 import helper.StubPossibleDigitsGenerator;
 
 public class LineTest {
+    private final RandomDigitsGenerator randomDigitsGenerator = new RandomDigitsGenerator();
+
     @Test
     @DisplayName("라인을 생성한다.")
     void create_line() {
-        Line line = new Line(3, new RandomDigitsGenerator());
+        Line line = new Line(3, randomDigitsGenerator);
 
         assertThat(line.getPointsSize()).isEqualTo(3);
     }
@@ -38,7 +40,7 @@ public class LineTest {
     @Test
     @DisplayName("이동 할 수 있는 포인트가 불연속적인지 확인한다.")
     void checkSuccessivePoints() {
-        Line line = new Line(3, new RandomDigitsGenerator());
+        Line line = new Line(3, randomDigitsGenerator);
         List<Boolean> points = line.getPoints();
 
         for (int index = 0; index < points.size() - 1; index++) {
