@@ -49,7 +49,7 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public List<Player> getUnmodifiableList() {
+    public List<Player> toUnmodifiablePlayers() {
         return Collections.unmodifiableList(players);
     }
 }

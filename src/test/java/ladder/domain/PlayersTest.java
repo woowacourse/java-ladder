@@ -61,7 +61,7 @@ class PlayersTest {
         List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
         //when
         Players players = new Players(names);
-        List<Player> playerList = players.getUnmodifiableList();
+        List<Player> playerList = players.toUnmodifiablePlayers();
         //then
         assertAll(
                 () -> assertThat(playerList.get(0).getPosition()).isEqualTo(new Position(0)),
