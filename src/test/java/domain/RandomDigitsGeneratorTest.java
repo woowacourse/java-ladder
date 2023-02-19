@@ -7,14 +7,8 @@ import org.junit.jupiter.api.Test;
 
 public class RandomDigitsGeneratorTest {
 
-    @Test
-    @DisplayName("")
-    void randomDigitsGenerator(){
-        new RandomDigitsGenerator();
-    }
-
     @RepeatedTest(50)
-    @DisplayName("")
+    @DisplayName("랜덤 생성기는 0과 1만 생성한다.")
     void generate() {
         RandomDigitsGenerator generator = new RandomDigitsGenerator();
 
