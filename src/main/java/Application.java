@@ -5,19 +5,11 @@ import view.InputView;
 import view.OutputView;
 
 public class Application {
+
     public static void main(String[] args) {
         final Users users = generateUsers();
         final Ladder ladder = generateLadder(users);
         printResult(ladder, users);
-    }
-
-    private static Ladder generateLadder(Users users) {
-        try {
-            return new Ladder(InputView.readLadderHeight(), users.size(), new RandomLinkGenerator());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return generateLadder(users);
-        }
     }
 
     private static Users generateUsers() {
@@ -26,6 +18,15 @@ public class Application {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return generateUsers();
+        }
+    }
+
+    private static Ladder generateLadder(Users users) {
+        try {
+            return new Ladder(InputView.readLadderHeight(), users.size(), new RandomLinkGenerator());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return generateLadder(users);
         }
     }
 

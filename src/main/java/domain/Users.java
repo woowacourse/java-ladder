@@ -6,18 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Users {
-    private final List<User> users;
+    private final List<User> users = new ArrayList<>();
 
     public Users(final List<String> userNames) {
         validateUserNamesEmpty(userNames);
-        users = new ArrayList<>();
         for (final String userName : userNames) {
             users.add(new User(userName));
         }
     }
 
-    public int size() {
-        return users.size();
+    private void validateUserNamesEmpty(final List<String> userNames) {
+        if (userNames.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.USERS_NAME_BLANK_EXCEPTION.getMessage());
+        }
     }
 
     public List<String> getUsersName() {
@@ -28,9 +29,7 @@ public class Users {
         return usersName;
     }
 
-    private void validateUserNamesEmpty(final List<String> userNames) {
-        if (userNames.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.USERS_NAME_BLANK_EXCEPTION.getMessage());
-        }
+    public int size() {
+        return users.size();
     }
 }

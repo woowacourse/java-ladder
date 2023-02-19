@@ -4,6 +4,7 @@ import exception.ErrorMessage;
 
 public class User {
     private static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
 
     public User(final String name) {
