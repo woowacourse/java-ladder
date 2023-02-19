@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import utils.booleanGenerator.BooleanGenerator;
-import utils.booleanGenerator.RandomBooleanGenerator;
+import domain.booleanGenerator.BooleanGenerator;
+import domain.booleanGenerator.RandomBooleanGenerator;
 
 class LinesTest {
 

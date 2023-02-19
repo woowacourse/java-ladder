@@ -3,7 +3,7 @@ package controller;
 import domain.Height;
 import domain.Lines;
 import domain.Names;
-import utils.booleanGenerator.BooleanGenerator;
+import domain.booleanGenerator.BooleanGenerator;
 import view.InputView;
 import view.OutputView;
 

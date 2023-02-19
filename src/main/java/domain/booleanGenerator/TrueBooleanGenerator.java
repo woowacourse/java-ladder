@@ -1,4 +1,4 @@
-package utils.booleanGenerator;
+package domain.booleanGenerator;
 
 public class TrueBooleanGenerator implements BooleanGenerator {
 
