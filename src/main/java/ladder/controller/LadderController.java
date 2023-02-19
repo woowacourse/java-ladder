@@ -6,7 +6,6 @@ import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.LineMaker;
 import ladder.domain.Name;
-import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.domain.RandomGenerator;
 import ladder.view.InputView;
@@ -37,6 +36,26 @@ public class LadderController {
         resultView.printLadder(players.getNames(), showLadder(ladder), Name.NAME_MAXIMUM_LENGTH);
     }
 
+    private Players createPlayersUntilNoException() {
+        Players players = null;
+
+        while (players == null) {
+            players = createPlayers();
+        }
+        return players;
+    }
+
+    private Players createPlayers() {
+        try {
+            List<String> inputNames = inputView.inputPlayerNames();
+            return new Players(inputNames);
+
+        } catch (IllegalArgumentException e) {
+            resultView.printError(e.getMessage());
+            return null;
+        }
+    }
+
     private List<List<Boolean>> showLadder(Ladder ladder) {
         List<List<Boolean>> ladderData = new ArrayList<>();
 
@@ -50,33 +69,6 @@ public class LadderController {
         }
 
         return ladderData;
-    }
-
-    private Players createPlayersUntilNoException() {
-        Players players = null;
-
-        while (players == null) {
-            players = createPlayers();
-        }
-        return players;
-    }
-
-    private Players createPlayers() {
-        try {
-            List<String> inputNames = inputView.inputPlayerNames();
-            List<Player> inputPlayers = createPlayersByName(inputNames);
-            return new Players(inputPlayers);
-
-        } catch (IllegalArgumentException e) {
-            resultView.printError(e.getMessage());
-            return null;
-        }
-    }
-
-    private List<Player> createPlayersByName(List<String> inputNames) {
-        return inputNames.stream()
-                .map(inputName -> new Player(new Name(inputName)))
-                .collect(Collectors.toList());
     }
 
     private Height decideHeightOfLadderUntilNoException() {
