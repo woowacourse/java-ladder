@@ -2,6 +2,7 @@ package view;
 
 import domain.*;
 
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -17,15 +18,18 @@ public class OutputView {
         printItems(items);
     }
 
-    public void printUserResult(String result) {
+    public void printUserResult(HashMap<User, Item> result) {
         System.out.println(USER_RESULT_MESSAGE);
-        System.out.println(result);
+
+        result.forEach((key, value)
+                -> System.out.print(UserResultFormat(result.size(), key.getName(), value.getItem())));
     }
 
-    public void printUsersResult(Result result) {
-        System.out.println(USER_RESULT_MESSAGE);
-        result.getItemsALL()
-                .forEach((key, value) -> System.out.printf(USERS_RESULT_FORMAT, key.getName(), value.getItem()));
+    public String UserResultFormat(int size, String key, String value) {
+        if (size > 1) {
+            return String.format(USERS_RESULT_FORMAT, key, value);
+        }
+        return value + "\n";
     }
 
     private void printUsers(Users users) {
