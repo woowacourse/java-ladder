@@ -26,11 +26,11 @@ public class Name {
     protected enum Message {
 
         EXCEPTION_INVALID_NAME_LENGTH("%d글자 이상 %d글자 이하의 이름만 입력해주세요.", MIN_LENGTH, MAX_LENGTH);
-        public static final String _FORMAT = "[ERROR] %s";
+        public static final String _FORMAT_BASE_MESSAGE = "[ERROR] %s";
         private final String message;
 
         Message(String message, Object... replaces) {
-            this.message = String.format(_FORMAT, String.format(message, replaces));
+            this.message = String.format(_FORMAT_BASE_MESSAGE, String.format(message, replaces));
         }
     }
 }
