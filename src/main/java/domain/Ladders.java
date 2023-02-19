@@ -26,8 +26,8 @@ public class Ladders {
     }
 
     public int getResult(int current) {
-        for (int i = getHeight()-1; i > 0; i--) {
-            current+=ladders.get(i)
+        for (int i = 0; i < getHeight(); i++) {
+            current += ladders.get(i)
                     .getLadder()
                     .get(current)
                     .getMove();
