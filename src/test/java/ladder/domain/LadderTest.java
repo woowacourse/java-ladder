@@ -1,26 +1,32 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class LadderTest {
-    private final int heightOfLadder = 5;
-    private final int playerCount = 5;
+    private int heightOfLadder;
+    private int playerCount;
+
+    @BeforeEach
+    void setup() {
+        heightOfLadder = 5;
+        playerCount = 5;
+    }
 
     @Test
-    @DisplayName("사다리 생성을 테스트")
+    @DisplayName("4*5 사이즈의 사다리가 생성되는지 확인한다")
     void ladderInitiatorTest() {
-        List<Line> lines = new ArrayList<>();
+        Ladder ladder = new Ladder(playerCount, heightOfLadder, new MockRandomDataGenerator());
+        List<Line> lines = ladder.getLinesOfLadder();
 
-        for (int i = 0; i < heightOfLadder; i++) {
-            List<Bar> bars = LineMaker.generate(playerCount, new MockRandomDataGenerator());
-            lines.add(new Line(bars));
-        }
+        int rowSize = lines.size();
+        int columnSize = lines.get(0).getLine().size();
+        assertThat(rowSize == heightOfLadder && columnSize == playerCount - 1).isTrue();
 
-        Assertions.assertDoesNotThrow(() -> new Ladder(lines));
     }
 }
