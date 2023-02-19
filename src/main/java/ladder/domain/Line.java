@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -47,6 +46,6 @@ public class Line {
     }
 
     public List<StepPoint> toUnmodifiableStepPoints() {
-        return Collections.unmodifiableList(stepPoints);
+        return List.copyOf(stepPoints);
     }
 }
