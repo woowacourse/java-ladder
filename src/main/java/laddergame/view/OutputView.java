@@ -28,25 +28,22 @@ public class OutputView {
     }
 
     public static void printPlayerNames(List<String> playerNames) {
-
-        for (String name : playerNames) {
-            System.out.printf(PLAYER_NAME_FORMAT, name);
-        }
+        playerNames.forEach((playerName) ->
+                System.out.printf(PLAYER_NAME_FORMAT, playerName)
+        );
         System.out.println();
     }
 
     public static void printLadderMap(List<Line> ladder) {
-        for (Line line : ladder) {
-            printLine(line);
-        }
+        ladder.forEach(OutputView::printLine);
     }
 
     private static void printLine(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(String.format(LADDER_FORMAT, Point.DISCONNECT.getDisplayFormat(LADDER_SPACING)));
-        for (Point point : line.getLine()) {
-            stringBuilder.append(String.format(LADDER_FORMAT, point.getDisplayFormat(LADDER_SPACING)));
-        }
+        line.getLine().forEach((point) ->
+                stringBuilder.append(String.format(LADDER_FORMAT, point.getDisplayFormat(LADDER_SPACING)))
+        );
         System.out.println(stringBuilder);
     }
 
