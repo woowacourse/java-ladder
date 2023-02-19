@@ -24,14 +24,16 @@ public class RandomGenerateStrategy implements GenerateStrategy {
     public List<Boolean> generate(int count) {
         List<Boolean> result = new ArrayList<>(count);
         result.add(random.nextBoolean());
-        for (int i = 1; i < count - 1; i++) {
-            updateResult(result, result.get(i - 1));
+        int inBetweenCount = count - 1;
+        for (int i = 1; i < inBetweenCount; i++) {
+            int previousElement = i - 1;
+            updateResult(result, result.get(previousElement));
         }
         return result;
     }
 
-    private void updateResult(List<Boolean> result, Boolean previousValue) {
-        if (previousValue) {
+    private void updateResult(List<Boolean> result, Boolean previousElement) {
+        if (previousElement) {
             result.add(Boolean.FALSE);
             return;
         }
