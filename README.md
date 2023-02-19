@@ -14,6 +14,7 @@
 - [x] 참가자 표현을 Person 에서 Participant로 변경
 - [x] 예외 핸들러에서 예외 출력을 OutputView로 위임
 - [x] 사다리 표현 방식을 View로 옮긴다.
+- [x] LadderEngine::makeLines 인자 간략화(참가자 수만 전달)
 
 ## 기능 목록
 

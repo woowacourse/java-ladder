@@ -20,7 +20,7 @@ public class LadderEngine {
         Ladder ladder = IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
             Participants participants = gatherParticipants();
             int height = InputView.inputMaxLadderHeight();
-            List<Line> lines = makeLines(participants, height);
+            List<Line> lines = makeLines(participants.count(), height);
             return new Ladder(participants, lines);
         });
         OutputView.printLadder(ladder);
@@ -32,11 +32,11 @@ public class LadderEngine {
         );
     }
 
-    private List<Line> makeLines(final Participants participants, final int height) {
+    private List<Line> makeLines(final int participantsCount, final int height) {
         List<Line> lines = new ArrayList<>();
         LineGenerator lineGenerator = new LineGenerator(new RandomBridgeGenerator());
         for (int i = 0; i < height; i++) {
-            Line line = lineGenerator.generate(participants.count());
+            Line line = lineGenerator.generate(participantsCount);
             lines.add(line);
         }
         return lines;
