@@ -9,9 +9,9 @@ import java.util.List;
 
 public class PlayerMaker {
     private final List<Player> playerList;
-    public PlayerMaker(String players){
+    public PlayerMaker(List<String> players){
         playerList = new ArrayList<>();
-        makePlayerList(List.of(players.split(",")));
+        makePlayerList(players);
     }
     private void makePlayerList(List<String> players){
         for (int i = 0; i < players.size(); i++) {
