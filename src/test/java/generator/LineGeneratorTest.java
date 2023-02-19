@@ -14,10 +14,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LineGeneratorTest {
 
+    private final BridgeGenerator existBridgeGenerator = () -> EXIST;
+
     @Test
-    @DisplayName("절대 겹쳐지지 않는 브릿지가 만들어진다.")
-    void test_createBridge_never_overlapped() {
-        LineGenerator lineGenerator = new LineGenerator(() -> EXIST);
+    @DisplayName("절대 겹쳐지지 않는 Line이 만들어진다.")
+    void test_Line_never_overlapped() {
+        LineGenerator lineGenerator = new LineGenerator(existBridgeGenerator);
         Line line = lineGenerator.generate(7);
 
         List<Bridge> bridges = line.getBridges();
@@ -26,9 +28,9 @@ class LineGeneratorTest {
     }
 
     @Test
-    @DisplayName("[경계값 테스트] 절대 겹쳐지지 않는 브릿지가 만들어진다.")
-    void test_createBridge_never_overlapped_boundary() {
-        LineGenerator lineGenerator = new LineGenerator(() -> EXIST);
+    @DisplayName("[경계값 테스트] 절대 겹쳐지지 않는 Line이 만들어진다.")
+    void test_Line_never_overlapped_boundary() {
+        LineGenerator lineGenerator = new LineGenerator(existBridgeGenerator);
         Line line = lineGenerator.generate(2);
 
         List<Bridge> bridges = line.getBridges();
@@ -37,15 +39,15 @@ class LineGeneratorTest {
     }
 
     @Test
-    @DisplayName("[실제 예시 테스트] 절대 겹쳐지지 않는 브릿지가 만들어진다.")
-    void test_createBridge_never_overlapped_sample() {
-        List<Bridge> bridges = List.of(EMPTY, EMPTY, EXIST, EXIST);
-        Iterator<Bridge> iterator = bridges.iterator();
-        LineGenerator lineGenerator = new LineGenerator(iterator::next);
+    @DisplayName("[실제 예시 테스트] 절대 겹쳐지지 않는 Line이 만들어진다.")
+    void test_Line_never_overlapped_sample() {
+        List<Bridge> providedBridges = List.of(EMPTY, EMPTY, EXIST, EXIST);
+        Iterator<Bridge> bridgeIterator = providedBridges.iterator();
+        LineGenerator lineGenerator = new LineGenerator(bridgeIterator::next);
         Line line = lineGenerator.generate(5);
 
-        List<Bridge> testBridges = line.getBridges();
+        List<Bridge> generatedBridges = line.getBridges();
 
-        assertThat(testBridges).containsExactly(EMPTY, EMPTY, EXIST, EMPTY);
+        assertThat(generatedBridges).containsExactly(EMPTY, EMPTY, EXIST, EMPTY);
     }
 }

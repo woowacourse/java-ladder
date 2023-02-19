@@ -8,8 +8,9 @@
 
 ## 리팩터링 목록
 
-- [ ] 테스트 리팩터링
+- [x] 테스트 리팩터링
   - [x] LineTest DisplayName 및 메서드명, ParameterizedTest
+  - [x] LineGeneratorTest BridgeGenerator 변수로, 변수명 수정
 - [x] 참가자들 일급 컬렉션
 - [x] 참가자 이름이 같으면 같은 참가자로 취급
 - [x] 참가자 표현을 Person 에서 Participant로 변경
