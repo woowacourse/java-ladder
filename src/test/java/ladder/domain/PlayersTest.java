@@ -29,6 +29,7 @@ class PlayersTest {
     @DisplayName("플레이어수를 반환한다")
     public void getPlayerSize() {
         assertThat(Players.from(List.of("에밀", "홍고"))
-                          .getPlayersSize()).isEqualTo(2);
+                          .getPlayersSize())
+                .isEqualTo(2);
     }
 }
