@@ -1,12 +1,11 @@
 package domain;
 
+import static domain.LineState.UNMOVABLE_STATE;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static domain.LineState.UNMOVABLE_STATE;
-
 public class Line {
-
     private final List<Boolean> points = new ArrayList<>();
 
     public Line(int width, RandomGenerator generator) {
@@ -40,7 +39,7 @@ public class Line {
         addRandomPoint(generator);
     }
 
-    private boolean isSuccessive(int index){
+    private boolean isSuccessive(int index) {
         return points.get(index - 1);
     }
 
@@ -51,5 +50,5 @@ public class Line {
     private void addPoint(boolean state) {
         points.add(state);
     }
-    
+
 }

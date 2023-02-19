@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Persons {
-
     private static final String DUPLICATE_NAME_ERROR = "[ERROR] 중복된 이름입니다.";
-
     private final List<Person> persons = new ArrayList<>();
 
     public Persons(List<String> names) {

@@ -1,15 +1,14 @@
 package controller;
 
+import java.util.List;
+
 import domain.Ladder;
 import domain.Persons;
 import domain.RandomDigitsGenerator;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
-
 public class LadderGameController {
-
     private final InputView inputView;
     private final OutputView outputView;
     private final RandomDigitsGenerator generator;
@@ -47,6 +46,7 @@ public class LadderGameController {
             return readLadder(width);
         }
     }
+
 }
 
 
