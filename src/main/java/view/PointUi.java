@@ -1,6 +1,7 @@
 package view;
 
 public enum PointUi {
+
     EXIST("-"),
     NOT_EXIST(" ");
 
