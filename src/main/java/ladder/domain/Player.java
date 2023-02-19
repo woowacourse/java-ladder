@@ -12,4 +12,8 @@ public class Player {
     public Name getName() {
         return name;
     }
+
+    public Position getPosition() {
+        return position;
+    }
 }

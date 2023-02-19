@@ -53,4 +53,20 @@ class PlayersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("플레이어는 최소 2명 이상이여야 합니다");
     }
+
+    @Test
+    @DisplayName("플레이어의 위치는 입력 순이다")
+    void shouldPlayersOrderIsSameWithInputOrderWhenCreate() {
+        //given
+        List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
+        //when
+        Players players = new Players(names);
+        List<Player> playerList = players.getUnmodifiableList();
+        //then
+        assertAll(
+                () -> assertThat(playerList.get(0).getPosition()).isEqualTo(new Position(0)),
+                () -> assertThat(playerList.get(1).getPosition()).isEqualTo(new Position(1)),
+                () -> assertThat(playerList.get(2).getPosition()).isEqualTo(new Position(2))
+        );
+    }
 }

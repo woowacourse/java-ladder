@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,8 +23,9 @@ public class Players {
 
     private List<Player> generatePlayer(List<String> names) {
         List<Player> players = new ArrayList<>();
+        int position = 0;
         for (String name : names) {
-            players.add(new Player(name, 0));
+            players.add(new Player(name, position++));
         }
         return players;
     }
@@ -37,5 +39,9 @@ public class Players {
                 .map(Player::getName)
                 .map(Name::getValue)
                 .collect(Collectors.toList());
+    }
+
+    public List<Player> getUnmodifiableList() {
+        return Collections.unmodifiableList(players);
     }
 }
