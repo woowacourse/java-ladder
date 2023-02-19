@@ -17,6 +17,10 @@ public class Users {
         return users;
     }
 
+    public int count() {
+        return users.size();
+    }
+
     public String getFirstUserName() {
         validateFirstUser();
         return users.get(FIRST).getName();

@@ -38,6 +38,10 @@ public class OutputView {
         printLadder(ladder, users.getFirstUserName().length());
     }
 
+    public void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage() + NEXT_LINE);
+    }
+
     private void printUsers(Users users) {
         StringBuilder result = new StringBuilder();
         result.append(BLANK).append(users.getFirstUserName());

@@ -21,11 +21,25 @@ public class LadderGameController {
     }
 
     public void run() {
-        List<String> userNames = getUserNames();
-        Users users = new Users(generateUsers(userNames));
-        Height ladderHeight = new Height(getLadderHeight());
-        Ladder ladder = new Ladder(ladderHeight, userNames.size());
+        Users users = setUpUsers();
+        Height ladderHeight = setUpLadderHeight();
+        Ladder ladder = new Ladder(ladderHeight, users.count());
         printResult(ladder, users);
+    }
+
+    private Users setUpUsers() {
+        try {
+            return new Users(generateUsers(getUserNames()));
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return setUpUsers();
+        }
+    }
+
+    private List<User> generateUsers(List<String> userNames) {
+        return userNames.stream()
+                .map(username -> new User(new Name(username)))
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private List<String> getUserNames() {
@@ -33,15 +47,18 @@ public class LadderGameController {
         return inputView.inputUserNames();
     }
 
+    private Height setUpLadderHeight() {
+        try {
+            return new Height(getLadderHeight());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return new Height(getLadderHeight());
+        }
+    }
+
     private int getLadderHeight() {
         outputView.printEnterHeightNotice();
         return inputView.inputHeight();
-    }
-
-    private List<User> generateUsers(List<String> userNames) {
-        return userNames.stream()
-                .map(username -> new User(new Name(username)))
-                .collect(Collectors.toUnmodifiableList());
     }
 
     private void printResult(Ladder ladder, Users users) {
