@@ -4,7 +4,6 @@ import ladder.domain.Bar;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
-import ladder.domain.LineMaker;
 import ladder.domain.Name;
 import ladder.domain.Players;
 import ladder.domain.RandomGenerator;
@@ -19,21 +18,20 @@ public class LadderController {
 
     private final InputView inputView;
     private final ResultView resultView;
-    private final RandomGenerator randomIntegerGenerator;
+    private final RandomGenerator randomMovableGenerator;
 
-    public LadderController(InputView inputView, ResultView resultView, RandomGenerator randomIntegerGenerator) {
+    public LadderController(InputView inputView, ResultView resultView, RandomGenerator randomMovableGenerator) {
         this.inputView = inputView;
         this.resultView = resultView;
-        this.randomIntegerGenerator = randomIntegerGenerator;
+        this.randomMovableGenerator = randomMovableGenerator;
     }
 
     public void run() {
         Players players = createPlayersUntilNoException();
         Height heightOfLadder = decideHeightOfLadderUntilNoException();
-
         Ladder ladder = createLadder(players, heightOfLadder);
 
-        resultView.printLadder(players.getNames(), showLadder(ladder), Name.NAME_MAXIMUM_LENGTH);
+        resultView.printLadder(players.findNames(), makeLadderDataToView(ladder), Name.NAME_MAXIMUM_LENGTH);
     }
 
     private Players createPlayersUntilNoException() {
@@ -54,21 +52,6 @@ public class LadderController {
             resultView.printError(e.getMessage());
             return null;
         }
-    }
-
-    private List<List<Boolean>> showLadder(Ladder ladder) {
-        List<List<Boolean>> ladderData = new ArrayList<>();
-
-        List<Line> lines = ladder.getLadder();
-        for (Line line : lines) {
-            List<Boolean> lineData = line.getLine().stream()
-                    .map(Bar::getValue)
-                    .collect(Collectors.toList());
-
-            ladderData.add(lineData);
-        }
-
-        return ladderData;
     }
 
     private Height decideHeightOfLadderUntilNoException() {
@@ -92,13 +75,27 @@ public class LadderController {
     }
 
     private Ladder createLadder(Players players, Height height) {
-        List<Line> lines = new ArrayList<>();
+        int numberOfPlayers = players.findNumberOfPlayers();
+        int heightOfLadder = height.getHeight();
 
-        for (int idx = 0; idx < height.getHeight(); idx++) {
-            List<Bar> bars = LineMaker.generate(players.findNumberOfPlayers(), randomIntegerGenerator);
-            lines.add(new Line(bars));
+        return new Ladder(numberOfPlayers, heightOfLadder, randomMovableGenerator);
+    }
+
+
+    private List<List<Boolean>> makeLadderDataToView(Ladder ladder) {
+        List<List<Boolean>> ladderData = new ArrayList<>();
+
+        List<Line> lines = ladder.getLinesOfLadder();
+        for (Line line : lines) {
+            List<Boolean> lineData = line.getLine().stream()
+                    .map(Bar::getValue)
+                    .collect(Collectors.toList());
+
+            ladderData.add(lineData);
         }
 
-        return new Ladder(lines);
+        return ladderData;
     }
+
+
 }
