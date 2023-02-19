@@ -1,13 +1,14 @@
 package domain.model;
 
-import domain.vo.GoodsName;
+import domain.vo.Name;
 import domain.vo.Position;
 
 public class Goods {
-    private final GoodsName goodsName;
+    private final Name name;
+
     private Position position;
-    public Goods(final GoodsName goodsName, final Position position){
-        this.goodsName = goodsName;
+    public Goods(final Name name, final Position position){
+        this.name = name;
         this.position = position;
     }
 }
