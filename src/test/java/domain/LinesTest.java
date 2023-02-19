@@ -2,14 +2,9 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import domain.generator.ExistConnectionGenerator;
-import domain.generator.NonExistConnectionGenerator;
 
 public class LinesTest {
 
@@ -26,20 +21,5 @@ public class LinesTest {
         // then
         assertThat(lines.getLines().get(0).getConnections().size()).isEqualTo(expectedLadderWidth);
         assertThat(lines.getLines().size()).isEqualTo(height);
-    }
-
-    @Test
-    @DisplayName("Lines에서 해당하는 번호의 Line을 가져올 수 있다.")
-    void returns_selected_position_of_lines() {
-        // given
-        Line emptyLine = new Line(4, new ExistConnectionGenerator());
-        Line notEmptyLine = new Line(4, new NonExistConnectionGenerator());
-        Lines lines = new Lines(List.of(emptyLine, notEmptyLine, emptyLine));
-
-        // when
-        List<Boolean> selectedNotEmptyLine = lines.findSelectedLine(1);
-
-        // then
-        assertThat(selectedNotEmptyLine).containsExactly(false, false, false);
     }
 }

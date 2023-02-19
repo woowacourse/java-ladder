@@ -62,23 +62,6 @@ public class PlayersTest {
     }
 
     @Test
-    @DisplayName("플레이어 중 가장 긴 이름의 길이를 반환한다.")
-    void returns_longest_length_of_player_name() {
-        // given
-        String playerHavingLongestName = "dolbi";
-        List<String> playerNames = List.of(firstPlayerName, secondPlayerName, playerHavingLongestName);
-        int expectedLongestLengthOfName = playerHavingLongestName.length();
-
-        Players players = new Players(playerNames);
-
-        // when
-        int longestLengthOfName = players.findLongestPlayerName();
-
-        // then
-        assertThat(longestLengthOfName).isEqualTo(expectedLongestLengthOfName);
-    }
-
-    @Test
     @DisplayName("참여한 플레이어의 수를 반환하다.")
     void returns_number_of_players() {
         // given
@@ -92,32 +75,5 @@ public class PlayersTest {
 
         // then
         assertThat(numberOfPlayer).isEqualTo(expectedResult);
-    }
-
-    @Test
-    @DisplayName("참여한 플레이어들 중 첫번째 플레이어의 이름을 반환하다.")
-    void returns_name_of_first_player() {
-        // given
-        List<String> playerNames = List.of(firstPlayerName, secondPlayerName);
-        Players players = new Players(playerNames);
-
-        // when
-        String expectedResult = players.findFirstPlayerName();
-
-        // then
-        assertThat(expectedResult).isEqualTo(firstPlayerName);
-    }
-
-    @Test
-    @DisplayName("참여한 플레이어들 중 첫번째 플레이어의 이름의 길이를 반환하다.")
-    void returns_length_of_first_player_name() {
-        List<String> playerNames = List.of(firstPlayerName, secondPlayerName);
-        Players players = new Players(playerNames);
-
-        // when
-        int expectedResult = players.findLengthOfFirstPlayerName();
-
-        // then
-        assertThat(expectedResult).isEqualTo(firstPlayerName.length());
     }
 }

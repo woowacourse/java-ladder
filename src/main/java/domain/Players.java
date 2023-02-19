@@ -43,23 +43,8 @@ public class Players {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public int findLongestPlayerName() {
-        return players.stream()
-                .mapToInt(player -> player.getName().length())
-                .max()
-                .orElseThrow(IllegalArgumentException::new);
-    }
-
     public int findNumberOfPlayers() {
         return this.players.size();
-    }
-
-    public String findFirstPlayerName() {
-        return this.players.get(0).getName();
-    }
-
-    public int findLengthOfFirstPlayerName() {
-        return this.players.get(0).getLengthOfPlayerName();
     }
 
     public List<Player> getPlayers() {

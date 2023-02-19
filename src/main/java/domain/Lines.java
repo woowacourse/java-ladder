@@ -28,10 +28,6 @@ public class Lines {
         return lines;
     }
 
-    public List<Boolean> findSelectedLine(final int selectedPosition) {
-        return this.lines.get(selectedPosition).getConnections();
-    }
-
     public List<Line> getLines() {
         return Collections.unmodifiableList(this.lines);
     }

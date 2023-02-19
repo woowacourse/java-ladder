@@ -10,11 +10,11 @@ public class Ladder {
         this.height = new Height(height);
     }
 
-    public int findLadderHeight() {
-        return this.height.getHeight();
-    }
-
     public Lines getLines() {
         return this.lines;
+    }
+
+    public Height getHeight() {
+        return this.height;
     }
 }
