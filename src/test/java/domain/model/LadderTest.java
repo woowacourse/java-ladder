@@ -1,19 +1,26 @@
 package domain.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import domain.vo.Height;
 import domain.vo.Width;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
 public class LadderTest {
+
     @Test
-    @DisplayName("사다리는 input 높이의 층들을 갖는다")
-    void ladder() {
-        final Height height = new Height(5);
-        final Width width = new Width(4);
-        Ladder ladder = new Ladder(height, width);
-        assertThat(ladder.getHeight().get()).isEqualTo(5);
+    @DisplayName("사다리를 생성한다.")
+    public void makeLadder() {
+        //given
+        Height height = new Height(5);
+        Width width = new Width(5);
+
+        //when
+        Ladder ladder = Ladder.makeLadder(height, width);
+
+        //then
+        assertThat(ladder.getHeight()).isEqualTo(height);
+        assertThat(ladder.getWidth()).isEqualTo(width);
     }
 }
