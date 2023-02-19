@@ -21,12 +21,12 @@ class LadderTest extends AbstractTestFixture {
     @ValueSource(ints = {1, 999})
     void test_ladder_height_success(int height) {
         //given
-        List<Bridge> bridges = createLines(height);
+        Line line = new Line(createBridges(height));
         People defaultPerson = createDefaultPerson();
         List<String> resultCandidates = createResultCandidates(defaultPerson.getParticipantsSize());
 
         //when
-        Ladder ladder = new Ladder(defaultPerson, bridges, resultCandidates);
+        Ladder ladder = new Ladder(defaultPerson, line, resultCandidates);
 
         //then
         assertEquals(ladder.getLines().size(), height);
@@ -39,7 +39,7 @@ class LadderTest extends AbstractTestFixture {
         People people = createDefaultPerson();
 
         //when & then
-        assertThatThrownBy(() -> new Ladder(people, createLines(0),
+        assertThatThrownBy(() -> new Ladder(people, new Line(createBridges(0)),
                                             createResultCandidates(people.getParticipantsSize())))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -58,7 +58,7 @@ class LadderTest extends AbstractTestFixture {
 
         // when & then
         assertThatNoException().isThrownBy(() -> new Ladder(createDefaultPerson(),
-                                                            bridges,
+                                                            new Line(bridges),
                                                             createResultCandidates(2))
         );
     }
@@ -81,7 +81,7 @@ class LadderTest extends AbstractTestFixture {
 
         People people = new People(person);
 
-        Ladder ladder = new Ladder(people, bridges, createResultCandidates(people.getParticipantsSize()));
+        Ladder ladder = new Ladder(people, new Line(bridges), createResultCandidates(people.getParticipantsSize()));
 
         int beforePeopleSize = people.getParticipantsSize();
 
@@ -100,7 +100,7 @@ class LadderTest extends AbstractTestFixture {
     @DisplayName("실행 결과의 개수는 참가자 수와 같지 않으면 IllegalArgumentException 를 던진다.")
     void test_equalsResultSizeAndPeopleSize_IllegalArgumentException(int size) throws Exception {
         //given
-        List<Bridge> bridges = createLines(5);
+        List<Bridge> bridges = createBridges(5);
 
         People people = new People(
                 List.of(new Person("aa"),
@@ -112,7 +112,7 @@ class LadderTest extends AbstractTestFixture {
         List<String> resultCandidates = createResultCandidates(size);
 
         //when & then
-        assertThatThrownBy(() -> new Ladder(people, bridges, resultCandidates))
+        assertThatThrownBy(() -> new Ladder(people, new Line(bridges), resultCandidates))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("실행 결과 개수는 참가자 수와 같아야합니다.");
     }
@@ -138,7 +138,7 @@ class LadderTest extends AbstractTestFixture {
 
         //when
 
-        Ladder ladder = new Ladder(people, bridges, resultCandidate);
+        Ladder ladder = new Ladder(people, new Line(bridges), resultCandidate);
 
         Map<String, String> result = ladder.getLadderMatchingResult();
 
@@ -181,7 +181,7 @@ class LadderTest extends AbstractTestFixture {
 
         //when
 
-        Ladder ladder = new Ladder(people, bridges, resultCandidate);
+        Ladder ladder = new Ladder(people, new Line(bridges), resultCandidate);
 
         Map<String, String> result = ladder.getLadderMatchingResult();
 
@@ -201,7 +201,5 @@ class LadderTest extends AbstractTestFixture {
                 () -> assertEquals(result.get("crong"), "꽝"),
                 () -> assertEquals(result.get("jk"), "5000")
         );
-
-
     }
 }

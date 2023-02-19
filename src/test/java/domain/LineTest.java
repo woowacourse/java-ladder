@@ -17,7 +17,7 @@ class LineTest extends AbstractTestFixture {
     @DisplayName("사다리의 높이가 양수가 아니면 IllegalArgumentException를 던진다")
     void test_LineHeight_IllegalArgumentException() {
         //when & then
-        assertThatThrownBy(() -> new Line(createLines(0)))
+        assertThatThrownBy(() -> new Line(createBridges(0)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("높이는 양수만 가능합니다");
     }
@@ -26,7 +26,7 @@ class LineTest extends AbstractTestFixture {
     @ValueSource(ints = {1, 999})
     void test_LineHeight_success(int height) {
         //given
-        List<Bridge> bridges = createLines(height);
+        List<Bridge> bridges = createBridges(height);
 
         //when & then
         assertThatNoException().isThrownBy(

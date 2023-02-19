@@ -18,4 +18,8 @@ public class Line {
             throw new IllegalArgumentException("높이는 양수만 가능합니다");
         }
     }
+
+    public List<Bridge> getBridges() {
+        return bridges;
+    }
 }

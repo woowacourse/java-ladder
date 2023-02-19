@@ -3,6 +3,7 @@ package engine;
 import common.exception.handler.IllegalArgumentExceptionHandler;
 import domain.Ladder;
 import domain.Bridge;
+import domain.Line;
 import domain.People;
 import domain.Person;
 import generator.LineGenerator;
@@ -72,7 +73,7 @@ public class LadderEngine {
                 () -> {
                     int height = InputView.inputMaxLadderHeight();
                     List<Bridge> bridges = makeLines(people, height);
-                    return new Ladder(people, bridges, resultCandidates);
+                    return new Ladder(people, new Line(bridges), resultCandidates);
                 }
         );
     }

@@ -12,13 +12,12 @@ public class Ladder {
     private static final int MIN_HEIGHT = 0;
 
     private final People people;
-    private final List<Bridge> bridges;
+    private final Line line;
     private final List<String> resultCandidates;
 
-    public Ladder(final People people, final List<Bridge> bridges, final List<String> resultCandidates) {
-        validateHeightOf(bridges);
+    public Ladder(final People people, final Line line, final List<String> resultCandidates) {
         validateEqualsSizeOf(people, resultCandidates);
-        this.bridges = copyOf(bridges);
+        this.line = line;
         this.people = people;
         this.resultCandidates = copyOf(resultCandidates);
     }
@@ -29,14 +28,8 @@ public class Ladder {
         }
     }
 
-    private void validateHeightOf(final List<Bridge> bridges) {
-        if (bridges.size() <= MIN_HEIGHT) {
-            throw new IllegalArgumentException("높이는 양수만 가능합니다");
-        }
-    }
-
     public List<Bridge> getLines() {
-        return bridges;
+        return line.getBridges();
     }
 
     public List<String> getParticipantNames() {
@@ -57,7 +50,7 @@ public class Ladder {
             String name = participantNames.get(start);
             int index = start;
 
-            for (Bridge bridge : bridges) {
+            for (Bridge bridge : line.getBridges()) {
                 index = moveBridge(index, bridge);
             }
 
