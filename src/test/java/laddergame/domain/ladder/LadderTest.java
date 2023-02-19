@@ -15,16 +15,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class LadderFactoryTest {
+public class LadderTest {
 
-    private LadderFactory ladderFactory;
     private int participantCount;
+    private BooleanGenerator rungGenerator;
 
     @BeforeAll
     void init() {
-        BooleanGenerator rungGenerator = new RungGenerator();
-        ladderFactory = LadderFactory.create(rungGenerator);
         participantCount = 4;
+        rungGenerator = new RungGenerator();
     }
 
     @ParameterizedTest
@@ -32,10 +31,10 @@ public class LadderFactoryTest {
     @DisplayName("1 이상의 정수 범위의 사다리 높이가 들어오면, 예외가 발생하지 않는다.")
     void createLadder_thenSuccess(final String ladderHeight) {
         // when & then
-        assertThatCode(() -> ladderFactory.createLadder(ladderHeight, participantCount))
+        assertThatCode(() -> Ladder.create(ladderHeight, participantCount, rungGenerator))
                 .doesNotThrowAnyException();
 
-        assertThat(ladderFactory.createLadder(ladderHeight, participantCount))
+        assertThat(Ladder.create(ladderHeight, participantCount, rungGenerator))
                 .isInstanceOf(Ladder.class);
     }
 
@@ -44,7 +43,7 @@ public class LadderFactoryTest {
     @DisplayName("정수 값이 아닌 사다리 높이가 들어오면, 예외가 발생한다.")
     void createLadder_givenInvalidTypeLadderHeight_thenFail(final String ladderHeight) {
         // when & then
-        assertThatThrownBy(() -> ladderFactory.createLadder(ladderHeight, participantCount))
+        assertThatThrownBy(() -> Ladder.create(ladderHeight, participantCount, rungGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .isExactlyInstanceOf(TypeException.class)
                 .hasMessage(TypeException.errorMessage);
@@ -55,7 +54,7 @@ public class LadderFactoryTest {
     @DisplayName("1~10000 범위를 벗어난 사다리 높이가 입력되면, 예외가 발생한다.")
     void createLadder_givenInvalidRangeLadderHeight_thenFail(final String ladderHeight) {
         // when & then
-        assertThatThrownBy(() -> ladderFactory.createLadder(ladderHeight, participantCount))
+        assertThatThrownBy(() -> Ladder.create(ladderHeight, participantCount, rungGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .isExactlyInstanceOf(RangeException.class)
                 .hasMessage(String.format(RangeException.errorMessage, 1, 10_000));

@@ -1,10 +1,10 @@
 package laddergame.controller;
 
 import laddergame.domain.ladder.Ladder;
-import laddergame.domain.ladder.LadderFactory;
 import laddergame.domain.participant.Participant;
 import laddergame.domain.participant.Participants;
 import laddergame.domain.rung.RungGenerator;
+import laddergame.util.BooleanGenerator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -17,16 +17,17 @@ public class LadderGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final BooleanGenerator rungGenerator;
 
-    public LadderGameController(final InputView inputView, final OutputView outputView) {
+    public LadderGameController(final InputView inputView, final OutputView outputView, final BooleanGenerator rungGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.rungGenerator = rungGenerator;
     }
 
     public void start() {
         Participants participants = createParticipants();
-        LadderFactory ladderFactory = createLadderFactory();
-        Ladder ladder = createLadder(participants, ladderFactory);
+        Ladder ladder = createLadder(participants);
         printGameResult(participants, ladder);
     }
 
@@ -37,15 +38,10 @@ public class LadderGameController {
         });
     }
 
-    private LadderFactory createLadderFactory() {
-        RungGenerator rungGenerator = new RungGenerator();
-        return LadderFactory.create(rungGenerator);
-    }
-
-    private Ladder createLadder(final Participants participants, final LadderFactory ladderFactory) {
+    private Ladder createLadder(final Participants participants) {
         return inputView.getInputWithRetry(() -> {
             String maxLadderHeight = inputView.getMaxLadderHeight();
-            return ladderFactory.createLadder(maxLadderHeight, participants.size());
+            return Ladder.create(maxLadderHeight, participants.size(), rungGenerator);
         });
     }
 

@@ -1,6 +1,7 @@
 package laddergame.domain.ladder;
 
 import laddergame.domain.rung.Rungs;
+import laddergame.util.BooleanGenerator;
 
 import java.util.List;
 
@@ -12,7 +13,8 @@ public class Ladder {
         this.ladderRungs = ladderRungs;
     }
 
-    protected static Ladder create(final List<Rungs> ladderRungs) {
+    public static Ladder create(final String height, final int participantCount, final BooleanGenerator rungGenerator) {
+        List<Rungs> ladderRungs = LadderFactory.getInstance(rungGenerator).createLadderRungs(height, participantCount);
         return new Ladder(ladderRungs);
     }
 

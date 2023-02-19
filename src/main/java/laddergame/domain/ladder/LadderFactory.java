@@ -23,7 +23,7 @@ public class LadderFactory {
         this.rungGenerator = rungGenerator;
     }
 
-    public static LadderFactory create(final BooleanGenerator rungGenerator) {
+    protected static LadderFactory getInstance(final BooleanGenerator rungGenerator) {
         if (CACHE.containsKey(rungGenerator)) {
             return CACHE.get(rungGenerator);
         }
@@ -33,13 +33,13 @@ public class LadderFactory {
         return ladderFactory;
     }
 
-    public Ladder createLadder(final String height, final int participantCount) {
+    protected List<Rungs> createLadderRungs(final String height, final int participantCount) {
         int ladderHeight = convertToLadderHeight(height);
         List<Rungs> ladder = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
             ladder.add(Rungs.create(makeRungCount(participantCount), rungGenerator));
         }
-        return Ladder.create(ladder);
+        return ladder;
     }
 
     private int convertToLadderHeight(final String height) {
