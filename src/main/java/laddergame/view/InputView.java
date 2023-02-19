@@ -5,8 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.function.Supplier;
 
-import static laddergame.view.message.Message.INPUT_LADDER_MAX_HEIGHT_GUIDE;
-import static laddergame.view.message.Message.INPUT_PARTICIPANT_NAMES_GUIDE;
+import static laddergame.view.message.Message.*;
 
 public class InputView {
 
@@ -14,6 +13,15 @@ public class InputView {
 
     public InputView() {
         this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    }
+
+    public <T> T getInputWithRetry(Supplier<T> inputReader) {
+        try {
+            return inputReader.get();
+        } catch (IllegalArgumentException e) {
+            OutputView.print(e.getMessage());
+            return getInputWithRetry(inputReader);
+        }
     }
 
     public String getParticipantNames() {
@@ -26,13 +34,9 @@ public class InputView {
         return readConsole();
     }
 
-    public <T> T getInputWithRetry(Supplier<T> inputReader) {
-        try {
-            return inputReader.get();
-        } catch (IllegalArgumentException e) {
-            OutputView.print(e.getMessage());
-            return getInputWithRetry(inputReader);
-        }
+    public String getLadderResultNames() {
+        OutputView.print(System.lineSeparator() + INPUT_LADDER_RESULT_GUIDE.getMessage());
+        return readConsole();
     }
 
     private String readConsole() {
