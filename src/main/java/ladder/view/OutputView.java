@@ -10,47 +10,49 @@ public class OutputView {
     private static final int INITIAL_PLAYER_INDEX = 0;
     private static final int EMPTY_NAME_LENGTH = 0;
     private static final long SKIP_INITIAL_PLAYER = 1L;
-    private static final String GAME_RESULT_MESSAGE = "\n실행결과";
+    private static final String NEXT_LINE = System.lineSeparator();
+    private static final String GAME_RESULT_MESSAGE = NEXT_LINE + "실행결과" + NEXT_LINE;
     private static final String CONNECTED_SYMBOL = "-";
+    private static final String DISCONNECTED_SYMBOL = " ";
     private static final String EMPTY_SYMBOL = " ";
-    private static final String NAME_MESSAGE_FORMAT = " %";
-    private static final String STRING_FORMAT = "s";
+    private static final String INITIAL_NAME_MESSAGE_FORMAT = "%s ";
+    private static final String NAME_MESSAGE_FORMAT = " %%%ds";
     private static final String LINE_STATUS_MESSAGE_FORMAT = "%s|";
-    private static final String NEXT_LINE = "\n";
     private static final String ERROR_MESSAGE = "[ERROR] ";
 
-    public void printResult(final List<String> players, final List<Line> ladder) {
+    public void printResult(final List<String> playerNames, final List<Line> ladder) {
         System.out.println(GAME_RESULT_MESSAGE);
 
-        final int maxNameLength = calculateMaxNameLength(players);
-        System.out.println(generateNameMessages(players, maxNameLength));
+        final int maxNameLength = calculateMaxNameLength(playerNames);
+        System.out.println(generateNameMessages(playerNames, maxNameLength));
 
-        final String initialPlayerName = findInitialPlayerName(players);
+        final String initialPlayerName = getInitialPlayerName(playerNames);
         System.out.println(generateLadderMessage(initialPlayerName.length(), maxNameLength, ladder));
     }
 
-    private int calculateMaxNameLength(final List<String> players) {
-        return players.stream()
+    private int calculateMaxNameLength(final List<String> playerNames) {
+        return playerNames.stream()
                 .map(String::length)
                 .max(Integer::compareTo)
                 .orElse(EMPTY_NAME_LENGTH);
     }
 
-    private String generateNameMessages(final List<String> players, final int maxNameLength) {
-        final String initialPlayerName = findInitialPlayerName(players) + EMPTY_SYMBOL;
-        final String nameMessage = players.stream()
+    private String generateNameMessages(final List<String> playerNames, final int maxNameLength) {
+        final String initialNameMessage = String.format(INITIAL_NAME_MESSAGE_FORMAT, getInitialPlayerName(playerNames));
+        final String playerNameMessages = playerNames.stream()
                 .skip(SKIP_INITIAL_PLAYER)
                 .map(name -> generateNameMessage(name, maxNameLength))
                 .collect(joining());
-        return NEXT_LINE + initialPlayerName + nameMessage;
+        return initialNameMessage + playerNameMessages;
+    }
+
+    private String getInitialPlayerName(final List<String> playerNames) {
+        return playerNames.get(INITIAL_PLAYER_INDEX);
     }
 
     private String generateNameMessage(final String name, int maxNameLength) {
-        return String.format(NAME_MESSAGE_FORMAT + maxNameLength + STRING_FORMAT, name);
-    }
-
-    private String findInitialPlayerName(final List<String> players) {
-        return players.get(INITIAL_PLAYER_INDEX);
+        final String nameSizeFormat = String.format(NAME_MESSAGE_FORMAT, maxNameLength);
+        return String.format(nameSizeFormat, name);
     }
 
     private String generateLadderMessage(final int initialNameLength, final int maxNameLength, final List<Line> lines) {
@@ -75,7 +77,7 @@ public class OutputView {
         if (lineStatus.isConnected()) {
             return generateRepeatedLineStatusMessage(CONNECTED_SYMBOL, maxNameLength);
         }
-        return generateRepeatedLineStatusMessage(EMPTY_SYMBOL, maxNameLength);
+        return generateRepeatedLineStatusMessage(DISCONNECTED_SYMBOL, maxNameLength);
     }
 
     public void printError(final String message) {
