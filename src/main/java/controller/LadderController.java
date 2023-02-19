@@ -1,5 +1,6 @@
 package controller;
 
+import common.ExecuteContext;
 import domain.model.Ladder;
 import domain.vo.Height;
 import domain.vo.Name;
@@ -21,12 +22,26 @@ public class LadderController {
     }
 
     public void play() {
-        List<Name> names = inputView.inputNames()
-            .stream()
-            .map(Name::new)
-            .collect(Collectors.toList());
-        Ladder ladder = Ladder.makeLadder(new Height(inputView.inputLadderHeight()),
-            new Width(names.size() - NAMES_WIDTH_DIFFERENCE));
+        List<Name> names = getNames();
+        Ladder ladder = Ladder.makeLadder(getHeight(),
+            getWidth(names.size() - NAMES_WIDTH_DIFFERENCE));
         outputView.printResult(names, ladder);
     }
+
+    private List<Name> getNames() {
+        return ExecuteContext.workWithExecuteStrategy(() -> inputView.inputNames()
+            .stream()
+            .map(Name::new)
+            .collect(Collectors.toList()));
+    }
+
+    private Height getHeight() {
+        return ExecuteContext.workWithExecuteStrategy(
+            () -> new Height(inputView.inputLadderHeight()));
+    }
+
+    private Width getWidth(int size) {
+        return ExecuteContext.workWithExecuteStrategy(() -> new Width(size));
+    }
+
 }
