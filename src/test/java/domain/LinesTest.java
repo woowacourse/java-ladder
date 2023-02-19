@@ -11,12 +11,13 @@ import utils.booleanGenerator.RandomBooleanGenerator;
 
 class LinesTest {
     private final BooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
+    private final LineSize lineSize = new LineSize(4);
 
     @DisplayName("사다리 높이는 1 이상 100 이하이다.")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 99, 100})
     void validFloorCountTest(int height) {
-        assertDoesNotThrow(() -> new Lines(4, new Height(height), randomBooleanGenerator));
+        assertDoesNotThrow(() -> new Lines(lineSize, new Height(height), randomBooleanGenerator));
     }
 
     @DisplayName("사다리 높이가 1 미만 100 초과인 경우 예외 처리한다.")
@@ -24,6 +25,6 @@ class LinesTest {
     @ValueSource(ints = {-1, 0, 101, 102})
     void invalidFloorCountTest(int height) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Lines(4, new Height(height), randomBooleanGenerator));
+                .isThrownBy(() -> new Lines(lineSize, new Height(height), randomBooleanGenerator));
     }
 }
