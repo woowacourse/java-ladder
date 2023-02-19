@@ -23,4 +23,8 @@ public class Result {
         }
         return result.get(user).getItem();
     }
+
+    public HashMap<User, Item> getResult() {
+        return new HashMap<>(result);
+    }
 }
