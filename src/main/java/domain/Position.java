@@ -22,8 +22,4 @@ public enum Position {
     public String getFormat() {
         return format;
     }
-
-    public boolean isMovAble() {
-        return moveAble;
-    }
 }
