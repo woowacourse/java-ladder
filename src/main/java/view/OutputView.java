@@ -1,7 +1,7 @@
 package view;
 
+import domain.Ladder;
 import domain.Line;
-import domain.Map;
 import domain.Participants;
 
 public class OutputView {
@@ -13,12 +13,12 @@ public class OutputView {
     private static final String RESULT_MESSAGE = "\n실행결과\n";
     private static final boolean CONNECTED = true;
 
-    public void printMap(Participants participants, Map map) {
+    public void printLadder(Participants participants, Ladder ladder) {
         System.out.println(RESULT_MESSAGE);
         StringBuilder mapResult = new StringBuilder();
         setNames(mapResult, participants);
         mapResult.append(System.lineSeparator());
-        setLadder(mapResult, map);
+        setLadder(mapResult, ladder);
         System.out.print(mapResult);
     }
 
@@ -31,8 +31,8 @@ public class OutputView {
         return String.format("%5s ", name);
     }
 
-    private void setLadder(StringBuilder mapResult, Map map) {
-        map.getLines()
+    private void setLadder(StringBuilder mapResult, Ladder ladder) {
+        ladder.getLines()
             .forEach((line) -> mapResult.append(reformatLine(line)));
     }
 

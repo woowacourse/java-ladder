@@ -1,6 +1,6 @@
 package controller;
 
-import domain.Map;
+import domain.Ladder;
 import domain.Participants;
 import util.BooleanGenerator;
 import view.InputView;
@@ -18,8 +18,8 @@ public class RadderGameController {
 
     public void play(BooleanGenerator booleanGenerator) {
         Participants participants = makeParticipants();
-        Map map = generateMap(participants, booleanGenerator);
-        showMap(participants, map);
+        Ladder ladder = generateLadder(participants, booleanGenerator);
+        showLadder(participants, ladder);
     }
 
     private Participants makeParticipants() {
@@ -32,17 +32,18 @@ public class RadderGameController {
         }
     }
 
-    private Map generateMap(Participants participants, BooleanGenerator booleanGenerator) {
+    private Ladder generateLadder(Participants participants, BooleanGenerator booleanGenerator) {
         try {
-            String height = inputView.enterHeight();
-            return new Map(height, participants.getCount(), booleanGenerator);
+            final String height = inputView.enterHeight();
+            final int lineWeight = participants.getCount() - 1;
+            return new Ladder(height, lineWeight, booleanGenerator);
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
-            return generateMap(participants, booleanGenerator);
+            return generateLadder(participants, booleanGenerator);
         }
     }
 
-    private void showMap(Participants participants, Map map) {
-        outputView.printMap(participants, map);
+    private void showLadder(Participants participants, Ladder ladder) {
+        outputView.printLadder(participants, ladder);
     }
 }
