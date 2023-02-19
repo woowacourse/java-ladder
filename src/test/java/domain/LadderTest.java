@@ -48,7 +48,7 @@ public class LadderTest {
     }
 
     @Test
-    void 인자로_받은_Width_을_높이로_가진다() {
+    void 인자로_받은_Width_을_너비로_가진다() {
         // given
         final Width width = new Width(5);
         final Height height = new Height(5);
