@@ -1,9 +1,9 @@
 package ladder.view;
 
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import ladder.domain.Ladder;
-import ladder.domain.LadderFormat;
 import ladder.domain.Line;
 import ladder.domain.Names;
 
@@ -41,5 +41,26 @@ public class ResultView {
             .map(LadderFormat::getComponent)
             .map(component -> LEG + component.repeat(WIDTH))
             .collect(Collectors.joining());
+    }
+
+    private enum LadderFormat{
+        LINE(Boolean.TRUE, "-"),
+        BLANK(Boolean.FALSE, " ");
+
+        private final Boolean condition;
+        private final String component;
+
+        LadderFormat(Boolean condition, String component) {
+            this.condition = condition;
+            this.component = component;
+        }
+
+        public static String getComponent(Boolean condition) {
+            return Arrays.stream(values())
+                    .filter(format -> format.condition == condition)
+                    .findAny()
+                    .get()
+                    .component;
+        }
     }
 }
