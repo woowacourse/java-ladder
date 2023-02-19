@@ -1,7 +1,5 @@
 package view;
 
-import domain.Height;
-import domain.PlayerNames;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -16,19 +14,19 @@ public class InputView {
     private static final String NON_INTEGER_ERROR_MESSAGE = "높이는 정수만 입력 가능합니다.";
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public PlayerNames requestPlayerNames() {
+    public List<String> requestPlayerNames() {
         String playerNamesInput = requestUserInput(PLAYER_NAME_INPUT_MESSAGE);
-        List<String> playerNames = Arrays.stream(playerNamesInput.split(PLAYER_NAME_DELIMITER, SPLIT_LIMIT_REMOVER))
+
+        return Arrays.stream(playerNamesInput.split(PLAYER_NAME_DELIMITER, SPLIT_LIMIT_REMOVER))
                 .map(String::trim)
                 .collect(Collectors.toList());
-
-        return PlayerNames.from(playerNames);
     }
 
-    public Height requestLadderHeight() {
+    public int requestLadderHeight() {
         String heightInput = requestUserInput(LADDER_HEIGHT_INPUT_MESSAGE);
+
         try {
-            return new Height(Integer.parseInt(heightInput));
+            return Integer.parseInt(heightInput);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(NON_INTEGER_ERROR_MESSAGE);
         }
