@@ -4,10 +4,10 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toUnmodifiableList;
 
-public class Rows {
+public class Ladder {
     private final List<Row> rows;
 
-    public Rows(List<Row> rows) {
+    public Ladder(List<Row> rows) {
         this.rows = rows;
     }
 
@@ -17,7 +17,7 @@ public class Rows {
 
     public List<List<Foothold>> getState() {
         return rows.stream()
-                   .map(Row::getRow)
+                   .map(Row::getFootholds)
                    .collect(toUnmodifiableList());
     }
 }

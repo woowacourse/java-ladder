@@ -18,7 +18,7 @@ public enum Foothold {
         return Arrays.stream(Foothold.values())
                      .filter((foothold) -> foothold.state == state)
                      .findAny()
-                     .get();
+                     .orElseThrow(() -> new IllegalArgumentException("잘못된 발판 인자"));
     }
 
     public String getMark() {

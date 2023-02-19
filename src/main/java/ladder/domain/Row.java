@@ -5,20 +5,20 @@ import java.util.List;
 public class Row {
     private static final String ROW_LENGTH_ERROR_MESSAGE = "사다리 길이가 맞지 않습니다.";
     private static final String CONSECUTIVE_FOOTHOLD_ERROR_MESSAGE = "가로로 연속된 발판은 만들 수 없습니다.";
-    private final List<Foothold> row;
+    private final List<Foothold> footholds;
 
-    private Row(List<Foothold> row) {
-        validateContinuity(row);
-        this.row = row;
+    private Row(List<Foothold> footholds) {
+        validateContinuity(footholds);
+        this.footholds = footholds;
     }
 
-    public static Row of(List<Foothold> row, int expectedSize) {
-        validateSize(row, expectedSize);
-        return new Row(row);
+    public static Row of(List<Foothold> footholds, int expectedSize) {
+        validateSize(footholds, expectedSize);
+        return new Row(footholds);
     }
 
-    private static void validateSize(List<Foothold> row, int expectedSize) {
-        if (row.size() != expectedSize) {
+    private static void validateSize(List<Foothold> footholds, int expectedSize) {
+        if (footholds.size() != expectedSize) {
             throw new IllegalArgumentException(ROW_LENGTH_ERROR_MESSAGE);
         }
     }
@@ -31,18 +31,18 @@ public class Row {
         }
     }
 
-    private void checkConsecutiveSteps(List<Foothold> row, int position) {
-        if (isConsecutiveSteps(row, position)) {
+    private void checkConsecutiveSteps(List<Foothold> footholds, int position) {
+        if (isConsecutiveSteps(footholds, position)) {
             throw new IllegalArgumentException(CONSECUTIVE_FOOTHOLD_ERROR_MESSAGE);
         }
     }
 
-    private boolean isConsecutiveSteps(List<Foothold> row, int position) {
-        return row.get(position) == Foothold.Y
-                && row.get(position + 1) == Foothold.Y;
+    private boolean isConsecutiveSteps(List<Foothold> footholds, int position) {
+        return footholds.get(position) == Foothold.Y
+                && footholds.get(position + 1) == Foothold.Y;
     }
 
-    public List<Foothold> getRow() {
-        return row;
+    public List<Foothold> getFootholds() {
+        return footholds;
     }
 }

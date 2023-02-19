@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
-class RowsTest {
+class LadderTest {
     static Stream<Arguments> Row_리스트_데이터() {
         return Stream.of(
                 Arguments.of(List.of(
@@ -23,6 +23,6 @@ class RowsTest {
     @MethodSource("Row_리스트_데이터")
     public void 생성_success(List<Row> rows) {
         assertThatNoException()
-                .isThrownBy(() -> new Rows(rows));
+                .isThrownBy(() -> new Ladder(rows));
     }
 }

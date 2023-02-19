@@ -6,19 +6,19 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class HeightTest {
+class LadderWidthTest {
     @Test
-    @DisplayName("높이는 1이하이면 예외던지기")
+    @DisplayName("너비는 0이하이면 예외던지기")
     public void 생성_fail() {
-        assertThatThrownBy(() -> new Height(1))
+        assertThatThrownBy(() -> new LadderWidth(0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("높이가 2이상이어야 한다.");
+                .hasMessage("너비가 1 이상이어야 한다.");
     }
 
     @Test
-    @DisplayName("높이가 2이상이면 정상 생성한다")
+    @DisplayName("너비가 1이상이면 정상 생성한다")
     public void 생성_success() {
         assertThatNoException()
-                .isThrownBy(() -> new Height(2));
+                .isThrownBy(() -> new LadderWidth(1));
     }
 }
