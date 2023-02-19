@@ -22,4 +22,8 @@ public class InputView {
             throw new IllegalStateException(ExceptionMessage.EXCEPTION_LADDER_HEIGHT.getExceptionMessage());
         }
     }
+
+    public String readLadderResult(){
+        return scanner.nextLine();
+    }
 }

@@ -2,6 +2,7 @@ package controller;
 
 import model.Ladder;
 import model.LadderHeight;
+import model.LadderResult;
 import model.Names;
 import view.InputView;
 import view.OutputView;
@@ -18,6 +19,7 @@ public class Controller {
 
     public void run() {
         Names names = setNames();
+        LadderResult ladderResult = setLadderResult(names.getNamesSize());
         LadderHeight ladderHeight = setLadderHeight();
         Ladder ladder = new Ladder(names.getNamesSize(), ladderHeight);
         printResult(names, ladder, ladderHeight);
@@ -40,6 +42,16 @@ public class Controller {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return setLadderHeight();
+        }
+    }
+
+    private LadderResult setLadderResult(int personCount) {
+        outputView.printLadderResultMessage();
+        try {
+            return new LadderResult(inputView.readLadderResult(),personCount);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return setLadderResult(personCount);
         }
     }
 
