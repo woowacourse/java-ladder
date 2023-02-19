@@ -41,7 +41,7 @@ public class OutputView {
 
     private enum Message {
         OUTPUT_RESULT("실행결과\n"),
-        NAME_FORMAT("%-5s"),
+        NAME_FORMAT("%-6s"),
         COLUMN_LADDER("  |"),
         ROW_LADDER("-----|"),
         EMPTY_ROW_LADDER("     |");
