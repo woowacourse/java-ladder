@@ -22,11 +22,11 @@ public class LineTest {
 
     @ParameterizedTest
     @ValueSource(ints = {2, 10, 30, 50})
-    @DisplayName("Line의 points 크기는 참가자 수 - 1 이다")
-    void validatePointSize_Success(int personCount) {
+    @DisplayName("Line의 bridges 크기는 참가자 수 - 1 이다")
+    void validateBridgeSize_Success(int personCount) {
         booleanGenerator = new MockBooleanGenerator(createRandomFlag(personCount));
         Line line = new Line(personCount, booleanGenerator);
-        assertThat(line.getPoints().size()).isEqualTo(personCount - 1);
+        assertThat(line.getBridges().size()).isEqualTo(personCount - 1);
     }
 
     @ParameterizedTest
@@ -46,7 +46,7 @@ public class LineTest {
         booleanGenerator = new MockBooleanGenerator(inputFlag);
         Line line = new Line(personCount, booleanGenerator);
 
-        assertThat(line.getPoints()).isEqualTo(expectedFlag);
+        assertThat(line.getBridges()).isEqualTo(expectedFlag);
     }
 
 

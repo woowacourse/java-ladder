@@ -3,7 +3,7 @@ package view;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.player.Player;
-import domain.ladder.Point;
+import domain.ladder.Bridge;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class OutputView {
     private static final String LINE_BAR_MESSAGE = "|";
     private static final String LINE_SPACE_MESSAGE = "    ";
     private static final String PLAYER_SHOW_FORMAT = "%5s ";
-    private static final String POINT_SHOW_FORMAT = "%s";
+    private static final String BRIDGE_SHOW_FORMAT = "%s";
 
     public void showResultMessage() {
         System.out.println(RESULT_SHOW_MESSAGE);
@@ -28,16 +28,16 @@ public class OutputView {
         List<Line> lines = ladder.getLines();
 
         for (Line line : lines) {
-            List<Boolean> points = line.getPoints();
-            showPoints(points);
+            List<Boolean> bridges = line.getBridges();
+            showBridges(bridges);
             System.out.println();
         }
     }
 
-    private void showPoints(List<Boolean> points) {
+    private void showBridges(List<Boolean> bridges) {
         System.out.printf(LINE_SPACE_MESSAGE + LINE_BAR_MESSAGE);
-        for (Boolean point : points) {
-            printMessageFormat(Point.getPoint(point).getMessage() + LINE_BAR_MESSAGE, POINT_SHOW_FORMAT);
+        for (Boolean bridge : bridges) {
+            printMessageFormat(Bridge.getBridge(bridge).getMessage() + LINE_BAR_MESSAGE, BRIDGE_SHOW_FORMAT);
         }
     }
 

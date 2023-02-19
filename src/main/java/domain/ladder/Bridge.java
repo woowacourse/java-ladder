@@ -4,7 +4,7 @@ import utils.ErrorMessage;
 
 import java.util.Arrays;
 
-public enum Point {
+public enum Bridge {
 
     TRUE(true, "-----"),
     FALSE(false, "     ");
@@ -12,16 +12,16 @@ public enum Point {
     private final Boolean flag;
     private final String message;
 
-    Point(Boolean flag, String message) {
+    Bridge(Boolean flag, String message) {
         this.flag = flag;
         this.message = message;
     }
 
-    public static Point getPoint(boolean flag) {
+    public static Bridge getBridge(boolean flag) {
         return Arrays.stream(values())
-                .filter(point -> point.flag == flag)
+                .filter(bridge -> bridge.flag == flag)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.POINT_NOT_FOUND_ERROR.getMessage()));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.BRIDGE_NOT_FOUND_ERROR.getMessage()));
     }
 
     public String getMessage() {
