@@ -5,7 +5,6 @@ import domain.vo.Name;
 import domain.vo.Position;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class PlayerMaker {
