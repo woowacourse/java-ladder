@@ -27,6 +27,11 @@ public class InputView {
 
         String input = scanner.nextLine();
         InputValidator.validateInteger(input);
+        terminate();
         return Integer.parseInt(input);
+    }
+
+    private static void terminate() {
+        scanner.close();
     }
 }
