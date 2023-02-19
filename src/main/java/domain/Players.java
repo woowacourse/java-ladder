@@ -27,7 +27,6 @@ public class Players {
 
     private boolean hasDuplicateName(List<Player> players) {
         return players.stream()
-                .map(Player::getName)
                 .distinct()
                 .count() != players.size();
     }

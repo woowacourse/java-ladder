@@ -65,6 +65,5 @@ class PlayersTest {
                 .map(Name::new)
                 .map(Player::new)
                 .collect(toList());
-
     }
 }
