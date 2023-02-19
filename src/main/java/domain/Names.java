@@ -6,13 +6,13 @@ import java.util.List;
 public class Names {
     private static final int MIN_RANGE = 2;
     private static final int MAX_RANGE = 100;
-    private static final String COMMA = ",";
+    private static final String SPLIT_STANDARD = ",";
 
     private final List<Name> names;
 
     public Names(String names) {
         this.names = new ArrayList<>();
-        for (String name : names.split(COMMA)) {
+        for (String name : names.split(SPLIT_STANDARD)) {
             this.names.add(new Name(name.trim()));
         }
         validate(this.names.size());
