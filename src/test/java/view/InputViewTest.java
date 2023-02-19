@@ -73,6 +73,38 @@ class InputViewTest {
         }
     }
 
+    @Nested
+    @DisplayName("입력받은 사다리 실행 결과가")
+    class GoalCase {
+        @Test
+        @DisplayName("쉼표로 구분된 이름이 아니면 예외가 발생한다.")
+        void givenNamesNotSeparatedByComma_thenThrowsException() {
+            String goals = "꽝.4000.꽝";
+
+            assertThatThrownBy(getInputView(goals)::getGoals)
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(InputView.SEPARATOR_REQUIRED_ERROR_MESSAGE);
+        }
+
+        @Test
+        @DisplayName("쉼표로 구분된 이름이면, 쉼표를 기준으로 이름을 분리해 저장한다.")
+        void givenNamesSeparatedByComma_thenReturnsSeparated() {
+            String goals = "꽝,4000,꽝";
+
+            assertThat(getInputView(goals).getGoals())
+                    .containsExactly("꽝", "4000", "꽝");
+        }
+
+        @Test
+        @DisplayName("쉼표 이후 공백이 포함되어 있다면, 이름을 분리한 후 공백을 제거해 저장한다.")
+        void givenNamesSeparatedByCommaWithSpace_thenReturnSeparatedWithoutSpace() {
+            String goals = "꽝, 4000, 꽝";
+
+            assertThat(getInputView(goals).getGoals())
+                    .containsExactly("꽝", "4000", "꽝");
+        }
+    }
+
     private static InputView getInputView(String... names) {
         return new InputView(new MockInputReader(names));
     }
