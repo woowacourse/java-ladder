@@ -20,11 +20,12 @@ public class Controller {
         Items items = settingItems(users);
         Ladders ladders = new Ladders(users.getCount(), settingHeight(), new RandomGenerator());
 
-        outputView.printLadderResult(users, items, ladders);
+        outputView.printLadderResultBoard(users, items, ladders);
         Result result = new Result(users, items, ladders);
 
         while (true) {
-            System.out.println(result.getItem(new User(inputView.inputWinner())));
+            String query = inputView.inputWinner();
+            outputView.printUserResult(result.getItem(new User(query)));
         }
     }
 
