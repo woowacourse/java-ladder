@@ -23,7 +23,7 @@ class GameTest {
         Game game = new Game(ladder, players, ladderResults);
 
         // when
-        game.calculateResultOfPlayer();
+        game.calculatePlayerResults();
 
         // then
         assertThat(players.getPlayers().get(1).getResult()).isEqualTo(

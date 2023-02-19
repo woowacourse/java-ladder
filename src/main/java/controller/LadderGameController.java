@@ -26,7 +26,7 @@ public class LadderGameController {
         Ladder ladder = makeLadder(players.findNumberOfPlayers());
 
         Game game = new Game(ladder, players, ladderResults);
-        game.calculateResultOfPlayer();
+        game.calculatePlayerResults();
 
         outputView.printLadderGameStatus(players, ladder, ladderResults);
         printResultOfPlayer(players);

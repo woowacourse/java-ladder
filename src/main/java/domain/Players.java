@@ -78,4 +78,8 @@ public class Players {
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(this.players);
     }
+
+    public void addResult(int playerIndex, String result) {
+        this.getPlayers().get(playerIndex).addResult(result);
+    }
 }

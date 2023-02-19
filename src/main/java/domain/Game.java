@@ -15,99 +15,109 @@ public class Game {
         this.ladderResults = ladderResults;
     }
 
-    public void calculateResultOfPlayer() {
-        List<Integer> players = new ArrayList<>();
+    public void calculatePlayerResults() {
+        List<Integer> playerResults = new ArrayList<>();
 
-        initPlayerPosition(players);
+        initPlayerPosition(playerResults);
 
         for (int height = 0; height < ladder.findLadderHeight(); height++) {
-            moveLadder(players, height);
+            moveLadder(playerResults, height);
         }
 
-        addResultToPlayer(players);
+        addResultToPlayer(playerResults);
     }
 
-    private void initPlayerPosition(final List<Integer> players) {
+    private void initPlayerPosition(final List<Integer> playerResults) {
         for (int i = 0; i < this.players.findNumberOfPlayers(); i++) {
-            players.add(i);
+            playerResults.add(i);
         }
     }
 
-    private void moveLadder(final List<Integer> players, final int height) {
+    private void moveLadder(final List<Integer> playerResults, final int height) {
         List<Boolean> footholdsOfHeight = findFootholdsOfHeight(height);
 
         for (int index = 0; index < this.players.findNumberOfPlayers(); index++) {
-            moveLine(players, footholdsOfHeight, index);
+            moveLine(playerResults, footholdsOfHeight, index);
         }
     }
 
-    private void moveLine(final List<Integer> players, final List<Boolean> footholdsOfHeight, final int index) {
-        if (isFirstIndexOfLadder(players.get(index))) {
-            moveAtFirstOfLadder(players, footholdsOfHeight, index);
+    private void moveLine(final List<Integer> playerResults, final List<Boolean> footholdsOfHeight, final int index) {
+        if (isFirstIndexOfLadder(playerResults.get(index))) {
+            moveAtFirstOfLadder(playerResults, footholdsOfHeight, index);
             return;
         }
 
-        if (isEndIndexOfLadder(players, index)) {
-            moveEndOfIndex(players, footholdsOfHeight, index);
+        if (isEndIndexOfLadder(playerResults, index)) {
+            moveEndOfIndex(playerResults, footholdsOfHeight, index);
             return;
         }
 
-        moveBodyOfLadder(players, footholdsOfHeight, index);
+        moveBodyOfLadder(playerResults, footholdsOfHeight, index);
     }
 
     private boolean isFirstIndexOfLadder(final int index) {
         return index == 0;
     }
 
-    private void moveAtFirstOfLadder(final List<Integer> players, final List<Boolean> footholdsOfHeight,
+    private void moveAtFirstOfLadder(final List<Integer> playerResults, final List<Boolean> footholdsOfHeight,
                                      final int index) {
-        if (footholdsOfHeight.get(0) == true) {
-            moveNextIndex(players, index);
+        if (isExistFootholdAtFirst(footholdsOfHeight)) {
+            moveNextIndex(playerResults, index);
         }
     }
 
-    private void moveEndOfIndex(final List<Integer> players, final List<Boolean> footholdsOfHeight, final int index) {
-        if (footholdsOfHeight.get(footholdsOfHeight.size() - 1)) {
-            movePrevIndex(players, index);
+    private boolean isExistFootholdAtFirst(final List<Boolean> footholdsOfHeight) {
+        return footholdsOfHeight.get(0) == true;
+    }
+
+    private void moveEndOfIndex(final List<Integer> playerResults, final List<Boolean> footholdsOfHeight,
+                                final int index) {
+        if (isExistFootholdEndOfIndex(footholdsOfHeight)) {
+            movePrevIndex(playerResults, index);
         }
     }
 
-    private void moveBodyOfLadder(final List<Integer> players, final List<Boolean> footholdsOfHeight, final int index) {
-        if (isExistFootholdPrevIndex(footholdsOfHeight, players.get(index))) {
-            movePrevIndex(players, index);
-        } else if (isExistFootholdNextIndex(footholdsOfHeight, players.get(index))) {
-            moveNextIndex(players, index);
+    private boolean isExistFootholdEndOfIndex(List<Boolean> footholdsOfHeight) {
+        return footholdsOfHeight.get(footholdsOfHeight.size() - 1);
+    }
+
+    private void moveBodyOfLadder(final List<Integer> playerResults, final List<Boolean> footholdsOfHeight,
+                                  final int index) {
+        if (isExistFootholdPrevIndex(footholdsOfHeight, playerResults.get(index))) {
+            movePrevIndex(playerResults, index);
+        } else if (isExistFootholdNextIndex(footholdsOfHeight, playerResults.get(index))) {
+            moveNextIndex(playerResults, index);
         }
     }
 
-    private boolean isExistFootholdNextIndex(final List<Boolean> footholdsOfHeight, final int players) {
-        return footholdsOfHeight.get(players) == true;
+    private boolean isExistFootholdNextIndex(final List<Boolean> footholdsOfHeight, final int playerIndex) {
+        return footholdsOfHeight.get(playerIndex) == true;
     }
 
-    private boolean isExistFootholdPrevIndex(final List<Boolean> footholdsOfHeight, final int players) {
-        return footholdsOfHeight.get(players - 1) == true;
+    private boolean isExistFootholdPrevIndex(final List<Boolean> footholdsOfHeight, final int playerIndex) {
+        return footholdsOfHeight.get(playerIndex - 1) == true;
     }
 
-    private void movePrevIndex(final List<Integer> players, final int index) {
-        players.set(index, players.get(index) - 1);
+    private void movePrevIndex(final List<Integer> playerResults, final int index) {
+        playerResults.set(index, playerResults.get(index) - 1);
     }
 
-    private void moveNextIndex(final List<Integer> players, final int index) {
-        players.set(index, players.get(index) + 1);
+    private void moveNextIndex(final List<Integer> playerResults, final int index) {
+        playerResults.set(index, playerResults.get(index) + 1);
     }
 
-    private boolean isEndIndexOfLadder(final List<Integer> players, final int index) {
-        return players.get(index) == players.size() - 1;
-    }
-
-    private void addResultToPlayer(final List<Integer> players) {
-        for (int i = 0; i < this.players.findNumberOfPlayers(); i++) {
-            String result = ladderResults.getLadderResultOfIndex(players.get(i));
-            this.players.getPlayers().get(i).addResult(result);
-        }
+    private boolean isEndIndexOfLadder(final List<Integer> playerResults, final int index) {
+        return playerResults.get(index) == playerResults.size() - 1;
     }
 
     private List<Boolean> findFootholdsOfHeight(int indexOfHeight) {
         return this.ladder.findLineUsingIndexOfHeight(indexOfHeight);
+    }
+
+    private void addResultToPlayer(final List<Integer> playerResults) {
+        for (int i = 0; i < this.players.findNumberOfPlayers(); i++) {
+            String result = ladderResults.getLadderResultOfIndex(playerResults.get(i));
+            this.players.addResult(i, result);
+        }
     }
 }
