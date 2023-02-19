@@ -2,7 +2,7 @@ package ui.output;
 
 import domain.Lines;
 import domain.People;
-import domain.Peoples;
+import domain.Person;
 
 /**
  * @author 최원용
@@ -13,14 +13,14 @@ public class OutputView {
 
     private static final String EXECUTE_RESULT = "실행결과";
 
-    public static void printResult(Peoples peoples, Lines lines) {
+    public static void printResult(Person person, Lines lines) {
         System.out.println("\n" + EXECUTE_RESULT + "\n");
-        printNames(peoples);
+        printNames(person);
         printLadder(lines);
     }
 
-    private static void printNames(Peoples peoples) {
-        for (People people : peoples.getPeoples()) {
+    private static void printNames(Person person) {
+        for (People people : person.getPerson()) {
             calculateNameLength(people.getName());
         }
         System.out.println();

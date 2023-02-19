@@ -11,12 +11,12 @@ import java.util.List;
  */
 public class Application {
     public static void main(String[] args) {
-        List<String> names = InputView.getPeoplesName();
+        List<String> names = InputView.getPersonName();
         LadderGame ladderGame = new LadderGame();
-        Peoples peoples = ladderGame.createPeoples(names);
+        Person person = ladderGame.createPeoples(names);
         int ladderHeight = InputView.getLadderHeight();
 
-        Lines lines = ladderGame.createLines(peoples.getPeoples().size(), ladderHeight);
-        OutputView.printResult(peoples, lines);
+        Lines lines = ladderGame.createLines(person.getPerson().size(), ladderHeight);
+        OutputView.printResult(person, lines);
     }
 }

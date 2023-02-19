@@ -27,13 +27,13 @@ class LadderGameTest {
     @Test
     void PEOPLES_객체_생성() {
         List<String> names = List.of("people1", "people2", "people3");
-        Peoples peoples = ladderGame.createPeoples(names);
+        Person person = ladderGame.createPeoples(names);
 
         Assertions.assertAll(
                 () -> {
-                    assertEquals(peoples.getPeoples().get(0).getName(), "people1");
-                    assertEquals(peoples.getPeoples().get(1).getName(), "people2");
-                    assertEquals(peoples.getPeoples().get(2).getName(), "people3");
+                    assertEquals(person.getPerson().get(0).getName(), "people1");
+                    assertEquals(person.getPerson().get(1).getName(), "people2");
+                    assertEquals(person.getPerson().get(2).getName(), "people3");
                 }
         );
     }

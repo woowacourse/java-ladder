@@ -12,12 +12,12 @@ import java.util.List;
  */
 public class LadderGame {
 
-    public Peoples createPeoples(List<String> names) {
+    public Person createPeoples(List<String> names) {
         List<People> peoples = new ArrayList<>();
         for (String name : names) {
             peoples.add(new People(name));
         }
-        return new Peoples(peoples);
+        return new Person(peoples);
     }
 
     public Lines createLines(int width, int height) {
