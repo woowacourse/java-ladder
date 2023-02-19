@@ -9,14 +9,20 @@ public class OutputView {
     private static final String USER_NAME_FORMAT = "%5s ";
     private static final String BRIDGE_DELIMITER = "|";
 
-    public void printUsers(Users users) {
+    public void printLadderResult(Users users, Items items, Ladders ladders) {
+        printUsers(users);
+        printLadders(ladders);
+        printItems(items);
+    }
+
+    private void printUsers(Users users) {
         System.out.println(RESULT_MESSAGE);
         users.getUsers()
                 .forEach(user -> System.out.printf(USER_NAME_FORMAT, user.getName()));
         System.out.println();
     }
 
-    public void printLadders(Ladders ladders) {
+    private void printLadders(Ladders ladders) {
         String result = ladders.getLadders()
                 .stream()
                 .map(this::printLadder)
@@ -24,12 +30,12 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public void printItems(Items items){
+    private void printItems(Items items) {
         items.getItems()
                 .forEach(item -> System.out.printf("USER_NAME_FORMAT", item.getItem()));
     }
 
-    public String printLadder(Ladder ladder) {
+    private String printLadder(Ladder ladder) {
         return ladder.getLadder()
                 .stream()
                 .map(Position::getFormat)
