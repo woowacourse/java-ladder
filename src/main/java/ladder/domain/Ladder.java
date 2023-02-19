@@ -1,7 +1,7 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Ladder {
     private static final int MAX_HEIGHT_RATIO = 2;
@@ -27,9 +27,7 @@ public class Ladder {
         return lines.size();
     }
 
-    public List<String> asString() {
-        return lines.stream()
-                .map(Line::asString)
-                .collect(Collectors.toList());
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }

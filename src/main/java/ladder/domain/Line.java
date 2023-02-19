@@ -1,7 +1,7 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Line {
     private final List<Step> steps;
@@ -27,10 +27,8 @@ public class Line {
         return steps.get(index) == Step.EXIST && steps.get(index - 1) == Step.EXIST;
     }
 
-    public String asString() {
-        return "|" + steps.stream()
-                .map(Step::getShape)
-                .collect(Collectors.joining("|")) + "|";
+    public List<Step> getSteps() {
+        return Collections.unmodifiableList(steps);
     }
 
     public int getSize() {

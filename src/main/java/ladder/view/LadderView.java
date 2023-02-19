@@ -1,6 +1,8 @@
 package ladder.view;
 
 import java.util.List;
+import ladder.dto.LadderResponse;
+import ladder.dto.PlayersResponse;
 
 public class LadderView {
     public String readPlayerNames() {
@@ -11,7 +13,7 @@ public class LadderView {
         return InputView.readLadderHeight();
     }
 
-    public void printResult(String names, List<String> lines) {
-        OutputView.printResult(names, lines);
+    public void printResult(PlayersResponse playersResponse, LadderResponse ladderResponse) {
+        OutputView.printResult(playersResponse, ladderResponse);
     }
 }

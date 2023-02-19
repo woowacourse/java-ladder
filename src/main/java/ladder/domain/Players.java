@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Players {
     private static final int MIN_PLAYERS = 2;
@@ -33,13 +32,6 @@ public class Players {
         if (uniquePlayersCount != players.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 이름이 있습니다.");
         }
-    }
-
-    public String asString() {
-        return players.stream()
-                .map(Player::getName)
-                .map(name -> String.format("%-5s", name))
-                .collect(Collectors.joining(" "));
     }
 
     public List<Player> getPlayers() {
