@@ -20,8 +20,8 @@ public class Ladder {
     }
 
     public static Ladder makeLadder(Height height, Width width) {
-        List<Layer> layers = IntStream.range(0, height.get())
-            .mapToObj(index -> Layer.makeLayerByRandom(width.get())).collect(Collectors.toList());
+        List<Layer> layers = IntStream.range(0, height.getValue())
+            .mapToObj(index -> Layer.makeLayerByRandom(width.getValue())).collect(Collectors.toList());
         return new Ladder(height, width, layers);
     }
 

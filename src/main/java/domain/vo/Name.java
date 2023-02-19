@@ -14,11 +14,12 @@ public class Name {
 
     private void validate(final String target) {
         if (target.length() < MIN_LENGTH || target.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(String.format(LENGTH_ERROR_MESSAGE, MIN_LENGTH, MAX_LENGTH));
+            throw new IllegalArgumentException(
+                String.format(LENGTH_ERROR_MESSAGE, MIN_LENGTH, MAX_LENGTH));
         }
     }
 
-    public String get() {
+    public String getValue() {
         return value;
     }
 }
