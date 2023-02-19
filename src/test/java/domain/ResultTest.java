@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Queue;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ResultTest {
     private Result result;
@@ -29,5 +30,11 @@ class ResultTest {
     @Test
     void getItem() {
         assertThat(result.getItem(new User("cc"))).isEqualTo("2");
+    }
+
+    @Test
+    void getItemFailTest() {
+        assertThatThrownBy(()->result.getItem(new User("dd")))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
