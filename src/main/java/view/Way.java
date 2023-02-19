@@ -1,7 +1,6 @@
-package domain;
+package view;
 
-
-public enum Way {
+enum Way {
     PASS( "-", true),
     NOT_PASS(" ", false);
 
