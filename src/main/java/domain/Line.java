@@ -8,7 +8,7 @@ import util.BooleanGenerator;
 
 public class Line {
 
-    private final List<Boolean> status = new ArrayList<>();
+    private final List<Boolean> blocks = new ArrayList<>();
 
     public Line(int weight, BooleanGenerator booleanGenerator) {
         validate(weight);
@@ -28,20 +28,20 @@ public class Line {
     }
 
     public void generate(int weight, BooleanGenerator booleanGenerator) {
-        IntStream.range(0, weight).forEach((index) -> status.add(generateStatus(index, booleanGenerator)));
+        IntStream.range(0, weight).forEach((index) -> blocks.add(generateStatus(index, booleanGenerator)));
     }
 
     private boolean generateStatus(int index, BooleanGenerator booleanGenerator) {
         final int firstIndex = 0;
         final int prev = index - 1;
         final boolean connected = true;
-        if (index != firstIndex && status.get(prev) == connected) {
+        if (index != firstIndex && blocks.get(prev) == connected) {
             return false;
         }
         return booleanGenerator.generate();
     }
 
-    public List<Boolean> getStatus() {
-        return List.copyOf(status);
+    public List<Boolean> getBlocks() {
+        return List.copyOf(blocks);
     }
 }

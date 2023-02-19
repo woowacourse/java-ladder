@@ -61,8 +61,8 @@ class MapTest {
         Map ladder = new Map("3", 3, () -> true);
         List<Line> lines = ladder.getLines();
         Assertions.assertThat(lines.size()).isEqualTo(3);
-        Assertions.assertThat(lines.get(0).getStatus()).containsExactly(true, false);
-        Assertions.assertThat(lines.get(1).getStatus()).containsExactly(true, false);
-        Assertions.assertThat(lines.get(2).getStatus()).containsExactly(true, false);
+        Assertions.assertThat(lines.get(0).getBlocks()).containsExactly(true, false);
+        Assertions.assertThat(lines.get(1).getBlocks()).containsExactly(true, false);
+        Assertions.assertThat(lines.get(2).getBlocks()).containsExactly(true, false);
     }
 }

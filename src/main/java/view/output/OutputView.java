@@ -38,8 +38,8 @@ public class OutputView {
         final String startLine = "    |";
         final String endLine = "|";
         result.append(startLine);
-        for (Boolean status : line.getStatus()) {
-            result.append(reformatStatus(status));
+        for (Boolean block : line.getBlocks()) {
+            result.append(reformatStatus(block));
             result.append(endLine);
         }
         result.append(System.lineSeparator());

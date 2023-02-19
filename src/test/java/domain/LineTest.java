@@ -13,7 +13,7 @@ class LineTest {
     void createSuccess() {
         try {
             Line ladder = new Line(9, new RandomBooleanGenerator());
-            int weight = ladder.getStatus().size();
+            int weight = ladder.getBlocks().size();
             Assertions.assertThat(weight).isEqualTo(9);
         } catch (IllegalArgumentException exception) {
             Assertions.fail("라인의 너비가 조건에 맞을 경우 객체를 생성해야 합니다.");
@@ -38,13 +38,13 @@ class LineTest {
     @Test
     void makeStatusCheckAllFalse() {
         Line line = new Line(3, () -> false);
-        Assertions.assertThat(line.getStatus()).containsExactly(false, false, false);
+        Assertions.assertThat(line.getBlocks()).containsExactly(false, false, false);
     }
 
     @DisplayName("라인은 정상적으로 생성된 경우. (연결가능 부분 연결)")
     @Test
     void makeStatusCheck() {
         Line line = new Line(3, () -> true);
-        Assertions.assertThat(line.getStatus()).containsExactly(true, false, true);
+        Assertions.assertThat(line.getBlocks()).containsExactly(true, false, true);
     }
 }
