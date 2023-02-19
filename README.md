@@ -15,6 +15,10 @@
 - [x] 사람 이름은 중복될 수 없다
 - [x] 사람은 2명 이상이어야 한다.
 
+## Line
+
+- [x] List<Bridge> 를 관리하는 일급 컬렉션 Line 생성
+
 ## Ladder
 
 - [x] 사람들을 가진다
@@ -23,7 +27,8 @@
 - [x] 사다리 게임 실제로 시작하기
 
 ### Ladder refactoring
-- [x] resultCandidates 불변성 및 재할당 불가 상태로 변기
+- [x] resultCandidates 불변성 및 재할당 불가 상태로 변경
+- [ ] List<Bridge> -> Line 일급 컬렉션으로 변경
 
 ## Bridge
 - [x] 브릿지는 연속으로 생성될 수 없다.
