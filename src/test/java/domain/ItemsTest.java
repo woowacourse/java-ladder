@@ -13,7 +13,9 @@ public class ItemsTest {
     @ParameterizedTest
     @MethodSource("resultFailParameter")
     void usersSizeFailTest(List<Item> input) {
-        org.assertj.core.api.Assertions.assertThatThrownBy(() -> new Items(input, 3))
+        Users users = new Users(List.of(new User("aa"), new User("bb"), new User("cc")));
+
+        org.assertj.core.api.Assertions.assertThatThrownBy(() -> new Items(input, users))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
