@@ -12,11 +12,12 @@ public class Names {
 
     public Names(String names) {
         this.names = new ArrayList<>();
-        for (String name : names.split(NAME_DELIMITER)) {
+        String[] splitNames = names.split(NAME_DELIMITER);
+        validate(splitNames.length);
+        for (String name : splitNames) {
             name = name.trim();
             this.names.add(new Name(name));
         }
-        validate(this.names.size());
     }
 
     private static void validate(int personNumber) {
