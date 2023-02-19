@@ -9,6 +9,7 @@ import java.util.List;
 public class DuplicateNameValidatorChain implements InputValidator {
 
     private static final String ERROR_MESSAGE = "중복은 허용되지 않습니다.";
+
     private final List<String> names = new ArrayList<>();
 
     @Override
