@@ -7,6 +7,7 @@ public class Users {
     private static final int USER_COUNT_MIN_RANGE = 2;
     private static final int USER_COUNT_MAX_RANGE = 10;
     private static final String INVALID_USER_COUNT_MESSAGE = "유저는 최소 2명 이상이다.";
+    private static final String INVALID_SAME_USER_NAME_MESSAGE = "중복된 이름이 존재합니다.";
     private final List<User> users;
 
     public Users(List<User> users) {
@@ -23,7 +24,7 @@ public class Users {
 
     private void validateSameName(List<User> users) {
         if (users.size() != users.stream().distinct().count()) {
-            throw new IllegalArgumentException("중복된 이름이 존재합니다.");
+            throw new IllegalArgumentException(INVALID_SAME_USER_NAME_MESSAGE);
         }
     }
 
