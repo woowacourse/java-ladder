@@ -11,7 +11,7 @@ public class Line {
     private final List<Boolean> connections;
 
     public Line(final int numberOfPlayer, final ConnectionGenerator connectionGenerator) {
-        connections = makeConnections(numberOfPlayer, connectionGenerator);
+        this.connections = makeConnections(numberOfPlayer, connectionGenerator);
     }
 
     private List<Boolean> makeConnections(final int numberOfPlayer, final ConnectionGenerator connectionGenerator) {
@@ -24,24 +24,20 @@ public class Line {
         return connections;
     }
 
-    private void makeOtherConnections(final ConnectionGenerator connectionGenerator, final List<Boolean> footholds,
+    private void makeOtherConnections(final ConnectionGenerator connectionGenerator, final List<Boolean> connection,
                                       final int numberOfPoint) {
         for (int i = 1; i < numberOfPoint; i++) {
-            boolean random = connectionGenerator.generate();
-            makeConnectionWithoutFirst(footholds, i, random);
+            boolean isExisting = connectionGenerator.generate();
+            makeConnectionExceptFirst(connection, i, isExisting);
         }
     }
 
-    private void makeConnectionWithoutFirst(final List<Boolean> footholds, final int index, final boolean isExisting) {
-        if (isContinuousConnection(footholds, index, isExisting)) {
-            footholds.add(false);
+    private void makeConnectionExceptFirst(final List<Boolean> connection, final int index, final boolean isExisting) {
+        if (connection.get(index-1) && isExisting) {
+            connection.add(false);
             return;
         }
-        footholds.add(isExisting);
-    }
-
-    private boolean isContinuousConnection(final List<Boolean> footholds, final int index, final boolean random) {
-        return footholds.get(index-1) && random;
+        connection.add(isExisting);
     }
 
     public List<Boolean> getConnections() {

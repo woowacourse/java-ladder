@@ -9,6 +9,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class PlayersTest {
 
@@ -21,24 +23,13 @@ public class PlayersTest {
         secondPlayerName = "popo";
     }
 
-    @Test
-    @DisplayName("사람의 수가 1명 이하이면 예외를 던진다.")
-    void throws_exception_number_of_player_under_two() {
-        // given
-        List<String> playerNames = List.of("pobi");
-
-        // when & then
-        assertThatThrownBy(() -> new Players(playerNames))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("참여 가능한 플레이어의 수는 2명이상 10명이하 입니다.");
-    }
-
-    @Test
-    @DisplayName("사람의 수가 10명 보다 크면 예외를 던진다.")
-    void throws_exception_number_of_players_over_ten() {
+    @ParameterizedTest
+    @ValueSource(ints = {1, 11})
+    @DisplayName("사람의 수가 2명보다 작거나 10명 이상이면 예외를 던진다.")
+    void throws_exception_number_of_player_under_two(int numberOfPlayer) {
         // given
         List<String> playerNames = new ArrayList<>();
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < numberOfPlayer; i++) {
             playerNames.add("abc" + i);
         }
 
