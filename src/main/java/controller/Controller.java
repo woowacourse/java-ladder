@@ -22,7 +22,7 @@ public class Controller {
         Users users = getUsers();
         Height height = getHeight();
 
-        Ladder ladder = createLadder(users, height);
+        Ladder ladder = getLadder(users, height);
 
         OutputView.printResult(users, ladder);
     }
@@ -50,7 +50,7 @@ public class Controller {
         }
     }
 
-    private Ladder createLadder(Users users, Height height) {
+    private Ladder getLadder(Users users, Height height) {
         return new Ladder(users.getSize(), height.getHeight(), ladderRowGenerator);
     }
 }
