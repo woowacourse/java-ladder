@@ -5,7 +5,7 @@ public enum Bridge {
     EXIST, EMPTY;
 
     public boolean isSerialWith(Bridge next) {
-        return this == EXIST && next == EXIST;
+        return this.doesExist() && next.doesExist();
     }
 
     public boolean doesExist() {

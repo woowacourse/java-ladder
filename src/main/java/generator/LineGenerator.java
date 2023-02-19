@@ -26,7 +26,7 @@ public class LineGenerator {
     }
 
     private Bridge getNextBridgeAfter(final Bridge lastBridge) {
-        if (lastBridge == Bridge.EXIST) {
+        if (lastBridge.doesExist()) {
             return Bridge.EMPTY;
         }
         return bridgeGenerator.generate();
