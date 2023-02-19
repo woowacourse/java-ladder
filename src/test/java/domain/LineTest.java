@@ -1,63 +1,42 @@
 package domain;
 
-import helper.AbstractTestFixture;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import helper.AbstractTestFixture;
+
 class LineTest extends AbstractTestFixture {
 
-    @Test
-    @DisplayName("3개의 브릿지가 연속될 경우 IllegalArgumentException을 반환한다")
-    void test_sameHeight1_IllegalArgumentException() {
-
-        assertThatThrownBy(() -> new Line(convert(true, true, false)))
+    @ParameterizedTest(name = "브릿지가 연속될 경우 IllegalArgumentException을 던진다")
+    @CsvSource(value = {"true,true,false", "false,true,true", "true,true,true"})
+    void test_serial_IllegalArgumentException(boolean firstBridge, boolean secondBridge, boolean thirdBridge) {
+        assertThatThrownBy(() -> new Line(convert(firstBridge, secondBridge, thirdBridge)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("3개의 브릿지가 연속될 경우 IllegalArgumentException을 반환한다")
-    void test_sameHeight2_IllegalArgumentException() {
-
-        assertThatThrownBy(() -> new Line(convert(false, true, true)))
-                .isInstanceOf(IllegalArgumentException.class);
+    @ParameterizedTest(name = "연속되지 않는 브릿지들로 Line을 생성한다")
+    @CsvSource(value = {"true,false,true", "false,true,false"})
+    void test_notSerial_success(boolean firstBridge, boolean secondBridge, boolean thirdBridge) {
+        assertThatNoException()
+                .isThrownBy(() -> new Line(convert(firstBridge, secondBridge, thirdBridge)));
     }
 
     @Test
-    @DisplayName("3개의 브릿지가 연속될 경우 IllegalArgumentException을 반환한다")
-    void test_sameHeight3_IllegalArgumentException() {
-
-        assertThatThrownBy(() -> new Line(convert(true, true, true)))
-                .isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("연속되지 않는 4개의 브릿지들로 Line을 생성한다")
+    void test_notSerial_4_success() {
+        assertThatNoException()
+                .isThrownBy(() -> new Line(convert(true, false, false, true)));
     }
 
     @Test
-    @DisplayName("3개의 브릿지가 연속되지 않으면 성공적으로 사다리가 생성된다")
-    void test_notSameHeight1_IllegalArgumentException() {
-
-        assertThatNoException().isThrownBy(() -> new Line(convert(true, false, true)));
-    }
-
-    @Test
-    @DisplayName("3개의 브릿지가 연속되지 않으면 성공적으로 사다리가 생성된다")
-    void test_notSameHeight2_IllegalArgumentException() {
-
-        assertThatNoException().isThrownBy(() -> new Line(convert(false, true, false)));
-    }
-
-    @Test
-    @DisplayName("4개의 브릿지가 연속되지 않으면 성공적으로 사다리가 생성된다")
-    void test_notSameHeight3_IllegalArgumentException() {
-
-        assertThatNoException().isThrownBy(() -> new Line(convert(true, false, false, true)));
-    }
-
-    @Test
-    @DisplayName("1개의 브릿지가 연속되지 않으면 성공적으로 사다리가 생성된다")
-    void test_notSameHeight4_IllegalArgumentException() {
-
-        assertThatNoException().isThrownBy(() -> new Line(convert(true)));
+    @DisplayName("1개의 브릿지로 Line을 생성한다")
+    void test_notSerial_1_success() {
+        assertThatNoException()
+                .isThrownBy(() -> new Line(convert(true)));
     }
 }
