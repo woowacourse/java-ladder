@@ -1,12 +1,12 @@
 package domain.ladder;
 
 import domain.generator.BooleanGenerator;
-import domain.generator.RandomBooleanGenerator;
 import utils.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class LadderMaker {
 
@@ -14,12 +14,12 @@ public class LadderMaker {
     private static final int MAX_HEIGHT = 100;
 
     private final List<Line> lines = new ArrayList<>();
-    private final BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
+    private final BooleanGenerator randomBooleanGenerator = () -> new Random().nextBoolean();
 
     public List<Line> make(int personCount, int height) {
         validateHeight(height);
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(personCount, booleanGenerator));
+            lines.add(new Line(personCount, randomBooleanGenerator));
         }
         return Collections.unmodifiableList(lines);
     }
