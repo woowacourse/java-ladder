@@ -1,5 +1,9 @@
-package ladder.domain;
+package ladder.service;
 
+import ladder.domain.Height;
+import ladder.domain.Ladder;
+import ladder.domain.Line;
+import ladder.domain.Names;
 import ladder.util.BooleanGenerator;
 
 public class LadderGame {

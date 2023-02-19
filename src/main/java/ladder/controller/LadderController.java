@@ -1,7 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.Height;
-import ladder.domain.LadderGame;
+import ladder.service.LadderGame;
 import ladder.domain.Names;
 import ladder.util.BooleanGenerator;
 import ladder.view.InputView;
