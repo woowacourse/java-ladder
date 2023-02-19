@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Players {
 
@@ -14,22 +15,28 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(List<Player> players) {
-        validateDuplicate(players);
-        validateSize(players);
-        this.players = players;
+    public Players(List<String> playersName) {
+        validateDuplicate(playersName);
+        validateSize(playersName);
+        this.players = createPlayers(playersName);
     }
 
-    private void validateDuplicate(List<Player> players) {
-        Set<Player> uniqueNamePlayers = new HashSet<>(players);
+    private List<Player> createPlayers(List<String> playersName) {
+        return playersName.stream()
+                .map(Player::new)
+                .collect(Collectors.toList());
+    }
 
-        if (uniqueNamePlayers.size() != players.size()) {
+    private void validateDuplicate(List<String> playersName) {
+        Set<String> uniqueNames = new HashSet<>(playersName);
+
+        if (uniqueNames.size() != playersName.size()) {
             throw new IllegalArgumentException(ErrorMessage.PLAYER_DUPLICATE_ERROR.getMessage());
         }
     }
 
-    private void validateSize(List<Player> players) {
-        if (players.size() < MIN_PLAYER_SIZE || players.size() > MAX_PLAYER_SIZE) {
+    private void validateSize(List<String> playersName) {
+        if (playersName.size() < MIN_PLAYER_SIZE || playersName.size() > MAX_PLAYER_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.PLAYER_SIZE_ERROR.getMessage());
         }
     }

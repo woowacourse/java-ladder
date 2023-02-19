@@ -27,22 +27,16 @@ public class LadderController {
         showResult(players, ladder);
     }
 
-    private void showResult(Players players, Ladder ladder) {
-        outputView.showResultMessage();
-        outputView.showPlayers(players.getPlayers());
-        outputView.showLadder(ladder);
-    }
-
-    public Players getPlayers() {
+    private Players getPlayers() {
         try {
-            return createPlayers();
+            return new Players(inputView.readNames());
         } catch (IllegalArgumentException e) {
             Log.error(e.getMessage());
             return getPlayers();
         }
     }
 
-    public int getLadderHeight() {
+    private int getLadderHeight() {
         try {
             return inputView.readLadderHeight();
         } catch (IllegalArgumentException e) {
@@ -51,10 +45,9 @@ public class LadderController {
         }
     }
 
-    private Players createPlayers() {
-        return new Players(inputView.readNames()
-                .stream()
-                .map(Player::new)
-                .collect(Collectors.toList()));
+    private void showResult(Players players, Ladder ladder) {
+        outputView.showResultMessage();
+        outputView.showPlayers(players.getPlayers());
+        outputView.showLadder(ladder);
     }
 }
