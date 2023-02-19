@@ -22,11 +22,11 @@ public class Ladder {
                                 NumberGenerator numberGenerator) {
         List<Line> lines = new ArrayList<>();
         int width = numberOfPeople - NUMBER_OF_PEOPLE_TO_WIDTH_SCALE;
+        int height = ladderHeight.getLadderHeight();
 
-        for (int i = 0; i < ladderHeight.getLadderHeight(); i++) {
+        while (height -- > 0) {
             lines.add(Line.create(numberGenerator, width));
         }
-
         return new Ladder(lines, ladderHeight);
     }
 

@@ -14,8 +14,7 @@ public class Line {
 
     public static Line create(NumberGenerator numberGenerator, int width) {
         List<LinePoint> linePoints = new ArrayList<>();
-
-        for (int i = 0; i < width; i++) {
+        while (width-- > 0) {
             addPoint(numberGenerator, linePoints);
         }
         return new Line(linePoints);
