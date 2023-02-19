@@ -1,11 +1,13 @@
 package application;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 import domain.Ladder;
 import domain.LadderHeight;
 import domain.Name;
-import domain.Names;
+import domain.Player;
+import domain.Players;
 import java.util.List;
 import java.util.function.Supplier;
 import utils.RandomNumberGenerator;
@@ -23,18 +25,19 @@ public class LadderGameApplication {
     }
 
     public void run() {
-        Names names = repeat(this::createNames);
+        Players players = repeat(this::createPlayers);
         LadderHeight ladderHeight = repeat(this::createLadderHeight);
-        Ladder ladder = Ladder.create(names.getSize(),ladderHeight,  new RandomNumberGenerator());
+        Ladder ladder = Ladder.create(players.size(), ladderHeight, new RandomNumberGenerator());
 
-        outputView.printResult(names, ladder);
+        outputView.printResult(players, ladder);
     }
 
-    private Names createNames() {
+    private Players createPlayers() {
         List<String> rawNames = inputView.readNames();
         return rawNames.stream()
                 .map(Name::new)
-                .collect(collectingAndThen(toList(), Names::new));
+                .map(Player::new)
+                .collect(collectingAndThen(toList(), Players::new));
     }
 
     private LadderHeight createLadderHeight() {

@@ -2,8 +2,8 @@ package view;
 
 import domain.Ladder;
 import domain.Line;
-import domain.Names;
 import domain.LinePoint;
+import domain.Players;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,17 +14,17 @@ public class OutputView {
     private static final String BLOCKED_POINT = "     ";
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
-    public void printResult(Names names,
+    public void printResult(Players players,
                             Ladder ladder) {
         System.out.println("실행결과");
 
-        System.out.println(getFormattedNames(names));
+        System.out.println(getFormattedNames(players));
         printLadder(ladder);
     }
 
-    private String getFormattedNames(Names names) {
-        return names.getNames().stream()
-                .map(name -> String.format("%-5s", name.getName()))
+    private String getFormattedNames(Players players) {
+        return players.getPlayers().stream()
+                .map(player -> String.format("%-5s", player.getName()))
                 .collect(Collectors.joining(" "));
     }
 
