@@ -26,17 +26,17 @@ public class Line {
     }
 
     private void calculatePoints(int personCount) {
-        points.add(getRandomValue());
+        points.add(generateRandomValue());
         while (personCount-- > 2) {
             if (!points.get(points.size() - 1)) {
-                points.add(getRandomValue());
+                points.add(generateRandomValue());
                 continue;
             }
             points.add(false);
         }
     }
 
-    private boolean getRandomValue() {
+    private boolean generateRandomValue() {
         return randomValueGenerator.generate();
     }
 }
