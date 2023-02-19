@@ -4,9 +4,7 @@ import exception.DuplicateNameException;
 import exception.EmpytInputException;
 import exception.InvalidParticipantsCountException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -19,20 +17,20 @@ public class Participants {
     }
 
     private void validate(String participantNames) {
-        if (!isExist(participantNames)) {
+        if (isBlank(participantNames)) {
             throw new EmpytInputException();
         }
         List<String> splitNames = splitNames(participantNames);
-        if (isValidCount(splitNames)) {
+        if (isInvalidCount(splitNames)) {
             throw new InvalidParticipantsCountException();
         }
-        if (!isUnique(splitNames)) {
+        if (isDuplicate(splitNames)) {
             throw new DuplicateNameException();
         }
     }
 
-    private boolean isExist(String participantNames) {
-        return participantNames != null && !participantNames.isBlank();
+    private boolean isBlank(String participantNames) {
+        return participantNames == null || participantNames.isBlank();
     }
 
     private List<String> splitNames(String participantNames) {
@@ -40,15 +38,14 @@ public class Participants {
         return List.of(participantNames.split(delimiter, -1));
     }
 
-    private boolean isValidCount(List<String> names) {
+    private boolean isInvalidCount(List<String> names) {
         final int minParticipantCount = 2;
         final int maxParticipantCount = 10;
         return names.size() < minParticipantCount || names.size() > maxParticipantCount;
     }
 
-    private boolean isUnique(List<String> names) {
-        Set<String> uniqueNames = new HashSet<>(names);
-        return uniqueNames.size() == names.size();
+    private boolean isDuplicate(List<String> names) {
+        return names.size() > names.stream().distinct().count();
     }
 
     private void joinAllParticipants(String participantNames) {

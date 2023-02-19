@@ -1,5 +1,6 @@
 package domain;
 
+import exception.EmpytInputException;
 import exception.InvalidPersonNameException;
 
 public class Person {
@@ -12,14 +13,22 @@ public class Person {
     }
 
     private void validateName(String name) {
-        if (!isValidLength(name)) {
+        if (isBlank(name)) {
+            throw new EmpytInputException();
+        }
+        if (isInvalidLength(name)) {
             throw new InvalidPersonNameException();
         }
     }
 
-    private boolean isValidLength(String name) {
+    private boolean isBlank(String name) {
+        return name == null || name.isBlank();
+    }
+
+    private boolean isInvalidLength(String name) {
+        final int minLength = 1;
         final int maxLength = 5;
-        return name != null && !name.isBlank() && name.length() <= maxLength;
+        return name.length() < minLength || name.length() > maxLength;
     }
 
     public String getName() {

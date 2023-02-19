@@ -16,15 +16,15 @@ public class Line {
     }
 
     private void validate(int weight) {
-        if (!isValidWeight(weight)) {
+        if (isInvalidWeight(weight)) {
             throw new InvalidLineWeightException();
         }
     }
 
-    private boolean isValidWeight(int weight) {
+    private boolean isInvalidWeight(int weight) {
         final int minHeight = 1;
         final int maxHeight = 9;
-        return minHeight <= weight && weight <= maxHeight;
+        return minHeight > weight || weight > maxHeight;
     }
 
     public void generate(int weight, BooleanGenerator booleanGenerator) {

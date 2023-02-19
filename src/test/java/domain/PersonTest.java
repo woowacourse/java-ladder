@@ -1,5 +1,6 @@
 package domain;
 
+import exception.EmpytInputException;
 import exception.InvalidPersonNameException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -28,20 +29,20 @@ class PersonTest {
     @Test
     void nameNull() {
         Assertions.assertThatThrownBy(() -> new Person(null))
-            .isExactlyInstanceOf(InvalidPersonNameException.class);
+            .isExactlyInstanceOf(EmpytInputException.class);
     }
 
     @DisplayName("사람이름이 빈문자열일 경우 오류를 던진다.")
     @Test
     void nameEmpty() {
         Assertions.assertThatThrownBy(() -> new Person(""))
-            .isExactlyInstanceOf(InvalidPersonNameException.class);
+            .isExactlyInstanceOf(EmpytInputException.class);
     }
 
     @DisplayName("사람이름이 띄어쓰기로만 이루어진 경우 오류를 던진다.")
     @Test
     void nameBlank() {
         Assertions.assertThatThrownBy(() -> new Person("     "))
-            .isExactlyInstanceOf(InvalidPersonNameException.class);
+            .isExactlyInstanceOf(EmpytInputException.class);
     }
 }

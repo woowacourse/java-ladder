@@ -22,29 +22,29 @@ public class Map {
     }
 
     private void validate(String height, int lineWeight) {
-        if (!isNum(height) || !isValidHeight(height)) {
+        if (isNotNum(height) || isInValidHeight(height)) {
             throw new InvalidLadderHeightException();
         }
-        if (!isValidLineWeight(lineWeight)) {
+        if (isInvalidWeight(lineWeight)) {
             throw new InvalidLineWeightException();
         }
     }
 
-    private boolean isNum(String height) {
-        return !(height == null || height.isBlank() || !height.matches("^[1-9]*$"));
+    private boolean isNotNum(String height) {
+        return height == null || height.isBlank() || !height.matches("^[1-9]*$");
     }
 
-    private boolean isValidHeight(String heightInput) {
+    private boolean isInValidHeight(String heightInput) {
         final int minLadderCount = 1;
         final int maxLadderCount = 10;
         final int height = Integer.parseInt(heightInput);
-        return minLadderCount <= height && height <= maxLadderCount;
+        return minLadderCount > height || height > maxLadderCount;
     }
 
-    private boolean isValidLineWeight(int lineWeight) {
+    private boolean isInvalidWeight(int lineWeight) {
         final int minLineWeight = 1;
         final int maxLineWeight = 9;
-        return minLineWeight <= lineWeight && lineWeight <= maxLineWeight;
+        return minLineWeight > lineWeight || lineWeight > maxLineWeight;
     }
 
     private Ladder generate(BooleanGenerator booleanGenerator) {
