@@ -3,8 +3,8 @@ package util;
 import java.util.Arrays;
 
 public enum Status {
-    YES_BRIDGE(true),
-    NO_BRIDGE(false);
+    BRIDGE_EXIST(true),
+    BRIDGE_DOES_NOT_EXIST(false);
 
     private final boolean status;
 

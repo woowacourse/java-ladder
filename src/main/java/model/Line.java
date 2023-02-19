@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Line {
     private static final int MINIMUM_LINE_SIZE = 2;
-
+    private static final int NUMBER_FOR_RETRY = 1;
     private final List<Status> points = new ArrayList<>();
     public Line(int personCount, Generator generator) {
         for (int column = 0; column < personCount - 1; column++) {
@@ -18,17 +18,10 @@ public class Line {
     }
 
     private int checkColumn(int column) {
-        if (validateLineMake(column)) {
-            column--;
+        if (points.size() >= MINIMUM_LINE_SIZE && validateRetryLineMake(column)) {
+            return column - NUMBER_FOR_RETRY;
         }
         return column;
-    }
-
-    private boolean validateLineMake(int column) {
-        if (points.size() >= MINIMUM_LINE_SIZE) {
-            return validateRetryLineMake(column);
-        }
-        return false;
     }
 
     private boolean validateRetryLineMake(int column){
