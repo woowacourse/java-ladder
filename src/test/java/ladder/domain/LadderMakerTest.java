@@ -19,11 +19,9 @@ public class LadderMakerTest {
                 return Boolean.TRUE;
             }
         }
-
-        BooleanGenerator booleanGenerator = new IntendedBooleanGenerator();
-
+        
         LadderProperty ladderProperty = new LadderProperty(3, 4);
-        LadderMaker ladderMaker = new LadderMaker(ladderProperty, booleanGenerator);
+        LadderMaker ladderMaker = new LadderMaker(ladderProperty);
 
         Ladder ladder = ladderMaker.generate();
         List<Line> lines = ladder.getLines();

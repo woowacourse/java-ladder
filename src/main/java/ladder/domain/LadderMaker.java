@@ -8,9 +8,9 @@ public class LadderMaker {
     private final LadderProperty ladderProperty;
     private final BooleanGenerator booleanGenerator;
 
-    public LadderMaker(final LadderProperty ladderProperty, final BooleanGenerator booleanGenerator) {
+    public LadderMaker(final LadderProperty ladderProperty) {
         this.ladderProperty = ladderProperty;
-        this.booleanGenerator = booleanGenerator;
+        this.booleanGenerator = new RandomBooleanGenerator();
     }
 
     public Ladder generate() {
