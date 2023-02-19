@@ -18,10 +18,10 @@ public class Floor {
         this.points = points;
     }
 
-    private void removeContinuousLine(List<Point> pointCandidate) {
-        for (int i = SECOND_INDEX_OF_FLOOR; i < pointCandidate.size(); i++) {
-            if (pointCandidate.get(i - 1).equals(Point.FILLED)) {
-                pointCandidate.set(i, Point.EMPTY);
+    private void removeContinuousLine(List<Point> points) {
+        for (int i = SECOND_INDEX_OF_FLOOR; i < points.size(); i++) {
+            if (points.get(i - 1).equals(Point.FILLED)) {
+                points.set(i, Point.EMPTY);
             }
         }
     }
