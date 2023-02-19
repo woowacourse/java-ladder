@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     private static void printParticipantNamesOf(Ladder ladder) {
-        for (String name : ladder.getParticipantNames()) {
+        for (String name : ladder.getParticipants().getNames()) {
             System.out.print(name + "\t");
         }
         System.out.println();

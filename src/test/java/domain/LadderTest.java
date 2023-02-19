@@ -16,13 +16,13 @@ class LadderTest extends AbstractTestFixture {
     @ParameterizedTest(name = "사다리의 높이는 양수만 가능하다")
     @ValueSource(ints = {1, 999})
     void test_ladder_height_success(int height) {
-        assertThatNoException().isThrownBy(() -> new Ladder(createDefaultPerson(), createLines(height)));
+        assertThatNoException().isThrownBy(() -> new Ladder(createDefaultParticipants(), createLines(height)));
     }
 
     @Test
     @DisplayName("사다리의 높이가 양수가 아니면 IllegalArgumentException를 던진다")
     void test_ladder_height_throws() {
-        assertThatThrownBy(() -> new Ladder(createDefaultPerson(), createLines(0)))
+        assertThatThrownBy(() -> new Ladder(createDefaultParticipants(), createLines(0)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -37,6 +37,6 @@ class LadderTest extends AbstractTestFixture {
                 new Line(convert(true, false, true))
         );
 
-        assertThatNoException().isThrownBy(() -> new Ladder(createDefaultPerson(), lines));
+        assertThatNoException().isThrownBy(() -> new Ladder(createDefaultParticipants(), lines));
     }
 }

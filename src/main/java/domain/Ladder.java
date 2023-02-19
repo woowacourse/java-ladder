@@ -9,13 +9,13 @@ public class Ladder {
 
     private static final int MIN_HEIGHT = 0;
 
-    private final List<Participant> people;
+    private final Participants participants;
     private final List<Line> lines;
 
-    public Ladder(final List<Participant> people, final List<Line> lines) {
+    public Ladder(final Participants participants, final List<Line> lines) {
         validateHeightOf(lines);
         this.lines = copyOf(lines);
-        this.people = copyOf(people);
+        this.participants = participants;
     }
 
     private void validateHeightOf(final List<Line> lines) {
@@ -28,9 +28,7 @@ public class Ladder {
         return lines;
     }
 
-    public List<String> getParticipantNames() {
-        return people.stream()
-                .map(Participant::getName)
-                .collect(toUnmodifiableList());
+    public Participants getParticipants() {
+        return participants;
     }
 }
