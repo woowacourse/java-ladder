@@ -55,7 +55,7 @@
 ## 리팩토링
 - [x] 정적 팩토리 메소드를 활용한 Players 객체 생성하기
 - [ ] 가독성 높은 코드 작성하기
-  - [ ] stream 남용하기 않기
+  - [x] stream 남용하기 않기
   - [ ] 매직넘버 상수로 추출하기
   - [ ] assertThatThrownBy활용하기
   - [ ] given-when-then을 활용한 테스트 코드 작성하기

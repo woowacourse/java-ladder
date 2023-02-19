@@ -6,8 +6,6 @@ import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Controller {
     private InputView inputView;
@@ -31,9 +29,12 @@ public class Controller {
     }
 
     private List<Line> generateLadder(int ladderHeight, Players players) {
-        return IntStream.range(0, ladderHeight)
-                .mapToObj(i -> generateLine(players))
-                .collect(Collectors.toList());
+        List<Line> list = new ArrayList<>();
+        for (int i = 0; i < ladderHeight; i++) {
+            Line line = generateLine(players);
+            list.add(line);
+        }
+        return list;
     }
 
     private Line generateLine(Players players) {
