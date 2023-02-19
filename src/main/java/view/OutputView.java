@@ -23,10 +23,10 @@ public class OutputView {
         names.getNames()
                 .forEach(name -> System.out.printf(Message.NAME_FORMAT.message, name.getName()));
         System.out.println();
-        Lines(lines);
+        lines(lines);
     }
 
-    public void Lines(Lines lines) {
+    public void lines(Lines lines) {
         for (Line line : lines.getLines()) {
             StringBuilder result = new StringBuilder();
             result.append(Message.COLUMN_LADDER.message);
