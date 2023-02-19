@@ -12,13 +12,9 @@ public class Ladder {
 
     public Ladder(final Width width, final Height height, final ScaffoldGenerator scaffoldGenerator) {
         this.lines = IntStream.range(0, height.getValue())
-                .mapToObj(it -> createLine(width, scaffoldGenerator))
+                .mapToObj(it -> new Line(width, scaffoldGenerator))
                 .collect(Collectors.toUnmodifiableList());
         validateLines(lines);
-    }
-
-    private Line createLine(final Width width, final ScaffoldGenerator scaffoldGenerator) {
-        return new Line(width, scaffoldGenerator);
     }
 
     private static void validateLines(final List<Line> lines) {
