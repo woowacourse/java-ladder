@@ -17,7 +17,7 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(final List<Line> lines) {
+    Ladder(final List<Line> lines) {
         validate(lines);
         this.lines = new ArrayList<>(lines);
     }

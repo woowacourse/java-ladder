@@ -2,16 +2,17 @@ package domain.ladder;
 
 import domain.value.Direction;
 import domain.value.Position;
+import domain.value.Width;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -22,75 +23,61 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 @DisplayName("Line 은")
 public class LineTest {
 
-    @Test
-    void 발판들을_받아_생성된다() {
-        // given
-        Scaffold scaffold1 = Scaffold.NONE;
-        Scaffold scaffold2 = Scaffold.EXIST;
-        Scaffold scaffold3 = Scaffold.NONE;
+    private final ScaffoldGenerator scaffoldGenerator = () -> Scaffold.EXIST;
 
+    @Test
+    void 가로길이와_발판생성기를_통해_생성된다() {
         // when & then
         assertDoesNotThrow(() ->
-                new Line(List.of(scaffold1, scaffold2, scaffold3))
+                Line.create(Width.of(3), scaffoldGenerator)
         );
     }
 
-    @ParameterizedTest(name = "Line 은 입력받은 발판만큼의 크기를 가진다")
-    @MethodSource("scaffolds")
-    void Line_은_입력받은_발판_만큼의_크기를_가진다(final List<Scaffold> scaffolds) {
+    @ParameterizedTest(name = "Line 은 Width 만큼의 길이를 가진다")
+    @ValueSource(ints = {1, 2, 3})
+    void Line_은_Width_만큼의_길이를_가진다(final int width) {
         // when
-        Line line = new Line(scaffolds);
+        Line line = Line.create(Width.of(width), scaffoldGenerator);
 
         // then
-        assertThat(line.size()).isEqualTo(scaffolds.size());
-    }
-
-    private static Stream<Arguments> scaffolds() {
-        return Stream.of(
-                Arguments.of(List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST)),
-                Arguments.of(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST)),
-                Arguments.of(List.of(Scaffold.NONE, Scaffold.NONE)),
-                Arguments.of(List.of(Scaffold.EXIST))
-        );
+        assertThat(line.size()).isEqualTo(width);
     }
 
     @Test
     void 발판의_개수는_1개_이상이어야_한다() {
+        // when & then
+        assertThatThrownBy(() ->
+                Line.create(Width.of(0), scaffoldGenerator)
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void Line_은_존재하는_발판을_연속으로_가지고_생성되지_않는다() {
         // given
-        List<Scaffold> scaffolds = List.of();
+        ScaffoldGenerator onlyReturnExistGenerator = () -> Scaffold.EXIST;
 
-        // when & then
-        assertThatThrownBy(() ->
-                new Line(scaffolds)
-        ).isInstanceOf(IllegalArgumentException.class);
-    }
+        // when
+        Line line = Line.create(Width.of(10), onlyReturnExistGenerator);
 
-    @ParameterizedTest(name = "Line 에 속한 발판은 존재하는 상태를 연속으로 가질 수 없다")
-    @MethodSource("consistExistScaffolds")
-    void Line_에_속한_발판은_존재하는_상태를_연속으로_가질_수_없다(final List<Scaffold> scaffolds) {
-        // when & then
-        assertThatThrownBy(() ->
-                new Line(scaffolds)
-        ).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    private static Stream<Arguments> consistExistScaffolds() {
-        return Stream.of(
-                Arguments.of(List.of(Scaffold.EXIST, Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST)),
-                Arguments.of(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST, Scaffold.EXIST)),
-                Arguments.of(List.of(Scaffold.EXIST, Scaffold.EXIST, Scaffold.EXIST)),
-                Arguments.of(List.of(Scaffold.EXIST, Scaffold.EXIST))
-        );
+        // then
+        List<Scaffold> scaffolds = line.getScaffolds();
+        Deque<Scaffold> scaffoldDeque = new ArrayDeque<>(scaffolds);
+        scaffolds.forEach(it -> {
+            Scaffold beforeScaffold = scaffoldDeque.removeFirst();
+            if (beforeScaffold == scaffoldDeque.peekFirst()) {
+                assertThat(beforeScaffold).isEqualTo(Scaffold.EXIST);
+            }
+        });
     }
 
     @Test
     void Line_에_속한_발판은_존재하지_않는_상태는_연속으로_가질_수_있다() {
         // given
-        Scaffold nonScaffold = Scaffold.NONE;
+        ScaffoldGenerator onlyReturnNoneGenerator = () -> Scaffold.NONE;
 
         // when & then
         assertDoesNotThrow(() ->
-                new Line(List.of(nonScaffold, nonScaffold))
+                Line.create(Width.of(100), onlyReturnNoneGenerator)
         );
     }
 
@@ -109,15 +96,19 @@ public class LineTest {
     @Test
     void directionOfScaffoldExist_는_주어진_위치로부터_Scaffold_가_존재하는_방향을_반환한다() {
         // given
-        Line line =
-                // 모양:  |     |-----|     |     |-----|
-                new Line(List.of(
-                        Scaffold.NONE,
-                        Scaffold.EXIST,
-                        Scaffold.NONE,
-                        Scaffold.NONE,
-                        Scaffold.EXIST
-                ));
+        ScaffoldGenerator generator = new ScaffoldGenerator() {
+            private final List<Scaffold> scaffolds =
+                    // 모양:  |     |-----|     |     |-----|
+                    List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE, Scaffold.NONE, Scaffold.EXIST);
+            private int index = 0;
+
+            @Override
+            public Scaffold generate() {
+                return scaffolds.get(index++);
+            }
+        };
+
+        Line line = Line.create(Width.of(5), generator);
 
         // when & then
         assertThat(line.directionOfScaffoldExist(Position.of(0)))
@@ -137,16 +128,19 @@ public class LineTest {
     @Test
     void directionOfScaffoldExist_로_주어지는_위치가_0보다_작거나_전체_Scaffold_수보다_큰_경우_예외가_발생한다() {
         // given
-        Line line =
-                // 모양:  |     |-----|     |     |-----|
-                new Line(List.of(
-                        Scaffold.NONE,
-                        Scaffold.EXIST,
-                        Scaffold.NONE,
-                        Scaffold.NONE,
-                        Scaffold.EXIST
-                ));
+        ScaffoldGenerator generator = new ScaffoldGenerator() {
+            private final List<Scaffold> scaffolds =
+                    // 모양:  |     |-----|     |     |-----|
+                    List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE, Scaffold.NONE, Scaffold.EXIST);
+            private int index = 0;
 
+            @Override
+            public Scaffold generate() {
+                return scaffolds.get(index++);
+            }
+        };
+
+        Line line = Line.create(Width.of(5), generator);
         // when & then
         assertThatThrownBy(() ->
                 line.directionOfScaffoldExist(Position.of(-1))

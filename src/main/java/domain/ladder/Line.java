@@ -2,42 +2,42 @@ package domain.ladder;
 
 import domain.value.Direction;
 import domain.value.Position;
+import domain.value.Width;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Line {
 
     private final List<Scaffold> scaffolds;
 
-    public Line(final List<Scaffold> scaffolds) {
-        validate(scaffolds);
+    private Line(final List<Scaffold> scaffolds) {
+        validateScaffoldSizeEmpty(scaffolds);
         this.scaffolds = new ArrayList<>(scaffolds);
     }
 
-    private void validate(final List<Scaffold> scaffolds) {
-        validateScaffoldSizeEmpty(scaffolds);
-        validateConsistExistScaffolds(scaffolds);
+    public static Line create(final Width width, final ScaffoldGenerator scaffoldGenerator) {
+        Deque<Scaffold> scaffolds = new ArrayDeque<>();
+        IntStream.range(0, width.value()).forEach(it -> createNonConsistScaffold(scaffolds, scaffoldGenerator));
+        return new Line(new ArrayList<>(scaffolds));
     }
 
+    private static void createNonConsistScaffold(final Deque<Scaffold> scaffolds, final ScaffoldGenerator scaffoldGenerator) {
+        Scaffold scaffold = scaffoldGenerator.generate();
+        if (scaffold == Scaffold.EXIST && scaffolds.peekLast() == Scaffold.EXIST) {
+            scaffolds.add(Scaffold.NONE);
+            return;
+        }
+        scaffolds.add(scaffold);
+    }
+
+    // 생성자에서 사용되는 Private 메서드가 우선인가? 혹은 정적 팩터리 메서드가 우선인가?
     private void validateScaffoldSizeEmpty(final List<Scaffold> scaffolds) {
         if (scaffolds.isEmpty()) {
             throw new IllegalArgumentException("사다리의 가로 길이는 0일수 없습니다.");
-        }
-    }
-
-    private void validateConsistExistScaffolds(final List<Scaffold> scaffolds) {
-        Deque<Scaffold> scaffoldDeque = new ArrayDeque<>(scaffolds);
-        scaffolds.forEach(it -> validateConsistExistScaffold(scaffoldDeque));
-    }
-
-    private void validateConsistExistScaffold(final Deque<Scaffold> scaffolds) {
-        Scaffold beforeScaffold = scaffolds.removeFirst();
-        if (beforeScaffold == scaffolds.peekFirst()
-                && beforeScaffold == Scaffold.EXIST) {
-            throw new IllegalArgumentException();
         }
     }
 

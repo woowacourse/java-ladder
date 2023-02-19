@@ -1,6 +1,7 @@
 package domain.ladder;
 
 import domain.value.Position;
+import domain.value.Width;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -21,13 +22,13 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 @DisplayName("Ladder 는")
 public class LadderTest {
 
+    private static final ScaffoldGenerator scaffoldGenerator = () -> Scaffold.EXIST;
+
     @Test
     @DisplayName("Line 을 받아 생성된다")
     void Line_을_받아_생성된다() {
         // given
-        Scaffold scaffold1 = Scaffold.EXIST;
-        Scaffold scaffold2 = Scaffold.NONE;
-        Line line = new Line(List.of(scaffold1, scaffold2));
+        Line line = Line.create(Width.of(2), scaffoldGenerator);
 
         // when & then
         assertDoesNotThrow(() -> new Ladder(List.of(line)));
@@ -62,15 +63,10 @@ public class LadderTest {
     }
 
     private static Stream<Arguments> sameLengthLines() {
-        List<Scaffold> size1Scaffolds = List.of(Scaffold.EXIST);
-        List<Scaffold> size2Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE);
-        List<Scaffold> size3Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST);
-        List<Scaffold> size4Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE);
-
-        Line line1 = new Line(size1Scaffolds);
-        Line line2 = new Line(size2Scaffolds);
-        Line line3 = new Line(size3Scaffolds);
-        Line line4 = new Line(size4Scaffolds);
+        Line line1 = Line.create(Width.of(1), scaffoldGenerator);
+        Line line2 = Line.create(Width.of(2), scaffoldGenerator);
+        Line line3 = Line.create(Width.of(3), scaffoldGenerator);
+        Line line4 = Line.create(Width.of(4), scaffoldGenerator);
 
         return Stream.of(
                 Arguments.of(List.of(line1, line1)),
@@ -91,15 +87,10 @@ public class LadderTest {
     }
 
     private static Stream<Arguments> differentSizeLines() {
-        List<Scaffold> size1Scaffolds = List.of(Scaffold.EXIST);
-        List<Scaffold> size2Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE);
-        List<Scaffold> size3Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST);
-        List<Scaffold> size4Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE);
-
-        Line line1 = new Line(size1Scaffolds);
-        Line line2 = new Line(size2Scaffolds);
-        Line line3 = new Line(size3Scaffolds);
-        Line line4 = new Line(size4Scaffolds);
+        Line line1 = Line.create(Width.of(1), scaffoldGenerator);
+        Line line2 = Line.create(Width.of(2), scaffoldGenerator);
+        Line line3 = Line.create(Width.of(3), scaffoldGenerator);
+        Line line4 = Line.create(Width.of(4), scaffoldGenerator);
 
         return Stream.of(
                 Arguments.of(List.of(line2, line1)),
@@ -126,19 +117,34 @@ public class LadderTest {
     @Test
     void goDown_은_특정_시작_위치로부터_내려갈_수_있으며_사다리를_다_내려갔을때의_위치를_반환한다() {
         // given
-        /*
-         * |-----|     |-----|
-         * |     |-----|     |
-         * |-----|     |     |
-         * |     |-----|     |
-         * |-----|     |-----|
-         */
+        ScaffoldGenerator generator = new ScaffoldGenerator() {
+            private final List<Scaffold> scaffolds = List.of(
+                    /*
+                     * |-----|     |-----|
+                     * |     |-----|     |
+                     * |-----|     |     |
+                     * |     |-----|     |
+                     * |-----|     |-----|
+                     */
+                    Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST,
+                    Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE,
+                    Scaffold.EXIST, Scaffold.NONE, Scaffold.NONE,
+                    Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE,
+                    Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST
+            );
+            private int index = 0;
+
+            @Override
+            public Scaffold generate() {
+                return scaffolds.get(index++);
+            }
+        };
         List<Line> lines = List.of(
-                new Line(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST)),
-                new Line(List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE)),
-                new Line(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.NONE)),
-                new Line(List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE)),
-                new Line(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST))
+                Line.create(Width.of(3), generator),
+                Line.create(Width.of(3), generator),
+                Line.create(Width.of(3), generator),
+                Line.create(Width.of(3), generator),
+                Line.create(Width.of(3), generator)
         );
         Ladder ladder = new Ladder(lines);
 

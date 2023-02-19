@@ -1,12 +1,10 @@
 package domain.game;
 
 import domain.ladder.Ladder;
-import domain.ladder.Line;
+import domain.ladder.LadderFactory;
 import domain.ladder.Scaffold;
-import domain.value.Name;
-import domain.value.Names;
-import domain.value.WinningEntries;
-import domain.value.WinningEntry;
+import domain.ladder.ScaffoldGenerator;
+import domain.value.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -36,13 +34,22 @@ class LadderGameTest {
      * 당근 - 당근당첨
      * 산  - 산당첨
      */
-    Ladder ladder = new Ladder(List.of(
-            new Line(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST)),
-            new Line(List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE)),
-            new Line(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.NONE)),
-            new Line(List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE)),
-            new Line(List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST))
-    ));
+    ScaffoldGenerator generator = new ScaffoldGenerator() {
+        private final List<Scaffold> scaffolds = List.of(
+                Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST,
+                Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE,
+                Scaffold.EXIST, Scaffold.NONE, Scaffold.NONE,
+                Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE,
+                Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST
+        );
+        private int index = 0;
+
+        @Override
+        public Scaffold generate() {
+            return scaffolds.get(index++);
+        }
+    };
+    private final Ladder ladder = new LadderFactory(generator).createLadder(Width.of(3), Height.of(5));
     private final Name 말랑 = new Name("말랑");
     private final Name 바다 = new Name("바다");
     private final Name 당근 = new Name("당근");
