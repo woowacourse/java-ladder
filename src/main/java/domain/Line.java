@@ -2,7 +2,6 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
 
@@ -14,8 +13,11 @@ public class Line {
 
     public static Line fromHeight(Height height) {
         List<Point> points = new ArrayList<>();
-        IntStream.range(0, height.getHeight())
-                .forEach(it -> points.add(new Point(Direction.STRAIGHT_DOWN)));
+        int lineHeight = height.getHeight();
+
+        for (int index = 0; index < lineHeight; index++) {
+            points.add(new Point(Direction.STRAIGHT_DOWN));
+        }
 
         return new Line(points);
     }

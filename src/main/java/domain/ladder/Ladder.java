@@ -6,9 +6,9 @@ import domain.Line;
 import domain.PlayerNames;
 import domain.Point;
 import domain.ladder.strategy.GenerateBridgeStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -24,8 +24,12 @@ public class Ladder {
 
     public static Ladder of(PlayerNames playerNames, Height height, GenerateBridgeStrategy generateBridgeStrategy) {
         List<Line> lines = new ArrayList<>();
-        IntStream.range(0, playerNames.getPlayerNames().size())
-                .forEach(it -> lines.add(Line.fromHeight(height)));
+        int numberOfLinesToMake = playerNames.getPlayerNames()
+                .size();
+
+        for (int index = 0; index < numberOfLinesToMake; index++) {
+            lines.add(Line.fromHeight(height));
+        }
 
         return new Ladder(lines, height, generateBridgeStrategy);
     }
