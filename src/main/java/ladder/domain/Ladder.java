@@ -20,7 +20,7 @@ public class Ladder {
         validateSize(height);
         int width = calculateWidth(users);
 
-        this.floors = generateFloors(height, pointGenerator, width);
+        this.floors = generateFloors(height, width, pointGenerator);
     }
 
     private void validateSize(int height) {
@@ -34,7 +34,7 @@ public class Ladder {
         return users.getUsers().size() - DIFFERENCE_BETWEEN_FLOOR_AND_USERS;
     }
 
-    private List<Floor> generateFloors(int height, PointGenerator pointGenerator, int width) {
+    private List<Floor> generateFloors(int height, int width, PointGenerator pointGenerator) {
         return Stream.generate(
                         () -> new Floor(generateValues(pointGenerator, width))
                 )
