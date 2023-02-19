@@ -5,6 +5,7 @@ import static utils.constants.LadderFormat.NON_EXISTED_LINE;
 
 import domain.Ladder;
 import domain.LadderRow;
+import domain.Line;
 import domain.Users;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,18 +42,18 @@ public class OutputView {
     }
 
     private static String getLadderRowFormat(final LadderRow ladderRow) {
-        List<Boolean> lines = ladderRow.getLines();
+        List<Line> lines = ladderRow.getLines();
         return linesToLadderRowFormat(lines);
     }
 
-    private static String linesToLadderRowFormat(final List<Boolean> lines) {
+    private static String linesToLadderRowFormat(final List<Line> lines) {
         return lines.stream()
                 .map(OutputView::lineToLineFormat)
                 .collect(Collectors.joining(LADDER_DELIMITER, PREFIX_LADDER_DELIMITER, LADDER_DELIMITER));
     }
 
-    private static String lineToLineFormat(final boolean line) {
-        if (line) {
+    private static String lineToLineFormat(final Line line) {
+        if (line == Line.EXIST) {
             return EXISTED_LINE.getFormat();
         }
         return NON_EXISTED_LINE.getFormat();

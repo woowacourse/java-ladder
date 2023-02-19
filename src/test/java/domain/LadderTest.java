@@ -1,5 +1,6 @@
 package domain;
 
+import static domain.Line.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -36,12 +37,12 @@ public class LadderTest {
 
     static class TestLadderRowGenerator implements LadderRowGenerator {
 
-        private final List<List<Boolean>> ladderRows = List.of(
-                List.of(true, false, true),
-                List.of(false, true, false),
-                List.of(true, false, false),
-                List.of(false, true, false),
-                List.of(true, false, true)
+        private final List<List<Line>> ladderRows = List.of(
+                List.of(EXIST, NOT_EXIST, EXIST),
+                List.of(NOT_EXIST, EXIST, NOT_EXIST),
+                List.of(EXIST, NOT_EXIST, NOT_EXIST),
+                List.of(NOT_EXIST, EXIST, NOT_EXIST),
+                List.of(EXIST, NOT_EXIST, EXIST)
         );
 
         private int index = 0;

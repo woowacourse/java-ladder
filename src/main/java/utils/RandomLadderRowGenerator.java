@@ -1,36 +1,37 @@
 package utils;
 
 import domain.LadderRow;
-
+import domain.Line;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class RandomLadderRowGenerator implements LadderRowGenerator {
 
-    private static final Random RANDOM = new Random();
+    private final Random random = new Random();
 
+    @Override
     public LadderRow generate(final int userCount) {
-        List<Boolean> lines = getLines(userCount);
+        List<Line> lines = getLines(userCount);
         return new LadderRow(lines);
     }
 
-    private List<Boolean> getLines(final int userCount) {
-        List<Boolean> lines = new ArrayList<>();
-        boolean previousBar = RANDOM.nextBoolean();
-        lines.add(previousBar);
-        for (int i = 0; i < userCount - 2; i++) {
-            boolean nextBar = convertBoolean(previousBar);
-            lines.add(nextBar);
-            previousBar = nextBar;
+    private List<Line> getLines(final int userCount) {
+        List<Line> lines = new ArrayList<>();
+        Line previousLine = Line.NOT_EXIST;
+        for (int i = 0; i < userCount - 1; i++) {
+            Line line = getLine(previousLine);
+            lines.add(line);
+            previousLine = line;
         }
         return lines;
     }
 
-    private boolean convertBoolean(final boolean comparedBoolean) {
-        if (comparedBoolean) {
-            return false;
+    private Line getLine(final Line line) {
+        if (line == Line.NOT_EXIST) {
+            boolean isExist = random.nextBoolean();
+            return Line.from(isExist);
         }
-        return RANDOM.nextBoolean();
+        return Line.NOT_EXIST;
     }
 }
