@@ -2,6 +2,7 @@ package domain;
 
 import static utils.ErrorMessage.NOT_FOUND_USER;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Users {
@@ -10,7 +11,7 @@ public class Users {
     private final List<User> users;
 
     public Users(List<User> users) {
-        this.users = users;
+        this.users = new ArrayList<>(users);
     }
 
     public List<User> getUsers() {
