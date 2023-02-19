@@ -14,6 +14,6 @@ class LadderTest {
         int playerCount = 4;
         int height = 5;
         Ladder ladder = new Ladder(playerCount, height, new RandomPointGenerator());
-        assertThat(ladder.getLadder().size()).isEqualTo(height);
+        assertThat(ladder.getLadder()).hasSize(height);
     }
 }
