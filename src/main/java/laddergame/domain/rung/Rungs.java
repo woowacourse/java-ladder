@@ -21,8 +21,8 @@ public class Rungs {
         return new Rungs(rungCount, rungGenerator);
     }
 
-    public boolean canMoveNext(final int rungOrder) {
-        Rung rung = rungs.get(rungOrder);
+    public boolean canMoveNext(final int rungPosition) {
+        Rung rung = rungs.get(rungPosition);
         return rung.isExistence();
     }
 

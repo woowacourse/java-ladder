@@ -20,13 +20,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 public class RungsTest {
 
     private int rungCount;
-    private int rungOrder;
+    private int rungPosition;
     private BooleanGenerator rungGenerator;
 
     @BeforeAll
     void init() {
         rungCount = 4;
-        rungOrder = 0;
+        rungPosition = 0;
         rungGenerator = new RungGenerator();
     }
 
@@ -78,7 +78,7 @@ public class RungsTest {
         Rungs rungs = Rungs.create(rungCount, sufficientMaterialGenerator);
 
         // when
-        boolean canMoveDown = rungs.canMoveNext(rungOrder);
+        boolean canMoveDown = rungs.canMoveNext(rungPosition);
 
         // then
         assertThat(canMoveDown)
@@ -93,7 +93,7 @@ public class RungsTest {
         Rungs rungs = Rungs.create(rungCount, sufficientMaterialGenerator);
 
         // when
-        boolean canMoveDown = rungs.canMoveNext(rungOrder);
+        boolean canMoveDown = rungs.canMoveNext(rungPosition);
 
         // then
         assertThat(canMoveDown)
