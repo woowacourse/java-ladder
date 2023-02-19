@@ -26,7 +26,7 @@ public class LadderGameApplication {
 
     public void run() {
         Players players = repeat(this::createPlayers);
-        LadderHeight ladderHeight = repeat(this::createLadderHeight);
+        LadderHeight ladderHeight = repeat(inputView::readLadderHeight);
         Ladder ladder = Ladder.create(players.size(), ladderHeight, new RandomNumberGenerator());
 
         outputView.printResult(players, ladder);
