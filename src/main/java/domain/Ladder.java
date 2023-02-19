@@ -1,12 +1,8 @@
 package domain;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Ladder {
     private static final String ERROR_SAME_LINE_SIZE = "[ERROR] 다른 길이의 가로줄이 생성되었습니다";

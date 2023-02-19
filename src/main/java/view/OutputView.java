@@ -5,10 +5,7 @@ import domain.Line;
 import domain.Name;
 import domain.Names;
 import domain.Scaffold;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class OutputView {
     private static final int FIRST_NAME_INDEX = 0;
@@ -79,5 +76,4 @@ public class OutputView {
         System.out.print(NON_EXIST_SCAFFOLD_MATERIAL.repeat(BLOCK_SIZE_EXCEPT_DELIMITER));
         System.out.print(BAR);
     }
-
 }
