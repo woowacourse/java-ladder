@@ -10,6 +10,7 @@ import java.util.List;
  */
 class InputVerifier {
 
+    final static int MAX_NAME_LENGTH = 5;
     protected static List<String> validateName(String input) {
         validatePeopleNumberOverThanOne(input);
         List<String> names = splitInput(input);
@@ -19,7 +20,7 @@ class InputVerifier {
 
     private static void validateNameLength(List<String> names) {
         for (String name : names) {
-            if (name.length() > 5) {
+            if (name.length() > MAX_NAME_LENGTH) {
                 throw new IllegalArgumentException("이름은 최대 5글자 까지만 입력할 수 있습니다.");
             }
         }
