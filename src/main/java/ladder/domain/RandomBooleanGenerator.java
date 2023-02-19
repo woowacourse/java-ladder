@@ -4,9 +4,10 @@ import java.util.Random;
 
 public class RandomBooleanGenerator implements BooleanGenerator{
 
+    Random random = new Random();
+
     @Override
     public Boolean generate() {
-        Random random = new Random();
         return random.nextBoolean();
     }
 }
