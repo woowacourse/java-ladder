@@ -25,10 +25,14 @@ public class Line {
 
     private Scaffold createNonConsistScaffold(final ScaffoldGenerator scaffoldGenerator, final Deque<Scaffold> scaffolds) {
         Scaffold scaffold = scaffoldGenerator.generate();
-        if (scaffold == Scaffold.EXIST && scaffolds.peekLast() == Scaffold.EXIST) {
+        if (isScaffoldContinuous(scaffold, scaffolds)) {
             return Scaffold.NONE;
         }
         return scaffold;
+    }
+
+    private static boolean isScaffoldContinuous(Scaffold scaffold, final Deque<Scaffold> scaffolds){
+        return scaffold == Scaffold.EXIST && scaffolds.peekLast() == Scaffold.EXIST;
     }
 
     private static void validateScaffolds(final List<Scaffold> scaffolds) {
