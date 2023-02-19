@@ -27,4 +27,8 @@ public class LadderResult {
         return results.stream().map(String::trim)
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public List<String> getResults() {
+        return List.copyOf(results);
+    }
 }
