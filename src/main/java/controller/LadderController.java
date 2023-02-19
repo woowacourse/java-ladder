@@ -14,12 +14,9 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderController {
-	public void buildLadder() {
+	public void makeLadder() {
 		Participants participants = retrieveParticipants();
-		LadderHeight height = new LadderHeight(retrieveLadderHeight());
-		LadderWidth width = getWidthFromParticipantsNum(participants.getParticipantsNum());
-		LadderBuilder ladderBuilder = new LadderBuilder();
-		Ladder ladder = ladderBuilder.build(height, width, new RandomPointGenerator());
+		Ladder ladder = makeLadder(participants);
 		OutputView.printResult(participants, ladder);
 	}
 
@@ -40,9 +37,15 @@ public class LadderController {
 			.collect(Collectors.toList());
 	}
 
-	private int retrieveLadderHeight() {
+	private Ladder makeLadder(Participants participants) {
+		LadderHeight height = retrieveLadderHeight();
+		LadderWidth width = getWidthFromParticipantsNum(participants.getParticipantsNum());
+		return new LadderBuilder().build(height, width, new RandomPointGenerator());
+	}
+
+	private LadderHeight retrieveLadderHeight() {
 		try {
-			return InputView.readHeight();
+			return new LadderHeight(InputView.readHeight());
 		} catch (IllegalArgumentException e){
 			OutputView.printError(e.getMessage());
 			return retrieveLadderHeight();
