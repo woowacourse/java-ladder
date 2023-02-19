@@ -23,6 +23,9 @@ public class InputView {
     public List<String> inputNames() {
         System.out.println(INPUT_NAMES_MESSAGE);
         List<String> names = List.of(scanner.nextLine().split(NAME_DELIMITER));
+        for (String name : names) {
+            validator.validate(new InputValidationRequest(List.of(ValidateType.DUPLICATE_VALUE), name));
+        }
         return trimNames(names);
     }
 

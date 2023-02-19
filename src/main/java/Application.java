@@ -1,6 +1,7 @@
 import controller.LadderController;
 import domain.service.LadderMaker;
 import domain.service.RandomBooleanGenerator;
+import validator.DuplicateNameValidatorChain;
 import validator.EmptyInputValidatorChain;
 import validator.InputValidator;
 import validator.NotIntegerValidatorChain;
@@ -21,6 +22,7 @@ public class Application {
         return InputValidator.builder()
                 .add(new EmptyInputValidatorChain())
                 .add(new NotIntegerValidatorChain())
+                .add(new DuplicateNameValidatorChain())
                 .build();
     }
 
