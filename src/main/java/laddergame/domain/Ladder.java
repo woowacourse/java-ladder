@@ -10,9 +10,6 @@ public class Ladder {
     private final List<Line> lines;
     private final LadderHeight ladderHeight;
 
-    // pointGenerator를 어디에서 관리할 것인가 -> LadderGame vs Ladder
-    // LadderGame관리 -> parameter 3개
-    // Ladder -> pointGenerator 생성을 ladder에서 하는게 어색, ladder에서 RandomPointGenerator import 하는게 x
     public Ladder(int playerCount, int height, PointGenerator pointGenerator) {
         this.ladderHeight = new LadderHeight(height);
         this.lines = List.copyOf(generateLines(playerCount, pointGenerator));

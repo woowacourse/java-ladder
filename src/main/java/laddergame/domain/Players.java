@@ -16,7 +16,7 @@ public class Players {
     public Players(List<String> playerNames) {
         List<Player> players = playerNames.stream()
                 .map(Player::new)
-                .collect(Collectors.toUnmodifiableList());
+                .collect(Collectors.toList());
         validatePlayerNames(players);
         this.players = List.copyOf(players);
     }
