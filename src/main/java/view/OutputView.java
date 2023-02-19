@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import domain.Ladder;
 import domain.Line;
+import domain.ParticipantName;
 import domain.Participants;
 import domain.util.Point;
 
@@ -32,10 +33,10 @@ public class OutputView {
 	}
 
 	private static String getStringifiedNames(final Participants participants) {
-		List<String> names = participants.getNames();
+		List<ParticipantName> names = participants.getNames();
 		StringBuilder stringifiedNames = new StringBuilder();
-		for (String name : names) {
-			stringifiedNames.append(String.format(RIGHT_ALIGN_PLACEHOLDER, name));
+		for (ParticipantName name : names) {
+			stringifiedNames.append(String.format(RIGHT_ALIGN_PLACEHOLDER, name.getName()));
 		}
 		return stringifiedNames.toString();
 	}
