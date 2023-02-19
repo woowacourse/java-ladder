@@ -21,6 +21,10 @@ public class Persons {
                 .collect(Collectors.toList());
     }
 
+    public int getCount() {
+        return persons.size();
+    }
+
     private void validateDuplicateName(List<String> names) {
         if (isDuplicated(names)) {
             throw new IllegalArgumentException(DUPLICATE_NAME_ERROR);
