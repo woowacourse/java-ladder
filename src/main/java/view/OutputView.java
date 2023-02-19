@@ -10,6 +10,10 @@ public class OutputView {
     private static final String BLANK_LINE = "     ";
     private static final String BLANK = " ";
 
+    public void printError(Exception e){
+        System.out.println(e.getMessage());
+    }
+
     public void printLadder(List<Line> lines){
         StringBuilder builder = new StringBuilder();
 
