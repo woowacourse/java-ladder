@@ -21,7 +21,7 @@ public class ResultView {
                 .forEach(System.out::println);
     }
 
-    private String generateRow(List<Foothold> row) {
+    protected String generateRow(List<Foothold> row) {
         return row.stream()
                 .map(Foothold::getMark)
                 .collect(Collectors.joining("|", "     |", "|"));
