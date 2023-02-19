@@ -52,7 +52,7 @@ public class LadderGameController {
             return new Height(getLadderHeight());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return new Height(getLadderHeight());
+            return setUpLadderHeight();
         }
     }
 
