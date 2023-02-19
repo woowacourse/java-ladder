@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +20,10 @@ public class LinesTest {
         Lines lines = new Lines(numberOfPlayers, height);
 
         // then
-        assertThat(lines.getLines().get(0).getConnections().size()).isEqualTo(expectedLadderWidth);
-        assertThat(lines.getLines().size()).isEqualTo(height);
+
+        assertSoftly(softly -> {
+            assertThat(lines.getLines().get(0).getConnections().size()).isEqualTo(expectedLadderWidth);
+            assertThat(lines.getLines().size()).isEqualTo(height);
+        });
     }
 }
