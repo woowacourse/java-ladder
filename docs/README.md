@@ -1,0 +1,19 @@
+## 기능 요구 사항 ##
+
+- [X] 참여할 사람들의 이름을 입력한다.
+    - [X] 사람의 이름은 `,`를 통해 구분한다.
+    - [X] 사람의 이름은 최대 5글자이다.
+      - [x] 이름이 5글자를 넘으면 `IllegalArgumentException`을 던진다.
+    - [x] 이름이 공백 또는 빈 값이면 `IllegalArgumentException`을 던진다.
+    - [x] 사람이 두 명 미만이면 `IllegalArgumentException`을 던진다.
+    - [x] 이름은 중복되면 `IllegalArgumentException`을 던진다.
+- [x] 사다리의 높이를 입력한다.
+    - [x] 정수가 아닌 값을 입력하면 `IllegalArgumentException`을 던진다.
+    - [x] 1보다 작은 값을 입력하면 `IllegalArgumentException`을 던진다.
+- [x] 입력한 값들을 바탕으로 사다리를 생성한다.
+    - [x] 사다리는 사람의 수만큼 라인을 갖는다.
+      - [x] 라인은 전달된 값이 조건을 만족할 경우 통과할 수 있는 포인트를 가진다.
+    - [x] 사다리의 마지막 라인은 통과할 수 있는 포인트를 가지지 않는다.
+- [x] 사다리를 출력한다.
+    - [x] 각 이름은 5칸에 맞춰서 출력한다.
+
