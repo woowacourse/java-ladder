@@ -16,14 +16,14 @@ public class LadderMakerTest {
     @ValueSource(ints = {1, 100})
     @DisplayName("높이가 1이상 100이하이면 사다리가 생성된다.")
     void createLine_Success(int height) {
-        assertThatNoException().isThrownBy(() -> ladderMaker.make(5, height));
+        assertThatNoException().isThrownBy(() -> ladderMaker.make(5, new Height(height)));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {0, 101})
     @DisplayName("높이가 1미만 100초과이면 예외가 발생한다.")
     void createLine_Fail(int height) {
-        assertThatThrownBy(() -> ladderMaker.make(5, height))
+        assertThatThrownBy(() -> ladderMaker.make(5, new Height(height)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.HEIGHT_ERROR.getMessage());
     }
@@ -31,7 +31,7 @@ public class LadderMakerTest {
     @Test
     @DisplayName("사다리 높이 만큼 Line을 생성한다.")
     void createLinesWithHeight() {
-        Ladder ladder = new Ladder(ladderMaker.make(5, 10));
+        Ladder ladder = new Ladder(ladderMaker.make(5, new Height(10)));
         assertThat(ladder.getLines().size()).isEqualTo(10);
     }
 }

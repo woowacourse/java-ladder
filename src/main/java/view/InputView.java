@@ -13,8 +13,6 @@ public class InputView {
     private static final String HEIGHT_INPUT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String DELIMITER = ",";
     private static final String DIGIT_REGEX = "^[0-9]+$";
-    private static final int MIN_HEIGHT = 1;
-    private static final int MAX_HEIGHT = 100;
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -28,19 +26,12 @@ public class InputView {
         printMessage(HEIGHT_INPUT_MESSAGE);
         String ladderHeight = scanner.nextLine();
         validateDigit(ladderHeight);
-        validateHeightRange(Integer.parseInt(ladderHeight));
         return Integer.parseInt(ladderHeight);
     }
 
     private void validateDigit(String ladderHeight) {
         if (!Pattern.matches(DIGIT_REGEX ,ladderHeight)) {
             throw new IllegalArgumentException(ErrorMessage.DIGIT_ERROR.getMessage());
-        }
-    }
-
-    private void validateHeightRange(int height) {
-        if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
-            throw new IllegalArgumentException(ErrorMessage.HEIGHT_ERROR.getMessage());
         }
     }
 

@@ -1,5 +1,6 @@
 package controller;
 
+import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.LadderMaker;
 import domain.ladder.Line;
@@ -20,7 +21,7 @@ public class LadderController {
     public void run() {
         Players players = getPlayers();
         int personCount = players.getPlayers().size();
-        int ladderHeight = getLadderHeight();
+        Height ladderHeight = getLadderHeight();
 
         Ladder ladder = new Ladder(ladderMaker.make(personCount, ladderHeight));
 
@@ -36,9 +37,9 @@ public class LadderController {
         }
     }
 
-    private int getLadderHeight() {
+    private Height getLadderHeight() {
         try {
-            return inputView.readLadderHeight();
+            return new Height(inputView.readLadderHeight());
         } catch (IllegalArgumentException e) {
             Log.error(e.getMessage());
             return getLadderHeight();
