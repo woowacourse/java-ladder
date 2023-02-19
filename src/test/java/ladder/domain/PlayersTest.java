@@ -43,7 +43,8 @@ public class PlayersTest {
     @DisplayName("플레이어 이름 리스트 반환 테스트")
     void getNameTest() {
 
-        assertThat(new Players(correctPlayerNames).getNames()).isEqualTo(correctPlayerNames);
+        assertThat(new Players(correctPlayerNames).findNames())
+                .isEqualTo(correctPlayerNames);
     }
 
     @Nested

@@ -9,7 +9,7 @@ public class Players {
     private static final int MINIMUM_COUNT_OF_PLAYERS = 2;
     private List<Player> players;
 
-    public Players(List<String> playerNames) {
+    public Players(final List<String> playerNames) {
         validateDuplicatedNames(playerNames);
         validateNumberOfPlayers(playerNames);
         createPlayersByName(playerNames);
@@ -19,15 +19,9 @@ public class Players {
         return players.size();
     }
 
-    public List<String> getNames() {
+    public List<String> findNames() {
         return players.stream()
                 .map(Player::getName)
-                .collect(Collectors.toList());
-    }
-
-    private void createPlayersByName(final List<String> playerNames) {
-        players = playerNames.stream()
-                .map(inputName -> new Player(new Name(inputName)))
                 .collect(Collectors.toList());
     }
 
@@ -43,6 +37,12 @@ public class Players {
         if (playerNames.size() < MINIMUM_COUNT_OF_PLAYERS) {
             throw new IllegalArgumentException("플레이어의 수는 2명 이상이어야 합니다.");
         }
+    }
+
+    private void createPlayersByName(final List<String> playerNames) {
+        players = playerNames.stream()
+                .map(inputName -> new Player(new Name(inputName)))
+                .collect(Collectors.toList());
     }
 
 }
