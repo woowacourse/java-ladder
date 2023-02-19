@@ -11,10 +11,12 @@ public class LadderGameController {
 
     private final BooleanGenerator booleanGenerator;
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public LadderGameController(BooleanGenerator booleanGenerator, InputView inputView) {
+    public LadderGameController(BooleanGenerator booleanGenerator, InputView inputView, OutputView outputView) {
         this.booleanGenerator = booleanGenerator;
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
@@ -32,26 +34,26 @@ public class LadderGameController {
         return ladder;
     }
 
-    private static void printResult(final Names names, final Ladder ladder) {
-        OutputView.printResult(names, ladder);
+    private void printResult(final Names names, final Ladder ladder) {
+        outputView.printResult(names, ladder);
     }
 
     private Names getNames() {
         try {
-            OutputView.printRequestNames();
+            outputView.printRequestNames();
             return Names.ofValues(inputView.getNames());
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return getNames();
         }
     }
 
     private Height getHeight() {
         try {
-            OutputView.printRequestLadderHeight();
+            outputView.printRequestLadderHeight();
             return Height.of(inputView.getHeight());
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return getHeight();
         }
     }
