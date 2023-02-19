@@ -1,18 +1,17 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
 public class PersonTest {
-
     @ParameterizedTest
     @DisplayName("참여자 이름이 5자 이하고 공백이 아닌 경우 예외가 발생하지 않는다.")
-    @ValueSource(strings = {"무","12345","루 쿠  "})
+    @ValueSource(strings = {"무", "12345", "루 쿠  "})
     void person(String name) {
         assertDoesNotThrow(() -> new Person(name));
     }

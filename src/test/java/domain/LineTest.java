@@ -1,16 +1,16 @@
 package domain;
 
-import helper.StubImpossibleDigitsGenerator;
-import helper.StubPossibleDigitsGenerator;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import helper.StubImpossibleDigitsGenerator;
+import helper.StubPossibleDigitsGenerator;
 
 public class LineTest {
-
     @Test
     @DisplayName("라인을 생성한다.")
     void create_line() {
@@ -51,5 +51,5 @@ public class LineTest {
             assertThat(points.get(index)).isNotEqualTo(points.get(index + 1));
         }
     }
-    
+
 }
