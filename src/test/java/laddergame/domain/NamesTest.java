@@ -8,25 +8,25 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("이름 목록")
 class NamesTest {
     @DisplayName("생성된다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "names = {0}")
     @MethodSource("namesDummy")
-    void create(final List<Name> names) {
+    void create(final List<String> names) {
         assertDoesNotThrow(() -> new Names(names));
     }
 
     @DisplayName("Name 리스트가 null일 경우 예외가 발생한다.")
     @Test
     void throwExceptionWhenNamesIsNull() {
-        final List<Name> names = null;
+        final List<String> names = null;
 
         assertThatThrownBy(() -> new Names(names))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -35,7 +35,7 @@ class NamesTest {
     @DisplayName("Name 리스트가 2명 미만일 경우 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("namesWrongParameterDummy")
-    void throwExceptionWhenNamesHasSizeLessThan2(final List<Name> names) {
+    void throwExceptionWhenNamesHasSizeLessThan2(final List<String> names) {
         assertThatThrownBy(() -> new Names(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -43,7 +43,7 @@ class NamesTest {
     @DisplayName("Name 리스트의 크기를 가져온다.")
     @ParameterizedTest
     @MethodSource("namesDummy")
-    void getSize(final List<Name> inputNames) {
+    void getSize(final List<String> inputNames) {
         final Names names = new Names(inputNames);
         final int inputNamesSize = inputNames.size();
         final int createdNamesSize = names.getSize();
@@ -54,27 +54,30 @@ class NamesTest {
     @DisplayName("Name 리스트를 가져온다.")
     @ParameterizedTest
     @MethodSource("namesDummy")
-    void getNames(final List<Name> inputNames) {
+    void getNames(final List<String> inputNames) {
         final Names names = new Names(inputNames);
-        final List<Name> findNames = names.getNames();
+        final List<String> findNames = names.getNames()
+                .stream()
+                .map(Name::getValue)
+                .collect(Collectors.toList());
 
         assertThat(findNames).containsExactlyElementsOf(inputNames);
     }
 
     static Stream<Arguments> namesWrongParameterDummy() {
         return Stream.of(
-                Arguments.arguments(List.of(NameFixture.createNameRosie())),
-                Arguments.arguments(List.of(NameFixture.createNameHyena())),
-                Arguments.arguments(List.of(NameFixture.createNameJayon()))
+                Arguments.arguments(List.of(NameFixture.createNameRosie().getValue())),
+                Arguments.arguments(List.of(NameFixture.createNameHyena().getValue())),
+                Arguments.arguments(List.of(NameFixture.createNameJayon().getValue()))
         );
     }
 
     static Stream<Arguments> namesDummy() {
         return Stream.of(
-                Arguments.arguments(List.of(NameFixture.createNameRosie(), NameFixture.createNameHyena())),
-                Arguments.arguments(List.of(NameFixture.createNameRosie(), NameFixture.createNameJayon())),
-                Arguments.arguments(List.of(NameFixture.createNameHyena(), NameFixture.createNameJayon())),
-                Arguments.arguments(List.of(NameFixture.createNameRosie(), NameFixture.createNameHyena(), NameFixture.createNameJayon()))
+                Arguments.arguments(List.of(NameFixture.createNameRosie().getValue(), NameFixture.createNameHyena().getValue())),
+                Arguments.arguments(List.of(NameFixture.createNameRosie().getValue(), NameFixture.createNameJayon().getValue())),
+                Arguments.arguments(List.of(NameFixture.createNameHyena().getValue(), NameFixture.createNameJayon().getValue())),
+                Arguments.arguments(List.of(NameFixture.createNameRosie().getValue(), NameFixture.createNameHyena().getValue(), NameFixture.createNameJayon().getValue()))
         );
     }
 }
