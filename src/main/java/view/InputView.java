@@ -27,7 +27,7 @@ public class InputView {
         return trimNames(names);
     }
 
-    private void validateNames(List<String> names) {
+    private void validateNames(final List<String> names) {
         for (String name : names) {
             validator.validate(
                     new InputValidationRequest(
