@@ -1,13 +1,11 @@
 package domain;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import utils.NumberGenerator;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import utils.RandomNumberGenerator;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
 
@@ -31,34 +29,12 @@ class LineTest {
     @Test
     void points_can_not_have_two_consecutive_PASSABLE() {
         // given
-        List<Integer> orderOfNumber = List.of(
-                MIN_NUMBER_RETURN_TRUE,
-                MIN_NUMBER_RETURN_TRUE,
-                MIN_NUMBER_RETURN_TRUE);
-        Line line = Line.create(new MockNumberGenerator(orderOfNumber),3);
+        Line line = Line.create(() -> MIN_NUMBER_RETURN_TRUE,3);
 
         // when
         List<LinePoint> points = line.getPoints();
 
         // then
         assertThat(points).containsExactly(LinePoint.PASSABLE, LinePoint.BLOCKED, LinePoint.PASSABLE);
-    }
-
-    /**
-     * 생성자를 통해 특정한 숫자값을 순서대로 반환하는 NumberGenerator
-     */
-    class MockNumberGenerator implements NumberGenerator {
-
-        private final List<Integer> values;
-        private int index = 0;
-
-        public MockNumberGenerator(List<Integer> values) {
-            this.values = values;
-        }
-
-        @Override
-        public int generate() {
-            return values.get(index++);
-        }
     }
 }
