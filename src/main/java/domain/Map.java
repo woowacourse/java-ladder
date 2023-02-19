@@ -22,7 +22,7 @@ public class Map {
     }
 
     private void validate(String height, int lineWeight) {
-        if (isNotNum(height) || isInValidHeight(height)) {
+        if (isNotNum(height) || isInValidHeight(Integer.parseInt(height))) {
             throw new InvalidLadderHeightException();
         }
         if (isInvalidWeight(lineWeight)) {
@@ -31,14 +31,18 @@ public class Map {
     }
 
     private boolean isNotNum(String height) {
-        return height == null || height.isBlank() || !height.matches("^[1-9]*$");
+        try {
+            Integer.parseInt(height);
+            return false;
+        } catch (NumberFormatException exception) {
+            return true;
+        }
     }
 
-    private boolean isInValidHeight(String heightInput) {
+    private boolean isInValidHeight(int heightInput) {
         final int minLadderCount = 1;
         final int maxLadderCount = 10;
-        final int height = Integer.parseInt(heightInput);
-        return minLadderCount > height || height > maxLadderCount;
+        return minLadderCount > heightInput || heightInput > maxLadderCount;
     }
 
     private boolean isInvalidWeight(int lineWeight) {
