@@ -16,8 +16,8 @@ public class LadderGame {
     }
 
     public List<Line> play(int height) {
-        Lines lines = new Lines(players.size(), height);
-        return lines.toUnModifiableLines();
+        Ladder ladder = new Ladder(players.size(), height);
+        return ladder.toUnModifiableLines();
     }
 
     public List<String> getPlayerNames() {

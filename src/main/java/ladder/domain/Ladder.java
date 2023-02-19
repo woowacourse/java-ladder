@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Lines {
+public class Ladder {
 
     private final List<Line> lines = new ArrayList<>();
 
-    public Lines(int width, int height) {
+    public Ladder(int playerCount, int height) {
+        StepPointGenerator stepPointGenerator = new RandomStepPointGenerator();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(width));
+            lines.add(new Line(stepPointGenerator, playerCount - 1));
         }
     }
 
