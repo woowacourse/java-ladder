@@ -7,7 +7,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.RandomNumberGenerator;
 
-class LineTest {
+class LineGeneratorTest {
+
+    private LineGenerator lineGenerator;
 
     private static final int MIN_NUMBER_RETURN_TRUE = 4;
 
@@ -15,8 +17,9 @@ class LineTest {
     @Test
     void create_points_by_input_width() {
         // given
+        lineGenerator = new LineGenerator(new RandomNumberGenerator());
         int width = 3;
-        Line line = Line.create(new RandomNumberGenerator(), width);
+        Line line = lineGenerator.generate(width);
 
         // when
         List<LinePoint> points = line.getPoints();
@@ -29,7 +32,8 @@ class LineTest {
     @Test
     void points_can_not_have_two_consecutive_PASSABLE() {
         // given
-        Line line = Line.create(() -> MIN_NUMBER_RETURN_TRUE,3);
+        lineGenerator = new LineGenerator(() -> MIN_NUMBER_RETURN_TRUE);
+        Line line = lineGenerator.generate(3);
 
         // when
         List<LinePoint> points = line.getPoints();

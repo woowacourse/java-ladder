@@ -10,7 +10,8 @@ import utils.RandomNumberGenerator;
 
 class LadderGeneratorTest {
 
-    private final LadderGenerator ladderGenerator = new LadderGenerator(new RandomNumberGenerator());
+    private final LadderGenerator ladderGenerator = new LadderGenerator(
+            new LineGenerator(new RandomNumberGenerator()));
 
     @DisplayName("다리가 높이와 라인 수를 입력받고, 각 라인들에 높이만큼의 크기를 가진 Point 리스트를 생성한다")
     @Test

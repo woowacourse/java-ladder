@@ -20,7 +20,6 @@ public class LadderGameApplication {
     private final OutputView outputView;
     private final LadderGenerator ladderGenerator;
 
-
     public LadderGameApplication(InputView inputView, OutputView outputView, LadderGenerator ladderGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
@@ -41,7 +40,6 @@ public class LadderGameApplication {
                 .map(Player::new)
                 .collect(collectingAndThen(toList(), Players::new));
     }
-
 
     private <T> T repeat(Supplier<T> inputSupplier) {
         while (true) {
