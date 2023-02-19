@@ -69,4 +69,15 @@ class PlayersTest {
                 () -> assertThat(playerList.get(2).getPosition()).isEqualTo(new Position(2))
         );
     }
+
+    @Test
+    @DisplayName("플레이어의 이름으로 위치를 알 수 있다")
+    void shouldFindPositionWhenInputName() {
+        //given
+        List<String> names = new ArrayList<>(List.of("a","b"));
+        //when
+        Players players = new Players(names);
+        //then
+        assertThat(players.findPosition(new Name("a"))).isEqualTo(new Position(0));
+    }
 }

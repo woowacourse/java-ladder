@@ -30,6 +30,14 @@ public class Players {
         return players;
     }
 
+    public Position findPosition(Name name) {
+        Player findPlayer = players.stream()
+                .filter(player -> player.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름은 존재하지 않습니다."));
+        return findPlayer.getPosition();
+    }
+
     public int getSize() {
         return players.size();
     }
