@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class OutputView {
     private static final String RESULT_MESSAGE = "\n사다리 결과\n";
     private static final String USER_RESULT_MESSAGE = "\n실행 결과";
-    private static final String USERS_RESULT_FORMAT = "%s : %s";
+    private static final String USERS_RESULT_FORMAT = "%s : %s\n";
     private static final String USER_NAME_FORMAT = "%5s ";
     private static final String BRIDGE_DELIMITER = "|";
 
@@ -24,8 +24,8 @@ public class OutputView {
 
     public void printUsersResult(Result result) {
         System.out.println(USER_RESULT_MESSAGE);
-        result.getResult()
-                .forEach((key, value) -> System.out.printf(USERS_RESULT_FORMAT, key, value));
+        result.getItemsALL()
+                .forEach((key, value) -> System.out.printf(USERS_RESULT_FORMAT, key.getName(), value.getItem()));
     }
 
     private void printUsers(Users users) {
