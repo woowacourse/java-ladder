@@ -17,7 +17,7 @@ public class ParticipantsTest {
     void create_givenSingleCountParticipant_thenFail(final String names) {
         assertThatThrownBy(() -> Participants.create(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Participants.INVALID_PARTICIPANT_COUNT);
+                .hasMessage("[ERROR] 참가자는 최소 1명 이상 입력해야 합니다.");
     }
 
     @ParameterizedTest

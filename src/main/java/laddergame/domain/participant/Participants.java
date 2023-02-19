@@ -10,7 +10,8 @@ public class Participants {
 
     private static final int MIN_COUNT = 1;
     private static final String DELIMITER = ",";
-    public static final String INVALID_PARTICIPANT_COUNT = "[ERROR] 참여자는 최소 한 명 이상 입력해야 합니다.";
+    private static final String PARTICIPANTS = "참가자는";
+    private static final String INVALID_PARTICIPANT_COUNT = "[ERROR] %s 최소 %d명 이상 입력해야 합니다.";
 
     private final List<Participant> participants;
 
@@ -42,7 +43,7 @@ public class Participants {
 
     private void validateParticipantCount(final List<String> participantNames) {
         if (participantNames.size() == MIN_COUNT) {
-            throw new IllegalArgumentException(INVALID_PARTICIPANT_COUNT);
+            throw new IllegalArgumentException(String.format(INVALID_PARTICIPANT_COUNT, PARTICIPANTS, MIN_COUNT));
         }
     }
 

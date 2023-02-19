@@ -24,7 +24,7 @@ public class ParticipantNameTest {
     void create_givenInvalidLengthName_thenFail(final String invalidName) {
         assertThatThrownBy(() -> ParticipantName.create(invalidName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ParticipantName.INVALID_NANE_LENGTH);
+                .hasMessage("[ERROR] 참가자 이름은 5글자를 초과할 수 없습니다.");
     }
 
     @ParameterizedTest
@@ -34,6 +34,6 @@ public class ParticipantNameTest {
         assertThatThrownBy(() -> ParticipantName.create(invalidName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .isExactlyInstanceOf(BlankException.class)
-                .hasMessage(BlankException.errorMessage);
+                .hasMessage(String.format(BlankException.errorMessage, "참가자 이름은"));
     }
 }
