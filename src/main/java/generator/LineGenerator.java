@@ -1,6 +1,6 @@
 package generator;
 
-import domain.Bridge;
+import domain.BridgeStatus;
 import domain.Line;
 
 import java.util.ArrayList;
@@ -14,26 +14,26 @@ public class LineGenerator {
         this.bridgeGenerator = bridgeGenerator;
     }
 
-    private static boolean hasLeftBridge(final List<Bridge> bridges) {
-        if (bridges.isEmpty()) {
+    private static boolean hasLeftBridge(final List<BridgeStatus> bridgeStatuses) {
+        if (bridgeStatuses.isEmpty()) {
             return false;
         }
-        return bridges.get(bridges.size() - 1) == Bridge.EXIST;
+        return bridgeStatuses.get(bridgeStatuses.size() - 1) == BridgeStatus.EXIST;
     }
 
     public Line generate(final int personCount) {
-        List<Bridge> newBridges = new ArrayList<>();
+        List<BridgeStatus> newBridgeStatuses = new ArrayList<>();
 
         for (int i = 0; i < personCount - 1; i++) {
-            newBridges.add(getNextBridge(newBridges));
+            newBridgeStatuses.add(getNextBridge(newBridgeStatuses));
         }
 
-        return new Line(newBridges);
+        return new Line(newBridgeStatuses);
     }
 
-    private Bridge getNextBridge(final List<Bridge> bridges) {
-        if (hasLeftBridge(bridges)) {
-            return Bridge.EMPTY;
+    private BridgeStatus getNextBridge(final List<BridgeStatus> bridgeStatuses) {
+        if (hasLeftBridge(bridgeStatuses)) {
+            return BridgeStatus.EMPTY;
         }
 
         return bridgeGenerator.generate();

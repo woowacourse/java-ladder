@@ -1,13 +1,13 @@
 package domain;
 
-public enum Bridge {
+public enum BridgeStatus {
 
     EXIST("-----"),
     EMPTY("     ");
 
     private final String display;
 
-    Bridge(final String display) {
+    BridgeStatus(final String display) {
         this.display = display;
     }
 

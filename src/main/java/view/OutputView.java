@@ -1,6 +1,6 @@
 package view;
 
-import domain.Bridge;
+import domain.BridgeStatus;
 import domain.Ladder;
 import domain.Line;
 
@@ -63,8 +63,8 @@ public class OutputView {
     }
 
     private static void printBridgesOf(final Line line) {
-        for (Bridge bridge : line.getBridges()) {
-            System.out.print(bridge.getDisplay());
+        for (BridgeStatus bridgeStatus : line.getBridges()) {
+            System.out.print(bridgeStatus.getDisplay());
             System.out.print("|");
         }
     }

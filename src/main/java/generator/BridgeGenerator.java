@@ -1,9 +1,9 @@
 package generator;
 
-import domain.Bridge;
+import domain.BridgeStatus;
 
 @FunctionalInterface
 public interface BridgeGenerator {
 
-    Bridge generate();
+    BridgeStatus generate();
 }

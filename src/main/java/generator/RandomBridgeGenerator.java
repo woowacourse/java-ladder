@@ -1,6 +1,6 @@
 package generator;
 
-import domain.Bridge;
+import domain.BridgeStatus;
 
 import java.util.Random;
 
@@ -9,11 +9,11 @@ public class RandomBridgeGenerator implements BridgeGenerator {
     private static final Random RANDOM = new Random();
 
     @Override
-    public Bridge generate() {
+    public BridgeStatus generate() {
         if (RANDOM.nextBoolean()) {
-            return Bridge.EXIST;
+            return BridgeStatus.EXIST;
         }
 
-        return Bridge.EMPTY;
+        return BridgeStatus.EMPTY;
     }
 }

@@ -60,14 +60,14 @@ class LineTest extends AbstractTestFixture {
         testAssertNotThrowsException(convert(true));
     }
 
-    private void testAssertThrowsIllegalArgumentException(List<Bridge> bridges) {
-        assertThatThrownBy(() -> new Line(bridges))
+    private void testAssertThrowsIllegalArgumentException(List<BridgeStatus> bridgeStatuses) {
+        assertThatThrownBy(() -> new Line(bridgeStatuses))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    private void testAssertNotThrowsException(List<Bridge> bridges) {
+    private void testAssertNotThrowsException(List<BridgeStatus> bridgeStatuses) {
         assertThatNoException().isThrownBy(
-                () -> new Line(bridges)
+                () -> new Line(bridgeStatuses)
         );
     }
 }

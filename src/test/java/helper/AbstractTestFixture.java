@@ -1,6 +1,6 @@
 package helper;
 
-import domain.Bridge;
+import domain.BridgeStatus;
 import domain.Line;
 import domain.People;
 import domain.Person;
@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 
 public abstract class AbstractTestFixture {
 
-    public List<Bridge> convert(Boolean... flags) {
+    public List<BridgeStatus> convert(Boolean... flags) {
         return Arrays.stream(flags)
                      .map((flag) -> {
                          if (flag) {
-                             return Bridge.EXIST;
+                             return BridgeStatus.EXIST;
                          }
-                         return Bridge.EMPTY;
+                         return BridgeStatus.EMPTY;
                      })
                      .collect(Collectors.toList());
     }
