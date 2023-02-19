@@ -11,6 +11,7 @@ import view.OutputView;
 
 public class LadderController {
 
+    private static final int NAMES_WIDTH_DIFFERENCE = 1;
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -25,7 +26,7 @@ public class LadderController {
             .map(Name::new)
             .collect(Collectors.toList());
         Ladder ladder = Ladder.makeLadder(new Height(inputView.inputLadderHeight()),
-            new Width(names.size() - 1));
+            new Width(names.size() - NAMES_WIDTH_DIFFERENCE));
         outputView.printResult(names, ladder);
     }
 }
