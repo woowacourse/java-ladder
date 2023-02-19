@@ -1,6 +1,5 @@
 package domain;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -13,6 +12,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UsersTest {
     @DisplayName("중복된 유저가 있으면 예외가 발생한다.")
@@ -28,7 +28,7 @@ public class UsersTest {
     @ParameterizedTest
     @MethodSource("usersFailParameter")
     void usersSizeFailTest(List<User> input) {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Users(input));
+        assertThrows(IllegalArgumentException.class, () -> new Users(input));
     }
 
     @DisplayName("입력된 유저의 수가 1~10명 사이이면 정상적으로 수행된다.")

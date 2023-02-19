@@ -22,7 +22,7 @@ public class Users {
     }
 
     private void validateSameName(List<User> users) {
-        if(users.size() != users.stream().distinct().count()){
+        if (users.size() != users.stream().distinct().count()) {
             throw new IllegalArgumentException("중복된 이름이 존재합니다.");
         }
     }

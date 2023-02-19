@@ -8,6 +8,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.*;
+
 public class ItemsTest {
     @DisplayName("입력된 결과값 개수가 유저수와 다르면 예외가 발생한다.")
     @ParameterizedTest
@@ -15,7 +17,7 @@ public class ItemsTest {
     void usersSizeFailTest(List<Item> input) {
         Users users = new Users(List.of(new User("aa"), new User("bb"), new User("cc")));
 
-        org.assertj.core.api.Assertions.assertThatThrownBy(() -> new Items(input, users))
+        assertThatThrownBy(() -> new Items(input, users))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

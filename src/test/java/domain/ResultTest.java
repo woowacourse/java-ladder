@@ -1,6 +1,5 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +7,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ResultTest {
     private Result result;
@@ -27,6 +28,6 @@ class ResultTest {
 
     @Test
     void getItem() {
-        Assertions.assertThat(result.getItem(new User("cc"))).isEqualTo("2");
+        assertThat(result.getItem(new User("cc"))).isEqualTo("2");
     }
 }
