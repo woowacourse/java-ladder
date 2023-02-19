@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
 
 public class LadderEngine {
 
+    private static final String END_OF_FILE = "all";
+
     private final LineGenerator lineGenerator;
 
     public LadderEngine(LineGenerator lineGenerator) {
@@ -41,7 +43,7 @@ public class LadderEngine {
 
             OutputView.printLadderResult(result, name);
 
-            if (name.equals("all")) {
+            if (name.equals(END_OF_FILE)) {
                 break;
             }
         }
