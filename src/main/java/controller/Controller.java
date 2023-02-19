@@ -27,9 +27,10 @@ public class Controller {
             String query = inputView.inputWinner();
             if (query.equals("all")) {
                 outputView.printUsersResult(result);
-            } else {
-                outputView.printUserResult(result.getItem(new User(query)));
+                continue;
             }
+            outputView.printUserResult(result.getItem(new User(query)));
+
         }
     }
 

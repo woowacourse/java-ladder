@@ -1,7 +1,6 @@
 package domain;
 
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +10,11 @@ import java.util.List;
 import java.util.Queue;
 import java.util.stream.Collectors;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class LaddersTest {
     private Ladders ladders;
+
     @BeforeEach
     void init() {
         Queue<Boolean> randomNumber = new LinkedList<>();
@@ -27,7 +29,7 @@ public class LaddersTest {
                 .map(Ladder::getLadder)
                 .collect(Collectors.toList());
 
-        Assertions.assertThat(result)
+        assertThat(result)
                 .isEqualTo(Arrays.asList(
                         Arrays.asList(Position.DOWN, Position.DOWN),
                         Arrays.asList(Position.LEFT, Position.RIGHT),
@@ -37,6 +39,6 @@ public class LaddersTest {
 
     @Test
     void ResultTest() {
-        Assertions.assertThat(ladders.getResult(0)).isEqualTo(0);
+        assertThat(ladders.getResult(0)).isEqualTo(0);
     }
 }

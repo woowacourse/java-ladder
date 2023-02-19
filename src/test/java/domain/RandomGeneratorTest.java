@@ -1,9 +1,10 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class RandomGeneratorTest {
     @Test
@@ -17,6 +18,6 @@ public class RandomGeneratorTest {
             result.add(customRandomGenerator.get());
         }
 
-        Assertions.assertThat(result).isEqualTo(randomNumber);
+        assertThat(result).isEqualTo(randomNumber);
     }
 }
