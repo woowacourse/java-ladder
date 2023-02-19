@@ -1,7 +1,7 @@
 import controller.RadderGameController;
 import util.RandomBooleanGenerator;
-import view.input.InputView;
-import view.output.OutputView;
+import view.InputView;
+import view.OutputView;
 
 public class Application {
 

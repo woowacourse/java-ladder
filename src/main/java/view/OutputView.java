@@ -1,4 +1,4 @@
-package view.output;
+package view;
 
 import domain.Line;
 import domain.Map;
@@ -32,7 +32,8 @@ public class OutputView {
     }
 
     private void setLadder(StringBuilder mapResult, Map map) {
-        map.getLines().forEach((line) -> mapResult.append(reformatLine(line)));
+        map.getLines()
+            .forEach((line) -> mapResult.append(reformatLine(line)));
     }
 
     private String reformatLine(Line line) {

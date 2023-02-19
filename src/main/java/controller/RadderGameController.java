@@ -3,8 +3,8 @@ package controller;
 import domain.Map;
 import domain.Participants;
 import util.BooleanGenerator;
-import view.input.InputView;
-import view.output.OutputView;
+import view.InputView;
+import view.OutputView;
 
 public class RadderGameController {
 
