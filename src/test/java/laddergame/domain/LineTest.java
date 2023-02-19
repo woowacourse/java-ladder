@@ -9,14 +9,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LineTest {
 
-    class FalseGenerator implements PointGenerator {
+    static class FalseGenerator implements PointGenerator {
         @Override
         public boolean generate() {
             return false;
         }
     }
 
-    class TrueGenerator implements PointGenerator {
+    static class TrueGenerator implements PointGenerator {
         @Override
         public boolean generate() {
             return true;
