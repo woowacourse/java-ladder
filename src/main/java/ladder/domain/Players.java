@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import ladder.util.ExceptionMessageFormatter;
 
 public class Players {
 
@@ -16,7 +17,8 @@ public class Players {
 
     private void validate(List<Player> players) {
         if (players.size() < MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException("참가자는 1명이하일 수 없습니다.");
+            throw new IllegalArgumentException(
+                    ExceptionMessageFormatter.format("참가자는 " + MIN_PLAYER_COUNT + "명 이상이어야 합니다.", players.size()));
         }
     }
 

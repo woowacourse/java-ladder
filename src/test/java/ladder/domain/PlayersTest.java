@@ -14,8 +14,8 @@ class PlayersTest {
     void 참여자들이_한명_이하면_예외() {
         List<Player> dummy = List.of(new Player("주노"));
 
-        assertThatThrownBy(() -> {
-            new Players(dummy);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Players(dummy))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참가자는 2명 이상이어야 합니다.");
     }
 }

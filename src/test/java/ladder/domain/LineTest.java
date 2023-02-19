@@ -40,7 +40,8 @@ class LineTest {
         Queue<StepPoint> generateValues = new LinkedList<>(expected);
 
         assertThatThrownBy(() -> Line.of(new MockedPointGenerator(generateValues), new LineWidth(expected.size())))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("디딤대는 연속적으로 존재할 수 없습니다.");
     }
 
     private static class MockedPointGenerator implements StepPointGenerator {

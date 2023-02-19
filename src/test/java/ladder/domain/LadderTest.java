@@ -36,6 +36,7 @@ class LadderTest {
     @ValueSource(ints = {-1, 0, 1})
     void 참여자_수가_2_미만이면_예외(int playerCount) {
         assertThatThrownBy(() -> Ladder.of(playerCount, new LadderHeight(3)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참여자가 2명 이상이어야 사다리를 만들 수 있습니다.");
     }
 }
