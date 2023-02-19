@@ -6,8 +6,7 @@ public class Line {
 
     private final List<Boolean> movements;
 
-    public Line(int count, GenerateStrategy strategy) {
-        List<Boolean> movements = strategy.generate(count);
+    public Line(List<Boolean> movements) {
         validate(movements);
         this.movements = movements;
     }

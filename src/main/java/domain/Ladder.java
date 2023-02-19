@@ -24,7 +24,7 @@ public class Ladder {
 
     private void initLines(int personCount, int maxHeight, GenerateStrategy strategy) {
         for (int i = 0; i < maxHeight; i++) {
-            lines.add(new Line(personCount, strategy));
+            lines.add(new Line(strategy.generate(personCount)));
         }
     }
 
