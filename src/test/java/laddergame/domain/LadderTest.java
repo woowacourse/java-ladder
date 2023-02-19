@@ -24,7 +24,7 @@ class LadderTest {
     void throwExceptionWhenParticipantIsNull() {
         final Participants participants = null;
 
-        assertThatThrownBy(() -> new Ladder(participants, HeightFixture.getHeightValue1()))
+        assertThatThrownBy(() -> new Ladder(participants, HeightFixture.createHeightValue1()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -32,7 +32,7 @@ class LadderTest {
     @Test
     void throwExceptionWhenHeightIsNull() {
         final Participants participants
-                = new Participants(List.of(NameFixture.getNameRosie(), NameFixture.getNameHyena()));
+                = new Participants(List.of(NameFixture.createNameRosie(), NameFixture.createNameHyena()));
         final Height height = null;
 
         assertThatThrownBy(() -> new Ladder(participants, height))
@@ -68,14 +68,14 @@ class LadderTest {
 
     static Stream<Arguments> ladderParameterDummy() {
         return Stream.of(
-                Arguments.arguments(ParticipantsFixture.getParticipantsSize2(), HeightFixture.getHeightValue1()),
-                Arguments.arguments(ParticipantsFixture.getParticipantsSize2(), HeightFixture.getHeightValue2()),
-                Arguments.arguments(ParticipantsFixture.getParticipantsSize2(), HeightFixture.getHeightValue3()),
-                Arguments.arguments(ParticipantsFixture.getParticipantsSize2(), HeightFixture.getHeightValue4()),
-                Arguments.arguments(ParticipantsFixture.getParticipantsSize3(), HeightFixture.getHeightValue1()),
-                Arguments.arguments(ParticipantsFixture.getParticipantsSize3(), HeightFixture.getHeightValue2()),
-                Arguments.arguments(ParticipantsFixture.getParticipantsSize3(), HeightFixture.getHeightValue3()),
-                Arguments.arguments(ParticipantsFixture.getParticipantsSize3(), HeightFixture.getHeightValue4())
+                Arguments.arguments(ParticipantsFixture.createParticipantsSize2(), HeightFixture.createHeightValue1()),
+                Arguments.arguments(ParticipantsFixture.createParticipantsSize2(), HeightFixture.createHeightValue2()),
+                Arguments.arguments(ParticipantsFixture.createParticipantsSize2(), HeightFixture.createHeightValue3()),
+                Arguments.arguments(ParticipantsFixture.createParticipantsSize2(), HeightFixture.createHeightValue4()),
+                Arguments.arguments(ParticipantsFixture.createParticipantsSize3(), HeightFixture.createHeightValue1()),
+                Arguments.arguments(ParticipantsFixture.createParticipantsSize3(), HeightFixture.createHeightValue2()),
+                Arguments.arguments(ParticipantsFixture.createParticipantsSize3(), HeightFixture.createHeightValue3()),
+                Arguments.arguments(ParticipantsFixture.createParticipantsSize3(), HeightFixture.createHeightValue4())
         );
     }
 }

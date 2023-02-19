@@ -18,7 +18,7 @@ class LadderFormTest {
         final Line line = new Line(List.of(true));
         final Line line2 = new Line(List.of(true));
         final List<Line> lines = List.of(line, line2);
-        final List<String> names = ParticipantsFixture.getParticipantsSize2().getNames();
+        final List<String> names = ParticipantsFixture.createParticipantsSize2().getNames();
         final String ladderForm = LadderForm.joinUnitsFrom(names, lines);
         assertThat(ladderForm).contains(" rosie hyena\n     |-----|\n     |-----|");
     }

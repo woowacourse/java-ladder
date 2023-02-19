@@ -69,35 +69,35 @@ class ParticipantsTest {
 
     static Stream<Arguments> namesDummy() {
         return Stream.of(
-                Arguments.arguments(List.of(NameFixture.getNameRosie(), NameFixture.getNameHyena())),
-                Arguments.arguments(List.of(NameFixture.getNameRosie(), NameFixture.getNameJayon())),
-                Arguments.arguments(List.of(NameFixture.getNameHyena(), NameFixture.getNameJayon())),
-                Arguments.arguments(List.of(NameFixture.getNameJayon(), NameFixture.getNameHyena(), NameFixture.getNameRosie()))
+                Arguments.arguments(List.of(NameFixture.createNameRosie(), NameFixture.createNameHyena())),
+                Arguments.arguments(List.of(NameFixture.createNameRosie(), NameFixture.createNameJayon())),
+                Arguments.arguments(List.of(NameFixture.createNameHyena(), NameFixture.createNameJayon())),
+                Arguments.arguments(List.of(NameFixture.createNameJayon(), NameFixture.createNameHyena(), NameFixture.createNameRosie()))
         );
     }
 
     static Stream<Arguments> oneNameDummy() {
         return Stream.of(
-                Arguments.arguments(List.of(NameFixture.getNameRosie())),
-                Arguments.arguments(List.of(NameFixture.getNameHyena())),
-                Arguments.arguments(List.of(NameFixture.getNameJayon()))
+                Arguments.arguments(List.of(NameFixture.createNameRosie())),
+                Arguments.arguments(List.of(NameFixture.createNameHyena())),
+                Arguments.arguments(List.of(NameFixture.createNameJayon()))
         );
     }
 
     static Stream<Arguments> namesWithValueDummy() {
         return Stream.of(
                 Arguments.arguments(
-                        List.of(NameFixture.getNameRosie(), NameFixture.getNameHyena()),
-                        List.of(NameFixture.getNameRosie().getValue(), NameFixture.getNameHyena().getValue())),
+                        List.of(NameFixture.createNameRosie(), NameFixture.createNameHyena()),
+                        List.of(NameFixture.createNameRosie().getValue(), NameFixture.createNameHyena().getValue())),
                 Arguments.arguments(
-                        List.of(NameFixture.getNameRosie(), NameFixture.getNameJayon()),
-                        List.of(NameFixture.getNameRosie().getValue(), NameFixture.getNameJayon().getValue())),
+                        List.of(NameFixture.createNameRosie(), NameFixture.createNameJayon()),
+                        List.of(NameFixture.createNameRosie().getValue(), NameFixture.createNameJayon().getValue())),
                 Arguments.arguments(
-                        List.of(NameFixture.getNameHyena(), NameFixture.getNameJayon()),
-                        List.of(NameFixture.getNameHyena().getValue(), NameFixture.getNameJayon().getValue())),
+                        List.of(NameFixture.createNameHyena(), NameFixture.createNameJayon()),
+                        List.of(NameFixture.createNameHyena().getValue(), NameFixture.createNameJayon().getValue())),
                 Arguments.arguments(
-                        List.of(NameFixture.getNameRosie(), NameFixture.getNameHyena(), NameFixture.getNameJayon()),
-                        List.of(NameFixture.getNameRosie().getValue(), NameFixture.getNameHyena().getValue(), NameFixture.getNameJayon().getValue()))
+                        List.of(NameFixture.createNameRosie(), NameFixture.createNameHyena(), NameFixture.createNameJayon()),
+                        List.of(NameFixture.createNameRosie().getValue(), NameFixture.createNameHyena().getValue(), NameFixture.createNameJayon().getValue()))
         );
     }
 }
