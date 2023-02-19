@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 class LadderTest {
 
     @Test
-    void 사다리는_주어진_높이만큼의_라인을_가진다() {
+    @DisplayName("사다리는 주어진 높이만큼의 라인을 가진다.")
+    void should_HasLinesNumber_Of_GivenHeight() {
         int height = 3;
         Ladder ladder = Ladder.of(3, new LadderHeight(height));
         List<Line> lines = ladder.toUnModifiableLines();
@@ -23,7 +25,8 @@ class LadderTest {
     }
 
     @Test
-    void 사다리는_참여자_수_보다_1_작은_폭을_가진다() {
+    @DisplayName("사다리는 참여자_수 보다 1 작은 폭을 가진다.")
+    void should_HasWidth_Of_1lessThanPlayersCount() {
         int playerCount = 3;
         Ladder ladder = Ladder.of(playerCount, new LadderHeight(3));
         List<Line> lines = ladder.toUnModifiableLines();
@@ -34,7 +37,8 @@ class LadderTest {
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 1})
-    void 참여자_수가_2_미만이면_예외(int playerCount) {
+    @DisplayName("참여자 수가 2 미만이면 예외를 던진다.")
+    void should_ThrowException_When_PlayersCountLessThan2(int playerCount) {
         assertThatThrownBy(() -> Ladder.of(playerCount, new LadderHeight(3)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("참여자가 2명 이상이어야 사다리를 만들 수 있습니다.");
