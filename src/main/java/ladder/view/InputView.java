@@ -10,12 +10,12 @@ public class InputView {
     private static final String NUMERIC_FORMAT = "^-?[0-9]*$";
     private static final String DELIMITER = ",";
 
-    private final Scanner sc = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     public List<String> requestNames() {
         printMessage(Message.ASK_USER_NAMES);
 
-        List<String> names = Arrays.asList(sc.nextLine().split(DELIMITER));
+        List<String> names = Arrays.asList(scanner.nextLine().split(DELIMITER));
         validateNames(names);
 
         return names;
@@ -24,7 +24,7 @@ public class InputView {
     public int requestLadderHeight() {
         printMessage(Message.ASK_LADDER_HEIGHT);
 
-        String input = sc.nextLine();
+        String input = scanner.nextLine();
         validateIsNumeric(input);
 
         return Integer.parseInt(input);
