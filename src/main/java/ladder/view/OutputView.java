@@ -1,9 +1,5 @@
 package ladder.view;
 
-import ladder.domain.ladder.Block;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
-
 import java.util.List;
 
 public class OutputView {
@@ -30,25 +26,23 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printLadder(final Ladder ladder) {
-        List<Line> lines = ladder.getLines();
-
-        for (Line line : lines) {
+    public static void printLadder(final List<List<Boolean>> lines) {
+        for (List<Boolean> line : lines) {
             printOneLine(line);
             System.out.println();
         }
     }
 
-    private static void printOneLine(final Line line) {
+    private static void printOneLine(final List<Boolean> blocks) {
         printLadderFrame();
-        for (Block block : line.getBlocks()) {
+        for (Boolean block : blocks) {
             printBlock(block);
             printLadderFrame();
         }
     }
 
-    private static void printBlock(final Block block) {
-        if (block.isExistBlock()) {
+    private static void printBlock(final Boolean blockValue) {
+        if (blockValue) {
             System.out.print(LADDER_BLOCK);
             return;
         }

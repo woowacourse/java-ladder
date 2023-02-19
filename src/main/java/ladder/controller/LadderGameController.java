@@ -2,7 +2,9 @@ package ladder.controller;
 
 import ladder.domain.builder.LadderMaker;
 import ladder.domain.builder.RandomBlockGenerator;
+import ladder.domain.ladder.Block;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
 import ladder.domain.player.Players;
 import ladder.exception.CustomException;
 import ladder.view.InputView;
@@ -45,12 +47,24 @@ public class LadderGameController {
         List<String> playersName = toPlayersName(players);
         OutputView.printGameResultHeader();
         OutputView.printPlayersName(playersName);
-        OutputView.printLadder(ladder);
+        OutputView.printLadder(toLines(ladder));
     }
 
     private List<String> toPlayersName(Players players) {
         return players.getPlayers().stream()
                 .map(player -> player.getPlayerName().getName())
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private List<List<Boolean>> toLines(Ladder ladder) {
+        return ladder.getLines().stream()
+                .map(this::toBlocks)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private List<Boolean> toBlocks(Line line) {
+        return line.getBlocks().stream()
+                .map(Block::isExistBlock)
                 .collect(Collectors.toUnmodifiableList());
     }
 }
