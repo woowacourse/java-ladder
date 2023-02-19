@@ -14,12 +14,6 @@ class LadderTest {
     @DisplayName("다리를 만들 때 ")
     class GenerateLineCase {
         @Nested
-        @DisplayName("높이 검증을 한다. ")
-        class ValidatingHeightCase {
-
-        }
-
-        @Nested
         @DisplayName(" 원하는 모양대로 만들 수 있다.")
         class ShapeCase {
             private Ladder ladder;
