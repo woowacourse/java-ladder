@@ -23,7 +23,7 @@ public class Controller {
         outputView.printLadderResultBoard(users, items, ladders);
         Result result = new Result(users, items, ladders);
 
-        new ResultController(inputView, outputView, result).process();
+        new ResultController(inputView, outputView, result).run();
     }
 
     private Users settingUsers() {
