@@ -9,13 +9,13 @@ public class Line {
     private static final Random random = new Random();
     private final List<Boolean> line;
 
+    public Line(int personCount) {
+        this(makeLine(personCount));
+    }
+
     public Line(List<Boolean> line) {
         validateLine(line);
         this.line = line;
-    }
-
-    public Line(int personCount) {
-        this(makeLine(personCount));
     }
 
     private static void validateLine(List<Boolean> line) {

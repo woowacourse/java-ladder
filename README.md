@@ -58,4 +58,5 @@
   - [ ] List와 Set의 특징 알아보기
   - [ ] 중복 검증 시 어떤 컬렌션이 더 잘어울리는지 생각해보기
 - stream
-  - [ ] OutputView의 printPerosns 메소드 출력 방법을 for문 대신 stream 사용하기
+  - [ ] OutputView의 printPersons 메소드 출력 방법을 for문 대신 stream 사용하기
+- [x] 최종 생성자가 아래에 위치하도록 변경하기
