@@ -1,7 +1,6 @@
 package ladder.view;
 
-import ladder.validator.CommonValidator;
-
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.Supplier;
 import java.util.regex.Matcher;
@@ -14,7 +13,7 @@ public class InputView {
     public static String inputPeopleNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String inputPeopleNames = sc.nextLine();
-        CommonValidator.validateBlank(inputPeopleNames);
+        validateBlank(inputPeopleNames);
         return inputPeopleNames;
     }
 
@@ -26,8 +25,14 @@ public class InputView {
     }
 
     private static void validateLadderHeight(String ladderHeight) {
-        CommonValidator.validateBlank(ladderHeight);
+        validateBlank(ladderHeight);
         validateNonNumber(ladderHeight);
+    }
+    
+    public static void validateBlank(String input) {
+        if (Objects.isNull(input) || input.isBlank()) {
+            throw new IllegalArgumentException("빈 값을 입력할 수 없습니다.");
+        }
     }
 
     private static void validateNonNumber(String ladderHeight) {
