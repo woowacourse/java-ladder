@@ -24,7 +24,7 @@ public class Controller {
         PlayerNames playerNames = new PlayerNames(inputView.readPlayerNames(), inputView);
         Players players = new Players(playerNames);
 
-        int ladderHeight = inputView.readLadderHeight();
+        int ladderHeight = new LadderHeight(inputView.readLadderHeight(), inputView).getLadderHeight();
         List<Line> ladder = generateLadder(ladderHeight, players);
 
         printResult(players, ladder);
