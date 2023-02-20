@@ -9,6 +9,9 @@ import java.util.Map;
 
 public class OutputView {
 
+    private static final String EMPTY_BRIDGE = "     ";
+    private static final String EXIST_BRIDGE = "-----";
+
     public static void printLadder(final Ladder ladder) {
         System.out.println("사다리 결과");
 
@@ -64,8 +67,16 @@ public class OutputView {
 
     private static void printBridgesOf(final Bridge bridge) {
         for (BridgeStatus bridgeStatus : bridge.getBridges()) {
-            System.out.print(bridgeStatus.getDisplay());
+            System.out.print(printBridgeStatus(bridgeStatus));
             System.out.print("|");
         }
+    }
+
+    private static String printBridgeStatus(BridgeStatus bridgeStatus) {
+        if (bridgeStatus == BridgeStatus.EMPTY) {
+            return EMPTY_BRIDGE;
+        }
+
+        return EXIST_BRIDGE;
     }
 }
