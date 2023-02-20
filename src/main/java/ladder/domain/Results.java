@@ -17,6 +17,17 @@ public class Results {
         }
     }
 
+    public Result findResultByIndex(int index) {
+        if (isProperIndex(index)) {
+            throw new IllegalArgumentException("[ERROR] 인덱스 범위를 초과했습니다.");
+        }
+        return results.get(index);
+    }
+
+    private boolean isProperIndex(int index) {
+        return index < 0 || index >= results.size();
+    }
+
     public int getResultsCount() {
         return results.size();
     }
