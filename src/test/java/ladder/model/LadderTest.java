@@ -3,8 +3,6 @@ package ladder.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
@@ -21,18 +19,4 @@ class LadderTest {
         assertThat(ladder.findExitFrom(2)).isEqualTo(1);
     }
 
-    static class TestLineCreateDecider implements LineCreateDecider {
-
-        private final List<Boolean> isCreated;
-
-        TestLineCreateDecider(List<Boolean> isCreated) {
-            this.isCreated = isCreated;
-        }
-
-        @Override
-        public boolean decide() {
-            return isCreated.remove(0);
-        }
-
-    }
 }
