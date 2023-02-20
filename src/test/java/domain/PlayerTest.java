@@ -7,12 +7,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class PersonTest {
+public class PlayerTest {
 
     @Test
     @DisplayName("이름에 6글자 이상 입력시 예외 발생")
     void validateNameLength(){
-        assertThatThrownBy(() -> new Person("123456"))
+        assertThatThrownBy(() -> new Player("123456"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -20,7 +20,7 @@ public class PersonTest {
     @ValueSource(strings = {""," ","   "})
     @DisplayName("이름에 공백 입력시 예외 발생")
     void validateBlankName(String blankName){
-        assertThatThrownBy(() -> new Person(blankName))
+        assertThatThrownBy(() -> new Player(blankName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

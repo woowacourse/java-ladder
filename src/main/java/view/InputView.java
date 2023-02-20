@@ -11,7 +11,7 @@ public class InputView {
     private static final String DELIMITER = ",";
     private static final String LADDER_HEIGHT_INPUT_NOTICE = "최대 사다리 높이는 몇 개인가요?";
 
-    public List<String> readPersonsName(){
+    public List<String> readPlayersName(){
         System.out.println(NAME_INPUT_NOTICE);
         String[] names = readInput().split(DELIMITER);
         return Arrays.asList(names);

@@ -1,7 +1,7 @@
 package view;
 
 import domain.Line;
-import domain.Person;
+import domain.Player;
 import java.util.List;
 
 public class OutputView {
@@ -19,7 +19,7 @@ public class OutputView {
         System.out.println(builder);
     }
 
-    public void printPersonNames(List<String> names){
+    public void printPlayersName(List<String> names){
         StringBuilder stringBuilder = new StringBuilder();
 
         for(String name : names){
@@ -49,6 +49,6 @@ public class OutputView {
     }
 
     private String getNameBlank(String name) {
-        return BLANK.repeat(Person.NAME_MAX_LENGTH - name.length());
+        return BLANK.repeat(Player.NAME_MAX_LENGTH - name.length());
     }
 }

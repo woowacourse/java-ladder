@@ -3,22 +3,22 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Persons {
+public class Players {
 
     private static final String DUPLICATE_NAME_ERROR = "[ERROR] 중복된 이름입니다.";
 
-    private final List<Person> persons = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
 
-    public Persons(List<String> names) {
+    public Players(List<String> names) {
         validateDuplicateName(names);
-        addPerson(names);
+        addPlayer(names);
     }
 
-    public List<String> getPersonsName() {
+    public List<String> getPlayersName() {
         List<String> names = new ArrayList<>();
 
-        for (Person person : persons) {
-            names.add(person.getName());
+        for (Player player : players) {
+            names.add(player.getName());
         }
         return names;
     }
@@ -33,9 +33,9 @@ public class Persons {
         return names.size() != names.stream().distinct().count();
     }
 
-    private void addPerson(List<String> names) {
+    private void addPlayer(List<String> names) {
         for (String name : names) {
-            persons.add(new Person(name));
+            players.add(new Player(name));
         }
     }
 

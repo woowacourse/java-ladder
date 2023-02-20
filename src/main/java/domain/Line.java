@@ -12,8 +12,8 @@ public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int personCount, RandomGenerator generator) {
-        addPoints(personCount, generator);
+    public Line(int playerCount, RandomGenerator generator) {
+        addPoints(playerCount, generator);
     }
 
     public List<Boolean> getPoints() {
@@ -28,9 +28,9 @@ public class Line {
         return points.get(pointIndex);
     }
 
-    private void addPoints(int personCount, RandomGenerator generator) {
+    private void addPoints(int playerCount, RandomGenerator generator) {
         addRandomPoint(generator);
-        for (int pointIndex = FIRST_INDEX; pointIndex < personCount - LAST_INDEX_OFFSET; pointIndex++) {
+        for (int pointIndex = FIRST_INDEX; pointIndex < playerCount - LAST_INDEX_OFFSET; pointIndex++) {
             addConditionalPoint(generator, pointIndex);
         }
     }

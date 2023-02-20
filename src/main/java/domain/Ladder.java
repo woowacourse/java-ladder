@@ -10,18 +10,18 @@ public class Ladder {
 
     private final List<Line> lines = new ArrayList<>();
 
-    public Ladder(int height, int personCount, RandomGenerator generator) {
+    public Ladder(int height, int playerCount, RandomGenerator generator) {
         validateHeight(height);
-        addLine(height, personCount, generator);
+        addLine(height, playerCount, generator);
     }
 
     public List<Line> getLines() {
         return lines;
     }
 
-    private void addLine(int height, int personCount, RandomGenerator generator) {
+    private void addLine(int height, int playerCount, RandomGenerator generator) {
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(personCount, generator));
+            lines.add(new Line(playerCount, generator));
         }
     }
 
