@@ -2,7 +2,7 @@ package ladder.controller;
 
 import ladder.domain.Ladder;
 import ladder.domain.Players;
-import ladder.utils.BooleanGenerator;
+import ladder.domain.RandomBooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -11,7 +11,8 @@ public class LadderGameController {
 
     public void play() {
         Players players = new Players(InputView.readNames());
-        Ladder ladder = Ladder.generate(InputView.readCountOfLines(), getCountOfBars(players), new BooleanGenerator());
+        Ladder ladder = Ladder.generate(InputView.readCountOfLines(), getCountOfBars(players),
+                new RandomBooleanGenerator());
         OutputView.printPlayers(players.getNameValues());
         OutputView.printLadder(ladder.getLines());
     }

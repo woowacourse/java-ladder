@@ -2,12 +2,10 @@ package ladder.domain;
 
 import static ladder.domain.Bar.IMMOVABLE;
 import static ladder.domain.Bar.MOVABLE;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.utils.BooleanGenerator;
-import ladder.utils.RandomGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +16,7 @@ class LineTest {
     void should3barWhenCreateLine() {
         // given
         // when
-        Line line = Line.generate(3, new BooleanGenerator());
+        Line line = Line.generate(3, new RandomBooleanGenerator());
         // then
         assertThat(line.getBars()).hasSize(3);
     }
@@ -29,20 +27,20 @@ class LineTest {
         // given
         List<Boolean> determinedBars = new ArrayList<>(List.of(true, true));
         // when
-        Line line = Line.generate(3, new DeterminedRandomGenerator(determinedBars));
+        Line line = Line.generate(3, new DeterminedBooleanGenerator(determinedBars));
         // then
         assertThat(line.getBars()).containsExactly(MOVABLE, IMMOVABLE, MOVABLE);
     }
 
-    static class DeterminedRandomGenerator implements RandomGenerator<Boolean> {
+    static class DeterminedBooleanGenerator implements BooleanGenerator {
         private final List<Boolean> bars;
 
-        public DeterminedRandomGenerator(List<Boolean> bars) {
+        public DeterminedBooleanGenerator(List<Boolean> bars) {
             this.bars = bars;
         }
 
         @Override
-        public Boolean generate() {
+        public boolean generate() {
             return bars.remove(0);
         }
     }

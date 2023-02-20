@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
-import ladder.utils.RandomGenerator;
 
 public class Line {
     private final List<Bar> bars;
@@ -13,17 +12,17 @@ public class Line {
         this.bars = bars;
     }
 
-    public static Line generate(int size, RandomGenerator<Boolean> randomGenerator) {
+    public static Line generate(int size, BooleanGenerator booleanGenerator) {
         Deque<Bar> bars = new LinkedList<>();
         while (bars.size() < size) {
-            bars.add(getAppropriateBar(bars, randomGenerator));
+            bars.add(getAppropriateBar(bars, booleanGenerator));
         }
         return new Line(List.copyOf(bars));
     }
 
-    private static Bar getAppropriateBar(Deque<Bar> bars, RandomGenerator<Boolean> randomGenerator) {
+    private static Bar getAppropriateBar(Deque<Bar> bars, BooleanGenerator booleanGenerator) {
         if (bars.isEmpty() || bars.getLast().isImmovable()) {
-            return Bar.of(randomGenerator.generate());
+            return Bar.of(booleanGenerator.generate());
         }
         return Bar.IMMOVABLE;
     }
