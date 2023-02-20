@@ -16,9 +16,7 @@ public class LadderTest {
         LadderHeight ladderHeight = new LadderHeight(5);
 
         //then
-        assertThatNoException().isThrownBy(() -> {
-            new Ladder(players, ladderHeight);
-        });
+        assertThatNoException().isThrownBy(() -> new Ladder(players, ladderHeight));
     }
 
     @Test
