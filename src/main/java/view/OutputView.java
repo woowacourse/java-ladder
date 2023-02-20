@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class OutputView {
+
     private static final String NAME_FORMAT = "%-9s";
     private static final String VERTICAL_BAR = "|";
     private static final Pattern koreanPattern = Pattern.compile("^[ㄱ-ㅎ가-힣]*$");
@@ -34,7 +35,7 @@ public class OutputView {
 
     private void firstPlayerPrint(List<String> names, int index) {
         if (isFirstPlayer(index)) {
-            System.out.print(String.format(NAME_FORMAT, names.get(index)));
+            System.out.printf(NAME_FORMAT, names.get(index));
         }
     }
 
@@ -44,7 +45,7 @@ public class OutputView {
 
     private static void middlePlayersPrint(List<String> names, int index) {
         if (isMiddlePlayer(names, index)) {
-            System.out.print(String.format(NAME_FORMAT, names.get(index)));
+            System.out.printf(NAME_FORMAT, names.get(index));
         }
     }
 
@@ -55,7 +56,7 @@ public class OutputView {
 
     private void lastPlayerPrint(List<String> names, int index) {
         if (isLastPlayer(names, index)) {
-            System.out.print(String.format(NAME_FORMAT, names.get(index)));
+            System.out.printf(NAME_FORMAT, names.get(index));
         }
     }
 
@@ -79,7 +80,7 @@ public class OutputView {
         }
         return SPACE.repeat(playerNames.get(0).length());
     }
-    
+
     private void printLadderBlock(String prePlayerName, String currentPlayerNames, String ladderLineBlock) {
         System.out.print(ladderLineBlock.repeat(repeatCount(prePlayerName, currentPlayerNames)) + VERTICAL_BAR);
     }
@@ -90,7 +91,7 @@ public class OutputView {
         }
         return currentName.length() + calculateNameSpace(preName);
     }
-    
+
     private boolean isKorean(String name) {
         Matcher koreanMatcher = koreanPattern.matcher(name);
         return koreanMatcher.matches();
