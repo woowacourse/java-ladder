@@ -13,4 +13,8 @@ public class Line {
     public boolean isExist() {
         return isExist;
     }
+
+    public boolean notExist() {
+        return !isExist;
+    }
 }

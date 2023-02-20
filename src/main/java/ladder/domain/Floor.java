@@ -9,7 +9,6 @@ public class Floor {
     private static final int INDEX_DIFFERENCE = 1;
     private final List<Line> lines = new ArrayList<>();
 
-
     public Floor(int lineSize) {
         for (int i = 0; i < lineSize; i++) {
             lines.add(new Line());
@@ -39,6 +38,6 @@ public class Floor {
 
         int previousIndex = index - INDEX_DIFFERENCE;
 
-        return !lines.get(previousIndex).isExist();
+        return lines.get(previousIndex).notExist();
     }
 }
