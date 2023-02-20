@@ -1,14 +1,15 @@
 package ladder.controller;
 
+import ladder.domain.ladder.Line;
 import ladder.domain.valueGenerator.MockValueGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.*;
+import java.util.List;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
+import static ladder.domain.ladder.Bar.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderControllerTest {
@@ -18,53 +19,35 @@ public class LadderControllerTest {
     @Test
     @DisplayName("사다리 컨트롤러 정상 테스트")
     void ladderControllerTest() {
-        String input = "a,b,c,d,e,f" + System.lineSeparator() + "5";
+        MockInputView inputView = new MockInputView(List.of(List.of("a","b","c","d")), List.of(3));
+        MockResultView resultView = new MockOutputView();
+        MockValueGenerator valueGenerator = new MockValueGenerator(List.of(3), List.of(false, true, false));
+        ladderController = new LadderController(inputView, resultView, valueGenerator);
+        ladderController.run();
+        List<Line> resultLadder = resultView.getLadder();
 
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes(UTF_8));
-        OutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(outputStream);
-        System.setIn(inputStream);
-        System.setOut(printStream);
-
-        new LadderController(new InputView(), new ResultView(), new MockValueGenerator()).run();
-        assertThat(outputStream.toString())
-                .contains("    a     b     c     d     e     f",
-                        "실행결과",
-                        "    |     |     |     |     |     |" + System.lineSeparator() +
-                        "    |     |     |     |     |     |" + System.lineSeparator() +
-                        "    |     |     |     |     |     |" + System.lineSeparator() +
-                        "    |     |     |     |     |     |" + System.lineSeparator() +
-                        "    |     |     |     |     |     |"
-                        );
+        assertThat(resultLadder.get(0).getLine()).isEqualTo(List.of(UNMOVABLE_BAR, MOVABLE_BAR, UNMOVABLE_BAR));
+        assertThat(resultLadder.get(1).getLine()).isEqualTo(List.of(UNMOVABLE_BAR, MOVABLE_BAR, UNMOVABLE_BAR));
+        assertThat(resultLadder.get(2).getLine()).isEqualTo(List.of(UNMOVABLE_BAR, MOVABLE_BAR, UNMOVABLE_BAR));
     }
 
     @Test
     @DisplayName("사다리 컨트롤러 예외 후 정상 테스트")
     void ladderControllerExceptionTest() {
-        String input = "a,b,c,d,e,e" + System.lineSeparator() +
-                "a" + System.lineSeparator() +
-                "aaaaaa,b,c,d,e,e" + System.lineSeparator() +
-                "a,b,c,d,e,f" + System.lineSeparator() +
-                "j" + System.lineSeparator() +
-                "5";
+        MockInputView inputView = new MockInputView(
+                List.of(List.of("a","b","c","c"), List.of("aaaaaa","b","c","d"), List.of("a","b","c","d")),
+                List.of(0, 3));
+        MockResultView resultView = new MockOutputView();
+        MockValueGenerator valueGenerator = new MockValueGenerator(List.of(3), List.of(false, true, false));
+        ladderController = new LadderController(inputView, resultView, valueGenerator);
+        ladderController.run();
+        List<Line> resultLadder = resultView.getLadder();
+        boolean resultError = resultView.hasError();
 
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes(UTF_8));
-        OutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(outputStream);
-        System.setIn(inputStream);
-        System.setOut(printStream);
-
-        new LadderController(new InputView(), new ResultView(), new MockValueGenerator()).run();
-        assertThat(outputStream.toString())
-                .contains("    a     b     c     d     e     f",
-                        "[ERROR]",
-                        "실행결과",
-                        "    |     |     |     |     |     |" + System.lineSeparator() +
-                        "    |     |     |     |     |     |" + System.lineSeparator() +
-                        "    |     |     |     |     |     |" + System.lineSeparator() +
-                        "    |     |     |     |     |     |" + System.lineSeparator() +
-                        "    |     |     |     |     |     |"
-                );
+        assertThat(resultError).isTrue();
+        assertThat(resultLadder.get(0).getLine()).isEqualTo(List.of(UNMOVABLE_BAR, MOVABLE_BAR, UNMOVABLE_BAR));
+        assertThat(resultLadder.get(1).getLine()).isEqualTo(List.of(UNMOVABLE_BAR, MOVABLE_BAR, UNMOVABLE_BAR));
+        assertThat(resultLadder.get(2).getLine()).isEqualTo(List.of(UNMOVABLE_BAR, MOVABLE_BAR, UNMOVABLE_BAR));\
     }
 
 }
