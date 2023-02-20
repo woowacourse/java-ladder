@@ -9,6 +9,8 @@ import java.util.stream.Stream;
 class Ladder {
 
     private static final String INVALID_HEIGHT_MESSAGE = "사다리 높이는 최소 1, 최대 100까지 가능합니다.";
+    private static final int MINIMUM_LADDER_HEIGHT = 1;
+    private static final int MAXIMUM_LADDER_HEIGHT = 100;
 
     private final List<Line> lines;
 
@@ -18,7 +20,7 @@ class Ladder {
     }
 
     private void validateHeight(final int height) {
-        if (height < 1 || height > 100) {
+        if (height < MINIMUM_LADDER_HEIGHT || height > MAXIMUM_LADDER_HEIGHT) {
             throw new IllegalArgumentException(INVALID_HEIGHT_MESSAGE);
         }
     }
