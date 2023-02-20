@@ -1,5 +1,5 @@
 import controller.MainController;
-import domain.booleangenerator.RandomBooleanGenerator;
+import domain.generator.RandomBooleanGenerator;
 import view.InputView;
 import view.OutputView;
 

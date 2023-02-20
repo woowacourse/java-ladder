@@ -1,4 +1,4 @@
-package domain.booleangenerator;
+package domain.generator;
 
 import java.util.Random;
 
