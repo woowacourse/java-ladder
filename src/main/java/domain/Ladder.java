@@ -28,6 +28,6 @@ public class Ladder {
     public List<List<Bridge>> getStatus() {
         return lines.stream()
                 .map(Line::getBridges)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 }
