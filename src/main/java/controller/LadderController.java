@@ -11,9 +11,12 @@ import view.OutputView;
 
 public class LadderController {
 
+    private final InputView inputView;
     private final NumberGenerator numberGenerator;
 
-    public LadderController(NumberGenerator numberGenerator) {
+
+    public LadderController(InputView inputView, NumberGenerator numberGenerator) {
+        this.inputView = inputView;
         this.numberGenerator = numberGenerator;
     }
 
@@ -26,7 +29,7 @@ public class LadderController {
 
     private Players generatePlayers() {
         try {
-            List<String> names = InputView.readNames();
+            List<String> names = inputView.readNames();
             return new Players(names);
         } catch (IllegalArgumentException exception) {
             LogType.ERROR_MESSAGE.log(exception.getMessage());
@@ -36,7 +39,7 @@ public class LadderController {
 
     private Ladder generateLadder(int personCount) {
         try {
-            int height = InputView.readHeight();
+            int height = inputView.readHeight();
             return new Ladder(height, personCount, numberGenerator);
         } catch (IllegalArgumentException exception) {
             LogType.ERROR_MESSAGE.log(exception.getMessage());
