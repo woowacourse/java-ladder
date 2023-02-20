@@ -36,7 +36,7 @@ public class LadderGameController {
         final Players players = readPlayers();
         final int height = readHeight();
 
-        return new LadderGame(booleanGenerator, players, height);
+        return LadderGame.initialize(players, booleanGenerator, height);
     }
 
     private Players readPlayers() {

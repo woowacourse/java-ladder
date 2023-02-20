@@ -4,14 +4,23 @@ import java.util.List;
 
 public class LadderGame {
 
-    private static final int SUBTRACT_VALUE_OF_LADDER_WIDTH = 1;
+    private static final int SUBTRACT_LADDER_WIDTH_VALUE = 1;
 
     private final Players players;
     private final Ladder ladder;
 
-    public LadderGame(final BooleanGenerator booleanGenerator, final Players players, final int height) {
+    private LadderGame(final Players players, final Ladder ladder) {
         this.players = players;
-        this.ladder = Ladder.generate(booleanGenerator, height, players.count() - SUBTRACT_VALUE_OF_LADDER_WIDTH);
+        this.ladder = ladder;
+    }
+
+    public static LadderGame initialize(
+            final Players players,
+            final BooleanGenerator booleanGenerator,
+            final int height
+    ) {
+        final Ladder ladder = Ladder.generate(booleanGenerator, height, players.count() - SUBTRACT_LADDER_WIDTH_VALUE);
+        return new LadderGame(players, ladder);
     }
 
     public List<String> getPlayers() {
