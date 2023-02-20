@@ -20,6 +20,6 @@ public class ResultContents {
     }
 
     public List<ResultContent> getResultContents() {
-        return resultContents;
+        return this.resultContents;
     }
 }

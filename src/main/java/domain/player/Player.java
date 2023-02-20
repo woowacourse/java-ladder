@@ -15,10 +15,10 @@ public class Player {
     }
 
     public String getPlayerName() {
-        return playerName.getPlayerName();
+        return this.playerName.getPlayerName();
     }
 
     public String getResultContent() {
-        return resultContent.getContent();
+        return this.resultContent.getContent();
     }
 }

@@ -26,37 +26,37 @@ public class LadderGame {
     }
 
     public void buildBridges() {
-        ladder.buildBridges();
+        this.ladder.buildBridges();
     }
 
     public void runGame() {
         for (int i = 0; i < players.playerAmount(); i++) {
-            int resultAt = ladder.findResultAtByStartLineAt(i);
+            int resultAt = this.ladder.findResultAtByStartLineAt(i);
             matchPlayerResult(i, resultAt);
         }
     }
 
     private void matchPlayerResult(int playerAt, int resultAt) {
         ResultContent resultContent = resultContents.getResultContents().get(resultAt);
-        Player player = players.getPlayers().get(playerAt);
+        Player player = this.players.getPlayers().get(playerAt);
 
         player.updateResult(resultContent);
     }
 
     public String getResultByPlayerName(String playerName) {
-        Player player = players.findByName(playerName);
+        Player player = this.players.findByName(playerName);
         return player.getResultContent();
     }
 
     public Ladder getLadder() {
-        return ladder;
+        return this.ladder;
     }
 
     public Players getPlayers() {
-        return players;
+        return this.players;
     }
 
     public ResultContents getResultContents() {
-        return resultContents;
+        return this.resultContents;
     }
 }

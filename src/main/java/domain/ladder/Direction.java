@@ -13,6 +13,6 @@ public enum Direction {
     }
 
     public int getLineMovement() {
-        return lineMovement;
+        return this.lineMovement;
     }
 }

@@ -29,6 +29,6 @@ public class ResultContent {
     }
 
     public String getContent() {
-        return content;
+        return this.content;
     }
 }
