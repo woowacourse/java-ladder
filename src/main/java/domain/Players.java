@@ -26,7 +26,7 @@ public class Players {
         return this.players.stream()
                 .filter(player -> player.getPlayerName().equals(playerName))
                 .findFirst()
-                .orElseThrow(NoSuchElementException::new);
+                .orElseThrow(() -> new NoSuchElementException("존재하지 않는 참여자 입니다."));
     }
 
     public List<Player> getPlayers() {
