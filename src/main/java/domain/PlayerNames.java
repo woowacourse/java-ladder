@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerNames {
+    public static final String PLAYERS_SIZE_ERROR_MESSAGE = "[ERROR] 사다리 게임을 위해서는 2명 이상의 플레이어가 필요합니다";
+    public static final int MIN_PLAYERS_SIZE = 2;
+
     InputView inputView;
     private List<PlayerName> playerNames;
 
@@ -28,6 +31,7 @@ public class PlayerNames {
     private List<String> validatePlayerNames(List<String> playerNames) {
         try {
             validatePlayerName(playerNames);
+            validatePlayerSize(playerNames);
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception.getMessage());
             playerNames = validatePlayerNames(inputView.readPlayerNames());
@@ -38,6 +42,12 @@ public class PlayerNames {
     private static void validatePlayerName(List<String> playerNames) {
         for (String playerName : playerNames) {
             PlayerName.validateName(playerName);
+        }
+    }
+
+    private static void validatePlayerSize(List<String> playerNames) {
+        if (playerNames.size() < MIN_PLAYERS_SIZE) {
+            throw new IllegalArgumentException(PLAYERS_SIZE_ERROR_MESSAGE);
         }
     }
 
