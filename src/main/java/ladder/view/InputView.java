@@ -38,21 +38,12 @@ public class InputView {
     }
 
     private int parseInt(final String input) throws IllegalArgumentException {
-        long parseInt = getParseLong(input);
-        validateInteger(parseInt);
-        return (int) parseInt;
+        validateNumberDigit(input);
+        validateInteger(Long.parseLong(input));
+        return Integer.parseInt(input);
     }
 
-    private static long getParseLong(final String input) {
-        try {
-            validateNumberDigit(input);
-            return Long.parseLong(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_NUMBER_MESSAGE);
-        }
-    }
-
-    private static void validateNumberDigit(final String input) {
+    private void validateNumberDigit(final String input) {
         if (input.length() > MAXIMUM_NUMBER_DIGIT) {
             throw new IllegalArgumentException(INVALID_NUMBER_DIGIT_MESSAGE);
         }
