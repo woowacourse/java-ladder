@@ -21,7 +21,10 @@ public class Rungs {
         return new Rungs(rungCount, rungGenerator);
     }
 
-    public boolean canMoveNext(final int rungPosition) {
+    public boolean canMove(final int rungPosition) {
+        if (rungPosition < 0 || rungPosition >= rungs.size()) {
+            return false;
+        }
         Rung rung = rungs.get(rungPosition);
         return rung.isExistence();
     }

@@ -3,7 +3,6 @@ package laddergame.domain.rung;
 import laddergame.util.BooleanGenerator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -20,13 +19,11 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 public class RungsTest {
 
     private int rungCount;
-    private int rungPosition;
     private BooleanGenerator rungGenerator;
 
     @BeforeAll
     void init() {
         rungCount = 4;
-        rungPosition = 0;
         rungGenerator = new RungGenerator();
     }
 
@@ -58,8 +55,8 @@ public class RungsTest {
     @MethodSource("getTestRungsWithNumberGenerator")
     @DisplayName("NumberGenerator의 반환값에 따라, 생성되는 Rungs의 형태가 달라진다.")
     void getRungs_whenCreateWithNumberGenerator_thenReturnRungs(final int rungCount,
-                                                              final BooleanGenerator booleanGenerator,
-                                                              final List<Rung> expectedRungs) {
+                                                                final BooleanGenerator booleanGenerator,
+                                                                final List<Rung> expectedRungs) {
         // given
         Rungs rungs = Rungs.create(rungCount, booleanGenerator);
 
@@ -70,30 +67,32 @@ public class RungsTest {
         assertThat(actualRungs).isEqualTo(expectedRungs);
     }
 
-    @Test
-    @DisplayName("대상 위치에 사다리 가로대가 존재하면, 다음 행의 다음 가로대로 이동이 가능하다.")
-    void canMoveDown_whenTargetRungExists_thenReturnTrue() {
+    @ParameterizedTest
+    @ValueSource(ints = {0, 2})
+    @DisplayName("범위가 벗어나지 않았으면서 대상 위치에 사다리 가로대가 존재하면, 다음 행의 해당 가로대(열)로 이동이 가능하다.")
+    void canMoveDown_whenTargetRungExists_thenReturnTrue(final int rungPosition) {
         // given
         final BooleanGenerator sufficientMaterialGenerator = () -> true;
         Rungs rungs = Rungs.create(rungCount, sufficientMaterialGenerator);
 
         // when
-        boolean canMoveDown = rungs.canMoveNext(rungPosition);
+        boolean canMoveDown = rungs.canMove(rungPosition);
 
         // then
         assertThat(canMoveDown)
                 .isTrue();
     }
 
-    @Test
-    @DisplayName("대상 위치에 사다리 가로대가 존재하지 않으면, 다음 행의 다음 가로대로 이동이 불가능하다.")
-    void canMoveDown_whenTargetRungExists_thenReturnFalse() {
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 1, 3, 4})
+    @DisplayName("범위가 벗어났거나 대상 위치에 사다리 가로대가 존재하지 않다면, 다음 행의 해당 가로대(열)로 이동이 불가능하다.")
+    void canMoveDown_whenTargetRungExists_thenReturnFalse(final int rungPosition) {
         // given
-        final BooleanGenerator sufficientMaterialGenerator = () -> false;
+        final BooleanGenerator sufficientMaterialGenerator = () -> true;
         Rungs rungs = Rungs.create(rungCount, sufficientMaterialGenerator);
 
         // when
-        boolean canMoveDown = rungs.canMoveNext(rungPosition);
+        boolean canMoveDown = rungs.canMove(rungPosition);
 
         // then
         assertThat(canMoveDown)
