@@ -38,12 +38,11 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
-    public int findIndexByPlayerName(String PlayerName) {
-        Player foundPlayer = players.stream()
+    public Player findByPlayerName(String PlayerName) {
+        return players.stream()
                 .filter(player -> player.isNameMatch(PlayerName))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 참여자가 없습니다."));
-        return players.indexOf(foundPlayer);
     }
 
     public Player findPlayerByIndex(int index) {

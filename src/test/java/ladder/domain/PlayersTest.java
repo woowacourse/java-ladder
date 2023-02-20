@@ -46,28 +46,28 @@ class PlayersTest {
     }
 
     @Test
-    @DisplayName("참여자 이름으로 인덱스를 찾을 수 있어야 한다.")
+    @DisplayName("참여자 이름으로 참여자를 찾을 수 있어야 한다.")
     void findIndexByPlayerName_success() {
         // given
         Players players = createPlayers();
 
         // when
-        int index = players.findIndexByPlayerName("doggy");
+        Player foundPlayer = players.findByPlayerName("doggy");
 
         // then
-        assertThat(index)
-                .isEqualTo(1);
+        assertThat(foundPlayer.getName())
+                .isEqualTo("doggy");
     }
 
     @Test
-    @DisplayName("참여자 이름으로 인덱스를 찾을 때 이름이 없으면 예와가 발생한다.")
+    @DisplayName("참여자 이름으로 참여자를 찾을 때 이름이 없으면 예와가 발생한다.")
     void findIndexByPlayerName_wrongName() {
         // given
         Players players = createPlayers();
 
         // expect
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> players.findIndexByPlayerName("player"))
+                .isThrownBy(() -> players.findByPlayerName("player"))
                 .withMessage("[ERROR] 해당 참여자가 없습니다.");
     }
 
