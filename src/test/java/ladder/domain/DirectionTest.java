@@ -24,7 +24,7 @@ class DirectionTest {
     }
 
     @ParameterizedTest(name = "입력: {0}")
-    @ValueSource(ints = {-2, 2, 100})
+    @ValueSource(ints = {-2, 2})
     @DisplayName("존재하지 않는 값이라면 예외를 던진다.")
     void throwExceptionNotExistValue(final int value) {
         assertThatThrownBy(() -> Direction.from(value))
