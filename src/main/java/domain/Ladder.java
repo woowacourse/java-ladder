@@ -47,7 +47,7 @@ public class Ladder {
                 .getWidth();
     }
 
-    public List<List<Boolean>> getValue() {
+    public List<List<Boolean>> getLadderShape() {
         return lines.stream()
                 .map(Line::getValue)
                 .collect(Collectors.toList());
