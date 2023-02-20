@@ -4,6 +4,7 @@ import ladder.exceptionMessage.ExceptionMessage;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class Players {
 
@@ -27,7 +28,22 @@ public class Players {
         return MIN_PLAYER_COUNT <= playerCount && playerCount <= MAX_PLAYER_COUNT;
     }
 
-    public int size() {
+    public Player findPlayerByName(String playerName) {
+        Optional<Player> foundPlayer = players.stream()
+                .filter(player -> player.getPlayerName().equals(playerName))
+                .findFirst();
+
+        if (foundPlayer.isEmpty()) {
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_PLAYER_NAME.getMessage());
+        }
+        return foundPlayer.get();
+    }
+
+    public int findPositionOf(Player player) {
+        return players.indexOf(player);
+    }
+
+    public int getSize() {
         return players.size();
     }
 
