@@ -25,13 +25,13 @@ public class LadderGameController {
 
     public void run() {
         Players players = generatePlayers();
-        Results results = generateResults(players.getSize());
+        Rewards rewards = generateRewards(players.getSize());
         Height height = generateHeight();
         Ladder ladder = generateLadder(players, height);
 
-        showLadderGame(players, ladder, results);
+        showLadderGame(players, ladder, rewards);
 
-        Map<String, String> matchingResults = matchPlayersAndResults(players, ladder, results);
+        Map<String, String> matchingResults = generateMatchingResults(players, ladder, rewards);
         showMatchingResults(players, matchingResults);
     }
 
@@ -47,12 +47,12 @@ public class LadderGameController {
         }
     }
 
-    private Results generateResults(int playerCount) {
+    private Rewards generateRewards(int playerCount) {
         try {
-            return new Results(inputView.readResults(), playerCount);
+            return new Rewards(inputView.readRewards(), playerCount);
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
-            return generateResults(playerCount);
+            return generateRewards(playerCount);
         }
     }
 
@@ -71,7 +71,7 @@ public class LadderGameController {
         return ladderGenerator.generateLadder(players.getSize(), height);
     }
 
-    private void showLadderGame(Players players, Ladder ladder, Results results) {
+    private void showLadderGame(Players players, Ladder ladder, Rewards rewards) {
         outputView.printLadderResultMessage();
         outputView.printPlayerNames(players.getPlayers().stream()
                 .map(Player::getPlayerName)
@@ -81,16 +81,16 @@ public class LadderGameController {
         for (Row row : rows) {
             outputView.printRow(row.getPoints());
         }
-        outputView.printResults(results.getResults());
+        outputView.printRewards(rewards.getRewards());
     }
 
-    private Map<String, String> matchPlayersAndResults(Players players, Ladder ladder, Results results) {
+    private Map<String, String> generateMatchingResults(Players players, Ladder ladder, Rewards rewards) {
         Map<String, String> matchingResults = new HashMap<>();
         for (Player player : players.getPlayers()) {
             int entrance = players.findPositionOf(player);
             int exit = ladder.findExitFrom(entrance);
-            String result = results.getResults().get(exit);
-            matchingResults.put(player.getPlayerName(), result);
+            String reward = rewards.getRewards().get(exit);
+            matchingResults.put(player.getPlayerName(), reward);
         }
         return matchingResults;
     }

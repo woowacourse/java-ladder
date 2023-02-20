@@ -15,7 +15,7 @@ public enum ExceptionMessage {
     EXCEPTION_INVALID_PLAYER_NAME("존재하지 않는 플레이어 이름입니다."),
 
     /*Results*/
-    EXCEPTION_INVALID_RESULT_COUNT("실행 결과 수는 플레이어 수와 일치해야 합니다."),
+    EXCEPTION_INVALID_REWARD_COUNT("실행 결과 수는 플레이어 수와 일치해야 합니다."),
 
     /*Height*/
     EXCEPTION_INVALID_HEIGHT("사다리 높이는 2 이상 100 이하여야 합니다.");

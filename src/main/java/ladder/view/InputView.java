@@ -36,13 +36,13 @@ public class InputView {
         }
     }
 
-    public List<String> readResults() {
-        System.out.println(InputMessage.INPUT_RESULTS.getMessage());
+    public List<String> readRewards() {
+        System.out.println(InputMessage.INPUT_REWARDS.getMessage());
 
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        String[] results = input.replaceAll(" ", "").split(",");
-        return new ArrayList<>(List.of(results));
+        String[] rewards = input.replaceAll(" ", "").split(",");
+        return new ArrayList<>(List.of(rewards));
     }
 
     public int readHeight() {
@@ -81,7 +81,7 @@ public class InputView {
     private enum InputMessage {
 
         INPUT_NAMES("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"),
-        INPUT_RESULTS("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"),
+        INPUT_REWARDS("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"),
         INPUT_HEIGHT("최대 사다리 높이는 몇 개인가요?"),
         INPUT_PLAYER_CHOICE("결과를 보고 싶은 사람은?");
 

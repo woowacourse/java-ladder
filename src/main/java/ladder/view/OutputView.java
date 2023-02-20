@@ -35,7 +35,7 @@ public class OutputView {
         }
     }
 
-    public void printResults(List<String> results) {
+    public void printRewards(List<String> results) {
         System.out.println();
         results.forEach(result -> System.out.printf(OUTPUT_WORD_FORMAT, result));
         System.out.println();
