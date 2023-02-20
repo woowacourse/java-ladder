@@ -17,13 +17,13 @@ public class LadderTest {
         assertDoesNotThrow(() -> new Ladder(4, 4, randomDigitsGenerator));
     }
 
-    @DisplayName("사다리 높이가 0 이하인 경우 예외가 발생한다.")
+    @DisplayName("사다리 높이가 1이상 50이하가 아닌 경우 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(ints = {0, -1})
+    @ValueSource(ints = {0, -1, 51})
     void invalid_height(int height) {
         assertThatThrownBy(() -> new Ladder(height, 4, randomDigitsGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사다리 높이는 1이상이어야 합니다.");
+                .hasMessage("사다리 높이는 1부터 50까지 입니다.");
     }
 
 }
