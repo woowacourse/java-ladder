@@ -1,9 +1,10 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class BarTest {
     public static final Bar FALSE = new Bar(() -> false);
@@ -17,6 +18,6 @@ public class BarTest {
         Bar bar = new Bar(() -> isExist);
 
         // then
-        Assertions.assertThat(bar.isExistBar()).isEqualTo(isExist);
+        assertThat(bar.isExistBar()).isEqualTo(isExist);
     }
 }
