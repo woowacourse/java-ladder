@@ -30,6 +30,7 @@ public class LadderController implements Controller {
         mappings.put(LadderStatus.INPUT_PARTICIPANT_NAMES, this::inputParticipantsName);
         mappings.put(LadderStatus.GENERATE_LADDER, this::generateLadder);
         mappings.put(LadderStatus.PRINT_LADDER, this::printLadder);
+        mappings.put(LadderStatus.APPLICATION_EXCEPTION, this::exit);
     }
 
     @Override
@@ -65,6 +66,10 @@ public class LadderController implements Controller {
 
         outputView.printNameOfParticipants(participantsName);
         outputView.printLadder(ladder);
+        return LadderStatus.APPLICATION_EXIT;
+    }
+
+    private LadderStatus exit() {
         return LadderStatus.APPLICATION_EXIT;
     }
 }
