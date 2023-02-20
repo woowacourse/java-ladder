@@ -4,7 +4,6 @@ import laddergame.domain.rung.Rung;
 import laddergame.domain.rung.Rungs;
 
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 import static laddergame.view.message.LadderMessage.*;
@@ -49,17 +48,15 @@ public class OutputView {
     private String makeLadderMessage(final List<Rungs> ladder, final int firstNameLength) {
         return ladder.stream()
                 .map(Rungs::getRungs)
-                .map(rungs -> {
-                    StringJoiner ladderMessage = new StringJoiner("", LADDER_PADDING.getMessage().repeat(firstNameLength), "\n");
-                    ladderMessage.add(makeRungsMessage(rungs));
-                    return ladderMessage.toString();
-                }).collect(Collectors.joining());
+                .map(rungs -> makeRungsMessage(rungs, firstNameLength))
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    private String makeRungsMessage(final List<Rung> rungs) {
+    private String makeRungsMessage(final List<Rung> rungs, final int firstNameLength) {
+        final String firstLadderFrame = LADDER_PADDING.getMessage().repeat(firstNameLength) + LADDER_FRAME.getMessage();
         return rungs.stream()
                 .map(rung -> makeRungMessage(rung.exists()))
-                .collect(Collectors.joining(LADDER_FRAME.getMessage(), LADDER_FRAME.getMessage(), LADDER_FRAME.getMessage()));
+                .collect(Collectors.joining(LADDER_FRAME.getMessage(), firstLadderFrame, LADDER_FRAME.getMessage()));
     }
 
     private String makeRungMessage(final boolean isExistence) {
