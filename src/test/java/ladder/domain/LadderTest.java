@@ -2,6 +2,7 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import ladder.utils.BooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ class LadderTest {
     void shouldHasSizeOfInputWhenCreateLadder() {
         // given
         // when
-        Ladder ladder = new Ladder(3, 4);
+        Ladder ladder = Ladder.generate(3, 4, new BooleanGenerator());
         //then
         assertThat(ladder.getLines()).hasSize(3);
     }

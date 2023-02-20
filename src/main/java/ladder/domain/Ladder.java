@@ -1,21 +1,23 @@
 package ladder.domain;
 
-import java.util.ArrayList;
+import static java.util.stream.Collectors.*;
+
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
+import ladder.utils.RandomGenerator;
 
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(int countOfLine, int countOfBar) {
-        lines = new ArrayList<>();
-        generateLines(countOfLine, countOfBar);
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
-    private void generateLines(int countOfLine, int countOfBar) {
-        for (int i = 0; i < countOfLine; i++) {
-            lines.add(new Line(countOfBar));
-        }
+    public static Ladder generate(int countOfLine, int countOfBar, RandomGenerator randomGenerator) {
+        return Stream.generate(() -> new Line(countOfBar, randomGenerator))
+                .limit(countOfLine)
+                .collect(collectingAndThen(toList(), Ladder::new));
     }
 
     public List<Line> getLines() {
