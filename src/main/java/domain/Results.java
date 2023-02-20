@@ -1,11 +1,12 @@
 package domain;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Results {
+public class Results implements Iterable<Result> {
     private static final String DELIMITER = ",";
 
     private final List<Result> results;
@@ -46,5 +47,14 @@ public class Results {
     @Override
     public int hashCode() {
         return Objects.hash(results);
+    }
+
+    @Override
+    public Iterator<Result> iterator() {
+        return results.iterator();
+    }
+
+    public Result getByIndex(int index) {
+        return results.get(index);
     }
 }

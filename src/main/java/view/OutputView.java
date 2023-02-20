@@ -1,8 +1,6 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.People;
+import domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,19 +8,35 @@ import java.util.List;
 public class OutputView {
 
     public static final String DELIMITER = "|";
+    public static final String FORMAT = "%s : %s\n";
 
-    public void printNames(People people) {
+    public void printTotalLadderResult(People people, Ladder ladder, Results results) {
+        System.out.println("사다리 결과\n");
+        printNames(people);
+        printLadder(ladder);
+        printResults(results);
+
+    }
+
+    private void printNames(People people) {
         for (String name : people.getNames()) {
             System.out.printf("%5s ", name);
         }
         System.out.println();
     }
 
-    public void printLadder(Ladder ladder) {
+    private void printLadder(Ladder ladder) {
         for (Line line : ladder) {
             List<String> collect = getHorizonLine(line.getMovements());
             System.out.printf("    |%s|%n", String.join(DELIMITER, collect));
         }
+    }
+
+    private void printResults(Results results) {
+        for (Result result : results) {
+            System.out.printf("%5s ", result);
+        }
+        System.out.println();
     }
 
     private List<String> getHorizonLine(List<Boolean> points) {
@@ -31,6 +45,19 @@ public class OutputView {
             collect.add(LineType.getMessageByMovable(point));
         }
         return collect;
+    }
+
+    public void printSingleResult(Result result) {
+        System.out.println("\n실행 결과");
+        System.out.println(result);
+    }
+
+    public void printAllResults(People people, Results results) {
+        System.out.println("\n실행 결과");
+        for (int i = 0; i < people.getCount(); i++) {
+            System.out.printf(FORMAT, people.getByIndex(i).getName(), results.getByIndex(i));
+        }
+        System.out.println();
     }
 
     public void printError(Exception exception) {

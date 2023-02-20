@@ -54,9 +54,9 @@ public class People implements Iterable<Person> {
         return people.size();
     }
 
-    public int findByName(String name) {
+    public int find(Person person) {
         return IntStream.range(0, people.size())
-                .filter(index -> people.get(index).equals(new Person(name)))
+                .filter(index -> people.get(index).equals(person))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자는 존재하지 않습니다"));
 
@@ -65,5 +65,9 @@ public class People implements Iterable<Person> {
     @Override
     public Iterator<Person> iterator() {
         return people.iterator();
+    }
+
+    public Person getByIndex(int index) {
+        return people.get(index);
     }
 }

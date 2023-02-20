@@ -36,4 +36,14 @@ public class InputView {
             throw new IllegalArgumentException("숫자를 입력해야 합니다.", exception);
         }
     }
+
+    public String readResults() {
+        System.out.printf("실행 결과를 입력하세요. (결과는 쉼표(%s)로 구분하세요)\n", DELIMITER);
+        return scanner.nextLine();
+    }
+
+    public String readSingleResult() {
+        System.out.println("\n결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
+    }
 }
