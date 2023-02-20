@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Height;
+import domain.LadderGame;
 import domain.PlayerNames;
 import domain.ResultContents;
 import domain.ladder.Ladder;
@@ -20,25 +21,39 @@ public class LadderGameController {
         this.bridgeStrategy = bridgeStrategy;
     }
 
-    public void run() {
-        String playerNamesInput = inputView.requestPlayerNames();
-        PlayerNames playerNames = PlayerNames.of(playerNamesInput, inputView.getPlayerNameDelimiter());
+    public LadderGame initGame() {
+        PlayerNames playerNames = getPlayerNames();
+        ResultContents resultContents = getResultContents();
+        Ladder ladder = buildLadder(playerNames);
 
-        String resultContentsInput = inputView.requestResultContents();
-        ResultContents resultContents = ResultContents.of(
-                resultContentsInput, inputView.getResultContentsDelimiter());
-
-        Height height = inputView.requestLadderHeight();
-        Ladder ladder = Ladder.of(playerNames, height, bridgeStrategy);
-        ladder.buildBridges();
-
-        printLadderGameResult(playerNames, ladder);
+        return new LadderGame(ladder, playerNames, resultContents);
     }
 
-    private void printLadderGameResult(PlayerNames playerNames, Ladder ladder) {
+    public void run(LadderGame ladderGame) {
+        ladderGame.buildBridges();
+        printLadderGameResult(ladderGame);
+    }
+
+    private Ladder buildLadder(PlayerNames playerNames) {
+        Height height = inputView.requestLadderHeight();
+        return Ladder.of(playerNames, height, bridgeStrategy);
+    }
+
+    private ResultContents getResultContents() {
+        String resultContentsInput = inputView.requestResultContents();
+        return ResultContents.of(
+                resultContentsInput, inputView.getResultContentsDelimiter());
+    }
+
+    private PlayerNames getPlayerNames() {
+        String playerNamesInput = inputView.requestPlayerNames();
+        return PlayerNames.of(playerNamesInput, inputView.getPlayerNameDelimiter());
+    }
+
+    private void printLadderGameResult(LadderGame ladderGame) {
         outputView.printResultPrefix();
-        outputView.printPlayerNames(playerNames);
-        outputView.printResult(ladder);
+        outputView.printPlayerNames(ladderGame.getPlayerNames());
+        outputView.printResult(ladderGame.getLadder());
     }
 
     public void printError(Exception exception) {
