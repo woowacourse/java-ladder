@@ -7,7 +7,12 @@ public class Line {
     public void make(LineSource lineSource) {
         if (lineSource == LineSource.MAKE_LINE) {
             isExist = true;
+            return;
         }
+        if( lineSource == LineSource.MAKE_BLANK){
+            return;
+        }
+        throw new UnsupportedOperationException();
     }
 
     public boolean isExist() {
