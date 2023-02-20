@@ -3,6 +3,7 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
@@ -32,5 +33,14 @@ class GoodsTest {
         assertThatThrownBy(() -> new Goods("123456"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("상품 이름은 2 이상 5 이하여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"    12345:12345", "12345    :12345", "    12345    :12345"}, delimiter = ':')
+    @DisplayName("상품 이름 양끝에 공백이 들어가 있으면 공백을 삭제한다.")
+    void trimGoodsBothEndsBlank(String value, String expected) {
+        Goods goods = new Goods(value);
+
+        assertThat(goods.getName()).isEqualTo(expected);
     }
 }

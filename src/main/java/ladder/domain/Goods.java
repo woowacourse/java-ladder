@@ -11,8 +11,9 @@ public class Goods {
     private String value;
 
     public Goods(String value) {
-        validate(value);
-        this.value = value;
+        String trimValue = value.trim();
+        validate(trimValue);
+        this.value = trimValue;
     }
 
     private void validate(String value) {
@@ -47,5 +48,9 @@ public class Goods {
 
     private boolean isLargeSize(String value) {
         return MAXIMUM_SIZE < value.length();
+    }
+
+    public String getName() {
+        return value;
     }
 }
