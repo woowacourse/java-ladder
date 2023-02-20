@@ -6,6 +6,7 @@ import controller.LadderGameController;
 import domain.user.User;
 import domain.user.Users;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,5 +25,13 @@ public class ResultTest {
         Users users = new Users(List.of(new User("dino"), new User("mango")));
         String input = "dinos";
         assertThatThrownBy(() -> LadderGameController.checkNameInUsers(input, users));
+    }
+
+    @DisplayName("결과를 보고싶은 유저로 'all'을 입력받으면 성공한다.")
+    @Test
+    void shouldSuccessInputIsAll() {
+        Users users = new Users(List.of(new User("dino"), new User("mango")));
+        String input = "all";
+        Assertions.assertDoesNotThrow(() -> LadderGameController.checkNameInUsers(input, users));
     }
 }
