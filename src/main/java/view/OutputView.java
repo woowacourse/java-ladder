@@ -1,6 +1,10 @@
 package view;
 
-import domain.*;
+import domain.Ladder;
+import domain.Line;
+import domain.People;
+import domain.Result;
+import domain.Results;
 
 import java.util.ArrayList;
 import java.util.List;

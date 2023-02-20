@@ -6,18 +6,26 @@ public class Person {
 
     public static final int MIN_LENGTH = 1;
     public static final int MAX_LENGTH = 5;
+    public static final String INVALID_NAME = "all";
 
     private final String name;
 
     public Person(String name) {
         validateNameLength(name);
+        validateName(name);
         this.name = name;
     }
 
     private void validateNameLength(String name) {
         if (name.isBlank() || name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(
-                    String.format("이름은 %d자 이상 %d자 이하여야 합니다", MIN_LENGTH, MAX_LENGTH));
+                    String.format("이름은 %d자 이상 %d자 이하여야 합니다.", MIN_LENGTH, MAX_LENGTH));
+        }
+    }
+
+    private void validateName(String name) {
+        if (name.equals(INVALID_NAME)) {
+            throw new IllegalArgumentException("이름은 all이 될 수 없습니다.");
         }
     }
 

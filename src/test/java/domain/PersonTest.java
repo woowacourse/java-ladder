@@ -1,6 +1,7 @@
 package domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -20,9 +21,17 @@ class PersonTest {
     @DisplayName("1자 이상 5자 이하가 아니면 예외를 발생시킨다.")
     @ParameterizedTest
     @ValueSource(strings = {"", "123456"})
-    void fail(String value) {
+    void fail_length(String value) {
         assertThatThrownBy(() -> new Person(value))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 1자 이상 5자 이하여야 합니다");
+                .hasMessage("이름은 1자 이상 5자 이하여야 합니다.");
+    }
+
+    @DisplayName("이름에 all이 오면 예외를 발생시킨다.")
+    @Test
+    void fail_invalid_name() {
+        assertThatThrownBy(() -> new Person("all"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 all이 될 수 없습니다.");
     }
 }
