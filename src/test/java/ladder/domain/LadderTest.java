@@ -21,7 +21,7 @@ public class LadderTest {
     @Test
     @DisplayName("4*5 사이즈의 사다리가 생성되는지 확인한다")
     void ladderInitiatorTest() {
-        Ladder ladder = new Ladder(playerCount, heightOfLadder, new MockRandomDataGenerator());
+        Ladder ladder = Ladder.of(playerCount, heightOfLadder, new MockRandomDataGenerator());
         List<Line> lines = ladder.getLinesOfLadder();
 
         int rowSize = lines.size();

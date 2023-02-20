@@ -1,27 +1,25 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(final int numberOfPlayers, final int heightOfLadder, final RandomGenerator randomGenerator) {
-        this.lines = createLadder(numberOfPlayers, heightOfLadder, randomGenerator);
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
-    private List<Line> createLadder(final int numberOfPlayers, final int heightOfLadder, final RandomGenerator randomGenerator) {
+    public static Ladder of(final int numberOfPlayers, final int heightOfLadder, final RandomGenerator randomGenerator) {
         int widthOfLadder = numberOfPlayers - 1;
 
-        List<Line> lines = new ArrayList<>();
-
-        for (int idx = 0; idx < heightOfLadder; idx++) {
-            lines.add(new Line(widthOfLadder, randomGenerator));
-        }
-
-        return lines;
+        return new Ladder(IntStream.range(0, heightOfLadder)
+                .mapToObj(i -> Line.of(widthOfLadder, randomGenerator))
+                .collect(Collectors.toList())
+        );
     }
 
     public List<Line> getLinesOfLadder() {
