@@ -2,10 +2,12 @@ package controller;
 
 import model.Ladder;
 import model.LadderHeight;
-import model.Names;
+import model.Name;
 import model.Players;
 import view.InputView;
 import view.OutputView;
+
+import java.util.List;
 
 public class LadderGameController {
     public InputView inputView;
@@ -23,7 +25,7 @@ public class LadderGameController {
         outputView.printLadder(ladder);
     }
 
-    private Names setPlayerNames() {
+    private List<Name> setPlayerNames() {
         outputView.printPlayerNamesMessage();
         return inputView.readPlayerNames();
     }

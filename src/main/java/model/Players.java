@@ -8,10 +8,14 @@ import java.util.stream.IntStream;
 public class Players {
     private final List<Player> players = new ArrayList<>();
 
-    public Players(Names names) {
-        IntStream.range(0, names.size()).forEach(index ->
-                players.add(new Player(names.getName(index)))
-        );
+    public Players(List<Name> names) {
+        names.stream()
+                .map(Player::new)
+                .forEach(players::add);
+
+//        IntStream.range(0, names.size()).forEach(index ->
+//                players.add(new Player(names.getName(index)))
+//        );
     }
 
     public int size() {

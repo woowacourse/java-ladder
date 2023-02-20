@@ -36,7 +36,7 @@ public class ResultFactoryTest {
     @DisplayName("사다리 게임 결과 값의 수와 전체 사람 수가 같은지 검증 기능 테스트")
     void validateRightResultsSizeTest(String inputNames) {
         //given
-        Players players = new Players(new Names(inputNames));
+        Players players = new Players(NameFactory.create(inputNames));
 
         //then
         assertThatThrownBy(() -> ResultFactory.create(players.size(), "꽝, 5000, 꽝, 3000"))

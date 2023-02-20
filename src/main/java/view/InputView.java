@@ -1,8 +1,10 @@
 package view;
 
 import model.LadderHeight;
-import model.Names;
+import model.Name;
+import model.NameFactory;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -12,8 +14,8 @@ public class InputView {
         this.scanner = scanner;
     }
 
-    public Names readPlayerNames() {
-        return new Names(scanner.nextLine());
+    public List<Name> readPlayerNames() {
+        return NameFactory.create(scanner.nextLine());
     }
 
     public LadderHeight readLadderHeight() {
