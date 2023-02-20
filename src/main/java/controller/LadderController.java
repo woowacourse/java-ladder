@@ -28,14 +28,16 @@ public class LadderController {
     }
 
     public void run(LadderMaker ladderMaker) {
-        Names participants = inputParticipantsName();
-        LadderResults ladderResults = inputLadderResults(participants.getTotalParticipantSize());
-
-        generateLadder(ladderMaker, participants.getTotalParticipantSize());
-        printLadder(ladderMaker, participants, ladderResults);
-
-        LadderGame ladderGame = LadderGame.of(participants, ladderMaker.getLadder(), ladderResults);
-        findResult(ladderGame);
+        try {
+            Names participants = inputParticipantsName();
+            LadderResults ladderResults = inputLadderResults(participants.getTotalParticipantSize());
+            generateLadder(ladderMaker, participants.getTotalParticipantSize());
+            printLadder(ladderMaker, participants, ladderResults);
+            LadderGame ladderGame = LadderGame.of(participants, ladderMaker.getLadder(), ladderResults);
+            findResult(ladderGame);
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
+        }
     }
 
     private Names inputParticipantsName() {
@@ -88,6 +90,7 @@ public class LadderController {
     }
 
     private void calculateResultLog(LadderGame ladderGame, String targetParticipantName) {
+        outputView.noticeGameResult();
         if (targetParticipantName.equals(FIND_TOTAL_RESULT_COMMAND)) {
             List<GameResult> totalGameResult = ladderGame.getTotalGameResult();
             outputView.printTotalResult(totalGameResult);

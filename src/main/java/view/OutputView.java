@@ -147,6 +147,10 @@ public class OutputView {
         print(System.lineSeparator());
     }
 
+    public void printExceptionMessage(String message) {
+        print(String.format(EXCEPTION_FORMAT, message));
+    }
+
     private void print(String message) {
         System.out.print(message);
     }
