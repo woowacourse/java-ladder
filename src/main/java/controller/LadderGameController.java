@@ -24,20 +24,18 @@ public class LadderGameController {
         Players players = makePlayers();
         LadderResults ladderResults = makeLadderResults(players.findNumberOfPlayers());
         Ladder ladder = makeLadder(players.findNumberOfPlayers());
-
-        Game game = new Game(ladder, players, ladderResults);
-        game.calculatePlayerResults();
+        Game game = new Game(players, ladder, ladderResults);
 
         outputView.printLadderGameStatus(players, ladder, ladderResults);
-        printResultOfPlayer(players);
+        printResultOfPlayer(game);
     }
 
-    private void printResultOfPlayer(final Players players) {
+    private void printResultOfPlayer(final Game game) {
         String command = "";
 
         while (!command.equals("all")) {
             command = makeCommand();
-            outputView.printResult(players, command);
+            outputView.printResult(game, command);
         }
     }
 

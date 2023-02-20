@@ -47,4 +47,8 @@ public class LadderResults {
     public HashMap<Integer, LadderResult> getLadderResults() {
         return ladderResults;
     }
+
+    public LadderResult findLadderResultByIndex(int index) {
+        return this.ladderResults.get(index);
+    }
 }
