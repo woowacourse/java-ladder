@@ -10,8 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderResultTest {
-    // 사다리 결과는 HashMap 을 갖는다.
-    // 각 플레이어는 하나의 결과를 갖는다.
     @Test
     @DisplayName("플레이어는 하나의 결과를 갖는다.")
     void ladderResult_playerGetOneResult() {
