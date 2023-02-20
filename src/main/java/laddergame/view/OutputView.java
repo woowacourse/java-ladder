@@ -10,6 +10,10 @@ import static laddergame.view.message.LadderMessage.*;
 
 public class OutputView {
 
+    private static final int PADDING_DEFAULT_COUNT = 1;
+    private static final String PARTICIPANT_NAME_FORMAT = "%6s";
+    private static final String LADDER_RESULT_NAME_FORMAT = "%-6s";
+
     public static void print(final String message) {
         System.out.println(message);
     }
@@ -25,6 +29,15 @@ public class OutputView {
         print(ladderMessage);
     }
 
+    public void printLadderResultNames(final List<String> participantNames, final List<String> ladderResultNames) {
+        String firstPaddedFormat = getFirstPaddedFormat(participantNames);
+        StringBuilder ladderResultMessage = new StringBuilder(String.format(firstPaddedFormat, ladderResultNames.get(0)));
+        for (int i = 1; i < ladderResultNames.size(); i++) {
+            ladderResultMessage.append(String.format(LADDER_RESULT_NAME_FORMAT, ladderResultNames.get(i)));
+        }
+        print(ladderResultMessage.toString().trim());
+    }
+
     private String makePaddedParticipantNames(final List<String> participantNames) {
         return participantNames.stream()
                 .map(this::getPaddedName)
@@ -32,7 +45,7 @@ public class OutputView {
     }
 
     private String getPaddedName(final String participantName) {
-        return String.format("%6s", participantName);
+        return String.format(PARTICIPANT_NAME_FORMAT, participantName);
     }
 
     private int getFirstParticipantNameLength(final List<String> participantNames) {
@@ -58,5 +71,10 @@ public class OutputView {
             return LADDER_RUNG.getMessage();
         }
         return LADDER_BLANK.getMessage();
+    }
+
+    private String getFirstPaddedFormat(final List<String> participantNames) {
+        int firstPaddedCount = getFirstParticipantNameLength(participantNames) + PADDING_DEFAULT_COUNT;
+        return "%-" + firstPaddedCount + "s";
     }
 }
