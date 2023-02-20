@@ -16,7 +16,7 @@ public class NamesTest {
         List<String> names = List.of("odo", "odo27", "kong", "konghana");
         assertThatThrownBy(() -> new Names(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사람 이름은 1글자에서 5글자 사이이어야 합니다.");
+                .hasMessage("이름은 1글자에서 5글자 사이이어야 합니다.");
     }
 
     @DisplayName("사다리 게임 참여자의 이름이 정상적으로 입력된 경우 참여자들을 생성한다.")

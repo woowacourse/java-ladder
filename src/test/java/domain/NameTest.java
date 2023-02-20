@@ -25,7 +25,7 @@ public class NameTest {
     void validateTest2(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사람 이름은 1글자에서 5글자 사이이어야 합니다.");
+                .hasMessage("이름은 1글자에서 5글자 사이이어야 합니다.");
     }
 
     @DisplayName("사람 이름이 정상적으로 입력되는 경우에는 이름이 생성된다.")
