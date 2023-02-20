@@ -1,3 +1,5 @@
+package domain;
+
 import domain.Height;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -36,6 +38,5 @@ class HeightTest {
     void checkZeroHeight() {
         Height height = new Height("4");
         assertThat(height.isPossibleCount()).isTrue();
-
     }
 }

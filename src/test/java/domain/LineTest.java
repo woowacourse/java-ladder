@@ -1,3 +1,5 @@
+package domain;
+
 import domain.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

@@ -22,7 +22,9 @@ public class Ladder {
 
     public boolean validate(int height) {
         HashMap<Integer, Integer> falseIndexCountmap = new HashMap<>();
-        lines.forEach(line -> line.checkFalseIndex(falseIndexCountmap));
+        for (Line line : lines) {
+            falseIndexCountmap = line.checkFalseIndex(falseIndexCountmap);
+        }
         if (falseIndexCountmap.containsValue(height)) {
             return false;
         }

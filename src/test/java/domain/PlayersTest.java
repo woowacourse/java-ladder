@@ -1,6 +1,7 @@
+package domain;
+
 import domain.Players;
 import org.assertj.core.api.Assertions;
-import org.assertj.core.util.Streams;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
-class PlayerTest {
+class PlayersTest {
     @Nested
     @DisplayName("플레이어 이름 길이 테스트")
     class nameLength {

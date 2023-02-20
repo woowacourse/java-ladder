@@ -38,17 +38,24 @@ public class Line {
         return false;
     }
 
-    public void checkFalseIndex(HashMap<Integer, Integer> map) {
-        for (Boolean b : points) {
-            if (!b) {
-                Integer key = points.indexOf(b);
-                if (map.containsKey(key)) {
-                    Integer oldvalue = map.get(points.indexOf(b));
-                    map.replace(points.indexOf(b), oldvalue, oldvalue + 1);
-                    break;
-                }
-                map.put(key, 1);
-            }
+    public HashMap<Integer, Integer> checkFalseIndex(HashMap<Integer, Integer> map) {
+        Integer key = 0;
+        for (Boolean isStep : points) {
+            insertFalseIndexToMap(isStep, map, key);
+            key++;
         }
+        return map;
+    }
+
+    private void insertFalseIndexToMap(Boolean isStep, HashMap<Integer, Integer> map, Integer key) {
+        if (isStep) {
+            return;
+        }
+        if (map.containsKey(key)) {
+            Integer oldValue = map.get(key);
+            map.replace(key, oldValue, oldValue + 1);
+            return;
+        }
+        map.put(key, 1);
     }
 }
