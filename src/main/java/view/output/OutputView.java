@@ -40,12 +40,10 @@ public class OutputView {
 
     private String reformatLine(Line line) {
         final StringBuilder result = new StringBuilder();
-        final String startLine = "    |";
-        final String endLine = "|";
-        result.append(startLine);
+        result.append(START_LINE);
         for (Boolean status : line.getStatus()) {
             result.append(reformatStatus(status));
-            result.append(endLine);
+            result.append(END_LINE);
         }
         result.append(System.lineSeparator());
         return result.toString();
@@ -53,11 +51,9 @@ public class OutputView {
 
     private String reformatStatus(boolean status) {
         final boolean isConnected = true;
-        final String connected = "-----";
-        final String disConnected = "     ";
         if (status == isConnected) {
-            return connected;
+            return CONNECTED_LINE;
         }
-        return disConnected;
+        return DISCONNECTED_LINE;
     }
 }

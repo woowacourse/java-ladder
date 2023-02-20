@@ -3,10 +3,9 @@ package domain;
 import exception.DuplicateNameException;
 import exception.EmpytInputException;
 import exception.InvalidParticipantsCountException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import util.StringUtil;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -23,7 +22,7 @@ public class Participants {
     }
 
     private void validate(String participantNames) {
-        if (!isExist(participantNames)) {
+        if (StringUtil.isNullOrBlank(participantNames)) {
             throw new EmpytInputException();
         }
         List<String> splitNames = splitNames(participantNames);
@@ -35,19 +34,12 @@ public class Participants {
         }
     }
 
-    private boolean isExist(String participantNames) {
-        return participantNames != null && !participantNames.isBlank();
-    }
-
     private List<String> splitNames(String participantNames) {
-        final String delimiter = ",";
-        return List.of(participantNames.split(delimiter, -1));
+        return List.of(participantNames.split(SPLIT_NAME_DELIMITER));
     }
 
     private boolean isValidCount(List<String> names) {
-        final int minParticipantCount = 2;
-        final int maxParticipantCount = 10;
-        return names.size() < minParticipantCount || names.size() > maxParticipantCount;
+        return names.size() < MIN_PARTICIPANT_COUNT || names.size() > MAX_PARTICIPANT_COUNT;
     }
 
     private boolean isUnique(List<String> names) {

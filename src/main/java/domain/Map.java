@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import util.BooleanGenerator;
+import util.StringUtil;
 
 public class Map {
 
@@ -29,29 +30,25 @@ public class Map {
     }
 
     private void validate(String height, int lineWeight) {
-        if (!isNumber(height) || !isValidHeight(height)) {
+        if (invalidNumber(height) || invalidHeight(height)) {
             throw new InvalidLadderHeightException();
         }
-        if (!isValidLineWeight(lineWeight)) {
+        if (invalidWeight(lineWeight)) {
             throw new InvalidLineWeightException();
         }
     }
 
-    private boolean isNumber(String height) {
-        return !(height == null || height.isBlank() || !height.matches("^[1-9]*$"));
+    private boolean invalidNumber(String height) {
+        return StringUtil.isNullOrBlank(height) || !height.matches("^[1-9]*$");
     }
 
-    private boolean isValidHeight(String heightInput) {
-        final int minLadderHeight = 1;
-        final int maxLadderHeight = 10;
+    private boolean invalidHeight(String heightInput) {
         final int height = Integer.parseInt(heightInput);
-        return minLadderHeight <= height && height <= maxLadderHeight;
+        return MIN_LADDER_HEIGHT > height || height > MAX_LADDER_HEIGHT;
     }
 
-    private boolean isValidLineWeight(int lineWeight) {
-        final int minLineWeight = 1;
-        final int maxLineWeight = 9;
-        return minLineWeight <= lineWeight && lineWeight <= maxLineWeight;
+    private boolean invalidWeight(int lineWeight) {
+        return MIN_LINE_WEIGHT > lineWeight || lineWeight > MAX_LINE_WEIGHT;
     }
 
     private Ladder generate(BooleanGenerator booleanGenerator) {

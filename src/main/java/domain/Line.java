@@ -10,7 +10,7 @@ public class Line {
 
     private static final int MIN_LINE_WEIGHT = 1;
     private static final int MAX_LINE_WEIGHT = 9;
-    private static final int LINE_FIRST_INDEX = 9;
+    private static final int LINE_FIRST_INDEX = 0;
 
     private final List<Boolean> status = new ArrayList<>();
 
@@ -20,15 +20,13 @@ public class Line {
     }
 
     private void validate(int weight) {
-        if (!isValidWeight(weight)) {
+        if (invalidWeight(weight)) {
             throw new InvalidLineWeightException();
         }
     }
 
-    private boolean isValidWeight(int weight) {
-        final int minHeight = 1;
-        final int maxHeight = 9;
-        return minHeight <= weight && weight <= maxHeight;
+    private boolean invalidWeight(int weight) {
+        return MIN_LINE_WEIGHT > weight || weight > MAX_LINE_WEIGHT;
     }
 
     public void generate(int weight, BooleanGenerator booleanGenerator) {
@@ -37,10 +35,9 @@ public class Line {
     }
 
     private boolean generateStatus(int index, BooleanGenerator booleanGenerator) {
-        final int firstIndex = 0;
         final int prev = index - 1;
         final boolean connected = true;
-        if (index != firstIndex && status.get(prev) == connected) {
+        if (index != LINE_FIRST_INDEX && status.get(prev) == connected) {
             return false;
         }
         return booleanGenerator.generate();
