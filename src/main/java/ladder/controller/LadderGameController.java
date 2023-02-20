@@ -22,7 +22,8 @@ public class LadderGameController {
             List<Player> players = generatePlayers();
             Height height = generateHeight();
 
-            LadderGame ladderGame = new LadderGame(players, height, new RandomLineCreateDecider());
+            LadderGame ladderGame = new LadderGame(players, height);
+            ladderGame.generateLadder(new RandomLineCreateDecider());
             showResult(ladderGame);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());

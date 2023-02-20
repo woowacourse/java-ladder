@@ -11,15 +11,12 @@ public class LadderGame {
     private static final int MAX_PLAYER_COUNT = 30;
     private final List<Player> players;
     private final Height height;
-    private final LineCreateDecider lineCreateDecider;
-    private final Ladder ladder;
+    private Ladder ladder;
 
-    public LadderGame(List<Player> players, Height height, LineCreateDecider lineCreateDecider) {
+    public LadderGame(List<Player> players, Height height) {
         validatePlayerCount(players);
         this.players = players;
         this.height = height;
-        this.lineCreateDecider = lineCreateDecider;
-        this.ladder = generateLadder();
     }
 
     private void validatePlayerCount(List<Player> players) {
@@ -28,13 +25,13 @@ public class LadderGame {
         }
     }
 
-    public Ladder generateLadder() {
+    public void generateLadder(LineCreateDecider lineCreateDecider) {
         int personCount = players.size();
         List<Row> rows = new ArrayList<>();
         for (int i = 0; i < height.getHeight(); i++) {
             rows.add(new Row(personCount, lineCreateDecider));
         }
-        return new Ladder(rows);
+        ladder = new Ladder(rows);
     }
 
     public List<Player> getPlayers() {
