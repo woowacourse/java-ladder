@@ -30,7 +30,7 @@ class NameTest {
                 .hasMessage(MessageFormat.format("사람 이름은 영문자만 가능합니다. 현재 입력은 {0} 입니다.", value));
     }
 
-    @Test
+    @ParameterizedTest
     @NullSource
     @DisplayName("이름에 NULL이 들어오면 예외를 던진다.")
     void throwExceptionWhenNameIsNull(String value) {
