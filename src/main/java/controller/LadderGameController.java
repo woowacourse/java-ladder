@@ -6,6 +6,7 @@ import domain.Line;
 import domain.User;
 import domain.Users;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import utils.RandomNumberGenerator;
 import view.InputView;

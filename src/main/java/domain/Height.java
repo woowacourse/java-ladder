@@ -8,24 +8,25 @@ public class Height {
 
     private final int height;
 
-    public Height(String heightInput) {
-        validateHeightFormat(heightInput);
-        this.height = convertHeightInput(heightInput);
+    public Height(int heightInput) {
+        this.height = heightInput;
+//        validateHeightFormat(heightInput);
+//        this.height = convertHeightInput(heightInput);
     }
 
-    private void validateHeightFormat(String heightInput) {
-        if (!heightInput.matches(HEIGHT_REGEX_FORMAT)) {
-            throw new IllegalArgumentException(HEIGHT_FORMAT_ERROR_MESSAGE);
-        }
-    }
-
-    private int convertHeightInput(String heightInput) {
-        try {
-            return Integer.parseInt(heightInput);
-        } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException(INPUT_NOTHING_ERROR_MESSAGE);
-        }
-    }
+//    private void validateHeightFormat(int heightInput) {
+//        if (!heightInput.matches(HEIGHT_REGEX_FORMAT)) {
+//            throw new IllegalArgumentException(HEIGHT_FORMAT_ERROR_MESSAGE);
+//        }
+//    }
+//
+//    private int convertHeightInput(int heightInput) {
+//        try {
+//            return Integer.parseInt(heightInput);
+//        } catch (NumberFormatException numberFormatException) {
+//            throw new IllegalArgumentException(INPUT_NOTHING_ERROR_MESSAGE);
+//        }
+//    }
 
     public int getHeight() {
         return height;
