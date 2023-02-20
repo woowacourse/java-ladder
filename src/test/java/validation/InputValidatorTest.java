@@ -3,6 +3,8 @@ package validation;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
+import exception.InvalidLadderHeightException;
+import exception.InvalidPlayerNameException;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +19,7 @@ class InputValidatorTest {
     void 플레이어_이름_입력이_빈칸이면_에러를_발생시킨다(String playerNames) {
         //when + then
         assertThatThrownBy(() -> InputValidator.validatePlayerNameInput(playerNames))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(InvalidPlayerNameException.class);
     }
 
     @ParameterizedTest
@@ -33,7 +35,7 @@ class InputValidatorTest {
     void 사다리_높이_입력이_숫자가_아니거나_양수가_아니면_에러를_발생시킨다(String ladderHeight) {
         //when + then
         assertThatThrownBy(() -> InputValidator.validateLadderHeightInput(ladderHeight))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(InvalidLadderHeightException.class);
     }
 
     @ParameterizedTest
