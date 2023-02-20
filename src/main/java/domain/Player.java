@@ -1,7 +1,7 @@
 package domain;
 
 public class Player {
-    private PlayerName name;
+    private final PlayerName name;
 
     public Player(String name) {
         this.name = new PlayerName(name);

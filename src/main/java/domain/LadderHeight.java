@@ -6,7 +6,7 @@ public final class LadderHeight {
     private static final String LADDER_HEIGHT_ERROR_MESSAGE = "[ERROR] 사다리의 높이는 숫자를 입력해야합니다";
 
     private final int ladderHeight;
-    InputView inputView;
+    private final InputView inputView;
 
     public LadderHeight(String ladderHeight, InputView inputView){
         this.inputView = inputView;

@@ -1,13 +1,11 @@
 package domain;
 
-import view.InputView;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Players {
-    private List<Player> players;
+    private final List<Player> players;
 
     public Players(PlayerNames playerNames) {
         players = new ArrayList<>();

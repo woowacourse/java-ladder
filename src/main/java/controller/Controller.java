@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Controller {
-    private InputView inputView;
-    private OutputView outputView;
-    private BooleanGenerator booleanGenerator;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final BooleanGenerator booleanGenerator;
 
     public Controller(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
         this.inputView = inputView;
