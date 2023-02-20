@@ -8,7 +8,6 @@ public class Name {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String DEFAULT_NAME = "ANONY";
     private static final String NAME_NOT_MACHE_EXCEPTION = "이름은 1자 이상의 영문만 들어올 수 있습니다.";
-    private static final String NAME_NULL_EXCEPTION = "이름은 null이 될 수 없습니다.";
     private static final String NAME_OVER_LENGTH_EXCEPTION = "이름은 {0}글자를 초과할 수 없습니다.";
     private static final Pattern NAME_REGEX = Pattern.compile("([a-z]|[A-Z])+");
 
