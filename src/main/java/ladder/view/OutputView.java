@@ -18,6 +18,10 @@ public class OutputView {
         playerNames.forEach(name -> System.out.printf("%-6s", name));
     }
 
+    public void printLadderResultMessage() {
+        System.out.println("사다리 결과");
+    }
+
     public void printRow(List<Boolean> points) {
         System.out.println();
         System.out.print(LadderMark.COLUMN_LINE.getMark());
@@ -30,6 +34,11 @@ public class OutputView {
     public void printResults(List<String> results) {
         System.out.println();
         results.forEach(result -> System.out.printf("%-6s", result));
+    }
+
+    public void printChosePlayerResult(String result) {
+        System.out.println("실행 결과");
+        System.out.println(result);
     }
 
     public void printExceptionMessage(String message) {
