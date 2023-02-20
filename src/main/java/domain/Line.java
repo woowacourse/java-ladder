@@ -32,7 +32,7 @@ public class Line {
         return index;
     }
 
-    private int moveBridge(int index, Bridge bridge) {
+    private int moveBridge(final int index, final Bridge bridge) {
         if (bridge.hasLeftBridge(index)) {
             return index - 1;
         }

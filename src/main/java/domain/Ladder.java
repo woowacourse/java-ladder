@@ -9,8 +9,6 @@ import static java.util.stream.Collectors.toUnmodifiableList;
 
 public class Ladder {
 
-    private static final int MIN_HEIGHT = 0;
-
     private final People people;
     private final Line line;
     private final List<String> resultCandidates;
@@ -22,7 +20,7 @@ public class Ladder {
         this.resultCandidates = copyOf(resultCandidates);
     }
 
-    private void validateEqualsSizeOf(People people, List<String> resultCandidates) {
+    private void validateEqualsSizeOf(final People people, final List<String> resultCandidates) {
         if (people.getParticipantsSize() != resultCandidates.size()) {
             throw new IllegalArgumentException("실행 결과 개수는 참가자 수와 같아야합니다.");
         }
@@ -46,7 +44,6 @@ public class Ladder {
         List<String> participantNames = getParticipantNames();
 
         for (int start = 0; start < participantNames.size(); start++) {
-
             String name = participantNames.get(start);
 
             int index = line.move(start);
