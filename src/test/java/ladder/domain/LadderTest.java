@@ -18,7 +18,8 @@ public class LadderTest {
     @DisplayName("0이하의 값으로 Ladder생성시 예외가 발생한다.")
     void inValidLadderSizeTest() {
         assertThatThrownBy(() -> new Ladder(0, new Users(List.of("1", "2"))))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리의 높이는 1이상 입니다.");
     }
 
     @Test

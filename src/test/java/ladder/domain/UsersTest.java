@@ -25,7 +25,8 @@ public class UsersTest {
     void invalidUsersTest() {
         List<String> users = List.of("가나", "여섯자리이름");
         assertThatThrownBy(() -> new Users(users))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("유저 이름 길이는 공백이거나 6 이상일 수 없습니다.");
 
     }
 
@@ -34,7 +35,8 @@ public class UsersTest {
     void invalidDuplicationUsersTest() {
         List<String> users = List.of("가나", "가나");
         assertThatThrownBy(() -> new Users(users))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복된 이름을 입력할 수 없습니다.");
     }
 
     @Test
@@ -42,6 +44,7 @@ public class UsersTest {
     void makeOneUserUsersTest() {
         List<String> users = List.of("가나");
         assertThatThrownBy(() -> new Users(users))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("유저는 한명보다 많아야 합니다.");
     }
 }
