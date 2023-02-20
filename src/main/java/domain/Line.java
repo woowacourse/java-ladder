@@ -22,16 +22,6 @@ public class Line {
         return new Line(points);
     }
 
-    public void changePointDirectionAt(Direction direction, int index) {
-        this.points.get(index)
-                .changeDirection(direction);
-    }
-
-    public boolean isPointDirectionStraight(int index) {
-        return this.points.get(index)
-                .matchDirection(Direction.STRAIGHT_DOWN);
-    }
-
     public List<Point> getPoints() {
         return this.points;
     }
