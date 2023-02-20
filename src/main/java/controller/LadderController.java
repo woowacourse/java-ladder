@@ -12,19 +12,21 @@ import view.OutputView;
 public class LadderController {
 
     private final InputView inputView;
+    private final OutputView outputView;
     private final NumberGenerator numberGenerator;
 
 
-    public LadderController(InputView inputView, NumberGenerator numberGenerator) {
+    public LadderController(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
         this.inputView = inputView;
+        this.outputView = outputView;
         this.numberGenerator = numberGenerator;
     }
 
     public void run() {
         Players players = generatePlayers();
         Ladder ladder = generateLadder(players.getPlayerSize());
-        OutputView.printNames(players);
-        OutputView.printLadder(ladder);
+        outputView.printNames(players);
+        outputView.printLadder(ladder);
     }
 
     private Players generatePlayers() {
