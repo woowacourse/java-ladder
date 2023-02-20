@@ -6,6 +6,7 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -23,41 +24,21 @@ public class LadderController {
     }
 
     public void run() {
-        People people = initPeople();
-        Prizes prizes = initPrizes(people.size());
-        Ladder ladder = initLadder(people.size());
+        People people = init(() -> People.from(inputView.readNames()));
+        Ladder ladder = init(() -> Ladder.from(inputView.readHeight(), people.size(), stoolGenerator));
+        Prizes prizes = init(() -> new Prizes(inputView.readResults(), people.size()));
 
         showLadder(people, ladder, prizes);
         showResult(people, ladder, prizes);
     }
 
-    private People initPeople() {
+    private <T> T init(Supplier<T> supplier) {
         try {
-            return People.from(inputView.readNames());
+            return supplier.get();
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
 
-            return initPeople();
-        }
-    }
-
-    private Ladder initLadder(int participantsSize) {
-        try {
-            return Ladder.from(inputView.readHeight(), participantsSize, stoolGenerator);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-
-            return initLadder(participantsSize);
-        }
-    }
-
-    private Prizes initPrizes(int participantsSize) {
-        try {
-            return new Prizes(inputView.readResults(), participantsSize);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-
-            return initPrizes(participantsSize);
+            return init(supplier);
         }
     }
 
