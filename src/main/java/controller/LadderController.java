@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import domain.Ladder;
 import domain.Level;
 import domain.People;
+import domain.Results;
 import domain.Stool;
 import view.InputView;
 import view.OutputView;
@@ -14,6 +15,7 @@ public class LadderController {
 	private final InputView inputView;
 	private final OutputView outputView;
 	private People people;
+	private Results results;
 	private Ladder ladder;
 
 	public LadderController(InputView inputView, OutputView outputView) {
@@ -29,6 +31,7 @@ public class LadderController {
 
 	public void init() {
 		repeat(() -> people = People.from(inputView.readNames()));
+		repeat(() -> results = Results.from(inputView.readSequences()));
 		repeat(() -> ladder = Ladder.from(inputView.readHeight(), people.size()));
 	}
 
