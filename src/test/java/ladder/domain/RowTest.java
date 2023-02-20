@@ -16,15 +16,17 @@ class RowTest {
 
     @Test
     void 가능한_모든_경우에_사다리가_이어집니다() {
-        MockGenerator mockGenerator = new MockGenerator(true);
+        MockStepGenerator mockGenerator = new MockStepGenerator(Step.CONNECTED);
         row.generateLeg(mockGenerator);
-        assertThat(row.toDto()).containsExactly(true, false, true, false, true);
+        assertThat(row.toDto()).containsExactly(Step.CONNECTED, Step.BLANK, Step.CONNECTED, Step.BLANK,
+            Step.CONNECTED);
     }
 
     @Test
     void 모두_빈_사다리가_만들어집니다() {
-        MockGenerator mockGenerator = new MockGenerator(false);
+        MockStepGenerator mockGenerator = new MockStepGenerator(Step.BLANK);
         row.generateLeg(mockGenerator);
-        assertThat(row.toDto()).containsExactly(false, false, false, false, false);
+        assertThat(row.toDto()).containsExactly(Step.BLANK, Step.BLANK, Step.BLANK, Step.BLANK,
+            Step.BLANK);
     }
 }

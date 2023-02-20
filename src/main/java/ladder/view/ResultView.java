@@ -1,8 +1,8 @@
 package ladder.view;
 
 import java.util.List;
-import ladder.domain.Leg;
-import ladder.dto.LinesDto;
+import ladder.domain.Step;
+import ladder.dto.RowsDto;
 import ladder.dto.NamesDto;
 
 public class ResultView {
@@ -10,10 +10,10 @@ public class ResultView {
   private ResultView() {
   }
 
-  public static void printResult(NamesDto namesDto, LinesDto linesDto) {
+  public static void printResult(NamesDto namesDto, RowsDto rowsDto) {
     printResultTitle();
     printNames(namesDto);
-    printLines(linesDto);
+    printLines(rowsDto);
   }
 
   private static void printResultTitle() {
@@ -29,13 +29,13 @@ public class ResultView {
     System.out.printf("%-6s", name);
   }
 
-  private static void printLines(LinesDto linesDto) {
+  private static void printLines(RowsDto rowsDto) {
     System.out.println();
-    List<List<Leg>> lines = linesDto.getLines();
+    List<List<Step>> lines = rowsDto.getLines();
     lines.forEach(ResultView::printLine);
   }
 
-  private static void printLine(List<Leg> line) {
+  private static void printLine(List<Step> line) {
     System.out.print("|");
     for (int i = 0; i < line.size(); i++) {
       printLeg(line, i);
@@ -43,8 +43,8 @@ public class ResultView {
     System.out.println();
   }
 
-  private static void printLeg(List<Leg> line, int index) {
-    if (line.get(index) == Leg.CONNECTED) {
+  private static void printLeg(List<Step> line, int index) {
+    if (line.get(index) == Step.CONNECTED) {
       System.out.print("-----|");
       return;
     }

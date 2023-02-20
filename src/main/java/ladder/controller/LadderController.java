@@ -1,7 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.Names;
-import ladder.domain.RandomGenerator;
+import ladder.domain.RandomStepGenerator;
 import ladder.domain.Rows;
 import ladder.util.Repeater;
 import ladder.view.InputView;
@@ -13,9 +13,10 @@ public class LadderController {
     private Rows rows;
 
     public void run() {
+
         names = Repeater.repeatIfError(this::inputNames, ResultView::printErrorMessage);
         rows = Repeater.repeatIfError(this::inputLines, ResultView::printErrorMessage);
-        rows.generateLegsOfLines(new RandomGenerator());
+        rows.generateLegsOfLines(new RandomStepGenerator());
         ResultView.printResult(names.toDto(), rows.toDto());
     }
 

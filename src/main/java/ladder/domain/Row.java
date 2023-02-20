@@ -6,31 +6,35 @@ import java.util.List;
 
 class Row {
 
+    /**
+     * 사다리의 첫 인덱스에 버퍼가 1개 들어가기 때문에 BUFFER_COUNT 값으로 1을 주었습니다.
+     */
     public static final int BUFFER_COUNT = 1;
-    private final List<Leg> connected;
+    private final List<Step> connected;
 
     Row(int width) {
-        connected = new ArrayList<>(Collections.nCopies(width + BUFFER_COUNT, Leg.BLANK));
+        connected = new ArrayList<>(Collections.nCopies(width + BUFFER_COUNT, Step.BLANK));
     }
 
-    void generateLeg(Generator generator) {
+    void generateLeg(StepGenerator stepGenerator) {
         for (int i = BUFFER_COUNT; i < connected.size(); i++) {
-            connect(generator, i);
+            connect(stepGenerator, i);
         }
     }
 
-    private void connect(Generator generator, int index) {
-        if (shouldConnect(generator, index)) {
-            connected.set(index, Leg.CONNECTED);
+    private void connect(StepGenerator stepGenerator, int index) {
+        if (shouldConnect(stepGenerator, index)) {
+            connected.set(index, Step.CONNECTED);
         }
     }
 
-    private boolean shouldConnect(Generator generator, int index) {
+    private boolean shouldConnect(StepGenerator stepGenerator, int index) {
         int adjacentIndex = index - 1;
-        return generator.generate() && (connected.get(adjacentIndex)==Leg.BLANK);
+        return (stepGenerator.generate() == Step.CONNECTED) && (connected.get(adjacentIndex)
+            == Step.BLANK);
     }
 
-    List<Leg> toDto() {
+    List<Step> toDto() {
         return connected.subList(BUFFER_COUNT, connected.size());
     }
 }

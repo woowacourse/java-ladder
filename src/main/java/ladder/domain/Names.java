@@ -15,27 +15,26 @@ public class Names {
         validateNames(names);
 
         this.names = StringSplitter.split(names, ",")
-                .stream()
-                .map(Name::new)
-                .collect(Collectors.toList());
+            .stream()
+            .map(Name::new)
+            .collect(Collectors.toList());
     }
 
-    private static void validateNames(String names) {
-        //todo 형식1 : 형식2 와 비교했을 때, 어떤 메서드가 더 적절한 것 같나요?
-        validateNull(names);
-        validateFormat(names);
-    }
-
-    private static void validateFormat(String names) {
-        if (!NAMES_FORMAT.matcher(names).matches()) {
+    private void validateNames(String names) {
+        if (isNull(names)) {
+            throw new IllegalArgumentException("이름이 null 입니다");
+        }
+        if (isFormat(names)) {
             throw new IllegalArgumentException("이름이 형식과 맞지 않습니다");
         }
     }
 
-    private static void validateNull(String names) {
-        if (names == null) {
-            throw new IllegalArgumentException("이름이 null 입니다");
-        }
+    private boolean isNull(String names) {
+        return names == null;
+    }
+
+    private boolean isFormat(String names) {
+        return !NAMES_FORMAT.matcher(names).matches();
     }
 
     public int getCount() {
@@ -44,7 +43,7 @@ public class Names {
 
     public NamesDto toDto() {
         return new NamesDto(names.stream()
-                .map(Name::toDto)
-                .collect(Collectors.toList()));
+            .map(Name::toDto)
+            .collect(Collectors.toList()));
     }
 }
