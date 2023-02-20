@@ -2,7 +2,7 @@ package view;
 
 import domain.ladder.Ladder;
 import domain.ladder.Line;
-import domain.ladder.PointStatus;
+import domain.ladder.LineStatus;
 import domain.user.User;
 import domain.user.Users;
 
@@ -24,13 +24,13 @@ public class OutputView {
     }
 
     private void printLine(Line line) {
-        for (boolean point : line.getPoints()) {
-            printLineByPoint(point);
+        for (boolean status : line.getLine()) {
+            printLineByStatus(status);
         }
     }
 
-    private void printLineByPoint(boolean point) {
-        System.out.print(PointStatus.printStatus(point, User.MAX_NAME_LENGTH));
+    private void printLineByStatus(boolean status) {
+        System.out.print(LineStatus.printStatus(status, User.MAX_NAME_LENGTH));
         System.out.print(LINE_DELIMITER);
     }
 }

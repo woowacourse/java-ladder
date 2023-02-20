@@ -5,30 +5,30 @@ import java.util.List;
 import utils.RandomNumberGenerator;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<Boolean> line;
 
     public Line(int personCount) {
-        this.points = createLine(personCount);
+        this.line = createLine(personCount);
     }
 
     private List<Boolean> createLine(int personCount) {
-        List<Boolean> points = new ArrayList<>();
-        points.add(false);
+        List<Boolean> line = new ArrayList<>();
+        line.add(false);
         for (int i = 1; i < personCount; i++) {
-            points.add(isContinuousTrue(points, i));
+            line.add(isContinuousTrue(line, i));
         }
-        return points;
+        return line;
     }
 
-    private boolean isContinuousTrue(List<Boolean> points, int index) {
+    private boolean isContinuousTrue(List<Boolean> line, int index) {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-        if (points.get(index - 1)) {
+        if (line.get(index - 1)) {
             return false;
         }
-        return randomNumberGenerator.isPoint();
+        return randomNumberGenerator.isMovable();
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    public List<Boolean> getLine() {
+        return line;
     }
 }

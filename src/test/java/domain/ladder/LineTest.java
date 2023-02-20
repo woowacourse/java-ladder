@@ -8,18 +8,18 @@ import org.junit.jupiter.api.Test;
 import utils.FixedNumberGenerator;
 
 public class LineTest {
-    @DisplayName("생성한 값이 1이면 point가 생성된다.")
+    @DisplayName("생성한 값이 1이면 움직일 수 있다.")
     @Test
-    void shouldMakePoint() {
+    void shouldSuccessMovable() {
         FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(1);
-        Assertions.assertThat(fixedNumberGenerator.isPoint()).isEqualTo(true);
+        Assertions.assertThat(fixedNumberGenerator.isMovable()).isEqualTo(true);
     }
 
-    @DisplayName("생성한 값이 0이면 point가 생성되지 않는다.")
+    @DisplayName("생성한 값이 0이면 움직일 수 없다.")
     @Test
-    void shouldNotMakePoint() {
+    void shouldSuccessNotMovable() {
         FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(0);
-        Assertions.assertThat(fixedNumberGenerator.isPoint()).isEqualTo(false);
+        Assertions.assertThat(fixedNumberGenerator.isMovable()).isEqualTo(false);
     }
 
     @DisplayName("라인 생성 확인 테스트")

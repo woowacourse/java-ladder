@@ -10,7 +10,7 @@ public class FixedNumberGenerator implements NumberGenerator {
     }
 
     @Override
-    public boolean isPoint() {
+    public boolean isMovable() {
         return inputNum == 1;
     }
 }
