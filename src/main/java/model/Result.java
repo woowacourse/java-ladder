@@ -11,6 +11,10 @@ public class Result {
         this.result = result;
     }
 
+    public String getValue() {
+        return result;
+    }
+
     private void validateResultLength(String result) {
         if(result.length() > MAXIMUM_RESULT_LENGTH) {
             throw new IllegalArgumentException(String.format(MAXIMUM_RESULT_LENGTH_ERROR, MAXIMUM_RESULT_LENGTH));
