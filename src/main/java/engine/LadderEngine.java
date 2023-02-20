@@ -72,13 +72,13 @@ public class LadderEngine {
         return IllegalArgumentExceptionHandler.handleExceptionByRepeating(
                 () -> {
                     int height = InputView.inputMaxLadderHeight();
-                    List<Bridge> bridges = makeLines(people, height);
-                    return new Ladder(people, new Line(bridges), resultCandidates);
+                    Line line = makeLines(people, height);
+                    return new Ladder(people, line, resultCandidates);
                 }
         );
     }
 
-    private List<Bridge> makeLines(final People people, final int height) {
+    private Line makeLines(final People people, final int height) {
         List<Bridge> bridges = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
@@ -86,6 +86,6 @@ public class LadderEngine {
             bridges.add(bridge);
         }
 
-        return bridges;
+        return new Line(bridges);
     }
 }
