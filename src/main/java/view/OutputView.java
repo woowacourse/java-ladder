@@ -16,17 +16,17 @@ public class OutputView {
 
     public void printLadder(Ladder ladder) {
         for (Line line : ladder.getLines()) {
-            List<String> collect = getHorizonLine(line.getMovements());
-            System.out.printf("    |%s|%n", String.join(DELIMITER, collect));
+            List<String> lineShape = getLineShape(line.getMovements());
+            System.out.printf("    |%s|%n", String.join(DELIMITER, lineShape));
         }
     }
 
-    private List<String> getHorizonLine(List<Boolean> points) {
-        List<String> collect = new ArrayList<>();
+    private List<String> getLineShape(List<Boolean> points) {
+        List<String> lineShape = new ArrayList<>();
         for (Boolean point : points) {
-            collect.add(LineType.getMessageByMovable(point));
+            lineShape.add(LineType.getMessageByMovable(point));
         }
-        return collect;
+        return lineShape;
     }
 
     public void printError(Exception exception) {

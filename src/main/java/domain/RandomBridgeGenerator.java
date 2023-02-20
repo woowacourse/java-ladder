@@ -22,12 +22,12 @@ public class RandomBridgeGenerator implements BridgeGenerator {
      */
     @Override
     public List<Boolean> generate(int count) {
-        List<Boolean> result = new ArrayList<>(count);
-        result.add(random.nextBoolean());
+        List<Boolean> movements = new ArrayList<>(count);
+        movements.add(random.nextBoolean());
         for (int i = 1; i < count - 1; i++) {
-            updateResult(result, result.get(i - 1));
+            updateResult(movements, movements.get(i - 1));
         }
-        return result;
+        return movements;
     }
 
     private void updateResult(List<Boolean> result, Boolean previousValue) {
