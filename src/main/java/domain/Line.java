@@ -35,11 +35,6 @@ public class Line implements Display {
 			line.add(Point.ABSENCE);
 		}
 	}
-
-	public List<Point> getPoints() {
-		return points;
-	}
-
 	@Override
 	public String format() {
 		String line = points.stream()

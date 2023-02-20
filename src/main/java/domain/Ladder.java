@@ -1,7 +1,6 @@
 package domain;
 
 import domain.util.Display;
-import domain.util.Point;
 import domain.util.PointGenerator;
 
 import java.util.ArrayList;
@@ -24,14 +23,6 @@ public class Ladder implements Display {
 			lines.add(line);
 		}
 		return new Ladder(lines);
-	}
-
-	public List<List<Point>> getLadderPoints() {
-		List<List<Point>> points = new ArrayList<>();
-		for (Line line : lines) {
-			points.add(line.getPoints());
-		}
-		return points;
 	}
 
 	@Override
