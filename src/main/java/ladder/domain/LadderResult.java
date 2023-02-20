@@ -11,6 +11,7 @@ public class LadderResult {
 
     public Item getItemOfPlayer(Player player) {
         validateNotExistPlayer(player);
+        validateNullItem(player);
         return result.get(player);
     }
 
@@ -20,5 +21,9 @@ public class LadderResult {
         }
     }
 
-
+    private void validateNullItem(Player player) {
+        if(result.get(player) == null) {
+            throw new IllegalStateException("플레이어의 결과가 존재하지 않습니다.");
+        }
+    }
 }
