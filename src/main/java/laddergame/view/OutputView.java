@@ -17,7 +17,7 @@ public class OutputView {
     }
 
     public void printResultGuide() {
-        print(RESULT_GUIDE.getMessage());
+        print(RESULT_GUIDE.getFormattedMessage());
     }
 
     public void printParticipantNames(final List<String> participantNames) {

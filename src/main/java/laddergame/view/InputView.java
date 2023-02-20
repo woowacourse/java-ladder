@@ -17,12 +17,12 @@ public class InputView {
     }
 
     public String readParticipantNames() {
-        OutputView.print(INPUT_PARTICIPANT_NAMES_GUIDE.getMessage());
+        OutputView.print(INPUT_PARTICIPANT_NAMES_GUIDE.getFormattedMessage());
         return readConsole();
     }
 
     public String readMaxLadderHeight() {
-        OutputView.print(INPUT_LADDER_MAX_HEIGHT_GUIDE.getMessage());
+        OutputView.print(INPUT_LADDER_MAX_HEIGHT_GUIDE.getFormattedMessage());
         return readConsole();
     }
 
