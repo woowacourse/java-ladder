@@ -1,11 +1,13 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderResultTest {
     // 사다리 결과는 HashMap 을 갖는다.
@@ -21,6 +23,17 @@ class LadderResultTest {
         LadderResult ladderResult = new LadderResult(result);
 
         // expected
-        Assertions.assertThat(ladderResult.getItemOfPlayer(player)).isEqualTo(item);
+        assertThat(ladderResult.getItemOfPlayer(player)).isEqualTo(item);
+    }
+
+    @Test
+    @DisplayName("없는 플레이어의 결과를 가져오는 경우 예외를 던진다.")
+    void ladderResult_throwException_notExistPlayer() {
+        // given
+        LadderResult ladderResult = new LadderResult(new HashMap<>());
+
+        // expected
+        assertThatThrownBy(() -> ladderResult.getItemOfPlayer(new Player("vero")))
+                .isInstanceOf(IllegalStateException.class);
     }
 }
