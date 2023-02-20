@@ -1,5 +1,8 @@
 package ladder.view;
 
+import ladder.domain.Bar;
+import ladder.domain.Ladder;
+import ladder.domain.Line;
 import ladder.view.constant.LadderOutputSymbol;
 
 import java.util.List;
@@ -17,7 +20,7 @@ public class ResultView {
         System.out.println(ERROR_PREFIX + errorMessage);
     }
 
-    public void printLadder(List<String> playerNames, List<List<Boolean>> ladder, int nameLength) {
+    public void printLadder(List<String> playerNames, Ladder ladder, int nameLength) {
         System.out.println(OUTPUT_RESULT_MESSAGE);
         System.out.println(convertPlayerNames(playerNames, nameLength));
         System.out.println(convertLadderToSymbol(ladder, nameLength));
@@ -31,24 +34,24 @@ public class ResultView {
                 .collect(Collectors.joining(BLANK_BETWEEN_NAMES));
     }
 
-    private String convertLadderToSymbol(List<List<Boolean>> ladder, int nameLength) {
-        return ladder.stream()
+    private String convertLadderToSymbol(Ladder ladder, int nameLength) {
+        return ladder.getLinesOfLadder().stream()
                 .map(line -> convertLineToSymbol(line, nameLength))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    private String convertLineToSymbol(List<Boolean> line, int nameLength) {
+    private String convertLineToSymbol(Line line, int nameLength) {
         String ladderRungPattern = "%" + nameLength + "s";
 
-        return line.stream()
-                .map(bar -> convertBarToSymbol(bar, nameLength))
+        return line.getLine().stream()
+                .map(connection -> convertBarToSymbol(connection, nameLength))
                 .collect(Collectors.joining(LADDER_VERTICAL_SYMBOL.getSymbol(),
                         String.format(ladderRungPattern, LADDER_VERTICAL_SYMBOL.getSymbol()),
                         LADDER_VERTICAL_SYMBOL.getSymbol())
                 );
     }
 
-    private String convertBarToSymbol(Boolean bar, int nameLength) {
+    private String convertBarToSymbol(Bar bar, int nameLength) {
         return LadderOutputSymbol.decideLadderSymbol(bar).repeat(nameLength);
     }
 
