@@ -7,37 +7,43 @@ import java.util.stream.IntStream;
 public class Line {
     private final List<Bar> bars;
 
-    public Line() {
-        bars = new ArrayList<>(List.of(new Bar(false)));
+    public Line(BooleanGenerator booleanGenerator, int peopleSize) {
+        bars = createBar(booleanGenerator, peopleSize);
     }
-
-    public void addBars(int peopleSize, BooleanGenerator booleanGenerator) {
+    
+    private List<Bar> createBar(BooleanGenerator booleanGenerator, int peopleSize) {
+        ArrayList<Bar> bars = new ArrayList<>(List.of(new Bar(false)));
+        addBars(bars, peopleSize, booleanGenerator);
+        return bars;
+    }
+    
+    public void addBars(List<Bar> bars, int peopleSize, BooleanGenerator booleanGenerator) {
         IntStream.range(0, peopleSize - 1)
-                .forEach(count -> addCorrectBar(booleanGenerator));
+                .forEach(count -> addCorrectBar(booleanGenerator, bars));
     }
 
-    private void addCorrectBar(BooleanGenerator booleanGenerator) {
-        if (lastBar().isExistBar()) {
-            addNotExistedBar();
+    private void addCorrectBar(BooleanGenerator booleanGenerator, List<Bar> bars) {
+        if (lastBar(bars).isExistBar()) {
+            addNotExistedBar(bars);
             return;
         }
 
-        addBar(booleanGenerator);
+        addBar(booleanGenerator, bars);
     }
 
-    private Bar lastBar() {
-        return bars.get(barsLastIndex());
+    private Bar lastBar(List<Bar> bars) {
+        return bars.get(barsLastIndex(bars));
     }
 
-    private int barsLastIndex() {
+    private int barsLastIndex(List<Bar> bars) {
         return bars.size() - 1;
     }
 
-    private void addBar(BooleanGenerator booleanGenerator) {
+    private void addBar(BooleanGenerator booleanGenerator, List<Bar> bars) {
         bars.add(new Bar(booleanGenerator));
     }
 
-    private void addNotExistedBar() {
+    private void addNotExistedBar(List<Bar> bars) {
         bars.add(new Bar(false));
     }
 

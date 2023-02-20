@@ -28,9 +28,7 @@ public class Ladder {
     }
 
     private Line createLine(BooleanGenerator booleanGenerator, int peopleSize) {
-        Line line = new Line();
-        line.addBars(peopleSize, booleanGenerator);
-        return line;
+        return new Line(booleanGenerator, peopleSize);
     }
 
     public List<Line> getLines() {
