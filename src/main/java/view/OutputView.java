@@ -15,6 +15,7 @@ public class OutputView {
         System.out.println("실행결과");
         printNamesOf(ladder.getParticipants());
         printLinesOf(ladder);
+        printPrizesOf(ladder);
     }
 
     public static void printException(Exception exception) {
@@ -34,6 +35,13 @@ public class OutputView {
             printBridgesOf(line);
             System.out.println();
         }
+    }
+
+    private static void printPrizesOf(final Ladder ladder) {
+        for (String prize : ladder.getPrizes()) {
+            System.out.print(prize + "\t");
+        }
+        System.out.println();
     }
 
     private static void printBridgesOf(final Line line) {
