@@ -12,7 +12,7 @@ public class LadderGame {
     public LadderGame(Participants participants, LadderHeight height) {
         this.participants = participants;
         LadderWidth width = new LadderWidth(participants.getParticipantsNum() - GAP_BETWEEN_PARTICIPANTS_AND_WIDTH);
-        this.ladder = Ladder.build(height, width, PointGenerator.getInstance(true));
+        this.ladder = Ladder.create(height, width, PointGenerator.getInstance(true));
     }
 
     public Participants getParticipants() {

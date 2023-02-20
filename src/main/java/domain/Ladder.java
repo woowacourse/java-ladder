@@ -16,7 +16,7 @@ public class Ladder implements Display {
 		this.lines = lines;
 	}
 
-	public static Ladder build(LadderHeight ladderHeight, LadderWidth ladderWidth, PointGenerator pointGenerator) {
+	public static Ladder create(LadderHeight ladderHeight, LadderWidth ladderWidth, PointGenerator pointGenerator) {
 		List<Line> lines = new ArrayList<>();
 		int height = ladderHeight.getHeight();
 		for (int i = 0; i < height; i++) {
