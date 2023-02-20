@@ -2,6 +2,7 @@ package laddergame.controller;
 
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderResult;
+import laddergame.domain.ladder.LadderResultName;
 import laddergame.domain.participant.Participant;
 import laddergame.domain.participant.Participants;
 import laddergame.util.BooleanGenerator;
@@ -11,7 +12,7 @@ import laddergame.view.OutputView;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static laddergame.view.message.Message.RESULT_GUIDE;
+import static laddergame.view.message.Message.LADDER_RESULT_GUIDE;
 
 public class LadderGameController {
 
@@ -27,9 +28,11 @@ public class LadderGameController {
 
     public void start() {
         Participants participants = createParticipants();
-        LadderResult ladderResult = createLadderResult(participants);
-        Ladder ladder = createLadder(participants);
-        printGameResult(participants, ladder);
+        int participantSize = participants.size();
+        LadderResult ladderResult = createLadderResult(participantSize);
+        Ladder ladder = createLadder(participantSize);
+        printGameResult(participants, ladder, ladderResult);
+        List<String> validParticipantNames = getValidParticipantNames(participants);
     }
 
     private Participants createParticipants() {
@@ -39,23 +42,24 @@ public class LadderGameController {
         });
     }
 
-    private Ladder createLadder(final Participants participants) {
+    private Ladder createLadder(final int participantSize) {
         return inputView.getInputWithRetry(() -> {
             String maxLadderHeight = inputView.getMaxLadderHeight();
-            return Ladder.create(maxLadderHeight, participants.size(), rungGenerator);
+            return Ladder.create(maxLadderHeight, participantSize, rungGenerator);
         });
     }
 
-    private LadderResult createLadderResult(final Participants participants) {
+    private LadderResult createLadderResult(final int participantSize) {
         return inputView.getInputWithRetry(() -> {
             String resultNames = inputView.getLadderResultNames();
-            return LadderResult.create(resultNames, participants.size());
+            return LadderResult.create(resultNames, participantSize);
         });
     }
 
-    private void printGameResult(final Participants participants, final Ladder ladder) {
-        OutputView.print(System.lineSeparator() + RESULT_GUIDE.getMessage() + System.lineSeparator());
+    private void printGameResult(final Participants participants, final Ladder ladder, final LadderResult ladderResult) {
+        OutputView.print(System.lineSeparator() + LADDER_RESULT_GUIDE.getMessage() + System.lineSeparator());
         List<String> participantNames = getParticipantNames(participants);
+        List<String> ladderResultNames = getLadderResultNames(ladderResult);
         outputView.printParticipantNames(participantNames);
         outputView.printLadder(ladder.getLadderRungs(), participantNames);
     }
@@ -64,5 +68,19 @@ public class LadderGameController {
         return participants.getParticipants().stream()
                 .map(Participant::getName)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    private List<String> getLadderResultNames(final LadderResult ladderResult) {
+        return ladderResult.getResultNames()
+                .stream()
+                .map(LadderResultName::getName)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private List<String> getValidParticipantNames(final Participants participants) {
+        return inputView.getInputWithRetry(() -> {
+            String resultParticipantName = inputView.getResultParticipantName();
+            return participants.getValidParticipantNames(resultParticipantName);
+        });
     }
 }

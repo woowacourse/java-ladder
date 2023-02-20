@@ -39,6 +39,11 @@ public class InputView {
         return readConsole();
     }
 
+    public String getResultParticipantName() {
+        OutputView.print(System.lineSeparator() + INPUT_RESULT_PARTICIPANT_NAME.getMessage());
+        return readConsole();
+    }
+
     private String readConsole() {
         try {
             return bufferedReader.readLine();

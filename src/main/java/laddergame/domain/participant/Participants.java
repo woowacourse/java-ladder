@@ -63,14 +63,15 @@ public class Participants {
     }
 
     public List<String> getValidParticipantNames(final String participantName) {
+        String trimName = participantName.trim();
         List<String> participantNames = getParticipantNames();
-        if (participantName.equalsIgnoreCase(ALL_PARTICIPANTS)) {
+        if (trimName.equalsIgnoreCase(ALL_PARTICIPANTS)) {
             return participantNames;
         }
-        if (!participantNames.contains(participantName)) {
+        if (!participantNames.contains(trimName)) {
             throw new IllegalArgumentException(String.format(INVALID_PARTICIPANT_NAME, String.join(",", participantNames)));
         }
-        return List.of(participantName);
+        return List.of(trimName);
     }
 
     private List<String> getParticipantNames() {

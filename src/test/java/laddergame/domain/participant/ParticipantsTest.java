@@ -57,7 +57,7 @@ public class ParticipantsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"pobi", "honux", "crong", "jk"})
+    @ValueSource(strings = {"pobi", "honux", "crong", "jk", " pobi", "pobi ", " pobi "})
     @DisplayName("참여자 리스트에 존재하는 참여자 이름을 입력하면, 해당 참여자 이름을 반환한다.")
     void getValidParticipantNames_givenValidParticipantName_thenReturnParticipantName(final String validParticipantName) {
         // given
@@ -71,7 +71,7 @@ public class ParticipantsTest {
                 .isEqualTo(1);
 
         assertThat(targetParticipantNames)
-                .isEqualTo(List.of(validParticipantName));
+                .isEqualTo(List.of(validParticipantName.trim()));
     }
 
     @ParameterizedTest
