@@ -56,4 +56,8 @@ public class PlayerNames {
         return this.playerNames;
     }
 
+    public int getSize() {
+        return playerNames.size();
+    }
+
 }
