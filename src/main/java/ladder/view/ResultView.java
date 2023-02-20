@@ -15,6 +15,7 @@ public class ResultView {
     private static final String LINE_END_WITH = "|";
     private static final String CONNECTED_MARKER = "-----";
     private static final String DISCONNECTED_MARKER = "     ";
+    private static final String RESULT_DELIMITER = " ";
 
     private static final String EXECUTION_MESSAGE = System.lineSeparator() + "실행결과" + System.lineSeparator();
 
@@ -63,6 +64,10 @@ public class ResultView {
     }
 
     public static void printResults(List<String> results) {
-
+        StringJoiner ExecutionResult = new StringJoiner(RESULT_DELIMITER);
+        for (String result : results) {
+            ExecutionResult.add(formatWithSpace(result));
+        }
+        System.out.println(ExecutionResult);
     }
 }
