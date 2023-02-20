@@ -1,14 +1,14 @@
-package domain;
+package laddergame;
 
 import java.util.List;
 
 public class Players {
+    public static final String PLAYER_COUNT_ERROR_MESSAGE = "플레이어 수는 2~12명만 입력 가능합니다.";
     private static final int PLAYER_MIN_COUNT = 2;
     private static final int PLAYER_MAX_COUNT = 12;
     private static final int PLAYER_NAME_MAX_SIZE = 5;
     private static final String BLANK = " ";
     private static final String NON_BLANK = "";
-    public static final String PLAYER_COUNT_ERROR_MESSAGE = "플레이어 수는 2~12명만 입력 가능합니다.";
     private static final String PLAYER_NAME_LENGTH_ERROR_MESSAGE = "플레이어 이름음 1~5글자만 가능합니다.";
     private static final String PLAYER_NAME_DUPLICATE_ERROR_MESSAGE = "플레이어의 이름은 중복이 불가능합니다.";
 

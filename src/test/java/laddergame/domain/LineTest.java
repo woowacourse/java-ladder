@@ -1,10 +1,10 @@
-package domain;
+package laddergame.domain;
 
-import domain.Line;
+import laddergame.Line;
+import laddergame.util.TrueOrFalseGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import util.TrueOrFalseGenerator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +14,19 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LineTest {
     Line line;
+
+    static class testTrueOrFalseGenerator implements TrueOrFalseGenerator {
+        List<Boolean> points;
+
+        testTrueOrFalseGenerator(List<Boolean> points) {
+            this.points = points;
+        }
+
+        @Override
+        public boolean generate() {
+            return points.remove(0);
+        }
+    }
 
     @Nested
     @DisplayName("랜덤 값의 의한 라인 생성 테스트(첫번째 좌표는 이전 좌표가 없는것을 표시)")
@@ -32,20 +45,6 @@ class LineTest {
             line = new Line(4, new testTrueOrFalseGenerator(new ArrayList<>(Arrays.asList(true, true, false)) {
             }));
             assertThat(line.getPoints()).isEqualTo(List.of(true, false, false));
-        }
-    }
-
-
-    static class testTrueOrFalseGenerator implements TrueOrFalseGenerator {
-        List<Boolean> points;
-
-        testTrueOrFalseGenerator(List<Boolean> points) {
-            this.points = points;
-        }
-
-        @Override
-        public boolean generate() {
-            return points.remove(0);
         }
     }
 

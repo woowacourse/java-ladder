@@ -1,6 +1,6 @@
-package domain;
+package laddergame;
 
-import util.TrueOrFalseGenerator;
+import laddergame.util.TrueOrFalseGenerator;
 
 import java.util.ArrayList;
 import java.util.HashMap;

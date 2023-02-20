@@ -1,11 +1,11 @@
-package controller;
+package laddergame.controller;
 
-import domain.Height;
-import domain.Ladder;
-import domain.Players;
-import util.TrueOrFalseGenerator;
-import view.InputView;
-import view.OutputView;
+import laddergame.Height;
+import laddergame.Ladder;
+import laddergame.Players;
+import laddergame.util.TrueOrFalseGenerator;
+import laddergame.view.InputView;
+import laddergame.view.OutputView;
 
 public class LadderGameController {
     private static final String NAME_INPUT_REQUEST = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";

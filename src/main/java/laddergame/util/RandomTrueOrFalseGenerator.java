@@ -1,4 +1,4 @@
-package util;
+package laddergame.util;
 
 import java.security.SecureRandom;
 import java.util.Random;

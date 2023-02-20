@@ -1,4 +1,4 @@
-package view;
+package laddergame.view;
 
 import java.util.Arrays;
 

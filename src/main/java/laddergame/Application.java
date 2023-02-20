@@ -1,7 +1,9 @@
-import controller.LadderGameController;
-import util.RandomTrueOrFalseGenerator;
-import view.InputView;
-import view.OutputView;
+package laddergame;
+
+import laddergame.controller.LadderGameController;
+import laddergame.util.RandomTrueOrFalseGenerator;
+import laddergame.view.InputView;
+import laddergame.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {

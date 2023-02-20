@@ -1,5 +1,8 @@
-package domain;
+package laddergame.domain;
 
+import laddergame.Height;
+import laddergame.Ladder;
+import laddergame.Players;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,6 +25,12 @@ class LadderTest {
     static void setup() {
         players = new Players(List.of("jena", "poby", "beav"));
         height = new Height("2");
+    }
+
+    private static Stream<Arguments> provideLadderLines() {
+        return Stream.of(Arguments.of(List.of(true, false, true, false, false, false, false, false, true, false, false, false), false),
+                Arguments.of(List.of(true, false, true, false, false, true, false, true, true, false, false, false), true),
+                Arguments.of(List.of(false, true, false, true, false, false, false, true, true, false, true, false), true));
     }
 
     @DisplayName("사다리 스텝이 하나도 존재하지 않는 bar가 있을 때 fail")
@@ -49,12 +58,6 @@ class LadderTest {
         Ladder ladder = new Ladder(players, height,
                 new LineTest.testTrueOrFalseGenerator(new ArrayList<>(input)));
         assertThat(ladder.validate(height.getHeight())).isEqualTo(expected);
-    }
-
-    private static Stream<Arguments> provideLadderLines() {
-        return Stream.of(Arguments.of(List.of(true, false, true, false, false, false, false, false, true, false, false, false), false),
-                Arguments.of(List.of(true, false, true, false, false, true, false, true, true, false, false, false), true),
-                Arguments.of(List.of(false, true, false, true, false, false, false, true, true, false, true, false), true));
     }
 
 }

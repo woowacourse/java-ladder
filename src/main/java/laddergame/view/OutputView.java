@@ -1,6 +1,6 @@
-package view;
+package laddergame.view;
 
-import domain.Line;
+import laddergame.Line;
 
 import java.util.List;
 
