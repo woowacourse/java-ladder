@@ -3,6 +3,8 @@ package ladder.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ladder.model.ErrorMessage.EXCEPTION_PLAYER_COUNT_MINIMUM;
+
 public class LadderGame {
 
     private static final int MIN_PLAYER_COUNT = 2;
@@ -21,7 +23,7 @@ public class LadderGame {
 
     private void validatePlayerCount(List<PlayerName> playerNames) {
         if (playerNames.size() < MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_INVALID_PLAYER_COUNT.getMessage());
+            throw new IllegalArgumentException(EXCEPTION_PLAYER_COUNT_MINIMUM.getMessage());
         }
     }
 
@@ -42,16 +44,4 @@ public class LadderGame {
         return ladder;
     }
 
-    private enum ErrorMessage {
-        EXCEPTION_INVALID_PLAYER_COUNT("게임을 진행하기 위해서는 두 명 이상의 플레이어가 필요합니다.");
-        private final String message;
-
-        ErrorMessage(String message) {
-            this.message = message;
-        }
-
-        private String getMessage() {
-            return message;
-        }
-    }
 }

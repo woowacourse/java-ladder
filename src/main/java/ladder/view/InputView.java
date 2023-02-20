@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import static ladder.model.ErrorMessage.*;
+
 public class InputView {
 
     private static final InputView INSTANCE = new InputView();
@@ -33,7 +35,7 @@ public class InputView {
 
     private void validateDuplicatedNames(List<String> names) {
         if (names.size() != names.stream().distinct().count()) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_DUPLICATED_NAME.getMessage());
+            throw new IllegalArgumentException(EXCEPTION_PLAYER_NAME_DUPLICATE.getMessage());
         }
     }
 
@@ -49,21 +51,7 @@ public class InputView {
 
     private void validateHeight(String input) {
         if (!NUMBER_REGEX.matcher(input).matches()) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_NOT_INTEGER.getMessage());
-        }
-    }
-
-    private enum ErrorMessage {
-        EXCEPTION_DUPLICATED_NAME("이름은 중복될 수 없습니다."),
-        EXCEPTION_NOT_INTEGER("정수가 아닙니다.");
-        private final String message;
-
-        ErrorMessage(String message) {
-            this.message = message;
-        }
-
-        public String getMessage() {
-            return message;
+            throw new IllegalArgumentException(EXCEPTION_HEIGHT_INVALID_TYPE.getMessage());
         }
     }
 
@@ -83,5 +71,7 @@ public class InputView {
         }
 
     }
+
+
 
 }
