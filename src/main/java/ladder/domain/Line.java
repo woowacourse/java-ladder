@@ -6,13 +6,14 @@ import java.util.stream.IntStream;
 
 public class Line {
     private final List<Bar> bars;
+    private final int SUBTRACT_FIRST_BAR= -1;
 
     public Line() {
         bars = new ArrayList<>(List.of(new Bar(false)));
     }
 
     public void addBars(int peopleSize, BarGenerator barGenerator) {
-        IntStream.range(0, peopleSize - 1)
+        IntStream.range(0, peopleSize - SUBTRACT_FIRST_BAR)
                 .forEach(count -> addBar(barGenerator));
     }
 
