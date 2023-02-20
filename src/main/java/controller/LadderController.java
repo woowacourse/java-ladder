@@ -48,7 +48,9 @@ public class LadderController {
         showTargetResult(playerMaker.getPlayerList(), goodsList);
     }
     private void notSameCount(List<Name> players,List<Name> goods){
-        throw new IllegalArgumentException("참가자 수와 상품 수는 같아야 합니다.");
+        if(players.size()!=goods.size()) {
+            throw new IllegalArgumentException("참가자 수와 상품 수는 같아야 합니다.");
+        }
     }
     private void showTargetResult(List<Player> players, List<Name> goodsList) {
         String input = inputView.inputTargetResult();
