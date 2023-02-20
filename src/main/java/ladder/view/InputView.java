@@ -71,6 +71,7 @@ public class InputView {
     }
 
     public String readPlayerChoice() {
+        System.out.println();
         System.out.println(InputMessage.INPUT_PLAYER_CHOICE.getMessage());
 
         Scanner scanner = new Scanner(System.in);

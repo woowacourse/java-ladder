@@ -19,6 +19,7 @@ public class OutputView {
     }
 
     public void printLadderResultMessage() {
+        System.out.println();
         System.out.println("사다리 결과");
     }
 
@@ -34,6 +35,7 @@ public class OutputView {
     public void printResults(List<String> results) {
         System.out.println();
         results.forEach(result -> System.out.printf("%-6s", result));
+        System.out.println();
     }
 
     public void printChosePlayerResult(String result) {
