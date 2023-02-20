@@ -1,9 +1,12 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import helper.AbstractTestFixture;
 
@@ -25,5 +28,15 @@ public class ParticipantsTest extends AbstractTestFixture {
     void 중복된_참가자는_IllgealArgumentException을_던진다() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Participants(createParticipantsFrom("땡칠", "땡칠")));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"a,0","c,2","e,4"})
+    void 특정_참가자의_시작점을_알_수_있다(String name, int expectedPosition) {
+        Participants participants = new Participants(createParticipantsFrom("a", "b", "c", "d", "e"));
+
+        int startPosition = participants.findStartPositionOf(name);
+
+        assertThat(startPosition).isEqualTo(expectedPosition);
     }
 }

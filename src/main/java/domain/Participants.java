@@ -47,4 +47,14 @@ public class Participants {
                 .map(Participant::getName)
                 .collect(toUnmodifiableList());
     }
+
+    public int findStartPositionOf(String name) {
+        for (int i = 0; i < participants.size(); i++) {
+            Participant participant = participants.get(i);
+            if (participant.getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
