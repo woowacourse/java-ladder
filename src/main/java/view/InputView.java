@@ -23,6 +23,11 @@ public class InputView {
         return splitWithComma(input);
     }
 
+    public static String inputParticipantNameToFind() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return ScannerUtil.nextLine();
+    }
+
     private static List<String> splitWithComma(final String input) {
         return List.of(input.split(","));
     }
