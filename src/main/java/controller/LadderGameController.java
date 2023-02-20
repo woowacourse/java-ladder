@@ -2,6 +2,7 @@ package controller;
 
 import domain.Height;
 import domain.PlayerNames;
+import domain.ResultContents;
 import domain.ladder.Ladder;
 import domain.ladder.strategy.GenerateBridgeStrategy;
 import view.InputView;
@@ -22,8 +23,12 @@ public class LadderGameController {
     public void run() {
         String playerNamesInput = inputView.requestPlayerNames();
         PlayerNames playerNames = PlayerNames.of(playerNamesInput, inputView.getPlayerNameDelimiter());
-        Height height = inputView.requestLadderHeight();
 
+        String resultContentsInput = inputView.requestResultContents();
+        ResultContents resultContents = ResultContents.of(
+                resultContentsInput, inputView.getResultContentsDelimiter());
+
+        Height height = inputView.requestLadderHeight();
         Ladder ladder = Ladder.of(playerNames, height, bridgeStrategy);
         ladder.buildBridges();
 
