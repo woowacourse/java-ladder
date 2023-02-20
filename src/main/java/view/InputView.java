@@ -11,6 +11,7 @@ public class InputView {
     public static final String INPUT_RESULTS = "\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     public static final String HEIGHT_REGEX_FORMAT = "^[0-9]*$";
     public static final String RESULT_LENGTH_ERROR = "[ERROR] 참여하는 인원에 맞게 결과값을 입력해 주세요.";
+    public static final String INPUT_RESULT_USERNAME = "\n결과를 보고 싶은 사람은?";
     static Scanner sc = new Scanner(System.in);
 
     public List<String> inputUserName() {
@@ -41,5 +42,10 @@ public class InputView {
     public List<String> inputResults() {
         System.out.println(INPUT_RESULTS);
         return splitNameInput(sc.nextLine());
+    }
+
+    public String inputResultUser() {
+        System.out.println(INPUT_RESULT_USERNAME);
+        return sc.nextLine();
     }
 }

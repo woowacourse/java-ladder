@@ -12,6 +12,8 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
+    public static final String NOT_CONTAIN_NAME_ERROR = "[ERROR] 해당하는 이름이 없습니다.";
+    public static final String ALL = "all";
     private final InputView inputView;
     private final OutputView outputView;
     private Users users;
@@ -33,6 +35,7 @@ public class LadderGameController {
         outputView.printUserNames(users);
         outputView.printLadder(ladder);
         outputView.printResults(results);
+        findUserResult();
     }
 
     private Results initializeResults() {
@@ -77,5 +80,22 @@ public class LadderGameController {
             lines.add(new Line(personCount, randomNumberGenerator));
         }
         return new Ladder(lines, height);
+    }
+
+    private String findUserResult() {
+        try {
+            String checkNameInput = inputView.inputResultUser();
+            checkNameInUsers(checkNameInput, users);
+            return checkNameInput;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return findUserResult();
+        }
+    }
+
+    public static void checkNameInUsers(String nameInput, Users users) {
+        if (!nameInput.equals(ALL) && !users.getUserNames().contains(nameInput)) {
+            throw new IllegalArgumentException(NOT_CONTAIN_NAME_ERROR);
+        }
     }
 }
