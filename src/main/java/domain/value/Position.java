@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class Position {
 
+    private static final int MOVEMENT_UNIT = 1;
+
     private final int value;
 
     private Position(final int value) {
@@ -36,6 +38,6 @@ public class Position {
     }
 
     public Position move(final Direction direction) {
-        return new Position(direction.move(this.value));
+        return new Position(this.value + direction.sign(MOVEMENT_UNIT));
     }
 }

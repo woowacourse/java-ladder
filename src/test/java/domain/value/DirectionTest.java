@@ -14,27 +14,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Direction 은")
 class DirectionTest {
 
-    @ParameterizedTest(name = "왼쪽으로 이동하면 값이 1만큼 감소한다")
+    @ParameterizedTest(name = "왼쪽 방향은 음수를 의미한다")
     @ValueSource(ints = {-100, -1, 0, 1, 100})
-    void 왼쪽으로_이동하면_값이_1만큼_감소한다(final int position) {
+    void 왼쪽_방향은_음수를_의미한다(final int position) {
         // when & then
-        assertThat(LEFT.move(position))
-                .isEqualTo(position - 1);
+        assertThat(LEFT.sign(position))
+                .isEqualTo(position * -1);
     }
 
-    @ParameterizedTest(name = "오른쪽으로 이동하면 값이 1만큼 증가한다")
+    @ParameterizedTest(name = "오른쪽으로 방향은 양수를 의미한다")
     @ValueSource(ints = {-100, -1, 0, 1, 100})
-    void 오른쪽으로_이동하면_값이_1만큼_증가한다(final int position) {
+    void 오른쪽_방향은_양수를_의미한다(final int position) {
         // when & then
-        assertThat(RIGHT.move(position))
-                .isEqualTo(position + 1);
+        assertThat(RIGHT.sign(position))
+                .isEqualTo(position);
     }
 
-    @ParameterizedTest(name = "NONE 으로 이동하면 값은 변하지않는다")
+    @ParameterizedTest(name = "NONE 방향은 0을 의미한다")
     @ValueSource(ints = {-100, -1, 0, 1, 100})
     void NONE_으로_이동하면_값은_변하지않는다(final int position) {
         // when & then
-        assertThat(NONE.move(position))
-                .isEqualTo(position);
+        assertThat(NONE.sign(position))
+                .isEqualTo(0);
     }
 }

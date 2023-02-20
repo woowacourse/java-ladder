@@ -9,13 +9,13 @@ public enum Direction {
     NONE(0),
     ;
 
-    private final int moveAmount;
+    private final int sign;
 
-    Direction(final int moveAmount) {
-        this.moveAmount = moveAmount;
+    Direction(final int sign) {
+        this.sign = sign;
     }
 
-    public int move(final int position) {
-        return position + moveAmount;
+    public int sign(final int value) {
+        return sign * value;
     }
 }
