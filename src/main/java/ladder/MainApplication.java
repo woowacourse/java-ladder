@@ -46,12 +46,20 @@ public class MainApplication {
             return;
         }
 
+        calculateSingleResult(users, ladder, prizes, userName);
+
+        if (!users.contain(userName)) {
+            printNoUser();
+        }
+
+        readResultRequest(users, ladder, prizes);
+    }
+
+    private static void calculateSingleResult(Users users, Ladder ladder, Prizes prizes, String userName) {
         for (int i = 0; i < users.getSize(); i++) {
             printResultPrefix();
             printSingleMatchingResult(users, ladder, prizes, userName, i);
         }
-
-        readResultRequest(users, ladder, prizes);
     }
 
     private static void printAll(Users users, Ladder ladder, Prizes prizes) {

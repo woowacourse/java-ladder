@@ -90,9 +90,14 @@ public class OutputView {
     public static void printResultPrefix() {
         System.out.println("실행 결과");
     }
+
     public static void printResult(Prizes prizes, int index) {
         System.out.println(prizes.getPrizeNameByIndex(index));
         System.out.println();
+    }
+
+    public static void printNoUser() {
+        System.out.println("없는 유저입니다.");
     }
 
 }

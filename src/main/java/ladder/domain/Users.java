@@ -47,10 +47,11 @@ public class Users {
         return users.get(index).getName();
     }
 
-    private List<String> getUserNames() {
-        return getUsers().stream()
+    public boolean contain(String name) {
+        return users.stream()
                 .map(User::getName)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList())
+                .contains(name);
     }
 
     public List<User> getUsers() {
