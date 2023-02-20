@@ -11,6 +11,11 @@ import util.BooleanGenerator;
 
 public class Map {
 
+    private static final int MIN_LADDER_HEIGHT = 1;
+    private static final int MAX_LADDER_HEIGHT = 10;
+    private static final int MIN_LINE_WEIGHT = 1;
+    private static final int MAX_LINE_WEIGHT = 9;
+
     private final int height;
     private final int lineWeight;
     private final Ladder ladder;

@@ -11,6 +11,10 @@ import java.util.stream.Collectors;
 
 public class Participants {
 
+    private static final String SPLIT_NAME_DELIMITER = ",";
+    private static final int MIN_PARTICIPANT_COUNT = 2;
+    private static final int MAX_PARTICIPANT_COUNT = 10;
+
     private final List<Person> people = new ArrayList<>();
 
     public Participants(String participantNames) {

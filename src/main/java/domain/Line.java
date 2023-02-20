@@ -8,6 +8,10 @@ import util.BooleanGenerator;
 
 public class Line {
 
+    private static final int MIN_LINE_WEIGHT = 1;
+    private static final int MAX_LINE_WEIGHT = 9;
+    private static final int LINE_FIRST_INDEX = 9;
+
     private final List<Boolean> status = new ArrayList<>();
 
     public Line(int weight, BooleanGenerator booleanGenerator) {

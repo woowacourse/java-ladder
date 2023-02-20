@@ -6,7 +6,11 @@ import domain.Participants;
 
 public class OutputView {
 
-    private static final String RESULT_MESSAGE = "\n실행결과\n";
+    private static final String RESULT_MESSAGE = System.lineSeparator() + "실행결과" + System.lineSeparator();
+    private static final String START_LINE = "    |";
+    private static final String END_LINE = "|";
+    private static final String CONNECTED_LINE = "-----";
+    private static final String DISCONNECTED_LINE = "     ";
 
     public void printMap(Participants participants, Map map) {
         System.out.println(RESULT_MESSAGE);

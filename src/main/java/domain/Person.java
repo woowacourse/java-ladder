@@ -4,6 +4,8 @@ import exception.InvalidPersonNameException;
 
 public class Person {
 
+    private static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
 
     public Person(String name) {
