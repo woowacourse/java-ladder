@@ -12,13 +12,13 @@ public class Name {
 
     private void validateEmptyName(String name) {
         if (name.isBlank()) {
-            throw new IllegalArgumentException("이름은 빈 문자일 수 없습니다.");
+            throw new IllegalArgumentException("이름과 실행결과는 빈 문자일 수 없습니다.");
         }
     }
 
     private void validateOutOfNameLength(String name) {
         if (name.length() > MAX_SIZE) {
-            throw new IllegalArgumentException("이름은 최대 5글자이어야 합니다.");
+            throw new IllegalArgumentException("이름과 실행결과는 최대 5글자이어야 합니다.");
         }
     }
 
