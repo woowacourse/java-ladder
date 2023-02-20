@@ -19,10 +19,10 @@ public class OutputView {
         names.getNames()
                 .forEach(name -> System.out.printf(Message.NAME_FORMAT.message, name.getName()));
         System.out.println();
-        lines(lines);
+        printEachLine(lines);
     }
 
-    public void lines(Lines lines) {
+    public void printEachLine(Lines lines) {
         for (Line line : lines.getLines()) {
             StringBuilder result = new StringBuilder();
             result.append(Message.COLUMN_LADDER.message);
