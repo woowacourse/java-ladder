@@ -21,6 +21,9 @@ public class Prizes {
         }
     }
 
+    public String getPrizeNameByIndex(int index) {
+        return prizes.get(index).getName();
+    }
     public List<Prize> getPrizes() {
         return prizes;
     }

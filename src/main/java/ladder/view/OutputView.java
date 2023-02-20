@@ -81,4 +81,9 @@ public class OutputView {
         System.out.print(DELIMITER);
     }
 
+    public static void printResult(Prizes prizes, int index) {
+        System.out.println("실행 결과");
+        System.out.println(prizes.getPrizeNameByIndex(index));
+    }
+
 }
