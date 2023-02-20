@@ -3,8 +3,10 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
+import static java.util.Arrays.stream;
 
 public class InputView {
 
@@ -14,13 +16,15 @@ public class InputView {
     public static List<String> inputNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
-        return new ArrayList<>(asList(input.split(DELIMITER)));
+        return stream(input.split(DELIMITER))
+                .map(String::trim).collect(Collectors.toList());
     }
 
     public static List<String> inputWinningEntries() {
         System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
-        return new ArrayList<>(asList(input.split(DELIMITER)));
+        return stream(input.split(DELIMITER))
+                .map(String::trim).collect(Collectors.toList());
     }
 
     public static int inputHeight() {
