@@ -17,6 +17,7 @@ public class Name {
     private void validate(String value) {
         validateBlank(value);
         validateLength(value);
+        validateNotCommand(value);
     }
 
     private void validateBlank(String value) {
@@ -28,6 +29,12 @@ public class Name {
     private void validateLength(String value) {
         if (value.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(String.format("이름은 1글자 이상, 5글자 이하여야합니다. 입력값 : %s", value));
+        }
+    }
+
+    private void validateNotCommand(String value) {
+        if (value.equals("all") || value.equals("q")) {
+            throw new IllegalArgumentException(String.format("%s는 프로그램의 커맨드로 이름으로 입력 불가능합니다.", value));
         }
     }
 

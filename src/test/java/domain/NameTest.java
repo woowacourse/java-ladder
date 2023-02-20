@@ -18,7 +18,7 @@ class NameTest {
 
     @DisplayName("이름이 공백이면 예외를 반환한다.")
     @ParameterizedTest
-    @ValueSource(strings = {""," ","  "})
+    @ValueSource(strings = {"", " ", "  "})
     void create_fail_by_blank_name(String wrongName) {
         assertThatThrownBy(() -> new Name(wrongName))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -32,5 +32,14 @@ class NameTest {
         assertThatThrownBy(() -> new Name(wrongName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름은 1글자 이상, 5글자 이하여야합니다.");
+    }
+
+    @DisplayName("예약된 커맨드를 이름으로 입력하면 예외를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"all", "q"})
+    void create_fail_by_program_command(String command) {
+        assertThatThrownBy(() -> new Name(command))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("프로그램의 커맨드로 이름으로 입력 불가능합니다.");
     }
 }
