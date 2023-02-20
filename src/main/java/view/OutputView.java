@@ -5,6 +5,7 @@ import domain.Line;
 import domain.PointStatus;
 import domain.User;
 import domain.Users;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String OUTPUT_EXECUTE_MESSAGE = "\n실행결과\n";
@@ -13,8 +14,27 @@ public class OutputView {
 
     public void printLadderGameResult(Users users) {
         System.out.println(OUTPUT_EXECUTE_MESSAGE);
-        System.out.println(" " + String.join(NAME_DELIMITER, users.getUserNames()));
+        System.out.println(" " + users.getUserNames()
+                .stream()
+                .map(this::convertName)
+                .collect(Collectors.joining(NAME_DELIMITER)));
     }
+
+    public String convertName(String name) {
+        if (name.length() == User.MAX_NAME_LENGTH) {
+            return name;
+        }
+        return insertBlank(name);
+    }
+
+    private String insertBlank(String name) {
+        StringBuilder nameBuilder = new StringBuilder(name + " ");
+        while (nameBuilder.length() < User.MAX_NAME_LENGTH) {
+            nameBuilder.insert(0, " ");
+        }
+        return nameBuilder.toString();
+    }
+
 
     public void printLadder(Ladder ladder) {
         for (Line line : ladder.getLines()) {

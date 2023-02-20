@@ -6,7 +6,6 @@ import domain.Line;
 import domain.User;
 import domain.Users;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import utils.RandomNumberGenerator;
 import view.InputView;
@@ -50,20 +49,19 @@ public class LadderGameController {
         return users;
     }
 
-    private Height initializeHeight() {
+    private int initializeHeight() {
         try {
-            return new Height(inputView.inputLadderHeight());
+            return inputView.inputLadderHeight();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return initializeHeight();
         }
     }
 
-    public Ladder createLadder(int personCount, Height height) {
+    public Ladder createLadder(int personCount, int height) {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         List<Line> lines = new ArrayList<>();
-        int ladderHeight = height.getHeight();
-        while (ladderHeight-- > 0) {
+        while (height-- > 0) {
             lines.add(new Line(personCount, randomNumberGenerator));
         }
         return new Ladder(lines, height);

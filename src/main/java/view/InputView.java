@@ -1,19 +1,19 @@
 package view;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
     private static final String INPUT_USER_NAME = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String INPUT_LADDER_HEIGHT = "\n최대 사다리 높이는 몇 개인가요?";
-    public static final String HEIGHT_NOT_NUMBER = "[ERROR] 높이는 숫자로 입력해주세요.";
-
+    public static final String HEIGHT_FORMAT_ERROR_MESSAGE = "[ERROR] 사다리 높이는 숫자만 가능합니다.";
+    public static final String INPUT_NOTHING_ERROR_MESSAGE = "[ERROR] 값을 입력하지 않았습니다.";
+    public static final String HEIGHT_REGEX_FORMAT = "^[0-9]*$";
     static Scanner sc = new Scanner(System.in);
 
     public List<String> inputUserName() {
         System.out.println(INPUT_USER_NAME);
-        return splitNameInput(sc.next());
+        return splitNameInput(sc.nextLine());
     }
 
     private List<String> splitNameInput(String nameInput) {
@@ -21,12 +21,18 @@ public class InputView {
     }
 
     public int inputLadderHeight() {
-        try {
-            System.out.println(INPUT_LADDER_HEIGHT);
-            return sc.nextInt();
-        } catch (InputMismatchException inputMismatchException) {
-            sc.nextLine();
-            throw new IllegalArgumentException(HEIGHT_NOT_NUMBER);
+        System.out.println(INPUT_LADDER_HEIGHT);
+        String heightInput = sc.nextLine();
+        validateHeightFormat(heightInput);
+        return Integer.parseInt(heightInput);
+    }
+
+    private void validateHeightFormat(String heightInput) {
+        if (!heightInput.matches(HEIGHT_REGEX_FORMAT)) {
+            throw new IllegalArgumentException(HEIGHT_FORMAT_ERROR_MESSAGE);
+        }
+        if (heightInput.isEmpty()) {
+            throw new IllegalArgumentException(INPUT_NOTHING_ERROR_MESSAGE);
         }
     }
 }
