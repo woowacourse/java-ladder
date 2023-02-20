@@ -11,52 +11,62 @@ import domain.Point;
 public class OutputView {
 
     private static final String BLANK = " ";
-    private static final String LINE_START_FORMAT = "    |";
-    private static final String NAME_START_FORMAT = "  ";
-    private static final String FORMATTED_DASH = "-----";
-    private static final String FORMATTED_BLANK = "     ";
     private static final String DIVIDER = "|";
+    private static final String LINE_START_FORMAT = "    ";
+    private static final String NAME_START_FORMAT = "  ";
+    private static final String CONNECTED = "-----";
+    private static final String DISCONNECTED = "     ";
     private static final int DIVISOR = 2;
     private static final int DEFAULT_PADDING = 2;
     private static final int FLAG = 1;
 
     public static void printNames(Names names) {
         System.out.print(NAME_START_FORMAT);
-        names.getNames().stream()
+
+        names.getNames()
+                .stream()
                 .map(Name::getName)
                 .forEach(OutputView::printName);
+
         System.out.println();
     }
 
     private static void printName(String name) {
-        String formattedName = generateCentralFormattedName(name);
-        System.out.print(formattedName + BLANK);
+        String alignedName = alignCenter(name);
+
+        System.out.print(alignedName + BLANK);
     }
 
-    private static String generateCentralFormattedName(String name) {
+    private static String alignCenter(String name) {
         int length = name.length();
+
         int leftPadding = DEFAULT_PADDING - length / DIVISOR;
         int rightPadding = DEFAULT_PADDING - (length - FLAG) / DIVISOR;
+
         return BLANK.repeat(leftPadding) + name + BLANK.repeat(rightPadding);
     }
 
     public static void printLadder(Ladder ladder) {
-        ladder.getLadder().forEach(OutputView::printLine);
+        ladder.getLadder()
+                .forEach(OutputView::printLine);
     }
 
     private static void printLine(Line line) {
         List<Point> points = line.getPoints();
-        StringBuilder result = new StringBuilder(LINE_START_FORMAT);
+
+        StringBuilder result = new StringBuilder(LINE_START_FORMAT + DIVIDER);
         for (Point point : points) {
-            result.append(toFormattedStatus(point));
+            result.append(toStatus(point));
         }
+
         System.out.println(result);
     }
 
-    private static String toFormattedStatus(Point point) {
+    private static String toStatus(Point point) {
         if (point.isConnected()) {
-            return FORMATTED_DASH + DIVIDER;
+            return CONNECTED + DIVIDER;
         }
-        return FORMATTED_BLANK + DIVIDER;
+
+        return DISCONNECTED + DIVIDER;
     }
 }
