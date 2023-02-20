@@ -4,7 +4,7 @@ public class Height {
     private static final int FINISH_NUMBER = 0;
     public static final String NOT_POSITIVE_ERROR_MESSAGE = "양의 정수만 입력해주세요.";
 
-    private int height;
+    private final int height;
 
     public Height(String height) {
         validate(height);
@@ -15,8 +15,8 @@ public class Height {
         return this.height > FINISH_NUMBER;
     }
 
-    public void minusHeight() {
-        this.height--;
+    public int getHeight() {
+        return height;
     }
 
     private void validate(String height) {

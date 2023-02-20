@@ -9,10 +9,10 @@ public class Ladder {
     private final List<Line> lines = new ArrayList<>();
 
     public Ladder(Players players, Height height, TrueOrFalseGenerator trueOrFalseGenerator) {
-        while (height.isPossibleCount()) {
+        int count = height.getHeight();
+        while (count-- > 0) {
             Line line = new Line(players.getPlayersCount(), trueOrFalseGenerator);
             lines.add(line);
-            height.minusHeight();
         }
     }
 
