@@ -50,13 +50,18 @@ public class LadderController {
 
     private void showTargetResult(List<Player> players, List<Name> goodsList) {
         String input = inputView.inputTargetResult();
+        if(input.equals("end")){
+            return;
+        }
         outputView.printResult();
         if (input.equals("all")) {
             outputView.printAllTargetResult(players, goodsList);
+            showTargetResult(players,goodsList);
             return;
         }
         validateNotInPlayers(players,input);
         outputView.printTargetResult(goodsList.get(makePlayerHash(players).get(input).getPosition()).get());
+        showTargetResult(players,goodsList);
     }
     private void validateNotInPlayers(List<Player> players,String target){
         if(notHasTarget(players,target)){
