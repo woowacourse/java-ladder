@@ -67,7 +67,7 @@ class RadderGameControllerTest {
         setOutput();
         radderGameController.play(new InputView(), new OutputView(), () -> true);
         Assertions.assertThat(byteArrayOutputStream.toString()).contains(
-            ErrorMessage.INVALID_LADDER_HEIGHT.getMessage()
+                ErrorMessage.INVALID_LADDER_HEIGHT.getMessage()
         );
     }
 }

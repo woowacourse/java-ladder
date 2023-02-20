@@ -6,18 +6,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.RandomBooleanGenerator;
 
+import java.util.List;
+
 class LineTest {
 
     @DisplayName("라인의 너비가 조건에 맞을 경우 객체를 생성한다.")
     @Test
     void createSuccess() {
-        try {
-            Line ladder = new Line(9, new RandomBooleanGenerator());
-            int weight = ladder.getStatus().size();
-            Assertions.assertThat(weight).isEqualTo(9);
-        } catch (IllegalArgumentException exception) {
-            Assertions.fail("라인의 너비가 조건에 맞을 경우 객체를 생성해야 합니다.");
-        }
+        Line ladder = new Line(9, new RandomBooleanGenerator());
+        List<Boolean> weight = ladder.getStatus();
+        Assertions.assertThat(weight).hasSize(9);
     }
 
     @DisplayName("라인의 너비가 9을 넘을 경우 오류를 던진다.")

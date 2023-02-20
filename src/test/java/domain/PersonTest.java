@@ -4,17 +4,16 @@ import exception.InvalidPersonNameException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 class PersonTest {
 
     @DisplayName("사람이름이 조건에 맞을 경우 객체가 생성된다.")
     @Test
     void nameSuccess() {
-        try {
-            new Person("abcde");
-        } catch (IllegalArgumentException exception) {
-            Assertions.fail("이름이 조건에 맞을 경우 객체가 제대로 생성되어야 합니다.");
-        }
+        Person person = new Person("abcde");
+        Assertions.assertThat(person.getName()).isEqualTo("abcde");
     }
 
     @DisplayName("사람이름이 5글자보다 많을 경우 오류를 던진다.")
@@ -25,16 +24,10 @@ class PersonTest {
     }
 
     @DisplayName("사람이름이 빈문자열일 경우 오류를 던진다.")
-    @Test
-    void nameNull() {
-        Assertions.assertThatThrownBy(() -> new Person(null))
-            .isExactlyInstanceOf(InvalidPersonNameException.class);
-    }
-
-    @DisplayName("사람이름이 빈문자열일 경우 오류를 던진다.")
-    @Test
-    void nameEmpty() {
-        Assertions.assertThatThrownBy(() -> new Person(""))
+    @ParameterizedTest
+    @NullAndEmptySource
+    void nameNullOrEmpty(String input) {
+        Assertions.assertThatThrownBy(() -> new Person(input))
             .isExactlyInstanceOf(InvalidPersonNameException.class);
     }
 
