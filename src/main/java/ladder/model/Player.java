@@ -6,12 +6,15 @@ public class Player {
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
+    private static final String BANNED_WORD = "all";
+
 
     private final String playerName;
 
     public Player(String playerName) {
         playerName = removeWhiteSpace(playerName);
         validatePlayerNameLength(playerName);
+        validateIsPlayerNameBannedWord(playerName);
         this.playerName = playerName;
     }
 
@@ -27,6 +30,12 @@ public class Player {
 
     private boolean isNameLengthIncludedInRange(String playerName) {
         return MIN_LENGTH <= playerName.length() && playerName.length() <= MAX_LENGTH;
+    }
+
+    private void validateIsPlayerNameBannedWord(String playerName) {
+        if(playerName.equals(BANNED_WORD)){
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_NAME.getMessage());
+        }
     }
 
     public String getPlayerName() {
