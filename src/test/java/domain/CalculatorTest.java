@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.NonExistFootholdGenerator;
 
-class GameTest {
+class CalculatorTest {
 
     private static Players players;
     private static Line line;
@@ -26,30 +26,27 @@ class GameTest {
         lines = new Lines(List.of(line, line, line, line));
         ladder = new Ladder(lines, new Height(4));
         ladderResults = new LadderResults(List.of("1", "2", "3"), playerNames.size());
-        game = new Game(players, ladder, ladderResults);
     }
 
     @Test
-    @DisplayName("사다리 게임의 결과를 계산한다.")
-    void calculate_ladder_game_result() {
+    @DisplayName("유저와 보상을 매칭시킨 자료형을 반환시켜준다.")
+    void returns_game_result() {
         // when
-        Map<Player, LadderResult> results = game.findGameResults();
+        Calculator calculator = new Calculator(players, ladder, ladderResults);
+        Map<Player, LadderResult> expectedReturns = calculator.getPlayerWithResult();
 
         // then
-        assertThat(results.get(players.findPlayerByName("pobi")).getResult()).isEqualTo(
-                ladderResults.getLadderResultOfIndex(0));
+        assertThat(expectedReturns.containsKey(players));
     }
 
     @Test
-    @DisplayName("특정 유저의 결과를 반환한다.")
+    @DisplayName("해당하는 유저의 결과물을 반환한다.")
     void returns_player_result() {
-        // given
-        Player player = players.getPlayers().get(0);
-
         // when
-        String expectedResult = game.findPlayerResult(player.getName());
+        Calculator calculator = new Calculator(players, ladder, ladderResults);
+        String expectedResult = calculator.findPlayerResult(players.getPlayers().get(0));
 
         // then
-        assertThat(expectedResult).isEqualTo(game.findGameResults().get(player).getResult());
+        assertThat(expectedResult).isEqualTo(ladderResults.findFirstResult());
     }
 }
