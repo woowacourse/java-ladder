@@ -27,4 +27,8 @@ public class LadderGame {
     public List<String> getPlayerNames() {
         return players.getPlayerNames();
     }
+
+    public List<String> getResults() {
+        return results.getResults();
+    }
 }

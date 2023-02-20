@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Results {
@@ -19,5 +20,11 @@ public class Results {
                 .findFirst()
                 .map(Result::getResult)
                 .get();
+    }
+
+    public List<String> getResults() {
+        return results.stream()
+                .map(Result::getResult)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

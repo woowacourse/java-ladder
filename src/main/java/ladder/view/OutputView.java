@@ -8,11 +8,12 @@ public class OutputView {
     private static final String COLUMN_PART = "|";
     private static final String BLANK_BUNDLE = "     ";
 
-    public static void printLadder(List<String> names, List<List<Boolean>> lines) {
-        System.out.println("실행결과");
+    public static void printLadder(List<String> names, List<List<Boolean>> lines, List<String> resultNames) {
+        System.out.println("사다리 결과");
         System.out.println();
         printNames(names);
         printLines(lines);
+        printNames(resultNames);
     }
 
     private static void printNames(List<String> names) {
