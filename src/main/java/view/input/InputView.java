@@ -1,7 +1,6 @@
 package view.input;
 
-import exception.DuplicateNameException;
-import exception.EmpytInputException;
+import exception.EmptyInputException;
 import exception.InvalidLadderHeightException;
 import exception.InvalidLineWeightException;
 import exception.InvalidParticipantsCountException;
@@ -29,24 +28,7 @@ public class InputView {
     }
 
     public void printErrorMessage(IllegalArgumentException exception) {
-        if (exception instanceof EmpytInputException) {
-            System.out.println(ErrorMessage.EMPTY_INPUT.getMessage());
-        }
-        if (exception instanceof InvalidParticipantsCountException) {
-            System.out.println(ErrorMessage.INVALID_PARTICIPANT_COUNT.getMessage());
-        }
-        if (exception instanceof InvalidPersonNameException) {
-            System.out.println(ErrorMessage.INVALID_PERSON_NAME.getMessage());
-        }
-        if (exception instanceof DuplicateNameException) {
-            System.out.println(ErrorMessage.DUPLICATE_NAME.getMessage());
-        }
-        if (exception instanceof InvalidLineWeightException) {
-            System.out.println(ErrorMessage.INVALID_LINE_WEIGHT.getMessage());
-        }
-        if (exception instanceof InvalidLadderHeightException) {
-            System.out.println(ErrorMessage.INVALID_LADDER_HEIGHT.getMessage());
-        }
+        System.out.println(exception.getMessage() + System.lineSeparator());
     }
 
 }

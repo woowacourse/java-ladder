@@ -1,7 +1,7 @@
 package domain;
 
 import exception.DuplicateNameException;
-import exception.EmpytInputException;
+import exception.EmptyInputException;
 import exception.InvalidParticipantsCountException;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -23,13 +23,13 @@ class ParticipantsTest {
     @ParameterizedTest
     @NullAndEmptySource
     void participantsNullOrEmpty(String input) {
-        Assertions.assertThatThrownBy(() -> new Participants(input)).isExactlyInstanceOf(EmpytInputException.class);
+        Assertions.assertThatThrownBy(() -> new Participants(input)).isExactlyInstanceOf(EmptyInputException.class);
     }
 
     @DisplayName("참가자들의 이름이 공백만 입력된 경우 오류를 반환한다.")
     @Test
     void participantsBlank() {
-        Assertions.assertThatThrownBy(() -> new Participants("   ")).isExactlyInstanceOf(EmpytInputException.class);
+        Assertions.assertThatThrownBy(() -> new Participants("   ")).isExactlyInstanceOf(EmptyInputException.class);
     }
 
     @DisplayName("참가자들의 이름이 2명 미만으로 입력된 경우 오류를 반환한다.")

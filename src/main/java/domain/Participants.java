@@ -1,7 +1,7 @@
 package domain;
 
 import exception.DuplicateNameException;
-import exception.EmpytInputException;
+import exception.EmptyInputException;
 import exception.InvalidParticipantsCountException;
 import util.StringUtil;
 
@@ -23,7 +23,7 @@ public class Participants {
 
     private void validate(String participantNames) {
         if (StringUtil.isNullOrBlank(participantNames)) {
-            throw new EmpytInputException();
+            throw new EmptyInputException();
         }
         List<String> splitNames = splitNames(participantNames);
         if (isValidCount(splitNames)) {
