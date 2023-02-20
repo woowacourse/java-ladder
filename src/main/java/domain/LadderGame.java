@@ -1,9 +1,6 @@
 package domain;
 
-import domain.util.Point;
 import domain.util.PointGenerator;
-
-import java.util.List;
 
 public class LadderGame {
 
@@ -18,11 +15,11 @@ public class LadderGame {
         this.ladder = Ladder.build(height, width, PointGenerator.getInstance(true));
     }
 
-    public List<String> getParticipantsNames() {
-        return participants.getNames();
+    public Participants getParticipants() {
+        return participants;
     }
 
-    public List<List<Point>> getLadderPoints() {
-        return ladder.getLadderPoints();
+    public Ladder getLadder() {
+        return ladder;
     }
 }

@@ -1,12 +1,16 @@
 package domain.util;
 
-public enum Point {
+public enum Point implements Display {
+
 	PRESENCE(true),
 	ABSENCE(false);
 
-	private boolean presence;
+	private final static String ABSENT_LINE = "     ";
+	private final static String PRESENT_LINE = "-----";
 
-	Point(boolean presence){
+	private final boolean presence;
+
+	Point(boolean presence) {
 		this.presence = presence;
 	}
 
@@ -19,5 +23,13 @@ public enum Point {
 			return Point.PRESENCE;
 		}
 		return Point.ABSENCE;
+	}
+
+	@Override
+	public String format() {
+		if (presence) {
+			return PRESENT_LINE;
+		}
+		return ABSENT_LINE;
 	}
 }

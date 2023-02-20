@@ -1,10 +1,14 @@
 package domain;
 
+import domain.util.Display;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Participants {
+public class Participants implements Display {
+
+	private static final String PARTICIPANT_DELIMITER = ",";
 
 	private final List<ParticipantName> names = new ArrayList<>();
 
@@ -16,10 +20,13 @@ public class Participants {
 		return names.size();
 	}
 
-	public List<String> getNames(){
-		return names.stream()
-			.map(ParticipantName::getName)
-			.collect(Collectors.toList());
+
+	@Override
+	public String format() {
+		String formattedNames = names.stream()
+				.map(ParticipantName::format)
+				.collect(Collectors.joining(PARTICIPANT_DELIMITER));
+		return formattedNames;
 	}
 }
 

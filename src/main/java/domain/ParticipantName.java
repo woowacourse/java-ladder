@@ -1,7 +1,10 @@
 package domain;
 
-public class ParticipantName {
+import domain.util.Display;
 
+public class ParticipantName implements Display {
+
+	private static final String RIGHT_ALIGN_PLACEHOLDER = "%6s";
 	private static final int MIN_NAME_LENGTH = 1;
 	private static final int MAX_NAME_LENGTH = 5;
 	private static final String BLANK_PARTICIPANT_NAME_ERROR_MSG = "참가자의 이름은 공백일 수 없습니다.";
@@ -26,7 +29,8 @@ public class ParticipantName {
 		}
 	}
 
-	public String getName() {
-		return name;
+	@Override
+	public String format() {
+		return String.format(RIGHT_ALIGN_PLACEHOLDER, name);
 	}
 }

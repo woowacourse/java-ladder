@@ -15,8 +15,8 @@ public class LadderGameController {
 	public void run() {
 		LadderGame ladderGame = setUpLadderGame();
 		OutputView.printLadder(
-				ladderGame.getParticipantsNames(),
-				ladderGame.getLadderPoints()
+				ladderGame.getParticipants(),
+				ladderGame.getLadder()
 		);
 	}
 
