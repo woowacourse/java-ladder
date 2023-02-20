@@ -71,7 +71,7 @@ public class LadderController {
 
     private void printAllPeople(People people, Ladder ladder, Prizes prizes) {
         List<String> prizesOfAll = IntStream.range(0, people.size())
-                .map(position -> ladder.getResult(position, 0))
+                .map(ladder::getResult)
                 .mapToObj(prizes::getPrizeByPosition)
                 .collect(Collectors.toList());
 
@@ -81,7 +81,7 @@ public class LadderController {
     private void printPerson(People people, Ladder ladder, Prizes prizes, String name) {
         try {
             int startPosition = people.getPosition(name);
-            int endPosition = ladder.getResult(startPosition, 0);
+            int endPosition = ladder.getResult(startPosition);
 
             outputView.printResult(prizes.getPrizeByPosition(endPosition));
         } catch (IllegalArgumentException e) {

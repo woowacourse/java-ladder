@@ -34,6 +34,10 @@ public class Ladder {
         }
     }
 
+    public int getResult(int position) {
+        return getResult(position, 0);
+    }
+
     public int getResult(int position, int currentLevel) {
         if (currentLevel == getHeight()) {
             return position;

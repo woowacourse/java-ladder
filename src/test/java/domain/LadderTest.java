@@ -67,7 +67,7 @@ class LadderTest {
         Ladder ladder = initLadder(4, participants.size());
 
         assertThat(participants)
-                .map(position -> ladder.getResult(position, 0))
+                .map(ladder::getResult)
                 .containsAll(participants);
     }
 
