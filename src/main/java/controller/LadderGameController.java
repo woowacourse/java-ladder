@@ -36,6 +36,7 @@ public class LadderGameController {
             List<String> userNames = inputView.inputUserName();
             return new Users(createUsers(userNames));
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return initializeUsers();
         }
     }
