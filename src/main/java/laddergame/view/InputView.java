@@ -17,6 +17,12 @@ public class InputView {
         return Arrays.asList(playerNames.split(SPLIT_DELIMITER));
     }
 
+    public static List<String> inputLadderPrize() {
+        String prizes = SCANNER.nextLine();
+        validateBlankInput(prizes);
+        return Arrays.asList(prizes.split(SPLIT_DELIMITER));
+    }
+
     private static void validateBlankInput(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(ErrorCode.EMPTY_INPUT.getCode());

@@ -13,6 +13,7 @@ public class OutputView {
     private static final String KOREAN_LANGUAGE_CODE = "kor";
 
     private static final String PLAYER_NAMES_REQUEST_MSG = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) ";
+    private static final String LADDER_PRIZE_REQUEST_MSG = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String LADDER_HEIGHT_MSG = "최대 사다리 높이는 몇 개인가요?";
     private static final String RESULT_INFO_MSG = "실행결과";
 
@@ -23,6 +24,10 @@ public class OutputView {
 
     public static void printPlayerNamesRequestMsg() {
         System.out.println(PLAYER_NAMES_REQUEST_MSG);
+    }
+
+    public static void printLadderPrizeRequestMsg() {
+        System.out.println(LADDER_PRIZE_REQUEST_MSG);
     }
 
     public static void printLadderHeightRequestMsg() {
