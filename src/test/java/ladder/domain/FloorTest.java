@@ -35,4 +35,19 @@ public class FloorTest {
                 .containsExactly(FILLED, EMPTY, FILLED);
     }
 
+    @Test
+    @DisplayName("양 옆에 다리가 있는 곳으로 움직인다.")
+    void moveVerticallyTest() {
+        //given
+        List<Point> list = new ArrayList<>(List.of(FILLED, EMPTY, FILLED));
+        Floor floor = new Floor(list);
+
+        //when
+        var userPosition = floor.moveUserByPath(0);
+
+        //then
+        assertThat(userPosition).isEqualTo(1);
+
+    }
+
 }
