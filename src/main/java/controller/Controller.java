@@ -21,7 +21,7 @@ public class Controller {
         Names names = setNames();
         LadderResult ladderResult = setLadderResult(names.getNamesSize());
         LadderHeight ladderHeight = setLadderHeight();
-        Ladder ladder = new Ladder(names.getNamesSize(), ladderHeight);
+        Ladder ladder = new Ladder(names.getNamesSize(), ladderHeight,new LineGenerator());
         printResult(names, ladder, ladderHeight);
     }
 
