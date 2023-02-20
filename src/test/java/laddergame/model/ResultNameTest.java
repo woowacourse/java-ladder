@@ -32,11 +32,12 @@ class ResultNameTest {
     }
 
     @ParameterizedTest(name = "{displayName} {index} ==> name : ''{0}''")
-    @ValueSource(strings = {"hihihi", "  ", " h ihi hi hi ", "hi  hiii "})
+    @ValueSource(strings = {"꽝꽝꽝꽝꽝꽝", "  ", " 123 4 56 ", "126 789"})
     @DisplayName("공백이 제거된 후 문자열의 길이가 1보다 작고 5보다 클 때 예외 발생")
     void Should_ThrowException_When_OutOfRange(String name) {
         assertThatThrownBy(() -> new ResultName(name))
-            .isExactlyInstanceOf(IllegalArgumentException.class);
+            .isExactlyInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("공백이 제거된 결과의 길이는");
     }
 
 }
