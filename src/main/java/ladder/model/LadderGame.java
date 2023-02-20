@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static ladder.model.ErrorMessage.EXCEPTION_PLAYER_COUNT;
+import static ladder.model.ErrorMessage.EXCEPTION_REWARD_COUNT;
 
 public class LadderGame {
 
@@ -17,6 +18,7 @@ public class LadderGame {
     public LadderGame(List<Player> players, List<Reward> rewards, Height height) {
         validatePlayerCount(players);
         this.players = players;
+        validateRewardsCount(rewards);
         this.rewards = rewards;
         this.height = height;
     }
@@ -24,6 +26,12 @@ public class LadderGame {
     private void validatePlayerCount(List<Player> players) {
         if (players.size() < MIN_PLAYER_COUNT || players.size() > MAX_PLAYER_COUNT) {
             throw new IllegalArgumentException(EXCEPTION_PLAYER_COUNT.getMessage());
+        }
+    }
+
+    private void validateRewardsCount(List<Reward> rewards){
+        if(rewards.size() != players.size()){
+            throw new IllegalArgumentException(EXCEPTION_REWARD_COUNT.getMessage());
         }
     }
 
