@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("사람들은 ")
 class PeopleTest {
@@ -46,5 +46,25 @@ class PeopleTest {
 		assertThatThrownBy(() -> People.from(List.of("kiara", "kiara")))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessage("[ERROR] 사람 이름은 중복되지 않아야 합니다");
+	}
+
+	@DisplayName("참여자의 이름을 입력해서 초기 위치를 구할 수 있다")
+	@Test
+	void getPersonPosition() {
+		List<String> names = List.of("abc", "def");
+		People people = People.from(names);
+
+		assertThat(names).map(people::getPosition).isEqualTo(List.of(0, 1));
+	}
+
+	@DisplayName("참여자의 이름을 잘못 입력하면 초기 위치를 구할 때 예외가 발생한다")
+	@Test
+	void getNotExistPersonPosition() {
+		List<String> names = List.of("abc", "def");
+		People people = People.from(names);
+
+		assertThatThrownBy(() -> people.getPosition("nothing"))
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("[ERROR] 존재하지 않는 참여자입니다");
 	}
 }

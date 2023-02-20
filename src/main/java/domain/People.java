@@ -49,13 +49,23 @@ public class People {
 		}
 	}
 
+	public int getPosition(String name) {
+		for (int i = 0; i < people.size(); i++) {
+			if (people.get(i).getName().equals(name)) {
+				return i;
+			}
+		}
+
+		throw new IllegalArgumentException(Error.NAME_IS_NOT_EXIST.getMessage());
+	}
+
 	public int size() {
 		return people.size();
 	}
 
 	public List<String> getNames() {
 		return people.stream()
-			.map(Person::getName)
-			.collect(Collectors.toList());
+				.map(Person::getName)
+				.collect(Collectors.toList());
 	}
 }
