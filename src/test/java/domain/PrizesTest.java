@@ -10,14 +10,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @DisplayName("결과들은 ")
-class ResultsTest {
+class PrizesTest {
     @DisplayName("참가자의 수만큼 있다")
     @Test
     void resultSizeEqualsParticipantSize() {
         int participantSize = 3;
         List<String> results = List.of("hi", "hi", "hi");
 
-        assertDoesNotThrow(() -> new Results(results, participantSize));
+        assertDoesNotThrow(() -> new Prizes(results, participantSize));
     }
 
     @DisplayName("참가자의 수와 다르면 예외가 발생한다")
@@ -26,7 +26,7 @@ class ResultsTest {
         int participantSize = 2;
         List<String> results = List.of("hi", "hi", "hi");
 
-        assertThatThrownBy(() -> new Results(results, participantSize))
+        assertThatThrownBy(() -> new Prizes(results, participantSize))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 결과는 참가자의 수와 같아야 합니다");
     }
@@ -35,8 +35,8 @@ class ResultsTest {
     @Test
     void getResultByPosition() {
         List<String> resultStrings = List.of("a", "b", "c");
-        Results results = new Results(resultStrings, resultStrings.size());
+        Prizes prizes = new Prizes(resultStrings, resultStrings.size());
 
-        assertThat(List.of(0, 1, 2)).map(results::getResultByPosition).isEqualTo(resultStrings);
+        assertThat(List.of(0, 1, 2)).map(prizes::getPrizeByPosition).isEqualTo(resultStrings);
     }
 }

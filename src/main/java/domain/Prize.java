@@ -2,13 +2,13 @@ package domain;
 
 import exception.Error;
 
-public class Result {
+public class Prize {
     private static final int MIN_RESULT_LENGTH_INCLUSIVE = 1;
     private static final int MAX_RESULT_LENGTH_INCLUSIVE = 5;
 
     private final String result;
 
-    public Result(String result) {
+    public Prize(String result) {
         validate(result);
 
         this.result = result.trim();
