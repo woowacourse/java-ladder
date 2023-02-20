@@ -2,6 +2,21 @@
 
 사다리 타기 미션 저장소
 
+## 1단계 피드백 반영
+- [ ] 사용자 이름, 사다리 높이 입력 예외처리 분리
+  - [ ] 잘못된 입력 시 재입력
+- [ ] controller 의 generateLadder -> Ladder 생성자로 Ladder 만들기
+- [ ] enum Way 필요성 확인
+  - [ ] 사다리 표현 문자 "|", "-" , " " 를 enum 으로 묶기
+- [ ] correctOverlapPoints 개선
+- [ ] 정규식 패턴 상수화
+- [ ] Player -> validate 메소드 생성
+  - [ ] player validate 해주는 메소드들을 해당 메소드 안에서 호출
+  - [ ] Integer.parseInt 로 예외 처리 되는 validate 메소드들은 삭제
+- [ ] input view 에서 입력 요청 출력을 Controller 로 위임
+- [ ] Output view -> 사용자 이름 길이에 맞게 수정되게 하는 로직 변수 선언
+- [ ] parameterized test 사용. 테스트 추가 
+
 
 ## 기능 목록
 
