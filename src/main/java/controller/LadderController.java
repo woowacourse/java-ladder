@@ -3,7 +3,7 @@ package controller;
 import java.util.List;
 
 import domain.Ladder;
-import domain.Players;
+import domain.Names;
 import utils.Log;
 import view.InputView;
 import view.OutputView;
@@ -11,16 +11,16 @@ import view.OutputView;
 public class LadderController {
 
     public void run() {
-        Players players = generatePlayers();
-        Ladder ladder = generateLadder(players.getPlayerSize());
-        OutputView.printNames(players);
+        Names names = generatePlayers();
+        Ladder ladder = generateLadder(names.getNamesSize());
+        OutputView.printNames(names);
         OutputView.printLadder(ladder);
     }
 
-    private Players generatePlayers() {
+    private Names generatePlayers() {
         try {
             List<String> names = InputView.readNames();
-            return new Players(names);
+            return new Names(names);
         } catch (IllegalArgumentException exception) {
             Log.log(exception.getMessage());
             return generatePlayers();

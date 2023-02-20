@@ -5,7 +5,7 @@ import java.util.List;
 import domain.Ladder;
 import domain.Line;
 import domain.Name;
-import domain.Players;
+import domain.Names;
 import domain.Point;
 
 public class OutputView {
@@ -20,9 +20,9 @@ public class OutputView {
     private static final int DEFAULT_PADDING = 2;
     private static final int FLAG = 1;
 
-    public static void printNames(Players players) {
+    public static void printNames(Names names) {
         System.out.print(NAME_START_FORMAT);
-        players.getPlayers().stream()
+        names.getNames().stream()
                 .map(Name::getName)
                 .forEach(OutputView::printName);
         System.out.println();
