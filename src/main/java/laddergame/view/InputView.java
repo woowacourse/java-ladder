@@ -20,14 +20,14 @@ public class InputView {
     }
 
     public List<String> readPersonNames() {
-        System.out.println(System.lineSeparator()+READ_PERSON_NAMES_MSG);
+        System.out.println(System.lineSeparator() + READ_PERSON_NAMES_MSG);
         String input = scanner.nextLine();
         validateIsBlank(input);
         return List.of(input.split(DELIMITER));
     }
 
     public int readLadderHeight() {
-        System.out.println(System.lineSeparator()+READ_LADDER_HEIGHT_MSG);
+        System.out.println(System.lineSeparator() + READ_LADDER_HEIGHT_MSG);
         try {
             return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {

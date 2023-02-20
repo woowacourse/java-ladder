@@ -7,8 +7,8 @@ import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
 public class LadderGameController {
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public void run() {
         Persons persons = makePersons();

@@ -41,10 +41,11 @@
 
 ---
 ## 1단계 미션 PR 이후 리팩토링
-- 접근 제한자
-  - [ ] 인텔리제이 설정 확인하기 (⌥⌘C → ⌥⌘C → private로 선택)
-  - [ ] Controller의 InputView OutputView는 외부에서 사용하는 필드가 아니므로 private final로 숨겨주기
-  - [ ] Line 클래스의 random 객체도 해당 클래스 내부에서만 사용되니 수정하기
+- 제어자
+  - [x] 인텔리제이 설정 확인하기 (⌥⌘C → ⌥⌘C → private로 선택)
+  - [x] Controller의 InputView OutputView는 외부에서 사용하는 필드가 아니므로 private final로 숨겨주기
+  - [x] Line 클래스의 random 객체도 해당 클래스 내부에서만 사용되니 수정하기
+  - [x] 키워드 정렬 순서 지키기
 - 에러 출력 메세지의 위치 고민해보기
   - [ ] 동료개발자가 "에러 메세지를 출력할 때 suffix 로 특수문자를 붙여주세요." 라는 요구사항을 접하면 `OutputView.java`와 `LadderGameController.java`중 어떤 파일을 먼저 열어볼까요? 에 대한 고민해보기
   - [ ] 마찬가지로 "사다리 높이에 대한 에러 출력 메세지 포맷을 변경해주세요." 라고 하면 어떤 파일을 먼저 열어볼까요? 에 대한 고민도 해보기

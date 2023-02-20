@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 public class Persons {
-    private final static int MIN_PERSON_LENGTH = 2;
-    private final static String ERROR_PERSON_LENGTH = "최소 참여자의 수는 " + MIN_PERSON_LENGTH + "명 이상이어야 합니다.";
-    private final static String ERROR_DUPLICATION = "참여자들 이름에 중복이 있어서는 안됩니다.";
+    private static final int MIN_PERSON_LENGTH = 2;
+    private static final String ERROR_PERSON_LENGTH = "최소 참여자의 수는 " + MIN_PERSON_LENGTH + "명 이상이어야 합니다.";
+    private static final String ERROR_DUPLICATION = "참여자들 이름에 중복이 있어서는 안됩니다.";
 
     private final List<Person> persons;
 
