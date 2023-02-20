@@ -18,6 +18,7 @@ public class LadderGameController {
     public void run() {
         Players players = initPlayers();
         Ladder ladder = initLadder(players.size());
+        InputView.terminate();
 
         showResult(players, ladder);
     }
