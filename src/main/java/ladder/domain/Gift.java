@@ -2,7 +2,7 @@ package ladder.domain;
 
 import java.util.regex.Pattern;
 
-public class Goods {
+public class Gift {
     private static final Pattern BOOM_PATTERN = Pattern.compile("^[꽝]$");
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]+$");
     private static final int MINIMUM_SIZE = 2;
@@ -10,7 +10,7 @@ public class Goods {
 
     private String value;
 
-    public Goods(String value) {
+    public Gift(String value) {
         String trimValue = value.trim();
         validate(trimValue);
         this.value = trimValue;
