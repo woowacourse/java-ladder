@@ -64,7 +64,7 @@ public class ParticipantsTest {
         Participants participants = Participants.create(participantNames);
 
         // when
-        List<String> targetParticipantNames = participants.getValidParticipantNames(validParticipantName);
+        List<String> targetParticipantNames = participants.getResultParticipantNames(validParticipantName);
 
         // then
         assertThat(targetParticipantNames.size())
@@ -82,7 +82,7 @@ public class ParticipantsTest {
         Participants participants = Participants.create(participantNames);
 
         // when
-        List<String> targetParticipantNames = participants.getValidParticipantNames(allParticipantName);
+        List<String> targetParticipantNames = participants.getResultParticipantNames(allParticipantName);
 
         // then
         assertThat(targetParticipantNames.size())
@@ -100,7 +100,7 @@ public class ParticipantsTest {
         Participants participants = Participants.create(participantNames);
 
         // when, then
-        assertThatThrownBy(() -> participants.getValidParticipantNames(invalidParticipantName))
+        assertThatThrownBy(() -> participants.getResultParticipantNames(invalidParticipantName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 참여자 리스트에 존재하지 않습니다. 현재 참여자 리스트 = " + participantNames);
     }

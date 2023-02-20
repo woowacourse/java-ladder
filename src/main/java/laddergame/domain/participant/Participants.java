@@ -62,7 +62,7 @@ public class Participants {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<String> getValidParticipantNames(final String participantName) {
+    public List<String> getResultParticipantNames(final String participantName) {
         String trimName = participantName.trim();
         List<String> participantNames = getParticipantNames();
         if (trimName.equalsIgnoreCase(ALL_PARTICIPANTS)) {

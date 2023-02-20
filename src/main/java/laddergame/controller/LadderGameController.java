@@ -1,8 +1,8 @@
 package laddergame.controller;
 
 import laddergame.domain.ladder.Ladder;
-import laddergame.domain.ladder.LadderResult;
-import laddergame.domain.ladder.LadderResultName;
+import laddergame.domain.ladder_result.LadderResult;
+import laddergame.domain.ladder_result.LadderResultName;
 import laddergame.domain.participant.Participant;
 import laddergame.domain.participant.Participants;
 import laddergame.util.BooleanGenerator;
@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static laddergame.view.message.Message.LADDER_RESULT_GUIDE;
-import static laddergame.view.message.Message.RESULT_GAME_GUIDE;
 
 public class LadderGameController {
 
@@ -31,10 +30,12 @@ public class LadderGameController {
         Participants participants = createParticipants();
         int participantSize = participants.size();
         LadderResult ladderResult = createLadderResult(participantSize);
+
         Ladder ladder = createLadder(participantSize);
         printGameResult(participants, ladder, ladderResult);
-        List<String> validParticipantNames = getValidParticipantNames(participants);
-        OutputView.print(System.lineSeparator() + RESULT_GAME_GUIDE.getMessage() + System.lineSeparator());
+
+        List<Integer> ladderResultPositions = ladder.startGame(participantSize);
+        List<String> resultParticipantNames = getResultParticipantNames(participants);
     }
 
     private Participants createParticipants() {
@@ -80,10 +81,10 @@ public class LadderGameController {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private List<String> getValidParticipantNames(final Participants participants) {
+    private List<String> getResultParticipantNames(final Participants participants) {
         return inputView.getInputWithRetry(() -> {
             String resultParticipantName = inputView.getResultParticipantName();
-            return participants.getValidParticipantNames(resultParticipantName);
+            return participants.getResultParticipantNames(resultParticipantName);
         });
     }
 }
