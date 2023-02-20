@@ -6,24 +6,24 @@ import java.util.stream.IntStream;
 
 public class Line {
     private final List<Bar> bars;
-    private final int SUBTRACT_FIRST_BAR= -1;
+    private final int SUBTRACT_FIRST_BAR = -1;
 
     public Line() {
         bars = new ArrayList<>(List.of(new Bar(false)));
     }
 
     public void addBars(int peopleSize, BarGenerator barGenerator) {
-        IntStream.range(0, peopleSize - SUBTRACT_FIRST_BAR)
+        IntStream.range(0, peopleSize + SUBTRACT_FIRST_BAR)
                 .forEach(count -> addBar(barGenerator));
     }
 
     private void addBar(BarGenerator barGenerator) {
         if (lastBar().isExistBar()) {
-            addFalse();
+            addFalseBar();
             return;
         }
 
-        addRandom(barGenerator);
+        addRandomBar(barGenerator);
     }
 
     private Bar lastBar() {
@@ -34,11 +34,11 @@ public class Line {
         return bars.size() - 1;
     }
 
-    private void addRandom(BarGenerator barGenerator) {
+    private void addRandomBar(BarGenerator barGenerator) {
         bars.add(new Bar(barGenerator));
     }
 
-    private void addFalse() {
+    private void addFalseBar() {
         bars.add(new Bar(false));
     }
 
