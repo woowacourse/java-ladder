@@ -4,25 +4,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import domain.generator.RandomConnectionGenerator;
+import domain.generator.ConnectionGenerator;
 
 public class Lines {
 
     private final List<Line> lines;
 
-    public Lines(final int numberOfPlayer, final int height) {
-        this.lines = makeLines(numberOfPlayer, height);
+    public Lines(final int numberOfPlayer, final int height, final ConnectionGenerator connectionGenerator) {
+        this.lines = makeLines(numberOfPlayer, height, connectionGenerator);
     }
 
-    public Lines(final List<Line> lines) {
-        this.lines = lines;
-    }
-
-    private List<Line> makeLines(final int numberOfPlayer, final int height) {
+    private List<Line> makeLines(final int numberOfPlayer, final int height,
+                                 final ConnectionGenerator connectionGenerator) {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(numberOfPlayer, new RandomConnectionGenerator()));
+            lines.add(new Line(numberOfPlayer, connectionGenerator));
         }
 
         return lines;

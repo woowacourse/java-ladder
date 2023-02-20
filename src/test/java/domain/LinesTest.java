@@ -7,6 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import domain.generator.RandomConnectionGenerator;
+
 public class LinesTest {
 
     @ParameterizedTest
@@ -17,7 +19,7 @@ public class LinesTest {
         int expectedLadderWidth = numberOfPlayers - 1;
 
         // when
-        Lines lines = new Lines(numberOfPlayers, height);
+        Lines lines = new Lines(numberOfPlayers, height, new RandomConnectionGenerator());
 
         // then
 
