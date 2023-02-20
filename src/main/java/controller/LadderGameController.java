@@ -26,20 +26,10 @@ public class LadderGameController {
         try {
             Players players = new Players(inputView.readUserNames());
             Height height = new Height(inputView.readHeight());
-            Ladder ladder = generateLadder(players, height);
+            Ladder ladder = new Ladder(players, height, trueOrFalseGenerator);
             outputView.printResult(players.getPlayers(), ladder.getLines(), players.getMaxPlayerNameLength());
         } catch (IllegalArgumentException e) {
             outputView.printErrormessage(e.getMessage());
         }
-    }
-
-    private Ladder generateLadder(Players players, Height height) {
-        List<Line> lines = new ArrayList<>();
-        while (height.isPossibleCount()) {
-            Line line = new Line(players.getPlayersCount(), trueOrFalseGenerator);
-            lines.add(line);
-            height.minusHeight();
-        }
-        return new Ladder(lines);
     }
 }
