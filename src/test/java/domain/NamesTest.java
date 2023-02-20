@@ -4,9 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import java.util.ArrayList;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -20,6 +18,8 @@ public class NamesTest {
     private final List<Name> failNames = List.of(new Name("포비"));
     private final List<Name> successNames = List.of(new Name("찰리"), new Name("가비"));
 
+    private final Names names = new Names(List.of(new Name("찰리"), new Name("가비")));
+
     @Test
     void Name_의_List_를_통해_생성된다() {
         assertDoesNotThrow(() -> new Names(successNames));
@@ -32,6 +32,6 @@ public class NamesTest {
 
     @Test
     void 크기를_알_수_있다() {
-        assertThat(successNames.size()).isEqualTo(2);
+        assertThat(names.size()).isEqualTo(2);
     }
 }
