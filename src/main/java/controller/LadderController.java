@@ -3,6 +3,8 @@ package controller;
 import domain.Height;
 import domain.Ladder;
 import domain.Players;
+import util.LineGenerator;
+import util.RandomLineGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -25,9 +27,10 @@ public class LadderController {
     }
 
     private Ladder makeLadder(Players players) {
+        LineGenerator lineGenerator = new RandomLineGenerator();
         try {
             int height = InputView.receiveHeight();
-            return new Ladder(players.getNumberOfPlayers(), new Height(height));
+            return new Ladder(players.getNumberOfPlayers(), new Height(height), lineGenerator);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
             return makeLadder(players);

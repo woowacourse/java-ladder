@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import util.LineGenerator;
+import util.RandomLineGenerator;
 
 public class LadderTest {
 
@@ -13,7 +15,8 @@ public class LadderTest {
     void makeLadder() {
         int numberOfWalls = 4;
         Height height = new Height(5);
-        Ladder ladder = new Ladder(numberOfWalls, height);
+        LineGenerator lineGenerator = new RandomLineGenerator();
+        Ladder ladder = new Ladder(numberOfWalls, height, lineGenerator);
 
         assertAll(
                 () -> assertThat(ladder.getLines().size()).isEqualTo(height.getHeight()),
