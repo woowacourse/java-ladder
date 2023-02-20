@@ -10,7 +10,7 @@ public class Line {
     private final List<Block> blocks;
     private final BlockGenerator blockGenerator;
 
-    public Line(final int playerNumber, BlockGenerator blockGenerator) {
+    public Line(BlockGenerator blockGenerator, final int playerNumber) {
         this.blockGenerator = blockGenerator;
         this.blocks = makeBlocks(playerNumber - 1);
     }
