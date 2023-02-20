@@ -1,7 +1,8 @@
 package ladder.domain.ladder;
 
-import ladder.domain.valueGenerator.MockValueGenerator;
-import ladder.domain.valueGenerator.ValueGenerator;
+import ladder.domain.valueGenerator.IntegerGenerator;
+import ladder.domain.valueGenerator.MockBooleanGenerator;
+import ladder.domain.valueGenerator.MockIntegerGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,13 +14,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class HeightTest {
     private int heightValue;
     private Height height;
-    private ValueGenerator valueGenerator;
+    private IntegerGenerator integerGenerator;
 
     @BeforeEach
     void setup() {
         heightValue = 3;
-        valueGenerator = new MockValueGenerator(List.of(heightValue), List.of(false));
-        height = Height.create(heightValue, valueGenerator);
+        integerGenerator = new MockIntegerGenerator(List.of(heightValue));
+        height = Height.create(heightValue, integerGenerator);
     }
 
     @Test
@@ -31,7 +32,7 @@ public class HeightTest {
     @Test
     @DisplayName("Height 객체 equals 테스트")
     void equalsTest() {
-        Height other = Height.create(heightValue, valueGenerator);
+        Height other = Height.create(heightValue, integerGenerator);
         assertThat(height).isEqualTo(other);
     }
 }

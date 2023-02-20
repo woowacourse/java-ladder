@@ -1,8 +1,6 @@
 package ladder.domain.valueGenerator;
 
-public interface ValueGenerator {
-
-    boolean generateBoolean();
+public interface IntegerGenerator {
 
     int generateNumber(int min, int max);
 

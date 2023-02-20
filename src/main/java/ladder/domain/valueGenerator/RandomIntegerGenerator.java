@@ -2,17 +2,12 @@ package ladder.domain.valueGenerator;
 
 import java.util.Random;
 
-public class RandomValueGenerator implements ValueGenerator {
+public class RandomIntegerGenerator implements  IntegerGenerator{
 
     private final Random random;
 
-    public RandomValueGenerator() {
+    public RandomIntegerGenerator() {
         this.random = new Random();
-    }
-
-    @Override
-    public boolean generateBoolean() {
-        return random.nextBoolean();
     }
 
     @Override

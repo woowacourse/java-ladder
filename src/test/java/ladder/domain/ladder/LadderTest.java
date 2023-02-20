@@ -1,8 +1,7 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.Ladder;
-import ladder.domain.valueGenerator.MockValueGenerator;
-import ladder.domain.valueGenerator.ValueGenerator;
+import ladder.domain.valueGenerator.BooleanGenerator;
+import ladder.domain.valueGenerator.MockBooleanGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,11 +15,11 @@ public class LadderTest {
 
     private final int heightOfLadder = 5;
     private final int playerCount = 5;
-    private ValueGenerator valueGenerator;
+    private BooleanGenerator valueGenerator;
 
     @BeforeEach
     void setup() {
-        valueGenerator = new MockValueGenerator(List.of(heightOfLadder), List.of(true));
+        valueGenerator = new MockBooleanGenerator(List.of(true));
     }
 
     @Test

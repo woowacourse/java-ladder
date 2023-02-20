@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.domain.valueGenerator.ValueGenerator;
+import ladder.domain.valueGenerator.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,11 +14,11 @@ public class Ladder {
         this.ladder = new ArrayList<>(lines);
     }
 
-    public static Ladder create(int count, int height, ValueGenerator valueGenerator) {
+    public static Ladder create(int count, int height, BooleanGenerator booleanGenerator) {
         List<Line> lines = new ArrayList<>();
 
         for (int idx = 0; idx < height; idx++) {
-            List<Bar> bars = LineMaker.generate(count, valueGenerator);
+            List<Bar> bars = LineMaker.generate(count, booleanGenerator);
             lines.add(new Line(bars));
         }
 
