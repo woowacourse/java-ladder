@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 class Ladder {
 
     private static final String INVALID_HEIGHT_MESSAGE = "사다리 높이는 최소 1, 최대 100까지 가능합니다.";
+
     private final List<Line> lines;
 
     public Ladder(final BooleanGenerator booleanGenerator, final int height, final int width) {
