@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 public enum LineState {
     MOVABLE_STATE(1, true),
@@ -22,15 +21,11 @@ public enum LineState {
     }
 
     public static LineState of(int value) {
-        try {
-            return Arrays.stream(LineState.values())
-                    .filter(s -> s.value == value)
-                    .findAny()
-                    .get();
-        } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException(
-                    String.format(CAN_NOT_FIND_STATE_FROM_VALUE_MESSAGE ,value));
-        }
+        return Arrays.stream(LineState.values())
+                .filter(s -> s.value == value)
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(
+                        String.format(CAN_NOT_FIND_STATE_FROM_VALUE_MESSAGE, value)));
     }
 
 }

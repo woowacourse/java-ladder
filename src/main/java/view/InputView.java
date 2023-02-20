@@ -16,7 +16,7 @@ public class InputView {
         System.out.println(NAME_INPUT_NOTICE);
         String[] names = readInput().split(DELIMITER);
         return Arrays.stream(names)
-                .map(s -> s.trim())
+                .map(String::trim)
                 .collect(Collectors.toList());
     }
 

@@ -20,7 +20,7 @@ public class Players {
 
     public List<String> getNames() {
         return players.stream()
-                .map(s -> s.getName())
+                .map(Person::getName)
                 .collect(Collectors.toList());
     }
 
