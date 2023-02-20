@@ -67,7 +67,7 @@ public class Players {
         return this.players.get(0).getLengthOfPlayerName();
     }
 
-    public Player findPlayer(final String name) {
+    public Player findPlayerByName(final String name) {
         return players.stream()
                 .filter(player -> player.getName().equals(name))
                 .findFirst()
@@ -78,7 +78,7 @@ public class Players {
         return Collections.unmodifiableList(this.players);
     }
 
-    public void addResult(int playerIndex, String result) {
-        this.getPlayers().get(playerIndex).addResult(result);
+    public Player findPlayerByIndex(int index) {
+        return this.players.get(index);
     }
 }

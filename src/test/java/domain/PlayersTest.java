@@ -129,7 +129,7 @@ public class PlayersTest {
         Players players = new Players(List.of(player1, player2, player3));
 
         // when
-        Player expectedPlayer = players.findPlayer(player1);
+        Player expectedPlayer = players.findPlayerByName(player1);
 
         // then
         assertThat(expectedPlayer.getName()).isEqualTo(player1);
