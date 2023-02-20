@@ -16,7 +16,7 @@ public class LineTest {
     @BeforeEach
     void setup() {
         widthOfLadder = 5;
-        line = new Line(widthOfLadder, new MockRandomDataGenerator());
+        line = Line.of(widthOfLadder, new MockRandomDataGenerator());
     }
 
     @Test
