@@ -23,13 +23,13 @@ public class LadderGameController {
         Players players = readPersons();
         Ladder ladder = readLadder(players.getCount() - 1);
 
-        outputView.printPersonNames(players.getPlayersName());
+        outputView.printPlayerNames(players.getNames());
         outputView.printLadder(ladder.getLines());
     }
 
     private Players readPersons() {
         try {
-            List<String> names = inputView.readPersonsName();
+            List<String> names = inputView.readPlayerNames();
             return new Players(names);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);

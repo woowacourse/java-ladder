@@ -10,11 +10,11 @@ public class Players {
     private final List<Person> players = new ArrayList<>();
 
     public Players(List<String> names) {
-        validateDuplicateName(names);
+        validateDuplicateNames(names);
         initiatePlayers(names);
     }
 
-    public List<String> getPlayersName() {
+    public List<String> getNames() {
         return players.stream()
                 .map(s -> s.getName())
                 .collect(Collectors.toList());
@@ -24,7 +24,7 @@ public class Players {
         return players.size();
     }
 
-    private void validateDuplicateName(List<String> names) {
+    private void validateDuplicateNames(List<String> names) {
         if (isDuplicated(names)) {
             throw new IllegalArgumentException(DUPLICATE_NAME_MESSAGE);
         }
