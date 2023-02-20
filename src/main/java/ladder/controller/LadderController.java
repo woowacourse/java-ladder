@@ -14,6 +14,6 @@ public class LadderController {
         Ladder ladder = new Ladder(new RandomBasedBooleanGenerator(), ladderHeight, playerNames.playerSize());
         
         OutputView.printNames(playerNames);
-        OutputView.printLadder(ladder, playerNames.firstPlayerNameLength());
+        OutputView.printLadder(ladder, playerNames.getFirstPlayerNameLength());
     }
 }

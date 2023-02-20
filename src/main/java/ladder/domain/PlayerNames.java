@@ -59,7 +59,7 @@ public class PlayerNames {
         return names.size();
     }
     
-    public int firstPlayerNameLength() {
+    public int getFirstPlayerNameLength() {
         return names.get(0).length();
     }
     
