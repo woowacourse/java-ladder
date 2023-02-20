@@ -14,6 +14,8 @@ public class OutputView {
     private static final String PARTICIPANT_NAME_FORMAT_FOR_LAST_INDEX = "%4s";
     private static final String LEFT_LEG = "    |";
     private static final String LEG = "|";
+    private static final String PASSABLE = "-----";
+    private static final String UN_PASSABLE = "     ";
     private static final String LINE_FEED = "\n";
     private static final int CONVERT_INDEX_VALUE = 1;
 
@@ -69,8 +71,15 @@ public class OutputView {
     }
 
     private void printPath(Path path) {
-        print(path.getLog());
+        print(mapToPassableLog(path));
         print(LEG);
+    }
+
+    private String mapToPassableLog(Path path) {
+        if (path.isPassable()) {
+            return PASSABLE;
+        }
+        return UN_PASSABLE;
     }
 
     public void printExceptionMessage(String message) {

@@ -27,12 +27,4 @@ class PathTest {
 
         assertThat(actual).isSameAs(expected);
     }
-    
-    @ParameterizedTest
-    @CsvSource(value = {"PASSABLE:-----", "UN_PASSABLE:'     '"}, delimiter = ':')
-    void getLog_메소드는_호출하면_log를_반환한다(Path path, String expected) {
-        String actual = path.getLog();
-
-        assertThat(actual).isEqualTo(expected);
-    }
 }
