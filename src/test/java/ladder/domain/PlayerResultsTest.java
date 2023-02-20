@@ -12,29 +12,30 @@ class PlayerResultsTest {
     @DisplayName("게임의 결과가 제대로 생성되어야 한다.")
     void create_success() {
         // given
-        PlayerResults playerResults = new PlayerResults(createPlayers(), createResults());
+        PlayerResults playerResults = new PlayerResults(createPlayerResults());
 
         // when
-        Result result = playerResults.getResultByPlayer(new Player("glen"));
+        PlayerResult result = playerResults.findByPlayer(new Player("glen"));
 
         // then
         assertThat(result.getResult())
-                .isEqualTo("5000");
+                .isEqualTo("1000");
     }
 
-    private List<Player> createPlayers() {
+    private static List<PlayerResult> createPlayerResults() {
         return List.of(
-                new Player("glen"),
-                new Player("doggy"),
-                new Player("pobi")
-        );
-    }
-
-    private List<Result> createResults() {
-        return List.of(
-                new Result("5000"),
-                new Result("꽝"),
-                new Result("3000")
+                new PlayerResult(
+                        new Player("glen"),
+                        new Result("1000")
+                ),
+                new PlayerResult(
+                        new Player("doggy"),
+                        new Result("5000")
+                ),
+                new PlayerResult(
+                        new Player("pobi"),
+                        new Result("꽝")
+                )
         );
     }
 }

@@ -1,26 +1,18 @@
 package ladder.domain;
 
-import static java.util.stream.Collectors.*;
-
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.IntStream;
 
 public class PlayerResults {
-    private final Map<Player, Result> playerResults;
+    private final List<PlayerResult> playerResults;
 
-    public PlayerResults(List<Player> players, List<Result> results) {
-        this.playerResults = IntStream.range(0, players.size())
-                .boxed()
-                .collect(toMap(players::get, results::get));
+    public PlayerResults(List<PlayerResult> playerResults) {
+        this.playerResults = playerResults;
     }
 
-    public Result getResultByPlayer(Player player) {
-        return playerResults.get(player);
-    }
-
-    public Map<Player, Result> getPlayerResults() {
-        return Collections.unmodifiableMap(playerResults);
+    public PlayerResult findByPlayer(Player player) {
+        return playerResults.stream()
+                .filter(playerResult -> playerResult.isPlayerMatch(player))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 참여자가 없습니다."));
     }
 }
