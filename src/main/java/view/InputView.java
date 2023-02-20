@@ -14,7 +14,7 @@ public class InputView {
         System.out.println(PLAYER_NAME_INPUT_GUIDE_MESSAGE);
     }
 
-    public List<String> readPlayerName() {
+    public List<String> readPlayerNames() {
         printPlayerNameInputGuideMessage();
 
         Scanner scanner = new Scanner(System.in);
