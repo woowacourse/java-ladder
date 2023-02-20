@@ -10,12 +10,8 @@ public class WinningEntry {
     private final String value;
 
     public WinningEntry(final String value) {
-        validate(value);
-        this.value = value;
-    }
-
-    private void validate(final String value) {
         validateSize(value);
+        this.value = value;
     }
 
     private void validateSize(final String value) {
