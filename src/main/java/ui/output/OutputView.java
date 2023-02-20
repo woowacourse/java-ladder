@@ -15,12 +15,12 @@ public class OutputView {
 
     public static void printResult(Person person, Lines lines) {
         System.out.println("\n" + EXECUTE_RESULT + "\n");
-        printNames(person);
-        printLadder(lines);
+        int maxLength = person.getPerson().stream().mapToInt(p -> p.getName().length()).max().orElseThrow();
+        printNames(person, maxLength);
+        printLadder(lines, maxLength);
     }
 
-    private static void printNames(Person person) {
-        int maxLength = person.getPerson().stream().mapToInt(p -> p.getName().length()).max().orElseThrow();
+    private static void printNames(Person person, int maxLength) {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (People people : person.getPerson()) {
@@ -42,10 +42,10 @@ public class OutputView {
         return stringBuilder;
     }
 
-    private static void printLadder(Lines lines) {
+    private static void printLadder(Lines lines, int maxLine) {
         lines.getLines()
                 .forEach(line -> {
-                    StringBuilder lineForm = LadderShape.getLineForm(line.getPoints());
+                    StringBuilder lineForm = LadderShape.getLineForm(line.getPoints(), maxLine);
                     System.out.println(lineForm);
                 });
     }

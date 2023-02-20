@@ -8,7 +8,7 @@ import java.util.List;
  * @Created by 최원용 on 2023. 02. 15.
  */
 public enum LadderShape {
-    WALL("|"), FIRST_WALL("    |"), CONNECT("-----"), DISCONNECT("     ");
+    WALL("|"), CONNECT("-"), DISCONNECT(" ");
 
     LadderShape(String shape) {
         this.shape = shape;
@@ -16,20 +16,36 @@ public enum LadderShape {
 
     private final String shape;
 
-    public static StringBuilder getLineForm(List<Boolean> points) {
+    public static StringBuilder getLineForm(List<Boolean> points, int maxLength) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(FIRST_WALL.shape);
+        stringBuilder.append(generateFirstWall(maxLength));
         for (boolean point : points) {
-            appendLineForm(point, stringBuilder);
+            appendLineForm(point, stringBuilder, maxLength);
         }
         return stringBuilder;
     }
 
-    private static void appendLineForm(boolean point, StringBuilder stringBuilder) {
+    private static StringBuilder generateFirstWall(int maxLength) {
+        StringBuilder firstWall = new StringBuilder("|");
+        while (firstWall.length() < maxLength) {
+            firstWall = new StringBuilder(" " + firstWall);
+        }
+        return firstWall;
+    }
+
+    private static void appendLineForm(boolean point, StringBuilder stringBuilder, int maxLine) {
         if (point) {
-            stringBuilder.append(CONNECT.shape).append(WALL.shape);
+            stringBuilder.append(generateConnectLine(maxLine)).append(WALL.shape);
             return;
         }
-        stringBuilder.append(DISCONNECT.shape).append(WALL.shape);
+        stringBuilder.append(generateDisconnectLine(maxLine)).append(WALL.shape);
+    }
+
+    private static String generateConnectLine(int maxLength) {
+        return CONNECT.shape.repeat(maxLength);
+    }
+
+    private static String generateDisconnectLine(int maxLength) {
+        return DISCONNECT.shape.repeat(maxLength);
     }
 }
