@@ -61,7 +61,7 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_BIG_INTEGER.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_BIG_HEIGHT.getMessage());
         }
     }
 
