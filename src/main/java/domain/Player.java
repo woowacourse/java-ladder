@@ -16,7 +16,7 @@ public class Player {
         return playerName.getPlayerName();
     }
 
-    public ResultContent getResultContent() {
-        return resultContent;
+    public String getResultContent() {
+        return resultContent.getContent();
     }
 }

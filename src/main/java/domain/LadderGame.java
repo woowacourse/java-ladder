@@ -41,7 +41,7 @@ public class LadderGame {
         player.updateResult(resultContent);
     }
 
-    public ResultContent getResultByPlayerName(String playerName) {
+    public String getResultByPlayerName(String playerName) {
         Player player = players.findByName(playerName);
         return player.getResultContent();
     }

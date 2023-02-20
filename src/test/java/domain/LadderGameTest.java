@@ -32,9 +32,9 @@ class LadderGameTest {
         ladderGame.buildBridges();
         ladderGame.runGame();
 
-        assertThat(ladderGame.getResultByPlayerName("pobi")).extracting("content").isEqualTo("5000");
-        assertThat(ladderGame.getResultByPlayerName("crong")).extracting("content").isEqualTo("꽝");
-        assertThat(ladderGame.getResultByPlayerName("royce")).extracting("content").isEqualTo("10000");
+        assertThat(ladderGame.getResultByPlayerName("pobi")).isEqualTo("5000");
+        assertThat(ladderGame.getResultByPlayerName("crong")).isEqualTo("꽝");
+        assertThat(ladderGame.getResultByPlayerName("royce")).isEqualTo("10000");
     }
 
 
