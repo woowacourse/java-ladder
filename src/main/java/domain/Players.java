@@ -5,20 +5,25 @@ import java.util.stream.Collectors;
 
 public class Players {
     public static final String PLAYERS_SIZE_ERROR_MESSAGE = "[ERROR] 사다리 게임을 위해서는 2명 이상의 플레이어가 필요합니다";
-    public static final int PLAYERS_MIN_SIZE = 2;
+    public static final int MIN_PLAYERS_SIZE = 2;
 
     private List<Player> players;
 
-    public Players(List<Player> players) {
-        this.players = validatePlayersSize(players);
+    public Players(PlayerNames playerNames) {
+        validatePlayersSize(playerNames);
+        createPlayers(playerNames);
     }
 
-    private List<Player> validatePlayersSize(List<Player> players) {
-        if (players.size() < PLAYERS_MIN_SIZE) {
+    private void validatePlayersSize(PlayerNames playerNames) {
+        if (playerNames.getPlayerNames().size() < MIN_PLAYERS_SIZE) {
             throw new IllegalArgumentException(PLAYERS_SIZE_ERROR_MESSAGE);
         }
+    }
 
-        return players;
+    private void createPlayers(PlayerNames playerNames) {
+        for(PlayerName playerName :playerNames.getPlayerNames()) {
+            this.players.add(new Player(playerName.getName()));
+        }
     }
 
     public List<String> getPlayersName() {

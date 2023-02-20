@@ -2,14 +2,14 @@ package domain;
 
 import view.InputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerNames {
     InputView inputView;
     private List<PlayerName> playerNames;
 
-    public PlayerNames(List<String> playerNames) {
+    public PlayerNames(List<String> playerNames, InputView inputView) {
+        this.inputView = inputView;
         validatePlayerNames(playerNames);
         createPlayerNames(playerNames);
     }
@@ -25,16 +25,21 @@ public class PlayerNames {
        리뷰어님의 생각이 궁금해요! (일단은 recursion으로 구현했습니다) */
     private List<String> validatePlayerNames(List<String> playerNames) {
         try {
-            for (String playerName : playerNames) {
-                PlayerName.validateName(playerName);
-            }
+            validatePlayerName(playerNames);
         } catch (IllegalArgumentException exception) {
+            inputView.printErrorMessage(exception.getMessage());
             playerNames = validatePlayerNames(inputView.readPlayerNames());
         }
-
-
-
         return playerNames;
     }
 
+    private static void validatePlayerName(List<String> playerNames) {
+        for (String playerName : playerNames) {
+            PlayerName.validateName(playerName);
+        }
+    }
+
+    public List<PlayerName> getPlayerNames() {
+        return this.playerNames;
+    }
 }
