@@ -3,11 +3,12 @@ package ladder.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ladder.model.ErrorMessage.EXCEPTION_PLAYER_COUNT_MINIMUM;
+import static ladder.model.ErrorMessage.EXCEPTION_PLAYER_COUNT;
 
 public class LadderGame {
 
     private static final int MIN_PLAYER_COUNT = 2;
+    private static final int MAX_PLAYER_COUNT = 30;
     private final List<Player> players;
     private final Height height;
     private final LineCreateDecider lineCreateDecider;
@@ -22,8 +23,8 @@ public class LadderGame {
     }
 
     private void validatePlayerCount(List<Player> players) {
-        if (players.size() < MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException(EXCEPTION_PLAYER_COUNT_MINIMUM.getMessage());
+        if (players.size() < MIN_PLAYER_COUNT || players.size() > MAX_PLAYER_COUNT) {
+            throw new IllegalArgumentException(EXCEPTION_PLAYER_COUNT.getMessage());
         }
     }
 
