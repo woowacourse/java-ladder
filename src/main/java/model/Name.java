@@ -29,4 +29,13 @@ public class Name {
         return this.name;
     }
 
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return this.hashCode()==o.hashCode();
+    }
 }

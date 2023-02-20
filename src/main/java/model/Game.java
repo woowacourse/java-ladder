@@ -14,6 +14,7 @@ public class Game {
         for (Name name : names.getNames()) {
             int startIndex = names.getNames().indexOf(name);
             int resultIndex = moveLadder(names.getNamesSize(), height, ladder, startIndex);
+            prizeResult.put(name, result.getLadderResult(resultIndex));
         }
     }
 
@@ -41,4 +42,7 @@ public class Game {
         return column < personCount - 1 && ladder.getLadder(row).getLine(column);
     }
 
+    public String getPrizeResult(String name) {
+        return prizeResult.get(new Name(name));
+    }
 }
