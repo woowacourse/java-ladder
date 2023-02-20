@@ -17,9 +17,10 @@ public class PlayersTest {
     @Test
     void convertPlayerObject() {
         List<String> names = List.of("be", "bebe", "bebebe");
-        for (String name : names) {
-            Player player = new Player(name);
-            Assertions.assertEquals(player.getClass(), Player.class);
-        }
+        Assertions.assertAll(() -> {
+            Assertions.assertEquals(new Players(names).getPlayers().get(0).getName(), "be");
+            Assertions.assertEquals(new Players(names).getPlayers().get(1).getName(), "bebe");
+            Assertions.assertEquals(new Players(names).getPlayers().get(2).getName(), "bebebe");
+        });
     }
 }
