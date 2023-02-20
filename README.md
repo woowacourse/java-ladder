@@ -39,15 +39,19 @@
   - [x] 가장 긴 이름의 길이 리턴
   - [x] 첫번째 이름 길이 절반의 반올림된 값 리턴
   - [x] 참가 인원 수와 순서 관리
-- [x] Line :List <Boolean>
+- [x] Link
+  - [x] 원시값 boolean 포장
+- [x] Floor :List <Link>
   - [x] 선의 연결 상태가 최소 하나 이상인지 검증
   - [x] 라인이 겹치지 않도록 생성한다.
-- [x] Ladder : List<Line>
-  - [x] 높이의 수가 하나 이상인지 검증
+- [x] Height
+  - [x] 원시값 int 포장
+  - [x] 높이가 최소 1 이상인지 검증
+- [x] Ladder : List<Floor>
   - [x] Line 인스턴스 생성
 - [x] PickStrategy
-  - [x] Boolean Picker를 위한 인터페이스
-- [x] RandomBooleanPicker
+  - [x] Picker를 위한 인터페이스
+- [x] :LinkPicker
   - [x] 랜덤으로 boolean 값을 생성
 - [x] InputView
   - [x] 사람 이름 입력
@@ -57,5 +61,7 @@
 - [x] OutputView
   - [x] 사다리를 출력할 때 사람 이름도 같이 출력한다.
   - [x] 5자 기준으로 출력하기 때문에 사다리 폭도 넓어져야 한다
- → 저희는 동적으로 움직이는 것이라 해석했습니다.
- 정답은? 클라이언트에게 다시 여쭤본다. (임의 해석은 하지 않는다.)
+  - → 저희는 동적으로 움직이는 것이라 해석했습니다.
+- [x] OutputFormat
+  - [x] Link를 출력형식에 맞춰 변환
+ 
