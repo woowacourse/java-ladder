@@ -19,4 +19,12 @@ class ResultsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("플레이어 수와 실행 결과 수가 일치하면 통과 테스트")
+    void validResultCountTest(){
+        List<String> results = new ArrayList<>(List.of("꽝", "꽝", "3000", "5000"));
+        Assertions.assertThatThrownBy(() -> new Results(results, 4))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
