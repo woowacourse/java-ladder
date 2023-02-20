@@ -21,6 +21,7 @@ public class Controller {
     public void run() {
         createUser();
         createLadder();
+        OutputView.printResultMessage();
         printUsers();
         printLadder();
     }
@@ -54,7 +55,7 @@ public class Controller {
     }
 
     private void printLadder() {
-        List<String> ladderMap = ladder.parseLadderToString();
+        List<List<Boolean>> ladderMap = ladder.getLadderMap();
         OutputView.printLadder(ladderMap);
     }
 }

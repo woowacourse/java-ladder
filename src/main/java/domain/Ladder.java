@@ -21,9 +21,9 @@ public class Ladder {
         }
     }
 
-    public List<String> parseLadderToString() {
+    public List<List<Boolean>> getLadderMap() {
         return ladderRows.stream()
-                .map(LadderRow::parseLineToString)
+                .map(LadderRow::getBars)
                 .collect(Collectors.toUnmodifiableList());
     }
 }
