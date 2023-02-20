@@ -38,10 +38,4 @@ public enum Point {
         return this.isExist;
     }
 
-    public static List<Boolean> convertPointsToValues(List<Point> points) {
-        return points.stream()
-                .map(Point::isExist)
-                .collect(Collectors.toUnmodifiableList());
-    }
-
 }

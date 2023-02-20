@@ -18,8 +18,8 @@ public class LadderGame {
         return ladder;
     }
 
-    public List<String> getPlayerNames() {
-        return players.getPlayerNames();
+    public Players getPlayers() {
+        return players;
     }
 
 }

@@ -1,5 +1,7 @@
 package controller;
 
+import controller.dto.LadderResponse;
+import controller.dto.PlayersResponse;
 import domain.*;
 import factory.PlayersFactory;
 import view.InputView;
@@ -13,7 +15,6 @@ public class LadderGameController {
     private final InputView inputView;
     private final OutputView outputView;
     private LadderGame ladderGame;
-    private Players players;
 
     public LadderGameController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
@@ -28,22 +29,16 @@ public class LadderGameController {
     private void ready() {
         List<String> playerNames = inputView.readPlayerNames();
         int ladderHeight = inputView.readLadderHeight();
-        players = PlayersFactory.generate(playerNames);
+        Players players = PlayersFactory.generate(playerNames);
         ladderGame = new LadderGame(players, ladderHeight);
     }
 
     private void printGeneratedLadder() {
         Ladder ladder = ladderGame.getLadder();
-        List<Line> lines = ladder.getLines();
-        List<List<Boolean>> pointValues = getPointValues(lines);
-        outputView.printGeneratedLadder(ladderGame.getPlayerNames(), pointValues);
-    }
-
-    private List<List<Boolean>> getPointValues(List<Line> lines) {
-        return lines.stream()
-                .map(Line::getPoints)
-                .map(Point::convertPointsToValues)
-                .collect(Collectors.toList());
+        Players players = ladderGame.getPlayers();
+        LadderResponse ladderResponse = LadderResponse.from(ladder);
+        PlayersResponse playersResponse = PlayersResponse.from(players);
+        outputView.printGeneratedLadder(playersResponse, ladderResponse);
     }
 
 }

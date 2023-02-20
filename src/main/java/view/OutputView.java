@@ -1,5 +1,8 @@
 package view;
 
+import controller.dto.LadderResponse;
+import controller.dto.PlayersResponse;
+
 import java.util.Comparator;
 import java.util.List;
 
@@ -8,12 +11,13 @@ public class OutputView {
     public static final String RESULT_TITLE = "실행결과";
     public static final String POINT_SEPARATOR = "|";
 
-    public void printGeneratedLadder(List<String> playerNames, List<List<Boolean>> ladder) {
+    public void printGeneratedLadder(PlayersResponse playersResponse, LadderResponse ladderResponse) {
         printLine(RESULT_TITLE);
         printEmptyLine();
+        List<String> playerNames = playersResponse.getPlayers();
         int nameFormatSize = getPlayerNameSize(playerNames);
         printPlayerNames(playerNames, nameFormatSize);
-        printLadder(ladder, nameFormatSize);
+        printLadder(ladderResponse.getLadder(), nameFormatSize);
     }
 
     private int getPlayerNameSize(List<String> playerNames) {
