@@ -11,15 +11,6 @@ public class OutputView {
     public static final String LAST_FORMAT = "%5s";
     public static final String VERTICAL_BAR = "|";
 
-    private static void middlePlayersPrint(List<String> names, int index) {
-        if (isMiddlePlayer(names, index)) {
-            System.out.print(String.format(MIDDLE_FORMAT, names.get(index)));
-        }
-    }
-
-    private static boolean isMiddlePlayer(List<String> names, int index) {
-        return 0 < index && index < names.size() - 1;
-    }
 
     public void printNames(Players players) {
         List<String> names = players.getPlayersName();
@@ -27,6 +18,13 @@ public class OutputView {
             firstPlayerPrint(names, i);
             lastPlayerPrint(names, i);
             middlePlayersPrint(names, i);
+        }
+    }
+
+    public void printLadders(List<Line> lines) {
+        System.out.println();
+        for (Line line : lines) {
+            printLine(line);
         }
     }
 
@@ -40,6 +38,17 @@ public class OutputView {
         return i == 0;
     }
 
+    private static void middlePlayersPrint(List<String> names, int index) {
+        if (isMiddlePlayer(names, index)) {
+            System.out.print(String.format(MIDDLE_FORMAT, names.get(index)));
+        }
+    }
+
+    private static boolean isMiddlePlayer(List<String> names, int index) {
+        return 0 < index && index < names.size() - 1;
+    }
+
+
     private void lastPlayerPrint(List<String> names, int index) {
         if (isLastPlayer(names, index)) {
             System.out.print(String.format(LAST_FORMAT, names.get(index)));
@@ -48,13 +57,6 @@ public class OutputView {
 
     private static boolean isLastPlayer(List<String> names, int index) {
         return index == names.size() - 1;
-    }
-
-    public void printLadders(List<Line> lines) {
-        System.out.println();
-        for (Line line : lines) {
-            printLine(line);
-        }
     }
 
     private void printLine(Line line) {
