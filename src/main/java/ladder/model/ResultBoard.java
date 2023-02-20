@@ -9,7 +9,7 @@ public class ResultBoard {
     private final Ladder ladder;
     private final Rewards rewards;
 
-    public ResultBoard(Players players, Ladder ladder, Rewards rewards){
+    public ResultBoard(Players players, Ladder ladder, Rewards rewards) {
         this.players = players;
         this.ladder = ladder;
         this.rewards = rewards;

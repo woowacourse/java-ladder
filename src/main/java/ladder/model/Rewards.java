@@ -4,7 +4,6 @@ import ladder.exceptionMessage.ExceptionMessage;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Rewards {
     private final List<Reward> rewards;
