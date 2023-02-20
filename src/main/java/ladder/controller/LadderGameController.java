@@ -19,22 +19,22 @@ public class LadderGameController {
 
     public void run() {
         try {
-            List<PlayerName> playerNames = generatePlayerNames();
+            List<Player> players = generatePlayers();
             Height height = generateHeight();
 
-            LadderGame ladderGame = new LadderGame(playerNames, height, new RandomLineCreateDecider());
+            LadderGame ladderGame = new LadderGame(players, height, new RandomLineCreateDecider());
             showResult(ladderGame);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
         }
     }
 
-    private List<PlayerName> generatePlayerNames() {
+    private List<Player> generatePlayers() {
         List<String> names = inputView.readNames();
-        List<PlayerName> playerNames = names.stream()
-                .map(PlayerName::new)
+        List<Player> players = names.stream()
+                .map(Player::new)
                 .collect(Collectors.toList());
-        return playerNames;
+        return players;
     }
 
     private Height generateHeight() {
@@ -43,7 +43,8 @@ public class LadderGameController {
     }
 
     private void showResult(LadderGame ladderGame) {
-        outputView.printPlayerNames(ladderGame.getPlayerNames().stream()
+        outputView.printPlayerNames(ladderGame.getPlayers().stream()
+                .map(Player::getPlayerName)
                 .map(PlayerName::getPlayerName)
                 .collect(Collectors.toList()));
 

@@ -15,7 +15,7 @@ class LadderGameTest {
     @Test
     @DisplayName("플레이어가 2명 미만이면 예외처리 테스트")
     void invalidHeightTest() {
-        List<PlayerName> input = new ArrayList<>(List.of(new PlayerName("이오")));
+        List<Player> input = new ArrayList<>(List.of(new Player("이오")));
         Assertions.assertThatThrownBy(() -> new LadderGame(input, new Height(5), new RandomLineCreateDecider()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -23,14 +23,14 @@ class LadderGameTest {
     @Test
     @DisplayName("플레이어가 2명 이상이면 통과하는 테스트")
     void validHeightTest() {
-        List<PlayerName> input = new ArrayList<>(List.of(new PlayerName("이오"), new PlayerName("이리내")));
+        List<Player> input = new ArrayList<>(List.of(new Player("이오"), new Player("이리내")));
         assertThatCode(() -> new LadderGame(input, new Height(5), new RandomLineCreateDecider())).doesNotThrowAnyException();
     }
 
     @Test
     @DisplayName("사다리 생성 테스트")
     void generateLadderTest() {
-        List<PlayerName> input = new ArrayList<>(List.of(new PlayerName("a"), new PlayerName("asd"), new PlayerName("qwert")));
+        List<Player> input = new ArrayList<>(List.of(new Player("a"), new Player("asd"), new Player("qwert")));
 
         LadderGame ladderGame = new LadderGame(input, new Height(2), new TestLineCreateDecider(newArrayList(true, false, false, true)));
 
