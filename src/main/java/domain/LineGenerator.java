@@ -5,26 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LineGenerator {
-    private final SecureRandom secureRandom = new SecureRandom();
-    private List<Point> points;
-
     public Line generate(int personCount) {
-        personCount--;
-        points = new ArrayList<>();
+        final SecureRandom secureRandom = new SecureRandom();
+        final List<Point> points = new ArrayList<>();
         Point pastPoint = Point.EMPTY_POINT;
-        while (personCount-- > 0) {
+        for (int count = 1; count < personCount; count++) {
             boolean randomPoint = secureRandom.nextBoolean();
-            generateValidatePoint(randomPoint, pastPoint);
+            points.add(generateValidatePoint(randomPoint, pastPoint));
             pastPoint = Point.from(randomPoint);
         }
         return new Line(points);
     }
 
-    private void generateValidatePoint(final Boolean isLink, final Point pastPoint) {
+    private Point generateValidatePoint(final Boolean isLink, final Point pastPoint) {
         if (pastPoint == Point.LINKED_POINT) {
-            points.add(Point.EMPTY_POINT);
-            return;
+            return Point.EMPTY_POINT;
         }
-        points.add(Point.from(isLink));
+        return Point.from(isLink);
     }
 }
