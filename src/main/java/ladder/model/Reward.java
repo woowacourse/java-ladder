@@ -10,8 +10,13 @@ public class Reward {
     private final String reward;
 
     public Reward(String reward) {
+        reward = removeWhiteSpace(reward);
         validateRewardLength(reward);
         this.reward = reward;
+    }
+
+    private String removeWhiteSpace(String reward) {
+        return reward.replaceAll(" ", "");
     }
 
     private void validateRewardLength(String reward) {
@@ -22,6 +27,10 @@ public class Reward {
 
     private boolean isRewardLengthIncludedInRange(String reward) {
         return MIN_LENGTH <= reward.length() && reward.length() <= MAX_LENGTH;
+    }
+
+    public String getReward() {
+        return reward;
     }
 
 }

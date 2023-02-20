@@ -41,7 +41,8 @@ public class InputView {
 
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        String[] rewards = input.replaceAll(" ", "").split(",");
+
+        String[] rewards = input.split(",");
         return new ArrayList<>(List.of(rewards));
     }
 

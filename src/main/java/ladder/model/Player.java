@@ -8,7 +8,6 @@ public class Player {
     private static final int MAX_LENGTH = 5;
     private static final String BANNED_WORD = "all";
 
-
     private final String playerName;
 
     public Player(String playerName) {
