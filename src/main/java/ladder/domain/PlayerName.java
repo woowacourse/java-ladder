@@ -12,18 +12,18 @@ public class PlayerName {
     private final String name;
 
     public PlayerName(String name) {
-        validateLength(name);
-        validateBlank(name);
+        validateLengthInRange(name);
+        validateHasNotAllowed(name);
         this.name = name;
     }
 
-    private void validateLength(String name) {
+    private void validateLengthInRange(String name) {
         if (name.length() < NAME_LENGTH_LOWER_BOUND_INCLUSIVE || name.length() > NAME_LENGTH_UPPER_BOUND_INCLUSIVE) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR_MESSAGE);
         }
     }
 
-    private void validateBlank(String name) {
+    private void validateHasNotAllowed(String name) {
         if (name.contains(NOT_ALLOWED)) {
             throw new IllegalArgumentException(NAME_FORMAT_ERROR_MESSAGE);
         }
@@ -37,8 +37,8 @@ public class PlayerName {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PlayerName that = (PlayerName) o;
-        return Objects.equals(name, that.name);
+        PlayerName p = (PlayerName) o;
+        return Objects.equals(name, p.name);
     }
 
     @Override

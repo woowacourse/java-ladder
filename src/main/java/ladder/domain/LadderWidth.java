@@ -6,11 +6,11 @@ public class LadderWidth {
     private final int ladderWidth;
 
     public LadderWidth(int ladderWidth) {
-        validateWidth(ladderWidth);
+        validateWidthInRange(ladderWidth);
         this.ladderWidth = ladderWidth;
     }
 
-    private void validateWidth(int width) {
+    private void validateWidthInRange(int width) {
         if (width < WIDTH_LOWER_BOUND_INCLUSIVE) {
             throw new IllegalArgumentException(WIDTH_ERROR_MESSAGE);
         }

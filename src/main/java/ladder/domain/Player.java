@@ -17,8 +17,8 @@ public class Player {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Player other = (Player) o;
-        return Objects.equals(playerName, other.playerName);
+        Player p = (Player) o;
+        return Objects.equals(playerName, p.playerName);
     }
 
     @Override

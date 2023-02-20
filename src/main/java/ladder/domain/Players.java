@@ -25,18 +25,18 @@ public class Players {
     }
 
     private void validate(List<Player> players) {
-        validateSize(players);
-        validateDuplicate(players);
+        validateCountInRange(players);
+        validateNoDuplicate(players);
     }
 
-    private void validateDuplicate(List<Player> players) {
+    private void validateNoDuplicate(List<Player> players) {
         Set<Player> distinctPlayers = new HashSet<>(players);
         if (distinctPlayers.size() != players.size()) {
             throw new IllegalArgumentException(DUPLICATE_NAMES_ERROR_MESSAGE);
         }
     }
 
-    private void validateSize(List<Player> players) {
+    private void validateCountInRange(List<Player> players) {
         if (players.size() < PLAYERS_SIZE_LOWER_BOUND_INCLUSIVE) {
             throw new IllegalArgumentException(PLAYERS_SIZE_ERROR_MESSAGE);
         }

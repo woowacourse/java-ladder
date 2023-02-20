@@ -22,7 +22,7 @@ public class LadderGameController {
             List<String> participantNames = inputView.readParticipantNames();
             Players players = Players.from(participantNames);
 
-            LadderHeight height = new LadderHeight(inputView.inputLadderHeight());
+            LadderHeight height = new LadderHeight(inputView.readLadderHeight());
             LadderWidth width = new LadderWidth(players.getCount() - 1);
             Ladder ladder = ladderGenerator.generate(width, height);
 
@@ -34,6 +34,6 @@ public class LadderGameController {
 
     private void printLadderResult(Players players, Ladder ladder) {
         resultView.printPlayersName(players.getNames());
-        resultView.printLadder(ladder.getFootholdsPosition());
+        resultView.printLadder(ladder.getFootholdsMap());
     }
 }

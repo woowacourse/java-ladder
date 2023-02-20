@@ -7,11 +7,11 @@ public class LadderHeight {
     private final int ladderHeight;
 
     public LadderHeight(int ladderHeight) {
-        validateHeight(ladderHeight);
+        validateHeightInRange(ladderHeight);
         this.ladderHeight = ladderHeight;
     }
 
-    private void validateHeight(int height) {
+    private void validateHeightInRange(int height) {
         if (height < HEIGHT_LOWER_BOUND_INCLUSIVE) {
             throw new IllegalArgumentException(HEIGHT_ERROR_MESSAGE);
         }

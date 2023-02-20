@@ -8,11 +8,11 @@ public enum Foothold {
     ;
 
     private final boolean state;
-    private final String mark;
+    private final String format;
 
-    Foothold(boolean state, String mark) {
+    Foothold(boolean state, String format) {
         this.state = state;
-        this.mark = mark;
+        this.format = format;
     }
 
     public static Foothold from(boolean state) {
@@ -22,7 +22,7 @@ public enum Foothold {
                      .orElseThrow(() -> new IllegalArgumentException("잘못된 발판 인자"));
     }
 
-    public String getMark() {
-        return mark;
+    public String getFormat() {
+        return format;
     }
 }
