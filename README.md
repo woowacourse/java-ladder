@@ -8,7 +8,7 @@
 - [x] controller 의 generateLadder -> Ladder 생성자로 Ladder 만들기
 - [x] enum Way 필요성 확인
   - [x] 사다리 표현 문자 "-" , " " 를 enum 으로 묶기
-- [ ] correctOverlapPoints 개선
+- [x] correctOverlapPoints 개선
 - [x] 정규식 패턴 상수화 -> 정규식 패턴 사용 X
 - [x] Validator 클래스 -> validate 메소드 생성
   - [x] player validate 해주는 메소드들을 해당 메소드 안에서 호출
@@ -17,6 +17,7 @@
 - [x] input view 에서 입력 요청 출력을 Controller 로 위임
 - [x] Output view -> 사용자 이름 길이에 맞게 수정되게 하는 로직 변수 선언
 - [ ] parameterized test 사용. 테스트 추가 
+- [ ] Height 만큼 반복문 돌리기 -> getter 사용 ?? minus 메소드 호출 ?? 
 
 
 ## 기능 목록
