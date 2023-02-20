@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.HashSet;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -39,7 +40,7 @@ public class LineTest {
         void givenLine_thenCreateBooleanList() {
             //given
             final List<Boolean> statuses = List.of(true, false, false);
-            
+
             //when
             final Line line = Line.of(statuses.size(), new TestBooleanPicker(statuses));
 
@@ -61,5 +62,19 @@ public class LineTest {
         assertThat(line)
                 .extracting(Line::getLine)
                 .isEqualTo(List.of(true, false));
+    }
+
+    @Test
+    @DisplayName("라인이 두 칸 이상인 경우, 적어도 한 칸 이상의 발판이 발생한다.")
+    void givenTwoMoreSizeLine_thenSetLineSizeTwo() {
+        //given
+        final Line line = Line.from(3);
+
+        //when
+        final int size = new HashSet<>(line.getLine()).size();
+
+        //then
+        assertThat(size)
+                .isEqualTo(2);
     }
 }
