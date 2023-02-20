@@ -6,13 +6,13 @@ import java.util.stream.IntStream;
 
 import util.BooleanGenerator;
 
-public class Map {
+public class GameMap {
 
     private final Height height;
     private final Weight weight;
     private final Ladder ladder;
 
-    public Map(Height height, Weight weight, BooleanGenerator booleanGenerator) {
+    public GameMap(Height height, Weight weight, BooleanGenerator booleanGenerator) {
         this.height = height;
         this.weight = weight;
         this.ladder = generate(booleanGenerator);

@@ -1,7 +1,7 @@
 package view.output;
 
 import domain.Line;
-import domain.Map;
+import domain.GameMap;
 import domain.Participants;
 
 public class OutputView {
@@ -12,11 +12,11 @@ public class OutputView {
     private static final String CONNECTED_LINE = "-----";
     private static final String DISCONNECTED_LINE = "     ";
 
-    public void printMap(Participants participants, Map map) {
+    public void printMap(Participants participants, GameMap gameMap) {
         System.out.println(RESULT_MESSAGE);
         StringBuilder mapResult = new StringBuilder();
         setNames(mapResult, participants);
-        setLadder(mapResult, map);
+        setLadder(mapResult, gameMap);
         System.out.print(mapResult);
     }
 
@@ -33,9 +33,9 @@ public class OutputView {
         return String.format("%5s ", name);
     }
 
-    private void setLadder(StringBuilder mapResult, Map map) {
-        map.getLines()
-           .forEach((line) -> mapResult.append(reformatLine(line)));
+    private void setLadder(StringBuilder mapResult, GameMap gameMap) {
+        gameMap.getLines()
+               .forEach((line) -> mapResult.append(reformatLine(line)));
     }
 
     private String reformatLine(Line line) {
