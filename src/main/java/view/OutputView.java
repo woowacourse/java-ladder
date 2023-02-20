@@ -1,9 +1,7 @@
 package view;
 
 import model.Ladder;
-import model.LadderStep;
 import model.Line;
-import model.Players;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +11,9 @@ public class OutputView {
     private static final int STARTING_INDEX_OF_RIGHT_FORMATTING = 1;
     private static final String LEFT_FORMATTING_TEMPLATE = "%-5s ";
     private static final String RIGHT_FORMATTING_TEMPLATE = "%5s ";
+    private static final String FIRST_STEP = String.format("%5s", "    |");
+    private static final String EMPTY_STEP = String.format("%6s", "     |");
+    private static final String EXIST_STEP = String.format("%6s", "-----|");
     private static final String PLAYER_NAME_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
 
@@ -35,17 +36,17 @@ public class OutputView {
     }
 
     private void printLadderLine(Line line) {
-        StringBuilder stringBuilder = new StringBuilder(LadderStep.FIRST_STEP.getStep());
+        StringBuilder stringBuilder = new StringBuilder(FIRST_STEP);
         line.getPoints().forEach(point -> stringBuilder.append(makeNextStep(point)));
         System.out.println(stringBuilder);
     }
 
     private String makeNextStep(Boolean point) {
         if (point) {
-            return LadderStep.EXIST_STEP.getStep();
+            return EXIST_STEP;
         }
 
-        return LadderStep.EMPTY_STEP.getStep();
+        return EMPTY_STEP;
     }
 
     private String makeLeftFormattingFirstName(List<String> allPlayerNames) {
