@@ -33,7 +33,7 @@ public class Player {
     }
 
     private void validateIsPlayerNameBannedWord(String playerName) {
-        if(playerName.equals(BANNED_WORD)){
+        if (playerName.equals(BANNED_WORD)) {
             throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_NAME.getMessage());
         }
     }

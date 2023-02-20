@@ -40,6 +40,7 @@ public class Row {
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
     }
+
     public int getSize() {
         return points.size();
     }

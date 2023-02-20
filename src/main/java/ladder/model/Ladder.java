@@ -19,29 +19,29 @@ public class Ladder {
     }
 
     private int findNextPosition(Row row, int position) {
-        if(canGoLeft(row, position)){
+        if (canGoLeft(row, position)) {
             position--;
             return position;
         }
-        if(canGoRight(row, position)){
+        if (canGoRight(row, position)) {
             position++;
             return position;
         }
         return position;
     }
 
-    private boolean canGoLeft(Row row, int position){
-        if(row.isLeftPointHasLine(position)){
+    private boolean canGoLeft(Row row, int position) {
+        if (row.isLeftPointHasLine(position)) {
             return true;
         }
         return false;
     }
 
-    private boolean canGoRight(Row row, int position){
-        if(position == row.getSize()){
+    private boolean canGoRight(Row row, int position) {
+        if (position == row.getSize()) {
             return false;
         }
-        if(row.isCurrentPointHasLine(position)){
+        if (row.isCurrentPointHasLine(position)) {
             return true;
         }
         return false;

@@ -1,6 +1,5 @@
 package ladder.controller;
 
-import ladder.exceptionMessage.ExceptionMessage;
 import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;

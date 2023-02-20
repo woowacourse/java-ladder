@@ -26,7 +26,7 @@ public class Results {
         return result.replaceAll(" ", "");
     }
 
-    public List<String> getResults(){
+    public List<String> getResults() {
         return Collections.unmodifiableList(results);
     }
 
