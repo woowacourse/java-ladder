@@ -19,7 +19,7 @@ public class LadderGame {
         this.ladder = ladder;
         this.names = names;
         this.winningEntries = winningEntries;
-        state = State.prepared();
+        state = State.processing();
     }
 
     public LadderGameResult goDownLadder(final Name name) {
@@ -41,7 +41,6 @@ public class LadderGame {
     }
 
     private LadderGameResult goDownForParticipant(final Name name) {
-        state.set(GameState.PROCEEDING);
         Position start = Position.of(names.indexOf(name));
         Position end = ladder.goDown(start);
         WinningEntry winningEntry = winningEntries.get(end.value());

@@ -4,13 +4,12 @@ public class State {
 
     private GameState state;
 
-    private State() {
+    private State(final GameState state) {
+        this.state = state;
     }
 
-    public static State prepared() {
-        State state = new State();
-        state.set(GameState.PREPARED);
-        return state;
+    public static State processing() {
+        return new State(GameState.PROCEEDING);
     }
 
     public GameState get() {
