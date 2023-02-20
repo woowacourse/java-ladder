@@ -18,7 +18,7 @@ public enum LineSymbol {
         return Arrays.stream(LineSymbol.values())
                 .filter(linesymbol -> linesymbol.bool.equals(bool))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR]"));
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 잘못된 값이 입력되었습니다."));
     }
 
     public String getSymbol() {

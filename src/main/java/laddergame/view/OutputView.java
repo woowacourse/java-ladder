@@ -7,6 +7,11 @@ import laddergame.model.Persons;
 public class OutputView {
     private static final String VERTICAL_LINE = "|";
     private static final String PRINT_RESULT_MSG = "실행 결과";
+    private static final String ERROR_PREFIX = "[ERROR]";
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(ERROR_PREFIX + errorMessage);
+    }
 
     public void printResult(Ladder ladder, Persons persons) {
         System.out.println(System.lineSeparator() + PRINT_RESULT_MSG + System.lineSeparator());

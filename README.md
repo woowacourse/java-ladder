@@ -47,9 +47,11 @@
   - [x] Line 클래스의 random 객체도 해당 클래스 내부에서만 사용되니 수정하기
   - [x] 키워드 정렬 순서 지키기
 - 에러 출력 메세지의 위치 고민해보기
-  - [ ] 동료개발자가 "에러 메세지를 출력할 때 suffix 로 특수문자를 붙여주세요." 라는 요구사항을 접하면 `OutputView.java`와 `LadderGameController.java`중 어떤 파일을 먼저 열어볼까요? 에 대한 고민해보기
-  - [ ] 마찬가지로 "사다리 높이에 대한 에러 출력 메세지 포맷을 변경해주세요." 라고 하면 어떤 파일을 먼저 열어볼까요? 에 대한 고민도 해보기
-  - [ ] LineSymbol Class 오류 메시지 출력하기
+  - [x] 동료개발자가 "에러 메세지를 출력할 때 suffix 로 특수문자를 붙여주세요." 라는 요구사항을 접하면 `OutputView.java`와 `LadderGameController.java`중 어떤 파일을 먼저 열어볼까요? 에 대한 고민해보기
+    - [x]  OutputView 클래스에 에러 메세지를 받아 출력하는 메서드 생성하기
+    - [x]  LadderGameController 클래스에 있는 에러 메세지 outputview.printErrorMessage로 수정
+  - [x] 마찬가지로 "사다리 높이에 대한 에러 출력 메세지 포맷을 변경해주세요." 라고 하면 어떤 파일을 먼저 열어볼까요? 에 대한 고민도 해보기
+  - [x] LineSymbol Class 오류 메시지 출력하기
 - 메서드 네이밍
   - [x] Persons class 의 사이즈 return 해주는 메소드 이름을 ‘크기’ 대신 ‘명’, ‘수’로 변경할 수 있도록 고민하기 .. getSize → ???
 - 중복 검증
