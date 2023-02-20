@@ -9,8 +9,8 @@ public class Bar {
         this.bar = bar;
     }
 
-    public Bar(BarGenerator barGenerator) {
-        this.bar = barGenerator.createBar();
+    public Bar(BooleanGenerator booleanGenerator) {
+        this.bar = booleanGenerator.createBoolean();
     }
 
     public boolean isExistBar(){

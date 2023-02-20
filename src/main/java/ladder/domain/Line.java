@@ -11,18 +11,18 @@ public class Line {
         bars = new ArrayList<>(List.of(new Bar(false)));
     }
 
-    public void addBars(int peopleSize, BarGenerator barGenerator) {
+    public void addBars(int peopleSize, BooleanGenerator booleanGenerator) {
         IntStream.range(0, peopleSize - 1)
-                .forEach(count -> addCorrectBar(barGenerator));
+                .forEach(count -> addCorrectBar(booleanGenerator));
     }
 
-    private void addCorrectBar(BarGenerator barGenerator) {
+    private void addCorrectBar(BooleanGenerator booleanGenerator) {
         if (lastBar().isExistBar()) {
             addNotExistedBar();
             return;
         }
 
-        addBar(barGenerator);
+        addBar(booleanGenerator);
     }
 
     private Bar lastBar() {
@@ -33,8 +33,8 @@ public class Line {
         return bars.size() - 1;
     }
 
-    private void addBar(BarGenerator barGenerator) {
-        bars.add(new Bar(barGenerator));
+    private void addBar(BooleanGenerator booleanGenerator) {
+        bars.add(new Bar(booleanGenerator));
     }
 
     private void addNotExistedBar() {

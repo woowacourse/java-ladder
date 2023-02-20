@@ -10,14 +10,14 @@ public class Ladder {
     
     private final List<Line> lines;
 
-    public Ladder(BarGenerator barGenerator, int ladderHeight, int peopleSize) {
+    public Ladder(BooleanGenerator booleanGenerator, int ladderHeight, int peopleSize) {
         validateRange(ladderHeight);
-        this.lines = createLines(barGenerator, ladderHeight, peopleSize);
+        this.lines = createLines(booleanGenerator, ladderHeight, peopleSize);
     }
 
-    private List<Line> createLines(BarGenerator barGenerator, int ladderHeight, int peopleSize) {
+    private List<Line> createLines(BooleanGenerator booleanGenerator, int ladderHeight, int peopleSize) {
         return IntStream.range(0, ladderHeight)
-                .mapToObj(lineCount -> createLine(barGenerator, peopleSize))
+                .mapToObj(lineCount -> createLine(booleanGenerator, peopleSize))
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -27,9 +27,9 @@ public class Ladder {
         }
     }
 
-    private Line createLine(BarGenerator barGenerator, int peopleSize) {
+    private Line createLine(BooleanGenerator booleanGenerator, int peopleSize) {
         Line line = new Line();
-        line.addBars(peopleSize, barGenerator);
+        line.addBars(peopleSize, booleanGenerator);
         return line;
     }
 
