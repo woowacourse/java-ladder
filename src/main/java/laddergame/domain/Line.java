@@ -6,7 +6,6 @@ import java.util.List;
 public class Line {
 
     private static final int MIN_STATUS = 1;
-    private static final int FIRST_STATUS = 0;
 
     private final List<Boolean> statuses;
     private final PickStrategy strategy;
@@ -34,16 +33,16 @@ public class Line {
         List<Boolean> statuses = new ArrayList<>();
 
         for (int i = 0; i < numberOfStatus; i++) {
-            statuses.add(createLineStatus(statuses, i));
+            statuses.add(createLineStatus(statuses));
         }
 
         return statuses;
     }
 
-    private boolean createLineStatus(final List<Boolean> statuses, final int index) {
+    private boolean createLineStatus(final List<Boolean> statuses) {
         final boolean pick = strategy.pick();
 
-        if (index == FIRST_STATUS) {
+        if (statuses.isEmpty()) {
             return pick;
         }
 
