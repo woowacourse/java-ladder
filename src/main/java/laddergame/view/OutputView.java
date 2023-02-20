@@ -13,6 +13,7 @@ public enum OutputView {
     VERTICAL_LINE("|"),
     HORIZONTAL_LINE("-");
 
+    private static final int HALF = 2;
     private final String ladderElement;
 
     OutputView(final String ladderElement) {
@@ -47,7 +48,7 @@ public enum OutputView {
     }
 
     private static String makeLadderFormat(final List<Link> line, final Names names) {
-        final StringBuilder result = new StringBuilder(setUpLadder(names.getFirstNameLengthDividedByTwoRounded()));
+        final StringBuilder result = new StringBuilder(setUpLadder(names.getFirstNameLength()));
 
         line.forEach(existences -> result.append(makeLine(existences.isLink(), names.findMaxNameLength())));
         result.append(System.lineSeparator());
@@ -55,8 +56,9 @@ public enum OutputView {
         return result.toString();
     }
 
-    private static String setUpLadder(final int numberOfBlanks) {
-        return String.format("%s%s", BLANK.ladderElement.repeat(numberOfBlanks), VERTICAL_LINE.ladderElement);
+    private static String setUpLadder(final int firstNameLength) {
+        final int leftBlankCount = Math.round(firstNameLength / HALF);
+        return String.format("%s%s", BLANK.ladderElement.repeat(leftBlankCount), VERTICAL_LINE.ladderElement);
     }
 
     private static String makeLine(final Boolean existences, final int maxNameLength) {

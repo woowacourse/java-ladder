@@ -20,8 +20,7 @@ public class NamesTest {
         final Names result = new Names(names);
 
         //then
-        assertThat(result.getNames())
-                .isEqualTo(names);
+        assertThat(result.getNames()).isEqualTo(names);
     }
 
     @Test
@@ -31,9 +30,7 @@ public class NamesTest {
         final List<String> wrongSizeList = List.of("에단");
 
         //then
-        assertThatThrownBy((() -> new Names(wrongSizeList)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("최소 2명 이상의 플레이어가 필요합니다.");
+        assertThatThrownBy((() -> new Names(wrongSizeList))).isInstanceOf(IllegalArgumentException.class).hasMessage("최소 2명 이상의 플레이어가 필요합니다.");
     }
 
     @Test
@@ -50,19 +47,5 @@ public class NamesTest {
         assertThat(maxNameLength).isEqualTo("블랙캣".length());
     }
 
-    @Test
-    @DisplayName("가장 첫번째 이름의 길이를 2로 나누고 반올림한 값을 반환한다.")
-    void givenNames_thenFirstNameLengthDividedByTwoRounded() {
-        //given
-        final List<String> input = List.of("에단", "준팍", "블랙캣");
-        final Names names = new Names(input);
-
-        //when
-        int firstNameLengthDividedByTwoRounded = names.getFirstNameLengthDividedByTwoRounded();
-
-        //then
-        assertThat(firstNameLengthDividedByTwoRounded).isEqualTo(1);
-
-    }
 
 }

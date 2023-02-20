@@ -24,20 +24,6 @@ public class Names {
                 .orElseThrow(() -> new IllegalStateException("가장 긴 이름을 찾을 수 없습니다."));
     }
 
-    public int getFirstNameLengthDividedByTwoRounded() {
-        return Math.round(names.get(0).getNameLength() / HALF);
-    }
-
-    public List<String> getNames() {
-        return names.stream()
-                .map(Name::getName)
-                .collect(toList());
-    }
-
-    public int getSize() {
-        return names.size();
-    }
-
     private static List<Name> createNames(final List<String> names) {
         return names.stream()
                 .map(name -> new Name(name.trim()))
@@ -48,5 +34,19 @@ public class Names {
         if (names.size() < MIN_NUMBER_OF_PLAYERS) {
             throw new IllegalArgumentException("최소 2명 이상의 플레이어가 필요합니다.");
         }
+    }
+
+    public int getFirstNameLength() {
+        return names.get(0).getNameLength();
+    }
+
+    public List<String> getNames() {
+        return names.stream()
+                .map(Name::getName)
+                .collect(toList());
+    }
+
+    public int getSize() {
+        return names.size();
     }
 }
