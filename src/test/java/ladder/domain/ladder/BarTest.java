@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.Bar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
