@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class PeopleTest {
 
-    @DisplayName("사용자는 두 명 이상이어야 한다.")
+    @DisplayName("사람은 두 명 이상이어야 한다.")
     @ParameterizedTest
     @ValueSource(ints = {2, 3, 10})
     void success(int value) {
@@ -24,7 +24,7 @@ class PeopleTest {
         assertDoesNotThrow(() -> new People(people));
     }
 
-    @DisplayName("사용자는 두 명 이하이면 예외가 발생한다.")
+    @DisplayName("사람은 두 명 이하이면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(ints = {0, 1})
     void fail(int value) {

@@ -22,6 +22,7 @@ class PersonTest {
     @ValueSource(strings = {"", "123456"})
     void fail(String value) {
         assertThatThrownBy(() -> new Person(value))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 1자 이상 5자 이하여야 합니다");
     }
 }
