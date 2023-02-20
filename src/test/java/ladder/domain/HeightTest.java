@@ -12,7 +12,7 @@ class HeightTest {
     public void 생성_fail() {
         assertThatThrownBy(() -> new Height(1))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("높이가 2이상이어야 한다.");
+                .hasMessage("사다리 높이는 2이상이어야 합니다.");
     }
 
     @Test

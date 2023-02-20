@@ -7,7 +7,7 @@ import static java.util.stream.Collectors.toUnmodifiableList;
 
 public class Players {
     private static final int PLAYERS_SIZE_LOWER_BOUND_INCLUSIVE = 2;
-    private static final String PLAYERS_SIZE_ERROR_MESSAGE = "플레이어 사이즈는 2 이상이어야 합니다.";
+    private static final String PLAYERS_SIZE_ERROR_MESSAGE = "플레이어 수는 2 이상이어야 합니다.";
     private final List<Player> players;
 
     private Players(List<Player> players) {

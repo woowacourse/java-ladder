@@ -12,7 +12,7 @@ class WidthTest {
     public void 생성_fail() {
         assertThatThrownBy(() -> new Width(1))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("너비가 2이상이어야 한다.");
+                .hasMessage("너비가 2이상이어야 합니다.");
     }
 
     @Test
