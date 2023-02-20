@@ -29,10 +29,10 @@ public class LadderMaker {
 
     private List<Line> generateEachLines(final int playerNumber, final int height) {
         List<Line> lines = new ArrayList<>();
-        LineMaker lineMaker = new LineMaker(blockGenerator);
+        Line line = new Line(playerNumber, blockGenerator);
 
         for (int i = 0; i < height; i++) {
-            lines.add(lineMaker.makeLine(playerNumber));
+            lines.add(line);
         }
         return lines;
     }
