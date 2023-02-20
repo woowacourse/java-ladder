@@ -2,17 +2,37 @@ package model;
 
 public class Block {
 
-    private final boolean pass;
+    private final Pass pass;
 
-    public Block(boolean pass) {
+    public Block(Pass pass) {
         this.pass = pass;
     }
 
-    public boolean isLeftBlockHavePass(Block leftBlock) {
-        return leftBlock.pass && this.pass;
+    public static Block buildFirstBlock(boolean generatedPass) {
+        if (generatedPass) {
+            return new Block(Pass.RIGHT);
+        }
+        return new Block(Pass.NOTHING);
     }
 
-    public boolean isPass() {
+    public static Block buildMiddleBlock(Block leftBlock, boolean generatedPass) {
+        if (leftBlock.pass == Pass.RIGHT) {
+            return new Block(Pass.LEFT);
+        }
+        if (!generatedPass) {
+            return new Block(Pass.NOTHING);
+        }
+        return new Block(Pass.RIGHT);
+    }
+
+    public static Block buildLastBlock(Block leftBlock) {
+        if (leftBlock.pass == Pass.RIGHT) {
+            return new Block(Pass.LEFT);
+        }
+        return new Block(Pass.NOTHING);
+    }
+
+    public Pass getPass() {
         return pass;
     }
 }
