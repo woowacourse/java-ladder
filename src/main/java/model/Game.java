@@ -14,7 +14,7 @@ public class Game {
         for (Name name : names.getNames()) {
             int startIndex = names.getNames().indexOf(name);
             int resultIndex = moveLadder(names.getNamesSize(), height, ladder, startIndex);
-            prizeResult.put(name, result.getLadderResult(resultIndex));
+            prizeResult.put(name, result.getLadderResult().get(resultIndex));
         }
     }
 

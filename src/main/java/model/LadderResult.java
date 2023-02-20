@@ -26,7 +26,7 @@ public class LadderResult {
         }
     }
 
-    public String getLadderResult(int index) {
-        return ladderResult.get(index);
+    public List<String> getLadderResult() {
+        return ladderResult;
     }
 }
