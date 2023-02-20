@@ -16,7 +16,7 @@ public class Ladder {
     private final Height height;
     private final GenerateBridgeStrategy generateBridgeStrategy;
 
-    public Ladder(List<Line> lines, Height height, GenerateBridgeStrategy generateBridgeStrategy) {
+    private Ladder(List<Line> lines, Height height, GenerateBridgeStrategy generateBridgeStrategy) {
         this.lines = lines;
         this.height = height;
         this.generateBridgeStrategy = generateBridgeStrategy;
