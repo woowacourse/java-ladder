@@ -25,26 +25,17 @@ public class LadderGameController {
     }
 
     public void run() {
-        final LadderGame ladderGame = initialize();
+        final LadderGame ladderGame = initializeLadderGame();
         final List<String> players = ladderGame.getPlayers();
         final List<Line> ladder = ladderGame.getLadder();
 
         outputView.printResult(players, ladder);
     }
 
-    private LadderGame initialize() {
+    private LadderGame initializeLadderGame() {
         final Players players = readPlayers();
-        return initializeLadderGame(players);
-    }
-
-    private LadderGame initializeLadderGame(final Players players) {
-        try {
-            final int height = inputView.readLadderHeight();
-            return new LadderGame(booleanGenerator, players, height);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return initializeLadderGame(players);
-        }
+        final int height = readHeight();
+        return readLadderGame(players, height);
     }
 
     private Players readPlayers() {
@@ -54,6 +45,24 @@ public class LadderGameController {
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return readPlayers();
+        }
+    }
+
+    private int readHeight() {
+        try {
+            return inputView.readLadderHeight();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return readHeight();
+        }
+    }
+
+    private LadderGame readLadderGame(final Players players, final int height) {
+        try {
+            return new LadderGame(booleanGenerator, players, height);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return readLadderGame(players, height);
         }
     }
 }

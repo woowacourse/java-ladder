@@ -11,23 +11,11 @@ public class Application {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
             final LadderGameController ladderGameController = new LadderGameController(
-                    getBooleanGenerator(),
-                    getInputView(scanner),
-                    getOutputView()
+                    new RandomBooleanGenerator(),
+                    new InputView(scanner),
+                    new OutputView()
             );
             ladderGameController.run();
         }
-    }
-
-    private static RandomBooleanGenerator getBooleanGenerator() {
-        return new RandomBooleanGenerator();
-    }
-
-    private static OutputView getOutputView() {
-        return new OutputView();
-    }
-
-    private static InputView getInputView(final Scanner scanner) {
-        return new InputView(scanner);
     }
 }
