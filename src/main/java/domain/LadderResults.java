@@ -7,16 +7,8 @@ public class LadderResults {
 
     private final HashMap<Integer, LadderResult> ladderResults;
 
-    public LadderResults(final List<String> results, final int numberOfPlayer) {
-        validate(results, numberOfPlayer);
+    public LadderResults(final List<String> results) {
         this.ladderResults = makeResults(results);
-    }
-
-    // Todo: 예외 메시지 추가하기
-    private void validate(final List<String> results, final int numberOfPlayer) {
-        if (results.size() != numberOfPlayer) {
-            throw new IllegalArgumentException();
-        }
     }
 
     private HashMap<Integer, LadderResult> makeResults(final List<String> results) {
