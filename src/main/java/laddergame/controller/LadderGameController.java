@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static laddergame.view.message.Message.LADDER_RESULT_GUIDE;
+import static laddergame.view.message.Message.RESULT_GAME_GUIDE;
 
 public class LadderGameController {
 
@@ -36,6 +37,8 @@ public class LadderGameController {
 
         List<Integer> ladderResultPositions = ladder.startGame(participantSize);
         List<String> resultParticipantNames = getResultParticipantNames(participants);
+        OutputView.print(System.lineSeparator() + RESULT_GAME_GUIDE.getMessage());
+        List<String> ladderResultNames = ladderResult.getResultNamesByPosition(ladderResultPositions);
     }
 
     private Participants createParticipants() {

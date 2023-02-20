@@ -1,4 +1,4 @@
-package laddergame.domain.ladder;
+package laddergame.domain.ladder_result;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,13 +15,19 @@ public class LadderResult {
     private LadderResult(final String names, final int participantCount) {
         List<String> ladderResultNames = splitResults(names);
         ladderResultNames = trimResults(ladderResultNames);
-        List<LadderResultName> resultNames = makeResultNames(ladderResultNames);
-        validResultNameSize(resultNames, participantCount);
+        List<LadderResultName> resultNames = makeLadderResultNames(ladderResultNames);
+        validateNameSize(resultNames, participantCount);
         this.resultNames = resultNames;
     }
 
     public static LadderResult create(final String resultNames, final int participantCount) {
         return new LadderResult(resultNames, participantCount);
+    }
+
+    public List<String> getResultNamesByPosition(final List<Integer> ladderResultPositions) {
+        return ladderResultPositions.stream()
+                .map(position -> resultNames.get(position).getName())
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private List<String> splitResults(final String resultNames) {
@@ -33,21 +39,15 @@ public class LadderResult {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private List<LadderResultName> makeResultNames(final List<String> resultNames) {
+    private List<LadderResultName> makeLadderResultNames(final List<String> resultNames) {
         return resultNames.stream().map(LadderResultName::create)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public void validResultNameSize(final List<LadderResultName> resultNames, final int participantCount) {
-        if (resultNames.size() != participantCount) {
+    private void validateNameSize(final List<LadderResultName> ladderResultNames, final int participantCount) {
+        if (ladderResultNames.size() != participantCount) {
             throw new IllegalArgumentException(String.format(INVALID_LADDER_RESULT_SIZE, LADDER_RESULT_SIZE, participantCount));
         }
-    }
-
-    public List<String> getResultNamesByPosition(final List<Integer> ladderResultPositions) {
-        return ladderResultPositions.stream()
-                .map(position -> resultNames.get(position).getName())
-                .collect(Collectors.toUnmodifiableList());
     }
 
     public List<LadderResultName> getResultNames() {

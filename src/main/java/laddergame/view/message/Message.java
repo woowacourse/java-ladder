@@ -5,8 +5,8 @@ public enum Message {
     INPUT_LADDER_MAX_HEIGHT_GUIDE("최대 사다리 높이는 몇 개인가요?"),
     INPUT_LADDER_RESULT_GUIDE("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"),
     LADDER_RESULT_GUIDE("사다리 결과"),
-    INPUT_RESULT_PARTICIPANT_NAME("결과를 보고 싶은 사람은?")
-    ;
+    INPUT_RESULT_PARTICIPANT_NAME("결과를 보고 싶은 사람은?"),
+    RESULT_GAME_GUIDE("실행 결과");
 
     private final String message;
 
