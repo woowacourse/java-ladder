@@ -28,4 +28,8 @@ public class LadderService {
         }
         return new Results(results);
     }
+
+    public People getPeople() {
+        return people;
+    }
 }

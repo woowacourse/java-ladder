@@ -34,7 +34,7 @@ public class OutputView {
 
     private void printResults(Results results) {
         for (Result result : results) {
-            System.out.printf("%5s ", result);
+            System.out.printf("%5s ", result.getResult());
         }
         System.out.println();
     }
@@ -49,13 +49,13 @@ public class OutputView {
 
     public void printSingleResult(Result result) {
         System.out.println("\n실행 결과");
-        System.out.println(result);
+        System.out.println(result.getResult());
     }
 
     public void printAllResults(People people, Results results) {
         System.out.println("\n실행 결과");
         for (int i = 0; i < people.getCount(); i++) {
-            System.out.printf(FORMAT, people.getByIndex(i).getName(), results.getByIndex(i));
+            System.out.printf(FORMAT, people.getByIndex(i).getName(), results.getByIndex(i).getResult());
         }
         System.out.println();
     }
