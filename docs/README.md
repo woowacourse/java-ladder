@@ -44,7 +44,7 @@
 - [x] User 생성에 대한 예외 처리 문구 출력하도록 변경
 - [x] createLadder() 메서드 -> Ladder 생성자로 위치 이동
 - [x] points 네이밍 변경
-- [ ] isContinuousTrue()에서 index를 넘겨주는 방법 말고 다른 방법 생각
+- [x] isContinuousTrue()에서 index를 직접 넘겨주지 않도록 변경
 - [x] isContinuousTrue()에서 RandomNumberGenerator 객체 생성 위치 변경
 - [x] LineStatus enum을 domain 패키지에서 view 패키지로 이동
 - [x] domain 패키지 내부에 하위 패키지 두기

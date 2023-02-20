@@ -16,13 +16,13 @@ public class Line {
         List<Boolean> line = new ArrayList<>();
         line.add(false);
         for (int i = 1; i < personCount; i++) {
-            line.add(isContinuousTrue(line, i));
+            line.add(isContinuousTrue(line.get(i - 1)));
         }
         return line;
     }
 
-    private boolean isContinuousTrue(List<Boolean> line, int index) {
-        if (line.get(index - 1)) {
+    private boolean isContinuousTrue(boolean lastStatus) {
+        if (lastStatus) {
             return false;
         }
         return randomNumberGenerator.isMovable();
