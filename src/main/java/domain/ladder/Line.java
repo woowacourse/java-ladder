@@ -2,13 +2,9 @@ package domain.ladder;
 
 import domain.value.Direction;
 import domain.value.Position;
-import domain.value.Width;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
 
@@ -16,26 +12,11 @@ public class Line {
     private final Position fistPosition;
     private final Position lastPosition;
 
-    private Line(final List<Scaffold> scaffolds) {
+    Line(final List<Scaffold> scaffolds) {
         validateScaffoldSizeEmpty(scaffolds);
         this.scaffolds = new ArrayList<>(scaffolds);
         this.fistPosition = Position.of(0);
         this.lastPosition = Position.of(scaffolds.size());
-    }
-
-    public static Line create(final Width width, final ScaffoldGenerator scaffoldGenerator) {
-        Deque<Scaffold> scaffolds = new ArrayDeque<>();
-        IntStream.range(0, width.value()).forEach(it -> createNonConsistScaffold(scaffolds, scaffoldGenerator));
-        return new Line(new ArrayList<>(scaffolds));
-    }
-
-    private static void createNonConsistScaffold(final Deque<Scaffold> scaffolds, final ScaffoldGenerator scaffoldGenerator) {
-        Scaffold scaffold = scaffoldGenerator.generate();
-        if (scaffold == Scaffold.EXIST && scaffolds.peekLast() == Scaffold.EXIST) {
-            scaffolds.add(Scaffold.NONE);
-            return;
-        }
-        scaffolds.add(scaffold);
     }
 
     // 생성자에서 사용되는 Private 메서드가 우선인가? 혹은 정적 팩터리 메서드가 우선인가?
