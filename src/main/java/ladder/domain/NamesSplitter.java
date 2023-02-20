@@ -6,8 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class NamesSplitor {
-    private static final String NAMES_INPUT_FORM = "([a-zA-Z]{1,5})(,[a-zA-Z]{1,5})*";
+public class NamesSplitter {
+    private static final Pattern nameInputFormPattern = Pattern.compile("([a-zA-Z]{1,5})(,[a-zA-Z]{1,5})*");
 
     public static List<String> split(String names){
         validateNamesInputForm(names);
@@ -24,7 +24,7 @@ public class NamesSplitor {
     }
 
     private static void validateNamesInputForm(String names) {
-        Matcher matcher = Pattern.compile(NAMES_INPUT_FORM).matcher(names);
+        Matcher matcher = nameInputFormPattern.matcher(names);
         if (!matcher.matches()) {
             throw new IllegalArgumentException("입력된 플레이어들의 이름 형식이 올바르지 않습니다.");
         }

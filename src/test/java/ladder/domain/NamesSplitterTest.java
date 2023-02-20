@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-class NamesSplitorTest {
+class NamesSplitterTest {
 
     @Test
     @DisplayName("입력받은 이름들을 ,를 기준으로 나눈다.")
@@ -15,6 +15,6 @@ class NamesSplitorTest {
         List<String> expected = List.of("채채", "아벨");
 
         // then
-        Assertions.assertThat(NamesSplitor.split("채채,아벨")).isEqualTo(expected);
+        Assertions.assertThat(NamesSplitter.split("채채,아벨")).isEqualTo(expected);
     }
 }
