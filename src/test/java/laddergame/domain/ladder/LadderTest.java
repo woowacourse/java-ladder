@@ -21,13 +21,11 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class LadderTest {
 
     private int participantCount;
-    private String ladderHeight;
     private BooleanGenerator rungGenerator;
 
     @BeforeAll
     void init() {
         participantCount = 4;
-        ladderHeight = "5";
         rungGenerator = new RungGenerator();
     }
 
@@ -70,16 +68,17 @@ public class LadderTest {
     void start_givenParticipantCount_thenReturnLadderResultPosition() {
         // given
         final BooleanGenerator trueRungGenerator = () -> true;
+        final String ladderHeight = "5";
         Ladder ladder = Ladder.create(ladderHeight, participantCount, trueRungGenerator);
 
         // when
-        List<Integer> ladderResultOrder = ladder.startGame(participantCount);
+        List<Integer> ladderResultPositions = ladder.startGame(participantCount);
 
         // then
-        assertThat(ladderResultOrder.size())
+        assertThat(ladderResultPositions.size())
                 .isEqualTo(participantCount);
 
-        assertThat(ladderResultOrder)
+        assertThat(ladderResultPositions)
                 .isEqualTo(List.of(1, 0, 3, 2));
     }
 }
