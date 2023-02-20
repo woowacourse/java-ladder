@@ -19,7 +19,7 @@ public class Player {
     }
 
     private boolean isInvalidNameLength(final String name) {
-        return name.isBlank() || NAME_LENGTH_UPPER_BOUND < name.length();
+        return name == null || name.isBlank() || NAME_LENGTH_UPPER_BOUND < name.length();
     }
 
     public String getName() {
