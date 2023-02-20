@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
@@ -9,16 +8,17 @@ public class Ladder {
     public static final int MIN_RANGE = 1;
     private final List<Line> lines;
 
-    public Ladder(int personCount, int maxHeight, BridgeGenerator generator) {
-        validateHeight(maxHeight);
-        this.lines = new ArrayList<>(maxHeight);
-        for (int i = 0; i < maxHeight; i++) {
-            List<Boolean> movements = generator.generate(personCount);
-            lines.add(new Line(movements));
-        }
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
-    private void validateHeight(int maxHeight) {
+    public static Ladder make(int personCount, int maxHeight, LadderGenerator generator) {
+        validateHeight(maxHeight);
+        List<Line> lines = generator.generate(personCount, maxHeight);
+        return new Ladder(lines);
+    }
+
+    private static void validateHeight(int maxHeight) {
         if (maxHeight < MIN_RANGE || maxHeight > MAX_RANGE) {
             throw new IllegalArgumentException(
                 String.format("사다리 높이는 %d 이상 %d 이하여야 합니다", MIN_RANGE, MAX_RANGE));

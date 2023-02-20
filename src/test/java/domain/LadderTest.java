@@ -14,7 +14,7 @@ class LadderTest {
     @ParameterizedTest(name = "{index} : 사다리 높이 {0}만큼 라인을 생성한다 ")
     @ValueSource(ints = {3, 4, 5, 6})
     void ladder_height_test(int height) {
-        Ladder ladder = new Ladder(4, height, new RandomBridgeGenerator());
+        Ladder ladder = Ladder.make(4, height, new RandomLadderGenerator());
         assertThat(ladder.getHeight()).isEqualTo(height);
     }
 
@@ -22,7 +22,7 @@ class LadderTest {
     @ParameterizedTest(name = "{index} : 현재 사다리 높이 = {0}")
     @ValueSource(ints = {-1, 0, 11})
     void ladder_invalid_test(int height) {
-        assertThatThrownBy(() -> new Ladder(4, height, new RandomBridgeGenerator()))
+        assertThatThrownBy(() -> Ladder.make(4, height, new RandomLadderGenerator()))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -30,7 +30,7 @@ class LadderTest {
     @ParameterizedTest(name = "{index} : 현재 사다리 높이 = {0}")
     @ValueSource(ints = {1, 5, 10})
     void ladder_valid_test(int height) {
-        assertDoesNotThrow(() -> new Ladder(4, height, new RandomBridgeGenerator()));
+        assertDoesNotThrow(() -> Ladder.make(4, height, new RandomLadderGenerator()));
     }
 
 
@@ -38,7 +38,7 @@ class LadderTest {
     @ParameterizedTest(name = "{index} : 사다리의 폭의 길이는 {0}-1 이다 ")
     @ValueSource(ints = {3, 4, 5, 6})
     void ladder_width_test(int personCount) {
-        Ladder ladder = new Ladder(personCount, 3, new RandomBridgeGenerator());
+        Ladder ladder = Ladder.make(personCount, 3, new RandomLadderGenerator());
         assertThat(ladder.getWidth()).isEqualTo(personCount - 1);
 
     }

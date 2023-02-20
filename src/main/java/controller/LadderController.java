@@ -5,7 +5,7 @@ import static view.InputView.DELIMITER;
 import domain.Ladder;
 import domain.People;
 import domain.Person;
-import domain.RandomBridgeGenerator;
+import domain.RandomLadderGenerator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
@@ -60,6 +60,6 @@ public class LadderController {
 
     private Ladder ladderRequest(int peopleCount) {
         int height = inputView.readLadderHeight();
-        return new Ladder(peopleCount, height, new RandomBridgeGenerator());
+        return Ladder.make(peopleCount, height, new RandomLadderGenerator());
     }
 }
