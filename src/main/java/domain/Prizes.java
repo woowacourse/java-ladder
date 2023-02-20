@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Prizes {
 
-    private static final String ITEM_SIZE_NOT_MATCH = "[ERROR] 결과의 개수는 사용자의 개수와 일치해야합니다.";
+    private static final String ITEM_SIZE_NOT_MATCH = "[ERROR] 결과의 개수는 사용자의 인원과 일치해야합니다.";
 
     private final List<Prize> prizes;
 
