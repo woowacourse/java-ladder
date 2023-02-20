@@ -12,17 +12,17 @@ public class InputView {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    private void validateIsBlank(String input) {
-        if (input.isBlank()) {
-            throw new IllegalArgumentException(ERROR_BLANK);
-        }
-    }
-
     public List<String> readPersonNames() {
         System.out.println(System.lineSeparator() + READ_PERSON_NAMES_MSG);
         String input = scanner.nextLine();
         validateIsBlank(input);
         return List.of(input.split(DELIMITER));
+    }
+
+    private void validateIsBlank(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException(ERROR_BLANK);
+        }
     }
 
     public int readLadderHeight() {

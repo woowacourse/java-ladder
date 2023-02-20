@@ -18,12 +18,6 @@ public class Persons {
         this.persons = convertToPeople(names);
     }
 
-    private static List<Person> convertToPeople(List<String> names) {
-        return names.stream()
-                .map(Person::new)
-                .collect(Collectors.toList());
-    }
-
     private static void validatePersonLength(List<String> names) {
         if (names.size() < MIN_PERSON_LENGTH) {
             throw new IllegalArgumentException(ERROR_PERSON_LENGTH);
@@ -35,6 +29,12 @@ public class Persons {
         if (removeDuplicateNames.size() != names.size()) {
             throw new IllegalArgumentException(ERROR_DUPLICATION);
         }
+    }
+
+    private static List<Person> convertToPeople(List<String> names) {
+        return names.stream()
+                .map(Person::new)
+                .collect(Collectors.toList());
     }
 
     public int getNumberOfPersons() {
