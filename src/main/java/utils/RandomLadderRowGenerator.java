@@ -11,8 +11,8 @@ public class RandomLadderRowGenerator implements LadderRowGenerator{
     private static final Random RANDOM = new Random();
 
     public LadderRow generate(int userCount) {
-        List<Boolean> ladderRow = getBars(userCount);
-        return new LadderRow(ladderRow);
+        List<Boolean> bars = getBars(userCount);
+        return new LadderRow(bars);
     }
 
     private List<Boolean> getBars(int userCount) {

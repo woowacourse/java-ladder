@@ -16,8 +16,8 @@ public class Ladder {
 
     public void create(int ladderHeight, int userCount) {
         for (int i = 0; i < ladderHeight; i++) {
-            LadderRow line = ladderRowGenerator.generate(userCount);
-            ladderRows.add(line);
+            LadderRow ladderRow = ladderRowGenerator.generate(userCount);
+            ladderRows.add(ladderRow);
         }
     }
 
