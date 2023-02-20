@@ -1,5 +1,6 @@
 package view;
 
+import domain.Bridge;
 import exception.ErrorCode;
 import java.util.List;
 
@@ -12,14 +13,14 @@ public class OutputView {
     public OutputView() {
     }
 
-    public void printLadder(List<String> persons, List<List<Boolean>> ladder, int bridgeSize) {
+    public void printLadder(List<String> persons, List<List<Bridge>> ladder, int bridgeSize) {
         System.out.println(RESULT_HEAD + "\n");
         int firstNameLength = printPersons(persons, bridgeSize);
         printLadder(ladder, firstNameLength, bridgeSize);
     }
 
-    private static void printLadder(List<List<Boolean>> ladder, int firstNameLength, int bridgeSize) {
-        for (List<Boolean> line : ladder) {
+    private static void printLadder(List<List<Bridge>> ladder, int firstNameLength, int bridgeSize) {
+        for (List<Bridge> line : ladder) {
             System.out.print(BLANK.repeat(firstNameLength));
             System.out.print(LADDER_UNIT);
             printEachLine(bridgeSize, line);
@@ -27,8 +28,8 @@ public class OutputView {
         }
     }
 
-    private static void printEachLine(int bridgeSize, List<Boolean> line) {
-        line.forEach(hasBridge -> printEachBridge(bridgeSize, hasBridge));
+    private static void printEachLine(int bridgeSize, List<Bridge> line) {
+        line.forEach(hasBridge -> printEachBridge(bridgeSize, hasBridge.getStatus()));
     }
 
     private static void printEachBridge(int bridgeSize, boolean hasBridge) {

@@ -4,8 +4,6 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import util.TrueGenerator;
 
 public class LadderTest {
@@ -32,10 +30,11 @@ public class LadderTest {
         Ladder ladder = new Ladder(height, personCount);
 
         //when
-        ladder.generateLadder(new TrueGenerator());
+        ladder.generate(new TrueGenerator());
 
         //then
         Assertions.assertThat(ladder.getStatus())
-                .containsExactly(List.of(Bridge.EXIST, Bridge.EMPTY, Bridge.EXIST, Bridge.EMPTY), List.of(Bridge.EXIST, Bridge.EMPTY, Bridge.EXIST, Bridge.EMPTY));
+                .containsExactly(List.of(Bridge.EXIST, Bridge.EMPTY, Bridge.EXIST, Bridge.EMPTY),
+                        List.of(Bridge.EXIST, Bridge.EMPTY, Bridge.EXIST, Bridge.EMPTY));
     }
 }

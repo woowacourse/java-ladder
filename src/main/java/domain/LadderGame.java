@@ -1,26 +1,26 @@
 package domain;
 
 import java.util.List;
-import util.BooleanGenerator;
-import util.RandomBooleanGenerator;
+import util.BridgeGenerator;
+import util.RandomBridgeGenerator;
 
 public class LadderGame {
     private final Persons persons;
     private final Ladder ladder;
 
-    private final BooleanGenerator booleanGenerator;
+    private final BridgeGenerator bridgeGenerator;
 
     public LadderGame(Persons persons, Height height) {
         this.persons = persons;
         this.ladder = new Ladder(height, persons.getTotalPersonCount());
-        this.booleanGenerator = new RandomBooleanGenerator();
+        this.bridgeGenerator = new RandomBridgeGenerator();
     }
 
     public void run() {
-        ladder.generateLadder(booleanGenerator);
+        ladder.generate(bridgeGenerator);
     }
 
-    public List<List<Boolean>> getLadderStatus() {
+    public List<List<Bridge>> getLadderStatus() {
         return ladder.getStatus();
     }
 

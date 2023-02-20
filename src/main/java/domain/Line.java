@@ -1,29 +1,29 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import util.BooleanGenerator;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import util.BridgeGenerator;
 
 public class Line {
-    private final List<Boolean> bridges;
+    private final List<Bridge> bridges;
 
     public Line(int personCount) {
-        this.bridges = new ArrayList<>();
-        for (int index = 0; index < personCount - 1; index++) {
-            bridges.add(false);
-        }
+        this.bridges = IntStream.range(0,personCount - 1)
+                .mapToObj(it->Bridge.EMPTY)
+                .collect(Collectors.toList());
     }
 
-    public void generate(BooleanGenerator booleanGenerator) {
+    public void generate(BridgeGenerator bridgeGenerator) {
         for (int bridgeIndex = 0; bridgeIndex < bridges.size(); bridgeIndex++) {
-            generateBridge(booleanGenerator, bridgeIndex);
+            generateBridge(bridgeGenerator, bridgeIndex);
         }
     }
 
-    private void generateBridge(BooleanGenerator booleanGenerator, int bridgeIndex) {
+    private void generateBridge(BridgeGenerator bridgeGenerator, int bridgeIndex) {
         if (!hasSide(bridgeIndex, bridges.size() - 1)) {
-            bridges.set(bridgeIndex, booleanGenerator.generate());
+            bridges.set(bridgeIndex, bridgeGenerator.generate());
         }
     }
 
@@ -43,15 +43,15 @@ public class Line {
         return isBridgeInLeft(bridgeIndex - 1) || isBridgeInRight(bridgeIndex + 1);
     }
 
-    private boolean isBridgeInLeft(int leftIndex) {
-        return bridges.get(leftIndex);
+    private Boolean isBridgeInLeft(int leftIndex) {
+        return bridges.get(leftIndex).getStatus();
     }
 
-    private boolean isBridgeInRight(int rightIndex) {
-        return bridges.get(rightIndex);
+    private Boolean isBridgeInRight(int rightIndex) {
+        return bridges.get(rightIndex).getStatus();
     }
 
-    public List<Boolean> getBridges() {
+    public List<Bridge> getBridges() {
         return Collections.unmodifiableList(bridges);
     }
 }

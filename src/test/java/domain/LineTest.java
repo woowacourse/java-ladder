@@ -23,7 +23,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("BooleanGenerator 결과가 항상 true 일 때 다리 생성 테스트")
+    @DisplayName("BridgeGenerator 결과가 항상 true 일 때 다리 생성 테스트")
     void alwaysTrueCreateBridge() {
         //given
         Line line = new Line(5);
@@ -36,7 +36,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("BooleanGenerator 결과가 항상 false 일 때 다리 생성 테스트")
+    @DisplayName("BridgeGenerator 결과가 항상 false 일 때 다리 생성 테스트")
     void alwaysFalseCreateBridge() {
         //given
         Line line = new Line(5);
