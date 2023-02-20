@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import exception.WrongParticipantSizeException;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -23,7 +22,8 @@ class NamesTest {
     @Test
     void 생성자는_2_이하의_names를_전달하면_예외가_발생한다() {
         assertThatThrownBy(() -> new Names(List.of(new Name("a"))))
-                .isInstanceOf(WrongParticipantSizeException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("최소 2명의 이름을 입력해주세요.");
     }
 
     @Test
