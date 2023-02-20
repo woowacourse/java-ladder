@@ -2,6 +2,7 @@ package laddergame.domain.participant;
 
 import laddergame.domain.exception.DuplicateException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -57,9 +58,13 @@ public class Participants {
     }
 
     private List<Participant> makeParticipants(final List<String> participantNames) {
-        return participantNames.stream()
-                .map(Participant::create)
-                .collect(Collectors.toUnmodifiableList());
+        List<Participant> participants = new ArrayList<>();
+        for (int participantOrder = 0; participantOrder < participantNames.size(); participantOrder++) {
+            String participantName = participantNames.get(participantOrder);
+            Participant participant = Participant.create(participantName, participantOrder);
+            participants.add(participant);
+        }
+        return List.copyOf(participants);
     }
 
     public List<String> getResultParticipantNames(final String participantName) {
