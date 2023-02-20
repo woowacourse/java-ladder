@@ -2,7 +2,7 @@ package domain;
 
 public class Height {
     private static final int FINISH_NUMBER = 0;
-    public static final String NOT_POSITIVE_ERROR_MESSAGE = "양의 정수만 입력해주세요.";
+    private static final String NOT_POSITIVE_ERROR_MESSAGE = "양의 정수만 입력해주세요.";
 
     private final int height;
 
