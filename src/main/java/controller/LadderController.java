@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderController {
+    private static final String NOT_PLAYER_MASSAGE = "없는 참가자입니다.";
     private final InputView inputView;
     private final OutputView outputView;
     private final LadderMaker ladderMaker;
@@ -54,9 +55,17 @@ public class LadderController {
             outputView.printAllTargetResult(players, goodsList);
             return;
         }
+        validateNotInPlayers(players,input);
         outputView.printTargetResult(goodsList.get(makePlayerHash(players).get(input).getPosition()).get());
     }
-
+    private void validateNotInPlayers(List<Player> players,String target){
+        if(notHasTarget(players,target)){
+            throw new NullPointerException(NOT_PLAYER_MASSAGE);
+        }
+    }
+    private Boolean notHasTarget(List<Player> players,String target){
+        return !players.stream().map(player -> player.getName()).collect(Collectors.toList()).contains(target);
+    }
     private HashMap<String, Player> makePlayerHash(List<Player> players) {
         HashMap<String, Player> playerHashMap = new HashMap<>();
         for (Player player : players) {
