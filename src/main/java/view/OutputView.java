@@ -3,6 +3,7 @@ package view;
 import domain.Ladder;
 import domain.Line;
 import domain.LineStatus;
+import domain.Lines;
 import domain.Player;
 import domain.Players;
 import java.util.List;
@@ -35,7 +36,9 @@ public class OutputView {
     }
 
     public static void printLadder(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
+        Lines lines = ladder.getLines();
+
+        for (Line line : lines.getLines()) {
             List<LineStatus> oneLine = line.getLine();
             System.out.println(getLineStatus(oneLine));
         }
