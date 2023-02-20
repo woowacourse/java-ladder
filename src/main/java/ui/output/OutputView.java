@@ -40,7 +40,10 @@ public class OutputView {
     }
 
     private static void printLadder(Lines lines, Players players) {
-        LadderShape.getLadderForm(lines);
+        lines.getLines()
+                .forEach(line ->
+                        System.out.println(LadderShape.getLadderForm(line.getPoints(), getMaxLength(players)
+                        )));
     }
 
 }

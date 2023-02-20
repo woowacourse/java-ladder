@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author 베베
@@ -21,8 +20,8 @@ class LadderShapeTest {
     @Test
     void returnLadderShape() {
         // given
-        List<Boolean> points = List.of(true, false, false, true)
+        List<Boolean> points = List.of(true, false, false, true);
         String ladderForm = LadderShape.getLadderForm(points, 5);
-        assertThat(ladderForm).isEqualTo("----|" + "     |" + "     |" + "-----|");
+        assertThat(ladderForm).isEqualTo("-----|     |     |-----|");
     }
 }

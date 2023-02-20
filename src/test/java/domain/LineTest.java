@@ -25,9 +25,9 @@ public class LineTest {
     @DisplayName("이전 가로가 True면 다음 가로는 무조건 False이다.")
     @Test
     void 사다리_순서를_계산한다() {
-        IntStream.range(0, line.getLine().size() - 1)
-                .filter(i -> line.getLine().get(i) == true)
-                .forEach(i -> Assertions.assertThat(line.getLine().get(i + 1))
+        IntStream.range(0, line.getPoints().size() - 1)
+                .filter(i -> line.getPoints().get(i) == true)
+                .forEach(i -> Assertions.assertThat(line.getPoints().get(i + 1))
                         .isFalse());
     }
 }
