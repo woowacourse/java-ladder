@@ -8,13 +8,11 @@ public class Line {
     private static final int MIN_CONNECTIONS = 1;
 
     private final List<Boolean> connections;
-    private final PickStrategy strategy;
 
     private Line(final int playerCount, final PickStrategy pickStrategy) {
-        this.strategy = pickStrategy;
         int connectionCount = playerCount - 1;
         validateConnectionCount(connectionCount);
-        this.connections = createConnections(connectionCount);
+        this.connections = createConnections(connectionCount, pickStrategy);
     }
 
     public static Line from(final int playerCount) {
@@ -29,18 +27,18 @@ public class Line {
         return new ArrayList<>(connections);
     }
 
-    private List<Boolean> createConnections(int connectionCount) {
+    private List<Boolean> createConnections(int connectionCount, final PickStrategy pickStrategy) {
         List<Boolean> connections = new ArrayList<>();
 
         for (int i = 0; i < connectionCount; i++) {
-            connections.add(createLineConnections(connections));
+            connections.add(createLineConnections(connections, pickStrategy));
         }
 
         return connections;
     }
 
-    private boolean createLineConnections(final List<Boolean> connections) {
-        final boolean pick = strategy.pick();
+    private boolean createLineConnections(final List<Boolean> connections, final PickStrategy pickStrategy) {
+        final boolean pick = pickStrategy.pick();
 
         if (connections.isEmpty()) {
             return pick;
