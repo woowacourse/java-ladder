@@ -21,7 +21,10 @@ public enum ExceptionMessage {
     EXCEPTION_INVALID_REWARD_COUNT("실행 결과 수는 플레이어 수와 일치해야 합니다."),
 
     /*Height*/
-    EXCEPTION_INVALID_HEIGHT("사다리 높이는 2 이상 100 이하여야 합니다.");
+    EXCEPTION_INVALID_HEIGHT("사다리 높이는 2 이상 100 이하여야 합니다."),
+
+    /*LadderGameController*/
+    EXCEPTION_EXIT("비정상 작동으로 인해 게임을 종료합니다.");
 
     public final String message;
 

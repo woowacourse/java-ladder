@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.exceptionMessage.ExceptionMessage;
 import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -24,13 +25,16 @@ public class LadderGameController {
     }
 
     public void run() {
-        Players players = generatePlayers();
-        Rewards rewards = generateRewards(players.getSize());
-        Height height = generateHeight();
-        Ladder ladder = generateLadder(players, height);
-
-        showLadderGame(players, ladder, rewards);
-        showResultBoard(new ResultBoard(players, ladder, rewards));
+        try {
+            Players players = generatePlayers();
+            Rewards rewards = generateRewards(players.getSize());
+            Height height = generateHeight();
+            Ladder ladder = generateLadder(players, height);
+            showLadderGame(players, ladder, rewards);
+            showResultBoard(new ResultBoard(players, ladder, rewards));
+        } catch (Exception exception) {
+            outputView.printExceptionMessage(ExceptionMessage.EXCEPTION_EXIT.getMessage());
+        }
     }
 
     private Players generatePlayers() {
