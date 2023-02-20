@@ -13,8 +13,8 @@ class LineTest {
     @DisplayName("라인의 너비가 조건에 맞을 경우 객체를 생성한다.")
     @Test
     void createSuccess() {
-        Line ladder = new Line(9, new RandomBooleanGenerator());
-        List<Boolean> weight = ladder.getStatus();
+        Line line = new Line(9, new RandomBooleanGenerator());
+        List<Boolean> weight = line.getStatus();
         Assertions.assertThat(weight).hasSize(9);
     }
 
