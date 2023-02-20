@@ -1,6 +1,7 @@
 package domain;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -36,6 +37,7 @@ public class LadderServiceTest {
 
     }
 
+    @DisplayName("단일 사용자의 결과 출력")
     @ParameterizedTest
     @CsvSource({
             "pobi,꽝",
@@ -47,6 +49,7 @@ public class LadderServiceTest {
         assertThat(ladderService.getSingleResult(name)).isEqualTo(new Result(result));
     }
 
+    @DisplayName("모든 사용자의 결과 출력")
     @Test
     void all_result_test() {
         assertThat(ladderService.getAllResults())
