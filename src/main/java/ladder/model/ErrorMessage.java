@@ -8,6 +8,7 @@ public enum ErrorMessage {
     EXCEPTION_HEIGHT_INVALID_TYPE("정수가 아닙니다."),
     EXCEPTION_HEIGHT_MINIMUM("사다리 높이는 2 이상이어야 합니다.");
 
+    private static final String ERROR_HEADER = "[ERROR] ";
     private final String message;
 
     ErrorMessage(String message) {
@@ -15,7 +16,7 @@ public enum ErrorMessage {
     }
 
     public String getMessage() {
-        return message;
+        return ERROR_HEADER+message;
     }
 
 }

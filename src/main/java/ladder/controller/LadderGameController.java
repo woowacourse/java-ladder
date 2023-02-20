@@ -18,11 +18,15 @@ public class LadderGameController {
     }
 
     public void run() {
-        List<PlayerName> playerNames = generatePlayerNames();
-        Height height = generateHeight();
+        try {
+            List<PlayerName> playerNames = generatePlayerNames();
+            Height height = generateHeight();
 
-        LadderGame ladderGame = new LadderGame(playerNames, height, new RandomLineCreateDecider());
-        showResult(ladderGame);
+            LadderGame ladderGame = new LadderGame(playerNames, height, new RandomLineCreateDecider());
+            showResult(ladderGame);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+        }
     }
 
     private List<PlayerName> generatePlayerNames() {

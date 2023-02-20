@@ -1,6 +1,5 @@
 package ladder.view;
 
-
 import java.util.List;
 
 public class OutputView {
@@ -25,6 +24,10 @@ public class OutputView {
             System.out.print(LadderMark.getRowMark(point));
             System.out.print(LadderMark.COLUMN_LINE.getMark());
         }
+    }
+
+    public void printError(String errorMessage) {
+        System.out.println(errorMessage);
     }
 
     private enum LadderMark {
