@@ -1,8 +1,7 @@
 package helper;
 
-import domain.BridgeStatus;
 import domain.Bridge;
-import domain.Line;
+import domain.BridgeStatus;
 import domain.People;
 import domain.Person;
 

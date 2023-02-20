@@ -1,8 +1,8 @@
 package engine;
 
 import common.exception.handler.IllegalArgumentExceptionHandler;
-import domain.Ladder;
 import domain.Bridge;
+import domain.Ladder;
 import domain.Line;
 import domain.People;
 import domain.Person;

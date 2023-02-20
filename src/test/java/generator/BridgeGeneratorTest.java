@@ -1,7 +1,7 @@
 package generator;
 
-import domain.BridgeStatus;
 import domain.Bridge;
+import domain.BridgeStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,7 @@
 package generator;
 
-import domain.BridgeStatus;
 import domain.Bridge;
+import domain.BridgeStatus;
 
 import java.util.ArrayList;
 import java.util.List;
