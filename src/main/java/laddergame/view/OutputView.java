@@ -1,5 +1,6 @@
 package laddergame.view;
 
+import laddergame.domain.Connection;
 import laddergame.domain.Ladder;
 import laddergame.domain.Names;
 
@@ -45,11 +46,14 @@ public enum OutputView {
         return String.format("%s%s", name, repeat);
     }
 
-    private static String makeLadderFormat(final List<Boolean> statuses, final Names names) {
+    private static String makeLadderFormat(final List<Connection> connections, final Names names) {
         final StringBuilder result = new StringBuilder();
         result.append(createStartBlank(names));
         result.append(VERTICAL_LINE.ladderElement);
-        statuses.forEach(status -> result.append(makeLine(status, names.findMaxNameLength())));
+        connections.forEach(connection ->
+                result.append(
+                        makeLine(connection, names.findMaxNameLength())
+                ));
         result.append(System.lineSeparator());
 
         return result.toString();
@@ -59,8 +63,8 @@ public enum OutputView {
         return BLANK.ladderElement.repeat(names.getFirstNameLengthDividedByTwoRounded());
     }
 
-    private static String makeLine(final Boolean status, final int maxNameLength) {
-        if (status) {
+    private static String makeLine(final Connection connection, final int maxNameLength) {
+        if (connection.isConnected()) {
             return HORIZONTAL_LINE.ladderElement.repeat(maxNameLength) + VERTICAL_LINE.ladderElement;
         }
 

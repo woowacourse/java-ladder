@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static laddergame.domain.Connection.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class LineTest {
@@ -39,7 +40,7 @@ public class LineTest {
 
             //then
             assertThat(line.getConnections())
-                    .containsExactly(true, false);
+                    .containsExactly(CONNECTED, UNCONNECTED);
         }
     }
 
@@ -52,6 +53,6 @@ public class LineTest {
 
         //then
         assertThat(line.getConnections())
-                .containsExactly(true, false);
+                .containsExactly(CONNECTED, UNCONNECTED);
     }
 }

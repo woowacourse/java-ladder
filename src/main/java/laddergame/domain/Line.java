@@ -7,7 +7,7 @@ public class Line {
 
     private static final int MIN_CONNECTIONS = 1;
 
-    private final List<Boolean> connections;
+    private final List<Connection> connections;
 
     private Line(final int playerCount, final PickStrategy pickStrategy) {
         int connectionCount = playerCount - 1;
@@ -23,37 +23,40 @@ public class Line {
         return new Line(playerCount, pickStrategy);
     }
 
-    public List<Boolean> getConnections() {
+    public List<Connection> getConnections() {
         return new ArrayList<>(connections);
     }
 
-    private List<Boolean> createConnections(int connectionCount, final PickStrategy pickStrategy) {
-        List<Boolean> connections = new ArrayList<>();
+    private List<Connection> createConnections(int connectionCount, final PickStrategy pickStrategy) {
+        List<Connection> connections = new ArrayList<>();
 
         for (int i = 0; i < connectionCount; i++) {
-            connections.add(createLineConnections(connections, pickStrategy));
+            final Connection createdConnection = createLineConnections(connections, pickStrategy);
+            connections.add(createdConnection);
         }
 
         return connections;
     }
 
-    private boolean createLineConnections(final List<Boolean> connections, final PickStrategy pickStrategy) {
-        final boolean pick = pickStrategy.pick();
+    private Connection createLineConnections(final List<Connection> connections, final PickStrategy pickStrategy) {
+        final Connection pick = Connection.from(pickStrategy.pick());
 
         if (connections.isEmpty()) {
             return pick;
         }
 
         if (isOverlap(connections, pick)) {
-            return false;
+            return Connection.UNCONNECTED;
         }
 
         return pick;
     }
 
-    private static boolean isOverlap(final List<Boolean> connections, final boolean pick) {
+    private static boolean isOverlap(final List<Connection> connections, final Connection pick) {
         int lastIndex = connections.size() - 1;
-        return connections.get(lastIndex) && pick;
+        final Connection lastConnection = connections.get(lastIndex);
+
+        return lastConnection.isOverlap(pick);
     }
 
     private void validateConnectionCount(final int connectionCount) {
