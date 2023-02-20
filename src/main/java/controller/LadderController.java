@@ -1,14 +1,13 @@
 package controller;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 import domain.Ladder;
 import domain.LadderHeight;
 import domain.Name;
 import domain.Names;
 import java.util.List;
-import java.util.Objects;
-import java.util.function.Supplier;
 import utils.NumberGenerator;
 import view.InputView;
 import view.OutputView;

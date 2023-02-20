@@ -35,6 +35,6 @@ public class Ladder {
     }
 
     public int getLadderHeight() {
-        return ladderHeight.getLadderHeight();
+        return ladderHeight.getValue();
     }
 }

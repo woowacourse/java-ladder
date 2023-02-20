@@ -17,8 +17,7 @@ public class OutputView {
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
     private static final String BLANK_AFTER_NAME = " ";
 
-    public void printResult(Names names,
-                            Ladder ladder) {
+    public void printResult(Names names, Ladder ladder) {
         System.out.println("실행결과");
 
         printFormattedNames(names);
