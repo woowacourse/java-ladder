@@ -9,33 +9,33 @@ public class Line {
 
     private final List<Connection> connections;
 
-    private Line(final int playerCount, final PickStrategy pickStrategy) {
+    private Line(final int playerCount, final ConnectionStrategy connectionStrategy) {
         int connectionCount = playerCount - 1;
         validateConnectionCount(connectionCount);
-        this.connections = createConnections(connectionCount, pickStrategy);
+        this.connections = createConnections(connectionCount, connectionStrategy);
     }
 
-    public static Line of(final int playerCount, final PickStrategy pickStrategy) {
-        return new Line(playerCount, pickStrategy);
+    public static Line of(final int playerCount, final ConnectionStrategy connectionStrategy) {
+        return new Line(playerCount, connectionStrategy);
     }
 
     public List<Connection> getConnections() {
         return new ArrayList<>(connections);
     }
 
-    private List<Connection> createConnections(int connectionCount, final PickStrategy pickStrategy) {
+    private List<Connection> createConnections(int connectionCount, final ConnectionStrategy connectionStrategy) {
         List<Connection> connections = new ArrayList<>();
 
         for (int i = 0; i < connectionCount; i++) {
-            final Connection createdConnection = createLineConnections(connections, pickStrategy);
+            final Connection createdConnection = createLineConnections(connections, connectionStrategy);
             connections.add(createdConnection);
         }
 
         return connections;
     }
 
-    private Connection createLineConnections(final List<Connection> connections, final PickStrategy pickStrategy) {
-        final Connection pick = Connection.from(pickStrategy.pick());
+    private Connection createLineConnections(final List<Connection> connections, final ConnectionStrategy connectionStrategy) {
+        final Connection pick = connectionStrategy.connect();
 
         if (connections.isEmpty()) {
             return pick;

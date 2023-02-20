@@ -11,11 +11,11 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class LadderTest {
 
-    private static PickStrategy randomPicker;
+    private static ConnectionStrategy randomPicker;
 
     @BeforeAll
     static void init() {
-        randomPicker = new RandomBooleanPicker();
+        randomPicker = new RandomLineMaker();
     }
 
     @Test

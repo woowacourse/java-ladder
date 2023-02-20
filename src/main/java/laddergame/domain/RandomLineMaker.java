@@ -4,7 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
 
-public class RandomBooleanPicker implements PickStrategy {
+public class RandomLineMaker implements ConnectionStrategy {
 
     public static final Random random;
 
@@ -17,7 +17,7 @@ public class RandomBooleanPicker implements PickStrategy {
     }
 
     @Override
-    public boolean pick() {
-        return random.nextBoolean();
+    public Connection connect() {
+        return Connection.from(random.nextBoolean());
     }
 }

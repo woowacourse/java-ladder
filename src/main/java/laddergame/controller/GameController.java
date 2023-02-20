@@ -2,21 +2,21 @@ package laddergame.controller;
 
 import laddergame.domain.Ladder;
 import laddergame.domain.Names;
-import laddergame.domain.PickStrategy;
+import laddergame.domain.ConnectionStrategy;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
 public class GameController {
 
-    private final PickStrategy pickStrategy;
+    private final ConnectionStrategy connectionStrategy;
 
-    public GameController(final PickStrategy pickStrategy) {
-        this.pickStrategy = pickStrategy;
+    public GameController(final ConnectionStrategy connectionStrategy) {
+        this.connectionStrategy = connectionStrategy;
     }
 
     public void process() {
         final Names names = readNamesWithRetry();
-        final Ladder ladder = readHeightWithRetry(names, pickStrategy);
+        final Ladder ladder = readHeightWithRetry(names, connectionStrategy);
 
         OutputView.printPlayerAll(names);
         OutputView.printLadder(names, ladder);
@@ -31,12 +31,12 @@ public class GameController {
         }
     }
 
-    private Ladder readHeightWithRetry(final Names names, final PickStrategy pickStrategy) {
+    private Ladder readHeightWithRetry(final Names names, final ConnectionStrategy connectionStrategy) {
         try {
-            return new Ladder(InputView.readHeight(), names.getSize(), pickStrategy);
+            return new Ladder(InputView.readHeight(), names.getSize(), connectionStrategy);
         } catch (IllegalStateException | IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
-            return readHeightWithRetry(names, pickStrategy);
+            return readHeightWithRetry(names, connectionStrategy);
         }
     }
 }

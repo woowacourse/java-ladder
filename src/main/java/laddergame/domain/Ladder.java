@@ -10,9 +10,9 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(final int height, final int numberOfPlayers, final PickStrategy pickStrategy) {
+    public Ladder(final int height, final int numberOfPlayers, final ConnectionStrategy connectionStrategy) {
         validateHeight(height);
-        this.lines = createLines(height, numberOfPlayers, pickStrategy);
+        this.lines = createLines(height, numberOfPlayers, connectionStrategy);
     }
 
     public List<Line> getLines() {
@@ -26,11 +26,11 @@ public class Ladder {
         }
     }
 
-    private List<Line> createLines(final int height, final int numberOfPlayers, final PickStrategy pickStrategy) {
+    private List<Line> createLines(final int height, final int numberOfPlayers, final ConnectionStrategy connectionStrategy) {
         final List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            lines.add(Line.of(numberOfPlayers, pickStrategy));
+            lines.add(Line.of(numberOfPlayers, connectionStrategy));
         }
 
         return lines;
