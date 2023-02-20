@@ -12,7 +12,7 @@ public class PlayerTest {
     @Test
     @DisplayName("이름에 6글자 이상 입력시 예외 발생")
     void validateNameLength(){
-        assertThatThrownBy(() -> new Player("123456"))
+        assertThatThrownBy(() -> new Player("123456", 0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 이름 길이는 5자를 넘길 수 없습니다.");
     }
@@ -21,7 +21,7 @@ public class PlayerTest {
     @ValueSource(strings = {""," ","   "})
     @DisplayName("이름에 공백 입력시 예외 발생")
     void validateBlankName(String blankName){
-        assertThatThrownBy(() -> new Player(blankName))
+        assertThatThrownBy(() -> new Player(blankName, 0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 빈 문자열 입니다.");
     }

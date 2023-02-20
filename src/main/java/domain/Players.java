@@ -43,8 +43,8 @@ public class Players {
     }
 
     private void addPlayer(List<String> names) {
-        for (String name : names) {
-            players.add(new Player(name));
+        for (int position = 0; position < names.size(); position++) {
+            players.add(new Player(names.get(position), position));
         }
     }
 

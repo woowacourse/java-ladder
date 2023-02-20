@@ -7,9 +7,11 @@ public class Player {
     private static final String NAME_LENGTH_ERROR = "[ERROR] 이름 길이는 5자를 넘길 수 없습니다.";
 
     private final String name;
+    private final int position;
 
-    public Player(String name){
+    public Player(String name, int position){
         this.name = name;
+        this.position = position;
         validateNameLength(name);
         validateNameBlank(name);
     }
