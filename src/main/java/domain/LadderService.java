@@ -1,6 +1,8 @@
 package domain;
 
 public class LadderService {
+    public static final String PRINT_FORMAT = "%s : %s\n";
+
     private final Ladder ladder;
     private final People people;
     private final Results results;
@@ -11,8 +13,9 @@ public class LadderService {
         this.results = results;
     }
 
-    public String start(String name) {
-        Position position = ladder.startByIndex(people.findByName(name));
-        return results.getByIndex(position.getColumn());
+    public Result getSingleResult(String name) {
+        int indexByName = people.findByName(name);
+        Position position = ladder.startByIndex(indexByName);
+        return results.getByIndex(position);
     }
 }

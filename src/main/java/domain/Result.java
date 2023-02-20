@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class Result {
     private final String result;
-    private Person person;
 
     public Result(String result) {
         validateResultLength(result);

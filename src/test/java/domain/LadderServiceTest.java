@@ -1,6 +1,7 @@
 package domain;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -29,7 +30,7 @@ public class LadderServiceTest {
                 5,
                 (width, height) -> customizedLines
         );
-        results = new Results("꽝,5000,꽝,3000", 4);
+        results = new Results("꽝,5000,꽝,3000", people);
     }
 
     @ParameterizedTest
@@ -39,8 +40,10 @@ public class LadderServiceTest {
             "crong,꽝",
             "jk,5000",
     })
-    void name(String name, String result) {
+    void single_result_test(String name, String result) {
         LadderService ladderService = new LadderService(ladder, people, results);
-        assertThat(ladderService.start(name)).isEqualTo(result);
+        assertThat(ladderService.getSingleResult(name)).isEqualTo(new Result(result));
     }
+
+
 }

@@ -9,12 +9,12 @@ public class Results {
 
     private final List<Result> results;
 
-    public Results(String result, int count) {
-        this.results = validateAndGet(result.split(DELIMITER), count);
+    public Results(String result, People people) {
+        this.results = validateAndGet(result.split(DELIMITER), people);
     }
 
-    private List<Result> validateAndGet(String[] stringArray, int count) {
-        if (stringArray.length != count) {
+    private List<Result> validateAndGet(String[] stringArray, People people) {
+        if (stringArray.length != people.getCount()) {
             throw new IllegalArgumentException("실행 결과의 수는 사람 수와 같아야 합니다");
         }
         return Arrays.stream(stringArray)
@@ -22,7 +22,7 @@ public class Results {
                 .collect(Collectors.toList());
     }
 
-    public Result getByIndex(int index) {
-        return results.get(index);
+    public Result getByIndex(Position position) {
+        return results.get(position.getColumn());
     }
 }

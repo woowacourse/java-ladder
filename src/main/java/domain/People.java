@@ -1,11 +1,12 @@
 package domain;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class People {
+public class People implements Iterable<Person> {
     public static final int MIN_PERSON_COUNT = 2;
     public static final String DELIMITER = ",";
 
@@ -59,5 +60,10 @@ public class People {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자는 존재하지 않습니다"));
 
+    }
+
+    @Override
+    public Iterator<Person> iterator() {
+        return people.iterator();
     }
 }
