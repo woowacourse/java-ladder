@@ -5,6 +5,9 @@ import java.util.Objects;
 public class Height {
 
     private static final int MINIMUM_HEIGHT = 1;
+    private static final int MAXIMUM_HEIGHT = 100;
+    private static final String ERROR_OF_HEIGHT = String.format(
+            "사다리의 높이는 %d이상 %d이하여야 합니다.", MINIMUM_HEIGHT, MAXIMUM_HEIGHT);
     private final int height;
 
     public Height(final int height) {
@@ -17,8 +20,8 @@ public class Height {
     }
 
     private void validateHeight(int inputHeight) {
-        if (inputHeight < MINIMUM_HEIGHT) {
-            throw new IllegalArgumentException("사다리의 높이는 1 이상이어야 합니다.");
+        if (inputHeight < MINIMUM_HEIGHT || inputHeight > MAXIMUM_HEIGHT) {
+            throw new IllegalArgumentException(ERROR_OF_HEIGHT);
         }
     }
 
