@@ -15,8 +15,8 @@ public class LadderService {
         this.results = results;
     }
 
-    public Result getSingleResult(String name) {
-        int indexByName = people.findByName(name);
+    public Result getSingleResult(Person person) {
+        int indexByName = people.find(person);
         Position position = ladder.startByIndex(indexByName);
         return results.getByIndex(position);
     }
@@ -24,7 +24,7 @@ public class LadderService {
     public Results getAllResults() {
         List<Result> results = new ArrayList<>();
         for (Person person : people) {
-            results.add(getSingleResult(person.getName()));
+            results.add(getSingleResult(person));
         }
         return new Results(results);
     }

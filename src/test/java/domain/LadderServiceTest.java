@@ -48,7 +48,7 @@ public class LadderServiceTest {
             "jk,5000",
     })
     void single_result_test(String name, String result) {
-        assertThat(ladderService.getSingleResult(name)).isEqualTo(new Result(result));
+        assertThat(ladderService.getSingleResult(new Person(name))).isEqualTo(new Result(result));
     }
 
     @DisplayName("모든 사용자의 결과 출력")
