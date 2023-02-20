@@ -4,12 +4,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+/**
+ * 플레이어 이름을 Wrapping하는 클래스.
+ * 원시타입 데이터의 getter는 테스트하지 않는다.
+ */
 public class NameTest {
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final String MAXIMUM_NAME_LENGTH_ERROR = "[ERROR] 사람 최대 이름 길이는 %d 이하로만 가능합니다.";
@@ -36,11 +39,6 @@ public class NameTest {
         assertThatThrownBy(() -> new Name(inputName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NAME_HAS_NON_ALPHABETIC_ERROR);
-    }
-
-    @Test
-    @Disabled("단순 getter 메서드는 테스트하지 않는다.")
-    void getValueTest() {
     }
 
     @Test
