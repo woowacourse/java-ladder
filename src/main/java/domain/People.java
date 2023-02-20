@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class People {
 
     public static final int MIN_PERSON_COUNT = 2;
-    public static final String NOT_ENOUGH_PEOPLE_MSG = "사람은 %d명 이상이어야 합니다.";
+    public static final String NOT_ENOUGH_PEOPLE_FORMAT = "사람은 %d명 이상이어야 합니다.";
     public static final String DUPLICATE_NAME_MSG = "중복된 이름이 존재합니다";
 
     private final List<Person> people;
@@ -20,7 +20,7 @@ public class People {
     private void validatePeopleCount(List<Person> people) {
         if (people.size() < MIN_PERSON_COUNT) {
             throw new IllegalArgumentException(
-                String.format(NOT_ENOUGH_PEOPLE_MSG, MIN_PERSON_COUNT));
+                String.format(NOT_ENOUGH_PEOPLE_FORMAT, MIN_PERSON_COUNT));
         }
     }
 

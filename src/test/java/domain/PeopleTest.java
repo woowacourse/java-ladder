@@ -22,7 +22,7 @@ class PeopleTest {
         assertThatThrownBy(
             () -> new People(List.of(new Person("hoy"))))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage(People.NOT_ENOUGH_PEOPLE_MSG, People.MIN_PERSON_COUNT);
+            .hasMessage(People.NOT_ENOUGH_PEOPLE_FORMAT, People.MIN_PERSON_COUNT);
     }
 
     @Test
