@@ -14,16 +14,16 @@ public class OutputView {
     private static final String PLAYER_SHOW_FORMAT = "%5s ";
     private static final String POINT_SHOW_FORMAT = "%s";
 
-    public void showResultMessage() {
+    public static void showResultMessage() {
         System.out.println(RESULT_SHOW_MESSAGE);
     }
 
-    public void showPlayers(List<Player> players) {
+    public static void showPlayers(List<Player> players) {
         players.forEach(player -> printMessageFormat(player.getName(), PLAYER_SHOW_FORMAT));
         System.out.println();
     }
 
-    public void showLadder(Ladder ladder) {
+    public static void showLadder(Ladder ladder) {
         List<Line> lines = ladder.getLines();
 
         for (Line line : lines) {
@@ -32,14 +32,14 @@ public class OutputView {
         }
     }
 
-    private void showPoints(List<Boolean> points) {
+    private static void showPoints(List<Boolean> points) {
         System.out.print(LINE_SPACE_MESSAGE + LINE_BAR_MESSAGE);
         for (Boolean point : points) {
             printMessageFormat(Point.getPoint(point).getMessage() + LINE_BAR_MESSAGE, POINT_SHOW_FORMAT);
         }
     }
 
-    private void printMessageFormat(String playerName, String format) {
+    private static void printMessageFormat(String playerName, String format) {
         System.out.printf(format, playerName);
     }
 }
