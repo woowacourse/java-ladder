@@ -34,16 +34,16 @@ public class Players {
     }
 
     private void validatePlayerSize(final List<Player> players) {
-        if (hasSmallSize(players) || hasLargeSize(players)) {
+        if (isSmallSize(players) || isLargeSize(players)) {
             throw new IllegalArgumentException(MessageFormat.format(PLAYER_SIZE_ERROR_MESSAGE, players.size()));
         }
     }
 
-    private boolean hasSmallSize(final List<Player> players) {
+    private boolean isSmallSize(final List<Player> players) {
         return players.size() < MINIMUM_PLAYER_SIZE;
     }
 
-    private boolean hasLargeSize(final List<Player> players) {
+    private boolean isLargeSize(final List<Player> players) {
         return MAXIMUM_PLAYER_SIZE < players.size();
     }
 
