@@ -19,9 +19,11 @@ public class UsersTest {
     }
 
     @Test
-    @DisplayName("정상적으로 Users가 생성되는 경우")
+    @DisplayName("정상적으로 Users가 생성되면 해당 Users는 입력된 User들을 가진다.")
     void generateUsersTest() {
-        Assertions.assertDoesNotThrow(() -> new Users(testUsersName));
+        Users users = new Users(testUsersName);
+        List<String> usersName = users.getUsersName();
+        Assertions.assertEquals(testUsersName, usersName);
     }
 
     @Test

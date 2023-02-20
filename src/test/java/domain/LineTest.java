@@ -8,10 +8,12 @@ import java.util.List;
 
 public class LineTest {
     @Test
-    @DisplayName("Line 생성 시 Point가 연속해서 존재하지 않으면 정상적으로 생성")
+    @DisplayName("Line 생성 시 Point가 연속해서 존재하지 않으면 정상적으로 생성되고 해당 Point 목록이 Line에 저장")
     void unContinuousLineTest() {
-        final List<Point> points = List.of(Point.LINKED_POINT, Point.EMPTY_POINT, Point.LINKED_POINT);
-        Assertions.assertDoesNotThrow(() -> new Line(points));
+        final List<Point> validPoints = List.of(Point.LINKED_POINT, Point.EMPTY_POINT, Point.LINKED_POINT);
+        Line line = new Line(validPoints);
+        List<Point> points = line.getLine();
+        Assertions.assertEquals(validPoints, points);
     }
 
     @Test
