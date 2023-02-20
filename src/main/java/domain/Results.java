@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import domain.Result;
-
 public class Results {
 
     private final List<Result> results;
