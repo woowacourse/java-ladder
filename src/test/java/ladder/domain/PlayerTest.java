@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class PlayerTest {
 
     @Test
-    void 참여자는_이름을_가진다() {
+    void 참가자는_이름을_가진다() {
         final Player player = new Player("name");
 
         assertThat(player.getName()).isEqualTo("name");
@@ -25,6 +25,6 @@ public class PlayerTest {
     void 이름이_비어있거나_6자_이상인_경우_예외를_던진다(final String name) {
         assertThatThrownBy(() -> new Player(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 1자 이상, 5자 이하여야 한다.");
+                .hasMessage("참가자의 이름은 1자 이상, 5자 이하여야 합니다.");
     }
 }

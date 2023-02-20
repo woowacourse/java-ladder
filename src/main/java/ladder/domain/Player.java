@@ -2,8 +2,8 @@ package ladder.domain;
 
 public class Player {
     private static final int NAME_LENGTH_UPPER_BOUND = 5;
-    private static final String INVALID_NAME_LENGTH_MESSAGE = "이름은 1자 이상, " +
-            NAME_LENGTH_UPPER_BOUND + "자 이하여야 한다.";
+    private static final String INVALID_NAME_LENGTH_MESSAGE =
+            "참가자의 이름은 1자 이상, " + NAME_LENGTH_UPPER_BOUND + "자 이하여야 합니다.";
 
     private final String name;
 
