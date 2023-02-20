@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Persons {
+public class Players {
     private static final String DUPLICATE_NAME_MESSAGE = "중복된 이름입니다.";
 
-    private final List<Person> persons = new ArrayList<>();
+    private final List<Person> players = new ArrayList<>();
 
-    public Persons(List<String> names) {
+    public Players(List<String> names) {
         validateDuplicateName(names);
-        addPerson(names);
+        initiatePlayers(names);
     }
 
-    public List<String> getPersonsName() {
-        return persons.stream()
+    public List<String> getPlayersName() {
+        return players.stream()
                 .map(s -> s.getName())
                 .collect(Collectors.toList());
     }
 
     public int getCount() {
-        return persons.size();
+        return players.size();
     }
 
     private void validateDuplicateName(List<String> names) {
@@ -34,9 +34,9 @@ public class Persons {
         return names.size() != names.stream().distinct().count();
     }
 
-    private void addPerson(List<String> names) {
+    private void initiatePlayers(List<String> names) {
         for (String name : names) {
-            persons.add(new Person(name));
+            players.add(new Person(name));
         }
     }
 

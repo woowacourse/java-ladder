@@ -3,7 +3,7 @@ package controller;
 import java.util.List;
 
 import domain.Ladder;
-import domain.Persons;
+import domain.Players;
 import domain.RandomDigitsGenerator;
 import view.InputView;
 import view.OutputView;
@@ -20,17 +20,17 @@ public class LadderGameController {
     }
 
     public void run() {
-        Persons persons = readPersons();
-        Ladder ladder = readLadder(persons.getCount() - 1);
+        Players players = readPersons();
+        Ladder ladder = readLadder(players.getCount() - 1);
 
-        outputView.printPersonNames(persons.getPersonsName());
+        outputView.printPersonNames(players.getPlayersName());
         outputView.printLadder(ladder.getLines());
     }
 
-    private Persons readPersons() {
+    private Players readPersons() {
         try {
             List<String> names = inputView.readPersonsName();
-            return new Persons(names);
+            return new Players(names);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return readPersons();
