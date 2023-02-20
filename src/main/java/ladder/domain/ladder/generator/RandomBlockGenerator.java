@@ -1,4 +1,4 @@
-package ladder.domain.ladder.builder;
+package ladder.domain.ladder.generator;
 
 import ladder.domain.ladder.Block;
 

@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.ladder.Block;
-import ladder.domain.ladder.builder.BlockGenerator;
+import ladder.domain.ladder.generator.BlockGenerator;
 import ladder.domain.ladder.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

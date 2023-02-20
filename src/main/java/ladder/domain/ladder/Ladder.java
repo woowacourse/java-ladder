@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.builder.BlockGenerator;
+import ladder.domain.ladder.generator.BlockGenerator;
 import ladder.domain.ladder.exception.LadderLengthException;
 
 import java.util.ArrayList;
