@@ -6,6 +6,7 @@ import utils.RandomBooleanGenerator;
 
 public class Line {
     private final List<Boolean> line;
+    private final RandomBooleanGenerator randomNumberGenerator = new RandomBooleanGenerator();
 
     public Line(int personCount) {
         this.line = createLine(personCount);
@@ -21,7 +22,6 @@ public class Line {
     }
 
     private boolean isContinuousTrue(List<Boolean> line, int index) {
-        RandomBooleanGenerator randomNumberGenerator = new RandomBooleanGenerator();
         if (line.get(index - 1)) {
             return false;
         }
