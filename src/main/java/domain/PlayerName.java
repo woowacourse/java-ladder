@@ -16,10 +16,6 @@ public class PlayerName {
         this.name = name;
     }
 
-    public int getNameSize() {
-        return name.length();
-    }
-
     public String getName() {
         return name;
     }
