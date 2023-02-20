@@ -7,6 +7,7 @@ import domain.LadderResults;
 import domain.Lines;
 import domain.Players;
 import java.util.List;
+import utils.LadderResultsFactory;
 import view.InputView;
 import view.OutputView;
 
@@ -27,6 +28,7 @@ public class LadderGameController {
         Game game = new Game(players, ladder, ladderResults);
 
         outputView.printLadderGameStatus(players, ladder, ladderResults);
+
         printResultOfPlayer(game);
     }
 
@@ -52,7 +54,7 @@ public class LadderGameController {
     private LadderResults makeLadderResults(final int numberOfPlayer) {
         try {
             List<String> ladderResults = inputView.readLadderResults();
-            return new LadderResults(ladderResults, numberOfPlayer);
+            return LadderResultsFactory.createLadderResults(ladderResults, numberOfPlayer);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return makeLadderResults(numberOfPlayer);

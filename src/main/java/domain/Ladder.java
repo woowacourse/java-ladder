@@ -16,7 +16,7 @@ public class Ladder {
         return this.height.getHeight();
     }
 
-    public List<Boolean> findLineUsingIndexOfHeight(final int indexOfHeight) {
+    public List<Boolean> findLineByIndexOfHeight(final int indexOfHeight) {
         return this.lines.findLineUsingIndexOfHeight(indexOfHeight);
     }
 

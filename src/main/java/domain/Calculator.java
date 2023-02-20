@@ -13,8 +13,7 @@ public class Calculator {
         playerWithResult = calculateGameResult(players, ladder, ladderResults);
     }
 
-    public Map<Player, LadderResult> calculateGameResult(final Players players, final Ladder ladder,
-                                                         final LadderResults ladderResults) {
+    public Map<Player, LadderResult> calculateGameResult(final Players players, final Ladder ladder, final LadderResults ladderResults) {
         List<Integer> playerResults = new ArrayList<>();
         initPlayerPosition(players, playerResults);
 
@@ -32,8 +31,7 @@ public class Calculator {
         }
     }
 
-    private void moveLadder(final Players players, final List<Integer> playerResults,
-                            final List<Boolean> footholdsOfHeight) {
+    private void moveLadder(final Players players, final List<Integer> playerResults, final List<Boolean> footholdsOfHeight) {
         for (int index = 0; index < players.findNumberOfPlayers(); index++) {
             moveLine(playerResults, footholdsOfHeight, index);
         }
@@ -57,8 +55,7 @@ public class Calculator {
         return index == 0;
     }
 
-    private void moveAtFirstOfLadder(final List<Integer> playerResults, final List<Boolean> footholdsOfHeight,
-                                     final int index) {
+    private void moveAtFirstOfLadder(final List<Integer> playerResults, final List<Boolean> footholdsOfHeight, final int index) {
         if (isExistFootholdAtFirst(footholdsOfHeight)) {
             moveNextIndex(playerResults, index);
         }
@@ -68,8 +65,7 @@ public class Calculator {
         return footholdsOfHeight.get(0) == true;
     }
 
-    private void moveEndOfIndex(final List<Integer> playerResults, final List<Boolean> footholdsOfHeight,
-                                final int index) {
+    private void moveEndOfIndex(final List<Integer> playerResults, final List<Boolean> footholdsOfHeight, final int index) {
         if (isExistFootholdEndOfIndex(footholdsOfHeight)) {
             movePrevIndex(playerResults, index);
         }
@@ -113,11 +109,10 @@ public class Calculator {
     }
 
     private List<Boolean> findFootholdsOfHeight(final Ladder ladder, final int indexOfHeight) {
-        return ladder.findLineUsingIndexOfHeight(indexOfHeight);
+        return ladder.findLineByIndexOfHeight(indexOfHeight);
     }
 
-    private Map<Player, LadderResult> makeGameResult(final Players players, final List<Integer> playerResults,
-                                                     final LadderResults ladderResults) {
+    private Map<Player, LadderResult> makeGameResult(final Players players, final List<Integer> playerResults, final LadderResults ladderResults) {
         Map<Player, LadderResult> playerWithLadderResult = new HashMap<>();
 
         for (int i = 0; i < players.findNumberOfPlayers(); i++) {

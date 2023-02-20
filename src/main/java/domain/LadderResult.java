@@ -16,7 +16,7 @@ public class LadderResult {
         }
     }
 
-    public int getLengthOfLadderResult() {
+    public int findLengthOfLadderResult() {
         return this.result.length();
     }
 

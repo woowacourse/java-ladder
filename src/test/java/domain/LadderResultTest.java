@@ -42,7 +42,7 @@ public class LadderResultTest {
         LadderResult givenLadderResult = new LadderResult(givenResult);
 
         // when
-        int lengthOfResult = givenLadderResult.getLengthOfLadderResult();
+        int lengthOfResult = givenLadderResult.findLengthOfLadderResult();
 
         // then
         assertThat(lengthOfResult).isEqualTo(givenResult.length());

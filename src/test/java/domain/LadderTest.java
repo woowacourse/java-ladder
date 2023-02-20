@@ -55,7 +55,7 @@ class LadderTest {
         Ladder ladder = new Ladder(lines, new Height(2));
 
         // when
-        List<Boolean> lineUsingIndexOfHeight = ladder.findLineUsingIndexOfHeight(givenHeight);
+        List<Boolean> lineUsingIndexOfHeight = ladder.findLineByIndexOfHeight(givenHeight);
 
         // then
         assertThat(lineUsingIndexOfHeight).containsExactly(false, false, false);
