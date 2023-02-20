@@ -14,7 +14,7 @@ public class LadderGame {
         this.ladder = new Ladder(booleanGenerator, height, players.count() - LADDER_WIDTH_SUBTRACT_VALUE);
     }
 
-    public List<String> getPlayers() {
+    public List<String> getPlayerNames() {
         return players.getNames();
     }
 

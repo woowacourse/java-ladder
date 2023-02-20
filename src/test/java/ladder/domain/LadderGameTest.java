@@ -15,7 +15,7 @@ public class LadderGameTest {
     @Test
     void 참가자들의_이름을_반환한다() {
         LadderGame ladderGame = getLadderGame(new TestBooleanGenerator(List.of(true, true)), 1, "name1", "name2");
-        assertThat(ladderGame.getPlayers()).containsExactly("name1", "name2");
+        assertThat(ladderGame.getPlayerNames()).containsExactly("name1", "name2");
     }
 
     @Test

@@ -26,10 +26,10 @@ public class LadderGameController {
 
     public void run() {
         final LadderGame ladderGame = initializeLadderGame();
-        final List<String> players = ladderGame.getPlayers();
+        final List<String> playerNames = ladderGame.getPlayerNames();
         final List<Line> ladder = ladderGame.getLadder();
 
-        outputView.printResult(players, ladder);
+        outputView.printResult(playerNames, ladder);
     }
 
     private LadderGame initializeLadderGame() {
