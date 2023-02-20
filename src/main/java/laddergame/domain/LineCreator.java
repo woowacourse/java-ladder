@@ -5,9 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class LineCreator {
-    private static final int WIDTH_MIN_VALUE = 1;
-    private static final int HEIGHT_MIN_VALUE = 1;
-    private static final String LINE_CREATOR_ILLEGAL_LENGTH_EXCEPTION = "길이는 양수여야합니다.";
+    private static final String LINE_WIDTH_NULL_EXCEPTION = "넓이는 null이 될 수 없습니다.";
+    private static final String LINE_HEIGHT_NULL_EXCEPTION = "높이는 null이 될 수 없습니다.";
 
     private final BooleanGenerator booleanGenerator;
 
@@ -15,14 +14,17 @@ public class LineCreator {
         this.booleanGenerator = Optional.ofNullable(inputGenerator).orElse(new RandomBooleanGenerator());
     }
 
-    public List<Line> createLines(final int width, final int height) {
-        validatePositive(width, height);
+    public Lines createLines(final Width inputWidth, final Height inputHeight) {
+        final Width width = Optional.ofNullable(inputWidth)
+                .orElseThrow(() -> new IllegalArgumentException(LINE_WIDTH_NULL_EXCEPTION));
+        final Height height = Optional.ofNullable(inputHeight)
+                .orElseThrow(() -> new IllegalArgumentException(LINE_HEIGHT_NULL_EXCEPTION));
         final List<Line> lines = new ArrayList<>();
-        for (int count = 0; count < height; count++) {
-            final Line line = createLine(width);
+        for (int count = 0; count < height.getValue(); count++) {
+            final Line line = createLine(width.getValue());
             lines.add(line);
         }
-        return lines;
+        return new Lines(lines);
     }
 
     private Line createLine(final int width) {
@@ -48,11 +50,5 @@ public class LineCreator {
         }
         boolean isLastOneTrue = points.get(points.size() - 1);
         return isLastOneTrue && isNewOneTrue;
-    }
-
-    private void validatePositive(final int width, final int height) {
-        if (width < WIDTH_MIN_VALUE || height < HEIGHT_MIN_VALUE) {
-            throw new IllegalArgumentException(LINE_CREATOR_ILLEGAL_LENGTH_EXCEPTION);
-        }
     }
 }
