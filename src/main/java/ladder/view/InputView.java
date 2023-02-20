@@ -12,7 +12,8 @@ public class InputView {
 
     public static List<String> readNames() {
         String rawNames = SCANNER.nextLine();
-        List<String> names = List.of(rawNames.split(DELIMITER));
+        InputViewValidator.validateReadPlayerNames(rawNames);
+        List<String> names = List.of(rawNames.split(DELIMITER, -1));
         InputViewValidator.validateNamesCount(names.size());
         return names;
     }
