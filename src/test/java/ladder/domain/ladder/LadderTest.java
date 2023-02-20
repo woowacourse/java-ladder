@@ -35,5 +35,33 @@ public class LadderTest {
 
         assertThat(ladder.getLadder().size()).isEqualTo(heightOfLadder);
     }
+
+
+    @Test
+    @DisplayName("Bar가 아예 없는 사다리 결과 테스트")
+    void resultStraightLadderTest() {
+        Ladder ladder = Ladder.create(2, 5,new MockBooleanGenerator(List.of(false)));
+
+        assertThat(ladder.findLadderResult(0)).isEqualTo(0);
+        assertThat(ladder.findLadderResult(1)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("Bar가 모두 있는 2줄 짜리 사다리 결과 테스트")
+    void resultCurvedLadderTest() {
+        Ladder ladder = Ladder.create(4, 5,new MockBooleanGenerator(List.of(true,true,false)));
+        /** 다음과 같은 사다리가 생성된다 가정
+         * |-| |-|
+         * | |-| |
+         * |-| | |
+         * |-| |-|
+         * | |-| |
+         */
+        assertThat(ladder.findLadderResult(0)).isEqualTo(3);
+        assertThat(ladder.findLadderResult(1)).isEqualTo(0);
+        assertThat(ladder.findLadderResult(2)).isEqualTo(1);
+        assertThat(ladder.findLadderResult(3)).isEqualTo(2);
+    }
+
 }
 
