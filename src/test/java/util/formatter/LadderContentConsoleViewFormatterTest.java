@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 class LadderContentConsoleViewFormatterTest {
 
-    @DisplayName("사다리 게임 내 크기가 짝수인 컨텐츠 출력 형식 테스트")
     @Test
+    @DisplayName("사다리 게임 내 크기가 짝수인 컨텐츠 출력 형식 테스트")
     void ladderContentEvenFormat() {
         String content = "50";
         String expected = " 50  ";
@@ -17,8 +17,8 @@ class LadderContentConsoleViewFormatterTest {
         assertThat(formatContent).isEqualTo(expected);
     }
 
-    @DisplayName("사다리 게임 내 크기가 홀수인 컨텐츠 출력 형식 테스트")
     @Test
+    @DisplayName("사다리 게임 내 크기가 홀수인 컨텐츠 출력 형식 테스트")
     void ladderContentOddFormatTest() {
         String content = "꽝";
         String expected = "  꽝  ";

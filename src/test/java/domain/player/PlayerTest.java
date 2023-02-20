@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 public class PlayerTest {
 
-    @DisplayName("참여자 이름으로 게임 참여자 생성")
     @Test
+    @DisplayName("참여자 이름으로 게임 참여자 생성")
     public void createPlayerSuccess() {
         String playerNameInput = "pobi";
         PlayerName playerName = new PlayerName(playerNameInput);

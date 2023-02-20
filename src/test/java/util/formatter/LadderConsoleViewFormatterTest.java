@@ -10,8 +10,8 @@ import util.TestDataManager;
 
 class LadderConsoleViewFormatterTest {
 
-    @DisplayName("사다리 출력 형식 생성 테스트")
     @Test
+    @DisplayName("사다리 출력 형식 생성 테스트")
     void ladderFormatterTest() {
         LadderGame ladderGame = TestDataManager.getLadderGame();
         Ladder ladder = ladderGame.getLadder();

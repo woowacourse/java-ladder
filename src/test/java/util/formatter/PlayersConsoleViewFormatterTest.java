@@ -11,8 +11,8 @@ import util.TestDataManager;
 
 class PlayersConsoleViewFormatterTest {
 
-    @DisplayName("사다리 게임 참가자 출력 형식 생성 테스트")
     @Test
+    @DisplayName("사다리 게임 참가자 출력 형식 생성 테스트")
     void playersFormatTest() {
         PlayerNames playerNames = PlayerNames.of("pobi,crong,jx", ",");
         Players players = Players.from(playerNames);
@@ -26,18 +26,16 @@ class PlayersConsoleViewFormatterTest {
         assertThat(formatPlayers).isEqualTo(expected);
     }
 
-    @DisplayName("사다리 게임 모든 결과 출력 형식 생성 테스트")
     @Test
+    @DisplayName("사다리 게임 모든 결과 출력 형식 생성 테스트")
     void playersResultFormatTest() {
         LadderGame ladderGame = TestDataManager.getLadderGame();
         ladderGame.buildBridges();
         ladderGame.runGame();
         Players players = ladderGame.getPlayers();
-        String expected = new StringBuilder()
-                .append("pobi : 5000").append(System.lineSeparator())
-                .append("crong : 꽝").append(System.lineSeparator())
-                .append("royce : 10000").append(System.lineSeparator())
-                .toString();
+        String expected = "pobi : 5000" + System.lineSeparator()
+                + "crong : 꽝" + System.lineSeparator()
+                + "royce : 10000" + System.lineSeparator();
 
         String formatPlayers = PlayersConsoleViewFormatter.formatResultPlayers(players);
         assertThat(formatPlayers).isEqualTo(expected);

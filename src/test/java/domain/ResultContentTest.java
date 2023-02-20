@@ -13,7 +13,7 @@ class ResultContentTest {
     @ValueSource(strings = {"", "꽝꽝꽝꽝꽝꽝"})
     void createResultContentsSuccess(String input) {
         assertThatThrownBy(() ->
-                        new ResultContent(input))
+                new ResultContent(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

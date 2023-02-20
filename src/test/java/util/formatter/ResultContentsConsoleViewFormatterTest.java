@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 
 class ResultContentsConsoleViewFormatterTest {
 
-    @DisplayName("사다리 게임 결과 출력 형식 생성 테스트")
     @Test
+    @DisplayName("사다리 게임 결과 출력 형식 생성 테스트")
     void ladderFormatterTest() {
         ResultContents resultContents = ResultContents.of("꽝,오천원,만원", ",");
         String expected = new StringBuilder()

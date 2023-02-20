@@ -14,8 +14,8 @@ class LadderGameTest {
 
     private static final String PLAYER_RESULT_SIZE_MISMATCH_ERROR_MESSAGE = "게임 참여자와 결과의 개수는 동일하여야 합니다.";
 
-    @DisplayName("사다리 게임의 참여자와 결과의 개수는 다를 수 없다.")
     @Test
+    @DisplayName("사다리 게임의 참여자와 결과의 개수는 다를 수 없다.")
     void createLadderGameMismatchPlayerAndResultSizeFail() {
         PlayerNames playerNames = PlayerNames.of("pobi,crong", ",");
         Players players = Players.from(playerNames);
@@ -29,6 +29,7 @@ class LadderGameTest {
     }
 
     @Test
+    @DisplayName("게임 결과 매칭 테스트")
     void runGameTest() {
         LadderGame ladderGame = TestDataManager.getLadderGame();
         ladderGame.buildBridges();

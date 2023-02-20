@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 
 public class PlayersTest {
 
-    @DisplayName("모든 참여자 이름으로 게임 모든 참여자 생성")
     @Test
+    @DisplayName("모든 참여자 이름으로 게임 모든 참여자 생성")
     void createPlayersSuccess() {
         String playersNameInput = "pobi,crong,royce,wante";
         PlayerNames playerNames = PlayerNames.of(playersNameInput, ",");
@@ -21,8 +21,8 @@ public class PlayersTest {
                 .containsExactly("pobi", "crong", "royce", "wante");
     }
 
-    @DisplayName("게임 참여자 이름으로 조회")
     @Test
+    @DisplayName("게임 참여자 이름으로 조회")
     void findByPlayerNameSuccess() {
         String playersNameInput = "pobi,crong,royce,wante";
         PlayerNames playerNames = PlayerNames.of(playersNameInput, ",");
@@ -34,15 +34,15 @@ public class PlayersTest {
                 .isEqualTo("pobi");
     }
 
-    @DisplayName("게임 참여자 이름으로 조회시 존재하지 않으면 예외 발생")
     @Test
+    @DisplayName("게임 참여자 이름으로 조회시 존재하지 않으면 예외 발생")
     void findByPlayerNameFail() {
         String playersNameInput = "pobi,crong,royce,wante";
         PlayerNames playerNames = PlayerNames.of(playersNameInput, ",");
         Players players = Players.from(playerNames);
 
         assertThatThrownBy(() ->
-            players.findByName("potu")
+                players.findByName("potu")
         ).isInstanceOf(NoSuchElementException.class);
     }
 

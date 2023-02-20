@@ -1,13 +1,13 @@
 package controller;
 
-import domain.ladder.Height;
 import domain.LadderGame;
+import domain.ResultContents;
+import domain.ladder.Height;
+import domain.ladder.Ladder;
+import domain.ladder.strategy.GenerateBridgeStrategy;
 import domain.player.Player;
 import domain.player.PlayerNames;
 import domain.player.Players;
-import domain.ResultContents;
-import domain.ladder.Ladder;
-import domain.ladder.strategy.GenerateBridgeStrategy;
 import util.formatter.LadderConsoleViewFormatter;
 import util.formatter.PlayersConsoleViewFormatter;
 import util.formatter.ResultContentsConsoleViewFormatter;
@@ -62,14 +62,14 @@ public class LadderGameController {
 
     private void printLadderGameResult(LadderGame ladderGame) {
         outputView.printLadderResultPrefix();
-
         String playersFormat = PlayersConsoleViewFormatter.formatPlayers(ladderGame.getPlayers());
         outputView.printFormat(playersFormat);
 
         String ladderFormat = LadderConsoleViewFormatter.formatLadder(ladderGame.getLadder());
         outputView.printFormat(ladderFormat);
 
-        String resultContentsFormat = ResultContentsConsoleViewFormatter.formatResultContents(ladderGame.getResultContents());
+        String resultContentsFormat = ResultContentsConsoleViewFormatter.formatResultContents(
+                ladderGame.getResultContents());
         outputView.printFormat(resultContentsFormat);
     }
 

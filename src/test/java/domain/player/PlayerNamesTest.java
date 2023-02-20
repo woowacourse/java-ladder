@@ -30,8 +30,8 @@ public class PlayerNamesTest {
                 .hasMessageContaining("이름은 중복될 수 없습니다.");
     }
 
-    @DisplayName("한명만 참여 할 수 없다")
     @Test
+    @DisplayName("한명만 참여 할 수 없다")
     void createPlayerNumberUnderNumberFail() {
         String playerNamesInput = "pobi";
         String delimiter = ",";
@@ -41,16 +41,13 @@ public class PlayerNamesTest {
                 .hasMessage(PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE);
     }
 
-    @DisplayName("20명 이상은 참여 할 수 없다")
     @Test
+    @DisplayName("20명 이상은 참여 할 수 없다")
     void createPlayerNumberOverNumberFail() {
         StringBuilder playerNamesInput = new StringBuilder();
         String delimiter = ",";
-        char toCharacter = 'a';
         for (int asciiNumber = 0; asciiNumber < 21; asciiNumber++) {
-            playerNamesInput.append(asciiNumber)
-                    .append(toCharacter)
-                    .append(delimiter);
+            playerNamesInput.append(asciiNumber).append(delimiter);
         }
         playerNamesInput.append("21a");
 
