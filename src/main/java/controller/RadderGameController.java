@@ -16,8 +16,8 @@ public class RadderGameController {
 
     private Participants makeParticipants(InputView inputView) {
         try {
-            String participantsName = inputView.enterParticipantsName();
-            return new Participants(participantsName);
+            String participantNames = inputView.enterParticipantNames();
+            return new Participants(participantNames);
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
             return makeParticipants(inputView);

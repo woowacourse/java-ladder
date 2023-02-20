@@ -58,7 +58,7 @@ class ParticipantsTest {
     @Test
     void joinAllWithoutDuplicate() {
         Participants participants = new Participants("a,b,c,d,e");
-        List<String> participantsName = participants.getParticipantsNames();
+        List<String> participantsName = participants.getParticipantNames();
         Assertions.assertThat(participantsName).containsExactly("a", "b", "c", "d", "e");
     }
 }

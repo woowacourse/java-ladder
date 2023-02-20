@@ -18,11 +18,11 @@ public class Map {
         validate(height, lineWeight);
         this.height = Integer.parseInt(height);
         this.lineWeight = lineWeight;
-        ladder = generate(booleanGenerator);
+        this.ladder = generate(booleanGenerator);
     }
 
     private void validate(String height, int lineWeight) {
-        if (!isNum(height) || !isValidHeight(height)) {
+        if (!isNumber(height) || !isValidHeight(height)) {
             throw new InvalidLadderHeightException();
         }
         if (!isValidLineWeight(lineWeight)) {
@@ -30,15 +30,15 @@ public class Map {
         }
     }
 
-    private boolean isNum(String height) {
+    private boolean isNumber(String height) {
         return !(height == null || height.isBlank() || !height.matches("^[1-9]*$"));
     }
 
     private boolean isValidHeight(String heightInput) {
-        final int minLadderCount = 1;
-        final int maxLadderCount = 10;
+        final int minLadderHeight = 1;
+        final int maxLadderHeight = 10;
         final int height = Integer.parseInt(heightInput);
-        return minLadderCount <= height && height <= maxLadderCount;
+        return minLadderHeight <= height && height <= maxLadderHeight;
     }
 
     private boolean isValidLineWeight(int lineWeight) {

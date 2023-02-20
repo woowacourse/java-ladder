@@ -14,7 +14,7 @@ public class InputView {
     private static final String ENTER_HEIGHT = "\n최대 사다리 높이는 몇 개인가요?";
     private final Scanner scanner = new Scanner(System.in);
 
-    public String enterParticipantsName() {
+    public String enterParticipantNames() {
         System.out.println(ENTER_PARTICIPANTS_NAME);
         return readLine();
     }

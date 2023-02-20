@@ -59,7 +59,7 @@ public class Participants {
         return people.size();
     }
 
-    public List<String> getParticipantsNames() {
+    public List<String> getParticipantNames() {
         return people.stream().map(Person::getName).collect(Collectors.toList());
     }
 }
