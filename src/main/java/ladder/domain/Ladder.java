@@ -35,34 +35,10 @@ public class Ladder {
     }
 
     public int getLadderIndexResult(int index) {
-        return getLadderIndexResult(0, index);
-    }
-
-    private int getLadderIndexResult(int height, int index) {
-        if (height >= lines.size()) {
-            return index;
+        for (Line line : lines) {
+            index = line.nextLadderIndex(index);
         }
-        Line line = findLineByIndex(height);
-        List<Step> steps = line.getSteps();
-        if (index <= 0) { // 왼쪽에 스탭이 없을 때
-            if (steps.get(index) == Step.EXIST) { // 오른쪽에 스탭이 있으면
-                return getLadderIndexResult(height + 1, index + 1); // 오른쪽 밑으로
-            }
-            return getLadderIndexResult(height + 1, index); // 스탭이 없다면 밑으로
-        }
-        if (index >= steps.size()) { // 오른쪽에 스탭이 없을 때
-            if (steps.get(index - 1) == Step.EXIST) { // 왼쪽에 스탭이 있으면
-                return getLadderIndexResult(height + 1, index - 1); // 왼쪽 밑으로
-            }
-            return getLadderIndexResult(height + 1, index); // 스탭이 없다면 밑으로
-        }
-        if (steps.get(index) == Step.EXIST) { // 오른쪽에 스탭이 있을 때
-            return getLadderIndexResult(height + 1, index + 1);
-        }
-        if (steps.get(index - 1) == Step.EXIST) {
-            return getLadderIndexResult(height + 1, index - 1);
-        }
-        return getLadderIndexResult(height + 1, index); // 밑으로
+        return index;
     }
 
     public int getHeight() {

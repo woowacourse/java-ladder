@@ -27,6 +27,30 @@ public class Line {
         return steps.get(index) == Step.EXIST && steps.get(index - 1) == Step.EXIST;
     }
 
+    public int nextLadderIndex(int index) {
+        if (isLeftStepExist(index)) {
+            return index - 1;
+        }
+        if (isRightStepExist(index)) {
+            return index + 1;
+        }
+        return index;
+    }
+
+    private boolean isLeftStepExist(int index) {
+        if (index <= 0) {
+            return false;
+        }
+        return steps.get(index - 1) == Step.EXIST;
+    }
+
+    private boolean isRightStepExist(int index) {
+        if (index >= steps.size()) {
+            return false;
+        }
+        return steps.get(index) == Step.EXIST;
+    }
+
     public List<Step> getSteps() {
         return Collections.unmodifiableList(steps);
     }
