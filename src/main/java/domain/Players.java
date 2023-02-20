@@ -6,14 +6,11 @@ import java.util.stream.Collectors;
 public class Players {
 
     private static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
-    private static final String DELIMITER = ",";
     private static final String DELIMITER_WITH_BLANK = "\\s*,\\s*";
-    private static final String INPUT_PLAYER_ERROR_MESSAGE = "[ERROR] 구분자 ,를 이용하여 두 명 이상 입력해야 합니다.";
 
     private final List<Player> players;
 
     public Players(String names) {
-        validateDelimiter(names);
         List<String> splitNames = getSplitNames(names);
         validateMoreThanOnePlayer(splitNames);
         this.players = createPlayer(splitNames);
@@ -25,13 +22,7 @@ public class Players {
 
     private void validateMoreThanOnePlayer(List<String> splitNames) {
         if (splitNames.size() < MINIMUM_NUMBER_OF_PLAYERS) {
-            throw new IllegalArgumentException(INPUT_PLAYER_ERROR_MESSAGE);
-        }
-    }
-
-    private void validateDelimiter(String names) {
-        if (!names.contains(DELIMITER)) {
-            throw new IllegalArgumentException(INPUT_PLAYER_ERROR_MESSAGE);
+            throw new IllegalArgumentException("[ERROR] 두 명 이상 입력해야 합니다.");
         }
     }
 

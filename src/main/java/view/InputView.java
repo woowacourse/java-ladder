@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class InputView {
 
+    private static final String DELIMITER = ",";
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String receivePlayer() {
@@ -11,6 +12,7 @@ public class InputView {
 
         String playerNames = input();
         validateBlank(playerNames);
+        validaDelimiter(playerNames);
 
         return playerNames;
     }
@@ -28,6 +30,12 @@ public class InputView {
     private static void validateBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없습니다.");
+        }
+    }
+
+    private static void validaDelimiter(String input) {
+        if (!input.contains(DELIMITER)) {
+            throw new IllegalArgumentException("[ERROR] 구분자로 콤마(,)를 포함해야 합니다.");
         }
     }
 
