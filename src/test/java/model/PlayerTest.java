@@ -25,4 +25,18 @@ public class PlayerTest {
         //then
         assertThat(result).isEqualTo("pobi");
     }
+
+    @Test
+    @DisplayName("사다리 게임의 개인 결과를 저장하는 기능 테스트")
+    void savePlayerResultTest() {
+        //given
+        Player player = new Player(new Name("pobi"));
+        Result result = new Result("5000");
+
+        //when
+        player.saveResult(result);
+
+        //then
+        assertThat(player.getResult()).isEqualTo("5000");
+    }
 }
