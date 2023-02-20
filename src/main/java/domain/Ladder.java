@@ -24,16 +24,6 @@ public class Ladder {
         }
     }
 
-    public List<String> getLadderLines() {
-        List<String> ladderLines = new ArrayList<>();
-
-        for (Line line : lines) {
-            ladderLines.add(line.getLineStatus());
-        }
-
-        return ladderLines;
-    }
-
     public List<Line> getLines() {
         return lines;
     }
