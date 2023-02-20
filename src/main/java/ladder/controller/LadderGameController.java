@@ -30,9 +30,7 @@ public class LadderGameController {
         Ladder ladder = generateLadder(players, height);
 
         showLadderGame(players, ladder, rewards);
-
-        Map<Player, Reward> matchingResults = generateMatchingResults(players, ladder, rewards);
-        showMatchingResults(players, matchingResults);
+        showResultBoard(new ResultBoard(players, ladder, rewards));
     }
 
     private Players generatePlayers() {
@@ -80,42 +78,38 @@ public class LadderGameController {
                 .map(Player::getPlayerName)
                 .collect(Collectors.toList()));
 
-        List<Row> rows = ladder.getRows();
-        rows.forEach(row -> outputView.printRow(row.getPoints()));
+        ladder.getRows().forEach(row -> outputView.printRow(row.getPoints()));
+
         outputView.printRewards(rewards.getRewards().stream()
                 .map(Reward::getReward)
                 .collect(Collectors.toList()));
     }
 
-    private Map<Player, Reward> generateMatchingResults(Players players, Ladder ladder, Rewards rewards) {
-        Map<Player, Reward> matchingResults = new HashMap<>();
-        for (Player player : players.getPlayers()) {
-            int entrance = players.findPositionOf(player);
-            int exit = ladder.findExitFrom(entrance);
-            Reward reward = rewards.getRewards().get(exit);
-            matchingResults.put(player, reward);
-        }
-        return matchingResults;
-    }
-
-    private void showMatchingResults(Players players, Map<Player, Reward> matchingResults) {
+    private void showResultBoard(ResultBoard resultBoard) {
         String input = inputView.readPlayerChoice();
+
         if (input.equals(LOOK_ALL)) {
-            outputView.printAllPlayerResults(matchingResults);
+            showAllPlayerResults(resultBoard);
             return;
         }
-        showChosePlayerResult(players, matchingResults, input);
-        showMatchingResults(players, matchingResults);
+
+        showChosePlayerResult(resultBoard, input);
+        showResultBoard(resultBoard);
     }
 
-    private void showChosePlayerResult(Players players, Map<Player, Reward> matchingResults, String input) {
+    private void showAllPlayerResults(ResultBoard resultBoard) {
+        Map<String, String> results = new HashMap<>();
+        resultBoard.getResult().forEach((key, value) -> results.put(key.getPlayerName(), value.getReward()));
+        outputView.printAllPlayerResults(results);
+    }
+
+    private void showChosePlayerResult(ResultBoard resultBoard, String input) {
         try {
-            Player player = players.findPlayerByName(input);
-            outputView.printChosePlayerResult(matchingResults.get(player).getReward());
+            outputView.printChosePlayerResult(resultBoard.getRewardOf(input).getReward());
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
             input = inputView.readPlayerChoice();
-            showChosePlayerResult(players, matchingResults, input);
+            showChosePlayerResult(resultBoard, input);
         }
     }
 

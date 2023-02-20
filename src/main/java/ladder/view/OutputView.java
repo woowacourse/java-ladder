@@ -49,9 +49,9 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public void printAllPlayerResults(Map<Player, Reward> matchingResults) {
+    public void printAllPlayerResults(Map<String, String> results) {
         System.out.println(OutputMessage.OUTPUT_EXECUTION_RESULT.getMessage());
-        matchingResults.forEach((key, value) -> System.out.printf(OUTPUT_ALL_PLAYER_RESULT_FORMAT, key.getPlayerName(), value.getReward()));
+        results.forEach((key, value) -> System.out.printf(OUTPUT_ALL_PLAYER_RESULT_FORMAT, key, value));
     }
 
     public void printExceptionMessage(String message) {
