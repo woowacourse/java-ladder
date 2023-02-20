@@ -9,10 +9,14 @@
 ## 설계 그래프
 ```mermaid
 graph TD
+CM[Command] -.-> A
 A[LadderGame] --> B(Ladder)
+A --> RS[Results] --> R[Result]
+R --> N
+R --> S
 B --> C[Line]
 D[Players] --> P[Player]
-P --> S[StartPoint]
+P --> S[Position]
 P --> N[Name]
 B --> H[Height]
 A -.-> LS[LineStrategy]
@@ -33,10 +37,12 @@ C --> LS
   - [x] 실행결과는 쉼표로 구분되어 입력받는다.
   - [x] 입력되는 실행결과의 개수는 참여자의 개수 이하이어야 한다.
   
-## 츌력
+## 출력
 - [x] 이름과 사다리를 출력한다.
   - [x] 사다리의 폭은 5이다.
-
+- [ ] 플레이어와 실행결과의 매핑 결과를 출력한다.
+  - [ ] 플레이어 이름에 해당하는 실행결과를 출력한다.
+  - [ ] all이 입력되면 모든 플레이어의 실행결과를 출력한다.
 # 사다리 게임
 - [x] 플레이어, 실행결과, 사다리 높이로부터 사다리 게임을 생성한다.
 
