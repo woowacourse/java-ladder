@@ -47,7 +47,7 @@ public class OutputView {
         return result.toString();
     }
 
-    private String reformatStatus(Boolean status) {
+    private String reformatStatus(boolean status) {
         final boolean isConnected = true;
         final String connected = "-----";
         final String disConnected = "     ";
