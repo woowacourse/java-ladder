@@ -32,7 +32,7 @@ public class LadderGameController {
     private Ladder generateLadder(Players players, Height height) {
         List<Line> lines = new ArrayList<>();
         int count = FIRST_INDEX;
-        while (height.isSameHeight(count)) {
+        while (!height.isSameHeight(count)) {
             Line line = new Line(players.getPlayersCount(), trueOrFalseGenerator);
             lines.add(line);
             count++;
