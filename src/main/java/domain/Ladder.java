@@ -4,14 +4,14 @@ import java.util.List;
 
 public class Ladder {
 
-    public static final int MAX_RANGE = 10;
     public static final int MIN_RANGE = 1;
+    public static final int MAX_RANGE = 10;
 
     private final List<Line> lines;
 
-    public Ladder(int personCount, int maxHeight, GenerateStrategy strategy) {
+    public Ladder(People people, int maxHeight, GenerateStrategy strategy) {
         validateHeight(maxHeight);
-        this.lines = strategy.generate(personCount, maxHeight);
+        this.lines = strategy.generate(people.getCount(), maxHeight);
     }
 
     private void validateHeight(int maxHeight) {

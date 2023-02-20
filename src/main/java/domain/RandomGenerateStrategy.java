@@ -21,8 +21,8 @@ public class RandomGenerateStrategy implements GenerateStrategy {
         List<Boolean> movements = new ArrayList<>(width);
         movements.add(random.nextBoolean());
         int inBetweenCount = width - 1;
-        for (int j = 1; j < inBetweenCount; j++) {
-            int previousElement = j - 1;
+        for (int index = 1; index < inBetweenCount; index++) {
+            int previousElement = index - 1;
             updateResult(movements, movements.get(previousElement));
         }
         return movements;
