@@ -17,7 +17,7 @@ public enum LadderStep {
     public static LadderStep valueOf(boolean isStep){
         return Arrays.stream(LadderStep.values())
                 .filter(e -> e.isStep == isStep)
-                .findAny().orElseThrow();
+                .findAny().orElseThrow(()->new IllegalStateException("해당하는 값이 없습니다"));
     }
 
     public String getStep() {

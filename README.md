@@ -14,7 +14,7 @@
   - [x] player validate 해주는 메소드들을 해당 메소드 안에서 호출
   - [x] Integer.parseInt 로 예외 처리 되는 validate 메소드들은 삭제
   - [x] Validator 클래스 삭제. Height 와 Players 생성자에서 validate 검증
-- [ ] input view 에서 입력 요청 출력을 Controller 로 위임
+- [x] input view 에서 입력 요청 출력을 Controller 로 위임
 - [x] Output view -> 사용자 이름 길이에 맞게 수정되게 하는 로직 변수 선언
 - [ ] parameterized test 사용. 테스트 추가 
 
