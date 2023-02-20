@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class PlayerNameTest {
 
     private static final String NAME_SIZE_ERROR_MESSAGE = "이름은 1 ~ 5 글자여야 합니다.";
-    private static final String VALUE_ERROR_MESSAGE = "이름은 문자만 숫자로 가능합니다.";
+    private static final String VALUE_ERROR_MESSAGE = "이름은 영어나 숫자로만 가능합니다.";
 
     @DisplayName("길이가 범위 밖인 경우 예외 발생")
     @ParameterizedTest
