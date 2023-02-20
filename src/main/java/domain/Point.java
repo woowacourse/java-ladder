@@ -16,4 +16,8 @@ public class Point {
         this.direction = direction;
     }
 
+    public int getMoveLineDirection() {
+        return this.direction.getLineMovement();
+    }
+
 }

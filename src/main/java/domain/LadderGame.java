@@ -28,7 +28,22 @@ public class LadderGame {
     }
 
     public void runGame() {
+        for (int i = 0; i < players.playerAmount(); i++) {
+            int resultAt = ladder.findResultAtByStartLineAt(i);
+            matchPlayerResult(i, resultAt);
+        }
+    }
 
+    private void matchPlayerResult(int playerAt, int resultAt) {
+        ResultContent resultContent = resultContents.getResultContents().get(resultAt);
+        Player player = players.getPlayers().get(playerAt);
+
+        player.updateResult(resultContent);
+    }
+
+    public ResultContent getResultByPlayerName(String playerName) {
+        Player player = players.findByName(playerName);
+        return player.getResultContent();
     }
 
     public Ladder getLadder() {

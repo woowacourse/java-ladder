@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.ladder.Ladder;
@@ -25,15 +26,16 @@ class LadderGameTest {
                 .hasMessage(PLAYER_RESULT_SIZE_MISMATCH_ERROR_MESSAGE);
     }
 
-//    @Test
-//    void runGameTest() {
-//        LadderGame ladderGame = TestDataManager.getLadderGame();
-//        ladderGame.runGame();
-//
-//        Assertions.assertThat(ladderGame.getResultByPlayerName("pobi")).isEqualTo("5000");
-//        Assertions.assertThat(ladderGame.getResultByPlayerName("crong")).isEqualTo("꽝");
-//        Assertions.assertThat(ladderGame.getResultByPlayerName("royce")).isEqualTo("10000");
-//    }
+    @Test
+    void runGameTest() {
+        LadderGame ladderGame = TestDataManager.getLadderGame();
+        ladderGame.buildBridges();
+        ladderGame.runGame();
+
+        assertThat(ladderGame.getResultByPlayerName("pobi")).extracting("content").isEqualTo("5000");
+        assertThat(ladderGame.getResultByPlayerName("crong")).extracting("content").isEqualTo("꽝");
+        assertThat(ladderGame.getResultByPlayerName("royce")).extracting("content").isEqualTo("10000");
+    }
 
 
 }

@@ -2,8 +2,17 @@ package domain;
 
 public enum Direction {
 
-    STRAIGHT_DOWN,
-    LEFT_DOWN,
-    RIGHT_DOWN
+    STRAIGHT_DOWN(0),
+    LEFT_DOWN(-1),
+    RIGHT_DOWN(1);
 
+    private final int lineMovement;
+
+    Direction(int lineMovement) {
+        this.lineMovement = lineMovement;
+    }
+
+    public int getLineMovement() {
+        return lineMovement;
+    }
 }

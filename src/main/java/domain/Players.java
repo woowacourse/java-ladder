@@ -21,6 +21,13 @@ public class Players {
         return this.players.size();
     }
 
+    public Player findByName(String playerName) {
+        return this.players.stream()
+                .filter(player -> player.getPlayerName().equals(playerName))
+                .findFirst()
+                .orElseThrow();
+    }
+
     public List<Player> getPlayers() {
         return players;
     }

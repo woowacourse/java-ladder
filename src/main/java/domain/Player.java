@@ -8,7 +8,15 @@ public class Player {
         this.playerName = playerName;
     }
 
+    public void updateResult(ResultContent resultContent) {
+        this.resultContent = resultContent;
+    }
+
     public String getPlayerName() {
         return playerName.getPlayerName();
+    }
+
+    public ResultContent getResultContent() {
+        return resultContent;
     }
 }
