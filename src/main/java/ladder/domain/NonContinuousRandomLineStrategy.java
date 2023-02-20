@@ -13,13 +13,13 @@ public class NonContinuousRandomLineStrategy implements LineStrategy {
 
         IntStream.range(0, sectionCount - 1).forEach(index -> {
             if (isContinuous(line, index)) {
-                makeUnContinous(line, index);
+                makeNoncontinuousLine(line, index);
             }
         });
         return line;
     }
 
-    private static void makeUnContinous(List<Boolean> line, int index) {
+    private static void makeNoncontinuousLine(List<Boolean> line, int index) {
         line.set(index + 1, false);
     }
 
