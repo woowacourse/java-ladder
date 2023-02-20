@@ -12,6 +12,6 @@ public class LineTest {
     @Test
     void currentPointShouldBeDisconnectedWhenPreviousPointIsConnected() {
         Line line = new Line(new TestBooleanGenerator(Lists.newArrayList(true)), 3);
-        assertThat(line.getPoints()).containsExactly(Point.CONNECTION, Point.SEPARATION);
+        assertThat(line.getPoints()).containsExactly(Point.CONNECTED, Point.DISCONNECTED);
     }
 }

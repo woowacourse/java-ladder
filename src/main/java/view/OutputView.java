@@ -54,7 +54,7 @@ public class OutputView {
     }
 
     private static String toFormattedStatus(Point point) {
-        if (point.isConnection()) {
+        if (point.isConnected()) {
             return FORMATTED_DASH + DIVIDER;
         }
         return FORMATTED_BLANK + DIVIDER;

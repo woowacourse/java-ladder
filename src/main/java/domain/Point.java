@@ -2,8 +2,8 @@ package domain;
 
 public enum Point {
 
-    CONNECTION(true),
-    SEPARATION(false);
+    CONNECTED(true),
+    DISCONNECTED(false);
 
     private final boolean status;
 
@@ -11,7 +11,7 @@ public enum Point {
         this.status = status;
     }
 
-    public boolean isConnection() {
+    public boolean isConnected() {
         return status;
     }
 }

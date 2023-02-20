@@ -17,7 +17,7 @@ public class Line {
     private List<Point> generatePoints(int personCount) {
         List<Point> points = new ArrayList<>();
 
-        Point previousPoint = Point.SEPARATION;
+        Point previousPoint = Point.DISCONNECTED;
         for (int i = 0; i < personCount - 1; i++) {
             Point currentPoint = generatePoint(previousPoint);
             points.add(currentPoint);
@@ -28,8 +28,8 @@ public class Line {
     }
 
     private Point generatePoint(Point previousPoint) {
-        if (previousPoint.isConnection()) {
-            return Point.SEPARATION;
+        if (previousPoint.isConnected()) {
+            return Point.DISCONNECTED;
         }
 
         return generatePoint();
@@ -37,10 +37,10 @@ public class Line {
 
     private Point generatePoint() {
         if (booleanGenerator.generate()) {
-            return Point.CONNECTION;
+            return Point.CONNECTED;
         }
 
-        return Point.SEPARATION;
+        return Point.DISCONNECTED;
     }
 
     public List<Point> getPoints() {
