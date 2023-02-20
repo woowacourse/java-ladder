@@ -54,9 +54,6 @@
   - [x] LineSymbol Class 오류 메시지 출력하기
 - 메서드 네이밍
   - [x] Persons class 의 사이즈 return 해주는 메소드 이름을 ‘크기’ 대신 ‘명’, ‘수’로 변경할 수 있도록 고민하기 .. getSize → ???
-- 중복 검증
-  - [ ] List와 Set의 특징 알아보기
-  - [ ] 중복 검증 시 어떤 컬렌션이 더 잘어울리는지 생각해보기
 - stream
   - [x] OutputView의 printPersons 메소드 출력 방법을 for문 대신 stream 사용하기
   - [x] Persons class에서 List<Person> 생성하는 부분 stream 사용하기
