@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGameTest {
 
-    LadderGame ladderGame;
+    private LadderGame ladderGame;
 
     @BeforeEach
     void before() {
