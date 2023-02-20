@@ -1,4 +1,4 @@
-package domain;
+package domain.user;
 
 public class User {
     private static final int MIN_NAME_LENGTH = 1;

@@ -1,10 +1,10 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.PointStatus;
-import domain.User;
-import domain.Users;
+import domain.ladder.Ladder;
+import domain.ladder.Line;
+import domain.ladder.PointStatus;
+import domain.user.User;
+import domain.user.Users;
 
 public class OutputView {
     private static final String OUTPUT_EXECUTE_MESSAGE = "\n실행결과\n";
