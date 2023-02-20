@@ -48,6 +48,14 @@ public class InputView {
         return mapToHeightNumber(inputHeight);
     }
 
+    public String inputNameForGameResult() {
+        String name = scanner.nextLine();
+
+        validateBlank(name);
+
+        return name;
+    }
+
     private int mapToHeightNumber(String input) {
         try {
             return Integer.parseInt(input);
