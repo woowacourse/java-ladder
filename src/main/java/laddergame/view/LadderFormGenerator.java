@@ -11,6 +11,7 @@ import static laddergame.view.LadderUnit.*;
 
 public class LadderFormGenerator {
     private int rungLength;
+
     public String generate(final Participants participants, final List<Line> lines) {
         rungLength = getMaximumLengthOfNames(participants.getNames());
         return joinNames(participants.getNames()) + joinRows(lines);
@@ -21,8 +22,11 @@ public class LadderFormGenerator {
     }
 
     private String joinNames(final List<String> names) {
-        String joined = names.stream().map(name -> String.format(MessageFormat.format("%{0}s", rungLength+1), name)).collect(Collectors.joining());
-        return joined + System.lineSeparator();
+        String nameFormat = MessageFormat.format("%{0}s", rungLength + 1);
+        String formattedNames = names.stream()
+                .map(name -> String.format(nameFormat, name))
+                .collect(Collectors.joining());
+        return formattedNames + System.lineSeparator();
     }
 
     private String joinRows(final List<Line> lines) {
