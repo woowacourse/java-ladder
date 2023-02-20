@@ -14,6 +14,10 @@ public class Line {
         }
     }
 
+    public Line(Line line) {
+        this.points = List.copyOf(line.points);
+    }
+
     private ConnectionStatus decideConnection(int position, BooleanGenerator booleanGenerator) {
         if (position == 0) {
             return ConnectionStatus.convertConnectionStatus(booleanGenerator.generate());

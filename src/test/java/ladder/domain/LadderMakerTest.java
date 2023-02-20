@@ -22,7 +22,7 @@ public class LadderMakerTest {
 
         BooleanGenerator booleanGenerator = new IntendedBooleanGenerator();
 
-        LadderProperty ladderProperty = new LadderProperty(3, 4);
+        LadderSize ladderProperty = new LadderSize(3, 4);
         LadderMaker ladderMaker = new LadderMaker(ladderProperty, booleanGenerator);
 
         Ladder ladder = ladderMaker.generate();
