@@ -12,23 +12,27 @@ public class LadderGenerator {
         int ladderWidth = width.getLadderWidth();
         int ladderHeight = height.getLadderHeight();
 
-        for (int i = 0; i < ladderHeight; i++) {
+        while (ladderHeight-- > 0) {
             rows.add(generateRow(ladderWidth));
         }
+
         return new Ladder(rows);
     }
 
     private Row generateRow(int width) {
         List<Foothold> footholds = new ArrayList<>();
-        for (int i = 0; i < width; i++) {
-            addNextFoothold(footholds);
+
+        while (width-- > 0) {
+            addFoothold(footholds);
         }
+
         return Row.of(footholds, width);
     }
 
-    private void addNextFoothold(List<Foothold> footholds) {
+    private void addFoothold(List<Foothold> footholds) {
         if (footholds.isEmpty() || isLastSlotEmpty(footholds)) {
-            footholds.add(Foothold.from(random.nextBoolean()));
+            Foothold next = Foothold.from(random.nextBoolean());
+            footholds.add(next);
             return;
         }
 
