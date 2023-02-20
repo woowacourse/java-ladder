@@ -2,6 +2,7 @@ package domain;
 
 import view.InputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerNames {
@@ -9,6 +10,7 @@ public class PlayerNames {
     private List<PlayerName> playerNames;
 
     public PlayerNames(List<String> playerNames, InputView inputView) {
+        this.playerNames = new ArrayList<>();
         this.inputView = inputView;
         playerNames = validatePlayerNames(playerNames);
         createPlayerNames(playerNames);
