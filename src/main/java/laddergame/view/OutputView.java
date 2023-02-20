@@ -1,5 +1,6 @@
 package laddergame.view;
 
+import laddergame.constant.ErrorCode;
 import laddergame.domain.Line;
 import laddergame.domain.Point;
 
@@ -9,6 +10,7 @@ public class OutputView {
 
     private static final int LADDER_SPACING = 5;
     private static final int NAME_SPACING = LADDER_SPACING + 1;
+    private static final String KOREAN_LANGUAGE_CODE = "kor";
 
     private static final String PLAYER_NAMES_REQUEST_MSG = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) ";
     private static final String LADDER_HEIGHT_MSG = "최대 사다리 높이는 몇 개인가요?";
@@ -61,7 +63,8 @@ public class OutputView {
         return String.format(LADDER_FORMAT, LADDER_DISCONNECTED_SIGN.repeat(LADDER_SPACING));
     }
 
-    public static void printErrorMsg(String errorMessage) {
-        System.out.println(errorMessage);
+    public static void printErrorMsg(RuntimeException exception) {
+        ErrorCode errorCode = ErrorCode.findByCode(exception.getMessage());
+        System.out.println(errorCode.getMessage(KOREAN_LANGUAGE_CODE));
     }
 }

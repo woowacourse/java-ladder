@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.constant.ErrorMessage;
+import laddergame.constant.ErrorCode;
 
 import java.util.HashSet;
 import java.util.List;
@@ -24,11 +24,11 @@ public class Players {
     private void validatePlayerNames(List<Player> players) {
         Set<Player> playerSet = new HashSet<>(players);
         if (playerSet.size() != players.size()) {
-            throw new IllegalArgumentException(ErrorMessage.PLAYER_NAME_DUPLICATED.getMessage());
+            throw new IllegalArgumentException(ErrorCode.PLAYER_NAME_DUPLICATED.getCode());
         }
 
         if (players.size() < MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_PLAYER_COUNT.getMessage());
+            throw new IllegalArgumentException(ErrorCode.NOT_VALID_PLAYER_COUNT.getCode());
         }
     }
 

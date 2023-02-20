@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.constant.ErrorMessage;
+import laddergame.constant.ErrorCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +10,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayersTest {
+
+    private static final String KOREAN_LANG_CODE = "kor";
 
     @Test
     @DisplayName("Players가 정상적으로 생성된다.")
@@ -24,7 +26,7 @@ class PlayersTest {
         List<String> playerNames = List.of("test1", "test2", "test1");
         assertThatThrownBy(() -> new Players(playerNames))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.PLAYER_NAME_DUPLICATED.getMessage());
+                .hasMessageContaining(ErrorCode.PLAYER_NAME_DUPLICATED.getCode());
     }
 
     @Test
@@ -33,6 +35,6 @@ class PlayersTest {
         List<String> playerNames = List.of("test1");
         assertThatThrownBy(() -> new Players(playerNames))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.NOT_VALID_PLAYER_COUNT.getMessage());
+                .hasMessageContaining(ErrorCode.NOT_VALID_PLAYER_COUNT.getCode());
     }
 }

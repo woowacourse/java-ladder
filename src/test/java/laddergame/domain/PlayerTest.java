@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.constant.ErrorMessage;
+import laddergame.constant.ErrorCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,6 +10,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
+
+    private static final String KOREAN_LANG_CODE = "kor";
 
     @Test
     @DisplayName("\"test\"라는 이름으로 Player가 정상적으로 생성된다.")
@@ -23,6 +25,6 @@ class PlayerTest {
     void playerCreateExceptionTest(String playerName) {
         assertThatThrownBy(() -> new Player(playerName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.NOT_VALID_PLAYER_NAME.getMessage());
+                .hasMessageContaining(ErrorCode.NOT_VALID_PLAYER_NAME.getCode());
     }
 }

@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.constant.ErrorMessage;
+import laddergame.constant.ErrorCode;
 
 public class Player {
 
@@ -15,7 +15,7 @@ public class Player {
 
     private void validatePlayerName(String name) {
         if (name.isBlank() || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_PLAYER_NAME.getMessage());
+            throw new IllegalArgumentException(ErrorCode.NOT_VALID_PLAYER_NAME.getCode());
         }
     }
 

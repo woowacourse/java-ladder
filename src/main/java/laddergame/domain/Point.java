@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.constant.ErrorMessage;
+import laddergame.constant.ErrorCode;
 
 import java.util.Arrays;
 
@@ -18,7 +18,7 @@ public enum Point {
         return Arrays.stream(Point.values())
                 .filter(point -> point.isConnected == condition)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_VALID_ARGUMENT.getMessage()));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorCode.NOT_VALID_ARGUMENT.getCode()));
     }
 
     public boolean isConnected() {

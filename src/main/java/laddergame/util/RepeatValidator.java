@@ -18,8 +18,8 @@ public class RepeatValidator {
     private static <T> T trySupplier(Supplier<T> expression) {
         try {
             return expression.get();
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+        } catch (RuntimeException exception) {
+            OutputView.printErrorMsg(exception);
             return null;
         }
     }
@@ -36,7 +36,7 @@ public class RepeatValidator {
             inputFunction.run();
             return true;
         } catch (RuntimeException exception) {
-            OutputView.printErrorMsg(exception.getMessage());
+            OutputView.printErrorMsg(exception);
             return false;
         }
     }

@@ -1,6 +1,6 @@
 package laddergame.view;
 
-import laddergame.constant.ErrorMessage;
+import laddergame.constant.ErrorCode;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +19,7 @@ public class InputView {
 
     private static void validateBlankInput(String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
+            throw new IllegalArgumentException(ErrorCode.EMPTY_INPUT.getCode());
         }
     }
 
@@ -31,7 +31,7 @@ public class InputView {
 
     private static void validateNaturalNumber(String input) {
         if (!input.matches(NATURAL_NUMBER_REGEX)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_NATURAL_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorCode.NOT_NATURAL_NUMBER.getCode());
         }
     }
 }
