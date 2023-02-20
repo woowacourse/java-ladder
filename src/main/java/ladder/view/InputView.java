@@ -24,12 +24,12 @@ public class InputView {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
-        List<String> names = new ArrayList<>(List.of(splitNames(input)));
+        List<String> names = new ArrayList<>(List.of(splitInput(input)));
         validateDuplicatedNames(names);
         return names;
     }
 
-    private String[] splitNames(String input) {
+    private String[] splitInput(String input) {
         return input.split(",");
     }
 
@@ -37,6 +37,16 @@ public class InputView {
         if (names.size() != names.stream().distinct().count()) {
             throw new IllegalArgumentException(EXCEPTION_PLAYER_NAME_DUPLICATE.getMessage());
         }
+    }
+
+    public List<String> readRewards() {
+        System.out.println(InputMessage.INPUT_REWARDS.getMessage());
+
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
+        List<String> rewards = new ArrayList<>(List.of(splitInput(input)));
+        return rewards;
     }
 
     public int readHeight() {
@@ -58,7 +68,7 @@ public class InputView {
     private enum InputMessage {
 
         INPUT_NAMES("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"),
-
+        INPUT_REWARDS("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"),
         INPUT_HEIGHT("최대 사다리 높이는 몇 개인가요?");
         private final String message;
 
