@@ -41,8 +41,8 @@ public class Floor {
         return floor;
     }
 
-    private static boolean isAllFalse(final int isExistenceCount, final List<Link> floor) {
-        return new HashSet<>(floor).size() == LINK_COUNT && isExistenceCount > MIN_LINK_COUNT;
+    private static boolean isAllFalse(final int linkCount, final List<Link> floor) {
+        return new HashSet<>(floor).size() == LINK_COUNT && linkCount > MIN_LINK_COUNT;
     }
 
     private Link checkLink(final List<Link> floor, final int index, final boolean pick) {
@@ -63,8 +63,8 @@ public class Floor {
         return floor.get(lastIndex).isLink() && pick;
     }
 
-    private void validateLinkCount(final int numberOfExistences) {
-        if (numberOfExistences < MIN_LINK_COUNT) {
+    private void validateLinkCount(final int linkCount) {
+        if (linkCount < MIN_LINK_COUNT) {
             throw new IllegalStateException(String.format("Floor의 길이는 %d보다 작을 수 없습니다.", MIN_LINK_COUNT));
         }
     }

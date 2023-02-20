@@ -7,7 +7,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Names {
     private static final int MIN_NUMBER_OF_PLAYERS = 2;
-    private static final int HALF = 2;
+    private static final int FIRST_NAME = 0;
 
     private final List<Name> names;
 
@@ -37,7 +37,7 @@ public class Names {
     }
 
     public int getFirstNameLength() {
-        return names.get(0).getNameLength();
+        return names.get(FIRST_NAME).getNameLength();
     }
 
     public List<String> getNames() {

@@ -10,7 +10,7 @@ public class Ladder {
     private final List<Floor> lines;
 
     public Ladder(final Height height, final int numberOfPlayers) {
-        this.lines = createLines(height.getHeight(), numberOfPlayers);
+        this.lines = createLadder(height.getHeight(), numberOfPlayers);
     }
 
     public List<Floor> getLadder() {
@@ -18,7 +18,7 @@ public class Ladder {
     }
 
 
-    private List<Floor> createLines(final int height, final int playerCount) {
+    private List<Floor> createLadder(final int height, final int playerCount) {
         final List<Floor> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {

@@ -41,10 +41,10 @@ public class OutputView {
         return String.format("%s%s", name, repeat);
     }
 
-    private static String makeLadderFormat(final List<Link> line, final Names names) {
+    private static String makeLadderFormat(final List<Link> floor, final Names names) {
         final StringBuilder result = new StringBuilder(setUpLadder(names.getFirstNameLength()));
 
-        line.forEach(existences -> result.append(makeLine(existences, names.findMaxNameLength())));
+        floor.forEach(existences -> result.append(makeFloor(existences, names.findMaxNameLength())));
         result.append(System.lineSeparator());
 
         return result.toString();
@@ -55,7 +55,7 @@ public class OutputView {
         return String.format("%s%s", BLANK.getLadderElement().repeat(leftBlankCount), VERTICAL_LINE.getLadderElement());
     }
 
-    private static String makeLine(final Link link, final int maxNameLength) {
+    private static String makeFloor(final Link link, final int maxNameLength) {
         return String.format("%s%s", OutputFormat.convertFormat(link).repeat(maxNameLength), VERTICAL_LINE.getLadderElement());
     }
 
