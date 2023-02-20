@@ -31,7 +31,7 @@ public class LadderGameController {
 
         showLadderGame(players, ladder, rewards);
 
-        Map<String, String> matchingResults = generateMatchingResults(players, ladder, rewards);
+        Map<Player, Reward> matchingResults = generateMatchingResults(players, ladder, rewards);
         showMatchingResults(players, matchingResults);
     }
 
@@ -49,7 +49,10 @@ public class LadderGameController {
 
     private Rewards generateRewards(int playerCount) {
         try {
-            return new Rewards(inputView.readRewards(), playerCount);
+            List<Reward> rewards = inputView.readRewards().stream()
+                    .map(Reward::new)
+                    .collect(Collectors.toList());
+            return new Rewards(rewards, playerCount);
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
             return generateRewards(playerCount);
@@ -78,24 +81,24 @@ public class LadderGameController {
                 .collect(Collectors.toList()));
 
         List<Row> rows = ladder.getRows();
-        for (Row row : rows) {
-            outputView.printRow(row.getPoints());
-        }
-        outputView.printRewards(rewards.getRewards());
+        rows.forEach(row -> outputView.printRow(row.getPoints()));
+        outputView.printRewards(rewards.getRewards().stream()
+                .map(Reward::getReward)
+                .collect(Collectors.toList()));
     }
 
-    private Map<String, String> generateMatchingResults(Players players, Ladder ladder, Rewards rewards) {
-        Map<String, String> matchingResults = new HashMap<>();
+    private Map<Player, Reward> generateMatchingResults(Players players, Ladder ladder, Rewards rewards) {
+        Map<Player, Reward> matchingResults = new HashMap<>();
         for (Player player : players.getPlayers()) {
             int entrance = players.findPositionOf(player);
             int exit = ladder.findExitFrom(entrance);
-            String reward = rewards.getRewards().get(exit);
-            matchingResults.put(player.getPlayerName(), reward);
+            Reward reward = rewards.getRewards().get(exit);
+            matchingResults.put(player, reward);
         }
         return matchingResults;
     }
 
-    private void showMatchingResults(Players players, Map<String, String> matchingResults) {
+    private void showMatchingResults(Players players, Map<Player, Reward> matchingResults) {
         String input = inputView.readPlayerChoice();
         if (input.equals(LOOK_ALL)) {
             outputView.printAllPlayerResults(matchingResults);
@@ -105,10 +108,10 @@ public class LadderGameController {
         showMatchingResults(players, matchingResults);
     }
 
-    private void showChosePlayerResult(Players players, Map<String, String> matchingResults, String input) {
+    private void showChosePlayerResult(Players players, Map<Player, Reward> matchingResults, String input) {
         try {
-            players.findPlayerByName(input);
-            outputView.printChosePlayerResult(matchingResults.get(input));
+            Player player = players.findPlayerByName(input);
+            outputView.printChosePlayerResult(matchingResults.get(player).getReward());
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
             input = inputView.readPlayerChoice();

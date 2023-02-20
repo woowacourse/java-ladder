@@ -7,13 +7,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Rewards {
-    private final List<String> rewards;
+    private final List<Reward> rewards;
 
-    public Rewards(List<String> rewards, int playerCount) {
+    public Rewards(List<Reward> rewards, int playerCount) {
         validateRewardCount(rewards.size(), playerCount);
-        this.rewards = rewards.stream()
-                .map(this::removeWhiteSpace)
-                .collect(Collectors.toList());
+        this.rewards = rewards;
     }
 
     private void validateRewardCount(int rewardCount, int playerCount) {
@@ -22,11 +20,7 @@ public class Rewards {
         }
     }
 
-    private String removeWhiteSpace(String reward) {
-        return reward.replaceAll(" ", "");
-    }
-
-    public List<String> getRewards() {
+    public List<Reward> getRewards() {
         return Collections.unmodifiableList(rewards);
     }
 
