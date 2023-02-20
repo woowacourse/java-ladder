@@ -19,10 +19,6 @@ public class Line {
         return new Line(playerCount, connectionStrategy);
     }
 
-    public List<Connection> getConnections() {
-        return new ArrayList<>(connections);
-    }
-
     private List<Connection> createConnections(int connectionCount, final ConnectionStrategy connectionStrategy) {
         List<Connection> connections = new ArrayList<>();
 
@@ -60,5 +56,9 @@ public class Line {
             final String connectionCountMessage = String.format("연결상태는 %s보다 작을 수 없습니다.", connectionCount);
             throw new IllegalStateException(connectionCountMessage);
         }
+    }
+
+    public List<Connection> getConnections() {
+        return new ArrayList<>(connections);
     }
 }

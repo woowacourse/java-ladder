@@ -15,10 +15,6 @@ public class Ladder {
         this.lines = createLines(height, numberOfPlayers, connectionStrategy);
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
-    }
-
     private void validateHeight(final int height) {
         if (height < MIN_HEIGHT) {
             final String heightExceptionMessage = String.format("최소 높이가 %s이상이어야 합니다.", MIN_HEIGHT);
@@ -34,5 +30,9 @@ public class Ladder {
         }
 
         return lines;
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }
