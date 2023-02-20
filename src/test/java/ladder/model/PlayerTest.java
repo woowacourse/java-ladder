@@ -35,4 +35,12 @@ class PlayerTest {
         assertThat(name.getPlayerName()).isEqualTo(expected);
     }
 
+    @ParameterizedTest
+    @DisplayName("플레이어 이름이 금지어(all) 이면 예외처리 테스트")
+    @ValueSource(strings = {"all"})
+    void invalidNameTest(String input) {
+        Assertions.assertThatThrownBy(() -> new Player(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
