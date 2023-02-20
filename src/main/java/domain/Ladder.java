@@ -26,17 +26,6 @@ public class Ladder {
         }
     }
 
-    public List<Bridge> getLines() {
-        return line.getBridges();
-    }
-
-    public List<String> getParticipantNames() {
-        return people.getParticipants()
-                     .stream()
-                     .map(Person::getName)
-                     .collect(toUnmodifiableList());
-    }
-
     public Map<String, String> getLadderMatchingResult() {
 
         Map<String, String> result = new HashMap<>();
@@ -46,12 +35,23 @@ public class Ladder {
         for (int start = 0; start < participantNames.size(); start++) {
             String name = participantNames.get(start);
 
-            int index = line.move(start);
+            int destination = line.move(start);
 
-            result.put(name, resultCandidates.get(index));
+            result.put(name, resultCandidates.get(destination));
         }
 
         return result;
+    }
+
+    public List<Bridge> getLines() {
+        return line.getBridges();
+    }
+
+    public List<String> getParticipantNames() {
+        return people.getParticipants()
+                     .stream()
+                     .map(Person::getName)
+                     .collect(toUnmodifiableList());
     }
 
     public List<String> getResultCandidates() {
