@@ -20,8 +20,8 @@ class LadderShapeTest {
     @Test
     void returnLadderShape() {
         // given
-        List<Boolean> points = List.of(true, false, false, true);
-        String ladderForm = LadderShape.getLadderForm(points, 5);
-        assertThat(ladderForm).isEqualTo("-----|     |     |-----|");
+        List<Boolean> points = List.of(true, false, false);
+        StringBuilder ladderForm = LadderShape.getLadderForm(points, 5);
+        assertThat(ladderForm.toString()).isEqualTo("    |-----|     |     |");
     }
 }

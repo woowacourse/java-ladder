@@ -37,13 +37,14 @@ public class OutputView {
                 .forEach(player ->
                         System.out.print(" ".repeat(maxPlayerNameLength - player.getName().length()) + player.getName() + " ")
                 );
+        System.out.println();
     }
 
     private static void printLadder(Lines lines, Players players) {
         lines.getLines()
-                .forEach(line ->
-                        System.out.println(LadderShape.getLadderForm(line.getPoints(), getMaxLength(players)
-                        )));
+                .forEach(line ->{
+                            System.out.println(LadderShape.getLadderForm(line.getPoints(), getMaxLength(players)));
+                });
     }
 
 }

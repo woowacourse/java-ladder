@@ -19,20 +19,20 @@ public enum LadderShape {
 
     private final String shape;
 
-    public static String getLadderForm(List<Boolean> points, int maxNameLength) {
+    public static StringBuilder getLadderForm(List<Boolean> points, int maxNameLength) {
         StringBuilder sb = new StringBuilder();
-        for (Boolean point : points) {
-            sb.append(appendLadder(point, maxNameLength));
+        sb.append(DISCONNECT.shape.repeat(maxNameLength - 1)).append(WALL.shape);
+        for (boolean point : points) {
+            appendLineForm(point, sb, maxNameLength);
         }
-        return sb.toString();
+        return sb;
     }
 
-    private static StringBuilder appendLadder(Boolean point, int maxNameLength) {
-        StringBuilder sb = new StringBuilder();
+    private static void appendLineForm(boolean point, StringBuilder sb, int maxNameLength) {
         if (point) {
             sb.append(CONNECT.shape.repeat(maxNameLength)).append(WALL.shape);
-            return sb;
+            return;
         }
-        return sb.append(DISCONNECT.shape.repeat(maxNameLength)).append(WALL.shape);
+        sb.append(DISCONNECT.shape.repeat(maxNameLength)).append(WALL.shape);
     }
 }
