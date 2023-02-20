@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -25,7 +26,7 @@ public class Players {
         return this.players.stream()
                 .filter(player -> player.getPlayerName().equals(playerName))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(NoSuchElementException::new);
     }
 
     public List<Player> getPlayers() {
