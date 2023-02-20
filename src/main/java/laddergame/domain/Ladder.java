@@ -1,30 +1,30 @@
 package laddergame.domain;
 
+import static laddergame.utils.RetryUtils.retryOnRuntimeException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import static laddergame.utils.RetryUtils.retryOnRuntimeException;
-
 public class Ladder {
-    private final Participants participants;
+    private final Width width;
     private final Height height;
     private final BooleanGenerator booleanGenerator;
 
     private List<Line> lines;
 
-    public Ladder(final Participants participants, final Height height, final BooleanGenerator booleanGenerator) {
-        validate(participants, height, booleanGenerator);
-        this.participants = participants;
+    public Ladder(final Width width, final Height height, final BooleanGenerator booleanGenerator) {
+        validate(width, height, booleanGenerator);
+        this.width = width;
         this.height = height;
         this.booleanGenerator = booleanGenerator;
         createLines();
     }
 
-    private void validate(final Participants participants, final Height height, final BooleanGenerator booleanGenerator) {
-        if (Objects.isNull(participants)) {
-            throw new IllegalArgumentException("참여자는 null이 될 수 없습니다.");
+    private void validate(final Width width, final Height height, final BooleanGenerator booleanGenerator) {
+        if (Objects.isNull(width)) {
+            throw new IllegalArgumentException("너비는 null이 될 수 없습니다.");
         }
         if (Objects.isNull(height)) {
             throw new IllegalArgumentException("높이는 null이 될 수 없습니다.");
@@ -40,7 +40,7 @@ public class Ladder {
         int heightLength = height.getValue();
 
         while (heightLength-- > 0) {
-            final Line line = retryOnRuntimeException(() -> createLine(participants.getSize() - 1));
+            final Line line = retryOnRuntimeException(() -> createLine(width.getValue() - 1));
             lines.add(line);
         }
     }
