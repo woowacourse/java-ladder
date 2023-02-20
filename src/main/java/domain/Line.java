@@ -1,11 +1,11 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
 import util.LineGenerator;
 
-public class Line {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Line {
 
     private final int numberOfLine;
     private final List<LineStatus> line;

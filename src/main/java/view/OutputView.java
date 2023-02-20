@@ -14,6 +14,7 @@ public class OutputView {
     public static void printResultMessage() {
         System.out.println("\n실행 결과\n");
     }
+
     public static void printPlayers(Players players) {
         System.out.println(getPlayersNames(players));
     }
@@ -30,7 +31,7 @@ public class OutputView {
 
     public static void printLadder(Ladder ladder) {
         Lines lines = ladder.getLines();
-        for (Line line  : lines.getLines()) {
+        for (Line line : lines.getLines()) {
             List<LineStatus> oneLine = line.getLine();
             System.out.println(getLineStatus(oneLine));
         }

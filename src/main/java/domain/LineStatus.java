@@ -3,6 +3,7 @@ package domain;
 import java.util.Arrays;
 
 public enum LineStatus {
+
     EXIST(true),
     NON_EXIST(false);
 

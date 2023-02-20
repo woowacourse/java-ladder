@@ -4,8 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.ExistLineGenerator;
-import util.NonExistLineGenerator;
 import util.LineStatusMaker;
+import util.NonExistLineGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
