@@ -43,6 +43,16 @@ public class Users {
         }
     }
 
+    public String getUserNameByIndex(int index) {
+        return users.get(index).getName();
+    }
+
+    private List<String> getUserNames() {
+        return getUsers().stream()
+                .map(User::getName)
+                .collect(Collectors.toList());
+    }
+
     public List<User> getUsers() {
         return Collections.unmodifiableList(users);
     }

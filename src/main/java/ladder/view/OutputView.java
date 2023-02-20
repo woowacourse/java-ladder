@@ -19,11 +19,17 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLadder(Users users, Ladder ladder) {
+    public static void printLadder(Users users, Ladder ladder, Prizes prizes) {
 
         printUsersName(users);
         System.out.println();
         printLadder(ladder);
+        printPrizes(prizes);
+    }
+
+    private static void printPrizes(Prizes prizes) {
+        prizes.getPrizeNames().forEach(prize -> System.out.printf("%10s", prize));
+        System.out.println();
     }
 
     private static void printUsersName(Users users) {
@@ -81,9 +87,12 @@ public class OutputView {
         System.out.print(DELIMITER);
     }
 
-    public static void printResult(Prizes prizes, int index) {
+    public static void printResultPrefix() {
         System.out.println("실행 결과");
+    }
+    public static void printResult(Prizes prizes, int index) {
         System.out.println(prizes.getPrizeNameByIndex(index));
+        System.out.println();
     }
 
 }

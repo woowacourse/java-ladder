@@ -24,8 +24,11 @@ public class Prizes {
     public String getPrizeNameByIndex(int index) {
         return prizes.get(index).getName();
     }
-    public List<Prize> getPrizes() {
-        return prizes;
+
+    public List<String> getPrizeNames() {
+        return prizes.stream()
+                .map(Prize::getName)
+                .collect(Collectors.toList());
     }
 
     public int getSize() {
