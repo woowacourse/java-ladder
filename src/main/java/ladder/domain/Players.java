@@ -45,6 +45,14 @@ public class Players {
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 참여자가 없습니다."));
     }
 
+    public int findIndexByPlayer(Player player) {
+        int index = players.indexOf(player);
+        if (index == -1) {
+            throw new IllegalArgumentException("[ERROR] 해당 참여자가 없습니다.");
+        }
+        return index;
+    }
+
     public Player findPlayerByIndex(int index) {
         if (isProperIndex(index)) {
             throw new IllegalArgumentException("[ERROR] 인덱스 범위를 초과했습니다.");

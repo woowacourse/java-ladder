@@ -9,6 +9,7 @@ import ladder.domain.Line;
 import java.util.ArrayList;
 import java.util.List;
 import ladder.domain.Player;
+import ladder.domain.PlayerResults;
 import ladder.domain.Players;
 import ladder.domain.Result;
 import ladder.domain.Results;
@@ -45,5 +46,14 @@ public class LadderService {
                 .map(Result::new)
                 .collect(toList());
         return new Results(results, playerCount);
+    }
+
+    public PlayerResults createPlayerResults(Players players, Ladder ladder, Results results) {
+        List<Result> playerResults = players.getPlayers().stream()
+                .map(players::findIndexByPlayer)
+                .map(ladder::getLadderIndexResult)
+                .map(results::findResultByIndex)
+                .collect(toList());
+        return new PlayerResults(players.getPlayers(), playerResults);
     }
 }
