@@ -1,9 +1,11 @@
 package controller;
 
+import dto.GameResult;
 import java.util.List;
 import java.util.stream.Collectors;
 import model.Height;
 import model.Ladder;
+import model.LadderGame;
 import model.LadderResult;
 import model.LadderResults;
 import model.Name;
@@ -13,6 +15,9 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderController {
+
+    private static final String DEFAULT_PARTICIPANT_NAME = "";
+    private static final String FIND_TOTAL_RESULT_COMMAND = "all";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -25,8 +30,12 @@ public class LadderController {
     public void run(LadderMaker ladderMaker) {
         Names participants = inputParticipantsName();
         LadderResults ladderResults = inputLadderResults(participants.getTotalParticipantSize());
+
         generateLadder(ladderMaker, participants.getTotalParticipantSize());
         printLadder(ladderMaker, participants, ladderResults);
+
+        LadderGame ladderGame = LadderGame.of(participants, ladderMaker.getLadder(), ladderResults);
+        findResult(ladderGame);
     }
 
     private Names inputParticipantsName() {
@@ -59,12 +68,32 @@ public class LadderController {
     }
 
     private void printLadder(LadderMaker ladderMaker, Names names, LadderResults ladderResults) {
-        outputView.noticeResult();
+        outputView.noticeLadderResult();
 
         Ladder ladder = ladderMaker.getLadder();
 
         outputView.printNameOfParticipants(names);
         outputView.printLadder(ladder);
         outputView.printLadderResult(ladderResults);
+    }
+
+    private void findResult(LadderGame ladderGame) {
+        String targetParticipantName = DEFAULT_PARTICIPANT_NAME;
+
+        while (!targetParticipantName.equals(FIND_TOTAL_RESULT_COMMAND)) {
+            outputView.noticeFindResultOfName();
+            targetParticipantName = inputView.inputNameForGameResult();
+            calculateResultLog(ladderGame, targetParticipantName);
+        }
+    }
+
+    private void calculateResultLog(LadderGame ladderGame, String targetParticipantName) {
+        if (targetParticipantName.equals(FIND_TOTAL_RESULT_COMMAND)) {
+            List<GameResult> totalGameResult = ladderGame.getTotalGameResult();
+            outputView.printTotalResult(totalGameResult);
+            return;
+        }
+        String gameResult = ladderGame.getGameResultOfName(targetParticipantName);
+        outputView.printResultOfName(gameResult);
     }
 }
