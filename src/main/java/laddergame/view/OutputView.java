@@ -8,11 +8,16 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 import static laddergame.view.message.LadderMessage.*;
+import static laddergame.view.message.Message.RESULT_GUIDE;
 
 public class OutputView {
 
     public static void print(final String message) {
         System.out.println(message);
+    }
+
+    public void printResultGuide() {
+        print(RESULT_GUIDE.getMessage());
     }
 
     public void printParticipantNames(final List<String> participantNames) {

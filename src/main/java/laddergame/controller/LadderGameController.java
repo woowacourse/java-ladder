@@ -11,8 +11,6 @@ import laddergame.view.OutputView;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static laddergame.view.message.Message.RESULT_GUIDE;
-
 public class LadderGameController {
 
     private final InputView inputView;
@@ -50,7 +48,7 @@ public class LadderGameController {
     }
 
     private void printGameResult(final Participants participants, final Ladder ladder) {
-        OutputView.print(RESULT_GUIDE.getMessage());
+        outputView.printResultGuide();
         List<String> participantNames = getParticipantNames(participants);
         outputView.printParticipantNames(participantNames);
         outputView.printLadder(ladder.getLadder(), participantNames);
