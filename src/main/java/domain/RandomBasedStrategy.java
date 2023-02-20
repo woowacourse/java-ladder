@@ -12,6 +12,7 @@ public class RandomBasedStrategy implements PointGenerateStrategy {
             return Point.NOT_EXIST;
         }
         return Point.generate(random);
+        // TODO : generate메서드가 필요한가?
     }
 
 }
