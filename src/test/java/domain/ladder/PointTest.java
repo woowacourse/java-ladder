@@ -2,6 +2,7 @@ package domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import view.Point;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
