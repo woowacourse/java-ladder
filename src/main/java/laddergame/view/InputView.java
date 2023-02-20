@@ -9,7 +9,7 @@ import java.util.List;
 public class InputView {
 
     private static final String NAME_SEPARATOR = ",";
-    private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private static final BufferedReader BUFFERED_READER = new BufferedReader(new InputStreamReader(System.in));
 
     public static List<String> readNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -35,6 +35,6 @@ public class InputView {
     }
 
     private static String read() throws IOException {
-        return bufferedReader.readLine();
+        return BUFFERED_READER.readLine();
     }
 }

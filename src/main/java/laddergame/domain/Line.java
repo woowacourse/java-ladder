@@ -6,45 +6,45 @@ import java.util.List;
 
 public class Line {
 
-    private static final int MIN_NUMBER_OF_EXISTENCES = 1;
+    private static final int MIN_EXISTENCE_COUNT = 1;
     private static final int FIRST_INDEX_OF_EXISTENCES = 0;
     private static final int ABSENCE_OF_TRUE = 1;
 
     private final List<Boolean> line;
     private final PickStrategy strategy;
 
-    private Line(final int numberOfPlayers, final PickStrategy pickStrategy) {
+    private Line(final int playerCount, final PickStrategy pickStrategy) {
         this.strategy = pickStrategy;
-        int numberOfExistences = numberOfPlayers - 1;
-        validateNumberOfExistences(numberOfExistences);
-        this.line = createLine(numberOfExistences);
+        int isExistenceCount = playerCount - 1;
+        validateIsExistenceCount(isExistenceCount);
+        this.line = createLine(isExistenceCount);
     }
 
-    public static Line from(final int numberOfPlayers) {
-        return new Line(numberOfPlayers, new RandomBooleanPicker());
+    public static Line from(final int playerCount) {
+        return new Line(playerCount, new RandomBooleanPicker());
     }
 
-    public static Line of(final int numberOfPlayers, final PickStrategy pickStrategy) {
-        return new Line(numberOfPlayers, pickStrategy);
+    public static Line of(final int playerCount, final PickStrategy pickStrategy) {
+        return new Line(playerCount, pickStrategy);
     }
 
     public List<Boolean> getLine() {
         return new ArrayList<>(line);
     }
 
-    private List<Boolean> createLine(final int numberOfStatus) {
+    private List<Boolean> createLine(final int isExistenceCount) {
         List<Boolean> line = new ArrayList<>();
-        for (int i = 0; i < numberOfStatus; i++) {
+        for (int i = 0; i < isExistenceCount; i++) {
             line.add(checkExistence(line, i));
         }
-        if (isAllFalse(numberOfStatus, line)) {
-            return createLine(numberOfStatus);
+        if (isAllFalse(isExistenceCount, line)) {
+            return createLine(isExistenceCount);
         }
         return line;
     }
 
-    private static boolean isAllFalse(final int numberOfStatus, final List<Boolean> line) {
-        return new HashSet<>(line).size() == ABSENCE_OF_TRUE && numberOfStatus > MIN_NUMBER_OF_EXISTENCES;
+    private static boolean isAllFalse(final int isExistenceCount, final List<Boolean> line) {
+        return new HashSet<>(line).size() == ABSENCE_OF_TRUE && isExistenceCount > MIN_EXISTENCE_COUNT;
     }
 
     private boolean checkExistence(final List<Boolean> line, final int index) {
@@ -66,9 +66,9 @@ public class Line {
         return line.get(lastIndex) && pick;
     }
 
-    private void validateNumberOfExistences(final int numberOfExistences) {
-        if (numberOfExistences < MIN_NUMBER_OF_EXISTENCES) {
-            throw new IllegalStateException(String.format("Line의 길이는 %d보다 작을 수 없습니다.", MIN_NUMBER_OF_EXISTENCES));
+    private void validateIsExistenceCount(final int numberOfExistences) {
+        if (numberOfExistences < MIN_EXISTENCE_COUNT) {
+            throw new IllegalStateException(String.format("Line의 길이는 %d보다 작을 수 없습니다.", MIN_EXISTENCE_COUNT));
         }
     }
 }

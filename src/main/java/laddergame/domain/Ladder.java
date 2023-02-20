@@ -25,11 +25,11 @@ public class Ladder {
         }
     }
 
-    private List<Line> createLines(final int height, final int numberOfPlayers) {
+    private List<Line> createLines(final int height, final int playerCount) {
         final List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            lines.add(Line.from(numberOfPlayers));
+            lines.add(Line.from(playerCount));
         }
 
         return lines;

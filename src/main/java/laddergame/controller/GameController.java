@@ -8,28 +8,28 @@ import laddergame.view.OutputView;
 public class GameController {
 
     public void process() {
-        final Names names = readNamesWithRetry();
-        final Ladder ladder = readHeightWithRetry(names);
+        final Names names = readNames();
+        final Ladder ladder = readHeight(names);
 
         OutputView.printPlayerAll(names);
         OutputView.printLadder(names, ladder);
     }
 
-    private Names readNamesWithRetry() {
+    private Names readNames() {
         try {
             return new Names(InputView.readNames());
         } catch (IllegalStateException | IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
-            return readNamesWithRetry();
+            return readNames();
         }
     }
 
-    private Ladder readHeightWithRetry(final Names names) {
+    private Ladder readHeight(final Names names) {
         try {
             return new Ladder(InputView.readHeight(), names.getSize());
         } catch (IllegalStateException | IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
-            return readHeightWithRetry(names);
+            return readHeight(names);
         }
     }
 }
