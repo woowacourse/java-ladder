@@ -5,7 +5,7 @@ public class Line {
     private boolean isExist = false;
 
     public void make(LineSource lineSource) {
-        if (lineSource == LineSource.MakeLine) {
+        if (lineSource == LineSource.MAKE_LINE) {
             isExist = true;
         }
     }

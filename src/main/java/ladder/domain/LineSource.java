@@ -3,8 +3,8 @@ package ladder.domain;
 import java.util.Arrays;
 
 public enum LineSource {
-    MakeLine(1),
-    MakeBlank(0);
+    MAKE_LINE(1),
+    MAKE_BLANK(0);
 
     int odd;
 
@@ -16,6 +16,6 @@ public enum LineSource {
         return Arrays.stream(LineSource.values())
                 .filter(lineSource -> lineSource.odd == number)
                 .findAny()
-                .orElse(LineSource.MakeBlank);
+                .orElse(LineSource.MAKE_BLANK);
     }
 }
