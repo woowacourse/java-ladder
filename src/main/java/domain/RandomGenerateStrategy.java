@@ -8,28 +8,24 @@ public class RandomGenerateStrategy implements GenerateStrategy {
 
     private static final Random random = new Random();
 
-    /**
-     * 이 생성전략은 (사람수 - 1) 길이, 랜덤한 true와 false값을 리스트로 반환한다.
-     *
-     * <p>
-     *     랜덤을 생성하면서, 연속된 true값은 나올 수 없다.
-     *     이전 요소값이 true이면 현재 요소값은 무조건 false를 삽입한다.
-     *     그렇지 않다면 랜덤값을 삽입한다.
-     * </p>
-     *
-     * @param count 사람수; 0 이상이어야 한다.
-     * @return (사람수 - 1) 길이의 true와 false 요소값을 가지는 리스트를 반환한다.
-     */
     @Override
-    public List<Boolean> generate(int count) {
-        List<Boolean> result = new ArrayList<>(count);
-        result.add(random.nextBoolean());
-        int inBetweenCount = count - 1;
-        for (int i = 1; i < inBetweenCount; i++) {
-            int previousElement = i - 1;
-            updateResult(result, result.get(previousElement));
+    public List<Line> generate(int width, int height) {
+        List<Line> result = new ArrayList<>(height);
+        for (int i = 0; i < height; i++) {
+            result.add(new Line(getHorizontalLineMovements(width)));
         }
         return result;
+    }
+
+    private List<Boolean> getHorizontalLineMovements(int width) {
+        List<Boolean> movements = new ArrayList<>(width);
+        movements.add(random.nextBoolean());
+        int inBetweenCount = width - 1;
+        for (int j = 1; j < inBetweenCount; j++) {
+            int previousElement = j - 1;
+            updateResult(movements, movements.get(previousElement));
+        }
+        return movements;
     }
 
     private void updateResult(List<Boolean> result, Boolean previousElement) {
