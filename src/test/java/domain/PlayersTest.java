@@ -11,6 +11,7 @@ public class PlayersTest {
     @DisplayName("중복된 닉네임을 입력하면 예외 발생")
     void validateDuplicateName() {
         Assertions.assertThatThrownBy(() -> new Players(List.of("a", "b", "a")))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 중복된 이름입니다.");
     }
 }

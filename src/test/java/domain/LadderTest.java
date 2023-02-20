@@ -14,6 +14,7 @@ public class LadderTest {
     @DisplayName("높이에 0이하의 값을 입력하면 예외 발생")
     void validateHeight(int height) {
         assertThatThrownBy(() -> new Ladder(height, 4, new RandomPointGenerator()))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 사다리 높이는 1이상이어야 합니다.");
     }
 }
