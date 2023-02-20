@@ -25,12 +25,18 @@ public class InputView {
 	}
 
 	public List<String> readResults() {
-		System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+		System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
 
 		return splitByComma(scanner.nextLine());
 	}
 
 	private List<String> splitByComma(String input) {
 		return List.of(input.split(","));
+	}
+
+	public String readTargetName() {
+		System.out.println("\n결과를 보고 싶은 사람은?");
+
+		return scanner.nextLine();
 	}
 }
