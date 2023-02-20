@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.exception.NotIntegerException;
+import ladder.view.exception.NotIntegerException;
 
 public class InputValidator {
 

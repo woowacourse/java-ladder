@@ -1,6 +1,6 @@
 package ladder.domain.player;
 
-import ladder.exception.PlayerNameLengthException;
+import ladder.domain.player.exception.PlayerNameLengthException;
 
 public class PlayerName {
 

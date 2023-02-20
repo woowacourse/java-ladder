@@ -2,7 +2,7 @@ package ladder.domain;
 
 import ladder.domain.ladder.builder.LadderMaker;
 import ladder.domain.ladder.builder.RandomBlockGenerator;
-import ladder.exception.LadderLengthException;
+import ladder.domain.ladder.exception.LadderLengthException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,6 @@
-package ladder.exception;
+package ladder.domain.player.exception;
+
+import ladder.common.CustomException;
 
 public class PlayerNameLengthException extends CustomException {
 

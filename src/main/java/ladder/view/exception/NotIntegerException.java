@@ -1,4 +1,6 @@
-package ladder.exception;
+package ladder.view.exception;
+
+import ladder.common.CustomException;
 
 public class NotIntegerException extends CustomException {
 

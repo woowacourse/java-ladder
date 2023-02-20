@@ -1,6 +1,6 @@
 package ladder.domain.player;
 
-import ladder.exception.PlayerNumberException;
+import ladder.domain.player.exception.PlayerNumberException;
 
 import java.util.List;
 import java.util.stream.Collectors;

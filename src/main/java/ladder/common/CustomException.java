@@ -1,4 +1,4 @@
-package ladder.exception;
+package ladder.common;
 
 public class CustomException extends RuntimeException {
 

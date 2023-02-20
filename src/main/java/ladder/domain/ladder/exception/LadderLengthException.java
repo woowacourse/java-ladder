@@ -1,4 +1,6 @@
-package ladder.exception;
+package ladder.domain.ladder.exception;
+
+import ladder.common.CustomException;
 
 public class LadderLengthException extends CustomException {
 

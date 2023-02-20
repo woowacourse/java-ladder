@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.player.Players;
-import ladder.exception.PlayerNumberException;
+import ladder.domain.player.exception.PlayerNumberException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
