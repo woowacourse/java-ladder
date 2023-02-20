@@ -2,7 +2,6 @@ package view;
 
 import domain.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
@@ -31,7 +30,8 @@ public class OutputView {
     }
 
     public static void printLadder(Ladder ladder) {
-        for (Line line  : ladder.getLines()) {
+        Lines lines = ladder.getLines();
+        for (Line line  : lines.getLines()) {
             List<LineStatus> oneLine = line.getLine();
             System.out.println(getLineStatus(oneLine));
         }

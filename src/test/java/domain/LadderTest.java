@@ -19,8 +19,8 @@ public class LadderTest {
         Ladder ladder = new Ladder(numberOfWalls, height, lineGenerator);
 
         assertAll(
-                () -> assertThat(ladder.getLines().size()).isEqualTo(height.getHeight()),
-                () -> assertThat(ladder.getLines().get(0).getLine().size()).isEqualTo(numberOfWalls - 1)
+                () -> assertThat(ladder.getLines().getLines().size()).isEqualTo(height.getHeight()),
+                () -> assertThat(ladder.getLines().getLines().get(0).getLine().size()).isEqualTo(numberOfWalls - 1)
         );
     }
 }
