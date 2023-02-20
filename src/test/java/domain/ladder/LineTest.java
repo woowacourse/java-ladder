@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayDeque;
@@ -93,13 +94,22 @@ public class LineTest {
      * 4 -> RIGHT,
      * 5 -> LEFT
      */
-    @Test
-    void directionOfScaffoldExist_는_주어진_위치로부터_Scaffold_가_존재하는_방향을_반환한다() {
+    @ParameterizedTest(name = "directionOfScaffoldExist()는 주어진 위치로부터 Scaffold 가 존재하는 방향을 반환한다")
+    @CsvSource(value = {
+            "0 -> NONE",
+            "1 -> RIGHT",
+            "2 -> LEFT",
+            "3 -> NONE",
+            "4 -> RIGHT",
+            "5 -> LEFT",
+    }, delimiterString = " -> ")
+    void directionOfScaffoldExist_는_주어진_위치로부터_Scaffold_가_존재하는_방향을_반환한다(final int position, final Direction direction) {
         // given
+        List<Scaffold> sample =
+                // 모양:  |     |-----|     |     |-----|
+                List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE, Scaffold.NONE, Scaffold.EXIST);
         ScaffoldGenerator generator = new ScaffoldGenerator() {
-            private final List<Scaffold> scaffolds =
-                    // 모양:  |     |-----|     |     |-----|
-                    List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE, Scaffold.NONE, Scaffold.EXIST);
+            private final List<Scaffold> scaffolds = sample;
             private int index = 0;
 
             @Override
@@ -107,31 +117,21 @@ public class LineTest {
                 return scaffolds.get(index++);
             }
         };
-
         Line line = Line.create(Width.of(5), generator);
 
         // when & then
-        assertThat(line.directionOfScaffoldExist(Position.of(0)))
-                .isEqualTo(Direction.NONE);
-        assertThat(line.directionOfScaffoldExist(Position.of(1)))
-                .isEqualTo(Direction.RIGHT);
-        assertThat(line.directionOfScaffoldExist(Position.of(2)))
-                .isEqualTo(Direction.LEFT);
-        assertThat(line.directionOfScaffoldExist(Position.of(3)))
-                .isEqualTo(Direction.NONE);
-        assertThat(line.directionOfScaffoldExist(Position.of(4)))
-                .isEqualTo(Direction.RIGHT);
-        assertThat(line.directionOfScaffoldExist(Position.of(5)))
-                .isEqualTo(Direction.LEFT);
+        assertThat(line.directionOfScaffoldExist(Position.of(position)))
+                .isEqualTo(direction);
     }
 
     @Test
     void directionOfScaffoldExist_로_주어지는_위치가_0보다_작거나_전체_Scaffold_수보다_큰_경우_예외가_발생한다() {
         // given
+        List<Scaffold> sample =
+                // 모양:  |     |-----|     |     |-----|
+                List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE, Scaffold.NONE, Scaffold.EXIST);
         ScaffoldGenerator generator = new ScaffoldGenerator() {
-            private final List<Scaffold> scaffolds =
-                    // 모양:  |     |-----|     |     |-----|
-                    List.of(Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE, Scaffold.NONE, Scaffold.EXIST);
+            private final List<Scaffold> scaffolds = sample;
             private int index = 0;
 
             @Override
@@ -140,13 +140,17 @@ public class LineTest {
             }
         };
 
-        Line line = Line.create(Width.of(5), generator);
+        Width width = Width.of(5);
+        Line line = Line.create(width, generator);
+        Position underRangePosition = Position.of(-1);
+        Position upRangePosition = Position.of(sample.size() + 1);
+
         // when & then
         assertThatThrownBy(() ->
-                line.directionOfScaffoldExist(Position.of(-1))
+                line.directionOfScaffoldExist(underRangePosition)
         ).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() ->
-                line.directionOfScaffoldExist(Position.of(6))
+                line.directionOfScaffoldExist(upRangePosition)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }

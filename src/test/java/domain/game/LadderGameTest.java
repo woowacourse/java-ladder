@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -90,8 +91,11 @@ class LadderGameTest {
 
         // when & then
         LadderGameResult result1 = ladderGame.goDownLadder(말랑);
-        assertThat(result1.nameWinningEntryMap().get(말랑)).isEqualTo(말랑당첨);
-        assertThat(result2.nameWinningEntryMap().get(바다)).isEqualTo(바다당첨);
+        LadderGameResult result2 = ladderGame.goDownLadder(바다);
+        assertAll(
+                () -> assertThat(result1.nameWinningEntryMap().get(말랑)).isEqualTo(말랑당첨),
+                () -> assertThat(result2.nameWinningEntryMap().get(바다)).isEqualTo(바다당첨)
+        );
     }
 
     @Test

@@ -15,6 +15,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -149,9 +150,11 @@ public class LadderTest {
         Ladder ladder = new Ladder(lines);
 
         // when & then
-        assertThat(ladder.goDown(Position.of(0))).isEqualTo(Position.of(0));
-        assertThat(ladder.goDown(Position.of(1))).isEqualTo(Position.of(3));
-        assertThat(ladder.goDown(Position.of(2))).isEqualTo(Position.of(2));
-        assertThat(ladder.goDown(Position.of(3))).isEqualTo(Position.of(1));
+        assertAll(
+                () -> assertThat(ladder.goDown(Position.of(0))).isEqualTo(Position.of(0)),
+                () -> assertThat(ladder.goDown(Position.of(1))).isEqualTo(Position.of(3)),
+                () -> assertThat(ladder.goDown(Position.of(2))).isEqualTo(Position.of(2)),
+                () -> assertThat(ladder.goDown(Position.of(3))).isEqualTo(Position.of(1))
+        );
     }
 }
