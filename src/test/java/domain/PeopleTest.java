@@ -16,4 +16,13 @@ class PeopleTest {
             new People(name);
         });
     }
+
+    @DisplayName("이름으로 People객체 생성 실패 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"", "aaaaaa"})
+    void 이름_길이_People_객체_생성_실패_태스트(String name){
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, ()->{
+            new People(name);
+        });
+    }
 }
