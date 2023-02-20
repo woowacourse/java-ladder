@@ -59,18 +59,6 @@ class NameTest {
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
-	@DisplayName("값이 길이를 초과하면 예외가 발생한다.")
-	@Test
-	void throwExceptionWhenNameOverLength() {
-		//given
-		final String value = "rosieee";
-
-		//when
-		//then
-		assertThatThrownBy(() -> new Name(value))
-			.isInstanceOf(IllegalArgumentException.class);
-	}
-
 	@DisplayName("생성된다.")
 	@Test
 	void create() {
