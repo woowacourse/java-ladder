@@ -6,12 +6,12 @@ import ladder.view.ResultView;
 
 import java.util.List;
 
-public class LadderController {
+public class LadderGameController {
     private final InputView inputView;
     private final ResultView resultView;
     private final LadderGenerator ladderGenerator;
 
-    public LadderController(InputView inputView, ResultView resultView, LadderGenerator ladderGenerator) {
+    public LadderGameController(InputView inputView, ResultView resultView, LadderGenerator ladderGenerator) {
         this.inputView = inputView;
         this.resultView = resultView;
         this.ladderGenerator = ladderGenerator;

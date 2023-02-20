@@ -14,20 +14,24 @@ public class Players {
     private final List<Player> players;
 
     private Players(List<Player> players) {
-        validateSize(players);
+        validate(players);
         this.players = players;
     }
 
     public static Players from(List<String> names) {
-        validateDuplication(names);
         return names.stream()
                     .map(Player::new)
                     .collect(collectingAndThen(toUnmodifiableList(), Players::new));
     }
 
-    private static void validateDuplication(List<String> names) {
-        Set<String> distinctNames = new HashSet<>(names);
-        if (distinctNames.size() != names.size()) {
+    private void validate(List<Player> players) {
+        validateSize(players);
+        validateDuplicate(players);
+    }
+
+    private void validateDuplicate(List<Player> players) {
+        Set<Player> distinctPlayers = new HashSet<>(players);
+        if (distinctPlayers.size() != players.size()) {
             throw new IllegalArgumentException(DUPLICATE_NAMES_ERROR_MESSAGE);
         }
     }

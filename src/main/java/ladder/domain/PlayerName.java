@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class PlayerName {
     private static final int NAME_LENGTH_LOWER_BOUND_INCLUSIVE = 1;
     private static final int NAME_LENGTH_UPPER_BOUND_INCLUSIVE = 5;
@@ -25,6 +27,23 @@ public class PlayerName {
         if (name.contains(NOT_ALLOWED)) {
             throw new IllegalArgumentException(NAME_FORMAT_ERROR_MESSAGE);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PlayerName that = (PlayerName) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     public String getName() {
