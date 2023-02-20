@@ -10,11 +10,13 @@ public class Ladder {
 
     private final Participants participants;
     private final List<Line> lines;
+    private final List<String> prizes;
 
-    public Ladder(final Participants participants, final List<Line> lines) {
+    public Ladder(final Participants participants, final List<Line> lines, List<String> prizes) {
         validateHeightOf(lines);
         this.participants = participants;
         this.lines = copyOf(lines);
+        this.prizes = copyOf(prizes);
     }
 
     private void validateHeightOf(final List<Line> lines) {
@@ -29,5 +31,13 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public String findPrizeFor(String participantName) {
+        int position = participants.findStartPositionOf(participantName);
+        for (Line line : lines) {
+            position = line.findPositionAfter(position);
+        }
+        return prizes.get(position);
     }
 }

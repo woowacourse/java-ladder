@@ -1,26 +1,26 @@
 package helper;
 
-import domain.Bridge;
-import domain.Line;
-import domain.Participant;
-import domain.Participants;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import domain.Bridge;
+import domain.Line;
+import domain.Participant;
+import domain.Participants;
+
 public abstract class AbstractTestFixture {
 
     public List<Bridge> convert(Boolean... flags) {
         return Arrays.stream(flags)
-                     .map((flag) -> {
-                         if (flag) {
-                             return Bridge.EXIST;
-                         }
-                         return Bridge.EMPTY;
-                     })
-                     .collect(Collectors.toList());
+                .map((flag) -> {
+                    if (flag) {
+                        return Bridge.EXIST;
+                    }
+                    return Bridge.EMPTY;
+                })
+                .collect(Collectors.toList());
     }
 
     public Participants createDefaultParticipants() {
@@ -31,6 +31,10 @@ public abstract class AbstractTestFixture {
         return Arrays.stream(names)
                 .map(Participant::new)
                 .collect(Collectors.toList());
+    }
+
+    public List<String> createPrizesFrom(String... names) {
+        return List.of(names);
     }
 
     public List<Line> createLines(final int height) {

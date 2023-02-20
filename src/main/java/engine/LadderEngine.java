@@ -21,7 +21,7 @@ public class LadderEngine {
             Participants participants = gatherParticipants();
             int height = InputView.inputMaxLadderHeight();
             List<Line> lines = makeLines(participants.count(), height);
-            return new Ladder(participants, lines);
+            return new Ladder(participants, lines, List.of("sadf"));
         });
         OutputView.printLadder(ladder);
     }
