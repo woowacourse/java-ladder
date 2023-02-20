@@ -2,25 +2,33 @@ package factory;
 
 import domain.Line;
 import domain.Point;
-import domain.RandomBasedStrategy;
+import domain.PointGenerateStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class LineFactory {
 
     private static final int FIRST_INDEX = 0;
+    public static final int MIN_POINT_SIZE = 0;
+    public static final int MAX_POINT_SIZE = 19;
 
-    public static Line generate(final int pointSize, final RandomBasedStrategy randomBasedStrategy) {
-        List<Point> points = generatePoints(pointSize, randomBasedStrategy);
+    public static Line generate(final int pointSize, final PointGenerateStrategy pointGenerateStrategy) {
+        validate(pointSize);
+        List<Point> points = generatePoints(pointSize, pointGenerateStrategy);
         return new Line(points);
     }
 
-    private static List<Point> generatePoints(int pointSize, RandomBasedStrategy randomBasedStrategy) {
+    private static void validate(int pointSize) {
+        if (pointSize < MIN_POINT_SIZE || pointSize > MAX_POINT_SIZE) {
+            throw new IllegalArgumentException("포인트 범위는 0부터 19까지입니다.");
+        }
+    }
+
+    private static List<Point> generatePoints(int pointSize, PointGenerateStrategy pointGenerateStrategy) {
         List<Point> points = new ArrayList<>();
         for (int pointIndex = 0; pointIndex < pointSize; pointIndex++) {
-            Point currentPoint = randomBasedStrategy.generate(getPreviousPoint(points, pointIndex));
+            Point currentPoint = pointGenerateStrategy.generate(getPreviousPoint(points, pointIndex));
             points.add(currentPoint);
         }
         return points;

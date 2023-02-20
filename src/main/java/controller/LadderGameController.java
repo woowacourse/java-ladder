@@ -29,7 +29,7 @@ public class LadderGameController {
         List<String> playerNames = inputView.readPlayerNames();
         Players players = PlayersFactory.generate(playerNames);
         int ladderHeight = inputView.readLadderHeight();
-        Ladder ladder = LadderFactory.generate(playerNames.size(), ladderHeight);
+        Ladder ladder = LadderFactory.generate(playerNames.size(), ladderHeight, new RandomBasedStrategy());
         ladderGame = new LadderGame(players, ladder);
     }
 

@@ -19,7 +19,7 @@ public class LadderGameTest {
         List<String> playerNames = List.of("a", "b", "c");
         Players players = PlayersFactory.generate(playerNames);
         int ladderHeight = 10;
-        Ladder ladder = LadderFactory.generate(playerNames.size(), ladderHeight);
+        Ladder ladder = LadderFactory.generate(playerNames.size(), ladderHeight, new RandomBasedStrategy());
         ladderGame = new LadderGame(players, ladder);
     }
 
