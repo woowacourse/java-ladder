@@ -19,7 +19,7 @@ public class LineMakerTest {
     @BeforeEach
     void setup() {
         playerCount = 5;
-        valueGenerator = new MockValueGenerator();
+        valueGenerator = new MockValueGenerator(List.of(5), List.of(true));
     }
 
     @Test
