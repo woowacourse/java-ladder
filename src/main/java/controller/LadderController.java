@@ -11,19 +11,19 @@ import view.OutputView;
 public class LadderController {
 
     public void run() {
-        Names names = generatePlayers();
-        Ladder ladder = generateLadder(names.getNamesSize());
+        Names names = generateNames();
+        Ladder ladder = generateLadder(names.getPersonCount());
         OutputView.printNames(names);
         OutputView.printLadder(ladder);
     }
 
-    private Names generatePlayers() {
+    private Names generateNames() {
         try {
             List<String> names = InputView.readNames();
             return new Names(names);
         } catch (IllegalArgumentException exception) {
             Log.log(exception.getMessage());
-            return generatePlayers();
+            return generateNames();
         }
     }
 
