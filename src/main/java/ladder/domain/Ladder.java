@@ -30,18 +30,18 @@ public class Ladder {
         return users.getUsers().size() - DIFFERENCE_BETWEEN_FLOOR_AND_USERS;
     }
 
-    public void makeFloors(NumberGenerator numberGenerator) {
+    public void makeFloors(LineSourceGenerator lineSourceGenerator) {
         for (Floor floor : floors) {
             floor.makeFloor(
-                    generateFloorNumbers(numberGenerator, floor)
+                    generateFloorLineSources(lineSourceGenerator, floor)
             );
         }
     }
 
-    private List<Integer> generateFloorNumbers(NumberGenerator numberGenerator, Floor floor) {
-        List<Integer> numbers = new ArrayList<>();
+    private List<LineSource> generateFloorLineSources(LineSourceGenerator lineSourceGenerator, Floor floor) {
+        List<LineSource> numbers = new ArrayList<>();
         for (int i = 0; i < floor.getLines().size(); i++) {
-            numbers.add(numberGenerator.generate());
+            numbers.add(lineSourceGenerator.generate());
         }
         return numbers;
     }

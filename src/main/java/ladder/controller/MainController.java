@@ -1,7 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.Ladder;
-import ladder.domain.RandomNumberGenerator;
+import ladder.domain.RandomLineSourceGenerator;
 import ladder.domain.Users;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -11,7 +11,7 @@ public class MainController {
     public static void main(String[] args) {
         Users users = inputUsers();
         Ladder ladder = inputLadder(users);
-        ladder.makeFloors(new RandomNumberGenerator());
+        ladder.makeFloors(new RandomLineSourceGenerator());
         OutputView.printResult(users, ladder);
     }
 

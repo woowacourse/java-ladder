@@ -10,6 +10,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
 
+    private final LineSource make = LineSource.MAKE_LINE;
+    private final LineSource blank = LineSource.MAKE_BLANK;
+
     private static List<Line> getFloorLines(int pos, Ladder ladder) {
         return ladder.getFloors().get(pos - 1).getLines();
     }
@@ -43,10 +46,10 @@ public class LadderTest {
     @Test
     @DisplayName("Ladder 1층 생성 테스트")
     void makeFirstFloorTest() {
-        TestNumberGenerator testNumberGenerator = new TestNumberGenerator(List.of(1, 0, 0));
+        TestLineSourceGenerator testLineSourceGenerator = new TestLineSourceGenerator(List.of(make, blank, blank));
 
         Ladder ladder = new Ladder(1, new Users(List.of("1", "2", "3", "4")));
-        ladder.makeFloors(testNumberGenerator);
+        ladder.makeFloors(testLineSourceGenerator);
 
         List<Line> firstFloorLines = getFloorLines(1, ladder);
 
@@ -58,10 +61,10 @@ public class LadderTest {
     @Test
     @DisplayName("Ladder 생성 테스트")
     void makeFloorTest() {
-        TestNumberGenerator testNumberGenerator = new TestNumberGenerator(List.of(1, 0, 0, 1, 1, 1));
+        TestLineSourceGenerator testLineSourceGenerator = new TestLineSourceGenerator(List.of(make, blank, blank, make, make, make));
 
         Ladder ladder = new Ladder(2, new Users(List.of("1", "2", "3", "4")));
-        ladder.makeFloors(testNumberGenerator);
+        ladder.makeFloors(testLineSourceGenerator);
 
         List<Line> firstFloorLines = getFloorLines(1, ladder);
         List<Line> secondFloorLines = getFloorLines(2, ladder);
