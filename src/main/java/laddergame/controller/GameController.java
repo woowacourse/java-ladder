@@ -1,5 +1,6 @@
 package laddergame.controller;
 
+import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Names;
 import laddergame.view.InputView;
@@ -9,7 +10,8 @@ public class GameController {
 
     public void process() {
         final Names names = readNames();
-        final Ladder ladder = readHeight(names);
+        final Height height = readHeight();
+        final Ladder ladder = new Ladder(height, names.getSize());
 
         OutputView.printPlayerAll(names);
         OutputView.printLadder(names, ladder);
@@ -24,12 +26,12 @@ public class GameController {
         }
     }
 
-    private Ladder readHeight(final Names names) {
+    private Height readHeight() {
         try {
-            return new Ladder(InputView.readHeight(), names.getSize());
+            return new Height(InputView.readHeight());
         } catch (IllegalStateException | IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
-            return readHeight(names);
+            return readHeight();
         }
     }
 }
