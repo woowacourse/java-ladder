@@ -17,6 +17,7 @@ public class Application {
         OutputView.printLadder(game.getPlayerNames(), game.getLadder(), game.getResults());
 
         String queryName = InputView.readResultInquireName();
+        OutputView.printInquireResult(game.calculatePlayerResult(queryName));
     }
 
     private static Command readCommand() {

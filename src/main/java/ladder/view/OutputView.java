@@ -16,6 +16,11 @@ public class OutputView {
         printNames(resultNames);
     }
 
+    public static void printInquireResult(String resultName) {
+        System.out.println("실행 결과");
+        System.out.println(resultName);
+    }
+
     private static void printNames(List<String> names) {
         String nameLine = names.stream()
                 .map(name -> String.format("%6s", name))
