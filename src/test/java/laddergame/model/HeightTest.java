@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import laddergame.model.Ladder.Height;
+
 class HeightTest {
     @Test
     @DisplayName("사다리 높이에 1이상인 값이 들어오면 오류가 발생하지 않는다.")

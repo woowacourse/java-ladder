@@ -7,12 +7,14 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import laddergame.model.Ladder.Line;
+
 class LineTest {
     @Test
     @DisplayName("참여자의 개수보다 하나 적은 사이즈로 리스트 생성 테스트")
     void Should_Success_When_MakeLine() {
         int personCount = 4;
-        assertThat(new Line(personCount).getSize()).isEqualTo(personCount - 1);
+        assertThat(new Line(personCount).getNumber()).isEqualTo(personCount - 1);
     }
 
     @Test

@@ -2,7 +2,7 @@ package laddergame.model;
 
 import java.util.regex.Pattern;
 
-public class Person {
+public class Participant {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
     private static final String ERROR_NAME_IS_KOREAN = "참여자 이름에 한글이 포함되어서는 안됩니다.";
@@ -11,7 +11,7 @@ public class Person {
 
     private final String name;
 
-    public Person(String name) {
+    public Participant(String name) {
         validateKorean(name);
         validateTrimLength(name);
         this.name = name.trim();
