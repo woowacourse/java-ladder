@@ -36,7 +36,7 @@ public class LadderGameController {
         printGameResult(participants, ladder, ladderResult);
 
         List<Integer> ladderResultPositions = ladder.startGame(participantSize);
-        List<String> resultParticipantNames = getResultParticipantNames(participants);
+        List<Participant> resultParticipants = getResultParticipants(participants);
         OutputView.print(System.lineSeparator() + RESULT_GAME_GUIDE.getMessage());
         List<String> ladderResultNames = ladderResult.getResultNamesByPosition(ladderResultPositions);
     }
@@ -84,10 +84,10 @@ public class LadderGameController {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private List<String> getResultParticipantNames(final Participants participants) {
+    private List<Participant> getResultParticipants(final Participants participants) {
         return inputView.getInputWithRetry(() -> {
             String resultParticipantName = inputView.getResultParticipantName();
-            return participants.getResultParticipantNames(resultParticipantName);
+            return participants.getResultParticipants(resultParticipantName);
         });
     }
 }

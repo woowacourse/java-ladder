@@ -2,6 +2,8 @@ package laddergame.domain.participant;
 
 import laddergame.domain.exception.BlankException;
 
+import java.util.Objects;
+
 public class ParticipantName {
 
     private static final char INVALID_INCLUSION = ' ';
@@ -31,6 +33,19 @@ public class ParticipantName {
         if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(String.format(INVALID_NANE_LENGTH, PARTICIPANT_NAME, MAX_LENGTH));
         }
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ParticipantName that = (ParticipantName) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     public String getName() {

@@ -34,6 +34,17 @@ public class Participants {
         return participants.size();
     }
 
+    public List<Participant> getResultParticipants(final String participantName) {
+        String trimName = participantName.trim();
+        List<String> participantNames = getParticipantNames();
+        if (trimName.equalsIgnoreCase(ALL_PARTICIPANTS)) {
+            return List.copyOf(participants);
+        }
+
+        Participant targetParticipant = getTargetParticipant(trimName, participantNames);
+        return List.of(targetParticipant);
+    }
+
     private List<String> splitNames(final String names) {
         return Arrays.asList(names.split(DELIMITER));
     }
@@ -67,22 +78,17 @@ public class Participants {
         return List.copyOf(participants);
     }
 
-    public List<String> getResultParticipantNames(final String participantName) {
-        String trimName = participantName.trim();
-        List<String> participantNames = getParticipantNames();
-        if (trimName.equalsIgnoreCase(ALL_PARTICIPANTS)) {
-            return participantNames;
-        }
-        if (!participantNames.contains(trimName)) {
-            throw new IllegalArgumentException(String.format(INVALID_PARTICIPANT_NAME, String.join(",", participantNames)));
-        }
-        return List.of(trimName);
-    }
-
     private List<String> getParticipantNames() {
         return participants.stream()
                 .map(Participant::getName)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    private Participant getTargetParticipant(final String trimName, final List<String> participantNames) {
+        return participants.stream()
+                .filter(participant -> participant.getName().equals(trimName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format(INVALID_PARTICIPANT_NAME, String.join(",", participantNames))));
     }
 
     public List<Participant> getParticipants() {

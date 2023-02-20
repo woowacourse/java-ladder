@@ -57,21 +57,23 @@ public class ParticipantsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"pobi", "honux", "crong", "jk", " pobi", "pobi ", " pobi "})
-    @DisplayName("참여자 리스트에 존재하는 참여자 이름을 입력하면, 해당 참여자 이름을 반환한다.")
-    void getValidParticipantNames_givenValidParticipantName_thenReturnParticipantName(final String validParticipantName) {
+    @CsvSource(value = {"pobi:0", "honux:1", "crong:2", "jk:3", " pobi:0", "pobi :0", " pobi :0"}, delimiter = ':')
+    @DisplayName("참여자 리스트에 존재하는 참여자 이름을 입력하면, 해당 참여자 리스트를 반환한다.")
+    void getValidParticipantNames_givenValidParticipantName_thenReturnParticipantName(final String validParticipantName,
+                                                                                      final int participantOrder) {
         // given
         Participants participants = Participants.create(participantNames);
+        Participant participant = Participant.create(validParticipantName.trim(), participantOrder);
 
         // when
-        List<String> targetParticipantNames = participants.getResultParticipantNames(validParticipantName);
+        List<Participant> targetParticipantNames = participants.getResultParticipants(validParticipantName);
 
         // then
         assertThat(targetParticipantNames.size())
                 .isEqualTo(1);
 
         assertThat(targetParticipantNames)
-                .isEqualTo(List.of(validParticipantName.trim()));
+                .isEqualTo(List.of(participant));
     }
 
     @ParameterizedTest
@@ -80,16 +82,20 @@ public class ParticipantsTest {
     void getValidParticipantNames_givenAll_thenReturnAllParticipantNames(final String allParticipantName) {
         // given
         Participants participants = Participants.create(participantNames);
+        Participant firstParticipant = Participant.create("pobi", 0);
+        Participant secondParticipant = Participant.create("honux", 1);
+        Participant thirdParticipant = Participant.create("crong", 2);
+        Participant fourthParticipant = Participant.create("jk", 3);
 
         // when
-        List<String> targetParticipantNames = participants.getResultParticipantNames(allParticipantName);
+        List<Participant> targetParticipantNames = participants.getResultParticipants(allParticipantName);
 
         // then
         assertThat(targetParticipantNames.size())
                 .isEqualTo(4);
 
         assertThat(targetParticipantNames)
-                .isEqualTo(List.of("pobi", "honux", "crong", "jk"));
+                .isEqualTo(List.of(firstParticipant, secondParticipant, thirdParticipant, fourthParticipant));
     }
 
     @ParameterizedTest
@@ -100,7 +106,7 @@ public class ParticipantsTest {
         Participants participants = Participants.create(participantNames);
 
         // when, then
-        assertThatThrownBy(() -> participants.getResultParticipantNames(invalidParticipantName))
+        assertThatThrownBy(() -> participants.getResultParticipants(invalidParticipantName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 참여자 리스트에 존재하지 않습니다. 현재 참여자 리스트 = " + participantNames);
     }
