@@ -1,0 +1,33 @@
+package domain;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+@DisplayName("높이")
+public class HeightTest {
+
+    public static final String HEIGHT_RANGE_ERROR_MESSAGE = "사다리 높이는 1 ~ 100만 가능합니다.";
+
+    @DisplayName("범위 밖인 경우 예외 발생")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 101})
+    void createHeightFail(int input) {
+        assertThatThrownBy(() -> new Height(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(HEIGHT_RANGE_ERROR_MESSAGE);
+    }
+
+    @DisplayName("범위 내인 경우 정상 작동")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 100})
+    void createHeightSuccess(int input) {
+        Height height = new Height(input);
+
+        assertThat(height.getHeight()).isEqualTo(input);
+    }
+
+}
