@@ -38,7 +38,7 @@ public class Persons {
         }
     }
 
-    public int getSize() {
+    public int getNumberOfPersons() {
         return persons.size();
     }
 

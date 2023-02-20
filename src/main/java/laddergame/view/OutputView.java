@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     private void printPersons(Persons persons) {
-        for (int i = 0; i < persons.getSize(); i++) {
+        for (int i = 0; i < persons.getNumberOfPersons(); i++) {
             System.out.printf("%6s", persons.getPerson(i).getName());
         }
         System.out.println();

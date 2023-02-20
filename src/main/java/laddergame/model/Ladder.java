@@ -11,7 +11,7 @@ public class Ladder {
         this.height = height;
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < this.height.getHeight(); i++) {
-            ladder.add(new Line(persons.getSize()));
+            ladder.add(new Line(persons.getNumberOfPersons()));
         }
         this.ladder = ladder;
     }
