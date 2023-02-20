@@ -2,8 +2,8 @@ package ladder.domain;
 
 public enum Bar {
 
-    MOVABLE_BAR(true),
-    UNMOVABLE_BAR(false);
+    CONNECTED(true),
+    UNCONNECTED(false);
 
     private final boolean value;
 
@@ -11,12 +11,12 @@ public enum Bar {
         this.value = value;
     }
 
-    public static Bar from(boolean movable) {
-        if (movable) {
-            return MOVABLE_BAR;
+    public static Bar from(boolean connected) {
+        if (connected) {
+            return CONNECTED;
         }
 
-        return UNMOVABLE_BAR;
+        return UNCONNECTED;
 
     }
 
