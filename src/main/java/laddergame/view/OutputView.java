@@ -7,7 +7,7 @@ import laddergame.model.Persons;
 public class OutputView {
     private static final String VERTICAL_LINE = "|";
     private static final String PRINT_RESULT_MSG = "실행 결과";
-    private static final String ERROR_PREFIX = "[ERROR]";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     public void printErrorMessage(String errorMessage) {
         System.out.println(ERROR_PREFIX + errorMessage);
@@ -20,9 +20,8 @@ public class OutputView {
     }
 
     private void printPersons(Persons persons) {
-        for (int i = 0; i < persons.getNumberOfPersons(); i++) {
-            System.out.printf("%6s", persons.getPerson(i).getName());
-        }
+        persons.getPersons()
+                .forEach(person -> System.out.printf("%6s", person.getName()));
         System.out.println();
     }
 

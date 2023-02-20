@@ -1,9 +1,9 @@
 package laddergame.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Persons {
     private static final int MIN_PERSON_LENGTH = 2;
@@ -15,8 +15,13 @@ public class Persons {
     public Persons(List<String> names) {
         validatePersonLength(names);
         validateDuplication(names);
-        this.persons = new ArrayList<>();
-        makePersons(names);
+        this.persons = convertToPeople(names);
+    }
+
+    private static List<Person> convertToPeople(List<String> names) {
+        return names.stream()
+                .map(Person::new)
+                .collect(Collectors.toList());
     }
 
     private static void validatePersonLength(List<String> names) {
@@ -32,17 +37,11 @@ public class Persons {
         }
     }
 
-    private void makePersons(List<String> names) {
-        for (String name : names) {
-            persons.add(new Person(name));
-        }
-    }
-
     public int getNumberOfPersons() {
         return persons.size();
     }
 
-    public Person getPerson(int i) {
-        return persons.get(i);
+    public List<Person> getPersons() {
+        return persons;
     }
 }
