@@ -2,6 +2,7 @@ package controller;
 
 import domain.Height;
 import domain.LadderGame;
+import domain.Player;
 import domain.PlayerNames;
 import domain.Players;
 import domain.ResultContents;
@@ -34,7 +35,28 @@ public class LadderGameController {
         ladderGame.buildBridges();
         ladderGame.runGame();
         printLadderGameResult(ladderGame);
+
+        requestSpecificPlayerResult(ladderGame.getPlayers());
     }
+
+    private void requestSpecificPlayerResult(Players players) {
+        String userRequest = "";
+        while (!userRequest.equals("all")) {
+            userRequest = inputView.requestResultPlayer();
+            printPlayerResult(userRequest, players);
+        }
+    }
+
+    private void printPlayerResult(String userRequest, Players players) {
+        if (userRequest.equals("all")) {
+//            outputView.printAllResults(players);
+            return;
+        }
+
+        Player playerByName = players.findByName(userRequest);
+        outputView.printPlayerResult(playerByName.getResultContent());
+    }
+
 
     private Ladder buildLadderByPlayerAmount(int playerAmount) {
         Height height = inputView.requestLadderHeight();

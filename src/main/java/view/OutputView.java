@@ -13,7 +13,7 @@ public class OutputView {
     private static final int CONTENT_BOX_SIZE_MAX = 5;
     private static final int BRIDGE_LENGTH = 5;
     private static final String BLANK = " ";
-    private static final String RESULT_PREFIX_MESSAGE = "실행결과";
+    private static final String RESULT_PREFIX_MESSAGE = "실행 결과";
     private static final String EMPTY_BRIDGE = BLANK.repeat(BRIDGE_LENGTH);
     private static final String BRIDGE = "-".repeat(BRIDGE_LENGTH);
     private static final String LINE_COMPONENT = "|";
@@ -101,4 +101,10 @@ public class OutputView {
         }
         breakLine();
     }
+
+    public void printPlayerResult(String resultContent) {
+        System.out.println(RESULT_PREFIX_MESSAGE);
+        System.out.println(resultContent);
+    }
+
 }
