@@ -20,7 +20,13 @@ public class Height {
     }
 
     private void validate(String height) {
-        if (Integer.parseInt(height) <= 0) {
+        try {
+            int heightNumber = Integer.parseInt(height);
+            if (heightNumber <= 0) {
+                throw new IllegalArgumentException(NOT_POSITIVE_ERROR_MESSAGE);
+            }
+        }
+        catch (NumberFormatException e){
             throw new IllegalArgumentException(NOT_POSITIVE_ERROR_MESSAGE);
         }
     }

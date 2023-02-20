@@ -7,16 +7,16 @@ import java.util.List;
 public class OutputView {
     private static final String BLANK = " ";
     private static final String BAR = "|";
-    private static final String ERROR_PREFIX = "[ERROR]";
+    private static final String ERROR_PREFIX = "[ERROR] ";
+
+    public void printMessage(String message){
+        System.out.println(message);
+    }
 
     public void printResult(List<String> playersName, List<Line> lines, int maxPlayerNameLength) {
         playersName.forEach(name -> System.out.printf("%" + maxPlayerNameLength + "s ", name));
         System.out.println();
         lines.forEach(line -> System.out.println(changeFormat(line, maxPlayerNameLength)));
-    }
-
-    public String printLine(Boolean point, int maxPlayerNameLength) {
-        return LadderStep.valueOf(point).getStep().repeat(maxPlayerNameLength) + BAR;
     }
 
     public void printErrormessage(String errorMessage) {
@@ -31,5 +31,9 @@ public class OutputView {
             ladderLine.append(printLine(point, maxPlayerNameLength));
         }
         return ladderLine.toString();
+    }
+
+    private String printLine(Boolean point, int maxPlayerNameLength) {
+        return LadderStep.valueOf(point).getStep().repeat(maxPlayerNameLength) + BAR;
     }
 }

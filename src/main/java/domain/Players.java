@@ -1,7 +1,5 @@
 package domain;
 
-import laddervalidate.PlayerNameValidator;
-
 import java.util.List;
 
 public class Players {
