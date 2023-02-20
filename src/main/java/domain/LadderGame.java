@@ -34,4 +34,8 @@ public class LadderGame {
     public PlayerNames getPlayerNames() {
         return playerNames;
     }
+
+    public ResultContents getResultContents() {
+        return resultContents;
+    }
 }

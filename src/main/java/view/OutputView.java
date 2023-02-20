@@ -4,11 +4,13 @@ import domain.Direction;
 import domain.PlayerName;
 import domain.PlayerNames;
 import domain.Point;
+import domain.ResultContent;
+import domain.ResultContents;
 import domain.ladder.Ladder;
 
 public class OutputView {
 
-    private static final int PLAYER_NAME_BOX_SIZE_MAX = 5;
+    private static final int CONTENT_BOX_SIZE_MAX = 5;
     private static final int BRIDGE_LENGTH = 5;
     private static final String BLANK = " ";
     private static final String RESULT_PREFIX_MESSAGE = "실행결과";
@@ -23,7 +25,7 @@ public class OutputView {
 
     public void printPlayerNames(PlayerNames playerNames) {
         for (PlayerName playerName : playerNames.getPlayerNames()) {
-            System.out.print(formatPlayerName(playerName.getPlayerName()) + BLANK);
+            System.out.print(formatContent(playerName.getPlayerName()) + BLANK);
         }
         breakLine();
     }
@@ -32,31 +34,31 @@ public class OutputView {
         System.out.print(System.lineSeparator());
     }
 
-    public String formatPlayerName(String playerName) {
-        String formatPlayerName = playerName;
+    public String formatContent(String content) {
+        String formatContent = content;
 
-        int index = PLAYER_NAME_BOX_SIZE_MAX;
-        while (playerName.length() != index) {
-            formatPlayerName = appendSpace(formatPlayerName, index);
+        int index = CONTENT_BOX_SIZE_MAX;
+        while (content.length() != index) {
+            formatContent = appendSpace(formatContent, index);
             index--;
         }
 
-        return formatPlayerName;
+        return formatContent;
     }
 
-    private String appendSpace(String formatPlayerName, int index) {
+    private String appendSpace(String formatContent, int index) {
         if (isFirstAppendable(index)) {
-            return BLANK + formatPlayerName;
+            return BLANK + formatContent;
         }
 
-        return formatPlayerName + BLANK;
+        return formatContent + BLANK;
     }
 
     private boolean isFirstAppendable(int index) {
         return index % 2 == 0;
     }
 
-    public void printResult(Ladder ladder) {
+    public void printLadder(Ladder ladder) {
         int lineAmount = ladder.getLines().size();
         for (int pointAt = 0; pointAt < ladder.getHeightSize(); pointAt++) {
             printLadderPrefix();
@@ -93,4 +95,10 @@ public class OutputView {
         System.out.println(message);
     }
 
+    public void printResult(ResultContents resultContents) {
+        for (ResultContent resultContent : resultContents.getResultContents()) {
+            System.out.print(formatContent(resultContent.getContent()) + BLANK);
+        }
+        breakLine();
+    }
 }

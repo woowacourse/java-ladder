@@ -28,4 +28,7 @@ public class ResultContent {
                 && playerName.length() <= RESULT_CONTENT_MAX_SIZE_INCLUSIVE);
     }
 
+    public String getContent() {
+        return content;
+    }
 }
