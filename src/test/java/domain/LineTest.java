@@ -8,17 +8,10 @@ import org.junit.jupiter.api.Test;
 
 public class LineTest {
 
-    @DisplayName("사다리 타기가 정상적으로 동작하려면 라인이 겹치지 않도록 해야 한다.")
+    @DisplayName("이전 다리가 연결되었다면 이번 다리는 연결하지 않는다.")
     @Test
-    void createLineTest() {
-        Line line = new Line(new TestBooleanGenerator(Lists.newArrayList(true, true, true)), 4);
-        assertThat(line.getPoints()).containsExactly(Point.CONNECTION, Point.SEPARATION, Point.CONNECTION);
-    }
-
-    @DisplayName("라인이 겹치지 않으면 사다리가 정상적으로 생성된다.")
-    @Test
-    void createLineTest2() {
-        Line line = new Line(new TestBooleanGenerator(Lists.newArrayList(true, false, false)), 4);
-        assertThat(line.getPoints()).containsExactly(Point.CONNECTION, Point.SEPARATION, Point.SEPARATION);
+    void currentPointShouldBeDisconnectedWhenPreviousPointIsConnected() {
+        Line line = new Line(new TestBooleanGenerator(Lists.newArrayList(true)), 3);
+        assertThat(line.getPoints()).containsExactly(Point.CONNECTION, Point.SEPARATION);
     }
 }
