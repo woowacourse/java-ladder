@@ -20,16 +20,18 @@ public class Line {
 
     private List<Boolean> makeLine(int personCount) {
         List<Boolean> points = new ArrayList<>();
-        points.add(false);
-        for (int count = 1; count < personCount; count++) {
-            points.add(correctOverLapPoints(points.get(count - 1), trueOrFalseGenerator.generate()));
+        int pointCount = personCount - 1;
+        for (int count = 0; count < pointCount; count++){
+            points.add(correctOverLapPoints(points, trueOrFalseGenerator.generate(), count));
         }
-        points.remove(0);
         return points;
     }
 
-    private Boolean correctOverLapPoints(boolean previous, boolean current) {
-        if (!previous || !current) {
+    private Boolean correctOverLapPoints(List<Boolean> points, boolean current, int count) {
+        if (points.size() == 0){
+            return current;
+        }
+        if (!points.get(count - 1) || !current){
             return current;
         }
         return false;
