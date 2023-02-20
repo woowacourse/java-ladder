@@ -24,6 +24,16 @@ class ParticipantsTest {
         assertDoesNotThrow(() -> new Participants(names));
     }
 
+    @Test
+    void throwExceptionWhenNameListHasOneElement() {
+        //given
+        final List<Name> names = List.of(new Name("rosie"));
+
+        //when, then
+        assertThatThrownBy(()->new Participants(names))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("이름 목록이 비어있을 경우 예외가 발생한다.")
     @Test
     void throwExceptionWhenNamesIsEmpty() {
