@@ -6,8 +6,8 @@
 - [ ] 사용자 이름, 사다리 높이 입력 예외처리 분리
   - [ ] 잘못된 입력 시 재입력
 - [ ] controller 의 generateLadder -> Ladder 생성자로 Ladder 만들기
-- [ ] enum Way 필요성 확인
-  - [ ] 사다리 표현 문자 "|", "-" , " " 를 enum 으로 묶기
+- [x] enum Way 필요성 확인
+  - [x] 사다리 표현 문자 "-" , " " 를 enum 으로 묶기
 - [ ] correctOverlapPoints 개선
 - [ ] 정규식 패턴 상수화
 - [ ] Player -> validate 메소드 생성

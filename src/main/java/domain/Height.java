@@ -9,8 +9,7 @@ public class Height {
 
     public Height(String height) {
         HeightValidator heightValidator = new HeightValidator();
-        heightValidator.checkNumberMissMatch(height);
-        heightValidator.checkNegativeNumber(height);
+        heightValidator.validate(height);
         this.height = Integer.parseInt(height);
     }
 

@@ -17,10 +17,7 @@ public class OutputView {
     }
 
     public String printLine(Boolean point, int maxPlayerNameLength) {
-        if (point) {
-            return Way.valueOf(maxPlayerNameLength).getWay() + BAR;
-        }
-        return Way.valueOf(maxPlayerNameLength).getBlank() + BAR;
+        return LadderStep.valueOf(point).getStep().repeat(maxPlayerNameLength) + BAR;
     }
 
     public void printErrormessage(String errorMessage) {
