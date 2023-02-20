@@ -7,4 +7,8 @@ public class Result {
     public Result(String name) {
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
 }

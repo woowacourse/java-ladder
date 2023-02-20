@@ -11,6 +11,18 @@ public class Results {
 
     public Results(int count, List<String> results) {
         validateSize(count, results);
+        addResult(results);
+    }
+
+    public String getResult(int position) {
+        return results.get(position)
+                .getName();
+    }
+
+    private void addResult(List<String> results) {
+        for (String result : results) {
+            this.results.add(new Result(result));
+        }
     }
 
     private void validateSize(int count, List<String> results) {
