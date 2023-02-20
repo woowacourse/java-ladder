@@ -10,7 +10,7 @@ public enum ExceptionMessage {
     EXCEPTION_INVALID_NAME_LENGTH("플레이어 이름은 1자 이상 5자 이하여야 합니다."),
 
     /*Players*/
-    EXCEPTION_INVALID_PLAYER_COUNT("게임을 진행하기 위해서는 두 명 이상의 플레이어가 필요합니다."),
+    EXCEPTION_INVALID_PLAYER_COUNT("플레이어 수는 2명 이상 26명 이하여야 합니다."),
 
     /*Height*/
     EXCEPTION_INVALID_HEIGHT("사다리 높이는 2 이상 100 이하여야 합니다.");
