@@ -9,12 +9,12 @@ public class EmptyInputValidatorChain implements InputValidator {
     private InputValidator next;
 
     @Override
-    public void setNext(InputValidator validator) {
+    public void setNext(final InputValidator validator) {
         this.next = validator;
     }
 
     @Override
-    public void validate(InputValidationRequest request) throws IllegalArgumentException {
+    public void validate(final InputValidationRequest request) throws IllegalArgumentException {
         if (!request.getValidateTypes().contains(ValidateType.EMPTY_VALUE)) {
             next.validate(request);
         }

@@ -2,7 +2,7 @@ package common;
 
 public class ExecuteContext {
 
-    public static <T> T workWithExecuteStrategy(ExecuteStrategy<T> executeStrategy) {
+    public static <T> T workWithExecuteStrategy(final ExecuteStrategy<T> executeStrategy) {
         T result = null;
         while (result == null) {
             result = catchException(executeStrategy, result);
@@ -10,7 +10,7 @@ public class ExecuteContext {
         return result;
     }
 
-    private static <T> T catchException(ExecuteStrategy<T> executeStrategy, T result) {
+    private static <T> T catchException(final ExecuteStrategy<T> executeStrategy, T result) {
         try {
             result = executeStrategy.execute();
         } catch (IllegalArgumentException exception) {

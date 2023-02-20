@@ -9,7 +9,7 @@ public class InputValidationRequest {
     private final List<ValidateType> validateTypes;
     private final String target;
 
-    public InputValidationRequest(List<ValidateType> validateTypes, String target) {
+    public InputValidationRequest(final List<ValidateType> validateTypes, final String target) {
         this.validateTypes = validateTypes;
         this.target = target;
     }

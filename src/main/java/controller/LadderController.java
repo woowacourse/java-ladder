@@ -40,7 +40,7 @@ public class LadderController {
             () -> new Height(inputView.inputLadderHeight()));
     }
 
-    private Width getWidth(int size) {
+    private Width getWidth(final int size) {
         return ExecuteContext.workWithExecuteStrategy(() -> new Width(size));
     }
 

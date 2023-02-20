@@ -13,13 +13,13 @@ public class Ladder {
     private final Width width;
     private final List<Layer> layers;
 
-    private Ladder(final Height height, final Width width, List<Layer> layers) {
+    private Ladder(final Height height, final Width width, final List<Layer> layers) {
         this.height = height;
         this.width = width;
         this.layers = layers;
     }
 
-    public static Ladder makeLadder(Height height, Width width) {
+    public static Ladder makeLadder(final Height height, final Width width) {
         List<Layer> layers = IntStream.range(0, height.getValue())
             .mapToObj(index -> Layer.makeLayerByRandom(width.getValue())).collect(Collectors.toList());
         return new Ladder(height, width, layers);
