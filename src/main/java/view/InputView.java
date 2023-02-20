@@ -2,6 +2,7 @@ package view;
 
 import domain.Height;
 import domain.Names;
+import domain.Rewards;
 import java.util.Scanner;
 
 public class InputView {
@@ -25,6 +26,11 @@ public class InputView {
         return new Height(parseHeight(input));
     }
 
+    public Rewards readRewards(int personCount) {
+        String input = readInput(Message.INPUT_REWARDS.message);
+        return new Rewards(input, personCount);
+    }
+
     private static int parseHeight(String input) {
         try {
             return Integer.parseInt(input);
@@ -41,6 +47,7 @@ public class InputView {
     private enum Message {
         INPUT_NAMES("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"),
         INPUT_LADDER_SIZE("최대 사다리 높이는 몇 개인가요?"),
+        INPUT_REWARDS("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"),
         EXCEPTION_INVALID_HEIGHT("int 범위 내의 숫자만 입력 가능합니다.");
 
         private final String message;

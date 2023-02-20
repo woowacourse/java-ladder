@@ -4,6 +4,7 @@ import domain.Height;
 import domain.LineSize;
 import domain.Lines;
 import domain.Names;
+import domain.Rewards;
 import utils.booleanGenerator.RandomBooleanGenerator;
 import view.InputView;
 import view.OutputView;
@@ -22,8 +23,12 @@ public class MainController {
     public void start() {
         Names names = inputView.readNames();
         Height height = inputView.readHeight();
+
         LineSize lineSize = new LineSize(names.getPersonNumber());
         Lines lines = new Lines(lineSize, height, RANDOM_BOOLEAN_GENERATOR);
+
         outputView.printResult(names, lines);
+
+        Rewards rewards = inputView.readRewards(names.getPersonNumber());
     }
 }

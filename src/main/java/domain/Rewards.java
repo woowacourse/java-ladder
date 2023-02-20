@@ -13,11 +13,18 @@ public class Rewards {
         this.rewards = new ArrayList<>();
         String[] splitRewards = rewards.split(REWARD_DELIMITER);
         validate(splitRewards.length, personCount);
+        addRewards(splitRewards);
     }
 
     private static void validate(int rewardCount, int personCount) {
         if (rewardCount != personCount) {
             throw new IllegalArgumentException(EXCEPTION_COUNT_MESSAGE);
+        }
+    }
+
+    private void addRewards(String[] splitRewards) {
+        for (String reward : splitRewards) {
+            this.rewards.add(new Reward(reward));
         }
     }
 }
