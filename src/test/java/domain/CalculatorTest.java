@@ -25,7 +25,7 @@ class CalculatorTest {
         line = new Line(playerNames.size(), new NonExistFootholdGenerator());
         lines = new Lines(List.of(line, line, line, line));
         ladder = new Ladder(lines, new Height(4));
-        ladderResults = new LadderResults(List.of("1", "2", "3"), playerNames.size());
+        ladderResults = new LadderResults(List.of("1", "2", "3"));
     }
 
     @Test

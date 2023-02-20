@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import utils.LadderResultsFactory;
 
 public class LadderResultsTest {
 
@@ -25,7 +26,7 @@ public class LadderResultsTest {
         }
 
         // when && then
-        assertThatThrownBy(() -> new LadderResults(givenLadderResults, playerNumber))
+        assertThatThrownBy(() -> LadderResultsFactory.createLadderResults(givenLadderResults, playerNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -40,7 +41,7 @@ public class LadderResultsTest {
         }
 
         // when
-        LadderResults ladderResults = new LadderResults(givenLadderResults, playerNumber);
+        LadderResults ladderResults = LadderResultsFactory.createLadderResults(givenLadderResults, playerNumber);
 
         // then
         assertThat(ladderResults.getLadderResults().size()).isEqualTo(playerNumber);
@@ -53,7 +54,8 @@ public class LadderResultsTest {
         String firstResult = "꽝";
         String secondResult = "3000";
         List<String> ladderResults = List.of(firstResult, secondResult);
-        LadderResults givenLadderResults = new LadderResults(ladderResults, ladderResults.size());
+        LadderResults givenLadderResults = LadderResultsFactory.createLadderResults(ladderResults,
+                ladderResults.size());
 
         // when
         String firstThingOfLadderResult = givenLadderResults.findFirstResult();
@@ -69,7 +71,8 @@ public class LadderResultsTest {
         String normalResult = "꽝";
         String longestResult = "3000";
         List<String> ladderResults = List.of(normalResult, longestResult);
-        LadderResults givenLadderResults = new LadderResults(ladderResults, ladderResults.size());
+        LadderResults givenLadderResults = LadderResultsFactory.createLadderResults(ladderResults,
+                ladderResults.size());
 
         // when
         int sizeOfLongestLadderResults = givenLadderResults.findLongestLadderResults();
