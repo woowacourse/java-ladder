@@ -46,7 +46,7 @@
 - [x] points 네이밍 변경
 - [ ] isContinuousTrue()에서 index를 넘겨주는 방법 말고 다른 방법 생각
 - [ ] isContinuousTrue()에서 RandomNumberGenerator 객체 생성 위치 변경
-- [ ] enum의 패키지 위치 변경?
+- [x] LineStatus enum을 domain 패키지에서 view 패키지로 이동
 - [x] domain 패키지 내부에 하위 패키지 두기
 - [ ] 이름에 빈칸 추가하는 로직을 → 출력에 대한 부분으로 옮기기
 - [x] FixedNumberGenerator 클래스를 테스트 패키지로 이동

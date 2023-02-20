@@ -6,6 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.FixedBooleanGenerator;
+import view.LineStatus;
 
 public class LineTest {
     @DisplayName("생성한 값이 1이면 움직일 수 있다.")

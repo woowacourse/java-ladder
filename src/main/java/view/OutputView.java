@@ -2,7 +2,6 @@ package view;
 
 import domain.ladder.Ladder;
 import domain.ladder.Line;
-import domain.ladder.LineStatus;
 import domain.user.User;
 import domain.user.Users;
 
