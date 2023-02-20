@@ -27,7 +27,8 @@ public class LineStateTest {
     @ValueSource(ints = {-1, 2})
     void value_else_Excpetion(int value) {
         assertThatThrownBy(() -> LineState.of(value).getState())
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(value + "에 해당되는 상태값이 존재하지 않습니다.");
     }
 
 }

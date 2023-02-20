@@ -20,7 +20,8 @@ public class PersonTest {
     @DisplayName("참여자 이름이 5자를 초과하면 예외가 발생한다.")
     void name_6() {
         assertThatThrownBy(() -> new Person("123456"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름 길이는 5자를 넘길 수 없습니다.");
     }
 
     @DisplayName("참여자 이름이 공백이면 에외가 발생한다.")
@@ -28,7 +29,8 @@ public class PersonTest {
     @ValueSource(strings = {"", " ", "   "})
     void name_blank(String blankName) {
         assertThatThrownBy(() -> new Person(blankName))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("빈 문자열 입니다.");
     }
 
 }

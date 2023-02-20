@@ -20,7 +20,8 @@ public class PersonsTest {
     @DisplayName("참여자들중 중복된 이름이 존재하면 예외가 발생한다.")
     void validateDuplicateName() {
         Assertions.assertThatThrownBy(() -> new Persons(List.of("a", "b", "a")))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복된 이름입니다.");
     }
 
 }
