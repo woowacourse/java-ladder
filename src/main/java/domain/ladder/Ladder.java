@@ -11,9 +11,18 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(final List<Line> lines) {
+    private Ladder(final List<Line> lines) {
         validate(lines);
         this.lines = new ArrayList<>(lines);
+    }
+
+    public static Ladder of(final int playersSize, final int ladderHeight) {
+        List<Line> lines = new ArrayList<>();
+        for (int lineIndex = 0; lineIndex < ladderHeight; lineIndex++) {
+            int pointNum = playersSize - 1;
+            lines.add(Line.valueOf(pointNum));
+        }
+        return new Ladder(lines);
     }
 
     private void validate(final List<Line> lines) {

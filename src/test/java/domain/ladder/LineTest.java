@@ -13,7 +13,7 @@ public class LineTest {
     @DisplayName("라인의 포인트 개수는 19를 넘을 수 없다.")
     @Test
     void pointNotMoreThan19() {
-        assertThatThrownBy(() -> new Line(20))
+        assertThatThrownBy(() -> Line.valueOf(20))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("포인트 범위는 0부터 19까지입니다.");
     }
@@ -21,7 +21,7 @@ public class LineTest {
     @DisplayName("라인의 포인트 개수는 0보다 작을 수 없다.")
     @Test
     void pointNotLessThan0() {
-        assertThatThrownBy(() -> new Line(-1))
+        assertThatThrownBy(() -> Line.valueOf(-1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("포인트 범위는 0부터 19까지입니다.");
     }
@@ -30,7 +30,7 @@ public class LineTest {
     @ValueSource(ints = {0, 10, 19})
     @ParameterizedTest
     void pointSizeTest(int pointSize) {
-        Line line = new Line(pointSize);
+        Line line = Line.valueOf(pointSize);
         assertThat(line.getPoints().size()).isEqualTo(pointSize);
     }
 
@@ -38,7 +38,7 @@ public class LineTest {
     @Test
     void pointNotContinuous() {
         int pointSize = 5;
-        Line line = new Line(pointSize);
+        Line line = Line.valueOf(pointSize);
         for (int i = 0; i < pointSize - 1; i++) {
             Point left = line.getPointAt(i);
             Point right = line.getPointAt(i + 1);

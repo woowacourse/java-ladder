@@ -2,7 +2,6 @@ package domain;
 
 import domain.ladder.Ladder;
 import domain.players.Players;
-import domain.players.PlayersFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,7 @@ public class LadderGameTest {
     void before() {
         List<String> playerNames = List.of("a", "b", "c");
         int ladderHeight = 10;
-        Players players = PlayersFactory.generate(playerNames);
+        Players players = Players.valueOf(playerNames);
         ladderGame = new LadderGame(players, ladderHeight);
     }
 

@@ -2,8 +2,7 @@ package controller;
 
 import controller.dto.LadderResponse;
 import controller.dto.PlayersResponse;
-import domain.*;
-import domain.players.PlayersFactory;
+import domain.LadderGame;
 import domain.ladder.Ladder;
 import domain.players.Players;
 import view.InputView;
@@ -30,7 +29,7 @@ public class LadderGameController {
     private void ready() {
         List<String> playerNames = inputView.readPlayerNames();
         int ladderHeight = inputView.readLadderHeight();
-        Players players = PlayersFactory.generate(playerNames);
+        Players players = Players.valueOf(playerNames);
         ladderGame = new LadderGame(players, ladderHeight);
     }
 

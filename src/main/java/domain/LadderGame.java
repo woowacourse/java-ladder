@@ -1,7 +1,6 @@
 package domain;
 
 import domain.ladder.Ladder;
-import domain.ladder.LadderFactory;
 import domain.players.Players;
 
 public class LadderGame {
@@ -11,7 +10,7 @@ public class LadderGame {
 
     public LadderGame(final Players players, final int ladderHeight) {
         this.players = players;
-        this.ladder = LadderFactory.of(players.getPlayerSize(), ladderHeight);
+        this.ladder = Ladder.of(players.getPlayerSize(), ladderHeight);
     }
 
     public Ladder getLadder() {

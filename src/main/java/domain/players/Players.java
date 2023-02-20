@@ -17,6 +17,13 @@ public class Players {
         this.players = new ArrayList<>(players);
     }
 
+    public static Players valueOf(final List<String> playerNames) {
+        List<Player> players = playerNames.stream()
+                .map(Player::new)
+                .collect(Collectors.toUnmodifiableList());
+        return new Players(players);
+    }
+
     private void validate(final List<Player> players) {
         validatePlayerSize(players);
         validateDuplication(players);

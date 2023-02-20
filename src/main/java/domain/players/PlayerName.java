@@ -22,7 +22,7 @@ public class PlayerName {
         }
     }
 
-    private void validateNameLength(String name) {
+    private void validateNameLength(final String name) {
         if (name.length() > PLAYER_NAME_MAX_LENGTH) {
             throw new IllegalArgumentException("참여자 이름은 최대 5글자까지 가능합니다.");
         }

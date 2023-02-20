@@ -11,27 +11,28 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(final int pointSize) {
-        validate(pointSize);
-        this.points = generatePoints(pointSize);
+    private Line(final List<Point> points) {
+        validate(points.size());
+        this.points = new ArrayList<>(points);
     }
 
-    private void validate(final int pointSize) {
+    public static Line valueOf(final int pointSize) {
+        validate(pointSize);
+        List<Point> points = new ArrayList<>();
+        for (int pointIndex = 0; pointIndex < pointSize; pointIndex++) {
+            Point currentPoint = choosePoint(pointIndex, points);
+            points.add(currentPoint);
+        }
+        return new Line(points);
+    }
+
+    private static void validate(final int pointSize) {
         if (pointSize < POINT_MIN_SIZE || pointSize > POINT_MAX_SIZE) {
             throw new IllegalArgumentException("포인트 범위는 0부터 19까지입니다.");
         }
     }
 
-    private List<Point> generatePoints(final int pointSize) {
-        List<Point> points = new ArrayList<>();
-        for (int pointIndex = 0; pointIndex < pointSize; pointIndex++) {
-            Point currentPoint = getCurrentPoint(pointIndex, points);
-            points.add(currentPoint);
-        }
-        return points;
-    }
-
-    private Point getCurrentPoint(int pointIndex, final List<Point> points) {
+    private static Point choosePoint(final int pointIndex, final List<Point> points) {
         Point currentPoint = Point.choosePoint();
         int previousPointIndex = pointIndex - 1;
         if (previousPointIndex >= 0) {
