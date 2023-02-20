@@ -34,6 +34,7 @@ class LadderSymbolTest {
 
         // when & then
         assertThatThrownBy(() -> LadderSymbol.draw(givenSymbol, repeatedNumber))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("사다리를 만들기 위한 올바르지 않은 기호입니다.");
     }
 }

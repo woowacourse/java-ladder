@@ -22,6 +22,6 @@ public enum LadderSymbol {
         return Arrays.stream(values())
                 .filter(value -> value.symbol.equals(symbol))
                 .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException("사다리를 만들기 위한 올바르지 않은 기호입니다."));
     }
 }
