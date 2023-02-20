@@ -11,12 +11,12 @@ public class Name {
     }
 
     private void validate(String value) {
-        validateBlank(value);
+        validateBlankAndNull(value);
         validateLength(value);
     }
 
-    private void validateBlank(String value) {
-        if (value.isBlank()) {
+    private void validateBlankAndNull(String value) {
+        if (value == null || value.isBlank()) {
             throw new IllegalArgumentException("이름은 공백일 수 없습니다.");
         }
     }
