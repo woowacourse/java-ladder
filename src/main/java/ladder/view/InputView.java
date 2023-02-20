@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.exceptionMessage.ExceptionMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -34,7 +36,7 @@ public class InputView {
 
     private void validateDuplicatedNames(List<String> names) {
         if (names.size() != names.stream().distinct().count()) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_DUPLICATED_NAME.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_DUPLICATED_NAME.getMessage());
         }
     }
 
@@ -51,7 +53,7 @@ public class InputView {
 
     private void validateHeight(String input) {
         if (!NUMBER_REGEX.matcher(input).matches()) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_NOT_INTEGER.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_NOT_INTEGER.getMessage());
         }
     }
 
@@ -59,22 +61,7 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_BIG_INTEGER.getMessage());
-        }
-    }
-
-    private enum ErrorMessage {
-        EXCEPTION_DUPLICATED_NAME("이름은 중복될 수 없습니다."),
-        EXCEPTION_BIG_INTEGER("사다리 높이가 너무 높습니다. 사다리 높이는 100 이하를 권장합니다."),
-        EXCEPTION_NOT_INTEGER("정수가 아닙니다.");
-        private final String message;
-
-        ErrorMessage(String message) {
-            this.message = message;
-        }
-
-        public String getMessage() {
-            return message;
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_BIG_INTEGER.getMessage());
         }
     }
 

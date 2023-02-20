@@ -1,5 +1,7 @@
 package ladder.model;
 
+import ladder.exceptionMessage.ExceptionMessage;
+
 public class Player {
 
     private static final int MIN_LENGTH = 1;
@@ -19,7 +21,7 @@ public class Player {
 
     private void validatePlayerNameLength(String playerName) {
         if (!isNameLengthIncludedInRange(playerName)) {
-            throw new IllegalArgumentException(ErrorMessage.EXCEPTION_INVALID_LENGTH_NAME.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_NAME_LENGTH.getMessage());
         }
     }
 
@@ -29,19 +31,6 @@ public class Player {
 
     public String getPlayerName() {
         return playerName;
-    }
-
-    private enum ErrorMessage {
-        EXCEPTION_INVALID_LENGTH_NAME("플레이어 이름은 1자 이상 5자 이하여야 합니다.");
-        private final String message;
-
-        ErrorMessage(String message) {
-            this.message = message;
-        }
-
-        private String getMessage() {
-            return message;
-        }
     }
 
 }
