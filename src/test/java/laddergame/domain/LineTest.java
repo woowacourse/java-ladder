@@ -38,7 +38,7 @@ class LineTest {
             assertThat(line.getPoints()).isEqualTo(List.of(false, true, false));
         }
 
-        @DisplayName("이전 좌표와 현재 좌표가 겹칠때 변환 테스트(처)")
+        @DisplayName("이전 좌표와 현재 좌표가 겹칠때 변환 테스트")
         @Test
         void createLine2() {
             line = new Line(4, new testTrueOrFalseGenerator(new ArrayList<>(Arrays.asList(true, true, false)) {

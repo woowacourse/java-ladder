@@ -11,6 +11,7 @@ public class Ladder {
 
     public Ladder(Players players, Height height, TrueOrFalseGenerator trueOrFalseGenerator) {
         do {
+            lines.clear();
             int count = height.getHeight();
             while (count-- > 0) {
                 Line line = new Line(players.getPlayersCount(), trueOrFalseGenerator);
@@ -20,7 +21,7 @@ public class Ladder {
         while (!validate(height.getHeight()));
     }
 
-    public boolean validate(int height) {
+    private boolean validate(int height) {
         HashMap<Integer, Integer> falseIndexCountmap = new HashMap<>();
         for (Line line : lines) {
             falseIndexCountmap = line.checkFalseIndex(falseIndexCountmap);
