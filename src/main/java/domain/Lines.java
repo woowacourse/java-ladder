@@ -13,6 +13,7 @@ public class Lines {
     private final List<Line> lines;
 
     public Lines(int personCount, int height) {
+        validateLadderHeight(height);
         this.lines = createLines(personCount, height);
     }
 
