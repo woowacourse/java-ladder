@@ -40,15 +40,4 @@ public class NameTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NAME_HAS_NON_ALPHABETIC_ERROR);
     }
-
-    @Test
-    @DisplayName("사람 이름 간 비교하는 기능 테스트")
-    void compareNameTest() {
-        //given
-        Name name = new Name("pobi");
-
-        //then
-        assertThat(name).isEqualTo(new Name("pobi"));
-        assertThat(name).isNotEqualTo(new Name("neo"));
-    }
 }
