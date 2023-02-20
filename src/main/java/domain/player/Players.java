@@ -6,6 +6,9 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Players {
+
+    private static final String NOT_EXIST_PLAYER_NAME_ERROR_MESSAGE = "존재하지 않는 참여자 입니다.";
+
     private final List<Player> players;
 
     private Players(List<Player> players) {
@@ -27,7 +30,7 @@ public class Players {
         return this.players.stream()
                 .filter(player -> player.getPlayerName().equals(playerName))
                 .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("존재하지 않는 참여자 입니다."));
+                .orElseThrow(() -> new NoSuchElementException(NOT_EXIST_PLAYER_NAME_ERROR_MESSAGE));
     }
 
     public List<Player> getPlayers() {
