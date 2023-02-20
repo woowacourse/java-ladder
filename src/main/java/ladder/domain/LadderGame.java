@@ -3,23 +3,20 @@ package ladder.domain;
 import ladder.utils.LineStrategy;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderGame {
     private final Ladder ladder;
     private final Players players;
+    private final Results results;
 
-    public LadderGame(List<String> names, int height, LineStrategy lineStrategy) {
-        this.players = new Players(names);
-        this.ladder = new Ladder(names.size(), height, lineStrategy);
+    public LadderGame(Command command, LineStrategy lineStrategy) {
+        this.players = new Players(command.getNames());
+        this.ladder = new Ladder(command.getWidth(), command.getHeight(), lineStrategy);
+        this.results = new Results(command.getResults());
     }
 
     public List<List<Boolean>> getLadder() {
         return ladder.getLines();
-    }
-
-    public int getNameMaxLength() {
-        return players.getNameMaxLength();
     }
 
     public List<String> getPlayerNames() {
