@@ -55,6 +55,6 @@ public class Participants {
                 return i;
             }
         }
-        return -1;
+        throw new IllegalArgumentException("그런 참가자가 없습니다");
     }
 }
