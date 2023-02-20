@@ -1,5 +1,9 @@
 package laddergame.controller;
 
+import java.util.function.Function;
+import java.util.function.Supplier;
+
+import laddergame.model.ExecutionResults;
 import laddergame.model.Ladder.Height;
 import laddergame.model.Ladder.Ladder;
 import laddergame.model.Participants;
@@ -11,28 +15,29 @@ public class LadderGameController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        Participants participants = makePersons();
-        Height height = makeLadderHeight();
+        Participants participants = generate(inputView::readParticipants, Participants::new);
+        ExecutionResults executionResults = makeExecutionResults(participants);
+        Height height = generate(inputView::readLadderHeight, Height::new);
         Ladder ladder = new Ladder(height, participants);
-        outputView.printResult(ladder, participants);
+        outputView.printResult(ladder, participants, executionResults);
         inputView.closeScanner();
     }
 
-    private Participants makePersons() {
+    private <T, R> R generate(Supplier<T> supplier, Function<T, R> function) {
         try {
-            return new Participants(inputView.readPersonNames());
+            return function.apply(supplier.get());
         } catch (IllegalArgumentException e) {
             inputView.printErrorMsg(e.getMessage());
-            return makePersons();
+            return generate(supplier, function);
         }
     }
 
-    private Height makeLadderHeight() {
+    private ExecutionResults makeExecutionResults(Participants participants) {
         try {
-            return new Height(inputView.readLadderHeight());
+            return new ExecutionResults(inputView.readExecutionResults(), participants);
         } catch (IllegalArgumentException e) {
             inputView.printErrorMsg(e.getMessage());
-            return makeLadderHeight();
+            return makeExecutionResults(participants);
         }
     }
 }

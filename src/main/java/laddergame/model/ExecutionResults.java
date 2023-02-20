@@ -1,5 +1,6 @@
 package laddergame.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,5 +24,9 @@ public class ExecutionResults {
         return results.stream()
             .map(ResultName::new)
             .collect(Collectors.toList());
+    }
+
+    public List<ResultName> getResultNames() {
+        return Collections.unmodifiableList(resultNames);
     }
 }

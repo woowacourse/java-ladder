@@ -2,6 +2,7 @@ package laddergame.view;
 
 import java.util.List;
 
+import laddergame.model.ExecutionResults;
 import laddergame.model.Ladder.Ladder;
 import laddergame.model.Participants;
 
@@ -9,10 +10,11 @@ public class OutputView {
     private static final String RESULT_MSG = "실행결과";
     private static final String VERTICAL_LINE = "|";
 
-    public void printResult(Ladder ladder, Participants participants) {
+    public void printResult(Ladder ladder, Participants participants, ExecutionResults executionResults) {
         System.out.println(RESULT_MSG);
         printPersons(participants);
         printLadder(ladder);
+        printExecutionResults(executionResults);
     }
 
     private void printPersons(Participants participants) {
@@ -28,6 +30,12 @@ public class OutputView {
             printSymbol(lines);
             System.out.println();
         }
+    }
+
+    private void printExecutionResults(ExecutionResults executionResults) {
+        executionResults.getResultNames()
+            .forEach(resultName -> System.out.printf("%6s", resultName.getName()));
+        System.out.println();
     }
 
     private void printSymbol(List<Boolean> lines) {
