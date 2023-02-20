@@ -15,7 +15,7 @@ public class Ladder {
         ladder = generateLadder(height, personCount);
     }
 
-    private static void validate(int height, int personCount) {
+    private void validate(int height, int personCount) {
         if (height >= personCount) {
             return;
         }

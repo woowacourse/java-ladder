@@ -15,7 +15,7 @@ public class Name {
         this.name = trimmedName;
     }
 
-    private static void validate(String name) {
+    private void validate(String name) {
         if (isValidLength(name)) {
             return;
         }
@@ -23,7 +23,7 @@ public class Name {
         throw new IllegalArgumentException(INVALID_LENGTH_MESSAGE);
     }
 
-    private static boolean isValidLength(String name) {
+    private boolean isValidLength(String name) {
         int length = name.length();
 
         return length >= LENGTH_LOWER_BOUND && length <= LENGTH_UPPER_BOUND;

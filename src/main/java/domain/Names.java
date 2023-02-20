@@ -19,7 +19,7 @@ public class Names {
                 .collect(Collectors.toList());
     }
 
-    private static void validate(List<String> names) {
+    private void validate(List<String> names) {
         if (isValidSize(names)) {
             return;
         }
@@ -27,7 +27,7 @@ public class Names {
         throw new IllegalArgumentException(INVALID_SIZE_MESSAGE);
     }
 
-    private static boolean isValidSize(List<String> names) {
+    private boolean isValidSize(List<String> names) {
         return names.size() >= SIZE_LOWER_BOUND;
     }
 
