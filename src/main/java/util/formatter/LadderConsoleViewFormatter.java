@@ -14,7 +14,7 @@ public class LadderConsoleViewFormatter {
 
     public static String formatLadder(Ladder ladder) {
         StringBuilder ladderFormat = new StringBuilder();
-        int lineAmount = ladder.getLines().size();
+        int lineAmount = ladder.getLineSize();
         for (int pointAt = 0; pointAt < ladder.getHeightSize(); pointAt++) {
             ladderFormat.append(LADDER_PREFIX)
                     .append(formatSingleLadder(ladder, lineAmount, pointAt))

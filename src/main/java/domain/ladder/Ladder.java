@@ -76,8 +76,8 @@ public class Ladder {
                 .get(pointAt);
     }
 
-    public List<Line> getLines() {
-        return this.lines;
+    public int getLineSize() {
+        return this.lines.size();
     }
 
     public int getHeightSize() {

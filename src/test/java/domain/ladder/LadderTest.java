@@ -3,7 +3,6 @@ package domain.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.ladder.strategy.AlwaysGenerateBridgeStrategy;
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.TestDataManager;
@@ -19,8 +18,7 @@ public class LadderTest {
 
         Ladder ladder = Ladder.of(width, height, new AlwaysGenerateBridgeStrategy());
 
-        List<Line> linesInLadder = ladder.getLines();
-        assertThat(linesInLadder).hasSize(width);
+        assertThat(ladder.getLineSize()).isEqualTo(width);
         assertThat(ladder.getHeightSize()).isEqualTo(heightSize);
     }
 
