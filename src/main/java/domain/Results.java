@@ -20,4 +20,8 @@ public class Results {
         return Arrays.stream(stringArray)
                 .collect(Collectors.toList());
     }
+
+    public String getByIndex(int index) {
+        return results.get(index);
+    }
 }

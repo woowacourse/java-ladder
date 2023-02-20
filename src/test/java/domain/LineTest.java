@@ -1,11 +1,13 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class LineTest {
@@ -23,4 +25,27 @@ class LineTest {
     void succeedTest() {
         assertDoesNotThrow(() -> new Line(List.of(false, true, false)));
     }
+
+    @DisplayName("해당 column이 true이면 좌우로 움직이는지 판단한다.")
+    @Nested
+    class LineMoveTest {
+        Line line = new Line(List.of(true, false, true));
+
+        @DisplayName("첫 번째 column일 때, true를 만나면 오른쪽으로 움직인다.")
+        @Test
+        void column_first() {
+            Position position = new Position(0, 1);
+            line.move(position);
+            assertThat(position).isEqualTo(new Position(1, 1));
+        }
+
+        @DisplayName("마지막 column일 때, true를 만나면 왼쪽으로 움직인다.")
+        @Test
+        void column_last() {
+            Position position = new Position(3, 1);
+            line.move(position);
+            assertThat(position).isEqualTo(new Position(2, 1));
+        }
+    }
+
 }

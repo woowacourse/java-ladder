@@ -27,6 +27,17 @@ public class Line {
         }
     }
 
+    public void move(Position position) {
+        int column = position.getColumn();
+
+        if (column != 0 && movements.get(column - 1)) {
+            position.goLeft();
+        }
+        if (column != movements.size() && movements.get(column)) {
+            position.goRight();
+        }
+    }
+
     public List<Boolean> getMovements() {
         return movements;
     }

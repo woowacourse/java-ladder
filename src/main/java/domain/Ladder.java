@@ -1,8 +1,9 @@
 package domain;
 
+import java.util.Iterator;
 import java.util.List;
 
-public class Ladder {
+public class Ladder implements Iterable<Line>{
 
     public static final int MIN_RANGE = 1;
     public static final int MAX_RANGE = 10;
@@ -21,6 +22,16 @@ public class Ladder {
         }
     }
 
+
+    public Position startByIndex(int startIndex) {
+        Position position = new Position(startIndex, 0);
+        for (Line line : lines) {
+            line.move(position);
+            position.goDown();
+        }
+        return position;
+    }
+
     public int getHeight() {
         return lines.size();
     }
@@ -29,7 +40,8 @@ public class Ladder {
         return lines.get(0).size();
     }
 
-    public List<Line> getLines() {
-        return lines;
+    @Override
+    public Iterator<Line> iterator() {
+        return lines.iterator();
     }
 }
