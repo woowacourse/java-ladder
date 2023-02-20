@@ -36,8 +36,12 @@ public class LadderGame {
 
     private Ladder makeLadder(int playersSize) {
         Height height = new Height(inputView.inputHeight());
-        Width width = new Width(playersSize - 1);
+        Width width = new Width(getWidthSize(playersSize));
         return randomRowsGenerator.generateRows(width, height);
+    }
+
+    private int getWidthSize(int playersSize){
+        return playersSize - 1;
     }
 
     private void printLadderResult(Players players, Ladder ladder) {
