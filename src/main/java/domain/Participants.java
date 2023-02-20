@@ -3,7 +3,6 @@ package domain;
 import exception.DuplicateNameException;
 import exception.EmpytInputException;
 import exception.InvalidParticipantsCountException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +11,7 @@ public class Participants {
     public static final int MIN_PARTICIPANT_COUNT = 2;
     public static final int MAX_PARTICIPANT_COUNT = 10;
     public static final String DELIMITER = ",";
-    private final List<Person> people = new ArrayList<>();
+    private People people;
 
     public Participants(String participantNames) {
         validate(participantNames);
@@ -49,15 +48,17 @@ public class Participants {
     }
 
     private void joinAllParticipants(String participantNames) {
-        splitNames(participantNames).forEach((name) -> people.add(new Person(name)));
+        List<Person> people = splitNames(participantNames).stream().map(Person::new)
+            .collect(Collectors.toList());
+        this.people = new People(people);
     }
 
     public int getCount() {
-        return people.size();
+        return people.getSize();
     }
 
     public List<String> getNames() {
-        return people.stream()
+        return people.getAllPerson().stream()
             .map(Person::getName)
             .collect(Collectors.toList());
     }
