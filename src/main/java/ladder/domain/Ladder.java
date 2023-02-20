@@ -49,6 +49,20 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
+    public int getResult(int index, int heightNow) {
+
+        if (heightNow == getHeight()) {
+            return index;
+        }
+        int indexNext = floors.get(heightNow).moveUserByPath(index);
+        int heightNext = heightNow + 1;
+        return getResult(indexNext, heightNext);
+    }
+
+    private int getHeight() {
+        return floors.size();
+    }
+
     public List<Floor> getFloors() {
         return Collections.unmodifiableList(floors);
     }
