@@ -10,7 +10,7 @@ public class PlayerNames {
 
     public PlayerNames(List<String> playerNames, InputView inputView) {
         this.inputView = inputView;
-        validatePlayerNames(playerNames);
+        playerNames = validatePlayerNames(playerNames);
         createPlayerNames(playerNames);
     }
 
