@@ -4,4 +4,5 @@ package domain;
 public interface PointGenerateStrategy {
 
     Point generate(Point previousPoint);
+
 }
