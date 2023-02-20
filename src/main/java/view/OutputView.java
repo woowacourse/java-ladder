@@ -41,11 +41,11 @@ public class OutputView {
     }
 
     private String makeNextStep(Boolean point) {
-        String nextStep = LadderStep.EMPTY_STEP.getStep();
         if (point) {
-            nextStep = LadderStep.EXIST_STEP.getStep();
+            return LadderStep.EXIST_STEP.getStep();
         }
-        return nextStep;
+
+        return LadderStep.EMPTY_STEP.getStep();
     }
 
     private String makeLeftFormattingFirstName(List<String> allPlayerNames) {
