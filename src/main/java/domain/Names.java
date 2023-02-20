@@ -14,7 +14,9 @@ public class Names {
     public Names(List<String> names) {
         validate(names);
 
-        this.names = names.stream().map(Name::new).collect(Collectors.toList());
+        this.names = names.stream()
+                .map(Name::new)
+                .collect(Collectors.toList());
     }
 
     private static void validate(List<String> names) {
