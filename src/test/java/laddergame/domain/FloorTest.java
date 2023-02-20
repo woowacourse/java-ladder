@@ -32,7 +32,7 @@ public class FloorTest {
 
             assertThatThrownBy(() -> Floor.from(minNumberOfExistences))
                     .isInstanceOf(IllegalStateException.class)
-                    .hasMessage(String.format("Line의 길이는 %d보다 작을 수 없습니다.", minNumberOfExistences));
+                    .hasMessage(String.format("Floor의 길이는 %d보다 작을 수 없습니다.", minNumberOfExistences));
         }
 
         @Test
