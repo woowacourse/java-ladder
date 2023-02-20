@@ -1,7 +1,7 @@
 package controller;
 
 import domain.Ladder;
-import domain.Players;
+import domain.Names;
 import java.util.List;
 
 import domain.generator.ConnectionGenerator;
@@ -22,29 +22,29 @@ public class LadderGameController {
     }
 
     public void run() {
-        Players players = makePlayers();
-        Ladder ladder = makeLadder(players.findNumberOfPlayers());
+        Names names = makeNames();
+        Ladder ladder = makeLadder(names.findNumberOfNames());
 
-        outputView.printResult(players, ladder);
+        outputView.printResult(names, ladder);
     }
 
-    private Players makePlayers() {
+    private Names makeNames() {
         try {
-            List<String> playerNames = inputView.readPlayerNames();
-            return new Players(playerNames);
+            List<String> playerNames = inputView.readNames();
+            return new Names(playerNames);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
-            return makePlayers();
+            return makeNames();
         }
     }
 
-    private Ladder makeLadder(final int numberOfPlayers) {
+    private Ladder makeLadder(final int numberOfNames) {
         try {
             int ladderHeight = inputView.readHeight();
-            return new Ladder(numberOfPlayers, ladderHeight, connectionGenerator);
+            return new Ladder(numberOfNames, ladderHeight, connectionGenerator);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
-            return makeLadder(numberOfPlayers);
+            return makeLadder(numberOfNames);
         }
     }
 }

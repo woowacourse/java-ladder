@@ -1,13 +1,13 @@
 package domain;
 
-public class PlayerName {
+public class Name {
 
     private static final int MINIMUM_LENGTH_OF_NAME = 1;
     private static final int MAXIMUM_LENGTH_OF_NAME = 5;
 
     private final String name;
 
-    public PlayerName(final String name) {
+    public Name(final String name) {
         validateLengthOfName(name);
         this.name = name;
     }
@@ -20,10 +20,6 @@ public class PlayerName {
 
     private boolean isNotPermittedLengthOfName(final String name) {
         return (name.length() < MINIMUM_LENGTH_OF_NAME) || (name.length() > MAXIMUM_LENGTH_OF_NAME);
-    }
-
-    public int getLengthOfName() {
-        return this.name.length();
     }
 
     public String getName() {

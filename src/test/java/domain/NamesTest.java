@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class PlayersTest {
+public class NamesTest {
 
     String firstPlayerName;
     String secondPlayerName;
@@ -26,15 +26,15 @@ public class PlayersTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 11})
     @DisplayName("사람의 수가 2명보다 작거나 10명 이상이면 예외를 던진다.")
-    void throws_exception_number_of_player_under_two(int numberOfPlayer) {
+    void throws_exception_number_of_player_under_two(int numberOfNames) {
         // given
         List<String> playerNames = new ArrayList<>();
-        for (int i = 0; i < numberOfPlayer; i++) {
+        for (int i = 0; i < numberOfNames; i++) {
             playerNames.add("abc" + i);
         }
 
         // when & then
-        assertThatThrownBy(() -> new Players(playerNames))
+        assertThatThrownBy(() -> new Names(playerNames))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("참여 가능한 플레이어의 수는 2명이상 10명이하 입니다.");
     }
@@ -47,7 +47,7 @@ public class PlayersTest {
         List<String> playerNames = List.of(duplicatedName, duplicatedName);
 
         // when & then
-        assertThatThrownBy(() -> new Players(playerNames))
+        assertThatThrownBy(() -> new Names(playerNames))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("참가한 플레이어의 이름 중 중복된 이름이 존재하면 안됩니다.");
     }
@@ -58,11 +58,11 @@ public class PlayersTest {
         // given
         String playerHavingLongestName = "dolbi";
         List<String> playerNames = List.of(firstPlayerName, secondPlayerName, playerHavingLongestName);
-        Players players = new Players(playerNames);
-        int expectedResult = players.getPlayers().size();
+        Names names = new Names(playerNames);
+        int expectedResult = names.getNames().size();
 
         // when
-        int numberOfPlayer = players.findNumberOfPlayers();
+        int numberOfPlayer = names.findNumberOfNames();
 
         // then
         assertThat(numberOfPlayer).isEqualTo(expectedResult);
