@@ -47,10 +47,10 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("Bar가 모두 있는 2줄 짜리 사다리 결과 테스트")
+    @DisplayName("Bar가 있는 복잡한 사다리 결과 테스트")
     void resultCurvedLadderTest() {
         Ladder ladder = Ladder.create(4, 5,new MockBooleanGenerator(List.of(true,true,false)));
-        /** 다음과 같은 사다리가 생성된다 가정
+        /* 다음과 같은 사다리가 생성된다 가정
          * |-| |-|
          * | |-| |
          * |-| | |
