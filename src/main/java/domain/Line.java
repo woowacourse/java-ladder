@@ -1,10 +1,8 @@
 package domain;
 
-import util.RandomValueGenerator;
-import util.RandomValueGeneratorImpl;
-
 import java.util.ArrayList;
 import java.util.List;
+import util.RandomValueGenerator;
 
 /**
  * @author 최원용
@@ -27,8 +25,9 @@ public class Line {
 
     private void calculatePoints(int personCount) {
         points.add(generateRandomValue());
-        while (personCount-- > 2) {
-            if (!points.get(points.size() - 1)) {
+        --personCount;
+        for (int i = 0; i < personCount - 1; i++) {
+            if (points.get(points.size() - 1) == true) {
                 points.add(generateRandomValue());
                 continue;
             }
