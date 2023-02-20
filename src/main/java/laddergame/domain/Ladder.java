@@ -8,14 +8,14 @@ public class Ladder {
 
     private static final int MIN_HEIGHT = 1;
 
-    private final List<Line> lines;
+    private final List<Floor> lines;
 
     public Ladder(final int height, final int numberOfPlayers) {
         validateNumberOfHeight(height);
         this.lines = createLines(height, numberOfPlayers);
     }
 
-    public List<Line> getLadder() {
+    public List<Floor> getLadder() {
         return Collections.unmodifiableList(lines);
     }
 
@@ -25,11 +25,11 @@ public class Ladder {
         }
     }
 
-    private List<Line> createLines(final int height, final int playerCount) {
-        final List<Line> lines = new ArrayList<>();
+    private List<Floor> createLines(final int height, final int playerCount) {
+        final List<Floor> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            lines.add(Line.from(playerCount));
+            lines.add(Floor.from(playerCount));
         }
 
         return lines;

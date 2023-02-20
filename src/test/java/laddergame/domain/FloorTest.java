@@ -11,16 +11,16 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class LineTest {
+public class FloorTest {
 
     @Nested
-    static class LineStatusTest {
+    static class FloorStatusTest {
 
         @ParameterizedTest
         @DisplayName("Players가 두 명 이상이면 Line이 생성된다.")
         @ValueSource(ints = {2, 5, 10})
         void givenTwoMorePlayers_thenCreateLine(final int numberOfPlayers) {
-            assertThatCode(() -> Line.from(numberOfPlayers))
+            assertThatCode(() -> Floor.from(numberOfPlayers))
                     .doesNotThrowAnyException();
         }
 
@@ -30,7 +30,7 @@ public class LineTest {
 
             final int minNumberOfExistences = 1;
 
-            assertThatThrownBy(() -> Line.from(minNumberOfExistences))
+            assertThatThrownBy(() -> Floor.from(minNumberOfExistences))
                     .isInstanceOf(IllegalStateException.class)
                     .hasMessage(String.format("Line의 길이는 %d보다 작을 수 없습니다.", minNumberOfExistences));
         }
@@ -42,11 +42,11 @@ public class LineTest {
             final List<Boolean> statuses = List.of(true, false, false);
 
             //when
-            final Line line = Line.of(statuses.size(), new TestBooleanPicker(statuses));
+            final Floor line = Floor.of(statuses.size(), new TestBooleanPicker(statuses));
 
             //then
             assertThat(line)
-                    .extracting(Line::getLine)
+                    .extracting(Floor::getLine)
                     .isEqualTo(List.of(true, false));
         }
     }
@@ -56,11 +56,11 @@ public class LineTest {
     void givenLine_thenNotOverLap() {
         //given
         final List<Boolean> statuses = List.of(true, true, false);
-        final Line line = Line.of(statuses.size(), new TestBooleanPicker(statuses));
+        final Floor line = Floor.of(statuses.size(), new TestBooleanPicker(statuses));
 
         //then
         assertThat(line)
-                .extracting(Line::getLine)
+                .extracting(Floor::getLine)
                 .isEqualTo(List.of(true, false));
     }
 
@@ -68,7 +68,7 @@ public class LineTest {
     @DisplayName("라인이 두 칸 이상인 경우, 적어도 한 칸 이상의 발판이 발생한다.")
     void givenTwoMoreSizeLine_thenSetLineSizeTwo() {
         //given
-        final Line line = Line.from(3);
+        final Floor line = Floor.from(3);
 
         //when
         final int size = new HashSet<>(line.getLine()).size();

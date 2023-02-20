@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class Line {
+public class Floor {
 
     private static final int MIN_EXISTENCE_COUNT = 1;
     private static final int FIRST_INDEX_OF_EXISTENCES = 0;
@@ -13,19 +13,19 @@ public class Line {
     private final List<Boolean> line;
     private final PickStrategy strategy;
 
-    private Line(final int playerCount, final PickStrategy pickStrategy) {
+    private Floor(final int playerCount, final PickStrategy pickStrategy) {
         this.strategy = pickStrategy;
         int isExistenceCount = playerCount - 1;
         validateIsExistenceCount(isExistenceCount);
         this.line = createLine(isExistenceCount);
     }
 
-    public static Line from(final int playerCount) {
-        return new Line(playerCount, new RandomBooleanPicker());
+    public static Floor from(final int playerCount) {
+        return new Floor(playerCount, new RandomBooleanPicker());
     }
 
-    public static Line of(final int playerCount, final PickStrategy pickStrategy) {
-        return new Line(playerCount, pickStrategy);
+    public static Floor of(final int playerCount, final PickStrategy pickStrategy) {
+        return new Floor(playerCount, pickStrategy);
     }
 
     public List<Boolean> getLine() {
