@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
 
@@ -15,11 +16,17 @@ public class Players {
     private static final String DUPLICATE_PLAYER_ERROR_MESSAGE = "플레이어 이름은 중복되면 안됩니다.";
 
     private final List<Player> players;
+    private final List<Integer> positions;
 
     public Players(final List<String> names) {
+        this(names, IntStream.range(0, names.size()).boxed().collect(Collectors.toList()));
+    }
+
+    public Players(final List<String> names, final List<Integer> positions) {
         final List<Player> players = generatePlayers(names);
         validate(players);
         this.players = players;
+        this.positions = positions;
     }
 
     private List<Player> generatePlayers(final List<String> names) {
@@ -63,6 +70,10 @@ public class Players {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<Integer> getPositions() {
+        return positions;
     }
 
     public int numberOfPlayers() {

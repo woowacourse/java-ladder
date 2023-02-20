@@ -24,6 +24,14 @@ public class Ladder {
         return lines;
     }
 
+    public Players movePlayers(Players players) {
+        for(Line line: lines) {
+            players = line.movePlayers(players);
+        }
+
+        return players;
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
