@@ -21,10 +21,11 @@ public class LadderGameController {
 
     public void run() {
         Players players = generatePlayers();
+        List<String> results = inputView.readResults();
         Height height = generateHeight();
         Ladder ladder = generateLadder(players, height);
 
-        showResult(players, ladder);
+        showLadderGame(players, ladder, results);
     }
 
     private Players generatePlayers() {
@@ -54,7 +55,7 @@ public class LadderGameController {
         return ladderGenerator.generateLadder(players.size(), height);
     }
 
-    private void showResult(Players players, Ladder ladder) {
+    private void showLadderGame(Players players, Ladder ladder, List<String> results) {
         outputView.printPlayerNames(players.getPlayers().stream()
                 .map(Player::getPlayerName)
                 .collect(Collectors.toList()));
@@ -63,6 +64,7 @@ public class LadderGameController {
         for (Row row : rows) {
             outputView.printRow(row.getPoints());
         }
+        outputView.printResults(results);
     }
 
 }

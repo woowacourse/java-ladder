@@ -66,9 +66,8 @@ public class InputView {
 
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-
-        List<String> results = new ArrayList<>(List.of(input.split(",")));
-        return results;
+        String[] results = input.replaceAll(" ", "").split(",");
+        return new ArrayList<>(List.of(results));
     }
 
     private enum InputMessage {

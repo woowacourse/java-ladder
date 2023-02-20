@@ -27,6 +27,11 @@ public class OutputView {
         }
     }
 
+    public void printResults(List<String> results) {
+        System.out.println();
+        results.forEach(result -> System.out.printf("%-6s", result));
+    }
+
     public void printExceptionMessage(String message) {
         System.out.println(message);
     }
