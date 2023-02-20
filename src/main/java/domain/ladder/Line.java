@@ -13,10 +13,14 @@ import java.util.stream.IntStream;
 public class Line {
 
     private final List<Scaffold> scaffolds;
+    private final Position fistPosition;
+    private final Position lastPosition;
 
     private Line(final List<Scaffold> scaffolds) {
         validateScaffoldSizeEmpty(scaffolds);
         this.scaffolds = new ArrayList<>(scaffolds);
+        this.fistPosition = Position.of(0);
+        this.lastPosition = Position.of(scaffolds.size());
     }
 
     public static Line create(final Width width, final ScaffoldGenerator scaffoldGenerator) {
@@ -67,32 +71,32 @@ public class Line {
     }
 
     private boolean isLastPosition(final Position position) {
-        return position.value() == scaffolds.size();
+        return position.equals(lastPosition);
     }
 
     private boolean isFirstPosition(final Position position) {
-        return position.value() == 0;
+        return position.equals(fistPosition);
     }
 
     private Direction firstScaffoldExistDirection(final Position position) {
-        if (scaffolds.get(position.value()) == Scaffold.EXIST) {
+        if (scaffolds.get(position.value()).isExist()) {
             return Direction.RIGHT;
         }
         return Direction.NONE;
     }
 
     private Direction lastScaffoldExistDirection(final Position position) {
-        if (scaffolds.get(position.value() - 1) == Scaffold.EXIST) {
+        if (scaffolds.get(position.value() - 1).isExist()) {
             return Direction.LEFT;
         }
         return Direction.NONE;
     }
 
     private Direction middleScaffoldExistDirection(final Position position) {
-        if (scaffolds.get(position.value()) == Scaffold.EXIST) {
+        if (scaffolds.get(position.value()).isExist()) {
             return Direction.RIGHT;
         }
-        if (scaffolds.get(position.value() - 1) == Scaffold.EXIST) {
+        if (scaffolds.get(position.value() - 1).isExist()) {
             return Direction.LEFT;
         }
         return Direction.NONE;
