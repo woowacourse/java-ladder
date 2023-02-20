@@ -64,7 +64,7 @@ public class Ladder {
     public int findResultAtByStartLineAt(int lineAt) {
         for (int i = 0; i < height.getHeight(); i++) {
             Point point = getPoint(i, lineAt);
-            lineAt += point.getMoveLineDirection();
+            lineAt += point.getLineMovement();
         }
 
         return lineAt;
