@@ -1,9 +1,6 @@
 package controller;
 
-import domain.Ladder;
-import domain.Level;
-import domain.People;
-import domain.Stool;
+import domain.*;
 import util.StoolGenerator;
 import view.InputView;
 import view.OutputView;
@@ -24,6 +21,7 @@ public class LadderController {
 
     public void run() {
         People people = initPeople();
+        Results results = initResults(people.size());
         Ladder ladder = initLadder(people.size());
 
         showLadder(people, ladder);
@@ -46,6 +44,16 @@ public class LadderController {
             outputView.printError(e.getMessage());
 
             return initLadder(participantsSize);
+        }
+    }
+
+    private Results initResults(int participantsSize) {
+        try {
+            return new Results(inputView.readResults(), participantsSize);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+
+            return initResults(participantsSize);
         }
     }
 

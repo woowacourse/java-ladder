@@ -10,7 +10,8 @@ public class InputView {
 
 	public List<String> readNames() {
 		System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-		return List.of(scanner.nextLine().split(","));
+
+		return splitByComma(scanner.nextLine());
 	}
 
 	public int readHeight() {
@@ -21,5 +22,15 @@ public class InputView {
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException(Error.NOT_A_NUMBER.getMessage());
 		}
+	}
+
+	public List<String> readResults() {
+		System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+		return splitByComma(scanner.nextLine());
+	}
+
+	private List<String> splitByComma(String input) {
+		return List.of(input.split(","));
 	}
 }
