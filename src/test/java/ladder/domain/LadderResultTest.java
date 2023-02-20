@@ -15,7 +15,7 @@ class LadderResultTest {
     void ladderResult_playerGetOneResult() {
         // given
         Map<Player, Item> result = new HashMap<>();
-        Player player = new Player("vero");
+        Player player = new Player("vero", 0);
         Item item = new Item("꽝");
         result.put(player, item);
         LadderResult ladderResult = new LadderResult(result);
@@ -31,7 +31,7 @@ class LadderResultTest {
         LadderResult ladderResult = new LadderResult(new HashMap<>());
 
         // expected
-        assertThatThrownBy(() -> ladderResult.getItemOfPlayer(new Player("vero")))
+        assertThatThrownBy(() -> ladderResult.getItemOfPlayer(new Player("vero", 0)))
                 .isInstanceOf(IllegalStateException.class);
     }
 
@@ -40,7 +40,7 @@ class LadderResultTest {
     void ladderResult_throwException_notExistItem() {
         // given
         Map<Player, Item> result = new HashMap<>();
-        Player player = new Player("vero");
+        Player player = new Player("vero", 0);
         result.put(player, null);
         LadderResult ladderResult = new LadderResult(result);
 
