@@ -46,6 +46,6 @@ public class LadderGame {
 
     private void printLadderResult(Players players, Ladder ladder) {
         resultView.printNames(players.getNames());
-        resultView.printLadder(ladder.getState());
+        resultView.printLadder(ladder.getLadder());
     }
 }

@@ -5,19 +5,13 @@ import java.util.List;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 public class Ladder {
-    private final List<Row> rows;
+    private final List<Row> ladder;
 
-    public Ladder(List<Row> rows) {
-        this.rows = rows;
+    public Ladder(List<Row> ladder) {
+        this.ladder = ladder;
     }
 
-    public List<Row> getRows() {
-        return rows;
-    }
-
-    public List<List<Foothold>> getState() {
-        return rows.stream()
-                .map(Row::getRow)
-                .collect(toUnmodifiableList());
+    public List<Row> getLadder() {
+        return ladder;
     }
 }

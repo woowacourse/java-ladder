@@ -13,7 +13,7 @@ class RandomLadderGeneratorTest {
     public void Rows_생성_success(int width, int height, int expected) {
         List<Row> rows = new RandomRowsGenerator()
                 .generateRows(new Width(width), new Height(height))
-                .getRows();
+                .getLadder();
 
         assertThat(rows).hasSize(expected);
     }
