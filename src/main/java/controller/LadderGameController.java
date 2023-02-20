@@ -84,6 +84,7 @@ public class LadderGameController {
     private void printPlayerResult(String userRequest, Players players) {
         if (userRequest.equals(inputView.getResultEndCommand())) {
             String playersResultFormat = PlayersConsoleViewFormatter.formatResultPlayers(players);
+            outputView.printAllResultPrefix();
             outputView.printFormat(playersResultFormat);
             return;
         }
