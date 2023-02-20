@@ -36,4 +36,8 @@ public class LadderResults {
     public List<LadderResult> getResults() {
         return Collections.unmodifiableList(results);
     }
+
+    public int getResultSize() {
+        return results.size();
+    }
 }

@@ -31,6 +31,16 @@ public class InputView {
         }
     }
 
+    public List<String> inputLadderResults() {
+        String inputResult = scanner.nextLine();
+
+        validateBlank(inputResult);
+        validateDelimiter(inputResult);
+
+        return Arrays.stream(inputResult.split(DELIMITER))
+            .collect(Collectors.toUnmodifiableList());
+    }
+
     public int inputHeightOfLadder() {
         String inputHeight = scanner.nextLine();
 

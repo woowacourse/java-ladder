@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import model.Height;
 import model.Ladder;
+import model.LadderResult;
+import model.LadderResults;
 import model.Name;
 import model.Names;
 import model.LadderMaker;
@@ -22,9 +24,9 @@ public class LadderController {
 
     public void run(LadderMaker ladderMaker) {
         Names participants = inputParticipantsName();
-
+        LadderResults ladderResults = inputLadderResults(participants.getTotalParticipantSize());
         generateLadder(ladderMaker, participants.getTotalParticipantSize());
-        printLadder(ladderMaker, participants);
+        printLadder(ladderMaker, participants, ladderResults);
     }
 
     private Names inputParticipantsName() {
@@ -37,6 +39,16 @@ public class LadderController {
         return new Names(names);
     }
 
+    private LadderResults inputLadderResults(int totalParticipantSize) {
+        outputView.noticeInputLadderResult();
+
+        List<String> results = inputView.inputLadderResults();
+        List<LadderResult> ladderResults = results.stream()
+                .map(LadderResult::new)
+                .collect(Collectors.toUnmodifiableList());
+        return LadderResults.of(ladderResults, totalParticipantSize);
+    }
+
     private void generateLadder(LadderMaker ladderMaker, int totalParticipantSize) {
         outputView.noticeInputHeightOfLadder();
 
@@ -46,12 +58,13 @@ public class LadderController {
         ladderMaker.initLadder(height, totalParticipantSize);
     }
 
-    private void printLadder(LadderMaker ladderMaker, Names names) {
+    private void printLadder(LadderMaker ladderMaker, Names names, LadderResults ladderResults) {
         outputView.noticeResult();
 
         Ladder ladder = ladderMaker.getLadder();
 
         outputView.printNameOfParticipants(names);
         outputView.printLadder(ladder);
+        outputView.printLadderResult(ladderResults);
     }
 }
