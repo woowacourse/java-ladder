@@ -28,8 +28,9 @@ public class OutputView {
     }
 
     private String changeFormat(Line line, int maxPlayerNameLength) {
+        int preBlankLength = maxPlayerNameLength - 1;
         List<Boolean> points = line.getPoints();
-        StringBuilder ladderLine = new StringBuilder(BLANK.repeat(maxPlayerNameLength - 1) + BAR);
+        StringBuilder ladderLine = new StringBuilder(BLANK.repeat(preBlankLength) + BAR);
         for (Boolean point : points) {
             ladderLine.append(printLine(point, maxPlayerNameLength));
         }
