@@ -3,6 +3,7 @@ package controller;
 import domain.Ladder;
 import domain.Players;
 import domain.RandomPointGenerator;
+import domain.Results;
 import view.InputView;
 import view.OutputView;
 import java.util.List;
@@ -22,6 +23,7 @@ public class LadderGameController {
     public void run() {
         List<String> names = inputView.readPlayersName();
         Players players = new Players(names);
+        Results results = new Results(names.size(), inputView.readResults());
         int height = inputView.readLadderHeight();
         Ladder ladder = new Ladder(height, names.size(), generator);
 
