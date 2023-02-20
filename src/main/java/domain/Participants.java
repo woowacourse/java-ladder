@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Participants implements Display {
 
-	private static final String PARTICIPANT_DELIMITER = ",";
+	private static final String PARTICIPANT_DELIMITER = "";
 
 	private final List<ParticipantName> names = new ArrayList<>();
 

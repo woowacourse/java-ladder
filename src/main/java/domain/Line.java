@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class Line implements Display {
 
 	private final static String LADDER_DELIMITER = "|";
-	private final static String PREFIX = "|";
+	private final static String PREFIX = "     |";
 	private final static String SUFFIX = "|";
 	private final List<Point> points;
 
