@@ -25,7 +25,6 @@ public class OutputView {
             String blank = " ".repeat(STANDARD_BLANK - player.getName().length());
             sb.append(blank);
         }
-
         return sb.toString();
     }
 
