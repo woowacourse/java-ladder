@@ -1,7 +1,9 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LadderService {
-    public static final String PRINT_FORMAT = "%s : %s\n";
 
     private final Ladder ladder;
     private final People people;
@@ -17,5 +19,13 @@ public class LadderService {
         int indexByName = people.findByName(name);
         Position position = ladder.startByIndex(indexByName);
         return results.getByIndex(position);
+    }
+
+    public Results getAllResults() {
+        List<Result> results = new ArrayList<>();
+        for (Person person : people) {
+            results.add(getSingleResult(person.getName()));
+        }
+        return new Results(results);
     }
 }

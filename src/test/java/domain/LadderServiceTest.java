@@ -14,6 +14,7 @@ public class LadderServiceTest {
     People people;
     Ladder ladder;
     Results results;
+    LadderService ladderService;
 
     @BeforeEach
     void init() {
@@ -31,6 +32,8 @@ public class LadderServiceTest {
                 (width, height) -> customizedLines
         );
         results = new Results("꽝,5000,꽝,3000", people);
+        ladderService = new LadderService(ladder, people, results);
+
     }
 
     @ParameterizedTest
@@ -41,9 +44,19 @@ public class LadderServiceTest {
             "jk,5000",
     })
     void single_result_test(String name, String result) {
-        LadderService ladderService = new LadderService(ladder, people, results);
         assertThat(ladderService.getSingleResult(name)).isEqualTo(new Result(result));
     }
 
+    @Test
+    void all_result_test() {
+        assertThat(ladderService.getAllResults())
+                .isEqualTo(new Results(
+                        List.of(
+                                new Result("꽝"),
+                                new Result("3000"),
+                                new Result("꽝"),
+                                new Result("5000")
+                        )));
+    }
 
 }
