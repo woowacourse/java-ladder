@@ -8,6 +8,9 @@ import domain.player.Players;
 import domain.ResultContents;
 import domain.ladder.Ladder;
 import domain.ladder.strategy.GenerateBridgeStrategy;
+import util.formatter.LadderConsoleViewFormatter;
+import util.formatter.PlayersConsoleViewFormatter;
+import util.formatter.ResultContentsConsoleViewFormatter;
 import view.InputView;
 import view.OutputView;
 
@@ -58,10 +61,16 @@ public class LadderGameController {
     }
 
     private void printLadderGameResult(LadderGame ladderGame) {
-        outputView.printResultPrefix();
-        outputView.printPlayerNames(ladderGame.getPlayers());
-        outputView.printLadder(ladderGame.getLadder());
-        outputView.printResult(ladderGame.getResultContents());
+        outputView.printLadderResultPrefix();
+
+        String playersFormat = PlayersConsoleViewFormatter.formatPlayers(ladderGame.getPlayers());
+        outputView.printFormat(playersFormat);
+
+        String ladderFormat = LadderConsoleViewFormatter.formatLadder(ladderGame.getLadder());
+        outputView.printFormat(ladderFormat);
+
+        String resultContentsFormat = ResultContentsConsoleViewFormatter.formatResultContents(ladderGame.getResultContents());
+        outputView.printFormat(resultContentsFormat);
     }
 
     private void requestSpecificPlayerResult(Players players) {
@@ -74,7 +83,8 @@ public class LadderGameController {
 
     private void printPlayerResult(String userRequest, Players players) {
         if (userRequest.equals(inputView.getResultEndCommand())) {
-            outputView.printAllResults(players);
+            String playersResultFormat = PlayersConsoleViewFormatter.formatResultPlayers(players);
+            outputView.printFormat(playersResultFormat);
             return;
         }
 
