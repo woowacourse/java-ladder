@@ -13,6 +13,7 @@ public class LadderController {
     public void run() {
         Names names = generateNames();
         Ladder ladder = generateLadder(names.getPersonCount());
+
         OutputView.printNames(names);
         OutputView.printLadder(ladder);
     }
