@@ -27,4 +27,13 @@ class InputViewValidatorTest {
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage("[ERROR] 숫자만 입력해야합니다.");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi.crong.jk", "pobi&crong&jk", "pobi:crong:jk"})
+    void playerNamesDelimiterTest(String playerNames) {
+
+        assertThatThrownBy(() -> InputViewValidator.validateReadPlayerNames(playerNames))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 참여자 이름은 ','로 구분되어야합니다.");
+    }
 }
