@@ -29,8 +29,8 @@ public class LadderGame {
         }
     }
 
-    private void validateRewardsCount(List<Reward> rewards){
-        if(rewards.size() != players.size()){
+    private void validateRewardsCount(List<Reward> rewards) {
+        if (rewards.size() != players.size()) {
             throw new IllegalArgumentException(EXCEPTION_REWARD_COUNT.getMessage());
         }
     }
@@ -46,6 +46,10 @@ public class LadderGame {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public List<Reward> getRewards() {
+        return rewards;
     }
 
     public Ladder getLadder() {

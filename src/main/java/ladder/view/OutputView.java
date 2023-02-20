@@ -26,6 +26,11 @@ public class OutputView {
         }
     }
 
+    public void printReward(List<String> rewards) {
+        System.out.println();
+        rewards.forEach(reward -> System.out.printf("%-6s", reward));
+    }
+
     public void printError(String errorMessage) {
         System.out.println(errorMessage);
     }

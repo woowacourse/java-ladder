@@ -40,7 +40,7 @@ public class LadderGameController {
     }
 
     private List<Reward> generateRewards() {
-        List<String> reward = inputView.readNames();
+        List<String> reward = inputView.readRewards();
         List<Reward> rewards = reward.stream()
                 .map(Reward::new)
                 .collect(Collectors.toList());
@@ -53,16 +53,28 @@ public class LadderGameController {
     }
 
     private void showResult(LadderGame ladderGame) {
-        outputView.printPlayerNames(ladderGame.getPlayers().stream()
+        showPlayer(ladderGame.getPlayers());
+        showLadder(ladderGame.getLadder());
+        showReward(ladderGame.getRewards());
+    }
+
+    private void showPlayer(List<Player> players) {
+        outputView.printPlayerNames(players.stream()
                 .map(Player::getPlayerName)
                 .map(PlayerName::getPlayerName)
                 .collect(Collectors.toList()));
+    }
 
-        Ladder ladder = ladderGame.getLadder();
+    private void showLadder(Ladder ladder) {
         List<Row> rows = ladder.getRows();
         for (Row row : rows) {
             outputView.printRow(row.getPoints());
         }
     }
 
+    private void showReward(List<Reward> rewards) {
+        outputView.printReward(rewards.stream()
+                .map(Reward::getReward)
+                .collect(Collectors.toList()));
+    }
 }
