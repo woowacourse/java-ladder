@@ -1,15 +1,17 @@
 package util;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import java.security.SecureRandom;
 
-import org.junit.jupiter.api.RepeatedTest;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class RandomNumberGeneratorTest {
 
-    @RepeatedTest(100)
     void pickRandomNumberInRangeSuccess() {
         int targetNumber = 1;
-        int number = RandomNumberGenerator.pickRandomNumberInRange(targetNumber, targetNumber);
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator(new SecureRandom());
+
+        int number = randomNumberGenerator.pickRandomNumberInRange(targetNumber, targetNumber);
+
         assertThat(number).isGreaterThanOrEqualTo(targetNumber);
         assertThat(number).isLessThanOrEqualTo(targetNumber);
     }

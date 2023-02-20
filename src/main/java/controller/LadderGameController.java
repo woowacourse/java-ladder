@@ -3,7 +3,7 @@ package controller;
 import domain.Height;
 import domain.PlayerNames;
 import domain.ladder.Ladder;
-import domain.ladder.strategy.GenerateBridgeStrategy;
+import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -11,19 +11,19 @@ public class LadderGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final GenerateBridgeStrategy bridgeStrategy;
+    private final RandomNumberGenerator randomNumberGenerator;
 
-    public LadderGameController(GenerateBridgeStrategy bridgeStrategy) {
+    public LadderGameController(RandomNumberGenerator randomNumberGenerator) {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.bridgeStrategy = bridgeStrategy;
+        this.randomNumberGenerator = randomNumberGenerator;
     }
 
     public void run() {
         PlayerNames playerNames = PlayerNames.from(inputView.requestPlayerNames());
         Height height = new Height(inputView.requestLadderHeight());
 
-        Ladder ladder = Ladder.of(playerNames, height, bridgeStrategy);
+        Ladder ladder = Ladder.of(playerNames, height, randomNumberGenerator);
         ladder.buildBridges();
 
         printLadderGameResult(playerNames, ladder);

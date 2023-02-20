@@ -4,11 +4,15 @@ import java.security.SecureRandom;
 
 public class RandomNumberGenerator {
 
-    private static final SecureRandom SECURE_RANDOM = new SecureRandom();
     private static final int INCLUSIVE_FLAG = 1;
+    private final SecureRandom secureRandom;
 
-    public static int pickRandomNumberInRange(int lowerBoundInclusive, int upperBoundInclusive) {
-        return SECURE_RANDOM.nextInt(
+    public RandomNumberGenerator(SecureRandom secureRandom) {
+        this.secureRandom = secureRandom;
+    }
+
+    public int pickRandomNumberInRange(int lowerBoundInclusive, int upperBoundInclusive) {
+        return secureRandom.nextInt(
                 upperBoundInclusive - lowerBoundInclusive + INCLUSIVE_FLAG) + lowerBoundInclusive;
     }
 

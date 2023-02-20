@@ -1,10 +1,13 @@
 import controller.LadderGameController;
-import domain.ladder.strategy.RandomGenerateBridgeStrategy;
+import util.RandomNumberGenerator;
+
+import java.security.SecureRandom;
 
 public class LadderGameApplication {
 
     public static void main(String[] args) {
-        LadderGameController ladderGameController = new LadderGameController(new RandomGenerateBridgeStrategy());
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator(new SecureRandom());
+        LadderGameController ladderGameController = new LadderGameController(randomNumberGenerator);
 
         try {
             ladderGameController.run();

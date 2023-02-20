@@ -5,24 +5,27 @@ import domain.Height;
 import domain.Line;
 import domain.PlayerNames;
 import domain.Point;
-import domain.ladder.strategy.GenerateBridgeStrategy;
+import util.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
 
+    private static final int LOWER_BOUND_INCLUSIVE = 1;
+    private static final int UPPER_BOUND_INCLUSIVE = 10;
+
     private final List<Line> lines;
     private final Height height;
-    private final GenerateBridgeStrategy generateBridgeStrategy;
+    private final RandomNumberGenerator randomNumberGenerator;
 
-    private Ladder(List<Line> lines, Height height, GenerateBridgeStrategy generateBridgeStrategy) {
+    private Ladder(List<Line> lines, Height height, RandomNumberGenerator randomNumberGenerator) {
         this.lines = lines;
         this.height = height;
-        this.generateBridgeStrategy = generateBridgeStrategy;
+        this.randomNumberGenerator = randomNumberGenerator;
     }
 
-    public static Ladder of(PlayerNames playerNames, Height height, GenerateBridgeStrategy generateBridgeStrategy) {
+    public static Ladder of(PlayerNames playerNames, Height height, RandomNumberGenerator randomNumberGenerator) {
         List<Line> lines = new ArrayList<>();
         int numberOfLinesToMake = playerNames.getSize();
 
@@ -30,7 +33,7 @@ public class Ladder {
             lines.add(Line.fromHeight(height));
         }
 
-        return new Ladder(lines, height, generateBridgeStrategy);
+        return new Ladder(lines, height, randomNumberGenerator);
     }
 
     public void buildBridges() {
@@ -61,7 +64,11 @@ public class Ladder {
 
     private boolean isBuildable(Point startPoint, Point endPoint) {
         return hasNotBridge(startPoint, endPoint)
-                && generateBridgeStrategy.isGeneratedBridge();
+                && isGeneratedBridge();
+    }
+
+    private boolean isGeneratedBridge() {
+        return randomNumberGenerator.pickRandomNumberInRange(LOWER_BOUND_INCLUSIVE, UPPER_BOUND_INCLUSIVE) <= 6;
     }
 
     private boolean hasNotBridge(Point startPoint, Point endPoint) {
