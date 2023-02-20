@@ -30,8 +30,9 @@ public class LadderGameController {
     }
 
     public void run() {
-        outputView.printLadderGameResult(users);
+        outputView.printUserNames(users);
         outputView.printLadder(ladder);
+        outputView.printResults(results);
     }
 
     private Results initializeResults() {

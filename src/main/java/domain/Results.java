@@ -13,4 +13,8 @@ public class Results {
         }
         this.results = results;
     }
+
+    public List<String> getResults() {
+        return results;
+    }
 }

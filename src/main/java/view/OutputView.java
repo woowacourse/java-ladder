@@ -1,5 +1,6 @@
 package view;
 
+import domain.Results;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.ladder.PointStatus;
@@ -12,9 +13,16 @@ public class OutputView {
     private static final String LINE_DELIMITER = "|";
     private static final String NAME_DELIMITER = " ";
 
-    public void printLadderGameResult(Users users) {
+    public void printUserNames(Users users) {
         System.out.println(OUTPUT_EXECUTE_MESSAGE);
         System.out.println(" " + users.getUserNames()
+                .stream()
+                .map(this::convertName)
+                .collect(Collectors.joining(NAME_DELIMITER)));
+    }
+
+    public void printResults(Results results) {
+        System.out.println(" " + results.getResults()
                 .stream()
                 .map(this::convertName)
                 .collect(Collectors.joining(NAME_DELIMITER)));
