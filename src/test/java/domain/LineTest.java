@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
 
-    public static final RandomBasedStrategy randomBasedStrategy = new RandomBasedStrategy();
+    private static final RandomBasedStrategy randomBasedStrategy = new RandomBasedStrategy();
 
     @DisplayName("Point로 구성된 라인을 생성할 수 있다.")
     @Test

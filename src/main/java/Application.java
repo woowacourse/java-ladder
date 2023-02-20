@@ -10,4 +10,5 @@ public class Application {
         ladderGameController.play();
         scanner.close();
     }
+    
 }

@@ -17,7 +17,7 @@ public class InputView {
 
     public static List<String> readPlayerNames() {
         printInputMessage(INPUT_PLAYER_NAMES_MESSAGE);
-        String playerNamesInput = readline();
+        String playerNamesInput = readLine();
         validatePlayerNames(playerNamesInput);
         return Arrays.stream(playerNamesInput.split(",", -1))
                 .map(String::strip)
@@ -26,7 +26,7 @@ public class InputView {
 
     public static int readLadderHeight() {
         printInputMessage(INPUT_LADDER_HEIGHT_MESSAGE);
-        String ladderHeight = readline();
+        String ladderHeight = readLine();
         validateLadderHeight(ladderHeight);
         return Integer.parseInt(ladderHeight);
     }
@@ -35,7 +35,7 @@ public class InputView {
         System.out.println(message);
     }
 
-    private static String readline() {
+    private static String readLine() {
         return scanner.nextLine().strip();
     }
 

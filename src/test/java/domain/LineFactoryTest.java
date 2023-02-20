@@ -16,4 +16,5 @@ public class LineFactoryTest {
         assertThat(line.getPoints().size())
                 .isEqualTo(maxPoint);
     }
+
 }
