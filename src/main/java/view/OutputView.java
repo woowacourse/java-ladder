@@ -2,6 +2,8 @@ package view;
 
 import domain.Ladder;
 import domain.Line;
+import domain.People;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +11,10 @@ public class OutputView {
 
     public static final String DELIMITER = "|";
 
-    public void printNames(List<String> names) {
-        names.forEach((name) -> System.out.printf("%5s ", name));
+    public void printNames(People people) {
+        for (String name : people.getNames()) {
+            System.out.printf("%5s ", name);
+        }
         System.out.println();
     }
 

@@ -2,7 +2,6 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +18,11 @@ class LadderTest {
             "3, 5",
     })
     void hello(int personCount, int maxHeight) {
-        Ladder ladder = new Ladder(personCount, maxHeight, new RandomGenerateStrategy());
+        StringBuilder names = new StringBuilder();
+        for (int i = 0; i < personCount; i++) {
+            names.append("hi").append(i).append(",");
+        }
+        Ladder ladder = new Ladder(new People(names.toString()), maxHeight, new RandomGenerateStrategy());
         assertThat(ladder.getWidth()).isEqualTo(personCount - 1);
         assertThat(ladder.getHeight()).isEqualTo(maxHeight);
     }
@@ -28,7 +31,7 @@ class LadderTest {
     @ParameterizedTest(name = "{index} : 현재 사다리 높이 = {0}")
     @ValueSource(ints = {-1, 0, 11})
     void ladder_invalid_test(int height) {
-        assertThatThrownBy(() -> new Ladder(4, height, new RandomGenerateStrategy()))
+        assertThatThrownBy(() -> new Ladder(new People("hello,world"), height, new RandomGenerateStrategy()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 높이는 1 이상 10 이하여야 합니다");
     }

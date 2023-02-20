@@ -2,11 +2,10 @@ package controller;
 
 import domain.Ladder;
 import domain.People;
-import domain.Person;
 import domain.RandomGenerateStrategy;
-import java.util.List;
+
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
+
 import view.InputView;
 import view.OutputView;
 
@@ -22,9 +21,9 @@ public class LadderController {
 
     public void run() {
         People people = repeat(this::nameRequest);
-        Ladder ladder = repeat(() -> ladderRequest(people.getCount()));
+        Ladder ladder = repeat(() -> ladderRequest(people));
 
-        outputView.printNames(people.getNames());
+        outputView.printNames(people);
         outputView.printLadder(ladder);
     }
 
@@ -44,9 +43,7 @@ public class LadderController {
         return new People(inputView.readNames());
     }
 
-    private Ladder ladderRequest(int peopleCount) {
-        return new Ladder(peopleCount,
-            inputView.readLadderHeightAndTransform(),
-            new RandomGenerateStrategy());
+    private Ladder ladderRequest(People people) {
+        return new Ladder(people, inputView.readLadderHeightAndTransform(), new RandomGenerateStrategy());
     }
 }
