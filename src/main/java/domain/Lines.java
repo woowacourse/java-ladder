@@ -17,6 +17,12 @@ public class Lines {
         this.lines = createLines(personCount, height);
     }
 
+    private void validateLadderHeight(int height) {
+        if (height < 1) {
+            throw new IllegalArgumentException("사다리의 최소 높이는 1이상이어야 합니다.");
+        }
+    }
+
     public List<Line> getLines() {
         return lines;
     }
