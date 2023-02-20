@@ -48,9 +48,9 @@ public class LineTest {
     @DisplayName("n번째 위치에서 어디로갈지 알려주는 테스트")
     void decideDirectionTest() {
         List<Bar> bars =List.of(Bar.MOVABLE_BAR, Bar.UNMOVABLE_BAR, Bar.UNMOVABLE_BAR);
-        Line line =newLine(bars);
+        Line line = new Line(bars);
 
-        assertThat(line.decideDirection(0)).isEqualTo(DIRECTION_RIGHT;
+        assertThat(line.decideDirection(0)).isEqualTo(DIRECTION_RIGHT);
         assertThat(line.decideDirection(1)).isEqualTo(DIRECTION_LEFT);
         assertThat(line.decideDirection(2)).isEqualTo(DIRECTION_DOWN);
     }
