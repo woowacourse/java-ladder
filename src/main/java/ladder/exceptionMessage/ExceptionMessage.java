@@ -14,7 +14,10 @@ public enum ExceptionMessage {
     EXCEPTION_INVALID_PLAYER_COUNT("플레이어 수는 2명 이상 26명 이하여야 합니다."),
     EXCEPTION_INVALID_PLAYER_NAME("존재하지 않는 플레이어 이름입니다."),
 
-    /*Results*/
+    /*Reward*/
+    EXCEPTION_INVALID_REWARD_LENGTH("실행 결과 이름은 1자 이상 5자 이하여야 합니다."),
+
+    /*Rewards*/
     EXCEPTION_INVALID_REWARD_COUNT("실행 결과 수는 플레이어 수와 일치해야 합니다."),
 
     /*Height*/
