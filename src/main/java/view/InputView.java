@@ -34,6 +34,17 @@ public class InputView {
         return Integer.parseInt(height);
     }
 
+    public List<String> inputResults() {
+        String results = scanner.nextLine();
+        return Arrays.asList(
+            results.split(DELIMITER));
+    }
+
+    // TODO: 2023/02/20 메서드 명 변경
+    public String inputFinalChoice() {
+        return scanner.nextLine().strip();
+    }
+
     private void validateHeightInput(String height) {
         try {
             Integer.parseInt(height);
