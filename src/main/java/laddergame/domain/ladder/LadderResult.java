@@ -44,6 +44,12 @@ public class LadderResult {
         }
     }
 
+    public List<String> getResultNamesByPosition(final List<Integer> ladderResultPositions) {
+        return ladderResultPositions.stream()
+                .map(position -> resultNames.get(position).getName())
+                .collect(Collectors.toUnmodifiableList());
+    }
+
     public List<LadderResultName> getResultNames() {
         return List.copyOf(resultNames);
     }

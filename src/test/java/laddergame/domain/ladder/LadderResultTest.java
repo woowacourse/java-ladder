@@ -2,6 +2,7 @@ package laddergame.domain.ladder;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -53,5 +54,24 @@ public class LadderResultTest {
         assertThatThrownBy(() -> LadderResult.create(invalidLadderResults, participantCount))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 사다리 결과의 개수는 4개여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("사다리 결과 위치 리스트를 입력받으면, 해당 위치에 존재하는 사다리 결과 이름을 반환한다.")
+    void getResultNamesByPosition_givenLadderResultPositions_thenReturnLadderResultNames() {
+        // given
+        final String ladderResultNames = "1000,50000,꽝,2000";
+        LadderResult ladderResult = LadderResult.create(ladderResultNames, participantCount);
+        List<Integer> ladderResultPositions = List.of(1, 0, 3, 2);
+
+        // when
+        List<String> resultNames = ladderResult.getResultNamesByPosition(ladderResultPositions);
+
+        // then
+        assertThat(resultNames.size())
+                .isEqualTo(4);
+
+        assertThat(resultNames)
+                .isEqualTo(List.of("50000", "1000", "2000", "꽝"));
     }
 }

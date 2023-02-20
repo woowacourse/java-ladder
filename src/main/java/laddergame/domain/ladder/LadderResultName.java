@@ -22,4 +22,8 @@ public class LadderResultName {
             throw new BlankException(LADDER_RESULT_NAME);
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
