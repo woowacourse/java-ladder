@@ -1,7 +1,6 @@
 package laddergame.controller;
 
 import laddergame.domain.ladder.Ladder;
-import laddergame.domain.ladder.LadderFactory;
 import laddergame.domain.participant.Participant;
 import laddergame.domain.participant.Participants;
 import laddergame.domain.rung.RungBooleanGenerator;
@@ -23,8 +22,7 @@ public class LadderGameController {
 
     public void start() {
         Participants participants = createParticipants();
-        LadderFactory ladderFactory = createLadderFactory();
-        Ladder ladder = createLadderBy(participants, ladderFactory);
+        Ladder ladder = createLadder(participants);
         printGameResult(participants, ladder);
     }
 
@@ -35,15 +33,11 @@ public class LadderGameController {
         });
     }
 
-    private LadderFactory createLadderFactory() {
+    private Ladder createLadder(final Participants participants) {
         RungBooleanGenerator rungNumberGenerator = new RungBooleanGenerator();
-        return LadderFactory.create(rungNumberGenerator);
-    }
-
-    private Ladder createLadderBy(final Participants participants, final LadderFactory ladderFactory) {
         return inputView.repeatUntilGettingValidValue(() -> {
             String maxLadderHeight = inputView.readMaxLadderHeight();
-            return ladderFactory.createLadder(maxLadderHeight, participants.size());
+            return Ladder.create(rungNumberGenerator, maxLadderHeight, participants.size());
         });
     }
 

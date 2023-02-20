@@ -10,7 +10,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_RANGE;
 import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_TYPE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class LadderFactoryTest {
@@ -26,31 +25,26 @@ public class LadderFactoryTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1", "10000"})
-    @DisplayName("1 이상의 정수 범위의 사다리 높이가 들어오면, 예외가 발생하지 않는다.")
-    void ladder_create_test(String height) {
-        // when & then
-        assertDoesNotThrow(() -> ladderFactory.createLadder(height, participantCount));
-        assertThat(ladderFactory.createLadder(height, participantCount))
-                .isInstanceOf(Ladder.class);
+    @ValueSource(strings = {"1", "5000", "10000"})
+    @DisplayName("사다리 높이가 1 이상 10000 이하이면, 예외가 발생하지 않는다.")
+    void does_not_throw_exception_if_height_is_between_1_and_10000(String height) {
+        assertDoesNotThrow(() -> ladderFactory.makeLadder(height, participantCount));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"hi", "23fgie", "@#$%$"})
-    @DisplayName("정수 값이 아닌 사다리 높이가 들어오면, 예외가 발생한다.")
-    void ladder_height_type_error_test(String height) {
-        // when & then
-        assertThatThrownBy(() -> ladderFactory.createLadder(height, participantCount))
+    @DisplayName("사다리 높이가 정수가 아니면, 예외가 발생한다.")
+    void throws_exception_if_height_is_not_integer_type(String height) {
+        assertThatThrownBy(() -> ladderFactory.makeLadder(height, participantCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_HEIGHT_TYPE.getMessage());
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "10001"})
-    @DisplayName("1~10000 범위를 벗어난 사다리 높이가 입력되면, 예외가 발생한다.")
-    void ladder_height_range_error_test(String height) {
-        // when & then
-        assertThatThrownBy(() -> ladderFactory.createLadder(height, participantCount))
+    @DisplayName("사다리 높이가 1 미만 혹은 10000 초과이면, 예외가 발생한다.")
+    void throws_exception_if_height_is_less_than_1_or_greater_than_10000(String height) {
+        assertThatThrownBy(() -> ladderFactory.makeLadder(height, participantCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_HEIGHT_RANGE.getMessage());
     }

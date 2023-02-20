@@ -21,21 +21,21 @@ public class LadderFactory {
         this.rungBooleanGenerator = rungBooleanGenerator;
     }
 
-    public static LadderFactory create(final BooleanGenerator rungBooleanGenerator) {
+    static LadderFactory create(final BooleanGenerator rungBooleanGenerator) {
         return new LadderFactory(rungBooleanGenerator);
     }
 
-    public Ladder createLadder(final String height, final int participantCount) {
-        int ladderHeight = convertToLadderHeight(height);
+    public List<Rungs> makeLadder(final String height, final int participantCount) {
+        int ladderHeight = toLadderHeight(height);
         List<Rungs> ladder = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
             ladder.add(Rungs.create(makeRungCount(participantCount), rungBooleanGenerator));
         }
-        return Ladder.create(ladder);
+        return ladder;
     }
 
-    private int convertToLadderHeight(final String height) {
-        int ladderHeight = validateHeightType(height);
+    private int toLadderHeight(final String height) {
+        int ladderHeight = toInteger(height);
         validateHeightRange(ladderHeight);
         return ladderHeight;
     }
@@ -44,7 +44,7 @@ public class LadderFactory {
         return participantCount - DEFAULT_COUNT;
     }
 
-    private int validateHeightType(final String height) {
+    private int toInteger(final String height) {
         try {
             return Integer.parseInt(height);
         } catch (NumberFormatException e) {
