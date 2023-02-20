@@ -22,10 +22,9 @@ public class LadderGenerator {
     private Row generateRow(int width) {
         List<Foothold> footholds = new ArrayList<>();
 
-        while (width-- > 0) {
+        for (int i = 0; i < width; i++) {
             addFoothold(footholds);
         }
-
         return Row.of(footholds, width);
     }
 
