@@ -1,6 +1,18 @@
+import domain.Lines;
+import domain.Players;
+import ui.input.InputView;
+
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+        String playersName = InputView.getPlayersName();
+        Players players = new Players(Arrays.asList(playersName.split(",")));
+
+        int ladderHeight = InputView.getLadderHeight();
+        Lines lines = new Lines(players.getPlayers().size(), ladderHeight);
+
+
     }
 }

@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author 베베
@@ -9,14 +10,14 @@ import java.util.List;
  */
 public class Players {
 
-    private List<Players> players;
+    private List<Player> players;
 
     public Players(List<String> names) {
         validatePlayerCount(names);
-        this.players = players;
+//        this.players = createPlayer();
     }
 
-    public List<Players> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 
