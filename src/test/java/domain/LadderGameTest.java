@@ -15,14 +15,25 @@ class LadderGameTest {
     @Test
     void createLadderGameMismatchPlayerAndResultSizeFail() {
         PlayerNames playerNames = PlayerNames.of("pobi,crong", ",");
+        Players players = Players.from(playerNames);
         ResultContents resultContents = ResultContents.of("꽝,5000,꽝꽝꽝", ",");
         Ladder ladder = TestDataManager.ladderFromHeight(5);
 
         assertThatThrownBy(() ->
-                new LadderGame(ladder, playerNames, resultContents)
+                new LadderGame(ladder, players, resultContents)
         ).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PLAYER_RESULT_SIZE_MISMATCH_ERROR_MESSAGE);
     }
+
+//    @Test
+//    void runGameTest() {
+//        LadderGame ladderGame = TestDataManager.getLadderGame();
+//        ladderGame.runGame();
+//
+//        Assertions.assertThat(ladderGame.getResultByPlayerName("pobi")).isEqualTo("5000");
+//        Assertions.assertThat(ladderGame.getResultByPlayerName("crong")).isEqualTo("꽝");
+//        Assertions.assertThat(ladderGame.getResultByPlayerName("royce")).isEqualTo("10000");
+//    }
 
 
 }

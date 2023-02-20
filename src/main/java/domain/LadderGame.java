@@ -7,18 +7,18 @@ public class LadderGame {
     private static final String PLAYER_RESULT_SIZE_MISMATCH_ERROR_MESSAGE = "게임 참여자와 결과의 개수는 동일하여야 합니다.";
 
     private final Ladder ladder;
-    private final PlayerNames playerNames;
+    private final Players players;
     private final ResultContents resultContents;
 
-    public LadderGame(Ladder ladder, PlayerNames playerNames, ResultContents resultContents) {
-        validatePlayerResultsSize(playerNames, resultContents);
+    public LadderGame(Ladder ladder, Players players, ResultContents resultContents) {
+        validatePlayerResultsSize(players, resultContents);
         this.ladder = ladder;
-        this.playerNames = playerNames;
+        this.players = players;
         this.resultContents = resultContents;
     }
 
-    private void validatePlayerResultsSize(PlayerNames playerNames, ResultContents resultContents) {
-        if (playerNames.getPlayerNames().size() != resultContents.getResultContents().size()) {
+    private void validatePlayerResultsSize(Players players, ResultContents resultContents) {
+        if (players.playerAmount() != resultContents.getResultContents().size()) {
             throw new IllegalArgumentException(PLAYER_RESULT_SIZE_MISMATCH_ERROR_MESSAGE);
         }
     }
@@ -27,12 +27,16 @@ public class LadderGame {
         ladder.buildBridges();
     }
 
+    public void runGame() {
+
+    }
+
     public Ladder getLadder() {
         return ladder;
     }
 
-    public PlayerNames getPlayerNames() {
-        return playerNames;
+    public Players getPlayers() {
+        return players;
     }
 
     public ResultContents getResultContents() {

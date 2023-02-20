@@ -3,6 +3,7 @@ package controller;
 import domain.Height;
 import domain.LadderGame;
 import domain.PlayerNames;
+import domain.Players;
 import domain.ResultContents;
 import domain.ladder.Ladder;
 import domain.ladder.strategy.GenerateBridgeStrategy;
@@ -22,21 +23,22 @@ public class LadderGameController {
     }
 
     public LadderGame initGame() {
-        PlayerNames playerNames = getPlayerNames();
+        Players players = getPlayers();
         ResultContents resultContents = getResultContents();
-        Ladder ladder = buildLadder(playerNames);
+        Ladder ladder = buildLadderByPlayerAmount(players.playerAmount());
 
-        return new LadderGame(ladder, playerNames, resultContents);
+        return new LadderGame(ladder, players, resultContents);
     }
 
     public void run(LadderGame ladderGame) {
         ladderGame.buildBridges();
+        ladderGame.runGame();
         printLadderGameResult(ladderGame);
     }
 
-    private Ladder buildLadder(PlayerNames playerNames) {
+    private Ladder buildLadderByPlayerAmount(int playerAmount) {
         Height height = inputView.requestLadderHeight();
-        return Ladder.of(playerNames, height, bridgeStrategy);
+        return Ladder.of(playerAmount, height, bridgeStrategy);
     }
 
     private ResultContents getResultContents() {
@@ -45,14 +47,15 @@ public class LadderGameController {
                 resultContentsInput, inputView.getResultContentsDelimiter());
     }
 
-    private PlayerNames getPlayerNames() {
+    private Players getPlayers() {
         String playerNamesInput = inputView.requestPlayerNames();
-        return PlayerNames.of(playerNamesInput, inputView.getPlayerNameDelimiter());
+        PlayerNames playerNames = PlayerNames.of(playerNamesInput, inputView.getPlayerNameDelimiter());
+        return Players.from(playerNames);
     }
 
     private void printLadderGameResult(LadderGame ladderGame) {
         outputView.printResultPrefix();
-        outputView.printPlayerNames(ladderGame.getPlayerNames());
+        outputView.printPlayerNames(ladderGame.getPlayers());
         outputView.printLadder(ladderGame.getLadder());
         outputView.printResult(ladderGame.getResultContents());
     }

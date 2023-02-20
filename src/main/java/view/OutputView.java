@@ -1,8 +1,8 @@
 package view;
 
 import domain.Direction;
-import domain.PlayerName;
-import domain.PlayerNames;
+import domain.Player;
+import domain.Players;
 import domain.Point;
 import domain.ResultContent;
 import domain.ResultContents;
@@ -23,9 +23,9 @@ public class OutputView {
         System.out.println(RESULT_PREFIX_MESSAGE);
     }
 
-    public void printPlayerNames(PlayerNames playerNames) {
-        for (PlayerName playerName : playerNames.getPlayerNames()) {
-            System.out.print(formatContent(playerName.getPlayerName()) + BLANK);
+    public void printPlayerNames(Players players) {
+        for (Player player : players.getPlayers()) {
+            System.out.print(formatContent(player.getPlayerName()) + BLANK);
         }
         breakLine();
     }

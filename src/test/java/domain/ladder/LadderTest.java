@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import domain.Direction;
 import domain.Height;
 import domain.Line;
-import domain.PlayerNames;
 import domain.Point;
 import domain.ladder.strategy.AlwaysGenerateBridgeStrategy;
 import java.util.List;
@@ -18,16 +17,14 @@ public class LadderTest {
     @Test
     @DisplayName("게임 참여자 수와 높이에 따라 사다리 생성")
     void createLadderSuccess() {
-        String players = "pobi,conan";
-        String delimiter = ",";
-        PlayerNames playerNames = PlayerNames.of(players, delimiter);
+        int width = 2;
         int heightSize = 4;
         Height height = new Height(heightSize);
 
-        Ladder ladder = Ladder.of(playerNames, height, new AlwaysGenerateBridgeStrategy());
+        Ladder ladder = Ladder.of(width, height, new AlwaysGenerateBridgeStrategy());
 
         List<Line> linesInLadder = ladder.getLines();
-        assertThat(linesInLadder).hasSize(playerNames.getPlayerNames().size());
+        assertThat(linesInLadder).hasSize(width);
         assertThat(ladder.getHeightSize()).isEqualTo(heightSize);
     }
 

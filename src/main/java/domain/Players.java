@@ -17,6 +17,10 @@ public class Players {
                 .collect(Collectors.toList()));
     }
 
+    public int playerAmount() {
+        return this.players.size();
+    }
+
     public List<Player> getPlayers() {
         return players;
     }
