@@ -38,7 +38,7 @@ public class LadderTest {
                 .hasMessage("사다리 높이는 최소 1, 최대 100까지 가능합니다.");
     }
 
-    private static Ladder getLadder(final BooleanGenerator booleanGenerator, final int height, final int width) {
+    private Ladder getLadder(final BooleanGenerator booleanGenerator, final int height, final int width) {
         return new Ladder(booleanGenerator, height, width);
     }
 }
