@@ -1,7 +1,7 @@
-package factory;
+package domain.players;
 
-import domain.Player;
-import domain.Players;
+import domain.players.Player;
+import domain.players.Players;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package domain;
+package domain.players;
 
 import java.util.ArrayList;
 import java.util.HashSet;

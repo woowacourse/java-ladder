@@ -1,8 +1,8 @@
 package domain;
 
-import factory.LadderFactory;
-
-import java.util.List;
+import domain.ladder.Ladder;
+import domain.ladder.LadderFactory;
+import domain.players.Players;
 
 public class LadderGame {
 

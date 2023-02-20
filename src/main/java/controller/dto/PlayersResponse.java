@@ -1,7 +1,6 @@
 package controller.dto;
 
-import domain.Player;
-import domain.Players;
+import domain.players.Players;
 
 import java.util.List;
 

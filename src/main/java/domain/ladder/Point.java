@@ -1,8 +1,6 @@
-package domain;
+package domain.ladder;
 
-import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public enum Point {
     EXIST(true),

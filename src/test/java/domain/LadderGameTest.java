@@ -1,6 +1,8 @@
 package domain;
 
-import factory.PlayersFactory;
+import domain.ladder.Ladder;
+import domain.players.Players;
+import domain.players.PlayersFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

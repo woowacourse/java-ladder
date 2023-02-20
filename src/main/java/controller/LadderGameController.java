@@ -3,12 +3,13 @@ package controller;
 import controller.dto.LadderResponse;
 import controller.dto.PlayersResponse;
 import domain.*;
-import factory.PlayersFactory;
+import domain.players.PlayersFactory;
+import domain.ladder.Ladder;
+import domain.players.Players;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderGameController {
 

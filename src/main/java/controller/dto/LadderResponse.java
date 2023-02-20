@@ -1,8 +1,8 @@
 package controller.dto;
 
-import domain.Ladder;
-import domain.Line;
-import domain.Point;
+import domain.ladder.Ladder;
+import domain.ladder.Line;
+import domain.ladder.Point;
 
 import java.util.List;
 import java.util.stream.Collectors;
