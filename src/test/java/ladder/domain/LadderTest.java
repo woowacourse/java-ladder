@@ -68,6 +68,22 @@ class LadderTest {
                 .withMessage("[ERROR] 인덱스 범위를 초과했습니다.");
     }
 
+    @Test
+    @DisplayName("사다리의 결과가 정확히 나와야 한다.")
+    void getLadderIndexResult_success() {
+        // given
+        Ladder ladder = createLadder();
+        // expect
+        assertThat(ladder.getLadderIndexResult(0))
+                .isEqualTo(2);
+        assertThat(ladder.getLadderIndexResult(1))
+                .isEqualTo(0);
+        assertThat(ladder.getLadderIndexResult(2))
+                .isEqualTo(3);
+        assertThat(ladder.getLadderIndexResult(3))
+                .isEqualTo(1);
+    }
+
     private Ladder createLadder() {
         return new Ladder(List.of(
                 new Line(List.of(Step.EXIST, Step.EMPTY, Step.EXIST)),

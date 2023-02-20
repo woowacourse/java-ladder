@@ -23,10 +23,6 @@ public class Ladder {
         return playersCount * MAX_HEIGHT_RATIO < height || height < playersCount;
     }
 
-    public boolean isLastHeight(int height) {
-        return lines.size() == height + 1;
-    }
-
     public Line findLineByIndex(int index) {
         if (isProperIndex(index)) {
             throw new IllegalArgumentException("[ERROR] 인덱스 범위를 초과했습니다.");
@@ -36,6 +32,37 @@ public class Ladder {
 
     private boolean isProperIndex(int index) {
         return index < 0 || index >= lines.size();
+    }
+
+    public int getLadderIndexResult(int index) {
+        return getLadderIndexResult(0, index);
+    }
+
+    private int getLadderIndexResult(int height, int index) {
+        if (height >= lines.size()) {
+            return index;
+        }
+        Line line = findLineByIndex(height);
+        List<Step> steps = line.getSteps();
+        if (index <= 0) { // 왼쪽에 스탭이 없을 때
+            if (steps.get(index) == Step.EXIST) { // 오른쪽에 스탭이 있으면
+                return getLadderIndexResult(height + 1, index + 1); // 오른쪽 밑으로
+            }
+            return getLadderIndexResult(height + 1, index); // 스탭이 없다면 밑으로
+        }
+        if (index >= steps.size()) { // 오른쪽에 스탭이 없을 때
+            if (steps.get(index - 1) == Step.EXIST) { // 왼쪽에 스탭이 있으면
+                return getLadderIndexResult(height + 1, index - 1); // 왼쪽 밑으로
+            }
+            return getLadderIndexResult(height + 1, index); // 스탭이 없다면 밑으로
+        }
+        if (steps.get(index) == Step.EXIST) { // 오른쪽에 스탭이 있을 때
+            return getLadderIndexResult(height + 1, index + 1);
+        }
+        if (steps.get(index - 1) == Step.EXIST) {
+            return getLadderIndexResult(height + 1, index - 1);
+        }
+        return getLadderIndexResult(height + 1, index); // 밑으로
     }
 
     public int getHeight() {
