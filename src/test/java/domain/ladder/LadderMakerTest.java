@@ -24,7 +24,7 @@ public class LadderMakerTest {
     void createLine_Fail(int height) {
         assertThatThrownBy(() -> ladderMaker.make(5, height))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.HEIGHT_ERROR.getMessage());
+                .hasMessageContaining("사다리 높이는 1이상 100이하의 자연수만 가능합니다.");
     }
 
     @ParameterizedTest

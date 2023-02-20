@@ -36,7 +36,7 @@ public class LineTest {
         booleanGenerator = new MockBooleanGenerator(createRandomFlag(personCount));
         assertThatThrownBy(() -> new Line(personCount, booleanGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.PLAYER_SIZE_ERROR.getMessage());
+                .hasMessageContaining("게임 참여자 수는 최소 2명 최대 50명까지 가능합니다.");
     }
 
     @ParameterizedTest
