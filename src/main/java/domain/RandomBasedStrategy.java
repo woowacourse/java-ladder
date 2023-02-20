@@ -11,8 +11,11 @@ public class RandomBasedStrategy implements PointGenerateStrategy {
         if (previousPoint == Point.EXIST) {
             return Point.NOT_EXIST;
         }
-        return Point.generate(random);
-        // TODO : generate메서드가 필요한가?
+        return generate();
+    }
+
+    public static Point generate() {
+        return Point.of(random.nextBoolean());
     }
 
 }
