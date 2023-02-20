@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class NameTest {
@@ -30,9 +31,10 @@ class NameTest {
     }
 
     @Test
+    @NullSource
     @DisplayName("이름에 NULL이 들어오면 예외를 던진다.")
-    void throwExceptionWhenNameIsNull() {
-        assertThatThrownBy(() -> new Name(null))
+    void throwExceptionWhenNameIsNull(String value) {
+        assertThatThrownBy(() -> new Name(value))
                 .isInstanceOf(NullPointerException.class);
     }
 
