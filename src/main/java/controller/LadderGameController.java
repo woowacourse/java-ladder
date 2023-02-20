@@ -2,7 +2,6 @@ package controller;
 
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.ladder.Line;
 import domain.user.User;
 import domain.user.Users;
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ public class LadderGameController {
 
     public void initialize() {
         users = initializeUsers();
-        ladder = createLadder(users.getPersonCount(), initializeHeight());
+        ladder = new Ladder(users.getPersonCount(), initializeHeight());
     }
 
     public void run() {
@@ -56,14 +55,5 @@ public class LadderGameController {
             System.out.println(e.getMessage());
             return initializeHeight();
         }
-    }
-
-    public Ladder createLadder(int personCount, Height height) {
-        List<Line> lines = new ArrayList<>();
-        int ladderHeight = height.getHeight();
-        while (ladderHeight-- > 0) {
-            lines.add(new Line(personCount));
-        }
-        return new Ladder(lines, height);
     }
 }
