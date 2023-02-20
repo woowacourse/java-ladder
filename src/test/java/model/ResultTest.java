@@ -6,6 +6,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+/**
+ * 사다리 게임 결과 값을 Wrapping하는 클래스.
+ * 원시타입 데이터의 getter는 테스트하지 않는다.
+ */
 public class ResultTest {
     private static final int MAXIMUM_RESULT_LENGTH = 5;
     private static final String MAXIMUM_RESULT_LENGTH_ERROR = "[ERROR] 게임 결과 입력값 길이는 %d 이하로만 가능합니다.";
