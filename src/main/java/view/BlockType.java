@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum BlockType {
-    CROSS("-----", true),
-    NOT_CROSS("     ", false);
+    CROSS("-", true),
+    NOT_CROSS(" ", false);
 
     private final String type;
     private final boolean isCross;

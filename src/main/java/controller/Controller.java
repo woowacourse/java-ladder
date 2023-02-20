@@ -60,6 +60,6 @@ public class Controller {
 
     private void printResult(Players players, List<Line> ladder) {
         outputView.printNames(players);
-        outputView.printLadders(ladder);
+        outputView.printLadders(ladder, players.getPlayersName());
     }
 }

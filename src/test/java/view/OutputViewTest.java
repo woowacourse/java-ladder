@@ -27,9 +27,9 @@ public class OutputViewTest {
         //when
         System.setOut(new PrintStream(out));
         outputView.printNames(players);
-        String expect = "judy " + "   ako" + " pobi";
+        String expect = "judy     " + "ako      " + "pobi     ";
 
         //then
-        Assertions.assertThat(expect).isEqualTo(out.toString().trim());
+        Assertions.assertThat(expect.trim()).isEqualTo(out.toString().trim());
     }
 }
