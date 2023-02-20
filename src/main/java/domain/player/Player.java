@@ -1,4 +1,6 @@
-package domain;
+package domain.player;
+
+import domain.ResultContent;
 
 public class Player {
     private final PlayerName playerName;

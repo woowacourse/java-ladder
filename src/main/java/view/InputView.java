@@ -1,6 +1,6 @@
 package view;
 
-import domain.Height;
+import domain.ladder.Height;
 import java.util.Scanner;
 
 public class InputView {

@@ -1,9 +1,9 @@
 package util;
 
-import domain.Height;
+import domain.ladder.Height;
 import domain.LadderGame;
-import domain.PlayerNames;
-import domain.Players;
+import domain.player.PlayerNames;
+import domain.player.Players;
 import domain.ResultContents;
 import domain.ladder.Ladder;
 import domain.ladder.strategy.AlwaysGenerateBridgeStrategy;

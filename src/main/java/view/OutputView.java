@@ -1,9 +1,9 @@
 package view;
 
-import domain.Direction;
-import domain.Player;
-import domain.Players;
-import domain.Point;
+import domain.ladder.Direction;
+import domain.player.Player;
+import domain.player.Players;
+import domain.ladder.Point;
 import domain.ResultContent;
 import domain.ResultContents;
 import domain.ladder.Ladder;

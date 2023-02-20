@@ -2,10 +2,6 @@ package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.Direction;
-import domain.Height;
-import domain.Line;
-import domain.Point;
 import domain.ladder.strategy.AlwaysGenerateBridgeStrategy;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
