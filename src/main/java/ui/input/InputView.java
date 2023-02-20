@@ -1,5 +1,6 @@
 package ui.input;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,10 +20,27 @@ public class InputView {
         return InputVerifier.validateName(scanner.next());
     }
 
-    public static int getLadderHeight(){
+    public static int getLadderHeight() {
         System.out.println("\n" + INPUT_LADDER_HEIGHT);
-        int ladderHeight = scanner.nextInt();
-        InputVerifier.validateLadderHeight(ladderHeight);
-        return ladderHeight;
+        while (true) {
+            try {
+                int ladderHeight = inputNaturalNumber();
+                validateNaturalNumber(ladderHeight);
+                return ladderHeight;
+            } catch (IllegalArgumentException | InputMismatchException e) {
+                System.out.println("사다리 높이는 자연수로 입력해 주세요");
+            }
+        }
+    }
+
+    private static void validateNaturalNumber(int number) {
+        if (number <= 0) {
+            throw new IllegalArgumentException("사다리 높이는 자연수로 입력해 주세요");
+        }
+    }
+
+    private static int inputNaturalNumber() {
+        scanner.nextLine();
+        return Integer.parseInt(scanner.nextLine());
     }
 }
