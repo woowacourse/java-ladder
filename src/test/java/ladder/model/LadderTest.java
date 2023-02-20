@@ -7,13 +7,12 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
     @Test
     @DisplayName("주어진 입구에 따른 출구를 잘 찾는지 테스트")
-    void findExitTest(){
+    void findExitTest() {
         LadderGenerator generator = new LadderGenerator(new LadderGeneratorTest.TestLineCreateDecider(newArrayList(true, false, false, true)));
         Ladder ladder = generator.generateLadder(3, new Height(2));
 
