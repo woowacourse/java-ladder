@@ -11,13 +11,13 @@ import java.util.stream.Collectors;
 import view.InputView;
 import view.OutputView;
 
-public class LadderController {
+public class LadderGameController {
     private static final String NAME_DELIMITER = ",";
     private final InputView inputView;
     private final OutputView outputView;
     private LadderGame ladderGame;
 
-    public LadderController() {
+    public LadderGameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
     }
