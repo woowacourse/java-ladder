@@ -8,7 +8,7 @@ public class OutputView {
     public static final String RESULT_TITLE = "실행결과";
     public static final String POINT_SEPARATOR = "|";
 
-    public void printGeneratedLadder(List<String> playerNames, List<List<Boolean>> ladder) {
+    public void printGeneratedLadder(final List<String> playerNames, final List<List<Boolean>> ladder) {
         printLine(RESULT_TITLE);
         printEmptyLine();
         int nameFormatSize = getPlayerNameSize(playerNames);
@@ -16,14 +16,14 @@ public class OutputView {
         printLadder(ladder, nameFormatSize);
     }
 
-    private int getPlayerNameSize(List<String> playerNames) {
+    private int getPlayerNameSize(final List<String> playerNames) {
         return playerNames.stream()
                 .map(String::length)
                 .max(Comparator.naturalOrder())
                 .orElse(0);
     }
 
-    private void printPlayerNames(List<String> playerNames, int nameFormatSize) {
+    private void printPlayerNames(final List<String> playerNames, final int nameFormatSize) {
         StringBuilder stringBuilder = new StringBuilder();
         String nameFormat = String.format("%%%ds", nameFormatSize);
         playerNames.forEach((playerName) -> {
@@ -33,7 +33,7 @@ public class OutputView {
         printLine(stringBuilder.toString());
     }
 
-    private void printLadder(List<List<Boolean>> ladder, int nameFormatSize) {
+    private void printLadder(final List<List<Boolean>> ladder, final int nameFormatSize) {
         StringBuilder stringBuilder = new StringBuilder();
         for (List<Boolean> line : ladder) {
             stringBuilder.append(getLineUi(line, nameFormatSize));
@@ -42,7 +42,7 @@ public class OutputView {
         }
     }
 
-    private String getLineUi(List<Boolean> line, int nameFormatSize) {
+    private String getLineUi(final List<Boolean> line, final int nameFormatSize) {
         StringBuilder stringBuilder = new StringBuilder();
         getFormattedPoint(nameFormatSize - 1, false, stringBuilder);
         line.forEach(point -> getFormattedPoint(nameFormatSize, point, stringBuilder));
@@ -54,7 +54,7 @@ public class OutputView {
         stringBuilder.append(POINT_SEPARATOR);
     }
 
-    private String getPointUi(boolean point, int nameFormatSize) {
+    private String getPointUi(final boolean point, final int nameFormatSize) {
         return String.valueOf(PointUi.getPointUi(point))
                 .repeat(Math.max(0, nameFormatSize));
     }

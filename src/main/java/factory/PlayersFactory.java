@@ -12,7 +12,7 @@ public class PlayersFactory {
         return new Players(generatePlayers(playerNames));
     }
 
-    private static List<Player> generatePlayers(List<String> playerNames) {
+    private static List<Player> generatePlayers(final List<String> playerNames) {
         return playerNames.stream()
                 .map(Player::new)
                 .collect(Collectors.toUnmodifiableList());
