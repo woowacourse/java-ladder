@@ -9,8 +9,8 @@
 ## 리팩터링 목록
 
 - [x] 테스트 리팩터링
-  - [x] LineTest DisplayName 및 메서드명, ParameterizedTest
-  - [x] LineGeneratorTest BridgeGenerator 변수로, 변수명 수정
+  - [x] `LineTest` - DisplayName 및 메서드명, ParameterizedTest
+  - [x] `LineGeneratorTest` - BridgeGenerator를 변수로, 변수명 수정
 - [x] 참가자들 일급 컬렉션
 - [x] 참가자 이름이 같으면 같은 참가자로 취급
 - [x] 참가자 클래스명을 Person 에서 Participant로 변경
@@ -51,13 +51,11 @@
 ### Bridge
 
 - [x] 주어지는 브릿지와 연속인지 알 수 있다.
-- [x] 출력 문자를 알 수 있다.
+- [x] 존재하는 브릿지인지 알 수있다.
 
 ### Input
 
 - [x] 사람 이름은 "," 로 구분한다.
-- [x] 사람 이름은 중복될 수 없다.
-- [x] 사람은 2명 이상이어야 한다.
 - [x] 최대 사다리 높이를 입력받는다.
 
 ### Output
