@@ -1,6 +1,7 @@
 package laddergame.view;
 
 import laddergame.domain.Ladder;
+import laddergame.domain.Link;
 import laddergame.domain.Names;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public enum OutputView {
 
     public static void printLadder(final Names names, final Ladder ladder) {
         StringBuilder result = new StringBuilder();
-        ladder.getLadder().forEach(line -> result.append(makeLadderFormat(line.getLine(), names)));
+        ladder.getLadder().forEach(line -> result.append(makeLadderFormat(line.getFloor(), names)));
         System.out.println(result);
     }
 
@@ -45,10 +46,10 @@ public enum OutputView {
         return String.format("%s%s", name, repeat);
     }
 
-    private static String makeLadderFormat(final List<Boolean> line, final Names names) {
+    private static String makeLadderFormat(final List<Link> line, final Names names) {
         final StringBuilder result = new StringBuilder(setUpLadder(names.getFirstNameLengthDividedByTwoRounded()));
 
-        line.forEach(existences -> result.append(makeLine(existences, names.findMaxNameLength())));
+        line.forEach(existences -> result.append(makeLine(existences.isLink(), names.findMaxNameLength())));
         result.append(System.lineSeparator());
 
         return result.toString();

@@ -46,8 +46,8 @@ public class FloorTest {
 
             //then
             assertThat(line)
-                    .extracting(Floor::getLine)
-                    .isEqualTo(List.of(true, false));
+                    .extracting(Floor::getFloor)
+                    .isEqualTo(List.of(Link.CONNECTION, Link.DISCONNECTION));
         }
     }
 
@@ -60,8 +60,8 @@ public class FloorTest {
 
         //then
         assertThat(line)
-                .extracting(Floor::getLine)
-                .isEqualTo(List.of(true, false));
+                .extracting(Floor::getFloor)
+                .isEqualTo(List.of(Link.CONNECTION, Link.DISCONNECTION));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class FloorTest {
         final Floor line = Floor.from(3);
 
         //when
-        final int size = new HashSet<>(line.getLine()).size();
+        final int size = new HashSet<>(line.getFloor()).size();
 
         //then
         assertThat(size)
