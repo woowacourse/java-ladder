@@ -1,15 +1,27 @@
 package laddergame.domain.participant;
 
 import laddergame.domain.exception.DuplicateException;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ParticipantsTest {
+
+    private String participantNames;
+
+    @BeforeAll
+    void init() {
+        participantNames = "pobi,honux,crong,jk";
+    }
 
     @ParameterizedTest
     @ValueSource(strings = {"pobi"})
@@ -42,5 +54,54 @@ public class ParticipantsTest {
 
         // then
         assertThat(actualSize).isEqualTo(expectedSize);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi", "honux", "crong", "jk"})
+    @DisplayName("참여자 리스트에 존재하는 참여자 이름을 입력하면, 해당 참여자 이름을 반환한다.")
+    void getValidParticipantNames_givenValidParticipantName_thenReturnParticipantName(final String validParticipantName) {
+        // given
+        Participants participants = Participants.create(participantNames);
+
+        // when
+        List<String> targetParticipantNames = participants.getValidParticipantNames(validParticipantName);
+
+        // then
+        assertThat(targetParticipantNames.size())
+                .isEqualTo(1);
+
+        assertThat(targetParticipantNames)
+                .isEqualTo(List.of(validParticipantName));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"all"})
+    @DisplayName("all을 입력했다면, 전체 참여자 이름 리스트를 반환한다.")
+    void getValidParticipantNames_givenAll_thenReturnAllParticipantNames(final String allParticipantName) {
+        // given
+        Participants participants = Participants.create(participantNames);
+
+        // when
+        List<String> targetParticipantNames = participants.getValidParticipantNames(allParticipantName);
+
+        // then
+        assertThat(targetParticipantNames.size())
+                .isEqualTo(4);
+
+        assertThat(targetParticipantNames)
+                .isEqualTo(List.of("pobi", "honux", "crong", "jk"));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"pobib", "hoho", "", " "})
+    @DisplayName("참여자 리스트에 존재하지 않는 참여자 이름을 입력하면, 예외가 발생한다.")
+    void getValidParticipantNames_givenInvalidParticipantName_thenFail(final String invalidParticipantName) {
+        // given
+        Participants participants = Participants.create(participantNames);
+
+        // when, then
+        assertThatThrownBy(() -> participants.getValidParticipantNames(invalidParticipantName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 참여자 리스트에 존재하지 않습니다. 현재 참여자 리스트 = " + participantNames);
     }
 }

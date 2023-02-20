@@ -11,7 +11,9 @@ public class Participants {
     private static final int MIN_COUNT = 1;
     private static final String DELIMITER = ",";
     private static final String PARTICIPANTS = "참가자는";
+    private static final String ALL_PARTICIPANTS = "all";
     private static final String INVALID_PARTICIPANT_COUNT = "[ERROR] %s 최소 %d명 이상 입력해야 합니다.";
+    private static final String INVALID_PARTICIPANT_NAME = "[ERROR] 참여자 리스트에 존재하지 않습니다. 현재 참여자 리스트 = %s";
 
     private final List<Participant> participants;
 
@@ -57,6 +59,23 @@ public class Participants {
     private List<Participant> makeParticipants(final List<String> participantNames) {
         return participantNames.stream()
                 .map(Participant::create)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<String> getValidParticipantNames(final String participantName) {
+        List<String> participantNames = getParticipantNames();
+        if (participantName.equalsIgnoreCase(ALL_PARTICIPANTS)) {
+            return participantNames;
+        }
+        if (!participantNames.contains(participantName)) {
+            throw new IllegalArgumentException(String.format(INVALID_PARTICIPANT_NAME, String.join(",", participantNames)));
+        }
+        return List.of(participantName);
+    }
+
+    private List<String> getParticipantNames() {
+        return participants.stream()
+                .map(Participant::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
 
