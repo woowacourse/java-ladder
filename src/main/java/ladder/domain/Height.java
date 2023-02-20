@@ -23,7 +23,7 @@ public class Height {
     }
 
     private boolean isShort(final int value) {
-        return value < MINIMUM_HEIGHT;
+        return MINIMUM_HEIGHT > value;
     }
 
     private boolean isLong(final int value) {

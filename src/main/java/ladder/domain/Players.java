@@ -40,7 +40,7 @@ public class Players {
     }
 
     private boolean isSmallSize(final List<Player> players) {
-        return players.size() < MINIMUM_PLAYER_SIZE;
+        return MINIMUM_PLAYER_SIZE > players.size();
     }
 
     private boolean isLargeSize(final List<Player> players) {
