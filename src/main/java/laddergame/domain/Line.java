@@ -13,7 +13,7 @@ public class Line {
 
     private void validate(final List<Boolean> points) {
         if (points.isEmpty()) {
-            throw new IllegalArgumentException("boolean 리스트는 비어있을 수 없습니다.");
+            throw new IllegalArgumentException("사다리의 가로는 한 칸 이상이어야합니다.");
         }
         if (hasAdjacentRung(points)) {
             throw new IllegalArgumentException("사다리의 가로 라인은 겹칠 수 없습니다.");
