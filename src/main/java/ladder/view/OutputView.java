@@ -2,6 +2,8 @@ package ladder.view;
 
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.BiConsumer;
 
 public class OutputView {
 
@@ -41,6 +43,11 @@ public class OutputView {
     public void printChosePlayerResult(String result) {
         System.out.println("실행 결과");
         System.out.println(result);
+    }
+
+    public void printAllPlayerResults(Map<String, String> matchingResults) {
+        System.out.println("실행 결과");
+        matchingResults.forEach((key, value) -> System.out.println(key + " : " + value));
     }
 
     public void printExceptionMessage(String message) {
