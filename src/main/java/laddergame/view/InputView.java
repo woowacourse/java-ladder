@@ -1,7 +1,7 @@
 package laddergame.view;
 
-import laddergame.Height;
-import laddergame.Players;
+import laddergame.domain.Height;
+import laddergame.domain.Players;
 
 import java.util.Arrays;
 import java.util.List;

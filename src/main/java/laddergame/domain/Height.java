@@ -1,4 +1,4 @@
-package laddergame;
+package laddergame.domain;
 
 public class Height {
     private static final int FINISH_NUMBER = 0;

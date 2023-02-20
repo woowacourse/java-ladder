@@ -1,6 +1,5 @@
 package laddergame.domain;
 
-import laddergame.Line;
 import laddergame.util.TrueOrFalseGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

@@ -1,8 +1,8 @@
 package laddergame.controller;
 
-import laddergame.Height;
-import laddergame.Ladder;
-import laddergame.Players;
+import laddergame.domain.Height;
+import laddergame.domain.Ladder;
+import laddergame.domain.Players;
 import laddergame.util.TrueOrFalseGenerator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
