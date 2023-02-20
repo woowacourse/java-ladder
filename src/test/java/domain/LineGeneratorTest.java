@@ -1,49 +1,38 @@
 package domain;
 
-import org.junit.jupiter.api.Assertions;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 public class LineGeneratorTest {
-    private final LineGenerator lineGenerator = new LineGenerator(new RandomLinkGenerator());
-
-    @RepeatedTest(100)
-    @DisplayName("랜덤으로 생성된 Line이 유효한지 테스트")
-    void randomLineValidateTest() {
-        int personCount = 4;
-        final Line generatedLine = lineGenerator.generate(personCount);
-        Assertions.assertDoesNotThrow(() -> validateLine(generatedLine));
-    }
 
     @Test
-    @DisplayName("Ladder의 라인이 겸치지 않으면 정상 작동")
-    void unContinuousLineTest() {
-        final Line line = new Line(List.of(Link.LINKED, Link.UNLINKED, Link.LINKED));
-        Assertions.assertDoesNotThrow(() -> validateLine(line));
+    @DisplayName("generate 메서드가 조건에 맞는 라인을 반환하는지 테스트")
+    void generateTest() {
+        //given
+        final List<Link> input = List.of(Link.LINKED, Link.LINKED);
+        final LineGenerator lineGenerator = new LineGenerator(new TestLinkGenerator(input));
+        //when
+        final Line line = lineGenerator.generate(4);
+        //then
+        Assertions.assertThat(line.getLinks())
+                .containsExactly(Link.LINKED, Link.UNLINKED, Link.LINKED);
     }
 
-    @Test
-    @DisplayName("Ladder의 라인이 겸치면 예외 처리")
-    void continuousLineTest() {
-        final Line line = new Line(List.of(Link.LINKED, Link.LINKED, Link.LINKED));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> validateLine(line));
-    }
+    class TestLinkGenerator implements LinkGenerator {
+        private final Queue<Link> links;
 
-    private void validateLine(final Line line) {
-        Link state = Link.UNLINKED;
-        for (final Link link : line.getLinks()) {
-            state = comparePastPointAndPresentPoint(state, link);
+        public TestLinkGenerator(final List<Link> links) {
+            this.links = new LinkedList<>(links);
         }
-    }
 
-    private Link comparePastPointAndPresentPoint(Link pastLink, final Link link) {
-        if (link.isLink() && pastLink.isLink()) {
-            throw new IllegalArgumentException();
+        @Override
+        public Link generate() {
+            return links.poll();
         }
-        pastLink = link;
-        return pastLink;
     }
 }
