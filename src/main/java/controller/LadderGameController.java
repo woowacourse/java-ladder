@@ -52,7 +52,8 @@ public class LadderGameController {
     }
 
     private Ladder buildLadderByPlayerAmount(int playerAmount) {
-        Height height = inputView.requestLadderHeight();
+        int heightInput = inputView.requestLadderHeight();
+        Height height = new Height(heightInput);
         return Ladder.of(playerAmount, height, bridgeStrategy);
     }
 

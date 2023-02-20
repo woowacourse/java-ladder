@@ -1,6 +1,5 @@
 package view;
 
-import domain.ladder.Height;
 import java.util.Scanner;
 
 public class InputView {
@@ -19,10 +18,10 @@ public class InputView {
         return requestUserInput(PLAYER_NAME_INPUT_MESSAGE);
     }
 
-    public Height requestLadderHeight() {
+    public int requestLadderHeight() {
         String heightInput = requestUserInput(LADDER_HEIGHT_INPUT_MESSAGE);
         try {
-            return new Height(Integer.parseInt(heightInput));
+            return Integer.parseInt(heightInput);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(NON_INTEGER_ERROR_MESSAGE);
         }
