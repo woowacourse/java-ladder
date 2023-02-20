@@ -1,17 +1,15 @@
 import controller.LadderController;
+import model.LadderMaker;
 import utils.LadderApplicationConfig;
-import utils.LadderStatus;
 
 public class LadderApplication {
 
     public static void main(String[] args) {
         LadderApplicationConfig config = new LadderApplicationConfig();
         LadderController controller = config.ladderController();
-        LadderStatus ladderStatus = LadderStatus.INPUT_PARTICIPANT_NAMES;
+        LadderMaker ladderMaker = config.ladderMaker();
 
-        while (ladderStatus.canPlay()) {
-            ladderStatus = controller.run(ladderStatus);
-        }
+        controller.run(ladderMaker);
     }
 
 }

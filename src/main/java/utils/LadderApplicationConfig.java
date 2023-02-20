@@ -1,7 +1,6 @@
 package utils;
 
 import controller.LadderController;
-import java.lang.reflect.Proxy;
 import java.util.Scanner;
 import model.LadderMaker;
 import strategy.RandomPassGenerator;
@@ -13,8 +12,11 @@ public class LadderApplicationConfig {
     public LadderController ladderController() {
         InputView inputView = new InputView(new Scanner(System.in));
         OutputView outputView = new OutputView();
-        LadderMaker ladderMaker = new LadderMaker(new RandomPassGenerator());
 
-        return new LadderController(inputView, outputView, ladderMaker);
+        return new LadderController(inputView, outputView);
+    }
+
+    public LadderMaker ladderMaker() {
+        return new LadderMaker(new RandomPassGenerator());
     }
 }
