@@ -16,8 +16,8 @@ public class Participants {
         if (Objects.isNull(names)) {
             throw new IllegalArgumentException("참여자 이름 목록은 null이 될 수 없습니다.");
         }
-        if (names.isEmpty()) {
-            throw new IllegalArgumentException("참여자 이름 목록은 비어있을 수 없습니다.");
+        if (names.isEmpty() || names.size() == 1) {
+            throw new IllegalArgumentException("참여자는 2명 이상이어야 합니다.");
         }
     }
 

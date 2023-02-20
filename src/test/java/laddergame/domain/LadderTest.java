@@ -30,11 +30,10 @@ class LadderTest {
     @Test
     void throwExceptionWhenHeightIsNull() {
         //given
-        final Participants participants = new Participants(List.of(NAME_HYENA));
         final Height height = null;
 
         //when,then
-        assertThatThrownBy(() -> new Ladder(participants, height, TEST_BOOLEAN_GENERATOR))
+        assertThatThrownBy(() -> new Ladder(PARTICIPANTS_SIZE_2, height, TEST_BOOLEAN_GENERATOR))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
