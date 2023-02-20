@@ -24,7 +24,8 @@ public class LineTest {
 
         line.changePointDirectionAt(rightDown, 0);
 
-        assertThat(line.getPoints().get(0).matchDirection(rightDown)).isTrue();
+        assertThat(line.getPoints().get(0).matchDirection(rightDown))
+                .isTrue();
     }
 
     @Test
