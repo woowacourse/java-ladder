@@ -32,10 +32,10 @@ public class Line {
     }
 
     private Point getCurrentPoint(int pointIndex) {
-        Point currentPoint = Point.generate();
+        Point currentPoint = Point.choosePoint();
         int previousPointIndex = pointIndex - 1;
         if (previousPointIndex >= 0) {
-            currentPoint = Point.generate(points.get(pointIndex - 1));
+            currentPoint = Point.choosePoint(points.get(pointIndex - 1));
         }
         return currentPoint;
     }

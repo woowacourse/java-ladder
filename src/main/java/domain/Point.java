@@ -16,19 +16,19 @@ public enum Point {
 
     private static final Random random = new Random();
 
-    public static Point generate(final Point previousPoint) {
+    public static Point choosePoint(final Point previousPoint) {
         if (previousPoint == EXIST) {
             return NOT_EXIST;
         }
-        return generate();
+        return choosePoint();
     }
 
-    public static Point generate() {
+    public static Point choosePoint() {
         return of(random.nextBoolean());
     }
 
     private static Point of(final boolean isExist) {
-        if (isExist) {
+        if (EXIST.isExist() == isExist) {
             return EXIST;
         }
         return NOT_EXIST;
