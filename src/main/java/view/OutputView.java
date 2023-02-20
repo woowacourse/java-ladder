@@ -1,6 +1,8 @@
 package view;
 
+import dto.GameResult;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import model.Ladder;
 import model.LadderResults;
@@ -16,6 +18,7 @@ public class OutputView {
     private static final String LAST_FORMAT = "%4s";
     private static final String KOREAN_NORMAL_FORMAT = "%-5s";
     private static final String KORAN_LAST_FORMAT = "%3s";
+    private static final String TOTAL_RESULT_FORMAT = "%s : %s";
     private static final String LEFT_LEG = "    |";
     private static final String LEG = "|";
     private static final String PASSABLE = "-----";
@@ -36,7 +39,18 @@ public class OutputView {
         notice("최대 사다리 높이는 몇 개인가요?");
     }
 
-    public void noticeResult() {
+    public void noticeLadderResult() {
+        print(System.lineSeparator());
+        notice("사다리 결과");
+        print(System.lineSeparator());
+    }
+
+    public void noticeFindResultOfName() {
+        print(System.lineSeparator());
+        notice("결과를 보고 싶은 사람은?");
+    }
+
+    public void noticeGameResult() {
         print(System.lineSeparator());
         notice("실행결과");
     }
@@ -61,7 +75,7 @@ public class OutputView {
         IntStream.range(0, totalSize)
                 .mapToObj(index -> mapToLadderResultLog(ladderResults.getLadderResultOfIndex(index), totalSize, index))
                 .forEach(this::print);
-        System.out.println();
+        print(System.lineSeparator());
     }
 
     private String mapToLadderResultLog(String ladderResult, int totalSize, int index) {
@@ -118,6 +132,19 @@ public class OutputView {
             return PASSABLE;
         }
         return UN_PASSABLE;
+    }
+
+    public void printResultOfName(String gameResult) {
+        print(gameResult);
+        print(System.lineSeparator());
+    }
+
+    public void printTotalResult(List<GameResult> gameResults) {
+        String totalResultLog = gameResults.stream()
+                .map(result -> String.format(TOTAL_RESULT_FORMAT, result.getName(), result.getLadderResult()))
+                .collect(Collectors.joining(System.lineSeparator()));
+        print(totalResultLog);
+        print(System.lineSeparator());
     }
 
     private void print(String message) {
