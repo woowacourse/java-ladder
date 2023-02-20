@@ -17,13 +17,6 @@ class UserTest {
     @Nested
     @DisplayName("유저 생성 테스트")
     class MakeUserTest {
-        @DisplayName("변환된 입력값을 통해 올바르게 유저가 생성되는지 확인한다.")
-        @ParameterizedTest
-        @ValueSource(strings = {"i", "am", "fun", "dino", "mango"})
-        void shouldSuccessMakeUser(String name) {
-            assertDoesNotThrow(() -> new User(name));
-        }
-
         @DisplayName("생성된 유저 객체가 올바르게 저장되는지 확인한다.")
         @ParameterizedTest
         @ValueSource(strings = {"i", "am", "fun", "dino", "mango"})
