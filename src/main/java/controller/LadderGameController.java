@@ -1,10 +1,10 @@
 package controller;
 
 import domain.Height;
-import domain.Ladder;
-import domain.Line;
-import domain.User;
-import domain.Users;
+import domain.ladder.Ladder;
+import domain.ladder.Line;
+import domain.user.User;
+import domain.user.Users;
 import java.util.ArrayList;
 import java.util.List;
 import utils.RandomNumberGenerator;
