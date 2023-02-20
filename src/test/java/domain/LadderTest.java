@@ -20,7 +20,7 @@ public class LadderTest {
         int lineSize = 31;
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < lineSize; i++) {
-            lines.add(new Line(10));
+            lines.add(new Line(List.of(Point.EXIST, Point.NOT_EXIST, Point.NOT_EXIST)));
         }
         Assertions.assertThatThrownBy(() -> new Ladder(lines))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -42,7 +42,7 @@ public class LadderTest {
     void lineSizeTest(int lineSize) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < lineSize; i++) {
-            lines.add(new Line(10));
+            lines.add(new Line(List.of(Point.EXIST, Point.NOT_EXIST, Point.NOT_EXIST)));
         }
         Ladder ladder = new Ladder(lines);
         assertThat(ladder.getLines().size()).isEqualTo(lineSize);
