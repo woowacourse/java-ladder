@@ -1,10 +1,10 @@
 package controller;
 
-import domain.Ladder;
-import domain.LadderBuilder;
-import domain.LadderHeight;
-import domain.LadderWidth;
-import domain.Users;
+import domain.ladder.Ladder;
+import domain.ladder.LadderBuilder;
+import domain.ladder.LadderHeight;
+import domain.ladder.LadderWidth;
+import domain.user.Users;
 import domain.util.RandomPointGenerator;
 import view.InputView;
 import view.OutputView;

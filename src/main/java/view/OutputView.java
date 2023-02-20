@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import domain.Ladder;
-import domain.Line;
-import domain.User;
-import domain.Users;
+import domain.ladder.Ladder;
+import domain.ladder.Line;
+import domain.user.User;
+import domain.user.Users;
 import domain.util.Point;
 
 public class OutputView {
