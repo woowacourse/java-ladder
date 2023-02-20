@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.ExistLineGenerator;
 import util.NonExistLineGenerator;
-import util.RandomLineGenerator;
+import util.LineStatusMaker;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,7 +15,7 @@ public class LineTest {
     @DisplayName("참가자수-1만큼 status 생성")
     void makeLine() {
         int numberOfLineStatus = 3;
-        Line line = new Line(numberOfLineStatus, new RandomLineGenerator());
+        Line line = new Line(numberOfLineStatus, new LineStatusMaker());
         assertThat(line.getLine().size()).isEqualTo(numberOfLineStatus);
     }
 
@@ -23,7 +23,7 @@ public class LineTest {
     @DisplayName("라인이 겹치는 경우가 존재하는지 확인")
     void makeRandomLines() {
         int numberOfLineStatus = 1000;
-        Line line = new Line(numberOfLineStatus, new RandomLineGenerator());
+        Line line = new Line(numberOfLineStatus, new LineStatusMaker());
 
         for (int i = 0; i < numberOfLineStatus - 1; i++) {
             int rightLineStatusIndex = i + 1;

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.LineGenerator;
-import util.RandomLineGenerator;
+import util.LineStatusMaker;
 
 public class LadderTest {
 
@@ -15,7 +15,7 @@ public class LadderTest {
     void makeLadder() {
         int numberOfWalls = 4;
         Height height = new Height(5);
-        LineGenerator lineGenerator = new RandomLineGenerator();
+        LineGenerator lineGenerator = new LineStatusMaker();
         Ladder ladder = new Ladder(numberOfWalls, height, lineGenerator);
 
         assertAll(

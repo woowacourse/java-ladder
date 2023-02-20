@@ -4,7 +4,7 @@ import domain.Height;
 import domain.Ladder;
 import domain.Players;
 import util.LineGenerator;
-import util.RandomLineGenerator;
+import util.LineStatusMaker;
 import view.InputView;
 import view.OutputView;
 
@@ -27,7 +27,7 @@ public class LadderController {
     }
 
     private Ladder makeLadder(Players players) {
-        LineGenerator lineGenerator = new RandomLineGenerator();
+        LineGenerator lineGenerator = new LineStatusMaker();
         try {
             int height = InputView.receiveHeight();
             return new Ladder(players.getNumberOfPlayers(), new Height(height), lineGenerator);
