@@ -36,4 +36,18 @@ class LadderResultTest {
         assertThatThrownBy(() -> ladderResult.getItemOfPlayer(new Player("vero")))
                 .isInstanceOf(IllegalStateException.class);
     }
+
+    @Test
+    @DisplayName("플레이어의 결과가 null이면 예외를 던진다.")
+    void ladderResult_throwException_notExistItem() {
+        // given
+        Map<Player, Item> result = new HashMap<>();
+        Player player = new Player("vero");
+        result.put(player, null);
+        LadderResult ladderResult = new LadderResult(result);
+
+        // expected
+        assertThatThrownBy(() -> ladderResult.getItemOfPlayer(player))
+                .isInstanceOf(IllegalStateException.class);
+    }
 }
