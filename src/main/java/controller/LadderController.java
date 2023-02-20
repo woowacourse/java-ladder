@@ -36,6 +36,7 @@ public class LadderController {
                 .stream()
                 .map(Name::new)
                 .collect(Collectors.toList());
+        notSameCount(players,goodsList);
         int height = inputView.inputLadderHeight();
         Ladder ladder = ladderMaker.make(new Height(height), new Width(players.size() - 1));
         outputView.printLadderResult();
@@ -46,8 +47,9 @@ public class LadderController {
         ladderGame.playLadderGame(playerMaker.getPlayerList(), ladder);
         showTargetResult(playerMaker.getPlayerList(), goodsList);
     }
-
-
+    private void notSameCount(List<Name> players,List<Name> goods){
+        throw new IllegalArgumentException("참가자 수와 상품 수는 같아야 합니다.");
+    }
     private void showTargetResult(List<Player> players, List<Name> goodsList) {
         String input = inputView.inputTargetResult();
         if(input.equals("end")){
