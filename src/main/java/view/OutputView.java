@@ -8,7 +8,7 @@ import domain.user.Users;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final String OUTPUT_EXECUTE_MESSAGE = "\n실행결과\n";
+    private static final String OUTPUT_EXECUTE_MESSAGE = "\n사다리 결과\n";
     private static final String LINE_DELIMITER = "|";
     private static final String NAME_DELIMITER = " ";
 

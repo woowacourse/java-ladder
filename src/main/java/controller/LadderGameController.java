@@ -1,6 +1,6 @@
 package controller;
 
-import domain.Height;
+import domain.Results;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.user.User;
@@ -16,6 +16,7 @@ public class LadderGameController {
     private final OutputView outputView;
     private Users users;
     private Ladder ladder;
+    private Results results;
 
     public LadderGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -24,12 +25,22 @@ public class LadderGameController {
 
     public void initialize() {
         users = initializeUsers();
+        results = initializeResults();
         ladder = createLadder(users.getPersonCount(), initializeHeight());
     }
 
     public void run() {
         outputView.printLadderGameResult(users);
         outputView.printLadder(ladder);
+    }
+
+    private Results initializeResults() {
+        try {
+            return new Results(inputView.inputResults(), users.getPersonCount());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return initializeResults();
+        }
     }
 
     private Users initializeUsers() {
