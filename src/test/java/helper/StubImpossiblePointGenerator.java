@@ -2,7 +2,7 @@ package helper;
 
 import domain.RandomGenerator;
 
-public class StubImpossibleDigitsGenerator implements RandomGenerator {
+public class StubImpossiblePointGenerator implements RandomGenerator {
     @Override
     public boolean generate() {
         return false;

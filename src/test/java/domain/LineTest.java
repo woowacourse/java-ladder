@@ -1,7 +1,7 @@
 package domain;
 
-import helper.StubImpossibleDigitsGenerator;
-import helper.StubPossibleDigitsGenerator;
+import helper.StubImpossiblePointGenerator;
+import helper.StubPossiblePointGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
@@ -13,7 +13,7 @@ public class LineTest {
     @Test
     @DisplayName("건널 수 있는 다리가 추가되는지 확인")
     void addPossiblePoints() {
-        Line line = new Line(2, new StubPossibleDigitsGenerator());
+        Line line = new Line(2, new StubPossiblePointGenerator());
 
         assertThat(line.getPoints()).containsExactly(true);
     }
@@ -21,7 +21,7 @@ public class LineTest {
     @Test
     @DisplayName("건널 수 없는 다리가 추가되는지 확인")
     void addImpossiblePoints() {
-        Line line = new Line(3, new StubImpossibleDigitsGenerator());
+        Line line = new Line(3, new StubImpossiblePointGenerator());
 
         assertThat(line.getPoints()).containsExactly(false, false);
     }
