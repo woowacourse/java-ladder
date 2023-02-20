@@ -64,7 +64,7 @@ class LadderGameTest {
     private final WinningEntry 당근당첨 = new WinningEntry("당근당첨");
     private final WinningEntry 바다당첨 = new WinningEntry("바다당첨");
     private final WinningEntries winningEntries = new WinningEntries(
-            List.of(말랑당첨, 산당첨, 당근당첨, 바다당첨)
+            List.of(말랑당첨, 산당첨, 당근당첨, 바다당첨), names
     );
 
     @Test

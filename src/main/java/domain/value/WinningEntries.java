@@ -9,12 +9,15 @@ public class WinningEntries {
 
     private final List<WinningEntry> winningEntries;
 
-    public WinningEntries(final List<WinningEntry> winningEntries) {
-        validateSize(winningEntries);
+    public WinningEntries(final List<WinningEntry> winningEntries, final Names names) {
+        validateSize(winningEntries, names);
         this.winningEntries = new ArrayList<>(winningEntries);
     }
 
-    private void validateSize(final List<WinningEntry> winningEntries) {
+    private void validateSize(final List<WinningEntry> winningEntries, final Names names) {
+        if (names.size() != winningEntries.size()) {
+            throw new IllegalArgumentException("당첨 항목의 수는 이름의 수와 동일해야 합니다");
+        }
         if (winningEntries.size() < MIN_ENTRY_COUNT_INCLUSIVE) {
             throw new IllegalArgumentException("당첨 항목의 수는 2개 이상이어야 합니다.");
         }

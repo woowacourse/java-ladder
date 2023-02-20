@@ -28,21 +28,46 @@ class WinningEntriesTest {
             new WinningEntry("최고")
     );
 
+    private final Names names = new Names(
+            List.of(new Name("바다 🌊"), new Name("진짜"), new Name("최고"))
+    );
+
     @Test
-    void WinningEntry_List_를_통해_생성된다() {
+    void WinningEntry_List_와_Names_를_통해_생성된다() {
         // when
-        WinningEntries winningEntries = new WinningEntries(this.winningEntries);
+        WinningEntries winningEntries = new WinningEntries(this.winningEntries, names);
 
         // then
         assertThat(winningEntries.winningEntries())
                 .containsExactlyInAnyOrderElementsOf(this.winningEntries);
     }
 
-    @ParameterizedTest(name = "당첨항목의 수가 2개 미만인 경우(ex: {0}) 예외가 발생한다")
+    @ParameterizedTest(name = "당첨항목의 수가 이름의 수와 다르면 예외가 발생한다")
+    @MethodSource("differentSizeWinningEntriesAndNames")
+    void WinningEntry_List_와_Names_의_수가_다르면_예외가_발생한다(final List<WinningEntry> winningEntries, final Names names) {
+        // when & then
+        assertThatThrownBy(() -> new WinningEntries(winningEntries, names))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    static Stream<Arguments> differentSizeWinningEntriesAndNames() {
+        return Stream.of(
+                Arguments.of(
+                        List.of(new WinningEntry("바다"), new WinningEntry("말랑")),
+                        new Names(List.of(new Name("바다이름"), new Name("말랑이름"), new Name("바다최고")))
+                ),
+                Arguments.of(
+                        List.of(new WinningEntry("바다"), new WinningEntry("말랑"), new WinningEntry("바다최고")),
+                        new Names(List.of(new Name("바다이름"), new Name("말랑이름")))
+                )
+        );
+    }
+
+    @ParameterizedTest(name = "당첨항목의 수가 2개 미만인 경우 예외가 발생한다")
     @MethodSource("lessThan2SizeWinningEntries")
     void WinningEntry_의_수가_2개_미만인_경우_예외가_발생한다(final List<WinningEntry> winningEntries) {
         // when & then
-        assertThatThrownBy(() -> new WinningEntries(winningEntries))
+        assertThatThrownBy(() -> new WinningEntries(winningEntries, names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -59,11 +84,15 @@ class WinningEntriesTest {
             "바다,산,말랑,토끼:4",
             "바다,산,말랑,토끼,포비,기차,음,냐,냥:9"
     }, delimiter = ':')
-    void 가진_당참항목의_총_개수를_알_수_있다(final String entryValues, final int actualLength) {
+    void 가진_당참항목의_총_개수를_알_수_있다(final String values, final int actualLength) {
         // given
-        WinningEntries winningEntries = new WinningEntries(stream(entryValues.split(","))
-                .map(WinningEntry::new)
-                .collect(Collectors.toList())
+        WinningEntries winningEntries = new WinningEntries(
+                stream(values.split(","))
+                        .map(WinningEntry::new)
+                        .collect(Collectors.toList()),
+                new Names(stream(values.split(","))
+                        .map(Name::new)
+                        .collect(Collectors.toList()))
         );
 
         // when
@@ -78,11 +107,16 @@ class WinningEntriesTest {
             "바다,말랑:0:바다",
             "바다,말랑,산,토끼,당근:2:산",
     }, delimiter = ':')
-    void 특정_순서에_해당하는_당첨항목을_알_수_있다(final String entryValues, final int index, final String entryValue) {
+    void 특정_순서에_해당하는_당첨항목을_알_수_있다(final String values, final int index, final String entryValue) {
         // given
-        WinningEntries winningEntries = new WinningEntries(stream(entryValues.split(","))
-                .map(WinningEntry::new)
-                .collect(Collectors.toList()));
+        WinningEntries winningEntries = new WinningEntries(
+                stream(values.split(","))
+                        .map(WinningEntry::new)
+                        .collect(Collectors.toList()),
+                new Names(stream(values.split(","))
+                        .map(Name::new)
+                        .collect(Collectors.toList()))
+        );
 
         // when & then
         assertThat(winningEntries.get(index)).isEqualTo(new WinningEntry(entryValue));
