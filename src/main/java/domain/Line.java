@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Point> line;
+    private final List<Point> points;
 
     public Line(final List<Point> points) {
         validateLine(points);
-        this.line = points;
+        this.points = points;
     }
 
-    public List<Point> getLine() {
-        return new ArrayList<>(line);
+    public List<Point> getPoints() {
+        return new ArrayList<>(points);
     }
 
     private void validateLine(final List<Point> line) {

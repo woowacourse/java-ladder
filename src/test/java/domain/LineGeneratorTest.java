@@ -13,7 +13,7 @@ public class LineGeneratorTest {
     @ValueSource(ints = {1, 2, 3, 4, 5})
     void randomLineLengthTest(int personCount) {
         Line line = lineGenerator.generate(personCount);
-        int lineNumber = line.getLine().size();
+        int lineNumber = line.getPoints().size();
         int expectedLineNumber = personCount - 1;
         Assertions.assertThat(lineNumber).isEqualTo(expectedLineNumber);
     }

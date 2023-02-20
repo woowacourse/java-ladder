@@ -12,7 +12,7 @@ public class LineTest {
     void unContinuousLineTest() {
         final List<Point> validPoints = List.of(Point.LINKED_POINT, Point.EMPTY_POINT, Point.LINKED_POINT);
         Line line = new Line(validPoints);
-        List<Point> points = line.getLine();
+        List<Point> points = line.getPoints();
         Assertions.assertEquals(validPoints, points);
     }
 
