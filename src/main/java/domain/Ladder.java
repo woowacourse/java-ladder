@@ -32,6 +32,16 @@ public class Ladder {
         return ladder;
     }
 
+    public int move(int index) {
+        int currentIndex = index;
+
+        for (Line line : ladder) {
+            currentIndex = line.move(currentIndex);
+        }
+
+        return currentIndex;
+    }
+
     public List<Line> getLadder() {
         return Collections.unmodifiableList(ladder);
     }
