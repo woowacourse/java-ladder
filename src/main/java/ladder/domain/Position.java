@@ -3,10 +3,14 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Position {
-    private final int value;
+    private int value;
 
     public Position(int value) {
         this.value = value;
+    }
+
+    public void move(Direction direction) {
+        value += direction.getMoveValue();
     }
 
     @Override
