@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 public enum Foothold {
     Y(true, "-----"),
-    N(false, "     ");
+    N(false, "     "),
+    ;
 
     private final boolean state;
     private final String mark;

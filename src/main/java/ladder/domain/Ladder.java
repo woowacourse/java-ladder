@@ -15,7 +15,7 @@ public class Ladder {
         return rows;
     }
 
-    public List<List<Foothold>> getState() {
+    public List<List<Foothold>> getFootholdsPosition() {
         return rows.stream()
                    .map(Row::getFootholds)
                    .collect(toUnmodifiableList());

@@ -26,14 +26,14 @@ public class LadderGameController {
             LadderWidth width = new LadderWidth(players.getCount() - 1);
             Ladder ladder = ladderGenerator.generate(width, height);
 
-            printLadder(players, ladder);
+            printLadderResult(players, ladder);
         } catch (IllegalArgumentException e) {
             resultView.printErrorMessage(e.getMessage());
         }
     }
 
-    private void printLadder(Players players, Ladder ladder) {
+    private void printLadderResult(Players players, Ladder ladder) {
         resultView.printPlayersName(players.getNames());
-        resultView.printLadder(ladder.getState());
+        resultView.printLadder(ladder.getFootholdsPosition());
     }
 }

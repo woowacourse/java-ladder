@@ -42,7 +42,7 @@ public class Players {
         }
     }
 
-    public int getPlayersSize() {
+    public int getCount() {
         return players.size();
     }
 
