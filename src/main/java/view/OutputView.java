@@ -8,13 +8,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class OutputView {
-
-    public static final String NAME_FORMAT = "%-9s";
-    public static final String VERTICAL_BAR = "|";
-    public static final Pattern koreanPattern = Pattern.compile("^[ㄱ-ㅎ가-힣]*$");
-    public static final String SPACE = " ";
-    public static final double KOREAN_SIZE = 1.3;
-    public static final int NAME_SIZE = 8;
+    private static final String NAME_FORMAT = "%-9s";
+    private static final String VERTICAL_BAR = "|";
+    private static final Pattern koreanPattern = Pattern.compile("^[ㄱ-ㅎ가-힣]*$");
+    private static final String SPACE = " ";
+    private static final double KOREAN_SIZE = 1.3;
+    private static final int NAME_SIZE = 8;
 
 
     public void printNames(Players players) {
