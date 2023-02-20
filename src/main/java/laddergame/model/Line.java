@@ -7,6 +7,7 @@ import java.util.Random;
 //TODO: 추후 랜덤값 검사하는 테스트에 맞춰 리팩토링하기
 public class Line {
     static final Random random = new Random();
+
     private final List<Boolean> line;
 
     public Line(List<Boolean> line) {
