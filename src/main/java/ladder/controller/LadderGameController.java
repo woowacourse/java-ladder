@@ -6,6 +6,7 @@ import ladder.view.OutputView;
 import ladder.view.ResultView;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class LadderGameController {
 
@@ -27,27 +28,26 @@ public class LadderGameController {
 
     private List<String> readNames() {
         OutputView.printPlayerNamesReadMessage();
-        try {
-            return InputView.readNames();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return readNames();
-        }
+        return readUserInput(InputView::readNames);
     }
 
     private int readLadderHeight() {
         OutputView.printMaxLadderHeightReadMessage();
-        try {
-            return InputView.readLadderHeight();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return readLadderHeight();
-        }
+        return readUserInput(InputView::readLadderHeight);
     }
 
     private void printGameResult() {
         ResultView.printExecutionMessage();
         ResultView.printPlayerNames(ladderGame.getNames());
         ResultView.printLadder(ladderGame.getLines());
+    }
+
+    public <T> T readUserInput(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return readUserInput(supplier);
+        }
     }
 }
