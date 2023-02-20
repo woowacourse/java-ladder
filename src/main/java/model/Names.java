@@ -1,6 +1,5 @@
 package model;
 
-import exception.WrongParticipantSizeException;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class Names {
 
     private void validateSize(List<Name> names) {
         if (names.size() < MINIMUM_PARTICIPANTS_SIZE) {
-            throw new WrongParticipantSizeException();
+            throw new IllegalArgumentException("최소 2명의 이름을 입력해주세요.");
         }
     }
 

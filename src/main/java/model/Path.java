@@ -1,6 +1,5 @@
 package model;
 
-import exception.NotFoundPathException;
 import java.util.Arrays;
 
 public enum Path {
@@ -17,14 +16,14 @@ public enum Path {
         return Arrays.stream(Path.values())
                 .filter(path -> path.isSamePassable(passable))
                 .findAny()
-                .orElseThrow(NotFoundPathException::new);
+                .orElseThrow(() -> new IllegalStateException("유효한 Path를 찾지 못했습니다."));
     }
 
     public static Path calculatePath(Path otherPath, boolean passable){
         return Arrays.stream(Path.values())
                 .filter(path -> path.isSamePassable(calculateMovable(otherPath, passable)))
                 .findAny()
-                .orElseThrow(NotFoundPathException::new);
+                .orElseThrow(() -> new IllegalStateException("유효한 Path를 찾지 못했습니다."));
     }
 
     private boolean isSamePassable(boolean passable) {

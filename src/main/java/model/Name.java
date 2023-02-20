@@ -1,8 +1,5 @@
 package model;
 
-import exception.BlankNameException;
-import exception.WrongNameLengthException;
-
 public class Name {
 
     private static final int MAXIMUM_NAME_LENGTH = 5;
@@ -17,13 +14,13 @@ public class Name {
 
     private void validateLength(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new WrongNameLengthException();
+            throw new IllegalArgumentException("이름은 최대 5글자까지만 가능합니다.");
         }
     }
 
     private void validateBlank(String name) {
         if (name.isBlank()) {
-            throw new BlankNameException();
+            throw new IllegalArgumentException("이름은 공백일 수 없습니다.");
         }
     }
 

@@ -1,7 +1,5 @@
 package model;
 
-import exception.WrongRangeLadderHeightException;
-
 public class Height {
 
     private static final int MINIMUM_LADDER_HEIGHT = 1;
@@ -16,7 +14,7 @@ public class Height {
 
     private void validateHeight(int height) {
         if (height < MINIMUM_LADDER_HEIGHT) {
-            throw new WrongRangeLadderHeightException();
+            throw new IllegalArgumentException("사다리 높이는 최소 1 이상이어야 합니다.");
         }
     }
 
