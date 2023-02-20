@@ -13,7 +13,7 @@ public class Players {
         players = new ArrayList<>();
 
         IntStream.range(0, names.size())
-                .forEach(i -> players.add(new Player(names.get(i))));
+                .forEach(i -> players.add(new Player(names.get(i), i)));
     }
 
     private void validateDuplicateNames(List<String> names) {
