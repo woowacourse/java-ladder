@@ -4,11 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class TestBooleanPicker implements PickStrategy {
+public class TestLinkPicker implements PickStrategy {
 
     private final Queue<Boolean> booleans;
 
-    public TestBooleanPicker(final List<Boolean> testBooleans) {
+    public TestLinkPicker(final List<Boolean> testBooleans) {
         this.booleans = new LinkedList<>(testBooleans);
     }
 

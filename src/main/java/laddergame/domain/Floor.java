@@ -8,7 +8,7 @@ public class Floor {
 
     private static final int MIN_LINK_COUNT = 1;
     private static final int FIRST_INDEX_OF_LINK = 0;
-    private static final int ABSENCE_OF_TRUE = 1;
+    private static final int LINK_COUNT = 1;
 
     private final List<Link> floor;
     private final PickStrategy strategy;
@@ -21,7 +21,7 @@ public class Floor {
     }
 
     public static Floor from(final int playerCount) {
-        return new Floor(playerCount, new RandomBooleanPicker());
+        return new Floor(playerCount, new LinkPicker());
     }
 
     public static Floor of(final int playerCount, final PickStrategy pickStrategy) {
@@ -44,7 +44,7 @@ public class Floor {
     }
 
     private static boolean isAllFalse(final int isExistenceCount, final List<Link> floor) {
-        return new HashSet<>(floor).size() == ABSENCE_OF_TRUE && isExistenceCount > MIN_LINK_COUNT;
+        return new HashSet<>(floor).size() == LINK_COUNT && isExistenceCount > MIN_LINK_COUNT;
     }
 
     private Link checkLink(final List<Link> floor, final int index) {

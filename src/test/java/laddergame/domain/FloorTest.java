@@ -42,7 +42,7 @@ public class FloorTest {
             final List<Boolean> statuses = List.of(true, false, false);
 
             //when
-            final Floor line = Floor.of(statuses.size(), new TestBooleanPicker(statuses));
+            final Floor line = Floor.of(statuses.size(), new TestLinkPicker(statuses));
 
             //then
             assertThat(line)
@@ -56,7 +56,7 @@ public class FloorTest {
     void givenLine_thenNotOverLap() {
         //given
         final List<Boolean> statuses = List.of(true, true, false);
-        final Floor line = Floor.of(statuses.size(), new TestBooleanPicker(statuses));
+        final Floor line = Floor.of(statuses.size(), new TestLinkPicker(statuses));
 
         //then
         assertThat(line)
