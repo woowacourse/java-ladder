@@ -1,9 +1,12 @@
 package controller;
 
+import static view.InputView.DELIMITER;
+
 import domain.Ladder;
 import domain.People;
 import domain.Person;
 import domain.RandomBridgeGenerator;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -41,10 +44,18 @@ public class LadderController {
     }
 
     private People nameRequest() {
-        List<Person> collect = inputView.readNames().stream()
+        String inputNames = inputView.readNames();
+
+        List<String> names = convertToList(inputNames);
+        List<Person> people = names.stream()
             .map(Person::new)
             .collect(Collectors.toList());
-        return new People(collect);
+        return new People(people);
+    }
+
+    private List<String> convertToList(String inputNames) {
+        return Arrays.stream(inputNames.split(DELIMITER))
+            .collect(Collectors.toList());
     }
 
     private Ladder ladderRequest(int peopleCount) {

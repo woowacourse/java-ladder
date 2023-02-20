@@ -1,27 +1,17 @@
 package view;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
     public static final String DELIMITER = ",";
-    public static final int MIN_PERSON_COUNT = 2;
 
-    public List<String> readNames() {
+    public String readNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return getValidResult(readLine());
-    }
-
-    private List<String> getValidResult(String input) {
+        String input = readLine();
         validateDelimiter(input);
-        List<String> result = toNames(input);
-        validatePersonCount(result);
-        validateDuplicate(result);
-        return result;
+        return input;
     }
 
     private String readLine() {
@@ -31,24 +21,6 @@ public class InputView {
     private void validateDelimiter(String input) {
         if (input.endsWith(DELIMITER)) {
             throw new IllegalArgumentException(",로 끝날 수 없습니다");
-        }
-    }
-
-    private List<String> toNames(String names) {
-        return Arrays.stream(names.split(DELIMITER))
-            .collect(Collectors.toList());
-    }
-
-    private void validatePersonCount(List<String> result) {
-        if (result.size() < MIN_PERSON_COUNT) {
-            throw new IllegalArgumentException(
-                String.format("사람은 %d명 이상이어야 합니다.", MIN_PERSON_COUNT));
-        }
-    }
-
-    private void validateDuplicate(List<String> result) {
-        if (result.size() != result.stream().distinct().count()) {
-            throw new IllegalArgumentException("중복된 이름이 존재합니다");
         }
     }
 
