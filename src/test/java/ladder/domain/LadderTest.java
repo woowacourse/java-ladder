@@ -1,6 +1,7 @@
 package ladder.domain;
 
-import ladder.domain.ladder.builder.LadderMaker;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.builder.BlockGenerator;
 import ladder.domain.ladder.builder.RandomBlockGenerator;
 import ladder.domain.ladder.exception.LadderLengthException;
 import org.junit.jupiter.api.DisplayName;
@@ -9,9 +10,9 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LadderMakerTest {
+class LadderTest {
 
-    private LadderMaker ladderMaker = new LadderMaker(new RandomBlockGenerator());
+    private final BlockGenerator blockGenerator = new RandomBlockGenerator();
 
     @Test
     @DisplayName("사다리 길이는 <플레이어 수 - 1> 이상이 아닌 경우 예외가 발생한다.")
@@ -19,7 +20,7 @@ class LadderMakerTest {
         int playerNumber = 5;
         int height = 3;
 
-        assertThatThrownBy(() -> ladderMaker.makeLadder(playerNumber, height))
+        assertThatThrownBy(() -> new Ladder(blockGenerator, playerNumber, height))
                 .isInstanceOf(LadderLengthException.class);
     }
 
@@ -28,7 +29,7 @@ class LadderMakerTest {
         int playerNumber = 5;
         int height = 5;
 
-        assertThatCode(() -> ladderMaker.makeLadder(playerNumber, height))
+        assertThatCode(() -> new Ladder(blockGenerator, playerNumber, height))
                 .doesNotThrowAnyException();
     }
 }
