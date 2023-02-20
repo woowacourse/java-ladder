@@ -9,9 +9,7 @@ public class Players {
 
     public Players(List<String> players) {
         PlayerNameValidator playerNameValidator = new PlayerNameValidator();
-        playerNameValidator.checkPlayerCount(players);
-        playerNameValidator.checkPlayerNameLength(players);
-        playerNameValidator.checkDuplicatePlayers(players);
+        playerNameValidator.validate(players);
         this.players = players;
     }
 

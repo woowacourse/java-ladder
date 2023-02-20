@@ -12,13 +12,19 @@ public class PlayerNameValidator {
     public static final String PLAYER_NAME_LENGTH_ERROR_MESSAGE = "플레이어 이름음 1~5글자만 가능합니다.";
     public static final String PLAYER_NAME_DUPLICATE_ERROR_MESSAGE = "플레이어의 이름은 중복이 불가능합니다.";
 
-    public void checkPlayerCount(List<String> players) {
+    public void validate(List<String> players){
+        checkPlayerCount(players);
+        checkPlayerNameLength(players);
+        checkDuplicatePlayers(players);
+    }
+
+    private void checkPlayerCount(List<String> players) {
         if (players.size() < PLAYER_MIN_COUNT || players.size() > PLAYER_MAX_COUNT) {
             throw new IllegalArgumentException(PLAYER_COUNT_ERROR_MESSAGE);
         }
     }
 
-    public void checkPlayerNameLength(List<String> players) {
+    private void checkPlayerNameLength(List<String> players) {
         if (players.stream()
                 .anyMatch(player -> player.length() >
                         PLAYER_NAME_MAX_SIZE || player.replaceAll(BLANK, NON_BLANK).isEmpty())) {
@@ -26,7 +32,7 @@ public class PlayerNameValidator {
         }
     }
 
-    public void checkDuplicatePlayers(List<String> players) {
+    private void checkDuplicatePlayers(List<String> players) {
         if (players.stream().distinct().count() != players.size()) {
             throw new IllegalArgumentException(PLAYER_NAME_DUPLICATE_ERROR_MESSAGE);
         }

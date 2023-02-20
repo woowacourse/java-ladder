@@ -11,7 +11,7 @@
 - [ ] correctOverlapPoints 개선
 - [ ] 정규식 패턴 상수화
 - [ ] Player -> validate 메소드 생성
-  - [ ] player validate 해주는 메소드들을 해당 메소드 안에서 호출
+  - [x] player validate 해주는 메소드들을 해당 메소드 안에서 호출
   - [ ] Integer.parseInt 로 예외 처리 되는 validate 메소드들은 삭제
 - [ ] input view 에서 입력 요청 출력을 Controller 로 위임
 - [x] Output view -> 사용자 이름 길이에 맞게 수정되게 하는 로직 변수 선언

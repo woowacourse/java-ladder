@@ -19,19 +19,16 @@ public class InputView {
     public List<String> readUserNames() {
         System.out.println(NAME_INPUT_REQUEST);
         String inputUserNames = scanner.nextLine();
-        List<String> playersNames = splitInputUserNames(inputUserNames);
-        playerNameValidator.checkDuplicatePlayers(playersNames);
-        playerNameValidator.checkPlayerNameLength(playersNames);
-        playerNameValidator.checkPlayerCount(playersNames);
-        return playersNames;
+        List<String> players = splitInputUserNames(inputUserNames);
+        playerNameValidator.validate(players);
+        return players;
     }
 
     public String readHeight() {
         System.out.println(HEIGHT_INPUT_REQUEST);
-        String inputHeight = scanner.nextLine();
-        heightValidator.checkNumberMissMatch(inputHeight);
-        heightValidator.checkNegativeNumber(inputHeight);
-        return inputHeight;
+        String height = scanner.nextLine();
+        heightValidator.validate(height);
+        return height;
     }
 
     private List<String> splitInputUserNames(String inputUserNames) {
