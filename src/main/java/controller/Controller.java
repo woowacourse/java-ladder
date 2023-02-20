@@ -1,9 +1,11 @@
 package controller;
 
+import model.Game;
 import model.Ladder;
 import model.LadderHeight;
 import model.LadderResult;
 import model.Names;
+import util.LineGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -22,6 +24,7 @@ public class Controller {
         LadderResult ladderResult = setLadderResult(names.getNamesSize());
         LadderHeight ladderHeight = setLadderHeight();
         Ladder ladder = new Ladder(names.getNamesSize(), ladderHeight,new LineGenerator());
+        Game game = new Game(names, ladderResult,ladderHeight,ladder);
         printResult(names, ladder, ladderHeight);
     }
 
