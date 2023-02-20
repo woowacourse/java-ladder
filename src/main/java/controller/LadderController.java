@@ -12,7 +12,7 @@ import utils.LadderStatus;
 import view.InputView;
 import view.OutputView;
 
-public class LadderController implements Controller {
+public class LadderController {
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -33,7 +33,6 @@ public class LadderController implements Controller {
         mappings.put(LadderStatus.APPLICATION_EXCEPTION, this::exit);
     }
 
-    @Override
     public LadderStatus run(LadderStatus ladderStatus) {
         return mappings.get(ladderStatus).get();
     }
