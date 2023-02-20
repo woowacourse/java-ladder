@@ -69,6 +69,13 @@ class PlayerTest {
             }).isInstanceOf(IllegalArgumentException.class);
         }
 
+        @DisplayName("플레이어 0명일때 실패")
+        @Test
+        void playerCount0(){
+            assertThatThrownBy(() -> {
+                new Players(List.of());
+            }).isInstanceOf(IllegalArgumentException.class);
+        }
     }
 
     @DisplayName("플레이어 이름이 중복될 때")
