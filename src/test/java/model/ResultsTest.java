@@ -2,11 +2,14 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
 
 public class ResultsTest {
     private static final String WRONG_SIZE_RESULTS_ERROR = "[ERROR] 사다리 게임 결과 값의 개수는 전체 사람의 수와 동일해야 합니다.";
@@ -28,5 +31,18 @@ public class ResultsTest {
         assertThatThrownBy(() -> new Results(players.size(), "꽝, 5000, 꽝, 3000"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(WRONG_SIZE_RESULTS_ERROR);
+    }
+
+    @Test
+    @DisplayName("사다리 게임 결과는 쉼표를 기준으로 입력받는 기능 테스트")
+    void splitResultsByCommaTest() {
+        //given
+        Results givenResults = new Results(4, "꽝 , 5000 , 꽝 , 3000");
+
+        //when
+        List<String> thenResult = givenResults.getValues();
+
+        //then
+        assertThat(thenResult).isEqualTo(List.of("꽝", "5000", "꽝", "3000"));
     }
 }
