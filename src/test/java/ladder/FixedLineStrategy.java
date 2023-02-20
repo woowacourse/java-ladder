@@ -8,8 +8,8 @@ public class FixedLineStrategy implements LineStrategy {
     private final List<List<Boolean>> lines;
     private int generateCount;
 
-    public FixedLineStrategy(List<List<Boolean>> line) {
-        this.lines = line;
+    public FixedLineStrategy(List<List<Boolean>> lines) {
+        this.lines = lines;
         this.generateCount = 0;
     }
 
