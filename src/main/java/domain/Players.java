@@ -5,19 +5,19 @@ import java.util.stream.Collectors;
 
 public class Players {
 
-    private final List<Player> players;
+    private final List<Name> names;
 
     public Players(List<String> names) {
-        players = names.stream()
-                .map(Player::new)
+        this.names = names.stream()
+                .map(Name::new)
                 .collect(Collectors.toList());
     }
 
-    public List<Player> getPlayers() {
-        return players;
+    public List<Name> getPlayers() {
+        return names;
     }
 
     public int getPlayerSize() {
-        return players.size();
+        return names.size();
     }
 }

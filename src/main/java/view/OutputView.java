@@ -4,7 +4,7 @@ import java.util.List;
 
 import domain.Ladder;
 import domain.Line;
-import domain.Player;
+import domain.Name;
 import domain.Players;
 import domain.Point;
 
@@ -23,7 +23,7 @@ public class OutputView {
     public static void printNames(Players players) {
         System.out.print(NAME_START_FORMAT);
         players.getPlayers().stream()
-                .map(Player::getName)
+                .map(Name::getName)
                 .forEach(OutputView::printName);
         System.out.println();
     }

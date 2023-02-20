@@ -9,13 +9,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class PlayerTest {
+public class NameTest {
 
     @DisplayName("사람 이름의 앞 뒤 공백은 무시한다.")
     @ParameterizedTest
     @CsvSource({"'  kong',kong", "'kong  ',kong", "' ko ng ',ko ng", "'    kong   ',kong"})
     void validateTest(String name, String expected) {
-        Player player = new Player(name);
+        Name player = new Name(name);
         Assertions.assertThat(player.getName()).isEqualTo(expected);
     }
 
@@ -23,7 +23,7 @@ public class PlayerTest {
     @ParameterizedTest
     @ValueSource(strings = {"", "kongha", "  ", "ko   ng"})
     void validateTest2(String name) {
-        assertThatThrownBy(() -> new Player(name))
+        assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사람 이름은 1글자에서 5글자 사이이어야 합니다.");
     }
@@ -32,7 +32,7 @@ public class PlayerTest {
     @ParameterizedTest
     @ValueSource(strings = {"odo", "kong"})
     void validateTest3(String name) {
-        assertThatCode(() -> new Player(name))
+        assertThatCode(() -> new Name(name))
                 .doesNotThrowAnyException();
     }
 }
