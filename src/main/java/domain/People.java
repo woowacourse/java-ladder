@@ -3,6 +3,7 @@ package domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class People {
     public static final int MIN_PERSON_COUNT = 2;
@@ -25,7 +26,7 @@ public class People {
 
     private void validateDuplicate(List<String> result) {
         if (result.size() != result.stream().distinct().count()) {
-            throw new IllegalArgumentException("중복된 이름이 존재합니다");
+            throw new IllegalArgumentException("중복된 이름이 존재합니다.");
         }
     }
 
@@ -50,5 +51,13 @@ public class People {
 
     public int getCount() {
         return people.size();
+    }
+
+    public int findByName(String name) {
+        return IntStream.range(0, people.size())
+                .filter(index -> people.get(index).equals(new Person(name)))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자는 존재하지 않습니다"));
+
     }
 }
