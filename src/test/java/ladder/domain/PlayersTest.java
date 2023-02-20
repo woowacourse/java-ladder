@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.List;
@@ -40,5 +41,39 @@ class PlayersTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Players(List.of(new Player("glen")));
         }).withMessage("[ERROR] 사용자는 2명에서 13명까지 가능합니다.");
+    }
+
+    @Test
+    @DisplayName("참여자 이름으로 인덱스를 찾을 수 있어야 한다.")
+    void findIndexByPlayerName_success() {
+        // given
+        Players players = createPlayers();
+
+        // when
+        int index = players.findIndexByPlayerName("doggy");
+
+        // then
+        assertThat(index)
+                .isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("참여자 이름으로 인덱스를 찾을 때 이름이 없으면 예와가 발생한다.")
+    void findIndexByPlayerName_wrongName() {
+        // given
+        Players players = createPlayers();
+
+        // expect
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> players.findIndexByPlayerName("player"))
+                .withMessage("[ERROR] 해당 참여자가 없습니다.");
+    }
+
+    private Players createPlayers() {
+        return new Players(List.of(
+                new Player("glen"),
+                new Player("doggy"),
+                new Player("pobi")
+        ));
     }
 }

@@ -41,4 +41,12 @@ public class Players {
     public int getPlayersCount() {
         return players.size();
     }
+
+    public int findIndexByPlayerName(String PlayerName) {
+        Player foundPlayer = players.stream()
+                .filter(player -> player.isNameMatch(PlayerName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 참여자가 없습니다."));
+        return players.indexOf(foundPlayer);
+    }
 }

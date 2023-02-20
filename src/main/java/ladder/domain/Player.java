@@ -36,6 +36,10 @@ public class Player {
         }
     }
 
+    public boolean isNameMatch(String name) {
+        return Objects.equals(this.name, name);
+    }
+
     public String getName() {
         return name;
     }
