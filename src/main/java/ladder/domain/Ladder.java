@@ -15,6 +15,8 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return List.copyOf(lines);
+        return lines.stream()
+                .map(Line::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 }
