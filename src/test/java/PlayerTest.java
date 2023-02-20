@@ -1,10 +1,15 @@
 import domain.Players;
 import org.assertj.core.api.Assertions;
+import org.assertj.core.util.Streams;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
@@ -34,48 +39,30 @@ class PlayerTest {
         }
     }
 
-    @Nested
-    @DisplayName("플레이어 인원수 테스트")
-    class playerCount {
-        @DisplayName("플레이어가 1명일때 실패")
-        @Test
-        void playerCount1() {
-            assertThatThrownBy(() -> {
-                new Players(List.of("a"));
-            }).isInstanceOf(IllegalArgumentException.class);
-        }
+    @DisplayName("player 수 Fail 테스트")
+    @ParameterizedTest
+    @MethodSource("provideFailPlayerNames")
+    void player_count_fail(List<String> input){
+        assertThatThrownBy(()->new Players(input)).isInstanceOf(IllegalArgumentException.class);
 
-        @DisplayName("플레이어가 2명일때 성공")
-        @Test
-        void playerCount2() {
-            assertThatNoException().isThrownBy(() -> {
-                new Players(List.of("a", "b"));
-            });
-        }
+    }
 
-        @DisplayName("플레이어가 12명일때 성공")
-        @Test
-        void playerCount3() {
-            assertThatNoException().isThrownBy(() -> {
-                new Players(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"));
-            });
-        }
+    private static Stream<Arguments> provideFailPlayerNames() {
+        return Stream.of(Arguments.of(List.of("a")),
+                Arguments.of(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "n")),
+                Arguments.of(List.of()));
+    }
 
-        @DisplayName("플레이어가 13명일때 실패")
-        @Test
-        void playerCount4() {
-            assertThatThrownBy(() -> {
-                new Players(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "n"));
-            }).isInstanceOf(IllegalArgumentException.class);
-        }
+    @DisplayName("player 수 성공 테스트")
+    @ParameterizedTest
+    @MethodSource("provideSuccessPlayerNames")
+    void player_count_success(List<String> input){
+        assertThatNoException().isThrownBy(()-> new Players(input));
+    }
 
-        @DisplayName("플레이어 0명일때 실패")
-        @Test
-        void playerCount0(){
-            assertThatThrownBy(() -> {
-                new Players(List.of());
-            }).isInstanceOf(IllegalArgumentException.class);
-        }
+    private static Stream<Arguments> provideSuccessPlayerNames() {
+        return Stream.of(Arguments.of(List.of("a","b")),
+                Arguments.of(List.of("a","b","c","d","e","f","g","h","i","j","k","l")));
     }
 
     @DisplayName("플레이어 이름이 중복될 때")
