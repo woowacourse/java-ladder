@@ -27,4 +27,11 @@ class UserTest {
 		String name = "  ";
 		assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class);
 	}
+
+	@Test
+	@DisplayName("이름이 'all'인 참가자는 예외를 발생시켜야 한다.")
+	void userNameAllTest() {
+		String name = "all";
+		assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class);
+	}
 }
