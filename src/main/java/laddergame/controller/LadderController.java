@@ -32,7 +32,7 @@ public class LadderController {
         final Ladder ladder = new Ladder(participants, height, booleanGenerator);
 
         final List<Line> lines = ladder.getLines();
-        outputView.printResult(ladderFormGenerator.generate(participants.getNames(), lines));
+        outputView.printResult(ladderFormGenerator.generate(participants, lines));
     }
 
     private List<Name> readNames() {
