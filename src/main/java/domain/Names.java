@@ -15,7 +15,7 @@ public class Names {
     }
 
     private void validateNames(final List<Name> names) {
-        if (names.size() == MIN_NAME_INCLUSIVE) {
+        if (names.size() < MIN_NAME_INCLUSIVE) {
             throw new IllegalArgumentException(ERROR_MIN_PEOPLE);
         }
     }
