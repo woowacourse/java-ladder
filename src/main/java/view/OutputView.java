@@ -9,8 +9,8 @@ import java.util.stream.IntStream;
 
 public class OutputView {
     private static final int STARTING_INDEX_OF_RIGHT_FORMATTING = 1;
-    private static final String LEFT_FORMATTING_TEMPLATE = "%-5s ";
-    private static final String RIGHT_FORMATTING_TEMPLATE = "%5s ";
+    private static final String LEFT_FORMATTING_TEMPLATE = "%-5s";
+    private static final String RIGHT_FORMATTING_TEMPLATE = "%6s";
     private static final String FIRST_STEP = String.format("%5s", "    |");
     private static final String EMPTY_STEP = String.format("%6s", "     |");
     private static final String EXIST_STEP = String.format("%6s", "-----|");
@@ -56,6 +56,6 @@ public class OutputView {
     private String makeRightFormattingNamesFromSecond(List<String> allPlayerNames) {
         return allPlayerNames.subList(STARTING_INDEX_OF_RIGHT_FORMATTING, allPlayerNames.size()).stream()
                 .map(name -> String.format(RIGHT_FORMATTING_TEMPLATE, name))
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining(""));
     }
 }
