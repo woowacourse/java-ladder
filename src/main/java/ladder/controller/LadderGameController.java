@@ -19,28 +19,21 @@ public class LadderGameController {
 
     public void run() {
         try {
-            Players players = enroll();
-            Ladder ladder = makeLadder(players.getPlayersSize());
-            printLadderResult(players, ladder);
+            List<String> participantNames = inputView.readParticipantNames();
+            Players players = Players.from(participantNames);
+
+            LadderHeight height = new LadderHeight(inputView.inputLadderHeight());
+            LadderWidth width = new LadderWidth(players.getCount() - 1);
+            Ladder ladder = ladderGenerator.generate(width, height);
+
+            printLadder(players, ladder);
         } catch (IllegalArgumentException e) {
             resultView.printErrorMessage(e.getMessage());
         }
     }
 
-    private Players enroll() {
-        List<String> names = inputView.inputParticipants();
-        Players players = Players.from(names);
-        return players;
-    }
-
-    private Ladder makeLadder(int playersSize) {
-        LadderHeight ladderHeight = new LadderHeight(inputView.inputHeight());
-        LadderWidth ladderWidth = new LadderWidth(playersSize - 1);
-        return ladderGenerator.generate(ladderWidth, ladderHeight);
-    }
-
-    private void printLadderResult(Players players, Ladder ladder) {
-        resultView.printNames(players.getNames());
+    private void printLadder(Players players, Ladder ladder) {
+        resultView.printPlayersName(players.getNames());
         resultView.printLadder(ladder.getState());
     }
 }
