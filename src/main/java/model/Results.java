@@ -1,5 +1,27 @@
 package model;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Results {
-    public Results(String inputResult) {}
+    private static final String WRONG_SIZE_RESULTS_ERROR = "[ERROR] 사다리 게임 결과 값의 개수는 전체 사람의 수와 동일해야 합니다.";
+    private static final String RESULTS_DELIMITER = ",";
+
+    private final List<String> results;
+
+    public Results(int playersSize, String inputResults) {
+        List<String> results = splitInputResults(inputResults);
+        validateRightResultsSize(playersSize, results);
+        this.results = results;
+    }
+
+    private void validateRightResultsSize(int playersSize, List<String> results) {
+        if(results.size() != playersSize) {
+            throw new IllegalArgumentException(WRONG_SIZE_RESULTS_ERROR);
+        }
+    }
+
+    private List<String> splitInputResults(String inputResults) {
+        return Arrays.asList(inputResults.split(RESULTS_DELIMITER));
+    }
 }
