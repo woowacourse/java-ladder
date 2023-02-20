@@ -1,18 +1,19 @@
 package view;
 
-import java.util.stream.IntStream;
-import model.Block;
-import model.Blocks;
-import model.Names;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
-    private static final String PARTICIPANT_NAME_FORMAT = "%-5s ";
-    private static final String PARTICIPANT_NAME_FORMAT_FOR_LAST_INDEX = "%4s";
-    private static final String LEFT_LEG = "    |";
-    private static final String LEG = "|";
-    private static final String ACTIVATED_BLOCK = "-----";
-    private static final String DEACTIVATED_BLOCK = "     ";
+    private static final Map<String,String> PASS_PRINT_STORAGE = new HashMap<>();
+
+    static {
+        PASS_PRINT_STORAGE.put("RIGHT","  |--");
+        PASS_PRINT_STORAGE.put("LEFT","--|  ");
+        PASS_PRINT_STORAGE.put("NOTHING","  |  ");
+    }
 
     public void noticeInputParticipants() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -26,35 +27,25 @@ public class OutputView {
         System.out.println("실행결과");
     }
 
-    public void printNameOfParticipants(Names names) {
-        IntStream.range(0,names.getNames().size())
-            .mapToObj(i -> printName(names.getNames().get(i).getName(), names.getNames().size(), i))
-            .forEach(System.out::print);
-        System.out.println();
+    public void printNames(List<String> names){
+        String result = names.stream()
+            .map(name -> String.format("%-5s ",name))
+            .collect(Collectors.joining());
+        System.out.println(result);
     }
 
-    private String printName(String name, int totalSize, int index) {
-        if (totalSize - 1 != index){
-            return String.format(PARTICIPANT_NAME_FORMAT, name);
+    public void printLadder(List<List<String>> ladder){
+        for (List<String> line : ladder) {
+            System.out.print(joinLine(line));
+            System.out.println();
         }
-        return String.format(PARTICIPANT_NAME_FORMAT_FOR_LAST_INDEX, name);
+
     }
 
-    public void printBlocks(Blocks blocks) {
-        System.out.print(LEFT_LEG);
-        for (Block block : blocks.getBlocks()) {
-            System.out.print(printPass(block));
-            System.out.print(LEG);
-
-        }
-        System.out.println();
-    }
-
-    private String printPass(Block block) {
-        if (block.isPass()) {
-            return ACTIVATED_BLOCK;
-        }
-        return DEACTIVATED_BLOCK;
+    private String joinLine(List<String> line){
+        return line.stream()
+            .map(PASS_PRINT_STORAGE::get)
+            .collect(Collectors.joining());
     }
 
 }

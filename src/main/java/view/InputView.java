@@ -24,7 +24,7 @@ public class InputView {
         }
 
         return Arrays.stream(names.split(DELIMITER))
-                .collect(Collectors.toUnmodifiableList());
+            .collect(Collectors.toUnmodifiableList());
     }
 
     public int inputHeightOfLadder() {
