@@ -23,6 +23,21 @@ public class Ladder {
         return playersCount * MAX_HEIGHT_RATIO < height || height < playersCount;
     }
 
+    public boolean isLastHeight(int height) {
+        return lines.size() == height + 1;
+    }
+
+    public Line findLineByIndex(int index) {
+        if (isProperIndex(index)) {
+            throw new IllegalArgumentException("[ERROR] 인덱스 범위를 초과했습니다.");
+        }
+        return lines.get(index);
+    }
+
+    private boolean isProperIndex(int index) {
+        return index < 0 || index >= lines.size();
+    }
+
     public int getHeight() {
         return lines.size();
     }

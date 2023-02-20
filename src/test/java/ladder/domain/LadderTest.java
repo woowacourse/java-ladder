@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import static java.util.stream.Collectors.toList;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
@@ -8,14 +9,10 @@ import java.util.List;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LadderTest {
-
-    private List<Line> makeLines() {
-        return IntStream.range(0, 5)
-                .mapToObj(value -> new Line(List.of(Step.EMPTY)))
-                .collect(toList());
-    }
 
     @Test
     @DisplayName("입력된 사다리의 높이가 인원 수보다 작으면 예외가 발생한다.")
@@ -42,5 +39,46 @@ class LadderTest {
         assertThatNoException().isThrownBy(() -> {
             new Ladder(makeLines(), 3);
         });
+    }
+
+    @Test
+    @DisplayName("인덱스로 Line을 찾을 수 있어야 한다.")
+    void findLineByIndex_success() {
+        // given
+        Ladder ladder = createLadder();
+
+        // when
+        Line foundLine = ladder.findLineByIndex(2);
+
+        // then
+        assertThat(foundLine.getSteps())
+                .isEqualTo(List.of(Step.EMPTY, Step.EXIST, Step.EMPTY));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 5, 6})
+    @DisplayName("인덱스로 Line을 찾을 때 범위를 초과하면 예외가 발생한다.")
+    void findLIneByIndex_wrongIndex(int index) {
+        // given
+        Ladder ladder = createLadder();
+
+        // expect
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> ladder.findLineByIndex(index))
+                .withMessage("[ERROR] 인덱스 범위를 초과했습니다.");
+    }
+
+    private Ladder createLadder() {
+        return new Ladder(List.of(
+                new Line(List.of(Step.EXIST, Step.EMPTY, Step.EXIST)),
+                new Line(List.of(Step.EMPTY, Step.EMPTY, Step.EMPTY)),
+                new Line(List.of(Step.EMPTY, Step.EXIST, Step.EMPTY))
+        ), 3);
+    }
+
+    private List<Line> makeLines() {
+        return IntStream.range(0, 5)
+                .mapToObj(value -> new Line(List.of(Step.EMPTY)))
+                .collect(toList());
     }
 }
