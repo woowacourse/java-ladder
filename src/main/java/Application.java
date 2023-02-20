@@ -8,28 +8,28 @@ import view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        Players players = getPlayers();
+        Players players = readPlayers();
 
-        Ladder ladder = getLadder(players.getPlayers().size());
+        Ladder ladder = generateLadder(players.getPlayers().size());
 
         showOutput(players, ladder);
     }
 
-    private static Ladder getLadder(int playersSize) {
+    private static Ladder generateLadder(int playersSize) {
         try {
             return new Ladder(playersSize, InputView.readLadderHeight(), new RandomBooleanGenerator());
         } catch (IllegalArgumentException e) {
             Log.error(e.getMessage());
-            return getLadder(playersSize);
+            return generateLadder(playersSize);
         }
     }
 
-    private static Players getPlayers() {
+    private static Players readPlayers() {
         try {
             return new Players(InputView.readNames());
         } catch (IllegalArgumentException e) {
             Log.error(e.getMessage());
-            return getPlayers();
+            return readPlayers();
         }
     }
 

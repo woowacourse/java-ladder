@@ -11,7 +11,7 @@ public class Line {
     private static final int POINTS_MIN_SIZE = 1;
     private static final int POINTS_MAX_SIZE = 49;
 
-    private List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points = new ArrayList<>();
 
     public Line(int personCount, BooleanGenerator booleanGenerator) {
         validate(personCount);

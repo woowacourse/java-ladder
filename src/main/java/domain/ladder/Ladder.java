@@ -15,22 +15,22 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(int personCount, int height, BooleanGenerator booleanGenerator) {
-        this.lines = createLadder(personCount, height, booleanGenerator);
-    }
-
-    private List<Line> createLadder(int personCount, int height, BooleanGenerator booleanGenerator) {
         validateHeight(height);
-        List<Line> createdLines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            createdLines.add(new Line(personCount, booleanGenerator));
-        }
-        return createdLines;
+        this.lines = createLadder(personCount, height, booleanGenerator);
     }
 
     private void validateHeight(int height) {
         if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
             throw new IllegalArgumentException(HEIGHT_ERROR_MESSAGE);
         }
+    }
+
+    private List<Line> createLadder(int personCount, int height, BooleanGenerator booleanGenerator) {
+        List<Line> createdLines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            createdLines.add(new Line(personCount, booleanGenerator));
+        }
+        return createdLines;
     }
 
     public List<Line> getLines() {
