@@ -1,6 +1,8 @@
 package view;
 
-import dto.GameDto;
+import domain.Ladder;
+import domain.Names;
+import java.util.Collections;
 import view.constant.Sign;
 
 import java.util.List;
@@ -14,6 +16,8 @@ public class OutputView {
     public static final String REQUEST_LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     public static final String RESULT_MESSAGE = "실행결과";
 
+    private OutputView(){}
+
     public static void printRequestNames() {
         System.out.printf(REQUEST_NAME_MESSAGE, Sign.COMMA.getKorean(), Sign.COMMA.getShape());
     }
@@ -22,10 +26,10 @@ public class OutputView {
         System.out.println(REQUEST_LADDER_HEIGHT_MESSAGE);
     }
 
-    public static void printResult(final GameDto gameDto) {
+    public static void printResult(final Names names, final Ladder ladder) {
         printResultMessage();
-        printParticipantNames(gameDto.getMaxNameLength(), gameDto.getNames());
-        printGeneratedLadder(gameDto.getGeneratedLadderInfo(), gameDto.getMaxNameLength());
+        printParticipantNames(getMaxNameLength(names), names.getNames());
+        printGeneratedLadder(ladder.getLadderShape(), getMaxNameLength(names));
     }
 
     private static void printResultMessage() {
@@ -67,6 +71,13 @@ public class OutputView {
         if (isSteppable) {
             printLine(FOOTSTEP.getShape(), maxLength);
         }
+    }
+
+    private static int getMaxNameLength(final Names names) {
+        return Collections.max(names.getNames()
+                .stream()
+                .map(String::length)
+                .collect(Collectors.toList()));
     }
 
     private static void printLine(final String shape, final int maxLength) {

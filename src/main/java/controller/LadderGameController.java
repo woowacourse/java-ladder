@@ -4,7 +4,6 @@ import domain.Height;
 import domain.Ladder;
 import domain.Name;
 import domain.Names;
-import dto.GameDto;
 import util.RandomBooleanGenerator;
 import view.InputView;
 import view.OutputView;
@@ -27,7 +26,7 @@ public class LadderGameController {
     }
 
     private static void printResult(final Names names, final Ladder ladder) {
-        OutputView.printResult(new GameDto(names, ladder));
+        OutputView.printResult(names, ladder);
     }
 
 
