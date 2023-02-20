@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Collections;
@@ -15,17 +16,9 @@ public class Ladder {
     }
 
     public static Ladder generate(final BooleanGenerator booleanGenerator, final int height, final int width) {
-        return new Ladder(generateLines(booleanGenerator, height, width));
-    }
-
-    private static List<Line> generateLines(
-            final BooleanGenerator booleanGenerator,
-            final int height,
-            final int width
-    ) {
         return Stream.generate(() -> Line.generate(booleanGenerator, width))
                 .limit(height)
-                .collect(toList());
+                .collect(collectingAndThen(toList(), Ladder::new));
     }
 
     public List<Line> getLines() {

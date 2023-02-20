@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
@@ -20,7 +21,9 @@ public class Players {
 
     public static Players from(final List<String> names) {
         validate(names);
-        return new Players(toPlayers(names));
+        return names.stream()
+                .map(Player::new)
+                .collect(collectingAndThen(toList(), Players::new));
     }
 
     private static void validate(final List<String> names) {
@@ -39,12 +42,6 @@ public class Players {
         if (nonDuplicateNames.size() != names.size()) {
             throw new IllegalArgumentException(DUPLICATE_NAMES_MESSAGE);
         }
-    }
-
-    private static List<Player> toPlayers(final List<String> names) {
-        return names.stream()
-                .map(Player::new)
-                .collect(toList());
     }
 
     public List<String> getNames() {
