@@ -1,5 +1,5 @@
 package utils;
 
-public interface NumberGenerator {
+public interface BooleanGenerator {
     boolean isMovable();
 }

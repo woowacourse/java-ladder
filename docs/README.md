@@ -50,7 +50,7 @@
 - [x] domain 패키지 내부에 하위 패키지 두기
 - [ ] 이름에 빈칸 추가하는 로직을 → 출력에 대한 부분으로 옮기기
 - [x] FixedNumberGenerator 클래스를 테스트 패키지로 이동
-- [ ] NumberGenertor 네이밍 변경(boolean 값을 반환하는데 Number라는 네이밍이 맞는지)
+- [x] NumberGenerator에서 BooleanGenerator로 네이밍 변경
 - 사용하지 않는 코드 삭제
   - [ ] 사용하지 않는 import문 삭제
   - [x] InputVerifier 삭제

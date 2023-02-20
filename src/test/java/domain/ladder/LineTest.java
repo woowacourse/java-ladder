@@ -5,21 +5,21 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.FixedNumberGenerator;
+import utils.FixedBooleanGenerator;
 
 public class LineTest {
     @DisplayName("생성한 값이 1이면 움직일 수 있다.")
     @Test
     void shouldSuccessMovable() {
-        FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(1);
-        Assertions.assertThat(fixedNumberGenerator.isMovable()).isEqualTo(true);
+        FixedBooleanGenerator fixedBooleanGenerator = new FixedBooleanGenerator(true);
+        Assertions.assertThat(LineStatus.printStatus(fixedBooleanGenerator.isMovable(), 1)).isEqualTo("-");
     }
 
     @DisplayName("생성한 값이 0이면 움직일 수 없다.")
     @Test
     void shouldSuccessNotMovable() {
-        FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(0);
-        Assertions.assertThat(fixedNumberGenerator.isMovable()).isEqualTo(false);
+        FixedBooleanGenerator fixedBooleanGenerator = new FixedBooleanGenerator(false);
+        Assertions.assertThat(LineStatus.printStatus(fixedBooleanGenerator.isMovable(), 1)).isEqualTo(" ");
     }
 
     @DisplayName("라인 생성 확인 테스트")

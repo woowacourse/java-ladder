@@ -2,7 +2,7 @@ package utils;
 
 import java.util.Random;
 
-public class RandomNumberGenerator implements NumberGenerator{
+public class RandomBooleanGenerator implements BooleanGenerator {
     @Override
     public boolean isMovable() {
         Random random = new Random();

@@ -2,7 +2,7 @@ package domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import utils.RandomNumberGenerator;
+import utils.RandomBooleanGenerator;
 
 public class Line {
     private final List<Boolean> line;
@@ -21,7 +21,7 @@ public class Line {
     }
 
     private boolean isContinuousTrue(List<Boolean> line, int index) {
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        RandomBooleanGenerator randomNumberGenerator = new RandomBooleanGenerator();
         if (line.get(index - 1)) {
             return false;
         }
