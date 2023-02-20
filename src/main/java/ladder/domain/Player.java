@@ -9,6 +9,11 @@ public class Player {
         this.position = new Position(startPoint);
     }
 
+    public Position moveThroughLadder(Ladder ladder) {
+        int resultPosition = ladder.moveThrough(position.getPosition());
+        return new Position(resultPosition);
+    }
+
     public String getName() {
         return name.getName();
     }

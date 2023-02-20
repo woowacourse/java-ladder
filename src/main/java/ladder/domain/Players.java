@@ -17,6 +17,25 @@ public class Players {
                 .forEach(i -> players.add(new Player(names.get(i), i)));
     }
 
+    public Position moveToResult(String playerName, Ladder ladder) {
+        Player player = getByName(playerName);
+        return player.moveThroughLadder(ladder);
+    }
+
+    private Player getByName(String name) {
+        return players.stream()
+                .filter(player -> player.getName().equals(name))
+                .findFirst()
+                .get();
+    }
+
+    public int getNameMaxLength() {
+        return this.players.stream()
+                .map(Player::getNameLength)
+                .max(Integer::compareTo)
+                .orElseThrow(() -> new IllegalStateException("플레이어가 존재하지 않습니다."));
+    }
+
     private void validateDuplicateNames(List<String> names) {
         int distinctNameSize = new HashSet<>(names).size();
         int size = names.size();
@@ -35,12 +54,5 @@ public class Players {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toList());
-    }
-
-    public int getNameMaxLength() {
-        return this.players.stream()
-                .map(Player::getNameLength)
-                .max(Integer::compareTo)
-                .orElseThrow(() -> new IllegalStateException("플레이어가 존재하지 않습니다."));
     }
 }

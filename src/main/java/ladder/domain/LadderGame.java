@@ -15,6 +15,11 @@ public class LadderGame {
         this.results = new Results(command.getResults());
     }
 
+    public String calculatePlayerResult(String playerName) {
+        Position arrive = players.moveToResult(playerName, ladder);
+        return results.getNameByPosition(arrive);
+    }
+
     public List<List<Boolean>> getLadder() {
         return ladder.getLines();
     }

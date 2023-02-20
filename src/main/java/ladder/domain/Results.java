@@ -12,4 +12,12 @@ public class Results {
         IntStream.range(0, results.size())
                 .forEach(i -> this.results.add(new Result(results.get(i), i)));
     }
+
+    public String getNameByPosition(Position position) {
+        return results.stream()
+                .filter(result -> result.isMappedPosition(position))
+                .findFirst()
+                .map(Result::getResult)
+                .get();
+    }
 }
