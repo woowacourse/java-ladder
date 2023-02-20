@@ -30,4 +30,32 @@ public class Line {
     public List<Bridge> getBridges() {
         return bridges;
     }
+
+    public int findPositionAfter(final int currentPosition) {
+        if (isMovable(currentPosition - 1)) {
+            if (getLeftBridgeFrom(currentPosition).doesExist()) {
+                return currentPosition - 1;
+            }
+        }
+
+        if (isMovable(currentPosition + 1)) {
+            if (getRightBridgeFrom(currentPosition).doesExist()) {
+                return currentPosition + 1;
+            }
+        }
+
+        return currentPosition;
+    }
+
+    private Bridge getLeftBridgeFrom(int currentPosition) {
+        return bridges.get(currentPosition - 1);
+    }
+
+    private Bridge getRightBridgeFrom(int currentPosition) {
+        return bridges.get(currentPosition);
+    }
+
+    private boolean isMovable(final int position) {
+        return 0 <= position && position <= bridges.size();
+    }
 }
