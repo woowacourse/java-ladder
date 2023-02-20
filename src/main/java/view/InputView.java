@@ -11,7 +11,7 @@ public class InputView {
     private static final String LADDER_HEIGHT_INPUT_NOTICE = "최대 사다리 높이는 몇 개인가요?";
     private static final String NOT_INTEGER_MESSAGE = "숫자가 아닙니다.";
 
-    public List<String> readPersonsName() {
+    public List<String> readPlayerNames() {
         System.out.println(NAME_INPUT_NOTICE);
         String[] names = readInput().split(DELIMITER);
         return Arrays.asList(names);

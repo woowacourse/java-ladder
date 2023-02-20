@@ -25,7 +25,7 @@ public class OutputView {
         System.out.println(builder);
     }
 
-    public void printPersonNames(List<String> names) {
+    public void printPlayerNames(List<String> names) {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (String name : names) {
