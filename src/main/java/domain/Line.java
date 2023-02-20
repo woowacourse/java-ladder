@@ -27,7 +27,7 @@ public class Line {
         points.add(generateRandomValue());
         --personCount;
         for (int i = 0; i < personCount - 1; i++) {
-            if (points.get(points.size() - 1) == true) {
+            if (points.get(points.size() - 1) == false) {
                 points.add(generateRandomValue());
                 continue;
             }
