@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 import static ladder.view.constant.LadderOutputSymbol.LADDER_VERTICAL_SYMBOL;
 
-public class ResultView {
+public class ResultView implements Result {
 
     private static final String BLANK_BETWEEN_NAMES = " ";
     private static final String OUTPUT_RESULT_MESSAGE = "실행결과";

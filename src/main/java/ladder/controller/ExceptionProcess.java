@@ -1,32 +1,32 @@
 package ladder.controller;
 
-import ladder.view.ResultView;
+import ladder.view.Result;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ExceptionProcess {
 
-    private final ResultView resultView;
+    private final Result result;
 
-    public ExceptionProcess(ResultView resultView) {
-        this.resultView = resultView;
+    public ExceptionProcess(Result result) {
+        this.result = result;
     }
 
-    public <Input, Result> Result repeat(Supplier<Input> inputSupplier, Function<Input, Result> resultFunction) {
-        Result result = null;
-        while (result == null) {
-            result = newOrNull(inputSupplier, resultFunction);
+    public <In, Out> Out repeat(Supplier<In> inputSupplier, Function<In, Out> resultFunction) {
+        Out out = null;
+        while (out == null) {
+            out = newOrNull(inputSupplier, resultFunction);
         }
-        return result;
+        return out;
     }
 
-    private <Input, Result> Result newOrNull(Supplier<Input> inputSupplier, Function<Input, Result> resultFunction) {
+    private <In, Out> Out newOrNull(Supplier<In> inputSupplier, Function<In, Out> resultFunction) {
         try {
-            Input input = inputSupplier.get();
-            return resultFunction.apply(input);
+            In in = inputSupplier.get();
+            return resultFunction.apply(in);
         } catch (IllegalArgumentException e) {
-            resultView.printError(e.getMessage());
+            result.printError(e.getMessage());
             return null;
         }
     }

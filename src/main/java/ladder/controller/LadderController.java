@@ -4,33 +4,33 @@ import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Players;
 import ladder.domain.valueGenerator.ValueGenerator;
-import ladder.view.InputView;
-import ladder.view.ResultView;
+import ladder.view.Input;
+import ladder.view.Result;
 
 public class LadderController {
 
-    private final InputView inputView;
-    private final ResultView resultView;
+    private final Input input;
+    private final Result result;
     private final ValueGenerator valueGenerator;
     private final ExceptionProcess exceptionProcess;
 
-    public LadderController(InputView inputView, ResultView resultView, ValueGenerator valueGenerator) {
-        this.inputView = inputView;
-        this.resultView = resultView;
+    public LadderController(Input input, Result result, ValueGenerator valueGenerator) {
+        this.input = input;
+        this.result = result;
         this.valueGenerator = valueGenerator;
-        this.exceptionProcess = new ExceptionProcess(resultView);
+        this.exceptionProcess = new ExceptionProcess(result);
     }
 
     public void run() {
         Players players = exceptionProcess.repeat(
-                inputView::inputPlayerNames,
+                input::inputPlayerNames,
                 Players::create);
         Height heightOfLadder = exceptionProcess.repeat(
-                inputView::inputHeightOfLadder,
-                input -> Height.create(input, valueGenerator));
+                input::inputHeightOfLadder,
+                inputHeight -> Height.create(inputHeight, valueGenerator));
         Ladder ladder = Ladder.create(players.count(), heightOfLadder.getHeight(), valueGenerator);
 
-        resultView.printLadder(players, ladder);
+        result.printLadder(players, ladder);
     }
 
 }
