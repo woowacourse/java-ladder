@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayersTest {
 
@@ -67,6 +69,33 @@ class PlayersTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> players.findIndexByPlayerName("player"))
                 .withMessage("[ERROR] 해당 참여자가 없습니다.");
+    }
+
+    @Test
+    @DisplayName("인덱스로 Player를 찾을 수 있어야 한다.")
+    void findPlayerByIndex_success() {
+        // given
+        Players players = createPlayers();
+
+        // when
+        Player foundPlayer = players.findPlayerByIndex(1);
+
+        // then
+        assertThat(foundPlayer.getName())
+                .isEqualTo("doggy");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 4, 5})
+    @DisplayName("인덱스로 Player를 찾을 때 범위를 초과하면 예외가 발생한다.")
+    void findPlayerByIndex_wrongIndex(int index) {
+        // given
+        Players players = createPlayers();
+
+        // expect
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> players.findPlayerByIndex(index))
+                .withMessage("[ERROR] 인덱스 범위를 초과했습니다.");
     }
 
     private Players createPlayers() {
