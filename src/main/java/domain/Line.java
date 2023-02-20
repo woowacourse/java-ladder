@@ -25,13 +25,13 @@ public class Line {
     private List<Point> generatePoints(final int pointSize) {
         List<Point> points = new ArrayList<>();
         for (int pointIndex = 0; pointIndex < pointSize; pointIndex++) {
-            Point currentPoint = getCurrentPoint(pointIndex);
+            Point currentPoint = getCurrentPoint(pointIndex, points);
             points.add(currentPoint);
         }
         return points;
     }
 
-    private Point getCurrentPoint(int pointIndex) {
+    private Point getCurrentPoint(int pointIndex, final List<Point> points) {
         Point currentPoint = Point.choosePoint();
         int previousPointIndex = pointIndex - 1;
         if (previousPointIndex >= 0) {
