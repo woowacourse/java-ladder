@@ -2,6 +2,7 @@ package view;
 
 import model.Ladder;
 import model.LadderHeight;
+import model.LadderResult;
 import model.Names;
 import util.LadderPrintMessage;
 
@@ -15,6 +16,7 @@ public class OutputView {
 
     private static final int MAXIMUM_PLAYER_NAME_SPACE = 5;
     private static StringBuilder stringBuilder;
+
     public void printPlayerNamesMessage() {
         System.out.println(PLAYER_NAME_MESSAGE);
     }
@@ -27,13 +29,13 @@ public class OutputView {
         System.out.println(LADDER_RESULT_MESSAGE);
     }
 
-    public void printResultMessage(){
-        System.out.println(System.lineSeparator()+RESULT_MESSAGE);
+    public void printResultMessage() {
+        System.out.println(System.lineSeparator() + RESULT_MESSAGE);
     }
 
     public void printName(Names names) {
         System.out.println("  ");
-        names.getNames().forEach(name -> System.out.printf("%" + MAXIMUM_PLAYER_NAME_SPACE + "s ",
+        names.getNames().forEach(name -> System.out.printf("%-" + MAXIMUM_PLAYER_NAME_SPACE + "s ",
                 name.getName()));
         System.out.println();
     }
@@ -45,7 +47,7 @@ public class OutputView {
             printConnectLadder(names.getNames().size(), ladder, row);
             stringBuilder.append(System.lineSeparator());
         }
-        System.out.println(stringBuilder);
+        System.out.print(stringBuilder);
     }
 
     private String printStartLadder() {
@@ -60,6 +62,13 @@ public class OutputView {
                 stringBuilder.append(LadderPrintMessage.NO_CONNECT_LADDER.getMessage());
         }
     }
+
+    public void printResult(LadderResult result) {
+        result.getLadderResult().forEach(name -> System.out.printf("%-" + MAXIMUM_PLAYER_NAME_SPACE + "s ",
+                name));
+        System.out.println();
+    }
+
 
 
 }

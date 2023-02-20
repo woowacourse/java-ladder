@@ -25,7 +25,7 @@ public class Controller {
         LadderHeight ladderHeight = setLadderHeight();
         Ladder ladder = new Ladder(names.getNamesSize(), ladderHeight,new LineGenerator());
         Game game = new Game(names, ladderResult,ladderHeight,ladder);
-        printResult(names, ladder, ladderHeight);
+        printLadder(names, ladder, ladderHeight , ladderResult);
     }
 
     private Names setNames() {
@@ -58,9 +58,11 @@ public class Controller {
         }
     }
 
-    private void printResult(Names names, Ladder ladder, LadderHeight ladderHeight){
+    private void printLadder(Names names, Ladder ladder, LadderHeight ladderHeight,
+                             LadderResult result){
         outputView.printResultMessage();
         outputView.printName(names);
         outputView.printLadder(names, ladder, ladderHeight);
+        outputView.printResult(result);
     }
 }
