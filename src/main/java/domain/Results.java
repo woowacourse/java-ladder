@@ -30,4 +30,13 @@ public class Results {
             throw new IllegalArgumentException(SIZE_ERROR);
         }
     }
+
+    public List<String> getResults() {
+        List<String> results = new ArrayList<>();
+
+        for (Result result : this.results) {
+            results.add(result.getName());
+        }
+        return results;
+    }
 }
