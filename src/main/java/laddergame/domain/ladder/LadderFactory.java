@@ -23,7 +23,7 @@ public class LadderFactory {
         this.rungGenerator = rungGenerator;
     }
 
-    protected static LadderFactory getInstance(final BooleanGenerator rungGenerator) {
+    static LadderFactory getInstance(final BooleanGenerator rungGenerator) {
         if (CACHE.containsKey(rungGenerator)) {
             return CACHE.get(rungGenerator);
         }
