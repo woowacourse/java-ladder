@@ -1,12 +1,13 @@
 package view;
 
+import domain.Game;
 import domain.Ladder;
 import domain.LadderResult;
 import domain.LadderResults;
 import domain.LadderSymbol;
 import domain.Player;
 import domain.Players;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 public class OutputView {
 
@@ -118,37 +119,44 @@ public class OutputView {
                 .append(NEW_LINE);
     }
 
-    public String makeLadderResults(LadderResults ladderResults) {
+    public String makeLadderResults(final LadderResults ladderResults) {
         for (final LadderResult ladderResult : ladderResults.getLadderResults().values()) {
             ladderResultsOutput.append(
                     String.format("%-" + (MAXIMUM_LENGTH_OF_NAME + 1) + "s", ladderResult.getResult()));
         }
+
         ladderResultsOutput.append(NEW_LINE);
         return ladderResultsOutput.toString();
     }
 
-    public void printResult(final Players players, final String command) {
+    public void printResult(final Game game, final String command) {
         System.out.println(NEW_LINE + "실행 결과");
-        System.out.println(drawResult(players, command));
-        System.out.println();
+        System.out.println(drawResult(game, command) + NEW_LINE);
     }
 
-    private String drawResult(final Players players, final String command) {
+    private String drawResult(final Game game, final String command) {
         if (command.equals("all")) {
-            return players.getPlayers().stream()
-                    .map(OutputView::drawPlayerNameAndResult)
-                    .collect(Collectors.joining(NEW_LINE));
+            return drawAllResults(game);
         }
-        return drawResult(players.findPlayer(command));
+        return game.findPlayerResult(command);
     }
 
-    private static String drawResult(final Player player) {
-        return player.getResult();
-    }
-
-    private static String drawPlayerNameAndResult(final Player player) {
-        StringBuilder output = new StringBuilder();
-        output.append(player.getName() + DELIMITER + player.getResult());
+    private String drawAllResults(final Game game) {
+        Map<Player, LadderResult> playersWithResult = game.findGameResults();
+        StringBuilder output = makePlayersResultOutput(playersWithResult);
         return output.toString();
+    }
+
+    private StringBuilder makePlayersResultOutput(final Map<Player, LadderResult> playersWithResult) {
+        StringBuilder output = new StringBuilder();
+
+        for (Player player : playersWithResult.keySet()) {
+            output.append(player.getName())
+                    .append(DELIMITER)
+                    .append(playersWithResult.get(player).getResult())
+                    .append(NEW_LINE);
+        }
+
+        return output;
     }
 }
