@@ -10,19 +10,45 @@ import org.junit.jupiter.api.Test;
 
 public class NamesTest {
 
-    @DisplayName("사다리 게임 참여자의 이름이 하나라도 잘못 입력된 경우 예외를 발생시킨다.")
+    @DisplayName("참가자의 숫자가 0명이면 예외를 발생시킨다.")
     @Test
-    void validateTest() {
-        List<String> names = List.of("odo", "odo27", "kong", "konghana");
+    void throwExceptionWhenSizeEqualZero() {
+        List<String> names = List.of();
+        assertThatThrownBy(() -> new Names(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("참가자는 2명 이상이어야 합니다.");
+    }
+
+    @DisplayName("참가자의 숫자가 1명이면 예외를 발생시킨다.")
+    @Test
+    void throwExceptionWhenSizeEqualOne() {
+        List<String> names = List.of("one");
+        assertThatThrownBy(() -> new Names(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("참가자는 2명 이상이어야 합니다.");
+    }
+
+    @DisplayName("참가자의 숫자가 2명이면 예외를 발생시키지 않는다.")
+    @Test
+    void doesNotThrowExceptionWhenSizeHigherThanTwo() {
+        List<String> names = List.of("one", "two");
+        assertThatCode(() -> new Names(names))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("참가자의 이름이 하나라도 잘못된 경우 예외를 발생시킨다.")
+    @Test
+    void throwExceptionWhenNamesHasInvalidName() {
+        List<String> names = List.of("o", "odo27", "konghana");
         assertThatThrownBy(() -> new Names(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 1글자에서 5글자 사이이어야 합니다.");
     }
 
-    @DisplayName("사다리 게임 참여자의 이름이 정상적으로 입력된 경우 참여자들을 생성한다.")
+    @DisplayName("참가자의 이름이 모두 올바른 경우 예외를 발생시키지 않는다.")
     @Test
-    void validateTest2() {
-        List<String> names = List.of("odo", "odo27", "kong", "ko ng", "  ko    ");
+    void doesNotThrowExceptionWhenNamesOnlyHasValidName() {
+        List<String> names = List.of("ko ng", "   odo    ", "od  o");
         assertThatCode(() -> new Names(names))
                 .doesNotThrowAnyException();
     }
