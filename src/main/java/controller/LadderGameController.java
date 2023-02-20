@@ -13,9 +13,9 @@ public class LadderGameController {
     private final OutputView outputView;
     private final GenerateBridgeStrategy bridgeStrategy;
 
-    public LadderGameController(InputView inputView, OutputView outputView, GenerateBridgeStrategy bridgeStrategy) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public LadderGameController(GenerateBridgeStrategy bridgeStrategy) {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
         this.bridgeStrategy = bridgeStrategy;
     }
 
