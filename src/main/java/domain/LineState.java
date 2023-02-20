@@ -7,6 +7,8 @@ public enum LineState {
     MOVABLE_STATE(1, true),
     UNMOVABLE_STATE(0, false);
 
+    private static final String CAN_NOT_FIND_STATE_FROM_VALUE_MESSAGE = "%d에 해당되는 상태값이 존재하지 않습니다.";
+
     private final int value;
     private final boolean state;
 
@@ -26,7 +28,8 @@ public enum LineState {
                     .findAny()
                     .get();
         } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 오류 발생 ");
+            throw new IllegalArgumentException(
+                    String.format(CAN_NOT_FIND_STATE_FROM_VALUE_MESSAGE ,value));
         }
     }
 

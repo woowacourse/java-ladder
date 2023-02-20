@@ -32,7 +32,7 @@ public class LadderGameController {
             List<String> names = inputView.readPersonsName();
             return new Persons(names);
         } catch (IllegalArgumentException e) {
-            outputView.printError(e);
+            outputView.printErrorMessage(e);
             return readPersons();
         }
     }
@@ -42,7 +42,7 @@ public class LadderGameController {
             int height = inputView.readLadderHeight();
             return new Ladder(height, width, generator);
         } catch (IllegalArgumentException e) {
-            outputView.printError(e);
+            outputView.printErrorMessage(e);
             return readLadder(width);
         }
     }

@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Persons {
-    private static final String DUPLICATE_NAME_ERROR = "[ERROR] 중복된 이름입니다.";
+    private static final String DUPLICATE_NAME_MESSAGE = "중복된 이름입니다.";
+
     private final List<Person> persons = new ArrayList<>();
 
     public Persons(List<String> names) {
@@ -25,7 +26,7 @@ public class Persons {
 
     private void validateDuplicateName(List<String> names) {
         if (isDuplicated(names)) {
-            throw new IllegalArgumentException(DUPLICATE_NAME_ERROR);
+            throw new IllegalArgumentException(DUPLICATE_NAME_MESSAGE);
         }
     }
 
