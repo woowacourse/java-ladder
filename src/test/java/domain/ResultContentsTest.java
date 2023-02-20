@@ -23,4 +23,15 @@ class ResultContentsTest {
                 .containsExactly("꽝", "1000", "꽝", "2000");
     }
 
+    @DisplayName("모든 실행결과를 연속된 문자와 구분자로 생성")
+    @Test
+    void createResultContentsRawValueAndDelimiterSuccess() {
+        String resultContentsInput = "꽝,1000,꽝,2000";
+        String delimiter = ",";
+        ResultContents resultContents = ResultContents.of(resultContentsInput, delimiter);
+
+        assertThat(resultContents.getResultContents()).extracting("content")
+                .containsExactly("꽝", "1000", "꽝", "2000");
+    }
+
 }
