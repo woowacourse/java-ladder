@@ -16,6 +16,10 @@ public class Participant {
         return new Participant(name, order);
     }
 
+    public boolean isSameName(final String targetName) {
+        return getName().equals(targetName);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

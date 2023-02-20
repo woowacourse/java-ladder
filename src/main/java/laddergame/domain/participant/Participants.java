@@ -36,12 +36,11 @@ public class Participants {
 
     public List<Participant> getResultParticipants(final String participantName) {
         String trimName = participantName.trim();
-        List<String> participantNames = getParticipantNames();
         if (trimName.equalsIgnoreCase(ALL_PARTICIPANTS)) {
             return List.copyOf(participants);
         }
 
-        Participant targetParticipant = getTargetParticipant(trimName, participantNames);
+        Participant targetParticipant = getTargetParticipant(trimName);
         return List.of(targetParticipant);
     }
 
@@ -78,17 +77,18 @@ public class Participants {
         return List.copyOf(participants);
     }
 
+    private Participant getTargetParticipant(final String trimName) {
+        List<String> participantNames = getParticipantNames();
+        return participants.stream()
+                .filter(participant -> participant.isSameName(trimName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format(INVALID_PARTICIPANT_NAME, String.join(",", participantNames))));
+    }
+
     private List<String> getParticipantNames() {
         return participants.stream()
                 .map(Participant::getName)
                 .collect(Collectors.toUnmodifiableList());
-    }
-
-    private Participant getTargetParticipant(final String trimName, final List<String> participantNames) {
-        return participants.stream()
-                .filter(participant -> participant.getName().equals(trimName))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format(INVALID_PARTICIPANT_NAME, String.join(",", participantNames))));
     }
 
     public List<Participant> getParticipants() {
