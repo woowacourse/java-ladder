@@ -7,6 +7,7 @@ import ladder.utils.BooleanGenerator;
 
 public class Line {
     private static final int PRE_CREATED_BARS_COUNT = 1;
+    private static final int MINIMUM_BARS_SIZE = 1;
     private final List<Bar> bars = new ArrayList<>();
 
     public Line(int size) {
@@ -14,7 +15,14 @@ public class Line {
     }
 
     public Line(int size, BooleanGenerator booleanGenerator) {
+        validateSize(size);
         generateBars(size, booleanGenerator);
+    }
+
+    private void validateSize(int size) {
+        if (size < MINIMUM_BARS_SIZE) {
+            throw new IllegalArgumentException("한 Line의 Bar는 1개 이상이어야 합니다.");
+        }
     }
 
     private void generateBars(int size, BooleanGenerator booleanGenerator) {

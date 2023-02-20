@@ -14,13 +14,24 @@ import org.junit.jupiter.api.Test;
 class LineTest {
 
     @Test
-    @DisplayName("bar를 3개를 생성한다")
+    @DisplayName("bar를 생성한다")
     void should3barWhenCreateLine() {
         // given
         // when
         Line line = new Line(3);
         // then
         assertThat(line.getBars()).hasSize(3);
+    }
+
+    @Test
+    @DisplayName("0 이하 크기의 bar를 생성하면 예외를 발생시킨다")
+    void shouldThrowExceptionWhenInputBelow0() {
+        // given
+        // when
+        // then
+        assertThatThrownBy(() -> new Line(0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("한 Line의 Bar는 1개 이상이어야 합니다.");
     }
 
     @Test
