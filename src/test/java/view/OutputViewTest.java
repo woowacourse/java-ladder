@@ -1,9 +1,12 @@
 package view;
 
+import domain.Height;
 import domain.Map;
 import domain.Participants;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import domain.Weight;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +27,8 @@ class OutputViewTest {
         setOutput();
         OutputView outputView = new OutputView();
         Participants participants = new Participants("jamie,split,pobi");
-        Map map = new Map("4", participants.getParticipantCount(), () -> true);
+        Map map = new Map(
+                new Height("4"), new Weight(participants.getParticipantCount()), () -> true);
         outputView.printMap(participants, map);
         Assertions.assertThat(byteArrayOutputStream).hasToString("\n실행결과\n\n"
             + "jamie split pobi\n"
@@ -40,7 +44,8 @@ class OutputViewTest {
         setOutput();
         OutputView outputView = new OutputView();
         Participants participants = new Participants("jamie,split,pobi");
-        Map map = new Map("4", participants.getParticipantCount(), () -> false);
+        Map map = new Map(
+                new Height("4"), new Weight(participants.getParticipantCount()), () -> false);
         outputView.printMap(participants, map);
         Assertions.assertThat(byteArrayOutputStream).hasToString("\n실행결과\n\n"
                 + "jamie split pobi\n"

@@ -1,7 +1,9 @@
 package controller;
 
+import domain.Height;
 import domain.Map;
 import domain.Participants;
+import domain.Weight;
 import util.BooleanGenerator;
 import view.input.InputView;
 import view.output.OutputView;
@@ -26,8 +28,9 @@ public class RadderGameController {
 
     private Map generateMap(InputView inputView, Participants participants, BooleanGenerator booleanGenerator) {
         try {
-            String height = inputView.enterHeight();
-            return new Map(height, participants.getParticipantCount(), booleanGenerator);
+            Height height = new Height(inputView.enterHeight());
+            Weight weight = new Weight(participants.getParticipantCount());
+            return new Map(height, weight, booleanGenerator);
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
             return generateMap(inputView, participants, booleanGenerator);
