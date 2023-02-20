@@ -10,26 +10,27 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(final int height, final int numberOfPlayers) {
-        validateNumberOfHeight(height);
-        this.lines = createLines(height, numberOfPlayers);
+    public Ladder(final int height, final int numberOfPlayers, final PickStrategy pickStrategy) {
+        validateHeight(height);
+        this.lines = createLines(height, numberOfPlayers, pickStrategy);
     }
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
 
-    private void validateNumberOfHeight(final int height) {
+    private void validateHeight(final int height) {
         if (height < MIN_HEIGHT) {
-            throw new IllegalArgumentException("최소 높이가 1이상이어야 합니다.");
+            final String heightExceptionMessage = String.format("최소 높이가 %s이상이어야 합니다.", MIN_HEIGHT);
+            throw new IllegalArgumentException(heightExceptionMessage);
         }
     }
 
-    private List<Line> createLines(final int height, final int numberOfPlayers) {
+    private List<Line> createLines(final int height, final int numberOfPlayers, final PickStrategy pickStrategy) {
         final List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            lines.add(Line.from(numberOfPlayers));
+            lines.add(Line.of(numberOfPlayers, pickStrategy));
         }
 
         return lines;

@@ -15,10 +15,6 @@ public class Line {
         this.connections = createConnections(connectionCount, pickStrategy);
     }
 
-    public static Line from(final int playerCount) {
-        return new Line(playerCount, new RandomBooleanPicker());
-    }
-
     public static Line of(final int playerCount, final PickStrategy pickStrategy) {
         return new Line(playerCount, pickStrategy);
     }
