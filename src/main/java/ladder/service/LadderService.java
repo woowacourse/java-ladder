@@ -1,7 +1,8 @@
 package ladder.service;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.Arrays;
-import java.util.stream.Collectors;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
@@ -34,7 +35,7 @@ public class LadderService {
         String[] playerNames = namesInput.split(PLAYERS_STRING_DELIMITER);
         List<Player> players = Arrays.stream(playerNames)
                 .map(Player::new)
-                .collect(Collectors.toList());
+                .collect(toList());
         return new Players(players);
     }
 
@@ -42,7 +43,7 @@ public class LadderService {
         String[] resultsStrings = resultsInput.split(RESULTS_STRING_DELIMITER);
         List<Result> results = Arrays.stream(resultsStrings)
                 .map(Result::new)
-                .collect(Collectors.toList());
+                .collect(toList());
         return new Results(results, playerCount);
     }
 }
