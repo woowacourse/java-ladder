@@ -1,9 +1,13 @@
 package controller;
 
-import domain.*;
-
 import java.util.function.Supplier;
 
+import domain.Ladder;
+import domain.LadderService;
+import domain.People;
+import domain.Person;
+import domain.RandomGenerateStrategy;
+import domain.Results;
 import view.InputView;
 import view.OutputView;
 
@@ -13,24 +17,27 @@ public class LadderController {
     private final OutputView outputView;
     private LadderService ladderService;
 
-    public LadderController() {
-        inputView = new InputView();
-        outputView = new OutputView();
+    public LadderController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        initLadderService();
     }
 
-    public void run() {
+    private void initLadderService() {
         People people = repeat(this::nameRequest);
         Ladder ladder = repeat(() -> ladderRequest(people));
         Results results = repeat(() -> resultsRequest(people));
 
         ladderService = new LadderService(ladder, people, results);
-
         outputView.printTotalLadderResult(people, ladder, results);
+    }
+
+    public void run() {
 
         while (true) {
             Person person = repeat(this::singleResultRequest);
             if (person.equals(new Person("all"))) {
-                outputView.printAllResults(people, ladderService.getAllResults());
+                outputView.printAllResults(ladderService.getPeople(), ladderService.getAllResults());
                 return;
             }
             outputView.printSingleResult(ladderService.getSingleResult(person));
