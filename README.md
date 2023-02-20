@@ -16,9 +16,9 @@
   - [x] Validator 클래스 삭제. Height 와 Players 생성자에서 validate 검증
 - [x] input view 에서 입력 요청 출력을 Controller 로 위임
 - [x] Output view -> 사용자 이름 길이에 맞게 수정되게 하는 로직 변수 선언
-- [ ] parameterized test 사용. 테스트 추가 
-- [ ] Height 만큼 반복문 돌리기 -> getter 사용 ?? minus 메소드 호출 ?? 
-
+- [x] parameterized test 사용. 테스트 추가 
+- [x] Height 만큼 반복문 돌리기 -> getter 사용 ?? minus 메소드 호출 ?? 
+- [x] 하나의 step 도 연결 안된 bar 가 있는 ladder validate check 
 
 ## 기능 목록
 

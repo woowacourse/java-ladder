@@ -3,6 +3,7 @@ package domain;
 import util.TrueOrFalseGenerator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Line {
@@ -35,5 +36,19 @@ public class Line {
             return current;
         }
         return false;
+    }
+
+    public void checkFalseIndex(HashMap<Integer, Integer> map) {
+        for (Boolean b : points) {
+            if (!b) {
+                Integer key = points.indexOf(b);
+                if (map.containsKey(key)) {
+                    Integer oldvalue = map.get(points.indexOf(b));
+                    map.replace(points.indexOf(b), oldvalue, oldvalue + 1);
+                    break;
+                }
+                map.put(key, 1);
+            }
+        }
     }
 }
