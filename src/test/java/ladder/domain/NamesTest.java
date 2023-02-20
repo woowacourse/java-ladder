@@ -1,13 +1,13 @@
 package ladder.domain;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import ladder.error.ErrorMessage;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import static org.junit.jupiter.api.Assertions.*;
 
 class NamesTest {
 
@@ -16,8 +16,9 @@ class NamesTest {
     void createNamesFailTest(int size) {
         List<String> userNames = createUserNamesBySize(size);
 
-        assertThatThrownBy(() -> new Names(userNames))
-            .isInstanceOf(IllegalArgumentException.class);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> new Names(userNames));
+        assertEquals(ErrorMessage.INVALID_PEOPLE_COUNT.getMessage(), exception.getMessage());
     }
 
     @ParameterizedTest(name = "사람 수는 2명 이상 100명 이하여야 한다.")

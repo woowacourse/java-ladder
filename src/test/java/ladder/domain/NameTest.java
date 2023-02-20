@@ -1,12 +1,12 @@
 package ladder.domain;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
-
+import ladder.error.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class NameTest {
 
@@ -19,28 +19,32 @@ class NameTest {
     @Test
     @DisplayName("이름은 5글자 이하여야 한다.")
     void createNameFailByLengthTest() {
-        assertThatThrownBy(() -> new Name("ABCDEF")).
-            isInstanceOf(IllegalArgumentException.class);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> new Name("ABCDEF"));
+        assertEquals(ErrorMessage.INVALID_NAME_LENGTH.getMessage(), exception.getMessage());
     }
 
     @Test
     @DisplayName("이름은 빈 문자열일 수 없다.")
     void createNameFailByEmptyInputTest() {
-        assertThatThrownBy(() -> new Name(""))
-            .isInstanceOf(IllegalArgumentException.class);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> new Name(""));
+        assertEquals(ErrorMessage.INVALID_NAME_LENGTH.getMessage(), exception.getMessage());
     }
 
     @Test
     @DisplayName("이름은 null일 수 없다.")
     void createNameFailByNullTest() {
-        assertThatThrownBy(() -> new Name(null))
-            .isInstanceOf(IllegalArgumentException.class);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> new Name(null));
+        assertEquals(ErrorMessage.NAME_IS_NULL.getMessage(), exception.getMessage());
     }
 
     @Test
     @DisplayName("이름에 쉼표(,)가 포함될 수 없다.")
     void createNameFailByIncludingCommaTest() {
-        assertThatThrownBy(() -> new Name("yo,me"))
-            .isInstanceOf(IllegalArgumentException.class);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> new Name("yo,me"));
+        assertEquals(ErrorMessage.INVALID_NAME_FORMAT.getMessage(), exception.getMessage());
     }
 }
