@@ -25,7 +25,7 @@ class PeopleTest {
 	void peopleSize1() {
 		assertThatThrownBy(() -> People.from(List.of("kiara")))
 				.isInstanceOf(IllegalArgumentException.class)
-				.hasMessage("[ERROR] 사람은 최소 두명 이상이어야 합니다");
+				.hasMessage("[ERROR] 사람은 2 ~ 10 명이여야 합니다");
 	}
 
 	@DisplayName("10명 초과면 예외가 발생한다")
@@ -37,7 +37,7 @@ class PeopleTest {
 
 		assertThatThrownBy(() -> People.from(names))
 				.isInstanceOf(IllegalArgumentException.class)
-				.hasMessage("[ERROR] 사람은 최대 10명 이어야 합니다");
+				.hasMessage("[ERROR] 사람은 2 ~ 10 명이여야 합니다");
 	}
 
 	@DisplayName("중복된 이름은 예외가 발생한다")
@@ -45,7 +45,7 @@ class PeopleTest {
 	void duplication() {
 		assertThatThrownBy(() -> People.from(List.of("kiara", "kiara")))
 				.isInstanceOf(IllegalArgumentException.class)
-				.hasMessage("[ERROR] 사람 이름은 중복되지 않아야 합니다");
+				.hasMessage("[ERROR] 이름은 중복되지 않아야 합니다");
 	}
 
 	@DisplayName("참여자의 이름을 입력해서 초기 위치를 구할 수 있다")

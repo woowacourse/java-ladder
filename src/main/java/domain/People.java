@@ -29,12 +29,8 @@ public class People {
 	}
 
 	private static void validateSize(List<String> names) {
-		if (names.size() < MIN_PEOPLE_SIZE_INCLUSIVE) {
-			throw new IllegalArgumentException(Error.LACK_OF_PEOPLE.getMessage());
-		}
-
-		if (names.size() > MAX_PEOPLE_SIZE_INCLUSIVE) {
-			throw new IllegalArgumentException(Error.TOO_MANY_PEOPLE.getMessage());
+		if (names.size() < MIN_PEOPLE_SIZE_INCLUSIVE || names.size() > MAX_PEOPLE_SIZE_INCLUSIVE) {
+			throw new IllegalArgumentException(Error.INVALID_PEOPLE_SIZE.getMessage());
 		}
 	}
 
