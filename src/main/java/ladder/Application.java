@@ -15,6 +15,8 @@ public class Application {
 
         LadderGame game = new LadderGame(command, lineStrategy);
         OutputView.printLadder(game.getPlayerNames(), game.getLadder(), game.getResults());
+
+        String queryName = InputView.readResultInquireName();
     }
 
     private static Command readCommand() {
