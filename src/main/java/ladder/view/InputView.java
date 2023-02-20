@@ -27,6 +27,16 @@ public class InputView {
         }
     }
 
+    public static List<String> inputPrizes() {
+        System.out.println("상품을 입력하세요. (이름은 쉼표(,)로 구분하세요.");
+        return List.of(splitInput());
+    }
+
+    public static String inputPrizeWinner() {
+        System.out.println("결과를 보고 싶은 사람을 입력하세요.");
+        return scanner.nextLine();
+    }
+
     private static String[] splitInput() {
         return scanner.nextLine().split(DELIMITER);
     }
