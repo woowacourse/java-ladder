@@ -7,25 +7,19 @@ import laddergame.domain.Names;
 import java.util.List;
 
 import static java.util.stream.Collectors.joining;
+import static laddergame.view.OutputFormat.BLANK;
+import static laddergame.view.OutputFormat.VERTICAL_LINE;
 
-public enum OutputView {
-    BLANK(" "),
-    VERTICAL_LINE("|"),
-    HORIZONTAL_LINE("-");
+public class OutputView {
 
     private static final int HALF = 2;
-    private final String ladderElement;
-
-    OutputView(final String ladderElement) {
-        this.ladderElement = ladderElement;
-    }
 
     public static void printPlayerAll(final Names names) {
         System.out.println(System.lineSeparator() + "실행결과" + System.lineSeparator());
 
         final String allPlayerName = names.getNames().stream()
                 .map(player -> makeNameFormat(names.findMaxNameLength(), player))
-                .collect(joining(BLANK.ladderElement));
+                .collect(joining(BLANK.getLadderElement()));
 
         System.out.println(allPlayerName);
     }
@@ -42,7 +36,7 @@ public enum OutputView {
 
     private static String makeNameFormat(final int maxNameLength, final String name) {
         int count = maxNameLength - name.length();
-        final String repeat = BLANK.ladderElement.repeat(count);
+        final String repeat = BLANK.getLadderElement().repeat(count);
 
         return String.format("%s%s", name, repeat);
     }
@@ -50,7 +44,7 @@ public enum OutputView {
     private static String makeLadderFormat(final List<Link> line, final Names names) {
         final StringBuilder result = new StringBuilder(setUpLadder(names.getFirstNameLength()));
 
-        line.forEach(existences -> result.append(makeLine(existences.isLink(), names.findMaxNameLength())));
+        line.forEach(existences -> result.append(makeLine(existences, names.findMaxNameLength())));
         result.append(System.lineSeparator());
 
         return result.toString();
@@ -58,17 +52,12 @@ public enum OutputView {
 
     private static String setUpLadder(final int firstNameLength) {
         final int leftBlankCount = Math.round(firstNameLength / HALF);
-        return String.format("%s%s", BLANK.ladderElement.repeat(leftBlankCount), VERTICAL_LINE.ladderElement);
+        return String.format("%s%s", BLANK.getLadderElement().repeat(leftBlankCount), VERTICAL_LINE.getLadderElement());
     }
 
-    private static String makeLine(final Boolean existences, final int maxNameLength) {
-        return String.format("%s%s", visualizeExistences(existences).repeat(maxNameLength), VERTICAL_LINE.ladderElement);
+    private static String makeLine(final Link link, final int maxNameLength) {
+        return String.format("%s%s", OutputFormat.convertFormat(link).repeat(maxNameLength), VERTICAL_LINE.getLadderElement());
     }
 
-    private static String visualizeExistences(final boolean existences) {
-        if (existences) {
-            return HORIZONTAL_LINE.ladderElement;
-        }
-        return BLANK.ladderElement;
-    }
+
 }
