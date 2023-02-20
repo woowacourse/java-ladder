@@ -6,8 +6,8 @@ import static laddergame.domain.message.ErrorMessage.INVALID_MATERIAL;
 
 public class Rung {
 
-    protected static final int SUFFICIENT = 1;
-    protected static final int INSUFFICIENT = 0;
+    static final int SUFFICIENT = 1;
+    static final int INSUFFICIENT = 0;
 
     private final boolean exists;
 
