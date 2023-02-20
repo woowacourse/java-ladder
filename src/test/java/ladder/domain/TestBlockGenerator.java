@@ -8,6 +8,7 @@ import java.util.List;
 public class TestBlockGenerator implements BlockGenerator {
 
     private final List<Block> blocks;
+    private int index;
 
     public TestBlockGenerator(List<Block> blocks) {
         this.blocks = blocks;
@@ -15,6 +16,6 @@ public class TestBlockGenerator implements BlockGenerator {
 
     @Override
     public Block generate() {
-        return blocks.remove(0);
+        return blocks.get(index++);
     }
 }
