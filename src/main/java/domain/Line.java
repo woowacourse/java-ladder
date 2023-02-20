@@ -42,4 +42,8 @@ public class Line {
     public List<Point> points() {
         return Collections.unmodifiableList(points);
     }
+
+    public int width() {
+        return points.size();
+    }
 }

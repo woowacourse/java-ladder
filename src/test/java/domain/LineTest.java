@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
 
-    private static final int MIN_NUMBER_RETURN_TRUE = 4;
+    public static final int PASSABLE_THRESHOLDS = 4;
 
     @DisplayName("인자값으로 받은 numberOfPeople -1 개 만큼의 Point를 가진다")
     @Test

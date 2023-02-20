@@ -1,13 +1,17 @@
 package domain;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import utils.RandomNumberGenerator;
+
+import static domain.LineTest.PASSABLE_THRESHOLDS;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import utils.NumberGenerator;
+import utils.RandomNumberGenerator;
 
 class LadderTest {
 
@@ -26,9 +30,54 @@ class LadderTest {
         assertThat(numberOfPoint).isEqualTo(1);
     }
 
+    @DisplayName("사다리의 시작 위치가 같다면 같은 결과 위치를 반환해주어야한디")
+    @Test
+    void get_same_start_end_position() {
+        Ladder ladder = createLadder(2, 3);
+        Position first = ladder.getResultPositionOf(new Position(0));
+        Position second = ladder.getResultPositionOf(new Position(0));
+        assertThat(first).isEqualTo(second);
+    }
+
+    @DisplayName("사다리의 시작 위치가 다르다면 서로 다른 결과 위치를 반환해주어야 한다.")
+    @Test
+    void get_different_start_end_position() {
+        Ladder ladder = createLadder(2, 3);
+        Position firstResult = ladder.getResultPositionOf(new Position(0));
+        Position secondResult = ladder.getResultPositionOf(new Position(1));
+        assertThat(firstResult).isNotEqualTo(secondResult);
+    }
+
+    @DisplayName("사다리의 결과에 맞는 시작, 결과 위치를 반환해주어야 한다.")
+    /** 0     1     2     3
+     *  |-----|     |-----|
+     *  |     |-----|     |
+     *  |-----|     |-----|
+     *  0     1     2     3
+     *  이면  0->3, 1->1, 2->2, 3->0
+     * **/
+    @ParameterizedTest
+    @CsvSource(value = {"0:3", "1:1", "2:2", "3:0"}, delimiter = ':')
+    void get_appropriate_position(int startPosition, int expectedResultPosition) {
+        List<Integer> numberListToGenerate = List.of(PASSABLE_THRESHOLDS, PASSABLE_THRESHOLDS,
+                PASSABLE_THRESHOLDS - 1, PASSABLE_THRESHOLDS,
+                PASSABLE_THRESHOLDS, PASSABLE_THRESHOLDS);
+        Ladder ladder = createLadder(3, 4, new MockNumberGenerator(numberListToGenerate));
+
+        Position realResultPosition = ladder.getResultPositionOf(new Position(startPosition));
+
+        assertThat(realResultPosition).isEqualTo(new Position(expectedResultPosition));
+    }
+
     private Ladder createLadder(int height, int numberOfPeople) {
         LadderHeight ladderHeight = new LadderHeight(height);
         Ladder ladder = Ladder.create(numberOfPeople, ladderHeight, new RandomNumberGenerator());
+        return ladder;
+    }
+
+    private Ladder createLadder(int height, int numberOfPeople, NumberGenerator numberGenerator) {
+        LadderHeight ladderHeight = new LadderHeight(height);
+        Ladder ladder = Ladder.create(numberOfPeople, ladderHeight, numberGenerator);
         return ladder;
     }
 }

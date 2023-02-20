@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import utils.NumberGenerator;
 
@@ -28,6 +27,38 @@ public class Ladder {
         for (int i = 0; i < height(); i++) {
             lines.add(Line.create(numberOfPeople, numberGenerator));
         }
+    }
+
+    public Position getResultPositionOf(Position position) {
+        int horizontalPosition = position.value();
+        for (Line line : lines) {
+            horizontalPosition = getNextHorizontalPosition(line, horizontalPosition);
+        }
+        return new Position(horizontalPosition);
+    }
+
+    private int getNextHorizontalPosition(Line line, int horizontalPosition) {
+        if (haveRightPoint(line, horizontalPosition)) {
+            return horizontalPosition + 1;
+        }
+        if (haveLeftPoint(line, horizontalPosition)) {
+            return horizontalPosition - 1;
+        }
+        return horizontalPosition;
+    }
+
+    private boolean haveRightPoint(Line line, int horizontalPosition) {
+        if (horizontalPosition == line.width()) {
+            return false;
+        }
+        return line.points().get(horizontalPosition).isPassable();
+    }
+
+    private boolean haveLeftPoint(Line line, int horizontalPosition) {
+        if (horizontalPosition == 0) {
+            return false;
+        }
+        return line.points().get(horizontalPosition - 1).isPassable();
     }
 
     public List<Line> lines() {
