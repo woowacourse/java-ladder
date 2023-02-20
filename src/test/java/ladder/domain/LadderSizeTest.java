@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LadderPropertyTest {
+class LadderSizeTest {
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 1001, 10000})
