@@ -8,7 +8,7 @@ public class RandomStepGenerator implements StepGenerator {
 
     @Override
     public Step generate() {
-        if (threadLocalRandom.nextInt(10) > 4) {
+        if (threadLocalRandom.nextBoolean()) {
             return Step.CONNECTED;
         }
         return Step.BLANK;
