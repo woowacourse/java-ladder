@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import domain.Ladder;
 import domain.Line;
-import domain.ParticipantName;
-import domain.Participants;
+import domain.User;
+import domain.Users;
 import domain.util.Point;
 
 public class OutputView {
@@ -27,15 +27,15 @@ public class OutputView {
 		LINE_MAP = Map.of(true, PRESENT_LINE, false, ABSENT_LINE);
 	}
 
-	public static void printResult(final Participants participants, final Ladder ladder) {
-		System.out.println(getStringifiedNames(participants));
+	public static void printResult(final Users users, final Ladder ladder) {
+		System.out.println(getStringifiedNames(users));
 		System.out.println(getStringifiedLadder(ladder));
 	}
 
-	private static String getStringifiedNames(final Participants participants) {
-		List<ParticipantName> names = participants.getNames();
+	private static String getStringifiedNames(final Users users) {
+		List<User> names = users.getNames();
 		StringBuilder stringifiedNames = new StringBuilder();
-		for (ParticipantName name : names) {
+		for (User name : names) {
 			stringifiedNames.append(String.format(RIGHT_ALIGN_PLACEHOLDER, name.getName()));
 		}
 		return stringifiedNames.toString();

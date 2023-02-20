@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class LinePointsGeneratorTest {
 
-	class PresentPointGenerator implements PointGenerator {
+	static class PresentPointGenerator implements PointGenerator {
 		@Override
 		public Point generate() {
 			return Point.PRESENCE;
@@ -16,7 +16,7 @@ class LinePointsGeneratorTest {
 	}
 
 	@Test
-	@DisplayName("연속하지 않도록 교차하는 포인트들의 리스트를 반환해야한다.")
+	@DisplayName("연속하지 않도록 교차하는 포인트들의 리스트를 반환해야 한다.")
 	void lineAlternativePointsGeneratingSuccessTest() {
 		int width = 5;
 		LinePointsGenerator alternativePointsGenerator = new LinePointsGenerator(width, new PresentPointGenerator());

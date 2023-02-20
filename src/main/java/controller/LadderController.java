@@ -4,30 +4,30 @@ import domain.Ladder;
 import domain.LadderBuilder;
 import domain.LadderHeight;
 import domain.LadderWidth;
-import domain.Participants;
+import domain.Users;
 import domain.util.RandomPointGenerator;
 import view.InputView;
 import view.OutputView;
 
 public class LadderController {
 	public void makeLadder() {
-		Participants participants = retrieveParticipants();
-		Ladder ladder = buildLadder(participants);
-		OutputView.printResult(participants, ladder);
+		Users users = retrieveUsers();
+		Ladder ladder = buildLadder(users);
+		OutputView.printResult(users, ladder);
 	}
 
-	private Participants retrieveParticipants() {
+	private Users retrieveUsers() {
 		try {
-			return new Participants(InputView.readParticipantsNames());
+			return new Users(InputView.readUserNames());
 		} catch (IllegalArgumentException e) {
 			OutputView.printError(e.getMessage());
-			return retrieveParticipants();
+			return retrieveUsers();
 		}
 	}
 
-	private Ladder buildLadder(Participants participants) {
+	private Ladder buildLadder(Users users) {
 		LadderHeight height = retrieveLadderHeight();
-		LadderWidth width = changeIntoWidth(participants.getParticipantsNum());
+		LadderWidth width = changeIntoWidth(users.getUsersCount());
 		return new LadderBuilder().build(height, width, new RandomPointGenerator());
 	}
 
@@ -40,7 +40,7 @@ public class LadderController {
 		}
 	}
 
-	private LadderWidth changeIntoWidth(final int participantsNum) {
-		return new LadderWidth( participantsNum - 1);
+	private LadderWidth changeIntoWidth(final int userCount) {
+		return new LadderWidth( userCount - 1);
 	}
 }
