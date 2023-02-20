@@ -15,10 +15,10 @@ public class Ladder {
 
     private List<Line> generateLines(final LineGenerator lineGenerator, final Players players, final Height height) {
         final List<Line> lines = new ArrayList<>();
-        final int numberOfPlayers = players.numberOfPlayers();
+        final int directionCount = players.numberOfPlayers();
 
         for (int i = 0; i < height.getValue(); i++) {
-            lines.add(lineGenerator.generate(numberOfPlayers));
+            lines.add(lineGenerator.generate(directionCount));
         }
 
         return lines;
