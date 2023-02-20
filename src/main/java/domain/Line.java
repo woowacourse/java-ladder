@@ -8,10 +8,10 @@ public class Line {
 
 
     private final int numberOfLine;
-    private List<LineStatus> line = new ArrayList<>();
+    private final List<LineStatus> line = new ArrayList<>();
 
-    public Line(int numberOfLine, LineGenerator lineGenerator) {
-        this.numberOfLine = numberOfLine;
+    public Line(int numberOfLineStatus, LineGenerator lineGenerator) {
+        this.numberOfLine = numberOfLineStatus;
         makeLine(lineGenerator);
     }
 
