@@ -32,11 +32,20 @@ class LadderTest {
             DynamicTest.dynamicTest("높이가 null 인 경우.",
                 () -> Assertions.assertThatThrownBy(() -> new Ladder(null, 2, new RandomBooleanGenerator()))
                     .isExactlyInstanceOf(InvalidLadderHeightException.class)),
+            DynamicTest.dynamicTest("높이가 빈문자열 이루어진 경우.",
+                () -> Assertions.assertThatThrownBy(() -> new Ladder("", 2, new RandomBooleanGenerator()))
+                    .isExactlyInstanceOf(InvalidLadderHeightException.class)),
             DynamicTest.dynamicTest("높이가 공백으로 이루어진 경우.",
                 () -> Assertions.assertThatThrownBy(() -> new Ladder("     ", 2, new RandomBooleanGenerator()))
                     .isExactlyInstanceOf(InvalidLadderHeightException.class)),
+            DynamicTest.dynamicTest("높이가 정수가 아닌 경우.",
+                () -> Assertions.assertThatThrownBy(() -> new Ladder("as", 2, new RandomBooleanGenerator()))
+                    .isExactlyInstanceOf(InvalidLadderHeightException.class)),
+            DynamicTest.dynamicTest("높이가 음수인 경우.",
+                () -> Assertions.assertThatThrownBy(() -> new Ladder("-1", 2, new RandomBooleanGenerator()))
+                    .isExactlyInstanceOf(InvalidLadderHeightException.class)),
             DynamicTest.dynamicTest("높이가 0인 경우.",
-                () -> Assertions.assertThatThrownBy(() -> new Ladder(null, 2, new RandomBooleanGenerator()))
+                () -> Assertions.assertThatThrownBy(() -> new Ladder("0", 2, new RandomBooleanGenerator()))
                     .isExactlyInstanceOf(InvalidLadderHeightException.class)),
             DynamicTest.dynamicTest("높이가 11인 경우.",
                 () -> Assertions.assertThatThrownBy(() -> new Ladder("11", 2, new RandomBooleanGenerator()))
