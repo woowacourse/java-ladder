@@ -21,8 +21,8 @@ public class LadderGameController {
 
     public void run() {
         List<String> names = inputView.readPersonsName();
-        int height = inputView.readLadderHeight();
         Persons persons = new Persons(names);
+        int height = inputView.readLadderHeight();
         Ladder ladder = new Ladder(height, names.size(), generator);
 
         outputView.printPersonNames(persons.getPersonsName());
