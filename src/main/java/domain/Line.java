@@ -22,32 +22,32 @@ public class Line {
     }
 
     private void generateBridge(BridgeGenerator bridgeGenerator, int bridgeIndex) {
-        if (!hasSide(bridgeIndex, bridges.size() - 1)) {
+        if (!hasBridgeInLeftOrRight(bridgeIndex, bridges.size() - 1)) {
             bridges.set(bridgeIndex, bridgeGenerator.generate());
         }
     }
 
-    private boolean hasSide(int bridgeIndex, int maxIndex) {
+    private boolean hasBridgeInLeftOrRight(int bridgeIndex, int maxIndex) {
         if (bridgeIndex == 0 && maxIndex == 0) {
             return false;
         }
 
         if (bridgeIndex == 0) {
-            return isBridgeInRight(bridgeIndex + 1);
+            return hasBridgeInRight(bridgeIndex + 1);
         }
 
         if (bridgeIndex == maxIndex) {
-            return isBridgeInLeft(bridgeIndex - 1);
+            return hasBridgeInLeft(bridgeIndex - 1);
         }
 
-        return isBridgeInLeft(bridgeIndex - 1) || isBridgeInRight(bridgeIndex + 1);
+        return hasBridgeInLeft(bridgeIndex - 1) || hasBridgeInRight(bridgeIndex + 1);
     }
 
-    private Boolean isBridgeInLeft(int leftIndex) {
+    private Boolean hasBridgeInLeft(int leftIndex) {
         return bridges.get(leftIndex).getStatus();
     }
 
-    private Boolean isBridgeInRight(int rightIndex) {
+    private Boolean hasBridgeInRight(int rightIndex) {
         return bridges.get(rightIndex).getStatus();
     }
 
