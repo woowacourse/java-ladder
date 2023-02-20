@@ -1,8 +1,8 @@
 package ladder.controller;
 
 import ladder.domain.Height;
-import ladder.service.LadderGame;
 import ladder.domain.Names;
+import ladder.service.LadderGame;
 import ladder.util.BooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -32,7 +32,7 @@ public class LadderController {
         try {
             return new Names(readNames());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            resultView.printErrorMessage(e.getMessage());
             return createNames();
         }
     }
@@ -41,7 +41,7 @@ public class LadderController {
         try {
             return new Height(readLadderHeight());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            resultView.printErrorMessage(e.getMessage());
             return createHeight();
         }
     }

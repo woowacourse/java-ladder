@@ -20,6 +20,10 @@ public class ResultView {
         printLadder(ladder, names.lengthOfFirstName());
     }
 
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
+
     private void printNames(Names names) {
         String result = names.getNames()
                 .stream()
