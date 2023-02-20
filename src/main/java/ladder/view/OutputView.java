@@ -34,20 +34,19 @@ public class OutputView {
 
     private static int calculateBlank(User user) {
         double userNameSpan = INIT_SPAN;
-        for (Character name : user.getName().toCharArray()) {
-            userNameSpan += userNameSpanSize(name);
+        for (Character word : user.getName().toCharArray()) {
+            userNameSpan += userNameSpanSize(word);
         }
         return (int) (userNameSpan);
     }
 
-    private static double userNameSpanSize(Character name) {
-        String hi = String.valueOf(name);
-        if (Pattern.matches(KOREAN_MATCH_REGEX, hi)) {
+    private static double userNameSpanSize(Character word) {
+        String value = String.valueOf(word);
+        if (Pattern.matches(KOREAN_MATCH_REGEX, value)) {
             return KOREAN_SPAN;
         }
         return OTHER_SPAN;
     }
-
 
     private static void printLadder(Ladder ladder) {
         for (Floor floor : ladder.getFloors()) {

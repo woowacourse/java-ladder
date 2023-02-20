@@ -14,6 +14,12 @@ public class Ladder {
         makeLadder(height, calculateWidth(users));
     }
 
+    private void validateHeight(int size) {
+        if (size <= MINIMUM_SIZE) {
+            throw new IllegalArgumentException(LADDER_SIZE_ERROR_MESSAGE);
+        }
+    }
+
     private void makeLadder(final int height, final int width) {
         for (int i = 0; i < height; i++) {
             floors.add(new Floor(width));
@@ -23,7 +29,6 @@ public class Ladder {
     private int calculateWidth(Users users) {
         return users.getUsers().size() - DIFFERENCE_BETWEEN_FLOOR_AND_USERS;
     }
-
 
     public void makeFloors(NumberGenerator numberGenerator) {
         for (Floor floor : floors) {
@@ -43,12 +48,6 @@ public class Ladder {
 
     public List<Floor> getFloors() {
         return floors;
-    }
-
-    private void validateHeight(int size) {
-        if (size <= MINIMUM_SIZE) {
-            throw new IllegalArgumentException(LADDER_SIZE_ERROR_MESSAGE);
-        }
     }
 
 }
