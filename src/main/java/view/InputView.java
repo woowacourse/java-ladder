@@ -3,6 +3,7 @@ package view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
@@ -14,7 +15,9 @@ public class InputView {
     public List<String> readPlayerNames() {
         System.out.println(NAME_INPUT_NOTICE);
         String[] names = readInput().split(DELIMITER);
-        return Arrays.asList(names);
+        return Arrays.stream(names)
+                .map(s -> s.trim())
+                .collect(Collectors.toList());
     }
 
     private String readInput() {
