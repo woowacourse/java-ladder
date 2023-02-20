@@ -33,7 +33,7 @@ public class TestDataManager {
         PlayerNames playerNames = PlayerNames.of("pobi,crong,royce", ",");
         Players players = Players.from(playerNames);
         ResultContents resultContents = ResultContents.of("꽝,5000,10000", ",");
-        Ladder ladder = TestDataManager.ladderFromHeight(3);
+        Ladder ladder = Ladder.of(3, new Height(3), new AlwaysGenerateBridgeStrategy());
 
         return new LadderGame(ladder, players, resultContents);
     }
