@@ -53,6 +53,7 @@
 - `Ladder`: 사다리
 - `Rung`: 사다리 발판
 - `Line`: 사다리의 한 행
+- `Width`: 사다리의 너비
 - `Height`: 사다리의 높이
 - `Participants`: 사다리 게임 참여자들
 - `Name`: 참여자의 이름
