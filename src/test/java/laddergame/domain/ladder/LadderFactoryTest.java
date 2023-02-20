@@ -1,7 +1,7 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.rung.RungNumberGenerator;
-import laddergame.util.NumberGenerator;
+import laddergame.domain.rung.RungBooleanGenerator;
+import laddergame.util.BooleanGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,8 +20,8 @@ public class LadderFactoryTest {
 
     @BeforeEach
     void init() {
-        NumberGenerator rungNumberGenerator = new RungNumberGenerator();
-        ladderFactory = LadderFactory.create(rungNumberGenerator);
+        BooleanGenerator rungBooleanGenerator = new RungBooleanGenerator();
+        ladderFactory = LadderFactory.create(rungBooleanGenerator);
         participantCount = 4;
     }
 

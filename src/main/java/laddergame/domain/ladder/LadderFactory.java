@@ -1,7 +1,7 @@
 package laddergame.domain.ladder;
 
 import laddergame.domain.rung.Rungs;
-import laddergame.util.NumberGenerator;
+import laddergame.util.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,21 +15,21 @@ public class LadderFactory {
     private static final int MAX_HEIGHT = 10_000;
     private static final int DEFAULT_COUNT = 1;
 
-    private final NumberGenerator rungNumberGenerator;
+    private final BooleanGenerator rungBooleanGenerator;
 
-    private LadderFactory(final NumberGenerator rungNumberGenerator) {
-        this.rungNumberGenerator = rungNumberGenerator;
+    private LadderFactory(final BooleanGenerator rungBooleanGenerator) {
+        this.rungBooleanGenerator = rungBooleanGenerator;
     }
 
-    public static LadderFactory create(final NumberGenerator rungNumberGenerator) {
-        return new LadderFactory(rungNumberGenerator);
+    public static LadderFactory create(final BooleanGenerator rungBooleanGenerator) {
+        return new LadderFactory(rungBooleanGenerator);
     }
 
     public Ladder createLadder(final String height, final int participantCount) {
         int ladderHeight = convertToLadderHeight(height);
         List<Rungs> ladder = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            ladder.add(Rungs.create(makeRungCount(participantCount), rungNumberGenerator));
+            ladder.add(Rungs.create(makeRungCount(participantCount), rungBooleanGenerator));
         }
         return Ladder.create(ladder);
     }
