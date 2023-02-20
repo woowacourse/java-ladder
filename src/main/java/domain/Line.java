@@ -6,20 +6,18 @@ import java.util.List;
 
 public class Line {
 
-    private final BooleanGenerator booleanGenerator;
     private final List<Point> points;
 
     public Line(BooleanGenerator booleanGenerator, int personCount) {
-        this.booleanGenerator = booleanGenerator;
-        points = generatePoints(personCount);
+        points = generatePoints(booleanGenerator, personCount);
     }
 
-    private List<Point> generatePoints(int personCount) {
+    private List<Point> generatePoints(BooleanGenerator booleanGenerator, int personCount) {
         List<Point> points = new ArrayList<>();
 
         Point previousPoint = Point.DISCONNECTED;
         for (int i = 0; i < personCount - 1; i++) {
-            Point currentPoint = generatePoint(previousPoint);
+            Point currentPoint = generatePoint(booleanGenerator, previousPoint);
             points.add(currentPoint);
             previousPoint = currentPoint;
         }
@@ -27,15 +25,15 @@ public class Line {
         return points;
     }
 
-    private Point generatePoint(Point previousPoint) {
+    private Point generatePoint(BooleanGenerator booleanGenerator, Point previousPoint) {
         if (previousPoint.isConnected()) {
             return Point.DISCONNECTED;
         }
 
-        return generatePoint();
+        return generatePoint(booleanGenerator);
     }
 
-    private Point generatePoint() {
+    private Point generatePoint(BooleanGenerator booleanGenerator) {
         if (booleanGenerator.generate()) {
             return Point.CONNECTED;
         }
