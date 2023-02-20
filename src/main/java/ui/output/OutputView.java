@@ -20,19 +20,26 @@ public class OutputView {
     }
 
     private static void printNames(Person person) {
+        int maxLength = person.getPerson().stream().mapToInt(p -> p.getName().length()).max().orElseThrow();
+        StringBuilder stringBuilder = new StringBuilder();
+
         for (People people : person.getPerson()) {
-            calculateNameLength(people.getName());
+            stringBuilder.append(align(people.getName(), maxLength));
         }
-        System.out.println();
+
+        System.out.println(stringBuilder);
     }
 
-    private static void calculateNameLength(String name) {
-        if (name.length() < 5) {
-            System.out.printf("%4s  ", name);
+    private static StringBuilder align(String name, int maxLength) {
+        StringBuilder stringBuilder = new StringBuilder(name);
+        while(stringBuilder.length() < maxLength - 1) {
+            stringBuilder = new StringBuilder(" " + stringBuilder);
         }
-        if (name.length() == 5) {
-            System.out.printf("%4s ", name);
+        while(stringBuilder.length() < maxLength) {
+            stringBuilder.append(" ");
         }
+        stringBuilder.append(" ");
+        return stringBuilder;
     }
 
     private static void printLadder(Lines lines) {
