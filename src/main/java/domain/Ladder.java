@@ -32,29 +32,29 @@ public class Ladder {
     public Position getResultPositionOf(Position position) {
         int horizontalPosition = position.value();
         for (Line line : lines) {
-            horizontalPosition = getNextHorizontalPosition(line, horizontalPosition);
+            horizontalPosition = getNextLineHorizontalPosition(line, horizontalPosition);
         }
         return new Position(horizontalPosition);
     }
 
-    private int getNextHorizontalPosition(Line line, int horizontalPosition) {
-        if (haveRightPoint(line, horizontalPosition)) {
+    private int getNextLineHorizontalPosition(Line line, int horizontalPosition) {
+        if (isRightPassable(line, horizontalPosition)) {
             return horizontalPosition + 1;
         }
-        if (haveLeftPoint(line, horizontalPosition)) {
+        if (isLeftPassable(line, horizontalPosition)) {
             return horizontalPosition - 1;
         }
         return horizontalPosition;
     }
 
-    private boolean haveRightPoint(Line line, int horizontalPosition) {
+    private boolean isRightPassable(Line line, int horizontalPosition) {
         if (horizontalPosition == line.width()) {
             return false;
         }
         return line.points().get(horizontalPosition).isPassable();
     }
 
-    private boolean haveLeftPoint(Line line, int horizontalPosition) {
+    private boolean isLeftPassable(Line line, int horizontalPosition) {
         if (horizontalPosition == 0) {
             return false;
         }
