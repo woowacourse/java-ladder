@@ -36,8 +36,15 @@ public class LadderGameController {
     private List<List<Boolean>> getPointValues(List<Line> lines) {
         return lines.stream()
                 .map(Line::getPoints)
-                .map(Point::convertPointsToValues)
+                .map(LadderGameController::convertPointsToValues)
                 .collect(Collectors.toList());
     }
+
+    public static List<Boolean> convertPointsToValues(List<Point> points) {
+        return points.stream()
+                .map(Point::isExist)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
 
 }
