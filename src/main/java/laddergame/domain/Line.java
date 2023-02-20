@@ -5,62 +5,63 @@ import java.util.List;
 
 public class Line {
 
-    private static final int MIN_STATUS = 1;
+    private static final int MIN_CONNECTIONS = 1;
 
-    private final List<Boolean> statuses;
+    private final List<Boolean> connections;
     private final PickStrategy strategy;
 
-    private Line(final int numberOfPlayers, final PickStrategy pickStrategy) {
+    private Line(final int playerCount, final PickStrategy pickStrategy) {
         this.strategy = pickStrategy;
-        int numberOfStatus = numberOfPlayers - 1;
-        validateNumberOfStatus(numberOfStatus);
-        this.statuses = createStatuses(numberOfStatus);
+        int connectionCount = playerCount - 1;
+        validateConnectionCount(connectionCount);
+        this.connections = createConnections(connectionCount);
     }
 
-    public static Line from(final int numberOfPlayers) {
-        return new Line(numberOfPlayers, new RandomBooleanPicker());
+    public static Line from(final int playerCount) {
+        return new Line(playerCount, new RandomBooleanPicker());
     }
 
-    public static Line of(final int numberOfPlayers, final PickStrategy pickStrategy) {
-        return new Line(numberOfPlayers, pickStrategy);
+    public static Line of(final int playerCount, final PickStrategy pickStrategy) {
+        return new Line(playerCount, pickStrategy);
     }
 
-    public List<Boolean> getStatuses() {
-        return new ArrayList<>(statuses);
+    public List<Boolean> getConnections() {
+        return new ArrayList<>(connections);
     }
 
-    private List<Boolean> createStatuses(int numberOfStatus) {
-        List<Boolean> statuses = new ArrayList<>();
+    private List<Boolean> createConnections(int connectionCount) {
+        List<Boolean> connections = new ArrayList<>();
 
-        for (int i = 0; i < numberOfStatus; i++) {
-            statuses.add(createLineStatus(statuses));
+        for (int i = 0; i < connectionCount; i++) {
+            connections.add(createLineConnections(connections));
         }
 
-        return statuses;
+        return connections;
     }
 
-    private boolean createLineStatus(final List<Boolean> statuses) {
+    private boolean createLineConnections(final List<Boolean> connections) {
         final boolean pick = strategy.pick();
 
-        if (statuses.isEmpty()) {
+        if (connections.isEmpty()) {
             return pick;
         }
 
-        if (isOverlap(statuses, pick)) {
+        if (isOverlap(connections, pick)) {
             return false;
         }
 
         return pick;
     }
 
-    private static boolean isOverlap(final List<Boolean> statuses, final boolean pick) {
-        int lastIndex = statuses.size() - 1;
-        return statuses.get(lastIndex) && pick;
+    private static boolean isOverlap(final List<Boolean> connections, final boolean pick) {
+        int lastIndex = connections.size() - 1;
+        return connections.get(lastIndex) && pick;
     }
 
-    private void validateNumberOfStatus(final int numberOfStatus) {
-        if (numberOfStatus < MIN_STATUS) {
-            throw new IllegalStateException("Player는 2명보다 작을 수 없습니다.");
+    private void validateConnectionCount(final int connectionCount) {
+        if (connectionCount < MIN_CONNECTIONS) {
+            final String connectionCountMessage = String.format("연결상태는 %s보다 작을 수 없습니다.", connectionCount);
+            throw new IllegalStateException(connectionCountMessage);
         }
     }
 }

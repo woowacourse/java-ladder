@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 public class LineTest {
 
     @Nested
-    static class LineStatusTest {
+    static class LineConnectionsTest {
 
         @ParameterizedTest
         @DisplayName("Players가 두 명 이상이면 Line이 생성된다.")
@@ -34,13 +34,12 @@ public class LineTest {
         @DisplayName("라인이 생성되면 List<Boolean>이 생성된다.")
         void givenLine_thenCreateBooleanList() {
             //given
-            final List<Boolean> statuses = List.of(true, false, false);
-            final Line line = Line.of(statuses.size(), new TestBooleanPicker(statuses));
+            final List<Boolean> connections = List.of(true, false, false);
+            final Line line = Line.of(connections.size(), new TestBooleanPicker(connections));
 
             //then
-            assertThat(line)
-                    .extracting("statuses")
-                    .isEqualTo(List.of(true, false));
+            assertThat(line.getConnections())
+                    .containsExactly(true, false);
         }
     }
 
@@ -48,12 +47,11 @@ public class LineTest {
     @DisplayName("라인이 겹치지 않는다.")
     void givenLine_thenNotOverLap() {
         //given
-        final List<Boolean> statuses = List.of(true, true, false);
-        final Line line = Line.of(statuses.size(), new TestBooleanPicker(statuses));
+        final List<Boolean> connections = List.of(true, true, false);
+        final Line line = Line.of(connections.size(), new TestBooleanPicker(connections));
 
         //then
-        assertThat(line)
-                .extracting("statuses")
-                .isEqualTo(List.of(true, false));
+        assertThat(line.getConnections())
+                .containsExactly(true, false);
     }
 }
