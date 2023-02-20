@@ -15,7 +15,7 @@ public class Ladder {
     }
 
     public static Ladder create(final String height, final int participantCount, final BooleanGenerator rungGenerator) {
-        List<Rungs> ladderRungs = LadderFactory
+        List<Rungs> ladderRungs = LadderRungsFactory
                 .getInstance(rungGenerator)
                 .createLadderRungs(height, participantCount);
         return new Ladder(ladderRungs);

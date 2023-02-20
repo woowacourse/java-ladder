@@ -10,27 +10,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LadderFactory {
+public class LadderRungsFactory {
 
     private static final int MIN_HEIGHT = 1;
     private static final int MAX_HEIGHT = 10_000;
     private static final int DEFAULT_COUNT = 1;
-    private static final Map<BooleanGenerator, LadderFactory> CACHE = new HashMap<>();
+    private static final Map<BooleanGenerator, LadderRungsFactory> CACHE = new HashMap<>();
 
     private final BooleanGenerator rungGenerator;
 
-    private LadderFactory(final BooleanGenerator rungGenerator) {
+    private LadderRungsFactory(final BooleanGenerator rungGenerator) {
         this.rungGenerator = rungGenerator;
     }
 
-    static LadderFactory getInstance(final BooleanGenerator rungGenerator) {
+    static LadderRungsFactory getInstance(final BooleanGenerator rungGenerator) {
         if (CACHE.containsKey(rungGenerator)) {
             return CACHE.get(rungGenerator);
         }
 
-        LadderFactory ladderFactory = new LadderFactory(rungGenerator);
-        CACHE.put(rungGenerator, ladderFactory);
-        return ladderFactory;
+        LadderRungsFactory ladderRungsFactory = new LadderRungsFactory(rungGenerator);
+        CACHE.put(rungGenerator, ladderRungsFactory);
+        return ladderRungsFactory;
     }
 
     protected List<Rungs> createLadderRungs(final String height, final int participantCount) {
