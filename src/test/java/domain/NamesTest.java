@@ -30,7 +30,7 @@ public class NamesTest {
 
     @DisplayName("참가자의 숫자가 2명이면 예외를 발생시키지 않는다.")
     @Test
-    void doesNotThrowExceptionWhenSizeHigherThanTwo() {
+    void doesNotThrowExceptionWhenSizeIsMoreThanTwo() {
         List<String> names = List.of("one", "two");
         assertThatCode(() -> new Names(names))
                 .doesNotThrowAnyException();

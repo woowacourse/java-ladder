@@ -9,28 +9,19 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class LadderTest {
 
-    @DisplayName("사다리의 높이는 자연수로 입력되어야 한다.")
+    @DisplayName("사다리 높이가 참가자 수 미만이면 예외를 발생시킨다.")
     @ParameterizedTest
-    @CsvSource({"0", "-1"})
-    void createLadderTest(int height) {
-        assertThatThrownBy(() -> new Ladder(height, 4))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사다리의 높이는 자연수이어야 합니다.");
-    }
-
-    @DisplayName("사다리 높이는 참가자 수 이상이어야한다.")
-    @ParameterizedTest
-    @CsvSource(value = {"3:4", "8:14"}, delimiter = ':')
-    void createLadderTest2(int height, int personCount) {
+    @CsvSource({"3,4", "4,5"})
+    void throwExceptionWhenHeightIsLessThanPersonCount(int height, int personCount) {
         assertThatThrownBy(() -> new Ladder(height, personCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리의 높이는 참가자 수 이상이어야 합니다.");
     }
 
-    @DisplayName("사다리 높이가 정상적으로 입력되면 사다리를 생성한다.")
+    @DisplayName("사다리 높이가 참가자 수 이상이면 예외를 발생시키지 않는다.")
     @ParameterizedTest
-    @CsvSource(value = {"4:3", "14:5"}, delimiter = ':')
-    void createLadderTest3(int height, int personCount) {
+    @CsvSource({"4,3", "5,5"})
+    void doesNotThrowExceptionWhenHeightIsNotLessThanPersonCount(int height, int personCount) {
         assertThatCode(() -> new Ladder(height, personCount))
                 .doesNotThrowAnyException();
     }
