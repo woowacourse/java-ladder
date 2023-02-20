@@ -19,7 +19,7 @@ public class PlayersTest {
     @DisplayName("모든 조건을 충족한 경우 Players 객체가 생성된다.")
     void playersInitiatorTest() {
 
-        assertDoesNotThrow(() -> new Players(correctPlayerNames));
+        assertDoesNotThrow(() -> Players.from(correctPlayerNames));
     }
 
     @Test
@@ -27,7 +27,7 @@ public class PlayersTest {
     void validateDuplicatedName() {
         List<String> duplicatedPlayers = List.of("pobi", "pobi", "crong");
 
-        assertThatThrownBy(() -> new Players(duplicatedPlayers))
+        assertThatThrownBy(() -> Players.from(duplicatedPlayers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -35,7 +35,7 @@ public class PlayersTest {
     @DisplayName("플레이어의 수 반환 테스트")
     void getCountTest() {
 
-        assertThat(new Players(correctPlayerNames).findNumberOfPlayers())
+        assertThat(Players.from(correctPlayerNames).findNumberOfPlayers())
                 .isEqualTo(correctPlayerNames.size());
     }
 
@@ -43,7 +43,7 @@ public class PlayersTest {
     @DisplayName("플레이어 이름 리스트 반환 테스트")
     void getNameTest() {
 
-        assertThat(new Players(correctPlayerNames).findNames())
+        assertThat(Players.from(correctPlayerNames).findNames())
                 .isEqualTo(correctPlayerNames);
     }
 
@@ -56,7 +56,7 @@ public class PlayersTest {
         void validateOnePlayer() {
             List<String> onePlayerName = List.of("pobi");
 
-            assertThatThrownBy(() -> new Players(onePlayerName))
+            assertThatThrownBy(() -> Players.from(onePlayerName))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -65,7 +65,7 @@ public class PlayersTest {
         void validateZeroPlayer() {
             List<String> zeroPlayerName = Collections.emptyList();
 
-            assertThatThrownBy(() -> new Players(zeroPlayerName))
+            assertThatThrownBy(() -> Players.from(zeroPlayerName))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }

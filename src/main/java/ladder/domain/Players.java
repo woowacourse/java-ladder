@@ -7,12 +7,21 @@ import java.util.stream.Collectors;
 public class Players {
 
     private static final int MINIMUM_COUNT_OF_PLAYERS = 2;
-    private List<Player> players;
+    private static final int MAXIMUM_COUNT_OF_PLAYERS = 10;
+    private final List<Player> players;
 
-    public Players(final List<String> playerNames) {
-        validateDuplicatedNames(playerNames);
-        validateNumberOfPlayers(playerNames);
-        createPlayersByName(playerNames);
+    private Players(final List<Player> players) {
+        validateDuplicatedNames(players);
+        validateNumberOfPlayers(players);
+        this.players = players;
+    }
+
+    public static Players from(final List<String> playerNames) {
+        List<Player> players = playerNames.stream()
+                .map(inputName -> new Player(new Name(inputName)))
+                .collect(Collectors.toList());
+
+        return new Players(players);
     }
 
     public int findNumberOfPlayers() {
@@ -25,24 +34,28 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    private void validateDuplicatedNames(final List<String> playerNames) {
-        int numberOfNotDuplicatedPlayers = Set.copyOf(playerNames).size();
+    private void validateDuplicatedNames(final List<Player> players) {
+        int numberOfNotDuplicatedPlayers = Set.copyOf(players).size();
 
-        if (numberOfNotDuplicatedPlayers != playerNames.size()) {
-            throw new IllegalArgumentException("플레이어의 이름이 중복됩니다.");
+        if (numberOfNotDuplicatedPlayers != players.size()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_PLAYERS_ERROR.message);
         }
     }
 
-    private void validateNumberOfPlayers(final List<String> playerNames) {
-        if (playerNames.size() < MINIMUM_COUNT_OF_PLAYERS) {
-            throw new IllegalArgumentException("플레이어의 수는 2명 이상이어야 합니다.");
+    private void validateNumberOfPlayers(final List<Player> players) {
+        if (players.size() < MINIMUM_COUNT_OF_PLAYERS || players.size() > MAXIMUM_COUNT_OF_PLAYERS) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_OF_PLAYERS_ERROR.message);
         }
     }
 
-    private void createPlayersByName(final List<String> playerNames) {
-        players = playerNames.stream()
-                .map(inputName -> new Player(new Name(inputName)))
-                .collect(Collectors.toList());
+    private enum ErrorMessage {
+        DUPLICATED_PLAYERS_ERROR("플레이어의 이름이 중복됩니다."),
+        NUMBER_OF_PLAYERS_ERROR("플레이어의 수는 %d명 이상 %d명 이하여야 합니다.", MINIMUM_COUNT_OF_PLAYERS, MAXIMUM_COUNT_OF_PLAYERS);
+        private final String message;
+
+        ErrorMessage(String message, Object... replace) {
+            this.message = String.format(message, replace);
+        }
     }
 
 }
