@@ -11,14 +11,7 @@ import java.util.stream.Collectors;
 
 public class LadderGameController {
 
-    private final InputView inputView;
-    private final OutputView outputView;
     private LadderGame ladderGame;
-
-    public LadderGameController(final InputView inputView, final OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-    }
 
     public void play() {
         ready();
@@ -26,9 +19,9 @@ public class LadderGameController {
     }
 
     private void ready() {
-        List<String> playerNames = inputView.readPlayerNames();
+        List<String> playerNames = InputView.readPlayerNames();
         Players players = PlayersFactory.generate(playerNames);
-        int ladderHeight = inputView.readLadderHeight();
+        int ladderHeight = InputView.readLadderHeight();
         Ladder ladder = LadderFactory.generate(playerNames.size(), ladderHeight, new RandomBasedStrategy());
         ladderGame = new LadderGame(players, ladder);
     }
@@ -37,7 +30,7 @@ public class LadderGameController {
         Ladder ladder = ladderGame.getLadder();
         List<Line> lines = ladder.getLines();
         List<List<Boolean>> pointValues = getPointValues(lines);
-        outputView.printGeneratedLadder(ladderGame.getPlayerNames(), pointValues);
+        OutputView.printGeneratedLadder(ladderGame.getPlayerNames(), pointValues);
     }
 
     private List<List<Boolean>> getPointValues(List<Line> lines) {
