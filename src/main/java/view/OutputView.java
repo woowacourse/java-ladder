@@ -1,7 +1,7 @@
 package view;
 
 import domain.Line;
-import domain.Player;
+import domain.Name;
 import java.util.List;
 
 public class OutputView {
@@ -49,6 +49,6 @@ public class OutputView {
     }
 
     private String getNameBlank(String name) {
-        return BLANK.repeat(Player.NAME_MAX_LENGTH - name.length());
+        return BLANK.repeat(Name.NAME_MAX_LENGTH - name.length());
     }
 }
