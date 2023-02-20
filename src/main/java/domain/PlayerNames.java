@@ -32,11 +32,19 @@ public class PlayerNames {
         try {
             validatePlayerName(playerNames);
             validatePlayerSize(playerNames);
+            validateSamePlayerName(playerNames);
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception.getMessage());
             playerNames = validatePlayerNames(inputView.readPlayerNames());
         }
         return playerNames;
+    }
+
+    private void validateSamePlayerName(List<String> playerNames) {
+        List<String> checkSamePlayerName = new ArrayList<>();
+        if (playerNames.size() != checkSamePlayerName.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 플레이어의 이름이 존재합니다");
+        }
     }
 
     private static void validatePlayerName(List<String> playerNames) {
