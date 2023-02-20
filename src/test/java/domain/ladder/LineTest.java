@@ -1,7 +1,5 @@
-package domain;
+package domain.ladder;
 
-import domain.ladder.Line;
-import domain.ladder.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

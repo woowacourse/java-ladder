@@ -1,7 +1,5 @@
-package domain;
+package domain.players;
 
-import domain.players.Player;
-import domain.players.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
