@@ -36,7 +36,7 @@ public class LadderController {
 
     private Names createNames() {
         try {
-            List<String> rawNames = inputView.sendNames();
+            List<String> rawNames = inputView.readNames();
             return rawNames.stream()
                     .map(Name::new)
                     .collect(collectingAndThen(toList(), Names::new));
@@ -48,7 +48,7 @@ public class LadderController {
 
     private LadderHeight createLadderHeight() {
         try {
-            int height = inputView.sendLadderHeight();
+            int height = inputView.readLadderHeight();
             return new LadderHeight(height);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());

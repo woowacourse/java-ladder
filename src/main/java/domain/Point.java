@@ -4,10 +4,10 @@ public enum Point {
     PASSABLE,
     BLOCKED;
 
-    private static final int MIN_NUMBER_RETURN_TRUE = 4;
+    private static final int PASSABLE_THRESHOLDS = 4;
 
     public static Point of(int number) {
-        if (number >= MIN_NUMBER_RETURN_TRUE) {
+        if (number >= PASSABLE_THRESHOLDS) {
             return Point.PASSABLE;
         }
         return Point.BLOCKED;

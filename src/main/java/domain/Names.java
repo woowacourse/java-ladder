@@ -39,6 +39,6 @@ public class Names {
     }
 
     public Stream<Name> stream() {
-        return Collections.unmodifiableList(names).stream();
+        return List.copyOf(names).stream();
     }
 }

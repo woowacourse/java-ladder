@@ -25,16 +25,16 @@ public class Ladder {
     }
 
     private void addLines(int numberOfPeople, NumberGenerator numberGenerator) {
-        for (int i = 0; i < getLadderHeight(); i++) {
+        for (int i = 0; i < height(); i++) {
             lines.add(Line.create(numberOfPeople, numberGenerator));
         }
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public List<Line> lines() {
+        return List.copyOf(lines);
     }
 
-    public int getLadderHeight() {
-        return ladderHeight.getValue();
+    public int height() {
+        return ladderHeight.value();
     }
 }

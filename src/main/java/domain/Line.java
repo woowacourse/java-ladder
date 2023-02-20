@@ -39,7 +39,7 @@ public class Line {
         return points.get(points.size() - 1).isPassable();
     }
 
-    public List<Point> getPoints() {
+    public List<Point> points() {
         return Collections.unmodifiableList(points);
     }
 }

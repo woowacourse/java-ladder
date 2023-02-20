@@ -49,14 +49,14 @@ public class OutputView {
     }
 
     private void printLadder(Ladder ladder) {
-        List<Line> lines = ladder.getLines();
+        List<Line> lines = ladder.lines();
         for (Line line : lines) {
             printLine(line);
         }
     }
 
     private void printLine(Line line) {
-        line.getPoints().forEach(this::printPoint);
+        line.points().forEach(this::printPoint);
         System.out.println(EDGE_OF_POINT);
     }
 

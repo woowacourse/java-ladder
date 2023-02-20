@@ -17,7 +17,7 @@ public class LadderHeight {
         }
     }
 
-    public int getValue() {
+    public int value() {
         return this.value;
     }
 }
