@@ -32,8 +32,8 @@ public class ParticipantsTest {
 
     @ParameterizedTest
     @CsvSource(value = {"pobi,jiwon,hoocu:3", "choco,jelly,pen,water:4"}, delimiter=':')
-    @DisplayName("입력된 이름 개수와 참여자 수가 같은지 확인한다.")
-    void are_same_participants_size_as_names_size(String names, int expectedSize) {
+    @DisplayName("Participants 객체의 사이즈가 입력된 이름의 개수와 같은지 확인한다.")
+    void is_same_size_as_the_number_of_names(String names, int expectedSize) {
         // given
         Participants participants = Participants.create(names);
 
