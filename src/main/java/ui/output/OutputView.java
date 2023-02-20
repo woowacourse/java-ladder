@@ -3,13 +3,6 @@ package ui.output;
 import domain.Lines;
 import domain.Players;
 
-import java.util.NoSuchElementException;
-
-/**
- * @author 베베
- * @version 1.0.0
- * @Created by 베베 on 2023. 02. 20.
- */
 public class OutputView {
 
     private static final String EXECUTE_RESULT = "실행결과";

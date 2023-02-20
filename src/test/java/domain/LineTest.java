@@ -5,14 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.stream.IntStream;
 
-/**
- * @author 베베
- * @version 1.0.0
- * @Created by 베베 on 2023. 02. 18.
- */
 public class LineTest {
 
     private Line line;

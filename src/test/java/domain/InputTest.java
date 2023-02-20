@@ -11,11 +11,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-/**
- * @author 베베
- * @version 1.0.0
- * @Created by 베베 on 2023. 02. 20.
- */
 public class InputTest {
 
     private static List<String> splitComma(String input) {

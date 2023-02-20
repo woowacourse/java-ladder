@@ -1,6 +1,4 @@
-import domain.Line;
 import domain.Lines;
-import domain.Player;
 import domain.Players;
 import ui.input.InputView;
 import ui.output.OutputView;

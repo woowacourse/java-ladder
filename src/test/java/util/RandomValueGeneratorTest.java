@@ -5,11 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-/**
- * @author 베베
- * @version 1.0.0
- * @Created by 베베 on 2023. 02. 18.
- */
 public class RandomValueGeneratorTest {
 
     @DisplayName("True 또는 False가 반환되어야 한다.")

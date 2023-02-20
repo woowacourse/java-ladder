@@ -6,11 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * @author 베베
- * @version 1.0.0
- * @Created by 베베 on 2023. 02. 18.
- */
 public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
