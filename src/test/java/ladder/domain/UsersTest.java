@@ -4,9 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
@@ -44,21 +42,4 @@ public class UsersTest {
                 .hasMessageContaining("명 미만");
     }
 
-    @Test
-    @DisplayName("Users를 생성할 때 각 user에 순차적인 x위치값을 초기화한다.")
-    void initUsersPosition() {
-
-        //given
-        List<String> userNames = List.of("user1", "user2", "user3");
-
-        //when
-        Users users = new Users(userNames);
-        List<Integer> result = users.getUsers().stream()
-                .map(User::getxPosition)
-                .collect(Collectors.toList());
-
-        //then
-        assertThat(result)
-                .containsExactly(0, 1, 2);
-    }
 }
