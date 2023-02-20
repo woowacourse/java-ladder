@@ -47,7 +47,9 @@ public class LadderController {
     }
 
     private Ladder createLadder(Names names, LadderHeight ladderHeight) {
-        return new Ladder(names.size(), ladderHeight.getLadderHeight(), generator);
+        Ladder ladder = new Ladder();
+        ladder.drawLine(names.size(), ladderHeight.getLadderHeight(), generator);
+        return ladder;
     }
 
     private List<String> readNames() {
