@@ -18,15 +18,16 @@ public class LadderTest {
     @Test
     @DisplayName("게임 참여자 수와 높이에 따라 사다리 생성")
     void createLadderSuccess() {
-        List<String> players = List.of("pobi", "conan");
-        PlayerNames playerNames = PlayerNames.from(players);
+        String players = "pobi,conan";
+        String delimiter = ",";
+        PlayerNames playerNames = PlayerNames.of(players, delimiter);
         int heightSize = 4;
         Height height = new Height(heightSize);
 
         Ladder ladder = Ladder.of(playerNames, height, new AlwaysGenerateBridgeStrategy());
 
         List<Line> linesInLadder = ladder.getLines();
-        assertThat(linesInLadder).hasSize(players.size());
+        assertThat(linesInLadder).hasSize(playerNames.getPlayerNames().size());
         assertThat(ladder.getHeightSize()).isEqualTo(heightSize);
     }
 

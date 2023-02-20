@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,8 +18,9 @@ public class PlayerNames {
         this.playerNames = playerNames;
     }
 
-    public static PlayerNames from(List<String> names) {
-        List<PlayerName> playerNames = names.stream()
+    public static PlayerNames of(String inputValue, String delimiter) {
+        List<PlayerName> playerNames = Arrays.stream(inputValue.split(delimiter, -1))
+                .map(String::trim)
                 .map(PlayerName::new)
                 .collect(Collectors.toList());
 

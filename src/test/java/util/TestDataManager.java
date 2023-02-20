@@ -4,7 +4,6 @@ import domain.Height;
 import domain.PlayerNames;
 import domain.ladder.Ladder;
 import domain.ladder.strategy.AlwaysGenerateBridgeStrategy;
-import java.util.List;
 
 public class TestDataManager {
 
@@ -13,7 +12,9 @@ public class TestDataManager {
      * @return ladder
      */
     public static Ladder ladderFromHeight(int heightSize) {
-        PlayerNames playerNames = PlayerNames.from(List.of("pobi", "crong", "honux", "jk"));
+        String playerNamesInput = "pobi,honux,crong,jk";
+        String delimiter = ",";
+        PlayerNames playerNames = PlayerNames.of(playerNamesInput, delimiter);
         Height height = new Height(heightSize);
 
         return Ladder.of(playerNames, height, new AlwaysGenerateBridgeStrategy());

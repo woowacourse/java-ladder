@@ -20,7 +20,8 @@ public class LadderGameController {
     }
 
     public void run() {
-        PlayerNames playerNames = inputView.requestPlayerNames();
+        String playerNamesInput = inputView.requestPlayerNames();
+        PlayerNames playerNames = PlayerNames.of(playerNamesInput, inputView.getPlayerNameDelimiter());
         Height height = inputView.requestLadderHeight();
 
         Ladder ladder = Ladder.of(playerNames, height, bridgeStrategy);
