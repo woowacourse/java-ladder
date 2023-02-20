@@ -9,17 +9,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 import util.TrueGenerator;
 
 public class LadderTest {
-    @ParameterizedTest
-    @ValueSource(ints = {3, 5, 10})
+    @Test
     @DisplayName("하나의 다리에 사용자가 입력한 높이 만큼의 Line 이 생긴다")
-    void createLadderWithEmptyLines(int ladderHeight) {
+    void createLadderWithEmptyLines() {
         //given
         int personCount = 5;
+        int ladderHeight = 3;
         Height height = new Height(ladderHeight);
-
-        //when
         Ladder ladder = new Ladder(height, personCount);
 
+        //when
         //then
         Assertions.assertThat(ladder.calculateTotalHeight()).isEqualTo(ladderHeight);
     }
@@ -30,13 +29,13 @@ public class LadderTest {
         //given
         int personCount = 5;
         Height height = new Height(2);
+        Ladder ladder = new Ladder(height, personCount);
 
         //when
-        Ladder ladder = new Ladder(height, personCount);
         ladder.generateLadder(new TrueGenerator());
 
         //then
         Assertions.assertThat(ladder.getStatus())
-                .containsExactly(List.of(true, false, true, false), List.of(true, false, true, false));
+                .containsExactly(List.of(Bridge.EXIST, Bridge.EMPTY, Bridge.EXIST, Bridge.EMPTY), List.of(Bridge.EXIST, Bridge.EMPTY, Bridge.EXIST, Bridge.EMPTY));
     }
 }

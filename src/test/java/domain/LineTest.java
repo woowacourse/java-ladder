@@ -4,18 +4,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import util.FalseGenerator;
 import util.TrueGenerator;
 
 class LineTest {
 
-    @ParameterizedTest
-    @ValueSource(ints = {3, 5, 10})
-    @DisplayName("한 라인에 사람 수 만큼 칸이 생성되는가")
-    void createSpaceTest(int personCount) {
+    @Test
+    @DisplayName("한 라인에 (사람 수-1) 만큼 칸이 생성되는가")
+    void createSpaceTest() {
         //given
+        int personCount = 5;
+
         //when
         Line line = new Line(personCount);
 
@@ -33,7 +32,7 @@ class LineTest {
         line.generate(new TrueGenerator());
 
         //then
-        assertThat(line.getBridges()).containsExactly(true, false, true, false);
+        assertThat(line.getBridges()).containsExactly(Bridge.EXIST, Bridge.EMPTY, Bridge.EXIST, Bridge.EMPTY);
     }
 
     @Test
@@ -46,7 +45,7 @@ class LineTest {
         line.generate(new FalseGenerator());
 
         //then
-        assertThat(line.getBridges()).containsExactly(false, false, false, false);
+        assertThat(line.getBridges()).containsExactly(Bridge.EMPTY, Bridge.EMPTY, Bridge.EMPTY, Bridge.EMPTY);
     }
 
 }
