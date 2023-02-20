@@ -27,4 +27,8 @@ public class Results {
             throw new IllegalArgumentException("결과 값들의 개수는 입력된 이름의 개수와 같아야 합니다.");
         }
     }
+
+    public List<Result> getResults() {
+        return this.results;
+    }
 }
