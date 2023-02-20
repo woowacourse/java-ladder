@@ -47,8 +47,7 @@ public class OutputView {
 
     private String makeLadderMessage(final List<Rungs> ladder, final int firstNameLength) {
         return ladder.stream()
-                .map(Rungs::getRungs)
-                .map(rungs -> makeRungsMessage(rungs, firstNameLength))
+                .map(rungs -> makeRungsMessage(rungs.getRungs(), firstNameLength))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
