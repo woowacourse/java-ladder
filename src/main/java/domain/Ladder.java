@@ -10,9 +10,9 @@ public class Ladder {
 
     private final List<Line> ladder;
 
-    public Ladder(int height, int personCount) {
+    public Ladder(BooleanGenerator booleanGenerator, int height, int personCount) {
         validate(height, personCount);
-        ladder = generateLadder(height, personCount);
+        ladder = generateLadder(booleanGenerator, height, personCount);
     }
 
     private void validate(int height, int personCount) {
@@ -23,9 +23,7 @@ public class Ladder {
         throw new IllegalArgumentException(INVALID_HEIGHT_MESSAGE);
     }
 
-    private List<Line> generateLadder(int height, int personCount) {
-        BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
-
+    private List<Line> generateLadder(BooleanGenerator booleanGenerator, int height, int personCount) {
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             ladder.add(new Line(booleanGenerator, personCount));
