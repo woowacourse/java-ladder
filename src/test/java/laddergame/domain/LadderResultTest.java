@@ -17,4 +17,18 @@ public class LadderResultTest {
         Assertions.assertThatThrownBy(() -> LadderResult.of(participants, resultItemNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("생성했던 이름들을 반환한다.")
+    @Test
+    void getNames() {
+        // given
+        Participants participants = new Participants(List.of(new Name("hi"), new Name("bye")));
+        LadderResult ladderResult = LadderResult.of(participants, List.of("꽝", "10000"));
+
+        //when
+        List<String> itemNames = ladderResult.getItemNames();
+
+        //then
+        Assertions.assertThat(itemNames).containsExactly("꽝", "10000");
+    }
 }
