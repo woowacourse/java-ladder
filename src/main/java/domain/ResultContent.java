@@ -31,4 +31,5 @@ public class ResultContent {
     public String getContent() {
         return this.content;
     }
+
 }

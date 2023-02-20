@@ -59,4 +59,5 @@ public class LadderGame {
     public ResultContents getResultContents() {
         return this.resultContents;
     }
+
 }
