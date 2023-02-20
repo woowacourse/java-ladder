@@ -14,13 +14,15 @@ public class LadderGameTest {
 
     @Test
     void 참가자들의_이름을_반환한다() {
-        LadderGame ladderGame = getLadderGame(new TestBooleanGenerator(List.of(true, true)), 1, "name1", "name2");
+        final Players players = new Players(List.of("name1", "name2"));
+        LadderGame ladderGame = getLadderGame(new TestBooleanGenerator(List.of(true, true)), 1, players);
         assertThat(ladderGame.getPlayerNames()).containsExactly("name1", "name2");
     }
 
     @Test
     void 생성된_사다리를_반환한다() {
-        LadderGame ladderGame = getLadderGame(new TestBooleanGenerator(List.of(true, true)), 2, "name1", "name2");
+        final Players players = new Players(List.of("name1", "name2"));
+        LadderGame ladderGame = getLadderGame(new TestBooleanGenerator(List.of(true, true)), 2, players);
         assertThat(ladderGame.getLadder())
                 .extracting(Line::getLine)
                 .containsExactly(
@@ -29,8 +31,7 @@ public class LadderGameTest {
                 );
     }
 
-    private LadderGame getLadderGame(BooleanGenerator booleanGenerator, int height, String... name) {
-        final Players players = new Players(List.of(name));
+    private LadderGame getLadderGame(BooleanGenerator booleanGenerator, int height, Players players) {
         return new LadderGame(booleanGenerator, players, height);
     }
 }
