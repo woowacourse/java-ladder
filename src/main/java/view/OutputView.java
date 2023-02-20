@@ -1,9 +1,12 @@
 package view;
 
+import java.util.List;
+
 import domain.Bridge;
 import domain.Ladder;
 import domain.Line;
 import domain.Participants;
+import dto.Result;
 
 public class OutputView {
 
@@ -20,6 +23,16 @@ public class OutputView {
 
     public static void printException(Exception exception) {
         System.out.println(EXCEPTION_PREFIX + exception.getMessage());
+    }
+
+    public static void printResults(List<Result> results) {
+        if (results.size() == 1) {
+            System.out.println(results.get(0).getPrize());
+            return;
+        }
+        for (Result result : results) {
+            System.out.println(result.getParticipantName() + " : " + result.getPrize());
+        }
     }
 
     private static void printNamesOf(Participants participants) {
