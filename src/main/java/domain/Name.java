@@ -1,9 +1,10 @@
 package domain;
 
 public class Name {
-    private static final String ERROR_NAME_LENGTH = "[ERROR] 이름의 길이는 1~5자 내로 입력 가능합니다";
     private static final int NAME_MAX_LENGTH_INCLUSIVE = 5;
     private static final int NAME_MIN_LENGTH_INCLUSIVE = 1;
+    private static final String ERROR_NAME_LENGTH =
+            "[ERROR] 이름의 길이는 " + NAME_MIN_LENGTH_INCLUSIVE + "~" + NAME_MAX_LENGTH_INCLUSIVE + "자 내로 입력 가능합니다";
 
     private final String value;
 
