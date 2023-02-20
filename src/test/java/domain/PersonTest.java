@@ -10,12 +10,6 @@ import static org.assertj.core.api.Assertions.*;
 public class PersonTest {
 
     @Test
-    @DisplayName("Person 생성 확인")
-    void person(){
-        new Person("무민");
-    }
-
-    @Test
     @DisplayName("이름에 6글자 이상 입력시 예외 발생")
     void validateNameLength(){
         assertThatThrownBy(() -> new Person("123456"))

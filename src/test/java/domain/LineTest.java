@@ -10,13 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
-
-    @Test
-    @DisplayName("Line 생성 확인")
-    void line() {
-        new Line(4, new RandomPointGenerator());
-    }
-
     @Test
     @DisplayName("건널 수 있는 다리가 추가되는지 확인")
     void addPossiblePoints() {
