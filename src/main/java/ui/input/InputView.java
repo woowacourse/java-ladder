@@ -19,7 +19,7 @@ public class InputView {
     }
 
     public static int getLadderHeight() {
-        System.out.println(INPUT_LADDER_HEIGHT);
+        System.out.println("\n" + INPUT_LADDER_HEIGHT);
         return sc.nextInt();
     }
 }

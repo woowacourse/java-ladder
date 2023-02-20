@@ -13,22 +13,22 @@ import java.util.List;
  */
 public class Line {
 
-    private final List<Boolean> line;
+    private final List<Boolean> points;
 
     public Line(int personCount) {
-        this.line = createLine(personCount);
+        this.points = createLine(personCount);
     }
 
-    public List<Boolean> getLine() {
-        return line;
+    public List<Boolean> getPoints() {
+        return points;
     }
 
     private List<Boolean> createLine(int personCount) {
         RandomValueGenerator randomValueGenerator = new RandomValueGenerator();
-        List<Boolean> line = Collections.singletonList(new ArrayList<>().add(randomValueGenerator.getRandomValue()));
+        List<Boolean> points = Collections.singletonList(new ArrayList<>().add(randomValueGenerator.getRandomValue()));
         while (personCount-- > 0) {
-            if (!line.get(line.size() - 1)) line.add(randomValueGenerator.getRandomValue());
+            if (!points.get(points.size() - 1)) points.add(randomValueGenerator.getRandomValue());
         }
-        return line;
+        return points;
     }
 }

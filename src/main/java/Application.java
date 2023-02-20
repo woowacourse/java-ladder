@@ -1,9 +1,11 @@
+import domain.Line;
 import domain.Lines;
+import domain.Player;
 import domain.Players;
 import ui.input.InputView;
+import ui.output.OutputView;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -13,6 +15,6 @@ public class Application {
         int ladderHeight = InputView.getLadderHeight();
         Lines lines = new Lines(players.getPlayers().size(), ladderHeight);
 
-
+        OutputView.printResult(players, lines);
     }
 }
