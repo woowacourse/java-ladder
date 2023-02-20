@@ -12,6 +12,7 @@ public class OutputView {
     private static final int PER_NAME_SPACE = 6;
 
     private OutputView(){}
+
     public static void printNames(List<String> names) {
         println(parseDisplayNames(names));
     }

@@ -5,12 +5,11 @@ import java.util.Objects;
 public class Bar {
     private final boolean bar;
 
-    public Bar(boolean bar) {
-        this.bar = bar;
-    }
-
     public Bar(BarGenerator barGenerator) {
         this.bar = barGenerator.createBar();
+    }
+    public Bar(boolean bar) {
+        this.bar = bar;
     }
 
     public boolean isExistBar(){
