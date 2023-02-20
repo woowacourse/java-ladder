@@ -55,7 +55,7 @@ class LadderGameTest {
     }
 
     @Test
-    @DisplayName("플레이어 수와 보상 수가 일치하면 통과하는 테스트")
+    @DisplayName("플레이어 수와 실행 결과 수가 일치하면 통과하는 테스트")
     void validRewardCountTest() {
         List<Player> input = new ArrayList<>(List.of(new Player("이오"), new Player("이리내")));
         List<Reward> rewards = new ArrayList<>(List.of(new Reward("꽝"), new Reward("3000")));
@@ -63,11 +63,12 @@ class LadderGameTest {
     }
 
     @Test
-    @DisplayName("플레이어 수와 보상 수가 일치하지 않으면 예외처리 테스트")
+    @DisplayName("플레이어 수와 실행 결과 수가 일치하지 않으면 예외처리 테스트")
     void invalidRewardCountTest() {
         List<Player> input = new ArrayList<>(List.of(new Player("이오"), new Player("이리내")));
         List<Reward> rewards = new ArrayList<>(List.of(new Reward("꽝"), new Reward("3000"), new Reward("꽝")));
-        assertThatCode(() -> new LadderGame(input, rewards, new Height(5))).doesNotThrowAnyException();
+        assertThatCode(() -> new LadderGame(input, rewards, new Height(5)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
