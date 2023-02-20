@@ -9,7 +9,7 @@ public class OutputView {
     private static final String BAR = "|";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
-    public void printMessage(String message){
+    public void printMessage(String message) {
         System.out.println(message);
     }
 

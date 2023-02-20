@@ -22,29 +22,27 @@ public class LadderGameController {
     }
 
     public void run() {
-            Players players = requestUserNames();
-            Height height = requestLadderHeight();
-            Ladder ladder = new Ladder(players, height, trueOrFalseGenerator);
-            outputView.printResult(players.getPlayers(), ladder.getLines(), players.getMaxPlayerNameLength());
+        Players players = requestUserNames();
+        Height height = requestLadderHeight();
+        Ladder ladder = new Ladder(players, height, trueOrFalseGenerator);
+        outputView.printResult(players.getPlayers(), ladder.getLines(), players.getMaxPlayerNameLength());
     }
 
-    private Players requestUserNames(){
+    private Players requestUserNames() {
         try {
             outputView.printMessage(NAME_INPUT_REQUEST);
             return inputView.readUserNames();
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.printErrormessage(e.getMessage());
             return requestUserNames();
         }
     }
 
-    private Height requestLadderHeight(){
+    private Height requestLadderHeight() {
         try {
             outputView.printMessage(HEIGHT_INPUT_REQUEST);
             return inputView.readHeight();
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.printErrormessage(e.getMessage());
             return requestLadderHeight();
         }

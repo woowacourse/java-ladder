@@ -47,6 +47,4 @@ class HeightTest {
         assertThat(height.isPossibleCount()).isFalse();
 
     }
-
-
 }

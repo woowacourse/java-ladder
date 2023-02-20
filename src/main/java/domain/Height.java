@@ -25,8 +25,7 @@ public class Height {
             if (heightNumber <= 0) {
                 throw new IllegalArgumentException(NOT_POSITIVE_ERROR_MESSAGE);
             }
-        }
-        catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_POSITIVE_ERROR_MESSAGE);
         }
     }

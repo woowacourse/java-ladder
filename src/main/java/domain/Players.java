@@ -11,12 +11,13 @@ public class Players {
     public static final String PLAYER_COUNT_ERROR_MESSAGE = "플레이어 수는 2~12명만 입력 가능합니다.";
     public static final String PLAYER_NAME_LENGTH_ERROR_MESSAGE = "플레이어 이름음 1~5글자만 가능합니다.";
     public static final String PLAYER_NAME_DUPLICATE_ERROR_MESSAGE = "플레이어의 이름은 중복이 불가능합니다.";
+
     private final List<String> players;
 
     public Players(List<String> players) {
-       checkPlayerCount(players);
-       checkPlayerNameLength(players);
-       checkDuplicatePlayers(players);
+        checkPlayerCount(players);
+        checkPlayerNameLength(players);
+        checkDuplicatePlayers(players);
         this.players = players;
     }
 
