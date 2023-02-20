@@ -12,11 +12,19 @@ public class NonContinuousRandomLineStrategy implements LineStrategy {
         List<Boolean> line = makeRandomLine(sectionCount);
 
         IntStream.range(0, sectionCount - 1).forEach(index -> {
-            if (line.get(index) == FILLED && line.get(index + 1) == FILLED) {
-                line.set(index + 1, false);
+            if (isContinuous(line, index)) {
+                makeUnContinous(line, index);
             }
         });
         return line;
+    }
+
+    private static void makeUnContinous(List<Boolean> line, int index) {
+        line.set(index + 1, false);
+    }
+
+    private static boolean isContinuous(List<Boolean> line, int index) {
+        return line.get(index) == FILLED && line.get(index + 1) == FILLED;
     }
 
     private List<Boolean> makeRandomLine(int sectionCount) {
