@@ -23,7 +23,8 @@ class LadderTest {
     @ValueSource(ints = {-1, 0, 11})
     void ladder_invalid_test(int height) {
         assertThatThrownBy(() -> Ladder.make(4, height, new RandomLadderGenerator()))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(Ladder.VALID_HEIGHT_FORMANT, Ladder.MIN_RANGE, Ladder.MAX_RANGE);
     }
 
     @DisplayName("사다리의 높이가 1 이상 10 이하이면 사다리를 생성한다.")

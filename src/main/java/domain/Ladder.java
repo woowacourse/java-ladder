@@ -6,6 +6,7 @@ public class Ladder {
 
     public static final int MAX_RANGE = 10;
     public static final int MIN_RANGE = 1;
+    public static final String VALID_HEIGHT_FORMANT = "사다리 높이는 %d 이상 %d 이하여야 합니다";
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
@@ -21,7 +22,7 @@ public class Ladder {
     private static void validateHeight(int maxHeight) {
         if (maxHeight < MIN_RANGE || maxHeight > MAX_RANGE) {
             throw new IllegalArgumentException(
-                String.format("사다리 높이는 %d 이상 %d 이하여야 합니다", MIN_RANGE, MAX_RANGE));
+                String.format(VALID_HEIGHT_FORMANT, MIN_RANGE, MAX_RANGE));
         }
     }
 
