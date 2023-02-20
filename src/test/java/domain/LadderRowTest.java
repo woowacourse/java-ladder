@@ -13,7 +13,7 @@ public class LadderRowTest {
     @ParameterizedTest(name = "lines의 값 중 연속된 true가 존재하면 예외를 던진다.")
     @CsvSource({"true,true,false,false", "false,true,true,false,", "false,false,true,true"})
     void ladderRowFailTest(boolean value1, boolean value2, boolean value3, boolean value4) {
-//      -----|----- 같은 형태가 생겨나지 않기 위함.
+//      -----|----- 같은 형태가 생겨나지 않는지 확인하기 위한 테스트.
         List<Boolean> lines = List.of(value1, value2, value3, value4);
 
         Assertions.assertThatThrownBy(() -> new LadderRow(lines))
