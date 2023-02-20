@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import ladder.utils.BooleanGenerator;
 import ladder.utils.RandomGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,7 @@ class LineTest {
     void should3barWhenCreateLine() {
         // given
         // when
-        Line line = new Line(3);
+        Line line = Line.generate(3, new BooleanGenerator());
         // then
         assertThat(line.getBars()).hasSize(3);
     }
@@ -28,7 +29,7 @@ class LineTest {
         // given
         List<Boolean> determinedBars = new ArrayList<>(List.of(true, true));
         // when
-        Line line = new Line(3, new DeterminedRandomGenerator(determinedBars));
+        Line line = Line.generate(3, new DeterminedRandomGenerator(determinedBars));
         // then
         assertThat(line.getBars()).containsExactly(MOVABLE, IMMOVABLE, MOVABLE);
     }

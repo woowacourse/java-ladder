@@ -15,7 +15,7 @@ public class Ladder {
     }
 
     public static Ladder generate(int countOfLine, int countOfBar, RandomGenerator randomGenerator) {
-        return Stream.generate(() -> new Line(countOfBar, randomGenerator))
+        return Stream.generate(() -> Line.generate(countOfBar, randomGenerator))
                 .limit(countOfLine)
                 .collect(collectingAndThen(toList(), Ladder::new));
     }
