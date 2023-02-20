@@ -7,7 +7,10 @@ import domain.Ladder;
 import domain.LadderHeight;
 import domain.Name;
 import domain.Names;
+import domain.Result;
+import domain.Results;
 import java.util.List;
+import java.util.stream.Collectors;
 import utils.NumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -28,10 +31,23 @@ public class LadderController {
 
     public void run() {
         Names names = createNames();
+        Results results = createResults(names.size());
         LadderHeight ladderHeight = createLadderHeight();
         Ladder ladder = Ladder.create(names.size(), ladderHeight, numberGenerator);
 
         outputView.printResult(names, ladder);
+    }
+
+    private Results createResults(int numberOfPeople) {
+        try {
+            List<String> rawResults = inputView.readResults();
+            return new Results(rawResults.stream()
+                    .map(Result::new)
+                    .collect(Collectors.toList()), numberOfPeople);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return createResults(numberOfPeople);
+        }
     }
 
     private Names createNames() {
