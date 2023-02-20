@@ -10,10 +10,7 @@ public class Users {
 
     public Users(final List<String> userNames) {
         validateUserNamesEmpty(userNames);
-        users = new ArrayList<>();
-        for (final String userName : userNames) {
-            users.add(new User(userName));
-        }
+        this.users = initUsers(userNames);
     }
 
     public int size() {
@@ -30,7 +27,16 @@ public class Users {
 
     private void validateUserNamesEmpty(final List<String> userNames) {
         if (userNames.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.USERS_NAME_BLANK_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.USER_NAMES_BLANK_EXCEPTION.getMessage());
         }
+    }
+
+    private List<User> initUsers(List<String> userNames) {
+        final List<User> users;
+        users = new ArrayList<>();
+        for (final String userName : userNames) {
+            users.add(new User(userName));
+        }
+        return users;
     }
 }
