@@ -52,7 +52,8 @@ public class Participants {
     }
 
     private void joinAllParticipants(String participantNames) {
-        splitNames(participantNames).forEach((name) -> people.add(new Person(name)));
+        splitNames(participantNames)
+                .forEach((name) -> people.add(new Person(name)));
     }
 
     public int getParticipantCount() {
@@ -60,6 +61,8 @@ public class Participants {
     }
 
     public List<String> getParticipantNames() {
-        return people.stream().map(Person::getName).collect(Collectors.toList());
+        return people.stream()
+                     .map(Person::getName)
+                     .collect(Collectors.toList());
     }
 }

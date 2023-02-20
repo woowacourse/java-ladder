@@ -2,9 +2,11 @@ package domain;
 
 import exception.InvalidLadderHeightException;
 import exception.InvalidLineWeightException;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 import util.BooleanGenerator;
 
 public class Map {
@@ -48,8 +50,9 @@ public class Map {
     }
 
     private Ladder generate(BooleanGenerator booleanGenerator) {
-        List<Line> lines = IntStream.range(0, height).mapToObj((count) -> new Line(lineWeight, booleanGenerator))
-            .collect(Collectors.toList());
+        List<Line> lines = IntStream.range(0, height)
+                                    .mapToObj((count) -> new Line(lineWeight, booleanGenerator))
+                                    .collect(Collectors.toList());
         return new Ladder(lines);
     }
 

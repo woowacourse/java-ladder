@@ -28,7 +28,8 @@ public class Line {
     }
 
     public void generate(int weight, BooleanGenerator booleanGenerator) {
-        IntStream.range(0, weight).forEach((index) -> status.add(generateStatus(index, booleanGenerator)));
+        IntStream.range(0, weight)
+                 .forEach((index) -> status.add(generateStatus(index, booleanGenerator)));
     }
 
     private boolean generateStatus(int index, BooleanGenerator booleanGenerator) {

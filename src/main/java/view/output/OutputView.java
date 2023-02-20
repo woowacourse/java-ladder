@@ -18,7 +18,7 @@ public class OutputView {
 
     private void setNames(StringBuilder mapResult, Participants participants) {
         participants.getParticipantNames()
-            .forEach((participantName) -> mapResult.append(reformatName(participantName)));
+                    .forEach((participantName) -> mapResult.append(reformatName(participantName)));
         mapResult.replace(mapResult.length() - 2, mapResult.length(), System.lineSeparator());
     }
 
@@ -30,7 +30,8 @@ public class OutputView {
     }
 
     private void setLadder(StringBuilder mapResult, Map map) {
-        map.getLines().forEach((line) -> mapResult.append(reformatLine(line)));
+        map.getLines()
+           .forEach((line) -> mapResult.append(reformatLine(line)));
     }
 
     private String reformatLine(Line line) {
