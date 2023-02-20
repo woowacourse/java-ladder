@@ -8,6 +8,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderServiceTest {
@@ -20,11 +22,11 @@ public class LadderServiceTest {
     @BeforeEach
     void init() {
         customizedLines = List.of(
-                new Line(List.of(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE)),
-                new Line(List.of(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE)),
-                new Line(List.of(Boolean.TRUE, Boolean.FALSE, Boolean.FALSE)),
-                new Line(List.of(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE)),
-                new Line(List.of(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE))
+                new Line(List.of(TRUE, FALSE, TRUE)),
+                new Line(List.of(FALSE, TRUE, FALSE)),
+                new Line(List.of(TRUE, FALSE, FALSE)),
+                new Line(List.of(FALSE, TRUE, FALSE)),
+                new Line(List.of(TRUE, FALSE, TRUE))
         );
         people = new People("pobi,honux,crong,jk");
         ladder = new Ladder(
