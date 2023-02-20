@@ -12,6 +12,10 @@ public class Line {
 		this.points = points;
 	}
 
+	public int size() {
+		return points.size();
+	}
+
 	public List<Point> getPoints() {
 		return Collections.unmodifiableList(points);
 	}
