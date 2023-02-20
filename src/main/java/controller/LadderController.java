@@ -27,7 +27,6 @@ public class LadderController {
         Ladder ladder = initLadder(people.size());
 
         showLadder(people, ladder);
-        getLadder(ladder);
     }
 
     private People initPeople() {
@@ -51,16 +50,16 @@ public class LadderController {
     }
 
     private void showLadder(People people, Ladder ladder) {
-        outputView.printResult(people.getNames(), getLadder(ladder));
+        outputView.printResult(people.getNames(), getStoolExistencesOnEachLevel(ladder));
     }
 
-    private List<List<Boolean>> getLadder(Ladder ladder) {
+    private List<List<Boolean>> getStoolExistencesOnEachLevel(Ladder ladder) {
         return ladder.getLevels().stream()
-                .map(this::getLevel)
+                .map(this::getStoolExistences)
                 .collect(Collectors.toList());
     }
 
-    private List<Boolean> getLevel(Level level) {
+    private List<Boolean> getStoolExistences(Level level) {
         return level.getStools().stream()
                 .map(Stool::isExist)
                 .collect(Collectors.toList());
