@@ -57,7 +57,7 @@ public class OutputView {
         sb.append(WALL);
     }
 
-    public static void printErrorMessage(Exception e) {
-        System.out.println(e.getMessage());
+    public static void printMessage(String message) {
+        System.out.println(message);
     }
 }

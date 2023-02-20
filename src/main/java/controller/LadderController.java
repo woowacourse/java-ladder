@@ -21,7 +21,7 @@ public class LadderController {
             String playerNames = InputView.receivePlayer();
             return new Players(playerNames);
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e);
+            OutputView.printMessage(e.getMessage());
             return makePlayers();
         }
     }
@@ -32,7 +32,7 @@ public class LadderController {
             int height = InputView.receiveHeight();
             return new Ladder(players.getNumberOfPlayers(), new Height(height), lineGenerator);
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e);
+            OutputView.printMessage(e.getMessage());
             return makeLadder(players);
         }
     }
