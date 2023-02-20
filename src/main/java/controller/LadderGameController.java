@@ -2,14 +2,10 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
-import domain.Line;
 import domain.Players;
 import util.TrueOrFalseGenerator;
 import view.InputView;
 import view.OutputView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LadderGameController {
     private final InputView inputView;
@@ -24,8 +20,8 @@ public class LadderGameController {
 
     public void run() {
         try {
-            Players players = new Players(inputView.readUserNames());
-            Height height = new Height(inputView.readHeight());
+            Players players = inputView.readUserNames();
+            Height height = inputView.readHeight();
             Ladder ladder = new Ladder(players, height, trueOrFalseGenerator);
             outputView.printResult(players.getPlayers(), ladder.getLines(), players.getMaxPlayerNameLength());
         } catch (IllegalArgumentException e) {

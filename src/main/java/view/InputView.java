@@ -1,6 +1,7 @@
 package view;
 
-import laddervalidate.HeightValidator;
+import domain.Height;
+import domain.Players;
 import laddervalidate.PlayerNameValidator;
 
 import java.util.Arrays;
@@ -13,21 +14,18 @@ public class InputView {
     private static final String DELIMITER = ",";
     private static final String HEIGHT_INPUT_REQUEST = "최대 사다리 높이는 몇 개인가요?";
 
-    private final PlayerNameValidator playerNameValidator = new PlayerNameValidator();
-    private final HeightValidator heightValidator = new HeightValidator();
-
-    public List<String> readUserNames() {
+    public Players readUserNames() {
         System.out.println(NAME_INPUT_REQUEST);
         String inputUserNames = scanner.nextLine();
-        List<String> players = splitInputUserNames(inputUserNames);
-        playerNameValidator.validate(players);
+        List<String> inputPlayers = splitInputUserNames(inputUserNames);
+        Players players = new Players(inputPlayers);
         return players;
     }
 
-    public String readHeight() {
+    public Height readHeight() {
         System.out.println(HEIGHT_INPUT_REQUEST);
-        String height = scanner.nextLine();
-        heightValidator.validate(height);
+        String inputHeight = scanner.nextLine();
+        Height height = new Height(inputHeight);
         return height;
     }
 
