@@ -35,4 +35,24 @@
           - ex) 최대 5글자까지 부여 가능할 때, 사다리 폭은 5이다.
   - [x] 출력할 수 있다. 
     - 사람 이름도 같이 출력한다.
-    
+
+---
+
+## 1단계 리팩토링 요구사항
+
+- [ ] DTO 사용
+- [ ] 한글 입력에 대한 예외 처리
+- [ ] createLadder() 위치 이동 (왜 컨트롤러에 두었는지)
+- [ ] points 네이밍 변경 (Lines-Line으로?)
+- [ ] isContinuousTrue()에서 index를 넘겨주는 방법 말고 다른 방법 생각
+- [ ] isContinuousTrue()에서 RandomNumberGenerator 객체 생성 위치 변경
+- [ ] enum의 패키지 위치 변경?
+- [ ] domain 패키지 내부에 하위 패키지 두기
+- [ ] 이름에 빈칸 추가하는 로직을 → 출력에 대한 부분으로 옮기기
+- [ ] FixedNumberGenerator 클래스를 테스트 패키지로 옮기는 것 고려
+- [ ] NumberGenertor 네이밍 변경(boolean 값을 반환하는데 Number라는 네이밍이 맞는지)
+- 사용하지 않는 코드 삭제
+  - [ ] 사용하지 않는 import문 삭제
+  - [x] InputVerifier 삭제
+  - [ ] 중복된 테스트 삭제
+- [ ] 테스트 파일이 테스트하는 객체와 동일한 이름의 패키지에 있도록 패키지 변경
