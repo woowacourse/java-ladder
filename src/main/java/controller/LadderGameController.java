@@ -41,15 +41,15 @@ public class LadderGameController {
 
     private void requestSpecificPlayerResult(Players players) {
         String userRequest = "";
-        while (!userRequest.equals("all")) {
+        while (!userRequest.equals(inputView.getResultEndCommand())) {
             userRequest = inputView.requestResultPlayer();
             printPlayerResult(userRequest, players);
         }
     }
 
     private void printPlayerResult(String userRequest, Players players) {
-        if (userRequest.equals("all")) {
-//            outputView.printAllResults(players);
+        if (userRequest.equals(inputView.getResultEndCommand())) {
+            outputView.printAllResults(players);
             return;
         }
 

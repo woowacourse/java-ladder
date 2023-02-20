@@ -107,4 +107,11 @@ public class OutputView {
         System.out.println(resultContent);
     }
 
+    public void printAllResults(Players players) {
+        System.out.println(RESULT_PREFIX_MESSAGE);
+        for (Player player : players.getPlayers()) {
+            String resultFormat = String.format("%s : %s", player.getPlayerName(), player.getResultContent());
+            System.out.println(resultFormat);
+        }
+    }
 }

@@ -12,6 +12,7 @@ public class InputView {
     private static final String PLAYER_NAME_DELIMITER = ",";
     private static final String RESULT_CONTENTS_DELIMITER = ",";
     private static final String NON_INTEGER_ERROR_MESSAGE = "높이는 정수만 입력 가능합니다.";
+    private static final String RESULT_END_COMMAND = "all";
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public String requestPlayerNames() {
@@ -32,13 +33,18 @@ public class InputView {
     }
 
     public String requestResultPlayer() {
+        breakLine();
         return requestUserInput(RESULT_INPUT_MESSAGE);
+    }
+
+    private void breakLine() {
+        System.out.print(System.lineSeparator());
     }
 
     private String requestUserInput(String requestMessage) {
         System.out.println(requestMessage);
         String playerNames = SCANNER.nextLine();
-        System.out.print(System.lineSeparator());
+        breakLine();
         return playerNames;
     }
 
@@ -48,5 +54,9 @@ public class InputView {
 
     public String getResultContentsDelimiter() {
         return RESULT_CONTENTS_DELIMITER;
+    }
+
+    public String getResultEndCommand() {
+        return RESULT_END_COMMAND;
     }
 }
