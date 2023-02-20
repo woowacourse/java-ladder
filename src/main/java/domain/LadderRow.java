@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class LadderRow {
-    List<Boolean> bars;
+    private final List<Boolean> bars;
 
     public LadderRow(List<Boolean> lines) {
         validate(lines);
