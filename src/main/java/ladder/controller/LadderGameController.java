@@ -20,9 +20,10 @@ public class LadderGameController {
     public void run() {
         try {
             List<Player> players = generatePlayers();
+            List<Reward> rewards = generateRewards();
             Height height = generateHeight();
 
-            LadderGame ladderGame = new LadderGame(players, height);
+            LadderGame ladderGame = new LadderGame(players, rewards, height);
             ladderGame.generateLadder(new RandomLineCreateDecider());
             showResult(ladderGame);
         } catch (IllegalArgumentException e) {
@@ -36,6 +37,14 @@ public class LadderGameController {
                 .map(Player::new)
                 .collect(Collectors.toList());
         return players;
+    }
+
+    private List<Reward> generateRewards() {
+        List<String> reward = inputView.readNames();
+        List<Reward> rewards = reward.stream()
+                .map(Reward::new)
+                .collect(Collectors.toList());
+        return rewards;
     }
 
     private Height generateHeight() {

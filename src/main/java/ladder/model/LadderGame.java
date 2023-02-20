@@ -10,12 +10,14 @@ public class LadderGame {
     private static final int MIN_PLAYER_COUNT = 2;
     private static final int MAX_PLAYER_COUNT = 30;
     private final List<Player> players;
+    private final List<Reward> rewards;
     private final Height height;
     private Ladder ladder;
 
-    public LadderGame(List<Player> players, Height height) {
+    public LadderGame(List<Player> players, List<Reward> rewards, Height height) {
         validatePlayerCount(players);
         this.players = players;
+        this.rewards = rewards;
         this.height = height;
     }
 
