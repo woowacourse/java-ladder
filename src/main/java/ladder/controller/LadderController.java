@@ -1,15 +1,17 @@
-package ladder.domain;
+package ladder.controller;
 
+import ladder.domain.Ladder;
+import ladder.domain.Players;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-public class LadderGame {
+public class LadderController {
     private static final int DIFFERENCE_PLAYERS_AND_BARS = 1;
 
     private final Players players;
     private final Ladder ladder;
 
-    public LadderGame() {
+    public LadderController() {
         this.players = new Players(InputView.readNames());
         this.ladder = new Ladder(InputView.readCountOfLines(), getCountOfBars());
     }

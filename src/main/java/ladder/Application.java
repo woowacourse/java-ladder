@@ -1,10 +1,10 @@
 package ladder;
 
-import ladder.domain.LadderGame;
+import ladder.controller.LadderController;
 
 public class Application {
     public static void main(String[] args) {
-        LadderGame ladderGame = new LadderGame();
-        ladderGame.play();
+        LadderController ladderController = new LadderController();
+        ladderController.play();
     }
 }
