@@ -1,5 +1,6 @@
 package view;
 
+import domain.Items;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.player.Player;
@@ -15,6 +16,7 @@ public class OutputView {
     private static final String LINE_SPACE_MESSAGE = "    ";
     private static final String PLAYER_SHOW_FORMAT = "%5s ";
     private static final String BRIDGE_SHOW_FORMAT = "%s";
+    private static final String ITEM_SHOW_FORMAT = "%5s ";
 
     public void showResultMessage() {
         System.out.println(RESULT_SHOW_MESSAGE);
@@ -25,14 +27,16 @@ public class OutputView {
         System.out.println();
     }
 
-    public void showLadder(Ladder ladder) {
-        List<Line> lines = ladder.getLines();
-
+    public void showLadder(List<Line> lines) {
         for (Line line : lines) {
             List<Boolean> bridges = line.getBridges();
             showBridges(bridges);
             System.out.println();
         }
+    }
+
+    public void showItems(List<String> items) {
+        items.forEach(item -> printMessageFormat(item, ITEM_SHOW_FORMAT));
     }
 
     private void showBridges(List<Boolean> bridges) {

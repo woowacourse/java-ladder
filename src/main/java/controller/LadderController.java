@@ -1,8 +1,8 @@
 package controller;
 
+import domain.Items;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.ladder.LadderMaker;
 import domain.player.Players;
 import utils.Log;
 import view.InputView;
@@ -12,16 +12,16 @@ public class LadderController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final LadderMaker ladderMaker = new LadderMaker();
 
     public void run() {
         Players players = getPlayers();
         int personCount = players.getPlayers().size();
+        Items items = getItems(personCount);
         Height ladderHeight = getLadderHeight();
 
-        Ladder ladder = new Ladder(ladderMaker.make(personCount, ladderHeight));
+        Ladder ladder = new Ladder(personCount, ladderHeight);
 
-        showResult(players, ladder);
+        showLadderResult(players, ladder, items);
     }
 
     private Players getPlayers() {
@@ -30,6 +30,15 @@ public class LadderController {
         } catch (IllegalArgumentException e) {
             Log.error(e.getMessage());
             return getPlayers();
+        }
+    }
+
+    private Items getItems(int count) {
+        try {
+            return new Items(count, inputView.readItems());
+        } catch (IllegalArgumentException e) {
+            Log.error(e.getMessage());
+            return getItems(count);
         }
     }
 
@@ -42,9 +51,10 @@ public class LadderController {
         }
     }
 
-    private void showResult(Players players, Ladder ladder) {
+    private void showLadderResult(Players players, Ladder ladder, Items items) {
         outputView.showResultMessage();
         outputView.showPlayers(players.getPlayers());
-        outputView.showLadder(ladder);
+        outputView.showLadder(ladder.getLines());
+        outputView.showItems(items.getItems());
     }
 }
