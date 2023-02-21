@@ -1,4 +1,4 @@
-package domain;
+package domain.player;
 
 import java.util.Objects;
 
@@ -30,10 +30,6 @@ public class PlayerName {
         return Objects.equals(name, that.name);
     }
 
-    @Override
-    public int hashCode() {
-        return name != null ? name.hashCode() : 0;
-    }
     private void checkPlayerName(String playerName) {
         checkPlayerNameLength(playerName);
         checkBlank(playerName);

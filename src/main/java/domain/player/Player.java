@@ -1,4 +1,4 @@
-package domain;
+package domain.player;
 
 
 import java.util.Objects;
@@ -24,8 +24,4 @@ public class Player {
         return Objects.equals(name, player.name);
     }
 
-    @Override
-    public int hashCode() {
-        return name.hashCode();
-    }
 }

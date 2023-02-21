@@ -3,7 +3,7 @@ package domain;
 public class Point {
     private final boolean point;
 
-    Point(boolean point) {
+    public Point(boolean point) {
         this.point = point;
     }
 

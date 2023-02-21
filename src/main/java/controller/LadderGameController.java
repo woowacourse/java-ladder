@@ -1,8 +1,8 @@
 package controller;
 
-import domain.Height;
-import domain.Ladder;
-import domain.Players;
+import domain.ladder.Height;
+import domain.ladder.Ladder;
+import domain.player.Players;
 import util.TrueOrFalseGenerator;
 import view.InputView;
 import view.OutputView;

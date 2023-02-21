@@ -1,5 +1,6 @@
-package domain;
+package domain.ladder;
 
+import domain.Point;
 import util.TrueOrFalseGenerator;
 
 import java.util.ArrayList;
