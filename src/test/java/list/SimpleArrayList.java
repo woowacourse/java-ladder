@@ -100,7 +100,9 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void clear() {
-
+        capacity = INITIAL_CAPACITY;
+        size = INITIAL_SIZE;
+        data = new String[capacity];
     }
 
     public void printAll() {
