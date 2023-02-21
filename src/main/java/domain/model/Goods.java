@@ -3,21 +3,23 @@ package domain.model;
 import domain.vo.Name;
 import domain.vo.Position;
 
+import java.util.List;
+
 public class Goods {
-    private final Name name;
-
-    private final Position position;
-
-    public Goods(final Name name, final Position position) {
-        this.name = name;
-        this.position = position;
+    private static final String NOT_SAME_COUNT_ERROR = "참가자 수와 상품 수가 같아야 합니다.";
+    private final List<Name> items;
+    private final int playerCounts;
+    public Goods(List<Name> items, int playerCounts) {
+        this.items = items;
+        this.playerCounts = playerCounts;
+        validate();
     }
-
-    public String getName() {
-        return this.name.get();
+    public String get(int index){
+        return items.get(index).get();
     }
-
-    public int getPosition() {
-        return this.position.get();
+    private void validate(){
+        if(items.size()!=playerCounts){
+            throw new IllegalArgumentException(NOT_SAME_COUNT_ERROR);
+        }
     }
 }

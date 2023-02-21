@@ -4,14 +4,25 @@ import domain.vo.Name;
 import domain.vo.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException;
+import java.util.List;
+
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 public class GoodsTest {
-    @Test
-    @DisplayName("상품이 생성된다")
-    void goodsTest() {
-        assertThatNoException()
-                .isThrownBy(() -> new Goods(new Name("test"), new Position(1)));
+    @ParameterizedTest
+    @ValueSource(ints = {0,1})
+    void goodsTest(int provided) {
+        Goods goods = new Goods(List.of(new Name("item1"), new Name("item2")),2);
+        assertThat(goods.get(provided)).isEqualTo(String.format("item%d",provided+1));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1,3})
+    void goodsFailTest(int provided) {
+        assertThatThrownBy(()->new Goods(List.of(new Name("item1"), new Name("item2")),provided))
+                .hasMessage("참가자 수와 상품 수가 같아야 합니다.");
     }
 }
