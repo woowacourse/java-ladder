@@ -8,6 +8,8 @@ import static view.LadderFormat.START_DELIMITER;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import utils.StringParser;
+
 public class OutputView {
 
     public static void printErrorMessage(Exception exception) {
@@ -15,7 +17,7 @@ public class OutputView {
     }
 
     public static void printResultMessage() {
-        System.out.println("\n실행결과\n");
+        System.out.println("\n사다리 결과\n");
     }
 
     public static void printUserNames(List<String> userNames) {
@@ -50,5 +52,17 @@ public class OutputView {
             return EXISTED_LINE.getFormat();
         }
         return NON_EXISTED_LINE.getFormat();
+    }
+
+    public static void printRewards(List<String> rewardNames) {
+        List<String> formattedRewardNames = formatLength(rewardNames);
+        String parsedUserNames = String.join(" ", formattedRewardNames);
+        System.out.println(parsedUserNames);
+    }
+
+    private static List<String> formatLength(List<String> rewardNames) {
+        return rewardNames.stream()
+                .map(StringParser::insertBlank)
+                .collect(Collectors.toList());
     }
 }

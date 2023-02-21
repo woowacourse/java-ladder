@@ -23,12 +23,21 @@ public class Controller {
     }
 
     public void run() {
+        setLadderGame();
+        printLadderMap();
+    }
+
+    private void setLadderGame() {
         createUser();
         createRewards();
         createLadder();
+    }
+
+    private void printLadderMap() {
         OutputView.printResultMessage();
         printUsers();
         printLadder();
+        printRewards();
     }
 
     private void createUser() {
@@ -73,5 +82,10 @@ public class Controller {
     private void printLadder() {
         List<List<Boolean>> ladderMap = ladder.getLadderMap();
         OutputView.printLadder(ladderMap);
+    }
+
+    private void printRewards() {
+        List<String> rewardNames = rewards.getRewardNames();
+        OutputView.printRewards(rewardNames);
     }
 }
