@@ -2,6 +2,26 @@
 
 - [x] ArrayList가 제공하는 메서드 테스트코드 완성하기
 
-### 미션 1
+### 미션 1 - SimpleArrayList
 
-### 미션 2
+- [ ] node 클래스/객체 구현
+- [ ] add 메서드 구현
+- [ ] set/get 메서드 구현
+- [ ] contains 메서드 구현
+- [ ] indexOf 메서드 구현
+- [ ] size 메서드 구현
+- [ ] isEmpty 메서드 구현
+- [ ] remove 메서드 구현
+- [ ] clear 메서드 구현
+
+### 미션 2 - SimpleLinkedList
+
+- [ ] node 클래스/객체 구현
+- [ ] add 메서드 구현
+- [ ] set/get 메서드 구현
+- [ ] contains 메서드 구현
+- [ ] indexOf 메서드 구현
+- [ ] size 메서드 구현
+- [ ] isEmpty 메서드 구현
+- [ ] remove 메서드 구현
+- [ ] clear 메서드 구현
