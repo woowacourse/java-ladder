@@ -71,13 +71,13 @@ public class LadderGameController {
     private void printPlayerResult() {
         OutputView.printWantToSeeWhomMessage();
         String playerName = InputView.readTargetPlayer();
-        if (playerName.equals("exit")) {
-            return;
-        }
-
         OutputView.printResultAfterExecutionMessage();
         ResultDto gameResult = ladderGame.getGameResult(playerName);
         ResultView.printGameResult(gameResult);
+
+        if(gameResult.isStop()) {
+            return;
+        }
         printPlayerResult();
     }
 }
