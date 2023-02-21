@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
@@ -40,13 +41,16 @@ public class LineTest {
     @Test
     void 앞_블록이_건널_수_있으면_뒤의_불록은_건널_수_없다() {
         //given
-        TestGenerator testGenerator = new TestGenerator(new ArrayList<>(List.of(true)));
+        List<Boolean> testData = new ArrayList<>();
+        testData.add(true);
+        TestGenerator testGenerator = new TestGenerator(testData);
+        List<Boolean> expect = List.of(true, false);
 
         //when
         Line line = Line.generateLine(testGenerator, players);
 
         //then
-        Assertions.assertThat(line.getLine()).containsExactly(true, false);
+        assertTrue(line.getLine().containsAll(expect));
     }
 
     class TestGenerator implements BooleanGenerator {

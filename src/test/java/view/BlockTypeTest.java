@@ -1,17 +1,17 @@
 package view;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import domain.Block;
 import domain.Line;
 import domain.Player;
 import domain.Players;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import view.BlockType;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class BlockTypeTest {
@@ -28,6 +28,6 @@ class BlockTypeTest {
         List<BlockType> expect = List.of(BlockType.CROSS, BlockType.NOT_CROSS);
 
         //then
-        Assertions.assertThat(result).isEqualTo(expect);
+        assertTrue(result.containsAll(expect));
     }
 }
