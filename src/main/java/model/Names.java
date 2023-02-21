@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -33,17 +32,13 @@ public class Names {
         return names.stream().distinct().count();
     }
 
-    public List<Name> getNames() {
-        return Collections.unmodifiableList(names);
-    }
-
-    public String getNameOfIndex(int index) {
+    public String findNameByIndex(int index) {
         Name target = names.get(index);
 
         return target.getName();
     }
 
-    public int getIndexOfName(String name) {
+    public int findIndexByName(String name) {
         return IntStream.range(0, names.size())
                 .filter(i -> names.get(i).matchesByName(name))
                 .findFirst()

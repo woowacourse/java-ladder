@@ -24,7 +24,6 @@ public class OutputView {
     private static final String PASSABLE = "-----";
     private static final String UN_PASSABLE = "     ";
 
-
     public void noticeInputParticipants() {
         notice("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
     }
@@ -64,7 +63,7 @@ public class OutputView {
         int totalSize = names.getTotalParticipantSize();
 
         IntStream.range(0, totalSize)
-                .mapToObj(index -> calculateNameLog(names.getNameOfIndex(index), totalSize, index))
+                .mapToObj(index -> calculateNameLog(names.findNameByIndex(index), totalSize, index))
                 .forEach(this::print);
         print(System.lineSeparator());
     }

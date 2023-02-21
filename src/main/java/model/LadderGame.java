@@ -41,7 +41,7 @@ public class LadderGame {
     }
 
     public String findGameResultByName(String name) {
-        int indexOfName = names.getIndexOfName(name);
+        int indexOfName = names.findIndexByName(name);
         int resultIndex = gameResult.get(indexOfName);
 
         return ladderResults.findResultByIndex(resultIndex);
@@ -49,7 +49,7 @@ public class LadderGame {
 
     public List<GameResult> findGameResultAll() {
         return IntStream.range(0, gameResult.size())
-                .mapToObj(index -> new GameResult(names.getNameOfIndex(index),
+                .mapToObj(index -> new GameResult(names.findNameByIndex(index),
                         ladderResults.findResultByIndex(index)))
                 .collect(Collectors.toUnmodifiableList());
     }
