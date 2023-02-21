@@ -154,16 +154,16 @@ class SimpleArrayListTest {
     @Test
     @DisplayName("remove에 value를 전달하면, 해당 value가 지워진다.")
     void removeValueTest() {
-//        simpleArrayList.add("first");
-//        simpleArrayList.add("second");
-//        simpleArrayList.add("third");
-//
-//        simpleArrayList.remove("second");
-//
-//        assertAll(() -> assertThat(simpleArrayList.size()).isEqualTo(2)
-//                , () -> assertThatThrownBy(() -> simpleArrayList.get(2))
-//                        .isInstanceOf(ArrayIndexOutOfBoundsException.class)
-//        );
+        simpleArrayList.add("first");
+        simpleArrayList.add("second");
+        simpleArrayList.add("third");
+
+        simpleArrayList.remove("second");
+
+        assertAll(() -> assertThat(simpleArrayList.size()).isEqualTo(2)
+                , () -> assertThatThrownBy(() -> simpleArrayList.get(2))
+                        .isInstanceOf(ArrayIndexOutOfBoundsException.class)
+        );
     }
 
     @Test
@@ -178,11 +178,7 @@ class SimpleArrayListTest {
         assertAll(() -> assertThat(simpleArrayList.size()).isEqualTo(2)
                 , () -> assertThat(removedValue).isEqualTo("second"));
     }
-
-    @Test
-    void testRemove() {
-    }
-
+    
     @Test
     void clear() {
     }

@@ -101,7 +101,12 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean remove(String value) {
-        return true;
+        int index = indexOf(value);
+        if (index >= 0) {
+            remove(index);
+            return true;
+        }
+        return false;
     }
 
     @Override
