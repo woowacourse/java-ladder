@@ -1,27 +1,46 @@
 package domain;
 
 
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LaddersTest {
+    private Ladders ladders;
 
-    @ParameterizedTest
-    @ValueSource(ints = {0, 11})
-    @DisplayName("사다리 높이가 1~10을 벗어나면 예외가 발생한다.")
-    void LadderHeightFailTest(int height) {
-        Assertions.assertThrows(IllegalArgumentException.class,
-                () -> new Ladders(new Height(height)));
+    @BeforeEach
+    void init() {
+        Queue<Boolean> randomNumber = new LinkedList<>(Arrays.asList(false, true, true));
+        ladders = Ladders.of(2, Height.from(3), new CustomRandomGenerator(randomNumber));
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {1, 10})
-    @DisplayName("사다리 높이가 1~10 사이면 정상적으로 수행된다.")
-    void LadderHeightSuccessTest(int height) {
-        assertThatCode(() -> new Ladders(new Height(height))).doesNotThrowAnyException();
+    @DisplayName("랜덤 값에 따라 사다리들이 정상적으로 생성되는지 테스트합니다.")
+    @Test
+    void laddersTest() {
+        List<List<Position>> result = ladders.getLadders()
+                .stream()
+                .map(Ladder::getLadder)
+                .collect(Collectors.toList());
+
+        assertThat(result)
+                .isEqualTo(Arrays.asList(
+                        Arrays.asList(Position.DOWN, Position.DOWN),
+                        Arrays.asList(Position.LEFT, Position.RIGHT),
+                        Arrays.asList(Position.LEFT, Position.RIGHT)
+                ));
+    }
+
+    @DisplayName("현재 위치를 입력하면 사다리 게임 결과 위치를 반환합니다.")
+    @Test
+    void laddersResultTest() {
+        assertThat(ladders.getResult(0)).isEqualTo(0);
     }
 }
