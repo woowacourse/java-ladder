@@ -1,13 +1,13 @@
 package techcourse.jcf.mission;
 
-public class SimpleArrayList implements SimpleList{
+public class SimpleArrayList implements SimpleList {
 
     private String[] arr;
     private int capacity;
     private int size;
 
     public SimpleArrayList() {
-        this.capacity =1;
+        this.capacity = 1;
         this.size = 0;
         this.arr = new String[capacity];
     }
@@ -22,7 +22,7 @@ public class SimpleArrayList implements SimpleList{
     }
 
     private void expandArr() {
-        if(isFull()){
+        if (isFull()) {
             capacity *= 2;
             arr = createdExpandedArr();
         }
@@ -43,7 +43,13 @@ public class SimpleArrayList implements SimpleList{
 
     @Override
     public void add(int index, String value) {
+        expandArr();
 
+        for (int i = size; i < index; i--) {
+            arr[i] = arr[i - 1];
+        }
+        arr[index] = value;
+        size += 1;
     }
 
     @Override

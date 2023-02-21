@@ -7,6 +7,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class SimpleArrayListTest {
 
@@ -36,6 +38,19 @@ class SimpleArrayListTest {
         simpleArrayList.add("first");
         assertThatCode(() -> simpleArrayList.add("second"))
                 .doesNotThrowAnyException();
+    }
+
+    @ParameterizedTest(name = "add 메소드에 index와 value를 전달하면, 해당 인덱스에 value를 추가한다.")
+    @ValueSource(ints = {0, 1, 2})
+    void indexAddTest(int index) {
+        String expected = "inserted";
+        simpleArrayList.add("first");
+        simpleArrayList.add("second");
+
+        simpleArrayList.add(index, expected);
+
+        String result = simpleArrayList.get(index);
+        assertThat(result).isEqualTo(expected);
     }
 
     @Test
