@@ -1,10 +1,15 @@
 package ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
+import ladder.domain.linestrategy.CustomLineStrategy;
+import ladder.domain.strategy.linestrategy.LineStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import java.util.List;
 
 public class ResultsTest {
@@ -34,4 +39,27 @@ public class ResultsTest {
                 new Results(inputResult, playerCount)
         );
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"a:성공", "b:꽝", "c:성공", "d:꽝"}, delimiter = ':')
+    void findResultTest(String name, String expect) {
+        // given
+        Players players = new Players(new String[]{"a", "b", "c", "d"});
+        Ladder ladder = generateLadder(players);
+        List<String> inputResults = List.of("꽝", "성공", "꽝", "성공");
+        Results results = new Results(inputResults, players.getPlayersCount());
+
+        // when
+        String result = results.findResult(ladder.getLines(), players.findPosition(name));
+
+        // then
+        assertThat(result).isEqualTo(expect);
+     }
+
+     private Ladder generateLadder(Players players) {
+         Height height = new Height(4);
+         LineStrategy lineStrategy = new CustomLineStrategy(List.of(Step.EXIST, Step.EMPTY));
+         LadderFactory ladderFactory = new LadderFactory(height, players, lineStrategy);
+         return ladderFactory.makeLadder();
+     }
 }

@@ -20,4 +20,34 @@ public class Results {
         }
     }
 
+    public String findResult(List<Line> ladder, int position) {
+        for (int i = 0; i < ladder.size(); i++) {
+            Line line = ladder.get(i);
+            List<Step> steps = line.getSteps();
+
+            if (position == 0) {
+                if (steps.get(position) == Step.EXIST) {
+                    position++;
+                    continue;
+                }
+                break;
+            }
+            if (position == steps.size()) {
+                if (steps.get(steps.size() - 1) == Step.EXIST) {
+                    position--;
+                    continue;
+                }
+                break;
+            }
+            if (steps.get(position - 1) == Step.EXIST) {
+                position--;
+                continue;
+            }
+            if (steps.get(position) == Step.EXIST) {
+                position++;
+            }
+        }
+
+        return results.get(position).getResult();
+    }
 }

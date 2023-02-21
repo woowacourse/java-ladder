@@ -24,4 +24,8 @@ public class Result {
             throw new IllegalArgumentException("[ERROR] 이름에 null이 들어갈 수 없습니다.");
         }
     }
+
+    public String getResult() {
+        return result;
+    }
 }

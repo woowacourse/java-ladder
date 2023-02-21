@@ -5,7 +5,6 @@ import static java.util.stream.Collectors.toList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Players {
     private static final int MIN_PLAYERS = 2;
@@ -49,6 +48,10 @@ public class Players {
         if (uniqueNamesLength != names.length) {
             throw new IllegalArgumentException("[ERROR] 중복된 이름이 있습니다.");
         }
+    }
+
+    public int findPosition(String name) {
+        return players.indexOf(new Player(name));
     }
 
     public List<Player> getPlayers() {
