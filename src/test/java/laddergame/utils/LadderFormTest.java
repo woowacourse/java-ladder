@@ -2,6 +2,7 @@ package laddergame.utils;
 
 import laddergame.domain.Line;
 import laddergame.fixture.ParticipantsFixture;
+import laddergame.fixture.ResultsFixture;
 import laddergame.view.LadderForm;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,8 +19,10 @@ class LadderFormTest {
         final Line line = new Line(List.of(true));
         final Line line2 = new Line(List.of(true));
         final List<Line> lines = List.of(line, line2);
-        final List<String> names = ParticipantsFixture.createParticipantsSize2().getNames();
-        final String ladderForm = LadderForm.joinUnitsFrom(names, lines);
-        assertThat(ladderForm).contains(" rosie hyena\n     |-----|\n     |-----|");
+        final List<String> names = ParticipantsFixture.createParticipantsSize2().getNameValues();
+        final List<String> results = ResultsFixture.createResultsSize2().getResults();
+        final String ladderForm = LadderForm.joinUnitsFrom(names, lines, results);
+        System.out.println( ladderForm);
+        assertThat(ladderForm).contains(" rosie hyena\n     |-----|\n     |-----|\n hello  helo");
     }
 }
