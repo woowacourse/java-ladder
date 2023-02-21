@@ -15,7 +15,7 @@ public class LadderGame {
     private final WinningEntries winningEntries;
     private final State state;
 
-    public LadderGame(final Ladder ladder, final Names names, final WinningEntries winningEntries) {
+    LadderGame(final Ladder ladder, final Names names, final WinningEntries winningEntries) {
         this.ladder = ladder;
         this.names = names;
         this.winningEntries = winningEntries;
@@ -49,5 +49,21 @@ public class LadderGame {
 
     public boolean isEnd() {
         return state.isEnd();
+    }
+
+    public Ladder ladder() {
+        return ladder;
+    }
+
+    public Names names() {
+        return names;
+    }
+
+    public WinningEntries winningEntries() {
+        return winningEntries;
+    }
+
+    public State state() {
+        return state;
     }
 }

@@ -2,9 +2,9 @@ package controller;
 
 import common.Logger;
 import domain.game.LadderGame;
+import domain.game.LadderGameFactory;
 import domain.game.LadderGameResult;
 import domain.ladder.Ladder;
-import domain.ladder.LadderFactory;
 import domain.value.*;
 import view.InputView;
 import view.OutputView;
@@ -15,21 +15,19 @@ import java.util.stream.Collectors;
 
 public class LadderController {
 
-    private final LadderFactory ladderFactory;
+    private final LadderGameFactory ladderGameFactory;
 
-    public LadderController(final LadderFactory ladderFactory) {
-        this.ladderFactory = ladderFactory;
+    public LadderController(final LadderGameFactory ladderGameFactory) {
+        this.ladderGameFactory = ladderGameFactory;
     }
 
     public void run() {
         Names names = withExceptionHandle(this::createNames);
         WinningEntries winningEntries = withExceptionHandle(() -> createWinningEntries(names));
         Height height = withExceptionHandle(this::ladderHeight);
-        Ladder ladder = createLadder(Width.of(names.size() - 1), height);
-        showLadder(names, ladder, winningEntries);
-
-        LadderGame ladderGame = new LadderGame(ladder, names, winningEntries);
-        playGame(ladderGame);
+        LadderGame game = ladderGameFactory.createGame(names, winningEntries, height);
+        showLadder(names, game.ladder(), winningEntries);
+        playGame(game);
     }
 
     private Names createNames() {
@@ -49,10 +47,6 @@ public class LadderController {
 
     private Height ladderHeight() {
         return Height.of(InputView.inputHeight());
-    }
-
-    private Ladder createLadder(final Width width, final Height height) {
-        return ladderFactory.createLadder(width, height);
     }
 
     private void showLadder(final Names names, final Ladder ladder, final WinningEntries winningEntries) {
