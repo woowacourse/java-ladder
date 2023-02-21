@@ -58,6 +58,12 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
+    public List<String> getPlayerNames() {
+        return players.stream()
+                .map(Player::getName)
+                .collect(toList());
+    }
+
     public int getPlayersCount() {
         return players.size();
     }
