@@ -9,7 +9,7 @@ import ladder.domain.Players;
 import ladder.domain.Prizes;
 import ladder.domain.Retry;
 import ladder.domain.generator.LadderGenerator;
-import ladder.domain.generator.LineGenerator;
+import ladder.domain.generator.RandomDirectionGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -30,7 +30,7 @@ public class LadderController {
         final Players players = generate(inputView::readPlayerNames, Players::new);
         final Prizes prizes = readResults(players);
         final Height height = generate(inputView::readHeight, Height::new);
-        final Ladder ladder = ladderGenerator.generate(new LineGenerator(), players, height);
+        final Ladder ladder = ladderGenerator.generate(new RandomDirectionGenerator(), players, height);
         outputView.printLadderResult(players, ladder, prizes);
         final String target = inputView.readTarget();
     }

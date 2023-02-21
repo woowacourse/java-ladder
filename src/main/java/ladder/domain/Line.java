@@ -1,6 +1,12 @@
 package ladder.domain;
 
+import static ladder.domain.Direction.LEFT;
+import static ladder.domain.Direction.RIGHT;
+import static ladder.domain.Direction.STAY;
+
+import java.util.ArrayList;
 import java.util.List;
+import ladder.domain.generator.DirectionGenerator;
 
 public class Line {
 
@@ -8,6 +14,26 @@ public class Line {
 
     public Line(final List<Direction> directions) {
         this.directions = directions;
+    }
+
+    public static Line of(final DirectionGenerator directionGenerator, final int count) {
+        final List<Direction> directions = new ArrayList<>();
+        while (directions.size() < count - 1) {
+            final Direction direction = directionGenerator.generate();
+            addDirection(directions, direction, count);
+        }
+        return new Line(directions);
+    }
+
+    private static void addDirection(final List<Direction> directions, final Direction direction, final int count) {
+        directions.add(direction);
+
+        if (direction == RIGHT) {
+            directions.add(LEFT);
+        }
+        if (directions.size() == count - 1) {
+            directions.add(STAY);
+        }
     }
 
     public List<Direction> getDirections() {

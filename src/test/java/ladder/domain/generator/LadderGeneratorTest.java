@@ -20,7 +20,7 @@ class LadderGeneratorTest {
         final Height height = new Height(5);
 
         //when
-        Ladder ladder = ladderGenerator.generate(new LineGenerator(), players, height);
+        Ladder ladder = ladderGenerator.generate(new RandomDirectionGenerator(), players, height);
 
         //then
         assertThat(ladder.getLines()).hasSize(5);

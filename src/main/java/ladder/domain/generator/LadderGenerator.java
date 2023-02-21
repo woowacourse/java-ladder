@@ -9,13 +9,13 @@ import ladder.domain.Players;
 
 public class LadderGenerator {
 
-    public Ladder generate(final LineGenerator lineGenerator, final Players players, final Height height) {
+    public Ladder generate(final DirectionGenerator directionGenerator, final Players players, final Height height) {
         final List<Line> lines = new ArrayList<>();
         final int numberOfPlayers = players.size();
         int count = height.getValue();
 
         while (count-- > 0) {
-            lines.add(lineGenerator.generate(new RandomDirectionGenerator(), numberOfPlayers));
+            lines.add(Line.of(directionGenerator, numberOfPlayers));
         }
         return new Ladder(lines);
     }
