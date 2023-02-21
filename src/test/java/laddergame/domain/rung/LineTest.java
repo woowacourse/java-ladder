@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class RungsTest {
+public class LineTest {
 
     private BooleanGenerator rungBooleanGenerator;
 
@@ -24,19 +24,19 @@ public class RungsTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5})
-    @DisplayName("rungCount와 numberGenerator를 입력하면, Rungs 객체가 생성되는지 확인한다.")
+    @DisplayName("rungCount와 numberGenerator를 입력하면, 객체가 생성되는지 확인한다.")
     void succeeds_creation_if_rung_count_and_number_generator_are_entered(int rungCount) {
-        assertThat(Rungs.create(rungCount, rungBooleanGenerator))
-                .isInstanceOf(Rungs.class);
+        assertThat(Line.create(rungCount, rungBooleanGenerator))
+                .isInstanceOf(Line.class);
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5})
-    @DisplayName("Rungs 객체의 사이즈가 rungCount와 같은지 확인한다.")
+    @DisplayName("객체의 사이즈가 rungCount와 같은지 확인한다.")
     void is_same_size_as_rung_count(int rungCount) {
         // when
-        Rungs rungs = Rungs.create(rungCount, rungBooleanGenerator);
-        List<Rung> specificRungs = rungs.getRungs();
+        Line line = Line.create(rungCount, rungBooleanGenerator);
+        List<Rung> specificRungs = line.getRungs();
 
         // then
         assertThat(specificRungs.size()).isEqualTo(rungCount);
@@ -44,13 +44,13 @@ public class RungsTest {
 
     @ParameterizedTest
     @MethodSource("getTestRungsWithBooleanGenerator")
-    @DisplayName("Rungs의 형태가 BooleanGenerator에 따라 달라지는지 확인한다.")
+    @DisplayName("객체의 형태가 BooleanGenerator에 따라 달라지는지 확인한다.")
     void creates_various_rungs_according_to_boolean_generator(int rungCount, BooleanGenerator booleanGenerator, List<Rung> expectedRungs) {
         // given
-        Rungs rungs = Rungs.create(rungCount, booleanGenerator);
+        Line line = Line.create(rungCount, booleanGenerator);
 
         // when
-        List<Rung> actualRungs = rungs.getRungs();
+        List<Rung> actualRungs = line.getRungs();
 
         // then
         assertThat(actualRungs).isEqualTo(expectedRungs);

@@ -1,6 +1,6 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.rung.Rungs;
+import laddergame.domain.rung.Line;
 import laddergame.util.BooleanGenerator;
 
 import java.util.ArrayList;
@@ -25,11 +25,11 @@ public class LadderFactory {
         return new LadderFactory(rungBooleanGenerator);
     }
 
-    public List<Rungs> makeLadder(final String height, final int participantCount) {
+    public List<Line> makeLadder(final String height, final int participantCount) {
         int ladderHeight = toLadderHeight(height);
-        List<Rungs> ladder = new ArrayList<>();
+        List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            ladder.add(Rungs.create(makeRungCount(participantCount), rungBooleanGenerator));
+            ladder.add(Line.create(makeRungCount(participantCount), rungBooleanGenerator));
         }
         return ladder;
     }

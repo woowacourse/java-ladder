@@ -5,18 +5,18 @@ import laddergame.util.BooleanGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Rungs {
+public class Line {
 
     private final List<Rung> rungs;
     private final BooleanGenerator rungBooleanGenerator;
 
-    private Rungs(final int rungCount, final BooleanGenerator rungBooleanGenerator) {
+    private Line(final int rungCount, final BooleanGenerator rungBooleanGenerator) {
         this.rungBooleanGenerator = rungBooleanGenerator;
         rungs = makeRungs(rungCount);
     }
 
-    public static Rungs create(final int rungCount, final BooleanGenerator rungBooleanGenerator) {
-        return new Rungs(rungCount, rungBooleanGenerator);
+    public static Line create(final int rungCount, final BooleanGenerator rungBooleanGenerator) {
+        return new Line(rungCount, rungBooleanGenerator);
     }
 
     private List<Rung> makeRungs(final int rungCount) {

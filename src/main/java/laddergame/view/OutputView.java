@@ -1,7 +1,7 @@
 package laddergame.view;
 
 import laddergame.domain.rung.Rung;
-import laddergame.domain.rung.Rungs;
+import laddergame.domain.rung.Line;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +24,7 @@ public class OutputView {
         print(paddedParticipantNames.trim());
     }
 
-    public void printLadder(final List<Rungs> ladder, final List<String> participantNames) {
+    public void printLadder(final List<Line> ladder, final List<String> participantNames) {
         int firstNameLength = getLengthOfFirstParticipantName(participantNames);
         String ladderMessage = makeLadderMessage(ladder, firstNameLength);
         print(ladderMessage);
@@ -45,7 +45,7 @@ public class OutputView {
         return firstParticipantName.length();
     }
 
-    private String makeLadderMessage(final List<Rungs> ladder, final int firstNameLength) {
+    private String makeLadderMessage(final List<Line> ladder, final int firstNameLength) {
         return ladder.stream()
                 .map(rungs -> makeRungsMessage(rungs.getRungs(), firstNameLength))
                 .collect(Collectors.joining(System.lineSeparator()));
