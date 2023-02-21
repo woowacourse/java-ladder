@@ -6,12 +6,10 @@ import laddergame.domain.rung.RungGenerator;
 import laddergame.util.BooleanGenerator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -63,22 +61,19 @@ public class LadderTest {
                 .hasMessage(String.format(RangeException.errorMessage, 1, 10_000));
     }
 
-    @Test
-    @DisplayName("참여자 수만큼 사다리 게임을 진행하면, 사다리 결과 위치 리스트를 반환한다.")
-    void start_givenParticipantCount_thenReturnLadderResultPosition() {
+    @CsvSource(value = {"0:1", "1:0", "2:3", "3:2"}, delimiter = ':')
+    @DisplayName("참여자의 순서대로 사다리 게임을 진행하면, 최종 사다리 결과 위치를 반환한다.")
+    void start_givenParticipantCount_thenReturnLadderResultPosition(final int participantOrder, final int expectedResultPosition) {
         // given
         final BooleanGenerator trueRungGenerator = () -> true;
         final String ladderHeight = "5";
         Ladder ladder = Ladder.create(ladderHeight, participantCount, trueRungGenerator);
 
         // when
-        List<Integer> ladderResultPositions = ladder.startGame(participantCount);
+        int finalRungPosition = ladder.startGame(participantOrder);
 
         // then
-        assertThat(ladderResultPositions.size())
-                .isEqualTo(participantCount);
-
-        assertThat(ladderResultPositions)
-                .isEqualTo(List.of(1, 0, 3, 2));
+        assertThat(finalRungPosition)
+                .isEqualTo(expectedResultPosition);
     }
 }

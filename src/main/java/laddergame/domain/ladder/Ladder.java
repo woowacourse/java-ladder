@@ -3,7 +3,6 @@ package laddergame.domain.ladder;
 import laddergame.domain.rung.Rungs;
 import laddergame.util.BooleanGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
@@ -21,14 +20,10 @@ public class Ladder {
         return new Ladder(ladderRungs);
     }
 
-    public List<Integer> startGame(final int participantCount) {
-        List<Integer> finalPositions = new ArrayList<>();
-        for (int participantOrder = 0; participantOrder < participantCount; participantOrder++) {
-            int currentRungPosition = participantOrder;
-            currentRungPosition = getFinalRungPosition(currentRungPosition);
-            finalPositions.add(currentRungPosition);
-        }
-        return finalPositions;
+    public Integer startGame(final int participantOrder) {
+        int finalRungPosition = participantOrder;
+        finalRungPosition = getFinalRungPosition(finalRungPosition);
+        return finalRungPosition;
     }
 
     private int getFinalRungPosition(int currentRungPosition) {

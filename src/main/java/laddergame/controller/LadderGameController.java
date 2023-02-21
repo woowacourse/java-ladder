@@ -9,6 +9,7 @@ import laddergame.util.BooleanGenerator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +35,7 @@ public class LadderGameController {
         Ladder ladder = createLadder(participantSize);
         printLadderResult(participants, ladder, ladderResult);
 
-        List<Integer> ladderResultPositions = ladder.startGame(participantSize);
+        List<Integer> ladderResultPositions = getLadderResultPositions(participantSize, ladder);
         printGameResultWithRetry(participants, ladderResult, ladderResultPositions);
     }
 
@@ -80,6 +81,15 @@ public class LadderGameController {
                 .stream()
                 .map(LadderResultName::getName)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    private List<Integer> getLadderResultPositions(final int participantSize, final Ladder ladder) {
+        List<Integer> ladderResultPositions = new ArrayList<>();
+        for (int participantOrder = 0; participantOrder < participantSize; participantOrder++) {
+            Integer finalPosition = ladder.startGame(participantSize);
+            ladderResultPositions.add(finalPosition);
+        }
+        return ladderResultPositions;
     }
 
     private void printGameResultWithRetry(final Participants participants,
