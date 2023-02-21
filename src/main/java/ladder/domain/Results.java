@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.domain.strategy.linestrategy.Result;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Results {
     private final List<Result> results;
@@ -47,5 +48,11 @@ public class Results {
 
     private boolean canMoveLeft(int position, List<Step> steps) {
         return position != 0 && steps.get(position - 1) == Step.EXIST;
+    }
+
+    public List<String> findAllResult(List<Line> ladder) {
+        return IntStream.range(0, results.size())
+                .mapToObj(x -> findResult(ladder, x))
+                .collect(Collectors.toList());
     }
 }

@@ -56,6 +56,22 @@ public class ResultsTest {
         assertThat(result).isEqualTo(expect);
      }
 
+    @Test
+    @DisplayName("모든 참가자의 결과를 반환한다.")
+    void findAllResult() {
+        // given
+        Players players = new Players(new String[]{"a", "b", "c", "d"});
+        Ladder ladder = generateLadder(players);
+        List<String> inputResults = List.of("꽝", "성공", "꽝", "성공");
+        Results results = new Results(inputResults, players.getPlayersCount());
+
+        // when
+        List<String> allResult = results.findAllResult(ladder.getLines());
+
+        // then
+        assertThat(allResult).isEqualTo(List.of("성공", "꽝", "성공", "꽝"));
+    }
+
      private Ladder generateLadder(Players players) {
          Height height = new Height(4);
          LineStrategy lineStrategy = new CustomLineStrategy(List.of(Step.EXIST, Step.EMPTY));
