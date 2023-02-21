@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.ladderNode.Players;
+import ladder.domain.ladderNode.Results;
 import ladder.dto.ResultDto;
 import ladder.utils.LineStrategy;
 

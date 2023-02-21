@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladderNode;
 
 public class Result {
     private final Name result;

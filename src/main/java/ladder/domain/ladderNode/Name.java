@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladderNode;
 
 public class Name {
     private static final int MAX_SIZE = 5;
