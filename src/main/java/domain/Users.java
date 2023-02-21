@@ -4,7 +4,9 @@ import exception.ErrorMessage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Users {
 
@@ -58,5 +60,11 @@ public class Users {
     public Prize getPrizeByUserName(final Prizes prizes, final String userName) {
         final int userIndex = getIndexByUserName(userName);
         return prizes.getPrizeBy(userIndex);
+    }
+
+    public Map<String, String> getAllUsersAndPrizes(final Prizes prizes) {
+        return users.stream()
+                .collect(Collectors.toUnmodifiableMap(User::getName,
+                        (User user) -> getPrizeByUserName(prizes, user.getName()).getName()));
     }
 }

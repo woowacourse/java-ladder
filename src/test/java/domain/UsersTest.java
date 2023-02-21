@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import exception.ErrorMessage;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -79,5 +80,19 @@ class UsersTest {
         final Prize receivedPrizeHongSile = users.getPrizeByUserName(prizes, "홍실");
 
         assertThat(receivedPrizeHongSile.getName()).isEqualTo("2등");
+    }
+
+    @Test
+    @DisplayName("모든 User와 prize를 반환하는 기능 추가")
+    void getAllUsersAndPrizes() {
+        final Users users = new Users(testUserNames);
+        final Prizes prizes = new Prizes(List.of("1등", "2등", "3등"), users);
+
+        final Map<String, String> allUsersAndPrizes = users.getAllUsersAndPrizes(prizes);
+
+        assertThat(allUsersAndPrizes)
+                .contains(Map.entry("썬샷", "1등"))
+                .contains(Map.entry("홍실", "2등"))
+                .contains(Map.entry("다니", "3등"));
     }
 }
