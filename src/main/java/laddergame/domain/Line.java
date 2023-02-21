@@ -10,9 +10,21 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(final List<Boolean> inputPoints) {
-        final List<Boolean> points = Optional.ofNullable(inputPoints).orElse(List.of());
+        final List<Boolean> points = getPoints(inputPoints);
         validatePoints(points);
         this.points = points;
+    }
+
+    public boolean getPointByPosition(final Position position) {
+        return points.get(position.getValue());
+    }
+
+    public Width getWidth() {
+        return new Width(points.size());
+    }
+
+    public List<Boolean> getPoints() {
+        return new ArrayList<>(points);
     }
 
     private void validatePoints(final List<Boolean> points) {
@@ -21,7 +33,7 @@ public class Line {
         }
     }
 
-    public List<Boolean> getPoints() {
-        return new ArrayList<>(points);
+    private List<Boolean> getPoints(final List<Boolean> inputPoints) {
+        return Optional.ofNullable(inputPoints).orElse(List.of());
     }
 }
