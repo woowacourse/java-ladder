@@ -22,10 +22,15 @@ public class Application {
 
         String queryName = "";
         while (!queryName.equals(QUERY_ALL)) {
-            queryName = InputView.readResultInquireName();
-            List<ResultDto> results = game.calculatePlayerResult(queryName, QUERY_ALL);
-            OutputView.printInquireResult(results);
+            queryName = inquireResult(game);
         }
+    }
+
+    private static String inquireResult(final LadderGame game) {
+        String queryName = InputView.readResultInquireName();
+        List<ResultDto> results = game.calculatePlayerResult(queryName, QUERY_ALL);
+        OutputView.printInquireResult(results);
+        return queryName;
     }
 
     private static Command readCommand() {
