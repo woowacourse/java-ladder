@@ -30,6 +30,7 @@ public class InputView {
 
     public static String readResultInquireName() {
         scanner.reset();
+        System.out.println();
         System.out.println("결과를 보고 싶은 사람은?");
         return scanner.nextLine();
     }

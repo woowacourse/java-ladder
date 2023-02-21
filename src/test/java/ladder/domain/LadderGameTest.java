@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.FixedLineStrategy;
+import ladder.dto.ResultDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,9 +28,10 @@ class LadderGameTest {
         LadderGame game = new LadderGame(command, new FixedLineStrategy(lines));
 
         // when
-        String result = game.calculatePlayerResult(input);
+        List<ResultDto> resultDtos = game.calculatePlayerResult(input);
+
         //then
-        assertThat(result).isEqualTo(expected);
+        assertThat(resultDtos.get(0).getResult()).isEqualTo(expected);
     }
 
     @Test

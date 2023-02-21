@@ -17,10 +17,22 @@ public class Players {
                 .forEach(i -> players.add(new Player(names.get(i), i)));
     }
 
-    public Position moveToResult(String playerName, Ladder ladder) {
+    public Map<Position, String> moveToResult(String playerName, Ladder ladder) {
+        Map<Position, String> result = new HashMap<>();
+
         Player player = getByName(playerName);
-        return player.moveThroughLadder(ladder);
+        result.put(player.moveThroughLadder(ladder), player.getName());
+        return result;
     }
+
+    public Map<Position, String> moveAllToResult(Ladder ladder) {
+        Map<Position, String> results = new HashMap<>();
+
+        for (Player player : players) {
+            results.put(player.moveThroughLadder(ladder), player.getName());
+        }
+        return results;
+  }
 
     private Player getByName(String name) {
         return players.stream()

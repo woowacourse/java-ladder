@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.dto.ResultDto;
 import ladder.utils.LineStrategy;
 
 import java.util.List;
@@ -15,9 +16,11 @@ public class LadderGame {
         this.results = new Results(command.getResults());
     }
 
-    public String calculatePlayerResult(String playerName) {
-        Position arrive = players.moveToResult(playerName, ladder);
-        return results.getNameByPosition(arrive);
+    public List<ResultDto> calculatePlayerResult(String playerName) {
+        if (playerName.equals("all")) {
+            return results.getResultsByPosition(players.moveAllToResult(ladder));
+        }
+        return results.getResultsByPosition(players.moveToResult(playerName, ladder));
     }
 
     public List<List<Boolean>> getLadder() {
