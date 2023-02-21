@@ -2,6 +2,8 @@ package ladder.controller;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
+
+import ladder.domain.Gifts;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
@@ -22,18 +24,41 @@ public class LadderController {
     }
 
     public void run() {
-        final Players players = retry(Players::new, inputView::readPlayerNames);
-        final Height height = retry(Height::new, inputView::readHeight);
+        final Players players = makePlayers();
+        final Height height = makeHeight();
+        final Gifts gifts = makeGifts(players.numberOfPlayers());
+
         final Ladder ladder = new Ladder(lineGenerator, players, height);
-        outputView.printLadderResult(players, ladder);
+        outputView.printLadderResult(players, ladder, gifts);
     }
 
-    private <T, R> R retry(final Function<T, R> function, final Supplier<T> supplier) {
+    private Players makePlayers() {
         try {
-            return function.apply(supplier.get());
+            return new Players(inputView.readPlayerNames());
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return retry(function, supplier);
+            outputView.printErrorMessage(e);
         }
+
+        return makePlayers();
+    }
+
+    private Height makeHeight() {
+        try {
+            return new Height(inputView.readHeight());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+        }
+
+        return makeHeight();
+    }
+
+    private Gifts makeGifts(int numberOfPlayer) {
+        try {
+            return new Gifts(inputView.readGiftNames(), numberOfPlayer);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+        }
+
+        return makeGifts(numberOfPlayer);
     }
 }
