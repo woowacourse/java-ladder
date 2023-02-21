@@ -45,4 +45,8 @@ public class Participants {
     public List<Participant> getParticipants() {
         return Collections.unmodifiableList(participants);
     }
+
+    public Participant getParticipant(int i) {
+        return participants.get(i);
+    }
 }

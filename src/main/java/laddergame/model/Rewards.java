@@ -29,4 +29,8 @@ public class Rewards {
     public List<Reward> getResultNames() {
         return Collections.unmodifiableList(rewards);
     }
+
+    public Reward getReward(int i) {
+        return rewards.get(i);
+    }
 }

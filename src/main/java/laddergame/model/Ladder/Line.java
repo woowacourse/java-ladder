@@ -54,4 +54,8 @@ public class Line {
     public List<Boolean> getLine() {
         return Collections.unmodifiableList(line);
     }
+
+    public boolean hasLine(int i) {
+        return line.get(i);
+    }
 }
