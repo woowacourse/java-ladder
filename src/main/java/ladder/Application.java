@@ -8,6 +8,10 @@ import ladder.view.ResultView;
 public class Application {
     public static void main(String[] args) {
         LadderGameController ladderGameController = new LadderGameController(new InputView(), new ResultView(), new LadderGenerator());
-        ladderGameController.run();
+        try {
+            ladderGameController.run();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

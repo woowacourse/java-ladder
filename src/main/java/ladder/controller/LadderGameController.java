@@ -18,18 +18,19 @@ public class LadderGameController {
     }
 
     public void run() {
-        try {
-            List<String> participantNames = inputView.readParticipantNames();
-            Players players = Players.from(participantNames);
+        Players players = readPlayers();
 
-            LadderHeight height = new LadderHeight(inputView.readLadderHeight());
-            LadderWidth width = new LadderWidth(players.getCount() - 1);
-            Ladder ladder = ladderGenerator.generate(width, height);
+        LadderHeight height = new LadderHeight(inputView.readLadderHeight());
+        LadderWidth width = new LadderWidth(players.getCount() - 1);
+        Ladder ladder = ladderGenerator.generate(width, height);
 
-            printLadderResult(players, ladder);
-        } catch (IllegalArgumentException e) {
-            resultView.printErrorMessage(e.getMessage());
-        }
+        printLadderResult(players, ladder);
+    }
+
+    private Players readPlayers() {
+        List<String> participantNames = inputView.readParticipantNames();
+        Players players = Players.from(participantNames);
+        return players;
     }
 
     private void printLadderResult(Players players, Ladder ladder) {
