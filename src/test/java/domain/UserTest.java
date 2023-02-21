@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class UserTest {
+
     @Test
     @DisplayName("유저가 제대로 생성되면 입력된 이름을 가지고 있는지 확인")
     void generateUserTest() {

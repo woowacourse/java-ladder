@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
+
     private static final int MINIMUM_HEIGHT = 1;
     private static final int MAXIMUM_HEIGHT = 100;
 

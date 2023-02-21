@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LineGenerator {
+
+    private static final SecureRandom SECURE_RANDOM = new SecureRandom();
+
     public Line generate(int personCount) {
-        final SecureRandom secureRandom = new SecureRandom();
         final List<Point> points = new ArrayList<>();
         Point pastPoint = Point.EMPTY_POINT;
         for (int count = 1; count < personCount; count++) {
-            boolean randomPoint = secureRandom.nextBoolean();
+            boolean randomPoint = SECURE_RANDOM.nextBoolean();
             points.add(generateValidatePoint(randomPoint, pastPoint));
             pastPoint = Point.from(randomPoint);
         }

@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
+
     private final int validatePersonCount = 5;
 
     @ParameterizedTest(name = "입력된 사다리의 높이 = {0}")

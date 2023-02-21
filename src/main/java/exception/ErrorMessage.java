@@ -1,6 +1,7 @@
 package exception;
 
 public enum ErrorMessage {
+
     LADDER_HEIGHT_EXCEPTION("사다리의 높이는 1~100 사이의 정수여야 합니다."),
     USER_NAME_LENGTH_EXCEPTION("유저의 이름은 5자 이하여야 합니다."),
     USER_NAME_BLANK_EXCEPTION("유저의 이름은 공백일 수 없습니다."),

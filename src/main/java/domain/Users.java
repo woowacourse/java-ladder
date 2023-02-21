@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Users {
+
     private final List<User> users;
 
     public Users(final List<String> userNames) {
@@ -32,8 +33,7 @@ public class Users {
     }
 
     private List<User> initUsers(List<String> userNames) {
-        final List<User> users;
-        users = new ArrayList<>();
+        final List<User> users = new ArrayList<>();
         for (final String userName : userNames) {
             users.add(new User(userName));
         }

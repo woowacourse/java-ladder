@@ -1,6 +1,7 @@
 package domain;
 
 public enum Point {
+
     LINKED_POINT(true),
     EMPTY_POINT(false);
 

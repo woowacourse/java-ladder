@@ -10,6 +10,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UsersTest {
+
     private final List<String> testUsersName = List.of("썬샷", "홍실");
 
     @Test

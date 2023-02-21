@@ -6,6 +6,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderController {
+
     private Users users;
     private Ladder ladder;
 
