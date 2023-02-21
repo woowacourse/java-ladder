@@ -1,11 +1,13 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.*;
 
 class PlayerTest {
     @ParameterizedTest(name = "이름이 길이가 안맞아 {0}이면 예외 던지기")
@@ -30,8 +32,16 @@ class PlayerTest {
         assertThatNoException().isThrownBy(() -> new Player(name));
     }
 
+    @DisplayName("player가 이동하면 사다리를 1칸 내려간다")
     @Test
     void 높이_1칸_이동() {
+        List<Foothold> footholds = List.of(Foothold.Y, Foothold.N);
+        int expectedWidth = 2;
+        Row row = Row.of(footholds, expectedWidth);
+        Player player = new Player(new PlayerName("test"), new Position(0));
 
+        player.move(row);
+
+        assertThat(player.getPosition()).isEqualTo(new Position(1));
     }
 }
