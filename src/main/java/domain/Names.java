@@ -22,6 +22,10 @@ public class Names {
         return new ArrayList<>(names);
     }
 
+    public Name getNameByIndex(int index) {
+        return names.get(index);
+    }
+
     public int getPersonNumber() {
         return names.size();
     }
@@ -30,6 +34,10 @@ public class Names {
         if (personNumber < MIN_RANGE || personNumber > MAX_RANGE) {
             throw new IllegalArgumentException(Message.EXCEPTION_RANGE.message);
         }
+    }
+
+    public int size() {
+        return names.size();
     }
 
 
