@@ -16,7 +16,7 @@ class PrizeTest {
     void throwExceptionWhenResultIsBlank(final String value) {
         assertThatThrownBy(() -> new Prize(value))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("결과는 공백일 수 없습니다. 현재 입력한 값은 " + value + " 입니다.");
+                .hasMessage("당첨 항목은 공백일 수 없습니다. 현재 입력한 값은 " + value + " 입니다.");
     }
 
     @Test
@@ -26,7 +26,7 @@ class PrizeTest {
 
         assertThatThrownBy(() -> new Prize(value))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("결과는 최대 5글자까지 가능합니다. 현재 입력한 값은 " + value + " 입니다.");
+                .hasMessage("당첨 항목은 최대 5글자까지 가능합니다. 현재 입력한 값은 " + value + " 입니다.");
     }
 
     @ParameterizedTest(name = "입력: {0}")
