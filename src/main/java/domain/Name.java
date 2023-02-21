@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Name {
 
     private static final int MIN_LENGTH = 1;
@@ -33,5 +35,29 @@ public class Name {
         Message(String message, Object... replaces) {
             this.message = String.format(BASE_MESSAGE_FORMAT, String.format(message, replaces));
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Name{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Name name1 = (Name) o;
+        return Objects.equals(name, name1.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

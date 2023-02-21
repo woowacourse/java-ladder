@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Player {
 
     private final Name name;
@@ -11,7 +13,7 @@ public class Player {
         this.position = position;
     }
 
-    public int getExitIndex(Lines lines) {
+    public int calculateExitIndex(Lines lines) {
         return lines.getExitIndex(this.position.getPosition());
     }
 
@@ -31,5 +33,28 @@ public class Player {
         return mission;
     }
 
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name=" + name +
+                ", position=" + position +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Player player = (Player) o;
+        return Objects.equals(name, player.name) && Objects.equals(position, player.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
+    }
 }
