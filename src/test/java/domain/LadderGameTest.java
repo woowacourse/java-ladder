@@ -27,7 +27,7 @@ class LadderGameTest {
     @Test
     void PEOPLES_객체_생성() {
         List<String> names = List.of("p1", "p2", "p3");
-        Person person = ladderGame.createPeoples(names);
+        Person person = ladderGame.createPerson(names);
 
         Assertions.assertAll(
                 () -> {

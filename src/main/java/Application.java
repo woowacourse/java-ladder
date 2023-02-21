@@ -13,7 +13,7 @@ public class Application {
     public static void main(String[] args) {
         List<String> names = InputView.getPersonName();
         LadderGame ladderGame = new LadderGame();
-        Person person = ladderGame.createPeoples(names);
+        Person person = ladderGame.createPerson(names);
         int ladderHeight = InputView.getLadderHeight();
 
         Lines lines = ladderGame.createLines(person.getPerson().size(), ladderHeight);
