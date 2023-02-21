@@ -56,13 +56,22 @@ class LineCreatorTest {
         assertThat(findLines).hasSize(height.getValue());
     }
 
+    @DisplayName("라인의 points 사이즈는 가로 길이와 같다.")
+    @ParameterizedTest(name = "weightValue = {0}")
+    @MethodSource("createLinesParameterDummy")
+    void returnsLinePointsSizeIsWidth(final Width width, final Height height) {
+        final Lines lines = TEST_LINE_CREATOR.createLines(width, height);
+        final List<Line> findLines = lines.getLines();
+        final List<Boolean> points = findLines.get(0).getPoints();
+
+        assertThat(points).hasSize(width.getValue());
+    }
+
     static Stream<Arguments> createLinesParameterDummy() {
         return Stream.of(
-                Arguments.arguments(WidthFixture.createWidthValue1(), HeightFixture.createHeightValue1()),
                 Arguments.arguments(WidthFixture.createWidthValue2(), HeightFixture.createHeightValue1()),
-                Arguments.arguments(WidthFixture.createWidthValue3(), HeightFixture.createHeightValue1()),
-                Arguments.arguments(WidthFixture.createWidthValue1(), HeightFixture.createHeightValue2()),
-                Arguments.arguments(WidthFixture.createWidthValue1(), HeightFixture.createHeightValue3())
+                Arguments.arguments(WidthFixture.createWidthValue3(), HeightFixture.createHeightValue2()),
+                Arguments.arguments(WidthFixture.createWidthValue3(), HeightFixture.createHeightValue3())
         );
     }
 }
