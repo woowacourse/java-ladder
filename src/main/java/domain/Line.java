@@ -8,7 +8,7 @@ public class Line {
 
     private final List<Bridge> bridges;
 
-    public Line(List<Bridge> bridges) {
+    public Line(final List<Bridge> bridges) {
         validateHeightOf(bridges);
         this.bridges = List.copyOf(bridges);
     }

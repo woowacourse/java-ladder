@@ -10,7 +10,7 @@ public class LineGenerator {
 
     private final BridgeGenerator bridgeGenerator;
 
-    public LineGenerator(BridgeGenerator bridgeGenerator) {
+    public LineGenerator(final BridgeGenerator bridgeGenerator) {
         this.bridgeGenerator = bridgeGenerator;
     }
 

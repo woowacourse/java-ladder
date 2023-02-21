@@ -24,13 +24,13 @@ public class OutputView {
         printResultCandidateOf(ladder);
     }
 
-    private static void printParticipantsOf(Ladder ladder) {
+    private static void printParticipantsOf(final Ladder ladder) {
         for (String name : ladder.getParticipantNames()) {
             System.out.print(name + "\t");
         }
     }
 
-    private static void printResultCandidateOf(Ladder ladder) {
+    private static void printResultCandidateOf(final Ladder ladder) {
         List<String> resultCandidates = ladder.getResultCandidates();
 
         for (String resultCandidate : resultCandidates) {
@@ -40,7 +40,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printLadderResult(Map<String, String> result, String name) {
+    public static void printLadderResult(final Map<String, String> result, final String name) {
         System.out.println("실행결과");
 
         if (name.equals("all")) {
@@ -51,7 +51,7 @@ public class OutputView {
         System.out.println(name + " : " + result.get(name));
     }
 
-    private static void printAll(Map<String, String> result) {
+    private static void printAll(final Map<String, String> result) {
         for (String participant : result.keySet()) {
             System.out.println(participant + " : " + result.get(participant));
         }
@@ -72,7 +72,7 @@ public class OutputView {
         }
     }
 
-    private static String printBridgeStatus(BridgeStatus bridgeStatus) {
+    private static String printBridgeStatus(final BridgeStatus bridgeStatus) {
         if (bridgeStatus == BridgeStatus.EMPTY) {
             return EMPTY_BRIDGE;
         }

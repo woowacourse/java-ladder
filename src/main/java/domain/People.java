@@ -10,25 +10,25 @@ public class People {
 
     private final List<Person> people;
 
-    public People(List<Person> people) {
+    public People(final List<Person> people) {
         validatePeopleSize(people);
         validateNoDuplicated(people);
         this.people = List.copyOf(people);
     }
 
-    private void validatePeopleSize(List<Person> people) {
+    private void validatePeopleSize(final List<Person> people) {
         if (people.size() < MIN_PARTICIPANTS) {
             throw new IllegalArgumentException("참가자는 2명 이상이어야 합니다");
         }
     }
 
-    private void validateNoDuplicated(List<Person> people) {
+    private void validateNoDuplicated(final List<Person> people) {
         if (hasDuplicated(people)) {
             throw new IllegalArgumentException("이름은 중복될 수 없습니다.");
         }
     }
 
-    private boolean hasDuplicated(List<Person> people) {
+    private boolean hasDuplicated(final List<Person> people) {
         Set<Person> duplicateRemoval = new HashSet<>(people);
         return duplicateRemoval.size() != people.size();
     }

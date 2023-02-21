@@ -21,7 +21,7 @@ public class LadderEngine {
 
     private final LineGenerator lineGenerator;
 
-    public LadderEngine(LineGenerator lineGenerator) {
+    public LadderEngine(final LineGenerator lineGenerator) {
         this.lineGenerator = lineGenerator;
     }
 
@@ -38,7 +38,7 @@ public class LadderEngine {
         printResult(result);
     }
 
-    private void printResult(Map<String, String> result) {
+    private void printResult(final Map<String, String> result) {
         while (true) {
             String name = InputView.inputShowResultPerson();
 
@@ -68,7 +68,7 @@ public class LadderEngine {
                                .collect(Collectors.toList()));
     }
 
-    private Ladder makesLadder(People people, List<String> resultCandidates) {
+    private Ladder makesLadder(final People people, final List<String> resultCandidates) {
         return IllegalArgumentExceptionHandler.handleExceptionByRepeating(
                 () -> {
                     int height = InputView.inputMaxLadderHeight();

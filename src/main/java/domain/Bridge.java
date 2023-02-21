@@ -37,11 +37,11 @@ public class Bridge {
         return bridges;
     }
 
-    public boolean hasRightBridge(int index) {
+    public boolean hasRightBridge(final int index) {
         return index < bridges.size() && bridges.get(index) != BridgeStatus.EMPTY;
     }
 
-    public boolean hasLeftBridge(int index) {
+    public boolean hasLeftBridge(final int index) {
         return index - 1 >= 0 && bridges.get(index - 1) != BridgeStatus.EMPTY;
     }
 }
