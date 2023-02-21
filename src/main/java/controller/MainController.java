@@ -2,6 +2,7 @@ package controller;
 
 import domain.Height;
 import domain.Lines;
+import domain.Missions;
 import domain.Names;
 import domain.generator.BooleanGenerator;
 import view.InputView;
@@ -24,6 +25,7 @@ public class MainController {
         try {
             Names names = inputView.readNames();
             Height height = inputView.readHeight();
+            Missions missions = inputView.readMissions();
             int lineNumber = names.getPersonNumber() - 1;
             Lines lines = new Lines(lineNumber, height.getHeight(), booleanGenerator);
             outputView.printResult(names, lines);
