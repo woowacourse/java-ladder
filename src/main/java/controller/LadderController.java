@@ -17,8 +17,9 @@ public class LadderController {
 
     public void run() {
         Players players = generatePlayers();
-        Rewards rewards = generateRewards(players.getNumberOfPlayer());
-        Ladder ladder = generateLadder(players.getNumberOfPlayer());
+        int numberOfPlayer = players.getNumberOfPlayer();
+        Rewards rewards = generateRewards(numberOfPlayer);
+        Ladder ladder = generateLadder(numberOfPlayer);
 
         OutputView.printPlayers(players);
         OutputView.printLadder(ladder);
