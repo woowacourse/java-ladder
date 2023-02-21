@@ -8,15 +8,15 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.NonExistFootholdGenerator;
+import utils.GameResultCalculatorFactory;
 
-class CalculatorTest {
+class GameResultCalculatorTest {
 
     private static Players players;
     private static Line line;
     private static Lines lines;
     private static Ladder ladder;
     private static LadderResults ladderResults;
-    private static Game game;
 
     @BeforeAll
     public static void initGame() {
@@ -32,8 +32,9 @@ class CalculatorTest {
     @DisplayName("유저와 보상을 매칭시킨 자료형을 반환시켜준다.")
     void returns_game_result() {
         // when
-        Calculator calculator = new Calculator(players, ladder, ladderResults);
-        Map<Player, LadderResult> expectedReturns = calculator.getPlayerWithResult();
+        GameResultCalculator gameResultCalculator = GameResultCalculatorFactory.createGameResultCalculator(players,
+                ladder, ladderResults);
+        Map<Player, LadderResult> expectedReturns = gameResultCalculator.findGameResult();
 
         // then
         assertThat(expectedReturns.containsKey(players));
@@ -43,8 +44,9 @@ class CalculatorTest {
     @DisplayName("해당하는 유저의 결과물을 반환한다.")
     void returns_player_result() {
         // when
-        Calculator calculator = new Calculator(players, ladder, ladderResults);
-        String expectedResult = calculator.findPlayerResult(players.getPlayers().get(0));
+        GameResultCalculator gameResultCalculator = GameResultCalculatorFactory.createGameResultCalculator(players,
+                ladder, ladderResults);
+        String expectedResult = gameResultCalculator.findPlayerResult(players.getPlayers().get(0));
 
         // then
         assertThat(expectedResult).isEqualTo(ladderResults.findFirstResult());
