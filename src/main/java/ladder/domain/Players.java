@@ -47,10 +47,6 @@ public class Players {
                 .collect(Collectors.joining(" "));
     }
 
-    public List<Player> getPlayers() {
-        return Collections.unmodifiableList(players);
-    }
-
     public int getPlayersCount() {
         return players.size();
     }
