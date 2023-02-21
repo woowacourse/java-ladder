@@ -1,35 +1,39 @@
-import domain.generator.RandomBooleanGenerator;
 import domain.ladder.Ladder;
+import domain.ladder.LadderGame;
 import domain.player.Players;
 import utils.Log;
 import view.InputView;
 import view.OutputView;
 
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
-        Players players = readPlayers();
+        LadderGame ladderGame = createLadderGame();
 
-        Ladder ladder = generateLadder(players.getPlayers().size());
+        Ladder ladder = createLadder(ladderGame);
 
-        showOutput(players, ladder);
+        showOutput(ladderGame.getPlayers(), ladder);
     }
 
-    private static Ladder generateLadder(int playersSize) {
+    private static LadderGame createLadderGame() {
         try {
-            return new Ladder(playersSize, InputView.readLadderHeight(), new RandomBooleanGenerator());
+            List<String> names = InputView.readNames();
+            return new LadderGame(names);
         } catch (IllegalArgumentException e) {
             Log.error(e.getMessage());
-            return generateLadder(playersSize);
+            return createLadderGame();
         }
     }
 
-    private static Players readPlayers() {
+    private static Ladder createLadder(LadderGame ladderGame) {
         try {
-            return new Players(InputView.readNames());
+            int height = InputView.readLadderHeight();
+            return ladderGame.createLadder(height);
         } catch (IllegalArgumentException e) {
             Log.error(e.getMessage());
-            return readPlayers();
+            return createLadder(ladderGame);
         }
     }
 
