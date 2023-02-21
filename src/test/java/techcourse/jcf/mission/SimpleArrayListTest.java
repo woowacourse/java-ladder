@@ -94,7 +94,7 @@ class SimpleArrayListTest {
     }
 
     @Test
-    public void indexOfTest(){
+    public void indexOfTest() {
         SimpleArrayList myValues = new SimpleArrayList();
 
         myValues.add("first");
@@ -103,6 +103,18 @@ class SimpleArrayListTest {
 
         assertThat(myValues.indexOf("first")).isEqualTo(0);
         assertThat(myValues.indexOf("이건없지롱")).isEqualTo(-1);
+    }
+
+    @Test
+    public void containsTest() {
+        String input = "hi hi";
+        SimpleArrayList myValues = new SimpleArrayList();
+
+        assertThat(myValues.contains(input)).isFalse();
+
+        myValues.add(input);
+        assertThat(myValues.contains(input)).isTrue();
+
     }
 
 }
