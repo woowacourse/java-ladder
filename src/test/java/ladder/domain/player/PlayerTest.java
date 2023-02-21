@@ -22,4 +22,12 @@ public class PlayerTest {
         assertThat(player.getName()).isEqualTo(name.getName());
     }
 
+    @Test
+    @DisplayName("Player equals 테스트")
+    void equalsTest() {
+        Player player1 = new Player(new Name("a"));
+        Player player2 = new Player(new Name("b"));
+
+        assertThat(player1.equals(player2)).isTrue();
+    }
 }
