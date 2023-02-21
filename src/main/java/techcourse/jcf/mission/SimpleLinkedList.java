@@ -172,6 +172,7 @@ public class SimpleLinkedList implements SimpleList {
             node = node.nextNode();
             clearNode(prevNode);
         }
+        firstNode = null;
         size = 0;
     }
 
