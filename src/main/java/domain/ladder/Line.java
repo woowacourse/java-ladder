@@ -12,6 +12,7 @@ public class Line {
     private final Position fistPosition;
     private final Position lastPosition;
 
+    /* 오직 LadderFactory 를 통해서만 생성한다 */
     Line(final List<Scaffold> scaffolds) {
         validateScaffoldSizeEmpty(scaffolds);
         this.scaffolds = new ArrayList<>(scaffolds);
@@ -19,7 +20,6 @@ public class Line {
         this.lastPosition = Position.of(scaffolds.size());
     }
 
-    // 생성자에서 사용되는 Private 메서드가 우선인가? 혹은 정적 팩터리 메서드가 우선인가?
     private void validateScaffoldSizeEmpty(final List<Scaffold> scaffolds) {
         if (scaffolds.isEmpty()) {
             throw new IllegalArgumentException("사다리의 가로 길이는 0일수 없습니다.");
