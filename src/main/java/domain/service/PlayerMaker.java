@@ -10,14 +10,14 @@ import java.util.List;
 public class PlayerMaker {
     private final List<Player> playerList;
 
-    public PlayerMaker(List<String> players) {
+    public PlayerMaker(List<Name> players) {
         playerList = new ArrayList<>();
         makePlayerList(players);
     }
 
-    private void makePlayerList(List<String> players) {
+    private void makePlayerList(List<Name> players) {
         for (int i = 0; i < players.size(); i++) {
-            playerList.add(new Player(new Name(players.get(i)), new Position(i)));
+            playerList.add(new Player(players.get(i), new Position(i)));
         }
     }
 

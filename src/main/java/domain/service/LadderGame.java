@@ -3,17 +3,19 @@ package domain.service;
 import domain.model.Ladder;
 import domain.model.Layer;
 import domain.model.Player;
+import domain.vo.Name;
 
 import java.util.List;
 
 public class LadderGame {
     private int maxPosition;
-
+    private List<Player> players;
     public LadderGame(final int maxPosition) {
         this.maxPosition = maxPosition;
     }
 
-    public void playLadderGame(List<Player> players, Ladder ladder) {
+    public void playLadderGame(List<Name> playersName, Ladder ladder) {
+        players = new PlayerMaker(playersName).getPlayerList();
         players.forEach(player -> {
             movePlayer(ladder, player);
         });
@@ -47,5 +49,8 @@ public class LadderGame {
         if (layer.getLines().get(player.getPosition())) {
             player.moveRight();
         }
+    }
+    public List<Player> getPlayers(){
+        return this.players;
     }
 }

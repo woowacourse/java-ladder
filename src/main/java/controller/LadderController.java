@@ -2,7 +2,9 @@ package controller;
 
 import domain.model.Goods;
 import domain.model.Ladder;
+import domain.service.LadderGame;
 import domain.service.LadderMaker;
+import domain.service.PlayerMaker;
 import domain.vo.Height;
 import domain.vo.Name;
 import domain.vo.Width;
@@ -29,6 +31,8 @@ public class LadderController {
         int height = inputView.inputLadderHeight();
         Ladder ladder = ladderMaker.make(new Height(height), new Width(names.size() - 1));
         outputView.printResult(names, ladder);
+        outputView.printNames(goods.getGoodsNames());
+        LadderGame ladderGame = new LadderGame(names.size()-1);
     }
     private List<Name> makePlayers(){
         return inputView.inputNames()

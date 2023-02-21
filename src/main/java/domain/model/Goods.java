@@ -17,6 +17,7 @@ public class Goods {
     public String get(int index){
         return items.get(index).get();
     }
+    public List<Name> getGoodsNames(){return items;}
     private void validate(){
         if(items.size()!=playerCounts){
             throw new IllegalArgumentException(NOT_SAME_COUNT_ERROR);
