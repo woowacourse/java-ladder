@@ -27,4 +27,8 @@ public class InputView {
         String rawResults = SCANNER.nextLine();
         return List.of(rawResults.split(DELIMITER));
     }
+
+    public static String readTargetPlayer() {
+        return SCANNER.nextLine();
+    }
 }
