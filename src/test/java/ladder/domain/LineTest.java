@@ -13,6 +13,20 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class LineTest {
+
+    @Test
+    @DisplayName("line에 연속적인 다리가 존재하면 예외를 던진다.")
+    void line_generate_exception_if_continuous() {
+        // given
+        List<List<Boolean>> parts = List.of(List.of(false, true, true, false));
+        FixedLineStrategy fixedLineStrategy = new FixedLineStrategy(parts);
+
+        // expected
+        assertThatThrownBy(() -> new Line(fixedLineStrategy, 4))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("라인에 연속으로 연결된 다리는 생성될 수 없습니다.");
+    }
+
     @Test
     @DisplayName("LineStrategy로부터 line을 생성한다.")
     void line_generateFromLineStrategy() {
@@ -35,7 +49,9 @@ class LineTest {
         LineStrategy fixedStrategy = new FixedLineStrategy(List.of(List.of(true, false, true)));
         Line line = new Line(fixedStrategy, 3);
 
-        assertThatThrownBy(() -> {line.moveFrom(start);})
+        assertThatThrownBy(() -> {
+            line.moveFrom(start);
+        })
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("line 범위 밖의 시작점입니다.");
 
