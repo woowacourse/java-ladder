@@ -3,7 +3,9 @@ package controller;
 import domain.Ladder;
 import domain.Names;
 import java.util.List;
+import java.util.Map;
 
+import domain.Results;
 import domain.generator.ConnectionGenerator;
 import domain.generator.RandomConnectionGenerator;
 import view.InputView;
@@ -23,6 +25,7 @@ public class LadderGameController {
 
     public void run() {
         Names names = makeNames();
+        Results results = makeResults(names.findNumberOfNames());
         Ladder ladder = makeLadder(names.findNumberOfNames());
 
         outputView.printResult(names, ladder);
@@ -35,6 +38,16 @@ public class LadderGameController {
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return makeNames();
+        }
+    }
+
+    private Results makeResults(final int numberOfNames) {
+        try {
+            String results = inputView.readResults();
+            return new Results(results, numberOfNames);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return makeResults(numberOfNames);
         }
     }
 

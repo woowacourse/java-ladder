@@ -19,8 +19,13 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    private String[] splitNames(String playerNames) {
+    private String[] splitNames(final String playerNames) {
         return playerNames.split(SPLIT_DELIMITER);
+    }
+
+    public String readResults() {
+        System.out.println(NEW_LINE + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return reader.next();
     }
 
     public int readHeight() {
@@ -30,7 +35,7 @@ public class InputView {
         return ladderHeight;
     }
 
-    private int validateIntegerInput(String input) {
+    private int validateIntegerInput(final String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
