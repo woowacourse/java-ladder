@@ -24,7 +24,7 @@ public class Players {
 
         Player player = getByName(playerName);
         result.put(player.moveThroughLadder(ladder), player.getName());
-        return result;
+        return Collections.unmodifiableMap(result);
     }
 
     public Map<Position, String> moveAllToResult(Ladder ladder) {
@@ -33,7 +33,7 @@ public class Players {
         for (Player player : players) {
             results.put(player.moveThroughLadder(ladder), player.getName());
         }
-        return results;
+        return Collections.unmodifiableMap(results);
     }
 
     private Player getByName(String name) {

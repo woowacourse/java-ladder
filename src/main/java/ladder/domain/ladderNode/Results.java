@@ -2,10 +2,7 @@ package ladder.domain.ladderNode;
 
 import ladder.dto.ResultDto;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -25,7 +22,7 @@ public class Results {
         for (Position position : positions) {
             results.add(new ResultDto(playerPosition.get(position), getResultByPosition(position)));
         }
-        return results;
+        return Collections.unmodifiableList(results);
     }
 
     public String getResultByPosition(Position position) {
