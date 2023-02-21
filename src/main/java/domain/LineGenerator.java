@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class LadderGenerator {
+public class LineGenerator {
     private final Random random = new Random();
-    private static final LadderGenerator INSTANCE = new LadderGenerator();
+    private static final LineGenerator INSTANCE = new LineGenerator();
 
-    public static LadderGenerator getInstance() {
+    public static LineGenerator getInstance() {
         return INSTANCE;
     }
 

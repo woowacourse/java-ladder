@@ -14,9 +14,9 @@ public class Ladders {
         this.ladders = new ArrayList<>();
     }
 
-    public void make(LadderGenerator ladderGenerator) {
+    public void make(LineGenerator lineGenerator) {
         for (int floor = 0; floor < height.getHeight(); floor++) {
-            ladders.add(new Line(ladderGenerator.generateLadder(width.getWidth())));
+            ladders.add(new Line(lineGenerator.generateLadder(width.getWidth())));
         }
     }
 
