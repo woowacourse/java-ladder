@@ -12,8 +12,8 @@ class DirectionTest {
     
     @BeforeEach
     void setUp() {
-        firstDirectionTrue = Direction.createFirst(() -> true);
-        firstDirectionFalse = Direction.createFirst(() -> false);
+        firstDirectionTrue = Direction.createFirst(() -> Bar.TRUE);
+        firstDirectionFalse = Direction.createFirst(() -> Bar.FALSE);
     }
     
     @Test
@@ -33,7 +33,7 @@ class DirectionTest {
     @Test
     @DisplayName("각 Line의 중간 Direction의 Bar가 왼쪽이 true인 경우 오른쪽은 무조건 false이기 때문에, 포지션을 -1 한다.")
     void createNextLeft() {
-        Direction nextDirection = firstDirectionTrue.createNext(() -> false);
+        Direction nextDirection = firstDirectionTrue.createNext(() -> Bar.FALSE);
         int resultPosition = nextDirection.getAdjustedPosition(3);
         assertThat(resultPosition).isEqualTo(2);
     }
@@ -41,7 +41,7 @@ class DirectionTest {
     @Test
     @DisplayName("각 Line의 중간 Direction의 Bar가 왼쪽이 false, 오른쪽 true인 경우, 포지션을 +1 한다.")
     void createNextRight() {
-        Direction nextDirection = firstDirectionFalse.createNext(() -> true);
+        Direction nextDirection = firstDirectionFalse.createNext(() -> Bar.TRUE);
         int resultPosition = nextDirection.getAdjustedPosition(3);
         assertThat(resultPosition).isEqualTo(4);
     }
@@ -49,7 +49,7 @@ class DirectionTest {
     @Test
     @DisplayName("각 Line의 중간 Direction의 Bar가 왼쪽이 false, 오른쪽 false인 경우, 포지션을 그대로 반환한다.")
     void createNextMiddle() {
-        Direction nextDirection = firstDirectionFalse.createNext(() -> false);
+        Direction nextDirection = firstDirectionFalse.createNext(() -> Bar.FALSE);
         int resultPosition = nextDirection.getAdjustedPosition(3);
         assertThat(resultPosition).isEqualTo(3);
     }

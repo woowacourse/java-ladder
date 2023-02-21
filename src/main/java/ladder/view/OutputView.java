@@ -54,8 +54,8 @@ public class OutputView {
         return parseBarMatcher(bar).getBarDisplay();
     }
 
-    private static BarMatcher parseBarMatcher(Bar bar) {
-        return BarMatcher.valueOfBarMatcher(bar);
+    private static BarDisplayMatcher parseBarMatcher(Bar bar) {
+        return BarDisplayMatcher.valueOfBarMatcher(bar);
     }
 
     public static void printExceptionMessage(IllegalArgumentException illegalArgumentException) {

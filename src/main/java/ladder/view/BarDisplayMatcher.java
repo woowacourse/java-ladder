@@ -4,21 +4,21 @@ import ladder.domain.Bar;
 
 import java.util.Arrays;
 
-public enum BarMatcher {
+public enum BarDisplayMatcher {
     TRUE(true, "-----"),
     FALSE(false, "     ");
     
     private final boolean isExistBar;
     private final String barDisplay;
 
-    BarMatcher(boolean isExistBar, String barDisplay) {
+    BarDisplayMatcher(boolean isExistBar, String barDisplay) {
         this.isExistBar = isExistBar;
         this.barDisplay = barDisplay;
     }
 
-    public static BarMatcher valueOfBarMatcher(Bar bar) {
+    public static BarDisplayMatcher valueOfBarMatcher(Bar bar) {
         return Arrays.stream(values())
-                .filter(barMatcher -> barMatcher.isSameBar(bar))
+                .filter(barDisplayMatcher -> barDisplayMatcher.isSameBar(bar))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 값입니다."));
     }

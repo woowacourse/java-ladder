@@ -4,29 +4,25 @@ public class Direction {
     private final Bar leftBar;
     private final Bar rightBar;
     
-    private Direction(boolean isExistLeftBar, BooleanGenerator booleanGenerator) {
-        this(new Bar(isExistLeftBar), new Bar(booleanGenerator));
-    }
-    
     private Direction(Bar leftBar, Bar rightBar) {
         this.leftBar = leftBar;
         this.rightBar = rightBar;
     }
     
-    public static Direction createFirst(BooleanGenerator booleanGenerator) {
-        return new Direction(false, booleanGenerator);
+    public static Direction createFirst(BarGenerator barGenerator) {
+        return new Direction(Bar.FALSE, barGenerator.createBar());
     }
     
-    public Direction createNext(BooleanGenerator booleanGenerator) {
+    public Direction createNext(BarGenerator barGenerator) {
         if (rightBar.isExistBar()) {
-            return new Direction(rightBar, new Bar(false));
+            return new Direction(rightBar, Bar.FALSE);
         }
         
-        return new Direction(rightBar, new Bar(booleanGenerator));
+        return new Direction(rightBar, barGenerator.createBar());
     }
     
     public Direction createLast() {
-        return new Direction(rightBar, new Bar(false));
+        return new Direction(rightBar, Bar.FALSE);
     }
     
     public int getAdjustedPosition(int beforePosition) {
