@@ -4,19 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Floor {
-
-    private static final int FIRST_LINE = 0;
-    private static final int INDEX_DIFFERENCE = 1;
+    private static final int START_POINT_OF_LADDER = 0;
+    private static final int VALUE_TO_LINE = 1;
+    private static final int MOVE_INDEX_VALUE = 1;
+    private static final int DONT_CHANGE_IN_INDEX = 0;
     private final List<Line> lines = new ArrayList<>();
 
     public Floor(int lineSize) {
         for (int i = 0; i < lineSize; i++) {
             lines.add(new Line());
         }
-    }
-
-    public List<Line> getLines() {
-        return lines;
     }
 
     public void makeFloor(List<LineSource> lineValues) {
@@ -32,12 +29,54 @@ public class Floor {
     }
 
     private boolean isMakeAble(int index) {
-        if (index == FIRST_LINE) {
+        if (index == START_POINT_OF_LADDER) {
             return true;
         }
 
-        int previousIndex = index - INDEX_DIFFERENCE;
+        int previousIndex = index - VALUE_TO_LINE;
 
         return lines.get(previousIndex).notExist();
     }
+
+    public int getResultPosition(final int index) {
+        if (endOfLadder(index)) {
+            return index + checkEndLadder(index);
+        }
+        return index + checkLine(index);
+    }
+
+    private int checkLine(final int index) {
+        return getIndexDecrementOfLeft(index) + getIndexIncrementOfRight(index);
+    }
+
+    private int checkEndLadder(final int index) {
+        if (index == START_POINT_OF_LADDER) {
+            return getIndexIncrementOfRight(index);
+        }
+        return getIndexDecrementOfLeft(index);
+    }
+
+
+    private int getIndexIncrementOfRight(final int index) {
+        if (lines.get(index).isExist()) {
+            return MOVE_INDEX_VALUE;
+        }
+        return DONT_CHANGE_IN_INDEX;
+    }
+
+    private int getIndexDecrementOfLeft(final int index) {
+        if (lines.get(index - VALUE_TO_LINE).isExist()) {
+            return MOVE_INDEX_VALUE * (-1);
+        }
+        return DONT_CHANGE_IN_INDEX;
+    }
+
+    private boolean endOfLadder(final int index) {
+        return index == START_POINT_OF_LADDER || index == lines.size();
+    }
+
+    public List<Line> getLines() {
+        return lines;
+    }
+
 }
