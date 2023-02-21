@@ -1,6 +1,5 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.rung.Line;
 import laddergame.domain.rung.Rung;
 import laddergame.domain.rung.RungBooleanGenerator;
 import laddergame.util.BooleanGenerator;
