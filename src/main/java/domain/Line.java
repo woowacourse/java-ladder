@@ -17,6 +17,10 @@ public class Line {
         return List.copyOf(line);
     }
 
+    public int getLineSize() {
+        return line.size();
+    }
+
     private void generateLine(int lineSize) {
         for (int index = 0; index < lineSize; index++) {
             line.add(getPoint(index));

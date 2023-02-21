@@ -3,17 +3,11 @@ package domain;
 public class Reward {
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
-
     private final String reward;
 
     public Reward(String reward) {
         validate(reward);
         this.reward = reward;
-    }
-
-    private void validate(String reward) {
-        validateBlank(reward);
-        validateLength(reward);
     }
 
     private static void validateLength(String reward) {
@@ -26,6 +20,11 @@ public class Reward {
         if (reward.isBlank()) {
             throw new IllegalArgumentException(Message.EXCEPTION_REWARD_BLANK.message);
         }
+    }
+
+    private void validate(String reward) {
+        validateBlank(reward);
+        validateLength(reward);
     }
 
     private enum Message {

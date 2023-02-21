@@ -22,6 +22,10 @@ public class Rewards {
         }
     }
 
+    public List<Reward> getRewards() {
+        return rewards;
+    }
+
     private void addRewards(String[] splitRewards) {
         for (String reward : splitRewards) {
             this.rewards.add(new Reward(reward));
