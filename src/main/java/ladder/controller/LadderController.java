@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import ladder.domain.Height;
@@ -26,6 +27,7 @@ public class LadderController {
     public void run() {
         final Players players = generate(inputView::readPlayerNames, Players::new);
         final Height height = generate(inputView::readHeight, Height::new);
+        final List<String> names = inputView.readResultNames();
         final Ladder ladder = ladderGenerator.generate(new LineGenerator(), players, height);
         outputView.printLadderResult(players, ladder);
     }
