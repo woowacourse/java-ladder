@@ -23,6 +23,10 @@ public class OutputView {
         }
     }
 
+    public static void printErrorMessage(Exception errorMessage) {
+        System.out.println(errorMessage.getMessage());
+    }
+
     private static String formatUserNames(final List<String> userNames) {
         final StringBuilder builder = new StringBuilder();
         for (final String userName : userNames) {
@@ -31,6 +35,5 @@ public class OutputView {
         }
         return builder.toString();
     }
-
 
 }
