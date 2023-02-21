@@ -15,20 +15,20 @@ public enum Direction {
     }
 
     public static Direction findDirection(int position, List<Path> paths) {
-        if (isLeftMovable(position, paths)) {
+        if (isLeftPassable(position, paths)) {
             return LEFT;
         }
-        if (isRightMovable(position, paths)) {
+        if (isRightPassable(position, paths)) {
             return RIGHT;
         }
         return NONE;
     }
 
-    private static boolean isLeftMovable(int position, List<Path> paths) {
+    private static boolean isLeftPassable(int position, List<Path> paths) {
         return position - 1 >= 0 && paths.get(position - 1).isPassable();
     }
 
-    private static boolean isRightMovable(int position, List<Path> paths) {
+    private static boolean isRightPassable(int position, List<Path> paths) {
         return position < (paths.size()) && paths.get(position).isPassable();
     }
 
