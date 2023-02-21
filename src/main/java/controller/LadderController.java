@@ -2,7 +2,11 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
+import domain.Line;
+import domain.Lines;
 import domain.Players;
+import java.util.ArrayList;
+import java.util.List;
 import util.LineGenerator;
 import util.RandomLineGenerator;
 import view.InputView;
@@ -12,7 +16,8 @@ public class LadderController {
 
     public void run() {
         Players players = makePlayers();
-        Ladder ladder = makeLadder(players);
+        int height = inputHeight();
+        Ladder ladder = makeLadder(new Height(height), players.getNumberOfPlayers());
         printLadder(players, ladder);
     }
 
@@ -26,16 +31,31 @@ public class LadderController {
         }
     }
 
-    private Ladder makeLadder(Players players) {
-        LineGenerator lineGenerator = new RandomLineGenerator();
-
+    private int inputHeight() {
         try {
-            int height = InputView.receiveHeight();
-            return new Ladder(players.getNumberOfPlayers(), new Height(height), lineGenerator);
+            return InputView.receiveHeight();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            return makeLadder(players);
+            return inputHeight();
         }
+    }
+
+    private Ladder makeLadder(Height height, int numberOfWalls) {
+        LineGenerator lineGenerator = new RandomLineGenerator();
+        Lines lines = makeLines(height, numberOfWalls, lineGenerator);
+
+        return new Ladder(lines, height);
+    }
+
+    private Lines makeLines(Height height, int numberOfWalls, LineGenerator lineGenerator) {
+        List<Line> lines = new ArrayList<>();
+        int numberOfLine = numberOfWalls - 1;
+
+        for (int i = 0; i < height.getHeight(); i++) {
+            lines.add(new Line(numberOfLine, lineGenerator));
+        }
+
+        return new Lines(lines);
     }
 
     private void printLadder(Players players, Ladder ladder) {

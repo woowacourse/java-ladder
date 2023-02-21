@@ -1,17 +1,13 @@
 package domain;
 
-import util.LineGenerator;
-
 public class Ladder {
 
-    private Lines lines;
-    private final int numberOfWalls;
+    private final Lines lines;
     private final Height height;
 
-    public Ladder(int numberOfWalls, Height height, LineGenerator lineGenerator) {
-        this.numberOfWalls = numberOfWalls;
+    public Ladder(Lines lines, Height height) {
+        this.lines = lines;
         this.height = height;
-        this.lines = new Lines(numberOfWalls, height, lineGenerator);
     }
 
     public Lines getLines() {
