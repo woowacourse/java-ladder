@@ -150,4 +150,19 @@ class SimpleArrayListTest {
         assertThat(myValues.size()).isEqualTo(1);
     }
 
+    @Test
+    public void removeWithIndexTest(){
+        SimpleArrayList myValues = new SimpleArrayList();
+        myValues.add("first");
+        myValues.add("second");
+        assertThat(myValues.remove(0)).isEqualTo("first");
+        assertThat(myValues.get(0)).isEqualTo("second");
+        assertThat(myValues.size()).isEqualTo(1);
+        assertThat(myValues.contains("first")).isFalse();
+
+        Assertions.assertThatThrownBy(() -> myValues.remove(5))
+                .isInstanceOf(IndexOutOfBoundsException.class);
+
+    }
+
 }
