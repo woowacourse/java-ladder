@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
-    private static final String NAME_DELIMITER = ",";
+    private static final String VALUE_DELIMITER = ",";
     private final Scanner scanner;
 
     public InputView() {
@@ -20,7 +20,7 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
         String rawNames = scanner.nextLine();
-        return Arrays.stream(rawNames.split(NAME_DELIMITER))
+        return Arrays.stream(rawNames.split(VALUE_DELIMITER))
                 .map(String::trim)
                 .map(Name::new)
                 .collect(Collectors.toList());
@@ -31,6 +31,15 @@ public class InputView {
 
         int height = parseInt(scanner.nextLine());
         return new LadderHeight(height);
+    }
+
+    public List<String> readLadderResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        String ladderResults = scanner.nextLine();
+        return Arrays.stream(ladderResults.split(VALUE_DELIMITER))
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 
     private static int parseInt(String rawLadderHeight) {
