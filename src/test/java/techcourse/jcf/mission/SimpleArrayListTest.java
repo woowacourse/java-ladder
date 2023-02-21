@@ -1,5 +1,6 @@
 package techcourse.jcf.mission;
 
+import ladder.model.Players;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -64,6 +65,21 @@ class SimpleArrayListTest {
 
         myValues.add("a");
         assertThat(myValues.isEmpty()).isFalse();
+    }
+
+    @Test
+    public void clearTest(){
+        List<String> values = new ArrayList<>(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"));
+        SimpleArrayList myValues = new SimpleArrayList();
+        for (String value : values) {
+            myValues.add(value);
+        }
+        myValues.clear();
+
+        assertThat(myValues.isEmpty()).isTrue();
+        assertThat(myValues.size()).isEqualTo(0);
+        Assertions.assertThatThrownBy(() -> myValues.get(0))
+                .isInstanceOf(IndexOutOfBoundsException.class);
     }
 
 }
