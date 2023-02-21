@@ -6,15 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import domain.generator.BooleanGenerator;
 import domain.generator.RandomBooleanGenerator;
 import domain.generator.TrueBooleanGenerator;
-import domain.ladder.Lines;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import domain.generator.BooleanGenerator;
-import domain.generator.RandomBooleanGenerator;
 
 class LinesTest {
 
@@ -46,10 +43,10 @@ class LinesTest {
         void 사다리를_따라_끝까지_이동한다() {
             BooleanGenerator trueBooleanGenerator = new TrueBooleanGenerator();
             Lines nonRandomLines = new Lines(3, 3, trueBooleanGenerator);
-            Assertions.assertEquals(nonRandomLines.getExitPosition(0), 1);
-            Assertions.assertEquals(nonRandomLines.getExitPosition(1), 0);
-            Assertions.assertEquals(nonRandomLines.getExitPosition(2), 3);
-            Assertions.assertEquals(nonRandomLines.getExitPosition(3), 2);
+            Assertions.assertEquals(nonRandomLines.getExitIndex(0), 1);
+            Assertions.assertEquals(nonRandomLines.getExitIndex(1), 0);
+            Assertions.assertEquals(nonRandomLines.getExitIndex(2), 3);
+            Assertions.assertEquals(nonRandomLines.getExitIndex(3), 2);
         }
     }
 }
