@@ -16,6 +16,12 @@ public class InputView {
         return Arrays.asList(userNames.split(DELIMITER));
     }
 
+    public List<String> inputGameResults() {
+        String gameResults = scanner.nextLine();
+
+        return Arrays.asList(gameResults.split(DELIMITER));
+    }
+
     public int inputHeight() {
         String height = scanner.nextLine();
 
