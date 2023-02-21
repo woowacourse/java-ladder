@@ -29,4 +29,10 @@ public class Player {
     public boolean isPlayerPosition(Position otherPosition) {
         return otherPosition.isSamePosition(this.position);
     }
+
+    public void changePositionWith(Player otherPlayer) {
+        Position temporaryPosition = otherPlayer.position;
+        otherPlayer.position = this.position;
+        this.position = temporaryPosition;
+    }
 }
