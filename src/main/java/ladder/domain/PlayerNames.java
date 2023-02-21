@@ -31,7 +31,7 @@ public class PlayerNames {
 
     private boolean isBlank(final List<String> names) {
         long count = names.stream()
-                .filter(name -> name.isBlank())
+                .filter(String::isBlank)
                 .count();
         return count != 0;
     }
@@ -51,5 +51,9 @@ public class PlayerNames {
 
     public List<String> getNames() {
         return List.copyOf(names);
+    }
+
+    public int getPlayerCount() {
+        return names.size();
     }
 }
