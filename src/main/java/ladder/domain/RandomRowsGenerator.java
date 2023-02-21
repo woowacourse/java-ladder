@@ -27,14 +27,14 @@ public class RandomRowsGenerator {
     }
 
     private Row generateRow(int width) {
-        List<Foothold> row = new ArrayList<>();
+        List<Step> row = new ArrayList<>();
         for (int i = 0; i < width; i++) {
             row.add(generateFoothold());
         }
         return Row.of(row, width);
     }
 
-    private Foothold generateFoothold() {
-        return Foothold.from(random.nextBoolean());
+    private Step generateFoothold() {
+        return Step.from(random.nextBoolean());
     }
 }

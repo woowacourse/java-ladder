@@ -2,20 +2,20 @@ package ladder.domain;
 
 import java.util.Arrays;
 
-public enum Foothold {
+public enum Step {
     Y(true, "-----"),
     N(false, "     ");
 
     private final boolean state;
     private final String mark;
 
-    Foothold(boolean state, String mark) {
+    Step(boolean state, String mark) {
         this.state = state;
         this.mark = mark;
     }
 
-    public static Foothold from(boolean state) {
-        return Arrays.stream(Foothold.values())
+    public static Step from(boolean state) {
+        return Arrays.stream(Step.values())
                 .filter((foothold) -> foothold.state == state)
                 .findAny()
                 .get();

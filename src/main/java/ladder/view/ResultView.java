@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Foothold;
+import ladder.domain.Step;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,9 +23,9 @@ public class ResultView {
                 .forEach(System.out::println);
     }
 
-    protected String generateRow(List<Foothold> row) {
+    protected String generateRow(List<Step> row) {
         return row.stream()
-                .map(Foothold::getMark)
+                .map(Step::getMark)
                 .collect(Collectors.joining("|", "     |", "|"));
     }
 
