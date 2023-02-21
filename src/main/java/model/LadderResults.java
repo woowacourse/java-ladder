@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,14 +26,10 @@ public class LadderResults {
         }
     }
 
-    public String getLadderResultOfIndex(int index) {
+    public String findResultByIndex(int index) {
         LadderResult ladderResult = results.get(index);
 
         return ladderResult.getResult();
-    }
-
-    public List<LadderResult> getResults() {
-        return Collections.unmodifiableList(results);
     }
 
     public int getResultSize() {

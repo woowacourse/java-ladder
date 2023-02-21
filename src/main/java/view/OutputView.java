@@ -73,7 +73,7 @@ public class OutputView {
         int totalSize = ladderResults.getResultSize();
 
         IntStream.range(0, totalSize)
-                .mapToObj(index -> mapToLadderResultLog(ladderResults.getLadderResultOfIndex(index), totalSize, index))
+                .mapToObj(index -> mapToLadderResultLog(ladderResults.findResultByIndex(index), totalSize, index))
                 .forEach(this::print);
         print(System.lineSeparator());
     }

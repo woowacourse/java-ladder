@@ -33,11 +33,11 @@ class LadderResultsTest {
 
     @ParameterizedTest
     @CsvSource(value = {"0:a", "1:b"}, delimiter = ':')
-    void getLadderResultOfIndex_메소드는_인덱스를_전달하면_인덱스에_위치한_사다리_결과를_반환한다(int index, String expected) {
+    void findResultByIndex_메소드는_인덱스를_전달하면_인덱스에_위치한_사다리_결과를_반환한다(int index, String expected) {
         LadderResults ladderResults =
                 LadderResults.of(List.of(new LadderResult("a"), new LadderResult("b")), 2);
 
-        String actual = ladderResults.getLadderResultOfIndex(index);
+        String actual = ladderResults.findResultByIndex(index);
 
         assertThat(actual).isEqualTo(expected);
     }
