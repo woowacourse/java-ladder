@@ -81,10 +81,10 @@ public class ListStudy {
         assertThat(values.remove("first")).isTrue(); // list에서 "first"를 삭제한다.
         assertThat(values.size()).isEqualTo(3); // 값이 삭제 됐는지 확인한다.
         assertThat(values.remove("fifth")).isFalse(); // 없는 원소를 제거하려하면 "false"를 반환한다.
-//
-//        assertThat(values.remove(0)).isEqualTo("0"); // 첫 번째 값을 삭제한다.
-//        assertThat(values.size()).isEqualTo(2); // 값이 삭제 됐는지 확인한다.
-//        assertThatCode(() -> values.remove(100)).isInstanceOf(RuntimeException.class); // 인덱스가 넘어가면 예외가 발생한다.
+
+        assertThat(values.remove(0)).isEqualTo("0"); // 첫 번째 값을 삭제한다.
+        assertThat(values.size()).isEqualTo(2); // 값이 삭제 됐는지 확인한다.
+        assertThatCode(() -> values.remove(100)).isInstanceOf(RuntimeException.class); // 인덱스가 넘어가면 예외가 발생한다.
 
         // TODO values에 담긴 모든 값을 출력한다.
         values.printAll();
