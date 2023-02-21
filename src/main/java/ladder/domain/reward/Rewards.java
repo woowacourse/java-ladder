@@ -20,6 +20,10 @@ public class Rewards {
         return createdRewards;
     }
 
+    public Reward findRewardByIndex(int index) {
+        return rewards.get(index);
+    }
+
     private static void validateSize(List<String> inputRewards, int playerCount) {
         if (inputRewards.size() != playerCount) {
             throw new IllegalArgumentException("보상은 참가자와 동일한 갯수를 입력해주세요.");
