@@ -54,4 +54,10 @@ class MissionTest {
             assertThat(mission1).isNotEqualTo(mission3);
         }
     }
+
+    @Test
+    void 미션_글자수가_5글자_초과이면_예외_처리() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Mission("다섯글자이상"));
+    }
 }
