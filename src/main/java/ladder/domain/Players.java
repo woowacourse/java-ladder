@@ -3,7 +3,6 @@ package ladder.domain;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,14 +13,18 @@ public class Players {
     private final List<Player> players;
 
     public Players(String[] names) {
-        validateSize(names);
-        validateDuplicate(names);
+        validate(names);
         this.players = Arrays.stream(names)
                 .map(Player::new)
                 .collect(toList());
     }
 
-    public void validateSize(String[] names) {
+    private void validate(String[] names) {
+        validateSize(names);
+        validateDuplicate(names);
+    }
+
+    private void validateSize(String[] names) {
         if (isProper(names)) {
             throw new IllegalArgumentException("[ERROR] 사용자는 2명에서 13명까지 가능합니다.");
         }
