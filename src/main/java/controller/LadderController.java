@@ -64,12 +64,12 @@ public class LadderController {
     }
 
     private boolean resultRequest() {
-        String resultRequest = inputView.readResult();
-        if (resultRequest.equals("all")) {
+        String input = inputView.readResult();
+        if (input.equals("all")) {
             outputView.printAllResults(ladderService.getPeople(), ladderService.getTotalResults());
             return false;
         }
-        outputView.printSingleResult(ladderService.getSingleResult(new Person(resultRequest)));
+        outputView.printSingleResult(ladderService.getSingleResult(new Person(input)));
         return true;
     }
 }
