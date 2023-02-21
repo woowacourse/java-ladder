@@ -66,7 +66,9 @@ public class LadderController {
             showResult(people, ladder, prizes);
         }
 
-        printAllPeople(people, ladder, prizes);
+        if (target.equals(ALL_PEOPLE)) {
+            printAllPeople(people, ladder, prizes);
+        }
     }
 
     private void printAllPeople(People people, Ladder ladder, Prizes prizes) {
