@@ -20,9 +20,9 @@ public enum LadderForm {
         this.unit = unit;
     }
 
-    public static String joinUnitsFrom(final List<String> names, final List<Line> lines) {
-        int maxNameLength = findMaxNameLength(names);
-        return joinNames(names, maxNameLength) + joinRows(lines, maxNameLength);
+    public static String joinUnitsFrom(final List<String> names, final List<Line> lines, final List<String> results) {
+        int maxNameLength = Math.max(findMaxLength(names), findMaxLength(results));
+        return joinNames(names, maxNameLength) + joinRows(lines, maxNameLength) + joinNames(results, maxNameLength);
     }
 
     private static String joinNames(final List<String> names, final int maxNameLength) {
@@ -73,7 +73,7 @@ public enum LadderForm {
         }
     }
 
-    private static int findMaxNameLength(final List<String> names) {
+    private static int findMaxLength(final List<String> names) {
         return names.stream()
                 .mapToInt(String::length)
                 .max()
