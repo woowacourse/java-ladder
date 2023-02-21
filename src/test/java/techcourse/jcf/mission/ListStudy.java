@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import org.junit.jupiter.api.DisplayName;
@@ -26,7 +25,7 @@ public class ListStudy {
 
     @Test
     public void arrayList() {
-        ArrayList<String> values = new ArrayList<>();
+        SimpleList values = new SimpleArrayList();
         values.add("first");
         values.add("second");
 
@@ -36,11 +35,6 @@ public class ListStudy {
         assertThat(values.contains("first")).isTrue(); // "first" 값이 포함되어 있는지를 확인한다.
         assertThat(values.remove(0)).isEqualTo("first"); // 첫 번째 값을 삭제한다.
         assertThat(values.size()).isEqualTo(2); // 값이 삭제 됐는지 확인한다.
-
-        // TODO values에 담긴 모든 값을 출력한다.
-        for (String value : values) {
-            System.out.println("value = " + value);
-        }
     }
 
     @Test
