@@ -1,6 +1,7 @@
 package view;
 
 import domain.Ladder;
+import domain.LadderResults;
 import domain.Line;
 import domain.Participants;
 
@@ -13,27 +14,28 @@ public class OutputView {
     private static final String RESULT_MESSAGE = "\n실행결과\n";
     private static final boolean CONNECTED = true;
 
-    public void printLadder(Participants participants, Ladder ladder) {
+    public void printGameMap(Participants participants, Ladder ladder, LadderResults ladderResults) {
         System.out.println(RESULT_MESSAGE);
-        StringBuilder mapResult = new StringBuilder();
-        setNames(mapResult, participants);
-        mapResult.append(System.lineSeparator());
-        setLadder(mapResult, ladder);
-        System.out.print(mapResult);
+        StringBuilder gameMap = new StringBuilder();
+        setNames(gameMap, participants);
+        gameMap.append(System.lineSeparator());
+        setLadder(gameMap, ladder);
+        setResults(gameMap, ladderResults);
+        System.out.print(gameMap);
     }
 
-    private void setNames(StringBuilder mapResult, Participants participants) {
+    private void setNames(StringBuilder gameMap, Participants participants) {
         participants.getNames()
-            .forEach((participantName) -> mapResult.append(reformatName(participantName)));
+            .forEach((participantName) -> gameMap.append(reformatName(participantName)));
     }
 
     private String reformatName(String name) {
         return String.format("%5s ", name);
     }
 
-    private void setLadder(StringBuilder mapResult, Ladder ladder) {
+    private void setLadder(StringBuilder gameMap, Ladder ladder) {
         ladder.getLines()
-            .forEach((line) -> mapResult.append(reformatLine(line)));
+            .forEach((line) -> gameMap.append(reformatLine(line)));
     }
 
     private String reformatLine(Line line) {
@@ -51,5 +53,14 @@ public class OutputView {
             return ABLE_TO_MOVE;
         }
         return DISABLE_TO_MOVE;
+    }
+
+    private void setResults(StringBuilder gameMap, LadderResults ladderResults) {
+        ladderResults.getResults()
+            .forEach((ladderResult) -> gameMap.append(reformatResult(ladderResult)));
+    }
+
+    private String reformatResult(String ladderResult) {
+        return String.format("%5s ", ladderResult);
     }
 }
