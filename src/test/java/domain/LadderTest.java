@@ -33,6 +33,6 @@ class LadderTest {
     void ladder_height_test(int height) {
         assertThatThrownBy(() -> new Ladder(new People("hello,world"), height, new RandomGenerateStrategy()))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사다리 높이는 1 이상 10 이하여야 합니다");
+                .hasMessage("사다리 높이는 1 이상 10 이하여야 합니다.");
     }
 }

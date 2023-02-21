@@ -25,7 +25,7 @@ public class Person {
 
     private void validateName(String name) {
         if (name.equals(INVALID_NAME)) {
-            throw new IllegalArgumentException("이름은 all이 될 수 없습니다.");
+            throw new IllegalArgumentException(String.format("이름은 %s이 될 수 없습니다.", INVALID_NAME));
         }
     }
 

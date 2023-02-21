@@ -30,6 +30,6 @@ public class ResultsTest {
     void fail(String input, String people) {
         assertThatThrownBy(() -> new Results(input, new People(people)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("실행 결과의 수는 사람 수와 같아야 합니다");
+                .hasMessage("실행 결과의 수는 사람 수와 같아야 합니다.");
     }
 }

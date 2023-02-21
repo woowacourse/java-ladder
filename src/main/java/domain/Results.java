@@ -23,7 +23,7 @@ public class Results implements Iterable<Result> {
     private List<Result> validateAndGet(String results, People people) {
         String[] split = results.split(DELIMITER);
         if (split.length != people.getCount()) {
-            throw new IllegalArgumentException("실행 결과의 수는 사람 수와 같아야 합니다");
+            throw new IllegalArgumentException("실행 결과의 수는 사람 수와 같아야 합니다.");
         }
         return Arrays.stream(split)
                 .map(Result::new)

@@ -18,7 +18,7 @@ public class Ladder implements Iterable<Line>{
     private void validateHeight(int maxHeight) {
         if (maxHeight < MIN_RANGE || maxHeight > MAX_RANGE) {
             throw new IllegalArgumentException(
-                    String.format("사다리 높이는 %d 이상 %d 이하여야 합니다", MIN_RANGE, MAX_RANGE));
+                    String.format("사다리 높이는 %d 이상 %d 이하여야 합니다.", MIN_RANGE, MAX_RANGE));
         }
     }
 

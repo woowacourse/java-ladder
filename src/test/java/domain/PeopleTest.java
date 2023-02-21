@@ -58,6 +58,6 @@ class PeopleTest {
         People people = new People("a1,a2,a3");
         assertThatThrownBy(() -> people.findPersonColumn(new Person(name)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("해당 사용자는 존재하지 않습니다");
+                .hasMessage("해당 사용자는 존재하지 않습니다.");
     }
 }

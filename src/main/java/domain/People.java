@@ -59,7 +59,7 @@ public class People implements Iterable<Person> {
         return IntStream.range(0, people.size())
                 .filter(index -> people.get(index).equals(person))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자는 존재하지 않습니다"));
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자는 존재하지 않습니다."));
 
     }
 
