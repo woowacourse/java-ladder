@@ -12,12 +12,12 @@ import java.util.stream.IntStream;
 public class Controller {
     private final InputView inputView;
     private final OutputView outputView;
-    private final BooleanGenerator booleanGenerator;
+    private final BooleanCreator booleanCreator;
 
-    public Controller(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
+    public Controller(InputView inputView, OutputView outputView, BooleanCreator booleanCreator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.booleanGenerator = booleanGenerator;
+        this.booleanCreator = booleanCreator;
     }
 
     public void run() {
@@ -25,19 +25,19 @@ public class Controller {
         Players players = new Players(playerNames);
 
         int ladderHeight = new LadderHeight(inputView.readLadderHeight(), inputView).getLadderHeight();
-        List<Line> ladder = generateLadder(ladderHeight, players);
+        List<Line> ladder = createLadder(ladderHeight, players);
 
         printResult(players, ladder);
     }
 
-    private List<Line> generateLadder(int ladderHeight, Players players) {
+    private List<Line> createLadder(int ladderHeight, Players players) {
         return IntStream.range(0, ladderHeight)
-                .mapToObj(i -> generateLine(players))
+                .mapToObj(i -> createLine(players))
                 .collect(Collectors.toList());
     }
 
-    private Line generateLine(Players players) {
-        Block preBlock = new Block(booleanGenerator.generate());
+    private Line createLine(Players players) {
+        Block preBlock = new Block(booleanCreator.generate());
         List<Block> blocks = createBlocks(players, preBlock);
         return new Line(players, blocks);
     }
@@ -46,7 +46,7 @@ public class Controller {
         List<Block> blocks = new ArrayList<>(List.of(preBlock));
 
         IntStream.range(1, players.getPlayersSize() - 1)
-                .mapToObj(i -> new Block(booleanGenerator.generate()))
+                .mapToObj(i -> new Block(booleanCreator.generate()))
                 .forEach(nextBlock -> {
                     nextBlock.comparePreBlock(preBlock);
                     blocks.add(nextBlock);

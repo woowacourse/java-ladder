@@ -1,6 +1,6 @@
 package domain;
 
-public interface BooleanGenerator {
+public interface BooleanCreator {
 
     boolean generate();
 }

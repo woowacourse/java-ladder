@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Random;
 
-public class BooleanGeneratorImplements implements BooleanGenerator {
+public class BooleanCreatorImplements implements BooleanCreator {
 
     @Override
     public boolean generate() {
