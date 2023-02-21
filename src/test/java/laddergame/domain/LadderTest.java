@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 import laddergame.fixture.LinesFixture;
+import laddergame.fixture.PositionFixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,5 +38,17 @@ class LadderTest {
         assertThat(findLines)
                 .usingRecursiveComparison()
                 .isEqualTo(lines);
+    }
+
+    @DisplayName("시작 지점에 대한 결과 지점을 찾는다.")
+    @Test
+    void findLastDestination() {
+        final Position startIndex = PositionFixture.createPositionZero();
+        final int expectedIndex = 1;
+        final Ladder ladder = new Ladder(LinesFixture.getLinesWidth3Height3());
+
+        final Position lastDestination = ladder.findLastDestination(startIndex);
+
+        assertThat(lastDestination.getValue()).isEqualTo(expectedIndex);
     }
 }
