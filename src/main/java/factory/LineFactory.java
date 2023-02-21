@@ -14,7 +14,7 @@ public class LineFactory {
     public static final int MIN_POINT_SIZE = 0;
     public static final int MAX_POINT_SIZE = 19;
 
-    public static Line generate(final int pointSize, final PointGenerateStrategy pointGenerateStrategy) {
+    public static Line of(final int pointSize, final PointGenerateStrategy pointGenerateStrategy) {
         validate(pointSize);
         List<Point> points = generatePoints(pointSize, pointGenerateStrategy);
         return new Line(points);

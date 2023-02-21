@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LadderFactory {
 
-    public static Ladder generate(
+    public static Ladder of(
             final int playersSize,
             final int ladderHeight,
             final RandomBasedStrategy randomBasedStrategy
@@ -26,7 +26,7 @@ public class LadderFactory {
         List<Line> lines = new ArrayList<>();
         int pointSize = playerSize - 1;
         for (int lineIndex = 0; lineIndex < ladderHeight; lineIndex++) {
-            lines.add(LineFactory.generate(pointSize, randomBasedStrategy));
+            lines.add(LineFactory.of(pointSize, randomBasedStrategy));
         }
         return Collections.unmodifiableList(lines);
     }

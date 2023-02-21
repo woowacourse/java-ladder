@@ -26,7 +26,7 @@ public class LineTest {
     @DisplayName("라인의 포인트 개수는 19를 넘을 수 없다.")
     @Test
     void pointNotMoreThan19() {
-        assertThatThrownBy(() -> LineFactory.generate(20, randomBasedStrategy))
+        assertThatThrownBy(() -> LineFactory.of(20, randomBasedStrategy))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("포인트 범위는 0부터 19까지입니다.");
     }
@@ -34,7 +34,7 @@ public class LineTest {
     @DisplayName("라인의 포인트 개수는 0보다 작을 수 없다.")
     @Test
     void pointNotLessThan0() {
-        assertThatThrownBy(() -> LineFactory.generate(-1, randomBasedStrategy))
+        assertThatThrownBy(() -> LineFactory.of(-1, randomBasedStrategy))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("포인트 범위는 0부터 19까지입니다.");
     }
@@ -43,7 +43,7 @@ public class LineTest {
     @ValueSource(ints = {0, 10, 19})
     @ParameterizedTest
     void pointSizeTest(int pointSize) {
-        Line line = LineFactory.generate(pointSize, randomBasedStrategy);
+        Line line = LineFactory.of(pointSize, randomBasedStrategy);
         assertThat(line.getPoints().size()).isEqualTo(pointSize);
     }
 
@@ -51,7 +51,7 @@ public class LineTest {
     @Test
     void pointNotContinuous() {
         int pointSize = 5;
-        Line line = LineFactory.generate(pointSize, randomBasedStrategy);
+        Line line = LineFactory.of(pointSize, randomBasedStrategy);
         for (int i = 0; i < pointSize - 1; i++) {
             Point left = line.getPointAt(i);
             Point right = line.getPointAt(i + 1);

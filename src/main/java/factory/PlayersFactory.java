@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class PlayersFactory {
 
-    public static Players generate(final List<String> playerNames) {
+    public static Players of(final List<String> playerNames) {
         return new Players(generatePlayers(playerNames));
     }
 

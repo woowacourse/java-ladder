@@ -17,9 +17,9 @@ public class LadderGameTest {
     @BeforeEach
     void before() {
         List<String> playerNames = List.of("a", "b", "c");
-        Players players = PlayersFactory.generate(playerNames);
+        Players players = PlayersFactory.of(playerNames);
         int ladderHeight = 10;
-        Ladder ladder = LadderFactory.generate(playerNames.size(), ladderHeight, new RandomBasedStrategy());
+        Ladder ladder = LadderFactory.of(playerNames.size(), ladderHeight, new RandomBasedStrategy());
         ladderGame = new LadderGame(players, ladder);
     }
 

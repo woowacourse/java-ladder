@@ -12,7 +12,7 @@ public class LineFactoryTest {
     @Test
     void generateLine() {
         int maxPoint = 5;
-        Line line = LineFactory.generate(maxPoint, new RandomBasedStrategy());
+        Line line = LineFactory.of(maxPoint, new RandomBasedStrategy());
         assertThat(line.getPoints().size())
                 .isEqualTo(maxPoint);
     }
