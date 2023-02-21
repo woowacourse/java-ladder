@@ -43,13 +43,20 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
+        validateIndex(index);
         expandArr();
-
         for (int i = size; i < index; i--) {
             arr[i] = arr[i - 1];
         }
         arr[index] = value;
         size += 1;
+    }
+
+    private void validateIndex(int index) {
+        if(index > size) {
+            String message = String.format("Index : %d , Size : %d", index, size);
+            throw new IndexOutOfBoundsException(message);
+        }
     }
 
     @Override

@@ -54,6 +54,16 @@ class SimpleArrayListTest {
     }
 
     @Test
+    @DisplayName("add 메소드에 전달된 index가 범위를 벗어나는 경우 예외를 던진다.")
+    void addOutOfIndexTest() {
+        simpleArrayList.add("first");
+        simpleArrayList.add("second");
+
+        assertThatThrownBy(() -> simpleArrayList.add(3, "asdf"))
+                .isInstanceOf(IndexOutOfBoundsException.class);
+    }
+
+    @Test
     void set() {
     }
 
