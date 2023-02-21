@@ -4,6 +4,8 @@ import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.user.User;
 import domain.user.Users;
+import dto.ladder.LadderDto;
+import dto.user.UsersDto;
 import java.util.ArrayList;
 import java.util.List;
 import view.InputView;
@@ -26,8 +28,8 @@ public class LadderGameController {
     }
 
     public void run() {
-        outputView.printLadderGameResult(users);
-        outputView.printLadder(ladder);
+        outputView.printLadderGameResult(UsersDto.from(users));
+        outputView.printLadder(LadderDto.from(ladder));
     }
 
     private Users initializeUsers() {

@@ -1,9 +1,10 @@
 package view;
 
-import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.user.User;
-import domain.user.Users;
+import dto.ladder.LadderDto;
+import dto.ladder.LineDto;
+import dto.user.UsersDto;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +13,9 @@ public class OutputView {
     private static final String LINE_DELIMITER = "|";
     private static final String NAME_DELIMITER = " ";
 
-    public void printLadderGameResult(Users users) {
+    public void printLadderGameResult(UsersDto usersDto) {
         System.out.println(OUTPUT_EXECUTE_MESSAGE);
-        System.out.println(" " + printUserNames(users.getUserNames()));
+        System.out.println(" " + printUserNames(usersDto.getUserNames()));
     }
 
     private String printUserNames(List<String> userNames) {
@@ -40,15 +41,15 @@ public class OutputView {
         return nameBuilder.toString();
     }
 
-    public void printLadder(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
-            printLine(line);
+    public void printLadder(LadderDto ladderDto) {
+        for (Line line : ladderDto.getLines()) {
+            printLine(LineDto.from(line));
             System.out.println();
         }
     }
 
-    private void printLine(Line line) {
-        for (boolean status : line.getLine()) {
+    private void printLine(LineDto lineDto) {
+        for (boolean status : lineDto.getLine()) {
             printLineByStatus(status);
         }
     }

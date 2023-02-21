@@ -40,7 +40,7 @@
 
 ## 1단계 리팩토링 요구사항
 
-- [ ] DTO 사용
+- [x] DTO 사용
 - [x] User 생성에 대한 예외 처리 문구 출력하도록 변경
 - [x] createLadder() 메서드 -> Ladder 생성자로 위치 이동
 - [x] points 네이밍 변경
