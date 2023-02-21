@@ -14,7 +14,7 @@ public class OutputView {
 
     private static void middlePlayersPrint(List<String> names, int index) {
         if (isMiddlePlayer(names, index)) {
-            System.out.print(String.format(MIDDLE_FORMAT, names.get(index)));
+            System.out.printf(MIDDLE_FORMAT, names.get(index));
         }
     }
 
