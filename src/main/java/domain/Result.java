@@ -5,6 +5,7 @@ public class Result {
 
     public Result(final String name) {
         validateLength(name);
+        validateBlank(name);
         this.name = name;
     }
 
@@ -14,6 +15,12 @@ public class Result {
 
     private void validateLength(String name) {
         if (name.length() > 8) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateBlank(String name) {
+        if (name.isBlank()) {
             throw new IllegalArgumentException();
         }
     }

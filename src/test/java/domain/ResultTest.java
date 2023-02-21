@@ -22,4 +22,11 @@ class ResultTest {
         final String longResultName = "당신은 당첨입니다.";
         assertThatThrownBy(() -> new Result(longResultName)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("실행 결과가 공백인 경우 예외처리한다.")
+    void resultNameBlank() {
+        final String blankResultName = "  ";
+        assertThatThrownBy(() -> new Result(blankResultName)).isInstanceOf(IllegalArgumentException.class);
+    }
 }
