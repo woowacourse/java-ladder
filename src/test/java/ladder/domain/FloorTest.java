@@ -14,11 +14,11 @@ public class FloorTest {
     @Test
     @DisplayName("Floor에서 입력받은 리스트에 따라 points가 생성된다.")
     void makeFloorTest() {
-
+        //given
         List<Point> list = new ArrayList<>(List.of(FILLED, EMPTY, FILLED));
-
+        //when
         Floor floor = new Floor(list);
-
+        //then
         assertThat(floor.getPoints())
                 .containsExactly(FILLED, EMPTY, FILLED);
     }
@@ -26,11 +26,11 @@ public class FloorTest {
     @Test
     @DisplayName("같은 층에서 Point.FILLED가 연속해서 생기지 않는다.")
     void makeNonContinuousLadderTest() {
-
+        //given
         List<Point> list = new ArrayList<>(List.of(FILLED, FILLED, FILLED));
-
+        //when
         Floor floor = new Floor(list);
-
+        //then
         assertThat(floor.getPoints())
                 .containsExactly(FILLED, EMPTY, FILLED);
     }

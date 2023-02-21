@@ -35,14 +35,16 @@ public class LadderTest {
     @Test
     @DisplayName("Ladder 생성시 users보다 1작은 width로 생성된다.")
     void checkLadderWidthTest() {
-
+        //given
         var users = new Users(List.of("1", "2", "3"));
-
+        //when
         var ladder = new Ladder(3, users, pointGenerator);
-
         List<Floor> floors = ladder.getFloors();
-        for (Floor floor : floors) {
-            assertThat(floor.getPoints().size()).isEqualTo(users.getUsers().size() - 1);
-        }
+
+        //then
+        assertThat(floors)
+                .map(Floor::getPoints)
+                .map(List::size)
+                .containsExactlyElementsOf(List.of(2, 2, 2));
     }
 }
