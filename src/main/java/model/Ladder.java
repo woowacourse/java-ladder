@@ -22,7 +22,7 @@ public class Ladder {
         }
     }
 
-    public List<List<String>> getLadderString() {
+    public List<List<String>> getLadder() {
         return lines.stream()
             .map(Line::getLineBlockPass)
             .collect(Collectors.toList());

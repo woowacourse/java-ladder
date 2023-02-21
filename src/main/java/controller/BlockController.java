@@ -26,6 +26,6 @@ public class BlockController {
         Ladder ladder = new Ladder(height, names, passGenerator);
         outputView.noticeResult();
         outputView.printNames(names.getNames());
-        outputView.printLadder(ladder.getLadderString());
+        outputView.printLadder(ladder.getLadder());
     }
 }
