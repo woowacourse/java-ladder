@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("입력된 실행 결과의 수는 ")
-class ResultsTest {
+class RewardsTest {
 
     private final List<String> results = List.of("꽝", "5000", "3000", "꽝");
 
@@ -15,7 +15,7 @@ class ResultsTest {
     @Test
     void resultSizeTest_success() {
         Assertions.assertDoesNotThrow(
-            () -> new Results(results, results.size()));
+            () -> Rewards.of(results, results.size()));
     }
 
     @DisplayName("참여자의 수와 다르면 예외가 발생한다.")
@@ -23,6 +23,6 @@ class ResultsTest {
     void resultSizeTest_fail() {
         Assertions.assertThrows(
             IllegalArgumentException.class,
-            () -> new Results(results, results.size() + 1));
+            () -> Rewards.of(results, results.size() + 1));
     }
 }
