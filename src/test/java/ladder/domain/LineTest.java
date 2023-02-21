@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.util.MockedPointGenerator;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -34,20 +35,5 @@ class LineTest {
                 .map(Point::isAvailable)
                 .collect(Collectors.toList()))
                 .isEqualTo(expected);
-    }
-
-    private static class MockedPointGenerator implements RandomGenerator<Boolean> {
-
-        private final List<Boolean> dummy;
-        private int index = 0;
-
-        private MockedPointGenerator(final List<Boolean> dummy) {
-            this.dummy = dummy;
-        }
-
-        @Override
-        public Boolean generate() {
-            return dummy.get(index++);
-        }
     }
 }

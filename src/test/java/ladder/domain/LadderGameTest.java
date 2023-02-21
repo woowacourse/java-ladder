@@ -16,6 +16,8 @@ class LadderGameTest {
             new Player("주노")
     );
 
+    private List<Boolean> dummy = List.of(true, false, true, false, true);
+
     @Test
     void 사다리는_높이_만큼의_라인을_가진다() {
         int height = 4;
