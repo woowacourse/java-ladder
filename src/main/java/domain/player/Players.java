@@ -3,6 +3,7 @@ package domain.player;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Players {
 
@@ -41,6 +42,10 @@ public class Players {
                 .filter(player -> player.isSameName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("해당하는 이름을 가진 Player는 존재하지 않습니다."));
+    }
+
+    public Stream<Player> stream() {
+        return players.stream();
     }
 
     public int size() {

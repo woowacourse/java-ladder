@@ -1,6 +1,5 @@
 package domain.player;
 
-import domain.ladder.Ladder;
 import java.util.Objects;
 
 public class Player {
@@ -21,12 +20,12 @@ public class Player {
         return name.same(otherName);
     }
 
-    public String play(Ladder ladder) {
-        return ladder.play(position);
-    }
-
     public String getName() {
         return name.getName();
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override

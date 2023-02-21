@@ -1,11 +1,14 @@
 package application;
 
+import static java.util.stream.Collectors.toList;
+
 import domain.ladder.Ladder;
 import domain.ladder.LadderGenerator;
 import domain.ladder.LadderHeight;
 import domain.player.Name;
 import domain.player.Player;
 import domain.player.Players;
+import dto.PlayerLadderResult;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -32,10 +35,22 @@ public class LadderGameApplication {
         Ladder ladder = ladderGenerator.generate(players.size(), ladderHeight, ladderResults);
         outputView.printResult(players, ladder);
 
-        Player player = players.findSpecificNamePlayer(inputView.readSpecificResult());
-        String result = player.play(ladder);
+        Player findPlayer = players.findSpecificNamePlayer(inputView.readSpecificResult());
+        String result = ladder.play(findPlayer.getPosition());
+        outputView.printSinglePlayerResult(result);
 
-//        outputView.printSinglePlayerResult(player, result);
+        List<PlayerLadderResult> everyPlayerResult = getEveryPlayerResult(players, ladder);
+        outputView.printEveryPlayerResult(everyPlayerResult);
+    }
+
+    private <T> T retryIfError(Supplier<T> inputSupplier) {
+        while (true) {
+            try {
+                return inputSupplier.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private Players createPlayers() {
@@ -49,13 +64,12 @@ public class LadderGameApplication {
         return new Players(players);
     }
 
-    private <T> T retryIfError(Supplier<T> inputSupplier) {
-        while (true) {
-            try {
-                return inputSupplier.get();
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
+    private List<PlayerLadderResult> getEveryPlayerResult(Players players, Ladder ladder) {
+        return players.stream()
+                .map(player -> {
+                    String result = ladder.play(player.getPosition());
+                    return new PlayerLadderResult(player.getName(), result);
+                })
+                .collect(toList());
     }
 }

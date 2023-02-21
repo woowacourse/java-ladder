@@ -6,6 +6,7 @@ import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.ladder.LinePoint;
 import domain.player.Players;
+import dto.PlayerLadderResult;
 import java.util.List;
 
 public class OutputView {
@@ -54,6 +55,19 @@ public class OutputView {
         return ladderResults.stream()
                 .map(result -> String.format("%-5s", result))
                 .collect(joining(" "));
+    }
+
+    public void printSinglePlayerResult(String result) {
+        System.out.println("실행 결과");
+        System.out.println(result);
+    }
+
+    public void printEveryPlayerResult(List<PlayerLadderResult> everyPlayerResult) {
+        System.out.println("실행 결과");
+        for (PlayerLadderResult playerLadderResult : everyPlayerResult) {
+            System.out.println(String.format("%s : %s",
+                    playerLadderResult.getPlayerName(), playerLadderResult.getResult()));
+        }
     }
 
     public void printErrorMessage(String message) {
