@@ -1,9 +1,7 @@
 package domain;
 
-import static java.util.stream.Collectors.*;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import exception.Error;
 
@@ -16,9 +14,12 @@ public class Ladder {
 
 	public static Ladder from(int height, int participantSize) {
 		validate(height);
-		return Stream.generate(() -> new Level(participantSize))
-			.limit(height)
-			.collect(collectingAndThen(toList(), Ladder::new));
+
+		List<Level> levelList = new ArrayList<>();
+		for (int i = 0; i < height; i++) { //  높이만큼 돌면서
+			levelList.add(new Level(participantSize)); // 한 행을 만들어줄거임. level이 한 행
+		}
+		return new Ladder(levelList); // 모든 높이의 발판 정보가 들어있는 levelList를 Ladder의 생성자 파라미터로 보내줄거다.
 	}
 
 	private static void validate(int height) {

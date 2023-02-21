@@ -3,8 +3,6 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Level {
 	private static final Random random = new Random();
@@ -17,14 +15,18 @@ public class Level {
 	}
 
 	private List<Stool> initLine(int participantSize) {
-		return IntStream.range(0, participantSize - 1)
-			.mapToObj(o -> Stool.EMPTY)
-			.collect(Collectors.toList());
+		List<Stool> stoolList = new ArrayList<>();
+		for (int i = 0; i < participantSize - 1; i++) {
+			stoolList.add(Stool.EMPTY);
+		}
+		return stoolList;
 	}
 
 	private void makeStools() {
 		level.set(0, Stool.of(random.nextBoolean()));
-		IntStream.range(1, level.size()).forEach(this::makeStool);
+		for (int i = 1; i < level.size(); i++) {
+			makeStool(i);
+		}
 
 		if (isNotValidLevel())
 			makeStools();

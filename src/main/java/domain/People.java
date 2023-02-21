@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,10 +18,11 @@ public class People {
 
 	public static People from(List<String> names) {
 		validate(names);
-
-		return new People(names.stream()
-			.map(Person::new)
-			.collect(Collectors.toUnmodifiableList()));
+		List<Person> personList = new ArrayList<>();
+		for (String name : names) {
+			personList.add(new Person(name));
+		}
+		return new People(personList);
 	}
 
 	private static void validate(List<String> names) {
