@@ -17,7 +17,15 @@ public class Direction {
         return new Direction(false, booleanGenerator);
     }
     
-    public int adjustedPosition(int beforePosition) {
+    public Direction createNext(BooleanGenerator booleanGenerator) {
+        if (rightBar.isExistBar()) {
+            return new Direction(rightBar, new Bar(false));
+        }
+        
+        return new Direction(rightBar, new Bar(booleanGenerator));
+    }
+    
+    public int getAdjustedPosition(int beforePosition) {
         if (leftBar.isExistBar()) {
             return minusPosition(beforePosition);
         }
