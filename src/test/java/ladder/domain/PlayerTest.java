@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -27,5 +28,10 @@ class PlayerTest {
     @ValueSource(strings = {"abc", "에밀과홍고", "에"})
     public void 생성_success(String name) {
         assertThatNoException().isThrownBy(() -> new Player(name));
+    }
+
+    @Test
+    void 높이_1칸_이동() {
+
     }
 }

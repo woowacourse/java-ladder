@@ -14,7 +14,7 @@ class PlayersTest {
     public void size_예외던지기() {
         assertThatThrownBy(() -> Players.from(List.of("에밀")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("플레이어 사이즈는 2 이상이어야 합니다.");
+                .hasMessage("플레이어는 2명 이상이어야 합니다.");
     }
 
     @Test

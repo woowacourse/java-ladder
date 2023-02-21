@@ -24,7 +24,7 @@ class RowTest {
     public void 생성_fail_width사이즈() {
         assertThatThrownBy(() -> Row.of(List.of(Foothold.N, Foothold.N, Foothold.Y), 2))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사다리 길이가 맞지 않습니다.");
+                .hasMessage("사다리 너비가 맞지 않습니다.");
     }
 
     @ParameterizedTest(name = "발판이 가로로 {0}, {1}이면 정상 생성된다")
