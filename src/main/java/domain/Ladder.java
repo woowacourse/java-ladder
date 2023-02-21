@@ -3,12 +3,12 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ladders {
+public class Ladder {
     private final Height height;
     private final Width width;
     private final List<Line> ladders;
 
-    public Ladders(Height height, Width width) {
+    public Ladder(Height height, Width width) {
         this.height = height;
         this.width = width;
         this.ladders = new ArrayList<>();
