@@ -44,7 +44,7 @@
 - [ ] 참여자들 리스트와 사다리를 토대로 결과를 반환한다.
 
 ### Result
-- [ ] 단일의 입력된 결과를 가진다.
+- [x] 단일의 입력된 결과를 가진다.
 - [x] 공백이 입력되면 `IllegalArgumentException` 예외가 발생한다.
 - [x] null이 입력되면 `IllegalArgumentException` 예외가 발생한다.
 

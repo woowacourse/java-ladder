@@ -1,6 +1,7 @@
 package ladder.domain.strategy.linestrategy;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,4 +31,16 @@ class ResultTest {
                 new Result(input)
         ).withMessage("[ERROR] 결과는 공백일 수 없습니다.");
      }
+
+     @Test
+     @DisplayName("단일 Result가 올바르게 생성된다.")
+     void create_success() {
+         // given
+         String input = "꽝";
+
+         // expect
+         assertThatNoException().isThrownBy(() ->
+                 new Result(input)
+         );
+      }
 }
