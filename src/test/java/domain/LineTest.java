@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 class LineTest {
     private final BooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
     private final BooleanGenerator trueBooleanGenerator = new TrueBooleanGenerator();
+    private Line nonRandomLine = new Line(3, trueBooleanGenerator);
 
     @Nested
     @DisplayName("사다리 발판 생성 테스트")
@@ -24,9 +25,19 @@ class LineTest {
 
         @Test
         void createNonRandomLadderStepsTest() {
-            Line line = new Line(3, trueBooleanGenerator);
-            Assertions.assertThat(line.getLadderSteps())
+            Assertions.assertThat(nonRandomLine.getLadderSteps())
                     .containsExactly(LadderStep.EXISTS, LadderStep.NONE, LadderStep.EXISTS);
+        }
+    }
+
+    @Nested
+    @DisplayName("사다리 발판 조회 테스트")
+    class queryLadderStepsTest {
+        @Test
+        void queryLadderStepByIndex() {
+            Assertions.assertThat(nonRandomLine.getLadderStep(0)).isEqualTo(LadderStep.EXISTS);
+            Assertions.assertThat(nonRandomLine.getLadderStep(1)).isEqualTo(LadderStep.NONE);
+            Assertions.assertThat(nonRandomLine.getLadderStep(2)).isEqualTo(LadderStep.EXISTS);
         }
     }
 }
