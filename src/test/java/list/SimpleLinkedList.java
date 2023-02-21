@@ -65,17 +65,16 @@ public class SimpleLinkedList implements SimpleList {
     @Override
     public String set(int index, String value) {
         checkIndexOutOfBounds(index);
-        Node node = head;
-        for (int i = 0; i < index; i++) {
-            node = head.next;
-        }
+        Node node = getNodeByIndex(index);
         node.value = value;
         return value;
     }
 
     @Override
     public String get(int index) {
-        return null;
+        checkIndexOutOfBounds(index);
+        Node node = getNodeByIndex(index);
+        return node.value;
     }
 
     @Override
@@ -126,5 +125,13 @@ public class SimpleLinkedList implements SimpleList {
         if (index >= size) {
             throw new RuntimeException();
         }
+    }
+
+    private Node getNodeByIndex(int index) {
+        Node node = head;
+        for (int i = 0; i < index; i++) {
+            node = head.next;
+        }
+        return node;
     }
 }
