@@ -15,16 +15,20 @@ public class ResultController {
     private final OutputView outputView;
     private final Result result;
 
-    public ResultController(InputView inputView, OutputView outputView, Result result) {
+    private ResultController(InputView inputView, OutputView outputView, Result result) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.result = result;
     }
 
+    public static ResultController of(InputView inputView, OutputView outputView, Result result) {
+        return new ResultController(inputView, outputView, result);
+    }
+
     public void run() {
         Status status;
         do {
-            status = retryOnError(() -> process());
+            status = retryOnError(this::process);
         } while (status.isCONTINUE());
     }
 

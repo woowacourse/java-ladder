@@ -18,9 +18,8 @@ public class LaddersTest {
 
     @BeforeEach
     void init() {
-        Queue<Boolean> randomNumber = new LinkedList<>();
-        Arrays.asList(false, true, true).forEach(randomNumber::add);
-        ladders = new Ladders(2, new Height(3), new CustomRandomGenerator(randomNumber));
+        Queue<Boolean> randomNumber = new LinkedList<>(Arrays.asList(false, true, true));
+        ladders = Ladders.of(2, Height.from(3), new CustomRandomGenerator(randomNumber));
     }
 
     @DisplayName("랜덤 값에 따라 사다리들이 정상적으로 생성되는지 테스트합니다.")

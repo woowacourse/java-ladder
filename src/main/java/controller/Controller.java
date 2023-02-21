@@ -16,14 +16,14 @@ public class Controller {
     }
 
     public void run() {
-        Users users = retryOnError(() -> new Users(inputView.inputUserName()));
-        Items items = retryOnError(() -> new Items(inputView.inputItem(), users));
-        Height height = retryOnError(() -> new Height(inputView.inputLadderHeight()));
-        Ladders ladders = new Ladders(users.getCount(), height, new RandomBooleanGenerator());
+        Users users = retryOnError(() -> Users.from(inputView.inputUserName()));
+        Items items = retryOnError(() -> Items.of(inputView.inputItem(), users));
+        Height height = retryOnError(() -> Height.from(inputView.inputLadderHeight()));
+        Ladders ladders = Ladders.of(users.getCount(), height, new RandomBooleanGenerator());
 
         outputView.printLadderResultBoard(users, items, ladders);
         Result result = new Result(users, items, ladders);
-        new ResultController(inputView, outputView, result).run();
+        ResultController.of(inputView, outputView, result).run();
     }
 
     private <T> T retryOnError(Supplier<T> repeat) {

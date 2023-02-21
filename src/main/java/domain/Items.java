@@ -8,12 +8,16 @@ public class Items {
     private static final String INVALID_ITEM_COUNT_MESSAGE = "결과 값의 개수는 유저 수와 같아야 합니다.";
     private final List<Item> items;
 
-    public Items(List<String> items, Users users) {
+    private Items(List<Item> items) {
+        this.items = items;
+    }
+
+    public static Items of(List<String> items, Users users) {
         validateSameSize(items, users);
 
-        this.items = items.stream()
+        return new Items(items.stream()
                 .map(Item::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     private static void validateSameSize(List<String> items, Users users) {

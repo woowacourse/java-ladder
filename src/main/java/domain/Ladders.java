@@ -8,10 +8,14 @@ import java.util.stream.Stream;
 public class Ladders {
     private final List<Ladder> ladders;
 
-    public Ladders(int width, Height height, BooleanGenerator booleanGenerator) {
-        this.ladders = Stream.generate(() -> new Ladder(width, booleanGenerator))
+    private Ladders(List<Ladder> ladders) {
+        this.ladders = ladders;
+    }
+
+    public static Ladders of(int width, Height height, BooleanGenerator booleanGenerator) {
+        return new Ladders(Stream.generate(() -> new Ladder(width, booleanGenerator))
                 .limit(height.getHeight())
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     public int getHeight() {

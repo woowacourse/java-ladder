@@ -15,9 +15,9 @@ public class ItemsTest {
     @ParameterizedTest
     @MethodSource("resultFailParameter")
     void itemsSizeFailTest(List<String> input) {
-        Users users = new Users(List.of("aa", "bb", "cc"));
+        Users users = Users.from(List.of("aa", "bb", "cc"));
 
-        assertThatThrownBy(() -> new Items(input, users))
+        assertThatThrownBy(() -> Items.of(input, users))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

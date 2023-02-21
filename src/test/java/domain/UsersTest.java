@@ -19,7 +19,7 @@ public class UsersTest {
     @ParameterizedTest
     @MethodSource("usersSameNameFailParameter")
     void usersSameNameFailTest(List<String> input) {
-        assertThatThrownBy(() -> new Users(input))
+        assertThatThrownBy(() -> Users.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("중복된 이름이 존재합니다.");
     }
@@ -28,14 +28,14 @@ public class UsersTest {
     @ParameterizedTest
     @MethodSource("usersFailParameter")
     void usersSizeFailTest(List<String> input) {
-        assertThrows(IllegalArgumentException.class, () -> new Users(input));
+        assertThrows(IllegalArgumentException.class, () -> Users.from(input));
     }
 
     @DisplayName("입력된 유저의 수가 1~10명 사이이면 정상적으로 수행된다.")
     @ParameterizedTest
     @MethodSource("usersSuccessParameter")
     void usersSizeSuccessTest(List<String> input) {
-        assertThatCode(() -> new Users(input)).doesNotThrowAnyException();
+        assertThatCode(() -> Users.from(input)).doesNotThrowAnyException();
     }
 
     static Stream<Arguments> usersSameNameFailParameter() {

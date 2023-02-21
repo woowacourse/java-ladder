@@ -14,12 +14,12 @@ class ResultTest {
 
     @BeforeEach
     void init() {
-        Users users = new Users(List.of("aa", "bb", "cc"));
+        Users users = Users.from(List.of("aa", "bb", "cc"));
 
-        Items items = new Items(List.of("1", "2", "3"), users);
+        Items items = Items.of(List.of("1", "2", "3"), users);
 
         Queue<Boolean> randomNumber = new LinkedList<>(Arrays.asList(false, true, true, true));
-        Ladders ladders = new Ladders(users.getCount(), new Height(3), new CustomRandomGenerator(randomNumber));
+        Ladders ladders = Ladders.of(users.getCount(), Height.from(3), new CustomRandomGenerator(randomNumber));
 
         this.result = new Result(users, items, ladders);
     }

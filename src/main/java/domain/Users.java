@@ -11,28 +11,32 @@ public class Users {
     private static final String INVALID_SAME_USER_NAME_MESSAGE = "중복된 이름이 존재합니다.";
     private final List<User> users;
 
-    public Users(List<String> users) {
+    private Users(List<User> users) {
+        this.users = users;
+    }
+
+    public static Users from(List<String> users) {
         validateDuplicateName(users);
         validateUserCount(users);
 
-        this.users = users.stream()
+        return new Users(users.stream()
                 .map(User::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
-    private void validateUserCount(List<String> users) {
+    private static void validateUserCount(List<String> users) {
         if (users.size() < USER_COUNT_MIN_RANGE || users.size() > USER_COUNT_MAX_RANGE) {
             throw new IllegalArgumentException(INVALID_USER_COUNT_MESSAGE);
         }
     }
 
-    private void validateDuplicateName(List<String> users) {
+    private static void validateDuplicateName(List<String> users) {
         if (isDuplicateName(users)) {
             throw new IllegalArgumentException(INVALID_SAME_USER_NAME_MESSAGE);
         }
     }
 
-    private boolean isDuplicateName(List<String> users) {
+    private static boolean isDuplicateName(List<String> users) {
         return users.size() != users.stream()
                 .distinct()
                 .count();
