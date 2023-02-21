@@ -34,10 +34,10 @@ public class LadderGameController {
     }
 
     private Ladder createLadder(final Participants participants) {
-        RungBooleanGenerator rungNumberGenerator = new RungBooleanGenerator();
+        RungBooleanGenerator rungBooleanGenerator = new RungBooleanGenerator();
         return inputView.repeatUntilGettingValidValue(() -> {
             String maxLadderHeight = inputView.readMaxLadderHeight();
-            return Ladder.create(rungNumberGenerator, maxLadderHeight, participants.size());
+            return Ladder.create(rungBooleanGenerator, maxLadderHeight, participants.size());
         });
     }
 
