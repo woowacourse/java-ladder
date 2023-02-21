@@ -64,7 +64,7 @@
 - [x] 중간 Direction
   - [x] 왼쪽이 true면 오른쪽은 무조건 false여야 한다.
   - [x] 왼쪽이 false면 오른쪽은 랜덤이어야 한다.
-- [ ] 마지막 Direction은 왼쪽은 전 Bar의 오른쪽 boolean 값을 받고, 오른쪽은 무조건 false여야 한다.
+- [x] 마지막 Direction은 왼쪽은 전 Bar의 오른쪽 boolean 값을 받고, 오른쪽은 무조건 false여야 한다.
 
 - [x] 각 인덱스의 포지션을 조정해주기. (오른쪽, 왼쪽, 아래)
   - [x] Direction이 false, true 인 경우 포지션 1 추가(오른쪽)
