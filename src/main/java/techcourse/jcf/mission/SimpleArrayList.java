@@ -130,4 +130,9 @@ public class SimpleArrayList implements SimpleList {
         this.data = new String[INITIAL_CAPACITY];
         size = 0;
     }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(Arrays.copyOf(data, size));
+    }
 }

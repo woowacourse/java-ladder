@@ -166,4 +166,17 @@ public class SimpleLinkedList implements SimpleList {
         size = 0;
         firstNode = null;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        for (Node node = firstNode; node != null; node = node.nextNode()) {
+            sb.append(node.getValue() + ", ");
+        }
+        if (sb.length() > 1) {
+            sb.delete(sb.length()-2, sb.length());
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }

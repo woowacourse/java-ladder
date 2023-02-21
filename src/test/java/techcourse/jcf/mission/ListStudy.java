@@ -49,6 +49,8 @@ public class ListStudy {
 
         values.clear();
         assertThat(values.isEmpty()).isTrue();
+
+        System.out.println(values);
     }
 
     @Test
@@ -75,6 +77,7 @@ public class ListStudy {
 
         values.clear();
         assertThat(values.isEmpty()).isTrue();
+        System.out.println(values);
 
     }
 }
