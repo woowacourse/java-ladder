@@ -38,7 +38,8 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String set(int index, String value) {
-        return null;
+        data[index] = value;
+        return value;
     }
 
     @Override
