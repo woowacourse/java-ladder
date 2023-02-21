@@ -25,6 +25,10 @@ public class Direction {
         return new Direction(rightBar, new Bar(booleanGenerator));
     }
     
+    public Direction createLast() {
+        return new Direction(rightBar, new Bar(false));
+    }
+    
     public int getAdjustedPosition(int beforePosition) {
         if (leftBar.isExistBar()) {
             return minusPosition(beforePosition);
