@@ -34,7 +34,7 @@ public class LadderResultTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"0, -1, 10001, 10000"})
+    @ValueSource(strings = {"0", "-1", "10001", "10002"})
     @DisplayName("실행 결과가 정수일 때 1 이상 10000 이하가 아니면 예외를 던진다.")
     void validateRunResultRangeTest(String runResult) {
         assertThatThrownBy(() -> new LadderResult(runResult))
