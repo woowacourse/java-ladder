@@ -65,7 +65,7 @@ public class LadderController {
     }
 
     private String resultRequest() {
-        return inputView.readSingleResult();
+        return inputView.readResult();
     }
 
     private boolean getResult(String name) {
