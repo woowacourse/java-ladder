@@ -4,7 +4,7 @@ public class Height {
 
     private static final int MINIMUM_LADDER_HEIGHT = 1;
 
-    private int height;
+    private final int height;
 
     public Height(int height) {
         validateHeight(height);
@@ -18,7 +18,7 @@ public class Height {
         }
     }
 
-    public boolean isContinueMakeLadder() {
-        return height-- > 0;
+    public boolean isContinueMakeLadder(int height) {
+        return height < this.height;
     }
 }

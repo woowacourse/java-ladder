@@ -19,8 +19,9 @@ public class LadderMaker {
     public void initLadder(Height height, int totalParticipantSize) {
         List<Line> lines = new ArrayList<>();
 
-        while (height.isContinueMakeLadder()) {
-            lines.add(initLine(totalParticipantSize));
+        while (height.isContinueMakeLadder(lines.size())) {
+            Line line = initLine(totalParticipantSize);
+            lines.add(line);
         }
         ladder = new Ladder(lines);
     }
