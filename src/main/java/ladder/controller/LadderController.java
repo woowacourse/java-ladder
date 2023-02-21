@@ -2,11 +2,17 @@ package ladder.controller;
 
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.player.Player;
 import ladder.domain.player.Players;
+import ladder.domain.reward.GameResult;
+import ladder.domain.reward.Reward;
+import ladder.domain.reward.Rewards;
 import ladder.domain.valueGenerator.BooleanGenerator;
 import ladder.domain.valueGenerator.IntegerGenerator;
 import ladder.view.Input;
 import ladder.view.Result;
+
+import java.util.Map;
 
 public class LadderController {
 
@@ -25,15 +31,28 @@ public class LadderController {
     }
 
     public void run() {
-        Players players = exceptionProcess.repeat(
-                input::inputPlayerNames,
-                Players::create);
-        Height heightOfLadder = exceptionProcess.repeat(
-                input::inputHeightOfLadder,
-                inputHeight -> Height.create(inputHeight, integerGenerator));
+        Players players = exceptionProcess
+                .repeat(input::inputPlayerNames, Players::create);
+        Rewards rewards = exceptionProcess
+                .repeat(input::inputRewards, inputRewards -> Rewards.create(inputRewards, players.count()));
+        Height heightOfLadder = exceptionProcess
+                .repeat(input::inputHeightOfLadder, inputHeight -> Height.create(inputHeight, integerGenerator));
         Ladder ladder = Ladder.create(players.count(), heightOfLadder.getHeight(), booleanGenerator);
 
-        result.printLadder(players, ladder);
+        result.printLadder(players, ladder, rewards);
+
+        pop(players, ladder, rewards);
+    }
+
+    private void pop(Players players, Ladder ladder, Rewards rewards) {
+        GameResult gameResult = GameResult.create(players, ladder, rewards);
+
+        Players targetPlayers = exceptionProcess
+                .repeat(input::inputTargetPlayerNames, players::createTargetPlayers);
+
+        Map<Player, Reward> resultByPlayers = gameResult.findResultByPlayers(targetPlayers);
+
+        result.printGameResult(resultByPlayers);
     }
 
 }
