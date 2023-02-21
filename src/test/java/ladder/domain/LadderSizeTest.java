@@ -14,5 +14,4 @@ class LadderSizeTest {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () ->  new LadderSize(3, height));
     }
-
 }

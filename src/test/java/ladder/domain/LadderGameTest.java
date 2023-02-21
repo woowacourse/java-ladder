@@ -72,7 +72,5 @@ public class LadderGameTest {
         assertThat(ladderGame.getGameResult("pobi").getGameResult().get(0)).isEqualTo("4000");
         assertThat(ladderGame.getGameResult("crong").getGameResult().get(0)).isEqualTo("꽝");
         assertThat(ladderGame.getGameResult("seong").getGameResult().get(0)).isEqualTo("당첨");
-
-//        ladderGame.getGameResult("pobi").getPlayerNames().get(0)
     }
 }
