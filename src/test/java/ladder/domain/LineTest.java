@@ -1,10 +1,10 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
@@ -24,5 +24,13 @@ class LineTest {
     void createLineFalse() {
         Line line = new Line(() -> Bar.FALSE, 4);
         assertThat(line.getLine()).containsExactly(directionMiddle, directionMiddle, directionMiddle, directionMiddle);
+    }
+    
+    @Test
+    @DisplayName("포지션 목록이 한 라인을 탈 때, 조정된 포지션 목록으로 반환한다.")
+    void movedPositions() {
+        Line line = new Line(() -> Bar.TRUE, 4);
+        List<Integer> positions = line.movedPositions(List.of(0,1,2,3));
+        assertThat(positions).containsExactly(1,0,3,2);
     }
 }

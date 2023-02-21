@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -35,6 +36,16 @@ public class Line {
     
     private Direction getLastDirection(LinkedList<Direction> line) {
         return line.getLast();
+    }
+    
+    public List<Integer> movedPositions(List<Integer> positions) {
+        return positions.stream()
+                .map(position -> getCurrentPositionDirection(position).getAdjustedPosition(position))
+                .collect(Collectors.toUnmodifiableList());
+    }
+    
+    private Direction getCurrentPositionDirection(Integer position) {
+        return line.get(position);
     }
     
     public List<Direction> getLine() {
