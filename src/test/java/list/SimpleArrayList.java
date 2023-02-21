@@ -82,7 +82,14 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean remove(String value) {
-        return false;
+        int index = indexOf(value);
+        if (index == -1) {
+            return false;
+        }
+        for (int i = index + 1; i < size; i++) {
+            data[i - 1] = data[i];
+        }
+        return true;
     }
 
     @Override
