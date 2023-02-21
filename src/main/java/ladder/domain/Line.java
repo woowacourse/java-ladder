@@ -12,10 +12,10 @@ public class Line {
     private final List<Boolean> line = new ArrayList<>();
     private final BooleanGenerator generator;
 
-    public Line(int personCount, BooleanGenerator generator) {
+    public Line(int countOfParticipants, BooleanGenerator generator) {
         this.generator = generator;
 
-        createLine(personCount);
+        createLine(countOfParticipants);
     }
 
     private void createLine(int personCount) {
