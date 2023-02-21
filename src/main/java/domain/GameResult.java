@@ -1,12 +1,18 @@
 package domain;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
 
 public class GameResult {
 
-    public static final boolean CONNECTED = true;
+    private static final int FIRST_BLOCK_POSITION = 0;
+    private static final boolean CONNECTED = true;
+    private static final boolean DISCONNECTED = false;
+    private static final int LEFT = -1;
+    private static final int STAY = 0;
+    private static final int RIGHT = 1;
     private final Ladder ladder;
     private final Participants participants;
     private final LadderResults ladderResults;
@@ -26,31 +32,34 @@ public class GameResult {
         });
     }
 
-    private String getGameResult(int current) {
+    private String getGameResult(int currentPosition) {
         for (Line line : ladder.getLines()) {
-            current += progress(current, line);
+            int move = getMove(currentPosition, line.getBlocks());
+            currentPosition += move;
         }
-        return ladderResults.getResults().get(current);
+        return ladderResults.getResults().get(currentPosition);
     }
 
-    private int progress(int current, Line line) {
-        if (current == 0) {
-            return getNewPosition(false, line.getBlocks().get(current));
+    private int getMove(int currentPosition, List<Boolean> blocks) {
+        final int lastBlockPosition = participants.getCount() - 1;
+        final int prevBlockPosition = currentPosition - 1;
+        if (currentPosition == FIRST_BLOCK_POSITION) {
+            return decideDirection(DISCONNECTED, blocks.get(currentPosition));
         }
-        if (current == participants.getCount() - 1) {
-            return getNewPosition(line.getBlocks().get(current - 1), false);
+        if (currentPosition == lastBlockPosition) {
+            return decideDirection(blocks.get(prevBlockPosition), DISCONNECTED);
         }
-        return getNewPosition(line.getBlocks().get(current - 1), line.getBlocks().get(current));
+        return decideDirection(blocks.get(prevBlockPosition), blocks.get(currentPosition));
     }
 
-    private int getNewPosition(boolean left, boolean right) {
+    private int decideDirection(boolean left, boolean right) {
         if (left == CONNECTED) {
-            return -1;
+            return LEFT;
         }
         if (right == CONNECTED) {
-            return 1;
+            return RIGHT;
         }
-        return 0;
+        return STAY;
     }
 
     public Map<String, String> getResult() {
