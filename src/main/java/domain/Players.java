@@ -17,6 +17,10 @@ public class Players {
         addPlayer(names);
     }
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+
     private static void validatePlayersSize(List<String> names) {
         if (names.size() < MIN_SIZE) {
             throw new IllegalArgumentException(SIZE_ERROR);

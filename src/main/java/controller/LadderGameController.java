@@ -3,6 +3,7 @@ package controller;
 import domain.*;
 import view.InputView;
 import view.OutputView;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGameController {
@@ -39,12 +40,20 @@ public class LadderGameController {
             outputView.printPlayResult(player.calculateResult(ladder, results));
             return;
         }
+        outputView.printAllPlayerResult(players.getPlayersName(), getPlayersResult(players, results, ladder));
     }
 
     private Player getPlayer(Players players, String targetPlayer) {
         validateTargetPlayerExist(players.getPlayersName(), targetPlayer);
-        Player player = players.getPlayerByName(targetPlayer);
-        return player;
+        return players.getPlayerByName(targetPlayer);
+    }
+
+    private List<String> getPlayersResult(Players players, Results results, Ladder ladder) {
+        List<String> playersResult = new ArrayList<>();
+        for (Player player : players.getPlayers()) {
+            playersResult.add(player.calculateResult(ladder, results));
+        }
+        return playersResult;
     }
 
     private void validateTargetPlayerExist(List<String> names, String targetPlayer) {

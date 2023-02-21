@@ -1,7 +1,7 @@
 package view;
 
 import domain.Line;
-import domain.Name;
+import domain.Name;;
 import java.util.List;
 
 public class OutputView {
@@ -10,6 +10,7 @@ public class OutputView {
     private static final String BLANK_LINE = "     ";
     private static final String BLANK = " ";
     private static final String PLAY_RESULT = "실행 결과";
+    private static final String ALL_PLAYER_DELIMITER = " : ";
 
     public void printLadder(List<Line> lines){
         StringBuilder builder = new StringBuilder();
@@ -73,5 +74,17 @@ public class OutputView {
     public void printPlayResult(String result) {
         System.out.println("\n" + PLAY_RESULT);
         System.out.println(result);
+    }
+
+    public void printAllPlayerResult(List<String> playersName, List<String> playersResult) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("\n" + PLAY_RESULT + "\n");
+        for (int index = 0; index < playersName.size(); index++) {
+            stringBuilder.append(playersName.get(index) + ALL_PLAYER_DELIMITER);
+            stringBuilder.append(playersResult.get(index));
+            stringBuilder.append("\n");
+        }
+        System.out.println(stringBuilder);
     }
 }

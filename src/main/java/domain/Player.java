@@ -42,7 +42,7 @@ public class Player {
     }
 
     private static boolean isLastPosition(int currentPosition, List<Boolean> points) {
-        return currentPosition == points.size() + 1;
+        return currentPosition == points.size();
     }
 
     private boolean isLeft(int currentPosition, List<Boolean> points) {
