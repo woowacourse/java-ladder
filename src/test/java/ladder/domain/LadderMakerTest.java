@@ -23,9 +23,9 @@ public class LadderMakerTest {
         BooleanGenerator booleanGenerator = new IntendedBooleanGenerator();
 
         LadderSize ladderSize = new LadderSize(3, 4);
-        LadderMaker ladderMaker = new LadderMaker(ladderSize, booleanGenerator);
+        LadderMaker ladderMaker = new LadderMaker(ladderSize);
 
-        Ladder ladder = ladderMaker.generate();
+        Ladder ladder = ladderMaker.generate(booleanGenerator);
         List<Line> lines = ladder.getLines();
         List<ConnectionStatus> lineStatus = lines.get(0).getLineStatus();
 
