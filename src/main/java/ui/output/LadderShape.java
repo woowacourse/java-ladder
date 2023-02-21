@@ -26,7 +26,7 @@ public enum LadderShape {
     }
 
     private static StringBuilder generateFirstWall(int maxLength) {
-        StringBuilder firstWall = new StringBuilder("|");
+        StringBuilder firstWall = new StringBuilder(WALL.shape);
         while (firstWall.length() < maxLength) {
             firstWall = new StringBuilder(" " + firstWall);
         }
