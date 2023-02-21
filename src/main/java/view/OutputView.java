@@ -83,4 +83,15 @@ public class OutputView {
         System.out.println(name + System.lineSeparator());
     }
 
+    public void printPlayerGameEndResult(HashMap<Name, String> prizeResult) {
+        stringBuilder = new StringBuilder();
+        for (Name name : prizeResult.keySet()) {
+            stringBuilder.append(name.getName())
+                    .append(" : ")
+                    .append(prizeResult.get(name))
+                    .append(System.lineSeparator());
+        }
+        System.out.print(stringBuilder.toString());
+    }
+
 }

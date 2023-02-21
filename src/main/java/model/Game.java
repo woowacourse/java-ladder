@@ -46,14 +46,7 @@ public class Game {
         return prizeResult.get(new Name(name));
     }
 
-    public String getPrizePlayers() {
-        StringBuilder playersFormat = new StringBuilder();
-        for (Name name : prizeResult.keySet()) {
-            playersFormat.append(name.getName())
-                    .append(" : ")
-                    .append(prizeResult.get(name))
-                    .append(System.lineSeparator());
-        }
-        return playersFormat.toString();
+    public HashMap<Name,String> getPrizePlayers() {
+        return prizeResult;
     }
 }
