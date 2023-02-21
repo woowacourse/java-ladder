@@ -6,19 +6,20 @@ import domain.Lines;
 import domain.Names;
 import domain.Result;
 import domain.Rewards;
-import utils.RandomBooleanGenerator;
+import utils.BooleanGenerator;
 import view.InputView;
 import view.OutputView;
 
 public class MainController {
-    private static final RandomBooleanGenerator RANDOM_BOOLEAN_GENERATOR = new RandomBooleanGenerator();
 
+    private final BooleanGenerator booleanGenerator;
     private final InputView inputView;
     private final OutputView outputView;
 
-    public MainController(InputView inputView, OutputView outputView) {
+    public MainController(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.booleanGenerator = booleanGenerator;
     }
 
     public void start() {
@@ -27,7 +28,7 @@ public class MainController {
         Height height = inputView.readHeight();
 
         LineSize lineSize = new LineSize(names.getPersonNumber());
-        Lines lines = new Lines(lineSize, height, RANDOM_BOOLEAN_GENERATOR);
+        Lines lines = new Lines(lineSize, height, booleanGenerator);
         outputView.printLines(names, lines, rewards);
         Result result = new Result(names, lines, rewards);
 
