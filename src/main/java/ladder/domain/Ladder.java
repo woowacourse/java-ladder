@@ -1,17 +1,24 @@
 package ladder.domain;
 
+import ladder.util.BooleanGenerator;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
     private final List<Line> ladder = new ArrayList<>();
 
-    public void addLine(Line line) {
-        ladder.add(line);
+    public Ladder(int countOfParticipants, Height height, BooleanGenerator generator) {
+        createLadder(countOfParticipants, height, generator);
+    }
+
+    private void createLadder(int countOfParticipants, Height height, BooleanGenerator generator) {
+        for (int i = 0; i < height.getHeight(); i++) {
+            ladder.add(new Line(countOfParticipants, generator));
+        }
     }
 
     public List<Line> getLadder() {
-        return Collections.unmodifiableList(ladder);
+        return ladder;
     }
 }

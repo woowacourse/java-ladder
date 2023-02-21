@@ -1,8 +1,8 @@
 package ladder.controller;
 
 import ladder.domain.Height;
+import ladder.domain.Ladder;
 import ladder.domain.Names;
-import ladder.service.LadderGame;
 import ladder.util.BooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -21,11 +21,12 @@ public class LadderController {
     }
 
     public void execute() {
-        LadderGame ladderGame = new LadderGame(createNames(), createHeight(), generator);
+        Names names = createNames();
+        Height height = createHeight();
 
-        ladderGame.run();
+        Ladder ladder = new Ladder(names.size(), height, generator);
 
-        resultView.printResult(ladderGame.getParticipants(), ladderGame.getLadder());
+        resultView.printResult(names, ladder);
     }
 
     private Names createNames() {
