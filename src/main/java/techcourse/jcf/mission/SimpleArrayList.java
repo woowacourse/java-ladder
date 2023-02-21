@@ -114,7 +114,27 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean remove(String value) {
-        return false;
+        int index = -1;
+        for(int i = 0; i < size; i++){
+            if(array[i].equals(value)){
+                index = i;
+                break;
+            }
+            if(i == size-1){
+                return false;
+            }
+        }
+
+        if(index == size-1){
+            size--;
+            return true;
+        }
+
+        for(int i = index; i < size-1; i++){
+            array[i] = array[i+1];
+        }
+        size--;
+        return true;
     }
 
     @Override
