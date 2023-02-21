@@ -26,4 +26,17 @@ public class PlayersTest {
         //then
         assertThat(result).isEqualTo(List.of("pobi", "neo", "hiiro"));
     }
+
+    @Test
+    @DisplayName("참여자의 이름을 통해 해당 참여자의 정보를 검색하는 기능 테스트")
+    void findPlayerByNameTest() {
+        //given
+        Players players = new Players(NameFactory.create("pobi, neo, hiiro"));
+
+        //when
+        Player result = players.findPlayerByName(new Name("hiiro"));
+
+        //then
+        assertThat(result.getName()).isEqualTo("hiiro");
+    }
 }
