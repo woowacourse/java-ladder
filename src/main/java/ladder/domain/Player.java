@@ -6,10 +6,14 @@ public class Player {
     private final String name;
 
     public Player(String name) {
+        validate(name);
+        this.name = name;
+    }
+
+    private void validate(String name) {
         validateNull(name);
         validateBlank(name);
         validateLength(name);
-        this.name = name;
     }
 
     private void validateNull(String name) {
