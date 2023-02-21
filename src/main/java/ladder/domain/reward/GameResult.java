@@ -5,12 +5,13 @@ import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class GameResult {
 
-    private final Map<Player, Reward> gameResult = new HashMap<>();
+    private final Map<Player, Reward> gameResult = new LinkedHashMap<>();
 
     private GameResult() {
 
