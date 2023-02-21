@@ -25,29 +25,27 @@ public class Results {
             Line line = ladder.get(i);
             List<Step> steps = line.getSteps();
 
-            if (position == 0) {
-                if (steps.get(position) == Step.EXIST) {
-                    position++;
-                    continue;
-                }
-                break;
-            }
-            if (position == steps.size()) {
-                if (steps.get(steps.size() - 1) == Step.EXIST) {
-                    position--;
-                    continue;
-                }
-                break;
-            }
-            if (steps.get(position - 1) == Step.EXIST) {
-                position--;
-                continue;
-            }
-            if (steps.get(position) == Step.EXIST) {
-                position++;
-            }
+            position = move(position, steps);
         }
 
         return results.get(position).getResult();
+    }
+
+    private int move(int position, List<Step> steps) {
+        if (canMoveLeft(position, steps)) {
+            return --position;
+        }
+        if (canMoveRight(position, steps)) {
+            return ++position;
+        }
+        return position;
+    }
+
+    private boolean canMoveRight(int position, List<Step> steps) {
+        return position != steps.size() && steps.get(position) == Step.EXIST;
+    }
+
+    private boolean canMoveLeft(int position, List<Step> steps) {
+        return position != 0 && steps.get(position - 1) == Step.EXIST;
     }
 }
