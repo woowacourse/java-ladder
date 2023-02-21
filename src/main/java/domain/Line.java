@@ -3,34 +3,32 @@ package domain;
 import util.TrueOrFalseGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    public Line(int personCount, TrueOrFalseGenerator trueOrFalseGenerator) {
-        this.points = makeLine(personCount,trueOrFalseGenerator);
+    public Line(List<Point> points) {
+        this.points = Collections.unmodifiableList(points);
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 
-    private List<Boolean> makeLine(int personCount,TrueOrFalseGenerator trueOrFalseGenerator) {
-        List<Boolean> points = new ArrayList<>();
+    public static Line generate(int personCount,TrueOrFalseGenerator trueOrFalseGenerator) {
+        List<Point> points = new ArrayList<>();
         for (int count = 0; count < personCount-1; count++) {
-            points.add(correctOverLapPoints(points, trueOrFalseGenerator.generate(), count));
+            points.add(correctOverLapPoints(points, new Point(trueOrFalseGenerator.generate()), count));
         }
-        return points;
+        return new Line(points);
     }
 
-    private Boolean correctOverLapPoints(List<Boolean> points, boolean current,int count) {
-        if (points.size() == 0) {
+    private static Point correctOverLapPoints(List<Point> points, Point current, int count) {
+        if (points.size() == 0||points.get(count - 1).equals(current)) {
             return current;
         }
-        if (!points.get(count-1) || !current) {
-            return current;
-        }
-        return false;
+        return current.nonPass();
     }
 }

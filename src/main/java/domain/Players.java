@@ -18,7 +18,7 @@ public class Players {
         this.players = players;
     }
 
-    public static Players generatePlayers(List<String> playersName) {
+    public static Players generate(List<String> playersName) {
         List<Player> players = new ArrayList<>();
         for (String playerName : playersName) {
             players.add(new Player(playerName));

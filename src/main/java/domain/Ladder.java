@@ -15,11 +15,11 @@ public class Ladder {
         this.lines = List.copyOf(lines);
     }
 
-    public static Ladder generateLadder(Players players, Height height, TrueOrFalseGenerator trueOrFalseGenerator) {
+    public static Ladder generate(Players players, Height height, TrueOrFalseGenerator trueOrFalseGenerator) {
         List<Line> lines = new ArrayList<>();
         int count = FIRST_INDEX;
         while (!height.isSameHeight(count)) {
-            Line line = new Line(players.getPlayersCount(), trueOrFalseGenerator);
+            Line line = Line.generate(players.getPlayersCount(), trueOrFalseGenerator);
             lines.add(line);
             count++;
         }
