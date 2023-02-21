@@ -14,7 +14,7 @@ public class Point {
 
         Point point1 = (Point) o;
 
-        return point == point1.point;
+        return point != point1.point;
     }
 
     @Override
