@@ -1,0 +1,40 @@
+package ladder.domain;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+class Row {
+
+    /**
+     * 사다리의 첫 인덱스에 버퍼가 1개 들어가기 때문에 BUFFER_COUNT 값으로 1을 주었습니다.
+     */
+    public static final int BUFFER_COUNT = 1;
+    private final List<Step> connected;
+
+    Row(int width) {
+        connected = new ArrayList<>(Collections.nCopies(width + BUFFER_COUNT, Step.BLANK));
+    }
+
+    void generateLeg(StepGenerator stepGenerator) {
+        for (int i = BUFFER_COUNT; i < connected.size(); i++) {
+            connect(stepGenerator, i);
+        }
+    }
+
+    private void connect(StepGenerator stepGenerator, int index) {
+        if (shouldConnect(stepGenerator, index)) {
+            connected.set(index, Step.CONNECTED);
+        }
+    }
+
+    private boolean shouldConnect(StepGenerator stepGenerator, int index) {
+        int adjacentIndex = index - 1;
+        return (stepGenerator.generate() == Step.CONNECTED) && (connected.get(adjacentIndex)
+            == Step.BLANK);
+    }
+
+    List<Step> toDto() {
+        return connected.subList(BUFFER_COUNT, connected.size());
+    }
+}
