@@ -6,14 +6,12 @@ import java.util.List;
 public class LadderMaker {
 
     private final LadderSize ladderSize;
-    private final BooleanGenerator booleanGenerator;
 
-    public LadderMaker(final LadderSize ladderSize, final BooleanGenerator booleanGenerator) {
+    public LadderMaker(final LadderSize ladderSize) {
         this.ladderSize = ladderSize;
-        this.booleanGenerator = booleanGenerator;
     }
 
-    public Ladder generate() {
+    public Ladder generate(BooleanGenerator booleanGenerator) {
         List<Line> lines = new ArrayList<>();
 
         for (int height = 0; height < ladderSize.getHeight(); height++) {
