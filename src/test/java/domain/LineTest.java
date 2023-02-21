@@ -13,7 +13,8 @@ public class LineTest {
     @DisplayName("이전 다리가 연결되었다면 이번 다리는 연결하지 않는다.")
     @Test
     void currentPointShouldBeDisconnectedWhenPreviousPointIsConnected() {
-        Line line = new Line(new TestBooleanGenerator(Lists.newArrayList(true)), 3);
+        LineGenerator lineGenerator = new LineGenerator(new TestBooleanGenerator(Lists.newArrayList(true)));
+        Line line = lineGenerator.generateLine(3);
         assertThat(line.getPoints()).containsExactly(Point.CONNECTED, Point.DISCONNECTED);
     }
 
@@ -21,7 +22,8 @@ public class LineTest {
     @ParameterizedTest
     @CsvSource({"0,0", "3,3"})
     void shouldReturnOriginalIndexWhenPointIsDisconnected(int index, int expected) {
-        Line line = new Line(new TestBooleanGenerator(Lists.newArrayList(false, true)), 4);
+        LineGenerator lineGenerator = new LineGenerator(new TestBooleanGenerator(Lists.newArrayList(false, true)));
+        Line line = lineGenerator.generateLine(4);
         assertThat(line.move(index)).isEqualTo(expected);
     }
 
@@ -29,7 +31,8 @@ public class LineTest {
     @ParameterizedTest
     @CsvSource({"1,2", "2,1"})
     void shouldReturnMovedIndexWhenPointIsConnected(int index, int expected) {
-        Line line = new Line(new TestBooleanGenerator(Lists.newArrayList(false, true)), 4);
+        LineGenerator lineGenerator = new LineGenerator(new TestBooleanGenerator(Lists.newArrayList(false, true)));
+        Line line = lineGenerator.generateLine(4);
         assertThat(line.move(index)).isEqualTo(expected);
     }
 }
