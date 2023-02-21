@@ -33,4 +33,14 @@ public class MockInputView implements Input {
         }
         return inputHeightOfLadder.get(orderOfInputHeightOfLadder++);
     }
+
+    @Override
+    public List<String> inputRewards() {
+        return null;
+    }
+
+    @Override
+    public List<String> inputTargetPlayerNames() {
+        return null;
+    }
 }
