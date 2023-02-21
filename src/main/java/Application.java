@@ -11,12 +11,22 @@ import java.util.List;
  */
 public class Application {
     public static void main(String[] args) {
-        List<String> names = InputView.inputPersonName();
         LadderGame ladderGame = new LadderGame();
-        Person person = ladderGame.createPerson(names);
+        Person person = inputPerson(ladderGame);
         int ladderHeight = InputView.inputLadderHeight();
 
         Lines lines = ladderGame.createLines(person.getPerson().size(), ladderHeight);
         OutputView.printResult(person, lines);
+    }
+
+    private static Person inputPerson(LadderGame ladderGame){
+        while (true){
+            try {
+                List<String> names = InputView.inputPersonName();
+                return ladderGame.createPerson(names);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

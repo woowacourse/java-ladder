@@ -15,16 +15,7 @@ class InputVerifier {
     protected static List<String> validateName(String input) {
         validatePeopleNumberOverThanOne(input);
         List<String> names = splitInput(input);
-        validateNameLength(names);
         return names;
-    }
-
-    private static void validateNameLength(List<String> names) {
-        for (String name : names) {
-            if (name.length() > MAX_NAME_LENGTH) {
-                throw new IllegalArgumentException("이름은 최대 5글자 까지만 입력할 수 있습니다.");
-            }
-        }
     }
 
     private static List<String> splitInput(String input) {
