@@ -99,7 +99,17 @@ class SimpleArrayListTest {
     }
 
     @Test
+    @DisplayName("list에 포함된 value면 true를 리턴한다.")
     void contains() {
+        simpleArrayList.add("first");
+
+        assertThat(simpleArrayList.contains("first")).isTrue();
+    }
+
+    @Test
+    @DisplayName("list에 포함되지 않은 value면 false 리턴한다.")
+    void containsFalseTest() {
+        assertThat(simpleArrayList.contains("first")).isFalse();
     }
 
     @Test

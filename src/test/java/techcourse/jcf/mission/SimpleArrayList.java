@@ -76,7 +76,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean contains(String value) {
-        return false;
+        return indexOf(value) >= 0;
     }
 
     @Override
@@ -101,7 +101,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean remove(String value) {
-
+        return true;
     }
 
     @Override
