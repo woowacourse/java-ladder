@@ -71,4 +71,34 @@ public class PlayersTest {
     void getNameTest() {
         assertThat(Players.create(correctPlayerNames).getNames()).isEqualTo(correctPlayerNames);
     }
+
+    @Test
+    @DisplayName("타겟 플레이어 생성 테스트")
+    void createTargetPlayers() {
+        Players createPlayers = Players.create(correctPlayerNames);
+
+        Players targetPlayers = createPlayers.createTargetPlayers(List.of("crong", "honux"));
+
+        assertThat(targetPlayers.getPlayers().get(0)).isEqualTo(new Player(new Name("crong")));
+        assertThat(targetPlayers.getPlayers().get(1)).isEqualTo(new Player(new Name("honux")));
+    }
+
+    @Test
+    @DisplayName("타겟 플레이어 생성 시, 중복 이름 예외 테스트")
+    void createTargetPlayers() {
+        Players createPlayers = Players.create(correctPlayerNames);
+
+        assertThatThrownBy(()->createPlayers.createTargetPlayers(List.of("crong", "crong")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("타겟 플레이어 생성 시, 없는 이름 예외 테스트")
+    void createTargetPlayers() {
+        Players createPlayers = Players.create(correctPlayerNames);
+
+        assertThatThrownBy(()->createPlayers.createTargetPlayers(List.of("crong", "aaaa")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
