@@ -1,12 +1,8 @@
 package view;
 
-import domain.Item;
-import domain.User;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class InputView {
     private static final String USER_NAME_INPUT_GUIDE_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -18,12 +14,10 @@ public class InputView {
     private static final int USER_NAME_SPLIT_LIMIT = -1;
     private final Scanner sc = new Scanner(System.in);
 
-    public List<User> inputUserName() {
+    public List<String> inputUserName() {
         System.out.println(USER_NAME_INPUT_GUIDE_MESSAGE);
-        List<String> users = Arrays.asList(sc.nextLine().split(USER_NAME_SPLIT_CHARACTER, USER_NAME_SPLIT_LIMIT));
-        return users.stream()
-                .map(User::new)
-                .collect(Collectors.toList());
+        return Arrays.asList(sc.nextLine()
+                .split(USER_NAME_SPLIT_CHARACTER, USER_NAME_SPLIT_LIMIT));
     }
 
     public int inputLadderHeight() {
@@ -35,12 +29,10 @@ public class InputView {
         }
     }
 
-    public List<Item> inputItem() {
+    public List<String> inputItem() {
         System.out.println(ITEM_INPUT_GUIDE_MESSAGE);
-        List<String> items = Arrays.asList(sc.nextLine().split(USER_NAME_SPLIT_CHARACTER, USER_NAME_SPLIT_LIMIT));
-        return items.stream()
-                .map(Item::new)
-                .collect(Collectors.toList());
+        return Arrays.asList(sc.nextLine()
+                .split(USER_NAME_SPLIT_CHARACTER, USER_NAME_SPLIT_LIMIT));
     }
 
     public String inputWinner() {
