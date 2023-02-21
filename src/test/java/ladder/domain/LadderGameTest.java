@@ -12,23 +12,39 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class LadderGameTest {
 
-    private LadderGame initializeLadderGame(final List<String> names, final List<Boolean> ladder, final int height) {
-        final Players players = Players.from(names);
+    private LadderGame initializeLadderGame(
+            final List<String> playerNames,
+            final List<Boolean> ladder,
+            final int height,
+            final List<String> itemNames
+    ) {
+        final Players players = Players.from(playerNames);
         final BooleanGenerator booleanGenerator = new TestBooleanGenerator(ladder);
+        final Items items = Items.from(itemNames, players.count());
 
-        return LadderGame.initialize(players, booleanGenerator, height);
+        return LadderGame.initialize(players, booleanGenerator, height, items);
     }
 
     @Test
     void 참가자들의_이름을_반환한다() {
-        final LadderGame ladderGame = initializeLadderGame(List.of("name1", "name2"), List.of(true, true), 2);
+        final LadderGame ladderGame = initializeLadderGame(
+                List.of("name1", "name2"),
+                List.of(true, true),
+                2,
+                List.of("item1", "item2")
+        );
 
         assertThat(ladderGame.getPlayers()).containsExactly("name1", "name2");
     }
 
     @Test
     void 생성된_사다리를_반환한다() {
-        final LadderGame ladderGame = initializeLadderGame(List.of("name1", "name2"), List.of(true, true), 2);
+        final LadderGame ladderGame = initializeLadderGame(
+                List.of("name1", "name2"),
+                List.of(true, true),
+                2,
+                List.of("item1", "item2")
+        );
 
         assertThat(ladderGame.getLadder())
                 .extracting(Line::getLine)
