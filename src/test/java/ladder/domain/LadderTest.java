@@ -7,11 +7,12 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LadderTest {
 
-    private final LineSource make = LineSource.MAKE_LINE;
-    private final LineSource blank = LineSource.MAKE_BLANK;
+    private final LineSource I_____I = LineSource.MAKE_LINE;
+    private final LineSource IxxxxxI = LineSource.MAKE_BLANK;
 
     private static List<Line> getFloorLines(int pos, Ladder ladder) {
         return ladder.getFloors().get(pos - 1).getLines();
@@ -45,8 +46,8 @@ public class LadderTest {
 
     @Test
     @DisplayName("Ladder 1층 생성 테스트")
-    void makeFirstFloorTest() {
-        TestLineSourceGenerator testLineSourceGenerator = new TestLineSourceGenerator(List.of(make, blank, blank));
+    void I_____IFirstFloorTest() {
+        TestLineSourceGenerator testLineSourceGenerator = new TestLineSourceGenerator(List.of(I_____I, IxxxxxI, IxxxxxI));
 
         Ladder ladder = new Ladder(1, new Users(List.of("1", "2", "3", "4")));
         ladder.makeFloors(testLineSourceGenerator);
@@ -60,8 +61,8 @@ public class LadderTest {
 
     @Test
     @DisplayName("Ladder 생성 테스트")
-    void makeFloorTest() {
-        TestLineSourceGenerator testLineSourceGenerator = new TestLineSourceGenerator(List.of(make, blank, blank, make, make, make));
+    void I_____IFloorTest() {
+        TestLineSourceGenerator testLineSourceGenerator = new TestLineSourceGenerator(List.of(I_____I, IxxxxxI, IxxxxxI, I_____I, I_____I, I_____I));
 
         Ladder ladder = new Ladder(2, new Users(List.of("1", "2", "3", "4")));
         ladder.makeFloors(testLineSourceGenerator);
@@ -83,10 +84,53 @@ public class LadderTest {
     void testForStraightBridge() {
         final Users users = new Users(List.of("a", "b", "c", "d"));
         final Ladder ladder = new Ladder(8, users);
-        ladder.makeFloors(new TestLineSourceGenerator(List.of(LineSource.MAKE_BLANK)));
+        ladder.makeFloors(new TestLineSourceGenerator(List.of(IxxxxxI)));
         for (int i = 0; i < users.size(); i++) {
             assertThat(ladder.resultPositionOf(i)).isEqualTo(i);
         }
+    }
+
+    @Test
+    @DisplayName("2줄 짜리 꼬인 사다리 테스트")
+    void SecondFloorBridgeTest() {
+        final Users users = new Users(List.of("a", "b"));
+        final Ladder ladder = new Ladder(2, users);
+        ladder.makeFloors(new TestLineSourceGenerator(List.of(
+                I_____I,
+                IxxxxxI
+        )));
+        assertAll(
+                () -> {
+                    assertThat(ladder.resultPositionOf(0)).isEqualTo(1);
+                },
+                () -> {
+                    assertThat(ladder.resultPositionOf(1)).isEqualTo(0);
+                }
+        );
+    }
+
+    @Test
+    @DisplayName("3명으로 구성된 3층 사다리 테스트")
+    void testForBridge() {
+        final Users users = new Users(List.of("a", "b", "c"));
+        final Ladder ladder = new Ladder(3, users);
+        ladder.makeFloors(new TestLineSourceGenerator(List.of(
+                I_____I, IxxxxxI,
+                IxxxxxI, I_____I,
+                IxxxxxI, IxxxxxI
+        )));
+
+        assertAll(
+                () -> {
+                    assertThat(ladder.resultPositionOf(0)).isEqualTo(2);
+                },
+                () -> {
+                    assertThat(ladder.resultPositionOf(1)).isEqualTo(0);
+                },
+                () -> {
+                    assertThat(ladder.resultPositionOf(2)).isEqualTo(1);
+                }
+        );
     }
 
 }
