@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class Direction {
     private final Bar leftBar;
     private final Bar rightBar;
@@ -43,5 +45,18 @@ public class Direction {
     
     private int minusPosition(int beforePosition) {
         return beforePosition - 1;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Direction direction = (Direction) o;
+        return leftBar == direction.leftBar && rightBar == direction.rightBar;
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(leftBar, rightBar);
     }
 }

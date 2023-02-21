@@ -45,9 +45,10 @@ public class OutputView {
     }
 
     private static String parseLine(Line line) {
-        return line.getBars().stream()
-                .map(OutputView::parseBar)
-                .collect(Collectors.joining("|", "", "|"));
+//        return line.getBars().stream()
+//                .map(OutputView::parseBar)
+//                .collect(Collectors.joining("|", "", "|"));
+        return null;
     }
 
     private static String parseBar(Bar bar) {
