@@ -20,7 +20,7 @@ public class LineTest {
 
         //when + then
         assertThatThrownBy(() -> new Line(players, blocks))
-                .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -35,5 +35,31 @@ public class LineTest {
 
         //then
         Assertions.assertThat(result).isEqualTo(expect);
+    }
+
+    @Test
+    void 앞_블록이_건널_수_있으면_뒤의_불록은_건널_수_없다() {
+        //given
+        TestGenerator testGenerator = new TestGenerator(new ArrayList<>(List.of(true)));
+
+        //when
+        Line line = Line.generateLine(testGenerator, players);
+
+        //then
+        Assertions.assertThat(line.getLine()).containsExactly(true, false);
+    }
+
+    class TestGenerator implements BooleanGenerator {
+
+        private final List<Boolean> testData;
+
+        private TestGenerator(List<Boolean> testData) {
+            this.testData = testData;
+        }
+
+        @Override
+        public boolean generate() {
+            return testData.remove(0);
+        }
     }
 }
