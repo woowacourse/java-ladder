@@ -7,7 +7,7 @@ public class ResultDto {
     private final List<String> playerNames;
     private final List<String> gameResult;
 
-    public ResultDto(List<String> playerNames, List<String> gameResult) {
+    public ResultDto(final List<String> playerNames, final List<String> gameResult) {
         this.playerNames = List.copyOf(playerNames);
         this.gameResult = List.copyOf(gameResult);
     }

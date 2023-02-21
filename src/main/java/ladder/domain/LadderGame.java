@@ -15,7 +15,7 @@ public class LadderGame {
     private final Result result;
     private final ResultStorage resultStorage;
 
-    public LadderGame(List<String> names, int height, List<String> results, BooleanGenerator booleanGenerator) {
+    public LadderGame(final List<String> names, final int height, final List<String> results, final BooleanGenerator booleanGenerator) {
         this.playerNames = new PlayerNames(names);
         this.ladderSize = new LadderSize(names.size() - 1, height);
         LadderMaker ladderMaker = new LadderMaker(ladderSize);
@@ -33,7 +33,7 @@ public class LadderGame {
         }
     }
 
-    private int getEachPlayerResult(int height, int ladderLocation) {
+    private int getEachPlayerResult(final int height, final int ladderLocation) {
         if (height >= ladderSize.getHeight()) {
             return ladderLocation;
         }
@@ -46,14 +46,14 @@ public class LadderGame {
         return getEachPlayerResult(height + DOWN, updatedLadderLocation);
     }
 
-    private int decideRow(int height, int ladderLocation) {
+    private int decideRow(final int height, final int ladderLocation) {
         if (ladderLocation == 0 || ladderLocation == playerNames.getPlayerCount() - 1) {
             return decideRowAtEndPoint(height, ladderLocation);
         }
         return decideRowAtNormal(height, ladderLocation);
     }
 
-    private int decideRowAtEndPoint(int height, int ladderLocation) {
+    private int decideRowAtEndPoint(final int height, final int ladderLocation) {
         if (ladderLocation == 0 && ladder.getLines().get(height).isConnectedAt(ladderLocation) == ConnectionStatus.CONNECTED) {
             return RIGHT;
         }
@@ -65,7 +65,7 @@ public class LadderGame {
         return STAY;
     }
 
-    private int decideRowAtNormal(int height, int ladderLocation) {
+    private int decideRowAtNormal(final int height, final int ladderLocation) {
         if (ladder.getLines().get(height).isConnectedAt(ladderLocation) == ConnectionStatus.CONNECTED) {
             return RIGHT;
         }
@@ -89,14 +89,14 @@ public class LadderGame {
         return result.getResults();
     }
 
-    public ResultDto getGameResult(String playerName) {
-        if(playerName.equals("all")) {
+    public ResultDto getGameResult(final String playerName) {
+        if (playerName.equals("all")) {
             return getGameResultByAll();
         }
         return getGameResultByPlayerName(playerName);
     }
 
-    private ResultDto getGameResultByPlayerName(String playerName) {
+    private ResultDto getGameResultByPlayerName(final String playerName) {
         return new ResultDto(List.of(playerName), List.of(resultStorage.get(playerNames.getNames().indexOf(playerName))));
     }
 
