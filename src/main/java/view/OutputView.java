@@ -16,18 +16,16 @@ public class OutputView {
     private static final String CONNECTED_LINE = "-----";
     private static final String UNCONNECTED_LINE = "     ";
     private static final String NAME_SPACE = " ";
-    private static final String PRINT_RESULT_MASSAGE = "\n실행 결과";
-
-    public void printLadderResult() {
+    public void printResult(List<Name> names, Ladder ladder) {
         System.out.println(RESULT_ANNOUNCEMENT);
+        printNames(names);
+        printLadder(ladder);
     }
-
     public void printLadder(Ladder ladder) {
         for (Layer layer : ladder.getLayers()) {
             printLayer(layer);
         }
     }
-
     private void printLayer(Layer layer) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(FRONT_SPACE).append(LINE_DELIMITER);
@@ -35,14 +33,12 @@ public class OutputView {
         lines.forEach(line -> stringBuilder.append(selectLine(line)).append(LINE_DELIMITER));
         System.out.println(stringBuilder);
     }
-
     private String selectLine(boolean line) {
         if (line) {
             return CONNECTED_LINE;
         }
         return UNCONNECTED_LINE;
     }
-
     public void printNames(final List<Name> names) {
         StringBuilder stringBuilder = new StringBuilder();
         names.forEach(name -> {
@@ -50,21 +46,5 @@ public class OutputView {
             stringBuilder.append(NAME_SPACE.repeat(difference)).append(name.get());
         });
         System.out.println(stringBuilder);
-    }
-
-    public void printResult() {
-        System.out.println(PRINT_RESULT_MASSAGE);
-    }
-
-    public void printTargetResult(String goodsName) {
-        System.out.println(goodsName);
-    }
-
-    public void printAllTargetResult(List<Player> playerList, List<Name> goodsList) {
-        Player player;
-        for (int i = 0; i < playerList.size(); i++) {
-            player = playerList.get(i);
-            System.out.println(player.getName() + " : " + goodsList.get(player.getPosition()).get());
-        }
     }
 }
