@@ -1,13 +1,13 @@
 package ladder.domain.generator;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class RandomPointGenerator implements PointGenerator {
 
-    private static final Random random = new Random();
+    private static final SecureRandom secureRandom = new SecureRandom();
 
     @Override
     public boolean generate() {
-        return random.nextBoolean();
+        return secureRandom.nextBoolean();
     }
 }
