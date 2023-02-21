@@ -33,9 +33,16 @@ public class Names {
     }
 
     public String findNameByIndex(int index) {
+        validateIndex(index);
         Name target = names.get(index);
 
         return target.getName();
+    }
+
+    private void validateIndex(int index) {
+        if (index < 0 || index >= names.size()) {
+            throw new IllegalStateException("관리하고 있는 names의 index 범위를 벗어났습니다.");
+        }
     }
 
     public int findIndexByName(String name) {
