@@ -13,9 +13,10 @@ public class OutputView {
     private static final String LINE_DELIMITER = "|";
     private static final String NAME_DELIMITER = " ";
 
-    public void printLadderGameResult(UsersDto usersDto) {
+    public void printLadderGameResult(UsersDto usersDto, LadderDto ladderDto) {
         System.out.println(OUTPUT_EXECUTE_MESSAGE);
         System.out.println(" " + printUserNames(usersDto.getUserNames()));
+        printLadder(ladderDto);
     }
 
     private String printUserNames(List<String> userNames) {
@@ -41,7 +42,7 @@ public class OutputView {
         return nameBuilder.toString();
     }
 
-    public void printLadder(LadderDto ladderDto) {
+    private void printLadder(LadderDto ladderDto) {
         for (Line line : ladderDto.getLines()) {
             printLine(LineDto.from(line));
             System.out.println();

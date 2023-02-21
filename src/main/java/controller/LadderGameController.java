@@ -28,8 +28,7 @@ public class LadderGameController {
     }
 
     public void run() {
-        outputView.printLadderGameResult(UsersDto.from(users));
-        outputView.printLadder(LadderDto.from(ladder));
+        outputView.printLadderGameResult(UsersDto.from(users), LadderDto.from(ladder));
     }
 
     private Users initializeUsers() {
