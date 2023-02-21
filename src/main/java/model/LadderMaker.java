@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import strategy.PassGenerator;
 
 public class LadderMaker {
@@ -42,7 +43,10 @@ public class LadderMaker {
         return Path.calculatePath(generator.generate());
     }
 
-    public Ladder getLadder() {
+    public Ladder findLadder() {
+        if (Objects.isNull(ladder)) {
+            throw new IllegalStateException("사다리가 생성되지 않았습니다.");
+        }
         return ladder;
     }
 }

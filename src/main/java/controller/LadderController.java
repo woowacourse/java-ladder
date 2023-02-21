@@ -33,7 +33,7 @@ public class LadderController {
             LadderResults ladderResults = inputLadderResults(participants.getTotalParticipantSize());
             initLadder(ladderMaker, participants.getTotalParticipantSize());
             printLadder(ladderMaker, participants, ladderResults);
-            LadderGame ladderGame = LadderGame.of(participants, ladderMaker.getLadder(), ladderResults);
+            LadderGame ladderGame = LadderGame.of(participants, ladderMaker.findLadder(), ladderResults);
             printLadderGame(ladderGame);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
@@ -72,7 +72,7 @@ public class LadderController {
     private void printLadder(LadderMaker ladderMaker, Names names, LadderResults ladderResults) {
         outputView.noticeLadderResult();
 
-        Ladder ladder = ladderMaker.getLadder();
+        Ladder ladder = ladderMaker.findLadder();
 
         outputView.printNameOfParticipants(names);
         outputView.printLadder(ladder);
