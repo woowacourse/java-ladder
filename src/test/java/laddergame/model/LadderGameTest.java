@@ -1,0 +1,42 @@
+package laddergame.model;
+
+import static org.assertj.core.api.AssertionsForClassTypes.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import laddergame.model.Ladder.Height;
+import laddergame.model.Ladder.Ladder;
+import laddergame.model.Ladder.Line;
+
+class LadderGameTest {
+    @Test
+    @DisplayName("오류 없는 값으로 생성자를 생성하면 오류가 발생하지 않는다.")
+    void Should_Success_When_ResultInput() {
+        Participants participants = new Participants(List.of("name1", "name2", "name3"));
+        Height height = new Height(2);
+        Ladder ladder = new Ladder(height, participants);
+        Rewards rewards = new Rewards(List.of("꽝", "1000", "2000"), participants);
+        assertDoesNotThrow(() -> new LadderGame(ladder, rewards));
+    }
+
+    @Test
+    @DisplayName("원하는 값을 입력했을때 사다리와 리워드 매칭이 똑같아야 한다")
+    void Should_Equals_ExpectedWithRunResult(){
+        Participants participants = new Participants(List.of("name1", "name2", "name3"));
+        Height height = new Height(2);
+        List<Line> lines = new ArrayList<>();
+        lines.add(new Line(List.of(true, false)));
+        lines.add(new Line(List.of(false, true)));
+        Ladder ladder = new Ladder(height, participants, lines);
+        Rewards rewards = new Rewards(List.of("꽝", "1000", "2000"), participants);
+        LadderGame ladderGame = new LadderGame(ladder, rewards);
+        assertThat(ladderGame.getReward("name1")).isEqualTo("2000");
+    }
+
+
+}
