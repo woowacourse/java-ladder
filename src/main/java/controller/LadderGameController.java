@@ -1,12 +1,13 @@
 package controller;
 
-import domain.Game;
+import domain.GameResultCalculator;
 import domain.Height;
 import domain.Ladder;
 import domain.LadderResults;
 import domain.Lines;
 import domain.Players;
 import java.util.List;
+import utils.GameResultCalculatorFactory;
 import utils.LadderResultsFactory;
 import view.InputView;
 import view.OutputView;
@@ -25,19 +26,20 @@ public class LadderGameController {
         Players players = makePlayers();
         LadderResults ladderResults = makeLadderResults(players.findNumberOfPlayers());
         Ladder ladder = makeLadder(players.findNumberOfPlayers());
-        Game game = new Game(players, ladder, ladderResults);
+        GameResultCalculator gameResultCalculator = GameResultCalculatorFactory.createGameResultCalculator(players,
+                ladder, ladderResults);
 
         outputView.printLadderGameStatus(players, ladder, ladderResults);
 
-        printResultOfPlayer(game);
+        printResultOfPlayer(gameResultCalculator);
     }
 
-    private void printResultOfPlayer(final Game game) {
+    private void printResultOfPlayer(final GameResultCalculator gameResultCalculator) {
         String command = "";
 
         while (!command.equals("all")) {
             command = makeCommand();
-            outputView.printResult(game, command);
+            outputView.printResult(gameResultCalculator.findGameResult(), command);
         }
     }
 

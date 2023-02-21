@@ -1,6 +1,5 @@
 package view;
 
-import domain.Game;
 import domain.Ladder;
 import domain.LadderResult;
 import domain.LadderResults;
@@ -129,21 +128,26 @@ public class OutputView {
         return ladderResultsOutput.toString();
     }
 
-    public void printResult(final Game game, final String command) {
+    public void printResult(final Map<Player, LadderResult> gameResult, final String command) {
         System.out.println(NEW_LINE + "실행 결과");
-        System.out.println(drawResult(game, command) + NEW_LINE);
+        System.out.println(drawResult(gameResult, command) + NEW_LINE);
     }
 
-    private String drawResult(final Game game, final String command) {
+    private String drawResult(final Map<Player, LadderResult> gameResult, final String command) {
         if (command.equals("all")) {
-            return drawAllResults(game);
+            return drawAllResults(gameResult);
         }
-        return game.findPlayerResult(command);
+
+        Player player = gameResult.keySet().stream()
+                .filter(player1 -> player1.getName().equals(command))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+
+        return gameResult.get(player).getResult();
     }
 
-    private String drawAllResults(final Game game) {
-        Map<Player, LadderResult> playersWithResult = game.findGameResults();
-        StringBuilder output = makePlayersResultOutput(playersWithResult);
+    private String drawAllResults(final Map<Player, LadderResult> gameResult) {
+        StringBuilder output = makePlayersResultOutput(gameResult);
         return output.toString();
     }
 

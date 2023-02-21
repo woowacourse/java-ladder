@@ -32,10 +32,6 @@ public class LadderResults {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public String getLadderResultOfIndex(final int index) {
-        return ladderResults.get(index).getResult();
-    }
-
     public HashMap<Integer, LadderResult> getLadderResults() {
         return ladderResults;
     }
