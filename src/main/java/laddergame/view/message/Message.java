@@ -6,7 +6,8 @@ public enum Message {
     INPUT_LADDER_RESULT_GUIDE("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"),
     LADDER_RESULT_GUIDE("사다리 결과"),
     INPUT_RESULT_PARTICIPANT_NAME("결과를 보고 싶은 사람은?"),
-    RESULT_GAME_GUIDE("실행 결과");
+    RESULT_GAME_GUIDE("실행 결과"),
+    EXIT_INPUT_MESSAGE("EXIT");
 
     private final String message;
 

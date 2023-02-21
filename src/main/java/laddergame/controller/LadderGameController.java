@@ -12,8 +12,7 @@ import laddergame.view.OutputView;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static laddergame.view.message.Message.LADDER_RESULT_GUIDE;
-import static laddergame.view.message.Message.RESULT_GAME_GUIDE;
+import static laddergame.view.message.Message.*;
 
 public class LadderGameController {
 
@@ -35,10 +34,7 @@ public class LadderGameController {
         Ladder ladder = createLadder(participantSize);
         printLadderResult(participants, ladder, ladderResult);
         List<Integer> ladderResultPositions = ladder.startGame(participantSize);
-
-        while (true) {
-            printGameResult(participants, ladderResult, ladderResultPositions);
-        }
+        printGameResultWithRetry(participants, ladderResult, ladderResultPositions);
     }
 
     private Participants createParticipants() {
@@ -72,7 +68,8 @@ public class LadderGameController {
     }
 
     private List<String> getParticipantNames(final Participants participants) {
-        return participants.getParticipants().stream()
+        return participants.getParticipants()
+                .stream()
                 .map(Participant::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
@@ -84,17 +81,42 @@ public class LadderGameController {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private void printGameResult(final Participants participants, final LadderResult ladderResult, final List<Integer> ladderResultPositions) {
-        List<Participant> resultParticipants = getResultParticipants(participants);
-        OutputView.print(System.lineSeparator() + RESULT_GAME_GUIDE.getMessage());
-        List<String> ladderResultNames = ladderResult.getResultNamesByPosition(ladderResultPositions);
-        outputView.printLadderGameResult(resultParticipants, ladderResultNames);
+    private void printGameResultWithRetry(final Participants participants,
+                                          final LadderResult ladderResult,
+                                          final List<Integer> ladderResultPositions) {
+        List<Participant> resultParticipants;
+        do {
+            resultParticipants = getResultParticipants(participants);
+            printGameResult(resultParticipants, ladderResult, ladderResultPositions);
+        } while (isProceed(resultParticipants));
     }
 
     private List<Participant> getResultParticipants(final Participants participants) {
         return inputView.getInputWithRetry(() -> {
             String resultParticipantName = inputView.getResultParticipantName();
-            return participants.getResultParticipants(resultParticipantName);
+            return getParticipants(participants, resultParticipantName);
         });
+    }
+
+    private List<Participant> getParticipants(final Participants participants, final String resultParticipantName) {
+        if (resultParticipantName.equalsIgnoreCase(EXIT_INPUT_MESSAGE.getMessage())) {
+            return null;
+        }
+        return participants.getResultParticipants(resultParticipantName);
+    }
+
+    private boolean isProceed(final List<Participant> resultParticipants) {
+        return resultParticipants != null;
+    }
+
+    private void printGameResult(final List<Participant> resultParticipants,
+                                 final LadderResult ladderResult,
+                                 final List<Integer> ladderResultPositions) {
+        if (resultParticipants == null) {
+            return;
+        }
+        OutputView.print(System.lineSeparator() + RESULT_GAME_GUIDE.getMessage());
+        List<String> ladderResultNames = ladderResult.getResultNamesByPosition(ladderResultPositions);
+        outputView.printLadderGameResult(resultParticipants, ladderResultNames);
     }
 }
