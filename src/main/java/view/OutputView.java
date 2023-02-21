@@ -1,8 +1,7 @@
 package view;
 
-import static domain.LadderFormat.getConnectionStatus;
+import static domain.LadderConnectionStatus.getConnectionStatus;
 import static domain.Name.MAX_NAME_LENGTH;
-import static domain.LadderFormat.LADDER_COLUMN;
 
 import domain.Ladder;
 import domain.Line;
@@ -18,6 +17,7 @@ public class OutputView {
     private final String BLANK = " ";
     private final char NEXT_LINE = '\n';
     private final int SECOND_USER_INDEX = 1;
+    private final char LADDER_COLUMN = '|';
 
     public void printEnterUserNotice() {
         System.out.println(USER_ENTER_NOTICE_MESSAGE);
@@ -59,7 +59,7 @@ public class OutputView {
         StringBuilder result = new StringBuilder();
         for (Line line : ladder.getLines()) {
             result.append(BLANK.repeat(width))
-                .append(LADDER_COLUMN.getFormat());
+                .append(LADDER_COLUMN);
             appendLine(result, line);
             result.append(NEXT_LINE);
         }
@@ -69,7 +69,7 @@ public class OutputView {
     private void appendLine(StringBuilder result, Line line) {
         for (Boolean point : line.getPoints()) {
             result.append(getConnectionStatus(point));
-            result.append(LADDER_COLUMN.getFormat());
+            result.append(LADDER_COLUMN);
         }
     }
 }
