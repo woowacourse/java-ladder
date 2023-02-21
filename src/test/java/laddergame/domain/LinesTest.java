@@ -19,6 +19,7 @@ class LinesTest {
     @Test
     void throwExceptionWhenLinesIsNull() {
         final List<Line> lines = null;
+
         assertThatThrownBy(() -> new Lines(lines))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -27,6 +28,7 @@ class LinesTest {
     @Test
     void throwExceptionWhenLinesIsEmpty() {
         final List<Line> lines = List.of();
+
         assertThatThrownBy(() -> new Lines(lines))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -46,6 +48,31 @@ class LinesTest {
         final List<Line> findLines = lines.getLines();
 
         assertThat(findLines).hasSize(inputLines.size());
+    }
+
+    @DisplayName("가로 세로 위치로 포인트를 가져온다.")
+    @Test
+    void getPointByColumnAndRow() {
+        final List<Line> lineValues = List.of(
+                new Line(List.of(true, false)),
+                new Line(List.of(true, false)));
+        final Lines lines = new Lines(lineValues);
+        final Position column = new Position(0);
+        final Position row = new Position(0);
+        final boolean isPointTrue = lines.getPointByColumnAndRow(column, row);
+
+        assertThat(isPointTrue).isTrue();
+    }
+
+    @DisplayName("라인의 세로 길이는 라인 사이즈와 동일하다.")
+    @ParameterizedTest
+    @MethodSource("linesParameterDummy")
+    void getHeight(final List<Line> inputLines) {
+        final Lines lines = new Lines(inputLines);
+        final Height height = lines.getHeight();
+        final int linesSize = inputLines.size();
+
+        assertThat(height.getValue()).isEqualTo(linesSize);
     }
 
     static Stream<Arguments> linesParameterDummy() {
