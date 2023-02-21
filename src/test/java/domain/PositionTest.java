@@ -20,4 +20,12 @@ class PositionTest {
         assertThat(positionTwo).extracting("position")
                 .isEqualTo(4);
     }
+
+    @Test
+    @DisplayName("position은 내부 int position만 같으면 같은 값으로 취급한다.")
+    void positionEqualCheckByField() {
+        final Position positionOne = Position.from(4);
+        final Position positionTwo = Position.from(4);
+        assertThat(positionOne).isEqualTo(positionTwo);
+    }
 }
