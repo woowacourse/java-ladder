@@ -2,16 +2,18 @@ package laddergame.view;
 
 import java.util.List;
 
+import laddergame.model.LadderGame;
 import laddergame.model.Rewards;
 import laddergame.model.Ladder.Ladder;
 import laddergame.model.Participants;
 
 public class OutputView {
-    private static final String RESULT_MSG = "실행결과";
+    private static final String LADDER_RESULT_MSG = System. lineSeparator()+ "사다리 결과";
+    private static final String RESULT_MSG = System. lineSeparator()+ "실행결과";
     private static final String VERTICAL_LINE = "|";
 
     public void printResult(Ladder ladder, Participants participants, Rewards rewards) {
-        System.out.println(RESULT_MSG);
+        System.out.println(LADDER_RESULT_MSG);
         printPersons(participants);
         printLadder(ladder);
         printExecutionResults(rewards);
@@ -43,5 +45,19 @@ public class OutputView {
             System.out.print(LineSymbol.findByBool(bool).getSymbol());
             System.out.print(VERTICAL_LINE);
         }
+    }
+
+    public void printReward(LadderGame ladderGame, String name) {
+        System.out.println(RESULT_MSG);
+        if("all".equals(name)){
+            printAllRewards(ladderGame);
+            return;
+        }
+        System.out.println(ladderGame.getReward(name));
+    }
+
+    private void printAllRewards(LadderGame ladderGame) {
+        ladderGame.getMatching().forEach((key, value) ->
+            System.out.println(key + " : " + value));
     }
 }

@@ -3,6 +3,7 @@ package laddergame.controller;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import laddergame.model.LadderGame;
 import laddergame.model.Rewards;
 import laddergame.model.Ladder.Height;
 import laddergame.model.Ladder.Ladder;
@@ -20,7 +21,20 @@ public class LadderGameController {
         Height height = generate(inputView::readLadderHeight, Height::new);
         Ladder ladder = new Ladder(height, participants);
         outputView.printResult(ladder, participants, rewards);
+        LadderGame ladderGame = new LadderGame(ladder, rewards, participants);
+        printReward(ladderGame);
         inputView.closeScanner();
+    }
+
+    private void printReward(LadderGame ladderGame) {
+        try{
+            String name = inputView.readParticipantWantToSee();
+            ladderGame.checkParticipant(name);
+            outputView.printReward(ladderGame, name);
+        } catch (IllegalArgumentException e) {
+            inputView.printErrorMsg(e.getMessage());
+            printReward(ladderGame);
+        }
     }
 
     private <T, R> R generate(Supplier<T> supplier, Function<T, R> function) {

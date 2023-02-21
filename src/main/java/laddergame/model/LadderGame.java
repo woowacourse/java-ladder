@@ -1,5 +1,6 @@
 package laddergame.model;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,5 +21,15 @@ public class LadderGame {
 
     public String getReward(String name) {
         return matching.get(name);
+    }
+
+    public void checkParticipant(String name) {
+        if (!name.equals("all") && !matching.containsKey(name)) {
+            throw new IllegalArgumentException("참여자명이 올바르지 않습니다.");
+        }
+    }
+
+    public Map<String, String> getMatching() {
+        return Collections.unmodifiableMap(matching);
     }
 }
