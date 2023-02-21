@@ -21,6 +21,7 @@ public enum LadderShape {
         stringBuilder.append(generateFirstWall(maxLength));
         for (boolean point : points) {
             appendLineForm(point, stringBuilder, maxLength);
+            stringBuilder.append(WALL.shape);
         }
         return stringBuilder;
     }
@@ -33,12 +34,12 @@ public enum LadderShape {
         return firstWall;
     }
 
-    private static void appendLineForm(boolean point, StringBuilder stringBuilder, int maxLine) {
-        if (point) {
-            stringBuilder.append(generateConnectLine(maxLine)).append(WALL.shape);
+    private static void appendLineForm(boolean isConnected, StringBuilder stringBuilder, int maxLine) {
+        if (isConnected) {
+            stringBuilder.append(generateConnectLine(maxLine));
             return;
         }
-        stringBuilder.append(generateDisconnectLine(maxLine)).append(WALL.shape);
+        stringBuilder.append(generateDisconnectLine(maxLine));
     }
 
     private static String generateConnectLine(int maxLength) {
