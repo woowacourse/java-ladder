@@ -5,7 +5,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 
-class Items {
+public class Items {
     private static final String INVALID_ITEM_COUNT_MESSAGE = "참가인원과 동일한 개수의 실행결과를 입력해야 합니다.";
 
     private final List<Item> items;
