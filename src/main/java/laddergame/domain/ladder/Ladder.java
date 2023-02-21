@@ -20,7 +20,7 @@ public class Ladder {
         return new Ladder(ladderRungs);
     }
 
-    public Integer startGame(final int participantOrder) {
+    public int startGame(final int participantOrder) {
         int finalRungPosition = participantOrder;
         finalRungPosition = getFinalRungPosition(finalRungPosition);
         return finalRungPosition;

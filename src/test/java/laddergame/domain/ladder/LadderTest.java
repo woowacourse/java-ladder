@@ -61,9 +61,11 @@ public class LadderTest {
                 .hasMessage(String.format(RangeException.errorMessage, 1, 10_000));
     }
 
+    @ParameterizedTest
     @CsvSource(value = {"0:1", "1:0", "2:3", "3:2"}, delimiter = ':')
     @DisplayName("참여자의 순서대로 사다리 게임을 진행하면, 최종 사다리 결과 위치를 반환한다.")
-    void start_givenParticipantCount_thenReturnLadderResultPosition(final int participantOrder, final int expectedResultPosition) {
+    void start_givenParticipantCount_thenReturnLadderResultPosition(final int participantOrder,
+                                                                    final int expectedResultPosition) {
         // given
         final BooleanGenerator trueRungGenerator = () -> true;
         final String ladderHeight = "5";

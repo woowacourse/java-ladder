@@ -1,5 +1,7 @@
 package laddergame.domain.ladder_result;
 
+import laddergame.domain.ladder.Ladder;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,10 +26,9 @@ public class LadderResult {
         return new LadderResult(resultNames, participantCount);
     }
 
-    public List<String> getResultNamesByPosition(final List<Integer> ladderResultPositions) {
-        return ladderResultPositions.stream()
-                .map(position -> resultNames.get(position).getName())
-                .collect(Collectors.toUnmodifiableList());
+    public String getNameByParticipant(final int participantOrder, final Ladder ladder) {
+        int finalPosition = ladder.startGame(participantOrder);
+        return resultNames.get(finalPosition).getName();
     }
 
     private List<String> splitResults(final String resultNames) {
