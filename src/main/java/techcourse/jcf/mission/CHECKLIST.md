@@ -10,8 +10,8 @@
 - [x] int indexOf(String value);
 - [x] int size();
 - [x] boolean isEmpty();
-- [ ] boolean remove(String value);
-- [ ] String remove(int index);
+- [x] boolean remove(String value);
+- [x] String remove(int index);
 - [x] void clear();
 
 ### SimpleLinkedList

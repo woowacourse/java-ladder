@@ -139,7 +139,21 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String remove(int index) {
-        return null;
+        if(index >= size){
+            throw new IndexOutOfBoundsException();
+        }
+
+        if(index == size-1){
+            size--;
+            return array[index];
+        }
+
+        String returnValue = array[index];
+        for(int i = index; i < size - 1; i++) {
+            array[i] = array[i+1];
+        }
+        size--;
+        return returnValue;
     }
 
     @Override
