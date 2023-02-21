@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class People implements Iterable<Person> {
+
     public static final int MIN_PERSON_COUNT = 2;
     public static final String DELIMITER = ",";
 

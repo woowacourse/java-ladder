@@ -7,29 +7,35 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Results implements Iterable<Result> {
+
     private static final String DELIMITER = ",";
 
     private final List<Result> results;
 
     public Results(String result, People people) {
-        this.results = validateAndGet(result.split(DELIMITER), people);
+        this.results = validateAndGet(result, people);
     }
 
     public Results(List<Result> results) {
         this.results = results;
     }
 
-    private List<Result> validateAndGet(String[] stringArray, People people) {
-        if (stringArray.length != people.getCount()) {
+    private List<Result> validateAndGet(String results, People people) {
+        String[] split = results.split(DELIMITER);
+        if (split.length != people.getCount()) {
             throw new IllegalArgumentException("실행 결과의 수는 사람 수와 같아야 합니다");
         }
-        return Arrays.stream(stringArray)
+        return Arrays.stream(split)
                 .map(Result::new)
                 .collect(Collectors.toList());
     }
 
     public Result getByIndex(Position position) {
         return results.get(position.getColumn());
+    }
+
+    public Result getByIndex(int index) {
+        return results.get(index);
     }
 
     @Override
@@ -52,9 +58,5 @@ public class Results implements Iterable<Result> {
     @Override
     public Iterator<Result> iterator() {
         return results.iterator();
-    }
-
-    public Result getByIndex(int index) {
-        return results.get(index);
     }
 }
