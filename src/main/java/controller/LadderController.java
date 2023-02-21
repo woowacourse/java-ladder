@@ -23,6 +23,13 @@ public class LadderController {
 
         while (true) {
             Name name = generateName();
+            if (name.getName().equals("all")) {
+                for (int i = 0; i < names.getNames().size(); i++) {
+                    int result = ladder.move(i);
+                    System.out.printf("%s : %s%n", names.getNames().get(i).getName(), results.getNames().get(result).getName());
+                }
+                break;
+            }
             int index = names.findByName(name.getName());
 
             int result = ladder.move(index);
