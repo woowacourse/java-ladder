@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 import java.text.MessageFormat;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -13,11 +14,22 @@ public class Name {
 
     private final String value;
 
-
     public Name(final String inputName) {
-        final String value = Optional.ofNullable(inputName).orElse(DEFAULT_NAME);
+        final String value = getValue(inputName);
         validateName(value);
         this.value = value;
+    }
+
+    public boolean isSame(final String name) {
+        return value.equals(name);
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    private String getValue(final String inputName) {
+        return Optional.ofNullable(inputName).orElse(DEFAULT_NAME);
     }
 
     private void validateName(final String value) {
@@ -30,7 +42,20 @@ public class Name {
         }
     }
 
-    public String getValue() {
-        return value;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Name)) {
+            return false;
+        }
+        Name name = (Name) o;
+        return value.equals(name.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
