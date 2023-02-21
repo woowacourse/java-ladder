@@ -97,10 +97,10 @@ public class LadderGame {
     }
 
     private ResultDto getGameResultByPlayerName(final String playerName) {
-        return new ResultDto(List.of(playerName), List.of(resultStorage.get(playerNames.getNames().indexOf(playerName))));
+        return new ResultDto(List.of(playerName), List.of(resultStorage.get(playerNames.getNames().indexOf(playerName))), Boolean.FALSE);
     }
 
     private ResultDto getGameResultByAll() {
-        return new ResultDto(playerNames.getNames(), resultStorage.getAll());
+        return new ResultDto(playerNames.getNames(), resultStorage.getAll(), Boolean.TRUE);
     }
 }
