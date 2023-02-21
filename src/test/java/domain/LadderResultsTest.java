@@ -11,18 +11,18 @@ import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 
-class LaddersResultTest {
+class LadderResultsTest {
 
-    @DisplayName("사다리 결과가 요구사항에 충족할 경우")
+    @DisplayName("사다리 결과들의 입력값이 요구사항에 충족할 경우")
     @Test
     void createSuccess() {
-        LadderResults ladderResult = new LadderResults("1000,5000");
-        List<String> results = ladderResult.getResults();
+        LadderResults ladderResults = new LadderResults("1000,5000");
+        List<String> results = ladderResults.getResults();
         Assertions.assertThat(results).hasSize(2);
         Assertions.assertThat(results).containsExactly("1000", "5000");
     }
 
-    @DisplayName("사다리 결과가 요구사항에 맞지 않는 경우")
+    @DisplayName("사다리 결과들의 입력값이 요구사항에 맞지 않는 경우")
     @TestFactory
     Stream<DynamicTest> createFail() {
         return Stream.of(
