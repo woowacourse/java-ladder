@@ -4,15 +4,15 @@
 
 ### 미션 1 - SimpleArrayList
 
-- [ ] node 클래스/객체 구현
-- [ ] add 메서드 구현
-- [ ] set/get 메서드 구현
-- [ ] contains 메서드 구현
-- [ ] indexOf 메서드 구현
-- [ ] size 메서드 구현
-- [ ] isEmpty 메서드 구현
-- [ ] remove 메서드 구현
-- [ ] clear 메서드 구현
+- [x] node 클래스/객체 구현
+- [x] add 메서드 구현
+- [x] set/get 메서드 구현
+- [x] contains 메서드 구현
+- [x] indexOf 메서드 구현
+- [x] size 메서드 구현
+- [x] isEmpty 메서드 구현
+- [x] remove 메서드 구현
+- [x] clear 메서드 구현
 
 ### 미션 2 - SimpleLinkedList
 
