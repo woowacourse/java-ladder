@@ -1,10 +1,10 @@
 package domain;
 
-import java.util.HashMap;
 import java.util.Map;
 
+import exception.Error;
+
 public class Game {
-	private static final Map<String, String> resultMap = new HashMap<>();
 	private static final int FIRST_COLUMN = 0;
 
 	public static int start(int position, Ladder ladder) {
@@ -19,5 +19,14 @@ public class Game {
 			}
 		}
 		return position;
+	}
+
+	public static void validate(String sequence, Map<String, String> resultMap) {
+		for (String key : resultMap.keySet()) {
+			if (sequence.equals(key)) {
+				return;
+			}
+		}
+		throw new IllegalArgumentException(Error.NONEXIST_PARTICIPANT.getMessage());
 	}
 }

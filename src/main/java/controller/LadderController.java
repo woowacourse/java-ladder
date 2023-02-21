@@ -54,7 +54,9 @@ public class LadderController {
 		String search = inputView.readWho();
 		if (search.equals("all")) {
 			outputView.printAll(joinnedResult);
+			return;
 		}
+		Game.validate(search, joinnedResult);
 		if (joinnedResult.containsKey(search)) {
 			outputView.printWanted(search, joinnedResult);
 			askWanted();
