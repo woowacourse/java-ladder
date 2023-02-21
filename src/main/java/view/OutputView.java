@@ -1,7 +1,7 @@
 package view;
 
 import domain.Bridge;
-import domain.Ladder;
+import domain.Line;
 import domain.Users;
 
 import java.util.stream.Collectors;
@@ -20,8 +20,8 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printLadder(Ladder ladder) {
-        String collect = ladder.getLadder().stream()
+    public void printLadder(Line line) {
+        String collect = line.getLadder().stream()
                 .map(Bridge::getFormat)
                 .collect(Collectors.joining(BRIDGE_DELIMITER));
         System.out.printf(LADDER_FORMAT, collect);

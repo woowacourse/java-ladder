@@ -9,7 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("사다리 생성 시, 유저는 2~10명만 가능하기 때문에,")
-class LadderGeneratorTest {
+class LineGeneratorTest {
     LadderGenerator ladderGenerator = LadderGenerator.getInstance();
     @ParameterizedTest
     @DisplayName("사다리 각 층의 너비는 1~9개로 만들어지지 않으면 예외가 발생한다.")

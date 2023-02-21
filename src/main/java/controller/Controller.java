@@ -22,8 +22,8 @@ public class Controller {
         Ladders ladders = settingLadders(width);
         ladders.make(LadderGenerator.getInstance());
         outputView.printUsers(users);
-        for (Ladder ladder : ladders.getLadders()) {
-            outputView.printLadder(ladder);
+        for (Line line : ladders.getLadders()) {
+            outputView.printLadder(line);
         }
     }
 

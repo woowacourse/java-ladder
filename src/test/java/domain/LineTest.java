@@ -9,12 +9,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class LadderTest {
+public class LineTest {
     @DisplayName("사다리 생성시 연속된 다리가 있을경우 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("ladderGeneratorFailParameter")
     void validateLadderBridgeTest(List<Bridge> input) {
-        Assertions.assertThatThrownBy(() -> new Ladder(input))
+        Assertions.assertThatThrownBy(() -> new Line(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -22,7 +22,7 @@ public class LadderTest {
     @ParameterizedTest
     @MethodSource("ladderGeneratorSuccessParameter")
     void validateLadderBridgeFailTest(List<Bridge> input) {
-        Assertions.assertThatCode(() -> new Ladder(input)).doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> new Line(input)).doesNotThrowAnyException();
     }
 
     static Stream<Arguments> ladderGeneratorFailParameter() {
