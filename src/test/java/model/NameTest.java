@@ -7,6 +7,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 /**
@@ -39,5 +40,20 @@ public class NameTest {
         assertThatThrownBy(() -> new Name(inputName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NAME_HAS_NON_ALPHABETIC_ERROR);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"pobi:pobi:true", "pobi:neo:false"},delimiter = ':')
+    @DisplayName("사람 이름 간 비교 기능 테스트")
+    void isSameTest(String name1, String name2, boolean answer) {
+        //given
+        Name name = new Name(name1);
+        Name otherName = new Name(name2);
+
+        //when
+        boolean result = name.isSame(otherName);
+
+        //then
+        assertThat(result).isEqualTo(answer);
     }
 }
