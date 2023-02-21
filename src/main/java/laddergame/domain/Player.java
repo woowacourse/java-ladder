@@ -21,6 +21,10 @@ public class Player {
         position.moveRight();
     }
 
+    public void moveLeft() {
+        position.moveLeft();
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

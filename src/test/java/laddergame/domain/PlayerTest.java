@@ -19,4 +19,17 @@ public class PlayerTest {
         // then
         assertThat(player.getPosition()).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("Player가 왼쪽으로 움직일 수 있다.")
+    void whenMoveLeft_thenSuccess() {
+        // given
+        final Player player = Player.of("에단", 1);
+
+        // when
+        player.moveLeft();
+
+        // then
+        assertThat(player.getPosition()).isEqualTo(0);
+    }
 }

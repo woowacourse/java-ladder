@@ -19,6 +19,10 @@ public class Position {
         position++;
     }
 
+    public void moveLeft() {
+        position--;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

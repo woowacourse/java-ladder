@@ -19,4 +19,17 @@ class PositionTest {
         // then
         assertThat(position.getPosition()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("왼쪽으로 이동하는 메서드를 실행시키면 왼쪽으로 한 칸 이동된다.")
+    void whenMoveLeft_thenReturnMinusOnePosition() {
+        // given
+        final Position position = Position.from(1);
+
+        // when
+        position.moveLeft();
+
+        // then
+        assertThat(position.getPosition()).isEqualTo(0);
+    }
 }
