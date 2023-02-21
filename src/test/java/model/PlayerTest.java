@@ -59,4 +59,21 @@ public class PlayerTest {
         //then
         assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("참여자 간 위치를 변경하는 기능 테스트")
+    void changePlayerPositionTest() {
+        //given
+        Position zeroPosition = new Position(0);
+        Position firstPosition = new Position(1);
+        Player hiiro = new Player(new Name("hiiro"), zeroPosition);
+        Player ocean = new Player(new Name("ocean"), firstPosition);
+
+        //when
+        hiiro.changePositionWith(ocean);
+
+        //then
+        assertThat(hiiro.isPlayerPosition(firstPosition)).isTrue();
+        assertThat(ocean.isPlayerPosition(zeroPosition)).isTrue();
+    }
 }
