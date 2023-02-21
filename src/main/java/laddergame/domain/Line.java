@@ -27,12 +27,13 @@ public class Line {
     }
 
     private boolean checkFront() {
+        if (points.isEmpty()) {
+            return false;
+        }
+
         int lastIndex = points.size() - 1;
 
-        boolean hasPoint = !points.isEmpty();
-        boolean isPreviousPointConnected = points.get(lastIndex).isConnected();
-
-        return hasPoint && isPreviousPointConnected;
+        return points.get(lastIndex).isConnected();
     }
 
     public List<Point> getPoints() {
