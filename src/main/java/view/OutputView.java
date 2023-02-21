@@ -6,6 +6,7 @@ import domain.ladder.Line;
 import domain.ladder.PointStatus;
 import domain.user.User;
 import domain.user.Users;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -14,9 +15,19 @@ public class OutputView {
     private static final String LINE_DELIMITER = "|";
     private static final String NAME_DELIMITER = " ";
 
-    public void printResultByUser(int index, Results results) {
+    public void printResultByUser(int index, Results results, List<String> resultUsers) {
         System.out.println(OUTPUT_RESULT_MESSAGE);
+        if (index == -1) {
+            printAllUserResult(resultUsers, results);
+            return;
+        }
         System.out.println(results.getResults().get(index));
+    }
+
+    private void printAllUserResult(List<String> resultUsers, Results results) {
+        for (int index = 0; index < results.getResults().size(); index++) {
+            System.out.println(resultUsers.get(index) + " : " + results.getResults().get(index));
+        }
     }
 
     public void printUserNames(Users users) {

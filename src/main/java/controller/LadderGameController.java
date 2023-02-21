@@ -40,17 +40,15 @@ public class LadderGameController {
         game = new Game(users.getUserNames(), ladder.getLines());
         List<String> resultNames = game.executeGame();
         String userResult = findUserResult();
-        outputView.printResultByUser(findResultByUser(resultNames,userResult),results);
+        outputView.printResultByUser(findResultByUser(resultNames, userResult), results, resultNames);
     }
 
     public static int findResultByUser(List<String> resultNames, String findInput) {
         if (findInput.equals(ALL)) {
             return -1;
         }
-        for (int index = 0; index < resultNames.size(); index++) {
-            if (resultNames.get(index).equals(findInput)) {
-                return index;
-            }
+        if (resultNames.contains(findInput)) {
+            return resultNames.indexOf(findInput);
         }
         throw new IllegalArgumentException(NOT_CONTAIN_NAME_ERROR);
     }
