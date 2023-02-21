@@ -1,6 +1,7 @@
 package ladder.domain.generator;
 
 import java.util.Random;
+
 import ladder.domain.Direction;
 
 public class RandomDirectionGenerator implements DirectionGenerator {

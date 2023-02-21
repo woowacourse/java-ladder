@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import ladder.domain.generator.LineGenerator;
 
 public class Ladder {
@@ -25,7 +26,7 @@ public class Ladder {
     }
 
     public Players movePlayers(Players players) {
-        for(Line line: lines) {
+        for (Line line : lines) {
             players = line.movePlayers(players);
         }
 

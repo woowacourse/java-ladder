@@ -6,6 +6,7 @@ import static ladder.domain.Direction.STAY;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import ladder.domain.Direction;
 import ladder.domain.Line;
 

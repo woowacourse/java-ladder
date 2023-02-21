@@ -1,6 +1,7 @@
 package ladder;
 
 import java.util.Scanner;
+
 import ladder.controller.LadderController;
 import ladder.domain.generator.LineGenerator;
 import ladder.domain.generator.RandomDirectionGenerator;

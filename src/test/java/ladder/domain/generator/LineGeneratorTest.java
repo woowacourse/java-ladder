@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
+
 import ladder.domain.Direction;
 import ladder.domain.Line;
 import org.assertj.core.util.Lists;
