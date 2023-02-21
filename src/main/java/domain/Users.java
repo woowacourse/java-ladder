@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.Optional;
 
 public class Users {
+
     private final List<User> users = new ArrayList<>();
 
     public Users(final List<String> userNames) {
         validateUserNamesEmpty(userNames);
-        for (final String userName : userNames) {
-            users.add(new User(userName));
+        for (int index = 0; index < userNames.size(); index++) {
+            users.add(new User(userNames.get(index), index));
         }
     }
 
@@ -22,12 +23,18 @@ public class Users {
         }
     }
 
-    public List<String> getUsersName() {
+    public List<String> getUserNames() {
         final List<String> usersName = new ArrayList<>();
         for (final User user : users) {
             usersName.add(user.getName());
         }
         return usersName;
+    }
+
+    public void swapUserPositionBy(final int position) {
+        final User userA = users.get(position);
+        final User userB = users.get(position + 1);
+        userA.swapPosition(userB);
     }
 
     public int size() {
@@ -41,5 +48,12 @@ public class Users {
         if (findUser.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.USER_NOT_FOUND_EXCEPTION.getMessage());
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "users=" + users +
+                '}';
     }
 }
