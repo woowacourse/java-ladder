@@ -30,6 +30,15 @@ public class LadderGameController {
         outputView.printPlayersName(players.getPlayersName());
         outputView.printLadder(ladder.getLines());
         outputView.printResults(results.getResults());
+
+        String targetPlayer = inputView.readTargetPlayer();
+        validateTargetPlayerBlank(targetPlayer);
+    }
+
+    private void validateTargetPlayerBlank(String targetPlayer) {
+        if (targetPlayer.isBlank()) {
+            throw new IllegalArgumentException(TARGET_PLAYER_BLANK_ERROR);
+        }
     }
 }
 
