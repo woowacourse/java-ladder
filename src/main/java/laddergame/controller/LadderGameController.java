@@ -72,7 +72,8 @@ public class LadderGameController {
     private List<String> getLadderResultNames(final int participantSize, final LadderResult ladderResult, final Ladder ladder) {
         List<String> ladderResultNames = new ArrayList<>();
         for (int participantOrder = 0; participantOrder < participantSize; participantOrder++) {
-            String ladderResultName = ladderResult.getNameByParticipant(participantOrder, ladder);
+            int finalPosition = ladder.startGame(participantOrder);
+            String ladderResultName = ladderResult.getNameByPosition(finalPosition);
             ladderResultNames.add(ladderResultName);
         }
         return ladderResultNames;

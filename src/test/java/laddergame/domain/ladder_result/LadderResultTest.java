@@ -1,6 +1,5 @@
 package laddergame.domain.ladder_result;
 
-import laddergame.domain.ladder.Ladder;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInstance;
@@ -58,20 +57,19 @@ public class LadderResultTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0:50000", "1:1000", "2:2000", "3:꽝"}, delimiter = ':')
-    @DisplayName("사다리 결과 위치 리스트를 입력받으면, 해당 위치에 존재하는 사다리 결과 이름을 반환한다.")
-    void getNameByParticipant_givenParticipantOrder_thenReturnLadderResultName(final int participantOrder,
+    @CsvSource(value = {"1:50000", "0:1000", "3:2000", "2:꽝"}, delimiter = ':')
+    @DisplayName("사다리 게임 실행 후 최종 결과 위치를 입력받으면, 해당 위치에 존재하는 사다리 결과 이름을 반환한다.")
+    void getNameByParticipant_givenParticipantOrder_thenReturnLadderResultName(final int actualFinalPosition,
                                                                                final String expectedResultName) {
         // given
         final String ladderResultNames = "1000,50000,꽝,2000";
-        Ladder ladder = Ladder.create("5", 4, () -> true);
         LadderResult ladderResult = LadderResult.create(ladderResultNames, participantCount);
 
         // when
-        String resultName = ladderResult.getNameByParticipant(participantOrder, ladder);
+        String actualResultName = ladderResult.getNameByPosition(actualFinalPosition);
 
         // then
-        assertThat(resultName)
+        assertThat(actualResultName)
                 .isEqualTo(expectedResultName);
     }
 }
