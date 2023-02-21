@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import controller.LadderGameController;
 import domain.user.User;
 import domain.user.Users;
+import java.util.HashMap;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import java.util.Map;
+import org.junit.jupiter.api.*;
 
 public class ResultTest {
     @DisplayName("입력받은 결과의 수가 유저 수와 다르면 실패한다.")
@@ -39,7 +39,8 @@ public class ResultTest {
     @DisplayName("입력받은 유저의위치에 해당하는 결과값을 반환한다.")
     @Test
     void shouldSuccessFindResultByUser() {
-        List<String> names = List.of("dino", "mango", "study");
-        assertEquals(LadderGameController.findResultByUser(names, "mango"), 1);
+        Map<String, String> resultMap = new HashMap<>();
+        resultMap.put("mango", "1");
+        assertEquals(LadderGameController.findResultByUser(resultMap, "mango"), "mango");
     }
 }
