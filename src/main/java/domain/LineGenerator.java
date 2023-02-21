@@ -12,10 +12,10 @@ public class LineGenerator {
         return INSTANCE;
     }
 
-    public List<Bridge> generateLadder(int width) {
-        validateBridgeCountRange(width);
+    public List<Bridge> generateLadder(Width width) {
         List<Bridge> ladder = new ArrayList<>();
-        while (ladder.size() < width) {
+        int maxWidth = width.getWidth();
+        while (ladder.size() < maxWidth) {
             ladder.add(generateBridge(ladder));
         }
         return ladder;
@@ -26,11 +26,5 @@ public class LineGenerator {
             return Bridge.from(random.nextBoolean());
         }
         return Bridge.NON_EXIST;
-    }
-
-    private void validateBridgeCountRange(int bridgeCount) {
-        if (bridgeCount > 9 || bridgeCount < 1) {
-            throw new IllegalArgumentException("");
-        }
     }
 }
