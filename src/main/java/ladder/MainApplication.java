@@ -35,11 +35,12 @@ public class MainApplication {
 
     private static <T> T readInput(Supplier<T> supplier) {
 
-        try {
-            return supplier.get();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return readInput(supplier);
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
