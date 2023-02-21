@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,13 +22,12 @@ class ResultMapperTest {
 		List<End> ends = new Ends(List.of("가", "나", "다", "라")).getEnds();
 		List<Integer> changeIdx = List.of(1, 0, 3, 2);
 
-		Map<User, End> expected = Map.of(users.get(0), ends.get(1),
-			users.get(1), ends.get(0),
-			users.get(2), ends.get(3),
-			users.get(3), ends.get(2));
-
-		ResultMapper resultMapper = new ResultMapper();
-		Map<User, End> mappedResult = resultMapper.map(users, ends, changeIdx);
+		Map<User, End> expected = new LinkedHashMap<>();
+		int size = users.size();
+		for (int i = 0; i < size; i++) {
+			expected.put(users.get(i), ends.get(changeIdx.get(i)));
+		}
+		Map<User, End> mappedResult = ResultMapper.map(users, ends, changeIdx);
 
 		Assertions.assertThat(mappedResult).containsExactlyEntriesOf(expected);
 	}
