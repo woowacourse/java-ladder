@@ -4,14 +4,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ExecutionResults {
+public class Rewards {
     private static final String ERROR_RESULT_PARTICIPANTS_NOT_SAME = "실행결과의 개수는 참여자 인원과 같아야 합니다.";
 
-    private final List<ResultName> resultNames;
+    private final List<Reward> rewards;
 
-    public ExecutionResults(List<String> results, Participants participants) {
+    public Rewards(List<String> results, Participants participants) {
         validateSize(results, participants.getNumber());
-        this.resultNames = convertToResultNames(results);
+        this.rewards = convertToResultNames(results);
     }
 
     private static void validateSize(List<String> results, int participantsCount) {
@@ -20,13 +20,13 @@ public class ExecutionResults {
         }
     }
 
-    private List<ResultName> convertToResultNames(List<String> results) {
+    private List<Reward> convertToResultNames(List<String> results) {
         return results.stream()
-            .map(ResultName::new)
+            .map(Reward::new)
             .collect(Collectors.toList());
     }
 
-    public List<ResultName> getResultNames() {
-        return Collections.unmodifiableList(resultNames);
+    public List<Reward> getResultNames() {
+        return Collections.unmodifiableList(rewards);
     }
 }

@@ -16,6 +16,11 @@ public class Ladder {
         this.ladder = ladder;
     }
 
+    public Ladder(Height height, Participants participants, List<Line> lines) {
+        this.height = height;
+        this.ladder = lines;
+    }
+
     private void makeLadder(int participantsCount, List<Line> ladder) {
         for (int i = 0; i < height.getHeight(); i++) {
             ladder.add(new Line(participantsCount));

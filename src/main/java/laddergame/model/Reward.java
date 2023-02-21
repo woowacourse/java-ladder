@@ -1,6 +1,6 @@
 package laddergame.model;
 
-public class ResultName {
+public class Reward {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
     private static final String ERROR_NAME_OUT_OF_LENGTH =
@@ -8,7 +8,7 @@ public class ResultName {
 
     private final String name;
 
-    public ResultName(String name) {
+    public Reward(String name) {
         String noBlankName = name.replaceAll(" ", "");
         validateLength(noBlankName.length());
         this.name = noBlankName;
