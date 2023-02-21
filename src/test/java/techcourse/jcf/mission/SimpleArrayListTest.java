@@ -65,6 +65,16 @@ class SimpleArrayListTest {
 
     @Test
     void set() {
+        simpleArrayList.add("first");
+        simpleArrayList.add("second");
+
+        String oldValue = simpleArrayList.set(1, "third");
+
+        assertAll(() -> assertThat(oldValue).isEqualTo("second")
+                , () -> assertThat(simpleArrayList.get(1)).isEqualTo("third")
+        );
+
+
     }
 
     @Test

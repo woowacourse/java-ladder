@@ -53,7 +53,7 @@ public class SimpleArrayList implements SimpleList {
     }
 
     private void validateIndex(int index) {
-        if(index > size) {
+        if (index > size) {
             String message = String.format("Index : %d , Size : %d", index, size);
             throw new IndexOutOfBoundsException(message);
         }
@@ -61,7 +61,9 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String set(int index, String value) {
-        return null;
+        String oldValue = arr[index];
+        arr[index] = value;
+        return oldValue;
     }
 
     @Override
