@@ -1,5 +1,7 @@
 package techcourse.jcf.mission;
 
+import java.util.Arrays;
+
 public class SimpleArrayList implements SimpleList {
 
     /*
@@ -26,6 +28,11 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean add(String value) {
+        if(size >= array.length){
+            String[] newArray = new String[array.length*2];
+            System.arraycopy(array, 0, newArray, 0, array.length);
+            array = newArray;
+        }
         array[size++] = value;
         return true;
     }
