@@ -2,7 +2,9 @@ package domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Names {
 
@@ -29,6 +31,13 @@ public class Names {
 
     private boolean isValidSize(List<String> names) {
         return names.size() >= SIZE_LOWER_BOUND;
+    }
+
+    public int findByName(String name) {
+        return IntStream.range(0, names.size())
+                .filter(i -> names.get(i).getName().equals(name))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public List<Name> getNames() {
