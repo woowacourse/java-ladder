@@ -11,6 +11,7 @@ public class InputView {
     private static final String DELIMITER = ",";
     private static final int LIMIT = -1;
     private static final String READ_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String READ_GIFT_NAMES_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String READ_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String NUMBER_FORMAT_ERROR_MESSAGE = "사다리 높이는 숫자만 입력 가능합니다. 현재 입력은 {0} 입니다.";
 
@@ -29,6 +30,12 @@ public class InputView {
     private List<String> parsePlayerNames(final String input) {
         return Arrays.stream(input.split(DELIMITER, LIMIT))
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<String> readGiftNames() {
+        System.out.println(READ_GIFT_NAMES_MESSAGE);
+        final String input = scanner.nextLine();
+        return parsePlayerNames(input);
     }
 
     public int readHeight() {
