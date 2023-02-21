@@ -2,6 +2,8 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,19 +37,18 @@ public class FloorTest {
                 .containsExactly(FILLED, EMPTY, FILLED);
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource(value = {"0:1", "1:0", "2:2", "3:4", "4:3"}, delimiter = ':')
     @DisplayName("양 옆에 다리가 있는 곳으로 움직인다.")
-    void moveVerticallyTest() {
+    void moveVerticallyTest(int positionNow, int positionNext) {
         //given
-        List<Point> list = new ArrayList<>(List.of(FILLED, EMPTY, FILLED));
+        List<Point> list = new ArrayList<>(List.of(FILLED, EMPTY, EMPTY, FILLED));
         Floor floor = new Floor(list);
 
         //when
-        var userPosition = floor.moveUserByPath(0);
+        var userPosition = floor.moveUserByPath(positionNow);
 
         //then
-        assertThat(userPosition).isEqualTo(1);
-
+        assertThat(userPosition).isEqualTo(positionNext);
     }
-
 }
