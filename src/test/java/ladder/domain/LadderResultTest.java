@@ -20,7 +20,7 @@ public class LadderResultTest {
     @ParameterizedTest
     @ValueSource(strings = {"가", "#", "a", "a1", "1.1"})
     @DisplayName("\"꽝\" 이외의 실행 결과가 정수가 아니면 예외를 던진다.")
-    void throwsExceptionWhenRunResultIsNotIntegerExceptNoLuck(String runResult) {
+    void validateRunResultNumericExceptNoLuckTest(String runResult) {
         assertThatThrownBy(() -> new LadderResult(runResult))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] \"꽝\" 이외의 실행 결과는 정수여야합니다.");
@@ -28,8 +28,17 @@ public class LadderResultTest {
 
     @Test
     @DisplayName("실행 결과가 \"꽝\"이면 정수가 아니어도 예외가 발생하지 않는다.")
-    void doesNotThrowsExceptionWhenRunResultIsNoLuck() {
+    void validatePassWhenNoLuckTest() {
         String runResult = "꽝";
         Assertions.assertDoesNotThrow(() -> new LadderResult(runResult));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0, -1, 10001, 10000"})
+    @DisplayName("실행 결과가 정수일 때 1 이상 10000 이하가 아니면 예외를 던진다.")
+    void validateRunResultRangeTest(String runResult) {
+        assertThatThrownBy(() -> new LadderResult(runResult))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] \"꽝\" 이외의 실행 결과는 1 이상 10000 이하의 정수여야합니다.");
     }
 }
