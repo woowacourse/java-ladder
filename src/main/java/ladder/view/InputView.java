@@ -7,19 +7,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputView {
-    private static final Scanner sc = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
     public static final Pattern NOT_NUMERIC_FORMAT = Pattern.compile("\\D");
     
     public static String inputPeopleNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        String inputPeopleNames = sc.nextLine();
+        String inputPeopleNames = SCANNER.nextLine();
         validateBlank(inputPeopleNames);
         return inputPeopleNames;
     }
 
     public static int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        String ladderHeight = sc.nextLine();
+        String ladderHeight = SCANNER.nextLine();
         validateLadderHeight(ladderHeight);
         return Integer.parseInt(ladderHeight);
     }
