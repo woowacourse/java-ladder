@@ -30,6 +30,7 @@ public class LadderController {
         final List<String> names = inputView.readResultNames();
         final Ladder ladder = ladderGenerator.generate(new LineGenerator(), players, height);
         outputView.printLadderResult(players, ladder);
+        final String target = inputView.readTarget();
     }
 
     private <T, R> R generate(final Supplier<T> supplier, final Function<T, R> function) {
