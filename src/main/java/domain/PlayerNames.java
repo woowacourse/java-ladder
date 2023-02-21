@@ -3,14 +3,12 @@ package domain;
 import view.InputView;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class PlayerNames {
     public static final String PLAYERS_SIZE_ERROR_MESSAGE = "[ERROR] 사다리 게임을 위해서는 2명 이상의 플레이어가 필요합니다";
     public static final int MIN_PLAYERS_SIZE = 2;
+    public static final String SAME_PLAYER_NAME_ERROR_MESSAGE = "[ERROR] 중복된 플레이어의 이름이 존재합니다";
 
     InputView inputView;
     private List<PlayerName> playerNames;
@@ -45,7 +43,7 @@ public class PlayerNames {
 
     private void validateSamePlayerName(List<String> playerNames) {
         if (playerNames.size() != playerNames.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 플레이어의 이름이 존재합니다");
+            throw new IllegalArgumentException(SAME_PLAYER_NAME_ERROR_MESSAGE);
         }
     }
 
