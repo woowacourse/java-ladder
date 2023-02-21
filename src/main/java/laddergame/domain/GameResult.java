@@ -17,7 +17,7 @@ public class GameResult {
         validateResultFormat(result);
     }
 
-    private void validateResultLength(String name) {
+    private void validateResultLength(String result) {
         if (isLongerThanMaxLength(result) || isShorterThanMinLength(result)) {
             throw new IllegalArgumentException(
                     String.format("예외"));
