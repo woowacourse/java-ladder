@@ -1,4 +1,5 @@
 import controller.LadderController;
+import domain.model.RandomPassGenerator;
 import validator.EmptyInputValidatorChain;
 import validator.InputValidator;
 import validator.NotIntegerValidatorChain;
@@ -9,7 +10,8 @@ import view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        LadderController ladderController = new LadderController(makeInputView(), new OutputView());
+        LadderController ladderController = new LadderController(makeInputView(), new OutputView(),
+            new RandomPassGenerator());
         ladderController.play();
     }
 
