@@ -13,6 +13,10 @@ public class Position {
         value += direction.getMoveValue();
     }
 
+    public int getValue() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

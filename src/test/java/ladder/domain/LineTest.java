@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class LineTest {
 
@@ -30,6 +32,22 @@ class LineTest {
         Line line = Line.generate(3, new DeterminedBooleanGenerator(determinedBars));
         // then
         assertThat(line.getBars()).containsExactly(MOVABLE, IMMOVABLE, MOVABLE);
+    }
+
+    /*
+     |-----|     |-----|     |
+     */
+    @ParameterizedTest
+    @CsvSource(value = {"0:RIGHT", "1:LEFT", "2:RIGHT", "3:LEFT", "4:NONE"}, delimiter = ':')
+    @DisplayName("position의 기준으로 bar의 위치를 반환한다")
+    void shouldReturnDirectionWhenGetPosition(int currentPosition, Direction expect) {
+        // given
+        List<Boolean> determinedBars = new ArrayList<>(List.of(true, true, false));
+        Line line = Line.generate(4, new DeterminedBooleanGenerator(determinedBars));
+        // when
+        Direction direction = line.getDirection(new Position(currentPosition));
+        // then
+        assertThat(direction).isEqualTo(expect);
     }
 
     static class DeterminedBooleanGenerator implements BooleanGenerator {

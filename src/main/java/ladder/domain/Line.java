@@ -27,7 +27,27 @@ public class Line {
         return Bar.IMMOVABLE;
     }
 
+    public Direction getDirection(Position currentPosition) {
+        int position = currentPosition.getValue();
+        return Direction.of(hasLeftBar(position), hasRightBar(position));
+    }
+
+    private boolean hasRightBar(int position) {
+        if (position == bars.size()) {
+            return false;
+        }
+        return bars.get(position).isMovable();
+    }
+
+    private boolean hasLeftBar(int position) {
+        if (position == 0) {
+            return false;
+        }
+        return bars.get(position - 1).isMovable();
+    }
+
     public List<Bar> getBars() {
         return Collections.unmodifiableList(bars);
     }
+
 }
