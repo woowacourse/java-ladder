@@ -16,23 +16,22 @@ public class Controller {
     }
 
     public void run() {
-        Users users = repeatUntil(() -> new Users(inputView.inputUserName()));
-        Items items = repeatUntil(()->new Items(inputView.inputItem(), users));
-        Ladders ladders = new Ladders(users.getCount()
-                , repeatUntil(() -> new Height(inputView.inputLadderHeight()))
-                , new RandomGenerator());
+        Users users = retryOnError(() -> new Users(inputView.inputUserName()));
+        Items items = retryOnError(() -> new Items(inputView.inputItem(), users));
+        Height height = retryOnError(() -> new Height(inputView.inputLadderHeight()));
+        Ladders ladders = new Ladders(users.getCount(), height, new RandomGenerator());
 
         outputView.printLadderResultBoard(users, items, ladders);
         Result result = new Result(users, items, ladders);
         new ResultController(inputView, outputView, result).run();
     }
 
-    private <T> T repeatUntil(Supplier<T> runnable) {
+    private <T> T retryOnError(Supplier<T> repeat) {
         try {
-            return runnable.get();
+            return repeat.get();
         } catch (Exception e) {
             outputView.printExceptionMessage(e.getMessage());
-            return repeatUntil(runnable);
+            return retryOnError(repeat);
         }
     }
 }
