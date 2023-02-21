@@ -30,10 +30,13 @@ public class LadderController {
                 }
                 break;
             }
-            int index = names.findByName(name.getName());
-
-            int result = ladder.move(index);
-            System.out.println(results.getNames().get(result).getName());
+            try {
+                int index = names.findByName(name.getName());
+                int result = ladder.move(index);
+                System.out.println(results.getNames().get(result).getName());
+            } catch (IllegalArgumentException exception) {
+                Log.log(exception.getMessage());
+            }
         }
     }
 
