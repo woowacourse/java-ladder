@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Gifts {
+
     private static final String GIFT_NOT_EQUAL_PLAYER_ERROR_MESSAGE = "상품의 수는 참여한 플레이어의 수와 같아야 합니다.";
 
     private final List<Gift> gifts;
