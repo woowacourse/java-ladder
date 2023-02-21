@@ -2,10 +2,7 @@ package view;
 
 import java.util.List;
 
-import domain.Ladder;
-import domain.Lines;
-import domain.Name;
-import domain.Names;
+import domain.*;
 
 public class OutputView {
 
@@ -17,12 +14,14 @@ public class OutputView {
     private static final String NEW_LINE = System.getProperty("line.separator");
     private static final StringBuilder namesOutput = new StringBuilder();
     private static final StringBuilder ladderOutput = new StringBuilder();
+    private static final StringBuilder resultOutput = new StringBuilder();
 
-    public void printResult(final Names names, final Ladder ladder) {
-        System.out.println(NEW_LINE + "실행결과" + NEW_LINE);
+    public void printResult(final Names names, final Ladder ladder, final Results results) {
+        System.out.println(NEW_LINE + "사다리결과" + NEW_LINE);
 
         System.out.println(makeNamesOutput(names));
-        System.out.println(makeLadderOutput(names, ladder));
+        System.out.print(makeLadderOutput(names, ladder));
+        System.out.println(makeResultsOutput(results));
     }
 
     private StringBuilder makeNamesOutput(final Names names) {
@@ -112,5 +111,13 @@ public class OutputView {
             return;
         }
         ladderOutput.append(BLANK.repeat(findLongestName(names)));
+    }
+
+    private StringBuilder makeResultsOutput(final Results results) {
+        for (Result result : results.getResults()) {
+            resultOutput.append(result.getResult() + "   ");
+        }
+
+        return resultOutput;
     }
 }
