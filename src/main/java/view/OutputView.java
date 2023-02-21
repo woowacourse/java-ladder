@@ -9,15 +9,6 @@ import domain.Reward;
 import domain.Rewards;
 
 public class OutputView {
-    private static final OutputView instance = new OutputView();
-
-    private OutputView() {
-    }
-
-    public static OutputView getInstance() {
-        return instance;
-    }
-
     public void printLines(Names names, Lines lines, Rewards rewards) {
         System.out.println(Message.OUTPUT_LINES_MESSAGE.message);
         printEachName(names);

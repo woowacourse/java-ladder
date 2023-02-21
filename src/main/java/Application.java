@@ -4,7 +4,10 @@ import view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        MainController mainController = new MainController(InputView.getInstance(), OutputView.getInstance());
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
+        MainController mainController = new MainController(inputView, outputView);
+
         mainController.start();
     }
 }
