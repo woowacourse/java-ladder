@@ -7,7 +7,6 @@ public class SimpleArrayList implements SimpleList {
     private static final int DEFAULT_CAPACITY = 10;
 
     private String[] elementData;
-    private int modCount = 0;
     private int size = 0;
 
     public SimpleArrayList(int initialCapacity) {
@@ -26,7 +25,6 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean add(String value) {
-        modCount++;
         if (size == elementData.length) {
             elementData = grow();
         }
@@ -40,7 +38,6 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
-        modCount++;
         if (size == elementData.length) {
             elementData = grow();
         }
@@ -111,6 +108,8 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void clear() {
-
+        Arrays.fill(elementData, null);
+        this.elementData = new String[DEFAULT_CAPACITY];
+        this.size = 0;
     }
 }
