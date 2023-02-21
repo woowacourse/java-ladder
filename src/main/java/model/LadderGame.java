@@ -21,7 +21,7 @@ public class LadderGame {
 
     public static LadderGame of(Names names, Ladder ladder, LadderResults ladderResults) {
         List<Integer> gameResult = IntStream.range(0, names.getTotalParticipantSize())
-                .map(i -> playLadderGame(i, ladder))
+                .map(participantPosition -> playLadderGame(participantPosition, ladder))
                 .boxed()
                 .collect(Collectors.toList());
 
@@ -40,16 +40,17 @@ public class LadderGame {
         return position;
     }
 
-    public String getGameResultOfName(String name) {
+    public String findGameResultByName(String name) {
         int indexOfName = names.getIndexOfName(name);
         int resultIndex = gameResult.get(indexOfName);
 
         return ladderResults.getLadderResultOfIndex(resultIndex);
     }
 
-    public List<GameResult> getTotalGameResult() {
+    public List<GameResult> findGameResultAll() {
         return IntStream.range(0, gameResult.size())
-                .mapToObj(i -> new GameResult(names.getNameOfIndex(i), ladderResults.getLadderResultOfIndex(i)))
+                .mapToObj(index -> new GameResult(names.getNameOfIndex(index),
+                        ladderResults.getLadderResultOfIndex(index)))
                 .collect(Collectors.toUnmodifiableList());
     }
 }

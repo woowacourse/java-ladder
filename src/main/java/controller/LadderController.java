@@ -92,11 +92,11 @@ public class LadderController {
     private void calculateLadderResultLog(LadderGame ladderGame, String targetParticipantName) {
         outputView.noticeGameResult();
         if (targetParticipantName.equals(FIND_TOTAL_RESULT_COMMAND)) {
-            List<GameResult> totalGameResult = ladderGame.getTotalGameResult();
+            List<GameResult> totalGameResult = ladderGame.findGameResultAll();
             outputView.printTotalResult(totalGameResult);
             return;
         }
-        String gameResult = ladderGame.getGameResultOfName(targetParticipantName);
+        String gameResult = ladderGame.findGameResultByName(targetParticipantName);
         outputView.printResultOfName(gameResult);
     }
 }

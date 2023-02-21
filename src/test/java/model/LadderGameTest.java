@@ -32,15 +32,15 @@ class LadderGameTest {
 
     @ParameterizedTest
     @CsvSource(value = {"a:1", "b:2"}, delimiter = ':')
-    void getGameResultOfName_메소드는_참가자의_이름을_입력하면_결과를_반환한다(String name, String expected) {
-        String actual = ladderGame.getGameResultOfName(name);
+    void findGameResultByName_메소드는_참가자의_이름을_입력하면_결과를_반환한다(String name, String expected) {
+        String actual = ladderGame.findGameResultByName(name);
 
         assertThat(actual).isEqualTo(expected);
     }
 
     @Test
-    void getTotalGameResult_메소드는_전체_참가자의_게임_결과를_반환한다() {
-        List<GameResult> totalGameResult = ladderGame.getTotalGameResult();
+    void findGameResultAll_메소드는_전체_참가자의_게임_결과를_반환한다() {
+        List<GameResult> totalGameResult = ladderGame.findGameResultAll();
 
         GameResult participantA = totalGameResult.get(0);
         GameResult participantB = totalGameResult.get(1);
