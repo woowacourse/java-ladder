@@ -15,13 +15,17 @@ public class Line {
 
     public int moveFrom(int startPosition) {
         validateOutBound(startPosition);
-        if (isRightMoveAble(startPosition) && (bridges.get(startPosition) == LINKED)) {
+        if (isRightMoveAble(startPosition) && isBridgeExist(startPosition)) {
             return startPosition + 1;
         }
-        if (isLeftMoveAble(startPosition) && (bridges.get(startPosition - 1) == LINKED)) {
+        if (isLeftMoveAble(startPosition) && isBridgeExist(startPosition - 1)) {
             return startPosition - 1;
         }
         return startPosition;
+    }
+
+    private boolean isBridgeExist(int startPosition) {
+        return bridges.get(startPosition) == LINKED;
     }
 
     private boolean isRightMoveAble(int position) {
@@ -32,13 +36,13 @@ public class Line {
         return position - 1 >= 0;
     }
 
-    public List<Boolean> getLine() {
-        return Collections.unmodifiableList(bridges);
-    }
-
     private void validateOutBound(int startPoint) {
         if ((startPoint < 0) || (startPoint > bridges.size())) {
             throw new IllegalArgumentException("line 범위 밖의 시작점입니다.");
         }
+    }
+
+    public List<Boolean> getLine() {
+        return Collections.unmodifiableList(bridges);
     }
 }
