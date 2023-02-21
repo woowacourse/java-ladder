@@ -5,6 +5,8 @@ import ladder.domain.Prizes;
 import ladder.domain.Users;
 import ladder.domain.generator.RandomPointGenerator;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 import static ladder.view.InputView.*;
@@ -14,6 +16,7 @@ public class MainApplication {
 
     private static final int INITIAL_HEIGHT_POSITION = 0;
     private static final String COMMAND_PRINT_ALL = "all";
+    private static final String BLANK = "";
 
     public static void main(String[] args) {
 
@@ -23,7 +26,11 @@ public class MainApplication {
 
         printLadder(users, ladder, prizes);
 
-        readResultRequest(users, ladder, prizes);
+        String requestedName = BLANK;
+        while (!requestedName.equals(COMMAND_PRINT_ALL)) {
+            requestedName = inputPrizeWinner();
+            checkCases(users, ladder, prizes, requestedName);
+        }
     }
 
     private static <T> T readInput(Supplier<T> supplier) {
@@ -36,36 +43,35 @@ public class MainApplication {
         }
     }
 
-    private static void readResultRequest(Users users, Ladder ladder, Prizes prizes) {
-
-        String userName = inputPrizeWinner();
+    private static void checkCases(Users users, Ladder ladder, Prizes prizes, String userName) {
 
         if (userName.equals(COMMAND_PRINT_ALL)) {
-            printResultPrefix();
-            printAll(users, ladder, prizes);
+            Map<String, String> allResult = calculateAll(users, prizes, ladder);
+            printAll(allResult);
+            return;
+        }
+
+        if (!users.contain(userName)) {
+            printNoUser();
             return;
         }
 
         calculateSingleResult(users, ladder, prizes, userName);
+    }
 
-        if (!users.contain(userName)) {
-            printNoUser();
+    private static Map<String, String> calculateAll(Users users, Prizes prizes, Ladder ladder) {
+        Map<String, String> allResult = new HashMap<>();
+        for (int i = 0; i < users.getSize(); i++) {
+            int prizeIndex = ladder.getResult(i, 0);
+            allResult.put(users.getUserNameByIndex(i), prizes.getPrizeNameByIndex(prizeIndex));
         }
 
-        readResultRequest(users, ladder, prizes);
+        return allResult;
     }
 
     private static void calculateSingleResult(Users users, Ladder ladder, Prizes prizes, String userName) {
         for (int i = 0; i < users.getSize(); i++) {
-            printResultPrefix();
             printSingleMatchingResult(users, ladder, prizes, userName, i);
-        }
-    }
-
-    private static void printAll(Users users, Ladder ladder, Prizes prizes) {
-        for (int i = 0; i < users.getSize(); i++) {
-            System.out.print(users.getUserNameByIndex(i) + " : ");
-            printPrize(ladder, prizes, i);
         }
     }
 
@@ -78,6 +84,6 @@ public class MainApplication {
 
     private static void printPrize(Ladder ladder, Prizes prizes, int index) {
         int prizeIndex = ladder.getResult(index, INITIAL_HEIGHT_POSITION);
-        printResult(prizes, prizeIndex);
+        printSingleResult(prizes, prizeIndex);
     }
 }

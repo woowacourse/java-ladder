@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.*;
 
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class OutputView {
@@ -87,17 +88,20 @@ public class OutputView {
         System.out.print(DELIMITER);
     }
 
-    public static void printResultPrefix() {
+    public static void printSingleResult(Prizes prizes, int index) {
         System.out.println("실행 결과");
-    }
-
-    public static void printResult(Prizes prizes, int index) {
         System.out.println(prizes.getPrizeNameByIndex(index));
         System.out.println();
     }
 
     public static void printNoUser() {
         System.out.println("없는 유저입니다.");
+    }
+
+    public static void printAll(Map<String, String> allResult) {
+
+        System.out.println("실행 결과");
+        allResult.forEach((key, value) -> System.out.println(key + " : " + value));
     }
 
 }
