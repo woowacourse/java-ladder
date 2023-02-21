@@ -21,7 +21,7 @@ class InputViewValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"abc", "##", "#a", "가나다", "a1"})
     @DisplayName("사다리의 높이는 숫자여아한다.")
-    void ladderHeightIsNumericTest(String ladderHeight) {
+    void isLadderHeightNumericTest(String ladderHeight) {
 
         assertThatThrownBy(() -> InputViewValidator.validateNumeric(ladderHeight))
                         .isInstanceOf(IllegalArgumentException.class)
@@ -30,10 +30,22 @@ class InputViewValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"pobi.crong.jk", "pobi&crong&jk", "pobi:crong:jk"})
-    void playerNamesDelimiterTest(String playerNames) {
+    @DisplayName("참여자 이름들의 구분자가 ','가 아니면 예외를 던진다.")
+    void isPlayerNamesDelimiterWrongTest(String playerNames) {
 
         assertThatThrownBy(() -> InputViewValidator.validateReadPlayerNames(playerNames))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 참여자 이름은 ','로 구분되어야합니다.");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"꽝.5000.꽝", "꽝&5000&꽝", "꽝:5000:꽝"})
+    @DisplayName("실행 결과의 구분자가 ','가 아니면 예외를 던진다.")
+    void isRunResultsDelimiterWrongTest(String runResult) {
+
+        assertThatThrownBy(() -> InputViewValidator.validateReadRunResults(runResult))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 실행 결과는 ','로 구분되어야합니다.");
+    }
+
 }
