@@ -1,7 +1,7 @@
 package view;
 
 import domain.Line;
-import domain.Point;
+import domain.Link;
 
 import java.util.List;
 
@@ -41,14 +41,14 @@ public class OutputView {
         StringBuilder builder = new StringBuilder();
         builder.append(BLANK_LINE);
         builder.append(LADDER);
-        for (Point connected : line.getPoints()) {
+        for (Link connected : line.getPoints()) {
             renderPoint(builder, connected);
             builder.append(LADDER);
         }
         return builder.toString();
     }
 
-    private static void renderPoint(StringBuilder builder, Point connected) {
+    private static void renderPoint(StringBuilder builder, Link connected) {
         if (connected.isLink()) {
             builder.append(CONNECTED_LINE);
             return;
