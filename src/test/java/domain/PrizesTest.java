@@ -28,6 +28,6 @@ class PrizesTest {
 
         Assertions.assertThatThrownBy(() -> new Prizes(prizeNames, users))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.PRIZES_COUNT_IS_NOT_EQUAL_USERS_SIZE_EXCEPTION.getMessage());
+                .hasMessage(ErrorMessage.PRIZES_SIZE_IS_NOT_EQUAL_USERS_SIZE_EXCEPTION.getMessage());
     }
 }

@@ -18,7 +18,7 @@ public class Prizes {
     private static void validateSize(final List<String> prizeNames, final Users users) {
         if (users.size() != prizeNames.size()) {
             throw new IllegalArgumentException(
-                    ErrorMessage.PRIZES_COUNT_IS_NOT_EQUAL_USERS_SIZE_EXCEPTION.getMessage());
+                    ErrorMessage.PRIZES_SIZE_IS_NOT_EQUAL_USERS_SIZE_EXCEPTION.getMessage());
         }
     }
 
