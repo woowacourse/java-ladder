@@ -59,7 +59,7 @@ public class Players {
 
     public List<String> getPlayerNames() {
         return players.stream()
-                .map(Player::getName)
+                .map(Player::getValue)
                 .collect(Collectors.toUnmodifiableList());
     }
 

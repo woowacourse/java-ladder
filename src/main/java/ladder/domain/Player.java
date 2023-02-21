@@ -1,17 +1,47 @@
 package ladder.domain;
 
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class Player {
 
-    private final Name name;
+    private static final Pattern VALUE_FORMAT = Pattern.compile("[a-zA-Z]+");
+    private static final int VALUE_MAX_LENGTH = 5;
+
+    private final String value;
 
     public Player(final String value) {
-        this.name = new Name(value);
+        validate(value);
+        this.value = value;
     }
 
-    public String getName() {
-        return name.getValue();
+    private void validate(final String value) {
+        validateFormat(value);
+        validateLength(value);
+    }
+
+    private void validateFormat(final String value) {
+        if (isNotEnglish(value)) {
+            throw new IllegalArgumentException("플레이어 이름은 영문자만 가능합니다. 현재 입력은 " + value + "입니다.");
+        }
+    }
+
+    private boolean isNotEnglish(final String value) {
+        return !VALUE_FORMAT.matcher(value).matches();
+    }
+
+    private void validateLength(final String value) {
+        if (hasExceedLength(value)) {
+            throw new IllegalArgumentException("플레이어 이름은 " + VALUE_MAX_LENGTH + "글자까지 가능합니다. 현재 입력은 " + value + "입니다.");
+        }
+    }
+
+    private boolean hasExceedLength(final String value) {
+        return VALUE_MAX_LENGTH < value.length();
+    }
+
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -23,11 +53,11 @@ public class Player {
             return false;
         }
         final Player player = (Player) o;
-        return Objects.equals(name, player.name);
+        return Objects.equals(getValue(), player.getValue());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(getValue());
     }
 }
