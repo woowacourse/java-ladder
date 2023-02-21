@@ -3,10 +3,10 @@ package ladder.domain;
 import ladder.util.BooleanGenerator;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 
-public class Line implements Iterable<Boolean> {
+public class Line {
     private static final int FIRST_CELL_INDEX = 0;
 
     private final List<Boolean> line = new ArrayList<>();
@@ -38,11 +38,7 @@ public class Line implements Iterable<Boolean> {
     }
 
     public List<Boolean> getLine() {
-        return line;
+        return Collections.unmodifiableList(line);
     }
 
-    @Override
-    public Iterator<Boolean> iterator() {
-        return line.iterator();
-    }
 }

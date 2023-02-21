@@ -33,7 +33,7 @@ public class ResultView {
     }
 
     private void printLadder(Ladder ladder, int lengthOfFirstName) {
-        for (Line line : ladder) {
+        for (Line line : ladder.getLadder()) {
             String result = BLANK.repeat(lengthOfFirstName - 1);
             result += getShapeOf(line);
             result += LEG;

@@ -13,7 +13,7 @@ class HeightTest {
     void validateHeightFailTest(int height) {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> new Height(height));
-        assertEquals(ErrorMessage.INVALID_HEIGHT_RANGE, exception.getMessage());
+        assertEquals(ErrorMessage.INVALID_HEIGHT_RANGE.getMessage(), exception.getMessage());
     }
 
     @ParameterizedTest(name = "높이는 1부터 10000까지의 자연수여야 한다.")

@@ -1,10 +1,10 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 
-public class Ladder implements Iterable<Line> {
+public class Ladder {
     private final List<Line> ladder = new ArrayList<>();
 
     public void addLine(Line line) {
@@ -12,11 +12,6 @@ public class Ladder implements Iterable<Line> {
     }
 
     public List<Line> getLadder() {
-        return ladder;
-    }
-
-    @Override
-    public Iterator<Line> iterator() {
-        return ladder.iterator();
+        return Collections.unmodifiableList(ladder);
     }
 }

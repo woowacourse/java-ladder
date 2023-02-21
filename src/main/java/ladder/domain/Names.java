@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.error.ErrorMessage;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +36,7 @@ public class Names {
     }
 
     public List<Name> getNames() {
-        return names;
+        return Collections.unmodifiableList(names);
     }
 
     public int size() {
