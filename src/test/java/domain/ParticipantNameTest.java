@@ -36,4 +36,11 @@ class ParticipantNameTest {
 		ParticipantName participantName = new ParticipantName(name);
 		assertThat(participantName.format()).isEqualTo("  echo");
 	}
+
+	@Test
+	void checkEmptyNameTest() {
+		String input = "echo,,echo2";
+		String[] names = input.split(",");
+
+	}
 }
