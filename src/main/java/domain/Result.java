@@ -49,4 +49,8 @@ public class Result {
     private boolean isAbleBackward(int index, Line line) {
         return index > 0 && line.getLine().get(index - 1);
     }
+
+    public Reward getReward(Name name) {
+        return result.get(name);
+    }
 }

@@ -2,7 +2,9 @@ package view;
 
 import domain.Line;
 import domain.Lines;
+import domain.Name;
 import domain.Names;
+import domain.Result;
 
 public class OutputView {
     private static final OutputView instance = new OutputView();
@@ -37,6 +39,24 @@ public class OutputView {
             return Message.ROW_LADDER.message;
         }
         return Message.EMPTY_ROW_LADDER.message;
+    }
+
+    public void printResult(String name, Names names, Result result) {
+        System.out.println();
+        System.out.println("실행결과");
+        for (Name nameObj : names.getNames()) {
+            printOrPass(name, result, nameObj);
+        }
+    }
+
+    private void printOrPass(String name, Result result, Name nameObj) {
+        if (isPrint(name, nameObj)) {
+            System.out.println(result.getReward(nameObj).getReward());
+        }
+    }
+
+    private boolean isPrint(String name, Name nameObj) {
+        return name.equals(nameObj.getName()) || name.equals("all");
     }
 
     private enum Message {

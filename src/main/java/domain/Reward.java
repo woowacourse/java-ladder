@@ -22,6 +22,10 @@ public class Reward {
         }
     }
 
+    public String getReward() {
+        return reward;
+    }
+
     private void validate(String reward) {
         validateBlank(reward);
         validateLength(reward);

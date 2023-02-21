@@ -27,10 +27,20 @@ public class MainController {
 
         LineSize lineSize = new LineSize(names.getPersonNumber());
         Lines lines = new Lines(lineSize, height, RANDOM_BOOLEAN_GENERATOR);
-
         outputView.printLines(names, lines);
 
         Rewards rewards = inputView.readRewards(names.getPersonNumber());
         Result result = new Result(names, lines, rewards);
+
+        showResult(result, names);
+    }
+
+    private void showResult(Result result, Names names) {
+        boolean isEnd = false;
+        while (!isEnd) {
+            String name = inputView.readShowName();
+            outputView.printResult(name, names, result);
+            isEnd = name.equals("all");
+        }
     }
 }
