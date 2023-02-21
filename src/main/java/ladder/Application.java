@@ -2,13 +2,12 @@ package ladder;
 
 import ladder.domain.Command;
 import ladder.domain.LadderGame;
+import ladder.dto.ResultDto;
 import ladder.utils.RandomDiscreteStrategy;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.List;
-
-import static ladder.domain.LadderGame.QUERY_ALL;
 
 public class Application {
 
@@ -22,7 +21,8 @@ public class Application {
         String queryName = "";
         while (!queryName.equals(LadderGame.QUERY_ALL)) {
             queryName = InputView.readResultInquireName();
-            OutputView.printInquireResult(game.calculatePlayerResult(queryName));
+            List<ResultDto> results = game.calculatePlayerResult(queryName);
+            OutputView.printInquireResult(results);
         }
     }
 
