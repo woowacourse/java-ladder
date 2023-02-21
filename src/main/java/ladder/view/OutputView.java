@@ -2,10 +2,8 @@ package ladder.view;
 
 import java.util.List;
 import java.util.StringJoiner;
-import ladder.domain.Direction;
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Players;
+
+import ladder.domain.*;
 
 public class OutputView {
 
@@ -20,10 +18,11 @@ public class OutputView {
     private static final String LADDER = "|";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
-    public void printLadderResult(final Players players, final Ladder ladder) {
+    public void printLadderResult(final Players players, final Ladder ladder, final Gifts gifts) {
         System.out.println(EXECUTION_RESULT + LINE_BREAK);
         printPlayerNames(players);
         printLadder(ladder);
+        printGiftNames(gifts);
     }
 
     private void printPlayerNames(final Players players) {
@@ -68,7 +67,12 @@ public class OutputView {
         return BLANK_FOOTHOLD;
     }
 
-    public void printErrorMessage(final String errorMessage) {
-        System.out.println(ERROR_PREFIX + errorMessage);
+    private void printGiftNames(Gifts gifts) {
+        final List<String> giftNames = gifts.getNames();
+        System.out.println(getFormattedPlayerNames(giftNames));
+    }
+
+    public void printErrorMessage(final IllegalArgumentException e) {
+        System.out.println(ERROR_PREFIX + e.getMessage());
     }
 }
