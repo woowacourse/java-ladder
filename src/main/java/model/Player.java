@@ -19,4 +19,8 @@ public class Player {
     public void saveResult(final Result result) {
         this.result = result;
     }
+
+    public boolean isPlayerName(Name other) {
+        return other.isSame(this.name);
+    }
 }
