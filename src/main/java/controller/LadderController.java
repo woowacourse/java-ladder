@@ -4,6 +4,7 @@ import java.util.List;
 
 import domain.BooleanGenerator;
 import domain.Ladder;
+import domain.Name;
 import domain.Names;
 import domain.RandomBooleanGenerator;
 import utils.Log;
@@ -14,10 +15,13 @@ public class LadderController {
 
     public void run() {
         Names names = generateNames();
+        Names results = generateResults();
         Ladder ladder = generateLadder(names.getPersonCount());
 
         OutputView.printNames(names);
         OutputView.printLadder(ladder);
+
+        Name command = generateName();
     }
 
     private Names generateNames() {
@@ -30,6 +34,16 @@ public class LadderController {
         }
     }
 
+    private Names generateResults() {
+        try {
+            List<String> names = InputView.readResults();
+            return new Names(names);
+        } catch (IllegalArgumentException exception) {
+            Log.log(exception.getMessage());
+            return generateResults();
+        }
+    }
+
     private Ladder generateLadder(int personCount) {
         try {
             BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
@@ -38,6 +52,16 @@ public class LadderController {
         } catch (IllegalArgumentException exception) {
             Log.log(exception.getMessage());
             return generateLadder(personCount);
+        }
+    }
+
+    private Name generateName() {
+        try {
+            String name = InputView.readName();
+            return new Name(name);
+        } catch (IllegalArgumentException exception) {
+            Log.log(exception.getMessage());
+            return generateName();
         }
     }
 }
