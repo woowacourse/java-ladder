@@ -61,8 +61,8 @@ public class ListStudy {
         assertThatCode(() -> values.add(0, "zero")).doesNotThrowAnyException(); // 맨 앞에 0을 추가한다.
         assertThatCode(() -> values.add(100, "hundred")).isInstanceOf(RuntimeException.class); // 인덱스가 넘어가면 예외가 발생한다.
 //
-//        assertThat(values.set(0, "0")).isEqualTo("0"); // 첫번째 원소가 "0"으로 바뀐다.
-//        assertThatCode(() -> values.set(100, "100")).isInstanceOf(RuntimeException.class); // 인덱스가 넘어가면 예외가 발생한다.
+        assertThat(values.set(0, "0")).isEqualTo("0"); // 첫번째 원소가 "0"으로 바뀐다.
+        assertThatCode(() -> values.set(100, "100")).isInstanceOf(RuntimeException.class); // 인덱스가 넘어가면 예외가 발생한다.
 //
 //        assertThat(values.get(0)).isEqualTo("0"); // 첫 번째 값을 찾는다.
 //        assertThatCode(() -> values.get(100)).isInstanceOf(RuntimeException.class); // 인덱스가 넘어가면 예외가 발생한다.
