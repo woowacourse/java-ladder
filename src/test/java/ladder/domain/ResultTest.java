@@ -30,9 +30,8 @@ class ResultTest {
         final Result result = Result.of(players, ladder, prizes);
 
         //then
-        Map<String, String> value = result.getValue();
-        assertThat(value.get("pobi")).isEqualTo("3000");
-        assertThat(value.get("crong")).isEqualTo("꽝");
+        assertThat(result.extract("pobi")).isEqualTo("3000");
+        assertThat(result.extract("crong")).isEqualTo("꽝");
     }
 }
 
@@ -53,6 +52,10 @@ class Result {
             result.put(playerNames.get(position), prizes.check(prizePosition));
         }
         return new Result(result);
+    }
+
+    public String extract(final String key) {
+        return value.get(key);
     }
 
     public Map<String, String> getValue() {
