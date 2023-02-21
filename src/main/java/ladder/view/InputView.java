@@ -10,6 +10,10 @@ public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final Pattern NOT_NUMERIC_FORMAT = Pattern.compile("\\D");
     
+    private InputView() {
+        throw new IllegalStateException("인스턴스를 생성할 수 없는 유틸클래스입니다.");
+    }
+    
     public static String inputPeopleNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String inputPeopleNames = SCANNER.nextLine();

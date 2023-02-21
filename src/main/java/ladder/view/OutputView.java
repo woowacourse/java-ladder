@@ -11,7 +11,11 @@ import java.util.stream.IntStream;
 
 public class OutputView {
     private static final int PER_NAME_SPACE = 6;
-
+    
+    private OutputView() {
+        throw new IllegalStateException("인스턴스를 생성할 수 없는 유틸클래스입니다.");
+    }
+    
     public static void printNames(PlayerNames playerNames) {
         println(parseDisplayNames(playerNames.getNames()));
     }
