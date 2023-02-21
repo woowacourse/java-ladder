@@ -61,4 +61,8 @@ public class ResultView {
             stringJoiner.add(DISCONNECTED_MARKER);
         }
     }
+
+    public static void printResults(List<String> results) {
+
+    }
 }

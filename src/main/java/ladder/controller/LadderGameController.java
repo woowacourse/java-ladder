@@ -48,6 +48,7 @@ public class LadderGameController {
         ResultView.printExecutionMessage();
         ResultView.printPlayerNames(ladderGame.getNames());
         ResultView.printLadder(ladderGame.getLines());
+        ResultView.printResults(ladderGame.getResults());
     }
 
     public <T> T readUserInput(Supplier<T> supplier) {
