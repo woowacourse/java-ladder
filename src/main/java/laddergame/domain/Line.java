@@ -29,7 +29,10 @@ public class Line {
     private boolean checkFront() {
         int lastIndex = points.size() - 1;
 
-        return !points.isEmpty() && points.get(lastIndex).isConnected();
+        boolean hasPoint = !points.isEmpty();
+        boolean isPreviousPointConnected = points.get(lastIndex).isConnected();
+
+        return hasPoint && isPreviousPointConnected;
     }
 
     public List<Point> getPoints() {
