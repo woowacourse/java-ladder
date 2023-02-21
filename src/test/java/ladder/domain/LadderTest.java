@@ -2,6 +2,8 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -131,6 +133,16 @@ public class LadderTest {
                     assertThat(ladder.resultPositionOf(2)).isEqualTo(1);
                 }
         );
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 3, 4, 5, 6})
+    @DisplayName("사다리 크기에 맞지 않는 위치의 최종 위치값 반환 함수를 호출하면 예외를 발생시킨다.")
+    void resultPositionExceptionTest(int index) {
+        final Ladder ladder = new Ladder(2, new Users(List.of("a", "b", "C")));
+        assertThatThrownBy(() -> ladder.resultPositionOf(index))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("해당 위치는 존재하지 않는 값입니다.");
     }
 
 }
