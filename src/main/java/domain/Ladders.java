@@ -1,20 +1,17 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Ladders {
     private final List<Ladder> ladders;
 
     public Ladders(int width, Height height, BooleanGenerator booleanGenerator) {
-        this.ladders = new ArrayList<>();
-        generate(width, height, booleanGenerator);
-    }
-
-    private void generate(int width, Height height, BooleanGenerator booleanGenerator) {
-        for (int i = 0; i < height.getHeight(); i++) {
-            ladders.add(new Ladder(width, booleanGenerator));
-        }
+        this.ladders = Stream.generate(() -> new Ladder(width, booleanGenerator))
+                .limit(height.getHeight())
+                .collect(Collectors.toList());
     }
 
     public int getHeight() {
@@ -26,12 +23,14 @@ public class Ladders {
     }
 
     public int getResult(int current) {
-        for (int i = 0; i < getHeight(); i++) {
-            current += ladders.get(i)
-                    .getLadder()
-                    .get(current)
-                    .getMove();
-        }
-        return current;
+        return IntStream.range(0, getHeight())
+                .reduce(current, this::calculateResult);
+    }
+
+    private int calculateResult(int total, int currentHeight) {
+        return total + ladders.get(currentHeight)
+                .getLadder()
+                .get(total)
+                .getMove();
     }
 }
