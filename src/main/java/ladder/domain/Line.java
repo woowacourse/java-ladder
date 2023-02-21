@@ -7,25 +7,25 @@ import java.util.List;
 
 public class Line {
     private static final boolean LINKED = true;
-    private final List<Boolean> sections;
+    private final List<Boolean> bridges;
 
     public Line(LineStrategy lineStrategy, int sectionCount) {
-        this.sections = lineStrategy.generate(sectionCount);
+        this.bridges = lineStrategy.generate(sectionCount);
     }
 
     public int moveFrom(int startPosition) {
         validateOutBound(startPosition);
-        if (isRightMoveAble(startPosition) && (sections.get(startPosition) == LINKED)) {
+        if (isRightMoveAble(startPosition) && (bridges.get(startPosition) == LINKED)) {
             return startPosition + 1;
         }
-        if (isLeftMoveAble(startPosition) && (sections.get(startPosition - 1) == LINKED)) {
+        if (isLeftMoveAble(startPosition) && (bridges.get(startPosition - 1) == LINKED)) {
             return startPosition - 1;
         }
         return startPosition;
     }
 
     private boolean isRightMoveAble(int position) {
-        return position + 1 <= sections.size();
+        return position + 1 <= bridges.size();
     }
 
     private boolean isLeftMoveAble(int position) {
@@ -33,11 +33,11 @@ public class Line {
     }
 
     public List<Boolean> getLine() {
-        return Collections.unmodifiableList(sections);
+        return Collections.unmodifiableList(bridges);
     }
 
     private void validateOutBound(int startPoint) {
-        if ((startPoint < 0) || (startPoint > sections.size())) {
+        if ((startPoint < 0) || (startPoint > bridges.size())) {
             throw new IllegalArgumentException("line 범위 밖의 시작점입니다.");
         }
     }

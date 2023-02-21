@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final String LINE_BUNDLE = "-----";
+    private static final String EXIST_BRIDGE = "-----";
     private static final String COLUMN_PART = "|";
-    private static final String BLANK_BUNDLE = "     ";
+    private static final String BLANK_BRIDGE = "     ";
     private static final String RESULT_DELIMITER = " : ";
     private static final int INQUIRE_ONE_NAME = 1;
 
@@ -40,22 +40,22 @@ public class OutputView {
     }
 
     private static void printLines(List<List<Boolean>> lines) {
-        for (List<Boolean> booleans : lines) {
-            String line = generateLine(booleans);
-            System.out.println(BLANK_BUNDLE + line + COLUMN_PART);
+        for (List<Boolean> bridges : lines) {
+            String line = generateLine(bridges);
+            System.out.println(BLANK_BRIDGE + line + COLUMN_PART);
         }
     }
 
-    private static String generateLine(List<Boolean> booleans) {
-        return booleans.stream()
-                .map(part -> COLUMN_PART + getBundlePart(part))
+    private static String generateLine(List<Boolean> bridges) {
+        return bridges.stream()
+                .map(isAssigned -> COLUMN_PART + getBridge(isAssigned))
                 .collect(Collectors.joining());
     }
 
-    private static String getBundlePart(boolean isAssigned) {
+    private static String getBridge(boolean isAssigned) {
         if (isAssigned) {
-            return LINE_BUNDLE;
+            return EXIST_BRIDGE;
         }
-        return BLANK_BUNDLE;
+        return BLANK_BRIDGE;
     }
 }
