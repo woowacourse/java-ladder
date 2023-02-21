@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LadderMakerTest {
 
     @Test
-    @DisplayName("주어진 사다리 속성대로 사다리가 생성된다.")
+    @DisplayName("주어진 사이즈대로 사다리가 생성된다.")
     void makeLadderTest() {
         class IntendedBooleanGenerator implements BooleanGenerator {
 
@@ -22,8 +22,8 @@ public class LadderMakerTest {
 
         BooleanGenerator booleanGenerator = new IntendedBooleanGenerator();
 
-        LadderSize ladderProperty = new LadderSize(3, 4);
-        LadderMaker ladderMaker = new LadderMaker(ladderProperty, booleanGenerator);
+        LadderSize ladderSize = new LadderSize(3, 4);
+        LadderMaker ladderMaker = new LadderMaker(ladderSize, booleanGenerator);
 
         Ladder ladder = ladderMaker.generate();
         List<Line> lines = ladder.getLines();

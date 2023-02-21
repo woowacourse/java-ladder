@@ -22,12 +22,14 @@ public class LadderTest {
             }
         }
 
+        BooleanGenerator intendedBooleanGenerator = new IntendedBooleanGenerator();
+
         List<Line> lines = List.of(
-                new Line(4, new IntendedBooleanGenerator()),
-                new Line(4, new IntendedBooleanGenerator()),
-                new Line(4, new IntendedBooleanGenerator()),
-                new Line(4, new IntendedBooleanGenerator()),
-                new Line(4, new IntendedBooleanGenerator())
+                new Line(4, intendedBooleanGenerator),
+                new Line(4, intendedBooleanGenerator),
+                new Line(4, intendedBooleanGenerator),
+                new Line(4, intendedBooleanGenerator),
+                new Line(4, intendedBooleanGenerator)
         );
 
         Ladder ladder = new Ladder(lines);
