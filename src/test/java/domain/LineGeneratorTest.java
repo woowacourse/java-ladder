@@ -23,7 +23,7 @@ public class LineGeneratorTest {
                 .containsExactly(Link.LINKED, Link.UNLINKED, Link.LINKED);
     }
 
-    class TestLinkGenerator implements LinkGenerator {
+    static class TestLinkGenerator implements LinkGenerator {
         private final Queue<Link> links;
 
         public TestLinkGenerator(final List<Link> links) {

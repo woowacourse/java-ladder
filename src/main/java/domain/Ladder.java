@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
+
     private static final int MINIMUM_HEIGHT = 1;
 
     private final List<Line> lines = new ArrayList<>();
@@ -15,7 +16,7 @@ public class Ladder {
         generateLines(height, personCount, new LineGenerator(linkGenerator));
     }
 
-    public void validateHeight(final int height) {
+    private void validateHeight(final int height) {
         if (height < MINIMUM_HEIGHT) {
             throw new IllegalArgumentException(ErrorMessage.LADDER_HEIGHT_EXCEPTION.getMessage());
         }
@@ -24,6 +25,12 @@ public class Ladder {
     private void generateLines(final int height, final int personCount, final LineGenerator lineGenerator) {
         for (int index = 0; index < height; index++) {
             lines.add(lineGenerator.generate(personCount));
+        }
+    }
+
+    public void playLadderGame(final Users users) {
+        for (final Line line : lines) {
+            users.swapUserByLine(line);
         }
     }
 
