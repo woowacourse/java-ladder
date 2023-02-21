@@ -1,8 +1,7 @@
-package laddergame.domain;
+package laddergame.domain.player;
 
 import java.util.Objects;
 
-//vo 불변객체 현구막 블로그
 public class Position {
 
     private int position;

@@ -1,5 +1,8 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
 
+import laddergame.domain.ladder.ConnectionStrategy;
+import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.RandomLineMaker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

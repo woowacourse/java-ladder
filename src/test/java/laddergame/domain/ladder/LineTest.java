@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -10,8 +10,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static laddergame.domain.Connection.CONNECTED;
-import static laddergame.domain.Connection.UNCONNECTED;
+import static laddergame.domain.ladder.Connection.CONNECTED;
+import static laddergame.domain.ladder.Connection.UNCONNECTED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

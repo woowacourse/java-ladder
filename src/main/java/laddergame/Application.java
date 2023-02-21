@@ -1,7 +1,7 @@
 package laddergame;
 
 import laddergame.controller.GameController;
-import laddergame.domain.RandomLineMaker;
+import laddergame.domain.ladder.RandomLineMaker;
 
 public class Application {
 

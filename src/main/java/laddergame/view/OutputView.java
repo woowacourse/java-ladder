@@ -1,8 +1,8 @@
 package laddergame.view;
 
-import laddergame.domain.Connection;
-import laddergame.domain.Ladder;
-import laddergame.domain.Names;
+import laddergame.domain.ladder.Connection;
+import laddergame.domain.ladder.Ladder;
+import laddergame.domain.player.Names;
 
 import java.util.List;
 
