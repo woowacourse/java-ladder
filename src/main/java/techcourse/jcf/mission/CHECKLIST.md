@@ -4,7 +4,7 @@
 
 - [x] boolean add(String value);
 - [ ] void add(int index, String value);
-- [ ] String set(int index, String value);
+- [x] String set(int index, String value);
 - [x] String get(int index);
 - [ ] boolean contains(String value);
 - [ ] int indexOf(String value);
@@ -12,7 +12,7 @@
 - [x] boolean isEmpty();
 - [ ] boolean remove(String value);
 - [ ] String remove(int index);
-- [ ] void clear();
+- [x] void clear();
 
 ### SimpleLinkedList
 

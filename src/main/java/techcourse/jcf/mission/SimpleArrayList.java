@@ -43,7 +43,12 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String set(int index, String value) {
-        return null;
+        if(index >= size){
+            throw new IndexOutOfBoundsException();
+        }
+        String returnValue = array[index];
+        array[index] = value;
+        return returnValue;
     }
 
     @Override
