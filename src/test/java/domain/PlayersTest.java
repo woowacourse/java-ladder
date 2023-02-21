@@ -117,4 +117,36 @@ public class PlayersTest {
         // then
         assertThat(expectedResult).isEqualTo(firstPlayerName.length());
     }
+
+    @Test
+    @DisplayName("인자로 들어오는 이름을 가진 플레이어를 반환한다.")
+    void returns_player_to_use_name() {
+        // given
+        String player1 = "pobi";
+        String player2 = "crong";
+        String player3 = "honux";
+
+        Players players = new Players(List.of(player1, player2, player3));
+
+        // when
+        Player expectedPlayer = players.findPlayerByName(player1);
+
+        // then
+        assertThat(expectedPlayer.getName()).isEqualTo(player1);
+    }
+
+    @Test
+    @DisplayName("해당하는 이름을 가진 플레이어가 있는지 결과를 반환해준다.")
+    void returns_is_contained_name_of_player() {
+        // given
+        String command = "pobi";
+        List<String> playerNames = List.of(command, "jay", "odo");
+        Players players = new Players(playerNames);
+
+        // when
+        boolean expectedResult = players.isContainsPlayer(command);
+
+        // then
+        assertThat(expectedResult).isEqualTo(true);
+    }
 }

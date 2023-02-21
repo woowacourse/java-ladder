@@ -25,7 +25,7 @@ public class Players {
         }
     }
 
-    private boolean isNotPermittedNumberOfPlayers(List<String> playerNames) {
+    private boolean isNotPermittedNumberOfPlayers(final List<String> playerNames) {
         return (playerNames.size() < MINIMUM_LENGTH_OF_PLAYER) || (playerNames.size() > MAXIMUM_LENGTH_OF_PLAYER);
     }
 
@@ -35,6 +35,11 @@ public class Players {
         if (playerNames.size() != nameWithoutDuplicated.size()) {
             throw new IllegalArgumentException("참가한 플레이어의 이름 중 중복된 이름이 존재하면 안됩니다.");
         }
+    }
+
+    public boolean isContainsPlayer(final String command) {
+        return this.players.stream()
+                .anyMatch(player -> player.getName().equals(command));
     }
 
     private List<Player> makePlayers(final List<String> playerNames) {
@@ -62,7 +67,18 @@ public class Players {
         return this.players.get(0).getLengthOfPlayerName();
     }
 
+    public Player findPlayerByName(final String name) {
+        return players.stream()
+                .filter(player -> player.getName().equals(name))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(this.players);
+    }
+
+    public Player findPlayerByIndex(final int index) {
+        return this.players.get(index);
     }
 }

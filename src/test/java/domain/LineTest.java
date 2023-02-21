@@ -37,7 +37,7 @@ public class LineTest {
 
         // then
         assertThat(line.getFootholds()).containsExactly(true, false, true);
-     }
+    }
 
     @Test
     @DisplayName("발판은 존재하지 않아도 생성될 수 있다.")

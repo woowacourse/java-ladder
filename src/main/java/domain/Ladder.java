@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 public class Ladder {
 
     private final Lines lines;
@@ -12,6 +14,10 @@ public class Ladder {
 
     public int findLadderHeight() {
         return this.height.getHeight();
+    }
+
+    public List<Boolean> findLineByIndexOfHeight(final int indexOfHeight) {
+        return this.lines.findLineUsingIndexOfHeight(indexOfHeight);
     }
 
     public Lines getLines() {
