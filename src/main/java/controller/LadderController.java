@@ -4,6 +4,7 @@ import java.util.List;
 
 import domain.BooleanGenerator;
 import domain.Ladder;
+import domain.LadderGenerator;
 import domain.Name;
 import domain.Names;
 import domain.RandomBooleanGenerator;
@@ -64,7 +65,8 @@ public class LadderController {
         try {
             BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
             int height = InputView.readHeight();
-            return new Ladder(booleanGenerator, height, personCount);
+            LadderGenerator ladderGenerator = new LadderGenerator(booleanGenerator);
+            return ladderGenerator.generateLadder(height, personCount);
         } catch (IllegalArgumentException exception) {
             Log.log(exception.getMessage());
             return generateLadder(personCount);

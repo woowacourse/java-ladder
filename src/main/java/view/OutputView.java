@@ -47,7 +47,7 @@ public class OutputView {
     }
 
     public static void printLadder(Ladder ladder) {
-        ladder.getLadder()
+        ladder.getLines()
                 .forEach(OutputView::printLine);
     }
 
