@@ -13,11 +13,11 @@ public class Player {
         this.position = position;
     }
 
-    public int calculateExitIndex(Lines lines) {
-        return lines.getExitIndex(this.position.getPosition());
+    public void move(Lines lines) {
+        this.position = new Position(lines.getExitIndex(this.position.getPosition()));
     }
 
-    public void setMission(Mission mission) {
+    public void distributeMission(Mission mission) {
         this.mission = mission;
     }
 
@@ -57,4 +57,6 @@ public class Player {
     public int hashCode() {
         return Objects.hash(name, position);
     }
+
+
 }

@@ -2,13 +2,10 @@ package controller;
 
 import domain.Height;
 import domain.Lines;
-import domain.Mission;
 import domain.Missions;
-import domain.Name;
 import domain.Names;
 import domain.Player;
 import domain.Players;
-import domain.Position;
 import domain.generator.BooleanGenerator;
 import view.InputView;
 import view.OutputView;
@@ -39,21 +36,19 @@ public class MainController {
             outputView.printResult(names, lines, missions);
 
             for (int index = 0; index < names.size(); index++) {
-                Player player = createPlayer(names.getNameByIndex(index), index);
-                players.addPlayer(player);
-                Mission mission = missions.getMissionByIndex(player.calculateExitIndex(lines));
-                player.setMission(mission);
+                Player player = players.findByIndex(index);
+                player.move(lines);
             }
+            players.distributeMissions(missions);
 
             Player player = players.findByName(inputView.readPlayer());
+
+            // TODO: all을 입력한 경우
+
             outputView.printResult(player.getMission());
 
         } catch (Exception exception) {
             outputView.printExceptionMessage(exception);
         }
-    }
-
-    private static Player createPlayer(Name name, int index) {
-        return new Player(name, new Position(index));
     }
 }
