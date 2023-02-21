@@ -25,6 +25,33 @@ public class Lines {
         return lines;
     }
 
+    public int goDown(final int namePosition) {
+        int presentPosition = namePosition;
+
+        for (Line line : this.lines) {
+            if (presentPosition == 0) {
+                if (line.getConnections().get(presentPosition)) {
+                    presentPosition++;
+                }
+            } else {
+                if (presentPosition == (line.getConnections().size() - 1)) {
+                    if (line.getConnections().get(presentPosition - 1)) {
+                        presentPosition--;
+                        continue;
+                    }
+                }
+                if (line.getConnections().get(presentPosition - 1)) {
+                    presentPosition--;
+                }
+                if (line.getConnections().get(presentPosition)) {
+                    presentPosition++;
+                }
+            }
+        }
+
+        return presentPosition;
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(this.lines);
     }
