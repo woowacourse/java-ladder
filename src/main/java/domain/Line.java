@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Line {
 
+    private static final int LEFT_ENDPOINTS = 0;
+    private static final int DELTA = 1;
+
     private final List<Point> points;
 
     public Line(final List<Point> points) {
@@ -13,22 +16,22 @@ public class Line {
 
     public int move(final int index) {
         if (hasLeft(index)) {
-            return index - 1;
+            return index - DELTA;
         }
 
         if (hasRight(index)) {
-            return index + 1;
+            return index + DELTA;
         }
 
         return index;
     }
 
     private boolean hasLeft(final int index) {
-        if (index == 0) {
+        if (index == LEFT_ENDPOINTS) {
             return false;
         }
 
-        Point leftPoint = points.get(index - 1);
+        Point leftPoint = points.get(index - DELTA);
         return leftPoint.isConnected();
     }
 
