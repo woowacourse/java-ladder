@@ -36,21 +36,9 @@ public class Ladder {
         }
     }
 
-    private static void generateFootsteps(final int width, final Line line) {
-        for (int currentWidth = 0; currentWidth < width - 1; currentWidth++) {
-            line.generateStep();
-        }
-    }
-
-    public int getWidth() {
-        return this.lines
-                .get(0)
-                .getWidth();
-    }
-
-    public List<List<Boolean>> getValue() {
+    public List<List<Boolean>> getConnectedToRightConditionsOfAll() {
         return lines.stream()
-                .map(Line::getValue)
+                .map(Line::getConnectedToRightConditions)
                 .collect(Collectors.toList());
     }
 

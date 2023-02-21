@@ -31,7 +31,7 @@ public class OutputView {
     public void printResult(final Names names, final Ladder ladder) {
         printResultMessage();
         printParticipantNames(names);
-        printGeneratedLadder(ladder.getValue(), names.findMaxNameLength());
+        printGeneratedLadder(ladder.getConnectedToRightConditionsOfAll(), names.findMaxNameLength());
     }
 
     private void printResultMessage() {
