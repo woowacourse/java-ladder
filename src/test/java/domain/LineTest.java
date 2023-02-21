@@ -34,33 +34,33 @@ class LineTest {
         @DisplayName("첫 번째 column에서 시작할 때, true를 만나면 오른쪽으로 움직인다.")
         @Test
         void column_first() {
-            Position position = new Position(0, 1);
+            Position position = new Position(0);
             line.move(position);
-            assertThat(position).isEqualTo(new Position(1, 1));
+            assertThat(position).isEqualTo(new Position(1));
         }
 
         @DisplayName("마지막 column에서 시작할 때, true를 만나면 왼쪽으로 움직인다.")
         @Test
         void column_last() {
-            Position position = new Position(3, 1);
+            Position position = new Position(3);
             line.move(position);
-            assertThat(position).isEqualTo(new Position(2, 1));
+            assertThat(position).isEqualTo(new Position(2));
         }
 
         @DisplayName("가운데 column에서 시작할 때, true를 만나는 쪽으로 움직인다.")
         @Test
         void column_middle_left() {
-            Position position = new Position(1, 1);
+            Position position = new Position(1);
             line.move(position);
-            assertThat(position).isEqualTo(new Position(0, 1));
+            assertThat(position).isEqualTo(new Position(0));
         }
 
         @DisplayName("가운데 column에서 시작할 때, true를 만나는 쪽으로 움직인다.")
         @Test
         void column_middle_right() {
-            Position position = new Position(2, 1);
+            Position position = new Position(2);
             line.move(position);
-            assertThat(position).isEqualTo(new Position(3, 1));
+            assertThat(position).isEqualTo(new Position(3));
         }
     }
 }

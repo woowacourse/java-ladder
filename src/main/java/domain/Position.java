@@ -6,9 +6,9 @@ public class Position {
     private int column;
     private int row;
 
-    public Position(int column, int row) {
+    public Position(int column) {
         this.column = column;
-        this.row = row;
+        this.row = 0;
     }
 
     public void goDown() {
@@ -25,10 +25,6 @@ public class Position {
 
     public int getColumn() {
         return column;
-    }
-
-    public int getRow() {
-        return row;
     }
 
     @Override
