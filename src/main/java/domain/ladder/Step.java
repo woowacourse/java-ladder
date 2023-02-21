@@ -14,7 +14,15 @@ public enum Step {
         return Step.LEFT;
     }
 
+    public static Step makeNone() {
+        return Step.NONE;
+    }
+
     public boolean isConnectedToRight() {
         return this == Step.RIGHT;
+    }
+
+    public boolean isConnectedToLeft() {
+        return this == Step.LEFT;
     }
 }

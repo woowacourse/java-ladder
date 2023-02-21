@@ -11,26 +11,49 @@ public class Line {
 
     private final List<Step> steps = new ArrayList<>();
     private final BooleanGenerator generator;
+    private final Integer width;
 
-    private Line(final BooleanGenerator generator) {
+    private Line(BooleanGenerator generator, Integer width) {
         this.generator = generator;
+        this.width = width;
     }
 
     public static Line of(final BooleanGenerator generator) {
-        return new Line(generator);
+        return new Line(generator, 0);
+    }
+
+    public static Line of(final int width, final BooleanGenerator generator) {
+        return new Line(generator, width);
     }
 
     public boolean isConnectedToRight(final int index) {
         return this.steps.get(index).isConnectedToRight();
     }
 
+    public boolean isConnectedToLeft(int index) {
+        return this.steps.get(index).isConnectedToLeft();
+    }
+
     public void generateStep() {
         if (!isStartEdge()) {
+            if (isLastStep()) {
+                Step previous = getPreviousStep();
+                if (previous.isConnectedToRight()) {
+                    steps.add(Step.makeLeft());
+                    return;
+                }
+                steps.add(Step.makeNone());
+                return;
+            }
             Step previous = getPreviousStep();
             addStep(previous.isConnectedToRight());
             return;
         }
         addStep(false);
+    }
+
+    private boolean isLastStep() {
+        return this.width - 1 == this.steps.size();
     }
 
     private Step getPreviousStep() {
