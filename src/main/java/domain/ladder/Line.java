@@ -9,14 +9,13 @@ import java.util.List;
 public class Line {
 
     private final List<Scaffold> scaffolds;
-    private final Position fistPosition;
     private final Position lastPosition;
+    private final Position fistPosition = Position.of(0);
 
     /* 오직 LadderFactory 를 통해서만 생성한다 */
     Line(final List<Scaffold> scaffolds) {
         validateScaffoldSizeEmpty(scaffolds);
         this.scaffolds = new ArrayList<>(scaffolds);
-        this.fistPosition = Position.of(0);
         this.lastPosition = Position.of(scaffolds.size());
     }
 
