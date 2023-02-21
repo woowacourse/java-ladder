@@ -11,6 +11,7 @@ import java.util.List;
 class InputVerifier {
 
     final static int MAX_NAME_LENGTH = 5;
+
     protected static List<String> validateName(String input) {
         validatePeopleNumberOverThanOne(input);
         List<String> names = splitInput(input);
@@ -34,5 +35,13 @@ class InputVerifier {
         if (!input.contains(",")) {
             throw new IllegalArgumentException("최소 2명의 참가자를 입력해야 합니다.");
         }
+    }
+
+    public static int validateLadderHeight(String numberStr) {
+        int number = Integer.parseInt(numberStr);
+        if (number <= 0) {
+            throw new IllegalArgumentException("사다리 높이는 자연수로 입력해 주세요");
+        }
+        return number;
     }
 }

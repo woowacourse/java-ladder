@@ -22,25 +22,14 @@ public class InputView {
 
     public static int inputLadderHeight() {
         System.out.println("\n" + INPUT_LADDER_HEIGHT);
+        scanner.nextLine();
         while (true) {
             try {
-                int ladderHeight = inputNaturalNumber();
-                validateNaturalNumber(ladderHeight);
-                return ladderHeight;
+                return InputVerifier.validateLadderHeight(scanner.nextLine());
             } catch (IllegalArgumentException | InputMismatchException e) {
                 System.out.println("사다리 높이는 자연수로 입력해 주세요");
             }
         }
     }
 
-    private static void validateNaturalNumber(int number) {
-        if (number <= 0) {
-            throw new IllegalArgumentException("사다리 높이는 자연수로 입력해 주세요");
-        }
-    }
-
-    private static int inputNaturalNumber() {
-        scanner.nextLine();
-        return Integer.parseInt(scanner.nextLine());
-    }
 }
