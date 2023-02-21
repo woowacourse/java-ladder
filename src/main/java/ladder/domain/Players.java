@@ -9,8 +9,7 @@ import static java.util.stream.Collectors.toUnmodifiableList;
 
 public class Players {
     private static final int PLAYERS_SIZE_LOWER_BOUND_INCLUSIVE = 2;
-    private static final String PLAYERS_SIZE_ERROR_MESSAGE = "플레이어 사이즈는 2 이상이어야 합니다.";
-    private static final String DUPLICATE_NAMES_ERROR_MESSAGE = "이름에 중복이 존재합니다";
+
     private final List<Player> players;
 
     private Players(List<Player> players) {
@@ -31,14 +30,14 @@ public class Players {
 
     private void validateCountInRange(List<Player> players) {
         if (players.size() < PLAYERS_SIZE_LOWER_BOUND_INCLUSIVE) {
-            throw new IllegalArgumentException(PLAYERS_SIZE_ERROR_MESSAGE);
+            throw new IllegalArgumentException("플레이어는 2명 이상이어야 합니다.");
         }
     }
 
     private void validateNoDuplicate(List<Player> players) {
         Set<Player> distinctPlayers = new HashSet<>(players);
         if (distinctPlayers.size() != players.size()) {
-            throw new IllegalArgumentException(DUPLICATE_NAMES_ERROR_MESSAGE);
+            throw new IllegalArgumentException("이름에 중복이 존재합니다");
         }
     }
 
