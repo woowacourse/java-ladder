@@ -5,17 +5,20 @@ import java.util.List;
 
 public class LineGenerator {
 
+    private static final int DELTA = 1;
+
     private final BooleanGenerator booleanGenerator;
 
-    public LineGenerator(BooleanGenerator booleanGenerator) {
+    public LineGenerator(final BooleanGenerator booleanGenerator) {
         this.booleanGenerator = booleanGenerator;
     }
 
-    public Line generateLine(int personCount) {
-        return new Line(generatePoints(personCount - 1));
+    public Line generateLine(final int personCount) {
+        List<Point> points = generatePoints(personCount - DELTA);
+        return new Line(points);
     }
 
-    private List<Point> generatePoints(int number) {
+    private List<Point> generatePoints(final int number) {
         List<Point> points = new ArrayList<>();
 
         Point previousPoint = Point.DISCONNECTED;
@@ -28,7 +31,7 @@ public class LineGenerator {
         return points;
     }
 
-    private Point generatePoint(Point previousPoint) {
+    private Point generatePoint(final Point previousPoint) {
         if (previousPoint.isConnected()) {
             return Point.DISCONNECTED;
         }
