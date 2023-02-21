@@ -33,6 +33,7 @@ public class ListStudy {
         assertThat(values.size()).isEqualTo(4); // list의 크기를 구한다.
 
         assertThat(values.isEmpty()).isFalse(); // list가 비어있지 않다고 나오는지 확인한다.
+        assertThat(new SimpleArrayList().isEmpty()).isTrue(); // 초기 리스트가 비어있는지 확인한다.
 
 //        assertThat(values.remove(0)).isEqualTo("first"); // 첫 번째 값을 삭제한다.
 //        assertThat(values.size()).isEqualTo(2); // 값이 삭제 됐는지 확인한다.
