@@ -3,13 +3,13 @@ package validator;
 import validator.dto.InputValidationRequest;
 import validator.type.ValidateType;
 
-public class EmptyInputValidatorChain implements InputValidator {
+public class EmptyInputValidatorChain implements InputValidatorChain {
 
     private static final String ERROR_MESSAGE = "빈 값은 허용되지 않습니다.";
-    private InputValidator next;
+    private InputValidatorChain next;
 
     @Override
-    public void setNext(final InputValidator validator) {
+    public void setNext(final InputValidatorChain validator) {
         this.next = validator;
     }
 

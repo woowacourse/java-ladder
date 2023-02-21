@@ -2,7 +2,7 @@ package view;
 
 import java.util.List;
 import java.util.Scanner;
-import validator.InputValidator;
+import validator.InputValidatorChain;
 import validator.dto.InputValidationRequest;
 import validator.type.ValidateType;
 
@@ -11,10 +11,10 @@ public class InputView {
     private static final String INPUT_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String INPUT_LADDER_HEIGHT_MESSAGE = "\n최대 사다리 높이는 몇 개인가요?";
     private static final String NAME_DELIMITER = ",";
-    private final InputValidator validator;
+    private final InputValidatorChain validator;
     private final Scanner scanner = new Scanner(System.in);
 
-    public InputView(InputValidator inputValidator) {
+    public InputView(InputValidatorChain inputValidator) {
         this.validator = inputValidator;
     }
 

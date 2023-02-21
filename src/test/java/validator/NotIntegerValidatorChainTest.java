@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NotIntegerValidatorChainTest {
-    private static final InputValidator validator = new NotIntegerValidatorChain();
+    private static final InputValidatorChain validator = new NotIntegerValidatorChain();
 
     @BeforeAll
     static void setUp() {

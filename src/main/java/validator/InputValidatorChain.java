@@ -2,9 +2,9 @@ package validator;
 
 import validator.dto.InputValidationRequest;
 
-public interface InputValidator {
+public interface InputValidatorChain {
 
-    void setNext(InputValidator validator);
+    void setNext(InputValidatorChain validator);
 
     void validate(InputValidationRequest request) throws IllegalArgumentException;
 }

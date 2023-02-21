@@ -5,13 +5,13 @@ import validator.type.ValidateType;
 
 import java.util.regex.Pattern;
 
-public class NotIntegerValidatorChain implements InputValidator {
+public class NotIntegerValidatorChain implements InputValidatorChain {
     private static final String ERROR_MESSAGE = "정수 외 숫자는 입력이 허용되지 않습니다.";
     private static final Pattern INTEGER_PATTERN = Pattern.compile("^[0-9]*$");
-    private InputValidator next;
+    private InputValidatorChain next;
 
     @Override
-    public void setNext(final InputValidator validator) {
+    public void setNext(final InputValidatorChain validator) {
         this.next = validator;
     }
 

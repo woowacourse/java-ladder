@@ -2,10 +2,10 @@ package validator;
 
 import validator.dto.InputValidationRequest;
 
-public class SuccessInputValidatorChain implements InputValidator {
+public class SuccessInputValidatorChain implements InputValidatorChain {
 
     @Override
-    public void setNext(final InputValidator validator) {
+    public void setNext(final InputValidatorChain validator) {
     }
 
     @Override

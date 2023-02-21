@@ -1,7 +1,7 @@
 import controller.LadderController;
 import domain.model.RandomPassGenerator;
 import validator.EmptyInputValidatorChain;
-import validator.InputValidator;
+import validator.InputValidatorChain;
 import validator.NotIntegerValidatorChain;
 import validator.SuccessInputValidatorChain;
 import view.InputView;
@@ -20,10 +20,10 @@ public class Application {
     }
 
 
-    private static InputValidator makeInputValidator() {
-        InputValidator emptyInputValidatorChain = new EmptyInputValidatorChain();
-        InputValidator notIntegerValidatorChain = new NotIntegerValidatorChain();
-        InputValidator successInputValidatorChain = new SuccessInputValidatorChain();
+    private static InputValidatorChain makeInputValidator() {
+        InputValidatorChain emptyInputValidatorChain = new EmptyInputValidatorChain();
+        InputValidatorChain notIntegerValidatorChain = new NotIntegerValidatorChain();
+        InputValidatorChain successInputValidatorChain = new SuccessInputValidatorChain();
         notIntegerValidatorChain.setNext(successInputValidatorChain);
         emptyInputValidatorChain.setNext(notIntegerValidatorChain);
         return emptyInputValidatorChain;
