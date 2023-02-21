@@ -25,4 +25,8 @@ public class Goal {
             throw new IllegalArgumentException(MAX_LENGTH_ERROR_MESSAGE);
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

@@ -1,5 +1,6 @@
 package view;
 
+import domain.Goals;
 import domain.ladder.Ladder;
 import domain.Names;
 import util.MessageGenerator;
@@ -28,10 +29,15 @@ public class OutputView {
         messagePrinter.println(REQUEST_LADDER_HEIGHT_MESSAGE);
     }
 
-    public void printResult(final Names names, final Ladder ladder) {
+    public void printResult(final Names names, final Ladder ladder, Goals goals) {
         printResultMessage();
         printParticipantNames(names);
-        printGeneratedLadder(ladder.getConnectedToRightConditionsOfAll(), names.findMaxNameLength());
+        printGeneratedLadder(ladder.getConnectedToRightConditionsOfAll());
+        printGoals(goals);
+    }
+
+    private void printGoals(Goals goals) {
+        messagePrinter.print(MessageGenerator.generateGoalsMessage(goals));
     }
 
     private void printResultMessage() {
@@ -42,8 +48,8 @@ public class OutputView {
         messagePrinter.println(MessageGenerator.generateNamesMessage(names));
     }
 
-    private void printGeneratedLadder(final List<List<Boolean>> ladderInfo, final int maxNameLength) {
-        List<String> ladderMessages = MessageGenerator.generateLadderMessage(ladderInfo, maxNameLength);
+    private void printGeneratedLadder(final List<List<Boolean>> ladderInfo) {
+        List<String> ladderMessages = MessageGenerator.generateLadderMessage(ladderInfo);
         for (String ladderMessage : ladderMessages) {
             messagePrinter.println(ladderMessage);
         }

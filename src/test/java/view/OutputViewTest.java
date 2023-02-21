@@ -1,5 +1,6 @@
 package view;
 
+import domain.Goals;
 import domain.Height;
 import domain.ladder.Ladder;
 import domain.Names;
@@ -30,20 +31,22 @@ class OutputViewTest {
     @DisplayName("사다리 결과를 출력할 때 ")
     class PrintingResultCase {
         @Test
-        @DisplayName("주어진 이름과 사다리를 바탕으로 사다리를 만든다.")
+        @DisplayName("주어진 이름과 사다리, 도착 결과를 바탕으로 사다리를 만든다.")
         void givenNamesAndLadder_thenReturnsLadderMessage() {
             Names names = Names.ofValues(List.of("참가자1", "참가자2"));
             Ladder ladder = Ladder.of(new FixBooleanGenerator(true, false));
             ladder.build(Height.of(2), 2);
+            Goals goals = Goals.of(2, List.of("골", "탈락"));
 
-            outputView.printResult(names, ladder);
+            outputView.printResult(names, ladder, goals);
 
             assertThat(messagePrinter.getMessages())
                     .containsExactly(
                             "실행결과",
                             "참가자1 참가자2 ",
-                            "|----|",
-                            "|    |"
+                            "|-----|",
+                            "|     |",
+                            "골     탈락   "
                     );
         }
 
@@ -55,15 +58,17 @@ class OutputViewTest {
                     new FixBooleanGenerator(true, true, false, true, false)
             );
             ladder.build(Height.of(2), 4);
+            Goals goals = Goals.of(4, List.of("골", "탈락", "40000", "3000"));
 
-            outputView.printResult(names, ladder);
+            outputView.printResult(names, ladder, goals);
 
             assertThat(messagePrinter.getMessages())
                     .containsExactly(
                             "실행결과",
                             "참가자1 참가자2 참가자3 참가자4 ",
-                            "|----|    |----|",
-                            "|    |----|    |"
+                            "|-----|     |-----|",
+                            "|     |-----|     |",
+                            "골     탈락    40000 3000 "
                     );
         }
     }

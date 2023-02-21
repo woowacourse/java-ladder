@@ -22,4 +22,10 @@ public class Goals {
 
         return new Goals(goals);
     }
+
+    public List<String> getGoalNames() {
+        return goals.stream()
+                .map(Goal::getName)
+                .collect(Collectors.toList());
+    }
 }
