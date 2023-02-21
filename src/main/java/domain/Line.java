@@ -27,7 +27,27 @@ public class Line {
         return LadderStep.from(generator.generate());
     }
 
-    public LadderStep getLadderStep(int index) {
+    private LadderStep getLadderStep(int index) {
         return ladderSteps.get(index);
+    }
+
+    public int getNextStep(int entranceIndex) {
+        if (entranceIndex == 0) {
+            if (getLadderStep(entranceIndex) == LadderStep.EXISTS) {
+                return entranceIndex + 1;
+            }
+        }
+        if (entranceIndex == ladderSteps.size()) {
+            if (getLadderStep(entranceIndex - 1) == LadderStep.EXISTS) {
+                return entranceIndex - 1;
+            }
+        }
+        if (getLadderStep(entranceIndex) == LadderStep.EXISTS) {
+            return entranceIndex + 1;
+        }
+        if (getLadderStep(entranceIndex - 1) == LadderStep.EXISTS) {
+            return entranceIndex - 1;
+        }
+        return entranceIndex;
     }
 }
