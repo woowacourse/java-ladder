@@ -9,10 +9,10 @@ public class Rewards {
 
     private final List<Reward> rewards;
 
-    public Rewards(String rewards, int personCount) {
+    public Rewards(String rewards, Names names) {
         this.rewards = new ArrayList<>();
         String[] splitRewards = rewards.split(REWARD_DELIMITER);
-        validate(splitRewards.length, personCount);
+        validate(splitRewards.length, names.getPersonNumber());
         addRewards(splitRewards);
     }
 

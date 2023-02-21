@@ -15,7 +15,9 @@ class LineTest {
         @DisplayName("연속적으로 true가 발생해도 사다리는 정상적으로 생성된다.")
         @Test
         void trueSequenceTest() {
-            assertDoesNotThrow(() -> new Line(3, trueBooleanGenerator));
+            Names names = new Names("a,b,c,d");
+            LineSize lineSize = new LineSize(names);
+            assertDoesNotThrow(() -> new Line(lineSize, trueBooleanGenerator));
         }
     }
 }

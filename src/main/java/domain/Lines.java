@@ -9,7 +9,7 @@ public class Lines {
 
     public Lines(LineSize lineSize, Height height, BooleanGenerator booleanGenerator) {
         for (int i = 0; i < height.getHeight(); i++) {
-            Line line = new Line(lineSize.getLineSize(), booleanGenerator);
+            Line line = new Line(lineSize, booleanGenerator);
             lines.add(line);
         }
     }

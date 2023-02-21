@@ -35,8 +35,7 @@ public class Result {
     private int getWeight(int index, Line line) {
         if (isAbleForward(index, line)) {
             return 1;
-        }
-        if (isAbleBackward(index, line)) {
+        } else if (isAbleBackward(index, line)) {
             return -1;
         }
         return 0;
