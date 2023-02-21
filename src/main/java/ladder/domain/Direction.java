@@ -4,11 +4,11 @@ public class Direction {
     private final Bar leftBar;
     private final Bar rightBar;
     
-    public Direction(boolean isExistLeftBar, BooleanGenerator booleanGenerator) {
+    private Direction(boolean isExistLeftBar, BooleanGenerator booleanGenerator) {
         this(new Bar(isExistLeftBar), new Bar(booleanGenerator));
     }
     
-    public Direction(Bar leftBar, Bar rightBar) {
+    private Direction(Bar leftBar, Bar rightBar) {
         this.leftBar = leftBar;
         this.rightBar = rightBar;
     }
