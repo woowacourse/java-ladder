@@ -33,7 +33,7 @@ class PlayersTest {
     @MethodSource("generateValidNameSize")
     @DisplayName("플레이어는 2명 이상, 10명 이하만 가능하다.")
     void validPlayerSize(final List<String> names, final String[] expected) {
-        final Players players = new Players(names);
+        final Players players = Players.from(names);
 
         assertThat(players.getPlayerNames())
                 .containsExactly(expected);
@@ -43,7 +43,7 @@ class PlayersTest {
     @MethodSource("generateInvalidNameSize")
     @DisplayName("플레이어는 2명 미만, 10명 초과인 경우 예외를 던진다.")
     void throwExceptionWhenInvalidPlayerSize(final List<String> names) {
-        assertThatThrownBy(() -> new Players(names))
+        assertThatThrownBy(() -> Players.from(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(MessageFormat.format(
                         "플레이어는 2명 이상, 10명 이하만 가능합니다. 현재 입력한 플레이어 수는 {0}명 입니다.", names.size()
@@ -55,14 +55,14 @@ class PlayersTest {
     void throwExceptionWhenDuplicatePlayerName() {
         final List<String> names = List.of("pobi", "crong", "eddy", "crong");
 
-        assertThatThrownBy(() -> new Players(names))
+        assertThatThrownBy(() -> Players.from(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("해당 플레이어가 존재하면 true 반환한다.")
     void returnTrueWhenPlayerExist() {
-        final Players players = new Players(List.of("grey", "hoi"));
+        final Players players = Players.from(List.of("grey", "hoi"));
         final Player player = new Player("grey");
 
         final boolean result = players.exists(player);
@@ -73,7 +73,7 @@ class PlayersTest {
     @Test
     @DisplayName("해당 플레이어가 존재하지 않으면 false 반환한다.")
     void returnFalseWhenPlayerNotExist() {
-        final Players players = new Players(List.of("grey", "hoi"));
+        final Players players = Players.from(List.of("grey", "hoi"));
         final Player player = new Player("hi");
 
         final boolean result = players.exists(player);

@@ -29,7 +29,7 @@ class LadderTest {
     @Test
     @DisplayName("사다리 높이만큼 선을 생성한다.")
     void validLadder() {
-        final Players players = new Players(List.of("pobi", "crong"));
+        final Players players = Players.from(List.of("grey", "hoi"));
         final Height height = new Height(5);
 
         final Ladder ladder = Ladder.of(new RandomDirectionGenerator(), players, height);
@@ -42,7 +42,7 @@ class LadderTest {
     @DisplayName("사다리를 탄다.")
     void climbLadder(final List<Direction> directions, final int position, final int expected) {
         final DirectionGenerator directionGenerator = new TestDirectionGenerator(directions);
-        final Players players = new Players(List.of("pobi", "crong"));
+        final Players players = Players.from(List.of("grey", "hoi"));
         final Height height = new Height(2);
         final Ladder ladder = Ladder.of(directionGenerator, players, height);
 

@@ -23,7 +23,7 @@ public class LadderController {
     }
 
     public void run() {
-        final Players players = generate(inputView::readPlayerNames, Players::new);
+        final Players players = generate(inputView::readPlayerNames, Players::from);
         final Prizes prizes = readResults(players);
         final Height height = generate(inputView::readHeight, Height::new);
         final Ladder ladder = Ladder.of(new RandomDirectionGenerator(), players, height);

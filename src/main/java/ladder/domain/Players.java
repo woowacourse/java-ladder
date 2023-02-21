@@ -12,13 +12,17 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(final List<String> names) {
-        final List<Player> players = generatePlayers(names);
+    public Players(final List<Player> players) {
         validate(players);
         this.players = players;
     }
 
-    private List<Player> generatePlayers(final List<String> names) {
+    public static Players from(final List<String> names) {
+        final List<Player> players = generatePlayers(names);
+        return new Players(players);
+    }
+
+    private static List<Player> generatePlayers(final List<String> names) {
         return names.stream()
                 .map(Player::new)
                 .collect(Collectors.toList());
