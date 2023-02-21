@@ -13,6 +13,7 @@ import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LineTest {
@@ -33,5 +34,16 @@ class LineTest {
         final Line line = Line.of(directionGenerator, directionCount);
 
         assertThat(line.getDirections()).containsExactly(expected);
+    }
+
+    @ParameterizedTest(name = "입력: {0}, 출력: {1}")
+    @CsvSource(value = {"0:1", "1:0", "2:2"}, delimiter = ':')
+    @DisplayName("해당 위치에서 알맞은 방향으로 이동시킨다.")
+    void moveToDirection(final int position, final int expected) {
+        final Line line = new Line(List.of(RIGHT, LEFT, STAY));
+
+        final int result = line.moveTo(position);
+
+        assertThat(result).isEqualTo(expected);
     }
 }

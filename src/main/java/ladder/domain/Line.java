@@ -36,6 +36,10 @@ public class Line {
         }
     }
 
+    public int moveTo(final int position) {
+        return position + directions.get(position).getMove();
+    }
+
     public List<Direction> getDirections() {
         return directions;
     }
