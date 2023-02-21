@@ -12,20 +12,20 @@ public class Result {
 
     public Result(String value, Players players) {
         validate(value, players);
-        this.names = provideName(value, players);
+        this.names = getResultPlayerNames(value, players);
     }
 
     private void validate(String value, Players players) {
-        if (isNotAll(value) && isNotNameInPlayer(value, players)) {
+        if (isNotEqualsAll(value) && isNotExistName(value, players)) {
             throw new IllegalArgumentException(NOT_EXIST_PLAYER_MESSAGE);
         }
     }
 
-    private boolean isNotAll(String value) {
+    private boolean isNotEqualsAll(String value) {
         return !value.equals(ALL_COMMAND);
     }
 
-    private boolean isNotNameInPlayer(String value, Players players) {
+    private boolean isNotExistName(String value, Players players) {
         List<String> filterNames = players.getPlayerNames()
                 .stream().filter(value::equals)
                 .collect(Collectors.toList());
@@ -33,7 +33,7 @@ public class Result {
         return filterNames.size() == 0;
     }
 
-    private List<String> provideName(String value, Players players) {
+    private List<String> getResultPlayerNames(String value, Players players) {
         if (value.equals(ALL_COMMAND)) {
             return players.getPlayerNames();
         }

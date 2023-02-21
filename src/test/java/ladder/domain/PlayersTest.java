@@ -68,7 +68,7 @@ class PlayersTest {
 
         // when
         Players resultPlayer = ladder.movePlayers(players);
-        final int actual = resultPlayer.findPosition(name);
+        final int actual = resultPlayer.findPositionByName(name);
 
         // then
         assertThat(actual).isEqualTo(expected);
