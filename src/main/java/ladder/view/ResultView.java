@@ -4,9 +4,13 @@ import ladder.domain.ladder.Bar;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.player.Name;
+import ladder.domain.player.Player;
 import ladder.domain.player.Players;
+import ladder.domain.reward.Reward;
+import ladder.domain.reward.Rewards;
 import ladder.view.constant.LadderOutputSymbol;
 
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static ladder.view.constant.LadderOutputSymbol.LADDER_VERTICAL_SYMBOL;
@@ -17,15 +21,55 @@ public class ResultView implements Result {
     private static final String OUTPUT_RESULT_MESSAGE = "실행결과";
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String OUTPUT_PATTERN = "%" + Name.NAME_MAXIMUM_LENGTH + "s";
+    private static final String PATTERN_PLAYER_RESULT = "%s : %s";
 
+    @Override
     public void printError(String errorMessage) {
         System.out.println(ERROR_PREFIX + errorMessage);
     }
 
-    public void printLadder(Players players, Ladder ladder) {
+    @Override
+    public void printLadder(Players players, Ladder ladder, Rewards rewards) {
         System.out.println(OUTPUT_RESULT_MESSAGE);
         System.out.println(convertPlayerNames(players));
         System.out.println(convertLadderSymbol(ladder));
+        System.out.println(convertRewards(rewards));
+    }
+
+    @Override
+    public void printGameResult(Map<Player, Reward> gameResult) {
+        System.out.println(convertGameResult(gameResult));
+    }
+
+    private String convertGameResult(Map<Player, Reward> gameResult) {
+        if (gameResult.size() == 1) {
+            return covertSingleGameResult(gameResult);
+        }
+        return convertMultipleGameResult(gameResult);
+    }
+
+    private String convertMultipleGameResult(Map<Player, Reward> gameResult) {
+        return gameResult.keySet()
+                .stream()
+                .map(player -> convertPlayerResult(player, gameResult.get(player)))
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    private String covertSingleGameResult(Map<Player, Reward> gameResult) {
+        Optional<Player> first = gameResult.keySet()
+                .stream()
+                .findFirst();
+        return gameResult.get(first.orElseThrow()).getReward();
+    }
+
+    private String convertPlayerResult(Player player, Reward reward) {
+        return String.format(PATTERN_PLAYER_RESULT, player.getName(), reward.getReward());
+    }
+
+    private String convertRewards(Rewards rewards) {
+        return rewards.getRewards().stream()
+                .map(reward -> String.format(OUTPUT_PATTERN, reward.getReward()))
+                .collect(Collectors.joining(BLANK_BETWEEN_NAMES));
     }
 
     private String convertPlayerNames(Players players) {
