@@ -124,6 +124,8 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void clear() {
-
+        this.capacity = 1;
+        this.size = 0;
+        this.arr = new String[capacity];
     }
 }

@@ -178,8 +178,15 @@ class SimpleArrayListTest {
         assertAll(() -> assertThat(simpleArrayList.size()).isEqualTo(2)
                 , () -> assertThat(removedValue).isEqualTo("second"));
     }
-    
+
     @Test
     void clear() {
+        simpleArrayList.add("first");
+        simpleArrayList.add("second");
+        simpleArrayList.add("third");
+
+        simpleArrayList.clear();
+
+        assertThat(simpleArrayList.size()).isEqualTo(0);
     }
 }
