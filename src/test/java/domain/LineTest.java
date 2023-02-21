@@ -31,16 +31,6 @@ class LineTest {
         }
     }
 
-    /* @Nested
-     @DisplayName("사다리 발판 조회 테스트")
-     class queryLadderStepsTest {
-         @Test
-         void queryLadderStepByIndex() {
-             Assertions.assertThat(nonRandomLine.getLadderStep(0)).isEqualTo(LadderStep.EXISTS);
-             Assertions.assertThat(nonRandomLine.getLadderStep(1)).isEqualTo(LadderStep.NONE);
-             Assertions.assertThat(nonRandomLine.getLadderStep(2)).isEqualTo(LadderStep.EXISTS);
-         }
-     }*/
     @Test
     void 사다리를_타고_한칸_이동한다() {
         assertEquals(nonRandomLine.getNextStep(0), 1);
