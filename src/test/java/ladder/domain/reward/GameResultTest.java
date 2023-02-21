@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -37,7 +38,7 @@ public class GameResultTest {
         Rewards rewards = Rewards.create(List.of("보상1", "보상2", "보상3"), 3);
         //when
         GameResult gameResult = GameResult.create(createdPlayers, ladder, rewards);
-        HashMap<Player, Reward> result = gameResult.findResultByPlayers(targetPlayers);
+        Map<Player, Reward> result = gameResult.findResultByPlayers(targetPlayers);
         //then
         assertThat(result.get(new Player(new Name("a"))).getReward()).isEqualTo("보상1");
         assertThat(result.get(new Player(new Name("b"))).getReward()).isEqualTo("보상2");
