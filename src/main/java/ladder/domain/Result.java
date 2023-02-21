@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public class Result {
 
     private static final String ALL_COMMAND = "all";
+    private static final String NOT_EXIST_PLAYER_MESSAGE = "존재하지 않는 플레이어 이름입니다.";
 
     private final List<String> names;
 
@@ -16,7 +17,7 @@ public class Result {
 
     private void validate(String value, Players players) {
         if (isNotAll(value) && isNotNameInPlayer(value, players)) {
-            throw new IllegalArgumentException("존재하지 않는 플레이어 이름입니다.");
+            throw new IllegalArgumentException(NOT_EXIST_PLAYER_MESSAGE);
         }
     }
 
@@ -28,9 +29,6 @@ public class Result {
         List<String> filterNames = players.getPlayerNames()
                 .stream().filter(value::equals)
                 .collect(Collectors.toList());
-
-        System.out.println(players.getPlayerNames());
-        System.out.println(players.getPlayerNames().stream().filter(value::equals).collect(Collectors.toList()));
 
         return filterNames.size() == 0;
     }

@@ -16,7 +16,7 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final String EMPTY = "";
     private static final String LADDER = "|";
-    private static final String DELIMETER = " : ";
+    private static final String DELIMITER = " : ";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
     public void printLadderResult(final Players players, final Ladder ladder, final Gifts gifts) {
@@ -28,10 +28,10 @@ public class OutputView {
 
     private void printPlayerNames(final Players players) {
         final List<String> playerNames = players.getPlayerNames();
-        System.out.println(getFormattedPlayerNames(playerNames));
+        System.out.println(getFormattedNames(playerNames));
     }
 
-    private String getFormattedPlayerNames(final List<String> playerNames) {
+    private String getFormattedNames(final List<String> playerNames) {
         final StringJoiner joiner = new StringJoiner(BLANK);
 
         for (final String playerName : playerNames) {
@@ -70,7 +70,7 @@ public class OutputView {
 
     private void printGiftNames(Gifts gifts) {
         final List<String> giftNames = gifts.getNames();
-        System.out.println(getFormattedPlayerNames(giftNames));
+        System.out.println(getFormattedNames(giftNames));
     }
 
     public void printErrorMessage(final IllegalArgumentException e) {
@@ -80,7 +80,7 @@ public class OutputView {
     public void printGameResult(Players players, Gifts gifts, Result result) {
         System.out.println(EXECUTION_RESULT);
         for (String name : result.getNames()) {
-            System.out.println(name + DELIMETER + gifts.findNameByPosition(players.findPosition(name)));
+            System.out.println(name + DELIMITER + gifts.findNameByPosition(players.findPosition(name)));
         }
     }
 }
