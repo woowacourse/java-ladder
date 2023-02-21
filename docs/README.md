@@ -7,9 +7,9 @@
   - [x] 1글자 이상 5글자 이하 Person#validate
   - [x] 중복 불가 Persons#validate
 
-- [ ] 실행 결과
-  - [ ] 입력받기
-  - [ ] ,(쉼표)로 구분
+- [x] 실행 결과
+  - [x] 입력받기
+  - [x] ,(쉼표)로 구분
 
 - [x] 사다리 높이
   - [x] 입력받기 LadderGameController#requestLadderHeight

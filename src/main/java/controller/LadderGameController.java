@@ -12,7 +12,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
-    private static final String NAME_DELIMITER = ",";
+    private static final String DELIMITER = ",";
     private final InputView inputView;
     private final OutputView outputView;
     private LadderGame ladderGame;
@@ -25,16 +25,18 @@ public class LadderGameController {
     public void play() {
         Persons persons = requestPlayerName();
         Height height = requestLadderHeight();
+        List<String> results = requestLadderResult();
 
-        ladderGame = new LadderGame(persons, height);
+        ladderGame = new LadderGame(persons, height, results);
         ladderGame.run();
-        outputView.printLadder(ladderGame.getAllPlayers(), ladderGame.getLadderStatus(), persons.getLongestPersonNameLength());
+        outputView.printLadder(ladderGame.getAllPlayers(), ladderGame.getLadderStatus(),
+                persons.getLongestPersonNameLength());
     }
 
     private Persons requestPlayerName() {
         try {
             String inputNames = inputView.requestNames();
-            List<Person> personNames = Arrays.stream(inputNames.split(NAME_DELIMITER))
+            List<Person> personNames = Arrays.stream(inputNames.split(DELIMITER))
                     .map(Person::new)
                     .collect(Collectors.toList());
             return new Persons(personNames);
@@ -46,7 +48,7 @@ public class LadderGameController {
 
     private Height requestLadderHeight() {
         try {
-            return new Height(validateNumber(inputView.requestLadderHeight()));
+            return new Height(validateNumber(inputView.requestHeight()));
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             return requestLadderHeight();
@@ -58,6 +60,18 @@ public class LadderGameController {
             return Integer.parseInt(height);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ErrorCode.NUMBER_NOT_INTEGER.getMessage());
+        }
+    }
+
+    private List<String> requestLadderResult() {
+        try {
+            String inputResults = inputView.requestResult();
+            List<String> results = Arrays.stream(inputResults.split(DELIMITER))
+                    .collect(Collectors.toList());
+            return results;
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            return requestLadderResult();
         }
     }
 }
