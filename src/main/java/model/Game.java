@@ -42,7 +42,18 @@ public class Game {
         return column < personCount - 1 && ladder.getLadder(row).getLine(column);
     }
 
-    public String getPrizeResult(String name) {
+    public String getPrizeIndividualPlayer(String name) {
         return prizeResult.get(new Name(name));
+    }
+
+    public String getPrizePlayers() {
+        StringBuilder playersFormat = new StringBuilder();
+        for (Name name : prizeResult.keySet()) {
+            playersFormat.append(name.getName())
+                    .append(" : ")
+                    .append(prizeResult.get(name))
+                    .append(System.lineSeparator());
+        }
+        return playersFormat.toString();
     }
 }

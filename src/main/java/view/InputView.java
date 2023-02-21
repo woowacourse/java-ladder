@@ -26,4 +26,8 @@ public class InputView {
     public String readLadderResult(){
         return scanner.nextLine();
     }
+
+    public String readPlayerResult(){
+        return scanner.nextLine();
+    }
 }

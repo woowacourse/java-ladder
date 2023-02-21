@@ -14,6 +14,7 @@ public class OutputView {
     private static final String LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String PLAYER_RESULT_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final String RESULT_MESSAGE = "사다리 결과";
+    private static final String EXECUTION_MESSAGE = "실행 결과";
 
     private static final int MAXIMUM_PLAYER_NAME_SPACE = 5;
     private static StringBuilder stringBuilder;
@@ -32,6 +33,10 @@ public class OutputView {
 
     public void printPlayerResultMessage() {
         System.out.println(PLAYER_RESULT_MESSAGE);
+    }
+
+    public void printPlayerExecutionResultMessage() {
+        System.out.println(System.lineSeparator() + EXECUTION_MESSAGE);
     }
 
     public void printResultMessage() {
@@ -74,6 +79,8 @@ public class OutputView {
         System.out.println();
     }
 
-
+    public void printPlayerGameResult(String name) {
+        System.out.println(name + System.lineSeparator());
+    }
 
 }
