@@ -8,6 +8,7 @@ import domain.LadderGenerator;
 import domain.Name;
 import domain.Names;
 import domain.RandomBooleanGenerator;
+import domain.Rewards;
 import utils.Log;
 import view.InputView;
 import view.OutputView;
@@ -16,7 +17,7 @@ public class LadderController {
 
     public void run() {
         Names names = generateNames();
-        Names results = generateResults();
+        Rewards rewards = generateRewards(names.getPersonCount());
         Ladder ladder = generateLadder(names.getPersonCount());
 
         OutputView.printNames(names);
@@ -27,14 +28,14 @@ public class LadderController {
             if (name.getName().equals("all")) {
                 for (int i = 0; i < names.getNames().size(); i++) {
                     int result = ladder.move(i);
-                    System.out.printf("%s : %s%n", names.getNames().get(i).getName(), results.getNames().get(result).getName());
+                    System.out.printf("%s : %s%n", names.getNames().get(i).getName(), rewards.getReward(result).getName());
                 }
                 break;
             }
             try {
                 int index = names.findByName(name.getName());
                 int result = ladder.move(index);
-                System.out.println(results.getNames().get(result).getName());
+                System.out.println(rewards.getReward(result).getName());
             } catch (IllegalArgumentException exception) {
                 Log.log(exception.getMessage());
             }
@@ -51,13 +52,13 @@ public class LadderController {
         }
     }
 
-    private Names generateResults() {
+    private Rewards generateRewards(int playersSize) {
         try {
             List<String> names = InputView.readResults();
-            return new Names(names);
+            return new Rewards(names, playersSize);
         } catch (IllegalArgumentException exception) {
             Log.log(exception.getMessage());
-            return generateResults();
+            return generateRewards(playersSize);
         }
     }
 
