@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import exception.Error;
 
@@ -10,7 +11,6 @@ public class Results {
 	private static final int MAX_RESULTS_SIZE_INCLUSIVE = 10;
 
 	private final List<Result> results;
-
 	private Results(List<Result> results) {
 		this.results = results;
 	}
@@ -29,6 +29,16 @@ public class Results {
 			throw new IllegalArgumentException(Error.RESULTS_FROM_2_TO_10.getMessage());
 		if (sequences.size() > MAX_RESULTS_SIZE_INCLUSIVE)
 			throw new IllegalArgumentException(Error.RESULTS_FROM_2_TO_10.getMessage());
+	}
+
+	public String getResult(int position) {
+		return results.get(position).getSequence();
+	}
+
+	public List<String> getResults() {
+		return results.stream()
+			.map(Result::getSequence)
+			.collect(Collectors.toList());
 	}
 
 	public int size() {
