@@ -75,9 +75,9 @@ public class ListStudy {
 
         assertThat(values.size()).isEqualTo(4); // list의 크기를 구한다.
 
-//        assertThat(values.isEmpty()).isFalse(); // list가 비어있지 않다고 나오는지 확인한다.
-//        assertThat(new SimpleArrayList().isEmpty()).isTrue(); // 초기 리스트가 비어있는지 확인한다.
-//
+        assertThat(values.isEmpty()).isFalse(); // list가 비어있지 않다고 나오는지 확인한다.
+        assertThat(new SimpleArrayList().isEmpty()).isTrue(); // 초기 리스트가 비어있는지 확인한다.
+
 //        assertThat(values.remove("first")).isTrue(); // list에서 "first"를 삭제한다.
 //        assertThat(values.size()).isEqualTo(3); // 값이 삭제 됐는지 확인한다.
 //        assertThat(values.remove("fifth")).isFalse(); // 없는 원소를 제거하려하면 "false"를 반환한다.
