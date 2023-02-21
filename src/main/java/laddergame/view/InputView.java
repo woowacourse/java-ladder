@@ -9,18 +9,30 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
-    private static final String NAMES_SPLIT_REGEX = "\\s*,\\s*";
+    private static final String SPLIT_REGEX = "\\s*,\\s*";
     private static final String READER_EXCEPTION = "입력중 오류가 발생하였습니다.";
     private static final String HEIGHT_INPUT_NUMBER_EXCEPTION = "높이는 숫자만 들어올 수 있습니다.";
     private static final String ANNOUNCE_READ_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String ANNOUNCE_READ_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
+    private static final String ANNOUNCE_READ_RESULTS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String ANNOUNCE_READ_NAME = "결과를 보고 싶은 사람은?";
 
     private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public List<String> readNames() {
         System.out.println(ANNOUNCE_READ_NAMES);
         try {
-            return Arrays.stream(reader.readLine().split(NAMES_SPLIT_REGEX))
+            return Arrays.stream(reader.readLine().split(SPLIT_REGEX))
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            throw new UncheckedIOException(READER_EXCEPTION, e);
+        }
+    }
+
+    public List<String> readResults() {
+        System.out.println(ANNOUNCE_READ_RESULTS);
+        try {
+            return Arrays.stream(reader.readLine().split(SPLIT_REGEX))
                     .collect(Collectors.toList());
         } catch (IOException e) {
             throw new UncheckedIOException(READER_EXCEPTION, e);
@@ -33,6 +45,15 @@ public class InputView {
             String inputHeight = reader.readLine();
             validateInt(inputHeight);
             return Integer.parseInt(inputHeight);
+        } catch (IOException e) {
+            throw new UncheckedIOException(READER_EXCEPTION, e);
+        }
+    }
+
+    public String readName() {
+        System.out.println(ANNOUNCE_READ_NAME);
+        try {
+            return reader.readLine().trim();
         } catch (IOException e) {
             throw new UncheckedIOException(READER_EXCEPTION, e);
         }
