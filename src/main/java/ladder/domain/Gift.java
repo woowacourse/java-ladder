@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class Gift {
     private static final Pattern BOOM_PATTERN = Pattern.compile("^[꽝]$");
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]+$");
-    private static final int MINIMUM_SIZE = 2;
+    private static final int MINIMUM_SIZE = 1;
     private static final int MAXIMUM_SIZE = 5;
 
     private String value;
@@ -17,8 +17,15 @@ public class Gift {
     }
 
     private void validate(String value) {
+        validateIsBlank(value);
         validateFormat(value);
         validateLength(value);
+    }
+
+    private void validateIsBlank(String value) {
+        if (value.isBlank()) {
+            throw new IllegalArgumentException("상품 이름을 작성해야 합니다.");
+        }
     }
 
 
@@ -38,7 +45,7 @@ public class Gift {
 
     private void validateLength(String value) {
         if (isSmallSize(value) || isLargeSize(value)) {
-            throw new IllegalArgumentException("상품 이름은 2 이상 5 이하여야 합니다.");
+            throw new IllegalArgumentException("상품 이름은 1 이상 5 이하여야 합니다.");
         }
     }
 

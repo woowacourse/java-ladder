@@ -20,11 +20,11 @@ class GiftTest {
     }
 
     @Test
-    @DisplayName("상품에 숫자가 들어갈 경우, 길이가 2 미만이면 예외를 던진다.")
+    @DisplayName("상품에 공백이 들어갈 경우 예외를 던진다.")
     void throwExceptionWhenNameLengthLessThanTwo() {
-        assertThatThrownBy(() -> new Gift("1"))
+        assertThatThrownBy(() -> new Gift(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("상품 이름은 2 이상 5 이하여야 합니다.");
+                .hasMessage("상품 이름을 작성해야 합니다.");
     }
 
     @Test
@@ -32,7 +32,7 @@ class GiftTest {
     void throwExceptionWhenNameLengthLargeThanFive() {
         assertThatThrownBy(() -> new Gift("123456"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("상품 이름은 2 이상 5 이하여야 합니다.");
+                .hasMessage("상품 이름은 1 이상 5 이하여야 합니다.");
     }
 
     @ParameterizedTest
