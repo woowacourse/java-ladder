@@ -79,6 +79,13 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public boolean contains(String value) {
+        Node node = head;
+        for (int i = 0; i < size; i++) {
+            if (node.value.equals(value)) {
+                return true;
+            }
+            node = node.next;
+        }
         return false;
     }
 
