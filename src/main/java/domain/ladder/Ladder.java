@@ -20,18 +20,14 @@ public class Ladder {
         return new Ladder(booleanGenerator);
     }
 
-    public int getLineHeight() {
-        return this.lines.size();
-    }
-
     public void build(final Height height, final int width) {
         generateLines(height, width, booleanGenerator);
     }
 
     private void generateLines(final Height height, final int width, BooleanGenerator booleanGenerator) {
         while(height.isNotBottom()){
-            Line currentLine = Line.of(booleanGenerator);
-            generateFootsteps(width, currentLine);
+            Line currentLine = Line.of(width, booleanGenerator);
+            currentLine.generateSteps();
             this.lines.add(currentLine);
         }
     }

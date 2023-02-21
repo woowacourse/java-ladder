@@ -3,7 +3,7 @@ package domain.ladder;
 public enum Step {
     NONE, LEFT, RIGHT;
 
-    public static Step makeRandom(boolean isConnectedToRight) {
+    public static Step makeWithRightCondition(boolean isConnectedToRight) {
         if (isConnectedToRight) {
             return Step.RIGHT;
         }

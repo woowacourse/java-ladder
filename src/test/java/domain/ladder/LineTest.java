@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import util.BooleanGenerator;
 import util.FixBooleanGenerator;
@@ -19,23 +20,22 @@ class LineTest {
         @Test
         @DisplayName("있으면 지금 다리는 완쪽으로 연결되었다는 정보를 담고 있다.")
         void givenPreviousFootstepConnected_thenConnectedCurrentStep() {
-            Line line = Line.of(new FixBooleanGenerator(true));
+            Line line = Line.of(2, new FixBooleanGenerator(true));
 
-            line.generateStep();
-            line.generateStep();
+            line.generateSteps();
 
             assertThat(line.isConnectedToLeft(1)).isTrue();
         }
 
         @ParameterizedTest(name = "있지 않으면 지금 다리는 오른쪽으로 연결되거나, 아무 쪽으로도 연결되지 않는다.")
-        @ValueSource(booleans = {true, false})
-        void givenPreviousFootstepUnConnected_thenRandomCurrentStep(boolean value) {
-            Line line = Line.of(new FixBooleanGenerator(false, value));
+        @CsvSource(value = {"false,false,false", "true, false, true"})
+        void givenPreviousFootstepUnConnected_thenRandomCurrentStep(boolean isConnectedToRight, boolean left, boolean right) {
+            Line line = Line.of(3, new FixBooleanGenerator(false, isConnectedToRight, false));
 
-            line.generateStep();
-            line.generateStep();
+            line.generateSteps();
 
-            assertThat(line.isConnectedToRight(1)).isEqualTo(value);
+            assertThat(line.isConnectedToLeft(1)).isEqualTo(left);
+            assertThat(line.isConnectedToRight(1)).isEqualTo(right);
         }
 
         @Test
@@ -43,8 +43,7 @@ class LineTest {
         void givenLastStepPreviousConnected_thenConnectedCurrentStep() {
             Line line = Line.of(2, new FixBooleanGenerator(true));
 
-            line.generateStep();
-            line.generateStep();
+            line.generateSteps();
 
             assertThat(line.isConnectedToLeft(1)).isTrue();
         }
@@ -54,8 +53,7 @@ class LineTest {
         void givenLastStepPreviousUnConnected_thenUnConnectedCurrentStep() {
             Line line = Line.of(2, new FixBooleanGenerator(false));
 
-            line.generateStep();
-            line.generateStep();
+            line.generateSteps();
 
             assertThat(line.isConnectedToLeft(1)).isFalse();
             assertThat(line.isConnectedToRight(1)).isFalse();
@@ -65,9 +63,9 @@ class LineTest {
     @ParameterizedTest(name = "특정 발판이 오른쪽으로 뻗어있는 지 여부를 반환하다.")
     @ValueSource(booleans = {false, true})
     void StepConnectedToRightCase(boolean value) {
-        BooleanGenerator trueGenerator = new FixBooleanGenerator(value);
-        Line line = Line.of(trueGenerator);
-        line.generateStep();
+        BooleanGenerator generator = new FixBooleanGenerator(value, false);
+        Line line = Line.of(2, generator);
+        line.generateSteps();
         assertThat(line.isConnectedToRight(0))
                 .isEqualTo(value);
     }

@@ -5,7 +5,6 @@ import util.BooleanGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Line {
 
@@ -16,10 +15,6 @@ public class Line {
     private Line(BooleanGenerator generator, Integer width) {
         this.generator = generator;
         this.width = width;
-    }
-
-    public static Line of(final BooleanGenerator generator) {
-        return new Line(generator, 0);
     }
 
     public static Line of(final int width, final BooleanGenerator generator) {
@@ -34,22 +29,37 @@ public class Line {
         return this.steps.get(index).isConnectedToLeft();
     }
 
-    public void generateStep() {
-        if (!isStartEdge()) {
-            if (isLastStep()) {
-                Step previous = getPreviousStep();
-                if (previous.isConnectedToRight()) {
-                    steps.add(Step.makeLeft());
-                    return;
-                }
-                steps.add(Step.makeNone());
-                return;
+    public void generateSteps() {
+        // 첫 발판! -> 왼쪽으로 연결되었다는 선택지가 없음
+        steps.add(Step.makeWithRightCondition(generator.generate()));
+
+        // 중간 발판! -> 왼쪽, 오른쪽, 독립 세 가지 선택지
+        while (!isLastStep()) {
+            if (isConnectedWithPrevious()) {
+                steps.add(Step.makeLeft());
+                continue;
             }
-            Step previous = getPreviousStep();
-            addStep(previous.isConnectedToRight());
+            steps.add(Step.makeWithRightCondition(generator.generate()));
+        }
+
+        // 마지막 발판! -> 오른쪽으로 연결되었다는 선택지가 없음
+        if (isConnectedWithPrevious()) {
+            steps.add(Step.makeLeft());
             return;
         }
-        addStep(false);
+        steps.add(Step.makeNone());
+    }
+
+    public List<Boolean> getConnectedToRightConditions(){
+        List<Boolean> conditions = new ArrayList<>();
+        for (int index = 0; index < steps.size() - 1; index++) {
+            conditions.add(steps.get(index).isConnectedToRight());
+        }
+        return conditions;
+    }
+
+    private boolean isConnectedWithPrevious() {
+        return getPreviousStep().isConnectedToRight();
     }
 
     private boolean isLastStep() {
@@ -60,27 +70,6 @@ public class Line {
         return this.steps.get(this.steps.size() - 1);
     }
 
-    private void addStep(final boolean isPreviousStepConnectedToRight) {
-        if (isPreviousStepConnectedToRight) {
-            this.steps.add(Step.makeLeft());
-            return;
-        }
-        this.steps.add(Step.makeRandom(generator.generate()));
-    }
-
-    private boolean isStartEdge() {
-        return this.steps.size() == 0;
-    }
-
-    public int getWidth() {
-        return this.steps.size();
-    }
-
-    public List<Boolean> getValue(){
-        return List.copyOf(steps.stream()
-                .map(Step::isConnectedToRight)
-                .collect(Collectors.toList()));
-    }
 
     @Override
     public boolean equals(Object line) {
