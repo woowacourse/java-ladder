@@ -89,7 +89,7 @@ public class ListStudy {
         // TODO values에 담긴 모든 값을 출력한다.
         values.printAll();
 
-//        assertThatCode(values::clear).doesNotThrowAnyException(); // 리스트를 초기화한다.
-//        assertThat(values.isEmpty()).isTrue(); // 초기화되었는지 확인한다.
+        assertThatCode(values::clear).doesNotThrowAnyException(); // 리스트를 초기화한다.
+        assertThat(values.isEmpty()).isTrue(); // 초기화되었는지 확인한다.
     }
 }
