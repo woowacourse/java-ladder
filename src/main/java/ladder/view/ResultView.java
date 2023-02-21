@@ -17,7 +17,7 @@ public class ResultView {
     private static final String DISCONNECTED_MARKER = "     ";
     private static final String RESULT_DELIMITER = " ";
 
-    private static final String EXECUTION_MESSAGE = System.lineSeparator() + "실행결과" + System.lineSeparator();
+    private static final String EXECUTION_MESSAGE = System.lineSeparator() + "사다리 결과" + System.lineSeparator();
 
     public static void printExecutionMessage() {
         System.out.println(EXECUTION_MESSAGE);
