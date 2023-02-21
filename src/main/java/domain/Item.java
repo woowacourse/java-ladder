@@ -3,11 +3,15 @@ package domain;
 import java.util.Objects;
 
 public class Item {
-    private static final String INVALID_NAME_BLANK_MESSAGE = "실행 결과는 공백으로만 이루어지면 안됩니다.";
+    private static final String INVALID_ITEM_BLANK_MESSAGE = "실행 결과는 공백으로만 이루어지면 안됩니다.";
+    private static final String INVALID_ITEM_LENGTH_MESSAGE = "실행 결과는 1~5 글자만 가능합니다.";
+    private static final int ITEM_MIN_LENGTH = 1;
+
     private final String item;
 
     public Item(String item) {
-        validateBlankName(item);
+        validateItemLength(item);
+        validateBlankItem(item);
         this.item = item;
     }
 
@@ -15,9 +19,15 @@ public class Item {
         return item;
     }
 
-    private void validateBlankName(String name) {
+    private void validateBlankItem(String name) {
         if (name.isBlank()) {
-            throw new IllegalArgumentException(INVALID_NAME_BLANK_MESSAGE);
+            throw new IllegalArgumentException(INVALID_ITEM_BLANK_MESSAGE);
+        }
+    }
+
+    private void validateItemLength(String name) {
+        if (ITEM_MIN_LENGTH > name.length()) {
+            throw new IllegalArgumentException(INVALID_ITEM_LENGTH_MESSAGE);
         }
     }
 
