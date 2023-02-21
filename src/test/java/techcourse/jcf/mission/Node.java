@@ -5,15 +5,22 @@ import java.util.Objects;
 public class Node {
     private final String value;
     private Node nextNode;
+    private Node prevNode;
 
     public Node(String value) {
-        this.value = value;
-        this.nextNode = null;
+        this(value, null, null);
     }
 
-    public Node(String value, Node previousNode) {
+    public Node(String value, Node prevNode, Node nextNode) {
         this.value = value;
-        previousNode.setNextNode(this);
+        this.prevNode = prevNode;
+        this.nextNode = nextNode;
+        if (prevNode != null) {
+            prevNode.setNextNode(this);
+        }
+        if (nextNode != null) {
+            nextNode.setPrevNode(this);
+        }
     }
 
     public boolean hasNextNode() {
@@ -24,9 +31,18 @@ public class Node {
         this.nextNode = node;
     }
 
+    public void setPrevNode(Node node) {
+        this.prevNode = node;
+    }
+
     public Node getNextNode() {
         return nextNode;
     }
+
+    public Node getPrevNode() {
+        return prevNode;
+    }
+
 
     public String getValue() {
         return value;
