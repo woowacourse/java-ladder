@@ -38,10 +38,14 @@
 ### Step
 - [x] `　　　　　` 또는 `-----` 를 가진다. (`String shape`)
 
-### Result
-- [ ] 입력된 결과를 가진다.
-  - [ ] 입력된 결과의 수가 인원 수와 다르면 `IllegalArgumentException` 예외가 발생한다.
+### Results
+- [x] 입력된 전체 `Result`를 가진다.
+  - [x] 입력된 결과의 수가 인원 수와 다르면 `IllegalArgumentException` 예외가 발생한다.
 - [ ] 참여자들 리스트와 사다리를 토대로 결과를 반환한다.
+
+### Result
+- [ ] 단일의 입력된 결과를 가진다.
+- [ ] 공백이 입력되면 `IllegalArgumentException` 예외가 발생한다.
 
 # 입출력 요구사항
 ## 입력 요구사항
