@@ -45,4 +45,19 @@ public class Ladder {
                 ", booleanGenerator=" + booleanGenerator +
                 '}';
     }
+
+    public int ride(int startingPoint, int indexFromTop) {
+        if (indexFromTop == lines.size()) {
+            return startingPoint;
+        }
+
+        Line line = lines.get(indexFromTop);
+        if (line.isConnectedToLeft(startingPoint)) {
+            return ride(startingPoint - 1, indexFromTop + 1);
+        }
+        if (line.isConnectedToRight(startingPoint)) {
+            return ride(startingPoint + 1, indexFromTop + 1);
+        }
+        return ride(startingPoint, indexFromTop + 1);
+    }
 }
