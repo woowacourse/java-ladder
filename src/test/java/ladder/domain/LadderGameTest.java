@@ -28,7 +28,7 @@ class LadderGameTest {
         LadderGame game = new LadderGame(command, new FixedLineStrategy(lines));
 
         // when
-        List<ResultDto> resultDtos = game.calculatePlayerResult(input);
+        List<ResultDto> resultDtos = game.calculatePlayerResult(input, "all");
 
         //then
         assertThat(resultDtos.get(0).getResult()).isEqualTo(expected);
@@ -48,7 +48,7 @@ class LadderGameTest {
         LadderGame game = new LadderGame(command, new FixedLineStrategy(lines));
 
         //then
-        assertThatThrownBy(() -> game.calculatePlayerResult("못찾겠지"))
+        assertThatThrownBy(() -> game.calculatePlayerResult("못찾겠지", "all"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("존재하지 않는 플레이어 입니다.");
     }

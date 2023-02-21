@@ -9,19 +9,21 @@ import ladder.view.OutputView;
 
 import java.util.List;
 
+import static ladder.view.InputView.QUERY_ALL;
+
 public class Application {
 
     public static void main(String[] args) {
         final var lineStrategy = new RandomDiscreteStrategy();
         Command command = readCommand();
 
-        LadderGame game = new LadderGame(command, lineStrategy);
+        final LadderGame game = new LadderGame(command, lineStrategy);
         OutputView.printLadder(game.getPlayerNames(), game.getLadder(), game.getResults());
 
         String queryName = "";
-        while (!queryName.equals(LadderGame.QUERY_ALL)) {
+        while (!queryName.equals(QUERY_ALL)) {
             queryName = InputView.readResultInquireName();
-            List<ResultDto> results = game.calculatePlayerResult(queryName);
+            List<ResultDto> results = game.calculatePlayerResult(queryName, QUERY_ALL);
             OutputView.printInquireResult(results);
         }
     }

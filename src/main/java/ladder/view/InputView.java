@@ -6,6 +6,8 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
+    public static final String QUERY_ALL = "all";
+
     private static final Scanner scanner = new Scanner(System.in);
 
     public static List<String> readNames() {

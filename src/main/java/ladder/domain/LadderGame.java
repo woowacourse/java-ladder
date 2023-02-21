@@ -8,7 +8,6 @@ import ladder.utils.LineStrategy;
 import java.util.List;
 
 public class LadderGame {
-    public static final String QUERY_ALL = "all";
     private final Ladder ladder;
     private final Players players;
     private final Results results;
@@ -19,8 +18,8 @@ public class LadderGame {
         this.results = new Results(command.getResults());
     }
 
-    public List<ResultDto> calculatePlayerResult(String playerName) {
-        if (playerName.equals(QUERY_ALL)) {
+    public List<ResultDto> calculatePlayerResult(String playerName, String queryAll) {
+        if (playerName.equals(queryAll)) {
             return results.getResultsByPosition(players.moveAllToResult(ladder));
         }
         return results.getResultsByPosition(players.moveToResult(playerName, ladder));
