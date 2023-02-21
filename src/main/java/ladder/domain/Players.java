@@ -66,4 +66,8 @@ public class Players {
     public int size() {
         return players.size();
     }
+
+    public boolean exists(final Player player) {
+        return players.contains(player);
+    }
 }

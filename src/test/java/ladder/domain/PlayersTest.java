@@ -58,5 +58,26 @@ class PlayersTest {
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-}
 
+    @Test
+    @DisplayName("해당 플레이어가 존재하면 true 반환한다.")
+    void returnTrueWhenPlayerExist() {
+        final Players players = new Players(List.of("grey", "hoi"));
+        final Player player = new Player("grey");
+
+        final boolean result = players.exists(player);
+
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    @DisplayName("해당 플레이어가 존재하지 않으면 false 반환한다.")
+    void returnFalseWhenPlayerNotExist() {
+        final Players players = new Players(List.of("grey", "hoi"));
+        final Player player = new Player("hi");
+
+        final boolean result = players.exists(player);
+
+        assertThat(result).isFalse();
+    }
+}
