@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,10 @@ public class Line {
         return "|" + steps.stream()
                 .map(Step::getShape)
                 .collect(Collectors.joining("|")) + "|";
+    }
+
+    public List<Step> getSteps() {
+        return Collections.unmodifiableList(steps);
     }
 
     public int getSize() {

@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,9 +11,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public List<String> asString() {
-        return lines.stream()
-                .map(Line::asString)
-                .collect(Collectors.toList());
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }
