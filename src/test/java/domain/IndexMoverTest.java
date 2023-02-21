@@ -25,21 +25,27 @@ class IndexMoverTest {
 	@Test
 	@DisplayName("0, 1, 2의 index가 1, 0, 2로 변해야 한다.")
 	void indexMoverTest() {
-		int height = 2;
-		int width = 2;
+		int height = 3;
+		int width = 3;
 		PointGenerator generator = new PresentPointGenerator();
 		Ladder ladder = makeLadder(height, width, generator);
 
 		IndexMover indexMover = new IndexMover();
-		List<Integer> indices = indexMover.move(ladder);
+		List<Integer> indices = indexMover.getMovedIndex(ladder);
 
-		Assertions.assertThat(indices).containsExactly(1, 0, 2);
+		Assertions.assertThat(indices).containsExactly(1, 0, 3, 2);
 	}
 
-	private Ladder makeLadder(final int height, final int width, final PointGenerator generator) {
+	private static Ladder makeLadder(final int height, final int width, final PointGenerator generator) {
 		LadderHeight ladderHeight = new LadderHeight(height);
 		LadderWidth ladderWidth = new LadderWidth(width);
 		LadderBuilder builder = new LadderBuilder();
 		return builder.build(ladderHeight, ladderWidth, generator);
 	}
 }
+/*
+0 1 2 3
+|o|x|o|
+|o|x|o|
+|o|x|o|
+ */
