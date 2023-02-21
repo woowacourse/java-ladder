@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Names {
+public class Players {
 
     private static final int SIZE_LOWER_BOUND = 2;
     private static final String INVALID_SIZE_MESSAGE = "참가자는 2명 이상이어야 합니다.";
@@ -13,7 +13,7 @@ public class Names {
 
     private final List<Name> names;
 
-    public Names(List<String> names) {
+    public Players(final List<String> names) {
         validate(names);
 
         this.names = names.stream()
@@ -21,16 +21,14 @@ public class Names {
                 .collect(Collectors.toList());
     }
 
-    private void validate(List<String> names) {
-        if (isValidSize(names)) {
-            return;
-        }
-
-        throw new IllegalArgumentException(INVALID_SIZE_MESSAGE);
+    private void validate(final List<String> names) {
+        validateNames(names);
     }
 
-    private boolean isValidSize(List<String> names) {
-        return names.size() >= SIZE_LOWER_BOUND;
+    private void validateNames(final List<String> names) {
+        if (names.size() < SIZE_LOWER_BOUND) {
+            throw new IllegalArgumentException(INVALID_SIZE_MESSAGE);
+        }
     }
 
     public int findByName(String name) {
@@ -44,7 +42,7 @@ public class Names {
         return Collections.unmodifiableList(names);
     }
 
-    public int getPersonCount() {
+    public int getNumberOfPlayer() {
         return names.size();
     }
 }

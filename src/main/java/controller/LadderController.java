@@ -6,7 +6,7 @@ import domain.BooleanGenerator;
 import domain.Ladder;
 import domain.LadderGenerator;
 import domain.Name;
-import domain.Names;
+import domain.Players;
 import domain.RandomBooleanGenerator;
 import domain.Rewards;
 import utils.Log;
@@ -16,24 +16,24 @@ import view.OutputView;
 public class LadderController {
 
     public void run() {
-        Names names = generateNames();
-        Rewards rewards = generateRewards(names.getPersonCount());
-        Ladder ladder = generateLadder(names.getPersonCount());
+        Players players = generatePlayers();
+        Rewards rewards = generateRewards(players.getNumberOfPlayer());
+        Ladder ladder = generateLadder(players.getNumberOfPlayer());
 
-        OutputView.printNames(names);
+        OutputView.printPlayers(players);
         OutputView.printLadder(ladder);
 
         while (true) {
             Name name = generateName();
             if (name.getName().equals("all")) {
-                for (int i = 0; i < names.getNames().size(); i++) {
+                for (int i = 0; i < players.getNames().size(); i++) {
                     int result = ladder.move(i);
-                    System.out.printf("%s : %s%n", names.getNames().get(i).getName(), rewards.getReward(result).getName());
+                    System.out.printf("%s : %s%n", players.getNames().get(i).getName(), rewards.getReward(result).getName());
                 }
                 break;
             }
             try {
-                int index = names.findByName(name.getName());
+                int index = players.findByName(name.getName());
                 int result = ladder.move(index);
                 System.out.println(rewards.getReward(result).getName());
             } catch (IllegalArgumentException exception) {
@@ -42,13 +42,13 @@ public class LadderController {
         }
     }
 
-    private Names generateNames() {
+    private Players generatePlayers() {
         try {
             List<String> names = InputView.readNames();
-            return new Names(names);
+            return new Players(names);
         } catch (IllegalArgumentException exception) {
             Log.log(exception.getMessage());
-            return generateNames();
+            return generatePlayers();
         }
     }
 

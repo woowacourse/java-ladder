@@ -10,6 +10,7 @@ public class Rewards {
 
     public Rewards(final List<String> names, final int playersSize) {
         validate(names, playersSize);
+
         this.names = names.stream()
                 .map(Name::new)
                 .collect(Collectors.toList());
