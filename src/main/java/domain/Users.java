@@ -11,7 +11,7 @@ public class Users {
     private final List<User> users;
 
     public Users(List<User> users) {
-        validateSameName(users);
+        validateDuplicateName(users);
         validateUserCount(users);
         this.users = users;
     }
@@ -22,10 +22,16 @@ public class Users {
         }
     }
 
-    private void validateSameName(List<User> users) {
-        if (users.size() != users.stream().distinct().count()) {
+    private void validateDuplicateName(List<User> users) {
+        if (isDuplicateName(users)) {
             throw new IllegalArgumentException(INVALID_SAME_USER_NAME_MESSAGE);
         }
+    }
+
+    private boolean isDuplicateName(List<User> users){
+        return users.size() != users.stream()
+                .distinct()
+                .count();
     }
 
     public int getCount() {
