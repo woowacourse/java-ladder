@@ -76,8 +76,17 @@ public class LadderTest {
         assertThat(secondFloorLines.get(0).isExist()).isEqualTo(true);
         assertThat(secondFloorLines.get(1).isExist()).isEqualTo(false);
         assertThat(secondFloorLines.get(2).isExist()).isEqualTo(true);
+    }
 
-
+    @Test
+    @DisplayName("아무 연결 없는 일자 사다리일 경우 반환 위치를 제대로 반환하는지 확인")
+    void testForStraightBridge() {
+        final Users users = new Users(List.of("a", "b", "c", "d"));
+        final Ladder ladder = new Ladder(8, users);
+        ladder.makeFloors(new TestLineSourceGenerator(List.of(LineSource.MAKE_BLANK)));
+        for (int i = 0; i < users.size(); i++) {
+            assertThat(ladder.resultPositionOf(i)).isEqualTo(i);
+        }
     }
 
 }
