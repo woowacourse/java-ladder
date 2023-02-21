@@ -27,7 +27,7 @@ public class MainController {
         LineSize lineSize = new LineSize(names.getPersonNumber());
         Lines lines = new Lines(lineSize, height, RANDOM_BOOLEAN_GENERATOR);
 
-        outputView.printResult(names, lines);
+        outputView.printLines(names, lines);
 
         Rewards rewards = inputView.readRewards(names.getPersonNumber());
     }

@@ -14,7 +14,7 @@ public class OutputView {
         return instance;
     }
 
-    public void printResult(Names names, Lines lines) {
+    public void printLines(Names names, Lines lines) {
         System.out.println(Message.OUTPUT_RESULT.message);
         names.getNames()
                 .forEach(name -> System.out.printf(Message.NAME_FORMAT.message, name.getName()));
