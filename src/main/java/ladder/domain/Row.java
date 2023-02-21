@@ -41,6 +41,29 @@ public class Row {
                 && footholds.get(position + 1) == Foothold.Y;
     }
 
+    public Position acceptPlayer(Position beforeMove) {
+        int position = beforeMove.getValue();
+        if (position == 0) {
+            if (footholds.get(0) == Foothold.Y) {
+                return new Position(1);
+            }
+            return new Position(0);
+        }
+        if (position == footholds.size()) {
+            if (footholds.get(footholds.size() - 1) == Foothold.Y) {
+                return new Position(position - 1);
+            }
+            return new Position(position);
+        }
+        if (footholds.get(position) == Foothold.Y) {
+            return new Position(position + 1);
+        }
+        if (footholds.get(position - 1) == Foothold.Y) {
+            return new Position(position - 1);
+        }
+        return new Position(position);
+    }
+
     public List<Foothold> getFootholds() {
         return footholds;
     }

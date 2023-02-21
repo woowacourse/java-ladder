@@ -1,8 +1,7 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
@@ -32,16 +31,16 @@ class PlayerTest {
         assertThatNoException().isThrownBy(() -> new Player(name));
     }
 
-    @DisplayName("player가 이동하면 사다리를 1칸 내려간다")
-    @Test
-    void 높이_1칸_이동() {
+    @ParameterizedTest(name = "player가 이동하면 사다리를 1칸 내려간다")
+    @CsvSource({"0,1", "1,0", "2,2"})
+    void 높이_1칸_이동(int beforeMove, int after) {
         List<Foothold> footholds = List.of(Foothold.Y, Foothold.N);
         int expectedWidth = 2;
         Row row = Row.of(footholds, expectedWidth);
-        Player player = new Player(new PlayerName("test"), new Position(0));
+        Player player = new Player(new PlayerName("test"), new Position(beforeMove));
 
         player.move(row);
 
-        assertThat(player.getPosition()).isEqualTo(new Position(1));
+        assertThat(player.getPosition()).isEqualTo(new Position(after));
     }
 }
