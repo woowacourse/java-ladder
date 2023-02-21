@@ -3,7 +3,6 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import util.BooleanGenerator;
-import util.RandomBooleanGenerator;
 
 public class Ladder {
     private final List<Line> lines;
@@ -12,9 +11,9 @@ public class Ladder {
         this.lines = new ArrayList<>();
     }
 
-    public static Ladder generateRandomly(Height height, int personCount) {
+    public static Ladder generate(BooleanGenerator booleanGenerator, Height height, int personCount) {
         Ladder ladder = new Ladder();
-        ladder.generate(new RandomBooleanGenerator(), height.getHeight(), personCount);
+        ladder.generate(booleanGenerator, height.getHeight(), personCount);
         return ladder;
     }
 

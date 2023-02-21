@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import util.RandomBooleanGenerator;
 
 public class LadderTest {
     @Test
@@ -15,7 +16,7 @@ public class LadderTest {
         Height height = new Height(ladderHeight);
 
         //when
-        Ladder ladder = Ladder.generateRandomly(height, personCount);
+        Ladder ladder = Ladder.generate(new RandomBooleanGenerator(), height, personCount);
 
         //then
         assertThat(ladder.calculateTotalHeight()).isEqualTo(ladderHeight);
