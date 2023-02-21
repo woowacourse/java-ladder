@@ -31,7 +31,7 @@ public class Line {
         return ladderSteps.get(index);
     }
 
-    public int getNextStep(int index) {
+    public int getNextStepIndex(int index) {
         if (index == 0) {
             if (isExists(index)) {
                 return Movement.GO_RIGHT.move(index);
