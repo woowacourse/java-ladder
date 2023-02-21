@@ -48,4 +48,10 @@ public class Players {
         }
     }
 
+    public Player getPlayerByName(String name) {
+        return players.stream()
+                .filter(player -> player.getName().equals(name))
+                .findFirst()
+                .orElseThrow();
+    }
 }

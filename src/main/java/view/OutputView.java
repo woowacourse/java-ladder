@@ -9,6 +9,7 @@ public class OutputView {
     private static final String VERTICAL_LINE = "|";
     private static final String BLANK_LINE = "     ";
     private static final String BLANK = " ";
+    private static final String PLAY_RESULT = "실행 결과";
 
     public void printLadder(List<Line> lines){
         StringBuilder builder = new StringBuilder();
@@ -29,7 +30,7 @@ public class OutputView {
     public void printPlayersName(List<String> names){
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(String name : names){
+        for (String name : names) {
             stringBuilder.append(name)
                     .append(getNameBlank(name))
                     .append(BLANK);
@@ -67,5 +68,10 @@ public class OutputView {
                     .append(BLANK);
         }
         System.out.println(stringBuilder);
+    }
+
+    public void printPlayResult(String result) {
+        System.out.println("\n" + PLAY_RESULT);
+        System.out.println(result);
     }
 }
