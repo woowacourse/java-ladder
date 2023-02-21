@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Players {
     private final List<Player> players = new ArrayList<>();
@@ -12,10 +11,6 @@ public class Players {
         names.stream()
                 .map(Player::new)
                 .forEach(players::add);
-
-//        IntStream.range(0, names.size()).forEach(index ->
-//                players.add(new Player(names.getName(index)))
-//        );
     }
 
     public int size() {
@@ -26,5 +21,12 @@ public class Players {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toList());
+    }
+
+    public Player findPlayerByName(Name name) {
+        return players.stream()
+                .filter(player -> player.isPlayerName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException());
     }
 }
