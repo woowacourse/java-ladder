@@ -57,4 +57,13 @@ class SimpleArrayListTest {
         assertThat(myValues.size()).isEqualTo(11);
     }
 
+    @Test
+    public void isEmptyTest(){
+        SimpleArrayList myValues = new SimpleArrayList();
+        assertThat(myValues.isEmpty()).isTrue();
+
+        myValues.add("a");
+        assertThat(myValues.isEmpty()).isFalse();
+    }
+
 }
