@@ -55,7 +55,7 @@ public class People implements Iterable<Person> {
         return people.size();
     }
 
-    public int find(Person person) {
+    public int findPersonColumn(Person person) {
         return IntStream.range(0, people.size())
                 .filter(index -> people.get(index).equals(person))
                 .findAny()

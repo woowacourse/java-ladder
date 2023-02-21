@@ -48,7 +48,7 @@ class PeopleTest {
     })
     void success_findByName(String name, int index) {
         People people = new People("a1,a2,a3");
-        assertThat(people.find(new Person(name))).isEqualTo(index);
+        assertThat(people.findPersonColumn(new Person(name))).isEqualTo(index);
     }
 
     @DisplayName("입력 받은 이름이 존재하지 않으면 예외가 발생한다.")
@@ -56,7 +56,7 @@ class PeopleTest {
     @ValueSource(strings = {"b1", "b2", "b3"})
     void fail_findByName(String name) {
         People people = new People("a1,a2,a3");
-        assertThatThrownBy(() -> people.find(new Person(name)))
+        assertThatThrownBy(() -> people.findPersonColumn(new Person(name)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("해당 사용자는 존재하지 않습니다");
     }

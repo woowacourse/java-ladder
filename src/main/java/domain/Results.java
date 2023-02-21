@@ -30,11 +30,11 @@ public class Results implements Iterable<Result> {
                 .collect(Collectors.toList());
     }
 
-    public Result getByIndex(Position position) {
+    public Result getResultByColumn(Position position) {
         return results.get(position.getColumn());
     }
 
-    public Result getByIndex(int index) {
+    public Result getResultByColumn(int index) {
         return results.get(index);
     }
 

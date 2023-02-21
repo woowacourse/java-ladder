@@ -59,7 +59,7 @@ public class OutputView {
     public void printAllResults(People people, Results results) {
         System.out.println("\n실행 결과");
         for (int i = 0; i < people.getCount(); i++) {
-            System.out.printf(FORMAT, people.getByIndex(i).getName(), results.getByIndex(i).getResult());
+            System.out.printf(FORMAT, people.getByIndex(i).getName(), results.getResultByColumn(i).getResult());
         }
         System.out.println();
     }

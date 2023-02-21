@@ -16,9 +16,9 @@ public class LadderService {
     }
 
     public Result getSingleResult(Person person) {
-        int indexByName = people.find(person);
-        Position position = ladder.startByIndex(indexByName);
-        return results.getByIndex(position);
+        int column = people.findPersonColumn(person);
+        Position position = ladder.startByColumn(column);
+        return results.getResultByColumn(position);
     }
 
     public Results getTotalResults() {
