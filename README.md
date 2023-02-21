@@ -8,6 +8,7 @@
 - [X] 참여할 사람에 null 값이 주어지면 `IllegalArgumentException` 예외가 발생한다.
 - [X] 참여할 사람의 이름이 공백이면 `IllegalArgumentException` 예외가 발생한다.
 - [X] 5자리를 초과하면 `IllegalArgumentException` 예외가 발생한다.
+- [x] 존재하지 않는 사람의 이름이 입력되면 `IllegalArgumentException` 예외가 발생한다.
 
 ### Players
 - [X] `Player`들을 가진다.
@@ -57,7 +58,6 @@
   - [ ] 실행 결과는 `,`로 구분된다.
 - [X] 최대 사다리의 높이를 입력 받는다.
 - [ ] 결과를 보고 싶은 사람을 입력받는다. 그만 보고 싶으면 `q`를 입력하여 프로그램을 종료한다.
-- [ ] 존재하지 않는 사람의 이름을 입력하면 `IllegalArgumentException` 예외가 발생한다.
 
 ## 출력 요구사항
 - [X] 참여한 사람의 이름과, 사다리의 모양, 사다리 결과를 출력한다.

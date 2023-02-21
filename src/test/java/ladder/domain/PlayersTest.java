@@ -42,4 +42,16 @@ class PlayersTest {
             new Players(input);
         }).withMessage("[ERROR] 사용자는 2명에서 13명까지 가능합니다.");
     }
+
+    @Test
+    @DisplayName("인덱스 탐색 시 존재하지 않는 사용자가 입력된다.")
+    void findPosition_notExist() {
+        // given
+        Players players = new Players(new String[]{"a", "b"});
+
+        // expect
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                players.findPosition("1")
+        ).withMessage("[ERROR] 존재하는 참가자의 이름을 입력해주세요.");
+     }
 }

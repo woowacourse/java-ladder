@@ -51,7 +51,11 @@ public class Players {
     }
 
     public int findPosition(String name) {
-        return players.indexOf(new Player(name));
+        int position = players.indexOf(new Player(name));
+        if (position == -1) {
+            throw new IllegalArgumentException("[ERROR] 존재하는 참가자의 이름을 입력해주세요.");
+        }
+        return position;
     }
 
     public List<Player> getPlayers() {
