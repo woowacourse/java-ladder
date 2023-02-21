@@ -3,12 +3,14 @@ package view;
 import domain.Ladder;
 import domain.LadderRow;
 import domain.Line;
+import domain.Results;
 import domain.Users;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
 
+    private static final String LADDER_RESULT_MESSAGE = "사다리 결과";
     private static final String RESULT_MESSAGE = "실행결과";
     private static final String LADDER_DELIMITER = "|";
     private static final String PREFIX_LADDER_DELIMITER = "    " + LADDER_DELIMITER;
@@ -20,10 +22,11 @@ public class OutputView {
         System.out.println(exception.getMessage());
     }
 
-    public static void printResult(final Users users, final Ladder ladder) {
-        System.out.println(RESULT_MESSAGE);
+    public static void printResult(final Users users, final Results results, final Ladder ladder) {
+        System.out.println(LADDER_RESULT_MESSAGE);
         printUserNames(users);
         printLadder(ladder);
+        printResultNames(results);
     }
 
     private static void printUserNames(final Users users) {
@@ -35,6 +38,11 @@ public class OutputView {
     private static void printLadder(final Ladder ladder) {
         List<String> ladderFormat = getLadderFormat(ladder);
         ladderFormat.forEach(System.out::println);
+    }
+
+    private static void printResultNames(final Results results) {
+        String resultNames = String.join(USER_DELIMITER, results.getResultNames());
+        System.out.println(resultNames);
     }
 
     private static List<String> getLadderFormat(final Ladder ladder) {
