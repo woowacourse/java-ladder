@@ -1,6 +1,7 @@
 package domain;
 
 import exception.ErrorMessage;
+import java.util.Objects;
 
 public class User {
 
@@ -32,5 +33,22 @@ public class User {
         if (name.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.USER_NAME_BLANK_EXCEPTION.getMessage());
         }
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final User user = (User) o;
+        return name.equals(user.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
