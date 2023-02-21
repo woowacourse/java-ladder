@@ -2,11 +2,8 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderPropertyTest {
 
@@ -15,7 +12,7 @@ class LadderPropertyTest {
     @DisplayName("높이가 1 미만이거나 1000 초과이면 예외를 던진다.")
     void heightRangeTest(int height) {
         Assertions.assertThrows(IllegalArgumentException.class,
-                () ->  new LadderProperty(3, height));
+                () ->  new LadderSize(3, height));
     }
 
 }
