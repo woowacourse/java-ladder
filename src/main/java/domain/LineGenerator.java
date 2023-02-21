@@ -17,7 +17,7 @@ public class LineGenerator {
         return new Line(points);
     }
 
-    private Point generateValidatePoint(final Boolean isLink, final Point pastPoint) {
+    private Point generateValidatePoint(final boolean isLink, final Point pastPoint) {
         if (pastPoint == Point.LINKED_POINT) {
             return Point.EMPTY_POINT;
         }
