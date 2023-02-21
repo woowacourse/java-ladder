@@ -6,16 +6,19 @@ import java.util.Map;
 
 public class Result {
     private static final String INVALID_USER_MESSAGE = "참가자가 존재하지 않습니다.";
-    private final HashMap<User, Item> result;
+    private final HashMap<User, Item> result = new LinkedHashMap<>();
     private final Users users;
     private final Items items;
     private final Ladders ladders;
 
-    public Result(Users users, Items items, Ladders ladders) {
-        this.result = new LinkedHashMap<>();
+    private Result(Users users, Items items, Ladders ladders) {
         this.users = users;
         this.items = items;
         this.ladders = ladders;
+    }
+
+    public static Result of(Users users, Items items, Ladders ladders) {
+        return new Result(users, items, ladders);
     }
 
     public HashMap<User, Item> getItem(User user) {

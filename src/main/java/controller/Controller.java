@@ -22,7 +22,7 @@ public class Controller {
         Ladders ladders = Ladders.of(users.getCount(), height, new RandomBooleanGenerator());
 
         outputView.printLadderResultBoard(users, items, ladders);
-        Result result = new Result(users, items, ladders);
+        Result result = Result.of(users, items, ladders);
         ResultController.of(inputView, outputView, result).run();
     }
 

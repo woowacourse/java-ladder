@@ -21,7 +21,7 @@ class ResultTest {
         Queue<Boolean> randomNumber = new LinkedList<>(Arrays.asList(false, true, true, true));
         Ladders ladders = Ladders.of(users.getCount(), Height.from(3), new CustomRandomGenerator(randomNumber));
 
-        this.result = new Result(users, items, ladders);
+        this.result = Result.of(users, items, ladders);
     }
 
     @DisplayName("사다리 게임이 정상적으로 동작하는지 테스트")
