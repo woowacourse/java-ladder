@@ -13,7 +13,7 @@ class ResultTest {
     @ParameterizedTest(name = "입력: {0}")
     @ValueSource(strings = {"", " ", "  ", "   ", "    "})
     @DisplayName("실행 결과가 공백이라면 예외를 던진다.")
-    void resultNotBlank(final String value) {
+    void throwExceptionWhenResultIsBlank(final String value) {
         assertThatThrownBy(() -> new Result(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("결과는 공백일 수 없습니다. 현재 입력한 값은 " + value + " 입니다.");
@@ -21,7 +21,7 @@ class ResultTest {
 
     @Test
     @DisplayName("실행 결과가 5글자 초과라면 예외를 던진다.")
-    void resultOverLength() {
+    void throwExceptionWhenResultOverLength() {
         final String value = "abcedf";
 
         assertThatThrownBy(() -> new Result(value))
@@ -31,7 +31,7 @@ class ResultTest {
 
     @ParameterizedTest(name = "입력: {0}")
     @ValueSource(strings = {"a", "ab", "abc", "abcd", "abcde"})
-    @DisplayName("실행 결과가 5글자 이하라면 예외를 던지지 않는다.")
+    @DisplayName("실행 결과가 5글자 이하라면 결과를 생성한다.")
     void successResult(final String value) {
         assertThatNoException().isThrownBy(() -> new Result(value));
     }
