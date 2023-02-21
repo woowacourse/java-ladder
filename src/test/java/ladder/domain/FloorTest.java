@@ -57,7 +57,7 @@ public class FloorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-1, 3, 4, 5, 6})
+    @ValueSource(ints = {-1, 4, 5, 6})
     @DisplayName("Floor의 크기에 맞지 않는 위치의 index값을 구하려 한다면 예외가 발생한다.")
     void resultPositionExceptionTest(int index) {
         final Floor floor = new Floor(3);

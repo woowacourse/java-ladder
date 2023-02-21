@@ -48,7 +48,7 @@ public class Floor {
     }
 
     private void validateIndex(final int index) {
-        if (index < 0 || index >= lines.size()){
+        if (index < 0 || index > lines.size()){
             throw new IllegalArgumentException(INVALID_INDEX_ERROR_MESSAGE);
         }
     }
