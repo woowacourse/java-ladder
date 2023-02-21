@@ -1,8 +1,11 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import domain.Game;
 import domain.Ladder;
 import domain.Level;
 import domain.People;
@@ -12,6 +15,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderController {
+	private static final Map<String, String> joinnedResult = new HashMap<>();
 	private final InputView inputView;
 	private final OutputView outputView;
 	private People people;
@@ -36,7 +40,14 @@ public class LadderController {
 	}
 
 	public void showLadder() {
-		outputView.printResult(people.getNames(), getLadder());
+		outputView.printResult(people.getNames(), getLadder(), results.getResults());
+	}
+
+	public void play() {
+		for (int position = 0; position < people.size(); position++) {
+			int newPosition = Game.start(position, ladder);
+			joinnedResult.put(people.getNames().get(position), results.getResult(newPosition));
+		}
 	}
 
 	private List<List<Boolean>> getLadder() {
