@@ -14,7 +14,7 @@ public class ItemsTest {
     @DisplayName("입력된 결과값 개수가 유저수와 다르면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("resultFailParameter")
-    void usersSizeFailTest(List<Item> input) {
+    void itemsSizeFailTest(List<Item> input) {
         Users users = new Users(List.of(new User("aa"), new User("bb"), new User("cc")));
 
         assertThatThrownBy(() -> new Items(input, users))
