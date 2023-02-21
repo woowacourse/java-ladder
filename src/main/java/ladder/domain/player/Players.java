@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 public class Players {
 
     private static final int MINIMUM_COUNT_OF_PLAYERS = 2;
+    private static final String ALL_TARGET_PLAYERS = "all";
+
     private final List<Player> players;
 
     private Players(List<Player> players) {
@@ -39,14 +41,20 @@ public class Players {
     }
 
     public Players createTargetPlayers(List<String> targetPlayerNames) {
+        if (targetPlayerNames.contains(ALL_TARGET_PLAYERS)) {
+            return this;
+        }
         List<Player> targetPlayers = targetPlayerNames.stream()
                 .map(targetPlayerName -> new Player(new Name(targetPlayerName)))
                 .collect(Collectors.toList());
+        validateDoesNotExistPlayers(targetPlayers);
+        return new Players(targetPlayers);
+    }
 
+    private void validateDoesNotExistPlayers(List<Player> targetPlayers) {
         for (Player targetPlayer : targetPlayers) {
             validateDoesNotExistPlayer(targetPlayer);
         }
-        return new Players(targetPlayers);
     }
 
     private void validateDoesNotExistPlayer(Player targetPlayer) {
