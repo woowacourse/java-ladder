@@ -8,7 +8,6 @@ import ladder.domain.Ladder;
 import ladder.domain.Players;
 import ladder.domain.Prizes;
 import ladder.domain.Retry;
-import ladder.domain.generator.LadderGenerator;
 import ladder.domain.generator.RandomDirectionGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -17,20 +16,17 @@ public class LadderController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final LadderGenerator ladderGenerator;
 
-    public LadderController(final InputView inputView, final OutputView outputView,
-                            final LadderGenerator ladderGenerator) {
+    public LadderController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.ladderGenerator = ladderGenerator;
     }
 
     public void run() {
         final Players players = generate(inputView::readPlayerNames, Players::new);
         final Prizes prizes = readResults(players);
         final Height height = generate(inputView::readHeight, Height::new);
-        final Ladder ladder = ladderGenerator.generate(new RandomDirectionGenerator(), players, height);
+        final Ladder ladder = Ladder.of(new RandomDirectionGenerator(), players, height);
         outputView.printLadderResult(players, ladder, prizes);
         final String target = inputView.readTarget();
     }
