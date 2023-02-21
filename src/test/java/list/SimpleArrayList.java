@@ -26,6 +26,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
+        checkIndexOutOfBounds(index);
         if (capacity == size) {
             expandCapacity();
         }
@@ -38,6 +39,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String set(int index, String value) {
+        checkIndexOutOfBounds(index);
         data[index] = value;
         return value;
     }
@@ -99,6 +101,12 @@ public class SimpleArrayList implements SimpleList {
     private void copyArray(String[] newData, String[] oldData) {
         for (int i = 0; i < oldData.length; i++) {
             newData[i] = oldData[i];
+        }
+    }
+
+    private void checkIndexOutOfBounds(int index) {
+        if (index >= size) {
+            throw new RuntimeException();
         }
     }
 }
