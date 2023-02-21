@@ -14,19 +14,32 @@ public class SimpleArrayList implements SimpleList{
 
     @Override
     public boolean add(String value) {
-        if(size == capacity){
-            capacity *= 2;
-            String[] newArr = new String[capacity];
-            for (int i = 0; i < arr.length; i++) {
-                newArr[i] = arr[i];
-            }
-            arr = newArr;
-        }
+        expandArr();
 
         arr[size] = value;
         size += 1;
         return true;
     }
+
+    private void expandArr() {
+        if(isFull()){
+            capacity *= 2;
+            arr = createdExpandedArr();
+        }
+    }
+
+    private boolean isFull() {
+        return size == capacity;
+    }
+
+    private String[] createdExpandedArr() {
+        String[] newArr = new String[capacity];
+        for (int i = 0; i < arr.length; i++) {
+            newArr[i] = arr[i];
+        }
+        return newArr;
+    }
+
 
     @Override
     public void add(int index, String value) {
