@@ -7,21 +7,15 @@ public class User {
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
-    private final Position position;
 
-    public User(final String name, final int position) {
+    public User(final String name) {
         validateLength(name);
         validateBlank(name);
         this.name = name;
-        this.position = Position.from(position);
     }
 
     public String getName() {
         return name;
-    }
-
-    public void swapPosition(final User user) {
-        this.position.swap(user.position);
     }
 
     public boolean isSameName(final String name) {
@@ -38,13 +32,5 @@ public class User {
         if (name.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.USER_NAME_BLANK_EXCEPTION.getMessage());
         }
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", position=" + position +
-                '}';
     }
 }

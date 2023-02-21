@@ -12,8 +12,8 @@ public class Users {
 
     public Users(final List<String> userNames) {
         validateUserNamesEmpty(userNames);
-        for (int index = 0; index < userNames.size(); index++) {
-            users.add(new User(userNames.get(index), index));
+        for (final String userName : userNames) {
+            users.add(new User(userName));
         }
     }
 
@@ -31,12 +31,6 @@ public class Users {
         return usersName;
     }
 
-    public void swapUserPositionBy(final int position) {
-        final User userA = users.get(position);
-        final User userB = users.get(position + 1);
-        userA.swapPosition(userB);
-    }
-
     public int size() {
         return users.size();
     }
@@ -48,12 +42,5 @@ public class Users {
         if (findUser.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.USER_NOT_FOUND_EXCEPTION.getMessage());
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Users{" +
-                "users=" + users +
-                '}';
     }
 }

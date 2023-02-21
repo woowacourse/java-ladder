@@ -13,13 +13,13 @@ class UserTest {
     @Test
     @DisplayName("유저가 제대로 생성되는지 확인")
     void userTest() {
-        Assertions.assertDoesNotThrow(() -> new User("홍실", 0));
+        Assertions.assertDoesNotThrow(() -> new User("홍실"));
     }
 
     @Test
     @DisplayName("유저가 이름은 5글자 이하여야한다.")
     void userName5overTest() {
-        assertThatThrownBy(() -> new User("홍실썬샷페어", 0))
+        assertThatThrownBy(() -> new User("홍실썬샷페어"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.USER_NAME_LENGTH_EXCEPTION.getMessage());
     }
@@ -27,7 +27,7 @@ class UserTest {
     @Test
     @DisplayName("유저의 이름이 공백인지 확인")
     void userNameBlankTest() {
-        assertThatThrownBy(() -> new User(" ", 0))
+        assertThatThrownBy(() -> new User(" "))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.USER_NAME_BLANK_EXCEPTION.getMessage());
     }
@@ -36,7 +36,7 @@ class UserTest {
     @DisplayName("유저의 이름을 반환하는 메서드 테스트")
     void getUserNameTest() {
         String userName = "썬샷";
-        User user = new User(userName, 0);
+        User user = new User(userName);
         assertThat(user.getName())
                 .isEqualTo(userName);
     }
@@ -44,7 +44,7 @@ class UserTest {
     @Test
     @DisplayName("유저는 자신의 위치상태를 갖고 있는다.")
     void userHasPosition() {
-        final User user = new User("홍실", 3);
+        final User user = new User("홍실");
         assertThat(user)
                 .extracting("position")
                 .extracting("position")
@@ -54,30 +54,15 @@ class UserTest {
     @Test
     @DisplayName("User와 동일한 이름을 파라미터로 넘기면 true")
     void isSameNameTrueTest() {
-        final User user = new User("홍실", 0);
+        final User user = new User("홍실");
         assertThat(user.isSameName("홍실")).isTrue();
     }
 
     @Test
-    @DisplayName("User와 다른 이름을 파라미터로 넘기면 true")
+    @DisplayName("User와 다른 이름을 파라미터로 넘기면 false")
     void isSameNameFalseTest() {
-        final User user = new User("홍실", 0);
+        final User user = new User("홍실");
         assertThat(user.isSameName("다니")).isFalse();
     }
 
-    @Test
-    @DisplayName("User의 swapPosition 메서드는 두 User의 position을 변경시킨다.")
-    void swapPositionTest() {
-        final User user1 = new User("홍실", 0);
-        final User user2 = new User("다니", 3);
-        user1.swapPosition(user2);
-        assertThat(user1)
-                .extracting("position")
-                .extracting("position")
-                .isEqualTo(3);
-        assertThat(user2)
-                .extracting("position")
-                .extracting("position")
-                .isEqualTo(0);
-    }
 }
