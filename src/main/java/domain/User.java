@@ -14,14 +14,14 @@ public class User {
         validateLength(name);
         validateBlank(name);
         this.name = name;
-        this.position = Position.of(0);
+        this.position = Position.from(0);
     }
 
     public User(final String name, final int position) {
         validateLength(name);
         validateBlank(name);
         this.name = name;
-        this.position = Position.of(position);
+        this.position = Position.from(position);
     }
 
     public String getName() {

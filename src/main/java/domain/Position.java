@@ -8,12 +8,12 @@ public class Position {
         this.position = position;
     }
 
-    public static Position of(final int position) {
+    public static Position from(final int position) {
         return new Position(position);
     }
 
     public void swapPosition(final Position positionTwo) {
-        int temp = this.position;
+        final int temp = this.position;
         this.position = positionTwo.position;
         positionTwo.position = temp;
     }

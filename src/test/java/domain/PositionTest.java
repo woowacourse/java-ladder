@@ -10,8 +10,8 @@ class PositionTest {
     @Test
     @DisplayName("position끼리 서로의 값을 swap하는 메서드 테스트")
     void swapPositionTest() {
-        final Position positionOne = Position.of(4);
-        final Position positionTwo = Position.of(5);
+        final Position positionOne = Position.from(4);
+        final Position positionTwo = Position.from(5);
 
         positionOne.swapPosition(positionTwo);
 
