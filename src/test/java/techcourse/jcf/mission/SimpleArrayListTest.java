@@ -135,7 +135,19 @@ class SimpleArrayListTest {
 
         myValues.add(input);
         assertThat(myValues.contains(input)).isTrue();
+    }
 
+    @Test
+    public void removeWithStringTest(){
+        SimpleArrayList myValues = new SimpleArrayList();
+        myValues.add("first");
+        myValues.add("second");
+
+        assertThat(myValues.remove("first")).isTrue();
+        assertThat(myValues.remove("없는걸 어케지움")).isFalse();
+        assertThat(myValues.get(0)).isEqualTo("second");
+        assertThat(myValues.contains("first")).isFalse();
+        assertThat(myValues.size()).isEqualTo(1);
     }
 
 }
