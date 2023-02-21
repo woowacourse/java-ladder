@@ -57,4 +57,8 @@ public class Results {
                 .mapToObj(x -> findResult(ladder, x))
                 .collect(Collectors.toList());
     }
+
+    public List<Result> getResults() {
+        return Collections.unmodifiableList(results);
+    }
 }
