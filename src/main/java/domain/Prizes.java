@@ -26,4 +26,8 @@ public class Prizes {
     public Prize getPrizeBy(final int position) {
         return prizes.get(position);
     }
+
+    public List<Prize> getPrizes() {
+        return prizes;
+    }
 }
