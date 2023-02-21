@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 
 public class Participants {
 
-    public static final int MIN_PARTICIPANT_COUNT = 2;
-    public static final int MAX_PARTICIPANT_COUNT = 10;
-    public static final String DELIMITER = ",";
+    private static final int MIN_PARTICIPANT_COUNT = 2;
+    private static final int MAX_PARTICIPANT_COUNT = 10;
+    private static final String DELIMITER = ",";
     private People people;
 
     public Participants(String participantNames) {

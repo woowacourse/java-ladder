@@ -5,8 +5,8 @@ import exception.InvalidLadderResultException;
 
 public class LadderResult {
 
-    public static final int MIN_LENGTH = 1;
-    public static final int MAX_LENGTH = 5;
+    private static final int MIN_LENGTH = 1;
+    private static final int MAX_LENGTH = 5;
     private final String resultName;
 
     public LadderResult(String resultName) {

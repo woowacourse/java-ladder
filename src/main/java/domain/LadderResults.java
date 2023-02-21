@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class LadderResults {
 
-    public static final String DELIMITER = ",";
+    private static final String DELIMITER = ",";
 
     private final List<LadderResult> results;
 
