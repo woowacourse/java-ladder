@@ -63,5 +63,4 @@ class LineTest {
             assertThat(position).isEqualTo(new Position(3, 1));
         }
     }
-
 }

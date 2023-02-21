@@ -21,7 +21,7 @@ public class LadderService {
         return results.getByIndex(position);
     }
 
-    public Results getAllResults() {
+    public Results getTotalResults() {
         List<Result> results = new ArrayList<>();
         for (Person person : people) {
             results.add(getSingleResult(person));

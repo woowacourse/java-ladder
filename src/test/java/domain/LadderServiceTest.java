@@ -49,7 +49,7 @@ public class LadderServiceTest {
     @DisplayName("모든 사용자의 결과 출력")
     @Test
     void all_result_test() {
-        assertThat(ladderService.getAllResults())
+        assertThat(ladderService.getTotalResults())
                 .isEqualTo(new Results(
                         List.of(
                                 new Result("꽝"),

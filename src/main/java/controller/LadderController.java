@@ -33,11 +33,10 @@ public class LadderController {
     }
 
     public void run() {
-        boolean result;
+        boolean flag;
         do {
-            String resultRequest = repeat(this::resultRequest);
-            result = getResult(resultRequest);
-        } while (result);
+            flag = repeat(this::resultRequest);
+        } while (flag);
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
@@ -64,16 +63,13 @@ public class LadderController {
         return new Results(inputView.readResults(), people);
     }
 
-    private String resultRequest() {
-        return inputView.readResult();
-    }
-
-    private boolean getResult(String name) {
-        if (name.equals("all")) {
-            outputView.printAllResults(ladderService.getPeople(), ladderService.getAllResults());
+    private boolean resultRequest() {
+        String resultRequest = inputView.readResult();
+        if (resultRequest.equals("all")) {
+            outputView.printAllResults(ladderService.getPeople(), ladderService.getTotalResults());
             return false;
         }
-        outputView.printSingleResult(ladderService.getSingleResult(new Person(name)));
+        outputView.printSingleResult(ladderService.getSingleResult(new Person(resultRequest)));
         return true;
     }
 }
