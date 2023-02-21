@@ -22,6 +22,7 @@ public class LadderTest {
     @ValueSource(ints = {1, 10})
     @DisplayName("사다리 높이가 1~10 사이면 정상적으로 수행된다.")
     void LadderHeightSuccessTest(int height) {
-        assertThatCode(() -> new Ladder(new Height(height), new Width(5), LineGenerator.getInstance())).doesNotThrowAnyException();
+        assertThatCode(() -> new Ladder(new Height(height), new Width(5), LineGenerator.getInstance()))
+                .doesNotThrowAnyException();
     }
 }

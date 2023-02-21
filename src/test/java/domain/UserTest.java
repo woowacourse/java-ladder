@@ -20,7 +20,8 @@ public class UserTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "12", "123", "1234"})
     void userNameLengthTest(String name) {
-        assertThatCode(() -> new User(name)).doesNotThrowAnyException();
+        assertThatCode(() -> new User(name))
+                .doesNotThrowAnyException();
     }
 
     @DisplayName("유저 이름이 공백으로만 이루어진 경우 예외가 발생한다.")

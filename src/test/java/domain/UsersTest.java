@@ -26,7 +26,8 @@ public class UsersTest {
     @ParameterizedTest
     @MethodSource("usersSuccessParameter")
     void usersSizeSuccessTest(List<User> input) {
-        assertThatCode(() -> new Users(input)).doesNotThrowAnyException();
+        assertThatCode(() -> new Users(input))
+                .doesNotThrowAnyException();
     }
 
     static Stream<Arguments> usersFailParameter() {

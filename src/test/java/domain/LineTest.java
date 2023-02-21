@@ -22,7 +22,8 @@ public class LineTest {
     @ParameterizedTest
     @MethodSource("ladderGeneratorSuccessParameter")
     void validateLadderBridgeFailTest(List<Bridge> input) {
-        Assertions.assertThatCode(() -> new Line(input)).doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> new Line(input))
+                .doesNotThrowAnyException();
     }
 
     static Stream<Arguments> ladderGeneratorFailParameter() {
