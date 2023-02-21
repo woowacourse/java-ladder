@@ -16,11 +16,11 @@ public class Line {
         this.points = new ArrayList<>(points);
     }
 
-    public static Line valueOf(final int pointSize) {
+    public static Line of(final int pointSize, PointGenerator pointGenerator) {
         validate(pointSize);
         List<Point> points = new ArrayList<>();
         for (int pointIndex = 0; pointIndex < pointSize; pointIndex++) {
-            Point currentPoint = choosePoint(pointIndex, points);
+            Point currentPoint = choosePoint(points, pointGenerator);
             points.add(currentPoint);
         }
         return new Line(points);
@@ -32,11 +32,12 @@ public class Line {
         }
     }
 
-    private static Point choosePoint(final int pointIndex, final List<Point> points) {
-        Point currentPoint = Point.choosePoint();
+    private static Point choosePoint(final List<Point> points, final PointGenerator pointGenerator) {
+        Point currentPoint = Point.choosePoint(pointGenerator);
+        int pointIndex = points.size();
         int previousPointIndex = pointIndex - 1;
         if (previousPointIndex >= 0) {
-            currentPoint = Point.choosePoint(points.get(pointIndex - 1));
+            currentPoint = Point.choosePoint(points.get(pointIndex - 1), pointGenerator);
         }
         return currentPoint;
     }

@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,10 +11,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
 
+    private PointGenerator pointGenerator;
+
+    @BeforeEach
+    void before() {
+        pointGenerator = new RandomPointGenerator();
+    }
+
     @DisplayName("라인의 포인트 개수는 19를 넘을 수 없다.")
     @Test
     void pointNotMoreThan19() {
-        assertThatThrownBy(() -> Line.valueOf(20))
+        assertThatThrownBy(() -> Line.of(20, pointGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("포인트 범위는 0부터 19까지입니다.");
     }
@@ -21,7 +29,7 @@ public class LineTest {
     @DisplayName("라인의 포인트 개수는 0보다 작을 수 없다.")
     @Test
     void pointNotLessThan0() {
-        assertThatThrownBy(() -> Line.valueOf(-1))
+        assertThatThrownBy(() -> Line.of(-1, pointGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("포인트 범위는 0부터 19까지입니다.");
     }
@@ -30,7 +38,7 @@ public class LineTest {
     @ValueSource(ints = {0, 10, 19})
     @ParameterizedTest
     void pointSizeTest(int pointSize) {
-        Line line = Line.valueOf(pointSize);
+        Line line = Line.of(pointSize, pointGenerator);
         assertThat(line.getPoints().size()).isEqualTo(pointSize);
     }
 
@@ -38,7 +46,7 @@ public class LineTest {
     @Test
     void pointNotContinuous() {
         int pointSize = 5;
-        Line line = Line.valueOf(pointSize);
+        Line line = Line.of(pointSize, pointGenerator);
         for (int i = 0; i < pointSize - 1; i++) {
             Point left = line.getPointAt(i);
             Point right = line.getPointAt(i + 1);

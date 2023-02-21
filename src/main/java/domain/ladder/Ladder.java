@@ -16,11 +16,11 @@ public class Ladder {
         this.lines = new ArrayList<>(lines);
     }
 
-    public static Ladder of(final int playersSize, final int ladderHeight) {
+    public static Ladder of(final int playersSize, final int ladderHeight, final PointGenerator pointGenerator) {
         List<Line> lines = new ArrayList<>();
         for (int lineIndex = 0; lineIndex < ladderHeight; lineIndex++) {
             int pointNum = playersSize - 1;
-            lines.add(Line.valueOf(pointNum));
+            lines.add(Line.of(pointNum, pointGenerator));
         }
         return new Ladder(lines);
     }

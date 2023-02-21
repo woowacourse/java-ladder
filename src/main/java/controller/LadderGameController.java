@@ -4,6 +4,7 @@ import controller.dto.LadderResponse;
 import controller.dto.PlayersResponse;
 import domain.LadderGame;
 import domain.ladder.Ladder;
+import domain.ladder.PointGenerator;
 import domain.players.Players;
 import view.InputView;
 import view.OutputView;
@@ -14,11 +15,13 @@ public class LadderGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final PointGenerator pointGenerator;
     private LadderGame ladderGame;
 
-    public LadderGameController(final InputView inputView, final OutputView outputView) {
+    public LadderGameController(final InputView inputView, final OutputView outputView, final PointGenerator pointGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.pointGenerator = pointGenerator;
     }
 
     public void play() {
@@ -30,7 +33,7 @@ public class LadderGameController {
         List<String> playerNames = inputView.readPlayerNames();
         int ladderHeight = inputView.readLadderHeight();
         Players players = Players.valueOf(playerNames);
-        ladderGame = new LadderGame(players, ladderHeight);
+        ladderGame = new LadderGame(players, ladderHeight, pointGenerator);
     }
 
     private void printGeneratedLadder() {

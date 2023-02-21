@@ -1,6 +1,7 @@
 package domain;
 
 import domain.ladder.Ladder;
+import domain.ladder.RandomPointGenerator;
 import domain.players.Players;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +20,7 @@ public class LadderGameTest {
         List<String> playerNames = List.of("a", "b", "c");
         int ladderHeight = 10;
         Players players = Players.valueOf(playerNames);
-        ladderGame = new LadderGame(players, ladderHeight);
+        ladderGame = new LadderGame(players, ladderHeight, new RandomPointGenerator());
     }
 
     @DisplayName("Ladder를 생성한다.")
