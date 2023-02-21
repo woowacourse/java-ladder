@@ -46,7 +46,7 @@
 ### Result
 - [ ] 단일의 입력된 결과를 가진다.
 - [x] 공백이 입력되면 `IllegalArgumentException` 예외가 발생한다.
-- [ ] null이 입력되면 `IllegalArgumentException` 예외가 발생한다.
+- [x] null이 입력되면 `IllegalArgumentException` 예외가 발생한다.
 
 # 입출력 요구사항
 ## 입력 요구사항
