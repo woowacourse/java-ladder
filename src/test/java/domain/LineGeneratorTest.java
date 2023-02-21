@@ -14,24 +14,24 @@ public class LineGeneratorTest {
     @ParameterizedTest
     @DisplayName("사다리 각 층의 너비는 1~9개로 만들어지지 않으면 예외가 발생한다.")
     @ValueSource(ints = {0,10})
-    void generateLadderFailTest(int width) {
-        assertThatThrownBy(() -> lineGenerator.generateLadder(width))
+    void generateLadderFailTest(int width_value) {
+        assertThatThrownBy(() -> lineGenerator.generateLadder(new Width(width_value)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @DisplayName("사다리 각 층의 너비는 1~9개로 만들어지면 정상적으로 사다리 각 층이 생성된다.")
     @ValueSource(ints = {1,9})
-    void generateLadderSuccessTest(int width) {
-        assertThatCode(() -> lineGenerator.generateLadder(width))
+    void generateLadderSuccessTest(int width_value) {
+        assertThatCode(() -> lineGenerator.generateLadder(new Width(width_value)))
                 .doesNotThrowAnyException();
     }
 
     @ParameterizedTest
     @DisplayName("생성된 사다리의 너비는 parameter로 넘어간 정수와 같아야 한다.")
     @ValueSource(ints = {1,2,3,4,5,6,7,8,9})
-    void generateLadderTest(int width) {
-        List<Bridge> ladder = lineGenerator.generateLadder(width);
-        assertThat(ladder.size()).isEqualTo(width);
+    void generateLadderTest(int width_value) {
+        List<Bridge> ladder = lineGenerator.generateLadder(new Width(width_value));
+        assertThat(ladder.size()).isEqualTo(width_value);
     }
 }

@@ -19,10 +19,10 @@ public class Controller {
     public void run() {
         Users users = settingUsers();
         Width width = new Width(users.getCount() - 1);
-        Ladder ladder = settingLadders(width);
-        ladder.make(LineGenerator.getInstance());
+        Height height = settingHeight();
+        Ladder ladder = new Ladder(height, width, LineGenerator.getInstance());
         outputView.printUsers(users);
-        for (Line line : ladder.getLadders()) {
+        for (Line line : ladder.getLadder()) {
             outputView.printLadder(line);
         }
     }
@@ -43,13 +43,12 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
-    private Ladder settingLadders(Width width) {
+    private Height settingHeight() {
         try {
-            int height = inputView.inputLadderHeight();
-            return new Ladder(new Height(height), width);
+            return new Height(inputView.inputLadderHeight());
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
-            return settingLadders(width);
+            return settingHeight();
         }
     }
 }
