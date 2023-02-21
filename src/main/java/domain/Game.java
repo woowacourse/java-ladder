@@ -14,6 +14,13 @@ public class Game {
         this.lines = lines;
     }
 
+    public List<String> executeGame() {
+        for (Line line : lines) {
+            compareLineAndUsers(names, line.getPoints());
+        }
+        return names;
+    }
+
     public static List<String> compareLineAndUsers(ArrayList<String> names, List<Boolean> points) {
         for (int index = 1; index < names.size(); index++) {
             swapUser(index, names, points);

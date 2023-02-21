@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Game;
 import domain.Results;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
@@ -19,6 +20,7 @@ public class LadderGameController {
     private Users users;
     private Ladder ladder;
     private Results results;
+    private Game game;
 
     public LadderGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -36,6 +38,8 @@ public class LadderGameController {
         outputView.printLadder(ladder);
         outputView.printResults(results);
         findUserResult();
+        game = new Game(users.getUserNames(), ladder.getLines());
+        List<String> resultNames = game.executeGame();
     }
 
     private Results initializeResults() {
