@@ -1,7 +1,5 @@
 package domain;
 
-import domain.mission.Mission;
-import domain.mission.Missions;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +10,7 @@ class MissionsTest {
         Mission mission1 = new Mission("당첨");
         Mission mission2 = new Mission("꽝");
 
-        Missions missions = new Missions("당첨,꽝", 2);
+        Missions missions = new Missions("당첨,꽝");
 
         Assertions.assertThat(missions.getMissionByIndex(0)).isEqualTo(mission1);
         Assertions.assertThat(missions.getMissionByIndex(1)).isEqualTo(mission2);
