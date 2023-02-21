@@ -59,7 +59,7 @@ public class LadderGameController {
         }
     }
 
-    private Items readItems(int playerCount) {
+    private Items readItems(final int playerCount) {
         try {
             return Items.from(inputView.readItemNames(), playerCount);
         } catch (IllegalArgumentException e) {

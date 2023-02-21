@@ -14,7 +14,7 @@ public class Items {
         this.items = items;
     }
 
-    public static Items from(List<String> items, int playerCount) {
+    public static Items from(final List<String> items, int playerCount) {
         validateItemCount(items, playerCount);
         return items.stream()
                 .map(Item::new)
