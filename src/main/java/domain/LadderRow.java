@@ -35,7 +35,7 @@ public class LadderRow {
         if (lines.get(rightLineIndex) == Line.EXIST) {
             return rightLineIndex;
         }
-        return -1;
+        return -100;
     }
 
     private int getLeftLineIndex(int index) {
