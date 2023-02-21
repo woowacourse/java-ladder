@@ -26,4 +26,8 @@ public class Line {
         }
         return LadderStep.from(generator.generate());
     }
+
+    public LadderStep getLadderStep(int index) {
+        return ladderSteps.get(index);
+    }
 }
