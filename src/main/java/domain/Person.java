@@ -25,4 +25,8 @@ public class Person {
 			throw new IllegalArgumentException(Error.INVALID_NAME_LENGTH.getMessage());
 		}
 	}
+
+	public boolean equals(String name) {
+		return this.name.equals(name);
+	}
 }
