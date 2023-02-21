@@ -33,11 +33,25 @@ public class Line {
     }
 
     private void addPoint(int index, boolean flag) {
-        if (PointJudge.canMake(points, flag, index)) {
+        if (canMake(points, flag, index)) {
             points.add(true);
             return;
         }
         points.add(false);
+    }
+
+    private static boolean canMake(List<Boolean> points, boolean flag, int index) {
+        if (flag == true) {
+            return isFirstIndexOrLeftEmpty(points, index);
+        }
+        return false;
+    }
+
+    private static boolean isFirstIndexOrLeftEmpty(List<Boolean> points, int index) {
+        if (index == 0 || points.get(index - 1) == false) {
+            return true;
+        }
+        return false;
     }
 
     public List<Boolean> getPoints() {
