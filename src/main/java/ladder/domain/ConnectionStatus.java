@@ -1,8 +1,5 @@
 package ladder.domain;
 
-import java.sql.Connection;
-import java.util.Arrays;
-
 public enum ConnectionStatus {
 
     CONNECTED(Boolean.TRUE), DISCONNECTED(Boolean.FALSE);
