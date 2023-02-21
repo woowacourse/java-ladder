@@ -1,21 +1,24 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import exception.ErrorMessage;
+import java.util.Collections;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class UsersTest {
+class UsersTest {
     private final List<String> testUserNames = List.of("썬샷", "홍실");
 
     @Test
     @DisplayName("유저의 수가 0이 들어오는 경우")
     void usersNumberIsZero() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Users(Collections.emptyList()));
+        assertThatThrownBy(() -> new Users(Collections.emptyList()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.USERS_NAME_BLANK_EXCEPTION.getMessage());
     }
 
     @Test
@@ -36,5 +39,14 @@ public class UsersTest {
     void getUsersNameTest() {
         Users users = new Users(testUserNames);
         assertThat(users.getUsersName()).containsExactlyElementsOf(testUserNames);
+    }
+
+    @Test
+    @DisplayName("입력한 사용자와 동일한 이름을 가진 객체가 없는 경우 예외처리")
+    void throwExceptionIfCantFindUser() {
+        final Users users = new Users(testUserNames);
+        assertThatThrownBy(() -> users.validateParticipateUser("다니"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.USER_NOT_FOUND_EXCEPTION.getMessage());
     }
 }

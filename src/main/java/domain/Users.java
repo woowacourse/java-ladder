@@ -4,6 +4,7 @@ import exception.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Users {
     private final List<User> users = new ArrayList<>();
@@ -31,5 +32,14 @@ public class Users {
 
     public int size() {
         return users.size();
+    }
+
+    public void validateParticipateUser(final String userName) {
+        final Optional<User> findUser = users.stream()
+                .filter(user -> user.isSameName(userName))
+                .findFirst();
+        if (findUser.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.USER_NOT_FOUND_EXCEPTION.getMessage());
+        }
     }
 }

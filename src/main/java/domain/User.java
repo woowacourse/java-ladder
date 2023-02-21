@@ -28,6 +28,10 @@ public class User {
         return name;
     }
 
+    public boolean isSameName(final String name) {
+        return this.name.equals(name);
+    }
+
     private void validateLength(final String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.USER_NAME_LENGTH_EXCEPTION.getMessage());
