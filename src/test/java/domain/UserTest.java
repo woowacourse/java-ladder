@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserTest {
+
     @Test
     @DisplayName("유저가 제대로 생성되는지 확인")
     void userTest() {
@@ -39,6 +40,7 @@ public class UserTest {
     void userHasPosition() {
         final User user = new User("홍실", 3);
         assertThat(user)
+                .extracting("position")
                 .extracting("position")
                 .isEqualTo(3);
     }

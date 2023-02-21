@@ -7,21 +7,21 @@ public class User {
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
-    private final int position;
+    private final Position position;
 
     //TODO : 추후 리팩토링시 생성자 삭제
     public User(final String name) {
         validateLength(name);
         validateBlank(name);
         this.name = name;
-        this.position = 0;
+        this.position = Position.of(0);
     }
 
     public User(final String name, final int position) {
         validateLength(name);
         validateBlank(name);
         this.name = name;
-        this.position = position;
+        this.position = Position.of(position);
     }
 
     public String getName() {
