@@ -46,8 +46,8 @@ class ListStudy {
         assertThat(list.contains("first")).isTrue(); // "first" 값이 포함되어 있는지를 확인한다.
         assertThat(list.remove(0)).isEqualTo("first"); // 첫 번째 값을 삭제한다.
         assertThat(list.size()).isEqualTo(2); // 값이 삭제 됐는지 확인한다.
-//        list.add(1, "hello");
-//        assertThat(list.size()).isEqualTo(3);
+        list.add(1, "hello");
+        assertThat(list.size()).isEqualTo(3);
 //        list.set(0, "world");
 //        assertThat(list.get(0)).isEqualTo("world");
 //        assertThat(list.size()).isEqualTo(3);

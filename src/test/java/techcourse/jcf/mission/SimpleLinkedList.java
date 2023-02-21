@@ -24,7 +24,14 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
-
+        Node newNode = new Node(value, null);
+        Node tmp = next;
+        for (int i = 0; i < index - 1; i++) {
+            tmp = tmp.next;
+        }
+        newNode.next = tmp.next;
+        tmp.next = newNode;
+        size++;
     }
 
     @Override
@@ -36,7 +43,7 @@ public class SimpleLinkedList implements SimpleList {
     public String get(int index) {
         Node result = next;
         for (int i = 0; i < index; i++) {
-            result = next.next;
+            result = result.next;
         }
         return result.data;
     }
@@ -65,7 +72,7 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
@@ -83,7 +90,7 @@ public class SimpleLinkedList implements SimpleList {
             tmp = null;
         } else if (index == size - 1) {
             Node tmp = next;
-            for (int i = 0; i < size; i++) {
+            while (tmp.next != null) {
                 tmp = next.next;
             }
             result = tmp.data;
