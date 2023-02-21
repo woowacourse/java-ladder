@@ -23,7 +23,7 @@ class PlayerNamesTest {
     void test_2() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new PlayerNames("abel,cheche"))
-                .withMessage("입력된 플레이어들의 이름 형식이 올바르지 않습니다.");
+                .withMessage("각 이름 길이의 범위는 1~5 글자 입니다.");
     }
     
     @Test
