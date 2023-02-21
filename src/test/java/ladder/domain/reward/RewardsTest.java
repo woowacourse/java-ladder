@@ -22,7 +22,7 @@ public class RewardsTest {
     @Test
     @DisplayName("정상 생성 테스트")
     void createRewardsTest() {
-        int playerCount = 5;
+        int playerCount = 4;
         List<String> inputRewards = List.of("꽝", "3000", "꽝", "5000");
         assertDoesNotThrow(() -> Rewards.create(inputRewards, playerCount));
     }
