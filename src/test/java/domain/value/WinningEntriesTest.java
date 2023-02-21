@@ -33,9 +33,9 @@ class WinningEntriesTest {
     );
 
     @Test
-    void WinningEntry_List_와_Names_를_통해_생성된다() {
+    void forNames_는_WinningEntry_List_와_Names_를_통해_생성한다() {
         // when
-        WinningEntries winningEntries = new WinningEntries(this.winningEntries, names);
+        WinningEntries winningEntries = WinningEntries.forNames(this.winningEntries, names);
 
         // then
         assertThat(winningEntries.winningEntries())
@@ -44,9 +44,9 @@ class WinningEntriesTest {
 
     @ParameterizedTest(name = "당첨항목의 수가 이름의 수와 다르면 예외가 발생한다")
     @MethodSource("differentSizeWinningEntriesAndNames")
-    void WinningEntry_List_와_Names_의_수가_다르면_예외가_발생한다(final List<WinningEntry> winningEntries, final Names names) {
+    void forNames_는_WinningEntry_List_와_Names_의_수가_다르면_예외가_발생한다(final List<WinningEntry> winningEntries, final Names names) {
         // when & then
-        assertThatThrownBy(() -> new WinningEntries(winningEntries, names))
+        assertThatThrownBy(() -> WinningEntries.forNames(winningEntries, names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -67,7 +67,7 @@ class WinningEntriesTest {
     @MethodSource("lessThan2SizeWinningEntries")
     void WinningEntry_의_수가_2개_미만인_경우_예외가_발생한다(final List<WinningEntry> winningEntries) {
         // when & then
-        assertThatThrownBy(() -> new WinningEntries(winningEntries, names))
+        assertThatThrownBy(() -> WinningEntries.forNames(winningEntries, names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -86,7 +86,7 @@ class WinningEntriesTest {
     }, delimiter = ':')
     void 가진_당참항목의_총_개수를_알_수_있다(final String values, final int actualLength) {
         // given
-        WinningEntries winningEntries = new WinningEntries(
+        WinningEntries winningEntries = WinningEntries.forNames(
                 stream(values.split(","))
                         .map(WinningEntry::new)
                         .collect(Collectors.toList()),
@@ -109,7 +109,7 @@ class WinningEntriesTest {
     }, delimiter = ':')
     void 특정_순서에_해당하는_당첨항목을_알_수_있다(final String values, final int index, final String entryValue) {
         // given
-        WinningEntries winningEntries = new WinningEntries(
+        WinningEntries winningEntries = WinningEntries.forNames(
                 stream(values.split(","))
                         .map(WinningEntry::new)
                         .collect(Collectors.toList()),

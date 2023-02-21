@@ -42,7 +42,7 @@ public class LadderController {
         List<WinningEntry> winningEntries = InputView.inputWinningEntries()
                 .stream().map(WinningEntry::new)
                 .collect(Collectors.toList());
-        return new WinningEntries(winningEntries, names);
+        return WinningEntries.forNames(winningEntries, names);
     }
 
     private Height ladderHeight() {
