@@ -1,23 +1,21 @@
 package domain;
 
-import exception.Error;
-
 public class Result {
-	private final String sequence;
+	private final String reward;
 
-	public Result(String sequence) {
-		validate(sequence);
-		this.sequence = sequence;
+	public Result(String reward) {
+		validate(reward);
+		this.reward = reward;
 	}
 
 	public String getSequence() {
-		return this.sequence;
+		return this.reward;
 	}
 
-	private void validate(String sequence) {
-		sequence = sequence.trim();
-		if (sequence.length() < 1 || sequence.length() > 5) {
-			throw new IllegalArgumentException(Error.INVALID_SEQUENCE_LENGTH.getMessage());
+	private void validate(String reward) {
+		reward = reward.trim();
+		if (reward.length() < 1 || reward.length() > 5) {
+			throw new IllegalArgumentException("보상은 1 ~ 5글자만 가능합니다");
 		}
 	}
 }
