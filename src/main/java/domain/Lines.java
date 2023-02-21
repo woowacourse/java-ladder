@@ -29,26 +29,47 @@ public class Lines {
         int presentPosition = namePosition;
 
         for (Line line : this.lines) {
-            if (presentPosition == 0) {
-                if (line.getConnections().get(presentPosition)) {
-                    presentPosition++;
-                }
-            } else {
-                if (presentPosition == (line.getConnections().size() - 1)) {
-                    if (line.getConnections().get(presentPosition - 1)) {
-                        presentPosition--;
-                        continue;
-                    }
-                }
-                if (line.getConnections().get(presentPosition - 1)) {
-                    presentPosition--;
-                }
-                if (line.getConnections().get(presentPosition)) {
-                    presentPosition++;
-                }
-            }
+            presentPosition = moveWhenLeftMost(presentPosition, line);
+            presentPosition = moveInGeneral(presentPosition, line);
+            presentPosition = moveWhenRightMost(presentPosition, line);
         }
 
+        return presentPosition;
+    }
+
+    private int moveWhenLeftMost(int presentPosition, final Line line) {
+        if (presentPosition == 0) {
+            presentPosition = moveRightWhenConnectionExist(line, presentPosition);
+        }
+        return presentPosition;
+    }
+
+    private int moveInGeneral(int presentPosition, final Line line) {
+        if (presentPosition > 0 && presentPosition < (line.getConnections().size() - 1)) {
+            presentPosition = moveLeftWhenConnectionExist(line, presentPosition);
+            presentPosition = moveRightWhenConnectionExist(line, presentPosition);
+        }
+        return presentPosition;
+    }
+
+    private int moveWhenRightMost(int presentPosition, final Line line) {
+        if (presentPosition == (line.getConnections().size() - 1)) {
+            presentPosition = moveLeftWhenConnectionExist(line, presentPosition);
+        }
+        return presentPosition;
+    }
+
+    private int moveLeftWhenConnectionExist(final Line line, int presentPosition) {
+        if (line.getConnections().get(presentPosition - 1)) {
+            presentPosition--;
+        }
+        return presentPosition;
+    }
+
+    private int moveRightWhenConnectionExist(final Line line, int presentPosition) {
+        if (line.getConnections().get(presentPosition)) {
+            presentPosition++;
+        }
         return presentPosition;
     }
 
