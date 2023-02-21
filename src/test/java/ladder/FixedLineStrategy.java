@@ -14,7 +14,7 @@ public class FixedLineStrategy implements LineStrategy {
     }
 
     @Override
-    public List<Boolean> generate(int sectionCount) {
+    public List<Boolean> generate(int bridgeCount) {
         List<Boolean> line = lines.get(generateCount);
         generateCount = generateCount + 1;
         return line;

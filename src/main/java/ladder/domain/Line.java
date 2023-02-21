@@ -10,8 +10,8 @@ public class Line {
     private static final boolean LINKED = true;
     private final List<Boolean> bridges;
 
-    public Line(LineStrategy lineStrategy, int sectionCount) {
-        this.bridges = lineStrategy.generate(sectionCount);
+    public Line(LineStrategy lineStrategy, int bridgeCount) {
+        this.bridges = lineStrategy.generate(bridgeCount);
         validate();
     }
 
