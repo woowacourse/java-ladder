@@ -14,15 +14,15 @@ public class ItemsTest {
     @DisplayName("입력된 결과값 개수가 유저수와 다르면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("resultFailParameter")
-    void itemsSizeFailTest(List<Item> input) {
-        Users users = new Users(List.of(new User("aa"), new User("bb"), new User("cc")));
+    void itemsSizeFailTest(List<String> input) {
+        Users users = new Users(List.of("aa", "bb", "cc"));
 
         assertThatThrownBy(() -> new Items(input, users))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     static Stream<Arguments> resultFailParameter() {
-        return Stream.of(Arguments.of(List.of(new Item("aa"), new Item("bb"))),
-                Arguments.of(List.of(new Item("aa"), new Item("bb"), new Item("cc"), new Item("dd"))));
+        return Stream.of(Arguments.of(List.of("aa", "bb")),
+                Arguments.of(List.of("aa", "bb", "cc", "dd")));
     }
 }

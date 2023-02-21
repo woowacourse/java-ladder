@@ -18,7 +18,7 @@ public class UsersTest {
     @DisplayName("중복된 유저가 있으면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("usersSameNameFailParameter")
-    void usersSameNameFailTest(List<User> input) {
+    void usersSameNameFailTest(List<String> input) {
         assertThatThrownBy(() -> new Users(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("중복된 이름이 존재합니다.");
@@ -27,41 +27,41 @@ public class UsersTest {
     @DisplayName("입력된 유저의 수가 1~10명 사이가 아니면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("usersFailParameter")
-    void usersSizeFailTest(List<User> input) {
+    void usersSizeFailTest(List<String> input) {
         assertThrows(IllegalArgumentException.class, () -> new Users(input));
     }
 
     @DisplayName("입력된 유저의 수가 1~10명 사이이면 정상적으로 수행된다.")
     @ParameterizedTest
     @MethodSource("usersSuccessParameter")
-    void usersSizeSuccessTest(List<User> input) {
+    void usersSizeSuccessTest(List<String> input) {
         assertThatCode(() -> new Users(input)).doesNotThrowAnyException();
     }
 
     static Stream<Arguments> usersSameNameFailParameter() {
-        List<User> names = new ArrayList<>(Collections.nCopies(5, new User("power")));
+        List<String> names = new ArrayList<>(Collections.nCopies(5, "power"));
 
         return Stream.of(Arguments.of(names));
     }
 
     static Stream<Arguments> usersFailParameter() {
         return Stream.of(Arguments.of(List.of(new User("power"))),
-                Arguments.of(List.of(new User("aa")
-                        , new User("bb")
-                        , new User("cc")
-                        , new User("dd")
-                        , new User("ee")
-                        , new User("ff")
-                        , new User("gg")
-                        , new User("hh")
-                        , new User("ii")
-                        , new User("jj")
-                        , new User("kk")
+                Arguments.of(List.of("aa"
+                        , "bb"
+                        , "cc"
+                        , "dd"
+                        , "ee"
+                        , "ff"
+                        , "gg"
+                        , "hh"
+                        , "ii"
+                        , "jj"
+                        , "kk"
                 )));
     }
 
     static Stream<Arguments> usersSuccessParameter() {
-        return Stream.of(Arguments.of(List.of(new User("aa"), new User("bb"))),
-                Arguments.of(List.of(new User("aa"), new User("bb"), new User("cc"), new User("dd"), new User("ee"))));
+        return Stream.of(Arguments.of(List.of("aa", "bb")),
+                Arguments.of(List.of("aa", "bb", "cc", "dd", "ee")));
     }
 }

@@ -14,12 +14,11 @@ class ResultTest {
 
     @BeforeEach
     void init() {
-        Users users = new Users(List.of(new User("aa"), new User("bb"), new User("cc")));
+        Users users = new Users(List.of("aa", "bb", "cc"));
 
-        Items items = new Items(List.of(new Item("1"), new Item("2"), new Item("3")), users);
+        Items items = new Items(List.of("1", "2", "3"), users);
 
-        Queue<Boolean> randomNumber = new LinkedList<>();
-        Arrays.asList(false, true, true, true).forEach(randomNumber::add);
+        Queue<Boolean> randomNumber = new LinkedList<>(Arrays.asList(false, true, true, true));
         Ladders ladders = new Ladders(users.getCount(), new Height(3), new CustomRandomGenerator(randomNumber));
 
         this.result = new Result(users, items, ladders);
@@ -34,7 +33,6 @@ class ResultTest {
     @DisplayName("사다리게임에 등록되지 않은 유저를 입력시 예외 발생")
     @Test
     void getItemFailTest() {
-        assertThatThrownBy(() -> result.getItem(new User("dd")))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> result.getItem(new User("dd"))).isInstanceOf(IllegalArgumentException.class);
     }
 }
