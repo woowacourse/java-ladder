@@ -11,7 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class UsersTest {
-    private final List<String> testUserNames = List.of("썬샷", "홍실");
+    private final List<String> testUserNames = List.of("썬샷", "홍실", "다니");
 
     @Test
     @DisplayName("유저의 수가 0이 들어오는 경우")
@@ -31,7 +31,7 @@ class UsersTest {
     @DisplayName("유저의 수를 반환하는 메서드 테스트")
     void getUsersNumberTest() {
         final Users users = new Users(testUserNames);
-        assertThat(users.size()).isEqualTo(2);
+        assertThat(users.size()).isEqualTo(testUserNames.size());
     }
 
     @Test
@@ -45,9 +45,16 @@ class UsersTest {
     @DisplayName("입력한 사용자와 동일한 이름을 가진 객체가 없는 경우 예외처리")
     void throwExceptionIfCantFindUser() {
         final Users users = new Users(testUserNames);
-        assertThatThrownBy(() -> users.validateParticipateUser("다니"))
+        assertThatThrownBy(() -> users.validateParticipateUser("로지"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.USER_NOT_FOUND_EXCEPTION.getMessage());
     }
 
+    @Test
+    @DisplayName("이름으로 현재 index를 반환하는 메서드 추가")
+    void getIndexByUserName() {
+        final Users users = new Users(testUserNames);
+        assertThat(users.getIndexByUserName("다니"))
+                .isEqualTo(2);
+    }
 }

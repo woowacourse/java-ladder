@@ -1,7 +1,6 @@
 package domain;
 
 import exception.ErrorMessage;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +34,7 @@ public class Users {
         return users.size();
     }
 
+    //TODO: 하나로 합칠 수 없는 지 고민해보기. private도
     public void validateParticipateUser(final String userName) {
         final Optional<User> findUser = users.stream()
                 .filter(user -> user.isSameName(userName))
@@ -42,5 +42,10 @@ public class Users {
         if (findUser.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.USER_NOT_FOUND_EXCEPTION.getMessage());
         }
+    }
+
+    public int getIndexByUserName(final String userName) {
+        validateParticipateUser(userName);
+        return users.indexOf(new User(userName));
     }
 }
