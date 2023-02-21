@@ -1,8 +1,9 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
 import domain.generator.BooleanGenerator;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Line {
     private final BooleanGenerator generator;
@@ -16,7 +17,7 @@ public class Line {
     }
 
     public List<LadderStep> getLadderSteps() {
-        return ladderSteps;
+        return Collections.unmodifiableList(ladderSteps);
     }
 
     private LadderStep getPoint(int index) {
