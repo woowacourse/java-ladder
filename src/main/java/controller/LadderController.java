@@ -24,21 +24,21 @@ public class LadderController {
     }
 
     public void run() {
-        People people = init(() -> People.from(inputView.readNames()));
-        Ladder ladder = init(() -> Ladder.from(inputView.readHeight(), people.size(), stoolGenerator));
-        Prizes prizes = init(() -> new Prizes(inputView.readResults(), people.size()));
+        People people = repeat(() -> People.from(inputView.readNames()));
+        Ladder ladder = repeat(() -> Ladder.from(inputView.readHeight(), people.size(), stoolGenerator));
+        Prizes prizes = repeat(() -> new Prizes(inputView.readResults(), people.size()));
 
         showLadder(people, ladder, prizes);
         showResult(people, ladder, prizes);
     }
 
-    private <T> T init(Supplier<T> supplier) {
+    private <T> T repeat(Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
 
-            return init(supplier);
+            return repeat(supplier);
         }
     }
 
