@@ -28,7 +28,7 @@ public class Users {
         }
     }
 
-    private boolean isDuplicateName(List<User> users){
+    private boolean isDuplicateName(List<User> users) {
         return users.size() != users.stream()
                 .distinct()
                 .count();
