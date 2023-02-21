@@ -48,6 +48,9 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String get(int index) {
+        if(index >= size){
+            throw new IndexOutOfBoundsException();
+        }
         return array[index];
     }
 
@@ -86,7 +89,8 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void clear() {
-
+        array = new String[DEFAULT_CAPACITY];
+        size = 0;
     }
 
 }
