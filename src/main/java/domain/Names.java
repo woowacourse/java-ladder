@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Names {
-    private static final String ERROR_MIN_PEOPLE = "[ERROR] 2명 이상의 사람들을 입력해주세요";
-    private static final int MIN_NAME_INCLUSIVE = 1;
+    private static final int MIN_NAME_INCLUSIVE = 2;
+    private static final String ERROR_MIN_PEOPLE = "[ERROR] " + MIN_NAME_INCLUSIVE + "명 이상의 사람들을 입력해주세요";
 
     private final List<Name> names;
 
