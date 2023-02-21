@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.*;
 
 import controller.LadderGameController;
 import domain.user.User;
@@ -32,6 +33,13 @@ public class ResultTest {
     void shouldSuccessInputIsAll() {
         Users users = new Users(List.of(new User("dino"), new User("mango")));
         String input = "all";
-        Assertions.assertDoesNotThrow(() -> LadderGameController.checkNameInUsers(input, users));
+        assertDoesNotThrow(() -> LadderGameController.checkNameInUsers(input, users));
+    }
+
+    @DisplayName("입력받은 유저의위치에 해당하는 결과값을 반환한다.")
+    @Test
+    void shouldSuccessFindResultByUser() {
+        List<String> names = List.of("dino", "mango", "study");
+        assertEquals(LadderGameController.findResultByUser(names, "mango"), 1);
     }
 }
