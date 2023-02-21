@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Missions {
@@ -16,5 +17,9 @@ public class Missions {
 
     public Mission getMissionByIndex(int index) {
         return missions.get(index);
+    }
+
+    public List<Mission> getMissions() {
+        return Collections.unmodifiableList(missions);
     }
 }

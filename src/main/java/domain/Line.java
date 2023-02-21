@@ -31,24 +31,27 @@ public class Line {
         return ladderSteps.get(index);
     }
 
+
     public int getNextStepIndex(int index) {
+        if (index > 0 && index < ladderSteps.size()) {
+            if (ladderSteps.get(index - 1).exists()) {
+                return index - 1;
+            }
+            if (ladderSteps.get(index).exists()) {
+                return index + 1;
+            }
+        }
         if (index == 0) {
-            if (isExists(index)) {
-                return Movement.GO_RIGHT.move(index);
+            if (ladderSteps.get(0).exists()) {
+                return 1;
             }
         }
         if (index == ladderSteps.size()) {
-            if (isExists(index - 1)) {
-                return Movement.GO_LEFT.move(index);
+            if (ladderSteps.get(index - 1).exists()) {
+                return index - 1;
             }
         }
-        if (isExists(index)) {
-            return Movement.GO_RIGHT.move(index);
-        }
-        if (isExists(index - 1)) {
-            return Movement.GO_LEFT.move(index);
-        }
-        return Movement.STAY.move(index);
+        return index;
     }
 
     private boolean isExists(int entranceIndex) {
