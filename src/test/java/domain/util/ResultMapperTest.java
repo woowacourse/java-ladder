@@ -1,4 +1,4 @@
-package domain;
+package domain.util;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -12,6 +12,7 @@ import domain.end.End;
 import domain.end.Ends;
 import domain.user.User;
 import domain.user.Users;
+import domain.util.ResultMapper;
 
 class ResultMapperTest {
 

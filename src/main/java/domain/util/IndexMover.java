@@ -1,4 +1,4 @@
-package domain;
+package domain.util;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +10,7 @@ import domain.util.Point;
 
 public class IndexMover {
 
-	public List<Integer> getMovedIndex(final Ladder ladder) {
+	public static List<Integer> getMovedIndex(final Ladder ladder) {
 		List<Integer> indicies = getInitialIdx(ladder.getWidth());
 		List<Line> lines = ladder.getLines();
 		for (Line line : lines) {
@@ -19,11 +19,11 @@ public class IndexMover {
 		return indicies;
 	}
 
-	private List<Integer> getInitialIdx(final int size) {
+	private static List<Integer> getInitialIdx(final int size) {
 		return IntStream.rangeClosed(0, size).boxed().collect(Collectors.toList());
 	}
 
-	private void moveOnce(final List<Integer> indicies, final Line line) {
+	private static void moveOnce(final List<Integer> indicies, final Line line) {
 		List<Point> points = line.getPoints();
 		int size = points.size();
 		for (int i = 0; i < size; i++) {
@@ -32,13 +32,13 @@ public class IndexMover {
 		}
 	}
 
-	private void swapIfPointPresent(List<Integer> indicies, int i, Point point) {
+	private static void swapIfPointPresent(List<Integer> indicies, int i, Point point) {
 		if (point.isPresent()) {
 			swap(indicies, i, i + 1);
 		}
 	}
 
-	private void swap(List<Integer> indicies, int swapIdx1, int swapIdx2) {
+	private static void swap(List<Integer> indicies, int swapIdx1, int swapIdx2) {
 		int temp = indicies.get(swapIdx1);
 		indicies.set(swapIdx1, indicies.get(swapIdx2));
 		indicies.set(swapIdx2, temp);
