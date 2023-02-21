@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -30,7 +31,16 @@ public class Ladder {
     private Line createLine(BarGenerator barGenerator, int peopleSize) {
         return new Line(barGenerator, peopleSize);
     }
-
+    
+    public List<Integer> getMovedPositions() {
+        List<Integer> movedPositions = List.of(0,1,2,3);
+        for (Line line : lines) {
+            movedPositions = line.getMovedPositions(movedPositions);
+        }
+        
+        return movedPositions;
+    }
+    
     public List<Line> getLines() {
         return this.lines;
     }
