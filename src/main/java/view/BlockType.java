@@ -8,26 +8,30 @@ public enum BlockType {
     CROSS("-", true),
     NOT_CROSS(" ", false);
 
-    private final String type;
-    private final boolean isCross;
+    final String type;
+    final boolean isCross;
 
-    private BlockType(String type, boolean isCross) {
+    BlockType(String type, boolean isCross) {
         this.type = type;
         this.isCross = isCross;
     }
 
-    public static List<String> getBlockTypes(Line line) {
+    public static List<BlockType> getBlockTypes(Line line) {
         List<Boolean> blockLine = line.getLine();
 
         return blockLine.stream()
-                .map(BlockType::decideBlockType)
-                .collect(Collectors.toList());
+            .map(BlockType::decideBlockType)
+            .collect(Collectors.toList());
     }
 
-    private static String decideBlockType(boolean block) {
+    private static BlockType decideBlockType(boolean block) {
         if (block == CROSS.isCross) {
-            return CROSS.type;
+            return CROSS;
         }
-        return NOT_CROSS.type;
+        return NOT_CROSS;
+    }
+
+    public String getType() {
+        return type;
     }
 }

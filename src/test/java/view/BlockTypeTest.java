@@ -24,8 +24,8 @@ class BlockTypeTest {
         Line line = new Line(players, blocks);
 
         //when
-        List<String> result = BlockType.getBlockTypes(line);
-        List<String> expect = List.of("-----", "     ");
+        List<BlockType> result = BlockType.getBlockTypes(line);
+        List<BlockType> expect = List.of(BlockType.CROSS, BlockType.NOT_CROSS);
 
         //then
         Assertions.assertThat(result).isEqualTo(expect);

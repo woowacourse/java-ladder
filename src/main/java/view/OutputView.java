@@ -65,11 +65,11 @@ public class OutputView {
     }
 
     private void printLine(Line line, List<String> playerNames) {
-        List<String> ladderLine = BlockType.getBlockTypes(line);
+        List<BlockType> ladderLine = BlockType.getBlockTypes(line);
         String firstSpace = calculateFirstSpace(playerNames);
         System.out.print(firstSpace + VERTICAL_BAR);
         for (int i = 0; i < ladderLine.size(); i++) {
-            printLadderBlock(playerNames.get(i), playerNames.get(i + 1), ladderLine.get(i));
+            printLadderBlock(playerNames.get(i), playerNames.get(i + 1), ladderLine.get(i).getType());
         }
         System.out.println();
     }
