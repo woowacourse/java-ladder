@@ -11,6 +11,8 @@ public class InputView {
     private static final String DELIMITER = ",";
     private static final String LADDER_HEIGHT_INPUT_NOTICE = "최대 사다리 높이는 몇 개인가요?";
     private static final String RESULT_INPUT_NOTICE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String NUMBER_ERROR = "[ERROR] 숫자를 입력해야합니다.";
+    private static final String TARGET_PLAYER_NOTICE = "결과를 보고 싶은 사람은?";
 
     public List<String> readPlayersName(){
         System.out.println(NAME_INPUT_NOTICE);
@@ -26,8 +28,8 @@ public class InputView {
         System.out.println("\n" + LADDER_HEIGHT_INPUT_NOTICE);
         try {
             return Integer.parseInt(scanner.next());
-        }catch (NumberFormatException e){
-            throw new IllegalArgumentException();
+        }catch (NumberFormatException exception){
+            throw new IllegalArgumentException(NUMBER_ERROR);
         }
     }
 
@@ -35,5 +37,11 @@ public class InputView {
         System.out.println("\n" + RESULT_INPUT_NOTICE);
         String[] results = readInput().split(DELIMITER);
         return Arrays.asList(results);
+    }
+
+    public String readTargetPlayer() {
+        System.out.println("\n" + TARGET_PLAYER_NOTICE);
+        scanner.nextLine();
+        return readInput();
     }
 }
