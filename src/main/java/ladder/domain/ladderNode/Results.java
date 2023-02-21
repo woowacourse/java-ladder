@@ -32,9 +32,7 @@ public class Results {
         return results.stream()
                 .filter(result -> result.isMappedPosition(position))
                 .findFirst()
-                .map(Result::getResult)
-                .get();
-        //존재하지 않는 position일 경우 예외처리 추가
+                .map(Result::getResult).orElseThrow(() -> new IllegalArgumentException("사다리에 존재하지 않는 위치입니다."));
     }
 
     public List<String> getResults() {
