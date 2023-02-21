@@ -21,7 +21,13 @@ public class LadderController {
         OutputView.printNames(names);
         OutputView.printLadder(ladder);
 
-        Name command = generateName();
+        while (true) {
+            Name name = generateName();
+            int index = names.findByName(name.getName());
+
+            int result = ladder.move(index);
+            System.out.println(results.getNames().get(result).getName());
+        }
     }
 
     private Names generateNames() {
