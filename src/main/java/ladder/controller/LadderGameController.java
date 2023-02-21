@@ -1,6 +1,8 @@
 package ladder.controller;
 
 import ladder.domain.LadderGame;
+import ladder.domain.RandomBooleanGenerator;
+import ladder.domain.ResultDto;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 import ladder.view.ResultView;
@@ -15,6 +17,7 @@ public class LadderGameController {
     public void start() {
         init();
         printGameResult();
+        process();
     }
 
     private void init() {
@@ -22,7 +25,7 @@ public class LadderGameController {
             List<String> names = readNames();
             List<String> results = readResults();
             int height = readLadderHeight();
-            this.ladderGame = new LadderGame(names, height, results);
+            this.ladderGame = new LadderGame(names, height, results, new RandomBooleanGenerator());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             init();
@@ -44,13 +47,6 @@ public class LadderGameController {
         return InputView.readResults();
     }
 
-    private void printGameResult() {
-        ResultView.printExecutionMessage();
-        ResultView.printPlayerNames(ladderGame.getNames());
-        ResultView.printLadder(ladderGame.getLines());
-        ResultView.printResults(ladderGame.getResults());
-    }
-
     public <T> T readUserInput(Supplier<T> supplier) {
         try {
             return supplier.get();
@@ -58,5 +54,30 @@ public class LadderGameController {
             OutputView.printErrorMessage(e.getMessage());
             return readUserInput(supplier);
         }
+    }
+
+    private void printGameResult() {
+        ResultView.printExecutionMessage();
+        ResultView.printPlayerNames(ladderGame.getNames());
+        ResultView.printLadder(ladderGame.getLines());
+        ResultView.printResults(ladderGame.getResults());
+    }
+
+    private void process() {
+        ladderGame.start();
+        printPlayerResult();
+    }
+
+    private void printPlayerResult() {
+        OutputView.printWantToSeeWhomMessage();
+        String playerName = InputView.readTargetPlayer();
+        if(playerName.equals("exit")){
+            return;
+        }
+
+        OutputView.printResultAfterExecutionMessage();
+        ResultDto gameResult = ladderGame.getGameResult(playerName);
+        ResultView.printGameResult(gameResult);
+        printPlayerResult();
     }
 }
