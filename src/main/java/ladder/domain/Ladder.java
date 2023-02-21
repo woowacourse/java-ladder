@@ -27,7 +27,7 @@ public class Ladder {
     }
 
     private int calculateWidth(Users users) {
-        return users.getUsers().size() - DIFFERENCE_BETWEEN_FLOOR_AND_USERS;
+        return users.size() - DIFFERENCE_BETWEEN_FLOOR_AND_USERS;
     }
 
     public void makeFloors(LineSourceGenerator lineSourceGenerator) {
