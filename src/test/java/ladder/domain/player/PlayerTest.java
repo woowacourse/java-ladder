@@ -26,7 +26,7 @@ public class PlayerTest {
     @DisplayName("Player equals 테스트")
     void equalsTest() {
         Player player1 = new Player(new Name("a"));
-        Player player2 = new Player(new Name("b"));
+        Player player2 = new Player(new Name("a"));
 
         assertThat(player1.equals(player2)).isTrue();
     }

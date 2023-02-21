@@ -28,6 +28,10 @@ public class Players {
         return players.size();
     }
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+
     public List<String> getNames() {
         return players.stream()
                 .map(Player::getName)
