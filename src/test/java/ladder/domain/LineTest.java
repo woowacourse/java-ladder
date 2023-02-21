@@ -30,7 +30,7 @@ class LineTest {
     @DisplayName("포지션 목록이 한 라인을 탈 때, 조정된 포지션 목록으로 반환한다.")
     void movedPositions() {
         Line line = new Line(() -> Bar.TRUE, 4);
-        List<Integer> positions = line.movedPositions(List.of(0,1,2,3));
+        List<Integer> positions = line.getMovedPositions(List.of(0,1,2,3));
         assertThat(positions).containsExactly(1,0,3,2);
     }
 }

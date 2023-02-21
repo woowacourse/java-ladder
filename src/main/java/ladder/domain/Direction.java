@@ -27,7 +27,7 @@ public class Direction {
         return new Direction(rightBar, Bar.FALSE);
     }
     
-    public int getAdjustedPosition(int beforePosition) {
+    public int getMovedPosition(int beforePosition) {
         if (leftBar.isExistBar()) {
             return minusPosition(beforePosition);
         }

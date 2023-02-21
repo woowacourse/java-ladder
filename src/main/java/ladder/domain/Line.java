@@ -38,9 +38,9 @@ public class Line {
         return line.getLast();
     }
     
-    public List<Integer> movedPositions(List<Integer> positions) {
+    public List<Integer> getMovedPositions(List<Integer> positions) {
         return positions.stream()
-                .map(position -> getCurrentPositionDirection(position).getAdjustedPosition(position))
+                .map(position -> getCurrentPositionDirection(position).getMovedPosition(position))
                 .collect(Collectors.toUnmodifiableList());
     }
     
