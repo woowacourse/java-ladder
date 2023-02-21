@@ -2,12 +2,15 @@ package model;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
 public class PlayersTest {
+    private static final String NO_PLAYER_NAME_ERROR = "[ERROR] 해당 이름의 플레이어는 존재하지 않습니다.";
+
     @Test
     @DisplayName("Players 객체 생성 성공 테스트")
     void createPlayersTest() {
@@ -38,5 +41,17 @@ public class PlayersTest {
 
         //then
         assertThat(result.getName()).isEqualTo("hiiro");
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 이름을 검색한 경우 예외 처리하는 기능 테스트")
+    void throwExceptionWhenFindWithNoNameTest() {
+        //given
+        Players players = new Players(NameFactory.create("pobi, neo, hiiro"));
+
+        //then
+        assertThatThrownBy(() -> players.findPlayerByName(new Name("abcde")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(NO_PLAYER_NAME_ERROR);
     }
 }
