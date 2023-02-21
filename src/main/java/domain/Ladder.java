@@ -7,11 +7,11 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines) {
+    public Ladder(final List<Line> lines) {
         this.lines = lines;
     }
 
-    public int move(int index) {
+    public int move(final int index) {
         int currentIndex = index;
 
         for (Line line : lines) {
