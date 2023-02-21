@@ -1,6 +1,5 @@
 package techcourse.jcf.mission;
 
-import ladder.model.Players;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -59,7 +58,7 @@ class SimpleArrayListTest {
     }
 
     @Test
-    public void isEmptyTest(){
+    public void isEmptyTest() {
         SimpleArrayList myValues = new SimpleArrayList();
         assertThat(myValues.isEmpty()).isTrue();
 
@@ -68,7 +67,7 @@ class SimpleArrayListTest {
     }
 
     @Test
-    public void clearTest(){
+    public void clearTest() {
         List<String> values = new ArrayList<>(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"));
         SimpleArrayList myValues = new SimpleArrayList();
         for (String value : values) {
@@ -80,6 +79,18 @@ class SimpleArrayListTest {
         assertThat(myValues.size()).isEqualTo(0);
         Assertions.assertThatThrownBy(() -> myValues.get(0))
                 .isInstanceOf(IndexOutOfBoundsException.class);
+    }
+
+    @Test
+    public void setTest() {
+        SimpleArrayList myValues = new SimpleArrayList();
+
+        Assertions.assertThatThrownBy(() -> myValues.set(0, "hi hi"))
+                .isInstanceOf(IndexOutOfBoundsException.class);
+
+        myValues.add("hi hi 2");
+        assertThat(myValues.set(0, "hi hi 3")).isEqualTo("hi hi 2");
+        assertThat(myValues.get(0)).isEqualTo("hi hi 3");
     }
 
 }
