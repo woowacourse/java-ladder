@@ -46,5 +46,4 @@ public class LadderGameController {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-
 }

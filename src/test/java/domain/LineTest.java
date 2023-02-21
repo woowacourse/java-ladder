@@ -57,7 +57,6 @@ public class LineTest {
             Point right = line.getPointAt(i + 1);
             assertThat(left.isExist() && right.isExist()).isFalse();
         }
-
     }
 
 }
