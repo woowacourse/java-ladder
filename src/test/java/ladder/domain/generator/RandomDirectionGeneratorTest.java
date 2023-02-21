@@ -23,5 +23,4 @@ class RandomDirectionGeneratorTest {
                 .isGreaterThanOrEqualTo(0)
                 .isLessThanOrEqualTo(1);
     }
-
 }

@@ -22,21 +22,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class PlayersTest {
 
-    private static Stream<Arguments> generateValidNameSize() {
-        return Stream.of(
-                Arguments.of(List.of("pobi", "crong"), new String[]{"pobi", "crong"}),
-                Arguments.of(List.of("A", "B", "C", "D", "E", "F", "G", "H", "I", "J"),
-                        new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"})
-        );
-    }
-
-    private static Stream<Arguments> generateInvalidNameSize() {
-        return Stream.of(
-                Arguments.of(List.of("pobi")),
-                Arguments.of(List.of("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"))
-        );
-    }
-
     @ParameterizedTest(name = "입력: {0}, 출력: {1}")
     @MethodSource("generateValidNameSize")
     @DisplayName("플레이어는 2명 이상, 10명 이하만 가능하다.")
@@ -87,6 +72,21 @@ class PlayersTest {
 
         // then
         assertThat(actual).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> generateValidNameSize() {
+        return Stream.of(
+                Arguments.of(List.of("pobi", "crong"), new String[]{"pobi", "crong"}),
+                Arguments.of(List.of("A", "B", "C", "D", "E", "F", "G", "H", "I", "J"),
+                        new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"})
+        );
+    }
+
+    private static Stream<Arguments> generateInvalidNameSize() {
+        return Stream.of(
+                Arguments.of(List.of("pobi")),
+                Arguments.of(List.of("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"))
+        );
     }
 }
 
