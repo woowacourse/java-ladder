@@ -6,6 +6,7 @@ import ladder.utils.LineStrategy;
 import java.util.List;
 
 public class LadderGame {
+    public static final String QUERY_ALL = "all";
     private final Ladder ladder;
     private final Players players;
     private final Results results;
@@ -17,7 +18,7 @@ public class LadderGame {
     }
 
     public List<ResultDto> calculatePlayerResult(String playerName) {
-        if (playerName.equals("all")) {
+        if (playerName.equals(QUERY_ALL)) {
             return results.getResultsByPosition(players.moveAllToResult(ladder));
         }
         return results.getResultsByPosition(players.moveToResult(playerName, ladder));

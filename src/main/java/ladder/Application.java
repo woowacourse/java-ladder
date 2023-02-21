@@ -8,8 +8,9 @@ import ladder.view.OutputView;
 
 import java.util.List;
 
+import static ladder.domain.LadderGame.QUERY_ALL;
+
 public class Application {
-    private static final String QUERY_ALL = "all";
 
     public static void main(String[] args) {
         final var lineStrategy = new RandomDiscreteStrategy();
@@ -19,7 +20,7 @@ public class Application {
         OutputView.printLadder(game.getPlayerNames(), game.getLadder(), game.getResults());
 
         String queryName = "";
-        while(!queryName.equals(QUERY_ALL)) {
+        while (!queryName.equals(LadderGame.QUERY_ALL)) {
             queryName = InputView.readResultInquireName();
             OutputView.printInquireResult(game.calculatePlayerResult(queryName));
         }
