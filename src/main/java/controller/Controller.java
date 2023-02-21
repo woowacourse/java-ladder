@@ -19,7 +19,7 @@ public class Controller {
         Users users = retryOnError(() -> new Users(inputView.inputUserName()));
         Items items = retryOnError(() -> new Items(inputView.inputItem(), users));
         Height height = retryOnError(() -> new Height(inputView.inputLadderHeight()));
-        Ladders ladders = new Ladders(users.getCount(), height, new RandomGenerator());
+        Ladders ladders = new Ladders(users.getCount(), height, new RandomBooleanGenerator());
 
         outputView.printLadderResultBoard(users, items, ladders);
         Result result = new Result(users, items, ladders);
