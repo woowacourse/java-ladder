@@ -33,6 +33,9 @@ class SimpleArrayListTest {
     @Test
     @DisplayName("add 메소드 실행시 배열이 가득차면, 배열을 확장한다.")
     void addTestWhenIsFull() {
+        simpleArrayList.add("first");
+        assertThatCode(() -> simpleArrayList.add("second"))
+                .doesNotThrowAnyException();
     }
 
     @Test
