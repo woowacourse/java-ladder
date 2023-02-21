@@ -4,9 +4,13 @@ public class Result {
     private final String result;
 
     public Result(String result) {
+        validate(result);
+        this.result = result;
+    }
+
+    private void validate(String result) {
         validateNull(result);
         validateEmpty(result);
-        this.result = result;
     }
 
     private void validateEmpty(String result) {
