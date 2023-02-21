@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.util.Lists.newArrayList;
@@ -108,11 +109,11 @@ class LadderGameTest {
         ladderGame.generateLadder(new TestLineCreateDecider(newArrayList(true, false, false, true)));
 
         ladderGame.playLadderGame();
+        Map<Player, Reward> result = ladderGame.getResult();
 
-        List<Result> results = ladderGame.getResults();
-        Assertions.assertThat(results.get(0).getReward()).isEqualTo(reward3);
-        Assertions.assertThat(results.get(1).getReward()).isEqualTo(reward1);
-        Assertions.assertThat(results.get(2).getReward()).isEqualTo(reward2);
+        Assertions.assertThat(result.get(player1)).isEqualTo(reward3);
+        Assertions.assertThat(result.get(player2)).isEqualTo(reward1);
+        Assertions.assertThat(result.get(player3)).isEqualTo(reward2);
     }
 
     static class TestLineCreateDecider implements LineCreateDecider {
