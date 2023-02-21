@@ -42,6 +42,11 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
+    public String readSpecificResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
+    }
+
     private static int parseInt(String rawLadderHeight) {
         try {
             return Integer.parseInt(rawLadderHeight);

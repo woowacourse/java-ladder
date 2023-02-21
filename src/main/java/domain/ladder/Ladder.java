@@ -22,10 +22,6 @@ public class Ladder {
         this.ladderResults = new ArrayList<>(ladderResults);
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
-    }
-
     public String play(Player player, int position) {
         for (Line line : lines) {
             position = move(position, line);
@@ -47,6 +43,10 @@ public class Ladder {
         }
 
         return position;
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 
     public List<String> getLadderResults() {
