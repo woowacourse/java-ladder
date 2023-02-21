@@ -61,8 +61,8 @@ public class OutputView {
         if (isPrint(name, nameObj)) {
             System.out.printf(Message.REWARD_MESSAGE_FORMAT.message, nameObj.getName(),
                     result.getReward(nameObj).getReward());
+            System.out.println();
         }
-        System.out.println();
     }
 
     private boolean isPrint(String name, Name nameObj) {

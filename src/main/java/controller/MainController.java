@@ -25,8 +25,8 @@ public class MainController {
 
     public void start() {
         Names names = inputView.readNames();
-        Height height = inputView.readHeight();
         Rewards rewards = inputView.readRewards(names);
+        Height height = inputView.readHeight();
 
         LineSize lineSize = new LineSize(names);
         Lines lines = new Lines(lineSize, height, booleanGenerator);
