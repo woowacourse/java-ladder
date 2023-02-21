@@ -1,5 +1,6 @@
 package view;
 
+import controller.LadderGameController;
 import domain.Results;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
@@ -7,6 +8,7 @@ import domain.ladder.PointStatus;
 import domain.user.User;
 import domain.user.Users;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -15,18 +17,18 @@ public class OutputView {
     private static final String LINE_DELIMITER = "|";
     private static final String NAME_DELIMITER = " ";
 
-    public void printResultByUser(int index, Results results, List<String> resultUsers) {
+    public void printResultByUser(Map<String, String> resultMap, String findUser, List<String> userNames) {
         System.out.println(OUTPUT_RESULT_MESSAGE);
-        if (index == -1) {
-            printAllUserResult(resultUsers, results);
+        if (findUser.equals(LadderGameController.FIND_ALL_RESULT)) {
+            printAllUserResult(resultMap, userNames);
             return;
         }
-        System.out.println(results.getResults().get(index));
+        System.out.println(resultMap.get(findUser));
     }
 
-    private void printAllUserResult(List<String> resultUsers, Results results) {
-        for (int index = 0; index < results.getResults().size(); index++) {
-            System.out.println(resultUsers.get(index) + " : " + results.getResults().get(index));
+    private void printAllUserResult(Map<String, String> resultMap, List<String> userNames) {
+        for (String name : userNames) {
+            System.out.println(name + " : " + resultMap.get(name));
         }
     }
 

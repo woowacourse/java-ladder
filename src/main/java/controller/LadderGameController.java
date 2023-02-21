@@ -8,6 +8,7 @@ import domain.user.User;
 import domain.user.Users;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -15,12 +16,12 @@ import view.OutputView;
 public class LadderGameController {
     public static final String NOT_CONTAIN_NAME_ERROR = "[ERROR] 해당하는 이름이 없습니다.";
     public static final String ALL = "all";
+    public static final String FIND_ALL_RESULT = "전체 결과 조회";
     private final InputView inputView;
     private final OutputView outputView;
-    private Users users;
+    private static Users users;
     private Ladder ladder;
     private Results results;
-    private Game game;
 
     public LadderGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -37,20 +38,21 @@ public class LadderGameController {
         outputView.printUserNames(users);
         outputView.printLadder(ladder);
         outputView.printResults(results);
-        game = new Game(users.getUserNames(), ladder.getLines());
-        List<String> resultNames = game.executeGame();
-        String userResult = findUserResult();
-        outputView.printResultByUser(findResultByUser(resultNames, userResult), results, resultNames);
+        Game game = new Game(users.getUserNames(), ladder.getLines());
+        game.executeGame();
+        Map<String, String> resultMap = game.getLadderResult(results);
+        String findUser = findResultByUser(resultMap, findUserResult());
+        outputView.printResultByUser(resultMap, findUser, users.getUserNames());
     }
 
-    public static int findResultByUser(List<String> resultNames, String findInput) {
-        if (findInput.equals(ALL)) {
-            return -1;
+    public static String findResultByUser(Map<String, String> resultMap, String findUser) {
+        if (findUser.equals(ALL)) {
+            return FIND_ALL_RESULT;
         }
-        if (resultNames.contains(findInput)) {
-            return resultNames.indexOf(findInput);
+        if (resultMap.containsKey(findUser)) {
+            return findUser;
         }
-        throw new IllegalArgumentException(NOT_CONTAIN_NAME_ERROR);
+        throw new IllegalArgumentException();
     }
 
     private Results initializeResults() {
@@ -94,7 +96,7 @@ public class LadderGameController {
         while (height-- > 0) {
             lines.add(new Line(personCount, randomNumberGenerator));
         }
-        return new Ladder(lines, height);
+        return new Ladder(lines);
     }
 
     private String findUserResult() {
