@@ -65,7 +65,12 @@ public class LadderGameController {
 
     private void process() {
         ladderGame.start();
-        printPlayerResult();
+        try {
+            printPlayerResult();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            process();
+        }
     }
 
     private void printPlayerResult() {
