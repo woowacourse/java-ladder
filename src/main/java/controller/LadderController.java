@@ -65,7 +65,7 @@ public class LadderController {
     }
 
     private Ladder ladderRequest(People people) {
-        return new Ladder(people, inputView.readLadderHeightAndTransform(), new RandomGenerateStrategy());
+        return new Ladder(people, inputView.readMaxHeight(), new RandomGenerateStrategy());
     }
 
     private Results resultsRequest(People people) {
