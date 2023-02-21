@@ -23,7 +23,7 @@ public class InputView {
 
     public static List<String> readResults() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        String  results = scanner.reset().nextLine();
+        String results = scanner.reset().nextLine();
         System.out.println();
         return Arrays.stream(results.split(",")).collect(Collectors.toList());
     }

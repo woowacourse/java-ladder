@@ -11,7 +11,9 @@ public class RandomDiscreteStrategy implements LineStrategy {
         List<Boolean> line = makeRandomLine(sectionCount);
 
         IntStream.range(0, sectionCount - 1)
-                .forEach(idx -> {convertDiscontinuous(line, idx);});
+                .forEach(idx -> {
+                    convertDiscontinuous(line, idx);
+                });
         return line;
     }
 

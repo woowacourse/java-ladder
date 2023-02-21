@@ -32,7 +32,7 @@ public class Players {
             results.put(player.moveThroughLadder(ladder), player.getName());
         }
         return results;
-  }
+    }
 
     private Player getByName(String name) {
         return players.stream()

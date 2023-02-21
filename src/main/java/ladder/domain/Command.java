@@ -30,7 +30,7 @@ public class Command {
     private void validateLength(List<String> names, List<String> results) {
         if (names.size() < results.size()) {
             throw new IllegalArgumentException("실행 결과의 개수는 참여자의 개수 이하이어야 합니다.");
-       }
+        }
     }
 
     public int getWidth() {

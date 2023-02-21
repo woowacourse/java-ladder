@@ -26,7 +26,7 @@ public class Ladder {
 
     public int moveThrough(int startPoint) {
         int position = startPoint;
-        for (Line line: lines) {
+        for (Line line : lines) {
             position = line.moveFrom(position);
         }
         return position;
