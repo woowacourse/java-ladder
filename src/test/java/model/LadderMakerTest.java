@@ -1,5 +1,6 @@
 package model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -13,6 +14,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullSource;
+import strategy.PassGenerator;
+import strategy.RandomPassGenerator;
 
 @DisplayNameGeneration(ReplaceUnderscores.class)
 class LadderMakerTest {
@@ -43,7 +46,27 @@ class LadderMakerTest {
     @MethodSource("provideNonEqualSizeLine")
     void 생성자는_Path의_크기가_다른_Line이_주어지면_예외가_발생한다(Line firstLine, Line secondLine) {
         assertThatThrownBy(() -> new Ladder(List.of(firstLine, secondLine)))
-            .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void findLadder_메소드는_ladder가_초기화_되기_전에_호출되면_예외가_발생한다() {
+        PassGenerator generator = new RandomPassGenerator();
+        LadderMaker ladderMaker = new LadderMaker(generator);
+
+        assertThatThrownBy(ladderMaker::findLadder)
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("사다리가 생성되지 않았습니다.");
+    }
+
+    @Test
+    void findLadder_메소드는_ladder가_초기화한_이후_호출하면_ladder를_반환한다() {
+        PassGenerator generator = new RandomPassGenerator();
+        Height height = new Height(5);
+        LadderMaker ladderMaker = new LadderMaker(generator);
+        ladderMaker.initLadder(height, 4);
+
+        assertThatCode(ladderMaker::findLadder).doesNotThrowAnyException();
     }
 
     private static Stream<Arguments> provideNonEqualSizeLine() {
