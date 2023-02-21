@@ -13,10 +13,17 @@ public class Players {
     private final List<Player> players;
 
     public Players(String[] names) {
+        trimNames(names);
         validate(names);
         this.players = Arrays.stream(names)
                 .map(Player::new)
                 .collect(toList());
+    }
+
+    private void trimNames(String[] names) {
+        for (int i = 0; i < names.length; i++) {
+            names[i] = names[i].trim();
+        }
     }
 
     private void validate(String[] names) {
