@@ -50,6 +50,17 @@ public class LadderController {
 		}
 	}
 
+	public void askWanted() {
+		String search = inputView.readWho();
+		if (search.equals("all")) {
+			outputView.printAll(joinnedResult);
+		}
+		if (joinnedResult.containsKey(search)) {
+			outputView.printWanted(search, joinnedResult);
+			askWanted();
+		}
+	}
+
 	private List<List<Boolean>> getLadder() {
 		return ladder.getLadder().stream()
 			.map(this::getLevel)

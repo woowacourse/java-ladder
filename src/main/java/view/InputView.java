@@ -26,4 +26,9 @@ public class InputView {
 			throw new IllegalArgumentException(Error.HEIGHT_ONLY_NUMBER.getMessage());
 		}
 	}
+
+	public String readWho() {
+		System.out.println("\n결과를 보고 싶은 사람은?");
+		return scanner.nextLine();
+	}
 }
