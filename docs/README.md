@@ -7,7 +7,7 @@
   - [x] 1글자 이상 5글자 이하 Person#validate
   - [x] 중복 불가 Persons#validate
 
-- [x] 실행 결과
+- [x] 실행 결과 LadderGameController#requestLadderResult
   - [x] 입력받기
   - [x] ,(쉼표)로 구분
 
@@ -23,9 +23,10 @@
   - [x] 각 칸마다 다리 생성 여부는 랜덤값으로 결정 RandomBridgeGenerator
 
 - [ ] 사다리 게임 실행
+  - [x] 시작 위치는 입력 순서대로 Persons#initializePerson
   - [ ] 칸 이동
-    - [ ] 해당 칸에 다리가 있으면 옆 칸으로 이동
-    - [ ] 해당 칸에 다리가 없으면 이동하지 않음
+    - [ ] 연결된 다리가 있으면 옆 칸으로 이동
+    - [ ] 연결된 다리가 없으면 이동하지 않음
   - [ ] 라인 이동
   - [ ] 남은 라인이 없으면 게임 종료
 

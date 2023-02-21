@@ -8,32 +8,36 @@ import java.util.stream.Collectors;
 public class Persons {
     private final List<Person> persons;
 
-    public Persons(List<Person> persons) {
-        validate(persons);
+    private Persons(List<Person> persons) {
         this.persons = persons;
     }
 
-    private void validate(List<Person> persons) {
-        if (isNameDuplicate(persons)) {
+    public static Persons from(List<String> names) {
+        validate(names);
+        return initializePerson(names);
+    }
+
+    private static void validate(List<String> names) {
+        if (isNameDuplicate(names)) {
             throw new IllegalArgumentException(ErrorCode.NAME_DUPLICATE.getMessage());
         }
     }
 
-    private boolean isNameDuplicate(List<Person> names) {
+    private static boolean isNameDuplicate(List<String> names) {
         return names.size() != names.stream()
-                .map(Person::getName)
                 .distinct()
                 .count();
     }
 
-    public List<String> getAllPersonNames() {
-        return persons.stream()
-                .map(Person::getName)
+    private static Persons initializePerson(List<String> names) {
+        List<Person> persons = names.stream()
+                .map((name) -> new Person(name, names.indexOf(name)))
                 .collect(Collectors.toList());
+        return new Persons(persons);
     }
 
     public int getLongestPersonNameLength() {
-        List<Integer> namesLength = getAllPersonNames().stream()
+        List<Integer> namesLength = getAllPersonName().stream()
                 .map(String::length)
                 .collect(Collectors.toList());
         return Collections.max(namesLength);
@@ -41,5 +45,17 @@ public class Persons {
 
     public int getTotalPersonCount() {
         return persons.size();
+    }
+
+    public List<String> getAllPersonName() {
+        return persons.stream()
+                .map(Person::getName)
+                .collect(Collectors.toList());
+    }
+
+    public List<Integer> getAllPersonPosition() {
+        return persons.stream()
+                .map(Person::getPosition)
+                .collect(Collectors.toList());
     }
 }
