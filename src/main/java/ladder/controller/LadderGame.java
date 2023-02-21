@@ -12,12 +12,10 @@ import ladder.view.ResultView;
 public class LadderGame {
     private final InputView inputView;
     private final ResultView resultView;
-    private final RandomLadderGenerator randomLadderGenerator;
 
-    public LadderGame(InputView inputView, ResultView resultView, RandomLadderGenerator randomLadderGenerator) {
+    public LadderGame(InputView inputView, ResultView resultView) {
         this.inputView = inputView;
         this.resultView = resultView;
-        this.randomLadderGenerator = randomLadderGenerator;
     }
 
     public void run() {
@@ -40,7 +38,8 @@ public class LadderGame {
     private Ladder makeLadder(int playersSize) {
         Height height = new Height(inputView.inputHeight());
         Width width = new Width(getWidthSize(playersSize));
-        return randomLadderGenerator.generateRows(width, height);
+        RandomLadderGenerator randomLadderGenerator = new RandomLadderGenerator(width, height);
+        return randomLadderGenerator.generateLadder();
     }
 
     private int getWidthSize(int playersSize) {
