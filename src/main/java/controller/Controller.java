@@ -3,6 +3,8 @@ package controller;
 import java.util.List;
 
 import domain.Ladder;
+import domain.Reward;
+import domain.Rewards;
 import domain.User;
 import domain.Users;
 import utils.validator.Validator;
@@ -12,14 +14,17 @@ import view.OutputView;
 public class Controller {
     private final Ladder ladder;
     private final Users users;
+    private final Rewards rewards;
 
-    public Controller(Ladder ladder, Users users) {
+    public Controller(Ladder ladder, Users users, Rewards rewards) {
         this.ladder = ladder;
         this.users = users;
+        this.rewards = rewards;
     }
 
     public void run() {
         createUser();
+        createRewards();
         createLadder();
         OutputView.printResultMessage();
         printUsers();
@@ -34,6 +39,17 @@ public class Controller {
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception);
             createUser();
+        }
+    }
+
+    private void createRewards() {
+        try {
+            List<String> rewardNames = InputView.readRewards();
+            Validator.validateSameLength(rewardNames, users.getUserCount());
+            rewardNames.forEach(rewardsName -> rewards.add(new Reward(rewardsName)));
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception);
+            createRewards();
         }
     }
 
