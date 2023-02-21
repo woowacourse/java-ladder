@@ -22,6 +22,7 @@ public class LadderGameController {
 
     public void run() {
         Users users = setUpUsers();
+        GameResults gameResults = setUpGameResults(users.count());
         Height ladderHeight = setUpLadderHeight();
         Ladder ladder = new Ladder(ladderHeight, users.count());
         printResult(ladder, users);
@@ -45,6 +46,28 @@ public class LadderGameController {
     private List<String> getUserNames() {
         outputView.printEnterUserNotice();
         return inputView.inputUserNames();
+    }
+
+    private GameResults setUpGameResults(int userCount) {
+        try {
+            return new GameResults(generateGameResults(getGameResults()), userCount);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return setUpGameResults(userCount);
+        }
+
+    }
+
+    private List<GameResult> generateGameResults(List<String> results) {
+        System.out.println(results);
+        return results.stream()
+                .map(GameResult::new)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private List<String> getGameResults() {
+        outputView.printEnterGameResultsNotice();
+        return inputView.inputGameResults();
     }
 
     private Height setUpLadderHeight() {
