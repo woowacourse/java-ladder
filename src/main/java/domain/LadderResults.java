@@ -36,7 +36,7 @@ public class LadderResults {
         return ladderResults;
     }
 
-    public LadderResult findLadderResultByIndex(int index) {
+    public LadderResult findLadderResultByIndex(final int index) {
         return this.ladderResults.get(index);
     }
 }

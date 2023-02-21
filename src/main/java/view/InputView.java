@@ -36,7 +36,7 @@ public class InputView {
         return reader.next();
     }
 
-    private int validateIntegerInput(String input) {
+    private int validateIntegerInput(final String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
@@ -44,7 +44,7 @@ public class InputView {
         }
     }
 
-    private List<String> splitInput(String input) {
+    private List<String> splitInput(final String input) {
         return Arrays.stream(input.split(SPLIT_DELIMITER))
                 .collect(Collectors.toList());
     }

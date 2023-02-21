@@ -78,7 +78,7 @@ public class Players {
         return Collections.unmodifiableList(this.players);
     }
 
-    public Player findPlayerByIndex(int index) {
+    public Player findPlayerByIndex(final int index) {
         return this.players.get(index);
     }
 }

@@ -6,7 +6,7 @@ public class GameResultCalculator {
 
     private final Map<Player, LadderResult> playerWithResult;
 
-    public GameResultCalculator(Map<Player, LadderResult> playerWithResult) {
+    public GameResultCalculator(final Map<Player, LadderResult> playerWithResult) {
         this.playerWithResult = playerWithResult;
     }
 
