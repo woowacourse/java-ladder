@@ -43,7 +43,7 @@ class SimpleArrayListTest {
             myValues.add(value);
         }
 
-        assertThat(values.get(10)).isEqualTo("k");
+        assertThat(myValues.get(10)).isEqualTo("k");
     }
 
 }
