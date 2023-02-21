@@ -9,9 +9,6 @@ import java.util.List;
 
 public class Controller {
 
-    public static final int FIRST_FLOOR = 0;
-    public static final int SECOND_BLOCK = 1;
-
     private InputView inputView;
     private OutputView outputView;
     private BooleanGenerator booleanGenerator;
@@ -27,21 +24,12 @@ public class Controller {
         Players players = Players.generatePlayer(playerNames);
 
         int ladderHeight = inputView.readLadderHeight();
-        List<Line> ladder = generateLadder(ladderHeight, players);
+        Ladder ladder = Ladder.generateLadder(ladderHeight, players, booleanGenerator);
 
         printResult(players, ladder);
     }
 
-    private List<Line> generateLadder(int ladderHeight, Players players) {
-        List<Line> list = new ArrayList<>();
-        for (int i = FIRST_FLOOR; i < ladderHeight; i++) {
-            Line line = Line.generateLine(booleanGenerator, players);
-            list.add(line);
-        }
-        return list;
-    }
-
-    private void printResult(Players players, List<Line> ladder) {
+    private void printResult(Players players, Ladder ladder) {
         outputView.printNames(players);
         outputView.printLadders(ladder, players.getPlayersName());
     }

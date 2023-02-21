@@ -1,5 +1,6 @@
 package view;
 
+import domain.Ladder;
 import domain.Line;
 import domain.Players;
 
@@ -26,9 +27,9 @@ public class OutputView {
         }
     }
 
-    public void printLadders(List<Line> lines, List<String> playerNames) {
+    public void printLadders(Ladder ladder, List<String> playerNames) {
         System.out.println();
-        for (Line line : lines) {
+        for (Line line : ladder.getLines()) {
             printLine(line, playerNames);
         }
     }
