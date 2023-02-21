@@ -11,14 +11,12 @@ public class LineCreator {
     private final BooleanGenerator booleanGenerator;
 
     public LineCreator(final BooleanGenerator inputGenerator) {
-        this.booleanGenerator = Optional.ofNullable(inputGenerator).orElse(new RandomBooleanGenerator());
+        this.booleanGenerator = getBooleanGenerator(inputGenerator);
     }
 
     public Lines createLines(final Width inputWidth, final Height inputHeight) {
-        final Width width = Optional.ofNullable(inputWidth)
-                .orElseThrow(() -> new IllegalArgumentException(LINE_WIDTH_NULL_EXCEPTION));
-        final Height height = Optional.ofNullable(inputHeight)
-                .orElseThrow(() -> new IllegalArgumentException(LINE_HEIGHT_NULL_EXCEPTION));
+        final Width width = getWidth(inputWidth);
+        final Height height = getHeight(inputHeight);
         final List<Line> lines = new ArrayList<>();
         for (int count = 0; count < height.getValue(); count++) {
             final Line line = createLine(width.getValue());
@@ -36,6 +34,20 @@ public class LineCreator {
         return new Line(points);
     }
 
+    private BooleanGenerator getBooleanGenerator(final BooleanGenerator inputGenerator) {
+        return Optional.ofNullable(inputGenerator).orElse(new RandomBooleanGenerator());
+    }
+
+    private Height getHeight(final Height inputHeight) {
+        return Optional.ofNullable(inputHeight)
+                .orElseThrow(() -> new IllegalArgumentException(LINE_HEIGHT_NULL_EXCEPTION));
+    }
+
+    private Width getWidth(final Width inputWidth) {
+        return Optional.ofNullable(inputWidth)
+                .orElseThrow(() -> new IllegalArgumentException(LINE_WIDTH_NULL_EXCEPTION));
+    }
+
     private boolean createNewBoolean(final List<Boolean> points) {
         boolean generatedBoolean = booleanGenerator.generate();
         if (checkLastAndNewTrue(points, generatedBoolean)) {
@@ -45,7 +57,7 @@ public class LineCreator {
     }
 
     private boolean checkLastAndNewTrue(final List<Boolean> points, final boolean isNewOneTrue) {
-        if (points.size() < 2) {
+        if (points.isEmpty()) {
             return false;
         }
         boolean isLastOneTrue = points.get(points.size() - 1);
