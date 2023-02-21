@@ -52,6 +52,11 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean contains(String value) {
+        for (String element : data) {
+            if (element.equals(value)) {
+                return true;
+            }
+        }
         return false;
     }
 
