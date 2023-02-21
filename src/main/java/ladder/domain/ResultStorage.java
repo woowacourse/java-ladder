@@ -10,12 +10,12 @@ public class ResultStorage {
         resultStorage = new ArrayList<>();
     }
 
-    public void add(String result) {
+    public void add(final String result) {
         resultStorage.add(result);
     }
 
-    public String get(int index) {
-        if(resultStorage.size() <= index) {
+    public String get(final int index) {
+        if (resultStorage.size() <= index) {
             throw new IllegalArgumentException();
         }
         return resultStorage.get(index);

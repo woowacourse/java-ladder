@@ -8,7 +8,8 @@ public class InputView {
     private final static String DELIMITER = ",";
     private final static Scanner SCANNER = new Scanner(System.in);
 
-    private InputView() {}
+    private InputView() {
+    }
 
     public static List<String> readNames() {
         String rawNames = SCANNER.nextLine();

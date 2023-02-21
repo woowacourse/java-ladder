@@ -11,7 +11,7 @@ public class LadderMaker {
         this.ladderSize = ladderSize;
     }
 
-    public Ladder generate(BooleanGenerator booleanGenerator) {
+    public Ladder generate(final BooleanGenerator booleanGenerator) {
         List<Line> lines = new ArrayList<>();
 
         for (int height = 0; height < ladderSize.getHeight(); height++) {

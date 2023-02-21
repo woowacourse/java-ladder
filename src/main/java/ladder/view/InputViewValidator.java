@@ -18,7 +18,7 @@ public class InputViewValidator {
         }
     }
 
-    public static void validateNumeric(String target) {
+    public static void validateNumeric(final String target) {
         try {
             Integer.parseInt(target);
         } catch (NumberFormatException e) {

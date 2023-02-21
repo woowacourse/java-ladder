@@ -71,7 +71,7 @@ public class LadderGameController {
     private void printPlayerResult() {
         OutputView.printWantToSeeWhomMessage();
         String playerName = InputView.readTargetPlayer();
-        if(playerName.equals("exit")){
+        if (playerName.equals("exit")) {
             return;
         }
 

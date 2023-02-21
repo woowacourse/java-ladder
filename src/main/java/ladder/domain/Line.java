@@ -33,7 +33,7 @@ public class Line {
     }
 
     public ConnectionStatus isConnectedAt(final int index) {
-        if(points.size() <= index) {
+        if (points.size() <= index) {
             throw new ArrayIndexOutOfBoundsException();
         }
 

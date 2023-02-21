@@ -12,23 +12,23 @@ public class Result {
 
     private final List<String> results;
 
-    public Result(List<String> results, int playerNamesCount) {
+    public Result(final List<String> results, final int playerNamesCount) {
         validate(results, playerNamesCount);
         this.results = List.copyOf(results);
     }
 
-    private void validate(List<String> results, int playerNamesCount) {
+    private void validate(final List<String> results, final int playerNamesCount) {
         validateResultsCount(results, playerNamesCount);
         validateEachResultLength(results);
     }
 
-    private void validateResultsCount(List<String> results, int playerNamesCount) {
+    private void validateResultsCount(final List<String> results, final int playerNamesCount) {
         if (results.size() != playerNamesCount) {
             throw new IllegalArgumentException(COUNT_NOT_MATCH_MESSAGE);
         }
     }
 
-    private void validateEachResultLength(List<String> results) {
+    private void validateEachResultLength(final List<String> results) {
         long countOverMaxLength = results.stream()
                 .filter((result) -> (result.length() > MAX_RESULT_LENGTH || result.length() < MIN_RESULT_LENGTH))
                 .count();
