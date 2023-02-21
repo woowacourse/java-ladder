@@ -23,12 +23,16 @@ public class LadderController {
     }
 
     public void play() {
-        List<Name> names = inputView.inputNames()
-                .stream()
-                .map(Name::new)
-                .collect(Collectors.toList());
+        List<Name> names = inputNames();
         int height = inputView.inputLadderHeight();
         Ladder ladder = ladderMaker.make(new Height(height), new Width(names.size() - 1));
         outputView.printResult(names, ladder);
+    }
+
+    private List<Name> inputNames() {
+        return inputView.inputNames()
+                .stream()
+                .map(Name::new)
+                .collect(Collectors.toList());
     }
 }
