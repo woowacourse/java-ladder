@@ -50,4 +50,11 @@ public class Ladder {
         return floors;
     }
 
+    public int resultPositionOf(final int i) {
+        int position = i;
+        for(Floor floor : floors){
+            position = floor.getResultPosition(position);
+        }
+        return position;
+    }
 }
