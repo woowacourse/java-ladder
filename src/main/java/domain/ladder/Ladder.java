@@ -17,9 +17,9 @@ public class Ladder {
     }
 
     public Ladder(List<Line> lines, LadderHeight ladderHeight, List<String> ladderResults) {
-        this.lines = lines;
+        this.lines = new ArrayList<>(lines);
         this.ladderHeight = ladderHeight;
-        this.ladderResults = ladderResults;
+        this.ladderResults = new ArrayList<>(ladderResults);
     }
 
     public List<Line> getLines() {
@@ -47,5 +47,9 @@ public class Ladder {
         }
 
         return position;
+    }
+
+    public List<String> getLadderResults() {
+        return Collections.unmodifiableList(ladderResults);
     }
 }

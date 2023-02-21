@@ -1,11 +1,12 @@
 package view;
 
+import static java.util.stream.Collectors.joining;
+
 import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.ladder.LinePoint;
 import domain.player.Players;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -25,7 +26,7 @@ public class OutputView {
     private String getFormattedNames(Players players) {
         return players.getPlayers().stream()
                 .map(player -> String.format("%-5s", player.getName()))
-                .collect(Collectors.joining(" "));
+                .collect(joining(" "));
     }
 
     private void printLadder(Ladder ladder) {
@@ -33,6 +34,7 @@ public class OutputView {
         for (Line line : lines) {
             printLine(line);
         }
+        System.out.println(getFormattedResults(ladder.getLadderResults()));
     }
 
     private void printLine(Line line) {
@@ -46,6 +48,12 @@ public class OutputView {
             return;
         }
         System.out.print(EDGE_OF_POINT + BLOCKED_POINT);
+    }
+
+    private String getFormattedResults(List<String> ladderResults) {
+        return ladderResults.stream()
+                .map(result -> String.format("%-5s", result))
+                .collect(joining(" "));
     }
 
     public void printErrorMessage(String message) {

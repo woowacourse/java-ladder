@@ -29,8 +29,9 @@ public class LadderGameApplication {
     public void run() {
         Players players = retryIfError(this::createPlayers);
         LadderHeight ladderHeight = retryIfError(inputView::readLadderHeight);
-        Ladder ladder = ladderGenerator.generate(players.size(), ladderHeight);
+        List<String> ladderResults = retryIfError(inputView::readLadderResults);
 
+        Ladder ladder = ladderGenerator.generate(players.size(), ladderHeight, ladderResults);
         outputView.printResult(players, ladder);
     }
 
