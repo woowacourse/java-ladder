@@ -3,6 +3,8 @@ package techcourse.jcf.mission;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.lang.reflect.Array;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -60,7 +62,7 @@ class SimpleArrayListTest {
         simpleArrayList.add("second");
 
         assertThatThrownBy(() -> simpleArrayList.add(3, "asdf"))
-                .isInstanceOf(IndexOutOfBoundsException.class);
+                .isInstanceOf(ArrayIndexOutOfBoundsException.class);
     }
 
     @Test
@@ -155,18 +157,16 @@ class SimpleArrayListTest {
     }
 
     @Test
-    @DisplayName("remove에 index 전달하면, 해당 value가 지워진다.")
+    @DisplayName("remove에 index 전달하면, 해당 value가 지워지고 지워진 값을 반환한다.")
     void removeIndexTest() {
-//        simpleArrayList.add("first");
-//        simpleArrayList.add("second");
-//        simpleArrayList.add("third");
-//
-//        simpleArrayList.remove("second");
-//
-//        assertAll(() -> assertThat(simpleArrayList.size()).isEqualTo(2)
-//                , () -> assertThatThrownBy(() -> simpleArrayList.get(2))
-//                        .isInstanceOf(ArrayIndexOutOfBoundsException.class)
-//        );
+        simpleArrayList.add("first");
+        simpleArrayList.add("second");
+        simpleArrayList.add("third");
+
+        String removedValue = simpleArrayList.remove(1);
+
+        assertAll(() -> assertThat(simpleArrayList.size()).isEqualTo(2)
+                , () -> assertThat(removedValue).isEqualTo("second"));
     }
 
     @Test
