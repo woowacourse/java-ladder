@@ -27,28 +27,36 @@ public class LadderEngine {
         });
 
         OutputView.printLadder(ladder);
+        queryPrizes(ladder);
+    }
+
+    private void queryPrizes(Ladder ladder) {
         do {
             List<Result> results = IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
-                String participantName = InputView.inputParticipantNameToFind();
-                List<String> participantNames;
-                if (participantName.equals("all")) {
-                    participantNames = ladder.getParticipants().getNames();
-                } else {
-                    participantNames = List.of(participantName);
-                }
-
-                List<Result> results2 = new ArrayList<>();
-                for (String name : participantNames) {
-                    String prize = ladder.findPrizeFor(name);
-                    results2.add(new Result(name, prize));
-                }
-                return results2;
+                String participantNameToFind = InputView.inputParticipantNameToFind();
+                return getResults(ladder, getParticipantNamesToFind(ladder, participantNameToFind));
             });
             OutputView.printResults(results);
-            if (results.size() > 1) {
+            if (results.size() == ladder.getParticipants().count()) {
                 break;
             }
         } while (true);
+    }
+
+    private List<String> getParticipantNamesToFind(Ladder ladder, String participantNameToFind) {
+        if (participantNameToFind.equals("all")) {
+            return ladder.getParticipants().getNames();
+        }
+        return List.of(participantNameToFind);
+    }
+
+    private List<Result> getResults(Ladder ladder, List<String> participantNames) {
+        List<Result> results = new ArrayList<>();
+        for (String name : participantNames) {
+            String prize = ladder.findPrizeFor(name);
+            results.add(new Result(name, prize));
+        }
+        return results;
     }
 
     private Participants gatherParticipants() {
