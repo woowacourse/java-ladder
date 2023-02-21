@@ -1,8 +1,5 @@
 package ladder.controller;
 
-import java.util.function.Function;
-import java.util.function.Supplier;
-
 import ladder.domain.*;
 import ladder.domain.generator.LineGenerator;
 import ladder.view.InputView;

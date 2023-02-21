@@ -10,9 +10,7 @@ import java.util.List;
 import ladder.domain.generator.DirectionGenerator;
 import ladder.domain.generator.LineGenerator;
 import ladder.domain.generator.TestDirectionGenerator;
-import org.assertj.core.api.Assertions;
 import org.assertj.core.util.Lists;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
