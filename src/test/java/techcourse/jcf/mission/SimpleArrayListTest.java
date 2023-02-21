@@ -36,6 +36,27 @@ class SimpleArrayListTest {
     }
 
     @Test
+    public void addWithIndexTest() {
+        List<String> values = new ArrayList<>(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"));
+        SimpleArrayList myValues = new SimpleArrayList();
+        for (String value : values) {
+            Assertions.assertThat(myValues.add(value)).isTrue();
+        }
+
+        String newValue = "함정카드";
+        String oldValue = myValues.get(5);
+
+        myValues.add(5, newValue);
+
+        assertThat(myValues.size()).isEqualTo(12);
+        assertThat(myValues.get(5)).isEqualTo(newValue);
+        assertThat(myValues.get(6)).isEqualTo(oldValue);
+
+        Assertions.assertThatThrownBy(() -> myValues.add(13, "이건 못넣지"))
+                .isInstanceOf(IndexOutOfBoundsException.class);
+    }
+
+    @Test
     public void getTest() {
         List<String> values = new ArrayList<>(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"));
         SimpleArrayList myValues = new SimpleArrayList();
