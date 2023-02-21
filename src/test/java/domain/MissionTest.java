@@ -65,4 +65,18 @@ class MissionTest {
                     .isThrownBy(() -> new Mission(input));
         }
     }
+
+    @Nested
+    @DisplayName("미션 비교")
+    class compareMissionTest {
+        @Test
+        void 같은_내용을_가진_미션은_같은_미션이다() {
+            Mission mission1 = new Mission("꽝");
+            Mission mission2 = new Mission("꽝");
+            Mission mission3 = new Mission("당첨");
+
+            assertThat(mission1).isEqualTo(mission2);
+            assertThat(mission1).isNotEqualTo(mission3);
+        }
+    }
 }
