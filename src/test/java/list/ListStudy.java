@@ -72,9 +72,9 @@ public class ListStudy {
 
         assertThat(values.indexOf("second")).isEqualTo(2); // "second" 값의 index가 2인지 확인한다.
         assertThat(values.indexOf("fifth")).isEqualTo(-1); // 존재하지 않는 값을 조회하면 -1을 반환하는지 확인한다.
-//
-//        assertThat(values.size()).isEqualTo(4); // list의 크기를 구한다.
-//
+
+        assertThat(values.size()).isEqualTo(4); // list의 크기를 구한다.
+
 //        assertThat(values.isEmpty()).isFalse(); // list가 비어있지 않다고 나오는지 확인한다.
 //        assertThat(new SimpleArrayList().isEmpty()).isTrue(); // 초기 리스트가 비어있는지 확인한다.
 //
