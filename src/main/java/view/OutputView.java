@@ -1,12 +1,12 @@
 package view;
 
 import java.util.List;
+import java.util.Map;
 
 import domain.Bridge;
 import domain.Ladder;
 import domain.Line;
 import domain.Participants;
-import dto.Result;
 
 public class OutputView {
 
@@ -16,7 +16,7 @@ public class OutputView {
 
     public static void printLadder(final Ladder ladder) {
         System.out.println("실행결과");
-        printNamesOf(ladder.getParticipants());
+        printParticipantNamesOf(ladder);
         printLinesOf(ladder);
         printPrizesOf(ladder);
     }
@@ -25,18 +25,17 @@ public class OutputView {
         System.out.println(EXCEPTION_PREFIX + exception.getMessage());
     }
 
-    public static void printResults(List<Result> results) {
-        if (results.size() == 1) {
-            System.out.println(results.get(0).getPrize());
-            return;
-        }
-        for (Result result : results) {
-            System.out.println(result.getParticipantName() + " : " + result.getPrize());
+    public static void printResults(Map<String, String> results) {
+        for (var result : results.entrySet()) {
+            if (results.size() > 1) {
+                System.out.print(result.getKey() + " : ");
+            }
+            System.out.println(result.getValue());
         }
     }
 
-    private static void printNamesOf(Participants participants) {
-        for (String name : participants.getNames()) {
+    private static void printParticipantNamesOf(Ladder ladder) {
+        for (String name : ladder.getParticipantNames()) {
             System.out.print(name + "\t");
         }
         System.out.println();

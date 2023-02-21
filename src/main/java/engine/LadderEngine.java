@@ -1,7 +1,9 @@
 package engine;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import common.exception.handler.IllegalArgumentExceptionHandler;
@@ -9,11 +11,9 @@ import domain.Ladder;
 import domain.Line;
 import domain.Participant;
 import domain.Participants;
-import dto.Result;
 import generator.LineGenerator;
 import generator.RandomBridgeGenerator;
-import view.InputView;
-import view.OutputView;
+import view.SearchTarget;
 
 public class LadderEngine {
 
@@ -28,35 +28,6 @@ public class LadderEngine {
 
         OutputView.printLadder(ladder);
         queryPrizes(ladder);
-    }
-
-    private void queryPrizes(Ladder ladder) {
-        do {
-            List<Result> results = IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
-                String participantNameToFind = InputView.inputParticipantNameToFind();
-                return getResults(ladder, getParticipantNamesToFind(ladder, participantNameToFind));
-            });
-            OutputView.printResults(results);
-            if (results.size() == ladder.getParticipants().count()) {
-                break;
-            }
-        } while (true);
-    }
-
-    private List<String> getParticipantNamesToFind(Ladder ladder, String participantNameToFind) {
-        if (participantNameToFind.equals("all")) {
-            return ladder.getParticipants().getNames();
-        }
-        return List.of(participantNameToFind);
-    }
-
-    private List<Result> getResults(Ladder ladder, List<String> participantNames) {
-        List<Result> results = new ArrayList<>();
-        for (String name : participantNames) {
-            String prize = ladder.findPrizeFor(name);
-            results.add(new Result(name, prize));
-        }
-        return results;
     }
 
     private Participants gatherParticipants() {
@@ -75,10 +46,37 @@ public class LadderEngine {
         return lines;
     }
 
+    private void queryPrizes(Ladder ladder) {
+        boolean isSearchTargetAll;
+        do {
+            isSearchTargetAll = IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
+                SearchTarget searchTarget = inputSearchTarget();
+                printResults(getResults(ladder, searchTarget));
+                return searchTarget.isAll();
+            });
+        } while (!isSearchTargetAll);
+    }
+
     private Participants createParticipantsWith(final List<String> names) {
         List<Participant> participants = names.stream()
                 .map(Participant::new)
                 .collect(Collectors.toList());
         return new Participants(participants);
+    }
+
+    private Map<String, String> getResults(Ladder ladder, SearchTarget searchTarget) {
+        if (searchTarget.isAll()) {
+            return getAllResultsOf(ladder);
+        }
+        String searchTargetName = searchTarget.getName();
+        return Map.of(searchTargetName, ladder.findPrizeFor(searchTargetName));
+    }
+
+    private Map<String, String> getAllResultsOf(Ladder ladder) {
+        Map<String, String> prizes = new HashMap<>();
+        for (String name : ladder.getParticipantNames()) {
+            prizes.put(name, ladder.findPrizeFor(name));
+        }
+        return prizes;
     }
 }

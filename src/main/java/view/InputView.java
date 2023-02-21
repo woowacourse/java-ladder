@@ -23,9 +23,9 @@ public class InputView {
         return splitWithComma(input);
     }
 
-    public static String inputParticipantNameToFind() {
+    public static SearchTarget inputSearchTarget() {
         System.out.println("결과를 보고 싶은 사람은?");
-        return ScannerUtil.nextLine();
+        return new SearchTarget(ScannerUtil.nextLine());
     }
 
     private static List<String> splitWithComma(final String input) {
