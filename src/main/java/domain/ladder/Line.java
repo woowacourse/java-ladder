@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class Line {
 
-    private final List<FootStep> footSteps = new ArrayList<>();
+    private final List<Step> steps = new ArrayList<>();
     private final BooleanGenerator generator;
 
     private Line(final BooleanGenerator generator) {
@@ -20,44 +20,42 @@ public class Line {
         return new Line(generator);
     }
 
-    public boolean isSteppableAt(final int index) {
-        return this.footSteps
-                .get(index)
-                .isSteppable();
+    public boolean isConnectedToRight(final int index) {
+        return this.steps.get(index).isConnectedToRight();
     }
 
-    public void generateFootStep() {
+    public void generateStep() {
         if (!isStartEdge()) {
-            FootStep previous = getPreviousFootStep();
-            addFootStep(previous.isSteppable());
+            Step previous = getPreviousStep();
+            addStep(previous.isConnectedToRight());
             return;
         }
-        addFootStep(false);
+        addStep(false);
     }
 
-    private FootStep getPreviousFootStep() {
-        return this.footSteps.get(this.footSteps.size() - 1);
+    private Step getPreviousStep() {
+        return this.steps.get(this.steps.size() - 1);
     }
 
-    private void addFootStep(final boolean isPreviousFootStepSteppable) {
-        if (isPreviousFootStepSteppable) {
-            this.footSteps.add(FootStep.of(false));
+    private void addStep(final boolean isPreviousStepConnectedToRight) {
+        if (isPreviousStepConnectedToRight) {
+            this.steps.add(Step.makeLeft());
             return;
         }
-        this.footSteps.add(FootStep.of(generator.generate()));
+        this.steps.add(Step.makeRandom(generator.generate()));
     }
 
     private boolean isStartEdge() {
-        return this.footSteps.size() == 0;
+        return this.steps.size() == 0;
     }
 
     public int getWidth() {
-        return this.footSteps.size();
+        return this.steps.size();
     }
 
     public List<Boolean> getValue(){
-        return List.copyOf(footSteps.stream()
-                .map(FootStep::isSteppable)
+        return List.copyOf(steps.stream()
+                .map(Step::isConnectedToRight)
                 .collect(Collectors.toList()));
     }
 
@@ -66,18 +64,18 @@ public class Line {
         if (this == line) return true;
         if (line == null || getClass() != line.getClass()) return false;
         Line anotherLine = (Line) line;
-        return this.footSteps.equals(anotherLine.footSteps) && this.generator.equals(anotherLine.generator);
+        return this.steps.equals(anotherLine.steps) && this.generator.equals(anotherLine.generator);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(footSteps, generator);
+        return Objects.hash(steps, generator);
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "footSteps=" + footSteps +
+                "footSteps=" + steps +
                 ", generator=" + generator +
                 '}';
     }

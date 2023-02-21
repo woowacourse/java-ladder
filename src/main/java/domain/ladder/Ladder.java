@@ -38,7 +38,7 @@ public class Ladder {
 
     private static void generateFootsteps(final int width, final Line line) {
         for (int currentWidth = 0; currentWidth < width - 1; currentWidth++) {
-            line.generateFootStep();
+            line.generateStep();
         }
     }
 

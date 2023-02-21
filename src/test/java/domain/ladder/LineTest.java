@@ -22,10 +22,10 @@ class LineTest {
         void givenCrossablePreviousFootstep_thenUncrossableCurrentFootStep() {
             Line line = Line.of(new FixBooleanGenerator(true));
 
-            line.generateFootStep();
-            line.generateFootStep();
+            line.generateStep();
+            line.generateStep();
 
-            assertThat(line.isSteppableAt(1)).isFalse();
+            assertThat(line.isConnectedToRight(1)).isFalse();
         }
 
         @ParameterizedTest(name = "없는 디딤돌이면 지금 다리는 디딤돌이 생성되는 것이 허용된다.")
@@ -33,10 +33,10 @@ class LineTest {
         void givenUnCrossablePreviousFootstep_thenNotUncrossableCurrentFootStep(boolean value) {
             Line line = Line.of(new FixBooleanGenerator(false, value));
 
-            line.generateFootStep();
-            line.generateFootStep();
+            line.generateStep();
+            line.generateStep();
 
-            assertThat(line.isSteppableAt(1)).isEqualTo(value);
+            assertThat(line.isConnectedToRight(1)).isEqualTo(value);
         }
     }
 
@@ -49,9 +49,9 @@ class LineTest {
             BooleanGenerator trueGenerator = new FixBooleanGenerator(value);
 
             Line line = Line.of(trueGenerator);
-            line.generateFootStep();
+            line.generateStep();
 
-            assertThat(line.isSteppableAt(0))
+            assertThat(line.isConnectedToRight(0))
                     .isEqualTo(value);
         }
     }
