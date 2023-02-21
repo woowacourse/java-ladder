@@ -27,8 +27,8 @@ public class LadderGameApplication {
     }
 
     public void run() {
-        Players players = repeat(this::createPlayers);
-        LadderHeight ladderHeight = repeat(inputView::readLadderHeight);
+        Players players = retryIfError(this::createPlayers);
+        LadderHeight ladderHeight = retryIfError(inputView::readLadderHeight);
         Ladder ladder = ladderGenerator.generate(players.size(), ladderHeight);
 
         outputView.printResult(players, ladder);
@@ -41,7 +41,7 @@ public class LadderGameApplication {
                 .collect(collectingAndThen(toList(), Players::new));
     }
 
-    private <T> T repeat(Supplier<T> inputSupplier) {
+    private <T> T retryIfError(Supplier<T> inputSupplier) {
         while (true) {
             try {
                 return inputSupplier.get();
