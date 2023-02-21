@@ -28,15 +28,14 @@ public class LadderController {
         Ladder ladder = repeat(() -> ladderRequest(people));
         Results results = repeat(() -> resultsRequest(people));
 
-        ladderService = new LadderService(ladder, people, results);
-        outputView.printTotalLadderResult(people, ladder, results);
+        ladderService = new LadderService(people, ladder, results);
+        outputView.printTotalLadder(people, ladder, results);
     }
 
     public void run() {
         boolean result;
         do {
-            String name = repeat(this::singleResultRequest);
-            result = getResult(name);
+            result = getResult(repeat(this::singleResultRequest));
         } while (result);
     }
 

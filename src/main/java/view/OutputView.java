@@ -14,7 +14,7 @@ public class OutputView {
     public static final String DELIMITER = "|";
     public static final String FORMAT = "%s : %s\n";
 
-    public void printTotalLadderResult(People people, Ladder ladder, Results results) {
+    public void printTotalLadder(People people, Ladder ladder, Results results) {
         System.out.println("사다리 결과\n");
         printNames(people);
         printLadder(ladder);

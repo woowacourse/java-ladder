@@ -5,13 +5,13 @@ import java.util.List;
 
 public class LadderService {
 
-    private final Ladder ladder;
     private final People people;
+    private final Ladder ladder;
     private final Results results;
 
-    public LadderService(Ladder ladder, People people, Results results) {
-        this.ladder = ladder;
+    public LadderService(People people, Ladder ladder, Results results) {
         this.people = people;
+        this.ladder = ladder;
         this.results = results;
     }
 

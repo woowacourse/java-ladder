@@ -35,7 +35,7 @@ public class LadderServiceTest {
                 (width, height) -> customizedLines
         );
         results = new Results("꽝,5000,꽝,3000", people);
-        ladderService = new LadderService(ladder, people, results);
+        ladderService = new LadderService(people, ladder, results);
 
     }
 
