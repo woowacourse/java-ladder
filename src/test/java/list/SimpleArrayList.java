@@ -86,11 +86,7 @@ public class SimpleArrayList implements SimpleList {
         if (index == -1) {
             return false;
         }
-        for (int i = index + 1; i < size; i++) {
-            data[i - 1] = data[i];
-        }
-        size--;
-        data[size] = null;
+        removeByIndex(index);
         return true;
     }
 
@@ -98,11 +94,7 @@ public class SimpleArrayList implements SimpleList {
     public String remove(int index) {
         checkIndexOutOfBounds(index);
         String value = data[index];
-        for (int i = index + 1; i < size; i++) {
-            data[i - 1] = data[i];
-        }
-        size--;
-        data[size] = null;
+        removeByIndex(index);
         return value;
     }
 
@@ -135,5 +127,13 @@ public class SimpleArrayList implements SimpleList {
         if (index >= size) {
             throw new RuntimeException();
         }
+    }
+
+    private void removeByIndex(int index) {
+        for (int i = index + 1; i < size; i++) {
+            data[i - 1] = data[i];
+        }
+        size--;
+        data[size] = null;
     }
 }
