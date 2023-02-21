@@ -19,8 +19,8 @@ public class LadderController {
 
     public void run() {
         final Players players = makePlayers();
-        final Height height = makeHeight();
         final Gifts gifts = makeGifts(players.numberOfPlayers());
+        final Height height = makeHeight();
 
         final Ladder ladder = new Ladder(lineGenerator, players, height);
         outputView.printLadderResult(players, ladder, gifts);
