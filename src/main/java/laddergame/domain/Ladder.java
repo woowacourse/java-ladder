@@ -12,8 +12,7 @@ public class Ladder {
     public Ladder(Players players, Height height, TrueOrFalseGenerator trueOrFalseGenerator) {
         do {
             lines.clear();
-            int count = height.getHeight();
-            while (count-- > 0) {
+            for (int count = height.getHeight(); count > 0; count--){
                 Line line = new Line(players.getPlayersCount(), trueOrFalseGenerator);
                 lines.add(line);
             }
