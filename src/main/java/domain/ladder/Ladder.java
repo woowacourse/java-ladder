@@ -1,5 +1,6 @@
-package domain;
+package domain.ladder;
 
+import domain.Height;
 import util.BooleanGenerator;
 
 import java.util.ArrayList;

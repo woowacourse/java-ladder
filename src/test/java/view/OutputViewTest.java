@@ -1,7 +1,7 @@
 package view;
 
 import domain.Height;
-import domain.Ladder;
+import domain.ladder.Ladder;
 import domain.Names;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

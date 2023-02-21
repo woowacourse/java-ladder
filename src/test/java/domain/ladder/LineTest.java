@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import util.BooleanGenerator;
 import util.FixBooleanGenerator;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("사다리 한 층은 ")
 class LineTest {

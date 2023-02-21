@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

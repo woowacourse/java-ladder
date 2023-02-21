@@ -1,6 +1,6 @@
 package view;
 
-import domain.Ladder;
+import domain.ladder.Ladder;
 import domain.Names;
 import util.MessageGenerator;
 import util.MessagePrinter;

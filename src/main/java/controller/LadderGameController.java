@@ -1,7 +1,7 @@
 package controller;
 
 import domain.Height;
-import domain.Ladder;
+import domain.ladder.Ladder;
 import domain.Names;
 import util.BooleanGenerator;
 import view.InputView;
