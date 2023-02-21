@@ -15,7 +15,7 @@ public class OutputView {
 
     public static void printResult(Person person, Lines lines) {
         System.out.println("\n" + EXECUTE_RESULT + "\n");
-        int maxLength = person.getPerson().stream().mapToInt(p -> p.getName().length()).max().orElseThrow();
+        int maxLength = person.calculateMaxNameLength();
         printNames(person, maxLength);
         printLadder(lines, maxLength);
     }

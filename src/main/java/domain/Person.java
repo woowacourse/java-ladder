@@ -20,4 +20,8 @@ public class Person {
     public List<People> getPerson() {
         return Collections.unmodifiableList(person);
     }
+
+    public int calculateMaxNameLength(){
+        return person.stream().mapToInt(p -> p.getName().length()).max().orElseThrow();
+    }
 }
