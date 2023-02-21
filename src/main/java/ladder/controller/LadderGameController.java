@@ -8,6 +8,7 @@ import ladder.view.OutputView;
 import ladder.view.ResultView;
 
 import java.util.List;
+
 import java.util.function.Supplier;
 
 public class LadderGameController {
