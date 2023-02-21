@@ -1,8 +1,8 @@
 package laddergame.controller;
 
+import laddergame.domain.ConnectionStrategy;
 import laddergame.domain.Ladder;
 import laddergame.domain.Names;
-import laddergame.domain.ConnectionStrategy;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 

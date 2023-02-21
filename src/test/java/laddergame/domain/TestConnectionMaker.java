@@ -3,9 +3,6 @@ package laddergame.domain;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.*;
 
 public class TestConnectionMaker implements ConnectionStrategy {
 
