@@ -66,7 +66,7 @@ public class OutputView {
 
     private void printOrPass(String name, Result result, Name nameObj) {
         if (isPrint(name, nameObj)) {
-            System.out.println(result.getReward(nameObj).getReward());
+            System.out.printf("%s : %s\n", nameObj.getName(), result.getReward(nameObj).getReward());
         }
     }
 
