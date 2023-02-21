@@ -19,16 +19,22 @@ public class LadderGameController {
 
     public void run() {
         try {
-            List<Player> players = generatePlayers();
-            List<Reward> rewards = generateRewards();
-            Height height = generateHeight();
+            LadderGame ladderGame = generateLadderGame();
+            showLadderGame(ladderGame);
 
-            LadderGame ladderGame = new LadderGame(players, rewards, height);
-            ladderGame.generateLadder(new RandomLineCreateDecider());
-            showResult(ladderGame);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
         }
+    }
+
+    private LadderGame generateLadderGame() {
+        List<Player> players = generatePlayers();
+        List<Reward> rewards = generateRewards();
+        Height height = generateHeight();
+
+        LadderGame ladderGame = new LadderGame(players, rewards, height);
+        ladderGame.generateLadder(new RandomLineCreateDecider());
+        return ladderGame;
     }
 
     private List<Player> generatePlayers() {
@@ -52,7 +58,7 @@ public class LadderGameController {
         return new Height(height);
     }
 
-    private void showResult(LadderGame ladderGame) {
+    private void showLadderGame(LadderGame ladderGame) {
         showPlayer(ladderGame.getPlayers());
         showLadder(ladderGame.getLadder());
         showReward(ladderGame.getRewards());
