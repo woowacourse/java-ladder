@@ -2,9 +2,9 @@ package controller;
 
 import domain.model.Goods;
 import domain.model.Ladder;
+import domain.model.Player;
 import domain.service.LadderGame;
 import domain.service.LadderMaker;
-import domain.service.PlayerMaker;
 import domain.vo.Height;
 import domain.vo.Name;
 import domain.vo.Width;
@@ -18,21 +18,31 @@ public class LadderController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LadderMaker ladderMaker;
-
+    private int maxPosition;
+    private Ladder ladder;
+    private List<Name> names;
+    private List<Player> players;
     public LadderController(InputView inputView, OutputView outputView, LadderMaker ladderMaker) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.ladderMaker = ladderMaker;
     }
 
-    public void play() {
-        List<Name> names = makePlayers();
+    public void inputData() {
+        names = makePlayers();
+        maxPosition = names.size()-1;
         Goods goods = makeGoods(names.size());
         int height = inputView.inputLadderHeight();
-        Ladder ladder = ladderMaker.make(new Height(height), new Width(names.size() - 1));
+        ladder = ladderMaker.make(new Height(height), new Width(maxPosition));
         outputView.printResult(names, ladder);
         outputView.printNames(goods.getGoodsNames());
-        LadderGame ladderGame = new LadderGame(names.size()-1);
+    }
+    public void playGame(){
+        LadderGame ladderGame = new LadderGame(maxPosition);
+        ladderGame.playLadderGame(names,ladder);
+        players = ladderGame.getPlayers();
+    }
+    public void outputData(){
     }
     private List<Name> makePlayers(){
         return inputView.inputNames()

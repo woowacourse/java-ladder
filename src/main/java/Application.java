@@ -11,7 +11,7 @@ import view.OutputView;
 public class Application {
     public static void main(String[] args) {
         LadderController ladderController = new LadderController(makeInputView(), new OutputView(), makeLadderMaker());
-        ladderController.play();
+        ladderController.inputData();
     }
 
     private static LadderMaker makeLadderMaker() {
