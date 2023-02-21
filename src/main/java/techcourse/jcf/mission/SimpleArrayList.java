@@ -93,6 +93,7 @@ public class SimpleArrayList implements SimpleList {
             return false;
         }
         remove(index);
+        return true;
     }
 
     @Override
