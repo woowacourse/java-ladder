@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
-import ladder.domain.Results;
+import ladder.domain.Prizes;
 import ladder.domain.Retry;
 import ladder.domain.generator.LadderGenerator;
 import ladder.domain.generator.LineGenerator;
@@ -28,10 +28,10 @@ public class LadderController {
 
     public void run() {
         final Players players = generate(inputView::readPlayerNames, Players::new);
-        final Results results = readResults(players);
+        final Prizes prizes = readResults(players);
         final Height height = generate(inputView::readHeight, Height::new);
         final Ladder ladder = ladderGenerator.generate(new LineGenerator(), players, height);
-        outputView.printLadderResult(players, ladder, results);
+        outputView.printLadderResult(players, ladder, prizes);
         final String target = inputView.readTarget();
     }
 
@@ -44,14 +44,14 @@ public class LadderController {
         }
     }
 
-    private Results readResults(final Players players) {
+    private Prizes readResults(final Players players) {
         final Retry retry = new Retry(5);
         while (retry.isPossible()) {
             try {
                 final List<String> names = inputView.readResultNames();
-                final Results results = Results.from(names);
-                validateSameSize(players, results);
-                return results;
+                final Prizes prizes = Prizes.from(names);
+                validateSameSize(players, prizes);
+                return prizes;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
                 retry.decrease();
@@ -60,11 +60,11 @@ public class LadderController {
         throw new IllegalStateException("재입력 횟수를 초과하였습니다.");
     }
 
-    private void validateSameSize(final Players players, final Results results) {
-        if (players.size() != results.size()) {
+    private void validateSameSize(final Players players, final Prizes prizes) {
+        if (players.size() != prizes.size()) {
             throw new IllegalArgumentException(
                     "실행 결과 개수는 플레이어 수와 동일해야 합니다. 플레이어 수: " + players.size()
-                            + ", 실행 결과 개수: " + results.size());
+                            + ", 실행 결과 개수: " + prizes.size());
         }
     }
 }

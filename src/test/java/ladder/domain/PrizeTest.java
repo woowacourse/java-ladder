@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class ResultTest {
+class PrizeTest {
 
     @ParameterizedTest(name = "입력: {0}")
     @ValueSource(strings = {"", " ", "  ", "   ", "    "})
     @DisplayName("실행 결과가 공백이라면 예외를 던진다.")
     void throwExceptionWhenResultIsBlank(final String value) {
-        assertThatThrownBy(() -> new Result(value))
+        assertThatThrownBy(() -> new Prize(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("결과는 공백일 수 없습니다. 현재 입력한 값은 " + value + " 입니다.");
     }
@@ -24,7 +24,7 @@ class ResultTest {
     void throwExceptionWhenResultOverLength() {
         final String value = "abcedf";
 
-        assertThatThrownBy(() -> new Result(value))
+        assertThatThrownBy(() -> new Prize(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("결과는 최대 5글자까지 가능합니다. 현재 입력한 값은 " + value + " 입니다.");
     }
@@ -33,6 +33,6 @@ class ResultTest {
     @ValueSource(strings = {"a", "ab", "abc", "abcd", "abcde"})
     @DisplayName("실행 결과가 5글자 이하라면 결과를 생성한다.")
     void successResult(final String value) {
-        assertThatNoException().isThrownBy(() -> new Result(value));
+        assertThatNoException().isThrownBy(() -> new Prize(value));
     }
 }

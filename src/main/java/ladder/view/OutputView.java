@@ -6,7 +6,7 @@ import ladder.domain.Direction;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Players;
-import ladder.domain.Results;
+import ladder.domain.Prizes;
 
 public class OutputView {
 
@@ -18,11 +18,11 @@ public class OutputView {
     private static final String LADDER = "|";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
-    public void printLadderResult(final Players players, final Ladder ladder, final Results results) {
+    public void printLadderResult(final Players players, final Ladder ladder, final Prizes prizes) {
         System.out.println(LINE_BREAK + "사다리 결과" + LINE_BREAK);
         printPlayerNames(players);
         printLadder(ladder);
-        printResultNames(results);
+        printResultNames(prizes);
         System.out.println();
     }
 
@@ -60,8 +60,8 @@ public class OutputView {
         System.out.println(stringJoiner);
     }
 
-    private void printResultNames(final Results results) {
-        final List<String> resultNames = results.getResultNames();
+    private void printResultNames(final Prizes prizes) {
+        final List<String> resultNames = prizes.getResultNames();
         System.out.println(getFormattedNames(resultNames));
     }
 
