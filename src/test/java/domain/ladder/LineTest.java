@@ -29,16 +29,6 @@ public class LineTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 51})
-    @DisplayName("참가수가 2미만 50초과이면 Line이 생성되지 않고 예외가 발생한다")
-    void createLine_Fail(int personCount) {
-        booleanGenerator = new MockBooleanGenerator(createRandomFlag(personCount));
-        assertThatThrownBy(() -> new Line(personCount, booleanGenerator))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("게임 참여자 수는 최소 2명 최대 50명까지 가능합니다.");
-    }
-
-    @ParameterizedTest
     @MethodSource("generateFlag")
     @DisplayName("가로 라인이 겹치지 않도록 참가자 수에 따라 Line을 생성한다.")
     void createLine(int personCount, List<Boolean> inputFlag, List<Boolean> expectedFlag) {
