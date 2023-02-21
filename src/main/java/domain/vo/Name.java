@@ -1,5 +1,7 @@
 package domain.vo;
 
+import java.util.Objects;
+
 public class Name {
 
     private static final int MIN_LENGTH = 1;
@@ -17,6 +19,23 @@ public class Name {
             throw new IllegalArgumentException(
                 String.format(LENGTH_ERROR_MESSAGE, MIN_LENGTH, MAX_LENGTH));
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Name name = (Name) o;
+        return Objects.equals(getValue(), name.getValue());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getValue());
     }
 
     public String getValue() {

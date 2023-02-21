@@ -1,5 +1,7 @@
 package domain.vo;
 
+import java.util.Objects;
+
 public class Height {
 
     private static final int MIN_HEIGHT = 1;
@@ -18,6 +20,23 @@ public class Height {
             throw new IllegalArgumentException(
                 String.format(HEIGHT_NOT_IN_RANGE_ERROR_MESSAGE, MIN_HEIGHT, MAX_HEIGHT));
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Height height = (Height) o;
+        return getValue() == height.getValue();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getValue());
     }
 
     public int getValue() {

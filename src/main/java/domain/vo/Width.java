@@ -1,5 +1,7 @@
 package domain.vo;
 
+import java.util.Objects;
+
 public class Width {
 
     private static final int MIN_WIDTH = 1;
@@ -17,6 +19,23 @@ public class Width {
             throw new IllegalArgumentException(String.format(WIDTH_NOT_IN_RANGE_ERROR_MESSAGE,
                 MIN_WIDTH + 1, MAX_WIDTH + 1));
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Width width = (Width) o;
+        return getValue() == width.getValue();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getValue());
     }
 
     public int getValue() {
