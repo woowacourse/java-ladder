@@ -33,8 +33,8 @@ public class Ladder {
         return prizes.get(position);
     }
 
-    public Participants getParticipants() {
-        return participants;
+    public List<String> getParticipantNames() {
+        return participants.getNames();
     }
 
     public List<Line> getLines() {

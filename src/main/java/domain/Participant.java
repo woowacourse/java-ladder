@@ -22,6 +22,10 @@ public class Participant {
         }
     }
 
+    public boolean hasName(String name) {
+        return this.name.equals(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

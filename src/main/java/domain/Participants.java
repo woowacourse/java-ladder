@@ -33,13 +33,21 @@ public class Participants {
         }
     }
 
+    public int findStartPositionOf(String name) {
+        Participant participant = findBy(name);
+        return participants.indexOf(participant);
+    }
+
+    private Participant findBy(String name) {
+        return participants.stream()
+                .filter(participant -> participant.hasName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("그런 참가자가 없습니다"));
+    }
+
     private boolean hasDuplicateIn(final Collection<?> target) {
         Set<?> distinct = new HashSet<>(target);
         return target.size() != distinct.size();
-    }
-
-    public int count() {
-        return participants.size();
     }
 
     public List<String> getNames() {
@@ -48,13 +56,7 @@ public class Participants {
                 .collect(toUnmodifiableList());
     }
 
-    public int findStartPositionOf(String name) {
-        for (int i = 0; i < participants.size(); i++) {
-            Participant participant = participants.get(i);
-            if (participant.getName().equals(name)) {
-                return i;
-            }
-        }
-        throw new IllegalArgumentException("그런 참가자가 없습니다");
+    public int count() {
+        return participants.size();
     }
 }
