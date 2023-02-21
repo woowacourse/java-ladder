@@ -10,8 +10,14 @@ import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String OUTPUT_EXECUTE_MESSAGE = "\n사다리 결과\n";
+    private static final String OUTPUT_RESULT_MESSAGE = "\n실행 결과";
     private static final String LINE_DELIMITER = "|";
     private static final String NAME_DELIMITER = " ";
+
+    public void printResultByUser(int index, Results results) {
+        System.out.println(OUTPUT_RESULT_MESSAGE);
+        System.out.println(results.getResults().get(index));
+    }
 
     public void printUserNames(Users users) {
         System.out.println(OUTPUT_EXECUTE_MESSAGE);
