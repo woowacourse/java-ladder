@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static fixture.NameFixture.말랑;
+import static fixture.NameFixture.바다;
 import static java.util.Arrays.stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -23,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 @DisplayName("Names 는")
 class NamesTest {
 
-    private final List<Name> nameList1 = List.of(new Name("일"), new Name("말랑"), new Name("둘리"));
+    private final List<Name> nameList1 = List.of(말랑(), 바다());
 
     @Test
     void Name_List_를_통해_생성된다() {
@@ -42,7 +44,7 @@ class NamesTest {
     static Stream<Arguments> lessThan2SizeNames() {
         return Stream.of(
                 Arguments.of(List.of()),
-                Arguments.of(List.of(new Name("1")))
+                Arguments.of(List.of(바다()))
         );
     }
 
@@ -121,7 +123,7 @@ class NamesTest {
     @Test
     void indexOf_는_없는_이름에_대해서는_예외를_반환한다() {
         // given
-        Names names = new Names(List.of(new Name("말랑"), new Name("바다")));
+        Names names = new Names(List.of(말랑(), 바다()));
 
         // when & then
         assertThatThrownBy(() ->

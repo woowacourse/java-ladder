@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static fixture.NameFixture.*;
+import static fixture.WinningEntryFixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -22,18 +24,18 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 class LadderGameTest {
 
     /*
-     * 말랑    바다   당근    산
+     * 말랑    콩떡   바다   쓰기
      *   |-----|     |-----|
      *   |     |-----|     |
      *   |-----|     |     |
      *   |     |-----|     |
      *   |-----|     |-----|
-     *  말랑당첨 산당첨 당근당첨 바다당첨
+     * 말랑당첨 쓰기당첨 바다당첨 콩떡당첨
      *
      * 말랑 - 말랑당첨
+     * 콩떡 - 콩떡당첨
      * 바다 - 바다당첨
-     * 당근 - 당근당첨
-     * 산  - 산당첨
+     * 쓰기 - 쓰기당첨
      */
     private final ScaffoldGenerator generator = new ScaffoldGenerator() {
         private final List<Scaffold> scaffolds = List.of(
@@ -51,20 +53,12 @@ class LadderGameTest {
         }
     };
     private final Ladder ladder = new LadderFactory(generator).createLadder(Width.of(3), Height.of(5));
-    private final Name 말랑 = new Name("말랑");
-    private final Name 바다 = new Name("바다");
-    private final Name 당근 = new Name("당근");
-    private final Name 산 = new Name("산");
     private final Names names = new Names(
-            List.of(말랑, 바다, 당근, 산)
+            List.of(말랑(), 콩떡(), 바다(), 쓰기())
     );
-
-    private final WinningEntry 말랑당첨 = new WinningEntry("말랑당첨");
-    private final WinningEntry 산당첨 = new WinningEntry("산당첨");
-    private final WinningEntry 당근당첨 = new WinningEntry("당근당첨");
-    private final WinningEntry 바다당첨 = new WinningEntry("바다당첨");
     private final WinningEntries winningEntries = WinningEntries.forNames(
-            List.of(말랑당첨, 산당첨, 당근당첨, 바다당첨), names
+            List.of(말랑당첨(), 콩떡당첨(), 바다당첨(), 쓰기당첨()),
+            names
     );
 
     @Test
@@ -90,11 +84,11 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(ladder, names, winningEntries);
 
         // when & then
-        LadderGameResult result1 = ladderGame.goDownLadder(말랑);
-        LadderGameResult result2 = ladderGame.goDownLadder(바다);
+        LadderGameResult result1 = ladderGame.goDownLadder(말랑());
+        LadderGameResult result2 = ladderGame.goDownLadder(바다());
         assertAll(
-                () -> assertThat(result1.nameWinningEntryMap().get(말랑)).isEqualTo(말랑당첨),
-                () -> assertThat(result2.nameWinningEntryMap().get(바다)).isEqualTo(바다당첨)
+                () -> assertThat(result1.nameWinningEntryMap().get(말랑())).isEqualTo(말랑당첨()),
+                () -> assertThat(result2.nameWinningEntryMap().get(바다())).isEqualTo(바다당첨())
         );
     }
 
@@ -102,8 +96,8 @@ class LadderGameTest {
     void 사다리를_탄_이름이_all_이_아닌_경우_게임은_끝난_상태가_아니다() {
         // given
         LadderGame ladderGame = new LadderGame(ladder, names, winningEntries);
-        ladderGame.goDownLadder(말랑);
-        ladderGame.goDownLadder(바다);
+        ladderGame.goDownLadder(말랑());
+        ladderGame.goDownLadder(바다());
 
         // when & then
         assertThat(ladderGame.isEnd()).isFalse();

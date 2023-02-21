@@ -18,8 +18,6 @@ import static org.assertj.core.api.Assertions.*;
 @DisplayName("Line 은")
 public class LineTest {
 
-    private final ScaffoldGenerator scaffoldGenerator = () -> Scaffold.EXIST;
-
     @Test
     void Scaffold_List_를_통해_생성된다() {
         // when & then

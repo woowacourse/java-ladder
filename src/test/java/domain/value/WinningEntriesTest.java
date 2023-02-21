@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static fixture.NameFixture.*;
+import static fixture.WinningEntryFixture.*;
 import static java.util.Arrays.stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -23,13 +25,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class WinningEntriesTest {
 
     private final List<WinningEntry> winningEntries = List.of(
-            new WinningEntry("말랑"),
-            new WinningEntry("바다"),
-            new WinningEntry("최고")
-    );
+            말랑당첨(), 바다당첨(), 꽝());
 
     private final Names names = new Names(
-            List.of(new Name("바다 🌊"), new Name("진짜"), new Name("최고"))
+            List.of(바다(), 말랑(), 콩떡())
     );
 
     @Test
@@ -53,12 +52,12 @@ class WinningEntriesTest {
     static Stream<Arguments> differentSizeWinningEntriesAndNames() {
         return Stream.of(
                 Arguments.of(
-                        List.of(new WinningEntry("바다"), new WinningEntry("말랑")),
-                        new Names(List.of(new Name("바다이름"), new Name("말랑이름"), new Name("바다최고")))
+                        List.of(바다당첨(), 말랑당첨()),
+                        new Names(List.of(바다(), 말랑(), 콩떡()))
                 ),
                 Arguments.of(
-                        List.of(new WinningEntry("바다"), new WinningEntry("말랑"), new WinningEntry("바다최고")),
-                        new Names(List.of(new Name("바다이름"), new Name("말랑이름")))
+                        List.of(바다당첨(), 말랑당첨(), 꽝()),
+                        new Names(List.of(바다(), 말랑()))
                 )
         );
     }
@@ -74,7 +73,7 @@ class WinningEntriesTest {
     static Stream<Arguments> lessThan2SizeWinningEntries() {
         return Stream.of(
                 Arguments.of(List.of()),
-                Arguments.of(List.of(new WinningEntry("1")))
+                Arguments.of(List.of(바다()))
         );
     }
 

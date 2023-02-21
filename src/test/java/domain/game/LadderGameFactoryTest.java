@@ -20,7 +20,7 @@ class LadderGameFactoryTest {
             new Name("말랑"), new Name("바다"), new Name("최고"))
     );
     private final WinningEntries winningEntries = WinningEntries.forNames(List.of(
-            new WinningEntry("꽝"), new WinningEntry("🌊"), new WinningEntry("산")),
+                    new WinningEntry("꽝"), new WinningEntry("🌊"), new WinningEntry("산")),
             names
     );
 
