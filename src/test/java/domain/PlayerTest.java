@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class PlayerTest {
-    private Name name = new Name("깃짱");
-    private Position initialPosition = new Position(0);
-    private Player gitJjang = new Player(name, initialPosition);
+    private final Name name = new Name("깃짱");
+    private final Position initialPosition = new Position(0);
+    private final Player gitJjang = new Player(name, initialPosition);
 
     @Test
     void 사용자_생성() {
