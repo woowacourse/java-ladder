@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -33,6 +34,21 @@ class GiftsTest {
 
         assertThat(gifts.getNames())
                 .containsExactly(expected);
+    }
+
+    @Test
+    @DisplayName("특정 위치에 있는 선물을 제대로 가져오는지 확인한다.")
+    void findGiftByPosition() {
+        // given
+        int position = 2;
+        Gifts gifts = new Gifts(List.of("1234", "567", "89", "꽝"), 4);
+        String expected = "89";
+
+        // when
+        String actual = gifts.findNameByPosition(position);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
     }
 
     private static Stream<Arguments> generateInvalidSize() {

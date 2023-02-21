@@ -33,4 +33,8 @@ public class Gifts {
                 .map(Gift::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public String findNameByPosition(int position) {
+        return gifts.get(position).getName();
+    }
 }
