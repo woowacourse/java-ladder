@@ -1,5 +1,6 @@
 package laddergame.view;
 
+import laddergame.domain.participant.Participant;
 import laddergame.domain.rung.Rung;
 import laddergame.domain.rung.Rungs;
 
@@ -10,9 +11,11 @@ import static laddergame.view.message.LadderMessage.*;
 
 public class OutputView {
 
+    private static final int SINGLE_PRINT_COUNT = 1;
     private static final int PADDING_DEFAULT_COUNT = 1;
     private static final String PARTICIPANT_NAME_FORMAT = "%6s";
     private static final String LADDER_RESULT_NAME_FORMAT = "%-6s";
+    private static final String LADDER_GAME_RESULT_FORMAT = "%s : %s";
 
     public static void print(final String message) {
         System.out.println(message);
@@ -36,6 +39,16 @@ public class OutputView {
             ladderResultMessage.append(String.format(LADDER_RESULT_NAME_FORMAT, ladderResultNames.get(i)));
         }
         print(ladderResultMessage.toString().trim());
+    }
+
+    public void printLadderGameResult(final List<Participant> resultParticipants, final List<String> ladderResultNames) {
+        if (resultParticipants.size() == SINGLE_PRINT_COUNT) {
+            String singleResultMessage = getSingleGameResultMessage(resultParticipants.get(0), ladderResultNames);
+            print(singleResultMessage);
+            return;
+        }
+        String gameResultMessage = getAllResultMessage(resultParticipants, ladderResultNames);
+        print(gameResultMessage);
     }
 
     private String makePaddedParticipantNames(final List<String> participantNames) {
@@ -76,5 +89,23 @@ public class OutputView {
     private String getFirstPaddedFormat(final List<String> participantNames) {
         int firstPaddedCount = getFirstParticipantNameLength(participantNames) + PADDING_DEFAULT_COUNT;
         return "%-" + firstPaddedCount + "s";
+    }
+
+    private String getSingleGameResultMessage(final Participant participant, final List<String> ladderResultNames) {
+        int participantOrder = participant.getOrder();
+        return ladderResultNames.get(participantOrder);
+    }
+
+    private String getAllResultMessage(final List<Participant> resultParticipants, final List<String> ladderResultNames) {
+        return resultParticipants.stream()
+                .map(participant -> getGameResultMessage(participant, ladderResultNames))
+                .collect(joining(System.lineSeparator()));
+    }
+
+    private String getGameResultMessage(final Participant participant, final List<String> ladderResultNames) {
+        int participantOrder = participant.getOrder();
+        String participantName = participant.getName();
+        String ladderResultName = ladderResultNames.get(participantOrder);
+        return String.format(LADDER_GAME_RESULT_FORMAT, participantName, ladderResultName);
     }
 }

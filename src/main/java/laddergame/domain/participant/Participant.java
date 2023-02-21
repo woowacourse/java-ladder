@@ -36,4 +36,8 @@ public class Participant {
     public String getName() {
         return participantName.getName();
     }
+
+    public int getOrder() {
+        return participantOrder.getOrder();
+    }
 }

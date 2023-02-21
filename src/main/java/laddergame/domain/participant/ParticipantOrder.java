@@ -26,4 +26,8 @@ public class ParticipantOrder {
     public int hashCode() {
         return Objects.hash(order);
     }
+
+    public int getOrder() {
+        return order;
+    }
 }
