@@ -29,8 +29,8 @@ public class SimpleArrayList implements SimpleList {
         if (capacity == size) {
             expandCapacity();
         }
-        for (int i = index; i < size; i++) {
-            data[i + 1] = data[i];
+        for (int i = size; i > index; i--) {
+            data[i] = data[i - 1];
         }
         data[index] = value;
         size++;

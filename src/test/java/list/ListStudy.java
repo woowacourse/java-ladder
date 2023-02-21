@@ -14,7 +14,8 @@ public class ListStudy {
         values.add("second");
 
         assertThat(values.add("third")).isTrue(); // 세 번째 값을 추가한다.
-        assertThatCode(values.add(0, "zero")).doesNotThrowAnyException(); // 맨 앞에 0을 추가한다.
+        assertThatCode(() -> values.add(0, "zero")).doesNotThrowAnyException(); // 맨 앞에 0을 추가한다.
+        assertThatCode(() -> values.add(100, "hundred")).isInstanceOf(RuntimeException.class); // 인덱스가 넘어가면 예외가 발생한다.
 //        assertThat(values.size()).isEqualTo(3); // list의 크기를 구한다.
 //        assertThat(values.get(0)).isEqualTo("first"); // 첫 번째 값을 찾는다.
 //        assertThat(values.contains("first")).isTrue(); // "first" 값이 포함되어 있는지를 확인한다.
