@@ -31,6 +31,11 @@ public class Players {
                 .count() != players.size();
     }
 
+    public boolean containPlayerBySpecificName(String name) {
+        return players.stream()
+                .anyMatch(player -> player.isSameName(name));
+    }
+
     public int size() {
         return players.size();
     }

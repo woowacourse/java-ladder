@@ -27,14 +27,20 @@ public class Name {
         }
     }
 
+    public boolean same(String otherName) {
+        return name.equals(otherName);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) {
             return true;
         }
+
         if (other == null || getClass() != other.getClass()) {
             return false;
         }
+
         Name otherName = (Name) other;
         return Objects.equals(name, otherName.name);
     }

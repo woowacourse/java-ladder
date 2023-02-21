@@ -63,6 +63,34 @@ class PlayersTest {
         assertThat(size).isEqualTo(3);
     }
 
+    @DisplayName("해당하는 이름의 Player가 존재하면 true를 반환한다.")
+    @Test
+    void has_specific_name_player_return_true() {
+        // given
+        List<Player> rawPlayers = generateRawPlayersByNames("neo", "pobi", "jun");
+        Players players = new Players(rawPlayers);
+
+        // when
+        boolean result = players.containPlayerBySpecificName("neo");
+
+        // then
+        assertThat(result).isTrue();
+    }
+
+    @DisplayName("해당하는 이름의 Player가 존재하지않으면 false를 반환한다.")
+    @Test
+    void has_not_specific_name_player_return_false() {
+        // given
+        List<Player> rawPlayers = generateRawPlayersByNames("neo", "pobi", "jun");
+        Players players = new Players(rawPlayers);
+
+        // when
+        boolean result = players.containPlayerBySpecificName("noNeo");
+
+        // then
+        assertThat(result).isFalse();
+    }
+
     private List<Player> generateRawPlayersByNames(String... names) {
         return Arrays.stream(names)
                 .map(Name::new)
