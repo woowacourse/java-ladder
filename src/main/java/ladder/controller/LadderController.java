@@ -3,10 +3,7 @@ package ladder.controller;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import ladder.domain.Gifts;
-import ladder.domain.Height;
-import ladder.domain.Ladder;
-import ladder.domain.Players;
+import ladder.domain.*;
 import ladder.domain.generator.LineGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -30,6 +27,10 @@ public class LadderController {
 
         final Ladder ladder = new Ladder(lineGenerator, players, height);
         outputView.printLadderResult(players, ladder, gifts);
+
+        final Players resultPlayer = ladder.movePlayers(players);
+        final Result result = makeResult(resultPlayer);
+        outputView.printGameResult(resultPlayer, gifts, result);
     }
 
     private Players makePlayers() {
@@ -60,5 +61,15 @@ public class LadderController {
         }
 
         return makeGifts(numberOfPlayer);
+    }
+
+    public Result makeResult(Players players) {
+        try {
+            return new Result(inputView.readResultCommand(), players);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+        }
+
+        return makeResult(players);
     }
 }
