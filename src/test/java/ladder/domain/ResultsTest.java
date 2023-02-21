@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
-public class ResultTest {
+public class ResultsTest {
 
     @Test
     @DisplayName("입력된 결과의 수가 인원 수와 다르면 IllegalArgumentException 예외가 발생한다.")
@@ -18,7 +18,7 @@ public class ResultTest {
 
         // expect
         assertThatIllegalArgumentException().isThrownBy(() ->
-                new Result(inputResult, playerCount)
+                new Results(inputResult, playerCount)
         ).withMessage("[ERROR] 입력된 결과의 수가 인원 수와 다를 수 없습니다.");
     }
 
@@ -31,7 +31,7 @@ public class ResultTest {
 
         // expect
         assertThatNoException().isThrownBy(() ->
-                new Result(inputResult, playerCount)
+                new Results(inputResult, playerCount)
         );
     }
 }
