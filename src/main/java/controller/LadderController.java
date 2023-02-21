@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Ladder;
+import domain.RandomLinkGenerator;
 import domain.Users;
 import view.InputView;
 import view.OutputView;
@@ -27,7 +28,7 @@ public class LadderController {
 
     private void generateLadder() {
         try {
-            ladder = new Ladder(InputView.readLadderHeight(), users.size());
+            ladder = new Ladder(InputView.readLadderHeight(), users.size(), new RandomLinkGenerator());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             generateLadder();

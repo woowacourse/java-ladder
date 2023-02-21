@@ -13,9 +13,9 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(final int height, final int personCount) {
+    public Ladder(final int height, final int personCount, final LinkGenerator linkGenerator) {
         validateHeight(height);
-        LineGenerator lineGenerator = new LineGenerator();
+        LineGenerator lineGenerator = new LineGenerator(linkGenerator);
         lines = new ArrayList<>();
 
         IntStream.rangeClosed(1, height)

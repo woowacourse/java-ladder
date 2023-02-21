@@ -12,7 +12,7 @@ public class Line {
         this.links = links;
     }
 
-    public List<Link> getPoints() {
+    public List<Link> getLinks() {
         return new ArrayList<>(links);
     }
 

@@ -13,7 +13,7 @@ public class LineTest {
     void unContinuousLineTest() {
         final List<Link> validLinks = List.of(Link.LINKED, Link.UNLINKED, Link.LINKED);
         Line line = new Line(validLinks);
-        List<Link> links = line.getPoints();
+        List<Link> links = line.getLinks();
         Assertions.assertEquals(validLinks, links);
     }
 

@@ -41,14 +41,14 @@ public class OutputView {
         StringBuilder builder = new StringBuilder();
         builder.append(BLANK_LINE);
         builder.append(LADDER);
-        for (Link connected : line.getPoints()) {
-            renderPoint(builder, connected);
+        for (Link connected : line.getLinks()) {
+            renderLink(builder, connected);
             builder.append(LADDER);
         }
         return builder.toString();
     }
 
-    private static void renderPoint(StringBuilder builder, Link connected) {
+    private static void renderLink(StringBuilder builder, Link connected) {
         if (connected.isLink()) {
             builder.append(CONNECTED_LINE);
             return;
