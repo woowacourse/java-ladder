@@ -34,7 +34,7 @@ public class Participants {
     }
 
     private void validateParticipantCount(List<String> participantNames) {
-        if (participantNames.size() == MIN_COUNT) {
+        if (participantNames.size() < MIN_COUNT) {
             throw new IllegalArgumentException(INVALID_PARTICIPANT_COUNT.getMessage());
         }
     }
