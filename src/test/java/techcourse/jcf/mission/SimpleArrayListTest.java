@@ -138,7 +138,7 @@ class SimpleArrayListTest {
     }
 
     @Test
-    public void removeWithStringTest(){
+    public void removeWithStringTest() {
         SimpleArrayList myValues = new SimpleArrayList();
         myValues.add("first");
         myValues.add("second");
@@ -151,7 +151,7 @@ class SimpleArrayListTest {
     }
 
     @Test
-    public void removeWithIndexTest(){
+    public void removeWithIndexTest() {
         SimpleArrayList myValues = new SimpleArrayList();
         myValues.add("first");
         myValues.add("second");
@@ -162,7 +162,6 @@ class SimpleArrayListTest {
 
         Assertions.assertThatThrownBy(() -> myValues.remove(5))
                 .isInstanceOf(IndexOutOfBoundsException.class);
-
     }
 
 }
