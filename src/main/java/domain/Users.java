@@ -54,4 +54,9 @@ public class Users {
         final List<Integer> linkedIndexes = line.getLinkedIndexes();
         linkedIndexes.forEach(index -> Collections.swap(users, index, index + 1));
     }
+
+    public Prize getPrizeByUserName(final Prizes prizes, final String userName) {
+        final int userIndex = getIndexByUserName(userName);
+        return prizes.getPrizeBy(userIndex);
+    }
 }

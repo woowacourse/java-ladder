@@ -69,4 +69,15 @@ class UsersTest {
         assertThat(users.getUserNames())
                 .containsExactly("홍실", "썬샷", "다니");
     }
+
+    @Test
+    @DisplayName("User의 위치에 맞는 Prize를 반환하는 기능")
+    void getPrizeByUserName() {
+        final Users users = new Users(testUserNames);
+        final Prizes prizes = new Prizes(List.of("1등", "2등", "3등"), users);
+
+        final Prize receivedPrizeHongSile = users.getPrizeByUserName(prizes, "홍실");
+
+        assertThat(receivedPrizeHongSile.getName()).isEqualTo("2등");
+    }
 }
