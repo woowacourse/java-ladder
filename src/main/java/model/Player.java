@@ -3,9 +3,11 @@ package model;
 public class Player {
     private final Name name;
     private Result result;
+    private Position position;
 
-    public Player(final Name name) {
+    public Player(final Name name, final Position position) {
         this.name = name;
+        this.position = position;
     }
 
     public String getName() {
@@ -22,5 +24,9 @@ public class Player {
 
     public boolean isPlayerName(Name other) {
         return other.isSame(this.name);
+    }
+
+    public boolean isPlayerPosition(Position otherPosition) {
+        return otherPosition.isSamePosition(this.position);
     }
 }
