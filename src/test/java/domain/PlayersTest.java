@@ -91,6 +91,34 @@ class PlayersTest {
         assertThat(result).isFalse();
     }
 
+    @DisplayName("특정한 이름의 Player를 반환한다.")
+    @Test
+    void return_specific_name_player() {
+        // given
+        List<Player> rawPlayers = generateRawPlayersByNames("neo", "pobi", "jun");
+        Players players = new Players(rawPlayers);
+        Player expectedPlayer = rawPlayers.get(0);
+
+        // when
+        Player actualPlayer = players.findSpecificNamePlayer(expectedPlayer.getName());
+
+        // then
+        assertThat(actualPlayer).isEqualTo(expectedPlayer);
+    }
+
+    @DisplayName("특정한 이름의 Player가 없다면 예외를 반환한다..")
+    @Test
+    void specific_name_player_not_contain_throw() {
+        // given
+        List<Player> rawPlayers = generateRawPlayersByNames("neo", "pobi", "jun");
+        Players players = new Players(rawPlayers);
+
+        // then
+        assertThatThrownBy(() -> players.findSpecificNamePlayer("wrongName"))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("해당하는 이름을 가진 Player는 존재하지 않습니다.");
+    }
+
     private List<Player> generateRawPlayersByNames(String... names) {
         return Arrays.stream(names)
                 .map(Name::new)

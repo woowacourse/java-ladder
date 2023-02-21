@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class PlayerTest {
 
+
     @DisplayName("이름이 같은 Player는 equals true를 반환한다.")
     @Test
     void same_Player_name_return_true() {

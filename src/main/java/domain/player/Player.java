@@ -1,17 +1,28 @@
 package domain.player;
 
+import domain.ladder.Ladder;
 import java.util.Objects;
 
 public class Player {
 
     private final Name name;
+    private int position;
 
     public Player(Name name) {
         this.name = name;
     }
 
+    public Player(Name name, int position) {
+        this.name = name;
+        this.position = position;
+    }
+
     public boolean isSameName(String otherName) {
         return name.same(otherName);
+    }
+
+    public String play(Ladder ladder) {
+        return ladder.play(position);
     }
 
     public String getName() {
@@ -34,4 +45,5 @@ public class Player {
     public int hashCode() {
         return Objects.hash(name);
     }
+
 }

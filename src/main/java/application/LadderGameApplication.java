@@ -1,14 +1,12 @@
 package application;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
-
 import domain.ladder.Ladder;
 import domain.ladder.LadderGenerator;
 import domain.ladder.LadderHeight;
 import domain.player.Name;
 import domain.player.Player;
 import domain.player.Players;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 import view.InputView;
@@ -33,13 +31,22 @@ public class LadderGameApplication {
 
         Ladder ladder = ladderGenerator.generate(players.size(), ladderHeight, ladderResults);
         outputView.printResult(players, ladder);
+
+        Player player = players.findSpecificNamePlayer(inputView.readSpecificResult());
+        String result = player.play(ladder);
+
+//        outputView.printSinglePlayerResult(player, result);
     }
 
     private Players createPlayers() {
         List<Name> names = inputView.readNames();
-        return names.stream()
-                .map(Player::new)
-                .collect(collectingAndThen(toList(), Players::new));
+
+        List<Player> players = new ArrayList<>();
+        for (int idx = 0; idx < names.size(); idx++) {
+            players.add(new Player(names.get(idx), idx + 1));
+        }
+
+        return new Players(players);
     }
 
     private <T> T retryIfError(Supplier<T> inputSupplier) {

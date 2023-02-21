@@ -36,6 +36,13 @@ public class Players {
                 .anyMatch(player -> player.isSameName(name));
     }
 
+    public Player findSpecificNamePlayer(String name) {
+        return players.stream()
+                .filter(player -> player.isSameName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("해당하는 이름을 가진 Player는 존재하지 않습니다."));
+    }
+
     public int size() {
         return players.size();
     }

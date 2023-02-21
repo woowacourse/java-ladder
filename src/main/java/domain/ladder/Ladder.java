@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import domain.player.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +21,7 @@ public class Ladder {
         this.ladderResults = new ArrayList<>(ladderResults);
     }
 
-    public String play(Player player, int position) {
+    public String play(int position) {
         for (Line line : lines) {
             position = move(position, line);
         }
