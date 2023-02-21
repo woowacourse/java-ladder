@@ -31,9 +31,9 @@ public class InputView {
         return new Height(parseHeight(input));
     }
 
-    public Rewards readRewards(int personCount) {
+    public Rewards readRewards(Names names) {
         String input = readInput(Message.INPUT_REWARDS.message);
-        return new Rewards(input, personCount);
+        return new Rewards(input, names.getPersonNumber());
     }
 
 

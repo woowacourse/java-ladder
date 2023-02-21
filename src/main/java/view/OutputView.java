@@ -9,6 +9,8 @@ import domain.Reward;
 import domain.Rewards;
 
 public class OutputView {
+    private static final String PRINT_ALL_COMMEND = "all";
+
     public void printLines(Names names, Lines lines, Rewards rewards) {
         System.out.println(Message.OUTPUT_LINES_MESSAGE.message);
         printEachName(names);
@@ -57,12 +59,14 @@ public class OutputView {
 
     private void printOrPass(String name, Result result, Name nameObj) {
         if (isPrint(name, nameObj)) {
-            System.out.printf("%s : %s\n", nameObj.getName(), result.getReward(nameObj).getReward());
+            System.out.printf(Message.REWARD_MESSAGE_FORMAT.message, nameObj.getName(),
+                    result.getReward(nameObj).getReward());
         }
+        System.out.println();
     }
 
     private boolean isPrint(String name, Name nameObj) {
-        return name.equals(nameObj.getName()) || name.equals("all");
+        return name.equals(nameObj.getName()) || name.equals(PRINT_ALL_COMMEND);
     }
 
     private enum Message {
@@ -71,7 +75,8 @@ public class OutputView {
         STRING_FORMAT("%-6s"),
         COLUMN_LADDER("  |"),
         ROW_LADDER("-----|"),
-        EMPTY_ROW_LADDER("     |");
+        EMPTY_ROW_LADDER("     |"),
+        REWARD_MESSAGE_FORMAT("%s : %s");
 
         private final String message;
 

@@ -11,6 +11,7 @@ import view.InputView;
 import view.OutputView;
 
 public class MainController {
+    private static final String END_COMMEND = "all";
 
     private final BooleanGenerator booleanGenerator;
     private final InputView inputView;
@@ -24,10 +25,10 @@ public class MainController {
 
     public void start() {
         Names names = inputView.readNames();
-        Rewards rewards = inputView.readRewards(names.getPersonNumber());
         Height height = inputView.readHeight();
+        Rewards rewards = inputView.readRewards(names);
 
-        LineSize lineSize = new LineSize(names.getPersonNumber());
+        LineSize lineSize = new LineSize(names);
         Lines lines = new Lines(lineSize, height, booleanGenerator);
         outputView.printLines(names, lines, rewards);
         Result result = new Result(names, lines, rewards);
@@ -40,7 +41,7 @@ public class MainController {
         while (!isEnd) {
             String name = inputView.readShowName();
             outputView.printResult(name, names, result);
-            isEnd = name.equals("all");
+            isEnd = name.equals(END_COMMEND);
         }
     }
 }
