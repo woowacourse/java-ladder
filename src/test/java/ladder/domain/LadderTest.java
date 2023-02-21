@@ -12,8 +12,8 @@ class LadderTest {
     static Stream<Arguments> Row_리스트_데이터() {
         return Stream.of(
                 Arguments.of(List.of(
-                        Row.of(List.of(Step.Y, Step.N), 2),
-                        Row.of(List.of(Step.N, Step.Y), 2)
+                        Row.of(List.of(Step.Y, Step.N)),
+                        Row.of(List.of(Step.N, Step.Y))
                 ))
         );
     }

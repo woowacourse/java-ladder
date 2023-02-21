@@ -13,15 +13,8 @@ public class Row {
         this.row = row;
     }
 
-    public static Row of(List<Step> row, int expectedSize) {
-        validateSize(row, expectedSize);
+    public static Row of(List<Step> row) {
         return new Row(row);
-    }
-
-    private static void validateSize(List<Step> row, int expectedSize) {
-        if (row.size() != expectedSize) {
-            throw new IllegalArgumentException(ROW_LENGTH_ERROR_MESSAGE);
-        }
     }
 
     private void validateContinuity(List<Step> row) {
@@ -39,10 +32,10 @@ public class Row {
                 && row.get(position + 1) == Step.Y;
     }
 
-    public boolean isStepPossible(int index) {
+    public boolean isPossibleInstallStep(int index) {
         int leftIndex = index - 1;
         int rightIndex = index + 1;
-        if (isStepExist(leftIndex) || isStepExist(rightIndex)) {
+        if (isStepExist(leftIndex) || isStepExist(rightIndex) || isStepExist(index)) {
             return false;
         }
         return true;
