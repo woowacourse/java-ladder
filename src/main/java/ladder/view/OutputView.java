@@ -1,6 +1,7 @@
 package ladder.view;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -29,6 +30,11 @@ public class OutputView {
     public void printReward(List<String> rewards) {
         System.out.println();
         rewards.forEach(reward -> System.out.printf("%-6s", reward));
+    }
+
+    public void printAllResult(Map<String, String> result) {
+        System.out.println("\n실행 결과");
+        result.forEach((player, reward) -> System.out.println(player + " : " + reward));
     }
 
     public void printError(String errorMessage) {
