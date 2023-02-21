@@ -6,7 +6,8 @@ public enum ErrorCode {
     NUMBER_NOT_INTEGER("사다리 높이는 정수 값만 입력 가능합니다."),
     NEGATIVE_NUMBER("사다리 높이는 2 이상 이어야 합니다."),
     NAME_DUPLICATE("이름은 중복되면 안됩니다."),
-    EMPTY_INPUT("빈 값은 입력할 수 없습니다.")
+    EMPTY_INPUT("빈 값은 입력할 수 없습니다."),
+    WRONG_WINNING_ENTRY_SIZE("결과는 게임 참여자 수 만큼 입력해야 합니다.")
     ;
     private final String message;
 
