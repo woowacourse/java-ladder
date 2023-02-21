@@ -22,6 +22,10 @@ public class Name {
         return name;
     }
 
+    public boolean isSame(Name other) {
+        return this.name.equals(other.name);
+    }
+
     private void validateNameLength(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(String.format(MAXIMUM_NAME_LENGTH_ERROR, MAXIMUM_NAME_LENGTH));
