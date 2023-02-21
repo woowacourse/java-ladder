@@ -3,6 +3,7 @@ package view;
 import domain.Ladder;
 import domain.Line;
 import domain.Players;
+import domain.Point;
 
 import java.util.List;
 
@@ -17,15 +18,15 @@ public class OutputView {
     }
 
     private String changeFormat(Line line, int maxPlayerNameLength) {
-        List<Boolean> points = line.getPoints();
+        List<Point> points = line.getPoints();
         StringBuilder ladderLine = new StringBuilder(BLANK.repeat(maxPlayerNameLength - 1) + BAR);
-        for (Boolean point : points) {
+        for (Point point : points) {
             ladderLine.append(tranceFrom(maxPlayerNameLength,point));
         }
         return ladderLine.toString();
     }
 
-    public String tranceFrom(int maxPlayerNameLength,boolean isExist) {
-        return Way.tranceFrom(isExist).repeat(maxPlayerNameLength)+BAR;
+    public String tranceFrom(int maxPlayerNameLength,Point isExist) {
+        return Way.tranceFrom(isExist.isPoint()).repeat(maxPlayerNameLength)+BAR;
     }
 }

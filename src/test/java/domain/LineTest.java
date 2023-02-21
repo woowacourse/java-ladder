@@ -1,12 +1,9 @@
 package domain;
 
-import domain.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import util.TrueOrFalseGenerator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,31 +17,16 @@ class LineTest {
         @DisplayName("들어간대로 잘 생성되었는지 테스트")
         @Test
         void createTest() {
-            Line line = new Line(4, new testTrueOrFalseGenerator(new ArrayList<>(Arrays.asList(false, true, false)) {
-            }));
-            assertThat(line.getPoints()).isEqualTo(List.of(false, true, false));
+            Line line = new Line((Arrays.asList(new Point(false),new Point(true),new Point(false))));
+
+            assertThat(line.getPoints()).usingRecursiveComparison().isEqualTo(List.of(new Point(false),new Point(true),new Point(false)));
         }
 
-        @DisplayName("이전 좌표와 현재 좌표가 겹칠때 변환 테스트(처)")
+        @DisplayName("이전 좌표와 현재 좌표가 겹칠때 변환 테스트")
         @Test
         void createLine2() {
-            Line line = new Line(4, new testTrueOrFalseGenerator(new ArrayList<>(Arrays.asList(true, true, false)) {
-            }));
-            assertThat(line.getPoints()).isEqualTo(List.of(true, false, false));
-        }
-    }
-
-
-    static class testTrueOrFalseGenerator implements TrueOrFalseGenerator {
-        List<Boolean> points;
-
-        testTrueOrFalseGenerator(List<Boolean> points) {
-            this.points = points;
-        }
-
-        @Override
-        public boolean generate() {
-            return points.remove(0);
+            Line line = new Line((Arrays.asList(new Point(true), new Point(true), new Point(false))));
+            assertThat(line.getPoints()).usingRecursiveComparison().isEqualTo(List.of(new Point(true), new Point(true), new Point(false)));
         }
     }
 
