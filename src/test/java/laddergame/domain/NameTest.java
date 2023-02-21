@@ -57,7 +57,18 @@ class NameTest {
     @ParameterizedTest(name = "value = {0}")
     @ValueSource(strings = {"rosie", "hyena", "jayon"})
     void getName(final String value) {
-        Name name = new Name(value);
+        final Name name = new Name(value);
+
         assertThat(name.getValue()).isEqualTo(value);
+    }
+
+    @DisplayName("값을 비교한다.")
+    @ParameterizedTest(name = "value = {0}")
+    @ValueSource(strings = {"rosie", "hyena", "jayon"})
+    void isSame(final String value) {
+        final Name name = new Name(value);
+        final boolean isNameSame = name.isSame(value);
+
+        assertThat(isNameSame).isTrue();
     }
 }
