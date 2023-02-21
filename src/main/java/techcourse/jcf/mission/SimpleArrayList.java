@@ -39,6 +39,26 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
+        if(index > size){
+            throw new IndexOutOfBoundsException();
+        }
+
+        if(index == size){
+            add(value);
+            return;
+        }
+
+        if(size >= array.length){
+            String[] newArray = new String[array.length*2];
+            System.arraycopy(array, 0, newArray, 0, array.length);
+            array = newArray;
+        }
+
+        for(int i = size; i > index; i--){
+            array[i] = array[i-1];
+        }
+        array[index] = value;
+        size++;
     }
 
     @Override
