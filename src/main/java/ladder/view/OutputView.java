@@ -16,6 +16,7 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final String EMPTY = "";
     private static final String LADDER = "|";
+    private static final String DELIMETER = " : ";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
     public void printLadderResult(final Players players, final Ladder ladder, final Gifts gifts) {
@@ -74,5 +75,12 @@ public class OutputView {
 
     public void printErrorMessage(final IllegalArgumentException e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
+    }
+
+    public void printGameResult(Players players, Gifts gifts, Result result) {
+        System.out.println(EXECUTION_RESULT);
+        for (String name : result.getNames()) {
+            System.out.println(name + DELIMETER + gifts.findNameByPosition(players.findPosition(name)));
+        }
     }
 }
