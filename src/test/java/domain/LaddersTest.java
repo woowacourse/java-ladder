@@ -24,7 +24,7 @@ public class LaddersTest {
 
     @DisplayName("랜덤 값에 따라 사다리들이 정상적으로 생성되는지 테스트합니다.")
     @Test
-    void LaddersTest() {
+    void laddersTest() {
         List<List<Position>> result = ladders.getLadders()
                 .stream()
                 .map(Ladder::getLadder)
@@ -40,7 +40,7 @@ public class LaddersTest {
 
     @DisplayName("현재 위치를 입력하면 사다리 게임 결과 위치를 반환합니다.")
     @Test
-    void ResultTest() {
+    void laddersResultTest() {
         assertThat(ladders.getResult(0)).isEqualTo(0);
     }
 }

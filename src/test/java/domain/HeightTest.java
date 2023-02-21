@@ -12,7 +12,7 @@ class HeightTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 11})
     @DisplayName("사다리 높이가 1~10을 벗어나면 예외가 발생한다.")
-    void LadderHeightFailTest(int height) {
+    void ladderHeightFailTest(int height) {
         assertThatThrownBy(() -> Height.from(height))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -20,7 +20,7 @@ class HeightTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 10})
     @DisplayName("사다리 높이가 1~10 사이면 정상적으로 수행된다.")
-    void LadderHeightSuccessTest(int height) {
+    void ladderHeightSuccessTest(int height) {
         assertThatCode(() -> Height.from(height)).doesNotThrowAnyException();
     }
 }
