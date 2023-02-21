@@ -73,8 +73,6 @@ class SimpleArrayListTest {
         assertAll(() -> assertThat(oldValue).isEqualTo("second")
                 , () -> assertThat(simpleArrayList.get(1)).isEqualTo("third")
         );
-
-
     }
 
     @Test
@@ -98,7 +96,17 @@ class SimpleArrayListTest {
 
 
     @Test
-    void isEmpty() {
+    @DisplayName("list가 비어있으면 true를 리턴한다.")
+    void isEmptyTrueTest() {
+        assertThat(simpleArrayList.isEmpty()).isTrue();
+    }
+
+    @Test
+    @DisplayName("list가 비어있지 않으면 false를 리턴한다.")
+    void isEmptyFalseTest() {
+        simpleArrayList.add("first");
+
+        assertThat(simpleArrayList.isEmpty()).isFalse();
     }
 
     @Test
