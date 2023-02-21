@@ -10,8 +10,8 @@ public class LadderGame {
     private static final int DOWN = 1;
 
     private final PlayerNames playerNames;
-    private final Ladder ladder;
     private final LadderSize ladderSize;
+    private final Ladder ladder;
     private final Result result;
     private final ResultStorage resultStorage;
 
@@ -96,11 +96,11 @@ public class LadderGame {
         return getGameResultByPlayerName(playerName);
     }
 
-    public ResultDto getGameResultByPlayerName(String playerName) {
+    private ResultDto getGameResultByPlayerName(String playerName) {
         return new ResultDto(List.of(playerName), List.of(resultStorage.get(playerNames.getNames().indexOf(playerName))));
     }
 
-    public ResultDto getGameResultByAll() {
+    private ResultDto getGameResultByAll() {
         return new ResultDto(playerNames.getNames(), resultStorage.getAll());
     }
 }
