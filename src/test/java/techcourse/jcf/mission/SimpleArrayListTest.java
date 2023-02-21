@@ -43,7 +43,14 @@ class SimpleArrayListTest {
     }
 
     @Test
+    @DisplayName("get 메소드로 index를 전달하면, 해당인덱스에 할당된 value를 리턴한다.")
     void get() {
+        String expected = "first";
+        simpleArrayList.add(expected);
+
+        String result = simpleArrayList.get(0);
+
+        assertThat(result).isEqualTo(expected);
     }
 
     @Test
