@@ -150,12 +150,16 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public void clear() {
-        Node temp = start;
-        Node prev;
+        if (size == 0) {
+            return;
+        }
+
+        Node temp = start.next;
+
         while (temp.next != null) {
-            prev = temp;
-            temp = temp.next;
-            prev = null;
+            Node next = temp.next;
+            temp = null;
+            temp = next;
         }
         size = 0;
     }
