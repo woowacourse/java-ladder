@@ -33,4 +33,13 @@ public class UserTest {
         assertThat(user.getName())
                 .isEqualTo(userName);
     }
+
+    @Test
+    @DisplayName("유저는 자신의 위치상태를 갖고 있는다.")
+    void userHasPosition() {
+        final User user = new User("홍실", 3);
+        assertThat(user)
+                .extracting("position")
+                .isEqualTo(3);
+    }
 }
