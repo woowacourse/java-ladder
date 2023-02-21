@@ -1,10 +1,10 @@
 package ladder.view;
 
+import ladder.error.ErrorMessage;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
-import ladder.error.ErrorMessage;
 
 public class InputView {
     private static final String NUMERIC_FORMAT = "^-?[0-9]*$";
@@ -21,6 +21,17 @@ public class InputView {
         return names;
     }
 
+    private void validateNames(List<String> names) {
+        if (hasDuplicateName(names)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATION.getMessage());
+        }
+    }
+
+    private boolean hasDuplicateName(List<String> names) {
+        return names.size() != names.stream().distinct().count();
+    }
+
+
     public int requestLadderHeight() {
         printMessage(Message.ASK_LADDER_HEIGHT);
 
@@ -31,16 +42,6 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_HEIGHT_RANGE.getMessage());
         }
-    }
-
-    private void validateNames(List<String> names) {
-        if (hasDuplicateName(names)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATION.getMessage());
-        }
-    }
-
-    private boolean hasDuplicateName(List<String> names) {
-        return names.size() != names.stream().distinct().count();
     }
 
     private void validateIsNumeric(String input) {

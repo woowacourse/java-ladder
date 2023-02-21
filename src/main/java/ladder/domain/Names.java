@@ -1,9 +1,9 @@
 package ladder.domain;
 
+import ladder.error.ErrorMessage;
+
 import java.util.List;
 import java.util.stream.Collectors;
-
-import ladder.error.ErrorMessage;
 
 public class Names {
     private static final int FIRST_NAME_INDEX = 0;
@@ -16,8 +16,18 @@ public class Names {
         validate(names);
 
         this.names = names.stream()
-            .map(Name::new)
-            .collect(Collectors.toList());
+                .map(Name::new)
+                .collect(Collectors.toList());
+    }
+
+    private void validate(List<String> names) {
+        validateCountOfNames(names);
+    }
+
+    private void validateCountOfNames(List<String> names) {
+        if (names.size() < MIN_NAMES_COUNT || names.size() > MAX_NAMES_COUNT) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PEOPLE_COUNT.getMessage());
+        }
     }
 
     public int lengthOfFirstName() {
@@ -30,15 +40,5 @@ public class Names {
 
     public int size() {
         return names.size();
-    }
-
-    private void validate(List<String> names) {
-        validateCountOfNames(names);
-    }
-
-    private void validateCountOfNames(List<String> names) {
-        if (names.size() < MIN_NAMES_COUNT || names.size() > MAX_NAMES_COUNT) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_PEOPLE_COUNT.getMessage());
-        }
     }
 }

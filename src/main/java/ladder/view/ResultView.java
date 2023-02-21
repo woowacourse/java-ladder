@@ -13,15 +13,15 @@ public class ResultView {
     private static final String BLANK = " ";
     private static final String NAME_FORMAT = "%5s";
 
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
+
     public void printResult(Names names, Ladder ladder) {
         System.out.println("실행결과\n");
 
         printNames(names);
         printLadder(ladder, names.lengthOfFirstName());
-    }
-
-    public void printErrorMessage(String message) {
-        System.out.println(message);
     }
 
     private void printNames(Names names) {

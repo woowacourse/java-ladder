@@ -37,6 +37,10 @@ public class LadderController {
         }
     }
 
+    private List<String> readNames() {
+        return inputView.requestNames();
+    }
+
     private Height createHeight() {
         try {
             return new Height(readLadderHeight());
@@ -44,10 +48,6 @@ public class LadderController {
             resultView.printErrorMessage(e.getMessage());
             return createHeight();
         }
-    }
-
-    private List<String> readNames() {
-        return inputView.requestNames();
     }
 
     private int readLadderHeight() {

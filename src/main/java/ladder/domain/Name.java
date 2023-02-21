@@ -23,6 +23,12 @@ public class Name {
         validateLength(name);
     }
 
+    private void validateNotNull(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException(ErrorMessage.NAME_IS_NULL.getMessage());
+        }
+    }
+
     private void validateDoesNotContainComma(String name) {
         if (name.contains(COMMA)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_FORMAT.getMessage());
@@ -32,12 +38,6 @@ public class Name {
     private void validateLength(String name) {
         if (name.isBlank() || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_LENGTH.getMessage());
-        }
-    }
-
-    private void validateNotNull(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException(ErrorMessage.NAME_IS_NULL.getMessage());
         }
     }
 

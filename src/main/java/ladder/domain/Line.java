@@ -1,10 +1,10 @@
 package ladder.domain;
 
+import ladder.util.BooleanGenerator;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import ladder.util.BooleanGenerator;
 
 public class Line implements Iterable<Boolean> {
     private static final int FIRST_CELL_INDEX = 0;
@@ -16,10 +16,6 @@ public class Line implements Iterable<Boolean> {
         this.generator = generator;
 
         createLine(personCount);
-    }
-
-    public List<Boolean> getLine() {
-        return line;
     }
 
     private void createLine(int personCount) {
@@ -39,6 +35,10 @@ public class Line implements Iterable<Boolean> {
 
     private boolean existLineAtLeftCell(int cellIndex) {
         return cellIndex != FIRST_CELL_INDEX && line.get(cellIndex - 1);
+    }
+
+    public List<Boolean> getLine() {
+        return line;
     }
 
     @Override
