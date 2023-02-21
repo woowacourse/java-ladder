@@ -4,6 +4,8 @@ import java.util.List;
 
 public class LadderGame {
 
+    private static final String PLAYER_NAME_NOT_FOUND_EXCEPTION_MESSAGE = "[ERROR] 게임 내의 참가자를 입력해주세요.";
+
     private static final int LEFT = -1;
     private static final int STAY = 0;
     private static final int RIGHT = 1;
@@ -90,10 +92,17 @@ public class LadderGame {
     }
 
     public ResultDto getGameResult(final String playerName) {
+        validateWhomToKnowResult(playerName);
         if (playerName.equals("all")) {
             return getGameResultByAll();
         }
         return getGameResultByPlayerName(playerName);
+    }
+
+    private void validateWhomToKnowResult(String playerName) {
+        if (!playerName.equals("all") && !playerNames.getNames().contains(playerName)) {
+            throw new IllegalArgumentException(PLAYER_NAME_NOT_FOUND_EXCEPTION_MESSAGE);
+        }
     }
 
     private ResultDto getGameResultByPlayerName(final String playerName) {
