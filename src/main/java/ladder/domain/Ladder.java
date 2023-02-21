@@ -23,6 +23,13 @@ public class Ladder {
         return new Ladder(lines);
     }
 
+    public int climb(int position) {
+        for (final Line line : lines) {
+            position = line.moveTo(position);
+        }
+        return position;
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
