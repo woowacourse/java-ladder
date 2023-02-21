@@ -3,13 +3,11 @@ package laddergame.controller;
 import static laddergame.utils.RetryUtils.retryOnRuntimeExceptionWithMessage;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import laddergame.domain.BooleanGenerator;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Line;
-import laddergame.domain.Name;
-import laddergame.domain.Participants;
+import laddergame.domain.PersonalNames;
 import laddergame.domain.Width;
 import laddergame.view.InputView;
 import laddergame.view.LadderFormGenerator;
@@ -31,19 +29,12 @@ public class LadderController {
     }
 
     public void run() {
-        final Participants participants = retryOnRuntimeExceptionWithMessage(() -> new Participants(readNames()));
-        final Width ladderWidth = new Width(participants.getSize());
+        final PersonalNames names = retryOnRuntimeExceptionWithMessage(() -> new PersonalNames(inputView.readNames()));
+        final Width ladderWidth = new Width(names.getSize());
         final Height ladderHeight = retryOnRuntimeExceptionWithMessage(() -> new Height(inputView.readHeight()));
         final Ladder ladder = new Ladder(ladderWidth, ladderHeight, booleanGenerator);
 
         final List<Line> lines = ladder.getLines();
-        outputView.printResult(ladderFormGenerator.generate(participants, lines));
-    }
-
-    private List<Name> readNames() {
-        return inputView.readNames()
-                .stream()
-                .map(Name::new)
-                .collect(Collectors.toList());
+        outputView.printResult(ladderFormGenerator.generate(names, lines));
     }
 }

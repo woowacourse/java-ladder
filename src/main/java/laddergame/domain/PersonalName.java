@@ -3,11 +3,11 @@ package laddergame.domain;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class Name {
+public class PersonalName {
     private static final Pattern NAME_REGEX = Pattern.compile("([a-z]|[A-Z])+");
     private final String value;
 
-    public Name(final String name) {
+    public PersonalName(final String name) {
         validate(name);
         this.value = name;
     }

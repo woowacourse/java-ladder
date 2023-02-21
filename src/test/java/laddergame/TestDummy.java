@@ -5,16 +5,18 @@ import java.util.Deque;
 import java.util.List;
 import laddergame.domain.BooleanGenerator;
 import laddergame.domain.Height;
-import laddergame.domain.Name;
-import laddergame.domain.Participants;
+import laddergame.domain.LadderResult;
+import laddergame.domain.PersonalName;
+import laddergame.domain.PersonalNames;
 import laddergame.domain.Width;
 
 public class TestDummy {
-    public static final Name NAME_HYENA = new Name("hyena");
-    public static final Name NAME_ROSIE = new Name("rosie");
-    public static final Participants PARTICIPANTS_SIZE_2 = new Participants(List.of(NAME_ROSIE, NAME_HYENA));
+    public static final PersonalName PERSONAL_NAME_ROSIE = new PersonalName("rosie");
+    public static final PersonalNames NAME_SIZE_2 = new PersonalNames(List.of("hyena", "rosie"));
     public static final Width WIDTH_VALUE_2 = new Width(2);
     public static final Height HEIGHT_VALUE_1 = new Height(1);
+    public static final LadderResult LADDER_RESULT_SIZE_2 = LadderResult.of(NAME_SIZE_2,
+            List.of("result1", "result2"));
     public static final BooleanGenerator TEST_BOOLEAN_GENERATOR = new BooleanGenerator() {
         final Deque<Boolean> deque = new ArrayDeque<>(List.of(true, false));
 

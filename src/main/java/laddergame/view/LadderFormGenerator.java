@@ -1,20 +1,21 @@
 package laddergame.view;
 
-import laddergame.domain.Line;
-import laddergame.domain.Participants;
+import static laddergame.view.LadderUnit.LADDER_COL;
+import static laddergame.view.LadderUnit.LADDER_ROW_EMPTY;
+import static laddergame.view.LadderUnit.LADDER_ROW_RUNG;
 
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static laddergame.view.LadderUnit.*;
+import laddergame.domain.Line;
+import laddergame.domain.PersonalNames;
 
 public class LadderFormGenerator {
     private int rungLength;
 
-    public String generate(final Participants participants, final List<Line> lines) {
-        rungLength = getMaximumLengthOfNames(participants.getNames());
-        return joinNames(participants.getNames()) + joinRows(lines);
+    public String generate(final PersonalNames personalNames, final List<Line> lines) {
+        rungLength = getMaximumLengthOfNames(personalNames.getNames());
+        return joinNames(personalNames.getNames()) + joinRows(lines);
     }
 
     private static int getMaximumLengthOfNames(List<String> names) {

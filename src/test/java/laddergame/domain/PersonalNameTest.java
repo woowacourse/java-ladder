@@ -1,15 +1,15 @@
 package laddergame.domain;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import static laddergame.TestDummy.NAME_ROSIE;
+import static laddergame.TestDummy.PERSONAL_NAME_ROSIE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 @DisplayName("이름")
-class NameTest {
+class PersonalNameTest {
 
 	@DisplayName("값이 비어있으면 예외가 발생한다.")
 	@Test
@@ -19,7 +19,7 @@ class NameTest {
 
 		//when
 		//then
-		assertThatThrownBy(() -> new Name(valueEmpty))
+		assertThatThrownBy(() -> new PersonalName(valueEmpty))
 				.isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -31,7 +31,7 @@ class NameTest {
 
 		//when
 		//then
-		assertThatThrownBy(() -> new Name(valueBlank))
+		assertThatThrownBy(() -> new PersonalName(valueBlank))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -43,7 +43,7 @@ class NameTest {
 
 		//when
 		//then
-		assertThatThrownBy(() -> new Name(valueBlank))
+		assertThatThrownBy(() -> new PersonalName(valueBlank))
 				.isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -55,7 +55,7 @@ class NameTest {
 
 		//when
 		//then
-		assertThatThrownBy(() -> new Name(nullValue))
+		assertThatThrownBy(() -> new PersonalName(nullValue))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -67,14 +67,14 @@ class NameTest {
 
 		//when
 		//then
-		assertDoesNotThrow(() -> new Name(value));
+		assertDoesNotThrow(() -> new PersonalName(value));
 	}
 
 	@DisplayName("값을 가져온다.")
 	@Test
 	void getName() {
 		//given
-		final String rosieName = NAME_ROSIE.getValue();
+		final String rosieName = PERSONAL_NAME_ROSIE.getValue();
 
 		//when
 		//then

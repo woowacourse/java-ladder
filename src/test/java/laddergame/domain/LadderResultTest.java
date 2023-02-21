@@ -10,11 +10,11 @@ public class LadderResultTest {
     @Test
     void throwExceptionWhenNamesSizeIsNotEqualToParticipants() {
         // given
-        Participants participants = new Participants(List.of(new Name("hi"), new Name("oh"), new Name("bye")));
+        PersonalNames personalNames = new PersonalNames(List.of("hi", "oh", "bye"));
         List<String> resultItemNames = List.of("꽝");
 
         // when, then
-        Assertions.assertThatThrownBy(() -> LadderResult.of(participants, resultItemNames))
+        Assertions.assertThatThrownBy(() -> LadderResult.of(personalNames, resultItemNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -22,8 +22,8 @@ public class LadderResultTest {
     @Test
     void getNames() {
         // given
-        Participants participants = new Participants(List.of(new Name("hi"), new Name("bye")));
-        LadderResult ladderResult = LadderResult.of(participants, List.of("꽝", "10000"));
+        PersonalNames personalNames = new PersonalNames(List.of("hi", "bye"));
+        LadderResult ladderResult = LadderResult.of(personalNames, List.of("꽝", "10000"));
 
         //when
         List<String> itemNames = ladderResult.getItemNames();

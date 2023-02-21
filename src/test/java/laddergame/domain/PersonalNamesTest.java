@@ -1,36 +1,35 @@
 package laddergame.domain;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static laddergame.TestDummy.*;
+import static laddergame.TestDummy.NAME_SIZE_2;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 @DisplayName("참여자")
-class ParticipantsTest {
+class PersonalNamesTest {
 
     @DisplayName("생성된다.")
     @Test
     void create() {
         //given
-        final List<Name> names = List.of(new Name("hyena"), new Name("rosie"));
+        final List<String> personalNames = List.of("hyena", "rosie");
 
         //when
         //then
-        assertDoesNotThrow(() -> new Participants(names));
+        assertDoesNotThrow(() -> new PersonalNames(personalNames));
     }
 
     @Test
     void throwExceptionWhenNameListHasOneElement() {
         //given
-        final List<Name> names = List.of(new Name("rosie"));
+        final List<String> personalNames = List.of("rosie");
 
         //when, then
-        assertThatThrownBy(()->new Participants(names))
+        assertThatThrownBy(() -> new PersonalNames(personalNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -38,11 +37,11 @@ class ParticipantsTest {
     @Test
     void throwExceptionWhenNamesIsEmpty() {
         //given
-        final List<Name> names = List.of();
+        final List<String> personalNames = List.of();
 
         //when
         //then
-        assertThatThrownBy(() -> new Participants(names))
+        assertThatThrownBy(() -> new PersonalNames(personalNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -50,11 +49,11 @@ class ParticipantsTest {
     @Test
     void throwExceptionWhenNamesIsNull() {
         //given
-        final List<Name> names = null;
+        final List<String> personalNames = null;
 
         //when
         //then
-        assertThatThrownBy(() -> new Participants(names))
+        assertThatThrownBy(() -> new PersonalNames(personalNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -62,11 +61,11 @@ class ParticipantsTest {
     @Test
     void getSize() {
         //given
-        final List<Name> names = List.of(NAME_ROSIE, NAME_HYENA);
-        final Participants participants = new Participants(names);
+        final List<String> names = List.of("rosie", "hyena");
+        final PersonalNames personalNames = new PersonalNames(names);
 
         //when
-        final int totalSize = participants.getSize();
+        final int totalSize = personalNames.getSize();
 
         //then
         assertThat(totalSize).isEqualTo(names.size());
@@ -76,7 +75,7 @@ class ParticipantsTest {
     @Test
     void getNames() {
         //given, when
-        final List<String> names = PARTICIPANTS_SIZE_2.getNames();
+        final List<String> names = NAME_SIZE_2.getNames();
 
         //then
         assertThat(names).contains("hyena", "rosie");

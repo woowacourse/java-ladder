@@ -1,7 +1,7 @@
 package laddergame.domain;
 
 public class LadderGame {
-    public LadderGame(Participants participants, LadderResult ladderResult) {
+    public LadderGame(PersonalNames personalNames, LadderResult ladderResult) {
 
     }
 }

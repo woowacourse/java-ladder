@@ -11,11 +11,11 @@ class LadderGameTest {
     @Test
     void createWithParticipantsAndLadderResult() {
         //given
-        Participants participants = TestDummy.PARTICIPANTS_SIZE_2;
+        PersonalNames personalNames = TestDummy.NAME_SIZE_2;
         LadderResult ladderResult = TestDummy.LADDER_RESULT_SIZE_2;
         //when
         //then
-        assertDoesNotThrow(() -> new LadderGame(participants, ladderResult));
+        assertDoesNotThrow(() -> new LadderGame(personalNames, ladderResult));
     }
 
 }
