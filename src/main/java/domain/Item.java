@@ -3,7 +3,7 @@ package domain;
 import java.util.Objects;
 
 public class Item {
-    private static final String INVALID_NAME_BLANK_MESSAGE = "이름은 공백으로만 이루어지면 안됩니다.";
+    private static final String INVALID_NAME_BLANK_MESSAGE = "실행 결과는 공백으로만 이루어지면 안됩니다.";
     private final String item;
 
     public Item(String item) {
