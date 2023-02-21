@@ -3,7 +3,6 @@ package domain;
 import util.RandomValueGenerator;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -28,6 +27,5 @@ public class Line {
             }
             points.add(false);
         }
-        System.out.println("points = " + points);
     }
 }
