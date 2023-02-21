@@ -22,6 +22,10 @@ public class Prizes {
                 .collect(Collectors.toList());
     }
 
+    public String check(final int position) {
+        return value.get(position).getValue();
+    }
+
     public int size() {
         return value.size();
     }
