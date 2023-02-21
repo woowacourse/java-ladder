@@ -10,7 +10,7 @@ public class Application {
         String playersName = InputView.getPlayersName();
         Players players = new Players(Arrays.asList(playersName.split(",")));
 
-        InputView.getResult();
+        String ladderResults = InputView.getResult();
 
         int ladderHeight = InputView.getLadderHeight();
         Lines lines = new Lines(players.getPlayers().size(), ladderHeight);
