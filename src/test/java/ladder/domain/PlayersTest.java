@@ -1,11 +1,19 @@
 package ladder.domain;
 
+import static ladder.domain.Direction.RIGHT;
+import static ladder.domain.Direction.STAY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+
+import ladder.domain.generator.DirectionGenerator;
+import ladder.domain.generator.LineGenerator;
+import ladder.domain.generator.TestDirectionGenerator;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -57,6 +65,28 @@ class PlayersTest {
 
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("사다리 게임이 끝난 후, 특정 플레이어가 어디 위치에 있는지 알 수 있다.")
+    void findPlayerPositionAfterLadderGame() {
+        // given
+        final ArrayList<Direction> directions = Lists.newArrayList(
+                RIGHT, STAY, STAY, RIGHT, RIGHT, STAY, RIGHT, STAY, RIGHT, RIGHT);
+        final DirectionGenerator directionGenerator = new TestDirectionGenerator(directions);
+        final LineGenerator lineGenerator = new LineGenerator(directionGenerator);
+        final Players players = new Players(List.of("pobi", "crong", "eddy"));
+        final Height height = new Height(5);
+        final Ladder ladder = new Ladder(lineGenerator, players, height);
+        final String name = "eddy";
+        final int expected = 1;
+
+        // when
+        Players resultPlayer = ladder.movePlayers(players);
+        final int actual = resultPlayer.findPosition(name);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
     }
 }
 

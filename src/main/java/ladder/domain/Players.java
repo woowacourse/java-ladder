@@ -79,4 +79,8 @@ public class Players {
     public int numberOfPlayers() {
         return players.size();
     }
+
+    public int findPosition(String value) {
+        return positions.get(players.indexOf(new Player(value)));
+    }
 }
