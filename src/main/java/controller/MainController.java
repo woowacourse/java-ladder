@@ -6,7 +6,7 @@ import domain.Lines;
 import domain.Names;
 import domain.Result;
 import domain.Rewards;
-import utils.booleanGenerator.RandomBooleanGenerator;
+import utils.RandomBooleanGenerator;
 import view.InputView;
 import view.OutputView;
 

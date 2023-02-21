@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import utils.booleanGenerator.TrueBooleanGenerator;
+import utils.TrueBooleanGenerator;
 
 class LineTest {
     private final TrueBooleanGenerator trueBooleanGenerator = new TrueBooleanGenerator();
