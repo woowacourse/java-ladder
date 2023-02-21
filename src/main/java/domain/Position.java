@@ -12,7 +12,7 @@ public class Position {
         return new Position(position);
     }
 
-    public void swapPosition(final Position positionTwo) {
+    public void swap(final Position positionTwo) {
         final int temp = this.position;
         this.position = positionTwo.position;
         positionTwo.position = temp;

@@ -28,6 +28,10 @@ public class User {
         return name;
     }
 
+    public void swapPosition(final User user) {
+        this.position.swap(user.position);
+    }
+
     public boolean isSameName(final String name) {
         return this.name.equals(name);
     }

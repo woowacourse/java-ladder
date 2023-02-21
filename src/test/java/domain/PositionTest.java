@@ -13,7 +13,7 @@ class PositionTest {
         final Position positionOne = Position.from(4);
         final Position positionTwo = Position.from(5);
 
-        positionOne.swapPosition(positionTwo);
+        positionOne.swap(positionTwo);
 
         assertThat(positionOne).extracting("position")
                 .isEqualTo(5);

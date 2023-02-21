@@ -64,4 +64,20 @@ class UserTest {
         final User user = new User("홍실", 0);
         assertThat(user.isSameName("다니")).isFalse();
     }
+
+    @Test
+    @DisplayName("User의 swapPosition 메서드는 두 User의 position을 변경시킨다.")
+    void swapPositionTest() {
+        final User user1 = new User("홍실", 0);
+        final User user2 = new User("다니", 3);
+        user1.swapPosition(user2);
+        assertThat(user1)
+                .extracting("position")
+                .extracting("position")
+                .isEqualTo(3);
+        assertThat(user2)
+                .extracting("position")
+                .extracting("position")
+                .isEqualTo(0);
+    }
 }
