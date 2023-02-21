@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
+    private static final Bar FALSE_BAR = new Bar(() -> false);
+    private static final Bar TRUE_BAR = new Bar(() -> true);
+    
     @Test
     @DisplayName("addBars()은 랜덤 값이 false로 나오면, 존재하지 않는 Bar로 모두 채워진 bars가 나온다.")
     void test_1() {
@@ -14,7 +17,7 @@ class LineTest {
     
         // then
         assertThat(line.getBars())
-                .contains(BarTest.FALSE, BarTest.FALSE, BarTest.FALSE, BarTest.FALSE);
+                .contains(FALSE_BAR, FALSE_BAR, FALSE_BAR, FALSE_BAR);
     }
 
     @Test
@@ -25,6 +28,6 @@ class LineTest {
 
         // then
         assertThat(line.getBars())
-                .contains(BarTest.FALSE, BarTest.TRUE, BarTest.FALSE, BarTest.TRUE);
+                .contains(FALSE_BAR, TRUE_BAR, FALSE_BAR, TRUE_BAR);
     }
 }
