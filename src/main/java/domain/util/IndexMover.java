@@ -6,7 +6,6 @@ import java.util.stream.IntStream;
 
 import domain.ladder.Ladder;
 import domain.ladder.Line;
-import domain.util.Point;
 
 public class IndexMover {
 

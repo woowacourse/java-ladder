@@ -2,8 +2,11 @@ package view;
 
 import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
+import domain.end.End;
+import domain.end.Ends;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.user.User;
@@ -27,9 +30,10 @@ public class OutputView {
 		LINE_MAP = Map.of(true, PRESENT_LINE, false, ABSENT_LINE);
 	}
 
-	public static void printResult(final Users users, final Ladder ladder) {
+	public static void printLadder(final Users users, final Ladder ladder, final Ends ends) {
 		System.out.println(getStringifiedNames(users));
 		System.out.println(getStringifiedLadder(ladder));
+		System.out.println(getStringifiedEnds(ends));
 	}
 
 	private static String getStringifiedNames(final Users users) {
@@ -42,12 +46,12 @@ public class OutputView {
 	}
 
 	private static String getStringifiedLadder(final Ladder ladder) {
-		StringBuilder stringifiedLadder = new StringBuilder();
+		StringJoiner stringifiedLadder = new StringJoiner(NEW_LINE);
 		List<Line> lines = ladder.getLines();
 		for (Line line : lines) {
 			List<Point> points = line.getPoints();
 			String stringifiedLine = getStringifiedLine(points);
-			stringifiedLadder.append(stringifiedLine).append(NEW_LINE);
+			stringifiedLadder.add(stringifiedLine);
 		}
 		return stringifiedLadder.toString();
 	}
@@ -56,6 +60,15 @@ public class OutputView {
 		return points.stream()
 			.map(point -> LINE_MAP.get(point.isPresent()))
 			.collect(Collectors.joining(LADDER_DELIMITER, PREFIX, SUFFIX));
+	}
+
+	private static String getStringifiedEnds(final Ends ends) {
+		List<End> endList = ends.getEnds();
+		StringBuilder stringifiedNames = new StringBuilder();
+		for (End end : endList) {
+			stringifiedNames.append(String.format(RIGHT_ALIGN_PLACEHOLDER, end.getName()));
+		}
+		return stringifiedNames.toString();
 	}
 
 	public static void printError(final String errorMsg) {
