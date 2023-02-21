@@ -14,7 +14,13 @@ public class Person {
     private final List<People> person;
 
     public Person(List<People> person) {
+        validatePeopleNumber(person);
         this.person = person;
+    }
+
+    private static void validatePeopleNumber(List<People> person){
+        if(person.size() <= 1)
+        throw new IllegalArgumentException("진행자 수는 2명 이상이어야 합니다.");
     }
 
     public List<People> getPerson() {
