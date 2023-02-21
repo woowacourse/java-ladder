@@ -47,6 +47,10 @@ public class Direction {
         return beforePosition - 1;
     }
     
+    public Bar getLeftBar() {
+        return leftBar;
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

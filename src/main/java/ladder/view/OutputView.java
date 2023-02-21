@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Bar;
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.PlayerNames;
+import ladder.domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,14 +42,13 @@ public class OutputView {
     }
 
     private static String parseLine(Line line) {
-//        return line.getBars().stream()
-//                .map(OutputView::parseBar)
-//                .collect(Collectors.joining("|", "", "|"));
-        return null;
+        return line.getLine().stream()
+                .map(OutputView::parseBar)
+                .collect(Collectors.joining("|", "", "|"));
     }
-
-    private static String parseBar(Bar bar) {
-        return parseBarMatcher(bar).getBarDisplay();
+    
+    private static String parseBar(Direction direction) {
+        return parseBarMatcher(direction.getLeftBar()).getBarDisplay();
     }
 
     private static BarDisplayMatcher parseBarMatcher(Bar bar) {
