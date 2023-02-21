@@ -86,6 +86,29 @@ class LadderGameTest {
         Assertions.assertThat(rows.get(1).getPoints()).containsExactly(false, true);
     }
 
+    @Test
+    @DisplayName("사다리 결과 저장 테스트")
+    void playLadderGameTest() {
+        Player player1 = new Player("a");
+        Player player2 = new Player("asd");
+        Player player3 = new Player("qwert");
+        List<Player> input = new ArrayList<>(List.of(player1, player2, player3));
+        Reward reward1 = new Reward("꽝");
+        Reward reward2 = new Reward("3000");
+        Reward reward3 = new Reward("5000");
+        List<Reward> rewards = new ArrayList<>(List.of(reward1, reward2, reward3));
+
+        LadderGame ladderGame = new LadderGame(input, rewards, new Height(2));
+        ladderGame.generateLadder(new TestLineCreateDecider(newArrayList(true, false, false, true)));
+        ladderGame.playLadderGame();
+
+        List<Result> results = ladderGame.getResults();
+
+        Assertions.assertThat(results.get(0).getReward()).isEqualTo(reward3);
+        Assertions.assertThat(results.get(1).getReward()).isEqualTo(reward1);
+        Assertions.assertThat(results.get(2).getReward()).isEqualTo(reward2);
+    }
+
 
     static class TestLineCreateDecider implements LineCreateDecider {
 
