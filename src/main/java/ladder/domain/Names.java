@@ -23,11 +23,18 @@ public class Names {
 
     private void validate(List<String> names) {
         validateCountOfNames(names);
+        validateDuplicateNames(names);
     }
 
     private void validateCountOfNames(List<String> names) {
         if (names.size() < MIN_NAMES_COUNT || names.size() > MAX_NAMES_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PEOPLE_COUNT.getMessage());
+        }
+    }
+
+    private void validateDuplicateNames(List<String> names) {
+        if (names.size() != names.stream().distinct().count()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATION.getMessage());
         }
     }
 

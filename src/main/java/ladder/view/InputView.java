@@ -15,22 +15,8 @@ public class InputView {
     public List<String> requestNames() {
         printMessage(Message.ASK_USER_NAMES);
 
-        List<String> names = Arrays.asList(scanner.nextLine().split(DELIMITER));
-        validateNames(names);
-
-        return names;
+        return Arrays.asList(scanner.nextLine().split(DELIMITER));
     }
-
-    private void validateNames(List<String> names) {
-        if (hasDuplicateName(names)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATION.getMessage());
-        }
-    }
-
-    private boolean hasDuplicateName(List<String> names) {
-        return names.size() != names.stream().distinct().count();
-    }
-
 
     public int requestLadderHeight() {
         printMessage(Message.ASK_LADDER_HEIGHT);
