@@ -1,4 +1,4 @@
-package domain;
+package laddergame.domain;
 
 public class Point {
 

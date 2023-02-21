@@ -1,6 +1,6 @@
-package domain;
+package laddergame.domain;
 
-import static utils.ErrorMessage.INVALID_LADDER_HEIGHT_RANGE;
+import static laddergame.utils.ErrorMessage.INVALID_LADDER_HEIGHT_RANGE;
 
 public class Height {
     private final static int MIN_HEIGHT = 1;

@@ -1,6 +1,6 @@
-package utils;
+package laddergame.utils;
 
-import domain.Point;
+import laddergame.domain.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

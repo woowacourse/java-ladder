@@ -1,4 +1,4 @@
-package domain;
+package laddergame.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.LineMaker;
+import laddergame.utils.LineMaker;
 
 @DisplayName("가로 라인은 ")
 class LineTest {

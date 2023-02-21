@@ -1,8 +1,8 @@
-package domain;
+package laddergame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import utils.RandomLineMaker;
+import laddergame.utils.RandomLineMaker;
 
 public class Ladder {
 

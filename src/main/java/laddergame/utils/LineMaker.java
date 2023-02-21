@@ -1,6 +1,6 @@
-package utils;
+package laddergame.utils;
 
-import domain.Point;
+import laddergame.domain.Point;
 import java.util.List;
 
 public interface LineMaker {

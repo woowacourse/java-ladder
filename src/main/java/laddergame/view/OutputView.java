@@ -1,17 +1,14 @@
-package view;
+package laddergame.view;
 
-import static domain.Name.BLANK;
-import static domain.Name.MAX_NAME_LENGTH;
-import static utils.LadderFormat.LADDER_COLUMN;
-import static utils.LadderFormat.NON_CONNECTION;
-import static utils.LadderFormat.CONNECTION;
+import static laddergame.domain.Name.BLANK;
+import static laddergame.domain.Name.MAX_NAME_LENGTH;
 
-import domain.Ladder;
-import domain.Line;
-import domain.Point;
-import domain.User;
-import domain.Users;
-import utils.LadderFormat;
+import laddergame.domain.Ladder;
+import laddergame.domain.Line;
+import laddergame.domain.Point;
+import laddergame.domain.User;
+import laddergame.domain.Users;
+import laddergame.utils.LadderFormat;
 
 public class OutputView {
 
@@ -56,7 +53,7 @@ public class OutputView {
     private void printLadder(Ladder ladder, int width) {
         StringBuilder result = new StringBuilder();
         for (Line line : ladder.getLines()) {
-            result.append(BLANK.repeat(width)).append(LADDER_COLUMN);
+            result.append(BLANK.repeat(width)).append(LadderFormat.LADDER_COLUMN);
             appendLine(result, line);
             result.append(NEXT_LINE);
         }
@@ -66,15 +63,15 @@ public class OutputView {
     private void appendLine(StringBuilder result, Line line) {
         for (Point point : line.getPoints()) {
             result.append(getConnectionStatus(point.isConnected()));
-            result.append(LADDER_COLUMN);
+            result.append(LadderFormat.LADDER_COLUMN);
         }
     }
 
     private LadderFormat getConnectionStatus(Boolean point) {
         if (point) {
-            return CONNECTION;
+            return LadderFormat.CONNECTION;
         }
-        return NON_CONNECTION;
+        return LadderFormat.NON_CONNECTION;
     }
 
 }

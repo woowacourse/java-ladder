@@ -1,14 +1,14 @@
-package controller;
+package laddergame.controller;
 
-import domain.Height;
-import domain.Ladder;
-import domain.Name;
-import domain.User;
-import domain.Users;
+import laddergame.domain.Height;
+import laddergame.domain.Ladder;
+import laddergame.domain.Name;
+import laddergame.domain.User;
+import laddergame.domain.Users;
 import java.util.List;
 import java.util.stream.Collectors;
-import view.InputView;
-import view.OutputView;
+import laddergame.view.InputView;
+import laddergame.view.OutputView;
 
 public class LadderGameController {
 

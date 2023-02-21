@@ -1,7 +1,7 @@
-package domain;
+package laddergame.domain;
 
-import static utils.ErrorMessage.INVALID_USER_NAME_FORMAT;
-import static utils.ErrorMessage.INVALID_USER_NAME_LENGTH;
+import static laddergame.utils.ErrorMessage.INVALID_USER_NAME_FORMAT;
+import static laddergame.utils.ErrorMessage.INVALID_USER_NAME_LENGTH;
 
 public class Name {
     private final static int MIN_NAME_LENGTH = 1;

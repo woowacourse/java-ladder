@@ -1,6 +1,6 @@
-package domain;
+package laddergame.domain;
 
-import static utils.ErrorMessage.NOT_FOUND_USER;
+import static laddergame.utils.ErrorMessage.NOT_FOUND_USER;
 
 import java.util.ArrayList;
 import java.util.List;

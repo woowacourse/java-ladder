@@ -1,4 +1,4 @@
-package utils;
+package laddergame.utils;
 
 public enum ErrorMessage {
 

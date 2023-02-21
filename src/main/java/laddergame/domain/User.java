@@ -1,4 +1,4 @@
-package domain;
+package laddergame.domain;
 
 public class User {
     private final Name name;

@@ -1,10 +1,9 @@
-package view;
-
-import static utils.ErrorMessage.INVALID_LADDER_HEIGHT_INPUT;
+package laddergame.view;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import laddergame.utils.ErrorMessage;
 
 public class InputView {
     private static final String DELIMITER = ",";
@@ -29,7 +28,7 @@ public class InputView {
         try {
             Integer.parseInt(height);
         } catch (Exception e) {
-            throw new IllegalArgumentException(INVALID_LADDER_HEIGHT_INPUT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_HEIGHT_INPUT.getMessage());
         }
     }
 
