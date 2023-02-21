@@ -6,7 +6,7 @@
 
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
 
-## 리팩터링 목록
+## 리팩터링 목록 (1단계)
 
 - [x] 테스트 리팩터링
   - [x] `LineTest` - DisplayName 및 메서드명, ParameterizedTest
@@ -39,6 +39,7 @@
 
 - [x] 높이는 양수만 가능하다.
 - [x] 특정 참가자의 결과를 알 수 있다.
+- [ ] 모든 참가자의 결과를 알 수 있다.
 
 ### BridgeGenerator
 
