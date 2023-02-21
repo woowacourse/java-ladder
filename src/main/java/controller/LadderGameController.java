@@ -33,6 +33,10 @@ public class LadderGameController {
         outputView.printLadder(ladder.getLines());
         outputView.printResults(results.getResults());
 
+        processResult(players, results, ladder);
+    }
+
+    private void processResult(Players players, Results results, Ladder ladder) {
         String targetPlayer = inputView.readTargetPlayer();
         validateTargetPlayerBlank(targetPlayer);
         if (!targetPlayer.equals(ALL_PLAYER)) {
@@ -50,6 +54,7 @@ public class LadderGameController {
 
     private List<String> getPlayersResult(Players players, Results results, Ladder ladder) {
         List<String> playersResult = new ArrayList<>();
+
         for (Player player : players.getPlayers()) {
             playersResult.add(player.calculateResult(ladder, results));
         }
