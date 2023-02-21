@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class RewardTest {
+
     @ParameterizedTest(name = "inputReward = {0}")
     @DisplayName("reward 생성 테스트")
     @ValueSource(strings = {"꽝", "5000", "당첨"})
@@ -37,4 +38,5 @@ public class RewardTest {
         Reward reward =new Reward(inputReward);
         assertThat(reward.getReward()).isEqualTo(inputReward);
     }
+
 }
