@@ -21,6 +21,7 @@ public class LadderGameController {
         try {
             LadderGame ladderGame = generateLadderGame();
             showLadderGame(ladderGame);
+            ladderGame.playLadderGame();
 
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());

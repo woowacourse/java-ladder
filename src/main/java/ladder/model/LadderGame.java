@@ -14,6 +14,7 @@ public class LadderGame {
     private final List<Reward> rewards;
     private final Height height;
     private Ladder ladder;
+    private List<Result> results;
 
     public LadderGame(List<Player> players, List<Reward> rewards, Height height) {
         validatePlayerCount(players);
@@ -44,6 +45,15 @@ public class LadderGame {
         ladder = new Ladder(rows);
     }
 
+    public void playLadderGame() {
+        this.results = new ArrayList<>();
+
+        for (int i = 0; i < players.size(); i++) {
+            int rewardIndex = ladder.getResult(i);
+            results.add(new Result(players.get(i), rewards.get(rewardIndex)));
+        }
+    }
+
     public List<Player> getPlayers() {
         return players;
     }
@@ -56,4 +66,7 @@ public class LadderGame {
         return ladder;
     }
 
+    public List<Result> getResults() {
+        return results;
+    }
 }
