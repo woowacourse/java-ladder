@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Mission {
 
     private static final int MAX_LENGTH_EXCLUSIVE = 5;
@@ -21,5 +23,22 @@ public class Mission {
 
     public String getMission() {
         return mission;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Mission mission1 = (Mission) o;
+        return Objects.equals(mission, mission1.mission);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mission);
     }
 }
