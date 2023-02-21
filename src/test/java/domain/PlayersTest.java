@@ -9,8 +9,6 @@ import java.util.List;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class PlayersTest {
-    private final List<Player> playerList = List.of(new Player("judy"), new Player("ako"), new Player("pobi")) ;
-    private final Players players = new Players(playerList);
 
     @Test
     void 사다리_게임을_위해서는_플레이어가_적어도_2명이_필요하다() {
@@ -21,6 +19,10 @@ public class PlayersTest {
 
     @Test
     void getPlayersName_메서드_테스트() {
+        //given
+        List<Player> playerList = List.of(new Player("judy"), new Player("ako"), new Player("pobi"));
+        Players players = new Players(playerList);
+
         //when
         List<String> test = players.getPlayersName();
 
