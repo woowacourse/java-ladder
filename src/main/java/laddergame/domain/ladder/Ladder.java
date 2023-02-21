@@ -43,12 +43,10 @@ public class Ladder {
         if (rungs.canMove(prevRungPosition)) {
             return --currentRungPosition;
         }
-
         int nextRungPosition = currentRungPosition;
         if (rungs.canMove(nextRungPosition)) {
             return ++currentRungPosition;
         }
-
         return currentRungPosition;
     }
 

@@ -33,6 +33,7 @@ public class LadderGameController {
 
         Ladder ladder = createLadder(participantSize);
         printLadderResult(participants, ladder, ladderResult);
+
         List<Integer> ladderResultPositions = ladder.startGame(participantSize);
         printGameResultWithRetry(participants, ladderResult, ladderResultPositions);
     }

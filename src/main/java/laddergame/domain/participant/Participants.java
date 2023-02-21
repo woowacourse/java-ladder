@@ -39,7 +39,6 @@ public class Participants {
         if (trimName.equalsIgnoreCase(ALL_PARTICIPANTS)) {
             return List.copyOf(participants);
         }
-
         Participant targetParticipant = getTargetParticipant(trimName);
         return List.of(targetParticipant);
     }

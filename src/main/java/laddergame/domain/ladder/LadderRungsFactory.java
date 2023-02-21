@@ -27,7 +27,6 @@ public class LadderRungsFactory {
         if (CACHE.containsKey(rungGenerator)) {
             return CACHE.get(rungGenerator);
         }
-
         LadderRungsFactory ladderRungsFactory = new LadderRungsFactory(rungGenerator);
         CACHE.put(rungGenerator, ladderRungsFactory);
         return ladderRungsFactory;
