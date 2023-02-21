@@ -46,6 +46,6 @@ class LineTest extends AbstractTestFixture {
     void 현재_위치에서_이동할_다음_위치를_알_수_있다(int currentPosition, int expectedNextPosition) {
         Line line = new Line(convert(true, false, false, true, false));
 
-        assertThat(line.findPositionAfter(currentPosition)).isEqualTo(expectedNextPosition);
+        assertThat(line.findPositionAfter(new Position(currentPosition))).isEqualTo(new Position(expectedNextPosition));
     }
 }

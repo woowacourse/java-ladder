@@ -27,35 +27,39 @@ public class Line {
         }
     }
 
-    public List<Bridge> getBridges() {
-        return bridges;
-    }
-
-    public int findPositionAfter(final int currentPosition) {
-        if (isMovable(currentPosition - 1)) {
-            if (getLeftBridgeFrom(currentPosition).doesExist()) {
-                return currentPosition - 1;
-            }
+    public Position findPositionAfter(final Position currentPosition) {
+        if (getLeftBridgeFrom(currentPosition).doesExist()) {
+            return currentPosition.left();
         }
-
-        if (isMovable(currentPosition + 1)) {
-            if (getRightBridgeFrom(currentPosition).doesExist()) {
-                return currentPosition + 1;
-            }
+        if (getRightBridgeFrom(currentPosition).doesExist()) {
+            return currentPosition.right();
         }
-
         return currentPosition;
     }
 
-    private Bridge getLeftBridgeFrom(int currentPosition) {
-        return bridges.get(currentPosition - 1);
+    private Bridge getLeftBridgeFrom(Position position) {
+        if (isValid(position.left())) {
+            return getBridgeAt(position.left());
+        }
+        return Bridge.EMPTY;
     }
 
-    private Bridge getRightBridgeFrom(int currentPosition) {
-        return bridges.get(currentPosition);
+    private Bridge getRightBridgeFrom(Position position) {
+        if (isValid(position.right())) {
+            return getBridgeAt(position);
+        }
+        return Bridge.EMPTY;
     }
 
-    private boolean isMovable(final int position) {
-        return 0 <= position && position <= bridges.size();
+    private Bridge getBridgeAt(Position position) {
+        return bridges.get(position.getPosition());
+    }
+
+    private boolean isValid(Position position) {
+        return position.isInBetween(0, bridges.size());
+    }
+
+    public List<Bridge> getBridges() {
+        return bridges;
     }
 }

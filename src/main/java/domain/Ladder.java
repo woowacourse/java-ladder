@@ -26,11 +26,11 @@ public class Ladder {
     }
 
     public String findPrizeFor(String participantName) {
-        int position = participants.findStartPositionOf(participantName);
+        Position position = participants.findStartPositionOf(participantName);
         for (Line line : lines) {
             position = line.findPositionAfter(position);
         }
-        return prizes.get(position);
+        return prizes.get(position.getPosition());
     }
 
     public List<String> getParticipantNames() {

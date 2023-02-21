@@ -33,9 +33,10 @@ public class Participants {
         }
     }
 
-    public int findStartPositionOf(String name) {
+    public Position findStartPositionOf(String name) {
         Participant participant = findBy(name);
-        return participants.indexOf(participant);
+        int position = participants.indexOf(participant);
+        return new Position(position);
     }
 
     private Participant findBy(String name) {
