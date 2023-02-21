@@ -26,6 +26,32 @@ public class LadderRow {
         }
     }
 
+    public int getExistingLineIndex(int index) {
+        int leftLineIndex = getLeftLineIndex(index);
+        int rightLineIndex = getRightLineIndex(index);
+        if (lines.get(leftLineIndex) == Line.EXIST) {
+            return leftLineIndex;
+        }
+        if (lines.get(rightLineIndex) == Line.EXIST) {
+            return rightLineIndex;
+        }
+        return -1;
+    }
+
+    private int getLeftLineIndex(int index) {
+        if (index == 0) {
+            return index;
+        }
+        return index - 1;
+    }
+
+    private int getRightLineIndex(int index) {
+        if (index == lines.size()) {
+            return index - 1;
+        }
+        return index;
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
