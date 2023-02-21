@@ -23,13 +23,12 @@ public class MainController {
 
     public void start() {
         Names names = inputView.readNames();
+        Rewards rewards = inputView.readRewards(names.getPersonNumber());
         Height height = inputView.readHeight();
 
         LineSize lineSize = new LineSize(names.getPersonNumber());
         Lines lines = new Lines(lineSize, height, RANDOM_BOOLEAN_GENERATOR);
-        outputView.printLines(names, lines);
-
-        Rewards rewards = inputView.readRewards(names.getPersonNumber());
+        outputView.printLines(names, lines, rewards);
         Result result = new Result(names, lines, rewards);
 
         showResult(result, names);
