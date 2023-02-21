@@ -3,9 +3,11 @@ package ladder.domain;
 import java.util.List;
 
 public class Result {
+    private final List<String> results;
 
     public Result(List<String> inputResult, int playerCount) {
         validateCount(inputResult.size(), playerCount);
+        this.results = inputResult;
     }
 
     private void validateCount(int resultCount, int playerCount) {

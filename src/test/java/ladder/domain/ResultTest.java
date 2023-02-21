@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,5 +20,18 @@ public class ResultTest {
         assertThatIllegalArgumentException().isThrownBy(() ->
                 new Result(inputResult, playerCount)
         ).withMessage("[ERROR] 입력된 결과의 수가 인원 수와 다를 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("입력된 결과가 정상적으로 생성된다.")
+    void create_success() {
+        // given
+        List<String> inputResult = List.of("O", "X", "X", "X");
+        int playerCount = 4;
+
+        // expect
+        assertThatNoException().isThrownBy(() ->
+                new Result(inputResult, playerCount)
+        );
     }
 }
