@@ -1,5 +1,6 @@
 package view;
 
+import controller.response.LadderGameResponse;
 import domain.game.LadderGameResult;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
@@ -37,10 +38,11 @@ public class OutputView {
         SCAFFOLD_STRING_MAP.put(Scaffold.NONE, NONE_SCAFFOLD);
     }
 
-    public static void printCreatedLadder(final Ladder ladder, final Names names, final WinningEntries winningEntries) {
+    public static void printLadderGameInfo(final LadderGameResponse response) {
+        Names names = response.names();
         printNames(names);
-        printLadder(ladder, names.firstNameLength() - 1);
-        printWinningEntries(winningEntries, names.firstNameLength() - 1);
+        printLadder(response.ladder(), names.firstNameLength() - 1);
+        printWinningEntries(response.winningEntries(), names.firstNameLength() - 1);
     }
 
     private static void printNames(final Names names) {

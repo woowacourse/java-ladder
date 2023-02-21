@@ -1,10 +1,10 @@
 package controller;
 
 import common.Logger;
+import controller.response.LadderGameResponse;
 import domain.game.LadderGame;
 import domain.game.LadderGameFactory;
 import domain.game.LadderGameResult;
-import domain.ladder.Ladder;
 import domain.value.*;
 import view.InputView;
 import view.OutputView;
@@ -26,7 +26,7 @@ public class LadderController {
         WinningEntries winningEntries = withExceptionHandle(() -> createWinningEntries(names));
         Height height = withExceptionHandle(this::ladderHeight);
         LadderGame game = ladderGameFactory.createGame(names, winningEntries, height);
-        showLadder(names, game.ladder(), winningEntries);
+        showGameInfo(game);
         playGame(game);
     }
 
@@ -49,8 +49,8 @@ public class LadderController {
         return Height.of(InputView.inputHeight());
     }
 
-    private void showLadder(final Names names, final Ladder ladder, final WinningEntries winningEntries) {
-        OutputView.printCreatedLadder(ladder, names, winningEntries);
+    private void showGameInfo(final LadderGame ladderGame) {
+        OutputView.printLadderGameInfo(new LadderGameResponse(ladderGame));
     }
 
     private void playGame(final LadderGame ladderGame) {
