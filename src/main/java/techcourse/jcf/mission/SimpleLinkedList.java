@@ -80,6 +80,7 @@ public class SimpleLinkedList implements SimpleList {
 
         connect(originalNode.prevNode(), newNode);
         connect(newNode, originalNode.nextNode());
+        clearNode(originalNode);
 
         return originalNode.getValue();
     }
@@ -151,6 +152,7 @@ public class SimpleLinkedList implements SimpleList {
                 firstNode.setPrevNode(null);
             }
             size--;
+            clearNode(node);
             return;
         }
 
@@ -159,12 +161,25 @@ public class SimpleLinkedList implements SimpleList {
 
         connect(prevNode, nextNode);
         size--;
+        clearNode(node);
     }
 
     @Override
     public void clear() {
+        Node node = firstNode;
+        while (node != null) {
+            Node prevNode = node;
+            node = node.nextNode();
+            clearNode(prevNode);
+        }
         size = 0;
-        firstNode = null;
+    }
+
+    private void clearNode(Node node) {
+        if (node != null) {
+            node.setPrevNode(null);
+            node.setNextNode(null);
+        }
     }
 
     @Override
@@ -174,7 +189,7 @@ public class SimpleLinkedList implements SimpleList {
             sb.append(node.getValue() + ", ");
         }
         if (sb.length() > 1) {
-            sb.delete(sb.length()-2, sb.length());
+            sb.delete(sb.length() - 2, sb.length());
         }
         sb.append("]");
         return sb.toString();
