@@ -24,18 +24,35 @@ public class Players {
         return new Players(players);
     }
 
-    public int count() {
-        return players.size();
-    }
-
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public int count() {
+        return players.size();
     }
 
     public List<String> getNames() {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toList());
+    }
+
+    public Players createTargetPlayers(List<String> targetPlayerNames) {
+        List<Player> targetPlayers = targetPlayerNames.stream()
+                .map(targetPlayerName -> new Player(new Name(targetPlayerName)))
+                .collect(Collectors.toList());
+
+        for (Player targetPlayer : targetPlayers) {
+            validateDoesNotExistPlayer(targetPlayer);
+        }
+        return new Players(targetPlayers);
+    }
+
+    private void validateDoesNotExistPlayer(Player targetPlayer) {
+        if (!players.contains(targetPlayer)) {
+            throw new IllegalArgumentException("존재하지 않는 참가자 입니다.");
+        }
     }
 
     private void validateDuplicatedNames(List<Player> inputPlayers) {

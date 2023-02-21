@@ -85,7 +85,7 @@ public class PlayersTest {
 
     @Test
     @DisplayName("타겟 플레이어 생성 시, 중복 이름 예외 테스트")
-    void createTargetPlayers() {
+    void createTargetDuplicateExceptionPlayers() {
         Players createPlayers = Players.create(correctPlayerNames);
 
         assertThatThrownBy(()->createPlayers.createTargetPlayers(List.of("crong", "crong")))
@@ -94,7 +94,7 @@ public class PlayersTest {
 
     @Test
     @DisplayName("타겟 플레이어 생성 시, 없는 이름 예외 테스트")
-    void createTargetPlayers() {
+    void createTargetDoesNotExistExceptionPlayers() {
         Players createPlayers = Players.create(correctPlayerNames);
 
         assertThatThrownBy(()->createPlayers.createTargetPlayers(List.of("crong", "aaaa")))
