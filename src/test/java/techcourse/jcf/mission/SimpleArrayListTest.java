@@ -25,10 +25,10 @@ class SimpleArrayListTest {
 
     @Test
     public void addWithUnlimitedCapacityTest() {
-        List<String> values = new ArrayList<>(List.of("a","b","c","d","e","f","g","h","i","j","k"));
+        List<String> values = new ArrayList<>(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"));
 
         SimpleArrayList myValues = new SimpleArrayList();
-        for(String value : values){
+        for (String value : values) {
             Assertions.assertThat(myValues.add(value)).isTrue();
         }
 
@@ -36,14 +36,25 @@ class SimpleArrayListTest {
     }
 
     @Test
-    public void getTest(){
-        List<String> values = new ArrayList<>(List.of("a","b","c","d","e","f","g","h","i","j","k"));
+    public void getTest() {
+        List<String> values = new ArrayList<>(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"));
         SimpleArrayList myValues = new SimpleArrayList();
-        for(String value : values){
+        for (String value : values) {
             myValues.add(value);
         }
 
         assertThat(myValues.get(10)).isEqualTo("k");
+    }
+
+    @Test
+    public void sizeTest() {
+        List<String> values = new ArrayList<>(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"));
+        SimpleArrayList myValues = new SimpleArrayList();
+        for (String value : values) {
+            myValues.add(value);
+        }
+
+        assertThat(myValues.size()).isEqualTo(11);
     }
 
 }
