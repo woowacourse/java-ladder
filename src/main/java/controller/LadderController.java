@@ -31,10 +31,10 @@ public class LadderController {
         try {
             Names participants = inputParticipantsName();
             LadderResults ladderResults = inputLadderResults(participants.getTotalParticipantSize());
-            generateLadder(ladderMaker, participants.getTotalParticipantSize());
+            initLadder(ladderMaker, participants.getTotalParticipantSize());
             printLadder(ladderMaker, participants, ladderResults);
             LadderGame ladderGame = LadderGame.of(participants, ladderMaker.getLadder(), ladderResults);
-            findResult(ladderGame);
+            printLadderGame(ladderGame);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
         }
@@ -60,7 +60,7 @@ public class LadderController {
         return LadderResults.of(ladderResults, totalParticipantSize);
     }
 
-    private void generateLadder(LadderMaker ladderMaker, int totalParticipantSize) {
+    private void initLadder(LadderMaker ladderMaker, int totalParticipantSize) {
         outputView.noticeInputHeightOfLadder();
 
         int heightOfLadder = inputView.inputHeightOfLadder();
@@ -79,17 +79,17 @@ public class LadderController {
         outputView.printLadderResult(ladderResults);
     }
 
-    private void findResult(LadderGame ladderGame) {
+    private void printLadderGame(LadderGame ladderGame) {
         String targetParticipantName = DEFAULT_PARTICIPANT_NAME;
 
         while (!targetParticipantName.equals(FIND_TOTAL_RESULT_COMMAND)) {
             outputView.noticeFindResultOfName();
             targetParticipantName = inputView.inputNameForGameResult();
-            calculateResultLog(ladderGame, targetParticipantName);
+            calculateLadderResultLog(ladderGame, targetParticipantName);
         }
     }
 
-    private void calculateResultLog(LadderGame ladderGame, String targetParticipantName) {
+    private void calculateLadderResultLog(LadderGame ladderGame, String targetParticipantName) {
         outputView.noticeGameResult();
         if (targetParticipantName.equals(FIND_TOTAL_RESULT_COMMAND)) {
             List<GameResult> totalGameResult = ladderGame.getTotalGameResult();
