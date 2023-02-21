@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -27,23 +28,11 @@ class ResultTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("결과는 최대 5글자까지 가능합니다. 현재 입력한 값은 " + value + " 입니다.");
     }
-}
 
-class Result {
-
-    private final String value;
-
-    public Result(final String value) {
-        validate(value);
-        this.value = value;
-    }
-
-    private void validate(final String value) {
-        if (value.isBlank()) {
-            throw new IllegalArgumentException("결과는 공백일 수 없습니다. 현재 입력한 값은 " + value + " 입니다.");
-        }
-        if (value.length() > 5) {
-            throw new IllegalArgumentException("결과는 최대 5글자까지 가능합니다. 현재 입력한 값은 " + value + " 입니다.");
-        }
+    @ParameterizedTest(name = "입력: {0}")
+    @ValueSource(strings = {"a", "ab", "abc", "abcd", "abcde"})
+    @DisplayName("실행 결과가 5글자 이하라면 예외를 던지지 않는다.")
+    void successResult(final String value) {
+        assertThatNoException().isThrownBy(() -> new Result(value));
     }
 }
