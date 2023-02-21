@@ -13,30 +13,25 @@ import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderServiceTest {
-    List<Line> customizedLines;
-    People people;
-    Ladder ladder;
-    Results results;
     LadderService ladderService;
 
     @BeforeEach
     void init() {
-        customizedLines = List.of(
+        List<Line> customizedLines = List.of(
                 new Line(List.of(TRUE, FALSE, TRUE)),
                 new Line(List.of(FALSE, TRUE, FALSE)),
                 new Line(List.of(TRUE, FALSE, FALSE)),
                 new Line(List.of(FALSE, TRUE, FALSE)),
                 new Line(List.of(TRUE, FALSE, TRUE))
         );
-        people = new People("pobi,honux,crong,jk");
-        ladder = new Ladder(
+        People people = new People("pobi,honux,crong,jk");
+        Ladder ladder = new Ladder(
                 people,
                 5,
                 (width, height) -> customizedLines
         );
-        results = new Results("꽝,5000,꽝,3000", people);
+        Results results = new Results("꽝,5000,꽝,3000", people);
         ladderService = new LadderService(people, ladder, results);
-
     }
 
     @DisplayName("단일 사용자의 결과 출력")
