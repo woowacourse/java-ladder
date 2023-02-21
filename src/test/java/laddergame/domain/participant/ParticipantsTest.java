@@ -1,6 +1,7 @@
 package laddergame.domain.participant;
 
 import laddergame.domain.exception.DuplicateException;
+import laddergame.domain.exception.EmptyException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInstance;
@@ -29,7 +30,7 @@ public class ParticipantsTest {
     void create_givenSingleCountParticipant_thenFail(final String names) {
         assertThatThrownBy(() -> Participants.create(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 참가자는 최소 1명 이상 입력해야 합니다.");
+                .hasMessage("[ERROR] 참가자 이름은 최소 1명 이상 입력해야 합니다.");
     }
 
     @ParameterizedTest
@@ -40,6 +41,16 @@ public class ParticipantsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .isExactlyInstanceOf(DuplicateException.class)
                 .hasMessage(DuplicateException.errorMessage);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {",", ",,", ",,,"})
+    @DisplayName("입력받은 이름이 비어있다면, 예외가 발생한다.")
+    void create_givenEmptyNames_thenFail(final String names) {
+        assertThatThrownBy(() -> Participants.create(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .isExactlyInstanceOf(EmptyException.class)
+                .hasMessage("[ERROR] 참가자 이름은 비어있을 수 없습니다.");
     }
 
     @ParameterizedTest
