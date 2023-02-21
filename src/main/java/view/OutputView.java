@@ -52,7 +52,7 @@ public class OutputView {
     }
 
     public void printResult(Mission mission) {
-        System.out.println(Message.OUTPUT_RESULT.message);
+        System.out.printf(Message.OUTPUT_RESULT.message);
         System.out.println(mission.getMission());
     }
 
