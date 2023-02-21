@@ -17,7 +17,13 @@ public class InputView {
 
     public static List<String> inputPersonName() {
         System.out.println(INPUT_PEOPLES_NAME);
-        return InputVerifier.validateName(scanner.next());
+        while (true) {
+            try {
+                return InputVerifier.validateName(scanner.next());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static int inputLadderHeight() {
