@@ -5,8 +5,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class NamesTest {
 
@@ -51,5 +54,13 @@ public class NamesTest {
         List<String> names = List.of("ko ng", "   odo    ", "od  o");
         assertThatCode(() -> new Names(names))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("참가자의 이름으로 참가자의 번호를 찾을 수 있다.")
+    @ParameterizedTest
+    @CsvSource({"pobi,0", "honux,1", "crong,2", "jk,3"})
+    void shouldReturnIndexOfName(String name, int expected) {
+        List<String> names = List.of("pobi", "honux", "crong", "jk");
+        Assertions.assertThat(new Names(names).findByName(name)).isEqualTo(expected);
     }
 }
