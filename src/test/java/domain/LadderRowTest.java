@@ -31,7 +31,7 @@ public class LadderRowTest {
     }
 
     @ParameterizedTest(name = "사다리의 N번째 세로 줄 기준으로, 주변에 존재하는 Line의 인덱스를 반환한다.")
-    @CsvSource({"0,0", "1,0", "2,-1", "3,3", "4,3"})
+    @CsvSource({"0,0", "1,0", "2,-100", "3,3", "4,3"})
     void getExistingLineIndexTest(int index, int existingLineIndex) {
         List<Line> lines = List.of(EXIST, NOT_EXIST, NOT_EXIST, EXIST);
         LadderRow ladderRow = new LadderRow(lines);

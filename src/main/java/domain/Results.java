@@ -1,6 +1,8 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import utils.StringParser;
 
 public class Results {
 
@@ -12,5 +14,11 @@ public class Results {
 
     public List<Result> getResults() {
         return results;
+    }
+
+    public List<String> getResultNames() {
+        return results.stream()
+                .map(result -> StringParser.insertBlank(result.getResultName()))
+                .collect(Collectors.toUnmodifiableList());
     }
 }

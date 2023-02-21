@@ -2,6 +2,9 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
+import domain.LadderGame;
+import domain.Result;
+import domain.Results;
 import domain.User;
 import domain.Users;
 import java.util.List;
@@ -20,11 +23,17 @@ public class Controller {
 
     public void run() {
         Users users = getUsers();
+        Results results = getResults();
         Height height = getHeight();
 
         Ladder ladder = getLadder(users, height);
+        LadderGame ladderGame = getLadderGame(ladder, users);
 
-        OutputView.printResult(users, ladder);
+        OutputView.printResult(users, results, ladder);
+        String resultViewer = InputView.readResultViewer();
+        int departureIndex = users.findByName(resultViewer);
+        int arrivalIndex = ladderGame.move(departureIndex, 0, height.getHeight());
+        System.out.println(results.getResults().get(arrivalIndex).getResultName());
     }
 
     private Users getUsers() {
@@ -40,6 +49,19 @@ public class Controller {
         }
     }
 
+    private Results getResults() {
+        try {
+            List<String> resultNames = InputView.readResultNames();
+            List<Result> results = resultNames.stream()
+                    .map(Result::new)
+                    .collect(Collectors.toList());
+            return new Results(results);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return getResults();
+        }
+    }
+
     private Height getHeight() {
         try {
             int height = InputView.readLadderHeight();
@@ -50,7 +72,11 @@ public class Controller {
         }
     }
 
-    private Ladder getLadder(Users users, Height height) {
+    private Ladder getLadder(final Users users, final Height height) {
         return new Ladder(users.getSize(), height.getHeight(), ladderRowGenerator);
+    }
+
+    private LadderGame getLadderGame(final Ladder ladder, final Users users) {
+        return new LadderGame(ladder, users);
     }
 }
