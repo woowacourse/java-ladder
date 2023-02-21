@@ -24,4 +24,8 @@ public class Result {
     private boolean isLong(final String value) {
         return value.length() > MAXIMUM_RESULT_LENGTH;
     }
+
+    public String getValue() {
+        return value;
+    }
 }

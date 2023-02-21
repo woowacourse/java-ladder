@@ -25,4 +25,10 @@ public class Results {
     public int size() {
         return value.size();
     }
+
+    public List<String> getResultNames() {
+        return value.stream()
+                .map(Result::getValue)
+                .collect(Collectors.toList());
+    }
 }

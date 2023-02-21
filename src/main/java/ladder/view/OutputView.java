@@ -6,10 +6,10 @@ import ladder.domain.Direction;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Players;
+import ladder.domain.Results;
 
 public class OutputView {
 
-    private static final String EXECUTION_RESULT = "실행결과";
     private static final String LINE_BREAK = "\n";
     private static final int FORMAT_LENGTH = 5;
     private static final String RIGHT_ALIGN = "%" + FORMAT_LENGTH + "s";
@@ -18,22 +18,24 @@ public class OutputView {
     private static final String LADDER = "|";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
-    public void printLadderResult(final Players players, final Ladder ladder) {
-        System.out.println(LINE_BREAK + EXECUTION_RESULT + LINE_BREAK);
+    public void printLadderResult(final Players players, final Ladder ladder, final Results results) {
+        System.out.println(LINE_BREAK + "사다리 결과" + LINE_BREAK);
         printPlayerNames(players);
         printLadder(ladder);
+        printResultNames(results);
+        System.out.println();
     }
 
     private void printPlayerNames(final Players players) {
         final List<String> playerNames = players.getPlayerNames();
-        System.out.println(getFormattedPlayerNames(playerNames));
+        System.out.println(getFormattedNames(playerNames));
     }
 
-    private String getFormattedPlayerNames(final List<String> playerNames) {
+    private String getFormattedNames(final List<String> names) {
         final StringJoiner joiner = new StringJoiner(BLANK);
 
-        for (final String playerName : playerNames) {
-            joiner.add(String.format(RIGHT_ALIGN, playerName));
+        for (final String name : names) {
+            joiner.add(String.format(RIGHT_ALIGN, name));
         }
 
         return joiner.toString();
@@ -56,6 +58,11 @@ public class OutputView {
         }
 
         System.out.println(stringJoiner);
+    }
+
+    private void printResultNames(final Results results) {
+        final List<String> resultNames = results.getResultNames();
+        System.out.println(getFormattedNames(resultNames));
     }
 
     public void printErrorMessage(final String errorMessage) {

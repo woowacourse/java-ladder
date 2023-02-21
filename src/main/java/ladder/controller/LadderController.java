@@ -28,10 +28,10 @@ public class LadderController {
 
     public void run() {
         final Players players = generate(inputView::readPlayerNames, Players::new);
-        final Height height = generate(inputView::readHeight, Height::new);
         final Results results = readResults(players);
+        final Height height = generate(inputView::readHeight, Height::new);
         final Ladder ladder = ladderGenerator.generate(new LineGenerator(), players, height);
-        outputView.printLadderResult(players, ladder);
+        outputView.printLadderResult(players, ladder, results);
         final String target = inputView.readTarget();
     }
 
