@@ -38,7 +38,7 @@ public class Users {
 		return names.size();
 	}
 
-	public List<User> getNames() {
+	public List<User> getUsers() {
 		return Collections.unmodifiableList(names);
 	}
 }

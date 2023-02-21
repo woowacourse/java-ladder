@@ -5,20 +5,20 @@ import java.util.List;
 
 public class Ladder {
 	private final List<Line> lines;
-	private final LadderHeight height;
-	private final LadderWidth width;
+	private final int height;
+	private final int width;
 
 	public Ladder(final List<Line> lines) {
 		this.lines = lines;
-		this.height = new LadderHeight(lines.size());
-		this.width = new LadderWidth(lines.get(0).size());
+		this.height = lines.size();
+		this.width = lines.get(0).size();
 	}
 
-	public LadderHeight getHeight() {
+	public int getHeight() {
 		return height;
 	}
 
-	public LadderWidth getWidth() {
+	public int getWidth() {
 		return width;
 	}
 

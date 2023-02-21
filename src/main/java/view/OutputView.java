@@ -33,10 +33,10 @@ public class OutputView {
 	}
 
 	private static String getStringifiedNames(final Users users) {
-		List<User> names = users.getNames();
+		List<User> userList = users.getUsers();
 		StringBuilder stringifiedNames = new StringBuilder();
-		for (User name : names) {
-			stringifiedNames.append(String.format(RIGHT_ALIGN_PLACEHOLDER, name.getName()));
+		for (User user : userList) {
+			stringifiedNames.append(String.format(RIGHT_ALIGN_PLACEHOLDER, user.getName()));
 		}
 		return stringifiedNames.toString();
 	}
