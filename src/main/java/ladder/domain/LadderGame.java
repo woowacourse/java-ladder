@@ -7,8 +7,9 @@ public class LadderGame {
     private final PlayerNames playerNames;
     private final Ladder ladder;
     private final LadderSize ladderSize;
+    private final Result result;
 
-    public LadderGame(List<String> names, int height) {
+    public LadderGame(List<String> names, int height, List<String> results) {
         this.playerNames = new PlayerNames(names);
         this.ladderSize = new LadderSize(names.size() - 1, height);
 
@@ -16,6 +17,7 @@ public class LadderGame {
         LadderMaker ladderMaker = new LadderMaker(ladderSize, booleanGenerator);
 
         this.ladder = ladderMaker.generate();
+        this.result = new Result(results,names.size());
     }
 
     public List<String> getNames () {
@@ -24,5 +26,9 @@ public class LadderGame {
 
     public List<Line> getLines() {
         return ladder.getLines();
+    }
+
+    public List<String> getResults() {
+        return result.getResults();
     }
 }

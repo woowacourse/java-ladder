@@ -19,7 +19,10 @@ public class LadderGameController {
 
     private void init() {
         try {
-            this.ladderGame = new LadderGame(readNames(), readLadderHeight());
+            List<String> names = readNames();
+            List<String> results = readResults();
+            int height = readLadderHeight();
+            this.ladderGame = new LadderGame(names, height, results);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             init();
@@ -34,6 +37,11 @@ public class LadderGameController {
     private int readLadderHeight() {
         OutputView.printMaxLadderHeightReadMessage();
         return readUserInput(InputView::readLadderHeight);
+    }
+
+    private List<String> readResults() {
+        OutputView.printResultsReadMessage();
+        return InputView.readResults();
     }
 
     private void printGameResult() {

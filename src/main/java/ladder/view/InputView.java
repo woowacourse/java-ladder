@@ -22,4 +22,9 @@ public class InputView {
         InputViewValidator.validateNumeric(rawHeight);
         return Integer.parseInt(rawHeight);
     }
+
+    public static List<String> readResults() {
+        String rawResults = SCANNER.nextLine();
+        return List.of(rawResults.split(DELIMITER));
+    }
 }
