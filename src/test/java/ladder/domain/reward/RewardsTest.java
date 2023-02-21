@@ -8,6 +8,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+@DisplayName("Rewards")
 public class RewardsTest {
 
     @Test
@@ -37,6 +38,15 @@ public class RewardsTest {
         assertThat(rewards.findRewardByIndex(1).getReward()).isEqualTo("3000");
         assertThat(rewards.findRewardByIndex(2).getReward()).isEqualTo("꽝");
         assertThat(rewards.findRewardByIndex(3).getReward()).isEqualTo("5000");
+    }
+
+    @Test
+    @DisplayName("getter 테스트")
+    void getRewardsTest() {
+        int playerCount = 4;
+        List<String> inputRewards = List.of("꽝", "3000", "꽝", "5000");
+        Rewards rewards = Rewards.create(inputRewards, playerCount);
+        assertThat(rewards.getRewards().size()).isEqualsTo(inputRewards.size());
     }
 
 }
