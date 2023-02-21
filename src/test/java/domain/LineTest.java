@@ -10,14 +10,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class LineTest {
 
-    @DisplayName("이전 다리가 연결되었다면 이번 다리는 연결하지 않는다.")
-    @Test
-    void currentPointShouldBeDisconnectedWhenPreviousPointIsConnected() {
-        LineGenerator lineGenerator = new LineGenerator(new TestBooleanGenerator(Lists.newArrayList(true)));
-        Line line = lineGenerator.generateLine(3);
-        assertThat(line.getPoints()).containsExactly(Point.CONNECTED, Point.DISCONNECTED);
-    }
-
     @DisplayName("양옆에 다리가 없으면 위치를 그대로 반환한다.")
     @ParameterizedTest
     @CsvSource({"0,0", "3,3"})
