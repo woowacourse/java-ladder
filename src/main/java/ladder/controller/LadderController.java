@@ -5,6 +5,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
+import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.domain.Prizes;
 import ladder.domain.Retry;
@@ -28,7 +29,7 @@ public class LadderController {
         final Height height = generate(inputView::readHeight, Height::new);
         final Ladder ladder = Ladder.of(new RandomDirectionGenerator(), players, height);
         outputView.printLadderResult(players, ladder, prizes);
-        final String target = inputView.readTarget();
+        final Player player = readTarget(players);
     }
 
     private <T, R> R generate(final Supplier<T> supplier, final Function<T, R> function) {
@@ -61,6 +62,28 @@ public class LadderController {
             throw new IllegalArgumentException(
                     "실행 결과 개수는 플레이어 수와 동일해야 합니다. 플레이어 수: " + players.size()
                             + ", 실행 결과 개수: " + prizes.size());
+        }
+    }
+
+    private Player readTarget(final Players players) {
+        final Retry retry = new Retry(5);
+        while (retry.isPossible()) {
+            try {
+                final String name = inputView.readTarget();
+                final Player player = new Player(name);
+                validateExistTarget(players, player);
+                return player;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                retry.decrease();
+            }
+        }
+        throw new IllegalStateException("재입력 횟수를 초과하였습니다.");
+    }
+
+    private void validateExistTarget(final Players players, final Player player) {
+        if (!players.exists(player)) {
+            throw new IllegalArgumentException("존재하지 않는 대상입니다. 대상 목록: " + players.getPlayerNames());
         }
     }
 }
