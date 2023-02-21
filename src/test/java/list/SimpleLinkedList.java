@@ -113,12 +113,44 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public boolean remove(String value) {
+        Node node = head;
+        for (int i = 0; i < size; i++) {
+            if (node.value.equals(value)) {
+                remove(i);
+                return true;
+            }
+            node = node.next;
+        }
         return false;
     }
 
     @Override
     public String remove(int index) {
-        return null;
+        checkIndexOutOfBounds(index);
+        if (index == 0) {
+            Node node = head;
+            head = node.next;
+            head.previous = null;
+            size--;
+            return node.value;
+        }
+        if (index == size) {
+            throw new RuntimeException();
+        }
+        if (index == size - 1) {
+            Node node = tail;
+            tail = node.previous;
+            tail.next = null;
+            size--;
+            return node.value;
+        }
+        Node node = getNodeByIndex(index);
+        Node previous = node.previous;
+        Node next = node.next;
+        previous.next = next;
+        next.previous = previous;
+        size--;
+        return node.value;
     }
 
     @Override
