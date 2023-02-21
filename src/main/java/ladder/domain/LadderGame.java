@@ -1,11 +1,13 @@
 package ladder.domain;
 
 import ladder.domain.ladderNode.Players;
+import ladder.domain.ladderNode.Position;
 import ladder.domain.ladderNode.Results;
 import ladder.dto.ResultDto;
 import ladder.utils.LineStrategy;
 
 import java.util.List;
+import java.util.Map;
 
 public class LadderGame {
     private final Ladder ladder;
@@ -19,10 +21,14 @@ public class LadderGame {
     }
 
     public List<ResultDto> calculatePlayerResult(String playerName, String queryAll) {
+        Map<Position, String> playerArrive;
+
         if (playerName.equals(queryAll)) {
-            return results.getResultsByPosition(players.moveAllToResult(ladder));
+            playerArrive = players.moveAllToResult(ladder);
+            return results.getResultsByPosition(playerArrive);
         }
-        return results.getResultsByPosition(players.moveToResult(playerName, ladder));
+        playerArrive = players.moveToResult(playerName, ladder);
+        return results.getResultsByPosition(playerArrive);
     }
 
     public List<List<Boolean>> getLadder() {
