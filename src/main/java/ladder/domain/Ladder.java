@@ -26,7 +26,7 @@ public class Ladder {
     }
 
     public Players movePlayers(Players players) {
-        for (Line line : lines) {
+        for (final Line line : lines) {
             players = line.movePlayers(players);
         }
 

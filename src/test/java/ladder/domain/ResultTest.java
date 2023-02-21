@@ -22,13 +22,13 @@ class ResultTest {
     @DisplayName("실행 결과에서 all을 입력하면 모든 플레이어 이름의 목록을 반환한다.")
     void validResultUsingAllCommand() {
         // given
-        String input = "all";
-        Players players = new Players(List.of("pobi", "crong"));
-        List<String> expected = List.of("pobi", "crong");
+        final String input = "all";
+        final Players players = new Players(List.of("pobi", "crong"));
+        final List<String> expected = List.of("pobi", "crong");
 
         // when
-        Result result = new Result(input, players);
-        List<String> actual = result.getNames();
+        final Result result = new Result(input, players);
+        final List<String> actual = result.getNames();
 
         // then
         assertThat(actual).isEqualTo(expected);
@@ -38,13 +38,13 @@ class ResultTest {
     @DisplayName("실행 결과에서 특정 플레이어를 입력하면 해당 플레이어만 가진 목록을 반환한다.")
     void validPlayerUsingSpecificName() {
         // given
-        String input = "crong";
-        Players players = new Players(List.of("pobi", "crong"));
-        List<String> expected = List.of("crong");
+        final String input = "crong";
+        final Players players = new Players(List.of("pobi", "crong"));
+        final List<String> expected = List.of("crong");
 
         // when
-        Result result = new Result(input, players);
-        List<String> actual = result.getNames();
+        final Result result = new Result(input, players);
+        final List<String> actual = result.getNames();
 
         // then
         assertThat(actual).isEqualTo(expected);

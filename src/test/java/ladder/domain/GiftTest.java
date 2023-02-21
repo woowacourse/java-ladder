@@ -38,8 +38,8 @@ class GiftTest {
     @ParameterizedTest
     @CsvSource(value = {"    12345:12345", "12345    :12345", "    12345    :12345"}, delimiter = ':')
     @DisplayName("상품 이름 양끝에 공백이 들어가 있으면 공백을 삭제한다.")
-    void trimGoodsBothEndsBlank(String value, String expected) {
-        Gift gift = new Gift(value);
+    void trimGoodsBothEndsBlank(final String value, final String expected) {
+        final Gift gift = new Gift(value);
 
         assertThat(gift.getName()).isEqualTo(expected);
     }

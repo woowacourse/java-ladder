@@ -42,9 +42,9 @@ class LadderTest {
         final Height height = new Height(5);
 
         final Ladder ladder = new Ladder(lineGenerator, players, height);
-        Players expected = new Players(List.of("pobi", "crong", "eddy"), List.of(2, 0, 1));
+        final Players expected = new Players(List.of("pobi", "crong", "eddy"), List.of(2, 0, 1));
 
-        Players actual = ladder.movePlayers(players);
+        final Players actual = ladder.movePlayers(players);
 
         assertThat(actual.getPositions()).isEqualTo(expected.getPositions());
     }

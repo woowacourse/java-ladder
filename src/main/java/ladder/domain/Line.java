@@ -15,8 +15,8 @@ public class Line {
         return directions;
     }
 
-    public Players movePlayers(Players players) {
-        List<Integer> positions = players.getPositions().stream()
+    public Players movePlayers(final Players players) {
+        final List<Integer> positions = players.getPositions().stream()
                 .map(pos -> pos + directions.get(pos).getMove())
                 .collect(Collectors.toList());
 

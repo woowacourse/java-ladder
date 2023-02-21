@@ -15,50 +15,50 @@ public class Gift {
 
     private String value;
 
-    public Gift(String value) {
+    public Gift(final String value) {
         String trimValue = value.trim();
         validate(trimValue);
         this.value = trimValue;
     }
 
-    private void validate(String value) {
+    private void validate(final String value) {
         validateIsBlank(value);
         validateFormat(value);
         validateLength(value);
     }
 
-    private void validateIsBlank(String value) {
+    private void validateIsBlank(final String value) {
         if (value.isBlank()) {
             throw new IllegalArgumentException(BLANK_ERROR_MESSAGE);
         }
     }
 
 
-    private void validateFormat(String value) {
+    private void validateFormat(final String value) {
         if (isNotMatchBoom(value) && isNotMatchNumber(value)) {
             throw new IllegalArgumentException(INVALID_FORMAT_ERROR_MESSAGE);
         }
     }
 
-    private boolean isNotMatchBoom(String value) {
+    private boolean isNotMatchBoom(final String value) {
         return !BOOM_PATTERN.matcher(value).matches();
     }
 
-    private boolean isNotMatchNumber(String value) {
+    private boolean isNotMatchNumber(final String value) {
         return !NUMBER_PATTERN.matcher(value).matches();
     }
 
-    private void validateLength(String value) {
+    private void validateLength(final String value) {
         if (isSmallSize(value) || isLargeSize(value)) {
             throw new IllegalArgumentException(GIFT_LENGTH_ERROR_MESSAGE);
         }
     }
 
-    private boolean isSmallSize(String value) {
+    private boolean isSmallSize(final String value) {
         return MINIMUM_SIZE > value.length();
     }
 
-    private boolean isLargeSize(String value) {
+    private boolean isLargeSize(final String value) {
         return MAXIMUM_SIZE < value.length();
     }
 

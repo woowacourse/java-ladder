@@ -80,7 +80,7 @@ public class Players {
         return players.size();
     }
 
-    public int findPositionByName(String value) {
+    public int findPositionByName(final String value) {
         return positions.get(players.indexOf(new Player(value)));
     }
 }

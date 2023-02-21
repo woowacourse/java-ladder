@@ -11,10 +11,10 @@ class RandomDirectionGeneratorTest {
     @DisplayName("랜덤한 범위의 값을 제대로 생성하는지 확인한다")
     void validRandomDirection() {
         // given
-        DirectionGenerator directionGenerator = new RandomDirectionGenerator();
+        final DirectionGenerator directionGenerator = new RandomDirectionGenerator();
 
         // when
-        Direction actual = directionGenerator.generate();
+        final Direction actual = directionGenerator.generate();
 
         // then
         Assertions.assertThat(actual.getMove())

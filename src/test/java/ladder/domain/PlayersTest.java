@@ -67,7 +67,7 @@ class PlayersTest {
         final int expected = 1;
 
         // when
-        Players resultPlayer = ladder.movePlayers(players);
+        final Players resultPlayer = ladder.movePlayers(players);
         final int actual = resultPlayer.findPositionByName(name);
 
         // then

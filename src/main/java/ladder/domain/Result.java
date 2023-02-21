@@ -10,30 +10,30 @@ public class Result {
 
     private final List<String> names;
 
-    public Result(String value, Players players) {
+    public Result(final String value, final Players players) {
         validate(value, players);
         this.names = getResultPlayerNames(value, players);
     }
 
-    private void validate(String value, Players players) {
+    private void validate(final String value, final Players players) {
         if (isNotEqualsAll(value) && isNotExistName(value, players)) {
             throw new IllegalArgumentException(NOT_EXIST_PLAYER_MESSAGE);
         }
     }
 
-    private boolean isNotEqualsAll(String value) {
+    private boolean isNotEqualsAll(final String value) {
         return !value.equals(ALL_COMMAND);
     }
 
-    private boolean isNotExistName(String value, Players players) {
-        List<String> filterNames = players.getPlayerNames()
+    private boolean isNotExistName(final String value, final Players players) {
+        final List<String> filterNames = players.getPlayerNames()
                 .stream().filter(value::equals)
                 .collect(Collectors.toList());
 
         return filterNames.size() == 0;
     }
 
-    private List<String> getResultPlayerNames(String value, Players players) {
+    private List<String> getResultPlayerNames(final String value, final Players players) {
         if (value.equals(ALL_COMMAND)) {
             return players.getPlayerNames();
         }

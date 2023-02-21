@@ -39,12 +39,12 @@ class GiftsTest {
     @DisplayName("특정 위치에 있는 선물을 제대로 가져오는지 확인한다.")
     void findGiftByPosition() {
         // given
-        int position = 2;
-        Gifts gifts = new Gifts(List.of("1234", "567", "89", "꽝"), 4);
-        String expected = "89";
+        final int position = 2;
+        final Gifts gifts = new Gifts(List.of("1234", "567", "89", "꽝"), 4);
+        final String expected = "89";
 
         // when
-        String actual = gifts.findNameByPosition(position);
+        final String actual = gifts.findNameByPosition(position);
 
         // then
         assertThat(actual).isEqualTo(expected);

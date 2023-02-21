@@ -5,7 +5,7 @@ public class Point {
     private int verticalPosition;
     private int horizontalPosition;
 
-    public Point(int horizontalPosition) {
+    public Point(final int horizontalPosition) {
         this.verticalPosition = 0;
         this.horizontalPosition = horizontalPosition;
     }
@@ -14,7 +14,7 @@ public class Point {
         verticalPosition++;
     }
 
-    public void moveHorizontal(Direction direction) {
+    public void moveHorizontal(final Direction direction) {
         if (direction == Direction.LEFT || direction == Direction.RIGHT) {
             final int moveValue = direction.getMove();
             horizontalPosition += moveValue;

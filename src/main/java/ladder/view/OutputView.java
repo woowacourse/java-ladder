@@ -79,7 +79,7 @@ public class OutputView {
 
     public void printGameResult(Players players, Gifts gifts, Result result) {
         System.out.println(EXECUTION_RESULT);
-        for (String name : result.getNames()) {
+        for (final String name : result.getNames()) {
             System.out.println(name + DELIMITER + gifts.findNameByPosition(players.findPositionByName(name)));
         }
     }

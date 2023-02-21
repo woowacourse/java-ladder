@@ -9,23 +9,23 @@ public class Gifts {
 
     private final List<Gift> gifts;
 
-    public Gifts(List<String> names, int size) {
+    public Gifts(final List<String> names, final int size) {
         validate(names, size);
         List<Gift> gifts = generateGifts(names);
         this.gifts = gifts;
     }
 
-    private void validate(List<String> names, int size) {
+    private void validate(final List<String> names, final int size) {
         if (isNotEqualsSize(names, size)) {
             throw new IllegalArgumentException(GIFT_NOT_EQUAL_PLAYER_ERROR_MESSAGE);
         }
     }
 
-    private boolean isNotEqualsSize(List<String> names, int size) {
+    private boolean isNotEqualsSize(final List<String> names, final int size) {
         return names.size() != size;
     }
 
-    private List<Gift> generateGifts(List<String> names) {
+    private List<Gift> generateGifts(final List<String> names) {
         return names.stream()
                 .map(Gift::new)
                 .collect(Collectors.toList());
@@ -37,7 +37,7 @@ public class Gifts {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public String findNameByPosition(int position) {
+    public String findNameByPosition(final int position) {
         return gifts.get(position).getName();
     }
 }
