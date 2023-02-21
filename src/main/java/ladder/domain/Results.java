@@ -1,6 +1,8 @@
 package ladder.domain;
 
 import ladder.domain.strategy.linestrategy.Result;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -8,11 +10,11 @@ import java.util.stream.IntStream;
 public class Results {
     private final List<Result> results;
 
-    public Results(List<String> inputResults, int playerCount) {
-        validateCount(inputResults.size(), playerCount);
-        this.results = inputResults.stream()
-                .map(inputResult -> new Result(inputResult))
-                .collect(Collectors.toList());
+    public Results(String[] inputResults, int playerCount) {
+        validateCount(inputResults.length, playerCount);
+        this.results = Arrays.stream(inputResults)
+                .map(Result::new)
+                .collect(Collectors.toList());;
     }
 
     private void validateCount(int resultCount, int playerCount) {

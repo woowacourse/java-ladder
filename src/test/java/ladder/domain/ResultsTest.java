@@ -18,12 +18,12 @@ public class ResultsTest {
     @DisplayName("입력된 결과의 수가 인원 수와 다르면 IllegalArgumentException 예외가 발생한다.")
     void create_mismatchWithPlayerCount() {
         // given
-        List<String> inputResult = List.of("꽝", "꽝", "5,000", "3,000");
+        String[] inputResults = {"꽝", "꽝", "5000", "3000"};
         int playerCount = 3;
 
         // expect
         assertThatIllegalArgumentException().isThrownBy(() ->
-                new Results(inputResult, playerCount)
+                new Results(inputResults, playerCount)
         ).withMessage("[ERROR] 입력된 결과의 수가 인원 수와 다를 수 없습니다.");
     }
 
@@ -31,12 +31,12 @@ public class ResultsTest {
     @DisplayName("입력된 결과가 정상적으로 생성된다.")
     void create_success() {
         // given
-        List<String> inputResult = List.of("O", "X", "X", "X");
+        String[] inputResults = {"O", "X", "X", "X"};
         int playerCount = 4;
 
         // expect
         assertThatNoException().isThrownBy(() ->
-                new Results(inputResult, playerCount)
+                new Results(inputResults, playerCount)
         );
     }
 
@@ -46,7 +46,7 @@ public class ResultsTest {
         // given
         Players players = new Players(new String[]{"a", "b", "c", "d"});
         Ladder ladder = generateLadder(players);
-        List<String> inputResults = List.of("꽝", "성공", "꽝", "성공");
+        String[] inputResults = {"꽝", "성공", "꽝", "성공"};
         Results results = new Results(inputResults, players.getPlayersCount());
 
         // when
@@ -62,7 +62,7 @@ public class ResultsTest {
         // given
         Players players = new Players(new String[]{"a", "b", "c", "d"});
         Ladder ladder = generateLadder(players);
-        List<String> inputResults = List.of("꽝", "성공", "꽝", "성공");
+        String[] inputResults = {"꽝", "성공", "꽝", "성공"};
         Results results = new Results(inputResults, players.getPlayersCount());
 
         // when
