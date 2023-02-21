@@ -93,4 +93,16 @@ class SimpleArrayListTest {
         assertThat(myValues.get(0)).isEqualTo("hi hi 3");
     }
 
+    @Test
+    public void indexOfTest(){
+        SimpleArrayList myValues = new SimpleArrayList();
+
+        myValues.add("first");
+        myValues.add("first");
+        myValues.add("third");
+
+        assertThat(myValues.indexOf("first")).isEqualTo(0);
+        assertThat(myValues.indexOf("이건없지롱")).isEqualTo(-1);
+    }
+
 }
