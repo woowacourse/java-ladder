@@ -11,10 +11,10 @@ import java.util.List;
  */
 public class Application {
     public static void main(String[] args) {
-        List<String> names = InputView.getPersonName();
+        List<String> names = InputView.inputPersonName();
         LadderGame ladderGame = new LadderGame();
         Person person = ladderGame.createPerson(names);
-        int ladderHeight = InputView.getLadderHeight();
+        int ladderHeight = InputView.inputLadderHeight();
 
         Lines lines = ladderGame.createLines(person.getPerson().size(), ladderHeight);
         OutputView.printResult(person, lines);
