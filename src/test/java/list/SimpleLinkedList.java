@@ -36,7 +36,30 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
-
+        checkIndexOutOfBounds(index);
+        if (size == index) {
+            add(value);
+            return;
+        }
+        if (index == 0) {
+            Node node = new Node(value);
+            head.previous = node;
+            node.next = head;
+            head = node;
+            size++;
+            return;
+        }
+        Node node = head;
+        for (int i = 1; i < index; i++) {
+            node = head.next;
+        }
+        Node newNode = new Node(value);
+        Node previous = node.previous;
+        previous.next = newNode;
+        node.previous = newNode;
+        newNode.previous = previous;
+        newNode.next = node;
+        size++;
     }
 
     @Override
@@ -91,5 +114,11 @@ public class SimpleLinkedList implements SimpleList {
             node = node.next;
         }
         System.out.println();
+    }
+
+    private void checkIndexOutOfBounds(int index) {
+        if (index >= size) {
+            throw new RuntimeException();
+        }
     }
 }
