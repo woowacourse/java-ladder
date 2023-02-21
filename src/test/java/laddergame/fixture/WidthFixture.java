@@ -3,10 +3,6 @@ package laddergame.fixture;
 import laddergame.domain.Width;
 
 public abstract class WidthFixture {
-    public static Width createWidthValue1() {
-        return new Width(1);
-    }
-
     public static Width createWidthValue2() {
         return new Width(2);
     }
