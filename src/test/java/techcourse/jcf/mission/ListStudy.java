@@ -23,5 +23,6 @@ public class ListStudy {
         assertThat(values.size()).isEqualTo(2); // 값이 삭제 됐는지 확인한다.
 
         // TODO values에 담긴 모든 값을 출력한다.
+        System.out.println("values = " + values);
     }
 }
