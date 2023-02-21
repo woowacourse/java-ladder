@@ -1,5 +1,7 @@
 package techcourse.jcf.mission;
 
+import java.util.Objects;
+
 public class SimpleArrayList implements SimpleList {
 
     private String[] arr;
@@ -78,7 +80,12 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public int indexOf(String value) {
-        return 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (Objects.equals(arr[i], value)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override

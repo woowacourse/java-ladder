@@ -87,11 +87,41 @@ class SimpleArrayListTest {
     }
 
     @Test
+    @DisplayName("get 메소드로 size보다 큰 index를 전달하면 예외를 발생한다.")
+    void getFailureTest() {
+        String expected = "first";
+        simpleArrayList.add(expected);
+
+        assertThatThrownBy(() -> simpleArrayList.get(1))
+                .isInstanceOf(ArrayIndexOutOfBoundsException.class);
+    }
+
+    @Test
     void contains() {
     }
 
     @Test
+    @DisplayName("indexOf 메서드에 value를 전달하면, 해당 value의 인덱스를 반환한다.")
     void indexOf() {
+        simpleArrayList.add("first");
+        simpleArrayList.add("second");
+        simpleArrayList.add("third");
+
+        int index = simpleArrayList.indexOf("second");
+
+        assertThat(index).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("indexOf 메서드에 전달된 value가 존재하지 않으면 -1을 반환한다")
+    void indexOfFailureTest() {
+        simpleArrayList.add("first");
+        simpleArrayList.add("second");
+        simpleArrayList.add("third");
+
+        int index = simpleArrayList.indexOf("fourth");
+
+        assertThat(index).isEqualTo(-1);
     }
 
 
@@ -110,7 +140,33 @@ class SimpleArrayListTest {
     }
 
     @Test
-    void remove() {
+    @DisplayName("remove에 value를 전달하면, 해당 value가 지워진다.")
+    void removeValueTest() {
+//        simpleArrayList.add("first");
+//        simpleArrayList.add("second");
+//        simpleArrayList.add("third");
+//
+//        simpleArrayList.remove("second");
+//
+//        assertAll(() -> assertThat(simpleArrayList.size()).isEqualTo(2)
+//                , () -> assertThatThrownBy(() -> simpleArrayList.get(2))
+//                        .isInstanceOf(ArrayIndexOutOfBoundsException.class)
+//        );
+    }
+
+    @Test
+    @DisplayName("remove에 index 전달하면, 해당 value가 지워진다.")
+    void removeIndexTest() {
+//        simpleArrayList.add("first");
+//        simpleArrayList.add("second");
+//        simpleArrayList.add("third");
+//
+//        simpleArrayList.remove("second");
+//
+//        assertAll(() -> assertThat(simpleArrayList.size()).isEqualTo(2)
+//                , () -> assertThatThrownBy(() -> simpleArrayList.get(2))
+//                        .isInstanceOf(ArrayIndexOutOfBoundsException.class)
+//        );
     }
 
     @Test
