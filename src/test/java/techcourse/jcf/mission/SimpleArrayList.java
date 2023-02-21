@@ -14,7 +14,9 @@ public class SimpleArrayList implements SimpleList{
 
     @Override
     public boolean add(String value) {
-        return false;
+        arr[size] = value;
+        size += 1;
+        return true;
     }
 
     @Override
