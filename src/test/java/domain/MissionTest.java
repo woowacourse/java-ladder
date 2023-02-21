@@ -27,4 +27,12 @@ class MissionTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Mission("다섯글자이상"));
     }
+
+    @Test
+    void 공백으로_생성시_예외_처리() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Mission(""));
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Mission(" "));
+    }
 }
