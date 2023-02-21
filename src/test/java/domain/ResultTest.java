@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import controller.LadderGameController;
+import domain.game.Results;
 import domain.user.User;
 import domain.user.Users;
 import java.util.HashMap;

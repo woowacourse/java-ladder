@@ -1,4 +1,4 @@
-package domain;
+package domain.game;
 
 import static view.InputView.RESULT_LENGTH_ERROR;
 

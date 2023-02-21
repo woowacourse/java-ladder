@@ -1,7 +1,7 @@
 package view;
 
 import controller.LadderGameController;
-import domain.Results;
+import domain.game.Results;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.ladder.PointStatus;
@@ -36,22 +36,22 @@ public class OutputView {
         System.out.println(OUTPUT_EXECUTE_MESSAGE);
         System.out.println(" " + users.getUserNames()
                 .stream()
-                .map(this::convertName)
+                .map(this::convertBlankString)
                 .collect(Collectors.joining(NAME_DELIMITER)));
     }
 
     public void printResults(Results results) {
         System.out.println(" " + results.getResults()
                 .stream()
-                .map(this::convertName)
+                .map(this::convertBlankString)
                 .collect(Collectors.joining(NAME_DELIMITER)));
     }
 
-    public String convertName(String name) {
-        if (name.length() == User.MAX_NAME_LENGTH) {
-            return name;
+    public String convertBlankString(String word) {
+        if (word.length() == User.MAX_NAME_LENGTH) {
+            return word;
         }
-        return insertBlank(name);
+        return insertBlank(word);
     }
 
     private String insertBlank(String name) {

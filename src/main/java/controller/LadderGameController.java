@@ -1,7 +1,7 @@
 package controller;
 
-import domain.Game;
-import domain.Results;
+import domain.game.Game;
+import domain.game.Results;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.user.User;
@@ -35,14 +35,22 @@ public class LadderGameController {
     }
 
     public void run() {
+        printGameSet();
+        Map<String, String> resultMap = playGame();
+        String findUser = findResultByUser(resultMap, findUserResult());
+        outputView.printResultByUser(resultMap, findUser, users.getUserNames());
+    }
+
+    private Map<String, String> playGame() {
+        Game game = new Game(users.getUserNames(), ladder.getLines());
+        game.executeGame();
+        return game.getLadderResult(results);
+    }
+
+    private void printGameSet() {
         outputView.printUserNames(users);
         outputView.printLadder(ladder);
         outputView.printResults(results);
-        Game game = new Game(users.getUserNames(), ladder.getLines());
-        game.executeGame();
-        Map<String, String> resultMap = game.getLadderResult(results);
-        String findUser = findResultByUser(resultMap, findUserResult());
-        outputView.printResultByUser(resultMap, findUser, users.getUserNames());
     }
 
     public static String findResultByUser(Map<String, String> resultMap, String findUser) {

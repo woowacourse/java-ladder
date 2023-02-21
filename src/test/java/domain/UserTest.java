@@ -91,7 +91,7 @@ class UserTest {
         @CsvSource(value = {"i:   i ", "am:  am ", "fun: fun ", "dino:dino ", "mango:mango"}, delimiter = ':', ignoreLeadingAndTrailingWhitespace = false)
         void shouldSuccessConvertNames(String name, String expected) {
             OutputView outputView = new OutputView();
-            assertThat(outputView.convertName(name)).isEqualTo(expected);
+            assertThat(outputView.convertBlankString(name)).isEqualTo(expected);
         }
     }
 }

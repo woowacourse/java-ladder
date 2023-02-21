@@ -15,12 +15,12 @@ public class Line {
         List<Boolean> points = new ArrayList<>();
         points.add(false);
         for (int i = 1; i < personCount; i++) {
-            points.add(isContinuousTrue(points, i, randomNumberGenerator));
+            points.add(isContinuousPoint(points, i, randomNumberGenerator));
         }
         return points;
     }
 
-    private boolean isContinuousTrue(List<Boolean> points, int index, RandomNumberGenerator randomNumberGenerator) {
+    private boolean isContinuousPoint(List<Boolean> points, int index, RandomNumberGenerator randomNumberGenerator) {
         if (points.get(index - 1)) {
             return false;
         }
