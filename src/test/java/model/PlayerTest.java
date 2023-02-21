@@ -6,6 +6,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.assertj.core.api.Assertions;
 
+/**
+ * 사다리 게임 참여자 정보를 가지는 클래스.
+ * 원시타입 데이터의 getter는 테스트하지 않는다.
+ */
 public class PlayerTest {
     @Test
     @DisplayName("Player 객체 생성 성공 테스트")
@@ -14,16 +18,16 @@ public class PlayerTest {
     }
 
     @Test
-    @DisplayName("참여자의 이름 정보를 조회할 수 있는 기능 테스트")
-    void getPlayerNameTest() {
+    @DisplayName("참여자의 이름 정보가 일치하는지 확인할 수 있는 기능 테스트")
+    void isPlayerNameTest() {
         //given
         Player player = new Player(new Name("pobi"));
 
         //when
-        String result = player.getName();
+        boolean result = player.isPlayerName(new Name("pobi"));
 
         //then
-        assertThat(result).isEqualTo("pobi");
+        assertThat(result).isEqualTo(true);
     }
 
     @Test
