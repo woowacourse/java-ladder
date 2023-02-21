@@ -33,7 +33,7 @@ public class LadderGameApplication {
         List<String> ladderResults = retryIfError(inputView::readLadderResults);
 
         Ladder ladder = ladderGenerator.generate(players.size(), ladderHeight, ladderResults);
-        outputView.printResult(players, ladder);
+        outputView.printLadder(players, ladder);
 
         Player findPlayer = players.findSpecificNamePlayer(inputView.readSpecificResult());
         String result = ladder.play(findPlayer.getPosition());
