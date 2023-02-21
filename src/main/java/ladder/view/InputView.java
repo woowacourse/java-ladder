@@ -7,12 +7,14 @@ import java.util.stream.Collectors;
 
 public class InputView implements Input{
 
+    private static final String INPUT_REWARDS_MESSAGE = "실행 결과를 입력하세요.";
     private static final String INPUT_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String INPUT_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String DELIMITER = ",";
 
     private static final Scanner sc = new Scanner(System.in);
 
+    @Override
     public List<String> inputPlayerNames() {
         System.out.println(INPUT_NAMES_MESSAGE);
         String input = sc.nextLine();
@@ -21,6 +23,7 @@ public class InputView implements Input{
         return splitInputByDelimiter(input);
     }
 
+    @Override
     public int inputHeightOfLadder() {
         System.out.println(INPUT_HEIGHT_MESSAGE);
         try {
@@ -31,6 +34,15 @@ public class InputView implements Input{
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자를 입력하세요.");
         }
+    }
+
+    @Override
+    public List<String> inputRewards() {
+        System.out.println(INPUT_REWARDS_MESSAGE);
+        String input = sc.nextLine();
+        validateNull(input);
+
+        return splitInputByDelimiter(input);
     }
 
     private List<String> splitInputByDelimiter(String input) {
@@ -44,6 +56,5 @@ public class InputView implements Input{
             throw new IllegalArgumentException("값을 입력해주세요.");
         }
     }
-
 
 }

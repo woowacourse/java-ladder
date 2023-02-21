@@ -8,4 +8,5 @@ public interface Input {
 
     int inputHeightOfLadder();
 
+    List<String> inputRewards();
 }
