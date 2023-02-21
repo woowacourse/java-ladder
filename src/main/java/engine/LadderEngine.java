@@ -1,5 +1,12 @@
 package engine;
 
+import static view.InputView.inputSearchTarget;
+import static view.InputView.inputMaxLadderHeight;
+import static view.InputView.inputNames;
+import static view.InputView.inputPrizes;
+import static view.OutputView.printLadder;
+import static view.OutputView.printResults;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,19 +27,16 @@ public class LadderEngine {
     public void start() {
         Ladder ladder = IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
             Participants participants = gatherParticipants();
-            List<String> prizes = InputView.inputPrizes();
-            int height = InputView.inputMaxLadderHeight();
-            List<Line> lines = makeLines(participants.count(), height);
-            return new Ladder(participants, lines, prizes);
+            List<Line> lines = makeLines(participants.count(), inputMaxLadderHeight());
+            return new Ladder(participants, lines, inputPrizes());
         });
-
-        OutputView.printLadder(ladder);
+        printLadder(ladder);
         queryPrizes(ladder);
     }
 
     private Participants gatherParticipants() {
         return IllegalArgumentExceptionHandler.handleExceptionByRepeating(
-                () -> createParticipantsWith(InputView.inputNames())
+                () -> createParticipantsWith(inputNames())
         );
     }
 
