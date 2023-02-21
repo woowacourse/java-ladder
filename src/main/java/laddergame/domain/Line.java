@@ -28,4 +28,11 @@ public class Line {
     public List<Boolean> getRungExistsAtEachColumn() {
         return rungExistsAtEachColumn;
     }
+
+    public boolean doesRungExistsIndexOf(int index) {
+        if (index < 0 || index >= rungExistsAtEachColumn.size()) {
+            throw new IllegalArgumentException("인덱스가 라인의 길이를 벗어납니다.");
+        }
+        return rungExistsAtEachColumn.get(index);
+    }
 }

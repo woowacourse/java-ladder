@@ -1,12 +1,14 @@
 package laddergame.domain;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import java.util.List;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("라인")
 class LineTest {
@@ -41,7 +43,7 @@ class LineTest {
         given = List.of();
         //when
         //then
-        assertThatThrownBy(()->new Line(given));
+        assertThatThrownBy(() -> new Line(given));
     }
 
     @DisplayName("가로 라인이 겹치면 예외가 발생한다.")
@@ -51,6 +53,30 @@ class LineTest {
         given = List.of(true, true, false);
         //when
         //then
-        assertThatThrownBy(()-> new Line(given));
+        assertThatThrownBy(() -> new Line(given));
+    }
+
+    @DisplayName("인덱스로 rungExistsAtColumn 의 원소를 가져올 수 있다.")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2})
+    void success(int index) {
+        //given
+        List<Boolean> values = List.of(true, false, true);
+        Line line = new Line(values);
+        //when
+        boolean value = line.doesRungExistsIndexOf(index);
+        Assertions.assertThat(value).isEqualTo(values.get(index));
+    }
+
+    @DisplayName("인덱스가 범위를 벗어날 경우 예외를 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 4, 100})
+    void throwExceptionWhenIndexOutOfRange(int index) {
+        //given
+        List<Boolean> values = List.of(true, false, true);
+        Line line = new Line(values);
+        //when
+        assertThatThrownBy(() -> line.doesRungExistsIndexOf(index))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

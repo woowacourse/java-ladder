@@ -79,6 +79,7 @@ class LadderTest {
         //when,then
         assertThatThrownBy(() -> new Ladder(WIDTH_VALUE_2, HEIGHT_VALUE_1, generator));
     }
+
     @DisplayName("라인 사이즈는 세로 길이와 같다.")
     @Test
     void returnsLinesSizeIsHeight() {
