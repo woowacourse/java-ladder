@@ -89,12 +89,21 @@ public class SimpleArrayList implements SimpleList {
         for (int i = index + 1; i < size; i++) {
             data[i - 1] = data[i];
         }
+        size--;
+        data[size] = null;
         return true;
     }
 
     @Override
     public String remove(int index) {
-        return null;
+        checkIndexOutOfBounds(index);
+        String value = data[index];
+        for (int i = index + 1; i < size; i++) {
+            data[i - 1] = data[i];
+        }
+        size--;
+        data[size] = null;
+        return value;
     }
 
     @Override
