@@ -7,6 +7,7 @@ import ladder.domain.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class NameTest {
@@ -34,6 +35,7 @@ class NameTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " "})
     @DisplayName("공백을 넣으면 예외를 발생한다")
+    @NullSource
     void shouldThrowExceptionWhenBlank(String input) {
         //given
         //when
