@@ -14,6 +14,7 @@ public class InputView {
     private static final String READ_GIFT_NAMES_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String READ_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String NUMBER_FORMAT_ERROR_MESSAGE = "사다리 높이는 숫자만 입력 가능합니다. 현재 입력은 {0} 입니다.";
+    private static final String READ_RESULT_COMMAND_MESSAGE = "결과를 보고 싶은 사람은?";
 
     private final Scanner scanner;
 
@@ -50,5 +51,10 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(MessageFormat.format(NUMBER_FORMAT_ERROR_MESSAGE, input));
         }
+    }
+
+    public String readResultCommand() {
+        System.out.println(READ_RESULT_COMMAND_MESSAGE);
+        return scanner.nextLine();
     }
 }
