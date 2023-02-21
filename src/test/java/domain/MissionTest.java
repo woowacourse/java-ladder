@@ -32,6 +32,7 @@ class MissionTest {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> new Mission("다섯글자이상"));
         }
+<<<<<<< HEAD
 
         @ParameterizedTest
         @ValueSource(strings = {"", " "})
@@ -54,18 +55,14 @@ class MissionTest {
             assertThat(mission1).isNotEqualTo(mission3);
         }
     }
+=======
+>>>>>>> 20be3d3 (refactor(Mission): 미션 생성 리팩터링)
 
-    @Test
-    void 미션_글자수가_5글자_초과이면_예외_처리() {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Mission("다섯글자이상"));
-    }
-
-    @Test
-    void 공백으로_생성시_예외_처리() {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Mission(""));
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Mission(" "));
+        @ParameterizedTest
+        @ValueSource(strings = {"", " "})
+        void 공백으로_생성시_예외_처리(String input) {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> new Mission(input));
+        }
     }
 }
