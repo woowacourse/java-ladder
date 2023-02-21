@@ -7,12 +7,11 @@ import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RandomGeneratorTest {
+public class RandomBooleanGeneratorTest {
     @DisplayName("커스텀 랜덤생성기가 정상적으로 동작하는지 테스트합니다.")
     @Test
     void generateRandomNumbers() {
-        Queue<Boolean> randomNumber = new LinkedList<>();
-        Arrays.asList(true, false, false, true, false, false).forEach(randomNumber::add);
+        Queue<Boolean> randomNumber = new LinkedList<>(Arrays.asList(true, false, false, true, false, false));
         BooleanGenerator customRandomGenerator = new CustomRandomGenerator(randomNumber);
 
         List<Boolean> result = new ArrayList<>();
