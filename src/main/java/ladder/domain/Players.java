@@ -1,9 +1,9 @@
 package ladder.domain;
 
-import java.util.List;
-
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toUnmodifiableList;
+
+import java.util.List;
 
 public class Players {
     private static final int PLAYERS_SIZE_LOWER_BOUND_INCLUSIVE = 2;

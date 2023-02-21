@@ -1,20 +1,23 @@
 package ladder.controller;
 
-import ladder.domain.*;
+import java.util.List;
+import ladder.domain.Height;
+import ladder.domain.Ladder;
+import ladder.domain.Players;
+import ladder.domain.RandomLadderGenerator;
+import ladder.domain.Width;
 import ladder.view.InputView;
 import ladder.view.ResultView;
-
-import java.util.List;
 
 public class LadderGame {
     private final InputView inputView;
     private final ResultView resultView;
-    private final RandomRowsGenerator randomRowsGenerator;
+    private final RandomLadderGenerator randomLadderGenerator;
 
-    public LadderGame(InputView inputView, ResultView resultView, RandomRowsGenerator randomRowsGenerator) {
+    public LadderGame(InputView inputView, ResultView resultView, RandomLadderGenerator randomLadderGenerator) {
         this.inputView = inputView;
         this.resultView = resultView;
-        this.randomRowsGenerator = randomRowsGenerator;
+        this.randomLadderGenerator = randomLadderGenerator;
     }
 
     public void run() {
@@ -37,10 +40,10 @@ public class LadderGame {
     private Ladder makeLadder(int playersSize) {
         Height height = new Height(inputView.inputHeight());
         Width width = new Width(getWidthSize(playersSize));
-        return randomRowsGenerator.generateRows(width, height);
+        return randomLadderGenerator.generateRows(width, height);
     }
 
-    private int getWidthSize(int playersSize){
+    private int getWidthSize(int playersSize) {
         return playersSize - 1;
     }
 

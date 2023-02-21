@@ -39,20 +39,20 @@ public class Row {
                 && row.get(position + 1) == Step.Y;
     }
 
-    public boolean isStepPossible(int index){
+    public boolean isStepPossible(int index) {
         int leftIndex = index - 1;
         int rightIndex = index + 1;
-        if(isStepExist(leftIndex) || isStepExist(rightIndex)){
+        if (isStepExist(leftIndex) || isStepExist(rightIndex)) {
             return false;
         }
         return true;
     }
 
-    private boolean isStepExist(int index){
-        if(index < MIN_INDEX || index >= row.size()){
+    private boolean isStepExist(int index) {
+        if (index < MIN_INDEX || index >= row.size()) {
             return false;
         }
-        if(row.get(index).equals(Step.N)){
+        if (row.get(index).equals(Step.N)) {
             return false;
         }
         return true;

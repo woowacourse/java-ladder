@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomRowsGenerator {
+public class RandomLadderGenerator {
     private static final Random random = new Random();
 
     public Ladder generateRows(Width width, Height height) {

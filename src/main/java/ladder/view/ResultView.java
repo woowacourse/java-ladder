@@ -1,10 +1,9 @@
 package ladder.view;
 
-import ladder.domain.Step;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import ladder.domain.Row;
+import ladder.domain.Step;
 
 public class ResultView {
     private static final String ERROR_MESSAGE_HEADER = "[ERROR] ";

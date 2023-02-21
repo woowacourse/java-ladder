@@ -2,8 +2,6 @@ package ladder.domain;
 
 import java.util.List;
 
-import static java.util.stream.Collectors.toUnmodifiableList;
-
 public class Ladder {
     private final List<Row> ladder;
 

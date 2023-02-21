@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 public class ResultViewTest {
     private final ResultView resultView = new ResultView();
+
     static Stream<Arguments> 사다리_가로줄_출력_데이터() {
         return Stream.of(
                 Arguments.of(List.of(Step.N, Step.Y), "     |     |-----|"),
