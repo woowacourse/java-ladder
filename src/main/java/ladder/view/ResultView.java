@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.ConnectionStatus;
 import ladder.domain.Line;
+import ladder.domain.ResultDto;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -16,6 +17,7 @@ public class ResultView {
     private static final String CONNECTED_MARKER = "-----";
     private static final String DISCONNECTED_MARKER = "     ";
     private static final String RESULT_DELIMITER = " ";
+    private static final String GAME_RESULT_DELIMITER = " : ";
 
     private static final String EXECUTION_MESSAGE = System.lineSeparator() + "사다리 결과" + System.lineSeparator();
 
@@ -69,5 +71,28 @@ public class ResultView {
             ExecutionResult.add(formatWithSpace(result));
         }
         System.out.println(ExecutionResult);
+    }
+
+    public static void printGameResult(ResultDto resultDto) {
+        if(resultDto.getPlayerNames().size() == 1) {
+            printOnePlayerGameResult(resultDto);
+            return;
+        }
+        printManyPlayersGameResult(resultDto);
+    }
+
+    private static void printManyPlayersGameResult(ResultDto resultDto) {
+        StringBuilder gameResult = new StringBuilder();
+        for(int index = 0; index < resultDto.getPlayerNames().size(); index++) {
+            StringJoiner eachGameResult = new StringJoiner(GAME_RESULT_DELIMITER);
+            eachGameResult.add(resultDto.getPlayerNames().get(index));
+            eachGameResult.add(resultDto.getGameResult().get(index));
+            gameResult.append(eachGameResult + System.lineSeparator());
+        }
+        System.out.print(gameResult);
+    }
+
+    private static void printOnePlayerGameResult(ResultDto resultDto) {
+        System.out.println(resultDto.getGameResult().get(0));
     }
 }
