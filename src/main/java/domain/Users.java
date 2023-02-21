@@ -2,6 +2,7 @@ package domain;
 
 import exception.ErrorMessage;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,5 +48,10 @@ public class Users {
     public int getIndexByUserName(final String userName) {
         validateParticipateUser(userName);
         return users.indexOf(new User(userName));
+    }
+
+    public void swapUserByLine(final Line line) {
+        final List<Integer> linkedIndexes = line.getLinkedIndexes();
+        linkedIndexes.forEach(index -> Collections.swap(users, index, index + 1));
     }
 }

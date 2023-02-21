@@ -57,4 +57,16 @@ class UsersTest {
         assertThat(users.getIndexByUserName("다니"))
                 .isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("line을 순회하면서 Link가 되어있는 경우, 유저의 위치를 swap")
+    void swapUserByLine() {
+        final Users users = new Users(testUserNames);
+        final Line line = new Line(List.of(Link.LINKED, Link.UNLINKED));
+
+        users.swapUserByLine(line);
+
+        assertThat(users.getUserNames())
+                .containsExactly("홍실", "썬샷", "다니");
+    }
 }
