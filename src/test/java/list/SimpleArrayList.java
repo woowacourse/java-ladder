@@ -26,7 +26,14 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
-
+        if (capacity == size) {
+            expandCapacity();
+        }
+        for (int i = index; i < size; i++) {
+            data[i + 1] = data[i];
+        }
+        data[index] = value;
+        size++;
     }
 
     @Override
