@@ -1,7 +1,5 @@
 package domain.player;
 
-import utils.ErrorMessage;
-
 public class Name {
 
     private static final int MIN_NAME_LENGTH = 1;
@@ -22,13 +20,13 @@ public class Name {
 
     private void validateLength(String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessage.NAME_LENGTH_ERROR.getMessage());
+            throw new IllegalArgumentException("참가자 이름의 길이는 1이상 5이하만 가능합니다.");
         }
     }
 
     private void validateSpace(String name) {
         if (name.contains(SPACE)) {
-            throw new IllegalArgumentException(ErrorMessage.NAME_FORMAT_ERROR.getMessage());
+            throw new IllegalArgumentException("참가자 이름에는 공백이 들어갈 수 없습니다.");
         }
     }
 

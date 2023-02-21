@@ -1,7 +1,5 @@
 package domain.player;
 
-import utils.ErrorMessage;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -31,13 +29,13 @@ public class Players {
         Set<String> uniqueNames = new HashSet<>(playersName);
 
         if (uniqueNames.size() != playersName.size()) {
-            throw new IllegalArgumentException(ErrorMessage.PLAYER_DUPLICATE_ERROR.getMessage());
+            throw new IllegalArgumentException("게임 참여자의 이름은 중복될 수 없습니다.");
         }
     }
 
     private void validateSize(List<String> playersName) {
         if (playersName.size() < MIN_PLAYER_SIZE || playersName.size() > MAX_PLAYER_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.PLAYER_SIZE_ERROR.getMessage());
+            throw new IllegalArgumentException("게임 참여자 수는 최소 2명 최대 50명까지 가능합니다.");
         }
     }
 

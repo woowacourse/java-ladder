@@ -7,7 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import utils.ErrorMessage;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,7 +35,7 @@ public class LineTest {
         booleanGenerator = new MockBooleanGenerator(createRandomFlag(personCount));
         assertThatThrownBy(() -> new Line(personCount, booleanGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.PLAYER_SIZE_ERROR.getMessage());
+                .hasMessageContaining("게임 참여자 수는 최소 2명 최대 50명까지 가능합니다.");
     }
 
     @ParameterizedTest
