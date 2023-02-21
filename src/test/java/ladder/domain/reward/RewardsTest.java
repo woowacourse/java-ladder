@@ -46,7 +46,7 @@ public class RewardsTest {
         int playerCount = 4;
         List<String> inputRewards = List.of("꽝", "3000", "꽝", "5000");
         Rewards rewards = Rewards.create(inputRewards, playerCount);
-        assertThat(rewards.getRewards().size()).isEqualsTo(inputRewards.size());
+        assertThat(rewards.getRewards().size()).isEqualTo(inputRewards.size());
     }
 
 }
