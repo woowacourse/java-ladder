@@ -7,38 +7,38 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(List<Point> points) {
+    public Line(final List<Point> points) {
         this.points = points;
     }
 
-    public int move(int index) {
-        Point leftPoint = getLeftPoint(index);
-        if (leftPoint != null && leftPoint.isConnected()) {
+    public int move(final int index) {
+        if (hasLeft(index)) {
             return index - 1;
         }
 
-        Point rightPoint = getRightPoint(index);
-        if (rightPoint != null && rightPoint.isConnected()) {
+        if (hasRight(index)) {
             return index + 1;
         }
 
         return index;
     }
 
-    private Point getLeftPoint(int index) {
+    private boolean hasLeft(final int index) {
         if (index == 0) {
-            return null;
+            return false;
         }
 
-        return points.get(index - 1);
+        Point leftPoint = points.get(index - 1);
+        return leftPoint.isConnected();
     }
 
-    private Point getRightPoint(int index) {
+    private boolean hasRight(final int index) {
         if (index == points.size()) {
-            return null;
+            return false;
         }
 
-        return points.get(index);
+        Point rightPoint = points.get(index);
+        return rightPoint.isConnected();
     }
 
     public List<Point> getPoints() {
