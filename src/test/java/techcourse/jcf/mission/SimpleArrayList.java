@@ -1,5 +1,10 @@
 package techcourse.jcf.mission;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 public class SimpleArrayList implements SimpleList {
 
     private String[] array;
@@ -40,8 +45,9 @@ public class SimpleArrayList implements SimpleList {
     @Override
     public String set(int index, String value) {
         validateIndex(index);
+        String indexValue = array[index];
         array[index] = value;
-        return value;
+        return indexValue;
     }
 
     @Override
@@ -100,7 +106,7 @@ public class SimpleArrayList implements SimpleList {
             array[i - 1] = array[i];
         }
 
-        array[--pointer] = "";
+        array[--pointer] = null;
         return true;
     }
 
@@ -113,7 +119,7 @@ public class SimpleArrayList implements SimpleList {
             array[i - 1] = array[i];
         }
 
-        array[--pointer] = "";
+        array[--pointer] = null;
         return removeValue;
     }
 
@@ -127,5 +133,12 @@ public class SimpleArrayList implements SimpleList {
     public void clear() {
         array = new String[1];
         pointer = 0;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%s]", Arrays.stream(array)
+                .filter(Objects::nonNull)
+                .collect(Collectors.joining(", ")));
     }
 }
