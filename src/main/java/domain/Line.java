@@ -27,36 +27,38 @@ public class Line {
         }
     }
 
-    public Position findPositionAfter(final Position currentPosition) {
-        if (getLeftBridgeFrom(currentPosition).doesExist()) {
-            return currentPosition.left();
+    public Position moveFrom(final Position currentPosition) {
+        Direction nextDirection = getNextDirectionFrom(currentPosition);
+        return currentPosition.moveTo(nextDirection);
+    }
+
+    private Direction getNextDirectionFrom(final Position position) {
+        if (getLeftBridgeFrom(position).doesExist()) {
+            return Direction.LEFT;
         }
-        if (getRightBridgeFrom(currentPosition).doesExist()) {
-            return currentPosition.right();
+        if (getRightBridgeFrom(position).doesExist()) {
+            return Direction.RIGHT;
         }
-        return currentPosition;
+        return Direction.STAY;
     }
 
     private Bridge getLeftBridgeFrom(Position position) {
-        if (isValid(position.left())) {
-            return getBridgeAt(position.left());
-        }
-        return Bridge.EMPTY;
+        return getBridgeAt(position.left());
     }
 
     private Bridge getRightBridgeFrom(Position position) {
-        if (isValid(position.right())) {
-            return getBridgeAt(position);
+        return getBridgeAt(position);
+    }
+
+    private Bridge getBridgeAt(Position position) {
+        if (isInLine(position)) {
+            return bridges.get(position.getPosition());
         }
         return Bridge.EMPTY;
     }
 
-    private boolean isValid(Position position) {
+    private boolean isInLine(Position position) {
         return position.isInBetween(0, bridges.size());
-    }
-
-    private Bridge getBridgeAt(Position position) {
-        return bridges.get(position.getPosition());
     }
 
     public List<Bridge> getBridges() {

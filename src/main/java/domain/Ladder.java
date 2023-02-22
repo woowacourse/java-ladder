@@ -28,8 +28,12 @@ public class Ladder {
     public String findPrizeFor(String participantName) {
         Position position = participants.findStartPositionOf(participantName);
         for (Line line : lines) {
-            position = line.findPositionAfter(position);
+            position = line.moveFrom(position);
         }
+        return getPrizeAt(position);
+    }
+
+    private String getPrizeAt(Position position) {
         return prizes.get(position.getPosition());
     }
 
