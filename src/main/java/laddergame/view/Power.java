@@ -14,8 +14,8 @@ public enum Power {
     }
 
     public static String printPowerMsg() {
-        return String.format("결과를 다시 보려면 %s, 게임을 다시 하려면 %s, 게임을 끝내려면 %s를 입력하세요.", PRINT.value, RE_GAME.value,
-            QUIT.value);
+        return String.format("결과를 다시 보려면 %s, 게임을 다시 하려면 %s, 게임을 끝내려면 %s를 입력하세요."
+            , PRINT.value, RE_GAME.value, QUIT.value);
     }
 
     public static Power validate(String input) {
@@ -23,18 +23,16 @@ public enum Power {
             .filter(power -> power.value.equalsIgnoreCase(input))
             .findAny()
             .orElseThrow(() -> new IllegalArgumentException(getErrorPowerMsg()));
-
     }
 
-    public String getValue() {
-        return value;
-    }
-
-    public static String getErrorPowerMsg() {
+    private static String getErrorPowerMsg() {
         List<String> values = Arrays.stream(Power.values())
             .map(Power::getValue)
             .collect(Collectors.toList());
         return String.join(",", values) + " 만 입력해주세요";
     }
 
+    private String getValue() {
+        return value;
+    }
 }

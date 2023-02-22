@@ -17,6 +17,13 @@ public class InputView {
 
     private final Scanner scanner = new Scanner(System.in);
 
+    public List<String> readParticipants() {
+        System.out.println(READ_PERSON_NAMES_MSG);
+        String input = scanner.nextLine();
+        validateIsBlank(input);
+        return List.of(input.split(DELIMITER));
+    }
+
     private void validateIsBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(ERROR_BLANK);
@@ -27,8 +34,8 @@ public class InputView {
         System.out.println(ERROR_PREFIX + errorMessage);
     }
 
-    public List<String> readParticipants() {
-        System.out.println(READ_PERSON_NAMES_MSG);
+    public List<String> readRewards() {
+        System.out.println(READ_EXECUTION_RESULTS_NAMES_MSG);
         String input = scanner.nextLine();
         validateIsBlank(input);
         return List.of(input.split(DELIMITER));
@@ -42,13 +49,6 @@ public class InputView {
             System.out.println(ERROR_PREFIX + ERROR_HEIGHT_IS_NOT_NUMBER);
             return readLadderHeight();
         }
-    }
-
-    public List<String> readExecutionResults() {
-        System.out.println(READ_EXECUTION_RESULTS_NAMES_MSG);
-        String input = scanner.nextLine();
-        validateIsBlank(input);
-        return List.of(input.split(DELIMITER));
     }
 
     public String readParticipantWantToSee() {

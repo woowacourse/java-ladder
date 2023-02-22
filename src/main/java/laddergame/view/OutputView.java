@@ -36,7 +36,7 @@ public class OutputView {
     }
 
     private void printExecutionResults(Rewards rewards) {
-        rewards.getResultNames()
+        rewards.getRewardNames()
             .forEach(resultName -> System.out.printf("%6s", resultName.getName()));
         System.out.println();
     }

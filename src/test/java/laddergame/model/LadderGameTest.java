@@ -41,11 +41,10 @@ class LadderGameTest {
         List<Line> lines = new ArrayList<>();
         lines.add(new Line(List.of(true, false)));
         lines.add(new Line(List.of(false, true)));
-        Ladder ladder = new Ladder(height, participants, lines);
+        Ladder ladder = new Ladder(height, lines);
         Rewards rewards = new Rewards(List.of("꽝", "1000", "2000"), participants);
         LadderGame ladderGame = new LadderGame(ladder, rewards, participants);
 
         assertThat(ladderGame.getReward(input)).isEqualTo(expected);
     }
-
 }

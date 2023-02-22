@@ -11,7 +11,7 @@ public class Rewards {
 
     public Rewards(List<String> results, Participants participants) {
         validateSize(results, participants.getNumber());
-        this.rewards = convertToResultNames(results);
+        this.rewards = convertToRewardNames(results);
     }
 
     private static void validateSize(List<String> results, int participantsCount) {
@@ -20,17 +20,17 @@ public class Rewards {
         }
     }
 
-    private List<Reward> convertToResultNames(List<String> results) {
+    private List<Reward> convertToRewardNames(List<String> results) {
         return results.stream()
             .map(Reward::new)
             .collect(Collectors.toList());
     }
 
-    public List<Reward> getResultNames() {
+    public List<Reward> getRewardNames() {
         return Collections.unmodifiableList(rewards);
     }
 
-    public Reward getReward(int i) {
-        return rewards.get(i);
+    public String getName(int i) {
+        return rewards.get(i).getName();
     }
 }

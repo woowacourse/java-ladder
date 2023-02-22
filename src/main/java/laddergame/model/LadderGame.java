@@ -1,7 +1,7 @@
 package laddergame.model;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import laddergame.model.Ladder.Ladder;
@@ -13,12 +13,12 @@ public class LadderGame {
     private final Map<String, String> matching;
 
     public LadderGame(Ladder ladder, Rewards rewards, Participants participants) {
-        this.matching = new HashMap<>();
+        this.matching = new LinkedHashMap<>();
         for (int i = 0; i < participants.getNumber(); i++) {
-            String name = participants.getParticipant(i).getName();
-            int position = ladder.getRewardPosition(i, participants.getNumber());
-            String reward = rewards.getReward(position).getName();
-            matching.put(name, reward);
+            String name = participants.getName(i);
+            int position = ladder.getParticipantPosition(i);
+            String reward = rewards.getName(position);
+            this.matching.put(name, reward);
         }
     }
 

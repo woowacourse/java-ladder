@@ -18,13 +18,12 @@ public class LadderGameController {
 
     public void run() {
         Participants participants = generate(inputView::readParticipants, Participants::new);
-        Rewards rewards = makeExecutionResults(participants);
+        Rewards rewards = makeRewards(participants);
         Height height = generate(inputView::readLadderHeight, Height::new);
         Ladder ladder = new Ladder(height, participants);
         outputView.printResult(ladder, participants, rewards);
         LadderGame ladderGame = new LadderGame(ladder, rewards, participants);
         printReward(ladderGame);
-        inputView.closeScanner();
     }
 
     private <T, R> R generate(Supplier<T> supplier, Function<T, R> function) {
@@ -36,12 +35,12 @@ public class LadderGameController {
         }
     }
 
-    private Rewards makeExecutionResults(Participants participants) {
+    private Rewards makeRewards(Participants participants) {
         try {
-            return new Rewards(inputView.readExecutionResults(), participants);
+            return new Rewards(inputView.readRewards(), participants);
         } catch (IllegalArgumentException e) {
             inputView.printErrorMsg(e.getMessage());
-            return makeExecutionResults(participants);
+            return makeRewards(participants);
         }
     }
 
@@ -65,5 +64,6 @@ public class LadderGameController {
         if (power == Power.PRINT) {
             printReward(ladderGame);
         }
+        inputView.closeScanner();
     }
 }

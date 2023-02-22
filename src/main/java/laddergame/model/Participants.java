@@ -7,8 +7,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Participants {
-    private static final int MIN_PERSON_LENGTH = 2;
-    private static final String ERROR_PERSON_LENGTH = "최소 참여자의 수는 " + MIN_PERSON_LENGTH + "명 이상이어야 합니다.";
+    private static final int MIN_PARTICIPANTS_LENGTH = 2;
+    private static final String ERROR_PARTICIPANTS_LENGTH = "최소 참여자의 수는 " + MIN_PARTICIPANTS_LENGTH + "명 이상이어야 합니다.";
     private static final String ERROR_DUPLICATION = "참여자들 이름에 중복이 있어서는 안됩니다.";
 
     private final List<Participant> participants;
@@ -20,8 +20,8 @@ public class Participants {
     }
 
     private void validatePersonLength(List<String> names) {
-        if (names.size() < MIN_PERSON_LENGTH) {
-            throw new IllegalArgumentException(ERROR_PERSON_LENGTH);
+        if (names.size() < MIN_PARTICIPANTS_LENGTH) {
+            throw new IllegalArgumentException(ERROR_PARTICIPANTS_LENGTH);
         }
     }
 
@@ -46,7 +46,7 @@ public class Participants {
         return Collections.unmodifiableList(participants);
     }
 
-    public Participant getParticipant(int i) {
-        return participants.get(i);
+    public String getName(int i) {
+        return participants.get(i).getName();
     }
 }
