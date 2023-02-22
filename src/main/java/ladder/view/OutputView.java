@@ -17,7 +17,7 @@ public class OutputView {
 
     public void printLadder(Names names, Results results, Ladder ladder) {
         printNames(names);
-        printLadder(ladder, names.lengthOfFirstName());
+        printLadder(ladder);
         printResults(results);
     }
 
@@ -26,7 +26,7 @@ public class OutputView {
             .stream()
             .map(result -> String.format(RESULT_FORMAT, result.getResult()) + BLANK)
             .collect(Collectors.joining());
-        System.out.println(resultLine.trim());
+        System.out.println(resultLine);
     }
 
     private void printNames(Names names) {
@@ -34,12 +34,12 @@ public class OutputView {
             .stream()
             .map(name -> String.format(NAME_FORMAT, name.getName()) + BLANK)
             .collect(Collectors.joining());
-        System.out.println(nameLine.trim());
+        System.out.println(nameLine);
     }
 
-    private void printLadder(Ladder ladder, int lengthOfFirstName) {
+    private void printLadder(Ladder ladder) {
         for (Line line : ladder) {
-            String result = BLANK.repeat(lengthOfFirstName - 1);
+            String result = BLANK.repeat(WIDTH-1);
             result += shapeOf(line);
             result += LEG;
             System.out.println(result);
