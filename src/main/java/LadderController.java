@@ -23,11 +23,7 @@ public class LadderController {
     private void readUserAndPrintPrize(final Users users, final Prizes prizes) {
         try {
             final String userName = inputView.readUserName();
-            if (!userName.equals("all")) {
-                outputView.printPrize(users.getPrizeByUserName(prizes, userName));
-                return;
-            }
-            outputView.printAllUsersAndPrizes(users.getAllUsersAndPrizes(prizes));
+            outputView.printResult(users.getPrizeAndUserName(userName, prizes));
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
         }

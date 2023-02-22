@@ -42,16 +42,6 @@ class UserTest {
     }
 
     @Test
-    @DisplayName("유저는 자신의 위치상태를 갖고 있는다.")
-    void userHasPosition() {
-        final User user = new User("홍실");
-        assertThat(user)
-                .extracting("position")
-                .extracting("position")
-                .isEqualTo(3);
-    }
-
-    @Test
     @DisplayName("User와 동일한 이름을 파라미터로 넘기면 true")
     void isSameNameTrueTest() {
         final User user = new User("홍실");

@@ -9,6 +9,7 @@ public class OutputView {
 
     private static final String LADDER_MESSAGE = "사다리 결과";
     private static final String RESULT_MESSAGE = "실행 결과";
+    private static final int SELECT_ONE_USER = 1;
 
     public void printLadderResultMessage() {
         System.out.println(LADDER_MESSAGE);
@@ -47,16 +48,20 @@ public class OutputView {
         printBlankLine();
     }
 
-    public void printPrize(final Prize prize) {
+    public void printResult(final Map<String, String> userNameAndPrizes) {
         System.out.println(RESULT_MESSAGE);
-        System.out.println(prize.getName());
-        printBlankLine();
+        if (userNameAndPrizes.size() == SELECT_ONE_USER) {
+            final String prizeName = userNameAndPrizes.values().stream().findFirst().orElse(null);
+            System.out.println(prizeName);
+            printBlankLine();
+            return;
+        }
+        printAllUsersAndPrizes(userNameAndPrizes);
     }
 
     public void printAllUsersAndPrizes(final Map<String, String> allUsersAndPrizes) {
-        System.out.println(RESULT_MESSAGE);
-        for (final Map.Entry<String, String> entry : allUsersAndPrizes.entrySet()) {
-            System.out.printf("%s: %s\n", entry.getKey(), entry.getValue());
+        for (final Map.Entry<String, String> userNameAndPrize : allUsersAndPrizes.entrySet()) {
+            System.out.printf("%s : %s\n", userNameAndPrize.getKey(), userNameAndPrize.getValue());
         }
         printBlankLine();
     }

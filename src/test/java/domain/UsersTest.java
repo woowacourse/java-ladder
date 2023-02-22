@@ -72,27 +72,29 @@ class UsersTest {
     }
 
     @Test
-    @DisplayName("User의 위치에 맞는 Prize를 반환하는 기능")
-    void getPrizeByUserName() {
+    @DisplayName("User와 Prize를 Map형태로 반환받는 기능")
+    void getPrizeAndUserName() {
         final Users users = new Users(testUserNames);
         final Prizes prizes = new Prizes(List.of("1등", "2등", "3등"), users);
 
-        final Prize receivedPrizeHongSile = users.getPrizeByUserName(prizes, "홍실");
+        final Map<String, String> prizeAndUserName = users.getPrizeAndUserName("다니", prizes);
 
-        assertThat(receivedPrizeHongSile.getName()).isEqualTo("2등");
+        assertThat(prizeAndUserName)
+                .contains(Map.entry("다니", "3등"));
     }
 
     @Test
-    @DisplayName("모든 User와 prize를 반환하는 기능 추가")
+    @DisplayName("모든 User와 prize를 반환하는 기능")
     void getAllUsersAndPrizes() {
         final Users users = new Users(testUserNames);
         final Prizes prizes = new Prizes(List.of("1등", "2등", "3등"), users);
 
-        final Map<String, String> allUsersAndPrizes = users.getAllUsersAndPrizes(prizes);
+        final Map<String, String> allUsersAndPrizes = users.getPrizeAndUserName("all", prizes);
 
         assertThat(allUsersAndPrizes)
                 .contains(Map.entry("썬샷", "1등"))
                 .contains(Map.entry("홍실", "2등"))
                 .contains(Map.entry("다니", "3등"));
     }
+
 }

@@ -10,6 +10,9 @@ import java.util.stream.Collectors;
 
 public class Users {
 
+    //TODO: User에서도 이 상수에 접근 가능해야 함 protected? public?.
+    private static final String ALL_USERS = "all";
+
     private final List<User> users = new ArrayList<>();
 
     public Users(final List<String> userNames) {
@@ -57,12 +60,22 @@ public class Users {
         linkedIndexes.forEach(index -> Collections.swap(users, index, index + 1));
     }
 
-    public Prize getPrizeByUserName(final Prizes prizes, final String userName) {
+    public Map<String, String> getPrizeAndUserName(final String userName, final Prizes prizes) {
+        if (userName.equals(ALL_USERS)) {
+            return getAllUsersAndPrizes(prizes);
+        }
+        return users.stream()
+                .filter(user -> user.isSameName(userName))
+                .collect(Collectors.toUnmodifiableMap(User::getName,
+                        (User user) -> getPrizeByUserName(prizes, userName).getName()));
+    }
+
+    private Prize getPrizeByUserName(final Prizes prizes, final String userName) {
         final int userIndex = getIndexByUserName(userName);
         return prizes.getPrizeBy(userIndex);
     }
 
-    public Map<String, String> getAllUsersAndPrizes(final Prizes prizes) {
+    private Map<String, String> getAllUsersAndPrizes(final Prizes prizes) {
         return users.stream()
                 .collect(Collectors.toUnmodifiableMap(User::getName,
                         (User user) -> getPrizeByUserName(prizes, user.getName()).getName()));
