@@ -38,7 +38,7 @@ public class OutputView {
 
     public void printRewardNames(Rewards rewards) {
         for (Reward reward : rewards.getRewards()) {
-            System.out.print(formatName(reward.getName() + BLANK));
+            System.out.print(formatName(reward.getName()) + BLANK);
         }
 
         breakLine();
@@ -47,10 +47,10 @@ public class OutputView {
     public void printResult(List<Result> results) {
         System.out.println(RESULT_PREFIX_MESSAGE);
 
-        results.forEach(this::getResultConsumer);
+        results.forEach(this::getFormatResult);
     }
 
-    private void getResultConsumer(Result result) {
+    private void getFormatResult(Result result) {
         String playerName = result.getPlayer().getName();
         String rewardName = result.getReward().getName();
         System.out.printf(RESULT_FORMAT, playerName, rewardName);

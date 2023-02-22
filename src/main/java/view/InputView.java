@@ -40,6 +40,7 @@ public class InputView {
     }
 
     public String requestCommand() {
+        System.out.println();
         return requestUserInput(COMMAND_INPUT_MESSAGE).trim();
     }
 
