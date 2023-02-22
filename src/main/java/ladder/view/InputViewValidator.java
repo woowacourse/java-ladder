@@ -1,5 +1,7 @@
 package ladder.view;
 
+import java.util.List;
+
 public class InputViewValidator {
 
     private static final int MAX_NAMES_COUNT = 10000;
@@ -7,6 +9,7 @@ public class InputViewValidator {
     private static final String NAMES_MAX_COUNT_EXCEPTION_MESSAGE = "[ERROR] 참여자의 수는 10000명 이하여야합니다.";
     private static final String NAMES_MIN_COUNT_EXCEPTION_MESSAGE = "[ERROR] 참여자의 수는 1명 이상이여야합니다.";
     private static final String NAME_CAN_NOT_BE_ALL_EXCEPTION_MESSAGE = "[ERROR] 참여자의 이름은 all일 수 없습니다.";
+    private static final String NAME_CAN_NOT_DUPLICATED_EXCEPTION_MESSAGE = "[ERROR] 참여자의 이름은 중복될 수 없습니다.";
     private static final String NONE_NUMERIC_EXCEPTION_MESSAGE = "[ERROR] 숫자만 입력해야합니다.";
 
     public static void validateNamesCount(final int count) {
@@ -22,6 +25,16 @@ public class InputViewValidator {
     public static void validateNameIsAll(final String playerName) {
         if ("all".equals(playerName)) {
             throw new IllegalArgumentException(NAME_CAN_NOT_BE_ALL_EXCEPTION_MESSAGE);
+        }
+    }
+
+    public static void validateDuplicatedNames(final List<String> playerNames) {
+        int distinctPlayerCount = (int) playerNames.stream()
+                .distinct()
+                .count();
+
+        if (distinctPlayerCount != playerNames.size()) {
+            throw new IllegalArgumentException(NAME_CAN_NOT_DUPLICATED_EXCEPTION_MESSAGE);
         }
     }
 
