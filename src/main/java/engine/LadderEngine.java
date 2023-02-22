@@ -33,20 +33,30 @@ public class LadderEngine {
 
         OutputView.printLadder(ladder);
 
-        Map<Person, String> result = ladder.getLadderMatchingResult();
+        Map<Person, String> result = playLadder(ladder);
 
-        printResult(result);
+        printResult(result, people);
     }
 
-    private void printResult(final Map<Person, String> result) {
+    private Map<Person, String> playLadder(Ladder ladder) {
+        return ladder.getLadderMatchingResult();
+    }
+
+    private void printResult(final Map<Person, String> result, People people) {
         while (true) {
             String name = InputView.inputShowResultPerson();
 
-            OutputView.printLadderResult(result, name);
-
             if (name.equals(END_OF_FILE)) {
+                OutputView.printLadderAll(result);
                 break;
             }
+
+            people.findPersonByName(name)
+                  .ifPresentOrElse(
+                          (person) -> OutputView.printLadderSpecific(result, person),
+
+                          OutputView::printNotExistedParticipant
+                  );
         }
     }
 

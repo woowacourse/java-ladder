@@ -41,21 +41,20 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printLadderResult(final Map<Person, String> result, final String name) {
+    public static void printLadderSpecific(final Map<Person, String> result, final Person person) {
         System.out.println("실행결과");
 
-        if (name.equals("all")) {
-            printAll(result);
-            return;
-        }
-
-        System.out.println(name + " : " + result.get(name));
+        System.out.println(person.getName() + " : " + result.get(person));
     }
 
-    private static void printAll(final Map<Person, String> result) {
+    public static void printLadderAll(final Map<Person, String> result) {
         for (Person participant : result.keySet()) {
-            System.out.println(participant + " : " + result.get(participant.getName()));
+            System.out.println(participant.getName() + " : " + result.get(participant));
         }
+    }
+
+    public static void printNotExistedParticipant() {
+        System.out.println("해당 이름을 가진 참여자가 존재하지 않습니다. 다시 입력해 주세요.");
     }
 
     private static void printLinesOf(final Ladder ladder) {
