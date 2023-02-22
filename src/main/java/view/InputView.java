@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-//TODO: static 키워드 제거
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
