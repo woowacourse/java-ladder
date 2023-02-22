@@ -1,11 +1,9 @@
 package techcourse.jcf.mission;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -114,6 +112,27 @@ class SimpleLinkedListTest {
         assertThat(myValues.get(0)).isEqualTo("hi hi 9");
 
         Assertions.assertThatThrownBy(() -> myValues.set(5, "인덱스 에러가 나겠지"))
+                .isInstanceOf(IndexOutOfBoundsException.class);
+    }
+
+    @Test
+    public void removeWithIndexTest() {
+        SimpleLinkedList myValues = new SimpleLinkedList();
+
+        myValues.add("first");
+        myValues.add("second");
+        myValues.add("third");
+
+        assertThat(myValues.remove(1)).isEqualTo("second");
+        assertThat(myValues.get(1)).isEqualTo("third");
+        assertThat(myValues.size()).isEqualTo(2);
+        assertThat(myValues.contains("second")).isFalse();
+
+        assertThat(myValues.remove(1)).isEqualTo("third");
+        assertThat(myValues.remove(0)).isEqualTo("first");
+        assertThat(myValues.isEmpty()).isTrue();
+
+        Assertions.assertThatThrownBy(() -> myValues.remove(5))
                 .isInstanceOf(IndexOutOfBoundsException.class);
     }
 
