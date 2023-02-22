@@ -32,12 +32,12 @@ public class Ladder {
         return lines;
     }
 
-    public int getFinalDestinationOf(int startingPoint) {
-        int currentPoint = startingPoint;
+    public int getDestinationOf(int startingLocation) {
+        int currentLocation = startingLocation;
         for (Line line : lines) {
-            currentPoint = line.goDownAndGetPosition(currentPoint);
+            currentLocation = line.goDownAndGetLocation(currentLocation);
         }
-        return currentPoint;
+        return currentLocation;
     }
 
     public List<Line> getLines() {

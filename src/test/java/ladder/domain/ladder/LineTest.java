@@ -12,7 +12,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LineTest {
 
@@ -49,7 +48,7 @@ class LineTest {
         List<Stool> intendedStools = List.of(Stool.EXIST, Stool.EXIST);
         Line line = new Line(3, new TestStoolGenerator(new ArrayList<>(intendedStools)));
 
-        assertThat(line.goDownAndGetPosition(0)).isEqualTo(1);
+        assertThat(line.goDownAndGetLocation(0)).isEqualTo(1);
     }
 
     @Test
@@ -57,6 +56,6 @@ class LineTest {
         List<Stool> intendedStools = List.of(Stool.EMPTY, Stool.EXIST);
         Line line = new Line(3, new TestStoolGenerator(new ArrayList<>(intendedStools)));
 
-        assertThat(line.goDownAndGetPosition(0)).isEqualTo(0);
+        assertThat(line.goDownAndGetLocation(0)).isEqualTo(0);
     }
 }
