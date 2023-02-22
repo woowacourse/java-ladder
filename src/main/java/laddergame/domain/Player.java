@@ -1,38 +1,29 @@
 package laddergame.domain;
 
-import laddergame.constant.ErrorCode;
+import java.util.Objects;
 
 public class Player {
 
-    private static final int MAX_NAME_LENGTH = 5;
-
-    private final String name;
+    private final LadderLabel name;
 
     public Player(String name) {
-        validatePlayerName(name);
-        this.name = name;
-    }
-
-    private void validatePlayerName(String name) {
-        if (name.isBlank() || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(ErrorCode.NOT_VALID_PLAYER_NAME.getCode());
-        }
+        this.name = new LadderLabel(name);
     }
 
     public String getName() {
-        return name;
+        return name.getValue();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Player) {
-            return name.equals(((Player) obj).getName());
-        }
-        return false;
+        return Objects.hash(name);
     }
 }

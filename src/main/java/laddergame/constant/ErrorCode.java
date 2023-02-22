@@ -10,8 +10,8 @@ public enum ErrorCode {
     NOT_NATURAL_NUMBER("NOT_NATURAL_NUMBER", Map.of(
             LanguageCode.KOREAN.getCode(), "자연수를 입력해 주세요."
     )),
-    NOT_VALID_PLAYER_NAME("NOT_VALID_NAME", Map.of(
-            LanguageCode.KOREAN.getCode(), "플레이어 이름은 공백이 아닌 5글자 이하여야 합니다"
+    NOT_VALID_LADDER_LABEL_LENGTH("NOT_VALID_LABEL_LENGTH", Map.of(
+            LanguageCode.KOREAN.getCode(), "입력값은 5글자 이하여야 합니다"
     )),
     NOT_VALID_PLAYER_COUNT("NOT_VALID_PLAYER_COUNT", Map.of(
             LanguageCode.KOREAN.getCode(), "2명 이상의 플레이어가 필요합니다."
