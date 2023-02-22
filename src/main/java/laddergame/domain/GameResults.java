@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameResults {
+    private static final int FIRST = 0;
 
     private final List<GameResult> results;
 
@@ -26,5 +27,9 @@ public class GameResults {
 
     public List<GameResult> getResults() {
         return results;
+    }
+
+    public String getFirstResult() {
+        return results.get(FIRST).getResult();
     }
 }
