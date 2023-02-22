@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Height;
+import domain.LadderMaker;
 import domain.Lines;
 import domain.Missions;
 import domain.Names;
@@ -29,16 +30,13 @@ public class MainController {
             Missions missions = getMissions();
             validateInputSize(names, missions);
 
-            Height height = getHeight();
+            LadderMaker ladderMaker = makeLadder(names);
+            printLadder(names, missions, ladderMaker.getLines());
+
             Players players = new Players(names);
-
-            int lineNumber = names.getPersonNumber() - 1;
-            Lines lines = new Lines(lineNumber, height.getHeight(), booleanGenerator);
-            outputView.printResult(names, lines, missions);
-
             for (int index = 0; index < names.size(); index++) {
                 Player player = players.findByIndex(index);
-                player.move(lines);
+                player.move(ladderMaker.getLines());
             }
 
             players.distributeMissions(missions);
@@ -48,6 +46,17 @@ public class MainController {
         } catch (Exception exception) {
             outputView.printExceptionMessage(exception);
         }
+    }
+
+    private void printLadder(Names names, Missions missions, Lines lines) {
+        outputView.printResult(names, lines, missions);
+    }
+
+    private LadderMaker makeLadder(Names names) {
+        Height height = getHeight();
+        int lineNumber = names.getPersonNumber() - 1;
+        LadderMaker ladderMaker = LadderMaker.of(lineNumber, height, booleanGenerator);
+        return ladderMaker;
     }
 
     private Names getNames() {
