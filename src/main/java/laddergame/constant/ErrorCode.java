@@ -19,6 +19,9 @@ public enum ErrorCode {
     EMPTY_INPUT("EMPTY_INPUT", Map.of(
             LanguageCode.KOREAN.getCode(), "공백을 입력할 수 없습니다."
     )),
+    PRIZE_COUNT_NOT_MATCHED("PRIZE_COUNT_NOT_MATCHED", Map.of(
+            LanguageCode.KOREAN.getCode(), "입력된 사용자와 상품의 수가 다릅니다."
+    )),
     NOT_VALID_ARGUMENT("NOT_VALID_ARGUMENT", Map.of(
             LanguageCode.KOREAN.getCode(), "올바른 값이 아닙니다."
     ));
