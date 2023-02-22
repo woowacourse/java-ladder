@@ -29,8 +29,7 @@ class MatchingCalculatorTest {
     void matchingCalculatorTest1() {
         ladder.drawLine(4, 1, new TrueGenerator());
         MatchingCalculator matchingCalculator = new MatchingCalculator(ladder, names, results);
-        matchingCalculator.calculate();
-        matchingCalculator.getMatchings().forEach((name, result) -> assertTrue(swapOdd(name, result)));
+        matchingCalculator.calculate().getMatchings().forEach((name, result) -> assertTrue(swapOdd(name, result)));
     }
 
     @Test
@@ -38,8 +37,7 @@ class MatchingCalculatorTest {
     void matchingCalculatorTest2() {
         ladder.drawLine(4, 2, new TrueGenerator());
         MatchingCalculator matchingCalculator = new MatchingCalculator(ladder, names, results);
-        matchingCalculator.calculate();
-        matchingCalculator.getMatchings().forEach((name, result) -> assertTrue(swapEven(name, result)));
+        matchingCalculator.calculate().getMatchings().forEach((name, result) -> assertTrue(swapEven(name, result)));
     }
 
     @Test
@@ -47,8 +45,7 @@ class MatchingCalculatorTest {
     void matchingCalculatorTest3() {
         ladder.drawLine(4, 3, new TrueGenerator());
         MatchingCalculator matchingCalculator = new MatchingCalculator(ladder, names, results);
-        matchingCalculator.calculate();
-        matchingCalculator.getMatchings().forEach((name, result) -> assertTrue(swapOdd(name, result)));
+        matchingCalculator.calculate().getMatchings().forEach((name, result) -> assertTrue(swapOdd(name, result)));
     }
 
     private boolean swapOdd(Name name, Result result) {

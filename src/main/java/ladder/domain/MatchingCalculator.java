@@ -7,13 +7,12 @@ public class MatchingCalculator {
     private final Ladder ladder;
     private final Names names;
     private final Results results;
-    private final HashMap<Name, Result> matchings;
+    private Matchings matchings;
 
     public MatchingCalculator(Ladder ladder, Names names, Results results) {
         this.ladder = ladder;
         this.names = names;
         this.results = results;
-        this.matchings = new HashMap<>();
     }
 
     private void climbDown(List<Name> participants, List<Boolean> conditions) {
@@ -30,23 +29,22 @@ public class MatchingCalculator {
         }
     }
 
-    public HashMap<Name, Result> getMatchings() {
-        return matchings;
-    }
-
-    public void calculate() {
+    public Matchings calculate() {
         List<Name> participants = names.getNames();
         for (Line line : ladder) {
             List<Boolean> conditions = line.getLine();
             climbDown(participants, conditions);
         }
         match(participants);
+        return matchings;
     }
 
     private void match(List<Name> participants) {
+        HashMap<Name, Result> matchingResult = new HashMap<>();
         for (int i = 0; i < participants.size(); i++) {
-            matchings.put(participants.get(i), results.getResults().get(i));
+            matchingResult.put(participants.get(i), results.getResults().get(i));
         }
+        matchings = new Matchings(matchingResult);
     }
 
 }

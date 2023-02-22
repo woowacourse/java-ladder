@@ -31,6 +31,8 @@ public class LadderController {
 
         MatchingCalculator matchingCalculator = new MatchingCalculator(ladder, names, results);
         matchingCalculator.calculate();
+
+        inputView.requestNameWantToKnowResult();
     }
 
     private Ladder createLadder(Names names, Results results, LadderHeight ladderHeight) {
