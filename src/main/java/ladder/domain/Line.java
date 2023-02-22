@@ -5,27 +5,29 @@ import java.util.List;
 
 public class Line {
 
-    private final List<StepPoint> stepPoints;
+    private final List<Direction> directions;
 
-    private Line(List<StepPoint> stepPoints) {
-        this.stepPoints = stepPoints;
+    private Line(List<Direction> directions) {
+        this.directions = directions;
     }
 
     public static Line of(StepPointGenerator stepPointGenerator, LineWidth width) {
-        return new Line(generateStepPoints(stepPointGenerator, width.get()));
+        return new Line(generateDirections(stepPointGenerator, width.get()));
     }
 
-    private static List<StepPoint> generateStepPoints(StepPointGenerator stepPointGenerator, int width) {
-        List<StepPoint> stepPoints = new ArrayList<>();
-        StepPoint previousPoint = StepPoint.NONE;
+    private static List<Direction> generateDirections(StepPointGenerator stepPointGenerator, int width) {
+        List<Direction> directions = new ArrayList<>();
 
-        for (int i = 0; i < width; i++) {
-            StepPoint generatedPoint = stepPointGenerator.generate(previousPoint);
-            validateStepPoint(previousPoint, generatedPoint);
-            stepPoints.add(generatedPoint);
-            previousPoint = generatedPoint;
+        StepPoint left = StepPoint.NONE;
+        for (int i = 0; i < width - 1; i++) {
+            StepPoint generated = stepPointGenerator.generate(left);
+            validateStepPoint(left, generated);
+            Direction direction = Direction.findDirection(left, generated);
+            directions.add(direction);
+            left = generated;
         }
-        return stepPoints;
+        directions.add(Direction.findDirection(left, StepPoint.NONE));
+        return directions;
     }
 
     private static void validateStepPoint(StepPoint previous, StepPoint toAdd) {
@@ -35,10 +37,10 @@ public class Line {
     }
 
     public int size() {
-        return stepPoints.size();
+        return directions.size();
     }
 
-    public List<StepPoint> toUnmodifiableStepPoints() {
-        return List.copyOf(stepPoints);
+    public List<Direction> toDirections() {
+        return new ArrayList<>(directions);
     }
 }

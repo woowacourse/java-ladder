@@ -19,6 +19,10 @@ public enum Direction {
         this.right = right;
     }
 
+    public StepPoint getRightStepPoint() {
+        return right;
+    }
+
     public static Direction findDirection(StepPoint left, StepPoint right) {
         validateStepPoints(left, right);
         return Arrays.stream(values())
@@ -31,5 +35,13 @@ public enum Direction {
         if (left.isContinuous(right)) {
             throw new IllegalArgumentException("연속된 디딤대 좌표값으로는 사다리 방향을 결정할 수 없습니다.");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
     }
 }

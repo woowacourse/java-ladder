@@ -25,14 +25,14 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("사다리는 참여자_수 보다 1 작은 폭을 가진다.")
+    @DisplayName("사다리는 참여자 수 만큼의 폭을 가진다.")
     void should_HasWidth_Of_1lessThanPlayersCount() {
         int playerCount = 3;
         Ladder ladder = Ladder.of(playerCount, new LadderHeight(3));
         List<Line> lines = ladder.toUnModifiableLines();
         Line line = lines.get(0);
 
-        assertThat(line.size()).isEqualTo(playerCount - 1);
+        assertThat(line.size()).isEqualTo(playerCount);
     }
 
     @ParameterizedTest

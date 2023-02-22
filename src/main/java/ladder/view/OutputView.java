@@ -4,6 +4,7 @@ package ladder.view;
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
+import ladder.domain.Direction;
 import ladder.domain.Line;
 import ladder.domain.StepPoint;
 
@@ -47,11 +48,12 @@ public class OutputView {
     }
 
     private static String extractLine(Line line, int pointWidth) {
-        List<StepPoint> stepPoints = line.toUnmodifiableStepPoints();
+        List<Direction> directions = line.toDirections();
         StringJoiner result = new StringJoiner(VERTICAL, VERTICAL, VERTICAL);
 
-        for (StepPoint point : stepPoints) {
-            String stepPointFormat = toStepPointFormat(point, pointWidth);
+        for (int i = 0; i < directions.size() - 1; i++) {
+            Direction direction = directions.get(i);
+            String stepPointFormat = toStepPointFormat(direction.getRightStepPoint(), pointWidth);
             result.add(stepPointFormat);
         }
         return toStepPointFormat(StepPoint.NONE, pointWidth) + result;

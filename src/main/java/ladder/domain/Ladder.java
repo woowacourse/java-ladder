@@ -17,7 +17,7 @@ public class Ladder {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height.get(); i++) {
-            lines.add(Line.of(new RandomStepPointGenerator(), new LineWidth(playerCount - 1)));
+            lines.add(Line.of(new RandomStepPointGenerator(), new LineWidth(playerCount)));
         }
         return new Ladder(lines);
     }
