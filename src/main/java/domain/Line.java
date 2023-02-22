@@ -8,6 +8,7 @@ import domain.numbergenerator.NumberGenerator;
 public class Line {
 
     private static final int GENERATE_NUMBER = 1;
+    private static final int INDEX_LOWER_BOUND = 0;
 
     private final List<Point> points = new ArrayList<>();
 
@@ -39,5 +40,20 @@ public class Line {
 
     public List<Point> getPoints() {
         return points;
+    }
+
+    public boolean isConnected(int index) {
+        validateIndex(index);
+        return points.get(index) == Point.CONNECTION;
+    }
+
+    private void validateIndex(int index) {
+        if (isInvalidIndex(index)) {
+            throw new IllegalArgumentException("사다리 가로줄의 번호는 0부터 플레이어 수 - 1까지의 범위를 갖는 정수로 입력해주세요.");
+        }
+    }
+
+    private boolean isInvalidIndex(int index) {
+        return index >= points.size() || index < INDEX_LOWER_BOUND;
     }
 }

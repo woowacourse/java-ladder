@@ -1,11 +1,15 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.numbergenerator.TestNumberGenerator;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class LineTest {
 
@@ -21,5 +25,29 @@ public class LineTest {
     void createLineTest2() {
         Line line = new Line(4, new TestNumberGenerator(Lists.newArrayList(1, 0, 0)));
         assertThat(line.getPoints()).containsExactly(Point.CONNECTION, Point.SEPARATION, Point.SEPARATION);
+    }
+
+    @DisplayName("사다리의 어떤 한 가로줄은 주어진 인덱스 번호의 연결구조가 연결되어있다면 true를 반환한다.")
+    @Test
+    void isConnectedTest_1() {
+        Line line = new Line(4, new TestNumberGenerator(Lists.newArrayList(1, 0, 0)));
+        assertThat(line.isConnected(0)).isTrue();
+    }
+
+    @DisplayName("사다리의 어떤 한 가로줄은 주어진 인덱스 번호의 연결구조가 연결되어있지 않다면 false를 반환한다.")
+    @Test
+    void isConnectedTest_2() {
+        Line line = new Line(4, new TestNumberGenerator(Lists.newArrayList(1, 0, 0)));
+        assertThat(line.isConnected(1)).isFalse();
+    }
+
+    @DisplayName("사다리의 어떤 한 가로줄이 연결되어있는지를 판단할 때 잘못된 범위의 인덱스를 전달할 수 없다.")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 4})
+    void isConnedtedTest_3(int index) {
+        Line line = new Line(4, new TestNumberGenerator(Lists.newArrayList(1, 0, 0)));
+        assertThatThrownBy(() -> line.isConnected(index))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리 가로줄의 번호는 0부터 플레이어 수 - 1까지의 범위를 갖는 정수로 입력해주세요.");
     }
 }
