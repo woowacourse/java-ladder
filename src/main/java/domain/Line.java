@@ -34,6 +34,7 @@ public class Line {
     private void addConditionalPoint(RandomGenerator generator, int pointIndex) {
         if (isSuccessive(pointIndex)) {
             addPoint(UNMOVABLE_STATE.getState());
+            generator.generate(); // 테스트를 위한 코드?
             return;
         }
         addRandomPoint(generator);
