@@ -14,28 +14,28 @@ public class OutputView {
     private static final String CONNECTED_LINE = "-----";
     private static final String DISCONNECTED_LINE = "     ";
 
-    public void printMap(Participants participants, Ladder ladder, List<String> results) {
+    public void printLadder(Participants participants, Ladder ladder, List<String> results) {
         System.out.println(RESULT_MESSAGE);
-        StringBuilder mapResult = new StringBuilder();
-        setNames(mapResult, participants);
-        setLadder(mapResult, ladder);
-        setResult(mapResult, results);
-        System.out.print(mapResult);
+        StringBuilder ladderResult = new StringBuilder();
+        setNames(ladderResult, participants);
+        setLadder(ladderResult, ladder);
+        setResult(ladderResult, results);
+        System.out.print(ladderResult);
     }
 
-    private void setNames(StringBuilder mapResult, Participants participants) {
+    private void setNames(StringBuilder ladderResult, Participants participants) {
         participants.getParticipantNames()
-                    .forEach((participantName) -> mapResult.append(reformatName(participantName)));
-        mapResult.append(System.lineSeparator());
+                    .forEach((participantName) -> ladderResult.append(reformatName(participantName)));
+        ladderResult.append(System.lineSeparator());
     }
 
     private String reformatName(String name) {
         return String.format("%5s ", name);
     }
 
-    private void setLadder(StringBuilder mapResult, Ladder ladder) {
+    private void setLadder(StringBuilder ladderResult, Ladder ladder) {
         ladder.getLines()
-               .forEach((line) -> mapResult.append(reformatLine(line)));
+               .forEach((line) -> ladderResult.append(reformatLine(line)));
     }
 
     private String reformatLine(Line line) {
@@ -57,8 +57,8 @@ public class OutputView {
         return DISCONNECTED_LINE;
     }
 
-    private void setResult(StringBuilder mapResult, List<String> results) {
-        results.forEach((result) -> mapResult.append(reformatName(result)));
-        mapResult.append(System.lineSeparator());
+    private void setResult(StringBuilder ladderResult, List<String> results) {
+        results.forEach((result) -> ladderResult.append(reformatName(result)));
+        ladderResult.append(System.lineSeparator());
     }
 }
