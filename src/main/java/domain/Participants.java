@@ -36,7 +36,7 @@ public class Participants {
     }
 
     private List<String> splitNames(String participantNames) {
-        return List.of(participantNames.split(DELIMITER));
+        return List.of(participantNames.split(DELIMITER, -1));
     }
 
     private boolean isInvalidCount(List<String> names) {
