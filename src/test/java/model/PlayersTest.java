@@ -2,6 +2,7 @@ package model;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 public class PlayersTest {
+    private static final String NO_PLAYER_NAME_ERROR = "[ERROR] 해당 이름의 플레이어는 존재하지 않습니다.";
+
     @Test
     @DisplayName("Players 객체 생성 성공 테스트")
     void createPlayersTest() {
@@ -90,5 +93,21 @@ public class PlayersTest {
         assertThat(players.getResultOf(new Name("neo"))).isEqualTo("꽝");
         assertThat(players.getResultOf(new Name("hiiro"))).isEqualTo("꽝");
         assertThat(players.getResultOf(new Name("ocean"))).isEqualTo("5000");
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 이름을 검색한 경우 예외 처리 기능 테스트")
+    void throwExceptionNoNameErrorTest() {
+        //given
+        Players players = new Players(NameFactory.create("pobi, neo, hiiro, ocean"));
+        List<Result> results = ResultFactory.create(players.size(), "꽝, 5000, 꽝, 3000");
+
+        //when
+        players.saveAllResults(results);
+
+        //then
+        assertThatThrownBy(() -> players.getResultOf(new Name("kevin")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(NO_PLAYER_NAME_ERROR);
     }
 }
