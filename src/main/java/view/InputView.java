@@ -1,5 +1,6 @@
 package view;
 
+import exception.view.EmptyInputException;
 import java.util.Scanner;
 
 public class InputView {
@@ -10,32 +11,65 @@ public class InputView {
     private static final String ENTER_NAME_FOR_RESULT = System.lineSeparator() + "결과를 보고 싶은 사람은?";
     private final Scanner scanner = new Scanner(System.in);
 
-    public String enterParticipantsName() {
-        System.out.println(ENTER_PARTICIPANTS_NAME);
-        return readLine();
-    }
-
     private String readLine() {
         return scanner.nextLine();
     }
 
+    public String enterParticipantsName() {
+        try {
+            System.out.println(ENTER_PARTICIPANTS_NAME);
+            String participantNames = readLine();
+            validate(participantNames);
+            return participantNames;
+        } catch (IllegalArgumentException exception) {
+            printErrorMessage(exception);
+            return enterParticipantsName();
+        }
+    }
+
     public String enterHeight() {
-        System.out.println(ENTER_HEIGHT);
-        return readLine();
+        try {
+            System.out.println(ENTER_HEIGHT);
+            String height = readLine();
+            validate(height);
+            return height;
+        } catch (IllegalArgumentException exception) {
+            printErrorMessage(exception);
+            return enterHeight();
+        }
     }
 
     public String enterLadderResult() {
-        System.out.println(ENTER_LADDER_RESULT);
-        return readLine();
+        try {
+            System.out.println(ENTER_LADDER_RESULT);
+            String ladderResult = readLine();
+            validate(ladderResult);
+            return ladderResult;
+        } catch (IllegalArgumentException exception) {
+            printErrorMessage(exception);
+            return enterLadderResult();
+        }
     }
 
     public String enterNameForResult() {
-        System.out.println(ENTER_NAME_FOR_RESULT);
-        return readLine();
+        try {
+            System.out.println(ENTER_NAME_FOR_RESULT);
+            String nameForResult = readLine();
+            validate(nameForResult);
+            return nameForResult;
+        } catch (IllegalArgumentException exception) {
+            printErrorMessage(exception);
+            return enterNameForResult();
+        }
+    }
+
+    private void validate(String input) {
+        if (input.isBlank()) {
+            throw new EmptyInputException();
+        }
     }
 
     public void printErrorMessage(IllegalArgumentException exception) {
         System.out.println(exception.getMessage());
     }
-
 }
