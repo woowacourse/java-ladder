@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class LineGenerator {
+
     private final LinkGenerator linkGenerator;
 
     public LineGenerator(final LinkGenerator linkGenerator) {

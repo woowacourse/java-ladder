@@ -29,6 +29,6 @@ public class Prizes {
     }
 
     public List<Prize> getPrizes() {
-        return prizes;
+        return List.copyOf(prizes);
     }
 }

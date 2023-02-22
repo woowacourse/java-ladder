@@ -17,7 +17,7 @@ public enum Link {
         return UNLINKED;
     }
 
-    public boolean isLink() {
+    public boolean isLinked() {
         return link;
     }
 }

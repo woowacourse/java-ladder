@@ -4,6 +4,7 @@ import domain.ladder.Line;
 import domain.ladder.Link;
 
 public class LineRender {
+
     private static final String BLANK_LINE = "     ";
     private static final String CONNECTED_LINE = "-----";
     private static final String LADDER = "|";
@@ -21,7 +22,7 @@ public class LineRender {
     }
 
     private static void renderPoint(final StringBuilder builder, final Link connected) {
-        if (connected.isLink()) {
+        if (connected.isLinked()) {
             builder.append(CONNECTED_LINE);
             return;
         }

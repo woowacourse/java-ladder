@@ -15,7 +15,6 @@ public class InputView {
     private static final String RESULT_USER_GUIDE_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final String DELIMITER = "\\s*,\\s*";
 
-    //TODO: readUserNames와 readPrizeNames의 중복로직을 제거
     public List<String> readUserNames() {
         System.out.println(USER_NAMES_GUIDE_MESSAGE);
         return readStringListSplitByDelimiter();

@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+
     private final List<Link> links;
 
     public Line(final List<Link> links) {
         this.links = links;
-    }
-
-    public List<Link> getLinks() {
-        return List.copyOf(links);
     }
 
     public List<Integer> getLinkedIndexes() {
@@ -25,8 +22,12 @@ public class Line {
     }
 
     private void addLinkedIndex(final List<Integer> linkedIndexes, final int index) {
-        if (links.get(index).isLink()) {
+        if (links.get(index).isLinked()) {
             linkedIndexes.add(index);
         }
+    }
+
+    public List<Link> getLinks() {
+        return List.copyOf(links);
     }
 }

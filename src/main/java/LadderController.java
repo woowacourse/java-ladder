@@ -6,6 +6,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderController {
+
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 

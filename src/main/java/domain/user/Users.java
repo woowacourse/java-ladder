@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 public class Users {
 
-    //TODO: User에서도 이 상수에 접근 가능해야 함 protected? public?.
     protected static final String ALL_USERS = "all";
 
     private final List<User> users = new ArrayList<>();
