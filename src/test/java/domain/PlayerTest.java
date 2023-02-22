@@ -46,30 +46,19 @@ public class PlayerTest {
 
     @DisplayName("사다리의 연결 구조에 따라 플레이어의 위치 정보가 양 옆으로 움직일 수 있다.")
     @ParameterizedTest
-    @CsvSource(value = {"odo:1:1:2", "kong:3:0:3", "kong:1:-1:0"}, delimiter = ':')
-    void validateTest_move1(String name, int position, int step, int expected) {
+    @CsvSource(value = {"odo:1:RIGHT:2", "kong:3:STAY:3", "kong:1:LEFT:0"}, delimiter = ':')
+    void validateTest_move1(String name, int position, MoveType moveType, int expected) {
         Player player = new Player(name, position);
-        player.move(step);
+        player.move(moveType);
         assertThat(player.getPosition()).isEqualTo(expected);
-    }
-
-    @DisplayName("플레이어의 위치 정보를 2칸 이상 움직일 수 없다.")
-    @ParameterizedTest
-    @CsvSource(value = {"odo:1:2:3", "kong:3:-2:1"}, delimiter = ':')
-    void validateTest_move2(String name, int position, int step, int expected) {
-        Player player = new Player(name, position);
-        assertThatThrownBy(() -> player.move(step))
-                .isInstanceOf(IllegalArgumentException.class)
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사람의 위치는 두 칸 이상 움직일 수 없습니다."); // 플레이어가 움직임?, 게임에서의 제한? -> 플레이어가 움직이는 검증을 한다면 객체의 역할을 분명 but 다른 곳에서 사용이 어렵
     }
 
     @DisplayName("플레이어는 음수의 위치 정보를 가질 수 없다.")
     @ParameterizedTest
-    @CsvSource(value = {"odo:0:-1:-1"}, delimiter = ':')
-    void validateTest_move3(String name, int position, int step, int expected) {
+    @CsvSource(value = {"odo:0:LEFT:-1"}, delimiter = ':')
+    void validateTest_move3(String name, int position, MoveType moveType, int expected) {
         Player player = new Player(name, position);
-        assertThatThrownBy(() -> player.move(step))
+        assertThatThrownBy(() -> player.move(moveType))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사람의 위치는 자연수여야합니다.");
     }

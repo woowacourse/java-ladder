@@ -30,4 +30,8 @@ public enum MoveType {
     private static boolean hasRightConnection(int position, Line line) {
         return position != line.getPointsSize() && line.isConnected(position);
     }
+
+    public int getStep() {
+        return step;
+    }
 }
