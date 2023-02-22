@@ -25,11 +25,11 @@ public class MainController {
 
     public void start() {
         try {
-            Names names = inputView.readNames();
-            Missions missions = inputView.readMissions();
+            Names names = getNames();
+            Missions missions = getMissions();
             validateInputSize(names, missions);
 
-            Height height = inputView.readHeight();
+            Height height = getHeight();
             Players players = new Players(names);
 
             int lineNumber = names.getPersonNumber() - 1;
@@ -40,18 +40,39 @@ public class MainController {
                 Player player = players.findByIndex(index);
                 player.move(lines);
             }
+
             players.distributeMissions(missions);
 
-            if (inputView.readPlayer().equals("all")) {
-                // TODO: all을 입력한 경우
-            }
-            if (!inputView.readPlayer().equals("all")) {
-                Player player = players.findByName(inputView.readPlayer());
-                outputView.printResult(player.getMission());
-            }
+            printResult(players);
 
         } catch (Exception exception) {
             outputView.printExceptionMessage(exception);
+        }
+    }
+
+    private Names getNames() {
+        Names names = inputView.readNames();
+        return names;
+    }
+
+    private Missions getMissions() {
+        Missions missions = inputView.readMissions();
+        return missions;
+    }
+
+    private Height getHeight() {
+        Height height = inputView.readHeight();
+        return height;
+    }
+
+
+    private void printResult(Players players) {
+        if (inputView.readPlayer().equals("all")) {
+            outputView.printAllResult(players);
+        }
+        if (!inputView.readPlayer().equals("all")) {
+            Player player = players.findByName(inputView.readPlayer());
+            outputView.printPlayerResult(player.getMission());
         }
     }
 

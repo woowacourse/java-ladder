@@ -6,6 +6,8 @@ import domain.Lines;
 import domain.Mission;
 import domain.Missions;
 import domain.Names;
+import domain.Player;
+import domain.Players;
 
 public class OutputView {
 
@@ -51,16 +53,27 @@ public class OutputView {
         return Message.EMPTY_ROW_LADDER.message;
     }
 
-    public void printResult(Mission mission) {
+    public void printPlayerResult(Mission mission) {
         System.out.printf(Message.OUTPUT_RESULT.message);
         System.out.println(mission.getMission());
+    }
+
+    public void printAllResult(Players players) {
+        System.out.println(Message.OUTPUT_RESULT.message);
+        for (Player player : players.getPlayers()) {
+            System.out.printf(Message.OUTPUT_RESULT_ALL.message, player.getName().getName(),
+                    player.getMission().getMission());
+        }
     }
 
 
     private enum Message {
         OUTPUT_RESULT("실행결과" + System.lineSeparator()),
+        OUTPUT_RESULT_ALL("%s : %s" + System.lineSeparator()),
         COLUMN_LADDER("  |"),
+
         ROW_LADDER("-----|"),
+
         EMPTY_ROW_LADDER("     |");
 
         private final String message;
