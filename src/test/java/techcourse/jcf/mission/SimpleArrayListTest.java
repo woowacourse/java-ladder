@@ -36,7 +36,20 @@ class SimpleArrayListTest {
     }
 
     @Test
-    void set() {
+    @DisplayName("List안에 원하는 index에 값을 넣고, 이전에 있던 값을 반환받는다.")
+    void setTest() {
+        final SimpleArrayList arrayList = new SimpleArrayList();
+
+        arrayList.add("홍실");
+
+        final String setReturnValue = arrayList.set(0, "솔라");
+
+        assertThat(setReturnValue)
+                .isEqualTo("홍실");
+        assertThat(arrayList)
+                .extracting("list")
+                .asInstanceOf(InstanceOfAssertFactories.array(String[].class))
+                .contains("솔라");
     }
 
     @Test
