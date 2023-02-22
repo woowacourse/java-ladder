@@ -6,24 +6,23 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGame {
-    private final PersonalNames personalNames;
+    private final List<Player> players;
     private final LadderResult ladderResult;
 
     public LadderGame(PersonalNames personalNames, LadderResult ladderResult) {
-        this.personalNames = personalNames;
         this.ladderResult = ladderResult;
+        this.players = initPlayers(personalNames);
     }
 
-    public Map<String, String> moveAndGetResult(Ladder ladder) {
-        List<Player> players = initPlayers();
-
-        return players.stream().collect(Collectors.toMap(
-                player -> player.getPersonalName().getValue(),
-                player -> moveAndGetResult(player, ladder).getName()
+    public NamesWithMatchedResult moveAndGetResult(Ladder ladder) {
+        Map<PersonalName, LadderResultItem> nameToItem = players.stream().collect(Collectors.toMap(
+                player -> player.getPersonalName(),
+                player -> moveAndGetResult(player, ladder)
         ));
+        return new NamesWithMatchedResult(nameToItem);
     }
 
-    private List<Player> initPlayers() {
+    private List<Player> initPlayers(PersonalNames personalNames) {
         List<PersonalName> names = personalNames.getPersonalNames();
         List<Player> players = IntStream.range(0, names.size())
                 .mapToObj(index -> new Player(names.get(index), index))
@@ -39,7 +38,7 @@ public class LadderGame {
     }
 
     private void goDownOneLine(Player player, Line line) {
-        if (player.getPosition().getValue() < personalNames.getPersonalNames().size() - 1 && line.doesRungExistsIndexOf(
+        if (player.getPosition().getValue() < players.size() - 1 && line.doesRungExistsIndexOf(
                 player.getPosition().getValue())) {
             player.moveRight();
             return;

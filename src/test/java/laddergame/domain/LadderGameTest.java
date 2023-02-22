@@ -48,7 +48,7 @@ class LadderGameTest {
         Ladder ladder = new Ladder(new Width(2), new Height(3), TEST_BOOLEAN_GENERATOR);
         LadderGame ladderGame = new LadderGame(personalNames, ladderResult);
         //when
-        Map<String, String> gameResult = ladderGame.moveAndGetResult(ladder);
+        Map<PersonalName, LadderResultItem> gameResult = ladderGame.moveAndGetResult(ladder).getNameToItem();
         //then
         assertThat(gameResult.keySet()).contains(PersonalName.valueOf("rosie"), PersonalName.valueOf("kiara"));
     }
@@ -74,7 +74,7 @@ class LadderGameTest {
         Ladder ladder = new Ladder(new Width(2), new Height(3), fixedGenerator);
         LadderGame ladderGame = new LadderGame(personalNames, ladderResult);
         //when
-        Map<String, String> matchedResult = ladderGame.moveAndGetResult(ladder);
+        Map<PersonalName, LadderResultItem> matchedResult = ladderGame.moveAndGetResult(ladder).getNameToItem();
         //then
         assertThat(matchedResult.get(PersonalName.valueOf("rosie")).getName()).isEqualTo("result2");
         assertThat(matchedResult.get(PersonalName.valueOf("kiara")).getName()).isEqualTo("result1");
