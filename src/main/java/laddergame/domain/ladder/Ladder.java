@@ -46,6 +46,17 @@ public class Ladder {
         return currentLine.canMoveLeft(playerPosition);
     }
 
+    public boolean canMoveRight(final int height, final Player player) {
+        final int playerPosition = player.getPosition();
+
+        if (playerPosition >= lines.size()) {
+            return false;
+        }
+
+        final Line currentLine = lines.get(height);
+        return currentLine.canMoveRight(playerPosition);
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }

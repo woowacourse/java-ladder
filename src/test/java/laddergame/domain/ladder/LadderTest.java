@@ -68,7 +68,9 @@ public class LadderTest {
         // when & then
         assertAll(
                 () -> assertThat(testLadder.canMoveLeft(0, coil)).isTrue(),
-                () -> assertThat(testLadder.canMoveLeft(0, ethan)).isFalse()
+                () -> assertThat(testLadder.canMoveLeft(0, ethan)).isFalse(),
+                () -> assertThat(testLadder.canMoveRight(0, coil)).isFalse(),
+                () -> assertThat(testLadder.canMoveRight(0, ethan)).isTrue()
         );
     }
 }

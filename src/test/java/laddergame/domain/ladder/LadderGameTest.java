@@ -64,4 +64,20 @@ public class LadderGameTest {
                 () -> assertThat(gameResult.get(1).getPosition()).isEqualTo(0)
         );
     }
+
+    @Test
+    @DisplayName("사다리게임을 시작하면 플레이어가 오른쪽으로 움직일 수 있으면 오른쪽으로 움직인다.")
+    void givenLadder_whenStartGame_thenReturnRightMoveResult() {
+        // given
+        final LadderGame ladderGame = LadderGame.of(ladder, players);
+
+        // when
+        final List<Player> gameResult = ladderGame.startGame();
+
+        // then
+        assertAll(
+                () -> assertThat(gameResult.size()).isEqualTo(3),
+                () -> assertThat(gameResult.get(0).getPosition()).isEqualTo(1)
+        );
+    }
 }
