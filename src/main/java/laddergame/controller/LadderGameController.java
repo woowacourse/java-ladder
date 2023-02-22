@@ -67,15 +67,19 @@ public class LadderGameController {
     private void printResult(LadderGame ladderGame) {
         List<GameResult> results;
         do {
-            results = RepeatValidator.readUntilValidate(() -> {
-                String name = readResultShowPlayerName();
-                return getResults(ladderGame, name);
-            });
+            results = getResults(ladderGame);
             OutputView.printResults(results);
-        } while (results.size() == 1);
+        } while (!ladderGame.isAllResults(results));
     }
 
-    private List<GameResult> getResults(LadderGame ladderGame, String name) {
+    private List<GameResult> getResults(LadderGame ladderGame) {
+        return RepeatValidator.readUntilValidate(() -> {
+            String name = readResultShowPlayerName();
+            return getResultsByInput(ladderGame, name);
+        });
+    }
+
+    private List<GameResult> getResultsByInput(LadderGame ladderGame, String name) {
         if (name.equals(ALL_PLAYER_SIGN)) {
             return ladderGame.getAllResults();
         }

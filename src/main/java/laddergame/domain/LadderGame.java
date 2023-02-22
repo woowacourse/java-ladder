@@ -53,4 +53,8 @@ public class LadderGame {
         }
         return List.copyOf(results);
     }
+
+    public boolean isAllResults(List<GameResult> results) {
+        return results.size() == players.size();
+    }
 }
