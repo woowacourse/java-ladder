@@ -49,7 +49,7 @@ public class LadderGame {
     public List<GameResult> findGameResultAll() {
         return IntStream.range(0, gameResult.size())
                 .mapToObj(index -> new GameResult(names.findNameByIndex(index),
-                        ladderResults.findResultByIndex(index)))
+                        ladderResults.findResultByIndex(gameResult.get(index))))
                 .collect(Collectors.toUnmodifiableList());
     }
 }
