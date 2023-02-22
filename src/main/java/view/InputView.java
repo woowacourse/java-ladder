@@ -38,4 +38,11 @@ public class InputView {
             throw new IllegalArgumentException("숫자를 입력해야 합니다.", exception);
         }
     }
+
+    public String readResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String input = readLine();
+        validateDelimiter(input);
+        return input;
+    }
 }
