@@ -5,16 +5,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameResult {
-    private final List<Integer> resultPositions;
     private final List<String> executionResults;
     
-    public GameResult(List<Integer> resultPositions, String executionResults) {
-        this(resultPositions, splitExecutionResults(executionResults));
+    public GameResult(String executionResults, PlayerNames playerNames) {
+        this(splitExecutionResults(executionResults), playerNames);
     }
     
-    public GameResult(List<Integer> resultPositions, List<String> executionResults) {
-        validateExecutionResults(executionResults, resultPositions);
-        this.resultPositions = resultPositions;
+    public GameResult(List<String> executionResults, PlayerNames playerNames) {
+        validateExecutionResults(executionResults, playerNames);
         this.executionResults = executionResults;
     }
     
@@ -23,9 +21,9 @@ public class GameResult {
                 .collect(Collectors.toUnmodifiableList());
     }
     
-    private void validateExecutionResults(List<String> executionResults, List<Integer> resultPositions) {
+    private void validateExecutionResults(List<String> executionResults, PlayerNames playerNames) {
         validateOutOfLength(executionResults);
-        validateCount(executionResults, resultPositions);
+        validateCount(executionResults, playerNames.getNames());
     }
     
     private void validateOutOfLength(List<String> executionResults) {
@@ -40,22 +38,22 @@ public class GameResult {
                 .anyMatch(executionResultLength -> executionResultLength < 1 || executionResultLength > 5);
     }
     
-    private void validateCount(List<String> executionResults, List<Integer> resultPositions) {
-        if (executionResults.size() != resultPositions.size()) {
+    private void validateCount(List<String> executionResults, List<String> playerNames) {
+        if (executionResults.size() != playerNames.size()) {
             throw new IllegalArgumentException("실행 결과의 개수는 플레이어의 수가 같아야합니다.");
         }
     }
     
-    public String getOneExecutionResult(int playerIndex) {
-        return executionResults.get(getResultPosition(playerIndex));
+    public String getOneExecutionResult(int playerIndex, List<Integer> movedPositions) {
+        return executionResults.get(getResultPosition(playerIndex, movedPositions));
     }
     
-    private Integer getResultPosition(int playerIndex) {
-        return resultPositions.get(playerIndex);
+    private Integer getResultPosition(int playerIndex, List<Integer> movedPositions) {
+        return movedPositions.get(playerIndex);
     }
     
-    public List<String> getAllExecutionResult() {
-        return resultPositions.stream()
+    public List<String> getAllExecutionResult(List<Integer> movedPositions) {
+        return movedPositions.stream()
                 .map(executionResults::get)
                 .collect(Collectors.toUnmodifiableList());
     }

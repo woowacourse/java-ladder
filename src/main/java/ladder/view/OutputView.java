@@ -59,9 +59,9 @@ public class OutputView {
         println(parseDisplayElements(gameResult.getExecutionResults()));
     }
     
-    public static void printAllPlayerResult(PlayerNames playerNames, GameResult gameResult) {
+    public static void printAllPlayerResult(PlayerNames playerNames, List<Integer> movedPositions, GameResult gameResult) {
         List<String> names = playerNames.getNames();
-        List<String> allExecutionResult = gameResult.getAllExecutionResult();
+        List<String> allExecutionResult = gameResult.getAllExecutionResult(movedPositions);
         
         println(parseAllPlayerResult(names, allExecutionResult));
     }
@@ -76,9 +76,9 @@ public class OutputView {
         return names.get(playerIndex) + " : " + allExecutionResult.get(playerIndex);
     }
     
-    public static void printOnePlayerResult(int playerIndex, GameResult gameResult) {
+    public static void printOnePlayerResult(int playerIndex, List<Integer> movedPositions, GameResult gameResult) {
         println("실행 결과");
-        println(gameResult.getOneExecutionResult(playerIndex));
+        println(gameResult.getOneExecutionResult(playerIndex, movedPositions));
     }
     
     public static void printExceptionMessage(IllegalArgumentException illegalArgumentException) {
