@@ -1,7 +1,5 @@
 package view;
 
-import domain.ladder.Height;
-import domain.player.Names;
 import java.util.Scanner;
 
 public class InputView {
@@ -15,18 +13,17 @@ public class InputView {
     private InputView() {
     }
 
-    public Names readNames() {
-        String input = readInput(Message.INPUT_NAMES.message);
-        return new Names(input);
+    public String readNames() {
+        return readInput(Message.INPUT_NAMES.message);
     }
 
     public String readMissions() {
         return readInput(Message.INPUT_MISSIONS.message);
     }
 
-    public Height readHeight() {
+    public int readHeight() {
         String input = readInput(Message.INPUT_LADDER_SIZE.message);
-        return new Height(parseHeight(input));
+        return parseHeight(input);
     }
 
     public String readPlayer() {

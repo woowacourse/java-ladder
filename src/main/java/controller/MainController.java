@@ -1,13 +1,13 @@
 package controller;
 
-import domain.ladder.Height;
 import domain.LadderGame;
 import domain.LadderMaker;
+import domain.generator.BooleanGenerator;
+import domain.ladder.Height;
 import domain.ladder.Lines;
 import domain.mission.Missions;
 import domain.player.Names;
 import domain.player.Players;
-import domain.generator.BooleanGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -66,7 +66,7 @@ public class MainController {
     }
 
     private Names getNames() {
-        return inputView.readNames();
+        return new Names(inputView.readNames());
     }
 
     private Missions getMissions(int size) {
@@ -74,8 +74,6 @@ public class MainController {
     }
 
     private Height getHeight() {
-        return inputView.readHeight();
+        return new Height(inputView.readHeight());
     }
-
-
 }
