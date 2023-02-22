@@ -33,49 +33,10 @@ public class Controller {
         playLadderGame();
     }
 
-
-
     private void setLadderGame() {
         createUser();
         createRewards();
         createLadder();
-    }
-
-    private void printLadderMap() {
-        OutputView.printResultMessage();
-        printUsers();
-        printLadder();
-        printRewards();
-    }
-
-    private void playLadderGame() {
-        String resultOption = InputView.readResultOption();
-
-        if(isQuit(resultOption)) {
-            return;
-        }
-
-        if(isAll(resultOption)) {
-            List<User> usersWithoutReward = resultTable.getUsersWithoutReward();
-            List<Integer> startIndexes = users.getIndex(usersWithoutReward);
-            List<Integer> endIndexes = ladder.calculateEndIndex(startIndexes);
-            List<Reward> unsavedRewards = rewards.getRewardByIndex(endIndexes);
-            resultTable.saveAll(usersWithoutReward, unsavedRewards);
-            OutputView.printAllResult(resultTable);
-            playLadderGame();
-            return;
-        }
-
-        User user = users.findUserByName(resultOption);
-        Reward reward = resultTable.getRewardByUser(user);
-        if(reward == null) {
-            int startIndex = users.getIndex(user);
-            int endIndex = ladder.calculateEndIndex(startIndex);
-            reward = rewards.getRewardByIndex(endIndex);
-            resultTable.save(user,reward);
-        }
-        OutputView.printResult(user, reward);
-        playLadderGame();
     }
 
     private void createUser() {
@@ -87,12 +48,6 @@ public class Controller {
             OutputView.printErrorMessage(exception);
             createUser();
         }
-    }
-
-    private void setUpUser(String userName) {
-        User newUser = new User(userName);
-        users.add(newUser);
-        resultTable.initialize(newUser);
     }
 
     private void createRewards() {
@@ -118,6 +73,13 @@ public class Controller {
         }
     }
 
+    private void printLadderMap() {
+        OutputView.printResultMessage();
+        printUsers();
+        printLadder();
+        printRewards();
+    }
+
     private void printUsers() {
         List<String> userNames = users.getUserNames();
         OutputView.printUserNames(userNames);
@@ -130,5 +92,61 @@ public class Controller {
     private void printRewards() {
         List<String> rewardNames = rewards.getRewardNames();
         OutputView.printRewards(rewardNames);
+    }
+
+    private void playLadderGame() {
+        String resultOption = InputView.readResultOption();
+        printBy(resultOption);
+    }
+
+    private void printBy(String resultOption) {
+        if (isQuit(resultOption)) {
+            return;
+        }
+        if (isAll(resultOption)) {
+            printAllResult();
+            return;
+        }
+        printResultByUser(resultOption);
+    }
+
+    private void printResultByUser(String resultOption) {
+        try {
+            User user = users.findUserByName(resultOption);
+            Reward reward = resultTable.getRewardByUser(user);
+            reward = getCheckedResult(user, reward);
+            OutputView.printResult(user, reward);
+            playLadderGame();
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception);
+            playLadderGame();
+        }
+    }
+
+    private Reward getCheckedResult(User user, Reward reward) {
+        if (reward == null) {
+            int startIndex = users.getIndex(user);
+            int endIndex = ladder.calculateEndIndex(startIndex);
+            reward = rewards.getRewardByIndex(endIndex);
+            resultTable.save(user, reward);
+        }
+        return reward;
+    }
+
+    private void printAllResult() {
+        List<User> usersWithoutReward = resultTable.getUsersWithoutReward();
+        List<Integer> startIndexes = users.getIndex(usersWithoutReward);
+        List<Integer> endIndexes = ladder.calculateEndIndex(startIndexes);
+        List<Reward> unsavedRewards = rewards.getRewardByIndex(endIndexes);
+        resultTable.saveAll(usersWithoutReward, unsavedRewards);
+        OutputView.printAllResult(resultTable);
+        playLadderGame();
+    }
+
+
+    private void setUpUser(String userName) {
+        User newUser = new User(userName);
+        users.add(newUser);
+        resultTable.initialize(newUser);
     }
 }
