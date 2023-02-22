@@ -22,6 +22,7 @@ public class InputView {
         validateDelimiter(names);
 
         return Arrays.stream(names.split(DELIMITER))
+                .map(String::trim)
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -38,13 +39,15 @@ public class InputView {
         validateDelimiter(inputResult);
 
         return Arrays.stream(inputResult.split(DELIMITER))
-            .collect(Collectors.toUnmodifiableList());
+                .map(String::trim)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public int inputHeightOfLadder() {
         String inputHeight = scanner.nextLine();
 
         validateBlank(inputHeight);
+
         return mapToHeightNumber(inputHeight);
     }
 
@@ -53,7 +56,7 @@ public class InputView {
 
         validateBlank(name);
 
-        return name;
+        return name.trim();
     }
 
     private int mapToHeightNumber(String input) {
