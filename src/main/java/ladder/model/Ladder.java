@@ -31,20 +31,14 @@ public class Ladder {
     }
 
     private boolean canGoLeft(Row row, int position) {
-        if (row.isLeftPointHasLine(position)) {
-            return true;
-        }
-        return false;
+        return row.isLeftPointHasLine(position);
     }
 
     private boolean canGoRight(Row row, int position) {
         if (position == row.getSize()) {
             return false;
         }
-        if (row.isCurrentPointHasLine(position)) {
-            return true;
-        }
-        return false;
+        return row.isCurrentPointHasLine(position);
     }
 
     public List<Row> getRows() {

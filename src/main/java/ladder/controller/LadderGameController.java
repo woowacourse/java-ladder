@@ -12,8 +12,6 @@ import java.util.stream.Collectors;
 
 public class LadderGameController {
 
-    private static final String LOOK_ALL = "all";
-
     private final InputView inputView;
     private final OutputView outputView;
     private final LineCreateDecider lineCreateDecider;
@@ -92,7 +90,7 @@ public class LadderGameController {
     private void showResultBoard(ResultBoard resultBoard) {
         String option = inputView.readPlayerChoice();
 
-        while(!option.equals(LOOK_ALL)){
+        while (!option.equals(Command.LOOK_ALL_PLAYERS_RESULT.getCommand())) {
             showSinglePlayer(resultBoard, option);
             option = inputView.readPlayerChoice();
         }
