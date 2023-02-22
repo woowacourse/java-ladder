@@ -2,14 +2,14 @@ package laddergame.view;
 
 import laddergame.domain.Link;
 
-public enum OutputFormat {
+public enum LadderElement {
     BLANK(" "),
     VERTICAL_LINE("|"),
     HORIZONTAL_LINE("-");
 
     private final String ladderElement;
 
-    OutputFormat(final String ladderElement) {
+    LadderElement(final String ladderElement) {
         this.ladderElement = ladderElement;
     }
 

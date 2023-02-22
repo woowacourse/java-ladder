@@ -7,8 +7,8 @@ import laddergame.domain.Names;
 import java.util.List;
 
 import static java.util.stream.Collectors.joining;
-import static laddergame.view.OutputFormat.BLANK;
-import static laddergame.view.OutputFormat.VERTICAL_LINE;
+import static laddergame.view.LadderElement.BLANK;
+import static laddergame.view.LadderElement.VERTICAL_LINE;
 
 public class OutputView {
 
@@ -56,7 +56,7 @@ public class OutputView {
     }
 
     private static String makeFloor(final Link link, final int maxNameLength) {
-        return String.format("%s%s", OutputFormat.convertFormat(link).repeat(maxNameLength), VERTICAL_LINE.getLadderElement());
+        return String.format("%s%s", LadderElement.convertFormat(link).repeat(maxNameLength), VERTICAL_LINE.getLadderElement());
     }
 
 

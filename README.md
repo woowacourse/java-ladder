@@ -3,10 +3,10 @@
 사다리 타기 미션 저장소
 
 ## 이번 미션의 목표
-- [] SRP
-- [] 모든 변수명에 final 붙이기 (당연히 메서드 파라미터에도 final을 붙인다.)
-- [] 모든 원시값과 문자열을 포장한다.
-- [] 일급 컬렉션을 쓴다.
+- [ ] SRP
+- [ ] 모든 변수명에 final 붙이기 (당연히 메서드 파라미터에도 final을 붙인다.)
+- [ ] 모든 원시값과 문자열을 포장한다.
+- [ ] 일급 컬렉션을 쓴다.
 
 ## 기능 요구 사항
 - [x] 이름
@@ -77,11 +77,11 @@
 - [ ] Winning Prize
   - [ ] 입력받은 실행 결과를 저장하는 일급 컬렉션
 
-- [ ] LinkGenerator
-  - [ ] RandomLinkGenerator를 위한 인터페이스
+- [x] LinkGenerator
+  - [x] RandomLinkGenerator를 위한 인터페이스
 
-- [ ] RandomLinkGenerator
-  - [ ] 랜덤으로 Link 생성
+- [x] RandomLinkGenerator
+  - [x] 랜덤으로 Link 생성
 
 - [ ] InputView
   - [x] 사람 이름 입력
