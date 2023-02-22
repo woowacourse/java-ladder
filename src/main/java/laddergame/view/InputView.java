@@ -35,6 +35,12 @@ public class InputView {
         return Integer.parseInt(ladderHeight);
     }
 
+    public static String inputResultShowPlayerName() {
+        String name = SCANNER.nextLine();
+        validateBlankInput(name);
+        return name;
+    }
+
     private static void validateNaturalNumber(String input) {
         if (!input.matches(NATURAL_NUMBER_REGEX)) {
             throw new IllegalArgumentException(ErrorCode.NOT_NATURAL_NUMBER.getCode());

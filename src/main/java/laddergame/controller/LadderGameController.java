@@ -18,6 +18,8 @@ public class LadderGameController {
     public void run() {
         LadderGame ladderGame = initLadderGame();
         printGeneratedLadderResult(ladderGame);
+
+        String name = readResultShowPlayerName();
     }
 
     private LadderGame initLadderGame() {
@@ -50,9 +52,15 @@ public class LadderGameController {
     }
 
     private void printGeneratedLadderResult(LadderGame ladderGame) {
-        OutputView.printResultInfoMsg();
+        OutputView.printGeneratedLadderInfoMsg();
         OutputView.printLadderLabel(ladderGame.getPlayerNames());
         OutputView.printLadderMap(ladderGame.getLadderMap());
         OutputView.printLadderLabel(ladderGame.getPrizeValues());
+    }
+
+    private String readResultShowPlayerName() {
+        OutputView.printResultShowPlayerRequestMsg();
+        String name = InputView.inputResultShowPlayerName();
+        return name;
     }
 }
