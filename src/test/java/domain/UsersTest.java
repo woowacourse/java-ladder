@@ -1,5 +1,6 @@
 package domain;
 
+import static domain.ErrorMessages.*;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -41,6 +42,6 @@ public class UsersTest {
 
         assertThatThrownBy(() -> users.findUserByName("boxter"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("존재하지 않는 사용자 입니다.");
+                .hasMessage(NONE_EXISTED_USER.getMessage());
     }
 }

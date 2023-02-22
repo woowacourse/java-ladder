@@ -1,5 +1,7 @@
 package domain;
 
+import static domain.ErrorMessages.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +29,6 @@ public class Users {
         return users.stream()
                 .filter(user -> user.isEqualName(userName))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자 입니다."));
+                .orElseThrow(() -> new IllegalArgumentException(NONE_EXISTED_USER.getMessage()));
     }
 }
