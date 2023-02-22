@@ -21,9 +21,9 @@ public class Controller {
         PlayerNames playerNames = new PlayerNames(inputView.readPlayerNames(), inputView);
         Players players = new Players(playerNames);
 
+        Rewards rewards = new Rewards(inputView.readRewards(), players.getPlayersSize(), inputView);
         int ladderHeight = new LadderHeight(inputView.readLadderHeight(), inputView).getLadderHeight();
         List<Line> ladder = new Ladder(ladderHeight, players, booleanCreator).getLadder();
-        Rewards rewards = new Rewards(inputView.readRewards(), players.getPlayersSize(), inputView);
 
         outputView.printResult(players, ladder, rewards);
     }
