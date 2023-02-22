@@ -19,6 +19,17 @@ public class Line {
         return line;
     }
 
+    public int findPositionAbleToMove(int leftBridge, int rightBridge, int prevPosition) {
+        int movePosition = prevPosition;
+        if (isBridgeInLeft(leftBridge)) {
+            movePosition--;
+        }
+        if (isBridgeInRight(rightBridge)) {
+            movePosition++;
+        }
+        return movePosition;
+    }
+
     private void initializeEmptyLine(int personCount) {
         for (int index = 0; index < personCount - 1; index++) {
             bridges.add(false);
@@ -32,32 +43,26 @@ public class Line {
     }
 
     private void generateBridge(BooleanGenerator booleanGenerator, int bridgeIndex) {
-        if (!hasSide(bridgeIndex, bridges.size() - 1)) {
+        if (!hasSide(bridgeIndex)) {
             bridges.set(bridgeIndex, booleanGenerator.generate());
         }
     }
 
-    private boolean hasSide(int bridgeIndex, int maxIndex) {
-        if (bridgeIndex == 0 && maxIndex == 0) {
-            return false;
-        }
-
-        if (bridgeIndex == 0) {
-            return isBridgeInRight(bridgeIndex + 1);
-        }
-
-        if (bridgeIndex == maxIndex) {
-            return isBridgeInLeft(bridgeIndex - 1);
-        }
-
+    private boolean hasSide(int bridgeIndex) {
         return isBridgeInLeft(bridgeIndex - 1) || isBridgeInRight(bridgeIndex + 1);
     }
 
     private boolean isBridgeInLeft(int leftIndex) {
+        if (leftIndex < 0) {
+            return false;
+        }
         return bridges.get(leftIndex);
     }
 
     private boolean isBridgeInRight(int rightIndex) {
+        if (rightIndex > bridges.size() - 1) {
+            return false;
+        }
         return bridges.get(rightIndex);
     }
 

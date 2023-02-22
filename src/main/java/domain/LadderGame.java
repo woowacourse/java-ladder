@@ -21,43 +21,10 @@ public class LadderGame {
         Map<String, String> winningResult = new LinkedHashMap<>();
         int resultPosition;
         for (int personIndex = 0; personIndex < persons.getTotalPersonCount(); personIndex++) {
-            resultPosition = move(personIndex);
+            resultPosition = ladder.findDestination(personIndex);
             winningResult.put(persons.findNameByPosition(personIndex), winningEntry.findByPosition(resultPosition));
         }
         return winningResult;
-    }
-
-    private int move(int personIndex) {
-        List<List<Boolean>> ladder = getLadderStatus();
-        for (int linePosition = 0; linePosition < this.ladder.calculateTotalHeight(); linePosition++) {
-            personIndex = moveInCurrentLine(ladder.get(linePosition), personIndex - 1, personIndex, personIndex);
-        }
-        return personIndex;
-    }
-
-    private int moveInCurrentLine(List<Boolean> currentLine, int leftBridge, int rightBridge, int personIndex) {
-        if (personIndex == 0) {
-            return checkRightAndMove(currentLine.get(rightBridge), personIndex);
-        }
-        if (personIndex == currentLine.size()) {
-            return checkLeftAndMove(currentLine.get(leftBridge), personIndex);
-        }
-        personIndex = checkLeftAndMove(currentLine.get(leftBridge), personIndex);
-        return checkRightAndMove(currentLine.get(rightBridge), personIndex);
-    }
-
-    private int checkRightAndMove(boolean isRightMovable, int personIndex) {
-        if (isRightMovable) {
-            personIndex++;
-        }
-        return personIndex;
-    }
-
-    private int checkLeftAndMove(boolean isLeftMovable, int personIndex) {
-        if (isLeftMovable) {
-            personIndex--;
-        }
-        return personIndex;
     }
 
     public List<List<Boolean>> getLadderStatus() {

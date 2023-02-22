@@ -23,6 +23,13 @@ public class Ladder {
         }
     }
 
+    public int findDestination(int currentPosition) {
+        for (Line line : lines) {
+            currentPosition = line.findPositionAbleToMove(currentPosition - 1, currentPosition, currentPosition);
+        }
+        return currentPosition;
+    }
+
     public int calculateTotalHeight() {
         return lines.size();
     }
