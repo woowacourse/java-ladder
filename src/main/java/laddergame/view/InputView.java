@@ -38,4 +38,13 @@ public class InputView {
             throw new IllegalStateException("문자열을 읽을 때 예외가 발생했습니다.", e);
         }
     }
+
+    public String readNameToCheckResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        try {
+            return reader.readLine();
+        } catch (IOException e) {
+            throw new IllegalStateException("문자열을 읽을 때 예외가 발생했습니다.", e);
+        }
+    }
 }
