@@ -1,6 +1,5 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +18,6 @@ public class ResultsTest {
                 .map(Result::from)
                 .collect(Collectors.toList());
         Results results = Results.of(collectedList);
-        assertThat(results.getResults()).containsExactly("꽝",)
+        assertThat(results.getResults().stream().map(Result::getValue).collect(Collectors.toList())).containsExactly("꽝", "5000", "꽝", "3000");
     }
 }
