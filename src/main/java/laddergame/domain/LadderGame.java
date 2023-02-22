@@ -34,4 +34,12 @@ public class LadderGame {
     public List<String> getPrizeValues() {
         return prizes.getPrizeValues();
     }
+
+    public GameResult getResult(String name) {
+        Position startPosition = players.positionOf(name);
+        Position endPosition = ladder.getArrivalPosition(startPosition);
+        String prizeValue = prizes.getPrizeValueAt(endPosition);
+
+        return new GameResult(name, prizeValue);
+    }
 }

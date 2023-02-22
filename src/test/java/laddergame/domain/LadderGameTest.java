@@ -9,6 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 class LadderGameTest {
 
@@ -42,6 +43,23 @@ class LadderGameTest {
         Prizes prizes = new Prizes(List.of("꽝", "2000", "꽝", "1000", "1000"));
 
         assertThatThrownBy(() -> new LadderGame(players, ladder, prizes)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("사용자 이름으로 게임 결과 생성")
+    void getResultTest() {
+        Players players = new Players(List.of("test1", "test2"));
+        Ladder ladder = new Ladder(List.of(new Line(List.of(Point.CONNECT))));
+        Prizes prizes = new Prizes(List.of("꽝", "1000"));
+        LadderGame ladderGame = new LadderGame(players, ladder, prizes);
+
+        String name = "test1";
+        String expectedPrizeValue = "1000";
+        GameResult result = ladderGame.getResult("test1");
+        assertSoftly(softly -> {
+            softly.assertThat(result.getName()).isEqualTo(name);
+            softly.assertThat(result.getPrizeValue()).isEqualTo(expectedPrizeValue);
+        });
     }
 
 }
