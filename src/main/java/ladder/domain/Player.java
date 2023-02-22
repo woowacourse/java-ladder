@@ -10,6 +10,10 @@ public class Player {
         this.startIndex = startIndex;
     }
 
+    public boolean isSameName(String name) {
+        return this.name.getRawName().equals(name);
+    }
+
     public String getName() {
         return name.getRawName();
     }

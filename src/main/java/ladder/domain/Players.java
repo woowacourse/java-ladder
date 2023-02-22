@@ -12,6 +12,13 @@ public class Players {
         this.players = new ArrayList<>(players);
     }
 
+    public Player findByPlayerName(String playerName) {
+        return players.stream()
+                .filter(player -> player.isSameName(playerName))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
     public List<Player> getPlayers() {
         return List.copyOf(players);
     }
