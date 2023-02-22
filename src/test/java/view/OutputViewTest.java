@@ -31,7 +31,7 @@ class OutputViewTest {
                 new Height("4"), new Weight(participants.getParticipantCount()), () -> true);
         outputView.printMap(participants, gameMap);
         Assertions.assertThat(byteArrayOutputStream).hasToString("\n실행결과\n\n"
-            + "jamie split pobi\n"
+            + "jamie split  pobi \n"
             + "    |-----|     |\n"
             + "    |-----|     |\n"
             + "    |-----|     |\n"
@@ -48,7 +48,7 @@ class OutputViewTest {
                 new Height("4"), new Weight(participants.getParticipantCount()), () -> false);
         outputView.printMap(participants, gameMap);
         Assertions.assertThat(byteArrayOutputStream).hasToString("\n실행결과\n\n"
-                + "jamie split pobi\n"
+                + "jamie split  pobi \n"
                 + "    |     |     |\n"
                 + "    |     |     |\n"
                 + "    |     |     |\n"

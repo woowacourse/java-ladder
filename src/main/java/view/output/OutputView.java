@@ -23,13 +23,10 @@ public class OutputView {
     private void setNames(StringBuilder mapResult, Participants participants) {
         participants.getParticipantNames()
                     .forEach((participantName) -> mapResult.append(reformatName(participantName)));
-        mapResult.replace(mapResult.length() - 2, mapResult.length(), System.lineSeparator());
+        mapResult.append(System.lineSeparator());
     }
 
     private String reformatName(String name) {
-        if (name.length() < 5) {
-            name += " ";
-        }
         return String.format("%5s ", name);
     }
 

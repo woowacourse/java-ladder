@@ -41,7 +41,7 @@ class LadderGameControllerTest {
             , "\n최대 사다리 높이는 몇 개인가요?\n"
             , "\n실행결과\n"
             , "\n"
-            , "pobi  honux crong   jk\n"
+            , " pobi honux crong    jk \n"
             , "    |-----|     |-----|\n"
             , "    |-----|     |-----|\n"
             , "    |-----|     |-----|\n"
