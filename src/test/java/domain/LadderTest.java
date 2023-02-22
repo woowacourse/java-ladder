@@ -34,8 +34,8 @@ class LadderTest {
     @Test
     void get_same_start_end_position() {
         Ladder ladder = createLadder(2, 3);
-        Position first = ladder.getResultPositionOf(new Position(0));
-        Position second = ladder.getResultPositionOf(new Position(0));
+        int first = ladder.getResultPositionOf(0);
+        int second = ladder.getResultPositionOf(0);
         assertThat(first).isEqualTo(second);
     }
 
@@ -43,8 +43,8 @@ class LadderTest {
     @Test
     void get_different_start_end_position() {
         Ladder ladder = createLadder(2, 3);
-        Position firstResult = ladder.getResultPositionOf(new Position(0));
-        Position secondResult = ladder.getResultPositionOf(new Position(1));
+        int firstResult = ladder.getResultPositionOf(0);
+        int secondResult = ladder.getResultPositionOf(1);
         assertThat(firstResult).isNotEqualTo(secondResult);
     }
 
@@ -64,9 +64,9 @@ class LadderTest {
                 PASSABLE_THRESHOLDS, PASSABLE_THRESHOLDS);
         Ladder ladder = createLadder(3, 4, new MockNumberGenerator(numberListToGenerate));
 
-        Position realResultPosition = ladder.getResultPositionOf(new Position(startPosition));
+        int realResultPosition = ladder.getResultPositionOf(startPosition);
 
-        assertThat(realResultPosition).isEqualTo(new Position(expectedResultPosition));
+        assertThat(realResultPosition).isEqualTo(expectedResultPosition);
     }
 
     private Ladder createLadder(int height, int numberOfPeople) {

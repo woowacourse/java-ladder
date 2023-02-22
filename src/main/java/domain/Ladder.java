@@ -29,12 +29,12 @@ public class Ladder {
         }
     }
 
-    public Position getResultPositionOf(Position position) {
-        int horizontalPosition = position.value();
+    public int getResultPositionOf(int startPosition) {
+        int horizontalPosition = startPosition;
         for (Line line : lines) {
             horizontalPosition = getNextLineHorizontalPosition(line, horizontalPosition);
         }
-        return new Position(horizontalPosition);
+        return horizontalPosition;
     }
 
     private int getNextLineHorizontalPosition(Line line, int horizontalPosition) {

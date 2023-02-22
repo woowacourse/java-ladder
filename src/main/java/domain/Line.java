@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import utils.NumberGenerator;
 
@@ -40,7 +39,7 @@ public class Line {
     }
 
     public List<Point> points() {
-        return Collections.unmodifiableList(points);
+        return List.copyOf(points);
     }
 
     public int width() {
