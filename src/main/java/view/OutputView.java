@@ -15,6 +15,7 @@ public class OutputView {
     private static final String CONNECTED_LINE = "-----";
     private static final String UNCONNECTED_LINE = "     ";
     private static final String NAME_SPACE = " ";
+    private static final String DELIMITER = " : ";
 
     public void printResult(List<Name> names, Ladder ladder) {
         System.out.println(RESULT_ANNOUNCEMENT);
@@ -51,13 +52,8 @@ public class OutputView {
         });
         System.out.println(stringBuilder);
     }
-
-    public void printPlayerAndItem(Name player, Name item) {
-        System.out.println(player + " : " + item);
-    }
-
     public void printPlayerAndItem(String player, Name item) {
-        System.out.println(player + " : " + item);
+        System.out.println(player + DELIMITER + item);
     }
 
 }
