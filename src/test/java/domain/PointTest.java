@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -24,4 +25,13 @@ class PointTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest(name = "true,false면 -1, false,true면 1, false,false면 0을 반환한다.")
+    @CsvSource({"true,false,-1", "false,true,1", "false,false,0"})
+    void calculateNextSummandTest(boolean left, boolean right, int expected) {
+        Point point = new Point(left, right);
+
+        int result = point.calculateMoveValue();
+
+        assertThat(result).isEqualTo(expected);
+    }
 }

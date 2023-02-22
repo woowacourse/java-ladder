@@ -11,16 +11,24 @@ public class Point {
     }
 
     private void validate(boolean left, boolean right) {
-        if(left && right) {
+        if (left && right) {
             throw new IllegalArgumentException();
         }
     }
 
-    public boolean getLeft() {
-        return left;
-    }
-
     public boolean getRight() {
         return right;
+    }
+
+    public int calculateMoveValue() {
+        if (left && !right) {
+            return -1;
+        }
+
+        if (!left && right) {
+            return 1;
+        }
+
+        return 0;
     }
 }
