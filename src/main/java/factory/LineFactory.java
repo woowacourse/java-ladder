@@ -29,10 +29,17 @@ public class LineFactory {
     private static List<Point> generatePoints(final int pointSize, final PointGenerateStrategy pointGenerateStrategy) {
         List<Point> points = new ArrayList<>();
         for (int pointIndex = 0; pointIndex < pointSize; pointIndex++) {
-            Point currentPoint = pointGenerateStrategy.generate(getPreviousPoint(points, pointIndex));
+            Point currentPoint = generatePoint(getPreviousPoint(points, pointIndex), pointGenerateStrategy);
             points.add(currentPoint);
         }
         return Collections.unmodifiableList(points);
+    }
+
+    private static Point generatePoint(Point previousPoint, PointGenerateStrategy pointGenerateStrategy) {
+        if (previousPoint == Point.EXIST) {
+            return Point.NOT_EXIST;
+        }
+        return pointGenerateStrategy.generate();
     }
 
     private static Point getPreviousPoint(final List<Point> points, final int currentPointIndex) {
