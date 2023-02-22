@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Height;
+import domain.LadderMaker;
 import domain.Lines;
 import domain.Missions;
 import domain.Names;
@@ -25,33 +26,59 @@ public class MainController {
 
     public void start() {
         try {
-            Names names = inputView.readNames();
-            Missions missions = inputView.readMissions();
+            Names names = getNames();
+            Missions missions = getMissions();
             validateInputSize(names, missions);
 
-            Height height = inputView.readHeight();
+            LadderMaker ladderMaker = makeLadder(names);
+            printLadder(names, missions, ladderMaker.getLines());
+
             Players players = new Players(names);
-
-            int lineNumber = names.getPersonNumber() - 1;
-            Lines lines = new Lines(lineNumber, height.getHeight(), booleanGenerator);
-            outputView.printResult(names, lines, missions);
-
             for (int index = 0; index < names.size(); index++) {
                 Player player = players.findByIndex(index);
-                player.move(lines);
+                player.move(ladderMaker.getLines());
             }
+
             players.distributeMissions(missions);
 
-            if (inputView.readPlayer().equals("all")) {
-                // TODO: all을 입력한 경우
-            }
-            if (!inputView.readPlayer().equals("all")) {
-                Player player = players.findByName(inputView.readPlayer());
-                outputView.printResult(player.getMission());
-            }
+            printResult(players);
 
         } catch (Exception exception) {
             outputView.printExceptionMessage(exception);
+        }
+    }
+
+    private void printLadder(Names names, Missions missions, Lines lines) {
+        outputView.printResult(names, lines, missions);
+    }
+
+    private LadderMaker makeLadder(Names names) {
+        Height height = getHeight();
+        int lineNumber = names.getPersonNumber() - 1;
+        LadderMaker ladderMaker = LadderMaker.of(lineNumber, height, booleanGenerator);
+        return ladderMaker;
+    }
+
+    private Names getNames() {
+        return inputView.readNames();
+    }
+
+    private Missions getMissions() {
+        return inputView.readMissions();
+    }
+
+    private Height getHeight() {
+        return inputView.readHeight();
+    }
+
+
+    private void printResult(Players players) {
+        if (inputView.readPlayer().equals("all")) {
+            outputView.printAllResult(players);
+        }
+        if (!inputView.readPlayer().equals("all")) {
+            Player player = players.findByName(inputView.readPlayer());
+            outputView.printPlayerResult(player.getMission());
         }
     }
 
