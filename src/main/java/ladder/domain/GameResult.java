@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameResult {
     private final List<Integer> resultPositions;
@@ -11,11 +12,17 @@ public class GameResult {
         this.executionResults = executionResults;
     }
     
-    public String getExecutionResult(int playerIndex) {
+    public String getOneExecutionResult(int playerIndex) {
         return executionResults.get(getResultPosition(playerIndex));
     }
     
     private Integer getResultPosition(int playerIndex) {
         return resultPositions.get(playerIndex);
+    }
+    
+    public List<String> getAllExecutionResult() {
+        return resultPositions.stream()
+                .map(executionResults::get)
+                .collect(Collectors.toUnmodifiableList());
     }
 }
