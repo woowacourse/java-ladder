@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class PlayerNamesTest {
+public class PlayersTest {
 
     public static final String PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE = "참여자 수는 2 ~ 20명만 가능합니다.";
 
@@ -17,7 +17,7 @@ public class PlayerNamesTest {
     void createPlayerNamesSuccess() {
         List<String> playerNamesInput = List.of("pobi", "honux", "crong", "jk");
 
-        assertDoesNotThrow(() -> PlayerNames.from(playerNamesInput));
+        assertDoesNotThrow(() -> Players.from(playerNamesInput));
     }
 
     @Test
@@ -25,7 +25,7 @@ public class PlayerNamesTest {
     void createPlayerNamesFail() {
         List<String> playerNamesInput = List.of("pobi", "pooh", "pooh", "jk");
 
-        assertThatThrownBy(() -> PlayerNames.from(playerNamesInput))
+        assertThatThrownBy(() -> Players.from(playerNamesInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름은 중복될 수 없습니다.");
     }
@@ -34,7 +34,7 @@ public class PlayerNamesTest {
     @Test
     void createPlayerNumberUnderNumberFail() {
         List<String> input = List.of("pobi");
-        assertThatThrownBy(() -> PlayerNames.from(input))
+        assertThatThrownBy(() -> Players.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE);
     }
@@ -48,7 +48,7 @@ public class PlayerNamesTest {
             input.add(String.valueOf(i + toCharacter));
         }
 
-        assertThatThrownBy(() -> PlayerNames.from(input))
+        assertThatThrownBy(() -> Players.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE);
     }

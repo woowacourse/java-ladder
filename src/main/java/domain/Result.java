@@ -2,16 +2,16 @@ package domain;
 
 public class Result {
 
-    private final PlayerName playerName;
+    private final Player player;
     private final Reward reward;
 
-    public Result(PlayerName playerName, Reward reward) {
-        this.playerName = playerName;
+    public Result(Player player, Reward reward) {
+        this.player = player;
         this.reward = reward;
     }
 
-    public PlayerName getPlayerName() {
-        return this.playerName;
+    public Player getPlayerName() {
+        return this.player;
     }
 
     public Reward getReward() {

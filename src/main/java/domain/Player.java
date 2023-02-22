@@ -2,7 +2,7 @@ package domain;
 
 import java.util.regex.Pattern;
 
-public class PlayerName {
+public class Player {
 
     private static final int PLAYER_NAME_MIN_SIZE_INCLUSIVE = 1;
     private static final int PLAYER_NAME_MAX_SIZE_INCLUSIVE = 5;
@@ -11,11 +11,13 @@ public class PlayerName {
     private static final String VALID_WORD_REGEX = "(\\w)+";
     private static final Pattern PLAYER_NAME_PATTERN = Pattern.compile(VALID_WORD_REGEX);
 
-    private final String playerName;
+    private final String name;
+    private int standingLine;
 
-    public PlayerName(final String playerName) {
-        validate(playerName);
-        this.playerName = playerName;
+    public Player(final String name, int standingLine) {
+        validate(name);
+        this.name = name;
+        this.standingLine = standingLine;
     }
 
     public void validate(String playerName) {
@@ -44,15 +46,27 @@ public class PlayerName {
                 && playerName.length() <= PLAYER_NAME_MAX_SIZE_INCLUSIVE);
     }
 
-    public String getPlayerName() {
-        return this.playerName;
+    public void moveLeft() {
+        this.standingLine--;
+    }
+
+    public void moveRight() {
+        this.standingLine++;
+    }
+
+    public int getStandingLine() {
+        return this.standingLine;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     @Override
     public boolean equals(Object object) {
-        return object instanceof PlayerName
-                && ((PlayerName) object).getPlayerName()
-                .equals(this.playerName);
+        return object instanceof Player
+                && ((Player) object).getName()
+                .equals(this.name);
     }
 
 }

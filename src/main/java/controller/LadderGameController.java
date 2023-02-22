@@ -1,7 +1,7 @@
 package controller;
 
 import domain.Height;
-import domain.PlayerNames;
+import domain.Players;
 import domain.ladder.Ladder;
 import util.RandomNumberGenerator;
 import view.InputView;
@@ -20,18 +20,18 @@ public class LadderGameController {
     }
 
     public void run() {
-        PlayerNames playerNames = PlayerNames.from(inputView.requestPlayerNames());
+        Players players = Players.from(inputView.requestPlayerNames());
         Height height = new Height(inputView.requestLadderHeight());
 
-        Ladder ladder = Ladder.of(playerNames, height, randomNumberGenerator);
+        Ladder ladder = Ladder.of(players, height, randomNumberGenerator);
         ladder.buildBridges();
 
-        printLadderGameResult(playerNames, ladder);
+        printLadderGameResult(players, ladder);
     }
 
-    private void printLadderGameResult(PlayerNames playerNames, Ladder ladder) {
+    private void printLadderGameResult(Players players, Ladder ladder) {
         outputView.printResultPrefix();
-        outputView.printPlayerNames(playerNames);
+        outputView.printPlayerNames(players);
         outputView.printResult(ladder);
     }
 

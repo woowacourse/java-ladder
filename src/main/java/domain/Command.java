@@ -29,8 +29,8 @@ public class Command {
         return command.equals(ALL_INCLUSIVE);
     }
 
-    public PlayerName toPlayerName() {
-        return new PlayerName(this.command);
+    public Player toPlayer() {
+        return new Player(this.command);
     }
 
 }

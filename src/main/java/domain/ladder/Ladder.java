@@ -3,7 +3,7 @@ package domain.ladder;
 import domain.Direction;
 import domain.Height;
 import domain.Line;
-import domain.PlayerNames;
+import domain.Players;
 import domain.Point;
 import util.RandomNumberGenerator;
 
@@ -25,9 +25,9 @@ public class Ladder {
         this.randomNumberGenerator = randomNumberGenerator;
     }
 
-    public static Ladder of(PlayerNames playerNames, Height height, RandomNumberGenerator randomNumberGenerator) {
+    public static Ladder of(Players players, Height height, RandomNumberGenerator randomNumberGenerator) {
         List<Line> lines = new ArrayList<>();
-        int numberOfLinesToMake = playerNames.getSize();
+        int numberOfLinesToMake = players.getSize();
 
         for (int index = 0; index < numberOfLinesToMake; index++) {
             lines.add(Line.fromHeight(height));

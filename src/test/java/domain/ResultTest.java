@@ -10,12 +10,12 @@ public class ResultTest {
     @Test
     @DisplayName("결과를 생성한다.")
     void createResultSuccess() {
-        PlayerName playerName = new PlayerName("pobi");
+        Player player = new Player("pobi");
         Reward reward = new Reward("10000");
 
-        Result result = new Result(playerName, reward);
+        Result result = new Result(player, reward);
 
-        assertThat(result.getPlayerName().getPlayerName()).isEqualTo("pobi");
+        assertThat(result.getPlayerName().getName()).isEqualTo("pobi");
         assertThat(result.getReward().getName()).isEqualTo("10000");
     }
 

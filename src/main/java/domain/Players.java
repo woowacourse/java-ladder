@@ -1,42 +1,46 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PlayerNames {
+public class Players {
 
     private static final int PLAYER_NUMBER_LOWER_BOUND_INCLUSIVE = 2;
     private static final int PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE = 20;
     public static final String PLAYER_NUMBER_RANGE_ERROR_MESSAGE = "참여자 수는 2 ~ 20명만 가능합니다.";
     private static final String PLAYER_NAME_DUPLICATION_ERROR_MESSAGE = "이름은 중복될 수 없습니다.";
 
-    private final List<PlayerName> playerNames;
+    private final List<Player> players;
 
-    private PlayerNames(List<PlayerName> playerNames) {
-        validate(playerNames);
-        this.playerNames = playerNames;
+    private Players(List<Player> players) {
+        validate(players);
+        this.players = players;
     }
 
-    public static PlayerNames from(List<String> names) {
-        List<PlayerName> playerNames = names.stream()
-                .map(PlayerName::new)
-                .collect(Collectors.toList());
+    public static Players from(List<String> names) {
+        List<Player> players = new ArrayList<>();
 
-        return new PlayerNames(playerNames);
+        for (int i = 0; i < names.size(); i++) {
+            String name = names.get(i);
+            players.add(new Player(name, i));
+        }
+
+        return new Players(players);
     }
 
-    private void validate(List<PlayerName> playerNames) {
-        validateDuplication(playerNames);
-        validatePlayerNumber(playerNames.size());
+    private void validate(List<Player> players) {
+        validateDuplication(players);
+        validatePlayerNumber(players.size());
     }
 
-    private void validateDuplication(List<PlayerName> playerNames) {
-        int duplicationSize = playerNames.stream()
-                .map(PlayerName::getPlayerName)
+    private void validateDuplication(List<Player> players) {
+        int duplicationSize = players.stream()
+                .map(Player::getName)
                 .collect(Collectors.toSet())
                 .size();
 
-        if (duplicationSize != playerNames.size()) {
+        if (duplicationSize != players.size()) {
             throw new IllegalArgumentException(PLAYER_NAME_DUPLICATION_ERROR_MESSAGE);
         }
     }
@@ -52,16 +56,16 @@ public class PlayerNames {
                 && playerNumber <= PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE);
     }
 
-    public List<PlayerName> getPlayerNames() {
-        return this.playerNames;
+    public List<Player> getPlayerNames() {
+        return this.players;
     }
 
     public int getSize() {
-        return playerNames.size();
+        return players.size();
     }
 
-    public boolean contains(PlayerName playerName) {
-        return playerNames.contains(playerName);
+    public boolean contains(Player player) {
+        return players.contains(player);
     }
 
 }

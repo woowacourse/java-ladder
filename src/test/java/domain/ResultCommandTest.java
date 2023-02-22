@@ -13,18 +13,18 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ResultCommandTest {
 
-    private PlayerNames playerNames;
+    private Players players;
 
     @BeforeEach
     void beforeEach() {
-        playerNames = PlayerNames.from(List.of("pobi", "hell"));
+        players = Players.from(List.of("pobi", "hell"));
     }
 
     @DisplayName("all 이나 Player 의 이름이 아니면 예외를 반환한다.")
     @ParameterizedTest
     @ValueSource(strings = {"pobio", "helo", "al"})
     void getCommandResultFail(String input) {
-        ResultCommand resultCommand = new ResultCommand(playerNames);
+        ResultCommand resultCommand = new ResultCommand(players);
         Command command = new Command(input);
 
         assertThatThrownBy(() -> resultCommand.getCommandResult(command))
@@ -35,26 +35,26 @@ public class ResultCommandTest {
     @Test
     @DisplayName("all 이 들어오면 전체 Player 를 반환한다.")
     void getAllPlayerSuccess() {
-        ResultCommand resultCommand = new ResultCommand(playerNames);
+        ResultCommand resultCommand = new ResultCommand(players);
         Command command = new Command("all");
 
-        List<PlayerName> resultPlayerNames = resultCommand.getCommandResult(command);
+        List<Player> resultPlayers = resultCommand.getCommandResult(command);
 
-        assertThat(resultPlayerNames).hasSize(2);
-        assertThat(resultPlayerNames).map(PlayerName::getPlayerName)
+        assertThat(resultPlayers).hasSize(2);
+        assertThat(resultPlayers).map(Player::getName)
                 .containsExactly("pobi", "hell");
     }
 
     @Test
     @DisplayName("이름이 들어오면 해당 Player 를 반환한다.")
     void getPlayerSuccess() {
-        ResultCommand resultCommand = new ResultCommand(playerNames);
+        ResultCommand resultCommand = new ResultCommand(players);
         Command command = new Command("pobi");
 
-        List<PlayerName> resultPlayerNames = resultCommand.getCommandResult(command);
+        List<Player> resultPlayers = resultCommand.getCommandResult(command);
 
-        assertThat(resultPlayerNames).hasSize(1);
-        assertThat(resultPlayerNames.get(0).getPlayerName())
+        assertThat(resultPlayers).hasSize(1);
+        assertThat(resultPlayers.get(0).getName())
                 .isEqualTo("pobi");
     }
 

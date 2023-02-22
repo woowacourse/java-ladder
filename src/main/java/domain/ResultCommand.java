@@ -6,24 +6,24 @@ public class ResultCommand {
 
     private static final String INVALID_COMMAND_ERROR_MESSAGE = "all 이나 Player 의 이름만 입력이 가능합니다.";
 
-    private final PlayerNames playerNames;
+    private final Players players;
 
-    public ResultCommand(PlayerNames playerNames) {
-        this.playerNames = playerNames;
+    public ResultCommand(Players players) {
+        this.players = players;
     }
 
-    public List<PlayerName> getCommandResult(Command command) {
+    public List<Player> getCommandResult(Command command) {
         if (command.isAllCommand()) {
-            return playerNames.getPlayerNames();
+            return players.getPlayerNames();
         }
 
-        PlayerName playerName = command.toPlayerName();
-        validate(playerName);
-        return List.of(playerName);
+        Player player = command.toPlayer();
+        validate(player);
+        return List.of(player);
     }
 
-    private void validate(PlayerName playerName) {
-        if (!playerNames.contains(playerName)) {
+    private void validate(Player player) {
+        if (!players.contains(player)) {
             throw new IllegalArgumentException(INVALID_COMMAND_ERROR_MESSAGE);
         }
     }
