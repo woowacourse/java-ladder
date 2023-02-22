@@ -4,6 +4,7 @@ import domain.user.Users;
 import exception.ErrorMessage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Prizes {
 
@@ -28,7 +29,9 @@ public class Prizes {
         return prizes.get(position);
     }
 
-    public List<Prize> getPrizes() {
-        return List.copyOf(prizes);
+    public List<String> getPrizes() {
+        return prizes.stream()
+                .map(Prize::getName)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

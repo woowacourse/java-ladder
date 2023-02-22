@@ -1,7 +1,6 @@
 package view;
 
 import domain.ladder.Line;
-import domain.prize.Prize;
 import java.util.List;
 import java.util.Map;
 
@@ -40,9 +39,9 @@ public class OutputView {
         System.out.println(errorMessage.getMessage());
     }
 
-    public void printPrizes(final List<Prize> prizes) {
-        for (final Prize prize : prizes) {
-            System.out.print(String.format("%6s", prize.getName()));
+    public void printPrizes(final List<String> prizeNames) {
+        for (final String prizeName : prizeNames) {
+            System.out.print(String.format("%6s", prizeName));
         }
         printBlankLine();
         printBlankLine();
