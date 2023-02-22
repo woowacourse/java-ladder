@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Height;
+import domain.LadderGame;
 import domain.LadderMaker;
 import domain.Lines;
 import domain.Missions;
@@ -34,12 +35,7 @@ public class MainController {
             printLadder(names, missions, ladderMaker.getLines());
 
             Players players = new Players(names);
-            for (int index = 0; index < names.size(); index++) {
-                Player player = players.findByIndex(index);
-                player.move(ladderMaker.getLines());
-            }
-
-            players.distributeMissions(missions);
+            LadderGame ladderGame = LadderGame.of(players, missions, ladderMaker.getLines());
 
             printResult(players);
 
@@ -59,6 +55,16 @@ public class MainController {
         return ladderMaker;
     }
 
+    private void printResult(Players players) {
+        if (inputView.readPlayer().equals("all")) {
+            outputView.printAllResult(players);
+        }
+        if (!inputView.readPlayer().equals("all")) {
+            Player player = players.findByName(inputView.readPlayer());
+            outputView.printPlayerResult(player.getMission());
+        }
+    }
+
     private Names getNames() {
         return inputView.readNames();
     }
@@ -71,16 +77,6 @@ public class MainController {
         return inputView.readHeight();
     }
 
-
-    private void printResult(Players players) {
-        if (inputView.readPlayer().equals("all")) {
-            outputView.printAllResult(players);
-        }
-        if (!inputView.readPlayer().equals("all")) {
-            Player player = players.findByName(inputView.readPlayer());
-            outputView.printPlayerResult(player.getMission());
-        }
-    }
 
     private static void validateInputSize(Names names, Missions missions) {
         if (names.size() != missions.size()) {

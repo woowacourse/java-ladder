@@ -32,16 +32,4 @@ public class Players {
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
     }
-
-
-    public void distributeMissions(Missions missions) {
-        for (int index = 0; index < missions.getMissions().size(); index++) {
-            int finalIndex = index;
-            Player player = players.stream()
-                    .filter(element -> element.getPosition().getPosition() == finalIndex)
-                    .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("해당 index의 사용자가 존재하지 않습니다."));
-            player.distributeMission(missions.getMissionByIndex(index));
-        }
-    }
 }
