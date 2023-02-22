@@ -24,17 +24,17 @@ public class Result {
 
     public void perform(Ladder ladder) {
         for (int i = ladder.getLadder().size() - 1; i >= 0; i--) {
-            changeResultIndex(ladder.getLadder().get(i));
+            changeBetIndex(ladder.getLadder().get(i));
         }
     }
 
-    private void changeResultIndex(Line line) {
+    private void changeBetIndex(Line line) {
         for (int i = 0; i < line.size(); i++) {
-            trySwapResultAtNextIndex(i, line.isExistLineAtCell(i));
+            trySwapBetAtNextIndex(i, line.isExistLineAtCell(i));
         }
     }
 
-    private void trySwapResultAtNextIndex(int index, boolean exist) {
+    private void trySwapBetAtNextIndex(int index, boolean exist) {
         if (exist) {
             Collections.swap(result, index, index + 1);
         }

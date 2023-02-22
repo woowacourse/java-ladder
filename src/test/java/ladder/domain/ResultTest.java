@@ -50,7 +50,7 @@ public class ResultTest {
         List<String> performedResult = Arrays.asList("B", "A", "D", "C", "E"); // 예상 결과
 
         for (int i = 0; i < performedResult.size(); i++) {
-            Assertions.assertEquals(performedResult.get(i), result.getResult().get(i).getBet());
+            Assertions.assertEquals(performedResult.get(i), result.getResult().get(i).toString());
         }
     }
 
@@ -66,7 +66,7 @@ public class ResultTest {
         List<String> performedResult = Arrays.asList("A", "B", "C", "D", "E"); // 예상 결과
 
         for (int i = 0; i < performedResult.size(); i++) {
-            Assertions.assertEquals(performedResult.get(i), result.getResult().get(i).getBet());
+            Assertions.assertEquals(performedResult.get(i), result.getResult().get(i).toString());
         }
     }
 }

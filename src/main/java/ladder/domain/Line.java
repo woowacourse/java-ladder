@@ -18,8 +18,8 @@ public class Line {
         createLine(countOfParticipants);
     }
 
-    private void createLine(int personCount) {
-        for (int cell = FIRST_CELL_INDEX; cell < personCount - 1; cell++) {
+    private void createLine(int countOfParticipants) {
+        for (int cell = FIRST_CELL_INDEX; cell < countOfParticipants - 1; cell++) {
             createDiscontinuousLineAtCell(cell);
         }
     }

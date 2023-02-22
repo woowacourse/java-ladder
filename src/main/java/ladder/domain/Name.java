@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Name {
     private static final int MAX_NAME_LENGTH = 5;
-    private static final String ALL = "all";
+    private static final String UNAVAILABLE_NAME = "all";
     private static final String COMMA = ",";
 
     private final String name;
@@ -15,7 +15,6 @@ public class Name {
         validate(name);
         this.name = name;
     }
-
 
     private void validate(String name) {
         validateNotNull(name);
@@ -43,7 +42,7 @@ public class Name {
     }
 
     private void validateIsAvailable(String name) {
-        if (name.equals(ALL)) {
+        if (name.equals(UNAVAILABLE_NAME)) {
             throw new IllegalArgumentException(ErrorMessage.UNAVAILABLE_NAME.getMessage());
         }
     }
