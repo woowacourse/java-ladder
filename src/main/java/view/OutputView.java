@@ -4,6 +4,8 @@ import static java.util.stream.Collectors.joining;
 
 import domain.LadderResultRequest;
 import domain.ladder.Ladder;
+import domain.ladder.LadderResult;
+import domain.ladder.LadderResults;
 import domain.ladder.Line;
 import domain.ladder.LinePoint;
 import domain.player.Players;
@@ -17,8 +19,8 @@ public class OutputView {
     private static final String BLOCKED_POINT = "     ";
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
-    public void printLadder(Players players,
-                            Ladder ladder) {
+    public void printLadderMap(Players players,
+                               Ladder ladder) {
         System.out.println("사다리 결과");
 
         System.out.println(getFormattedNames(players));
@@ -52,15 +54,16 @@ public class OutputView {
         System.out.print(EDGE_OF_POINT + BLOCKED_POINT);
     }
 
-    private String getFormattedResults(List<String> ladderResults) {
+    private String getFormattedResults(LadderResults ladderResults) {
         return ladderResults.stream()
+                .map(LadderResult::getResult)
                 .map(result -> String.format("%-5s", result))
                 .collect(joining(" "));
     }
 
-    public void printSinglePlayerResult(String result) {
+    public void printSinglePlayerResult(LadderResult result) {
         System.out.println("실행 결과");
-        System.out.println(result);
+        System.out.println(result.getResult());
     }
 
     public void printEveryPlayerResult(List<PlayerLadderResult> everyPlayerResult) {

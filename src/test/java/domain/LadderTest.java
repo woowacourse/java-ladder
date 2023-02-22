@@ -1,15 +1,19 @@
 package domain;
 
 
+import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.ladder.Ladder;
 import domain.ladder.LadderGenerator;
 import domain.ladder.LadderHeight;
+import domain.ladder.LadderResult;
+import domain.ladder.LadderResults;
 import domain.ladder.LineGenerator;
 import domain.player.Name;
 import domain.player.Player;
 import domain.player.Position;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -35,17 +39,26 @@ class LadderTest {
         Player player = new Player(new Name("hs"), new Position(position));
 
         // when
-        String actualResult = ladder.play(player);
+        LadderResult ladderResult = ladder.play(player);
 
         // then
-        assertThat(actualResult).isEqualTo(expectResult);
+        assertThat(ladderResult.getResult()).isEqualTo(expectResult);
     }
 
     private Ladder createLadder() {
         LadderGenerator ladderGenerator = new LadderGenerator(
                 new LineGenerator(new MockNumberGenerator()));
-        List<String> results = List.of("꽝", "3000", "5000", "1000", "2000");
-        return ladderGenerator.generate(5, new LadderHeight(4), results);
+        int numberOfPeople = 5;
+        LadderResults ladderResults = createLadderResults(numberOfPeople, "꽝", "3000", "5000", "1000", "2000");
+        return ladderGenerator.generate(numberOfPeople, new LadderHeight(4), ladderResults);
+    }
+
+    private LadderResults createLadderResults(int numberOfPeople,
+                                              String... result) {
+        List<LadderResult> ladderResults = Arrays.stream(result)
+                .map(LadderResult::new)
+                .collect(toList());
+        return LadderResults.createByPlayersSize(ladderResults, numberOfPeople);
     }
 
     static class MockNumberGenerator implements NumberGenerator {

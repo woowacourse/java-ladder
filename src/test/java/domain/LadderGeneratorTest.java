@@ -1,12 +1,16 @@
 package domain;
 
+import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.ladder.Ladder;
 import domain.ladder.LadderGenerator;
 import domain.ladder.LadderHeight;
+import domain.ladder.LadderResult;
+import domain.ladder.LadderResults;
 import domain.ladder.Line;
 import domain.ladder.LineGenerator;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
@@ -22,8 +26,9 @@ class LadderGeneratorTest {
     @Test
     void create_success() {
         // given
+        int numberOfPeople = 3;
         Ladder ladder = ladderGenerator.generate(3, new LadderHeight(3),
-                List.of("당첨", "꽝", "1000"));
+                createLadderResults(numberOfPeople, "당첨", "꽝", "1000"));
 
         // when
         List<Line> lines = ladder.getLines();
@@ -36,4 +41,11 @@ class LadderGeneratorTest {
         assertThat(numberOfPoint).isEqualTo(1);
     }
 
+    private LadderResults createLadderResults(int numberOfPeople,
+                                              String... result) {
+        List<LadderResult> ladderResults = Arrays.stream(result)
+                .map(LadderResult::new)
+                .collect(toList());
+        return LadderResults.createByPlayersSize(ladderResults, numberOfPeople);
+    }
 }

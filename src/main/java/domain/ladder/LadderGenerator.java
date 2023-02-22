@@ -15,7 +15,7 @@ public class LadderGenerator {
 
     public Ladder generate(int numberOfPeople,
                            LadderHeight ladderHeight,
-                           List<String> ladderResults) {
+                           LadderResults ladderResults) {
         List<Line> lines = new ArrayList<>();
         int width = numberOfPeople - NUMBER_OF_PEOPLE_TO_WIDTH_SCALE;
         int height = ladderHeight.getLadderHeight();

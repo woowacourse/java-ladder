@@ -14,6 +14,7 @@ public class PlayerLadderResult {
         return playerName;
     }
 
+
     public String getResult() {
         return result;
     }

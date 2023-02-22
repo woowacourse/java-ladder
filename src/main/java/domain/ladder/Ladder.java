@@ -9,28 +9,28 @@ public class Ladder {
 
     private final List<Line> lines;
     private final LadderHeight ladderHeight;
-    private List<String> ladderResults;
+    private LadderResults ladderResults;
 
     public Ladder(List<Line> lines,
                   LadderHeight ladderHeight,
-                  List<String> ladderResults) {
+                  LadderResults ladderResults) {
         this.lines = new ArrayList<>(lines);
         this.ladderHeight = ladderHeight;
-        this.ladderResults = new ArrayList<>(ladderResults);
+        this.ladderResults = ladderResults;
     }
 
-    public String play(Player player) {
+    public LadderResult play(Player player) {
         for (Line line : lines) {
             player.move(line);
         }
-        return ladderResults.get(player.getPosition() - 1);
+        return ladderResults.findResultByPosition(player.getPosition());
     }
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
 
-    public List<String> getLadderResults() {
-        return Collections.unmodifiableList(ladderResults);
+    public LadderResults getLadderResults() {
+        return ladderResults;
     }
 }
