@@ -1,8 +1,10 @@
 package ladder.domain.reward;
 
-import ladder.domain.player.Name;
-
 public class Reward {
+
+    public static final int REWARD_MAXIMUM_LENGTH = 5;
+    private static final char START_KOREAN = '가';
+    private static final char END_KOREAN = '힣';
 
     private final String reward;
 
@@ -17,8 +19,9 @@ public class Reward {
     }
 
     private void validateLength(String reward) {
-        if(reward.length() >= Name.NAME_MAXIMUM_LENGTH) {
-            throw new IllegalArgumentException("보상은 최대 " + Name.NAME_MAXIMUM_LENGTH+ "글자 입니다.");
+
+        if(calculateLength(reward) >= REWARD_MAXIMUM_LENGTH) {
+            throw new IllegalArgumentException("보상은 최대 " + REWARD_MAXIMUM_LENGTH + "글자 입니다.");
         }
     }
 
@@ -26,6 +29,22 @@ public class Reward {
         if(reward.isBlank()) {
             throw new IllegalArgumentException("보상은 빈 문자열을 입력할 수 없습니다.");
         }
+    }
+
+    private int calculateLength(String content) {
+        int countKorean = 0;
+        for (int index = 0; index < content.length(); index++) {
+            char charAt = content.charAt(index);
+            countKorean += countKorean(charAt);
+        }
+        return content.length() + countKorean;
+    }
+
+    private int countKorean(char letter) {
+        if (letter >= START_KOREAN && letter <= END_KOREAN) {
+            return  1;
+        }
+        return 0;
     }
 
 }

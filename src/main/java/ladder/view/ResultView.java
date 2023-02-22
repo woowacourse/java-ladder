@@ -19,10 +19,13 @@ import static ladder.view.constant.LadderOutputSymbol.LADDER_VERTICAL_SYMBOL;
 public class ResultView implements Result {
 
     private static final String BLANK_BETWEEN_NAMES = " ";
+    private static final String FORMAT_BLANK = " ";
     private static final String OUTPUT_RESULT_MESSAGE = "실행결과";
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String OUTPUT_PATTERN = "%" + Name.NAME_MAXIMUM_LENGTH + "s";
     private static final String PATTERN_PLAYER_RESULT = "%s : %s";
+    private static final char START_KOREAN = '가';
+    private static final char END_KOREAN = '힣';
 
     @Override
     public void printError(String errorMessage) {
@@ -69,14 +72,35 @@ public class ResultView implements Result {
 
     private String convertRewards(Rewards rewards) {
         return rewards.getRewards().stream()
-                .map(reward -> String.format(OUTPUT_PATTERN, reward.getReward()))
+                .map(reward -> formatContent(reward.getReward()))
                 .collect(Collectors.joining(BLANK_BETWEEN_NAMES));
     }
 
     private String convertPlayerNames(Players players) {
         return players.getNames().stream()
-                .map(name -> String.format(OUTPUT_PATTERN, name))
+                .map(this::formatContent)
                 .collect(Collectors.joining(BLANK_BETWEEN_NAMES));
+    }
+
+    private String formatContent(String content) {
+        return FORMAT_BLANK.repeat(Name.NAME_MAXIMUM_LENGTH - calculateLength(content))
+                + content;
+    }
+
+    private int calculateLength(String content) {
+        int countKorean = 0;
+        for (int index = 0; index < content.length(); index++) {
+            char charAt = content.charAt(index);
+            countKorean += countKorean(charAt);
+        }
+        return content.length() + countKorean;
+    }
+
+    private int countKorean(char letter) {
+        if (letter >= START_KOREAN && letter <= END_KOREAN) {
+            return  1;
+        }
+        return 0;
     }
 
     private String convertLadderSymbol(Ladder ladder) {
