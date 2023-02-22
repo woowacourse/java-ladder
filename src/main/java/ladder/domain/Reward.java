@@ -8,4 +8,8 @@ public class Reward {
     public Reward(final List<String> items) {
         this.items = items;
     }
+
+    public String getRewardOf(final int i) {
+        return items.get(i);
+    }
 }
