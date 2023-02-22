@@ -3,14 +3,15 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
-    private static final String NO_PLAYER_NAME_ERROR = "[ERROR] 해당 이름의 플레이어는 존재하지 않습니다.";
+    private static final String NO_PLAYER_AT_POSITION_ERROR = "[ERROR] 해당 포지션의 플레이어는 존재하지 않습니다.";
     private final List<Player> players = new ArrayList<>();
 
     public Players(List<Name> names) {
-        names.stream()
-                .map(Player::new)
+        IntStream.range(0, names.size())
+                .mapToObj(index -> new Player(names.get(index), new Position(index)))
                 .forEach(players::add);
     }
 
@@ -24,10 +25,35 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public Player findPlayerByName(Name name) {
+    public List<String> getAllNamesOrderedByPosition() {
+        return IntStream.range(0, players.size())
+                .mapToObj(index -> findNameBy(new Position(index)))
+                .collect(Collectors.toList());
+    }
+
+    public void moveAllPlayersByLinePoints(List<Boolean> points) {
+        IntStream.range(0, points.size())
+                .forEach(index -> changePlayerPositionsAtPoint(index, points.get(index)));
+    }
+
+    private void changePlayerPositionsAtPoint(int index, boolean point) {
+        if (point) {
+            findPlayerBy(new Position(index)).changePositionWith(findPlayerBy(new Position(index + 1)));
+        }
+    }
+
+    private String findNameBy(Position position) {
         return players.stream()
-                .filter(player -> player.isPlayerName(name))
+                .filter(player -> player.isPlayerPosition(position))
+                .map(Player::getName)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(NO_PLAYER_NAME_ERROR));
+                .orElseThrow(() -> new IllegalArgumentException(NO_PLAYER_AT_POSITION_ERROR));
+    }
+
+    private Player findPlayerBy(Position position) {
+        return players.stream()
+                .filter(player -> player.isPlayerPosition(position))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(NO_PLAYER_AT_POSITION_ERROR));
     }
 }
