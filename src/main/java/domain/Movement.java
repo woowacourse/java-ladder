@@ -10,7 +10,7 @@ public enum Movement {
     Movement(int movement) {
         this.movement = movement;
     }
-
+    
     public int move(int index) {
         return index + movement;
     }

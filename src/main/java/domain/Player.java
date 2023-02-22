@@ -25,14 +25,6 @@ public class Player {
     }
 
     @Override
-    public String toString() {
-        return "Player{" +
-                "name=" + name +
-                ", position=" + position +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

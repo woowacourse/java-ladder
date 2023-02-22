@@ -8,10 +8,10 @@ public class Mission {
     private final String mission;
 
     public Mission(String mission) {
-        this.mission = getMission(mission);
+        this.mission = getValidatedMission(mission);
     }
 
-    private static String getMission(String mission) {
+    private static String getValidatedMission(String mission) {
         if (mission.isBlank()) {
             throw new IllegalArgumentException("공백 또는 null을 입력할 수 없습니다.");
         }
@@ -40,12 +40,5 @@ public class Mission {
     @Override
     public int hashCode() {
         return Objects.hash(mission);
-    }
-
-    @Override
-    public String toString() {
-        return "Mission{" +
-                "mission='" + mission + '\'' +
-                '}';
     }
 }
