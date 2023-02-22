@@ -31,4 +31,15 @@ public class ConsoleReader {
             throw new IllegalArgumentException("콘솔 입력값이 정수가 아닙니다.");
         }
     }
+
+    public static String readLine() {
+        String readValue = scanner.nextLine();
+        if (readValue == null) {
+            throw new IllegalArgumentException("콘솔 입력값이 null값입니다.");
+        }
+        if (readValue.isEmpty()) {
+            throw new IllegalArgumentException("콘솔 입력값이 빈 문자열입니다.");
+        }
+        return readValue;
+    }
 }
