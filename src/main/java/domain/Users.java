@@ -27,4 +27,8 @@ public class Users {
     public List<User> getUsers() {
         return new ArrayList<>(users);
     }
+
+    public boolean contain(final User user) {
+        return users.contains(user);
+    }
 }
