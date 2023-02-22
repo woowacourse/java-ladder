@@ -9,13 +9,18 @@ import domain.Prizes;
 import domain.RandomScaffoldGenerator;
 import domain.ScaffoldGenerator;
 import domain.Width;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import view.InputView;
 import view.OutputView;
 
 public class LadderController {
     private static final int MINUS_VALUE_FOR_LADDER_WIDTH = 1;
+    private static final String SHOW_NAMES_COMMAND = "all";
+    private static final String ERROR_NON_EXIST_USER = "[ERROR] 해당 이름을 가진 사용자가 존재하지 않습니다";
+    private static final String BLANK = "";
 
     private final ScaffoldGenerator scaffoldGenerator = new RandomScaffoldGenerator();
 
@@ -32,5 +37,34 @@ public class LadderController {
         final Width width = new Width(names.size() - MINUS_VALUE_FOR_LADDER_WIDTH);
         final Ladder ladder = new Ladder(width, height, scaffoldGenerator);
         OutputView.printResult(ladder, names, prizes);
+        calculateResult(ladder, names, prizes);
+    }
+
+    private void calculateResult(final Ladder ladder, final Names names, final Prizes prizes) {
+        Map<String, String> ladderResult = ladder.calculateResult(names, prizes);
+        String targetName = BLANK;
+        while (!targetName.equals(SHOW_NAMES_COMMAND)) {
+            targetName = InputView.inputTargetName();
+            checkCases(ladderResult, names, targetName);
+        }
+    }
+
+    private void checkCases(final Map<String, String > ladderResult, final Names names, String targetName){
+        if (targetName.equals(SHOW_NAMES_COMMAND)){
+            OutputView.printTotalMatching(ladderResult);
+            return;
+        }
+        validateTargetUserExists(names, targetName);
+        OutputView.printSingleMatching(ladderResult.get(targetName));
+    }
+
+    private void validateTargetUserExists(final Names names, final String targetName) {
+        if (isNotPlayer(names, targetName)) {
+            throw new IllegalArgumentException(ERROR_NON_EXIST_USER);
+        }
+    }
+
+    private boolean isNotPlayer(final Names names, final String targetName) {
+        return !names.hasName(targetName);
     }
 }

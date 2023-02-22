@@ -22,6 +22,7 @@ public class OutputView {
     private static final String NON_EXIST_SCAFFOLD_MATERIAL = " ";
     private static final String BAR = "|";
     private static final String BLANK = " ";
+    private static final String MATCH_RESULT = "실행 결과";
 
     private OutputView() {
     }
@@ -103,5 +104,16 @@ public class OutputView {
             return KOREAN_SPAN;
         }
         return OTHER_SPAN;
+    }
+
+    public static void printSingleMatching(final String matchingResult) {
+        System.out.println(MATCH_RESULT);
+        System.out.println(matchingResult);
+        System.out.println();
+    }
+
+    public static void printTotalMatching(Map<String, String> totalMatchingResult) {
+        System.out.println(MATCH_RESULT);
+        totalMatchingResult.forEach((key, value) -> System.out.println(key + " : " + value));
     }
 }
