@@ -1,6 +1,7 @@
 package laddergame.utils;
 
 import java.util.function.Supplier;
+import laddergame.view.OutputView;
 
 public class RetryUtils {
 
@@ -23,7 +24,7 @@ public class RetryUtils {
             try {
                 return supplier.get();
             } catch (RuntimeException e) {
-                System.out.println(e.getMessage());
+                OutputView.printExceptionMessage(e.getMessage());
             }
         }
     }
