@@ -52,6 +52,6 @@ public class OutputView {
         for (int i = 0; i < players.size(); i++) {
             stringBuilder.append(players.get(i) + " : " + allResult.get(i) + System.lineSeparator());
         }
-        System.out.println(stringBuilder);
+        System.out.print(stringBuilder);
     }
 }
