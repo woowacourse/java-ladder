@@ -11,7 +11,7 @@ public class PlayersTest {
     @Test
     @DisplayName("Players객체 생성 테스트")
     void makePlayers() {
-        String names = "roy,poy,soy,koy";
+        String[] names = {"roy","poy","soy","koy"};
 
         assertDoesNotThrow(() -> new Players(names));
     }
@@ -19,7 +19,7 @@ public class PlayersTest {
     @Test
     @DisplayName("플레이어 수가 한명일 경우 예외 발생")
     void validateMoreThanOnePlayer() {
-        String names = "roy";
+        String[] names = {"roy"};
 
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
