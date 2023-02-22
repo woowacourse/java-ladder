@@ -1,7 +1,9 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderGame {
@@ -20,21 +22,31 @@ public class LadderGame {
 
     private List<Player> generatePlayers(List<String> names) {
         List<Player> gamePlayers = new ArrayList<>();
-        for (int startIndex = 0; startIndex < names.size(); startIndex++) {
-            Name name = new Name(names.get(startIndex));
+        for (int generateIndex = 0; generateIndex < names.size(); generateIndex++) {
+            Name name = new Name(names.get(generateIndex));
+            StartIndex startIndex = new StartIndex(generateIndex);
             gamePlayers.add(new Player(name, startIndex));
         }
         return gamePlayers;
     }
 
     private List<Result> generateResults(List<String> results) {
-        return results.stream()
-                .map(Result::new)
-                .collect(Collectors.toUnmodifiableList());
+        List<Result> gameResults = new ArrayList<>();
+        for (int generateIndex = 0; generateIndex < results.size(); generateIndex++) {
+            Reward reward = new Reward(results.get(generateIndex), generateIndex);
+            gameResults.add(new Result(reward));
+        }
+        return gameResults;
     }
 
-    public List<String> getNames () {
-        return players.getNames();
+    public Map<Player, Result> generateGameResultByPlayer() {
+        Map<Player, Result> gameResultByPlayer = new HashMap<>();
+        for (Player player : players.getPlayers()) {
+            int rewardIndex = ladder.moveToEnd(player.getStartIndex());
+            Result result = results.findResultByRewardIndex(rewardIndex);
+            gameResultByPlayer.put(player, result);
+        }
+        return gameResultByPlayer;
     }
 
     public List<Line> getLines() {
