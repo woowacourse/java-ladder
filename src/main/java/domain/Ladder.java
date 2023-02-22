@@ -8,17 +8,10 @@ public class Ladder {
     private final Width width;
     private final List<Line> ladder;
 
-    public Ladder(Height height, Width width, LineGenerator randomLineGenerator) {
+    public Ladder(Height height, Width width, LadderGenerator randomLadderGenerator) {
         this.height = height;
         this.width = width;
-        this.ladder = new ArrayList<>();
-        generate(randomLineGenerator);
-    }
-
-    private void generate(LineGenerator randomLineGenerator) {
-        for (int floor = 0; floor < height.getHeight(); floor++) {
-            ladder.add(new Line(randomLineGenerator.generateLine(width)));
-        }
+        this.ladder = randomLadderGenerator.generate(width, height);
     }
 
     public List<Line> getLadder() {
