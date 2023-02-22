@@ -33,6 +33,10 @@ public class Name {
         return this.name.equals(name.getName());
     }
 
+    public boolean isNotAll() {
+        return !name.equals("all");
+    }
+
     public String getName() {
         return name;
     }

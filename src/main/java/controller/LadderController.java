@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.List;
-import java.util.Map;
 
 import domain.BooleanGenerator;
 import domain.Ladder;
@@ -19,6 +18,28 @@ import view.OutputView;
 public class LadderController {
 
     public void run() {
+        LadderGame ladderGame = generateLadderGame();
+
+        Name name = generateName();
+        while (name.isNotAll()) {
+            responseResult(ladderGame, name);
+            name = generateName();
+        }
+
+        List<Result> results = ladderGame.getResults();
+        OutputView.printResults(results);
+    }
+
+    private void responseResult(final LadderGame ladderGame, final Name name) {
+        try {
+            Result result = ladderGame.getResult(name);
+            OutputView.printResult(result);
+        } catch (IllegalArgumentException exception) {
+            Log.log(exception.getMessage());
+        }
+    }
+
+    private LadderGame generateLadderGame() {
         Players players = generatePlayers();
         int numberOfPlayer = players.getNumberOfPlayer();
         Rewards rewards = generateRewards(numberOfPlayer);
@@ -27,21 +48,7 @@ public class LadderController {
         OutputView.printPlayers(players);
         OutputView.printLadder(ladder);
 
-        LadderGame ladderGame = new LadderGame(ladder, players, rewards);
-
-        while (true) {
-            Name name = generateName();
-            try {
-                if (name.equals("all")) {
-                    List<Result> results = ladderGame.getResults();
-                    OutputView.printResults(results);
-                }
-                Result result = ladderGame.getResult(name);
-                OutputView.printResult(result);
-            } catch (IllegalArgumentException exception) {
-                Log.log(exception.getMessage());
-            }
-        }
+        return new LadderGame(ladder, players, rewards);
     }
 
     private Players generatePlayers() {
@@ -54,7 +61,7 @@ public class LadderController {
         }
     }
 
-    private Rewards generateRewards(int playersSize) {
+    private Rewards generateRewards(final int playersSize) {
         try {
             List<String> names = InputView.readResults();
             return new Rewards(names, playersSize);
@@ -64,7 +71,7 @@ public class LadderController {
         }
     }
 
-    private Ladder generateLadder(int personCount) {
+    private Ladder generateLadder(final int personCount) {
         try {
             BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
             int height = InputView.readHeight();
