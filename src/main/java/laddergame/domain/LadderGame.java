@@ -13,8 +13,8 @@ public class LadderGame {
         this.ladderResult = ladderResult;
     }
 
-    public Map<PersonalName, LadderResultItem> match(Ladder ladder) {
-        Map<PersonalName, LadderResultItem> gameResult = new HashMap<>();
+    public Map<String, String> match(Ladder ladder) {
+        Map<String, String> gameResult = new HashMap<>();
 
         List<String> names = personalNames.getNames();
         List<String> resultItems = ladderResult.getItemNames();
@@ -22,17 +22,22 @@ public class LadderGame {
         for (int index = 0; index < names.size(); index++) {
             int current = index;
             for (final Line line : ladder.getLines()) {
-                if (current < names.size() - 1 && line.doesRungExistsIndexOf(current)) {
-                    current += 1;
-                    continue;
-                }
-                if (current > 0 && line.doesRungExistsIndexOf(current - 1)) {
-                    current -= 1;
-                }
+                current = move(line, current, names.size());
             }
-            gameResult.put(new PersonalName(names.get(index)), new LadderResultItem(resultItems.get(current)));
+            gameResult.put(names.get(index), resultItems.get(current));
         }
 
         return gameResult;
+    }
+
+    private int move(final Line line, final int current, final int limit) {
+        if (current < limit - 1 && line.doesRungExistsIndexOf(current)) {
+            return current + 1;
+
+        }
+        if (current > 0 && line.doesRungExistsIndexOf(current - 1)) {
+            return current - 1;
+        }
+        return current;
     }
 }
