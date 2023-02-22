@@ -30,4 +30,5 @@ public class LadderGameResult {
     public Map<Player, Prize> getResult() {
         return Collections.unmodifiableMap(result);
     }
+    
 }

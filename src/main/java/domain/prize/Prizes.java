@@ -26,4 +26,5 @@ public class Prizes {
     public Prize getPrizeAt(final int index) {
         return prizes.get(index);
     }
+    
 }

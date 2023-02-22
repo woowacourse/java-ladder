@@ -43,4 +43,5 @@ public class LadderGame {
     public LadderGameResult getResult() {
         return result;
     }
+    
 }
