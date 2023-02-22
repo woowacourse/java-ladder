@@ -35,6 +35,14 @@ public class LineTest {
         Assertions.assertThat(line.checkRight(index)).isEqualTo(result);
     }
 
+    @DisplayName("현재 유저가 왼쪽으로 이동할 수 있는지 boolean으로 리턴한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"3,true", "4,false"})
+    void checkLeftBridgeTest(final int index, final boolean result) {
+        Line line = new Line(List.of(Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST));
+        Assertions.assertThat(line.checkLeft(index)).isEqualTo(result);
+    }
+
     static Stream<Arguments> lineGeneratorFailParameter() {
         return Stream.of(
                 Arguments.of(List.of(Bridge.EXIST, Bridge.EXIST, Bridge.NON_EXIST)),
