@@ -27,20 +27,12 @@ public class LineTest {
                 .doesNotThrowAnyException();
     }
 
-    @DisplayName("현재 유저가 오른쪽으로 이동할 수 있는지 boolean으로 리턴한다.")
-    @ParameterizedTest
-    @CsvSource(value = {"0,true", "1,false"})
-    void checkRightBridgeTest(final int index, final boolean result) {
-        Line line = new Line(List.of(Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST));
-        Assertions.assertThat(line.checkRight(index)).isEqualTo(result);
-    }
-
     @DisplayName("현재 유저가 왼쪽으로 이동할 수 있는지 boolean으로 리턴한다.")
     @ParameterizedTest
-    @CsvSource(value = {"3,true", "4,false"})
-    void checkLeftBridgeTest(final int index, final boolean result) {
+    @CsvSource(value = {"3,2", "2,3", "0,1","4,5","5,4"})
+    void calculateNextPositionTest(final int index, final int nextIndex) {
         Line line = new Line(List.of(Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST));
-        Assertions.assertThat(line.checkLeft(index)).isEqualTo(result);
+        Assertions.assertThat(line.calculateNextPosition(index)).isEqualTo(nextIndex);
     }
 
     static Stream<Arguments> lineGeneratorFailParameter() {
