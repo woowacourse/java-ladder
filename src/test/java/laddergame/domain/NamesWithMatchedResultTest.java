@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.Map;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,5 +31,16 @@ class NamesWithMatchedResultTest {
         LadderResultItem searchResult = namesWithMatchedResult.searchBy("hi");
         //then
         assertThat(searchResult).isEqualTo(ladderResultItem1);
+    }
+
+    @DisplayName("이름이 존재하지 않으면 예외가 발생한다.")
+    @Test
+    void throwExceptionWhenNameNotFound() {
+        //given
+        NamesWithMatchedResult namesWithMatchedResult = new NamesWithMatchedResult(Map.of());
+        //when
+        //then
+        Assertions.assertThatThrownBy(() -> namesWithMatchedResult.searchBy("no"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

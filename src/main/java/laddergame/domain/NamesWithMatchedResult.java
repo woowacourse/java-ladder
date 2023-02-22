@@ -11,6 +11,9 @@ public class NamesWithMatchedResult {
 
     public LadderResultItem searchBy(String value) {
         PersonalName keyName = PersonalName.valueOf(value);
+        if (!nameToItem.containsKey(keyName)) {
+            throw new IllegalArgumentException("게임 참여자의 이름이 아닙니다.");
+        }
         return nameToItem.get(keyName);
     }
 }
