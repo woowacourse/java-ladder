@@ -14,24 +14,27 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @DisplayName("Names 는")
 public class NamesTest {
-
-    private final List<Name> failNames = List.of(new Name("포비"));
-    private final List<Name> successNames = List.of(new Name("찰리"), new Name("가비"));
-
     private final Names names = new Names(List.of(new Name("찰리"), new Name("가비")));
 
     @Test
     void Name_의_List_를_통해_생성된다() {
+        final List<Name> successNames = List.of(new Name("찰리"), new Name("가비"), new Name("포비"));
         assertDoesNotThrow(() -> new Names(successNames));
     }
 
     @Test
     void Name_이_둘_미만이면_에러를_던진다() {
+        final List<Name> failNames = List.of(new Name("포비"));
         assertThatThrownBy(() -> new Names(failNames)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 크기를_알_수_있다() {
         assertThat(names.size()).isEqualTo(2);
+    }
+
+    @Test
+    void 해당_value을_가진_Name_이_있는지_알_수_있다() {
+        assertThat(names.hasName("찰리")).isEqualTo(true);
     }
 }

@@ -24,6 +24,11 @@ public class Names {
         return names.size();
     }
 
+    public boolean hasName(String targetName) {
+        return names.stream()
+                .anyMatch(name -> name.getValue().equals(targetName));
+    }
+
     public List<Name> getNames() {
         return new ArrayList<>(names);
     }
