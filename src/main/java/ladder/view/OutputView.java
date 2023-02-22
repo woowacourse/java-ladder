@@ -78,7 +78,8 @@ public class OutputView {
     private enum OutputMessage {
 
         OUTPUT_LADDER_RESULT("사다리 결과"),
-        OUTPUT_EXECUTION_RESULT("실행 결과");
+        OUTPUT_EXECUTION_RESULT("실행 결과"),
+        OUTPUT_BANNED_NAMES("금지어: ");
 
         private final String message;
 

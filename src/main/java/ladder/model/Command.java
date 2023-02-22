@@ -22,4 +22,5 @@ public enum Command {
                 .map(Command::getCommand)
                 .anyMatch(command -> command.equals(word));
     }
+
 }

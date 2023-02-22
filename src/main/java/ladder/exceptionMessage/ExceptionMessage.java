@@ -8,7 +8,7 @@ public enum ExceptionMessage {
 
     /*Player*/
     EXCEPTION_INVALID_NAME_LENGTH("플레이어 이름은 1자 이상 5자 이하여야 합니다."),
-    EXCEPTION_INVALID_NAME("사용할 수 없는 이름이 포함되어 있습니다.(금지어 : all)"),
+    EXCEPTION_INVALID_NAME("사용할 수 없는 이름이 포함되어 있습니다."),
 
     /*Players*/
     EXCEPTION_INVALID_PLAYER_COUNT("플레이어 수는 2명 이상 26명 이하여야 합니다."),
