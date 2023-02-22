@@ -14,7 +14,7 @@ public class Players {
 
     public Player findPlayerByName(final String name) {
         return players.stream()
-                .filter(player -> player.getName().equals(name))
+                .filter(player -> player.equalName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("해당하는 플레이어가 없습니다."));
     }

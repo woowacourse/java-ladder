@@ -48,4 +48,8 @@ public class Name {
     public int getNameLength() {
         return this.name.length();
     }
+
+    public boolean equalName(final String name) {
+        return this.name.equals(name);
+    }
 }
