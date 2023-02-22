@@ -25,4 +25,8 @@ public class Line {
     public List<Bridge> getLine() {
         return new ArrayList<>(line);
     }
+
+    public boolean checkRight(final int index) {
+        return line.get(index) == Bridge.EXIST;
+    }
 }
