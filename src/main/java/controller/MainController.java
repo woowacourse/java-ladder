@@ -37,7 +37,6 @@ public class MainController {
             LadderGame ladderGame = LadderGame.of(players, missions, ladderMaker.getLines());
 
             queryResult(ladderGame);
-
         } catch (Exception exception) {
             outputView.printExceptionMessage(exception);
         }
@@ -49,7 +48,7 @@ public class MainController {
             if (player.isBlank()) {
                 return;
             }
-            if (player.equals("all")) {
+            if (showAll(player)) {
                 outputView.printAllResult(ladderGame.findAllResult());
                 return;
             }
@@ -57,8 +56,8 @@ public class MainController {
         }
     }
 
-    private String getPlayerToQuery() {
-        return inputView.readPlayer();
+    private static boolean showAll(String player) {
+        return player.equals("all");
     }
 
     private void printLadder(Names names, Missions missions, Lines lines) {
@@ -79,5 +78,9 @@ public class MainController {
 
     private Height getHeight() {
         return new Height(inputView.readHeight());
+    }
+
+    private String getPlayerToQuery() {
+        return inputView.readPlayer();
     }
 }
