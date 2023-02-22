@@ -11,13 +11,32 @@ public class Line {
     private final List<Point> points;
 
     public Line(final List<Point> points) {
-        validate(points.size());
+        validate(points);
         this.points = points;
     }
 
-    public void validate(final int pointSize) {
+    private void validate(List<Point> points) {
+        validateSize(points.size());
+        validatePointExistContinuous(points);
+    }
+
+    public void validateSize(final int pointSize) {
         if (pointSize < POINT_MIN_SIZE || pointSize > POINT_MAX_SIZE) {
             throw new IllegalArgumentException("포인트 범위는 0부터 19까지입니다.");
+        }
+    }
+
+    private void validatePointExistContinuous(List<Point> points) {
+        Point previousPoint = Point.NOT_EXIST;
+        for (Point currentPoint : points) {
+            compareWithPreviousPoint(previousPoint, currentPoint);
+            previousPoint = currentPoint;
+        }
+    }
+
+    private void compareWithPreviousPoint(Point previousPoint, Point currentPoint) {
+        if (previousPoint == Point.EXIST && currentPoint == Point.EXIST) {
+            throw new IllegalArgumentException("사다리는 같은 라인에서 연속되는 포인트를 가질 수 없습니다.");
         }
     }
 
