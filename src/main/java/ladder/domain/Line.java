@@ -1,17 +1,21 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Line {
 
     private final List<ConnectionStatus> points;
+    private final Map<Integer, Integer> moveIndexPairs = new HashMap<>();
 
     public Line(final int width, final BooleanGenerator booleanGenerator) {
         this.points = new ArrayList<>();
         for (int position = 0; position < width; position++) {
             points.add(decideConnection(position, booleanGenerator));
         }
+        initMoveIndexPairs();
     }
 
     private ConnectionStatus decideConnection(int position, BooleanGenerator booleanGenerator) {
@@ -22,6 +26,23 @@ public class Line {
             return ConnectionStatus.DISCONNECTED;
         }
         return ConnectionStatus.convertConnectionStatus(booleanGenerator.generate());
+    }
+
+    private void initMoveIndexPairs() {
+        for (int connectionIndex = 0; connectionIndex < points.size(); connectionIndex++) {
+            if (points.get(connectionIndex) == ConnectionStatus.CONNECTED) {
+                moveIndexPairs.put(connectionIndex, connectionIndex + 1);
+                moveIndexPairs.put(connectionIndex + 1, connectionIndex);
+            }
+        }
+    }
+
+    public int indicateEndIndex(int startIndex) {
+        int endIndex = startIndex;
+        if (moveIndexPairs.containsKey(startIndex)) {
+            endIndex = moveIndexPairs.get(startIndex);
+        }
+        return endIndex;
     }
 
     public List<ConnectionStatus> getLineStatus() {
