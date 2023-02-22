@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import model.Height;
 import model.Ladder;
 import model.LadderGame;
+import model.LadderGameCommand;
 import model.LadderResult;
 import model.LadderResults;
 import model.Name;
@@ -82,21 +83,11 @@ public class LadderController {
     private void printLadderGame(LadderGame ladderGame) {
         String targetParticipantName = DEFAULT_PARTICIPANT_NAME;
 
-        while (!targetParticipantName.equals(FIND_TOTAL_RESULT_COMMAND)) {
+        while (LadderGameCommand.DEFAULT_COMMAND.isPlayable(targetParticipantName)) {
             outputView.noticeFindResultOfName();
             targetParticipantName = inputView.inputNameForGameResult();
-            calculateLadderResultLog(ladderGame, targetParticipantName);
+            List<GameResult> gameResults = ladderGame.findGameResult(targetParticipantName);
+            outputView.printLadderGameResult(gameResults);
         }
-    }
-
-    private void calculateLadderResultLog(LadderGame ladderGame, String targetParticipantName) {
-        outputView.noticeGameResult();
-        if (targetParticipantName.equals(FIND_TOTAL_RESULT_COMMAND)) {
-            List<GameResult> totalGameResult = ladderGame.findGameResultAll();
-            outputView.printTotalResult(totalGameResult);
-            return;
-        }
-        String gameResult = ladderGame.findGameResultByName(targetParticipantName);
-        outputView.printResultOfName(gameResult);
     }
 }
