@@ -32,6 +32,10 @@ public class Person {
         return name;
     }
 
+    public boolean isSamePerson(String name) {
+        return name.equals(this.name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
