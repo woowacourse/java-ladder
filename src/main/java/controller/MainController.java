@@ -36,17 +36,24 @@ public class MainController {
             Players players = new Players(names);
             LadderGame ladderGame = LadderGame.of(players, missions, ladderMaker.getLines());
 
-            String receivedPlayer = inputView.readPlayer();
-
-            if (receivedPlayer.equals("all")) {
-                outputView.printAllResult(ladderGame.findAllResult());
-            }
-            if (!receivedPlayer.equals("all")) {
-                outputView.printSingleResult(ladderGame.findResultByName(receivedPlayer));
-            }
+            queryResult(ladderGame);
 
         } catch (Exception exception) {
             outputView.printExceptionMessage(exception);
+        }
+    }
+
+    private void queryResult(LadderGame ladderGame) {
+        while (true) {
+            String player = inputView.readPlayer();
+            if (player.isBlank()) {
+                return;
+            }
+            if (player.equals("all")) {
+                outputView.printAllResult(ladderGame.findAllResult());
+                return;
+            }
+            outputView.printSingleResult(ladderGame.findResultByName(player));
         }
     }
 
