@@ -27,4 +27,11 @@ public class Items {
     public int getSize() {
         return items.size();
     }
+
+    public Item findBy(Position resultPosition) {
+        return items.stream()
+                .filter(item -> item.isSamePosition(resultPosition))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 위치에 당첨 결과가 없습니다"));
+    }
 }

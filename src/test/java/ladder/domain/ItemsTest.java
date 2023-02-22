@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class ItemsTest {
 
@@ -35,5 +37,18 @@ class ItemsTest {
         Items items = Items.generate(names);
         //then
         assertThat(items.getSize()).isEqualTo(3);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0:a", "1:ab", "2:abc"}, delimiter = ':')
+    @DisplayName("위치에 따라 아이템을 반환한다")
+    void shouldReturnItemWhenInputPosition(int position, String itemName) {
+        //given
+        List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
+        //when
+        Items items = Items.generate(names);
+        Item item = items.findBy(new Position(position));
+        //then
+        assertThat(item.getName()).isEqualTo(new ItemName(itemName));
     }
 }

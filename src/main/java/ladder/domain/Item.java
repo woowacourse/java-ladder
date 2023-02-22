@@ -16,4 +16,8 @@ public class Item {
     public Position getPosition() {
         return position;
     }
+
+    public boolean isSamePosition(Position position) {
+        return this.position.equals(position);
+    }
 }
