@@ -26,5 +26,7 @@ public class Controller {
         List<Line> ladder = new Ladder(ladderHeight, players, booleanCreator).getLadder();
 
         outputView.printResult(players, ladder, rewards);
+
+        String selectedPlayerName = inputView.readSelectPlayer();
     }
 }
