@@ -4,8 +4,8 @@ import static java.util.stream.Collectors.joining;
 
 import ladder.domain.Line;
 import ladder.domain.Player;
-import ladder.domain.Step;
 import ladder.domain.Result;
+import ladder.domain.Step;
 import java.util.List;
 
 public class OutputView {

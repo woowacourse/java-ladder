@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Ladder {
     private final List<Line> lines;
