@@ -29,7 +29,7 @@ class LadderTest extends AbstractTestFixture {
         Ladder ladder = new Ladder(defaultPerson, line, resultCandidates);
 
         //then
-        assertEquals(ladder.getLines().size(), height);
+        assertEquals(ladder.getBridges().size(), height);
     }
 
     @Test

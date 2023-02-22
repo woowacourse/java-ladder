@@ -43,7 +43,7 @@ public class Ladder {
         return result;
     }
 
-    public List<Bridge> getLines() {
+    public List<Bridge> getBridges() {
         return line.getBridges();
     }
 

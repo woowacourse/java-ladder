@@ -58,7 +58,7 @@ public class OutputView {
     }
 
     private static void printLinesOf(final Ladder ladder) {
-        for (Bridge bridge : ladder.getLines()) {
+        for (Bridge bridge : ladder.getBridges()) {
             System.out.print("\t|");
             printBridgesOf(bridge);
             System.out.println();
