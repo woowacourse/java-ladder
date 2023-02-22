@@ -28,4 +28,5 @@ public class Line {
             points.add(false);
         }
     }
+
 }

@@ -24,8 +24,8 @@ public class Players {
 
     private List<Player> createPlayer(List<String> names) {
         List<Player> playerList = new ArrayList<>();
-        for (String name : names) {
-            playerList.add(new Player(name));
+        for (int position = 0; position < names.size(); position++) {
+            playerList.add(new Player(names.get(position), position));
         }
         return playerList;
     }

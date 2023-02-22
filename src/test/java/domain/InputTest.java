@@ -44,14 +44,24 @@ public class InputTest {
     @DisplayName("사다리 결과는 사람의 수 만큼 있어야 한다.")
     @ParameterizedTest
     @ValueSource(strings = {"꽝,3000,꽝,1000", "2000,5000,꽝,꽝"})
-    void validateLadderResultCount(String inputResults) {
+    void validateLadderResultCountFailedTest(String inputResults) {
         List<String> playerNames = Arrays.asList("A", "B", "C");
         Players players = new Players(playerNames);
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new Results(players, inputResults);
+            new Results(players.getPlayers().size(), Arrays.asList(inputResults.split(",")));
         });
+    }
 
+    @DisplayName("사다리 결과는 사람의 수 만큼 있어야 한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"꽝,3000,1000", "2000,5000,꽝"})
+    void validateLadderResultCountSuccessTest(String inputResults) {
+        List<String> playerNames = Arrays.asList("A", "B", "C");
+        Players players = new Players(playerNames);
+
+        new Results(players.getPlayers().size(), Arrays.asList(inputResults.split(",")));
+        assertThat(new Results(players.getPlayers().size(), Arrays.asList(inputResults.split(","))).getClass()).isEqualTo(Results.class);
     }
 
 }

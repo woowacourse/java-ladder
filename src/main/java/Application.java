@@ -1,5 +1,7 @@
 import domain.Lines;
 import domain.Players;
+import domain.Result;
+import domain.Results;
 import ui.input.InputView;
 import ui.output.OutputView;
 
@@ -11,6 +13,7 @@ public class Application {
         Players players = new Players(Arrays.asList(playersName.split(",")));
 
         String ladderResults = InputView.getResult();
+        Results results = new Results(players.getPlayers().size(), Arrays.asList(ladderResults.split(",")));
 
         int ladderHeight = InputView.getLadderHeight();
         Lines lines = new Lines(players.getPlayers().size(), ladderHeight);
