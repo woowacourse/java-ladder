@@ -16,7 +16,7 @@ public class Ladder {
         this.height = new Height(height);
     }
 
-    public Map<String, String> matchResult(List<Name> names, List<Result> results) {
+    public Map<String, String> matchResult(final List<Name> names, final List<Result> results) {
         Map<String, String> finalResult = new LinkedHashMap<>();
 
         for (int i = 0; i < names.size(); i++) {
@@ -24,7 +24,6 @@ public class Ladder {
 
             finalResult.put(names.get(i).getName(), results.get(finalPosition).getResult());
         }
-
         return finalResult;
     }
 

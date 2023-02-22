@@ -31,7 +31,6 @@ public class LadderGameController {
         Names names = makeNames();
         Results results = makeResults(names.findNumberOfNames());
         Ladder ladder = makeLadder(names.findNumberOfNames());
-
         Map<String, String> result = ladder.matchResult(names.getNames(), results.getResults());
         GameResult gameResult = new GameResult(result);
 
