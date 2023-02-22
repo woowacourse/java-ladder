@@ -1,6 +1,6 @@
 package domain;
 
-public class Person {
+public class Player {
     public static final int NAME_MAX_LENGTH = 5;
     private static final String BLANK_NAME_MESSAGE = "빈 문자열 입니다.";
     private static final String INVALID_NAME_LENGTH_MESSAGE = "이름 길이는 "
@@ -8,7 +8,7 @@ public class Person {
 
     private final String name;
 
-    public Person(String name) {
+    public Player(String name) {
         this.name = name;
         validateNameLength(name);
         validateNameBlank(name);

@@ -10,7 +10,7 @@ public class Players {
     private static final String DUPLICATE_NAME_MESSAGE = "중복된 이름입니다.";
     private static final String INVALID_NUMBER_OF_PLAYER_MESSAGE = "참여자 수는 %d부터 %d까지 입니다.";
 
-    private final List<Person> players = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
 
     public Players(List<String> names) {
         validateDuplicateNames(names);
@@ -20,7 +20,7 @@ public class Players {
 
     public List<String> getNames() {
         return players.stream()
-                .map(Person::getName)
+                .map(Player::getName)
                 .collect(Collectors.toList());
     }
 
@@ -47,7 +47,7 @@ public class Players {
 
     private void initiatePlayers(List<String> names) {
         for (String name : names) {
-            players.add(new Person(name));
+            players.add(new Player(name));
         }
     }
 

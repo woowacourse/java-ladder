@@ -3,7 +3,7 @@ package view;
 import java.util.List;
 
 import domain.Line;
-import domain.Person;
+import domain.Player;
 
 public class OutputView {
     private static final String BRIDGE = "-----";
@@ -55,7 +55,7 @@ public class OutputView {
     }
 
     private String getNameBlank(String name) {
-        return BLANK.repeat(Person.NAME_MAX_LENGTH - name.length());
+        return BLANK.repeat(Player.NAME_MAX_LENGTH - name.length());
     }
 
 }
