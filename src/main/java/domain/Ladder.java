@@ -1,6 +1,8 @@
 package domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -38,6 +40,41 @@ public class Ladder {
         if (lines.get(index).size() != lines.get(index + 1).size()) {
             throw new IllegalArgumentException(ERROR_SAME_LINE_SIZE);
         }
+    }
+
+    public Map<String, String> calculateResult(final Names names, final Prizes prizes) {
+        Map<String, String> totalResult = new HashMap<>();
+        for (int position = 0; position < names.size(); position++) {
+            totalResult.put(names.getNames().get(position).getValue(), calculateSingleResult(prizes, position));
+        }
+        return new HashMap<>(totalResult);
+    }
+
+    private String calculateSingleResult(final Prizes prizes, final int startPosition) {
+        int currentPosition = startPosition;
+        for (Line line : lines) {
+            List<Scaffold> scaffolds = line.getScaffolds();
+            currentPosition = climbLadder(currentPosition, scaffolds);
+        }
+        return prizes.getPrizes().get(currentPosition).getValue();
+    }
+
+    private int climbLadder(int position, List<Scaffold> scaffolds) {
+        if (isLeftMovable(position, scaffolds)) {
+            return position - 1;
+        }
+        if (isRightMovable(position, scaffolds)) {
+            return position + 1;
+        }
+        return position;
+    }
+
+    private boolean isRightMovable(int position, List<Scaffold> scaffold) {
+        return position != scaffold.size() && scaffold.get(position).equals(Scaffold.EXIST);
+    }
+
+    private boolean isLeftMovable(int position, List<Scaffold> scaffold) {
+        return position != 0 && scaffold.get(position - 1).equals(Scaffold.EXIST);
     }
 
     public int getHeight() {
