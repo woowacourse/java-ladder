@@ -7,6 +7,9 @@ import domain.ladder.Ladder;
 import domain.ladder.LadderGenerator;
 import domain.ladder.LadderHeight;
 import domain.ladder.LineGenerator;
+import domain.player.Name;
+import domain.player.Player;
+import domain.player.Position;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,9 +32,10 @@ class LadderTest {
     void move_result_test(int position, String expectResult) {
         // given
         Ladder ladder = createLadder();
+        Player player = new Player(new Name("hs"), new Position(position));
 
         // when
-        String actualResult = ladder.play(position);
+        String actualResult = ladder.play(player);
 
         // then
         assertThat(actualResult).isEqualTo(expectResult);

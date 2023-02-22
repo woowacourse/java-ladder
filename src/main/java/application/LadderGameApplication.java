@@ -87,14 +87,14 @@ public class LadderGameApplication {
     private List<PlayerLadderResult> getEveryPlayerResult(Players players, Ladder ladder) {
         return players.stream()
                 .map(player -> {
-                    String result = ladder.play(player.getPosition());
+                    String result = ladder.play(player);
                     return new PlayerLadderResult(player.getName(), result);
                 })
                 .collect(toList());
     }
 
     private void printSinglePlayerResult(Player player, Ladder ladder) {
-        String singlePlayerResult = ladder.play(player.getPosition());
+        String singlePlayerResult = ladder.play(player);
         outputView.printSinglePlayerResult(singlePlayerResult);
     }
 }

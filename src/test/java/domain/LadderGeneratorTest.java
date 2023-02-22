@@ -22,7 +22,8 @@ class LadderGeneratorTest {
     @Test
     void create_success() {
         // given
-        Ladder ladder = ladderGenerator.generate(3, new LadderHeight(3));
+        Ladder ladder = ladderGenerator.generate(3, new LadderHeight(3),
+                List.of("당첨", "꽝", "1000"));
 
         // when
         List<Line> lines = ladder.getLines();
