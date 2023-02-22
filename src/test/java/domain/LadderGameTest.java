@@ -2,13 +2,10 @@ package domain;
 
 import domain.LadderTest.TestLadderRowGenerator;
 import java.util.List;
-import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import utils.LadderRowGenerator;
 
 public class LadderGameTest {
@@ -33,16 +30,5 @@ public class LadderGameTest {
     void ladderGameTest() {
         Assertions.assertThatCode(() -> new LadderGame(ladder, users, results))
                 .doesNotThrowAnyException();
-    }
-
-    @Test
-    @DisplayName("이름으로 결과를 찾을 수 있다.")
-    void findResultByName() {
-        LadderGame ladderGame = new LadderGame(ladder, users, results);
-        Result result = results.getResults().get(3);
-
-        Result findedResult = ladderGame.findResultByName("userB");
-
-        Assertions.assertThat(findedResult).isEqualTo(result);
     }
 }

@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ public class LadderGame {
     private final Users users;
     private final Results results;
     private final LadderGameResult ladderGameResult;
+    private boolean inProgress;
 
     public LadderGame(final Ladder ladder, final Users users, final Results results) {
         this.ladder = ladder;
@@ -29,9 +31,18 @@ public class LadderGame {
         return new LadderGameResult(map);
     }
 
-    public Result findResultByName(String name) {
+    public void play() {
+        inProgress = true;
+    }
+
+    public LadderGameResult getLadderGameResultByName(String name) {
+        if (name.equals("all")) {
+            inProgress = false;
+            return ladderGameResult;
+        }
         User user = users.findByName(name);
-        return ladderGameResult.findByUser(user);
+        Result result = ladderGameResult.findByUser(user);
+        return new LadderGameResult(user, result);
     }
 
     private int move(int index, int currentHeight, int ladderHeight) {
@@ -50,7 +61,7 @@ public class LadderGame {
         return move(index, currentHeight + 1, ladderHeight);
     }
 
-    public LadderGameResult getLadderGameResult() {
-        return ladderGameResult;
+    public boolean inProgress() {
+        return inProgress;
     }
 }
