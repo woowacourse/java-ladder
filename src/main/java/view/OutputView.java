@@ -4,7 +4,10 @@ import domain.Ladder;
 import domain.Line;
 import domain.Name;
 import domain.Names;
+import domain.Prize;
+import domain.Prizes;
 import domain.Scaffold;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class OutputView {
@@ -23,20 +26,21 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printResult(final Ladder ladder, final Names playerNames) {
+    public static void printResult(final Ladder ladder, final Names playerNames, final Prizes prizes) {
         printNames(playerNames);
         printLadder(ladder);
+        printPrizes(prizes);
     }
 
     private static void printNames(Names names) {
         for (Name name : names.getNames()) {
-            System.out.print(BLANK.repeat(ONE_BLOCK_SIZE - calculateBlank(name)));
+            System.out.print(BLANK.repeat(ONE_BLOCK_SIZE - calculateNameBlank(name)));
             System.out.printf("%s", name.getValue());
         }
         System.out.println();
     }
 
-    private static int calculateBlank(Name name) {
+    private static int calculateNameBlank(Name name) {
         double userNameSpan = INIT_SPAN;
         for (Character nameLetter : name.getValue().toCharArray()) {
             userNameSpan += userNameSpanSize(nameLetter);
@@ -75,5 +79,29 @@ public class OutputView {
         }
         System.out.print(NON_EXIST_SCAFFOLD_MATERIAL.repeat(BLOCK_SIZE_EXCEPT_DELIMITER));
         System.out.print(BAR);
+    }
+
+    private static void printPrizes(Prizes prizes) {
+        for (Prize prize : prizes.getPrizes()) {
+            System.out.print(BLANK.repeat(ONE_BLOCK_SIZE - calculatePrizeBlank(prize)));
+            System.out.printf("%s", prize.getValue());
+        }
+        System.out.println();
+    }
+
+    private static int calculatePrizeBlank(Prize prize) {
+        double prizeSpan = INIT_SPAN;
+        for (Character prizeLetter : prize.getValue().toCharArray()) {
+            prizeSpan += prizeSpanSize(prizeLetter);
+        }
+        return (int) Math.round(prizeSpan);
+    }
+
+    private static double prizeSpanSize(Character name) {
+        String detectingLetter = String.valueOf(name);
+        if (Pattern.matches(KOREAN_MATCH_REGEX, detectingLetter)) {
+            return KOREAN_SPAN;
+        }
+        return OTHER_SPAN;
     }
 }
