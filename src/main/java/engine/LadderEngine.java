@@ -31,7 +31,7 @@ public class LadderEngine {
             return new Ladder(participants, lines, inputPrizes());
         });
         printLadder(ladder);
-        queryPrizes(ladder);
+        repeatQueryPrizes(ladder);
     }
 
     private Participants gatherParticipants() {
@@ -50,15 +50,19 @@ public class LadderEngine {
         return lines;
     }
 
-    private void queryPrizes(Ladder ladder) {
+    private void repeatQueryPrizes(Ladder ladder) {
         boolean isSearchTargetAll;
         do {
-            isSearchTargetAll = IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
-                SearchTarget searchTarget = inputSearchTarget();
-                printResults(getResults(ladder, searchTarget));
-                return searchTarget.isAll();
-            });
+            isSearchTargetAll = queryPrizes(ladder).isAll();
         } while (!isSearchTargetAll);
+    }
+
+    private SearchTarget queryPrizes(Ladder ladder) {
+        return IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
+            SearchTarget searchTarget = inputSearchTarget();
+            printResults(getResults(ladder, searchTarget));
+            return searchTarget;
+        });
     }
 
     private Participants createParticipantsWith(final List<String> names) {
