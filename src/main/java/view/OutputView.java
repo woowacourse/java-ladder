@@ -7,8 +7,8 @@ import java.util.List;
 
 public class OutputView {
     private static final String RESULT_MESSAGE = "실행결과";
-    private static final String BLANK_LINE = "     ";
-    private static final String CONNECTED_LINE = "-----";
+    private static final String BLANK_LINE = "        ";
+    private static final String CONNECTED_LINE = "--------";
     private static final String LADDER = "|";
 
 
@@ -22,16 +22,21 @@ public class OutputView {
         System.out.println(formattedUserNames);
     }
 
-    public static void printResult(List<Line> lines) {
+    public static void printLadder(List<Line> lines) {
         for (Line line : lines) {
             System.out.println(renderLine(line));
         }
     }
 
+    public static void printResultNames(List<String> resultNames) {
+        String formattedResultNames = formatResultNames(resultNames);
+        System.out.println(formattedResultNames);
+    }
+
     private static String formatUserNames(List<String> userNames) {
         StringBuilder builder = new StringBuilder();
         for (String userName : userNames) {
-            String formattedUserName = String.format("%6s", userName);
+            String formattedUserName = String.format("%9s", userName);
             builder.append(formattedUserName);
         }
         return builder.toString();
@@ -54,5 +59,14 @@ public class OutputView {
             return;
         }
         builder.append(BLANK_LINE);
+    }
+
+    private static String formatResultNames(List<String> resultNames) {
+        StringBuilder builder = new StringBuilder();
+        for (String resultName : resultNames) {
+            String formattedResultName = String.format("%9s", resultName);
+            builder.append(formattedResultName);
+        }
+        return builder.toString();
     }
 }
