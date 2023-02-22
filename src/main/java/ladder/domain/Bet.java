@@ -11,11 +11,17 @@ public class Bet {
     }
 
     private void validate(String bet) {
-        validateBetLength(bet);
+        validateNotNull(bet);
+        validateLength(bet);
     }
 
-    private void validateBetLength(String bet){
-        if(bet.length() > MAX_BET_LENGTH)
+    private void validateNotNull(String bet) {
+        if (bet == null)
+            throw new IllegalArgumentException();
+    }
+
+    private void validateLength(String bet) {
+        if (bet.length() > MAX_BET_LENGTH)
             throw new IllegalArgumentException();
     }
 
