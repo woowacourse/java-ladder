@@ -49,4 +49,13 @@ public class Players {
                 .max(Integer::compareTo)
                 .orElseThrow(() -> new IllegalStateException("플레이어가 존재하지 않습니다."));
     }
+
+    public Player findPlayerByName(String name) {
+        return players.stream()
+                .filter(
+                        player -> player.getName().getValue().equals(name)
+                )
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("같은 이름의 플레이어가 존재하지 않습니다."));
+    }
 }

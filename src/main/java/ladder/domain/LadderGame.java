@@ -49,4 +49,10 @@ public class LadderGame {
         }
         return result;
     }
+
+    public String getPlayerResult(String playerName) {
+        Player player = players.findPlayerByName(playerName);
+        return result.getItemOfPlayer(player)
+                .getItem();
+    }
 }
