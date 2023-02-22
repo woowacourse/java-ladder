@@ -47,4 +47,12 @@ class NameTest {
                 () -> new Name("yo,me"));
         assertEquals(ErrorMessage.INVALID_NAME_FORMAT.getMessage(), exception.getMessage());
     }
+
+    @ParameterizedTest(name = "이름은 'exit' 혹은 'all'이 될 수 없다.")
+    @ValueSource(strings = {"exit", "all"})
+    void createNameFailByUnavailableName(String name) {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> new Name(name));
+        assertEquals(ErrorMessage.INVALID_NAME_FORMAT.getMessage(), exception.getMessage());
+    }
 }
