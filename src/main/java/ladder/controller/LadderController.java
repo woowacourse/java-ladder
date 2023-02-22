@@ -5,6 +5,7 @@ import java.util.List;
 import ladder.domain.Ladder;
 import ladder.domain.LadderHeight;
 import ladder.domain.Names;
+import ladder.domain.Results;
 import ladder.util.BooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -22,10 +23,15 @@ public class LadderController {
 
     public void execute() {
         Names names = createNames();
+        Results results = createResults(names.size());
         LadderHeight ladderHeight = createLadderHeight();
         Ladder ladder = createLadder(names, ladderHeight);
 
-        outputView.printResult(names, ladder);
+        outputView.printLadder(names, results, ladder);
+    }
+
+    private Results createResults(int numberOfResults) {
+        return new Results(inputView.requestResults(), numberOfResults);
     }
 
     private Names createNames() {

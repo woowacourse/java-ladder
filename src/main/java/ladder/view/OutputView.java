@@ -6,24 +6,35 @@ import ladder.domain.Ladder;
 import ladder.domain.LadderFormat;
 import ladder.domain.Line;
 import ladder.domain.Names;
+import ladder.domain.Results;
 
 public class OutputView {
     private static final int WIDTH = 5;
     private static final String LEG = "|";
     private static final String BLANK = " ";
     private static final String NAME_FORMAT = "%5s";
+    private static final String RESULT_FORMAT = "%5s";
 
-    public void printResult(Names names, Ladder ladder) {
+    public void printLadder(Names names, Results results, Ladder ladder) {
         printNames(names);
         printLadder(ladder, names.lengthOfFirstName());
+        printResults(results);
+    }
+
+    private void printResults(Results results) {
+        String resultLine = results.getResults()
+            .stream()
+            .map(result -> String.format(RESULT_FORMAT, result.getResult()) + BLANK)
+            .collect(Collectors.joining());
+        System.out.println(resultLine.trim());
     }
 
     private void printNames(Names names) {
-        String result = names.getNames()
+        String nameLine = names.getNames()
             .stream()
             .map(name -> String.format(NAME_FORMAT, name.getName()) + BLANK)
             .collect(Collectors.joining());
-        System.out.println(result.trim());
+        System.out.println(nameLine.trim());
     }
 
     private void printLadder(Ladder ladder, int lengthOfFirstName) {
