@@ -25,22 +25,22 @@ public class LadderGameController {
         Ladder ladder = buildLadder(names, goals);
 
         printLadder(ladder);
-        rideLadder(ladder, names);
+        rideLadder(ladder);
     }
 
-    private void rideLadder(Ladder ladder, Names names) {
-        String participantName = getNameToRide();
-        if (participantName.equals(Command.ALL.getCommand())) {
-            rideAllLadder(ladder);
-            return;
+    private void rideLadder(Ladder ladder) {
+        try {
+            String participantName = getNameToRide();
+            if (participantName.equals(Command.ALL.getCommand())) {
+                rideAllLadder(ladder);
+                return;
+            }
+            rideLadderByParticipantName(participantName, ladder);
+            rideLadder(ladder);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            rideLadder(ladder);
         }
-        if (!names.has(participantName)) {
-            outputView.printErrorMessage("등록되지 않은 사용자 이름입니다.");
-            rideLadder(ladder, names);
-            return;
-        }
-        rideLadderByParticipantName(participantName, ladder);
-        rideLadder(ladder, names);
     }
 
     private String getNameToRide() {
