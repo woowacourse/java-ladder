@@ -7,20 +7,23 @@ import java.util.List;
 public class LadderGame {
 
     private final List<Result> result;
-    private final Players players;
-    private final Missions missions;
 
     private LadderGame(Players players, Missions missions, Lines lines) {
-        this.players = players;
-        this.missions = missions;
+        this.result = getResults(players, missions, lines);
+    }
+
+    private List<Result> getResults(Players players, Missions missions, Lines lines) {
         List<Player> playersSortedByPosition = moveAllPlayers(players, lines);
         List<Mission> missionsSortedRandomly = getMissions(missions);
 
-        List<Result> result = new ArrayList<>();
-        for (int index = 0; index < playersSortedByPosition.size(); index++) {
-            result.add(new Result(playersSortedByPosition.get(index), missionsSortedRandomly.get(index)));
+        List<Result> results = new ArrayList<>();
+        for (int index = 0; index < missions.size(); index++) {
+            Player player = playersSortedByPosition.get(index);
+            Mission mission = missionsSortedRandomly.get(index);
+            Result result = new Result(player, mission);
+            results.add(result);
         }
-        this.result = result;
+        return results;
     }
 
     public static LadderGame of(Players players, Missions missions, Lines lines) {
