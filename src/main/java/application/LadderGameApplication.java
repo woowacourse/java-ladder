@@ -10,6 +10,7 @@ import domain.ladder.LadderHeight;
 import domain.player.Name;
 import domain.player.Player;
 import domain.player.Players;
+import domain.player.Position;
 import dto.PlayerLadderResult;
 import java.util.List;
 import java.util.function.Supplier;
@@ -54,7 +55,7 @@ public class LadderGameApplication {
         List<Name> names = inputView.readNames();
 
         return IntStream.range(0, names.size())
-                .mapToObj(idx -> new Player(names.get(idx), idx + 1))
+                .mapToObj(idx -> new Player(names.get(idx), new Position(idx + 1)))
                 .collect(collectingAndThen(toList(), Players::new));
     }
 

@@ -8,6 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import domain.player.Name;
 import domain.player.Player;
 import domain.player.Players;
+import domain.player.Position;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -122,7 +123,7 @@ class PlayersTest {
     private List<Player> generateRawPlayersByNames(String... names) {
         return Arrays.stream(names)
                 .map(Name::new)
-                .map(Player::new)
+                .map(name -> new Player(name, new Position(1)))
                 .collect(toList());
     }
 }

@@ -5,13 +5,9 @@ import java.util.Objects;
 public class Player {
 
     private final Name name;
-    private int position;
+    private Position position;
 
-    public Player(Name name) {
-        this.name = name;
-    }
-
-    public Player(Name name, int position) {
+    public Player(Name name, Position position) {
         this.name = name;
         this.position = position;
     }
@@ -25,7 +21,7 @@ public class Player {
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
     @Override

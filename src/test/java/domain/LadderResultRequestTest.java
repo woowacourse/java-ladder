@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import domain.player.Name;
 import domain.player.Player;
 import domain.player.Players;
+import domain.player.Position;
 import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -70,7 +71,7 @@ class LadderResultRequestTest {
     private Players generatePlayersByNames(String... names) {
         return Arrays.stream(names)
                 .map(Name::new)
-                .map(Player::new)
+                .map(name -> new Player(name, new Position(1)))
                 .collect(collectingAndThen(toList(), Players::new));
     }
 }
