@@ -7,6 +7,7 @@ import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
 import ladder.domain.Prizes;
+import ladder.domain.Result;
 import ladder.domain.Retry;
 import ladder.domain.generator.RandomDirectionGenerator;
 import ladder.view.InputView;
@@ -28,6 +29,8 @@ public class LadderController {
         final Height height = generate(inputView::readHeight, Height::new);
         final Ladder ladder = Ladder.of(new RandomDirectionGenerator(), players, height);
         outputView.printLadderResult(players, ladder, prizes);
+        final Result result = Result.of(players, ladder, prizes);
+        processResult(result);
     }
 
     private <T, R> R generate(final Supplier<T> supplier, final Function<T, R> function) {
@@ -61,5 +64,24 @@ public class LadderController {
                     "실행 결과 개수는 플레이어 수와 동일해야 합니다. 플레이어 수: " + players.size()
                             + ", 실행 결과 개수: " + prizes.size());
         }
+    }
+
+    private void processResult(final Result result) {
+        final Retry retry = new Retry(5);
+        while (retry.isPossible()) {
+            try {
+                final String target = inputView.readTarget();
+                if (target.equals("all")) {
+                    outputView.printResult(result);
+                    return;
+                }
+                outputView.printResult(result.extract(target));
+                return;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                retry.decrease();
+            }
+        }
+        throw new IllegalStateException("재입력 횟수를 초과하였습니다.");
     }
 }
