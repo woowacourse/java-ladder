@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,9 +12,8 @@ public class ResultContents {
         this.resultContents = resultContents;
     }
 
-    public static ResultContents of(String inputValue, String delimiter) {
-        return new ResultContents(Arrays.stream(inputValue.split(delimiter, -1))
-                .map(String::trim)
+    public static ResultContents from(List<String> resultContentsValue) {
+        return new ResultContents(resultContentsValue.stream()
                 .map(ResultContent::new)
                 .collect(Collectors.toList()));
     }

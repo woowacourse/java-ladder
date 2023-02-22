@@ -20,7 +20,8 @@ class LadderGameTest {
     void createLadderGameMismatchPlayerAndResultSizeFail() {
         PlayerNames playerNames = PlayerNames.from(List.of("pobi", "crong"));
         Players players = Players.from(playerNames);
-        ResultContents resultContents = ResultContents.of("꽝,5000,꽝꽝꽝", ",");
+        List<String> resultContentsValue = List.of("꽝", "5000", "꽝꽝꽝");
+        ResultContents resultContents = ResultContents.from(resultContentsValue);
         Ladder ladder = TestDataManager.ladderFromHeight(5);
 
         assertThatThrownBy(() ->

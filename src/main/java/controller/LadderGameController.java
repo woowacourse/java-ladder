@@ -50,9 +50,8 @@ public class LadderGameController {
     }
 
     private ResultContents getResultContents() {
-        String resultContentsInput = inputView.requestResultContents();
-        return ResultContents.of(
-                resultContentsInput, inputView.getResultContentsDelimiter());
+        List<String> resultContents = inputView.requestResultContents();
+        return ResultContents.from(resultContents);
     }
 
     private Ladder buildLadderByPlayerAmount(int playerAmount) {

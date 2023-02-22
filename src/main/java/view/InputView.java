@@ -33,8 +33,11 @@ public class InputView {
         }
     }
 
-    public String requestResultContents() {
-        return requestUserInput(RESULT_CONTENTS_INPUT_MESSAGE);
+    public List<String> requestResultContents() {
+        String inputValue = requestUserInput(RESULT_CONTENTS_INPUT_MESSAGE);
+        return Arrays.stream(inputValue.split(RESULT_CONTENTS_DELIMITER, -1))
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 
     public String requestResultPlayer() {
@@ -51,14 +54,6 @@ public class InputView {
         String playerNames = SCANNER.nextLine();
         breakLine();
         return playerNames;
-    }
-
-    public String getPlayerNameDelimiter() {
-        return PLAYER_NAME_DELIMITER;
-    }
-
-    public String getResultContentsDelimiter() {
-        return RESULT_CONTENTS_DELIMITER;
     }
 
     public String getResultEndCommand() {

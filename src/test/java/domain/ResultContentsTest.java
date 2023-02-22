@@ -26,9 +26,8 @@ class ResultContentsTest {
     @Test
     @DisplayName("모든 실행결과를 연속된 문자와 구분자로 생성")
     void createResultContentsRawValueAndDelimiterSuccess() {
-        String resultContentsInput = "꽝,1000,꽝,2000";
-        String delimiter = ",";
-        ResultContents resultContents = ResultContents.of(resultContentsInput, delimiter);
+        List<String> resultContentsValue = List.of("꽝", "1000", "꽝", "2000");
+        ResultContents resultContents = ResultContents.from(resultContentsValue);
 
         assertThat(resultContents.getResultContents()).extracting("content")
                 .containsExactly("꽝", "1000", "꽝", "2000");
