@@ -25,7 +25,8 @@ public class OutputView {
     }
 
     public void printLadder(final List<Line> ladder, final List<String> participantNames) {
-        int firstNameLength = getLengthOfFirstParticipantName(participantNames);
+        String firstParticipantName = getFirstParticipant(participantNames);
+        int firstNameLength = getNameLength(firstParticipantName);
         String ladderMessage = makeLadderMessage(ladder, firstNameLength);
         print(ladderMessage);
     }
@@ -40,9 +41,12 @@ public class OutputView {
         return String.format("%6s", participantName);
     }
 
-    private int getLengthOfFirstParticipantName(final List<String> participantNames) {
-        String firstParticipantName = participantNames.get(0);
-        return firstParticipantName.length();
+    private String getFirstParticipant(final List<String> participantNames) {
+        return participantNames.get(0);
+    }
+
+    private int getNameLength(final String name) {
+        return name.length();
     }
 
     private String makeLadderMessage(final List<Line> ladder, final int firstNameLength) {
