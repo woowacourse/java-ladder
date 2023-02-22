@@ -47,4 +47,8 @@ public class Reward {
     private boolean isRunResultWrongRange(int runResult) {
         return runResult < MIN_RUN_RESULT_VALUE || runResult > MAX_RUN_RESULT_VALUE;
     }
+
+    public boolean isSameRewardIndex(int rewardIndex) {
+        return this.index == rewardIndex;
+    }
 }
