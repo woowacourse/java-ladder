@@ -50,4 +50,10 @@ public class Players {
     public int count() {
         return players.size();
     }
+
+    public void validateSameSize(final List<String> results) {
+        if (count() != results.size()) {
+            throw new IllegalArgumentException("실행 결과와 참여자 수가 맞지 않습니다.");
+        }
+    }
 }

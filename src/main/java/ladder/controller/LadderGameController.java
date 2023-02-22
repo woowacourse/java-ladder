@@ -26,17 +26,27 @@ public class LadderGameController {
     }
 
     public void run() {
-        final LadderGame ladderGame = initializeLadderGame();
+        final Players players = readPlayers();
+        final List<String> results = readResults(players);
+        final Height height = readHeight();
+
+        final LadderGame ladderGame = new LadderGame(booleanGenerator, players, height);
+
         final List<String> playerNames = ladderGame.getPlayerNames();
         final List<Line> ladder = ladderGame.getLadder();
 
         outputView.printResult(playerNames, ladder);
     }
 
-    private LadderGame initializeLadderGame() {
-        final Players players = readPlayers();
-        final Height height = readHeight();
-        return new LadderGame(booleanGenerator, players, height);
+    private List<String> readResults(final Players players) {
+        try {
+            List<String> results = inputView.readResult();
+            players.validateSameSize(results);
+            return results;
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return readResults(players);
+        }
     }
 
     private Players readPlayers() {
