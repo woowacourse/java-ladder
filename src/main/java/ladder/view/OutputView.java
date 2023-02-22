@@ -20,7 +20,15 @@ public class OutputView {
     }
 
     public static void printPlayersName(final List<String> playersName) {
-        for (String name : playersName) {
+        printNames(playersName);
+    }
+
+    public static void printPrizesName(final List<String> prizesName) {
+        printNames(prizesName);
+    }
+
+    private static void printNames(final List<String> names) {
+        for (String name : names) {
             System.out.print(name + " ");
         }
         System.out.println();

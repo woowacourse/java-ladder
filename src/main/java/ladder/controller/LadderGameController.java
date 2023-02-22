@@ -8,6 +8,7 @@ import ladder.domain.ladder.generator.BlockGenerator;
 import ladder.domain.ladder.generator.RandomBlockGenerator;
 import ladder.domain.player.PlayerName;
 import ladder.domain.player.Players;
+import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -24,7 +25,7 @@ public class LadderGameController {
         Ladder ladder = initLadder(playerNumber);
         InputView.terminate();
 
-        showResult(players, ladder);
+        showResult(players, ladder, prizes);
     }
 
     private Players initPlayers() {
@@ -58,11 +59,16 @@ public class LadderGameController {
         }
     }
 
-    private void showResult(Players players, Ladder ladder) {
-        List<String> playersName = toPlayersName(players);
+    private void showResult(Players players, Ladder ladder, Prizes prizes) {
         OutputView.printGameResultHeader();
-        OutputView.printPlayersName(playersName);
+        printPlayersName(players);
         OutputView.printLadder(toLines(ladder));
+        printPrizesName(prizes);
+    }
+
+    private void printPlayersName(Players players) {
+        List<String> playersName = toPlayersName(players);
+        OutputView.printPlayersName(playersName);
     }
 
     private List<String> toPlayersName(Players players) {
@@ -80,6 +86,17 @@ public class LadderGameController {
     private List<Boolean> toBlocks(Line line) {
         return line.getBlocks().stream()
                 .map(Block::isExistBlock)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private void printPrizesName(Prizes prizes) {
+        List<String> prizesName = toPrizesName(prizes);
+        OutputView.printPrizesName(prizesName);
+    }
+
+    private List<String> toPrizesName(Prizes prizes) {
+        return prizes.getPrizes().stream()
+                .map(Prize::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
 }

@@ -19,4 +19,8 @@ public class Prize {
             throw new PrizeNameLengthException();
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

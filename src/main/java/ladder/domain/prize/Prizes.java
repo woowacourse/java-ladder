@@ -22,4 +22,8 @@ public class Prizes {
             throw new PrizeNumberException();
         }
     }
+
+    public List<Prize> getPrizes() {
+        return prizes;
+    }
 }
