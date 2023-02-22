@@ -1,7 +1,8 @@
 package domain;
 
-import static domain.ErrorMessages.*;
-import static org.assertj.core.api.Assertions.*;
+import static domain.ErrorMessages.NONE_EXISTED_USER;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

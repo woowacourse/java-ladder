@@ -1,6 +1,7 @@
 package controller;
 
-import static domain.ResultCommands.*;
+import static domain.ResultCommands.isAll;
+import static domain.ResultCommands.isQuit;
 
 import java.util.List;
 

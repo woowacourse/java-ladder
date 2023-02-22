@@ -1,6 +1,6 @@
 package domain;
 
-import static domain.ErrorMessages.*;
+import static domain.ErrorMessages.NONE_EXISTED_USER;
 
 import java.util.ArrayList;
 import java.util.List;
