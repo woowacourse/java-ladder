@@ -14,13 +14,14 @@ public class ResultView {
     private static final String BLANK = " ";
     private static final String NAME_FORMAT = "%-5s";
     private static final String BET_FORMAT = "%-5s";
+    private static final String RESULT_FORMAT = "%s : %s";
 
 
     public void printErrorMessage(String message) {
         System.out.println(message);
     }
 
-    public void printResult(Names names, Ladder ladder, Result bets) {
+    public void printForm(Names names, Ladder ladder, Result bets) {
         System.out.println("실행결과\n");
 
         printNames(names);
@@ -61,6 +62,23 @@ public class ResultView {
                 .map(bet -> String.format(BET_FORMAT, bet) + BLANK)
                 .collect(Collectors.joining());
         System.out.println(result);
+    }
+
+    public void printGameResult(Names names, Result bets) {
+        System.out.println("실행결과");
+
+        String result = "";
+        for (int i = 0; i < names.size(); i++) {
+            result += String.format(RESULT_FORMAT, names.getNames().get(i), bets.getResult().get(i));
+            result += "\n";
+        }
+
+        System.out.print(result);
+    }
+
+    public void printGameResult(Result bets, int index) {
+        System.out.println("실행결과");
+        System.out.println(bets.getResult().get(index));
     }
 
     private enum LadderFormat {

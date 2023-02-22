@@ -24,7 +24,7 @@ public class InputView {
         return Arrays.asList(scanner.nextLine().split(DELIMITER));
     }
 
-    public String requestNameWantingToKnowResult() {
+    public String requestName() {
         printMessage(Message.ASK_NAME_WANTING_TO_KNOW_RESULT);
 
         return scanner.nextLine();
@@ -60,7 +60,7 @@ public class InputView {
         ASK_USER_NAMES("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"),
         ASK_BETS("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"),
         ASK_LADDER_HEIGHT("최대 사다리 높이는 몇 개인가요?"),
-        ASK_NAME_WANTING_TO_KNOW_RESULT("결과를 보고 싶은 사람은? ('exit 입력시, 종료)");
+        ASK_NAME_WANTING_TO_KNOW_RESULT("결과를 보고 싶은 사람은?");
 
         private final String value;
 
