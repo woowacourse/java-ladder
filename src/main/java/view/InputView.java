@@ -1,7 +1,6 @@
 package view;
 
 import domain.Height;
-import domain.Missions;
 import domain.Names;
 import java.util.Scanner;
 
@@ -52,7 +51,7 @@ public class InputView {
         INPUT_NAMES("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"),
         INPUT_MISSIONS("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"),
         INPUT_LADDER_SIZE("최대 사다리 높이는 몇 개인가요?"),
-        INPUT_PLAYER_FOR_RESULT("결과를 보고 싶은 사람은?"),
+        INPUT_PLAYER_FOR_RESULT("결과를 보고 싶은 사람은? (전체 보기: all, 그만 보기: enter)"),
         EXCEPTION_INVALID_HEIGHT("int 범위 내의 숫자만 입력 가능합니다.");
 
         private final String message;
