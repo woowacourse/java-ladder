@@ -18,7 +18,7 @@ public class Lines {
         return lines;
     }
 
-    public int getExitIndex(int entranceIndex) {
+    public int getExitPosition(int entranceIndex) {
         int index = entranceIndex;
         for (int step = 0; step < lines.size(); step++) {
             index = lines.get(step).getNextStepIndex(index);
