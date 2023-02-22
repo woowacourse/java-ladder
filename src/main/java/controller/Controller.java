@@ -23,9 +23,8 @@ public class Controller {
 
         int ladderHeight = new LadderHeight(inputView.readLadderHeight(), inputView).getLadderHeight();
         List<Line> ladder = new Ladder(ladderHeight, players, booleanCreator).getLadder();
+        Rewards rewards = new Rewards(inputView.readRewards(), players.getPlayersSize(), inputView);
 
-        Rewards rewards = new Rewards(inputView.readRewards(), players.getPlayersSize(),inputView);
-
-        outputView.printResult(players, ladder);
+        outputView.printResult(players, ladder, rewards);
     }
 }
