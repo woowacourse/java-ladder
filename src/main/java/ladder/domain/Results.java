@@ -23,13 +23,9 @@ public class Results {
     }
 
     public String findResult(List<Line> ladder, int position) {
-        for (int i = 0; i < ladder.size(); i++) {
-            Line line = ladder.get(i);
-            List<Step> steps = line.getSteps();
-
-            position = move(position, steps);
+        for (Line line : ladder) {
+            position = move(position, line.getSteps());
         }
-
         return results.get(position).getResult();
     }
 
