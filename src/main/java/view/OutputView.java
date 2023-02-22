@@ -1,11 +1,11 @@
 package view;
 
+import domain.Result;
 import domain.ladder.LadderStep;
 import domain.ladder.Line;
 import domain.ladder.Lines;
 import domain.mission.Missions;
 import domain.player.Names;
-import domain.Result;
 import java.util.List;
 
 public class OutputView {
@@ -28,7 +28,7 @@ public class OutputView {
         names.getNames()
                 .forEach(name -> System.out.printf("%-5s", name.getName()));
         System.out.println();
-        printLadder(lines);
+        printLines(lines);
         missions.getMissions()
                 .forEach(mission -> System.out.printf("%-5s", mission.getMission()));
         System.out.println();
