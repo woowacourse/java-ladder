@@ -12,12 +12,13 @@ public class PositionTest {
 
     @Nested
     class CreatePositionTest {
+
+        private static final int maxCount = 3;
+
         @ParameterizedTest
         @ValueSource(ints = {0, 2})
         @DisplayName("0 이상 플레이어 수 미만의 정수가 입력되면 Position이 정상적으로 생성된다. ")
         void givenRangeInput_thenSuccess(int order) {
-
-            int maxCount = 3;
 
             //then
             assertThatCode(() -> new Position(order, maxCount))
@@ -29,7 +30,6 @@ public class PositionTest {
         @DisplayName("0 이상 플레이어 수 미만의 정수가 입력되면 Position이 정상적으로 생성된다. ")
         void givenNegativeNumber_thenFail(int order) {
 
-            int maxCount = 3;
 
             //then
             assertThatThrownBy(() -> new Position(order, maxCount))
@@ -42,7 +42,6 @@ public class PositionTest {
         @DisplayName("0 이상 플레이어 수 미만의 정수가 입력되면 Position이 정상적으로 생성된다. ")
         void givenMorePlayerCount_thenFail(int order) {
 
-            int maxCount = 3;
 
             //then
             assertThatThrownBy(() -> new Position(order, maxCount))
