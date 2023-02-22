@@ -15,6 +15,8 @@ public class SimpleLinkedList implements SimpleList {
     private int size;
 
     public SimpleLinkedList() {
+        this.head = null;
+        this.tail = null;
         this.size = 0;
     }
 
@@ -22,7 +24,7 @@ public class SimpleLinkedList implements SimpleList {
     public boolean add(String value) {
         Node node = new Node(value);
 
-        if(size == 0){
+        if (size == 0) {
             head = node;
             tail = node;
             size++;
@@ -37,34 +39,33 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
-        if(index > size){
+        if (index > size) {
             throw new IndexOutOfBoundsException();
         }
-
-        if(index == size){
+        if (index == size) {
             add(value);
             return;
         }
 
         Node newNode = new Node(value);
         Node oldNode = head;
-        Node beforeNode = head;
-        for(int i = 0; i < index; i++){
+        Node beforeNode = null;
+        for (int i = 0; i < index; i++) {
             beforeNode = oldNode;
             oldNode = oldNode.getNextNode();
         }
 
-        if(!oldNode.equals(head)){
+        if (!oldNode.equals(head)) {
             beforeNode.link(newNode);
         }
-        if(!oldNode.equals(tail)){
+        if (!oldNode.equals(tail)) {
             newNode.link(oldNode);
         }
 
-        if(oldNode.equals(head)){
+        if (oldNode.equals(head)) {
             head = newNode;
         }
-        if(oldNode.equals(tail)){
+        if (oldNode.equals(tail)) {
             tail = newNode;
         }
 
@@ -73,29 +74,29 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public String set(int index, String value) {
-        if(index >= size){
+        if (index >= size) {
             throw new IndexOutOfBoundsException();
         }
 
         Node oldNode = head;
-        Node beforeNode = head;
-        for(int i = 0; i < index; i++){
+        Node beforeNode = null;
+        for (int i = 0; i < index; i++) {
             beforeNode = oldNode;
             oldNode = oldNode.getNextNode();
         }
         Node newNode = new Node(value);
 
-        if(!oldNode.equals(head)){
+        if (!oldNode.equals(head)) {
             beforeNode.link(newNode);
         }
-        if(!oldNode.equals(tail)){
+        if (!oldNode.equals(tail)) {
             newNode.link(oldNode.getNextNode());
         }
 
-        if(oldNode.equals(head)){
+        if (oldNode.equals(head)) {
             head = newNode;
         }
-        if(oldNode.equals(tail)){
+        if (oldNode.equals(tail)) {
             tail = newNode;
         }
 
@@ -104,12 +105,12 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public String get(int index) {
-        if(index >= size){
+        if (index >= size) {
             throw new IndexOutOfBoundsException();
         }
 
         Node node = head;
-        for(int i = 0; i < index; i++){
+        for (int i = 0; i < index; i++) {
             node = node.getNextNode();
         }
         return node.getValue();
@@ -117,13 +118,13 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public boolean contains(String value) {
-        if(isEmpty()){
+        if (isEmpty()) {
             return false;
         }
 
         Node node = head;
-        for(int i = 0; i < size; i++){
-            if(node.getValue().equals(value)){
+        for (int i = 0; i < size; i++) {
+            if (node.getValue().equals(value)) {
                 return true;
             }
             node = node.getNextNode();
@@ -133,13 +134,13 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public int indexOf(String value) {
-        if(isEmpty()){
+        if (isEmpty()) {
             return -1;
         }
 
         Node node = head;
-        for(int i = 0; i < size; i++){
-            if(node.getValue().equals(value)){
+        for (int i = 0; i < size; i++) {
+            if (node.getValue().equals(value)) {
                 return i;
             }
             node = node.getNextNode();
@@ -154,10 +155,7 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public boolean isEmpty() {
-        if(size == 0){
-            return true;
-        }
-        return false;
+        return size == 0;
     }
 
     @Override
@@ -167,11 +165,35 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public String remove(int index) {
-        return null;
+        if (index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        Node node = head;
+        Node beforeNode = null;
+        for (int i = 0; i < index; i++) {
+            beforeNode = node;
+            node = node.getNextNode();
+        }
+
+        if (!node.equals(head) && !node.equals(tail)) {
+            beforeNode.link(node.getNextNode());
+        }
+        if (node.equals(head)) {
+            head = node.getNextNode();
+        }
+        if (node.equals(tail)) {
+            beforeNode.link(null);
+        }
+        size--;
+
+        return node.getValue();
     }
 
     @Override
     public void clear() {
-        size = 0;
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
     }
 }
