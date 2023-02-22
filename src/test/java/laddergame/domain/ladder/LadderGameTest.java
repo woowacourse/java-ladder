@@ -7,29 +7,18 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static laddergame.domain.ladder.Connection.CONNECTED;
-import static laddergame.domain.ladder.Connection.UNCONNECTED;
+import static laddergame.domain.ladder.LadderFixture.ladder;
+import static laddergame.domain.ladder.LadderFixture.players;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class LadderGameTest {
+public class LadderGameTest{
 
-    private Player ethan;
-    private Player coil;
-    private Player junPark;
-    private List<Player> players;
-    private List<Connection> connections;
-    private Ladder ladder;
+    private LadderFixture fixture;
 
     @BeforeEach
     void setUp() {
-        ethan = Player.of("에단", 0);
-        coil = Player.of("코일", 1);
-        junPark = Player.of("준팍", 2);
-        players = List.of(ethan, coil, junPark);
-
-        connections = List.of(CONNECTED, UNCONNECTED);
-        ladder = new Ladder(1, players.size(), new TestConnectionMaker(connections));
+        fixture = new LadderFixture();
     }
 
     @Test

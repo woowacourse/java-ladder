@@ -1,6 +1,5 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.player.Player;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,10 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
-
-import static laddergame.domain.ladder.Connection.CONNECTED;
-import static laddergame.domain.ladder.Connection.UNCONNECTED;
+import static laddergame.domain.ladder.LadderFixture.coil;
+import static laddergame.domain.ladder.LadderFixture.connections;
+import static laddergame.domain.ladder.LadderFixture.ethan;
+import static laddergame.domain.ladder.LadderFixture.players;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -20,12 +19,8 @@ public class LadderTest {
 
     private static ConnectionStrategy randomPicker;
 
-    private Player ethan;
-    private Player coil;
-    private Player junPark;
-    private List<Player> players;
-    private List<Connection> connections;
     private Ladder testLadder;
+    private LadderFixture steps;
 
     @BeforeAll
     static void init() {
@@ -34,12 +29,7 @@ public class LadderTest {
 
     @BeforeEach
     void setUp() {
-        ethan = Player.of("에단", 0);
-        coil = Player.of("코일", 1);
-        junPark = Player.of("준팍", 2);
-        players = List.of(ethan, coil, junPark);
-
-        connections = List.of(CONNECTED, UNCONNECTED);
+        steps = new LadderFixture();
         testLadder = new Ladder(1, players.size(), new TestConnectionMaker(connections));
     }
 
