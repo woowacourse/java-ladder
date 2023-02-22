@@ -37,7 +37,7 @@ class DirectionTest {
     @DisplayName("각 방향은 현재 위치값을 이용해 다음 위치값을 반환한다.")
     void should_ReturnNextIndex_When_Given_Current_Index() {
         int currentIndex = 2;
-        Assertions.assertThat(DOWN.computeNextIndex(currentIndex)).isEqualTo(0);
+        Assertions.assertThat(DOWN.computeNextIndex(currentIndex)).isEqualTo(currentIndex);
         Assertions.assertThat(LEFT.computeNextIndex(currentIndex)).isEqualTo(1);
         Assertions.assertThat(RIGHT.computeNextIndex(currentIndex)).isEqualTo(3);
     }

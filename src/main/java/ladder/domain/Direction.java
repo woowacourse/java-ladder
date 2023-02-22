@@ -8,7 +8,7 @@ import java.util.function.Function;
 
 public enum Direction {
 
-    DOWN(NONE, NONE, index -> 0),
+    DOWN(NONE, NONE, index -> index),
     LEFT(EXIST, NONE, index -> index - 1),
     RIGHT(NONE, EXIST, index -> index + 1);
 
