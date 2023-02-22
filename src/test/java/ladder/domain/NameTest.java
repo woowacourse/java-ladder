@@ -53,6 +53,6 @@ class NameTest {
     void createNameFailByUnavailableName(String name) {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> new Name(name));
-        assertEquals(ErrorMessage.INVALID_NAME_FORMAT.getMessage(), exception.getMessage());
+        assertEquals(ErrorMessage.UNAVAILABLE_NAME.getMessage(), exception.getMessage());
     }
 }

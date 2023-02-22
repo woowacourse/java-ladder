@@ -21,6 +21,7 @@ public class Name {
         validateNotNull(name);
         validateDoesNotContainComma(name);
         validateLength(name);
+        validateDoesNotEqualUnavailable(name);
     }
 
     private void validateNotNull(String name) {
@@ -41,8 +42,26 @@ public class Name {
         }
     }
 
+    private void validateDoesNotEqualUnavailable(String name) {
+        if (name.equals(UnavailableName.ALL.value) ||
+                name.equals(UnavailableName.EXIT.value)) {
+            throw new IllegalArgumentException(ErrorMessage.UNAVAILABLE_NAME.getMessage());
+        }
+    }
+
     @Override
     public String toString() {
         return this.name;
+    }
+
+    private enum UnavailableName {
+        ALL("all"),
+        EXIT("exit");
+
+        final String value;
+
+        UnavailableName(String value) {
+            this.value = value;
+        }
     }
 }
