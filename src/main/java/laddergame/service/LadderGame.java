@@ -13,6 +13,8 @@ import laddergame.domain.Users;
 
 public class LadderGame {
 
+    private static final int MINIMUM_POSITION = 0;
+
     private final Ladder ladder;
     private final Users users;
     private final GameResults gameResults;
@@ -61,6 +63,6 @@ public class LadderGame {
     }
 
     private boolean isMovableToLeft(int userPosition, List<Point> points) {
-        return userPosition > 0 && points.get(userPosition - 1).isConnected();
+        return userPosition > MINIMUM_POSITION && points.get(userPosition - 1).isConnected();
     }
 }

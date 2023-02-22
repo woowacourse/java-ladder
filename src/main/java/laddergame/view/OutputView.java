@@ -13,22 +13,26 @@ import laddergame.utils.LadderFormat;
 
 public class OutputView {
 
-    private static final String USER_ENTER_NOTICE_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String USER_NAME_ENTER_NOTICE_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String RESULT_ENTER_NOTICE_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String LADDER_HEIGHT_ENTER_NOTICE_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String LADDER_RESULT = "사다리 결과";
+    private static final String USER_TO_CHECK_ENTER_NOTICE_MESSAGE = "결과를 보고 싶은 사람은?";
+    private static final String GAME_RESULT = "실행 결과";
     private static final String NEXT_LINE = "\n";
     private static final String BLANK = " ";
+    private static final String KEY_VALUE_DELIMITER = " : ";
 
     private static final int MAX_NAME_LENGTH = 5;
 
     private static final int SECOND_INDEX = 1;
 
     public void printEnterUserNotice() {
-        System.out.println(USER_ENTER_NOTICE_MESSAGE);
+        System.out.println(USER_NAME_ENTER_NOTICE_MESSAGE);
     }
 
     public void printEnterGameResultsNotice() {
-        System.out.println(NEXT_LINE +  "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        System.out.println(NEXT_LINE + RESULT_ENTER_NOTICE_MESSAGE);
     }
 
     public void printEnterHeightNotice() {
@@ -48,18 +52,18 @@ public class OutputView {
     }
 
     public void printEnterUserToCheckResultNotice() {
-        System.out.println("결과를 보고 싶은 사람은?");
+        System.out.println(USER_TO_CHECK_ENTER_NOTICE_MESSAGE);
     }
 
     public void printResultOfOneUser(String result) {
-        System.out.println(NEXT_LINE + "실행 결과");
+        System.out.println(NEXT_LINE + GAME_RESULT);
         System.out.println(result + NEXT_LINE);
     }
 
     public void printResultOfAllUser(Map<String, String> gameResultByUserName) {
-        StringBuilder builder = new StringBuilder(NEXT_LINE).append("실행 결과").append(NEXT_LINE);
+        StringBuilder builder = new StringBuilder(NEXT_LINE).append(GAME_RESULT).append(NEXT_LINE);
         for (Entry<String, String> resultByUser : gameResultByUserName.entrySet()) {
-            builder.append(resultByUser.getKey()).append(" : ").append(resultByUser.getValue());
+            builder.append(resultByUser.getKey()).append(KEY_VALUE_DELIMITER).append(resultByUser.getValue());
             builder.append(NEXT_LINE);
         }
         System.out.println(builder);
