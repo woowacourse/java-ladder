@@ -27,4 +27,15 @@ class PrizeTest {
         assertThatThrownBy(() -> new Prize(""))
                 .isInstanceOf(CustomException.class);
     }
+
+    @Test
+    void 결과_이름이_1자이상_5자이하면_정상_작동() {
+        String minimumLengthName = "꽝";
+        String maximumLengthName = "다섯글자다";
+
+        assertThatCode(() -> new Prize(minimumLengthName))
+                .doesNotThrowAnyException();
+        assertThatCode(() -> new Prize(maximumLengthName))
+                .doesNotThrowAnyException();
+    }
 }
