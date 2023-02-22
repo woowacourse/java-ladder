@@ -1,7 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.valueGenerator.IntegerGenerator;
-
 import java.util.Objects;
 
 public class Height {
@@ -10,14 +8,8 @@ public class Height {
 
     private final int height;
 
-    private Height(int height) {
+    public Height(int height) {
         this.height = height;
-    }
-
-    public static Height create(int maxHeight, IntegerGenerator integerGenerator) {
-        int height = integerGenerator.generateNumber(MINIMUM_HEIGHT, maxHeight);
-
-        return new Height(height);
     }
 
     public int getHeight() {

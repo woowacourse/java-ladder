@@ -2,7 +2,6 @@ package ladder.controller;
 
 import ladder.domain.ladder.Line;
 import ladder.domain.valueGenerator.MockBooleanGenerator;
-import ladder.domain.valueGenerator.MockIntegerGenerator;
 import ladder.view.MockInputView;
 import ladder.view.MockResultView;
 import org.junit.jupiter.api.DisplayName;
@@ -24,8 +23,7 @@ public class LadderControllerTest {
         MockInputView inputView = new MockInputView(List.of(List.of("a","b","c","d")), List.of(3));
         MockResultView resultView = new MockResultView();
         MockBooleanGenerator booleanGenerator = new MockBooleanGenerator(List.of(true, false));
-        MockIntegerGenerator integerGenerator = new MockIntegerGenerator(List.of(3));
-        ladderController = new LadderController(inputView, resultView, booleanGenerator, integerGenerator);
+        ladderController = new LadderController(inputView, resultView, booleanGenerator);
         ladderController.run();
         List<String> resultPlayers = resultView.getPlayers();
         List<Line> resultLadder = resultView.getLadder();
@@ -44,8 +42,7 @@ public class LadderControllerTest {
                 List.of(0, 3));
         MockResultView resultView = new MockResultView();
         MockBooleanGenerator booleanGenerator = new MockBooleanGenerator(List.of(true, false));
-        MockIntegerGenerator integerGenerator = new MockIntegerGenerator(List.of(3));
-        ladderController = new LadderController(inputView, resultView, booleanGenerator, integerGenerator);
+        ladderController = new LadderController(inputView, resultView, booleanGenerator);
         ladderController.run();
         List<String> resultPlayers = resultView.getPlayers();
         List<Line> resultLadder = resultView.getLadder();
