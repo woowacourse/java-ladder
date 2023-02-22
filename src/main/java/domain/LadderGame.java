@@ -17,6 +17,7 @@ public class LadderGame {
     Height height;
 
     public LadderGame(Players players, Products products, Ladder ladder, Height height) {
+        checkLadderGame(players, products);
         this.height = height;
         this.players = players;
         this.products = products;
@@ -33,4 +34,9 @@ public class LadderGame {
         return ladder.decideWhereToGo(playerPosition, floor);
     }
 
+    private void checkLadderGame(Players players, Products products) {
+        if (players.getPlayersCount() != products.productsCount()) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

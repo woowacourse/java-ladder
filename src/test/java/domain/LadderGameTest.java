@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderGameTest {
@@ -40,6 +41,18 @@ class LadderGameTest {
         Ladder ladder = new Ladder(List.of(new Line(List.of(new Point(false), new Point(true), new Point(false)))));
         Height height = new Height(1);
         assertDoesNotThrow(() -> {
+            LadderGame ladderGame = new LadderGame(players, products, ladder, height);
+        });
+    }
+
+    @Test
+    @DisplayName("선물의 개수와 플레이어의 수가 같지 않을때 에외")
+    void createLadderGame1() {
+        Products products = new Products(List.of(new Product("사과"), new Product("꽝"),new Product("100")));
+        Players players = new Players(List.of(new Player("a"), new Player("b")));
+        Ladder ladder = new Ladder(List.of(new Line(List.of(new Point(false), new Point(true), new Point(false)))));
+        Height height = new Height(1);
+        assertThatThrownBy(() -> {
             LadderGame ladderGame = new LadderGame(players, products, ladder, height);
         });
     }
