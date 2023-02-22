@@ -1,11 +1,11 @@
 package controller;
 
 import controller.dto.LadderResponse;
-import controller.dto.PlayersResponse;
 import domain.LadderGame;
 import domain.ladder.Ladder;
 import domain.ladder.PointGenerator;
 import domain.players.Players;
+import domain.prize.Prizes;
 import view.InputView;
 import view.OutputView;
 
@@ -40,9 +40,9 @@ public class LadderGameController {
     private void printGeneratedLadder() {
         Ladder ladder = ladderGame.getLadder();
         Players players = ladderGame.getPlayers();
-        LadderResponse ladderResponse = LadderResponse.from(ladder);
-        PlayersResponse playersResponse = PlayersResponse.from(players);
-        outputView.printGeneratedLadder(playersResponse, ladderResponse);
+        Prizes prizes = ladderGame.getPrizes();
+        LadderResponse ladderResponse = LadderResponse.of(ladder, players, prizes);
+        outputView.printGeneratedLadder(ladderResponse);
     }
 
 }

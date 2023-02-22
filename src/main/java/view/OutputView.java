@@ -1,8 +1,8 @@
 package view;
 
 import controller.dto.LadderResponse;
-import controller.dto.PlayersResponse;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -11,23 +11,28 @@ public class OutputView {
     public static final String RESULT_TITLE = "실행결과";
     public static final String POINT_SEPARATOR = "|";
 
-    public void printGeneratedLadder(PlayersResponse playersResponse, LadderResponse ladderResponse) {
+    public void printGeneratedLadder(LadderResponse ladderResponse) {
         printLine(RESULT_TITLE);
         printEmptyLine();
-        List<String> playerNames = playersResponse.getPlayers();
-        int nameFormatSize = getPlayerNameSize(playerNames);
-        printPlayerNames(playerNames, nameFormatSize);
+        List<String> playerNames = ladderResponse.getPlayers();
+        List<String> prizes = ladderResponse.getPrizes();
+        int nameFormatSize = getNameFormatSize(playerNames, prizes);
+        printNames(playerNames, nameFormatSize);
         printLadder(ladderResponse.getLadder(), nameFormatSize);
+        printNames(prizes, nameFormatSize);
     }
 
-    private int getPlayerNameSize(List<String> playerNames) {
-        return playerNames.stream()
+    private int getNameFormatSize(List<String> playerNames, List<String> prizes) {
+        List<String> names = new ArrayList<>();
+        names.addAll(playerNames);
+        names.addAll(prizes);
+        return names.stream()
                 .map(String::length)
                 .max(Comparator.naturalOrder())
                 .orElse(0);
     }
 
-    private void printPlayerNames(List<String> playerNames, int nameFormatSize) {
+    private void printNames(List<String> playerNames, int nameFormatSize) {
         StringBuilder stringBuilder = new StringBuilder();
         String nameFormat = String.format("%%%ds", nameFormatSize);
         playerNames.forEach((playerName) -> {
