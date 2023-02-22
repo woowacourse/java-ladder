@@ -5,6 +5,7 @@ import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.LadderGenerator;
 import ladder.domain.Players;
+import ladder.domain.Prizes;
 import ladder.domain.Width;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -21,7 +22,8 @@ public class LadderGame {
     public void run() {
         try {
             Players players = enroll();
-            Ladder ladder = makeLadder(players.getPlayersSize());
+            Prizes prizes = getPrizes(players.size());
+            Ladder ladder = makeLadder(players.size());
             printLadderResult(players, ladder);
         } catch (IllegalArgumentException e) {
             resultView.printErrorMessage(e.getMessage());
@@ -31,8 +33,12 @@ public class LadderGame {
 
     private Players enroll() {
         List<String> names = inputView.inputParticipants();
-        Players players = Players.from(names);
-        return players;
+        return Players.from(names);
+    }
+
+    private Prizes getPrizes(int expectedSize){
+        List<String> names = inputView.inputPrizes();
+        return Prizes.from(names, expectedSize);
     }
 
     private Ladder makeLadder(int playersSize) {

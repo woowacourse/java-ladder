@@ -27,7 +27,7 @@ public class Players {
         }
     }
 
-    public int getPlayersSize() {
+    public int size() {
         return players.size();
     }
 

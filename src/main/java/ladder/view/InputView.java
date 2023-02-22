@@ -23,4 +23,10 @@ public class InputView {
         }
         return height;
     }
+
+    public List<String> inputPrizes(){
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String names = scanner.nextLine();
+        return List.of(names.split(","));
+    }
 }
