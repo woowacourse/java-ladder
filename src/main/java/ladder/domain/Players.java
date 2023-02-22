@@ -24,6 +24,14 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
+    public void moveAll(Line line) {
+        for (final Player player : players) {
+            int position = player.getPosition();
+            Direction direction = line.decideDirection(position);
+            player.move(direction);
+        }
+    }
+
     public int size() {
         return players.size();
     }
