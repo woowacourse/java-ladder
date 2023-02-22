@@ -1,6 +1,6 @@
 package ladder.domain;
 
-public class LadderResult {
+public class Result {
 
     private static final String NO_LUCK = "꽝";
     private static final String RESULT_EXCEPT_NO_LUCK_IS_NOT_NUMERIC_ERROR_MESSAGE = "[ERROR] \"꽝\" 이외의 실행 결과는 정수여야합니다.";
@@ -10,7 +10,7 @@ public class LadderResult {
 
     private final String runResult;
 
-    public LadderResult(final String runResult) {
+    public Result(final String runResult) {
         validate(runResult);
         this.runResult = runResult;
     }
