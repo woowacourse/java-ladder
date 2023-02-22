@@ -29,4 +29,8 @@ public class Line {
     public boolean checkRight(final int index) {
         return line.get(index) == Bridge.EXIST;
     }
+
+    public boolean checkLeft(final int index) {
+        return line.get(index - 1) == Bridge.EXIST;
+    }
 }
