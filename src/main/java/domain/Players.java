@@ -1,6 +1,8 @@
 package domain;
 
+import java.lang.instrument.UnmodifiableModuleException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,7 +59,7 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        return this.players;
+        return List.copyOf(this.players);
     }
 
     public int getSize() {

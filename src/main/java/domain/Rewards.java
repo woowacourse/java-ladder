@@ -25,7 +25,7 @@ public class Rewards {
     }
 
     public List<Reward> getRewards() {
-        return this.rewards;
+        return List.copyOf(this.rewards);
     }
 
 }
