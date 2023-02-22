@@ -16,7 +16,7 @@ class LadderResultTest {
         // given
         Map<Player, Item> result = new HashMap<>();
         Player player = new Player("vero", 0);
-        Item item = new Item("꽝");
+        Item item = new Item("꽝", 0);
         result.put(player, item);
         LadderResult ladderResult = new LadderResult(result);
 
