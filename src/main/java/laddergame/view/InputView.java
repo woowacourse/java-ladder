@@ -28,4 +28,14 @@ public class InputView {
             throw new IllegalStateException("문자열을 읽을 때 예외가 발생했습니다.", e);
         }
     }
+
+    public List<String> readResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        try {
+            return Arrays.stream(reader.readLine().split("\\s*,\\s*"))
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            throw new IllegalStateException("문자열을 읽을 때 예외가 발생했습니다.", e);
+        }
+    }
 }
