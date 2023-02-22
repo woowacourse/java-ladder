@@ -13,22 +13,17 @@ public class TestLadderRowGenerator implements LadderRowGenerator {
             List.of(false, false, true, false, false),
             List.of(false, true, false, true, false)
     );
+    private int index = 0;
 
     @Override
     public LadderRow generate(int userCount) {
         List<Point> points = new ArrayList<>();
 
-        for (List<Boolean> booleans : ladder) {
-            createPoint(points, booleans);
-        }
-
-        return new LadderRow(points);
-    }
-
-    private static void createPoint(List<Point> points, List<Boolean> booleans) {
+        List<Boolean> booleans = ladder.get(index++);
         for (int i = 0; i < booleans.size() - 1; i++) {
             Point point = new Point(booleans.get(i), booleans.get(i + 1));
             points.add(point);
         }
+        return new LadderRow(points);
     }
 }
