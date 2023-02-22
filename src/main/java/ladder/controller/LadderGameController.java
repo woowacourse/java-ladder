@@ -76,12 +76,22 @@ public class LadderGameController {
 
     private void showLadderGame(Players players, Ladder ladder, Rewards rewards) {
         outputView.printLadderResultMessage();
+        showPlayers(players);
+        showLadder(ladder);
+        showRewards(rewards);
+    }
+
+    private void showPlayers(Players players) {
         outputView.printPlayerNames(players.getPlayers().stream()
                 .map(Player::getPlayerName)
                 .collect(Collectors.toList()));
+    }
 
+    private void showLadder(Ladder ladder) {
         ladder.getRows().forEach(row -> outputView.printRow(row.getPoints()));
+    }
 
+    private void showRewards(Rewards rewards) {
         outputView.printRewards(rewards.getRewards().stream()
                 .map(Reward::getReward)
                 .collect(Collectors.toList()));
