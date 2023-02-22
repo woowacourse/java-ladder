@@ -48,7 +48,7 @@ public class LadderGameTest {
         // then
         assertAll(
                 () -> assertThat(gameResult.getPlayerSize()).isEqualTo(3),
-                () -> assertThat(gameResult.getPlayers().get(1).getPosition()).isEqualTo(0)
+                () -> assertThat(getPosition(gameResult, 1)).isEqualTo(0)
         );
     }
 
@@ -61,8 +61,12 @@ public class LadderGameTest {
         // then
         assertAll(
                 () -> assertThat(gameResult.getPlayerSize()).isEqualTo(3),
-                () -> assertThat(gameResult.getPlayers().get(0).getPosition()).isEqualTo(1)
+                () -> assertThat(getPosition(gameResult, 0)).isEqualTo(1)
         );
+    }
+
+    private int getPosition(final Players gameResult, final int index) {
+        return gameResult.getPlayers().get(index).getPosition();
     }
 
     @Test
