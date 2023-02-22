@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -12,7 +12,7 @@ public class Line {
     public Line(List<Path> paths) {
         validatePaths(paths);
 
-        this.paths = paths;
+        this.paths = new ArrayList<>(paths);
     }
 
     private void validatePaths(List<Path> paths) {
@@ -41,6 +41,6 @@ public class Line {
     }
 
     public List<Path> getLine() {
-        return Collections.unmodifiableList(paths);
+        return List.copyOf(paths);
     }
 }

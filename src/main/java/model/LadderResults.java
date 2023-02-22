@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,7 +9,7 @@ public class LadderResults {
     private final List<LadderResult> results;
 
     private LadderResults(List<LadderResult> results) {
-        this.results = results;
+        this.results = new ArrayList<>(results);
     }
 
     public static LadderResults of(List<LadderResult> results, int validResultSize) {

@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -13,7 +14,7 @@ public class Names {
     public Names(List<Name> names) {
         validateNames(names);
 
-        this.names = names;
+        this.names = new ArrayList<>(names);
     }
 
     private void validateNames(List<Name> names) {

@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -14,7 +14,7 @@ public class Ladder {
     public Ladder(List<Line> lines) {
         validateLine(lines);
 
-        this.lines = lines;
+        this.lines = new ArrayList<>(lines);
     }
 
     private void validateLine(List<Line> lines) {
@@ -42,6 +42,6 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+        return List.copyOf(lines);
     }
 }
