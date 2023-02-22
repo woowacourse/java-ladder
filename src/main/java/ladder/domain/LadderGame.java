@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
@@ -20,5 +21,31 @@ public class LadderGame {
 
     public List<Line> getLadder() {
         return ladder.getLines();
+    }
+
+    public Players makeResult(final Height height) {
+        List<Line> lines = ladder.getLines();
+        int width = players.count() - 1;
+
+        List<String> playerNames = new ArrayList<>(getPlayerNames());
+        for (int index = 0; index < height.getHeight(); index++) {
+            findConnected(width, lines.get(index), playerNames);
+        }
+
+        return new Players(playerNames);
+    }
+
+    private void findConnected(final int width, final Line line, final List<String> playerNames) {
+        for (int index = 0; index < width; index++) {
+            changePlayerPosition(index, line.isConnected(index), playerNames);
+        }
+    }
+
+    private void changePlayerPosition(final int index, final boolean connected, final List<String> playerNames) {
+        if (connected) {
+            String temporaryName = playerNames.get(index);
+            playerNames.set(index, playerNames.get(index + 1));
+            playerNames.set(index + 1, temporaryName);
+        }
     }
 }

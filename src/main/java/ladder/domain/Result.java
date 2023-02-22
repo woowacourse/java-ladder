@@ -32,4 +32,18 @@ public class Result {
             throw new IllegalArgumentException("실행결과 수는 참여자 수와 같아야합니다.");
         }
     }
+
+    public void isExistPlayerName(final String input) {
+        validateName(input);
+    }
+
+    private void validateName(final String input) {
+        if (!result.containsKey(input)) {
+            throw new IllegalArgumentException("참여자가 존재하지 않습니다.");
+        }
+    }
+
+    public String resultByName(final String playerName) {
+        return result.get(playerName);
+    }
 }

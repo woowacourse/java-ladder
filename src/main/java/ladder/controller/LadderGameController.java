@@ -4,8 +4,8 @@ import java.util.List;
 import ladder.domain.BooleanGenerator;
 import ladder.domain.Height;
 import ladder.domain.LadderGame;
-import ladder.domain.Line;
 import ladder.domain.Players;
+import ladder.domain.Result;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -31,11 +31,31 @@ public class LadderGameController {
         final Height height = readHeight();
 
         final LadderGame ladderGame = new LadderGame(booleanGenerator, players, height);
+        outputView.printResult(ladderGame, results);
 
-        final List<String> playerNames = ladderGame.getPlayerNames();
-        final List<Line> ladder = ladderGame.getLadder();
+        searchResult(ladderGame, results, height);
+    }
 
-        outputView.printResult(playerNames, ladder, results);
+    private void searchResult(final LadderGame ladderGame, final List<String> results, final Height height) {
+        List<String> initializedNames = ladderGame.getPlayerNames();
+        Players players = ladderGame.makeResult(height);
+        Result result = new Result(players, results);
+
+        String searchPlayerName = getSearchResult(result);
+        String searchResultPlayerName = result.resultByName(searchPlayerName);
+
+        outputView.printSearchResult(searchResultPlayerName);
+    }
+
+    private String getSearchResult(final Result result) {
+        try {
+            String input = inputView.readSearchName();
+            result.isExistPlayerName(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return getSearchResult(result);
+        }
     }
 
     private List<String> readResults(final Players players) {

@@ -3,6 +3,7 @@ package ladder.view;
 import static java.util.stream.Collectors.joining;
 
 import java.util.List;
+import ladder.domain.LadderGame;
 import ladder.domain.Line;
 import ladder.domain.LineStatus;
 
@@ -20,21 +21,22 @@ public class OutputView {
     private static final String NEXT_LINE = System.lineSeparator();
     private static final String ERROR_MESSAGE = "[ERROR] ";
 
-    public void printResult(final List<String> playerNames, final List<Line> ladder, final List<String> results) {
+    public void printResult(final LadderGame ladderGame, final List<String> results) {
         System.out.println(GAME_RESULT_MESSAGE);
 
-        final int maxNameLength = getMaxNameLength(playerNames);
-        System.out.println(generateNameMessages(playerNames, maxNameLength));
+        final int maxNameLength = getMaxNameLength(ladderGame.getPlayerNames());
+        System.out.println(generateNameMessages(ladderGame.getPlayerNames(), maxNameLength));
 
-        final String initialPlayerName = findInitialPlayerName(playerNames);
-        System.out.println(generateLadderMessage(initialPlayerName.length(), maxNameLength, ladder));
+        final String initialPlayerName = findInitialPlayerName(ladderGame.getPlayerNames());
+        System.out.println(generateLadderMessage(initialPlayerName.length(), maxNameLength, ladderGame.getLadder()));
         System.out.println(generateResultMessages(results, maxNameLength));
     }
 
     private String generateResultMessages(final List<String> results, final int maxNameLength) {
-        return results.stream()
+        String resultMessage = results.stream()
                 .map(result -> generateResultMessage(result, maxNameLength))
                 .collect(joining());
+        return resultMessage + NEXT_LINE;
     }
 
     private String generateResultMessage(final String result, final int maxNameLength) {
@@ -94,5 +96,10 @@ public class OutputView {
 
     public void printError(final String message) {
         System.out.println(ERROR_MESSAGE + message);
+    }
+
+    public void printSearchResult(final String searchResultPlayerName) {
+        System.out.println(GAME_RESULT_MESSAGE);
+        System.out.println(searchResultPlayerName + NEXT_LINE);
     }
 }

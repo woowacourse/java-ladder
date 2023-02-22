@@ -60,4 +60,9 @@ public class InputView {
                 .map(String::trim)
                 .collect(Collectors.toList());
     }
+
+    public String readSearchName() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
+    }
 }
