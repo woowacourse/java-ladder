@@ -12,15 +12,8 @@ public class User {
     public User(final String name) {
         validateLength(name);
         validateBlank(name);
+        validateName(name);
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public boolean isSameName(final String name) {
-        return this.name.equals(name);
     }
 
     private void validateLength(final String name) {
@@ -33,6 +26,20 @@ public class User {
         if (name.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.USER_NAME_BLANK_EXCEPTION.getMessage());
         }
+    }
+
+    private void validateName(final String name) {
+        if (name.equals(Users.ALL_USERS)) {
+            throw new IllegalArgumentException(ErrorMessage.USER_NAME_IS_ALL_EXCEPTION.getMessage());
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isSameName(final String name) {
+        return this.name.equals(name);
     }
 
     @Override

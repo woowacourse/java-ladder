@@ -56,4 +56,11 @@ class UserTest {
         assertThat(user.isSameName("다니")).isFalse();
     }
 
+    @Test
+    @DisplayName("User의 이름에 all이 들어오는 경우 예외처리")
+    void throwExceptionWhenUserNameIsAll() {
+        assertThatThrownBy(() -> new User("all"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.USER_NAME_IS_ALL_EXCEPTION.getMessage());
+    }
 }
