@@ -23,9 +23,12 @@ public class LadderController {
     }
 
     private void initLadderService() {
-        People people = repeat(this::nameRequest);
-        Results results = repeat(() -> resultsRequest(people));
-        Ladder ladder = repeat(() -> ladderRequest(people));
+        People people = repeat(() -> new People(inputView.readNames()));
+        Results results = repeat(() -> new Results(inputView.readResults(), people));
+        Ladder ladder = repeat(() -> new Ladder(
+                people,
+                inputView.readMaxHeight(),
+                new RandomGenerateStrategy()));
 
         ladderService = new LadderService(people, results, ladder);
         outputView.printTotalLadder(people, results, ladder);
@@ -49,18 +52,6 @@ public class LadderController {
             outputView.printCriticalError(exception);
             return repeat(inputReader);
         }
-    }
-
-    private People nameRequest() {
-        return new People(inputView.readNames());
-    }
-
-    private Ladder ladderRequest(People people) {
-        return new Ladder(people, inputView.readMaxHeight(), new RandomGenerateStrategy());
-    }
-
-    private Results resultsRequest(People people) {
-        return new Results(inputView.readResults(), people);
     }
 
     private Results resultRequest() {
