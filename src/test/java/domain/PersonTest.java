@@ -29,7 +29,7 @@ class PersonTest {
         Person person = new Person("hoy", initPosition);
         //when
         person.move(RIGHT);
-        int actual = person.getCurrentPosition();
+        int actual = person.getPosition().getValue();
         //then
         assertThat(actual).isEqualTo(initPosition + 1);
     }
@@ -42,7 +42,7 @@ class PersonTest {
         Person person = new Person("hoy", initPosition);
         //when
         person.move(LEFT);
-        int actual = person.getCurrentPosition();
+        int actual = person.getPosition().getValue();
         //then
         assertThat(actual).isEqualTo(initPosition - 1);
     }

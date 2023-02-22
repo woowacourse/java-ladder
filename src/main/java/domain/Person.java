@@ -48,7 +48,7 @@ public class Person {
         position = position.plus();
     }
 
-    public int getCurrentPosition() {
-        return position.getValue();
+    public Position getPosition() {
+        return position;
     }
 }
