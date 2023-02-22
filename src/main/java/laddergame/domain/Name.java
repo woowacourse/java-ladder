@@ -10,7 +10,6 @@ public class Name {
     private final static String BLANK = " ";
     private final static int MAX_NAME_LENGTH = 5;
 
-
     private final String name;
 
     public Name(String name) {
