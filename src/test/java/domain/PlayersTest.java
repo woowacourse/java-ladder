@@ -42,4 +42,12 @@ public class PlayersTest {
                 .hasMessage("참여자 수는 2부터 100까지 입니다.");
     }
 
+    @DisplayName("플레이어의 인덱스 가져오기")
+    @Test
+    void getOrder() {
+        Players players = new Players(List.of("a","b","c","d"));
+        assertThat(players.getOrder("c")).isEqualTo(2);
+
+    }
+
 }
