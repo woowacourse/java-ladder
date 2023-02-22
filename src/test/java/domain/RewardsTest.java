@@ -1,10 +1,13 @@
 package domain;
 
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 @DisplayName("입력된 실행 결과의 수는 ")
 class RewardsTest {
@@ -33,6 +36,15 @@ class RewardsTest {
         Rewards allRewards = Rewards.of(input, input.size());
 
         assertEquals("꽝", allRewards.getReward(0));
+    }
+
+    @DisplayName("인덱스를 통해 조회할 수 있다.")
+    @ParameterizedTest
+    @CsvSource(value = {"0:꽝", "1:5000", "2:3000", "3:꽝"}, delimiter = ':')
+    void getRewardsTest(int index, String expected) {
+        Rewards allRewards = Rewards.of(rewards, rewards.size());
+
+        assertEquals(expected, allRewards.getReward(index));
     }
 
 }
