@@ -8,20 +8,21 @@ public class Results {
 
     private final List<Result> results;
 
-    // TODO: 결과 값의 최대 길이는 최대 이름의 길이보다 커서는 안된다.
     public Results(final String inputResult, final int numberOfName) {
-        List<Result> results = makeResults(inputResult);
-        validateNumberOfResults(results.size(), numberOfName);
-        this.results = results;
+        this.results = makeResults(inputResult, numberOfName);
     }
 
-    private List<Result> makeResults(final String inputResult) {
-        return Arrays.stream(inputResult.split(","))
+    private List<Result> makeResults(final String inputResult, final int numberOfName) {
+        List<Result> results = Arrays.stream(inputResult.split(","))
                 .map(Result::new)
                 .collect(Collectors.toList());
+
+        validateNumberOfResult(results.size(), numberOfName);
+
+        return results;
     }
 
-    private void validateNumberOfResults(final int resultsSize, final int numberOfName) {
+    private void validateNumberOfResult(final int resultsSize, final int numberOfName) {
         if (resultsSize != numberOfName) {
             throw new IllegalArgumentException("결과 값들의 개수는 입력된 이름의 개수와 같아야 합니다.");
         }
