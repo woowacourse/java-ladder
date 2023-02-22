@@ -1,6 +1,7 @@
 package laddergame.view;
 
 import laddergame.constant.ErrorCode;
+import laddergame.domain.GameResult;
 import laddergame.domain.Line;
 import laddergame.domain.Point;
 
@@ -23,6 +24,7 @@ public class OutputView {
     private static final String LADDER_FORMAT = "%s|";
     private static final String LADDER_CONNECTED_SIGN = "-";
     private static final String LADDER_DISCONNECTED_SIGN = " ";
+    private static final String RESULT_FORMAT = "%s : %s";
 
     public static void printPlayerNamesRequestMsg() {
         System.out.println(PLAYER_NAMES_REQUEST_MSG);
@@ -73,7 +75,15 @@ public class OutputView {
         System.out.println(RESULT_SHOW_PLAYER_REQUEST_MSG);
     }
 
-    public static void printResultInfoMsg() {
+    public static void printResults(List<GameResult> results) {
+        printResultInfoMsg();
+        for (GameResult result : results) {
+            System.out.println(String.format(RESULT_FORMAT, result.getName(), result.getPrizeValue()));
+        }
+        System.out.println();
+    }
+
+    private static void printResultInfoMsg() {
         System.out.println(RESULT_INFO_MSG);
     }
 

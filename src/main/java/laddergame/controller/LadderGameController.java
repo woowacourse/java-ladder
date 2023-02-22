@@ -1,5 +1,6 @@
 package laddergame.controller;
 
+import laddergame.domain.GameResult;
 import laddergame.domain.Ladder;
 import laddergame.domain.LadderGame;
 import laddergame.domain.LadderHeight;
@@ -19,8 +20,9 @@ public class LadderGameController {
         LadderGame ladderGame = initLadderGame();
         printGeneratedLadderResult(ladderGame);
 
-        String name = readResultShowPlayerName();
+        printResult(ladderGame);
     }
+
 
     private LadderGame initLadderGame() {
         Players players = RepeatValidator.readUntilValidate(this::readPlayers);
@@ -51,11 +53,21 @@ public class LadderGameController {
         return height;
     }
 
+
     private void printGeneratedLadderResult(LadderGame ladderGame) {
         OutputView.printGeneratedLadderInfoMsg();
         OutputView.printLadderLabel(ladderGame.getPlayerNames());
         OutputView.printLadderMap(ladderGame.getLadderMap());
         OutputView.printLadderLabel(ladderGame.getPrizeValues());
+    }
+
+
+    private void printResult(LadderGame ladderGame) {
+        GameResult result = RepeatValidator.readUntilValidate(() -> {
+            String name = readResultShowPlayerName();
+            return ladderGame.getResult(name);
+        });
+        OutputView.printResults(List.of(result));
     }
 
     private String readResultShowPlayerName() {
