@@ -65,7 +65,7 @@ public class SimpleLinkedList implements SimpleList {
             size = size + 1;
             return;
         }
-        if (index == size+1) {
+        if (index == size + 1) {
             add(value);
         }
 
@@ -110,7 +110,7 @@ public class SimpleLinkedList implements SimpleList {
     public int indexOf(String value) {
         Node now = first;
         int count = 0;
-        while(now.next != null) {
+        while (now.next != null) {
             if (value.equals(now.item)) {
                 return count;
             }
@@ -149,12 +149,12 @@ public class SimpleLinkedList implements SimpleList {
             first = now.next;
             return item;
         }
-        if (index > 0 && index < size-1) {
+        if (index > 0 && index < size - 1) {
             now.next.prev = now.prev;
             now.prev.next = now.next;
             return item;
         }
-        if (index == size-1) {
+        if (index == size - 1) {
             now.prev.next = null;
             last = now.prev;
             return item;

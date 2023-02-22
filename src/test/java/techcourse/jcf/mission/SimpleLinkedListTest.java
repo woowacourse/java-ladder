@@ -31,7 +31,7 @@ class SimpleLinkedListTest {
         values.add("second");
         values.add("fourth");
         values.add("fifth");
-        values.add(3,"third");
+        values.add(3, "third");
 
 
         assertThat(values.get(3)).isEqualTo("third");

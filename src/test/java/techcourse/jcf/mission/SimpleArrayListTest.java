@@ -11,7 +11,7 @@ class SimpleArrayListTest {
 
     @BeforeEach
     void setUp() {
-        values  = new SimpleArrayList();
+        values = new SimpleArrayList();
     }
 
     @Test
@@ -23,7 +23,7 @@ class SimpleArrayListTest {
     @Test
     void testAdd() {
         values.add("first");
-        values.add(0,"zero");
+        values.add(0, "zero");
         assertThat(values.get(0)).isEqualTo("zero");
     }
 

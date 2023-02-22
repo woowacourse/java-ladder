@@ -107,7 +107,7 @@ public class SimpleArrayList implements SimpleList {
         final int newSize;
         newSize = size - 1;
         if (newSize > index) {
-            System.arraycopy(values, index+1, values, index, newSize-1);
+            System.arraycopy(values, index + 1, values, index, newSize - 1);
         }
         values[size] = null;
         size = newSize;
