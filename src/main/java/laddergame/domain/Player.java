@@ -8,4 +8,8 @@ public class Player {
         this.personalName = personalName;
         this.position = new Position(value);
     }
+
+    public Position getPosition() {
+        return position;
+    }
 }
