@@ -9,9 +9,13 @@ public class GameResults {
     private final List<GameResult> gameResults;
 
     public GameResults(int playerSize, List<GameResult> gameResults) {
+        validate(playerSize, gameResults);
+        this.gameResults = Collections.unmodifiableList(gameResults);
+    }
+
+    private void validate(int playerSize, List<GameResult> gameResults) {
         validateNullAndEmpty(gameResults);
         validateSize(playerSize, gameResults);
-        this.gameResults = gameResults;
     }
 
     private void validateNullAndEmpty(List<GameResult> results) {
@@ -27,6 +31,10 @@ public class GameResults {
     }
 
     public List<GameResult> getGameResults() {
-        return Collections.unmodifiableList(gameResults);
+        return gameResults;
+    }
+
+    public GameResult getGameResultAt(int order) {
+        return gameResults.get(order - 1);
     }
 }

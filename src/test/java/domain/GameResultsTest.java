@@ -1,6 +1,7 @@
 package domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
@@ -60,6 +61,16 @@ public class GameResultsTest {
         GameResults gameResults = new GameResults(playerSize, gameResultList);
         assertThat(gameResults.getGameResults().get(0))
                 .isInstanceOf(GameResult.class);
+    }
+
+    @DisplayName("실행 결과는 입력한 순서대로 사다리에 매핑된다.")
+    @Test
+    void mapGameResultWithLadder() {
+        GameResults gameResults = new GameResults(3, List.of(new GameResult("꽝"), new GameResult("꽝"), new GameResult("당첨")));
+        assertThat(gameResults.getGameResultAt(3).getResult())
+                .isEqualTo("당첨");
+        assertThat(gameResults.getGameResultAt(1).getResult())
+                .isEqualTo("꽝");
     }
 
 //    private static Stream<Arguments> provideStringsForIsBlank() {
