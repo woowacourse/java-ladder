@@ -8,6 +8,11 @@ import static view.LadderFormat.START_DELIMITER;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import domain.Ladder;
+import domain.LadderRow;
+import domain.Point;
+import domain.Reward;
+import domain.User;
 import utils.StringParser;
 
 public class OutputView {
@@ -25,12 +30,22 @@ public class OutputView {
         System.out.println(parsedUserNames);
     }
 
-    public static void printLadder(List<List<Boolean>> ladder) {
-        getCollect(ladder)
-                .forEach(System.out::println);
+    public static void printLadder(Ladder ladder) {
+        List<LadderRow> ladderRows = ladder.getLadderRows();
+        List<List<Boolean>> ladderMap = ladderRows.stream()
+                .map(OutputView::getRight)
+                .collect(Collectors.toList());
+        convertByPrintFormat(ladderMap).forEach(System.out::println);
     }
 
-    private static List<String> getCollect(List<List<Boolean>> ladder) {
+    private static List<Boolean> getRight(LadderRow ladderRow) {
+        return ladderRow.getPoints()
+                .stream()
+                .map(Point::getRight)
+                .collect(Collectors.toList());
+    }
+
+    private static List<String> convertByPrintFormat(List<List<Boolean>> ladder) {
         return ladder.stream()
                 .map(OutputView::formatLadderRow)
                 .collect(Collectors.toList());
@@ -38,7 +53,7 @@ public class OutputView {
 
     private static String formatLadderRow(List<Boolean> ladderRow) {
         List<String> collect = parseLadderRow(ladderRow);
-        return START_DELIMITER.getFormat() + String.join(DELIMITER.getFormat(), collect) + DELIMITER.getFormat();
+        return START_DELIMITER.getFormat() + String.join(DELIMITER.getFormat(), collect);
     }
 
     private static List<String> parseLadderRow(List<Boolean> ladderRow) {
@@ -64,5 +79,11 @@ public class OutputView {
         return rewardNames.stream()
                 .map(StringParser::insertBlank)
                 .collect(Collectors.toList());
+    }
+
+    public static void printResult(User user, Reward reward) {
+        String userName = user.getName();
+        String rewardName = reward.getReward();
+        System.out.println(userName + " : " + rewardName);
     }
 }

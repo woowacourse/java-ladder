@@ -61,8 +61,12 @@ public class Controller {
         }
 
         User user = users.findUserByName(resultOption);
-
-
+        Reward reward = resultTable.getRewardByUser(user);
+//        TODO: reward null 일때 게임 돌려서 결과 가져오고 저장하기
+//        if(reward == null) {
+//
+//        }
+        OutputView.printResult(user, reward);
 
     }
 
@@ -112,8 +116,7 @@ public class Controller {
     }
 
     private void printLadder() {
-        List<List<Boolean>> ladderMap = ladder.getLadderMap();
-        OutputView.printLadder(ladderMap);
+        OutputView.printLadder(ladder);
     }
 
     private void printRewards() {

@@ -2,7 +2,6 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import utils.LadderRowGenerator;
 
@@ -21,9 +20,13 @@ public class Ladder {
         }
     }
 
-    public List<List<Boolean>> getLadderMap() {
-        return ladderRows.stream()
-                .map(LadderRow::getBars)
-                .collect(Collectors.toUnmodifiableList());
+    public List<LadderRow> getLadderRows() {
+        return ladderRows;
     }
+
+//    public List<List<Boolean>> getLadderMap() {
+//        return ladderRows.stream()
+//                .map(LadderRow::getBars)
+//                .collect(Collectors.toUnmodifiableList());
+//    }
 }

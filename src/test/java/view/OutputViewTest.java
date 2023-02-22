@@ -45,9 +45,8 @@ class OutputViewTest {
         Ladder ladder = new Ladder(ladderRowGenerator);
 
         ladder.create(5, 4);
-        List<List<Boolean>> ladderMap = ladder.getLadderMap();
 
-        OutputView.printLadder(ladderMap);
+        OutputView.printLadder(ladder);
         assertThat(outputStream.toString()).isEqualTo(expected);
     }
 }
