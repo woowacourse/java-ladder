@@ -1,12 +1,12 @@
-package domain.entries;
+package domain.prize;
 
-public class WinningEntry {
+public class Prize {
 
-    private static final int WINNING_ENTRY_MAX_LENGTH = 5;
+    private static final int PRIZE_MAX_LENGTH = 5;
 
     private final String value;
 
-    public WinningEntry(final String value) {
+    public Prize(final String value) {
         validate(value);
         this.value = value;
     }
@@ -23,7 +23,7 @@ public class WinningEntry {
     }
 
     private void validateValueLength(final String name) {
-        if (name.length() > WINNING_ENTRY_MAX_LENGTH) {
+        if (name.length() > PRIZE_MAX_LENGTH) {
             throw new IllegalArgumentException("당첨 항목은 최대 5글자까지 가능합니다.");
         }
     }
@@ -31,5 +31,5 @@ public class WinningEntry {
     public String getValue() {
         return value;
     }
-    
+
 }

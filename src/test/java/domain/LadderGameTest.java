@@ -1,9 +1,9 @@
 package domain;
 
-import domain.entries.WinningEntries;
 import domain.ladder.ExistPointGenerator;
 import domain.ladder.Ladder;
 import domain.players.Players;
+import domain.prize.Prizes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class LadderGameTest {
         List<String> playerNames = List.of("a", "b", "c");
         int ladderHeight = 5;
         Players players = Players.valueOf(playerNames);
-        List<String> winningEntries = List.of("10000", "20000", "30000");
-        ladderGame = new LadderGame(players, ladderHeight, winningEntries, new ExistPointGenerator());
+        List<String> prizes = List.of("10000", "20000", "30000");
+        ladderGame = new LadderGame(players, ladderHeight, prizes, new ExistPointGenerator());
     }
 
     @DisplayName("Ladder를 생성한다.")
@@ -40,11 +40,11 @@ public class LadderGameTest {
         assertThat(playerNames).containsExactly("a", "b", "c");
     }
 
-    @DisplayName("WinningEntries를 생성한다.")
+    @DisplayName("Prizes를 생성한다.")
     @Test
-    void generateWinningEntries() {
-        WinningEntries winningEntries = ladderGame.getWinningEntries();
-        assertThat(winningEntries.getEntryValues()).containsExactly("10000", "20000", "30000");
+    void generatePrizes() {
+        Prizes prizes = ladderGame.getPrizes();
+        assertThat(prizes.getPrizeValues()).containsExactly("10000", "20000", "30000");
     }
 
     @DisplayName("참여자 수와 당첨항목의 수가 다르면 예외를 던진다.")
@@ -52,8 +52,8 @@ public class LadderGameTest {
     void playersSizeAndEntriesSizeSame() {
         List<String> playerNames = List.of("a", "b", "c");
         Players players = Players.valueOf(playerNames);
-        List<String> winningEntries = List.of("10000", "20000", "30000", "40000");
-        assertThatThrownBy(() -> new LadderGame(players, 5, winningEntries, new ExistPointGenerator()))
+        List<String> prizes = List.of("10000", "20000", "30000", "40000");
+        assertThatThrownBy(() -> new LadderGame(players, 5, prizes, new ExistPointGenerator()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("참여자 수와 당첨 항목의 수는 같아야합니다.");
     }

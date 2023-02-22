@@ -11,7 +11,7 @@ public class InputViewValidator {
         validateNotInteger(input);
     }
 
-    public static void validateWinningEntries(final String input) {
+    public static void validatePrizes(final String input) {
         validateNotEmpty(input);
     }
 
