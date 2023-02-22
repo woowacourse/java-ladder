@@ -1,5 +1,6 @@
 package application;
 
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 import domain.LadderResultRequest;
@@ -10,9 +11,9 @@ import domain.player.Name;
 import domain.player.Player;
 import domain.player.Players;
 import dto.PlayerLadderResult;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.IntStream;
 import view.InputView;
 import view.OutputView;
 
@@ -52,12 +53,9 @@ public class LadderGameApplication {
     private Players createPlayers() {
         List<Name> names = inputView.readNames();
 
-        List<Player> players = new ArrayList<>();
-        for (int idx = 0; idx < names.size(); idx++) {
-            players.add(new Player(names.get(idx), idx + 1));
-        }
-
-        return new Players(players);
+        return IntStream.range(0, names.size())
+                .mapToObj(idx -> new Player(names.get(idx), idx + 1))
+                .collect(collectingAndThen(toList(), Players::new));
     }
 
     private void printResult(Players players,
