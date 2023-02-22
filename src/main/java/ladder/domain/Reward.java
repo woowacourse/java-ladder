@@ -18,8 +18,12 @@ public class Reward {
     }
 
     private void validateNameLength(String name) {
-        if (name.isBlank() || name.length() > NAME_MAXIMUM_LENGTH) {
+        if (name.length() > NAME_MAXIMUM_LENGTH) {
             throw new IllegalArgumentException(ERROR_LENGTH_OF_NAME);
+        }
+
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("보상을 입력하지 않았습니다.");
         }
     }
 
