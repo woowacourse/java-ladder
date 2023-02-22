@@ -38,11 +38,11 @@ public class LineTest {
 
         // when, then
         assertAll(() -> {
-            assertEquals(new Line(5).isRightLadder(1, points), "right");
-            assertEquals(new Line(5).isRightLadder(2, points), "left");
-            assertEquals(new Line(5).isRightLadder(3, points), "right");
-            assertEquals(new Line(5).isRightLadder(4, points), "left");
-            assertEquals(new Line(5).isRightLadder(5, points), "none");
+            assertEquals(new Line(5).isRightLadder(0, points), "right");
+            assertEquals(new Line(5).isRightLadder(1, points), "left");
+            assertEquals(new Line(5).isRightLadder(2, points), "right");
+            assertEquals(new Line(5).isRightLadder(3, points), "left");
+            assertEquals(new Line(5).isRightLadder(4, points), "none");
         });
     }
 }
