@@ -30,9 +30,13 @@ public class PlayerName {
     }
 
     private void validateWord(String playerName) {
-        if (!PLAYER_NAME_PATTERN.matcher(playerName).matches()) {
+        if (isNotMatches(playerName)) {
             throw new IllegalArgumentException(VALUE_ERROR_MESSAGE);
         }
+    }
+
+    private boolean isNotMatches(String playerName) {
+        return !PLAYER_NAME_PATTERN.matcher(playerName).matches();
     }
 
     private boolean isOutOfRange(String playerName) {
