@@ -22,10 +22,6 @@ public class Line {
         }
     }
 
-    public List<Bridge> getLine() {
-        return new ArrayList<>(line);
-    }
-
     public int calculateNextPosition(final int index) {
         if (index == 0) {
             return index + checkRight(index).getDirection();
@@ -47,5 +43,9 @@ public class Line {
             return Direction.LEFT;
         }
         return Direction.DOWN;
+    }
+
+    public List<Bridge> getLine() {
+        return new ArrayList<>(line);
     }
 }
