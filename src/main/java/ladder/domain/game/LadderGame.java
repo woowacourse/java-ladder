@@ -39,4 +39,16 @@ public class LadderGame {
     public Map.Entry<Player, String> getOneLadderGameResult(String playerName) {
         return players.getGameResultFor(playerName);
     }
+
+    public Players getPlayers() {
+        return players;
+    }
+
+    public Ladder getLadder() {
+        return ladder;
+    }
+
+    public List<String> getLadderGameResult() {
+        return List.copyOf(ladderGameResult);
+    }
 }

@@ -3,15 +3,20 @@ package ladder.view;
 import ladder.domain.ladder.Stool;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
+import ladder.domain.player.Player;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
-    private static final String GAME_RESULT_HEADER_MESSAGE = "실행 결과";
+    private static final String LADDER_MAKE_MESSAGE = "사다리 결과";
     private static final String LADDER_FRAME = "|";
     private static final String LADDER_BLOCK = "-----";
     private static final String LADDER_EMPTY_BLOCK = "     ";
+
+    private static final String LADDER_GAME_MESSAGE = "실행 결과";
+    private static final String LADDER_GAME_RESULT_FRAME = "%s : %s\n";
 
     public static void printErrorMessage(Exception exception) {
         System.out.println(exception.getMessage());
@@ -19,11 +24,22 @@ public class OutputView {
 
     public static void printGameResultHeader() {
         System.out.println();
-        System.out.println(GAME_RESULT_HEADER_MESSAGE);
+        System.out.println(LADDER_MAKE_MESSAGE);
         System.out.println();
     }
 
-    public static void printPlayersName(final List<String> playersName) {
+    public static void printOneGameResult(Map.Entry<Player, String> gameResult) {
+        System.out.println(LADDER_GAME_MESSAGE);
+        System.out.println(gameResult.getValue());
+    }
+
+    public static void printAllGameResult(Map<Player, String> gameResult) {
+        System.out.println(LADDER_GAME_MESSAGE);
+
+        gameResult.forEach((k, v) -> System.out.printf(LADDER_GAME_RESULT_FRAME, k.getPlayerName().getName(), v));
+    }
+
+    public static void printWithFormat(final List<String> playersName) {
         for (String name : playersName) {
             System.out.print(name + " ");
         }

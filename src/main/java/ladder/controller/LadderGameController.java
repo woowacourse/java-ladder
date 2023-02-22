@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.domain.game.LadderGame;
 import ladder.domain.rule.RandomStoolGenerator;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Players;
@@ -15,8 +16,11 @@ public class LadderGameController {
     public void run() {
         Players players = initPlayers();
         Ladder ladder = initLadder(players.size());
+        LadderGame ladderGame = initLadderGame(players, ladder);
 
-        showResult(players, ladder);
+        ladderGame.letPlayersToGoDown();
+        showResult(ladderGame);
+        startCheckingGameResultLoop(ladderGame);
     }
 
     private Players initPlayers() {
@@ -39,16 +43,43 @@ public class LadderGameController {
         }
     }
 
-    private void showResult(Players players, Ladder ladder) {
-        List<String> playersName = mapPlayersToPlayersName(players);
+    private LadderGame initLadderGame(Players players, Ladder ladder) {
+        try {
+            List<String> gameResult = InputView.inputLadderGameResult();
+            return new LadderGame(players, ladder, gameResult);
+        } catch (CustomException e) {
+            OutputView.printErrorMessage(e);
+            return initLadderGame(players, ladder);
+        }
+    }
+
+    private void showResult(LadderGame ladderGame) {
         OutputView.printGameResultHeader();
-        OutputView.printPlayersName(playersName);
-        OutputView.printLadder(ladder);
+        OutputView.printWithFormat(mapPlayersToPlayersName(ladderGame.getPlayers()));
+        OutputView.printLadder(ladderGame.getLadder());
+        OutputView.printWithFormat(ladderGame.getLadderGameResult());
     }
 
     private List<String> mapPlayersToPlayersName(Players players) {
         return players.getPlayers().stream()
                 .map(player -> player.getPlayerName().getName())
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    private void startCheckingGameResultLoop(LadderGame ladderGame) {
+        try {
+            final String playerName = InputView.inputPlayerWhoNeedsGameResult();
+
+            if (playerName.equals("all")) {
+                OutputView.printAllGameResult(ladderGame.getAllLadderGameResult());
+                startCheckingGameResultLoop(ladderGame);
+            }
+            OutputView.printOneGameResult(ladderGame.getOneLadderGameResult(playerName));
+            startCheckingGameResultLoop(ladderGame);
+
+        } catch (CustomException e) {
+            OutputView.printErrorMessage(e);
+            startCheckingGameResultLoop(ladderGame);
+        }
     }
 }
