@@ -2,12 +2,14 @@ package view;
 
 import exception.ErrorCode;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     private static final String RESULT_HEAD = "실행결과";
     private static final String BLANK = " ";
     private static final String LADDER_UNIT = "|";
     private static final String BRIDGE_UNIT = "-";
+    private static final String ALL_RESULT = "%s : %s";
 
     public OutputView() {
     }
@@ -16,6 +18,14 @@ public class OutputView {
         System.out.println(RESULT_HEAD + "\n");
         int firstNameLength = printPersons(persons, bridgeSize);
         printLadder(ladder, firstNameLength, bridgeSize);
+    }
+
+    public void printResult(Map<String, String> result) {
+        result.forEach((name, prize) -> System.out.printf(ALL_RESULT + "\n", name, prize));
+    }
+
+    public void printResult(String result) {
+        System.out.println(result);
     }
 
     private static void printLadder(List<List<Boolean>> ladder, int firstNameLength, int bridgeSize) {

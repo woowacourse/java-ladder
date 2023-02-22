@@ -5,8 +5,10 @@ import domain.LadderGame;
 import domain.Person;
 import domain.Persons;
 import domain.WinningEntry;
+import exception.ErrorCode;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import util.RandomBooleanGenerator;
 import view.InputView;
@@ -14,6 +16,7 @@ import view.OutputView;
 
 public class LadderController {
     private static final String NAME_DELIMITER = ",";
+    private static final String ALL_RESULT = "all";
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private LadderGame ladderGame;
@@ -28,6 +31,7 @@ public class LadderController {
         ladderGame = new LadderGame(persons, height, new WinningEntry(List.of("1", "2", "3", "4"), persons.getTotalPersonCount()), new RandomBooleanGenerator());
         outputView.printLadder(ladderGame.getAllPlayers(), ladderGame.getLadderStatus(),
                 persons.getLongestPersonNameLength());
+        printGameResult(ladderGame.play());
     }
 
     private Persons requestPlayerName() {
@@ -67,4 +71,31 @@ public class LadderController {
         return null;
     }
 
+    private void printGameResult(Map<String, String> result) {
+        boolean isGameEnd = false;
+        while (!isGameEnd) {
+            isGameEnd = isAllPrinted(result);
+        }
+    }
+
+    private boolean isAllPrinted(Map<String, String> result) {
+        try {
+            return printResult(inputView.requestResultTarget(), result);
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+        }
+        return false;
+    }
+
+    private boolean printResult(String target, Map<String, String> result) {
+        if (target.equals(ALL_RESULT)) {
+            outputView.printResult(result);
+            return true;
+        }
+        if (result.containsKey(target)) {
+            outputView.printResult(result.get(target));
+            return false;
+        }
+        throw new IllegalArgumentException(ErrorCode.WRONG_RESULT_TARGET.getMessage());
+    }
 }
