@@ -7,14 +7,15 @@ import java.util.List;
 
 public class OutputView {
 
-    private static final String RESULT_MESSAGE = "실행결과";
+    private static final String LADDER_MESSAGE = "사다리 결과";
     private static final String BLANK_LINE = "        ";
     private static final String CONNECTED_LINE = "--------";
     private static final String LADDER = "|";
+    private static final String RESULT_MESSAGE = "실행결과";
 
 
     public static void printResultMessage() {
-        System.out.println(RESULT_MESSAGE);
+        System.out.println(LADDER_MESSAGE);
         System.out.println();
     }
 
@@ -26,6 +27,20 @@ public class OutputView {
     public static void printLadder(List<Line> lines) {
         for (Line line : lines) {
             System.out.println(renderLine(line));
+        }
+    }
+
+    public static void printUserResult(String result) {
+        System.out.println(RESULT_MESSAGE);
+        System.out.println(result);
+        System.out.println();
+    }
+
+    public static void printAllResult(List<String> userNames, List<String> resultNames) {
+        System.out.println(RESULT_MESSAGE);
+        for (int index = 0; index < userNames.size(); index++) {
+            System.out.printf("%s : %s", userNames.get(index), resultNames.get(index));
+            System.out.println();
         }
     }
 
