@@ -7,7 +7,7 @@ import java.util.List;
 public class Floor {
 
     private static final int SECOND_INDEX_OF_FLOOR = 1;
-    
+
     private final List<Point> points;
 
     public Floor(List<Point> values) {

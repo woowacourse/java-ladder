@@ -8,7 +8,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ladder.domain.Point.*;
+import static ladder.domain.Point.EMPTY;
+import static ladder.domain.Point.FILLED;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FloorTest {
@@ -39,7 +40,7 @@ public class FloorTest {
 
     @ParameterizedTest
     @CsvSource(value = {"0:1", "1:0", "2:2", "3:4", "4:3"}, delimiter = ':')
-    @DisplayName("양 옆에 다리가 있는 곳으로 움직인다.")
+    @DisplayName("양 옆 중 Point가 있는 곳으로 움직인다.")
     void moveVerticallyTest(int positionNow, int positionNext) {
         //given
         List<Point> list = new ArrayList<>(List.of(FILLED, EMPTY, EMPTY, FILLED));
