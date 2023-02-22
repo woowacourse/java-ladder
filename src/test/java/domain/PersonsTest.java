@@ -47,4 +47,30 @@ public class PersonsTest {
         //then
         assertThat(persons.getLongestPersonNameLength()).isEqualTo(5);
     }
+
+    @Test
+    @DisplayName("게임 참여자가 2명 미만이 경우 예외 발생")
+    void notEnoughGamePlayer() {
+        //given
+        Person baron = new Person("baron");
+
+        //when
+        //then
+        assertThatThrownBy(() -> new Persons(List.of(baron)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("게임 참여자가 2명 이상인 경우 성공")
+    void enoughGamePlayer() {
+        //given
+        Person baron = new Person("baron");
+        Person oing = new Person("oing");
+
+        //when
+        Persons persons = new Persons(List.of(baron, oing));
+
+        //then
+        assertThat(persons.getTotalPersonCount()).isEqualTo(2);
+    }
 }
