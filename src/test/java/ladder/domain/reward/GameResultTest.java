@@ -1,15 +1,13 @@
 package ladder.domain.reward;
 
+import ladder.domain.generator.MockBooleanGenerator;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Name;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
-import ladder.domain.valueGenerator.MockBooleanGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

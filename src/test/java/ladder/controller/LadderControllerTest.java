@@ -1,10 +1,10 @@
 package ladder.controller;
 
+import ladder.domain.generator.MockBooleanGenerator;
 import ladder.domain.ladder.Line;
 import ladder.domain.player.Name;
 import ladder.domain.player.Player;
 import ladder.domain.reward.Reward;
-import ladder.domain.valueGenerator.MockBooleanGenerator;
 import ladder.view.MockInputView;
 import ladder.view.MockResultView;
 import org.junit.jupiter.api.DisplayName;

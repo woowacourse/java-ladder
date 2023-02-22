@@ -13,12 +13,6 @@ public class Height {
         this.height = height;
     }
 
-    private void validateZeroHeight(int height) {
-        if (height < MINIMUM_HEIGHT) {
-            throw new IllegalArgumentException("높이는 1 이상을 입력해주세요.");
-        }
-    }
-
     public int getHeight() {
         return height;
     }
@@ -34,6 +28,12 @@ public class Height {
     @Override
     public int hashCode() {
         return Objects.hash(height);
+    }
+
+    private void validateZeroHeight(int height) {
+        if (height < MINIMUM_HEIGHT) {
+            throw new IllegalArgumentException("높이는 1 이상을 입력해주세요.");
+        }
     }
 
 }

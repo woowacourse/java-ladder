@@ -16,7 +16,6 @@ public class MockResultView implements Result{
     private List<Line> ladder;
     private List<Reward> rewards;
     private Map<Player, Reward> gameResult;
-
     private Boolean hasError;
 
     @Override
@@ -54,4 +53,5 @@ public class MockResultView implements Result{
     public Map<Player, Reward> getGameResult() {
         return gameResult;
     }
+
 }

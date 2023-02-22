@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
-import ladder.domain.valueGenerator.BooleanGenerator;
-import ladder.domain.valueGenerator.MockBooleanGenerator;
+import ladder.domain.generator.BooleanGenerator;
+import ladder.domain.generator.MockBooleanGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

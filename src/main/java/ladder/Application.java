@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.controller.LadderController;
-import ladder.domain.valueGenerator.RandomBooleanGenerator;
+import ladder.domain.generator.RandomBooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 

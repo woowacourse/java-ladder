@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.domain.generator.BooleanGenerator;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Player;
@@ -8,7 +9,6 @@ import ladder.domain.reward.Continue;
 import ladder.domain.reward.GameResult;
 import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
-import ladder.domain.valueGenerator.BooleanGenerator;
 import ladder.view.Input;
 import ladder.view.Result;
 
@@ -34,6 +34,7 @@ public class LadderController {
                 .repeat(input::inputRewards, inputRewards -> Rewards.create(inputRewards, players.count()));
         Height heightOfLadder = exceptionProcess.repeat(input::inputHeightOfLadder, Height::new);
         Ladder ladder = Ladder.create(players.count(), heightOfLadder.getHeight(), booleanGenerator);
+
         result.printLadder(players, ladder, rewards);
 
         endOfGame(players, ladder, rewards);

@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.domain.valueGenerator.BooleanGenerator;
+import ladder.domain.generator.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
