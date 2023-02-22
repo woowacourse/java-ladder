@@ -92,13 +92,11 @@ public class LadderGameController {
     private void showResultBoard(ResultBoard resultBoard) {
         String option = inputView.readPlayerChoice();
 
-        if (option.equals(LOOK_ALL)) {
-            showAllPlayers(resultBoard);
-            return;
+        while(!option.equals(LOOK_ALL)){
+            showChosePlayer(resultBoard, option);
+            option = inputView.readPlayerChoice();
         }
-
-        showChosePlayer(resultBoard, option);
-        showResultBoard(resultBoard);
+        showAllPlayers(resultBoard);
     }
 
     private void showAllPlayers(ResultBoard resultBoard) {
@@ -112,8 +110,6 @@ public class LadderGameController {
             outputView.printChosePlayerResult(resultBoard.getRewardOf(playerName).getReward());
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
-            playerName = inputView.readPlayerChoice();
-            showChosePlayer(resultBoard, playerName);
         }
     }
 
