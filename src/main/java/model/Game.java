@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Game {
+    private static final int MOVE_LADDER = 1;
     private final Map<Name, Result> prizeResult = new HashMap<>();
 
     public Game(Names names, LadderResult result, LadderHeight height, Ladder ladder) {
@@ -28,15 +29,15 @@ public class Game {
 
     private int moveSideLadder(int column, int row, Ladder ladder, int personCount) {
         if (checkMoveLeftLadder(column, row, ladder)) {
-            return column - 1;
+            return column - MOVE_LADDER;
         } else if (checkMoveRightLadder(column, row, ladder, personCount)) {
-            return column + 1;
+            return column + MOVE_LADDER;
         }
         return column;
     }
 
     private boolean checkMoveLeftLadder(int column, int row, Ladder ladder) {
-        return column >= 1 && ladder.getLadderLine(column-1, row);
+        return column >= 1 && ladder.getLadderLine(column - 1, row);
     }
 
     private boolean checkMoveRightLadder(int column, int row, Ladder ladder, int personCount) {
