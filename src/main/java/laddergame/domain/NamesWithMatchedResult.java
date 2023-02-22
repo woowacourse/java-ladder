@@ -16,4 +16,8 @@ public class NamesWithMatchedResult {
         }
         return nameToItem.get(keyName);
     }
+
+    public Map<PersonalName, LadderResultItem> getNameToItem() {
+        return nameToItem;
+    }
 }

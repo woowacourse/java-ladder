@@ -43,4 +43,19 @@ class NamesWithMatchedResultTest {
         Assertions.assertThatThrownBy(() -> namesWithMatchedResult.searchBy("no"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("모든 결과를 반환하는 메서드")
+    @Test
+    void getNameToItem() {
+        //given
+        NamesWithMatchedResult namesWithMatchedResult = new NamesWithMatchedResult(
+                Map.of(PersonalName.valueOf("first"), new LadderResultItem("item1"),
+                        PersonalName.valueOf("second"), new LadderResultItem("item2"))
+        );
+
+        Map<PersonalName, LadderResultItem> nameToItem = namesWithMatchedResult.getNameToItem();
+        assertThat(nameToItem.keySet()).contains(PersonalName.valueOf("first"), PersonalName.valueOf("second"));
+    }
+
+//    @DisplayName("반환된 결과는 수정할 수 없다.")
 }
