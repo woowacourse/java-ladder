@@ -8,18 +8,23 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 import laddergame.domain.Line;
+import laddergame.domain.PersonalName;
 import laddergame.domain.PersonalNames;
 
 public class LadderFormGenerator {
     private int rungLength;
 
     public String generate(final PersonalNames personalNames, final List<Line> lines) {
-        rungLength = getMaximumLengthOfNames(personalNames.getNames());
-        return joinNames(personalNames.getNames()) + joinRows(lines);
+        rungLength = getMaximumLengthOfNames(personalNames.getPersonalNames());
+        return joinNames(mapToValue(personalNames)) + joinRows(lines);
     }
 
-    private static int getMaximumLengthOfNames(List<String> names) {
-        return names.stream().mapToInt(String::length).max().getAsInt();
+    private static List<String> mapToValue(PersonalNames personalNames) {
+        return personalNames.getPersonalNames().stream().map(PersonalName::getValue).collect(Collectors.toList());
+    }
+
+    private static int getMaximumLengthOfNames(List<PersonalName> names) {
+        return names.stream().map(PersonalName::getValue).mapToInt(String::length).max().getAsInt();
     }
 
     private String joinNames(final List<String> names) {

@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -73,11 +74,11 @@ class PersonalNamesTest {
 
     @DisplayName("이름 목록을 가져온다.")
     @Test
-    void getNames() {
+    void getNameList() {
         //given, when
-        final List<String> names = NAME_SIZE_2.getNames();
-
+        final List<PersonalName> names = NAME_SIZE_2.getPersonalNames();
+        final List<String> nameValues = names.stream().map(PersonalName::getValue).collect(Collectors.toList());
         //then
-        assertThat(names).contains("hyena", "rosie");
+        assertThat(nameValues).containsExactly("hyena", "rosie");
     }
 }

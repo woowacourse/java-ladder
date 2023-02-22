@@ -2,7 +2,6 @@ package laddergame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderResult {
     private final List<LadderResultItem> resultItems;
@@ -22,7 +21,7 @@ public class LadderResult {
         return new LadderResult(resultNames);
     }
 
-    public List<String> getItemNames() {
-        return resultItems.stream().map(LadderResultItem::getName).collect(Collectors.toUnmodifiableList());
+    public List<LadderResultItem> getResultItems() {
+        return resultItems;
     }
 }

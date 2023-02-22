@@ -25,9 +25,7 @@ public class PersonalNames {
         return personalNames.size();
     }
 
-    public List<String> getNames() {
-        return personalNames.stream()
-                .map(PersonalName::getValue)
-                .collect(Collectors.toUnmodifiableList());
+    public List<PersonalName> getPersonalNames() {
+        return personalNames;
     }
 }

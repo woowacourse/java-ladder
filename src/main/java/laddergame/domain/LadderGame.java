@@ -16,15 +16,15 @@ public class LadderGame {
     public Map<String, String> match(Ladder ladder) {
         Map<String, String> gameResult = new HashMap<>();
 
-        List<String> names = personalNames.getNames();
-        List<String> resultItems = ladderResult.getItemNames();
+        List<PersonalName> names = personalNames.getPersonalNames();
+        List<LadderResultItem> resultItems = ladderResult.getResultItems();
 
         for (int index = 0; index < names.size(); index++) {
             int current = index;
             for (final Line line : ladder.getLines()) {
                 current = move(line, current, names.size());
             }
-            gameResult.put(names.get(index), resultItems.get(current));
+            gameResult.put(names.get(index).getValue(), resultItems.get(current).getName());
         }
 
         return gameResult;

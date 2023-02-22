@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,9 +27,10 @@ public class LadderResultTest {
         LadderResult ladderResult = LadderResult.of(personalNames, List.of("꽝", "10000"));
 
         //when
-        List<String> itemNames = ladderResult.getItemNames();
+        List<LadderResultItem> itemNames = ladderResult.getResultItems();
 
         //then
-        Assertions.assertThat(itemNames).containsExactly("꽝", "10000");
+        Assertions.assertThat(itemNames.stream().map(LadderResultItem::getName).collect(Collectors.toList()))
+                .containsExactly("꽝", "10000");
     }
 }
