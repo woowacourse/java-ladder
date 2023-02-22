@@ -16,7 +16,7 @@ public class InputView {
             return Arrays.stream(reader.readLine().split("\\s*,\\s*"))
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("문자열을 읽을 때 예외가 발생했습니다.", e);
         }
     }
 
@@ -25,7 +25,7 @@ public class InputView {
         try {
             return Integer.parseInt(reader.readLine());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("문자열을 읽을 때 예외가 발생했습니다.", e);
         }
     }
 }
