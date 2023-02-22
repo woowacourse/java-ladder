@@ -20,4 +20,10 @@ public class Rewards {
     public Reward getRewardByIndex(int index) {
         return rewards.get(index);
     }
+
+    public List<Reward> getRewardByIndex(List<Integer> indexes) {
+        return indexes.stream()
+                .map(rewards::get)
+                .collect(Collectors.toUnmodifiableList());
+    }
 }
