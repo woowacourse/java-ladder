@@ -1,5 +1,6 @@
 import controller.Controller;
 import domain.Ladder;
+import domain.ResultTable;
 import domain.Rewards;
 import domain.Users;
 import utils.LadderRowGenerator;
@@ -12,8 +13,9 @@ public class Application {
         Ladder ladder = new Ladder(ladderRowGenerator);
         Users users = new Users();
         Rewards rewards = new Rewards();
+        ResultTable resultTable = new ResultTable();
 
-        Controller controller = new Controller(ladder, users, rewards);
+        Controller controller = new Controller(ladder, users, rewards, resultTable);
         controller.run();
     }
 }

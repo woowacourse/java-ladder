@@ -6,6 +6,7 @@ import java.util.List;
 
 import domain.Ladder;
 import domain.ResultCommands;
+import domain.ResultTable;
 import domain.Reward;
 import domain.Rewards;
 import domain.User;
@@ -18,11 +19,13 @@ public class Controller {
     private final Ladder ladder;
     private final Users users;
     private final Rewards rewards;
+    private final ResultTable resultTable;
 
-    public Controller(Ladder ladder, Users users, Rewards rewards) {
+    public Controller(Ladder ladder, Users users, Rewards rewards, ResultTable resultTable) {
         this.ladder = ladder;
         this.users = users;
         this.rewards = rewards;
+        this.resultTable = resultTable;
     }
 
     public void run() {
@@ -57,7 +60,9 @@ public class Controller {
 //            TODO: Map에서 null인거 찾아서 결과 돌리고 저장하기;
         }
 
-        users.findUserByName(resultOption);
+        User user = users.findUserByName(resultOption);
+
+
 
     }
 
@@ -65,7 +70,11 @@ public class Controller {
         try {
             List<String> userNames = InputView.readUserNames();
             Validator.validateDuplication(userNames);
-            userNames.forEach(userName -> users.add(new User(userName)));
+            userNames.forEach(userName -> {
+                User newUser = new User(userName);
+                users.add(newUser);
+                resultTable.initialize(newUser);
+            });
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception);
             createUser();
