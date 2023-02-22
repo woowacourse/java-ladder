@@ -10,10 +10,11 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printResult(NamesDto namesDto, RowsDto rowsDto) {
+    public static void printResult(NamesDto playerNamesDto, RowsDto rowsDto,NamesDto resultNamesDto) {
         printResultTitle();
-        printNames(namesDto);
+        printPlayerNames(playerNamesDto);
         printRows(rowsDto);
+        printPlayerNames(resultNamesDto);
     }
 
     private static void printResultTitle() {
@@ -21,7 +22,7 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void printNames(NamesDto namesDto) {
+    private static void printPlayerNames(NamesDto namesDto) {
         namesDto.getNames().forEach(ResultView::printName);
     }
 
@@ -50,7 +51,6 @@ public class ResultView {
         }
         System.out.print("     |");
     }
-
     public static void printErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }
