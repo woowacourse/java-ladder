@@ -28,7 +28,6 @@ graph TD
     Items --> Item
     Players --> Player
 
-
     LadderGameController --> InputView
     LadderGameController --> OutputView
 
