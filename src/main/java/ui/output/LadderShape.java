@@ -4,13 +4,17 @@ import java.util.List;
 
 public enum LadderShape {
 
-    WALL("|"), CONNECT("-"), DISCONNECT(" ");
+    WALL("|"), CONNECT("-"), DISCONNECT(" "), LEFT("L"), RIGHT("R");
 
     LadderShape(String shape) {
         this.shape = shape;
     }
 
     private final String shape;
+
+    public String getShape() {
+        return shape;
+    }
 
     public static StringBuilder getLadderForm(List<Boolean> points, int maxNameLength) {
         StringBuilder sb = new StringBuilder();
