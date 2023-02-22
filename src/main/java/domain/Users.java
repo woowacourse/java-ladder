@@ -5,6 +5,8 @@ import exception.ErrorMessage;
 import java.util.ArrayList;
 import java.util.List;
 
+import static exception.ErrorMessage.USER_NAME_NOT_EXISTS_IN_USERS_EXCEPTION;
+
 public class Users {
 
     private final List<User> users;
@@ -23,7 +25,7 @@ public class Users {
         if (usersName.contains(userName)) {
             return;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(USER_NAME_NOT_EXISTS_IN_USERS_EXCEPTION.getMessage());
     }
 
     public List<String> getUsersName() {
