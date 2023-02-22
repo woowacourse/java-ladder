@@ -5,9 +5,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PeopleTest extends AbstractTestFixture {
 
@@ -50,5 +54,34 @@ class PeopleTest extends AbstractTestFixture {
 
         //when & then
         assertDoesNotThrow(() -> new People(defaultPeople));
+    }
+
+    @Test
+    @DisplayName("[참가자 있을 경우] findPersonByName() : name을 통해 참가자들을 조회할 수 있다.")
+    void test_findPersonByName_Present() throws Exception {
+        //given
+        People people = createDefaultPerson();
+
+        //when
+        Optional<Person> participant = people.findPersonByName("aa");
+
+        //then
+        assertAll(
+                () -> assertTrue(participant.isPresent()),
+                () -> assertEquals(participant.get().getName(), "aa")
+        );
+    }
+
+    @Test
+    @DisplayName("[참가자 없을 경우] findPersonByName() : name을 통해 참가자들을 조회할 수 있다.")
+    void test_findPersonByName_Empty() throws Exception {
+        //given
+        People people = createDefaultPerson();
+
+        //when
+        Optional<Person> participant = people.findPersonByName("cc");
+
+        //then
+        assertTrue(participant.isEmpty());
     }
 }

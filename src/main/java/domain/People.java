@@ -2,6 +2,7 @@ package domain;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class People {
@@ -39,5 +40,11 @@ public class People {
 
     public int getParticipantsSize() {
         return people.size();
+    }
+
+    public Optional<Person> findPersonByName(String name) {
+        return people.stream()
+                     .filter((person) -> person.isSamePerson(name))
+                     .findFirst();
     }
 }
