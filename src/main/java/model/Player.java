@@ -10,12 +10,12 @@ public class Player {
         this.position = position;
     }
 
-    public String getName() {
-        return name.getValue();
+    public Name getName() {
+        return name;
     }
 
-    public String getResult() {
-        return result.getValue();
+    public Result getResult() {
+        return result;
     }
 
     public void saveResult(final Result result) {

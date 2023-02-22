@@ -20,13 +20,13 @@ public class Players {
         return players.size();
     }
 
-    public List<String> getAllPlayerNames() {
+    public List<Name> getAllPlayerNames() {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toList());
     }
 
-    public List<String> getAllNamesOrderedByPosition() {
+    public List<Name> getAllNamesOrderedByPosition() {
         return IntStream.range(0, players.size())
                 .mapToObj(index -> findNameBy(new Position(index)))
                 .collect(Collectors.toList());
@@ -43,7 +43,7 @@ public class Players {
                 .forEach(index -> saveResult(playersOrderedByPosition.get(index), results.get(index)));
     }
 
-    public String getResultOf(Name name) {
+    public Result getResultOf(Name name) {
         return players.stream()
                 .filter(player -> player.isPlayerName(name))
                 .map(Player::getResult)
@@ -68,7 +68,7 @@ public class Players {
         }
     }
 
-    private String findNameBy(Position position) {
+    private Name findNameBy(Position position) {
         return players.stream()
                 .filter(player -> player.isPlayerPosition(position))
                 .map(Player::getName)
