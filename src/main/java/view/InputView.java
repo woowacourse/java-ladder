@@ -33,7 +33,7 @@ public class InputView {
 
     public Rewards readRewards(Names names) {
         String input = readInput(Message.INPUT_REWARDS.message);
-        return new Rewards(input, names);
+        return new Rewards(input, names.getPersonNumber());
     }
 
 

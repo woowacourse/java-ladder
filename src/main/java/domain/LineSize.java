@@ -5,8 +5,8 @@ public class LineSize {
 
     private final int lineSize;
 
-    public LineSize(Names names) {
-        lineSize = names.getPersonNumber() - PERSON_NUMBER_LINE_SIZE_DIFFERENCE;
+    public LineSize(int personNumber) {
+        lineSize = personNumber - PERSON_NUMBER_LINE_SIZE_DIFFERENCE;
     }
 
     public int getLineSize() {

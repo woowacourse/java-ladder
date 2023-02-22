@@ -7,14 +7,14 @@ import java.util.Map;
 public class Result {
     private final Map<Name, Reward> result = new HashMap<>();
 
-    public Result(Names names, List<Integer> results, Rewards rewards) {
+    public Result(List<Name> names, List<Integer> results, List<Reward> rewards) {
         mapResults(names, results, rewards);
     }
 
-    private void mapResults(Names names, List<Integer> results, Rewards rewards) {
-        for (int i = 0; i < names.getPersonNumber(); i++) {
-            Name name = names.getNames().get(i);
-            Reward reward = rewards.getRewards().get(results.get(i));
+    private void mapResults(List<Name> names, List<Integer> results, List<Reward> rewards) {
+        for (int i = 0; i < names.size(); i++) {
+            Name name = names.get(i);
+            Reward reward = rewards.get(results.get(i));
             result.put(name, reward);
         }
     }

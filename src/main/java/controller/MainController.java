@@ -29,11 +29,11 @@ public class MainController {
         Rewards rewards = inputView.readRewards(names);
         Height height = inputView.readHeight();
 
-        LineSize lineSize = new LineSize(names);
+        LineSize lineSize = new LineSize(names.getPersonNumber());
         Lines lines = new Lines(lineSize.getLineSize(), height.getHeight(), booleanGenerator);
         outputView.printLines(names, lines, rewards);
-        LinesGame linesGame = new LinesGame(lines);
-        Result result = new Result(names, linesGame.getResult(), rewards);
+        LinesGame linesGame = new LinesGame(lines.getLines());
+        Result result = new Result(names.getNames(), linesGame.getResult(), rewards.getRewards());
 
         showResult(result, names);
     }

@@ -19,7 +19,7 @@ public class LinesGameTest {
     @Test
     void validLinesGameTest() {
         Lines lines = new Lines(4, 1, booleanGenerator);
-        LinesGame linesGame = new LinesGame(lines);
+        LinesGame linesGame = new LinesGame(lines.getLines());
 
         Assertions.assertThat(linesGame.getResult(0)).isEqualTo(1);
         Assertions.assertThat(linesGame.getResult(1)).isEqualTo(0);
