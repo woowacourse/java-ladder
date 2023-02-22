@@ -9,6 +9,11 @@ public class InputView {
         return ConsoleReader.readLineByDelimiter(",");
     }
 
+    public static List<String> askLadderResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return ConsoleReader.readLineByDelimiter(",");
+    }
+
     public static int askLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return ConsoleReader.readNaturalNumber();
