@@ -31,7 +31,8 @@ public class MainController {
             Missions missions = getMissions();
             validateInputSize(names, missions);
 
-            LadderMaker ladderMaker = makeLadder(names);
+            int lineNumber = names.getPersonNumber() - 1;
+            LadderMaker ladderMaker = makeLadder(lineNumber);
             printLadder(names, missions, ladderMaker.getLines());
 
             Players players = new Players(names);
@@ -48,11 +49,8 @@ public class MainController {
         outputView.printResult(names, lines, missions);
     }
 
-    private LadderMaker makeLadder(Names names) {
-        Height height = getHeight();
-        int lineNumber = names.getPersonNumber() - 1;
-        LadderMaker ladderMaker = LadderMaker.of(lineNumber, height, booleanGenerator);
-        return ladderMaker;
+    private LadderMaker makeLadder(int lineNumber) {
+        return LadderMaker.of(lineNumber, getHeight(), booleanGenerator);
     }
 
     private void printResult(Players players) {
