@@ -51,18 +51,15 @@ public class MainController {
     }
 
     private Names getNames() {
-        Names names = inputView.readNames();
-        return names;
+        return inputView.readNames();
     }
 
     private Missions getMissions() {
-        Missions missions = inputView.readMissions();
-        return missions;
+        return inputView.readMissions();
     }
 
     private Height getHeight() {
-        Height height = inputView.readHeight();
-        return height;
+        return inputView.readHeight();
     }
 
 
