@@ -8,9 +8,9 @@ public class Line {
     private final BooleanGenerator generator;
     private final List<Boolean> line = new ArrayList<>();
 
-    public Line(LineSize lineSize, BooleanGenerator generator) {
+    public Line(int lineSize, BooleanGenerator generator) {
         this.generator = generator;
-        generateLine(lineSize.getLineSize());
+        generateLine(lineSize);
     }
 
     public List<Boolean> getLine() {

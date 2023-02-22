@@ -29,7 +29,7 @@ public class MainController {
         Height height = inputView.readHeight();
 
         LineSize lineSize = new LineSize(names);
-        Lines lines = new Lines(lineSize, height, booleanGenerator);
+        Lines lines = new Lines(lineSize.getLineSize(), height.getHeight(), booleanGenerator);
         outputView.printLines(names, lines, rewards);
         Result result = new Result(names, lines, rewards);
 

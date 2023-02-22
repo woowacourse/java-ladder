@@ -7,8 +7,8 @@ import utils.BooleanGenerator;
 public class Lines {
     private final List<Line> lines = new ArrayList<>();
 
-    public Lines(LineSize lineSize, Height height, BooleanGenerator booleanGenerator) {
-        for (int i = 0; i < height.getHeight(); i++) {
+    public Lines(int lineSize, int height, BooleanGenerator booleanGenerator) {
+        for (int i = 0; i < height; i++) {
             Line line = new Line(lineSize, booleanGenerator);
             lines.add(line);
         }
