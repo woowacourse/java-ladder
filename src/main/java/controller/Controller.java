@@ -75,7 +75,7 @@ public class Controller {
             outputView.printPlayerExecutionResultMessage();
             printPlayerResult(playerName, game);
         }
-        while(!playerName.getPlayer().equals(inputView.readEnd()));
+        while(!playerName.isEqualPlayer(playerName));
     }
 
     private Player setPlayer(Names names) {
@@ -89,8 +89,8 @@ public class Controller {
     }
 
     private void printPlayerResult(Player player,Game game){
-        if(player.comparePlayer(player)){
-            outputView.printPlayerGameResult(game.getPrizeIndividualPlayer(player));
+        if(player.isExistPlayer(player)){
+            outputView.printPlayerGameResult(game.getPrizeIndividualPlayer(player).getResult());
             return;
         }
         outputView.printPlayerGameEndResult(game.getPrizePlayers());

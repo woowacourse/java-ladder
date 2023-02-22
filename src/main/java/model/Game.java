@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Game {
 
-    private HashMap<Name, String> prizeResult = new HashMap<>();
+    private HashMap<Name, Result> prizeResult = new HashMap<>();
 
     public Game(Names names, LadderResult result, LadderHeight height, Ladder ladder) {
         playGame(names, result, height, ladder);
@@ -42,11 +42,11 @@ public class Game {
         return column < personCount - 1 && ladder.getLadder(row).getLine(column);
     }
 
-    public String getPrizeIndividualPlayer(Player name) {
+    public Result getPrizeIndividualPlayer(Player name) {
         return prizeResult.get(new Name(name.getPlayer()));
     }
 
-    public HashMap<Name,String> getPrizePlayers() {
+    public HashMap<Name,Result> getPrizePlayers() {
         return prizeResult;
     }
 }

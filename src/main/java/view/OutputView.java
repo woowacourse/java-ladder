@@ -5,6 +5,7 @@ import model.Ladder;
 import model.LadderHeight;
 import model.LadderResult;
 import model.Names;
+import model.Result;
 import util.LadderPrintMessage;
 
 import java.util.HashMap;
@@ -80,7 +81,7 @@ public class OutputView {
 
     public void printResult(LadderResult result) {
         result.getLadderResult().forEach(name -> System.out.printf("%-" + MAXIMUM_PLAYER_NAME_SPACE + "s ",
-                name));
+                name.getResult()));
         System.out.println();
     }
 
@@ -88,12 +89,12 @@ public class OutputView {
         System.out.println(player);
     }
 
-    public void printPlayerGameEndResult(HashMap<Name, String> prizeResult) {
+    public void printPlayerGameEndResult(HashMap<Name, Result> prizeResult) {
         stringBuilder = new StringBuilder();
         for (Name name : prizeResult.keySet()) {
             stringBuilder.append(name.getName())
                     .append(" : ")
-                    .append(prizeResult.get(name))
+                    .append(prizeResult.get(name).getResult())
                     .append(System.lineSeparator());
         }
         System.out.print(stringBuilder.toString());
