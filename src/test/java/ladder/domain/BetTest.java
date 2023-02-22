@@ -7,9 +7,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class BetTest {
 
-    @DisplayName("내기 항목은 5자 이내여야 한다.")
+    @DisplayName("내기 항목은 5자 이하여야 한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"aaaaa", "bbbbbbbb", "cdefese"})
+    @ValueSource(strings = {"aaaaaa", "bbbbbbbb", "cdefese"})
     void createBetFailTest(String bet) {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new Bet(bet));
