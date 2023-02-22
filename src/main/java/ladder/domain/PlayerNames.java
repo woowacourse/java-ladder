@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PlayerNames {
-    private static final int MINIMUM_PLAYER_NUMBER = 2;
-    private static final int MAXIMUM_PLAYER_NUMBER = 100;
+    private static final int MIN_PLAYER_NUMBER = 2;
+    private static final int MAX_PLAYER_NUMBER = 100;
+    private static final int MIN_NAME_LENGTH = 1;
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int FIRST_INDEX = 0;
     
     private final List<String> names;
     
@@ -36,11 +39,11 @@ public class PlayerNames {
     private boolean isOutOfNameLength(List<String> splitNames) {
         return splitNames.stream()
                 .map(String::length)
-                .anyMatch(nameLength -> nameLength > 5 || nameLength < 1);
+                .anyMatch(nameLength -> nameLength > MAX_NAME_LENGTH || nameLength < MIN_NAME_LENGTH);
     }
     
     private void validateRange(List<String> splitedNames) {
-        if (splitedNames.size() < MINIMUM_PLAYER_NUMBER || splitedNames.size() > MAXIMUM_PLAYER_NUMBER) {
+        if (splitedNames.size() < MIN_PLAYER_NUMBER || splitedNames.size() > MAX_PLAYER_NUMBER) {
             throw new IllegalArgumentException("이름의 수가 2이상 100이하여야 합니다.");
         }
     }
@@ -62,7 +65,7 @@ public class PlayerNames {
     }
     
     public int getFirstPlayerNameLength() {
-        return names.get(0).length();
+        return names.get(FIRST_INDEX).length();
     }
     
     public int getPlayerIndex(String player) {

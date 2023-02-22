@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameResult {
+    private static final int MIN_EXECUTION_RESULT_LENGTH = 1;
+    private static final int MAX_EXECUTION_RESULT_LENGTH = 5;
+    private static final String COMMA_DELIMITER = ",";
+    
     private final List<String> executionResults;
     
     public GameResult(String executionResults, PlayerNames playerNames) {
@@ -17,7 +21,7 @@ public class GameResult {
     }
     
     private static List<String> splitExecutionResults(String executionResults) {
-        return Arrays.stream(executionResults.split(","))
+        return Arrays.stream(executionResults.split(COMMA_DELIMITER))
                 .collect(Collectors.toUnmodifiableList());
     }
     
@@ -27,15 +31,19 @@ public class GameResult {
     }
     
     private void validateOutOfLength(List<String> executionResults) {
-        if (isOutOfLength(executionResults)) {
+        if (isExecutionResultsOutOfLength(executionResults)) {
             throw new IllegalArgumentException("각 상품의 글자 길이는 1~5입니다.");
         }
     }
     
-    private boolean isOutOfLength(List<String> executionResults) {
+    private boolean isExecutionResultsOutOfLength(List<String> executionResults) {
         return executionResults.stream()
                 .map(String::length)
-                .anyMatch(executionResultLength -> executionResultLength < 1 || executionResultLength > 5);
+                .anyMatch(this::isExecutionResultOutOfLength);
+    }
+    
+    private boolean isExecutionResultOutOfLength(Integer executionResultLength) {
+        return executionResultLength < MIN_EXECUTION_RESULT_LENGTH || executionResultLength > MAX_EXECUTION_RESULT_LENGTH;
     }
     
     private void validateCount(List<String> executionResults, List<String> playerNames) {

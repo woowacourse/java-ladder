@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
+    private static final int BOTH_ENDS_COUNT = 2;
+    
     private final List<Direction> line;
 
     public Line(BarGenerator barGenerator, int peopleSize) {
@@ -25,7 +27,7 @@ public class Line {
     }
     
     private void addMiddleDirections(BarGenerator barGenerator, int peopleSize, LinkedList<Direction> line) {
-        IntStream.range(0, peopleSize - 2)
+        IntStream.range(0, peopleSize - BOTH_ENDS_COUNT)
                 .mapToObj(middleDirectionCount -> getLastDirection(line).createNext(barGenerator))
                 .forEach(line::add);
     }
