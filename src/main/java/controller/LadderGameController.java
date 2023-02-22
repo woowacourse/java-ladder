@@ -24,7 +24,6 @@ public class LadderGameController {
         this.connectionGenerator = new RandomConnectionGenerator();
     }
 
-    // 컨트롤러에서 all을 처리하면 어떨까?
     public void run() {
         Names names = makeNames();
         Results results = makeResults(names.findNumberOfNames());
@@ -34,7 +33,7 @@ public class LadderGameController {
         GameResult gameResult = new GameResult(result);
 
         outputView.printLadder(names, ladder, results);
-        showResultByName(names, gameResult);
+        showResultByName(gameResult);
     }
 
     private Names makeNames() {
@@ -67,12 +66,32 @@ public class LadderGameController {
         }
     }
 
-    // TODO: 재입력 처리
-    private void showResultByName(final Names names, final GameResult gameResult) {
+    private void showResultByName(final GameResult gameResult) {
         for (int i = 0; i < 2; i++) {
+            showResult(gameResult);
+        }
+    }
+
+    private void showResult(final GameResult gameResult) {
+        try {
             String name = inputView.readNameToShowResult();
-            String resultByName = gameResult.findResult(name);
-            outputView.printGameResult(names, name, resultByName);
+            checkAll(gameResult, name);
+            checkName(gameResult, name);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            showResult(gameResult);
+        }
+    }
+
+    private void checkAll(final GameResult gameResult, final String name) {
+        if (name.equals("all")) {
+            outputView.printAllGameResult(gameResult.getGameResult());
+        }
+    }
+
+    private void checkName(final GameResult gameResult, final String name) {
+        if (!name.equals("all")) {
+            outputView.printSoloGameResult(gameResult.findResult(name));
         }
     }
 }

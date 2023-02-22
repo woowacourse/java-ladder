@@ -2,6 +2,7 @@ package view;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import domain.Ladder;
 import domain.Lines;
@@ -130,17 +131,16 @@ public class OutputView {
         return resultOutput;
     }
 
-    public void printGameResult(final Names names, final String name, final String gameResult) {
+    public void printSoloGameResult(final String gameResult) {
+        System.out.println(NEW_LINE + "실행 결과");
+        System.out.println(gameResult);
+    }
+
+    public void printAllGameResult(final Map<String, String> gameResult) {
         System.out.println(NEW_LINE + "실행 결과");
 
-        if (name.equals("all")) {
-            List<String> results = Arrays.asList(gameResult.split(","));
-            for (int i = 0; i < results.size(); i++) {
-                System.out.println(names.getNames().get(i).getName() + " : " + results.get(i));
-            }
-        }
-        if (!name.equals("all")) {
-            System.out.println(gameResult);
+        for (String name : gameResult.keySet()) {
+            System.out.println(name + " : " + gameResult.get(name));
         }
     }
 }

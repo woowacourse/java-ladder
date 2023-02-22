@@ -13,14 +13,11 @@ public class GameResult {
     public String findResult(final String name) {
         validateCorrectName(name);
 
-        if (name.equals("all")) {
-            return String.join(",", this.gameResult.values());
-        }
         return this.gameResult.get(name);
     }
 
     private void validateCorrectName(final String name) {
-        if (!gameResult.containsKey(name)) {
+        if (!(name.equals("all") || gameResult.containsKey(name))) {
             throw new IllegalArgumentException("해당 되는 이름을 가진 사람은 참여하지 않았습니다.");
         }
     }
