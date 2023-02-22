@@ -1,7 +1,7 @@
 package domain;
 
 import exception.DuplicateNameException;
-import exception.EmpytInputException;
+import exception.EmptyInputException;
 import exception.InvalidParticipantsCountException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,16 +11,16 @@ public class Participants {
     private static final int MIN_PARTICIPANT_COUNT = 2;
     private static final int MAX_PARTICIPANT_COUNT = 10;
     private static final String DELIMITER = ",";
-    private People people;
+    private final List<Person> people;
 
     public Participants(String participantNames) {
         validate(participantNames);
-        joinAllParticipants(participantNames);
+        people = joinAllParticipants(participantNames);
     }
 
     private void validate(String participantNames) {
         if (isBlank(participantNames)) {
-            throw new EmpytInputException();
+            throw new EmptyInputException();
         }
         List<String> splitNames = splitNames(participantNames);
         if (isInvalidCount(splitNames)) {
@@ -47,18 +47,17 @@ public class Participants {
         return names.size() > names.stream().distinct().count();
     }
 
-    private void joinAllParticipants(String participantNames) {
-        List<Person> people = splitNames(participantNames).stream().map(Person::new)
+    private List<Person> joinAllParticipants(String participantNames) {
+        return splitNames(participantNames).stream().map(Person::new)
             .collect(Collectors.toList());
-        this.people = new People(people);
     }
 
     public int getCount() {
-        return people.getSize();
+        return people.size();
     }
 
     public List<String> getNames() {
-        return people.getAllPerson().stream()
+        return people.stream()
             .map(Person::getName)
             .collect(Collectors.toList());
     }
