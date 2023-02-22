@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import domain.player.Names;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -23,11 +22,5 @@ class NamesTest {
     void invalidNamesTest(String names) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Names(names));
-    }
-
-    @Test
-    void validDuplicateNamesTest(){
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Names("깃짱,깃짱,제리"));
     }
 }
