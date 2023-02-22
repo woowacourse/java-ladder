@@ -19,6 +19,7 @@ public class Players {
     }
 
     public static Players create(List<String> playerNames) {
+        validateContainsAll(playerNames);
         List<Player> players =  playerNames.stream()
                 .map(playerName -> new Player(new Name(playerName)))
                 .collect(Collectors.toList());
@@ -49,6 +50,12 @@ public class Players {
                 .collect(Collectors.toList());
         validateDoesNotExistPlayers(targetPlayers);
         return new Players(targetPlayers);
+    }
+
+    private static void validateContainsAll(List<String> playerNames) {
+        if (playerNames.contains(ALL_TARGET_PLAYERS)) {
+            throw new IllegalArgumentException("플레이어 이름으로 all은 금지됩니다.");
+        }
     }
 
     private void validateDoesNotExistPlayers(List<Player> targetPlayers) {
