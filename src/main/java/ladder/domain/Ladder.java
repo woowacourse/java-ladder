@@ -9,8 +9,63 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public static Ladder from(LadderGenerator ladderGenerator){
+    public static Ladder from(LadderGenerator ladderGenerator) {
         return new Ladder(ladderGenerator.generateLadder());
+    }
+
+    public int getEndPosition(int startPosition) {
+        validatePosition(startPosition);
+        int curPosition = startPosition;
+        for (int height = 0; height < ladder.size(); height++) {
+            curPosition = getNextPosition(curPosition, height);
+        }
+        return curPosition;
+    }
+
+    private int getNextPosition(int curPosition, int height) {
+        int nextPosition = curPosition;
+        Row row = ladder.get(height);
+        if (isMovableToLeft(curPosition, row)) {
+            nextPosition = curPosition - 1;
+        }
+        if (isMovableToRight(curPosition, row)) {
+            nextPosition = curPosition + 1;
+        }
+        return nextPosition;
+    }
+
+    private boolean isMovableToLeft(int curPosition, Row row) {
+        int leftWidth = getLeftWidth(curPosition);
+        if (row.isStepExist(leftWidth)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isMovableToRight(int curPosition, Row row) {
+        int rightWidth = getRightWidth(curPosition);
+        if (row.isStepExist(rightWidth)) {
+            return true;
+        }
+        return false;
+    }
+
+    private int getLeftWidth(int position) {
+        return position - 1;
+    }
+
+    private int getRightWidth(int position) {
+        return position;
+    }
+
+    private void validatePosition(int position) {
+        if (position < 0 || position > getLadderWidth()) {
+            throw new IllegalArgumentException(String.format("사다리 시작점은 0이상 %d이하이어야합니다.", getLadderWidth()));
+        }
+    }
+
+    private int getLadderWidth() {
+        return ladder.get(0).size();
     }
 
     public List<Row> getLadder() {

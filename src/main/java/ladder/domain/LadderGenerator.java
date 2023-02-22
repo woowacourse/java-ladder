@@ -9,15 +9,15 @@ public class LadderGenerator {
     private final Width width;
     private final Height height;
 
-    public LadderGenerator(Width width, Height height){
+    public LadderGenerator(Width width, Height height) {
         this.width = width;
         this.height = height;
     }
-    
+
     public List<Row> generateLadder() {
         List<Row> rows = generateNoStepRows();
         addStepBetweenAllColumn(rows);
-        for(Row row : rows){
+        for (Row row : rows) {
             addRandomSteps(row);
         }
         return rows;
@@ -49,16 +49,16 @@ public class LadderGenerator {
         }
     }
 
-    private void addStep(Row row, int index){
+    private void addStep(Row row, int index) {
         List<Step> steps = row.getRow();
         steps.set(index, Step.Y);
     }
 
-    private void addRandomSteps(Row row){
+    private void addRandomSteps(Row row) {
         List<Step> steps = row.getRow();
         int widthSize = width.getWidth();
-        for(int i = 0; i< widthSize; i++){
-            if(row.isPossibleInstallStep(i)){
+        for (int i = 0; i < widthSize; i++) {
+            if (row.isPossibleInstallStep(i)) {
                 steps.set(i, Step.from(random.nextBoolean()));
             }
         }

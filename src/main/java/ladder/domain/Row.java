@@ -40,7 +40,7 @@ public class Row {
         return true;
     }
 
-    private boolean isStepExist(int index) {
+    public boolean isStepExist(int index) {
         if (index < MIN_INDEX || index >= row.size()) {
             return false;
         }
@@ -48,6 +48,10 @@ public class Row {
             return false;
         }
         return true;
+    }
+
+    public int size() {
+        return row.size();
     }
 
     public List<Step> getRow() {
