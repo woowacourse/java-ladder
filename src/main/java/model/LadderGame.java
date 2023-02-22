@@ -33,8 +33,7 @@ public class LadderGame {
 
         while (!queue.isEmpty()) {
             Line positionLine = queue.poll();
-            List<Path> paths = positionLine.getLine();
-            Direction direction = Direction.findDirection(position, paths);
+            Direction direction = positionLine.findDirection(position);
             position = direction.move(position);
         }
         return position;

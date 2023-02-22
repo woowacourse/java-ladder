@@ -40,6 +40,24 @@ public class Line {
         return this.paths.size() == otherLine.paths.size();
     }
 
+    public Direction findDirection(int position) {
+        if (isLeftPassable(position)) {
+            return Direction.LEFT;
+        }
+        if (isRightPassable(position)) {
+            return Direction.RIGHT;
+        }
+        return Direction.NONE;
+    }
+
+    private boolean isLeftPassable(int position) {
+        return position - 1 >= 0 && paths.get(position - 1).isPassable();
+    }
+
+    private boolean isRightPassable(int position) {
+        return position < (paths.size()) && paths.get(position).isPassable();
+    }
+
     public List<Path> getLine() {
         return List.copyOf(paths);
     }
