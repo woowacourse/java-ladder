@@ -1,6 +1,7 @@
 package ladder.controller;
 
 import java.util.List;
+import java.util.Map;
 import ladder.domain.BooleanGenerator;
 import ladder.domain.Height;
 import ladder.domain.LadderGame;
@@ -11,6 +12,7 @@ import ladder.view.OutputView;
 
 public class LadderGameController {
 
+    private static final String QUIT_COMMAND = "all";
     private final BooleanGenerator booleanGenerator;
     private final InputView inputView;
     private final OutputView outputView;
@@ -33,18 +35,24 @@ public class LadderGameController {
         final LadderGame ladderGame = new LadderGame(booleanGenerator, players, height);
         outputView.printResult(ladderGame, results);
 
-        searchResult(ladderGame, results, height);
+        search(ladderGame, results, height);
     }
 
-    private void searchResult(final LadderGame ladderGame, final List<String> results, final Height height) {
+    private void search(final LadderGame ladderGame, final List<String> results, final Height height) {
         List<String> initializedNames = ladderGame.getPlayerNames();
         Players players = ladderGame.makeResult(height);
         Result result = new Result(players, results);
 
-        String searchPlayerName = getSearchResult(result);
-        String searchResultPlayerName = result.resultByName(searchPlayerName);
+        searchResult(result, initializedNames);
+    }
 
-        outputView.printSearchResult(searchResultPlayerName);
+    private void searchResult(final Result result, final List<String> initializedNames) {
+        String searchPlayerName = "";
+        while (!searchPlayerName.equals(QUIT_COMMAND)) {
+            searchPlayerName = getSearchResult(result);
+            Map<String, String> searchResult = result.resultByName(searchPlayerName);
+            outputView.printSearchResult(searchResult, initializedNames);
+        }
     }
 
     private String getSearchResult(final Result result) {

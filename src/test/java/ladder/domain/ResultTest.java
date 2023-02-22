@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -30,4 +31,20 @@ public class ResultTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 검색할_이름_입력_시_해당_결과를_반환한다() {
+        Players players = new Players(List.of("name1", "name2"));
+        Result result = new Result(players, List.of("꽝", "우승"));
+
+        assertThat(result.resultByName("name1")).containsValue("꽝");
+        assertThat(result.resultByName("name2")).containsValue("우승");
+    }
+
+    @Test
+    void all_입력_시_전체_결과를_반환한다() {
+        Players players = new Players(List.of("name1", "name2", "name3"));
+        Result result = new Result(players, List.of("꽝", "우승", "꽝"));
+
+        assertThat(result.resultByName("all")).containsValues("꽝", "꽝", "우승");
+    }
 }

@@ -3,6 +3,7 @@ package ladder.view;
 import static java.util.stream.Collectors.joining;
 
 import java.util.List;
+import java.util.Map;
 import ladder.domain.LadderGame;
 import ladder.domain.Line;
 import ladder.domain.LineStatus;
@@ -20,6 +21,7 @@ public class OutputView {
     private static final String LINE_STATUS_MESSAGE_FORMAT = "%s|";
     private static final String NEXT_LINE = System.lineSeparator();
     private static final String ERROR_MESSAGE = "[ERROR] ";
+    private static final int ONE_NAME_SEARCH_CONDITION = 1;
 
     public void printResult(final LadderGame ladderGame, final List<String> results) {
         System.out.println(GAME_RESULT_MESSAGE);
@@ -98,8 +100,20 @@ public class OutputView {
         System.out.println(ERROR_MESSAGE + message);
     }
 
-    public void printSearchResult(final String searchResultPlayerName) {
+    public void printSearchResult(final Map<String, String> searchResultPlayerName,
+                                  final List<String> initializedNames) {
         System.out.println(GAME_RESULT_MESSAGE);
-        System.out.println(searchResultPlayerName + NEXT_LINE);
+        if (searchResultPlayerName.size() == ONE_NAME_SEARCH_CONDITION) {
+            searchResultPlayerName.forEach((key, value) -> System.out.println(value + NEXT_LINE));
+            return;
+        }
+
+        printAllResult(searchResultPlayerName, initializedNames);
+    }
+
+    private void printAllResult(final Map<String, String> searchResultPlayerName, final List<String> initializedNames) {
+        for (String initializedName : initializedNames) {
+            System.out.println(initializedName + " : " + searchResultPlayerName.get(initializedName));
+        }
     }
 }

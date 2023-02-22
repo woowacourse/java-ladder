@@ -11,7 +11,11 @@ import java.util.Map;
  */
 public class Result {
 
-    private Map<String, String> result;
+    private static final String ALL_SEARCH_CONDITION = "all";
+    private static final String NON_EXIST_PLAYER_MESSAGE = "참여자가 존재하지 않습니다.";
+    private static final String NOT_SAME_SIZE_MESSAGE = "실행결과 수는 참여자 수와 같아야합니다.";
+
+    private final Map<String, String> result;
 
     public Result(final Players players, final List<String> results) {
         List<String> names = players.getNames();
@@ -29,7 +33,7 @@ public class Result {
 
     private void validateSize(final List<String> playerNames, final List<String> results) {
         if (playerNames.size() != results.size()) {
-            throw new IllegalArgumentException("실행결과 수는 참여자 수와 같아야합니다.");
+            throw new IllegalArgumentException(NOT_SAME_SIZE_MESSAGE);
         }
     }
 
@@ -38,12 +42,20 @@ public class Result {
     }
 
     private void validateName(final String input) {
+        if (input.equals(ALL_SEARCH_CONDITION)) {
+            return;
+        }
         if (!result.containsKey(input)) {
-            throw new IllegalArgumentException("참여자가 존재하지 않습니다.");
+            throw new IllegalArgumentException(NON_EXIST_PLAYER_MESSAGE);
         }
     }
 
-    public String resultByName(final String playerName) {
-        return result.get(playerName);
+    public Map<String, String> resultByName(final String playerName) {
+        if (playerName.equals(ALL_SEARCH_CONDITION)) {
+            return result;
+        }
+        HashMap<String, String> searchNameResult = new HashMap<>();
+        searchNameResult.put(playerName, result.get(playerName));
+        return searchNameResult;
     }
 }
