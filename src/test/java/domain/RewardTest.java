@@ -1,11 +1,11 @@
 package domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("상품이")
 public class RewardTest {
@@ -26,6 +26,16 @@ public class RewardTest {
         assertThatThrownBy(() -> new Reward(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름은 영어나 숫자로만 가능합니다.");
+    }
+
+
+    @DisplayName("정상적인 입력이 들어온 경우 생성됩니다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"value", "hello", "pobi"})
+    void createRewardSuccess(String input) {
+        Reward reward = new Reward(input);
+
+        assertThat(reward.getReward()).isEqualTo(input);
     }
 
 }

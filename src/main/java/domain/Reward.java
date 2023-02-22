@@ -44,4 +44,8 @@ public class Reward {
         return PLAYER_NAME_PATTERN.matcher(reward).matches();
     }
 
+    public String getReward() {
+        return this.reward;
+    }
+
 }
