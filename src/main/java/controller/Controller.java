@@ -47,19 +47,19 @@ public class Controller {
         outputView.printResult(inputResult);
     }
 
-    private void checkResult(final Users users, final Result userResult) {
+    private void checkResult(final Users users, final Result result) {
         String inputResultWord = inputView.inputWantToKnowUser();
-        if (wantToKnowAllResult(inputResultWord)) {
+        if (wantToKnowAllResult(inputResultWord,result)) {
             return;
         }
-        if (wantToKnowUserResult(users, userResult, inputResultWord)) return;
+        if (wantToKnowUserResult(users, result, inputResultWord)) return;
         resultView.printNonExistUser();
-        checkResult(users, userResult);
+        checkResult(users, result);
     }
 
-    private boolean wantToKnowAllResult(final String want) {
-        if (want.equals(ALL_USER_RESULT)) {
-            resultView.printAllResult();
+    private boolean wantToKnowAllResult(final String inputResultWord, final Result result) {
+        if (inputResultWord.equals(ALL_USER_RESULT)) {
+            resultView.printAllResult(result.getResult());
             return true;
         }
         return false;
