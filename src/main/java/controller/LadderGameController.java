@@ -21,16 +21,35 @@ public class LadderGameController {
     private void ready() {
         List<String> playerNames = InputView.readPlayerNames();
         Players players = PlayersFactory.of(playerNames);
+        List<String> gameResultNames = InputView.readGameResultNames();
+        GameResults gameResults = createGameResults(playerNames.size(), gameResultNames);
         int ladderHeight = InputView.readLadderHeight();
         Ladder ladder = LadderFactory.of(playerNames.size(), ladderHeight, new RandomBasedStrategy());
-        ladderGame = new LadderGame(players, ladder);
+        ladderGame = new LadderGame(players, ladder, gameResults);
     }
 
     private void printGeneratedLadder() {
+        List<List<Boolean>> pointValues = getLadder();
+        List<String> gameGameResultNames = getGameResults();
+        OutputView.printGeneratedLadder(ladderGame.getPlayerNames(), pointValues, gameGameResultNames);
+    }
+
+    private List<List<Boolean>> getLadder() {
         Ladder ladder = ladderGame.getLadder();
         List<Line> lines = ladder.getLines();
-        List<List<Boolean>> pointValues = getPointValues(lines);
-        OutputView.printGeneratedLadder(ladderGame.getPlayerNames(), pointValues);
+        return getPointValues(lines);
+    }
+
+    private List<String> getGameResults() {
+        List<GameResult> gameResults = ladderGame.getGameResults().getGameResults();
+        return gameResults.stream().map(GameResult::getResult).collect(Collectors.toList());
+    }
+
+    private GameResults createGameResults(int playersSize, List<String> gameResultNames) {
+        return new GameResults(
+                playersSize,
+                gameResultNames.stream().map(GameResult::new).collect(Collectors.toList())
+        );
     }
 
     private List<List<Boolean>> getPointValues(List<Line> lines) {

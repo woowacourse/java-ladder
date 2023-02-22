@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,7 +21,7 @@ public class LadderGameTest {
         Players players = PlayersFactory.of(playerNames);
         int ladderHeight = 10;
         Ladder ladder = LadderFactory.of(playerNames.size(), ladderHeight, new RandomBasedStrategy());
-        ladderGame = new LadderGame(players, ladder);
+        ladderGame = new LadderGame(players, ladder, new GameResults(playerNames.size(), Collections.emptyList()));
     }
 
     @DisplayName("Ladder를 생성한다.")

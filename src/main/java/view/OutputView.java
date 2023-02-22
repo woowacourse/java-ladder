@@ -8,12 +8,27 @@ public class OutputView {
     public static final String RESULT_TITLE = "실행결과";
     public static final String POINT_SEPARATOR = "|";
 
-    public static void printGeneratedLadder(final List<String> playerNames, final List<List<Boolean>> ladder) {
+    public static void printGeneratedLadder(
+            final List<String> playerNames,
+            final List<List<Boolean>> ladder,
+            List<String> gameGameResultNames
+    ) {
         printLine(RESULT_TITLE);
         printEmptyLine();
         int nameFormatSize = getPlayerNameSize(playerNames);
         printPlayerNames(playerNames, nameFormatSize);
         printLadder(ladder, nameFormatSize);
+        printGameResultNames(gameGameResultNames, nameFormatSize);
+    }
+
+    private static void printGameResultNames(List<String> gameResultNames, int nameFormatSize) {
+        StringBuilder stringBuilder = new StringBuilder();
+        String nameFormat = String.format("%%%ds", nameFormatSize);
+        gameResultNames.forEach((gameResultName) -> {
+            stringBuilder.append(String.format(nameFormat, gameResultName));
+            stringBuilder.append(" ");
+        });
+        printLine(stringBuilder.toString());
     }
 
     private static int getPlayerNameSize(final List<String> playerNames) {
