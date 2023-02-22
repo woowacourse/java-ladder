@@ -1,5 +1,7 @@
 package domain.end;
 
+import java.util.Objects;
+
 public class End {
 	private static final int MIN_END_LENGTH = 1;
 	private static final int MAX_NAME_LENGTH = 5;
@@ -19,5 +21,22 @@ public class End {
 
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof End)) {
+			return false;
+		}
+		End end = (End)o;
+		return Objects.equals(this.name, end.getName());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(name);
 	}
 }

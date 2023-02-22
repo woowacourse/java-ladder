@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -22,5 +23,13 @@ class EndTest {
 	void endLengthFailTest(int endLength) {
 		String end = "9".repeat(endLength);
 		assertThatThrownBy(() -> new End(end)).isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
+	@DisplayName("end 객체의 name 필드가 같다면 같은 객체로 인식해야 한다.")
+	void equalsTest() {
+		End end1 = new End("end");
+		End end2 = new End("end");
+		assertThat(end1).isEqualTo(end2);
 	}
 }
