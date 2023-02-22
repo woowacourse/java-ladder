@@ -1,7 +1,9 @@
 package domain;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ResultTable {
     private final Map<User, Reward> resultTable = new LinkedHashMap<>();
@@ -16,5 +18,16 @@ public class ResultTable {
 
     public void save(User user, Reward resultReward) {
         resultTable.put(user, resultReward);
+    }
+
+    public List<User> getUsersWithoutReward() {
+        return resultTable.keySet()
+                .stream()
+                .filter(this::isUnsaved)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private boolean isUnsaved(User key) {
+        return resultTable.get(key) == null;
     }
 }

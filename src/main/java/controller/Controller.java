@@ -56,7 +56,7 @@ public class Controller {
         }
 
         if(isAll(resultOption)) {
-//            TODO: Map에서 null인거 찾아서 결과 돌리고 저장하기;
+
         }
 
         User user = users.findUserByName(resultOption);
