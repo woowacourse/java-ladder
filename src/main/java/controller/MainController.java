@@ -45,7 +45,7 @@ public class MainController {
 
     private void queryResult(LadderGame ladderGame) {
         while (true) {
-            String player = inputView.readPlayer();
+            String player = getPlayerToQuery();
             if (player.isBlank()) {
                 return;
             }
@@ -55,6 +55,10 @@ public class MainController {
             }
             outputView.printSingleResult(ladderGame.findResultByName(player));
         }
+    }
+
+    private String getPlayerToQuery() {
+        return inputView.readPlayer();
     }
 
     private void printLadder(Names names, Missions missions, Lines lines) {
