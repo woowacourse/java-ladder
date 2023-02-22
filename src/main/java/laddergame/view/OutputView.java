@@ -3,6 +3,8 @@ package laddergame.view;
 import static laddergame.domain.Name.BLANK;
 import static laddergame.domain.Name.MAX_NAME_LENGTH;
 
+import laddergame.domain.GameResult;
+import laddergame.domain.GameResults;
 import laddergame.domain.Ladder;
 import laddergame.domain.Line;
 import laddergame.domain.Point;
@@ -17,32 +19,42 @@ public class OutputView {
     private static final String FINAL_RESULT = "실행결과";
     private static final char NEXT_LINE = '\n';
 
-    private static final int SECOND_USER_INDEX = 1;
+    private static final int SECOND_INDEX = 1;
 
     public void printEnterUserNotice() {
         System.out.println(USER_ENTER_NOTICE_MESSAGE);
+    }
+
+    public void printEnterGameResultsNotice() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
     }
 
     public void printEnterHeightNotice() {
         System.out.println(LADDER_HEIGHT_ENTER_NOTICE_MESSAGE);
     }
 
-    public void printGameResult(Ladder ladder, Users users) {
+    public void printGameResult(Ladder ladder, Users users, GameResults gameResults) {
         System.out.println(FINAL_RESULT + NEXT_LINE);
 
-        printUsers(users);
+        String firstUserName = users.getFirstUserName();
+        String firstResult = gameResults.getFirstResult();
+        int firstLength = Math.max(firstUserName.length(), firstResult.length());
 
+        printUsers(users, firstLength);
         printLadder(ladder, users.getFirstUserName().length());
+        printResults(gameResults, firstLength);
     }
 
     public void printErrorMessage(Exception e) {
         System.out.println(e.getMessage() + NEXT_LINE);
     }
 
-    private void printUsers(Users users) {
+    private void printUsers(Users users, int firstLength) {
         StringBuilder result = new StringBuilder();
-        result.append(BLANK).append(users.getFirstUserName());
-        for (int index = SECOND_USER_INDEX; index < users.getUsers().size(); index++) {
+
+        String firstUserName = users.getFirstUserName();
+        result.append(BLANK.repeat(firstLength - firstUserName.length())).append(firstUserName);
+        for (int index = SECOND_INDEX; index < users.getUsers().size(); index++) {
             User user = users.getUsers().get(index);
             String name = user.getName();
             result.append(BLANK.repeat(MAX_NAME_LENGTH + 1 - name.length())).append(name);
@@ -57,7 +69,20 @@ public class OutputView {
             appendLine(result, line);
             result.append(NEXT_LINE);
         }
-        System.out.println(result);
+        System.out.print(result);
+    }
+
+    private void printResults(GameResults gameResults, int firstLength) {
+        StringBuilder builder = new StringBuilder();
+        String firstResult = gameResults.getFirstResult();
+        builder.append(BLANK.repeat(firstLength - firstResult.length())).append(firstResult);
+        for (int index = SECOND_INDEX; index < gameResults.getResults()
+                .size(); index++) {
+            GameResult gameResult = gameResults.getResults().get(index);
+            String result = gameResult.getResult();
+            builder.append(BLANK.repeat(MAX_NAME_LENGTH + 1 - result.length())).append(result);
+        }
+        System.out.println(builder);
     }
 
     private void appendLine(StringBuilder result, Line line) {
