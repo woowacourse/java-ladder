@@ -11,6 +11,7 @@ class RewardsTest {
     private final int numberOfPlayers = 5;
     private List<String> inputRewards;
 
+
     @Test
     @DisplayName("입력받은 보상의 수가 입력한 플레이어의 수와 일치하지 않으면 예외가 발생한다.")
     void validateNumberOfRewardTest() {
@@ -22,13 +23,12 @@ class RewardsTest {
     }
 
 
-
     @Test
-    @DisplayName("입력 받은 보상 중에 null값이 있거나 비어있는 경우 예외가 발생한다.-")
+    @DisplayName("입력 받은 보상 중에 비어있는 경우 예외가 발생한다.-")
     void validateBlankRewardTest() {
-        inputRewards = List.of("꽝,,   ,5만원,3만원");
+        List<String> incorrectRewards = List.of("꽝", "", "5만원", "3만원", "rkd");
 
-        Assertions.assertThatThrownBy(() -> new Rewards(numberOfPlayers, inputRewards))
+        Assertions.assertThatThrownBy(() -> new Rewards(numberOfPlayers, incorrectRewards))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("보상을 입력하지 않았습니다.");
     }
