@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.utils.RandomLineMaker;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ class LadderTest {
     void test() {
         Height height = new Height(5);
         int userCount = 4;
-        Ladder ladder = new Ladder(height, userCount);
+        Ladder ladder = new Ladder(height, userCount, new RandomLineMaker());
 
         Assertions.assertThat(ladder.getLines().size()).isEqualTo(height.getHeight());
     }
