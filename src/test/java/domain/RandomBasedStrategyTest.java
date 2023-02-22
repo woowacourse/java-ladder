@@ -11,7 +11,7 @@ class RandomBasedStrategyTest {
     @RepeatedTest(5)
     void generatePoint() {
         RandomBasedStrategy randomBasedStrategy = new RandomBasedStrategy();
-        assertThat(randomBasedStrategy.generate(Point.EXIST))
+        assertThat(randomBasedStrategy.generate())
                 .isEqualTo(Point.NOT_EXIST);
     }
 
