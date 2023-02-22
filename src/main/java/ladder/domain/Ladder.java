@@ -11,6 +11,14 @@ public class Ladder {
         this.lines = new ArrayList<>(lines);
     }
 
+    public int moveToEnd(int startIndex) {
+        int resultIndex = 0;
+        for (Line line : lines) {
+            resultIndex = line.indicateNextIndex(startIndex);
+        }
+        return resultIndex;
+    }
+
     public List<Line> getLines() {
         return List.copyOf(lines);
     }
