@@ -4,6 +4,7 @@ import java.util.List;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderHeight;
+import ladder.domain.MatchingCalculator;
 import ladder.domain.Names;
 import ladder.domain.Results;
 import ladder.util.BooleanGenerator;
@@ -25,9 +26,17 @@ public class LadderController {
         Names names = createNames();
         Results results = createResults(names.size());
         LadderHeight ladderHeight = createLadderHeight();
-        Ladder ladder = createLadder(names, ladderHeight);
 
+        Ladder ladder = createLadder(names, results, ladderHeight);
+
+        MatchingCalculator matchingCalculator = new MatchingCalculator(ladder, names, results);
+        matchingCalculator.calculate();
+    }
+
+    private Ladder createLadder(Names names, Results results, LadderHeight ladderHeight) {
+        Ladder ladder = createLadder(names, ladderHeight);
         outputView.printLadder(names, results, ladder);
+        return ladder;
     }
 
     private Results createResults(int numberOfResults) {
