@@ -1,4 +1,4 @@
-package ladder.domain.strategy.linestrategy;
+package ladder.domain;
 
 public class Result {
     private final String result;
