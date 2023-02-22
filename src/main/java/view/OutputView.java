@@ -11,10 +11,14 @@ import java.util.List;
 
 public class OutputView {
 
-    private final String USER_ENTER_NOTICE_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private final String USER_ENTER_NOTICE_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요 )";
+    private final String REWARD_ENTER_NOTICE_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private final String LADDER_HEIGHT_ENTER_NOTICE_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
-    private final String FINAL_RESULT = "실행결과";
+    private final String CHOICE_USER_NOTICE_MESSAGE = "결과를 보고 싶은 사람은?";
+    private final String LADDER_RESULT = "사다리 결과";
+    private final String FINAL_RESULT = "실행 결과";
     private final String BLANK = " ";
+    private final String RESULT_DELIMITER = " : ";
     private final char NEXT_LINE = '\n';
     private final int SECOND_USER_INDEX = 1;
     private final char LADDER_COLUMN = '|';
@@ -23,12 +27,24 @@ public class OutputView {
         System.out.println(USER_ENTER_NOTICE_MESSAGE);
     }
 
+    public void printEnterChoiceUserNotice() {
+        System.out.println(CHOICE_USER_NOTICE_MESSAGE);
+    }
+
+    public void printEnterRewardNotice() {
+        System.out.println(REWARD_ENTER_NOTICE_MESSAGE);
+    }
+
     public void printEnterHeightNotice() {
         System.out.println(LADDER_HEIGHT_ENTER_NOTICE_MESSAGE);
     }
 
+    public void printFinalResultNotice() {
+        System.out.println(FINAL_RESULT);
+    }
+
     public void printGameResult(Ladder ladder, Users users) {
-        System.out.println(FINAL_RESULT + NEXT_LINE);
+        System.out.println(LADDER_RESULT + NEXT_LINE);
 
         String firstUsersName = users.getFirstUserName();
 
