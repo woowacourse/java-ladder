@@ -47,4 +47,21 @@ public class PlayersTest {
         //then
         assertThat(players.getAllNamesOrderedByPosition()).isEqualTo(List.of("neo", "ocean", "hiiro", "pobi"));
     }
+
+    @Test
+    @DisplayName("사다리 타기가 완료된 참여자의 위치에 맞는 결과 저장 기능 테스트")
+    void saveResultByPositionTest() {
+        //given
+        Players players = new Players(NameFactory.create("pobi, neo, hiiro, ocean"));
+        List<Result> results = ResultFactory.create(players.size(), "꽝, 5000, 꽝, 3000");
+
+        //when
+        players.saveAllResults(results);
+
+        //then
+        assertThat(players.getResultOf(new Name("pobi"))).isEqualTo("꽝");
+        assertThat(players.getResultOf(new Name("neo"))).isEqualTo("5000");
+        assertThat(players.getResultOf(new Name("hiiro"))).isEqualTo("꽝");
+        assertThat(players.getResultOf(new Name("ocean"))).isEqualTo("3000");
+    }
 }
