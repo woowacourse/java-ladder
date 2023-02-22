@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderResults {
 
@@ -31,6 +33,15 @@ public class LadderResults {
         LadderResult ladderResult = results.get(index);
 
         return ladderResult.getResult();
+    }
+
+    public LadderResults calculateGameResult(List<Integer> gameResultIndex) {
+        List<LadderResult> gameResults = IntStream.range(0, gameResultIndex.size())
+                .map(gameResultIndex::get)
+                .mapToObj(results::get)
+                .collect(Collectors.toUnmodifiableList());
+
+        return new LadderResults(gameResults);
     }
 
     public int getResultSize() {
