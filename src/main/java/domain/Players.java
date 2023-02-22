@@ -38,8 +38,10 @@ public class Players {
                 .orElseThrow(() -> new IllegalArgumentException(CAN_NOT_FIND_NAME_MESSAGE));
     }
 
-    public String findNameByIndex(final int index) {
-        return players.get(index).getName();
+    public String getPlayerName(final int index) {
+        Player player = players.get(index);
+
+        return player.getName();
     }
 
     public List<Player> getPlayers() {

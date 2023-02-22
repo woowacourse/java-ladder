@@ -6,13 +6,14 @@ import java.util.stream.Collectors;
 public class Rewards {
 
     private static final String INVALID_REWARDS_SIZE = "실행 결과의 수는 참여자 수와 동일해야 합니다.";
-    private final List<Name> names;
+
+    private final List<Reward> rewards;
 
     public Rewards(final List<String> names, final int playersSize) {
         validate(names, playersSize);
 
-        this.names = names.stream()
-                .map(Name::new)
+        rewards = names.stream()
+                .map(Reward::new)
                 .collect(Collectors.toList());
     }
 
@@ -26,7 +27,9 @@ public class Rewards {
         }
     }
 
-    public Name getReward(final int index) {
-        return names.get(index);
+    public String getRewardName(final int index) {
+        Reward reward = rewards.get(index);
+
+        return reward.getName();
     }
 }

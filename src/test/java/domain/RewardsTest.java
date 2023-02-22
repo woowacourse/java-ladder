@@ -44,6 +44,6 @@ public class RewardsTest {
     @CsvSource({"0,꽝", "1,5000", "2,꽝", "3,3000"})
     void shouldReturnRewardMatchedToIndex(int index, String expected) {
         Rewards rewards = new Rewards(names, playerSize);
-        Assertions.assertThat(rewards.getReward(index).getName()).isEqualTo(expected);
+        Assertions.assertThat(rewards.getRewardName(index)).isEqualTo(expected);
     }
 }

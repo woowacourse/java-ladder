@@ -18,7 +18,7 @@ public class LadderGame {
     public Result getResult(final Name name) {
         int index = players.findIndexByName(name);
         int result = ladder.move(index);
-        return new Result(name.getName(), rewards.getReward(result).getName());
+        return new Result(name.getName(), rewards.getRewardName(result));
     }
 
     public List<Result> getResults() {
@@ -26,7 +26,7 @@ public class LadderGame {
 
         for (int i = 0; i < players.getNumberOfPlayer(); i++) {
             int result = ladder.move(i);
-            results.add(new Result(players.findNameByIndex(i), rewards.getReward(result).getName()));
+            results.add(new Result(players.getPlayerName(i), rewards.getRewardName(result)));
         }
 
         return results;
