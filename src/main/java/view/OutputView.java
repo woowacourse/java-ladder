@@ -1,10 +1,13 @@
 package view;
 
-import model.*;
+import model.Name;
+import model.Ladder;
+import model.LadderHeight;
+import model.LadderResult;
+import model.Names;
 import util.LadderPrintMessage;
 
 import java.util.HashMap;
-
 
 public class OutputView {
     private static final String PLAYER_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -64,11 +67,15 @@ public class OutputView {
 
     private void printConnectLadder(int playerSize, Ladder ladder, int row) {
         for (int column = 0; column < playerSize - 1; column++) {
-            if (ladder.getLadder(row).getLine(column)) {
-                stringBuilder.append(LadderPrintMessage.CONNECT_LADDER.getMessage());
-            } else
-                stringBuilder.append(LadderPrintMessage.NO_CONNECT_LADDER.getMessage());
+            printLineBetweenLadder(ladder,row,column);
         }
+    }
+
+    private void printLineBetweenLadder(Ladder ladder, int row, int column){
+        if (ladder.getLadder(row).getLine(column)) {
+            stringBuilder.append(LadderPrintMessage.CONNECT_LADDER.getMessage());
+        } else
+            stringBuilder.append(LadderPrintMessage.NO_CONNECT_LADDER.getMessage());
     }
 
     public void printResult(LadderResult result) {
@@ -91,5 +98,4 @@ public class OutputView {
         }
         System.out.print(stringBuilder.toString());
     }
-
 }
