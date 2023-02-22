@@ -25,10 +25,11 @@ class NameTest {
                 () -> new Name(name));
     }
 
-    @DisplayName("처음이나 끝에 공백이 있으면 공백을 제거한다")
+    @DisplayName("처음이나 끝에 공백이 있으면 공백을 제거한다.")
     @ParameterizedTest
     @ValueSource(strings = {" joy", " joy ", "joy "})
     public void trimNameTest(String name) {
         Assertions.assertEquals(new Name(name).getName(), name.trim());
     }
+
 }

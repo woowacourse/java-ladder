@@ -34,6 +34,7 @@ public class OutputView {
 
         printUsers(users);
         printLadder(ladder, firstUsersName.length());
+
     }
 
     private void printUsers(Users users) {
@@ -72,4 +73,5 @@ public class OutputView {
             result.append(LADDER_COLUMN);
         }
     }
+
 }

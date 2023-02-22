@@ -15,7 +15,7 @@ class PositionTest {
     void setUp() {
         position = new Position(3);
     }
-    
+
     @ParameterizedTest
     @CsvSource(value = {"1:3", "4:3", "3:4", "5:3"}, delimiter = ':')
     void move(int number, int expected) {
