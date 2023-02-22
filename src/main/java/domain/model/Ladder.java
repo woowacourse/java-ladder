@@ -28,7 +28,7 @@ public class Ladder {
 
     public boolean hasRightAt(Position position) {
         Layer layer = layers.get(position.getY());
-        if (position.getX() == layer.getLines().size()) {
+        if (position.getX() >= layer.getLines().size()) {
             return false;
         }
         return layer.getLine(position.getX());
