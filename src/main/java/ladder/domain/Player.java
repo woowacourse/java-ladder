@@ -18,12 +18,12 @@ public class Player {
         return position;
     }
 
-    public void move(boolean left, boolean right) {
-        if (left) {
+    public void move(Direction direction) {
+        if (direction == Direction.LEFT) {
             this.position--;
         }
 
-        if (right) {
+        if (direction == Direction.RIGHT) {
             this.position++;
         }
     }

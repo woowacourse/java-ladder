@@ -2,6 +2,7 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,12 +16,34 @@ class PlayerTest {
         assertThat(player.getName()).isEqualTo("이름");
     }
 
-    @Test
-    void move_메소드는_참여자의_위치를_이동한다() {
-        Player player = new Player("주노");
+    @Nested
+    class move_메소드는_방향에_따라_위치가_변한다 {
+        @Test
+        void LEFT인_경우_1_감소() {
+            Player player = new Player("이름");
 
-        player.move(false, true);
+            player.move(Direction.LEFT);
 
-        assertThat(player.getPosition()).isEqualTo(1);
+            assertThat(player.getPosition()).isEqualTo(-1);
+        }
+
+        @Test
+        void RIGHT인_경우_1_증가() {
+            Player player = new Player("이름");
+
+            player.move(Direction.RIGHT);
+
+            assertThat(player.getPosition()).isEqualTo(1);
+        }
+
+        @Test
+        void STRAIGHT인_경우_유지() {
+            Player player = new Player("이름");
+
+            player.move(Direction.STRAIGHT);
+
+            assertThat(player.getPosition()).isEqualTo(0);
+        }
     }
+
 }
