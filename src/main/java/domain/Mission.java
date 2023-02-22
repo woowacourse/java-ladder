@@ -41,4 +41,11 @@ public class Mission {
     public int hashCode() {
         return Objects.hash(mission);
     }
+
+    @Override
+    public String toString() {
+        return "Mission{" +
+                "mission='" + mission + '\'' +
+                '}';
+    }
 }
