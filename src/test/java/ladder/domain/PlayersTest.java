@@ -19,7 +19,7 @@ class PlayersTest {
         List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
         //when
         //then
-        assertDoesNotThrow(() -> new Players(names));
+        assertDoesNotThrow(() -> Players.generate(names));
     }
 
     @Test
@@ -28,7 +28,7 @@ class PlayersTest {
         //given
         List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
         //when
-        Players players = new Players(names);
+        Players players = Players.generate(names);
         //then
         assertThat(players.getSize()).isEqualTo(3);
     }
@@ -39,7 +39,7 @@ class PlayersTest {
         //given
         List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
         //when
-        Players players = new Players(names);
+        Players players = Players.generate(names);
         //then
         assertThat(players.getNameValues()).containsExactly("a", "ab", "abc");
     }
@@ -51,7 +51,7 @@ class PlayersTest {
         List<String> names = new ArrayList<>(List.of("a"));
         //when
         //then
-        assertThatThrownBy(() -> new Players(names))
+        assertThatThrownBy(() -> Players.generate(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("플레이어는 최소 2명 이상이여야 합니다");
     }
@@ -62,7 +62,7 @@ class PlayersTest {
         //given
         List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
         //when
-        Players players = new Players(names);
+        Players players = Players.generate(names);
         List<Player> playerList = players.toUnmodifiablePlayers();
         //then
         assertAll(
@@ -78,7 +78,7 @@ class PlayersTest {
         //given
         List<String> names = new ArrayList<>(List.of("a", "b"));
         //when
-        Players players = new Players(names);
+        Players players = Players.generate(names);
         //then
         assertThat(players.findPositionBy(new Name("a"))).isEqualTo(new Position(0));
     }

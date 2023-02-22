@@ -10,12 +10,21 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(List<String> names) {
-        validatePlayersSize(names);
-        this.players = generatePlayer(names);
+    private Players(List<Player> players) {
+        validatePlayersSize(players);
+        this.players = players;
     }
 
-    private void validatePlayersSize(List<String> names) {
+    public static Players generate(List<String> names) {
+        List<Player> players = new ArrayList<>();
+        int position = 0;
+        for (String name : names) {
+            players.add(new Player(name, position++));
+        }
+        return new Players(players);
+    }
+
+    private void validatePlayersSize(List<Player> names) {
         if (names.size() < MINIMUM_PLAYERS_SIZE) {
             throw new IllegalArgumentException("플레이어는 최소 2명 이상이여야 합니다");
         }
@@ -25,15 +34,6 @@ public class Players {
         for (Player player : players) {
             player.move(ladder);
         }
-    }
-
-    private List<Player> generatePlayer(List<String> names) {
-        List<Player> players = new ArrayList<>();
-        int position = 0;
-        for (String name : names) {
-            players.add(new Player(name, position++));
-        }
-        return players;
     }
 
     public Position findPositionBy(Name name) {

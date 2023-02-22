@@ -10,7 +10,7 @@ public class LadderGameController {
     private static final int DIFFERENCE_PLAYERS_AND_BARS = 1;
 
     public void play() {
-        Players players = new Players(InputView.readNames());
+        Players players = Players.generate(InputView.readNames());
         Ladder ladder = Ladder.generate(InputView.readCountOfLines(), getCountOfBars(players),
                 new RandomBooleanGenerator());
         OutputView.printPlayers(players.getNameValues());
