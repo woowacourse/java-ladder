@@ -16,10 +16,18 @@ graph TD
     LadderGame --> Players
     LadderGame --> Items
 
+    Player --> Name
+    Player --> Position
+    Item --> Position
+    Item --> Name
+
+    Line --> Position
+
     LadderGame --> LadderGameResult
 
     Items --> Item
     Players --> Player
+
 
     LadderGameController --> InputView
     LadderGameController --> OutputView
@@ -40,6 +48,7 @@ graph TD
 - [x] 참가자는 최대 20명 이어야 한다.
     - [x] 참가자가 20명을 초과하는 경우 예외를 던진다.
 - [x] 참가자는 위치를 가진다.
+    - [x] 위치 값은 0부터 시작한다.
 
 ### 아이템(실행결과)
 
@@ -47,6 +56,7 @@ graph TD
     - [x] 이름 길이는 참가자의 이름과 동일하게 1자 이상, 5자 이하의 길이를 가진다.
 - [x] 아이템은 참가인원과 동일한 개수가 있어야 한다.
 - [x] 아이템은 위치를 가진다.
+    - [x] 위치 값은 0부터 시작한다.
 
 ### 사다리 게임
 
@@ -54,6 +64,7 @@ graph TD
     - [x] 높이는 1이상, 100이하의 값이어야 한다.
 - [x] 사다리의 높이만큼 가로 라인을 가진다.
     - [x] 각각의 가로 라인은 `사다리 게임 참가자 - 1` 너비만큼의 연결 상태를 가진다.
+        - [ ] `사다리 게임 참가자 - 1` 만큼의 위치값을 가지고 각 위치에 연결상태가 존재한다.
         - [x] 연결 상태는 연결됨, 연결되지 않음으로 구분된다.
     - [x] 가로 라인의 연결 상태가 연속으로 `연결됨` 일 수 없다.
 - [ ] 사다리 게임을 진행한다.

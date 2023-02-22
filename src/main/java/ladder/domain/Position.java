@@ -7,8 +7,10 @@ public class Position {
 
     private static final int POSITION_VALUE_LOWER_BOUND = 0;
     private static final int POSITION_VALUE_UPPER_BOUND = 20;
+    private static final int MOVE_COUNT = 1;
     private static final String INVALID_VALUE_MESSAGE =
             "위치값은 " + POSITION_VALUE_LOWER_BOUND + "이상, " + POSITION_VALUE_UPPER_BOUND + "미만이어야 합니다.";
+    private static final Position EMPTY = new Position(Integer.MIN_VALUE);
     private static final Map<Integer, Position> CACHE = new HashMap<>();
 
     static {
@@ -36,6 +38,14 @@ public class Position {
 
     private static boolean isInvalidPosition(final int value) {
         return value < POSITION_VALUE_LOWER_BOUND || POSITION_VALUE_UPPER_BOUND <= value;
+    }
+
+    public Position getPrevious() {
+        return CACHE.getOrDefault(this.value - MOVE_COUNT, EMPTY);
+    }
+
+    public Position getNext() {
+        return CACHE.getOrDefault(this.value + MOVE_COUNT, EMPTY);
     }
 
     public int getValue() {

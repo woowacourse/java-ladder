@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -26,5 +27,37 @@ public class PositionTest {
         final Position position = Position.valueOf(value);
 
         assertThat(position.getValue()).isEqualTo(value);
+    }
+
+    @Test
+    void 이전_값이_존재하지_않는_경우_사용할_수_없는_위치값을_반환한다() {
+        final Position position = Position.valueOf(0);
+
+        final Position previousPosition = position.getPrevious();
+
+        assertThat(previousPosition.getValue()).isEqualTo(Integer.MIN_VALUE);
+    }
+
+    @Test
+    void 이전_값을_반환한다() {
+        final Position position = Position.valueOf(1);
+
+        assertThat(position.getPrevious()).isEqualTo(Position.valueOf(0));
+    }
+
+    @Test
+    void 다음_값이_존재하지_않는_경우_사용할_수_없는_위치값을_반환한다() {
+        final Position position = Position.valueOf(19);
+
+        final Position nextPosition = position.getNext();
+
+        assertThat(nextPosition.getValue()).isEqualTo(Integer.MIN_VALUE);
+    }
+
+    @Test
+    void 다음_값을_반환한다() {
+        final Position position = Position.valueOf(18);
+
+        assertThat(position.getNext()).isEqualTo(Position.valueOf(19));
     }
 }
