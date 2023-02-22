@@ -7,11 +7,11 @@ public class Height {
     private final int height;
 
     public Height(int height) {
-        validateHeight(height);
+        validateLength(height);
         this.height = height;
     }
 
-    private void validateHeight(int height) {
+    private void validateLength(int height) {
         if (height < HEIGHT_LOWER_BOUND_INCLUSIVE) {
             throw new IllegalArgumentException(HEIGHT_ERROR_MESSAGE);
         }

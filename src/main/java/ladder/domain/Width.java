@@ -6,11 +6,11 @@ public class Width {
     private final int width;
 
     public Width(int width) {
-        validateWidth(width);
+        validateLength(width);
         this.width = width;
     }
 
-    private void validateWidth(int width) {
+    private void validateLength(int width) {
         if (width < WIDTH_LOWER_BOUND_INCLUSIVE) {
             throw new IllegalArgumentException(WIDTH_ERROR_MESSAGE);
         }
