@@ -1,6 +1,6 @@
 package domain;
 
-import exception.InvalidLineWeightException;
+import exception.domain.InvalidLineWeightException;
 import java.util.List;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;

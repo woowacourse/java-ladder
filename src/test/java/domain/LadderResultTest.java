@@ -2,8 +2,8 @@ package domain;
 
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-import exception.EmptyInputException;
-import exception.InvalidLadderResultException;
+import exception.domain.InvalidLadderResultException;
+import exception.view.EmptyInputException;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

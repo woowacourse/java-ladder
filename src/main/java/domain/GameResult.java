@@ -1,6 +1,6 @@
 package domain;
 
-import exception.NullNameException;
+import exception.domain.NullNameException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

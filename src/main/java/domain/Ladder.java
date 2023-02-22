@@ -1,7 +1,7 @@
 package domain;
 
-import exception.InvalidLadderHeightException;
-import exception.InvalidLineWeightException;
+import exception.domain.InvalidLadderHeightException;
+import exception.domain.InvalidLineWeightException;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;

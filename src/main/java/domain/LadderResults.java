@@ -1,7 +1,7 @@
 package domain;
 
-import exception.EmptyInputException;
-import exception.InvalidLadderResultCount;
+import exception.domain.InvalidLadderResultCount;
+import exception.view.EmptyInputException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

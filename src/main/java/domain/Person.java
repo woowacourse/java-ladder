@@ -1,7 +1,7 @@
 package domain;
 
-import exception.EmptyNameException;
-import exception.InvalidPersonNameException;
+import exception.domain.EmptyNameException;
+import exception.domain.InvalidPersonNameException;
 
 public class Person {
 

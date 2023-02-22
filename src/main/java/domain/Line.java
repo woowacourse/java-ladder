@@ -1,6 +1,6 @@
 package domain;
 
-import exception.InvalidLineWeightException;
+import exception.domain.InvalidLineWeightException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

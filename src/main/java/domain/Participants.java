@@ -1,8 +1,8 @@
 package domain;
 
-import exception.DuplicateNameException;
-import exception.EmptyInputException;
-import exception.InvalidParticipantsCountException;
+import exception.domain.DuplicateNameException;
+import exception.domain.InvalidParticipantsCountException;
+import exception.view.EmptyInputException;
 import java.util.List;
 import java.util.stream.Collectors;
 

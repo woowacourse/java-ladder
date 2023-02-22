@@ -1,6 +1,6 @@
 package domain;
 
-import exception.InvalidLadderHeightException;
+import exception.domain.InvalidLadderHeightException;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

@@ -1,4 +1,4 @@
-package exception;
+package exception.domain;
 
 public class InvalidLadderHeightException extends IllegalArgumentException {
 

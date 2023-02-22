@@ -3,8 +3,8 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-import exception.EmptyNameException;
-import exception.InvalidPersonNameException;
+import exception.domain.EmptyNameException;
+import exception.domain.InvalidPersonNameException;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
