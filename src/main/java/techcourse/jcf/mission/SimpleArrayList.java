@@ -4,18 +4,30 @@ public class SimpleArrayList implements SimpleList {
 
     private static final int MINIMUM_SIZE = 2;
 
+    private int size = 0;
     private int currentIndex = 0;
-    private String[] list = new String[MINIMUM_SIZE];
+    private String[] list;
+
+    public SimpleArrayList() {
+        list = new String[MINIMUM_SIZE];
+    }
+
+    public SimpleArrayList(int size) {
+        list = new String[size];
+        this.size = size;
+    }
 
     @Override
     public boolean add(final String value) {
+        size += 1;
         list[currentIndex++] = value;
         return true;
     }
 
     @Override
     public void add(final int index, final String value) {
-
+        size += 1;
+        list[index] = value;
     }
 
     @Override
