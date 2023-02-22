@@ -1,5 +1,7 @@
 package laddergame.controller;
 
+import laddergame.domain.GameResult;
+import laddergame.domain.GameResults;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Name;
@@ -25,7 +27,8 @@ public class LadderGameController {
         GameResults gameResults = setUpGameResults(users.count());
         Height ladderHeight = setUpLadderHeight();
         Ladder ladder = new Ladder(ladderHeight, users.count());
-        printResult(ladder, users);
+
+        outputView.printLadderResult(ladder, users, gameResults);
     }
 
     private Users setUpUsers() {
@@ -82,9 +85,5 @@ public class LadderGameController {
     private int getLadderHeight() {
         outputView.printEnterHeightNotice();
         return inputView.inputHeight();
-    }
-
-    private void printResult(Ladder ladder, Users users) {
-        outputView.printGameResult(ladder, users);
     }
 }
