@@ -24,11 +24,11 @@ public class LadderController {
 
     private void initLadderService() {
         People people = repeat(this::nameRequest);
-        Ladder ladder = repeat(() -> ladderRequest(people));
         Results results = repeat(() -> resultsRequest(people));
+        Ladder ladder = repeat(() -> ladderRequest(people));
 
-        ladderService = new LadderService(people, ladder, results);
-        outputView.printTotalLadder(people, ladder, results);
+        ladderService = new LadderService(people, results, ladder);
+        outputView.printTotalLadder(people, results, ladder);
     }
 
     public void run() {

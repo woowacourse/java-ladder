@@ -32,7 +32,7 @@ public class LadderServiceTest {
                 (width, height) -> customizedLines
         );
         Results results = new Results("꽝,5000,꽝,3000", people);
-        ladderService = new LadderService(people, ladder, results);
+        ladderService = new LadderService(people, results, ladder);
     }
 
     @DisplayName("단일 사용자의 결과 출력")

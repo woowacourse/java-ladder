@@ -11,7 +11,7 @@ public class LadderService {
     private final Ladder ladder;
     private final Results results;
 
-    public LadderService(People people, Ladder ladder, Results results) {
+    public LadderService(People people, Results results, Ladder ladder) {
         this.people = people;
         this.ladder = ladder;
         this.results = results;
