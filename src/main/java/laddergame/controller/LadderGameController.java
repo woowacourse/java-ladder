@@ -25,26 +25,16 @@ public class LadderGameController {
     }
 
     public void run() {
-        LadderGame ladderGame = setUpLadderGame();
-
-        Map<String, String> gameResultByUser = ladderGame.play();
-
-        String userToCheckResult;
-        do {
-            userToCheckResult = getUserToCheckResult();
-            printResultOfUser(userToCheckResult, gameResultByUser);
-        } while (!userToCheckResult.equals("all"));
-    }
-
-    private LadderGame setUpLadderGame() {
         Users users = setUpUsers();
         GameResults gameResults = setUpGameResults(users.count());
         Height ladderHeight = setUpLadderHeight();
         Ladder ladder = new Ladder(ladderHeight, users.count());
-
         outputView.printLadderResult(ladder, users, gameResults);
+        LadderGame ladderGame = new LadderGame(ladder, users, gameResults);
 
-        return new LadderGame(ladder, users, gameResults);
+        Map<String, String> gameResultByUser = ladderGame.play();
+
+        printGameResult(users, gameResultByUser);
     }
 
     private Users setUpUsers() {
@@ -101,9 +91,24 @@ public class LadderGameController {
         return inputView.inputHeight();
     }
 
-    private String getUserToCheckResult() {
-        outputView.printEnterUserToCheckResultNotice();
-        return inputView.inputUserToCheckResult();
+    private void printGameResult(Users users, Map<String, String> gameResultByUser) {
+        String userToCheckResult;
+        do {
+            userToCheckResult = getUserToCheckResult(users);
+            printResultOfUser(userToCheckResult, gameResultByUser);
+        } while (!userToCheckResult.equals("all"));
+    }
+
+    private String getUserToCheckResult(Users users) {
+        try {
+            outputView.printEnterUserToCheckResultNotice();
+            String userToCheckResult = inputView.inputUserToCheckResult();
+            users.validateResultCheckCommand(userToCheckResult);
+            return userToCheckResult;
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return getUserToCheckResult(users);
+        }
     }
 
     private void printResultOfUser(String userToCheckResult, Map<String, String> gameResultByUser) {

@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Users {
     private static final int FIRST = 0;
+    private static final String ALL = "all";
 
     private final List<User> users;
 
@@ -20,6 +21,14 @@ public class Users {
 
     public int count() {
         return users.size();
+    }
+
+    public void validateResultCheckCommand(String name) {
+        boolean isNotExist = users.stream()
+                .noneMatch(user -> user.getName().equals(name));
+        if (!name.equals(ALL) && isNotExist) {
+            throw new IllegalArgumentException("존재하지 않는 유저입니다.");
+        }
     }
 
     public String getFirstUserName() {
