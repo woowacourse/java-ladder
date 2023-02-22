@@ -28,13 +28,13 @@ public class Names {
 
     private static void validateSize(int personNumber) {
         if (personNumber < MIN_RANGE || personNumber > MAX_RANGE) {
-            throw new IllegalArgumentException(Message.EXCEPTION_NAMES_SIZE.message);
+            throw new IllegalArgumentException("2명 이상 100명 이하의 사람 수를 입력해 주세요.");
         }
     }
 
     private static void validateDuplicatedNames(List<Name> formattedNames) {
         if (formattedNames.stream().distinct().count() != formattedNames.size()) {
-            throw new IllegalArgumentException(Message.EXCEPTION_DUPLICATE_NAMES.message);
+            throw new IllegalArgumentException("입력한 사용자 이름은 중복될 수 없습니다.");
         }
     }
 
@@ -50,16 +50,4 @@ public class Names {
         return names.size();
     }
 
-
-    protected enum Message {
-        EXCEPTION_DUPLICATE_NAMES("입력한 사용자 이름은 중복될 수 없습니다."),
-        EXCEPTION_NAMES_SIZE("%d명 이상 %d명 이하의 사람 수를 입력해 주세요.", MIN_RANGE, MAX_RANGE);
-
-        public static final String BASE_MESSAGE_FORMAT = "[ERROR] %s";
-        private final String message;
-
-        Message(String message, Object... replaces) {
-            this.message = String.format(BASE_MESSAGE_FORMAT, String.format(message, replaces));
-        }
-    }
 }
