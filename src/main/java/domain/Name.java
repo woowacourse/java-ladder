@@ -33,7 +33,7 @@ public class Name {
     }
 
     private void validateNotCommand(String value) {
-        if (value.equals("all") || value.equals("q")) {
+        if (value.equals("all")) {
             throw new IllegalArgumentException(String.format("%s는 프로그램의 커맨드로 이름으로 입력 불가능합니다.", value));
         }
     }

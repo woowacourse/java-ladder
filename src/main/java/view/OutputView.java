@@ -16,9 +16,9 @@ public class OutputView {
     private static final String BLOCKED_POINT = "          ";
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
     private static final String BLANK_AFTER_NAME = " ";
+    public static final String GAME_RESULT_MESSAGE = "실행결과";
 
-    public void printResult(Names names, Ladder ladder) {
-        System.out.println("실행결과");
+    public void printLadder(Names names, Ladder ladder) {
 
         printFormattedNames(names);
         printLadder(ladder);
@@ -67,6 +67,13 @@ public class OutputView {
         }
         System.out.print(EDGE_OF_POINT + BLOCKED_POINT);
     }
+
+
+    public void printResult(Result result) {
+        System.out.println(GAME_RESULT_MESSAGE);
+        System.out.print(result.value());
+    }
+
 
     public void printErrorMessage(String message) {
         System.out.println(ERROR_MESSAGE_PREFIX + message);
