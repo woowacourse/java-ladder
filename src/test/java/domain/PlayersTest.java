@@ -16,5 +16,4 @@ class PlayersTest {
         Assertions.assertThat(players.getPlayers())
                 .containsExactly(gitJjang, irene);
     }
-
 }
