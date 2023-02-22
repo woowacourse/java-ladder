@@ -22,4 +22,8 @@ public class Users {
                 .map(user -> StringParser.insertBlank(user.getName()))
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public void findUserByName(String resultOption) {
+
+    }
 }

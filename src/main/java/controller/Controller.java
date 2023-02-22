@@ -1,8 +1,11 @@
 package controller;
 
+import static domain.ResultCommands.*;
+
 import java.util.List;
 
 import domain.Ladder;
+import domain.ResultCommands;
 import domain.Reward;
 import domain.Rewards;
 import domain.User;
@@ -25,7 +28,10 @@ public class Controller {
     public void run() {
         setLadderGame();
         printLadderMap();
+        playLadderGame();
     }
+
+
 
     private void setLadderGame() {
         createUser();
@@ -38,6 +44,21 @@ public class Controller {
         printUsers();
         printLadder();
         printRewards();
+    }
+
+    private void playLadderGame() {
+        String resultOption = InputView.readResultOption();
+
+        if(isQuit(resultOption)) {
+            return;
+        }
+
+        if(isAll(resultOption)) {
+//            TODO: Map에서 null인거 찾아서 결과 돌리고 저장하기;
+        }
+
+        users.findUserByName(resultOption);
+
     }
 
     private void createUser() {

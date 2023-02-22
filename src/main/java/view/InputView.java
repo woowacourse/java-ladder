@@ -26,4 +26,9 @@ public class InputView {
         String userNames = scanner.nextLine();
         return StringParser.splitByDelimiter(userNames);
     }
+
+    public static String readResultOption() {
+        System.out.println("결과를 보고 싶은 사람은?(전체결과: ALL, 종료: QUIT)");
+        return scanner.nextLine();
+    }
 }

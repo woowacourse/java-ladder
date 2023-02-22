@@ -13,4 +13,8 @@ public class User {
     public String getName() {
         return name;
     }
+
+    public boolean isEqualName(String userName) {
+        return userName.equals(name);
+    }
 }
