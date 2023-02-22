@@ -62,11 +62,4 @@ public class Player {
         return this.name;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        return object instanceof Player
-                && ((Player) object).getName()
-                .equals(this.name);
-    }
-
 }

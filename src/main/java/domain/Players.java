@@ -56,16 +56,12 @@ public class Players {
                 && playerNumber <= PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE);
     }
 
-    public List<Player> getPlayerNames() {
+    public List<Player> getPlayers() {
         return this.players;
     }
 
     public int getSize() {
         return players.size();
-    }
-
-    public boolean contains(Player player) {
-        return players.contains(player);
     }
 
 }

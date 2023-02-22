@@ -22,7 +22,7 @@ public class OutputView {
     }
 
     public void printPlayerNames(Players players) {
-        for (Player player : players.getPlayerNames()) {
+        for (Player player : players.getPlayers()) {
             System.out.print(formatPlayerName(player.getName()) + BLANK);
         }
         breakLine();

@@ -29,8 +29,9 @@ public class Command {
         return command.equals(ALL_INCLUSIVE);
     }
 
-    public Player toPlayer() {
-        return new Player(this.command);
+    public boolean isSame(Player player) {
+        return player.getName()
+                .equals(this.command);
     }
 
 }

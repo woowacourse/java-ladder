@@ -14,18 +14,14 @@ public class ResultCommand {
 
     public List<Player> getCommandResult(Command command) {
         if (command.isAllCommand()) {
-            return players.getPlayerNames();
+            return players.getPlayers();
         }
 
-        Player player = command.toPlayer();
-        validate(player);
-        return List.of(player);
-    }
-
-    private void validate(Player player) {
-        if (!players.contains(player)) {
-            throw new IllegalArgumentException(INVALID_COMMAND_ERROR_MESSAGE);
-        }
+        return List.of(players.getPlayers()
+                .stream()
+                .filter(command::isSame)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_COMMAND_ERROR_MESSAGE)));
     }
 
 }

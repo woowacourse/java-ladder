@@ -10,7 +10,7 @@ public class Result {
         this.reward = reward;
     }
 
-    public Player getPlayerName() {
+    public Player getPlayer() {
         return this.player;
     }
 
