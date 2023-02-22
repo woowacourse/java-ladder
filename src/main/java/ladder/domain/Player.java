@@ -4,19 +4,19 @@ import java.util.Objects;
 
 public class Player {
     private final PlayerName name;
-    private Position position;
+    private PlayerPosition position;
 
     public Player(String name) {
         this.name = new PlayerName(name);
     }
 
-    public Player(PlayerName name, Position position) {
+    public Player(PlayerName name, PlayerPosition position) {
         this.name = name;
         this.position = position;
     }
 
-    public void move(Row row) {
-        position = row.acceptPlayer(position);
+    public void pass(Row row) {
+        position = row.movePlayer(position);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Player {
         return name.getName();
     }
 
-    public Position getPosition() {
+    public PlayerPosition getPosition() {
         return position;
     }
 }

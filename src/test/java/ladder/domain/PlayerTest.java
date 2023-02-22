@@ -31,16 +31,16 @@ class PlayerTest {
         assertThatNoException().isThrownBy(() -> new Player(name));
     }
 
-    @ParameterizedTest(name = "player가 이동하면 사다리를 1칸 내려간다")
-    @CsvSource({"0,1", "1,0", "2,2"})
+    @ParameterizedTest(name = "player가 move하면 사다리를 1칸 내려간다")
+    @CsvSource({"0,1", "1,0", "2,2", "3,4", "4,3"})
     void 높이_1칸_이동(int beforeMove, int after) {
-        List<Foothold> footholds = List.of(Foothold.Y, Foothold.N);
-        int expectedWidth = 2;
+        List<Foothold> footholds = List.of(Foothold.PASSABLE, Foothold.BLOCKED, Foothold.BLOCKED, Foothold.PASSABLE);
+        int expectedWidth = 4;
         Row row = Row.of(footholds, expectedWidth);
-        Player player = new Player(new PlayerName("test"), new Position(beforeMove));
+        Player player = new Player(new PlayerName("test"), new PlayerPosition(beforeMove));
 
-        player.move(row);
+        player.pass(row);
 
-        assertThat(player.getPosition()).isEqualTo(new Position(after));
+        assertThat(player.getPosition()).isEqualTo(new PlayerPosition(after));
     }
 }

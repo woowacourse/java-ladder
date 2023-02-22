@@ -2,10 +2,10 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class Position implements Comparable<Position> {
+public class PlayerPosition implements Comparable<PlayerPosition> {
     private final int position;
 
-    public Position(int position) {
+    public PlayerPosition(int position) {
         validateIsPositive(position);
         this.position = position;
     }
@@ -16,8 +16,16 @@ public class Position implements Comparable<Position> {
         }
     }
 
+    public PlayerPosition increase() {
+        return new PlayerPosition(position + 1);
+    }
+
+    public PlayerPosition decrease() {
+        return new PlayerPosition(position - 1);
+    }
+
     @Override
-    public int compareTo(Position p) {
+    public int compareTo(PlayerPosition p) {
         return position - p.position;
     }
 
@@ -29,7 +37,7 @@ public class Position implements Comparable<Position> {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Position p = (Position) o;
+        PlayerPosition p = (PlayerPosition) o;
         return position == p.position;
     }
 

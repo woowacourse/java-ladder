@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class FootholdTest {
     @ParameterizedTest
-    @CsvSource({"true,Y", "false,N"})
+    @CsvSource({"true,PASSABLE", "false,BLOCKED"})
     public void Foothold_생성(boolean state, Foothold expected) {
         assertThat(Foothold.from(state)).isEqualTo(expected);
     }

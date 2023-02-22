@@ -22,7 +22,7 @@ public class RowGenerator {
 
     private void decideNextSlot(List<Foothold> footholds) {
         if (isLastSlotFoothold(footholds)) {
-            footholds.add(Foothold.N);
+            footholds.add(Foothold.BLOCKED);
             return;
         }
 
@@ -32,6 +32,6 @@ public class RowGenerator {
 
     private boolean isLastSlotFoothold(List<Foothold> footholds) {
         return !footholds.isEmpty() &&
-                footholds.get(footholds.size() - 1) == Foothold.Y;
+                footholds.get(footholds.size() - 1) == Foothold.PASSABLE;
     }
 }

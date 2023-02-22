@@ -37,31 +37,44 @@ public class Row {
     }
 
     private boolean isContinuousSteps(List<Foothold> footholds, int position) {
-        return footholds.get(position) == Foothold.Y
-                && footholds.get(position + 1) == Foothold.Y;
+        return footholds.get(position) == Foothold.PASSABLE
+                && footholds.get(position + 1) == Foothold.PASSABLE;
     }
 
-    public Position acceptPlayer(Position beforeMove) {
-        int position = beforeMove.getValue();
-        if (position == 0) {
-            if (footholds.get(0) == Foothold.Y) {
-                return new Position(1);
-            }
-            return new Position(0);
+    public PlayerPosition movePlayer(PlayerPosition from) {
+        if (isMovableToRight(from)) {
+            return from.increase();
         }
-        if (position == footholds.size()) {
-            if (footholds.get(footholds.size() - 1) == Foothold.Y) {
-                return new Position(position - 1);
-            }
-            return new Position(position);
+        if (isMovableToLeft(from)) {
+            return from.decrease();
         }
-        if (footholds.get(position) == Foothold.Y) {
-            return new Position(position + 1);
+        return from;
+    }
+
+    private boolean isMovableToRight(PlayerPosition from) {
+        if (isEndOfRow(from)) {
+            return false;
         }
-        if (footholds.get(position - 1) == Foothold.Y) {
-            return new Position(position - 1);
+        return isPassable(from);
+    }
+
+    private boolean isEndOfRow(PlayerPosition position) {
+        return position.getValue() >= footholds.size();
+    }
+
+    private boolean isMovableToLeft(PlayerPosition from) {
+        if (isBeginOfRow(from)) {
+            return false;
         }
-        return new Position(position);
+        return isPassable(from.decrease());
+    }
+
+    private boolean isBeginOfRow(PlayerPosition position) {
+        return position.getValue() == 0;
+    }
+
+    private boolean isPassable(PlayerPosition position) {
+        return footholds.get(position.getValue()) == Foothold.PASSABLE;
     }
 
     public List<Foothold> getFootholds() {
