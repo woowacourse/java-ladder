@@ -2,6 +2,7 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class NameFactoryTest {
+    private static final String DUPLICATED_NAME_ERROR = "[ERROR] 참가자 이름은 중복될 수 없습니다.";
+
     private static Stream<Arguments> provideNamesInputValues() {
         return Stream.of(
                 Arguments.of("hiiro", List.of("hiiro")),
@@ -42,5 +45,13 @@ public class NameFactoryTest {
 
         //then
         assertThat(thenResult).isEqualTo(expectedResult);
+    }
+
+    @Test
+    @DisplayName("참여자 이름 중복 여부 검사 기능 테스트")
+    void validateDuplicatedNamesTest() {
+        assertThatThrownBy(() -> NameFactory.create("pobi, pobi"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(DUPLICATED_NAME_ERROR);
     }
 }
