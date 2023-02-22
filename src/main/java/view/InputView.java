@@ -7,14 +7,14 @@ public class InputView {
     private static final String DELIMITER = ",";
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static String receivePlayer() {
+    public static String[] receivePlayer() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
         String playerNames = input();
         validateBlank(playerNames);
         validaDelimiter(playerNames);
 
-        return playerNames;
+        return playerNames.split(DELIMITER);
     }
 
     public static int receiveHeight() {
