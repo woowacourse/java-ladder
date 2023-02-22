@@ -1,6 +1,7 @@
 package laddergame.controller;
 
 import java.util.Map;
+import java.util.function.Supplier;
 import laddergame.domain.GameResult;
 import laddergame.domain.GameResults;
 import laddergame.domain.Height;
@@ -17,6 +18,8 @@ import laddergame.view.OutputView;
 
 public class LadderGameController {
 
+    private static final String ALL = "all";
+
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -26,9 +29,9 @@ public class LadderGameController {
     }
 
     public void run() {
-        Users users = setUpUsers();
-        GameResults gameResults = setUpGameResults(users.count());
-        Height ladderHeight = setUpLadderHeight();
+        Users users = repeat(this::setUpUsers);
+        GameResults gameResults = repeat(() -> setUpGameResults(users.count()));
+        Height ladderHeight = repeat(this::setUpLadderHeight);
         Ladder ladder = new Ladder(ladderHeight, users.count(), new RandomLineMaker());
         outputView.printLadderResult(ladder, users, gameResults);
         LadderGame ladderGame = new LadderGame(ladder, users, gameResults);
@@ -39,12 +42,7 @@ public class LadderGameController {
     }
 
     private Users setUpUsers() {
-        try {
-            return new Users(generateUsers(getUserNames()));
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-            return setUpUsers();
-        }
+        return new Users(generateUsers(getUserNames()));
     }
 
     private List<User> generateUsers(List<String> userNames) {
@@ -59,12 +57,7 @@ public class LadderGameController {
     }
 
     private GameResults setUpGameResults(int userCount) {
-        try {
-            return new GameResults(generateGameResults(getGameResults()), userCount);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-            return setUpGameResults(userCount);
-        }
+        return new GameResults(generateGameResults(getGameResults()), userCount);
     }
 
     private List<GameResult> generateGameResults(List<String> results) {
@@ -79,12 +72,7 @@ public class LadderGameController {
     }
 
     private Height setUpLadderHeight() {
-        try {
-            return new Height(getLadderHeight());
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-            return setUpLadderHeight();
-        }
+        return new Height(getLadderHeight());
     }
 
     private int getLadderHeight() {
@@ -95,29 +83,33 @@ public class LadderGameController {
     private void printGameResult(Users users, Map<String, String> gameResultByUser) {
         String userToCheckResult;
         do {
-            userToCheckResult = getUserToCheckResult(users);
+            userToCheckResult = repeat(() -> getUserToCheckResult(users));
             printResultOfUser(userToCheckResult, gameResultByUser);
-        } while (!userToCheckResult.equals("all"));
+        } while (!userToCheckResult.equals(ALL));
     }
 
     private String getUserToCheckResult(Users users) {
-        try {
-            outputView.printEnterUserToCheckResultNotice();
-            String userToCheckResult = inputView.inputUserToCheckResult();
-            users.validateResultCheckCommand(userToCheckResult);
-            return userToCheckResult;
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-            return getUserToCheckResult(users);
-        }
+        outputView.printEnterUserToCheckResultNotice();
+        String userToCheckResult = inputView.inputUserToCheckResult();
+        users.validateResultCheckCommand(userToCheckResult);
+        return userToCheckResult;
     }
 
     private void printResultOfUser(String userToCheckResult, Map<String, String> gameResultByUser) {
-        if (userToCheckResult.equals("all")) {
+        if (userToCheckResult.equals(ALL)) {
             outputView.printResultOfAllUser(gameResultByUser);
             return;
         }
         outputView.printResultOfOneUser(gameResultByUser.get(userToCheckResult));
+    }
+
+    private <T> T repeat(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return repeat(supplier);
+        }
     }
 
 }
