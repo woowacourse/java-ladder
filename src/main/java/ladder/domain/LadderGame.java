@@ -7,6 +7,7 @@ import ladder.util.ExceptionMessageFormatter;
 public class LadderGame {
 
     private final Players players;
+    private Ladder ladder;
 
     public LadderGame(List<String> names) {
         validatePlayerCount(names.size());
@@ -16,7 +17,7 @@ public class LadderGame {
 
         this.players = new Players(players);
     }
-    
+
     private static void validatePlayerCount(int playerCount) {
         if (playerCount < Players.MIN_PLAYER_COUNT) {
             throw new IllegalArgumentException(
@@ -26,8 +27,16 @@ public class LadderGame {
     }
 
     public List<Line> play(int height, List<String> results) {
-        Ladder ladder = Ladder.of(new LineWidth(players.size()), new LadderHeight(height), results);
+        ladder = Ladder.of(new LineWidth(players.size()), new LadderHeight(height), results);
         return ladder.toUnModifiableLines();
+    }
+
+    public String findResultByPlayerName(String playerName) {
+        int startIndex = players.indexOf(playerName);
+        if (ladder == null) {
+            throw new IllegalStateException("사다리가 생성되지 않은 게임의 결과를 확인할 수 없습니다.");
+        }
+        return ladder.findResultByStartIndex(startIndex);
     }
 
     public List<String> getPlayerNames() {
