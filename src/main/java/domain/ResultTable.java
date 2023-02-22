@@ -14,4 +14,7 @@ public class ResultTable {
         return resultTable.get(user);
     }
 
+    public void save(User user, Reward resultReward) {
+        resultTable.put(user, resultReward);
+    }
 }

@@ -16,4 +16,8 @@ public class Rewards {
                 .map(Reward::getReward)
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public Reward getRewardByIndex(int index) {
+        return rewards.get(index);
+    }
 }

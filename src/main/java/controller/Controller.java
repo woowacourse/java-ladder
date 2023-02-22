@@ -64,6 +64,8 @@ public class Controller {
         if(reward == null) {
             int startIndex = users.getIndex(user);
             int endIndex = ladder.calculateEndIndex(startIndex);
+            reward = rewards.getRewardByIndex(endIndex);
+            resultTable.save(user,reward);
         }
         OutputView.printResult(user, reward);
 
