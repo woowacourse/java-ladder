@@ -10,13 +10,13 @@ public class Ladder implements Iterable<Line>{
 
     private final List<Line> lines;
 
-    public Ladder(People people, int maxHeight, LinesGenerator strategy) {
-        validateHeight(maxHeight);
-        this.lines = strategy.generate(people.getCount(), maxHeight);
+    public Ladder(List<Line> lines) {
+        validateHeight(lines);
+        this.lines = lines;
     }
 
-    private void validateHeight(int maxHeight) {
-        if (maxHeight < MIN_RANGE || maxHeight > MAX_RANGE) {
+    private void validateHeight(List<Line> lines) {
+        if (lines.size() < MIN_RANGE || lines.size() > MAX_RANGE) {
             throw new IllegalArgumentException(
                     String.format("사다리 높이는 %d 이상 %d 이하여야 합니다.", MIN_RANGE, MAX_RANGE));
         }

@@ -1,8 +1,6 @@
 package domain;
 
-import java.util.List;
-
 public interface LinesGenerator {
 
-    List<Line> generate(int width, int height);
+    Ladder generate(People people, int height);
 }

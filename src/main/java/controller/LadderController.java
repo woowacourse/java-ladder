@@ -25,10 +25,7 @@ public class LadderController {
     private void initLadderService() {
         People people = repeat(() -> new People(inputView.readNames()));
         Results results = repeat(() -> new Results(inputView.readResults(), people));
-        Ladder ladder = repeat(() -> new Ladder(
-                people,
-                inputView.readMaxHeight(),
-                new RandomLinesGenerator()));
+        Ladder ladder = repeat(() -> new RandomLinesGenerator().generate(people, inputView.readMaxHeight()));
 
         ladderService = new LadderService(people, results, ladder);
         outputView.printTotalLadder(people, results, ladder);
