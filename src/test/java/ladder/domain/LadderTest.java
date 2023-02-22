@@ -1,13 +1,25 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
-import java.util.stream.Stream;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.api.Test;
 
 class LadderTest {
+    @Test
+    public void 도착점_구하기_success() {
+        Ladder ladder = Ladder.from(new LadderGenerator(new Width(5), new Height(4)));
+        int startPosition = 0;
+        assertThatNoException()
+                .isThrownBy(() -> ladder.getEndPosition(startPosition));
+    }
 
+    @Test
+    public void 도착점_구하기_fail() {
+        Ladder ladder = Ladder.from(new LadderGenerator(new Width(5), new Height(4)));
+        int startPoint = 6;
+        assertThatThrownBy(() -> ladder.getEndPosition(startPoint))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(String.format("사다리 시작점은 0이상 %d이하이어야합니다.", 5));
+    }
 }
