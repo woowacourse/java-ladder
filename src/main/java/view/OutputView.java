@@ -1,7 +1,7 @@
 package view;
 
 import model.*;
-import constant.LadderPrintMessage;
+import message.LadderPrintMessage;
 import model.LadderHeight;
 import model.Name;
 import model.Result;

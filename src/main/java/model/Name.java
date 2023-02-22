@@ -1,6 +1,6 @@
 package model;
 
-import constant.ExceptionMessage;
+import message.ExceptionMessage;
 
 public class Name {
     private static final int MAXIMUM_NAME_LENGTH = 5;

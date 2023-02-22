@@ -1,6 +1,6 @@
 package model;
 
-import constant.ExceptionMessage;
+import message.ExceptionMessage;
 
 public class Player {
     private static final String END_MESSAGE = "all";

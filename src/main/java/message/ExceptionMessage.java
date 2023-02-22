@@ -1,4 +1,4 @@
-package constant;
+package message;
 
 public enum ExceptionMessage {
     EXCEPTION_NAME_PATTERN("[ERROR] 이름은 알파벳 대소문자, 한글 로만 구성 가능합니다."),

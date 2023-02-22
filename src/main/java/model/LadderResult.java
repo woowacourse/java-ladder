@@ -1,6 +1,6 @@
 package model;
 
-import constant.ExceptionMessage;
+import message.ExceptionMessage;
 
 import java.util.Arrays;
 import java.util.Collections;
