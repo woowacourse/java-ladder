@@ -12,13 +12,13 @@ public class LineGenerator {
         return INSTANCE;
     }
 
-    public List<Bridge> generateLadder(Width width) {
-        List<Bridge> ladder = new ArrayList<>();
+    public List<Bridge> generateLine(Width width) {
+        List<Bridge> line = new ArrayList<>();
         int maxWidth = width.getWidth();
-        while (ladder.size() < maxWidth) {
-            ladder.add(generateBridge(ladder));
+        while (line.size() < maxWidth) {
+            line.add(generateBridge(line));
         }
-        return ladder;
+        return line;
     }
 
     private Bridge generateBridge(List<Bridge> result) {

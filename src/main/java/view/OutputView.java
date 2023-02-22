@@ -21,7 +21,7 @@ public class OutputView {
     }
 
     public void printLadder(Line line) {
-        String collect = line.getLadder().stream()
+        String collect = line.getLine().stream()
                 .map(Bridge::getFormat)
                 .collect(Collectors.joining(BRIDGE_DELIMITER));
         System.out.printf(LADDER_FORMAT, collect);

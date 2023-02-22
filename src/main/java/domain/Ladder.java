@@ -17,7 +17,7 @@ public class Ladder {
 
     private void generate(LineGenerator lineGenerator) {
         for (int floor = 0; floor < height.getHeight(); floor++) {
-            ladder.add(new Line(lineGenerator.generateLadder(width)));
+            ladder.add(new Line(lineGenerator.generateLine(width)));
         }
     }
 
