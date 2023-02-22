@@ -52,6 +52,7 @@ public class OutputView {
         });
         System.out.println(stringBuilder);
     }
+
     public void printPlayerAndItem(String player, Name item) {
         System.out.println(player + DELIMITER + item);
     }
