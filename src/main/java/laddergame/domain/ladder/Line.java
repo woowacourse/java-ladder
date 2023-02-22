@@ -58,6 +58,13 @@ public class Line {
         }
     }
 
+    public boolean canMoveLeft(final int playerPosition) {
+        final int leftIndex = playerPosition - 1;
+        final Connection leftConnection = connections.get(leftIndex);
+
+        return leftConnection.isConnected();
+    }
+
     public List<Connection> getConnections() {
         return new ArrayList<>(connections);
     }

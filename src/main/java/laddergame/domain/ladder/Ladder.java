@@ -1,5 +1,7 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.player.Player;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,7 +34,22 @@ public class Ladder {
         return lines;
     }
 
+    public boolean canMoveLeft(final int height, final Player player) {
+        final int playerPosition = player.getPosition();
+
+        if (playerPosition == 0) {
+            return false;
+        }
+
+        final Line currentLine = lines.get(height);
+        return currentLine.canMoveLeft(playerPosition);
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public int getHeight() {
+        return lines.size();
     }
 }

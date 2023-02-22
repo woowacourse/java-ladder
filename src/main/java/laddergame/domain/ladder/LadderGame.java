@@ -17,4 +17,17 @@ public class LadderGame {
     public static LadderGame of(final Ladder ladder, final List<Player> players) {
         return new LadderGame(ladder, players);
     }
+
+    public List<Player> startGame() {
+        final int ladderHeight = ladder.getHeight();
+        for (int height = 0; height < ladderHeight; height++) {
+            for (final Player player : players) {
+                if (player.canMoveLeft() && ladder.canMoveLeft(height, player)) {
+                    player.moveLeft();
+                }
+            }
+        }
+
+        return this.players;
+    }
 }

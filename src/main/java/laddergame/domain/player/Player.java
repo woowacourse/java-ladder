@@ -25,6 +25,10 @@ public class Player {
         position.moveLeft();
     }
 
+    public boolean canMoveLeft() {
+        return position.canMoveLeft();
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
