@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Results {
+    private final static int FIRST_LINE = 0;
+
     private final List<Result> results;
 
     public Results(String[] inputResults, int playerCount) {
@@ -24,26 +26,27 @@ public class Results {
 
     public String findResult(List<Line> ladder, int position) {
         for (Line line : ladder) {
-            position = move(position, line.getSteps());
+            List<Step> steps = line.getSteps();
+            position = move(steps, position);
         }
         return results.get(position).getResult();
     }
 
-    private int move(int position, List<Step> steps) {
-        if (canMoveLeft(position, steps)) {
+    private int move(List<Step> steps, int position) {
+        if (canMoveLeft(steps, position)) {
             return position - 1;
         }
-        if (canMoveRight(position, steps)) {
+        if (canMoveRight(steps, position)) {
             return position + 1;
         }
         return position;
     }
 
-    private boolean canMoveLeft(int position, List<Step> steps) {
-        return position != 0 && steps.get(position - 1) == Step.EXIST;
+    private boolean canMoveLeft(List<Step> steps, int position) {
+        return position != FIRST_LINE && steps.get(position - 1) == Step.EXIST;
     }
 
-    private boolean canMoveRight(int position, List<Step> steps) {
+    private boolean canMoveRight(List<Step> steps, int position) {
         return position != steps.size() && steps.get(position) == Step.EXIST;
     }
 
