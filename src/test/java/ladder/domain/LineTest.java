@@ -66,7 +66,7 @@ public class LineTest {
         generateTrueLineTest();
         Line line = new Line(3, booleanGenerator);
 
-        Assertions.assertThat(line.indicateEndIndex(startIndex)).isEqualTo(endIndex);
+        Assertions.assertThat(line.indicateNextIndex(startIndex)).isEqualTo(endIndex);
     }
 
     @ParameterizedTest
@@ -76,6 +76,6 @@ public class LineTest {
         generateFalseLineTest();
         Line line = new Line(3, booleanGenerator);
 
-        Assertions.assertThat(line.indicateEndIndex(startIndex)).isEqualTo(endIndex);
+        Assertions.assertThat(line.indicateNextIndex(startIndex)).isEqualTo(endIndex);
     }
 }

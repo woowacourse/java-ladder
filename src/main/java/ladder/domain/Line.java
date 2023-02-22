@@ -37,7 +37,7 @@ public class Line {
         }
     }
 
-    public int indicateEndIndex(int startIndex) {
+    public int indicateNextIndex(int startIndex) {
         int endIndex = startIndex;
         if (moveIndexPairs.containsKey(startIndex)) {
             endIndex = moveIndexPairs.get(startIndex);
