@@ -1,6 +1,6 @@
 package view;
 
-import util.ExceptionMessage;
+import constant.ExceptionMessage;
 
 import java.util.Scanner;
 

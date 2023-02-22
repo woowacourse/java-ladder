@@ -1,6 +1,6 @@
 package model;
 
-import util.ExceptionMessage;
+import constant.ExceptionMessage;
 
 public class LadderHeight {
     private static final int MAXIMUM_LADDER_HEIGHT = 20;

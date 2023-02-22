@@ -1,4 +1,4 @@
-package util;
+package model.type;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package util;
+package constant;
 
 
 public enum LadderPrintMessage {

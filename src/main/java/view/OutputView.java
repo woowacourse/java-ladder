@@ -1,7 +1,10 @@
 package view;
 
 import model.*;
-import util.LadderPrintMessage;
+import constant.LadderPrintMessage;
+import model.LadderHeight;
+import model.Name;
+import model.Result;
 
 import java.util.Map;
 

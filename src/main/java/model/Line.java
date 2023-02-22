@@ -1,7 +1,7 @@
 package model;
 
 import util.Generator;
-import util.Status;
+import model.type.Status;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,8 @@
 package controller;
 
 import model.*;
+import model.LadderHeight;
+import model.Player;
 import util.LineGenerator;
 import view.InputView;
 import view.OutputView;
