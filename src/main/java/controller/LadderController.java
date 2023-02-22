@@ -28,14 +28,10 @@ public class LadderController {
         final Names names = new Names(InputView.inputNames().stream()
                 .map(Name::new)
                 .collect(Collectors.toList()));
-        final List<String> inputPrizes = InputView.inputPrizes();
-        final Prizes prizes = new Prizes(inputPrizes.stream()
+        final Prizes prizes = new Prizes(InputView.inputPrizes().stream()
                 .map(Prize::new)
                 .collect(Collectors.toList()), names);
-        final int parsedHeight = InputView.inputHeight();
-        final Height height = new Height(parsedHeight);
-        final Width width = new Width(names.size() - MINUS_VALUE_FOR_LADDER_WIDTH);
-        final Ladder ladder = new Ladder(width, height, scaffoldGenerator);
+        final Ladder ladder = new Ladder(new Width(names.size() - MINUS_VALUE_FOR_LADDER_WIDTH), new Height(InputView.inputHeight()), scaffoldGenerator);
         OutputView.printResult(ladder, names, prizes);
         calculateResult(ladder, names, prizes);
     }
@@ -49,8 +45,8 @@ public class LadderController {
         }
     }
 
-    private void checkCases(final Map<String, String > ladderResult, final Names names, String targetName){
-        if (targetName.equals(SHOW_NAMES_COMMAND)){
+    private void checkCases(final Map<String, String> ladderResult, final Names names, String targetName) {
+        if (targetName.equals(SHOW_NAMES_COMMAND)) {
             OutputView.printTotalMatching(ladderResult);
             return;
         }
