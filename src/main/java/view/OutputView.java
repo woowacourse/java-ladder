@@ -20,6 +20,12 @@ public class OutputView {
         return 0 < index && index < names.size() - 1;
     }
 
+    public void printResult(Players players, List<Line> ladder){
+        System.out.println("\n"+"사다리 결과"+"\n");
+        printNames(players);
+        printLadders(ladder);
+    }
+
     public void printNames(Players players) {
         List<String> names = players.getPlayersName();
         for (int i = 0; i < names.size(); i++) {

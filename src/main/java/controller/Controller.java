@@ -26,11 +26,6 @@ public class Controller {
 
         Rewards rewards = new Rewards(inputView.readRewards(), players.getPlayersSize(),inputView);
 
-        printResult(players, ladder);
-    }
-
-    private void printResult(Players players, List<Line> ladder) {
-        outputView.printNames(players);
-        outputView.printLadders(ladder);
+        outputView.printResult(players, ladder);
     }
 }
