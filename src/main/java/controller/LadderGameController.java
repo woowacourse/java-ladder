@@ -14,6 +14,9 @@ import view.OutputView;
 
 public class LadderGameController {
 
+    private static final int MAX_COUNT_TO_GET_RESULT = 2;
+    private static final String ALL_RESULT_MESSAGE = "all";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final ConnectionGenerator connectionGenerator;
@@ -67,7 +70,7 @@ public class LadderGameController {
     }
 
     private void showResultByName(final GameResult gameResult) {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < MAX_COUNT_TO_GET_RESULT; i++) {
             showResult(gameResult);
         }
     }
@@ -84,13 +87,13 @@ public class LadderGameController {
     }
 
     private void checkAll(final GameResult gameResult, final String name) {
-        if (name.equals("all")) {
+        if (name.equals(ALL_RESULT_MESSAGE)) {
             outputView.printAllGameResult(gameResult.getGameResult());
         }
     }
 
     private void checkName(final GameResult gameResult, final String name) {
-        if (!name.equals("all")) {
+        if (!name.equals(ALL_RESULT_MESSAGE)) {
             outputView.printSoloGameResult(gameResult.findResult(name));
         }
     }

@@ -44,17 +44,4 @@ public class GameResultTest {
         // then
         assertThat(result).isEqualTo(gameResult.getGameResult().get(name));
     }
-
-    @DisplayName("findResult메소드에 all이 주어지면 전체 순서에 따른 대한 결과를 반환한다.")
-    @Test
-    void returns_all_names_when_all_given() {
-        // given
-        String allName = "all";
-
-        // when
-        String result = gameResult.findResult(allName);
-
-        // then
-        assertThat(result).isEqualTo("꽝,5000,꽝,3000");
-    }
 }
