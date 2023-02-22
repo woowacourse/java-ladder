@@ -30,7 +30,7 @@ public class LadderTest {
     @BeforeEach
     void setUp() {
         steps = new LadderFixture();
-        testLadder = new Ladder(1, players.size(), new TestConnectionMaker(connections));
+        testLadder = new Ladder(1, players.getPlayers().size(), new TestConnectionMaker(connections));
     }
 
     @Test

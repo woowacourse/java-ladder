@@ -29,4 +29,13 @@ public class Prizes {
                 .map(Prize::new)
                 .collect(toList());
     }
+
+    public List<Prize> getPrizes() {
+        return prizes;
+    }
+
+    public String getPrizeName(final int position) {
+        final Prize prize = prizes.get(position);
+        return prize.getPrize();
+    }
 }
