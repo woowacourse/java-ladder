@@ -10,6 +10,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class InputViewValidatorTest {
 
     @Test
+    @DisplayName("참여자의 수가 2보다 작으면 예외를 던진다.")
+    void doNotReachMinPlayerCountTest() {
+        int count = 1;
+
+        assertThrows(IllegalArgumentException.class,
+                () -> InputViewValidator.validateNamesCount(count))
+                .getMessage().equals("[ERROR] 참여자의 수는 2명 이상이여야합니다.");
+    }
+
+    @Test
     @DisplayName("참여자의 수가 10000명을 넘으면 예외를 던진다.")
     void exceedMaxPlayerCountTest() {
         int count = 10001;
