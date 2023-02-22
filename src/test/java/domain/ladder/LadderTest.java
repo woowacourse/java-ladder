@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -45,6 +46,26 @@ public class LadderTest {
     void lineSizeTest(int ladderHeight) {
         Ladder ladder = Ladder.of(10, ladderHeight, new RandomPointGenerator());
         assertThat(ladder.getLines().size()).isEqualTo(ladderHeight);
+    }
+
+    /**
+     * test1 test2 test3
+     * |-----|     |
+     * |-----|     |
+     * |-----|     |
+     * |-----|     |
+     * |-----|     |
+     */
+    @DisplayName("사다리를 탄다")
+    @Test
+    void ride() {
+        Ladder ladder = Ladder.of(3, 5, new ExistPointGenerator());
+        Map<Integer, Integer> result = ladder.ride(3);
+
+        assertThat(result.size()).isEqualTo(3);
+        assertThat(result.get(0)).isEqualTo(1);
+        assertThat(result.get(1)).isEqualTo(0);
+        assertThat(result.get(2)).isEqualTo(2);
     }
 
 }

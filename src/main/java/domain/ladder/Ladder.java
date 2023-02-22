@@ -1,8 +1,6 @@
 package domain.ladder;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Ladder {
 
@@ -29,6 +27,22 @@ public class Ladder {
         if (lines.size() < LINE_MIN_SIZE || lines.size() > LINE_MAX_SIZE) {
             throw new IllegalArgumentException("사다리의 높이는 1이상 30이하여야 합니다.");
         }
+    }
+
+    public Map<Integer, Integer> ride(final int playersSize) {
+        Map<Integer, Integer> result = new HashMap<>();
+        for (int initialIndex = 0; initialIndex < playersSize; initialIndex++) {
+            int finalIndex = decideFinalIndex(initialIndex);
+            result.put(initialIndex, finalIndex);
+        }
+        return Collections.unmodifiableMap(result);
+    }
+
+    private int decideFinalIndex(int index) {
+        for (Line line : lines) {
+            index = line.decideNextIndex(index);
+        }
+        return index;
     }
 
     public List<Line> getLines() {
