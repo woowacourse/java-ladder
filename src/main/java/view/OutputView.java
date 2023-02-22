@@ -18,10 +18,12 @@ public class OutputView {
     private static final double OTHER_SPAN = 1.0;
     private static final int BLOCK_SIZE_EXCEPT_DELIMITER = 9;
     private static final String KOREAN_MATCH_REGEX = "[ㄱ-ㅎㅏ-ㅣ가-힣]";
+    private static final String STRING_FORMAT = "%s";
     private static final String EXIST_SCAFFOLD_MATERIAL = "-";
     private static final String NON_EXIST_SCAFFOLD_MATERIAL = " ";
     private static final String BAR = "|";
     private static final String BLANK = " ";
+    private static final String RESULT_COLON = " : ";
     private static final String MATCH_RESULT = "실행 결과";
 
     private OutputView() {
@@ -36,7 +38,7 @@ public class OutputView {
     private static void printNames(Names names) {
         for (Name name : names.getNames()) {
             System.out.print(BLANK.repeat(ONE_BLOCK_SIZE - calculateNameBlank(name)));
-            System.out.printf("%s", name.getValue());
+            System.out.printf(STRING_FORMAT, name.getValue());
         }
         System.out.println();
     }
@@ -85,7 +87,7 @@ public class OutputView {
     private static void printPrizes(Prizes prizes) {
         for (Prize prize : prizes.getPrizes()) {
             System.out.print(BLANK.repeat(ONE_BLOCK_SIZE - calculatePrizeBlank(prize)));
-            System.out.printf("%s", prize.getValue());
+            System.out.printf(STRING_FORMAT, prize.getValue());
         }
         System.out.println();
     }
@@ -114,6 +116,6 @@ public class OutputView {
 
     public static void printTotalMatching(Map<String, String> totalMatchingResult) {
         System.out.println(MATCH_RESULT);
-        totalMatchingResult.forEach((key, value) -> System.out.println(key + " : " + value));
+        totalMatchingResult.forEach((key, value) -> System.out.println(key + RESULT_COLON + value));
     }
 }
