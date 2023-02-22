@@ -10,13 +10,11 @@ import java.util.stream.IntStream;
 public class LadderGame {
 
     private final Names names;
-    private final LadderResults ladderResults;
-    private final List<Integer> gameResult;
+    private final LadderResults gameResults;
 
-    public LadderGame(Names names, LadderResults ladderResults, List<Integer> gameResult) {
+    public LadderGame(Names names, LadderResults gameResults) {
         this.names = names;
-        this.ladderResults = ladderResults;
-        this.gameResult = gameResult;
+        this.gameResults = gameResults;
     }
 
     public static LadderGame of(Names names, Ladder ladder, LadderResults ladderResults) {
@@ -24,8 +22,9 @@ public class LadderGame {
                 .map(participantPosition -> playLadderGame(participantPosition, ladder))
                 .boxed()
                 .collect(Collectors.toList());
+        LadderResults gameResults = ladderResults.calculateGameResult(gameResult);
 
-        return new LadderGame(names, ladderResults, gameResult);
+        return new LadderGame(names, gameResults);
     }
 
     private static int playLadderGame(int position, Ladder ladder) {
@@ -41,15 +40,14 @@ public class LadderGame {
 
     public String findGameResultByName(String name) {
         int indexOfName = names.findIndexByName(name);
-        int resultIndex = gameResult.get(indexOfName);
 
-        return ladderResults.findResultByIndex(resultIndex);
+        return gameResults.findResultByIndex(indexOfName);
     }
 
     public List<GameResult> findGameResultAll() {
-        return IntStream.range(0, gameResult.size())
+        return IntStream.range(0, names.getTotalParticipantSize())
                 .mapToObj(index -> new GameResult(names.findNameByIndex(index),
-                        ladderResults.findResultByIndex(gameResult.get(index))))
+                        gameResults.findResultByIndex(index)))
                 .collect(Collectors.toUnmodifiableList());
     }
 }
