@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import domain.Point;
 import domain.player.Players;
 import util.TrueOrFalseGenerator;
 
@@ -25,6 +26,17 @@ public class Ladder {
             count++;
         }
         return new Ladder(Collections.unmodifiableList(lines));
+    }
+
+    public int sideDecideWhereToGo(int playerPosition,int floor) {
+        if (playerPosition==0 &&lines.get(floor).getPoints().get(playerPosition).isPoint()) {
+            return playerPosition + 1;
+        }
+        if (playerPosition -1 == lines.get(floor).getPoints().size() &&
+                lines.get(floor).getPoints().get(playerPosition - 1).isPoint()) {
+            return playerPosition - 1;
+        }
+        return playerPosition;
     }
 
     public List<Line> getLines() {
