@@ -70,12 +70,13 @@ public class SimpleArrayListTest {
         String second = "second";
         values.add(first);
         values.add(second);
-
-        //when
         String newData = "newData";
 
+        //when
+        values.set(1, newData);
+
         //then
-        assertThat(values.get(values.size() - 1)).isEqualTo(newData);
+        assertThat(values.get(1)).isEqualTo(newData);
     }
 
     @Test
