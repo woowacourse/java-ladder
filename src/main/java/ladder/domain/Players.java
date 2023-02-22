@@ -21,6 +21,12 @@ public class Players {
         }
     }
 
+    public void moveAll(Ladder ladder) {
+        for (Player player : players) {
+            player.move(ladder);
+        }
+    }
+
     private List<Player> generatePlayer(List<String> names) {
         List<Player> players = new ArrayList<>();
         int position = 0;
@@ -30,9 +36,9 @@ public class Players {
         return players;
     }
 
-    public Position findPosition(Name name) {
+    public Position findPositionBy(Name name) {
         Player findPlayer = players.stream()
-                .filter(player -> player.getName().equals(name))
+                .filter(player -> player.isMatchesBy(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("해당 이름은 존재하지 않습니다."));
         return findPlayer.getPosition();

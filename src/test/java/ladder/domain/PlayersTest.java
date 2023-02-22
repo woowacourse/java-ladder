@@ -1,7 +1,9 @@
 package ladder.domain;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,10 +76,10 @@ class PlayersTest {
     @DisplayName("플레이어의 이름으로 위치를 알 수 있다")
     void shouldFindPositionWhenInputName() {
         //given
-        List<String> names = new ArrayList<>(List.of("a","b"));
+        List<String> names = new ArrayList<>(List.of("a", "b"));
         //when
         Players players = new Players(names);
         //then
-        assertThat(players.findPosition(new Name("a"))).isEqualTo(new Position(0));
+        assertThat(players.findPositionBy(new Name("a"))).isEqualTo(new Position(0));
     }
 }

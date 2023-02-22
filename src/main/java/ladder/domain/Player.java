@@ -16,4 +16,12 @@ public class Player {
     public Position getPosition() {
         return position;
     }
+
+    public void move(Ladder ladder) {
+        ladder.moveToResult(position);
+    }
+
+    public boolean isMatchesBy(Name name) {
+        return this.name.equals(name);
+    }
 }

@@ -33,8 +33,9 @@ class LadderTest {
         List<Boolean> determinedBars = new ArrayList<>(List.of(true, false, true));
         Ladder ladder = Ladder.generate(2, 2, new DeterminedBooleanGenerator(determinedBars));
         //when
-        Position resultPosition = ladder.getResultPosition(new Position(startPosition));
+        Position position = new Position(startPosition);
+        ladder.moveToResult(position);
         //then
-        assertThat(resultPosition).isEqualTo(new Position(expectPosition));
+        assertThat(position).isEqualTo(new Position(expectPosition));
     }
 }
