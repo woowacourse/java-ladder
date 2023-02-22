@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Names {
@@ -11,10 +12,18 @@ public class Names {
 
     private final List<Name> names;
 
-    public Names(List<Name> names) {
+    private Names(List<Name> names) {
         validateNames(names);
 
         this.names = new ArrayList<>(names);
+    }
+
+    public static Names of(List<String> names) {
+        List<Name> collectNames = names.stream()
+                .map(Name::new)
+                .collect(Collectors.toUnmodifiableList());
+
+        return new Names(collectNames);
     }
 
     private void validateNames(List<Name> names) {

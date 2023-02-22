@@ -9,7 +9,6 @@ import model.LadderGame;
 import model.LadderGameCommand;
 import model.LadderResult;
 import model.LadderResults;
-import model.Name;
 import model.Names;
 import model.LadderMaker;
 import view.InputView;
@@ -44,10 +43,7 @@ public class LadderController {
         outputView.noticeInputParticipants();
 
         List<String> inputNames = inputView.inputNameOfParticipants();
-        List<Name> names = inputNames.stream()
-                .map(Name::new)
-                .collect(Collectors.toUnmodifiableList());
-        return new Names(names);
+        return Names.of(inputNames);
     }
 
     private LadderResults inputLadderResults(int totalParticipantSize) {
