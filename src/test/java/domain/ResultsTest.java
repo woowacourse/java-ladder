@@ -29,6 +29,6 @@ public class ResultsTest {
                 .map(Result::from)
                 .collect(Collectors.toList());
         Results results = Results.of(collectedList);
-        assertThat(results.get(idx).getValue()).isEqualTo("꽝");
+        assertThat(results.get(idx).getValue()).isEqualTo("3000");
     }
 }

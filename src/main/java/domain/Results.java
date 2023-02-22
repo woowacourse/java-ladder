@@ -14,6 +14,10 @@ public class Results {
         return new Results(results);
     }
 
+    public Result get(int index){
+        return results.get(index);
+    }
+
     public List<Result> getResults() {
         return results;
     }
