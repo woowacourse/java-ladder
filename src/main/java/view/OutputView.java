@@ -2,6 +2,7 @@ package view;
 
 import model.Ladder;
 import model.Line;
+import model.Name;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,14 +26,21 @@ public class OutputView {
         System.out.println(LADDER_HEIGHT_MESSAGE);
     }
 
-    public void printAllPlayerNames(List<String> allPlayerNames) {
-        System.out.println(makeLeftFormattingFirstName(allPlayerNames) +
-                makeRightFormattingNamesFromSecond(allPlayerNames));
+    public void printAllPlayerNames(List<Name> allPlayerNames) {
+        List<String> names = unwrapNames(allPlayerNames);
+        System.out.println(makeLeftFormattingFirstName(names) +
+                makeRightFormattingNamesFromSecond(names));
     }
 
     public void printLadder(Ladder ladder) {
         IntStream.range(0, ladder.getHeight())
                 .forEach(index -> printLadderLine(ladder.getLine(index)));
+    }
+
+    private List<String> unwrapNames(List<Name> names) {
+        return names.stream()
+                .map(Name::getValue)
+                .collect(Collectors.toList());
     }
 
     private void printLadderLine(Line line) {
