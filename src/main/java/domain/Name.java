@@ -11,7 +11,7 @@ public class Name {
     private final String name;
 
     public Name(String name) {
-        name = name.trim();
+        name = name.strip();
         validateNameLengthByMinimumLimit(name);
         validateNameLengthByMaximumLimit(name);
         this.name = name;
