@@ -1,13 +1,13 @@
 package domain;
 
-import util.LineGenerator;
+import util.BooleanGenerator;
 
 public class Ladder {
 
     private final Lines lines;
 
-    public Ladder(int numberOfWalls, Height height, LineGenerator lineGenerator) {
-        this.lines = new Lines(numberOfWalls, height, lineGenerator);
+    public Ladder(int numberOfWalls, Height height, BooleanGenerator booleanGenerator) {
+        this.lines = new Lines(numberOfWalls, height, booleanGenerator);
     }
 
     public Lines getLines() {

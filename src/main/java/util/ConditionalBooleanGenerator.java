@@ -2,7 +2,7 @@ package util;
 
 import java.util.Random;
 
-public class LineStatusMaker implements LineGenerator {
+public class ConditionalBooleanGenerator implements BooleanGenerator {
 
     private static final Random random = new Random();
 

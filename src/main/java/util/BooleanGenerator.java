@@ -1,6 +1,6 @@
 package util;
 
-public interface LineGenerator {
+public interface BooleanGenerator {
 
     boolean generate(boolean isLeftLineExist);
 }

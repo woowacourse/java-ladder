@@ -2,8 +2,8 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import util.LineGenerator;
-import util.LineStatusMaker;
+import util.BooleanGenerator;
+import util.ConditionalBooleanGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,9 +14,9 @@ public class LinesTest {
     void makeLines() {
         int numberOfWalls = 4;
         Height height = new Height(5);
-        LineGenerator lineGenerator = new LineStatusMaker();
+        BooleanGenerator booleanGenerator = new ConditionalBooleanGenerator();
 
-        Lines lines = new Lines(numberOfWalls, height, lineGenerator);
+        Lines lines = new Lines(numberOfWalls, height, booleanGenerator);
 
         assertThat(lines.getLines().size()).isEqualTo(height.getHeight());
     }

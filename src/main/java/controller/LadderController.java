@@ -3,8 +3,8 @@ package controller;
 import domain.Height;
 import domain.Ladder;
 import domain.Players;
-import util.LineGenerator;
-import util.LineStatusMaker;
+import util.BooleanGenerator;
+import util.ConditionalBooleanGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -27,10 +27,10 @@ public class LadderController {
     }
 
     private Ladder makeLadder(Players players) {
-        LineGenerator lineGenerator = new LineStatusMaker();
+        BooleanGenerator booleanGenerator = new ConditionalBooleanGenerator();
         try {
             int height = InputView.receiveHeight();
-            return new Ladder(players.getNumberOfPlayers(), new Height(height), lineGenerator);
+            return new Ladder(players.getNumberOfPlayers(), new Height(height), booleanGenerator);
         } catch (IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             return makeLadder(players);

@@ -1,9 +1,9 @@
 package util;
 
-public class ExistLineGenerator implements LineGenerator {
+public class NonExistBooleanGenerator implements BooleanGenerator {
 
     @Override
     public boolean generate(boolean isLeftLineExist) {
-        return true;
+        return false;
     }
 }
