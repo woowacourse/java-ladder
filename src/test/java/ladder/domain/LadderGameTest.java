@@ -6,6 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -86,5 +88,69 @@ class LadderGameTest {
     void getRewardOfAllTest() {
         assertThat(DEFAULT_LADDER_GAME.getGameResult())
                 .isInstanceOf(BridgeGameResult.class);
+    }
+
+    @Test
+    @DisplayName("사다리 게임 결과 반환 값 테스트")
+    void getRewardOfAllValueTest() {
+
+        final BridgeGameResult gameResult = DEFAULT_LADDER_GAME.getGameResult();
+        final Map<User, String> userAndReward = gameResult.getUserAndReward();
+        final Set<User> users = userAndReward.keySet();
+
+        final User a = getUserIn(users, "a");
+        final User b = getUserIn(users, "b");
+        final User c = getUserIn(users, "c");
+
+        assertAll(
+                () -> {
+                    assertThat(userAndReward.get(a)).isEqualTo("1");
+                },
+                () -> {
+                    assertThat(userAndReward.get(b)).isEqualTo("2");
+                },
+                () -> {
+                    assertThat(userAndReward.get(c)).isEqualTo("3");
+                }
+        );
+    }
+
+    @Test
+    @DisplayName("꼬인 사다리 게임 결과 반환 값 테스트")
+    void getRewardOfAllValueTest2() {
+        final Ladder ladder = new Ladder(3, DEFAULT_USERS);
+        ladder.makeFloors(new TestLineSourceGenerator(List.of(
+                I_____I, IxxxxxI,
+                IxxxxxI, I_____I,
+                IxxxxxI, IxxxxxI
+        )));
+        final LadderGame ladderGame = new LadderGame(ladder, DEFAULT_USERS, DEFAULT_REWARD);
+
+        final BridgeGameResult gameResult = ladderGame.getGameResult();
+        final Map<User, String> userAndReward = gameResult.getUserAndReward();
+        final Set<User> users = userAndReward.keySet();
+
+        final User a = getUserIn(users, "a");
+        final User b = getUserIn(users, "b");
+        final User c = getUserIn(users, "c");
+
+        assertAll(
+                () -> {
+                    assertThat(userAndReward.get(a)).isEqualTo("3");
+                },
+                () -> {
+                    assertThat(userAndReward.get(b)).isEqualTo("1");
+                },
+                () -> {
+                    assertThat(userAndReward.get(c)).isEqualTo("2");
+                }
+        );
+    }
+
+    private User getUserIn(final Set<User> users, final String name) {
+        return users.stream()
+                .filter(user -> user.isNameOf(name))
+                .findFirst()
+                .get();
     }
 }
