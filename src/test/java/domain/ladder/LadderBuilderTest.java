@@ -13,13 +13,6 @@ import domain.util.PointGenerator;
 
 class LadderBuilderTest {
 
-	static class PresentPointGenerator implements PointGenerator {
-		@Override
-		public Point generate() {
-			return Point.PRESENCE;
-		}
-	}
-
 	@Test
 	@DisplayName("사다리 생성 테스트")
 	void buildLadderTest() {
@@ -46,5 +39,12 @@ class LadderBuilderTest {
 		return lines.stream()
 			.map(Line::getPoints)
 			.collect(Collectors.toList());
+	}
+
+	static class PresentPointGenerator implements PointGenerator {
+		@Override
+		public Point generate() {
+			return Point.PRESENCE;
+		}
 	}
 }

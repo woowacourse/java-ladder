@@ -25,7 +25,7 @@ public class LadderController {
 		Ladder ladder = buildLadder(users);
 		OutputView.printLadder(users, ladder, ends);
 		Map<User, End> mappedResult = mapResult(ladder, users, ends);
-		while(true) {
+		while (true) {
 			printResult(mappedResult);
 		}
 	}
@@ -57,7 +57,7 @@ public class LadderController {
 	private LadderHeight retrieveLadderHeight() {
 		try {
 			return new LadderHeight(InputView.readHeight());
-		} catch (IllegalArgumentException e){
+		} catch (IllegalArgumentException e) {
 			OutputView.printError(e.getMessage());
 			return retrieveLadderHeight();
 		}

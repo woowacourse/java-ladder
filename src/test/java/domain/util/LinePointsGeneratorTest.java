@@ -8,13 +8,6 @@ import org.junit.jupiter.api.Test;
 
 class LinePointsGeneratorTest {
 
-	static class PresentPointGenerator implements PointGenerator {
-		@Override
-		public Point generate() {
-			return Point.PRESENCE;
-		}
-	}
-
 	@Test
 	@DisplayName("연속하지 않도록 교차하는 포인트들의 리스트를 반환해야 한다.")
 	void lineAlternativePointsGeneratingSuccessTest() {
@@ -22,6 +15,14 @@ class LinePointsGeneratorTest {
 		LinePointsGenerator alternativePointsGenerator = new LinePointsGenerator(width, new PresentPointGenerator());
 
 		List<Point> linePoints = alternativePointsGenerator.generateLine();
-		Assertions.assertThat(linePoints).containsExactly(Point.PRESENCE, Point.ABSENCE, Point.PRESENCE, Point.ABSENCE, Point.PRESENCE);
+		Assertions.assertThat(linePoints)
+			.containsExactly(Point.PRESENCE, Point.ABSENCE, Point.PRESENCE, Point.ABSENCE, Point.PRESENCE);
+	}
+
+	static class PresentPointGenerator implements PointGenerator {
+		@Override
+		public Point generate() {
+			return Point.PRESENCE;
+		}
 	}
 }

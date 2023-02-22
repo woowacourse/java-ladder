@@ -31,13 +31,13 @@ public class IndexMover {
 		}
 	}
 
-	private static void swapIfPointPresent(List<Integer> indicies, int i, Point point) {
+	private static void swapIfPointPresent(final List<Integer> indicies, final int i, final Point point) {
 		if (point.isPresent()) {
 			swap(indicies, i, i + 1);
 		}
 	}
 
-	private static void swap(List<Integer> indicies, int swapIdx1, int swapIdx2) {
+	private static void swap(final List<Integer> indicies, final int swapIdx1, final int swapIdx2) {
 		int temp = indicies.get(swapIdx1);
 		indicies.set(swapIdx1, indicies.get(swapIdx2));
 		indicies.set(swapIdx2, temp);

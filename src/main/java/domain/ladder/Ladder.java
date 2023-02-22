@@ -14,10 +14,6 @@ public class Ladder {
 		this.width = lines.get(0).size();
 	}
 
-	public int getHeight() {
-		return height;
-	}
-
 	public int getWidth() {
 		return width;
 	}

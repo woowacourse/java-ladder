@@ -11,6 +11,7 @@ public class LinePointsGenerator {
 		this.width = width;
 		this.pointGenerator = pointGenerator;
 	}
+
 	public List<Point> generateLine() {
 		List<Point> line = new ArrayList<>();
 		while (this.width > line.size()) {
@@ -22,7 +23,9 @@ public class LinePointsGenerator {
 	}
 
 	private void addAbsenceIfPresenceIsAdded(final List<Point> line, final Point point) {
-		if (line.size() == this.width) return;
+		if (line.size() == this.width) {
+			return;
+		}
 		if (point.isPresent()) {
 			line.add(Point.ABSENCE);
 		}

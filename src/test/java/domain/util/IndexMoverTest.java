@@ -13,11 +13,11 @@ import domain.ladder.LadderWidth;
 
 class IndexMoverTest {
 
-	static class PresentPointGenerator implements PointGenerator {
-		@Override
-		public Point generate() {
-			return Point.PRESENCE;
-		}
+	private static Ladder makeLadder(final int height, final int width, final PointGenerator generator) {
+		LadderHeight ladderHeight = new LadderHeight(height);
+		LadderWidth ladderWidth = new LadderWidth(width);
+		LadderBuilder builder = new LadderBuilder();
+		return builder.build(ladderHeight, ladderWidth, generator);
 	}
 
 	@Test
@@ -33,10 +33,10 @@ class IndexMoverTest {
 		Assertions.assertThat(indices).containsExactly(1, 0, 3, 2);
 	}
 
-	private static Ladder makeLadder(final int height, final int width, final PointGenerator generator) {
-		LadderHeight ladderHeight = new LadderHeight(height);
-		LadderWidth ladderWidth = new LadderWidth(width);
-		LadderBuilder builder = new LadderBuilder();
-		return builder.build(ladderHeight, ladderWidth, generator);
+	static class PresentPointGenerator implements PointGenerator {
+		@Override
+		public Point generate() {
+			return Point.PRESENCE;
+		}
 	}
 }

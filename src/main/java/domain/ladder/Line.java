@@ -8,7 +8,7 @@ import domain.util.Point;
 public class Line {
 	private final List<Point> points;
 
-	public Line(final List<Point> points){
+	public Line(final List<Point> points) {
 		this.points = points;
 	}
 
