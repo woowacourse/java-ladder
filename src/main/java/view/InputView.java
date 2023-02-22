@@ -15,8 +15,8 @@ public class InputView {
     public List<String> readUserNames() {
         System.out.println(NAME_INPUT_REQUEST);
         String inputUserNames = scanner.nextLine();
-        List<String> playersNames = splitInputUserNames(inputUserNames);
-        checkInputUserNames(playersNames);
+        List<String> playersNames = splitInputValues(inputUserNames);
+        checkEmpty(playersNames);
         return playersNames;
     }
 
@@ -27,7 +27,7 @@ public class InputView {
         return Integer.parseInt(inputHeight);
     }
 
-    private List<String> splitInputUserNames(String inputUserNames) {
+    private List<String> splitInputValues(String inputUserNames) {
         return Arrays.asList(inputUserNames.split(DELIMITER));
     }
 
@@ -39,7 +39,7 @@ public class InputView {
         }
     }
 
-    private void checkInputUserNames(List<String> playersNames) {
+    private void checkEmpty(List<String> playersNames) {
         checkBlank(playersNames);
         checkNull(playersNames);
     }
