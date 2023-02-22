@@ -18,7 +18,7 @@ public class Results {
 
     private void validateCount(int resultCount, int playerCount) {
         if (resultCount != playerCount) {
-            throw new IllegalArgumentException("[ERROR] 입력된 결과의 수가 인원 수와 다를 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 입력된 결과의 수가 인원 수와 같아야 합니다.");
         }
     }
 
