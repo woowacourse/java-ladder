@@ -35,11 +35,11 @@ public class Game {
     }
 
     private boolean checkMoveLeftLadder(int column, int row, Ladder ladder) {
-        return column >= 1 && ladder.getLadder(row).getLine(column - 1);
+        return column >= 1 && ladder.getLadderLine(column-1, row);
     }
 
     private boolean checkMoveRightLadder(int column, int row, Ladder ladder, int personCount) {
-        return column < personCount - 1 && ladder.getLadder(row).getLine(column);
+        return column < personCount - 1 && ladder.getLadderLine(column,row);
     }
 
     public Result getPrizeIndividualPlayer(Player name) {

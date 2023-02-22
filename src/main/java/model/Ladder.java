@@ -1,7 +1,6 @@
 package model;
 
 import util.Generator;
-import util.LineGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ public class Ladder {
         return new Line(personCount, generator);
     }
 
-    public Line getLadder(int row) {
-        return ladder.get(row);
+    public boolean getLadderLine(int column, int row) {
+        return ladder.get(row).getLine(column);
     }
 }

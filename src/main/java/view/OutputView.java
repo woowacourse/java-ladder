@@ -73,7 +73,7 @@ public class OutputView {
     }
 
     private void printLineBetweenLadder(Ladder ladder, int row, int column){
-        if (ladder.getLadder(row).getLine(column)) {
+        if (ladder.getLadderLine(column,row)) {
             stringBuilder.append(LadderPrintMessage.CONNECT_LADDER.getMessage());
         } else
             stringBuilder.append(LadderPrintMessage.NO_CONNECT_LADDER.getMessage());
