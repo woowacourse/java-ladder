@@ -1,12 +1,12 @@
 package controller;
 
-import domain.Height;
+import domain.ladder.Height;
 import domain.LadderGame;
 import domain.LadderMaker;
-import domain.Lines;
-import domain.Missions;
-import domain.Names;
-import domain.Players;
+import domain.ladder.Lines;
+import domain.mission.Missions;
+import domain.player.Names;
+import domain.player.Players;
 import domain.generator.BooleanGenerator;
 import view.InputView;
 import view.OutputView;

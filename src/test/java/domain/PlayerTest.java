@@ -1,5 +1,8 @@
 package domain;
 
+import domain.player.Name;
+import domain.player.Player;
+import domain.player.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
