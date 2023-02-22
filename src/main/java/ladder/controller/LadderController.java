@@ -25,6 +25,7 @@ public class LadderController {
             int playerIndex = playerNames.getPlayerIndex(player);
     
             if (player.equals("all")) {
+                OutputView.printAllPlayerResult(playerNames, gameResult);
                 break;
             }
             

@@ -59,6 +59,23 @@ public class OutputView {
         println(parseDisplayElements(gameResult.getExecutionResults()));
     }
     
+    public static void printAllPlayerResult(PlayerNames playerNames, GameResult gameResult) {
+        List<String> names = playerNames.getNames();
+        List<String> allExecutionResult = gameResult.getAllExecutionResult();
+        
+        println(parseAllPlayerResult(names, allExecutionResult));
+    }
+    
+    private static String parseAllPlayerResult(List<String> names, List<String> allExecutionResult) {
+        return IntStream.range(0, names.size())
+                .mapToObj(playerIndex -> parsePlayerResult(playerIndex, names, allExecutionResult))
+                .collect(Collectors.joining("\n"));
+    }
+    
+    private static String parsePlayerResult(int playerIndex, List<String> names, List<String> allExecutionResult) {
+        return names.get(playerIndex) + " : " + allExecutionResult.get(playerIndex);
+    }
+    
     public static void printOnePlayerResult(int playerIndex, GameResult gameResult) {
         println(gameResult.getOneExecutionResult(playerIndex));
     }
