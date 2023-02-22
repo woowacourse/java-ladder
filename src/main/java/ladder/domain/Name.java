@@ -13,9 +13,6 @@ public class Name {
         this.name = name;
     }
 
-    public int length() {
-        return name.length();
-    }
 
     private void validate(String name) {
         validateNotNull(name);
@@ -47,6 +44,10 @@ public class Name {
                 name.equals(UnavailableName.EXIT.value)) {
             throw new IllegalArgumentException(ErrorMessage.UNAVAILABLE_NAME.getMessage());
         }
+    }
+
+    public int length() {
+        return name.length();
     }
 
     @Override

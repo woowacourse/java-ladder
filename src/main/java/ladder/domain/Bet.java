@@ -38,4 +38,9 @@ public class Bet {
     public String getBet() {
         return bet;
     }
+
+    @Override
+    public String toString() {
+        return this.bet;
+    }
 }
