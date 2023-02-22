@@ -19,8 +19,7 @@ public class Reward {
     }
 
     private void validateLength(String reward) {
-
-        if(calculateLength(reward) >= REWARD_MAXIMUM_LENGTH) {
+        if(calculateLength(reward) > REWARD_MAXIMUM_LENGTH) {
             throw new IllegalArgumentException("보상은 최대 " + REWARD_MAXIMUM_LENGTH + "글자 입니다.");
         }
     }

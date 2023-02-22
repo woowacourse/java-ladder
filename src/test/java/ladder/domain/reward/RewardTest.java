@@ -26,7 +26,7 @@ public class RewardTest {
 
     @ParameterizedTest(name = "inputReward = {0}")
     @DisplayName("reward 최대 길이 예외 테스트")
-    @ValueSource(strings = {"50000", "가나다", "aaaaaa"})
+    @ValueSource(strings = {"500000", "가나다", "aaaaaa"})
     void createRewardLengthExceptionTest(String inputReward) {
         assertThatThrownBy(() ->new Reward(inputReward)).isInstanceOf(IllegalArgumentException.class);
     }
