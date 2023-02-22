@@ -65,4 +65,31 @@ class SimpleLinkedListTest {
         assertThat(myValues.indexOf("이건없지롱")).isEqualTo(-1);
     }
 
+    @Test
+    public void setTest() {
+        SimpleLinkedList myValues = new SimpleLinkedList();
+
+        Assertions.assertThatThrownBy(() -> myValues.set(0, "hi hi"))
+                .isInstanceOf(IndexOutOfBoundsException.class);
+
+        myValues.add("hi hi 2");
+
+        assertThat(myValues.set(0, "hi hi 3")).isEqualTo("hi hi 2");
+        assertThat(myValues.get(0)).isEqualTo("hi hi 3");
+
+        myValues.add("hi hi 4");
+        myValues.add("hi hi 5");
+        myValues.add("hi hi 6");
+        myValues.add("hi hi 7");
+
+        assertThat(myValues.set(4, "hi hi 8")).isEqualTo("hi hi 7");
+        assertThat(myValues.get(4)).isEqualTo("hi hi 8");
+
+        assertThat(myValues.set(0, "hi hi 9")).isEqualTo("hi hi 3");
+        assertThat(myValues.get(0)).isEqualTo("hi hi 9");
+
+        Assertions.assertThatThrownBy(() -> myValues.set(5, "인덱스 에러가 나겠지"))
+                .isInstanceOf(IndexOutOfBoundsException.class);
+    }
+
 }
