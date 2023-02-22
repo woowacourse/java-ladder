@@ -1,23 +1,17 @@
 package domain;
 
 public class Position {
-    private int x;
-    private int y;
+    private int index;
 
-    public Position(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public void moveDown() {
-        ++y;
+    public Position(int index) {
+        this.index = index;
     }
 
     public void moveLeft() {
-        --x;
+        --index;
     }
 
     public void moveRight() {
-        ++x;
+        ++index;
     }
 }
