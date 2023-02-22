@@ -1,7 +1,7 @@
 package domain;
 
 import exception.ErrorCode;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class WinningEntry {
@@ -19,7 +19,7 @@ public class WinningEntry {
     }
 
     public List<WinningResult> getWinningEntry() {
-        return new ArrayList<>(winningEntry);
+        return Collections.unmodifiableList(winningEntry);
     }
 
     public String findResultByPosition(int position) {

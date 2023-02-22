@@ -15,8 +15,8 @@ public class Person {
         if (name.length() < LadderElementInformation.MIN_LENGTH.getLength()
                 || name.length() > LadderElementInformation.MAX_LENGTH.getLength()) {
             throw new IllegalArgumentException(String.format(ErrorCode.LENGTH_OUT_OF_RANGE.getMessage(),
-                            LadderElementInformation.MIN_LENGTH.getLength(),
-                            LadderElementInformation.MAX_LENGTH.getLength()));
+                    LadderElementInformation.MIN_LENGTH.getLength(),
+                    LadderElementInformation.MAX_LENGTH.getLength()));
         }
     }
 

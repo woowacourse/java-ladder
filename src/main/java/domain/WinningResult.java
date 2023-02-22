@@ -15,8 +15,8 @@ public class WinningResult {
         if (result.length() < LadderElementInformation.MIN_LENGTH.getLength()
                 || result.length() > LadderElementInformation.MAX_LENGTH.getLength()) {
             throw new IllegalArgumentException(String.format(ErrorCode.LENGTH_OUT_OF_RANGE.getMessage(),
-                            LadderElementInformation.MIN_LENGTH.getLength(),
-                            LadderElementInformation.MAX_LENGTH.getLength()));
+                    LadderElementInformation.MIN_LENGTH.getLength(),
+                    LadderElementInformation.MAX_LENGTH.getLength()));
         }
     }
 
