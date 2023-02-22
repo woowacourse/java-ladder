@@ -12,10 +12,14 @@ public class LadderController {
         PlayerNames playerNames = InputView.repeat(() -> new PlayerNames(InputView.inputPeopleNames()));
         String executionResults = InputView.repeat(InputView::inputExecutionResults);
         int ladderHeight = InputView.repeat(InputView::inputLadderHeight);
-    
+        
         Ladder ladder = new Ladder(new RandomBasedBarGenerator(), ladderHeight, playerNames.playerSize());
         GameResult gameResult = new GameResult(ladder.getMovedPositions(playerNames.playerSize()), executionResults);
-    
+        
+        while (true) {
+            String player = InputView.repeat(InputView::inputPlayerName);
+        }
+        
         OutputView.printNames(playerNames);
         OutputView.printLadder(ladder, playerNames.getFirstPlayerNameLength());
     }
