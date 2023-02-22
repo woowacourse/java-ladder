@@ -1,6 +1,7 @@
 package techcourse.jcf.mission;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -17,6 +18,30 @@ class SimpleLinkedListTest {
 
         Assertions.assertThat(myValues.add("first")).isTrue();
         Assertions.assertThat(myValues.add("second")).isTrue();
+    }
+
+    @Test
+    public void addWithIndexTest() {
+        List<String> values = new ArrayList<>(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"));
+        SimpleLinkedList myValues = new SimpleLinkedList();
+        for (String value : values) {
+            Assertions.assertThat(myValues.add(value)).isTrue();
+        }
+
+        String newValue = "함정카드";
+        String oldValue = myValues.get(0);
+
+        myValues.add(0, newValue);
+        assertThat(myValues.size()).isEqualTo(12);
+        assertThat(myValues.get(0)).isEqualTo(newValue);
+        assertThat(myValues.get(1)).isEqualTo(oldValue);
+
+        myValues.add(12, newValue);
+        assertThat(myValues.size()).isEqualTo(13);
+        assertThat(myValues.get(12)).isEqualTo(newValue);
+
+        Assertions.assertThatThrownBy(() -> myValues.add(14, "이건 못넣지"))
+                .isInstanceOf(IndexOutOfBoundsException.class);
     }
 
     @Test
