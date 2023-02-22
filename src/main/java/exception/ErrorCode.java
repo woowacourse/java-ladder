@@ -9,6 +9,7 @@ public enum ErrorCode {
     EMPTY_INPUT("빈 값은 입력할 수 없습니다."),
     WRONG_WINNING_ENTRY_SIZE("결과는 게임 참여자 수 만큼 입력해야 합니다."),
     WRONG_RESULT_TARGET("참여자 1명의 이름 또는 \"all\"만 입력 가능합니다."),
+    NOT_ENOUGH_PLAYER("사다리 게임 참여자는 2명 이상이어야 합니다.")
     ;
     private final String message;
 
