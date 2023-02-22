@@ -14,7 +14,7 @@ public class LadderController {
         PlayerNames playerNames = getCorrectPlayerNames();
         GameResult gameResult = getGameResult(playerNames);
     
-        Ladder ladder = InputView.repeat(() -> getLadder(playerNames, getCorrectLadderHeight()));
+        Ladder ladder = getLadder(playerNames);
     
         printLadderStructure(playerNames, ladder, gameResult);
         viewResult(playerNames, ladder, gameResult);
@@ -30,6 +30,10 @@ public class LadderController {
     
     private String getExecutionResults() {
         return InputView.inputExecutionResults();
+    }
+    
+    private Ladder getLadder(PlayerNames playerNames) {
+        return InputView.repeat(() -> getLadder(playerNames, getCorrectLadderHeight()));
     }
     
     private Integer getCorrectLadderHeight() {
