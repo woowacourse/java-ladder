@@ -1,6 +1,8 @@
 package controller;
 
-import domain.*;
+import domain.Ladder;
+import domain.People;
+import domain.Prizes;
 import util.StoolGenerator;
 import view.InputView;
 import view.OutputView;
@@ -43,19 +45,7 @@ public class LadderController {
     }
 
     private void showLadder(People people, Ladder ladder, Prizes prizes) {
-        outputView.printLadder(people.getNames(), getStoolExistencesOnEachLevel(ladder), prizes.getPrizes());
-    }
-
-    private List<List<Boolean>> getStoolExistencesOnEachLevel(Ladder ladder) {
-        return ladder.getLevels().stream()
-                .map(this::getStoolExistences)
-                .collect(Collectors.toList());
-    }
-
-    private List<Boolean> getStoolExistences(Level level) {
-        return level.getStools().stream()
-                .map(Stool::isExist)
-                .collect(Collectors.toList());
+        outputView.printLadder(people.getNames(), ladder, prizes.getPrizes());
     }
 
     private void showResult(People people, Ladder ladder, Prizes prizes) {

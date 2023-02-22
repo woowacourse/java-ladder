@@ -1,17 +1,22 @@
 package view;
 
+import domain.Ladder;
+import domain.Level;
+import domain.Stool;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String STOOL_EMPTY = "     ";
     private static final String STOOL_EXIST = "-----";
+    private static final String COLUMN = "|";
 
     public void printError(String message) {
         System.out.println(message);
     }
 
-    public void printLadder(List<String> names, List<List<Boolean>> ladder, List<String> prizes) {
+    public void printLadder(List<String> names, Ladder ladder, List<String> prizes) {
         System.out.println("\n사다리 결과\n");
         printNames(names);
         printStoolsOnEachLevel(ladder);
@@ -26,27 +31,30 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printStoolsOnEachLevel(List<List<Boolean>> ladder) {
-        ladder.stream()
+    private void printStoolsOnEachLevel(Ladder ladder) {
+        ladder.getLevels().stream()
                 .map(this::makeLevelView)
                 .forEach(System.out::println);
     }
 
-    private String makeLevelView(List<Boolean> level) {
-        return "    |" + level.stream()
+    private String makeLevelView(Level level) {
+        String stoolsView = level.getStools().stream()
                 .map(this::makeStoolView)
-                .collect(Collectors.joining("|")) + "|";
+                .collect(Collectors.joining(COLUMN));
+
+        return "    " + COLUMN + stoolsView + COLUMN;
     }
 
-    private String makeStoolView(boolean stool) {
-        if (stool)
+    private String makeStoolView(Stool stool) {
+        if (stool.isExist()) {
             return STOOL_EXIST;
+        }
 
         return STOOL_EMPTY;
     }
 
-    private void printPrizes(List<String> results) {
-        results.stream()
+    private void printPrizes(List<String> prizes) {
+        prizes.stream()
                 .map(result -> String.format("%6s", result))
                 .forEach(System.out::print);
 
