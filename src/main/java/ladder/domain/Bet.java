@@ -2,6 +2,7 @@ package ladder.domain;
 
 public class Bet {
     private static final int MAX_BET_LENGTH = 5;
+    private static final String COMMA = ",";
 
     private final String bet;
 
@@ -13,7 +14,9 @@ public class Bet {
     private void validate(String bet) {
         validateNotNull(bet);
         validateLength(bet);
+        validateDoesNotContainComma(bet);
     }
+
 
     private void validateNotNull(String bet) {
         if (bet == null)
@@ -25,4 +28,8 @@ public class Bet {
             throw new IllegalArgumentException();
     }
 
+    private void validateDoesNotContainComma(String bet) {
+        if(bet.contains(COMMA))
+            throw new IllegalArgumentException();
+    }
 }
