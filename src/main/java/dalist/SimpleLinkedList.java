@@ -145,8 +145,5 @@ public class SimpleLinkedList<T> implements SimpleList<T>{
         protected Node(T value){
             this.value = value;
         }
-        protected void setNext(Node next){
-            this.next = next;
-        }
     }
 }
