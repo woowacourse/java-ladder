@@ -3,6 +3,7 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,4 +24,25 @@ public class GameResultsTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new GameResults(Integer.parseInt(playerSize), results));
     }
+
+    @DisplayName("실행 결과가 비어있는 경우 예외 처리 한다.")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void validateNullAndEmpty(List<String> results) {
+        int playerSize = 3;
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new GameResults(playerSize, results));
+    }
+
+//    @DisplayName("실행 결과를 일급컬렉션에 저장한다.")
+//    @Test
+//    void validateResultSize(String playerSize, String resultsSize) {
+//        List<String> results = new ArrayList<>();
+//        for (int resultIndex = 0; resultIndex < Integer.parseInt(resultsSize); resultIndex++) {
+//            results.add(String.valueOf(resultIndex));
+//        }
+//        assertThatIllegalArgumentException()
+//                .isThrownBy(() -> new GameResults(Integer.parseInt(playerSize), results));
+//    }
+
 }
