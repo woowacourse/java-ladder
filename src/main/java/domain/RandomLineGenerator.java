@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomLineGenerator {
+public class RandomLineGenerator implements LineGenerator{
     private final Random random = new Random();
     private static final RandomLineGenerator INSTANCE = new RandomLineGenerator();
 
@@ -12,6 +12,7 @@ public class RandomLineGenerator {
         return INSTANCE;
     }
 
+    @Override
     public List<Bridge> generateLine(Width width) {
         List<Bridge> line = new ArrayList<>();
         int maxWidth = width.getWidth();
