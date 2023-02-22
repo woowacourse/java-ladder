@@ -43,9 +43,9 @@ public class Floor {
     public int getResultPosition(final int index) {
         validateIndex(index);
         if (endOfLadder(index)) {
-            return index + checkEndLadder(index);
+            return index + getIndexIncrementOfEnd(index);
         }
-        return index + checkLine(index);
+        return index + getIndexIncrementOf(index);
     }
 
     private void validateIndex(final int index) {
@@ -54,11 +54,11 @@ public class Floor {
         }
     }
 
-    private int checkLine(final int index) {
+    private int getIndexIncrementOf(final int index) {
         return getIndexDecrementOfLeft(index) + getIndexIncrementOfRight(index);
     }
 
-    private int checkEndLadder(final int index) {
+    private int getIndexIncrementOfEnd(final int index) {
         if (index == START_POINT_OF_LADDER) {
             return getIndexIncrementOfRight(index);
         }

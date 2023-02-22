@@ -25,15 +25,15 @@ public class Users {
         validateSize(userNames);
     }
 
-    private void validateSize(List<String> userNames) {
-        if (userNames.size() < MINIMUM_SIZE) {
-            throw new IllegalArgumentException(USERS_SIZE_ERROR_MESSAGE);
-        }
-    }
-
     private void validateDuplication(List<String> userNames) {
         if (userNames.size() != getUnDuplicationNamesSize(userNames)) {
             throw new IllegalArgumentException(USERS_DUPLICATED_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateSize(List<String> userNames) {
+        if (userNames.size() < MINIMUM_SIZE) {
+            throw new IllegalArgumentException(USERS_SIZE_ERROR_MESSAGE);
         }
     }
 
@@ -43,10 +43,6 @@ public class Users {
                 .count();
     }
 
-    public int size() {
-        return users.size();
-    }
-
     public int getOrderOf(final String userName) {
         final User user = users.stream().filter(user1 -> user1.isNameOf(userName))
                 .findAny().orElseThrow(()->{
@@ -54,6 +50,11 @@ public class Users {
                 });
         return users.indexOf(user);
     }
+
+    public int size() {
+        return users.size();
+    }
+
 
     public List<User> getUsers() {
         return new ArrayList<>(users);
