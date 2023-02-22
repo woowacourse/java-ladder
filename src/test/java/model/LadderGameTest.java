@@ -1,6 +1,5 @@
 package model;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 import dto.GameResult;
@@ -20,8 +19,8 @@ class LadderGameTest {
 
     @BeforeEach
     void beforeEach() {
-        List<Name> nameCollection = List.of(new Name("a"), new Name("b"));
-        Names names = new Names(nameCollection);
+        List<String> collectNames = List.of("a", "b");
+        Names names = Names.of(collectNames);
         List<Path> passable = List.of(Path.UN_PASSABLE, Path.UN_PASSABLE);
         Line line = new Line(passable);
         Ladder ladder = new Ladder(List.of(line));
@@ -34,9 +33,9 @@ class LadderGameTest {
     @Nested
     class findGameResult_메소드_테스트 {
 
-        @ParameterizedTest
+        @ParameterizedTest(name = "참가자의_이름을_입력하면_결과를_반환한다")
         @CsvSource(value = {"a:1", "b:2"}, delimiter = ':')
-        void 참가자의_이름을_입력하면_결과를_반환한다(String name, String expected) {
+        void onlyOneTest(String name, String expected) {
             List<GameResult> gameResults = ladderGame.findGameResult(name);
 
             GameResult gameResult = gameResults.get(0);
