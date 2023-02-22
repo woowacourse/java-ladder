@@ -13,7 +13,7 @@ public class Results {
         validateCount(inputResults.length, playerCount);
         this.results = Arrays.stream(inputResults)
                 .map(Result::new)
-                .collect(Collectors.toList());;
+                .collect(Collectors.toList());
     }
 
     private void validateCount(int resultCount, int playerCount) {
