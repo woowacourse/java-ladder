@@ -26,11 +26,26 @@ public class Line {
         return new ArrayList<>(line);
     }
 
-    public boolean checkRight(final int index) {
-        return line.get(index) == Bridge.EXIST;
+    public int calculateNextPosition(final int index) {
+        if (index == 0) {
+            return index + checkRight(index).getDirection();
+        }
+        if (index == line.size()) {
+            return index + checkLeft(index).getDirection();
+        }
+        return index + checkLeft(index).getDirection() + checkRight(index).getDirection();
+    }
+    private Direction checkRight(final int index) {
+        if (line.get(index) == Bridge.EXIST) {
+            return Direction.RIGHT;
+        }
+        return Direction.DOWN;
     }
 
-    public boolean checkLeft(final int index) {
-        return line.get(index - 1) == Bridge.EXIST;
+    private Direction checkLeft(final int index) {
+        if (line.get(index - 1) == Bridge.EXIST) {
+            return Direction.LEFT;
+        }
+        return Direction.DOWN;
     }
 }
