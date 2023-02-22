@@ -1,5 +1,7 @@
 package domain;
 
+import domain.ladder.Line;
+import domain.ladder.Link;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

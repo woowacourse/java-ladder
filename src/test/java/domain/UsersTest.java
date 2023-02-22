@@ -3,6 +3,10 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.ladder.Line;
+import domain.ladder.Link;
+import domain.prize.Prizes;
+import domain.user.Users;
 import exception.ErrorMessage;
 import java.util.Collections;
 import java.util.List;

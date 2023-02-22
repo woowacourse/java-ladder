@@ -1,4 +1,4 @@
-package domain;
+package domain.user;
 
 import exception.ErrorMessage;
 import java.util.Objects;

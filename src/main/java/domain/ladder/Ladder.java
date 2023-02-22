@@ -1,5 +1,6 @@
-package domain;
+package domain.ladder;
 
+import domain.user.Users;
 import exception.ErrorMessage;
 
 import java.util.ArrayList;

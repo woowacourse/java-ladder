@@ -1,5 +1,7 @@
 package domain;
 
+import domain.prize.Prizes;
+import domain.user.Users;
 import exception.ErrorMessage;
 import java.util.List;
 import org.assertj.core.api.Assertions;

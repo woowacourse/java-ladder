@@ -1,5 +1,8 @@
-package domain;
+package domain.user;
 
+import domain.ladder.Line;
+import domain.prize.Prize;
+import domain.prize.Prizes;
 import exception.ErrorMessage;
 import java.util.ArrayList;
 import java.util.Collections;

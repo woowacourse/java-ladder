@@ -1,7 +1,7 @@
 package view;
 
-import domain.Line;
-import domain.Prize;
+import domain.ladder.Line;
+import domain.prize.Prize;
 import java.util.List;
 import java.util.Map;
 

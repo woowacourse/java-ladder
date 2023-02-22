@@ -1,7 +1,7 @@
-import domain.Ladder;
-import domain.Prizes;
-import domain.RandomLinkGenerator;
-import domain.Users;
+import domain.ladder.Ladder;
+import domain.prize.Prizes;
+import domain.ladder.RandomLinkGenerator;
+import domain.user.Users;
 import view.InputView;
 import view.OutputView;
 

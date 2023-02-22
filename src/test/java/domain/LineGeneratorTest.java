@@ -1,6 +1,10 @@
 package domain;
 
 
+import domain.ladder.Line;
+import domain.ladder.LineGenerator;
+import domain.ladder.Link;
+import domain.ladder.LinkGenerator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
