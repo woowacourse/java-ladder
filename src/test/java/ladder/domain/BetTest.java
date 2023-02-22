@@ -8,6 +8,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class BetTest {
 
+    // TODO: 2023-02-22 에러 메세지 검증 구현
+
     @DisplayName("내기 항목은 쉼표를 제외한 1자 이상, 5자 이하로 생성할 수 있다.")
     @ParameterizedTest
     @ValueSource(strings = {"a", "a@a", "aa aa"})

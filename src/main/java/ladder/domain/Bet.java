@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.error.ErrorMessage;
+
 public class Bet {
     private static final int MAX_BET_LENGTH = 5;
     private static final String COMMA = ",";
@@ -20,16 +22,16 @@ public class Bet {
 
     private void validateNotNull(String bet) {
         if (bet == null)
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.BET_IS_NULL.getMessage());
     }
 
     private void validateLength(String bet) {
         if (bet.isBlank() || bet.length() > MAX_BET_LENGTH)
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BET_LENGTH.getMessage());
     }
 
     private void validateDoesNotContainComma(String bet) {
-        if(bet.contains(COMMA))
-            throw new IllegalArgumentException();
+        if (bet.contains(COMMA))
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BET_FORMAT.getMessage());
     }
 }
