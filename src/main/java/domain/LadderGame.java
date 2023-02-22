@@ -24,6 +24,24 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
+    public Map<Player, Product> play() {
+        Map<Player, Product> result = new HashMap<>();
+        for (int index = 0; index < players.getPlayersCount(); index++) {
+            result.put(players.getPlayers().get(index), products.getProducts().get(oneClimbTheLadder(index)));
+        }
+        return result;
+    }
+
+    public int oneClimbTheLadder(int playerPosition) {
+        int floor = 0;
+        int position = playerPosition;
+        while (height.isSameHeight(floor)) {
+            position = climbTheLadderPlayerPosition(position,floor);
+            floor++;
+        }
+        return playerPosition;
+    }
+
     public int climbTheLadderPlayerPosition(int playerPosition,int floor) {
         if (playerPosition == 0) {
             return ladder.sideDecideWhereToGo(playerPosition, floor);
