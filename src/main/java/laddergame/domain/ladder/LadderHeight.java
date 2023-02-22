@@ -1,4 +1,4 @@
-package laddergame.domain.height;
+package laddergame.domain.ladder;
 
 import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_RANGE;
 import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_TYPE;
