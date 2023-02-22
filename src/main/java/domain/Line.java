@@ -46,4 +46,12 @@ public class Line {
     public List<Boolean> getStatus() {
         return List.copyOf(status);
     }
+
+    public boolean canMoveLeft(int index) {
+        return index > 0 && status.get(index - 1);
+    }
+
+    public boolean canMoveRight(int index) {
+        return index < status.size() && status.get(index);
+    }
 }

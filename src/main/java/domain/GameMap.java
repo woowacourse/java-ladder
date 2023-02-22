@@ -1,6 +1,8 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.IntToDoubleFunction;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -27,5 +29,15 @@ public class GameMap {
 
     public List<Line> getLines() {
         return ladder.getLines();
+    }
+
+    public List<Integer> decisionResult() {
+        List<Integer> prizeIndex = new ArrayList<>();
+
+        for (int i = 0; i <= weight.getWeight(); i++) {
+            prizeIndex.add(ladder.getResultIndex(i));
+        }
+
+        return prizeIndex;
     }
 }

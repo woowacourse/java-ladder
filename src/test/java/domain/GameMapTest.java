@@ -18,11 +18,18 @@ class GameMapTest {
     @DisplayName("참가자 수에서 1을 뺀 만큼의 라인을 가진사다리를 만든다.")
     @Test
     void generateMap() {
-        GameMap ladder = new GameMap(new Height("3"), new Weight(3), () -> true);
-        List<Line> lines = ladder.getLines();
+        GameMap gameMap = new GameMap(new Height("3"), new Weight(3), () -> true);
+        List<Line> lines = gameMap.getLines();
         Assertions.assertThat(lines).hasSize(3);
         Assertions.assertThat(lines.get(0).getStatus()).containsExactly(true, false);
         Assertions.assertThat(lines.get(1).getStatus()).containsExactly(true, false);
         Assertions.assertThat(lines.get(2).getStatus()).containsExactly(true, false);
+    }
+
+    @DisplayName("참여자들의 모든 결과 인덱스 출력하기")
+    @Test
+    void getResult() {
+        GameMap gameMap = new GameMap(new Height("3"), new Weight(3), () -> true);
+        Assertions.assertThat(gameMap.decisionResult()).containsExactly(1, 0, 2);
     }
 }
