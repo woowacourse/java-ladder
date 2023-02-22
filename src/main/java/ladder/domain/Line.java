@@ -54,7 +54,7 @@ public class Line {
 
         try {
             return getDirection(position);
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (Exception e) {
             return Direction.STRAIGHT;
         }
     }
@@ -77,11 +77,11 @@ public class Line {
 
     private void validatePosition(final int position) {
         if (isOutOfBound(position)) {
-            throw new IllegalArgumentException("주어진 값은 라인의 길이에 포함되어야 합니다.\n" + "position : " + position);
+            throw new IllegalArgumentException("주어진 값은 라인의 넓이 이하여야 합니다.\n" + "position : " + position);
         }
     }
 
     private boolean isOutOfBound(final int position) {
-        return position < 0 || position >= points.size();
+        return position < 0 || position > points.size();
     }
 }
