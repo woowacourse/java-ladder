@@ -9,7 +9,7 @@ import java.util.List;
 public class OutputView {
 
     private static final int LADDER_SPACING = 5;
-    private static final int NAME_SPACING = LADDER_SPACING + 1;
+    private static final int LABEL_SPACING = LADDER_SPACING + 1;
     private static final String KOREAN_LANGUAGE_CODE = "kor";
 
     private static final String PLAYER_NAMES_REQUEST_MSG = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) ";
@@ -17,7 +17,7 @@ public class OutputView {
     private static final String LADDER_HEIGHT_MSG = "최대 사다리 높이는 몇 개인가요?";
     private static final String RESULT_INFO_MSG = "실행결과";
 
-    private static final String PLAYER_NAME_FORMAT = "%" + NAME_SPACING + "s";
+    private static final String LADDER_LABEL_FORMAT = "%" + LABEL_SPACING + "s";
     private static final String LADDER_FORMAT = "%s|";
     private static final String LADDER_CONNECTED_SIGN = "-";
     private static final String LADDER_DISCONNECTED_SIGN = " ";
@@ -38,10 +38,9 @@ public class OutputView {
         System.out.println(RESULT_INFO_MSG);
     }
 
-    public static void printPlayerNames(List<String> playerNames) {
-
+    public static void printLadderLabel(List<String> playerNames) {
         for (String name : playerNames) {
-            System.out.printf(PLAYER_NAME_FORMAT, name);
+            System.out.printf(LADDER_LABEL_FORMAT, name);
         }
         System.out.println();
     }

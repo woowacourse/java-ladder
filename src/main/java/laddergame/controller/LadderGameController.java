@@ -17,17 +17,18 @@ public class LadderGameController {
 
     public void run() {
         LadderGame ladderGame = initLadderGame();
-        printLadderResult(ladderGame);
+        printGeneratedLadderResult(ladderGame);
     }
 
     private LadderGame initLadderGame() {
         Players players = RepeatValidator.readUntilValidate(this::readPlayers);
-        Prizes prizes = RepeatValidator.readUntilValidate(this::readPrizes);
-        int height = RepeatValidator.readUntilValidate(this::readLadderHeight);
-
-        LadderMaker ladderMaker = new LadderMaker(new RandomBooleanGenerator());
-        Ladder ladder = ladderMaker.make(players.size(), new LadderHeight(height));
-        return new LadderGame(players, ladder, prizes);
+        return RepeatValidator.readUntilValidate(() -> {
+            Prizes prizes = RepeatValidator.readUntilValidate(this::readPrizes);
+            int height = RepeatValidator.readUntilValidate(this::readLadderHeight);
+            LadderMaker ladderMaker = new LadderMaker(new RandomBooleanGenerator());
+            Ladder ladder = ladderMaker.make(players.size(), new LadderHeight(height));
+            return new LadderGame(players, ladder, prizes);
+        });
     }
 
     private Players readPlayers() {
@@ -48,9 +49,10 @@ public class LadderGameController {
         return height;
     }
 
-    private void printLadderResult(LadderGame ladderGame) {
+    private void printGeneratedLadderResult(LadderGame ladderGame) {
         OutputView.printResultInfoMsg();
-        OutputView.printPlayerNames(ladderGame.getPlayerNames());
+        OutputView.printLadderLabel(ladderGame.getPlayerNames());
         OutputView.printLadderMap(ladderGame.getLadderMap());
+        OutputView.printLadderLabel(ladderGame.getPrizeValues());
     }
 }

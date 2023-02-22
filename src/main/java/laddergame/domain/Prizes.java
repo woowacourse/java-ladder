@@ -21,4 +21,10 @@ public class Prizes {
     public int size() {
         return prizes.size();
     }
+
+    public List<String> getPrizeValues() {
+        return prizes.stream()
+                .map(prize -> prize.getValue())
+                .collect(Collectors.toUnmodifiableList());
+    }
 }

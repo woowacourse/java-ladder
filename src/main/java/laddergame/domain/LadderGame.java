@@ -30,4 +30,8 @@ public class LadderGame {
     public List<Line> getLadderMap() {
         return ladder.getLadder();
     }
+
+    public List<String> getPrizeValues() {
+        return prizes.getPrizeValues();
+    }
 }
