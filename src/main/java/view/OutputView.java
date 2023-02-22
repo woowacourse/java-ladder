@@ -69,9 +69,7 @@ public class OutputView {
         OUTPUT_RESULT("실행결과" + System.lineSeparator()),
         OUTPUT_RESULT_ALL("%s : %s" + System.lineSeparator()),
         COLUMN_LADDER("  |"),
-
         ROW_LADDER("-----|"),
-
         EMPTY_ROW_LADDER("     |");
 
         private final String message;
