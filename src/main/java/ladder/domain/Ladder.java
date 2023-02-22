@@ -1,48 +1,35 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import ladder.util.ExceptionMessageFormatter;
 
 public class Ladder {
 
-    private final List<Line> lines;
+    private final LadderLines lines;
     private final Destination destination;
 
-    private Ladder(List<Line> lines, Destination destination) {
+    private Ladder(LadderLines lines, Destination destination) {
         this.lines = lines;
         this.destination = destination;
     }
 
-    public static Ladder of(int playerCount, LadderHeight height, Destination destination) {
-        validatePlayerCount(playerCount);
-        validateDestination(playerCount, destination);
-        List<Line> lines = new ArrayList<>();
-
-        for (int i = 0; i < height.get(); i++) {
-            lines.add(Line.of(new RandomStepPointGenerator(), new LineWidth(playerCount)));
-        }
-        return new Ladder(lines, destination);
+    public static Ladder of(LineWidth width, LadderHeight height, List<String> results) {
+        validateResults(width.get(), results.size());
+        LadderLines ladderLines = LadderLines.of(new RandomStepPointGenerator(), width, height);
+        Destination destination = new Destination(results);
+        return new Ladder(ladderLines, destination);
     }
 
-    private static void validatePlayerCount(int playerCount) {
-        if (playerCount < Players.MIN_PLAYER_COUNT) {
+    private static void validateResults(int linesWidth, int resultsCount) {
+        if (linesWidth != resultsCount) {
             throw new IllegalArgumentException(
-                    ExceptionMessageFormatter.format("참여자가 " + Players.MIN_PLAYER_COUNT + "명 이상이어야 사다리를 만들 수 있습니다.",
-                            playerCount));
-        }
-    }
-
-    private static void validateDestination(int playerCount, Destination destination) {
-        if (destination.size() != playerCount) {
-            throw new IllegalArgumentException(
-                    ExceptionMessageFormatter.format("종착지의 개수는 참여자 수인 " + playerCount + "명과 일치해야 합니다.",
-                            destination.size())
+                    ExceptionMessageFormatter.format("결과의 개수와 라인의 폭(" + linesWidth + ")은 일치해야 합니다.",
+                            linesWidth)
             );
         }
     }
 
     public List<Line> toUnModifiableLines() {
-        return List.copyOf(lines);
+        return lines.toLines();
     }
 }
