@@ -23,4 +23,8 @@ public class Layer {
     public List<Boolean> getLines() {
         return Collections.unmodifiableList(lines);
     }
+
+    public boolean getLine(int index) {
+        return lines.get(index);
+    }
 }

@@ -23,4 +23,17 @@ public class LayerTest {
         layer.makeLine(true);
         assertThat(layer.getLines().get(0)).isTrue();
     }
+
+    @Test
+    @DisplayName("포지션에 해당하는 다리가 있는지를")
+    void test1() {
+        Layer layer = new Layer();
+        layer.makeLine(true);
+        layer.makeLine(true);
+        layer.makeLine(true);
+
+        assertThat(layer.getLine(0)).isTrue();
+        assertThat(layer.getLine(1)).isFalse();
+        assertThat(layer.getLine(2)).isTrue();
+    }
 }
