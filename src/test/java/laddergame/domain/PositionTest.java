@@ -36,4 +36,15 @@ class PositionTest {
         //then
         assertThat(position).isEqualTo(new Position(1));
     }
+
+    @DisplayName("값을 가져올 수 있다.")
+    @Test
+    void getValue() {
+        //given
+        Position position = new Position(1);
+        //when
+        int value = position.getValue();
+        //then
+        assertThat(value).isEqualTo(1);
+    }
 }
