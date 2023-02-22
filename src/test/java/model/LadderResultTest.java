@@ -11,25 +11,25 @@ public class LadderResultTest {
 
     @Test
     @DisplayName("사다리 실행 결과 객체 생성 성공 테스트")
-    void createLadderResultTest(){
+    void createLadderResultTest() {
         Assertions.assertThatNoException().isThrownBy(
-                () -> new LadderResult("꽝,5000,꽝,3000",4)
+                () -> new LadderResult("꽝,5000,꽝,3000", 4)
         );
     }
 
     @ParameterizedTest(name = "사다리 실행 결과 객체 생성 name = {0} 실패 테스트")
     @ValueSource(strings = {"꽝.꽝.꽝.꽝", "꽝,5000,꽝", "100"})
-    void createLadderResultFailTest(String result){
+    void createLadderResultFailTest(String result) {
         Assertions.assertThatThrownBy(
-                () -> new LadderResult(result,4)
+                () -> new LadderResult(result, 4)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest(name = "사다리 실행 결과 객체 생성 name = {0} 실패 테스트")
     @NullAndEmptySource
-    void createLadderResultFailTest2(String result){
+    void createLadderResultFailTest2(String result) {
         Assertions.assertThatThrownBy(
-                () -> new LadderResult(result,4)
+                () -> new LadderResult(result, 4)
         ).isInstanceOf(Exception.class);
     }
 }

@@ -1,17 +1,11 @@
 package controller;
 
-import model.Game;
-import model.Ladder;
-import model.LadderHeight;
-import model.LadderResult;
-import model.Names;
-import model.Player;
+import model.*;
 import util.LineGenerator;
 import view.InputView;
 import view.OutputView;
 
 public class Controller {
-
     public InputView inputView;
     public OutputView outputView;
 
@@ -24,10 +18,10 @@ public class Controller {
         Names names = setNames();
         LadderResult ladderResult = setLadderResult(names.getNamesSize());
         LadderHeight ladderHeight = setLadderHeight();
-        Ladder ladder = new Ladder(names.getNamesSize(), ladderHeight,new LineGenerator());
-        Game game = new Game(names, ladderResult,ladderHeight,ladder);
-        printLadder(names, ladder, ladderHeight , ladderResult);
-        playLadderGame(game,names);
+        Ladder ladder = new Ladder(names.getNamesSize(), ladderHeight, new LineGenerator());
+        Game game = new Game(names, ladderResult, ladderHeight, ladder);
+        printLadder(names, ladder, ladderHeight, ladderResult);
+        playLadderGame(game, names);
     }
 
     private Names setNames() {
@@ -53,7 +47,7 @@ public class Controller {
     private LadderResult setLadderResult(int personCount) {
         outputView.printExecutionResultMessage();
         try {
-            return new LadderResult(inputView.readLadderResult(),personCount);
+            return new LadderResult(inputView.readLadderResult(), personCount);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return setLadderResult(personCount);
@@ -61,21 +55,21 @@ public class Controller {
     }
 
     private void printLadder(Names names, Ladder ladder, LadderHeight ladderHeight,
-                             LadderResult result){
+                             LadderResult result) {
         outputView.printLadderResultMessage();
         outputView.printName(names);
         outputView.printLadder(names, ladder, ladderHeight);
         outputView.printResult(result);
     }
 
-    private void playLadderGame(Game game,Names names) {
+    private void playLadderGame(Game game, Names names) {
         Player playerName;
-        do{
+        do {
             playerName = setPlayer(names);
             outputView.printPlayerExecutionResultMessage();
             printPlayerResult(playerName, game);
         }
-        while(!playerName.isEqualPlayer(playerName));
+        while (!playerName.isEqualEndMessage(playerName));
     }
 
     private Player setPlayer(Names names) {
@@ -88,9 +82,9 @@ public class Controller {
         }
     }
 
-    private void printPlayerResult(Player player,Game game){
-        if(player.isExistPlayer(player)){
-            outputView.printPlayerGameResult(game.getPrizeIndividualPlayer(player).getResult());
+    private void printPlayerResult(Player player, Game game) {
+        if (player.isExistPlayer(player)) {
+            outputView.printPlayerGameResult(game.getPrizeIndividualPlayer(player));
             return;
         }
         outputView.printPlayerGameEndResult(game.getPrizePlayers());

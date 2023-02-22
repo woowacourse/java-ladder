@@ -1,10 +1,11 @@
 package model;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
-
-    private HashMap<Name, Result> prizeResult = new HashMap<>();
+    private final Map<Name, Result> prizeResult = new HashMap<>();
 
     public Game(Names names, LadderResult result, LadderHeight height, Ladder ladder) {
         playGame(names, result, height, ladder);
@@ -12,9 +13,9 @@ public class Game {
 
     private void playGame(Names names, LadderResult result, LadderHeight height, Ladder ladder) {
         for (Name name : names.getNames()) {
-            int startIndex = names.getNames().indexOf(name);
-            int resultIndex = moveLadder(names.getNamesSize(), height, ladder, startIndex);
-            prizeResult.put(name, result.getLadderResult().get(resultIndex));
+            int startPlayerIndex = names.getNames().indexOf(name);
+            int resultIndex = moveLadder(names.getNamesSize(), height, ladder, startPlayerIndex);
+            prizeResult.put(name, result.getLadderResultElement(resultIndex));
         }
     }
 
@@ -42,11 +43,11 @@ public class Game {
         return column < personCount - 1 && ladder.getLadderLine(column,row);
     }
 
-    public Result getPrizeIndividualPlayer(Player name) {
-        return prizeResult.get(new Name(name.getPlayer()));
+    public String getPrizeIndividualPlayer(Player name) {
+        return prizeResult.get(new Name(name.getPlayer())).getResult();
     }
 
-    public HashMap<Name,Result> getPrizePlayers() {
-        return prizeResult;
+    public Map<Name,Result> getPrizePlayers() {
+        return Collections.unmodifiableMap(prizeResult);
     }
 }

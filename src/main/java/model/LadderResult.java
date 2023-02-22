@@ -3,6 +3,7 @@ package model;
 import util.ExceptionMessage;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +30,10 @@ public class LadderResult {
     }
 
     public List<Result> getLadderResult() {
-        return ladderResult;
+        return Collections.unmodifiableList(ladderResult);
+    }
+
+    public Result getLadderResultElement(int index) {
+        return ladderResult.get(index);
     }
 }

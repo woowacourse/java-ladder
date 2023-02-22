@@ -36,6 +36,6 @@ public class Name {
 
     @Override
     public boolean equals(Object o) {
-        return this.hashCode()==o.hashCode();
+        return this.hashCode() == o.hashCode();
     }
 }

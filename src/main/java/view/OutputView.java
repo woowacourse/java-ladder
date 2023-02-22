@@ -1,14 +1,9 @@
 package view;
 
-import model.Name;
-import model.Ladder;
-import model.LadderHeight;
-import model.LadderResult;
-import model.Names;
-import model.Result;
+import model.*;
 import util.LadderPrintMessage;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class OutputView {
     private static final String PLAYER_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -56,7 +51,7 @@ public class OutputView {
         stringBuilder = new StringBuilder();
         for (int row = 0; row < ladderHeight.getLadderHeight(); row++) {
             stringBuilder.append(printStartLadder());
-            printConnectLadder(names.getNames().size(), ladder, row);
+            printConnectLadder(names.getNamesSize(), ladder, row);
             stringBuilder.append(System.lineSeparator());
         }
         System.out.print(stringBuilder);
@@ -68,12 +63,12 @@ public class OutputView {
 
     private void printConnectLadder(int playerSize, Ladder ladder, int row) {
         for (int column = 0; column < playerSize - 1; column++) {
-            printLineBetweenLadder(ladder,row,column);
+            printLineBetweenLadder(ladder, row, column);
         }
     }
 
-    private void printLineBetweenLadder(Ladder ladder, int row, int column){
-        if (ladder.getLadderLine(column,row)) {
+    private void printLineBetweenLadder(Ladder ladder, int row, int column) {
+        if (ladder.getLadderLine(column, row)) {
             stringBuilder.append(LadderPrintMessage.CONNECT_LADDER.getMessage());
         } else
             stringBuilder.append(LadderPrintMessage.NO_CONNECT_LADDER.getMessage());
@@ -89,7 +84,7 @@ public class OutputView {
         System.out.println(player);
     }
 
-    public void printPlayerGameEndResult(HashMap<Name, Result> prizeResult) {
+    public void printPlayerGameEndResult(Map<Name, Result> prizeResult) {
         stringBuilder = new StringBuilder();
         for (Name name : prizeResult.keySet()) {
             stringBuilder.append(name.getName())

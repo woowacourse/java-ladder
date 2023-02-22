@@ -12,24 +12,22 @@ public class Player {
         this.player = player;
     }
 
-    private boolean validatePlayer(Names names, String player){
-        if(names.getNames().contains(new Name(player)) || player.equals(END_MESSAGE)){
-            return true;
+    private void validatePlayer(Names names, String player) {
+        if (!(names.getNames().contains(new Name(player)) || player.equals(END_MESSAGE))) {
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_PLAYER_RESULT.getExceptionMessage());
         }
-        throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_PLAYER_RESULT.getExceptionMessage());
     }
 
-    public boolean comparePlayer(Player name){
-        if(player.equals(END_MESSAGE)){
-            return false;
-        }
-        else if(player.equals(name.getPlayer())){
-            return true;
-        }
-        return false;
+    public boolean isExistPlayer(Player name) {
+        return !player.equals(END_MESSAGE) && player.equals(name.getPlayer());
     }
 
-    public String getPlayer(){
+    public boolean isEqualEndMessage(Player player) {
+        return player.getPlayer().equals(END_MESSAGE);
+    }
+
+    public String getPlayer() {
         return this.player;
     }
+
 }

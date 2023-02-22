@@ -3,8 +3,8 @@ package model;
 import util.ExceptionMessage;
 
 public class LadderHeight {
-
     private static final int MINIMUM_LADDER_HEIGHT = 1;
+
     private final int height;
 
     public LadderHeight(int height) {
