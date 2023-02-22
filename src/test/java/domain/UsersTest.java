@@ -41,7 +41,7 @@ public class UsersTest {
                         new User("honux"),
                         new User("jk")))
         );
-        assertThat(users.contain(new User(userName))).isEqualTo(result);
+        assertThat(users.contain(userName)).isEqualTo(result);
     }
 
     static Stream<Arguments> usersFailParameter() {
