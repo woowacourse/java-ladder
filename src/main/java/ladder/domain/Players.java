@@ -35,4 +35,12 @@ public class Players {
     public int size() {
         return players.size();
     }
+
+    public Player getPlayerByName(final String name) {
+        return players.stream()
+                .filter(player -> name.equals(player.getName()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참가자입니다"));
+
+    }
 }
