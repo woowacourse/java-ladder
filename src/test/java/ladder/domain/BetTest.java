@@ -18,8 +18,15 @@ public class BetTest {
 
     @DisplayName("내기 항목은 null일 수 없다.")
     @Test
-    void createBetFailTestByNullValue(){
+    void createBetFailTestByNullValue() {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new Bet(null));
+    }
+
+    @DisplayName("내기 항목은 비어있을 수 없다.")
+    @Test
+    void createBetFailTestByEmptyValue() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> new Bet(""));
     }
 }
