@@ -23,4 +23,7 @@ public class Goods {
             throw new IllegalArgumentException(NOT_SAME_COUNT_ERROR);
         }
     }
+    public Name getItemsWithPosition(final int position){
+        return items.get(position);
+    }
 }
