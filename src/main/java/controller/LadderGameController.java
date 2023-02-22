@@ -30,9 +30,9 @@ public class LadderGameController {
     }
 
     private void printLadderGameResult(Players players, Ladder ladder) {
-        outputView.printResultPrefix();
+        outputView.printLadderResultPrefix();
         outputView.printPlayerNames(players);
-        outputView.printResult(ladder);
+        outputView.printLadder(ladder);
     }
 
     public void printError(Exception exception) {
