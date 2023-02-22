@@ -36,7 +36,14 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public String set(int index, String value) {
-        return null;
+        Node tmp = next;
+        String result;
+        for (int i = 0; i < index - 1; i++) {
+            tmp = tmp.next;
+        }
+        result = tmp.data;
+        tmp.data = value;
+        return result;
     }
 
     @Override
@@ -55,14 +62,22 @@ public class SimpleLinkedList implements SimpleList {
             if (result.data.equals(value)) {
                 return true;
             }
-            result = next.next;
+            result = result.next;
         }
         return false;
     }
 
     @Override
     public int indexOf(String value) {
-        return 0;
+        int index = 0;
+        Node result = next;
+        while (result.next != null) {
+            if (result.data.equals(value)) {
+                return index;
+            }
+            index++;
+        }
+        return -1;
     }
 
     @Override
@@ -91,14 +106,14 @@ public class SimpleLinkedList implements SimpleList {
         } else if (index == size - 1) {
             Node tmp = next;
             while (tmp.next != null) {
-                tmp = next.next;
+                tmp = tmp.next;
             }
             result = tmp.data;
             tmp = null;
         } else {
             Node tmp = next;
             for (int i = 0; i < index - 1; i++) {
-                tmp = next.next;
+                tmp = tmp.next;
             }
             result = tmp.next.data;
             tmp.next = tmp.next.next;
@@ -109,6 +124,13 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public void clear() {
-
+        Node result = next;
+        while (result.next != null) {
+            Node tmp = result;
+            result = tmp.next;
+            tmp = null;
+        }
+        next = null;
+        size = 0;
     }
 }

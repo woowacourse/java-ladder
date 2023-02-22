@@ -48,17 +48,17 @@ class ListStudy {
         assertThat(list.size()).isEqualTo(2); // 값이 삭제 됐는지 확인한다.
         list.add(1, "hello");
         assertThat(list.size()).isEqualTo(3);
-//        list.set(0, "world");
-//        assertThat(list.get(0)).isEqualTo("world");
-//        assertThat(list.size()).isEqualTo(3);
+        list.set(0, "world");
+        assertThat(list.get(0)).isEqualTo("world");
+        assertThat(list.size()).isEqualTo(3);
 //
-//         values에 담긴 모든 값을 출력한다.
+         // values에 담긴 모든 값을 출력한다.
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i));
         }
 
-//        list.clear();
-//        assertThat(list.size()).isEqualTo(0);
-//        assertThat(list.isEmpty()).isTrue();
+        list.clear();
+        assertThat(list.size()).isEqualTo(0);
+        assertThat(list.isEmpty()).isTrue();
     }
 }
