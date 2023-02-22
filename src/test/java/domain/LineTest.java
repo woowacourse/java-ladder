@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
@@ -24,6 +25,14 @@ public class LineTest {
     void validateLineBridgeFailTest(List<Bridge> input) {
         Assertions.assertThatCode(() -> new Line(input))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("현재 유저가 오른쪽으로 이동가능 여부를 boolean으로 리턴한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"0,true", "1,false"})
+    void checkRightBridgeTest(final int index, final boolean result) {
+        Line line = new Line(List.of(Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST, Bridge.NON_EXIST, Bridge.EXIST));
+        Assertions.assertThat(line.checkRight(index)).isEqualTo(result);
     }
 
     static Stream<Arguments> lineGeneratorFailParameter() {
