@@ -23,7 +23,10 @@ public class Users {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public void findUserByName(String resultOption) {
-
+    public User findUserByName(String userName) {
+        return users.stream()
+                .filter(user -> user.isEqualName(userName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자 입니다."));
     }
 }
