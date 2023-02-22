@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @DisplayName("Names 는")
 public class NamesTest {
-    private final Names names = new Names(List.of(new Name("찰리"), new Name("가비")));
 
     @Test
     void Name_의_List_를_통해_생성된다() {
@@ -30,16 +29,33 @@ public class NamesTest {
 
     @Test
     void 크기를_알_수_있다() {
+        final Name charlieName = new Name("찰리");
+        final Names names = new Names(List.of(charlieName, new Name("가비")));
+
         assertThat(names.size()).isEqualTo(2);
     }
 
     @Test
     void 해당_value을_가진_Name_이_있는지_알_수_있다() {
+        final Name charlieName = new Name("찰리");
+        final Names names = new Names(List.of(charlieName, new Name("가비")));
+
         assertThat(names.hasName("찰리")).isEqualTo(true);
     }
 
     @Test
     void value_를_가진_Name의_index_를_알_수_있다() {
+        final Name charlieName = new Name("찰리");
+        final Names names = new Names(List.of(charlieName, new Name("가비")));
+
         assertThat(names.getNameIndexByValue("찰리")).isEqualTo(0);
+    }
+
+    @Test
+    void name_의_순서를_알_수_있다() {
+        final Name charlieName = new Name("찰리");
+        final Names names = new Names(List.of(charlieName, new Name("가비")));
+
+        assertThat(names.getNameByIndex(0)).isEqualTo(charlieName);
     }
 }
