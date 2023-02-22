@@ -8,7 +8,7 @@ public class Name {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String ALL = "all";
     private static final String COMMA = ",";
-    // TODO: 2023-02-22 NullPointerException 적용 
+
     private final String name;
 
     public Name(String name) {
