@@ -2,40 +2,47 @@ package controller;
 
 import domain.GameResult;
 import domain.Ladder;
+import domain.LadderGame;
+import domain.LadderGameBuilder;
 import domain.LadderResults;
 import domain.Participants;
 import util.BooleanGenerator;
+import util.RandomBooleanGenerator;
 import view.InputView;
 import view.OutputView;
 
-public class RadderGameController {
+public class LadderGameController {
 
-    public static final String FINISH = "all";
+    private static final String FINISH = "all";
     private final InputView inputView;
     private final OutputView outputView;
+    private final LadderGame ladderGame;
 
-    public RadderGameController(InputView inputView, OutputView outputView) {
+    public LadderGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.ladderGame = generateLadderGame();
     }
 
-    public void play(BooleanGenerator booleanGenerator) {
-        Participants participants = makeParticipants();
-        Ladder ladder = generateLadder(participants, booleanGenerator);
+    private LadderGame generateLadderGame() {
+        Participants participants = getParticipantNames();
+        Ladder ladder = generateLadder(participants, new RandomBooleanGenerator());
         LadderResults ladderResults = getLadderResults(participants.getCount());
-        showGameMap(participants, ladder, ladderResults);
-        GameResult gameResult = makeGameResult(ladder, participants, ladderResults);
-        showGameResultUntilFinish(gameResult);
-        outputView.printAllGameResult(gameResult.getResults());
+        LadderGameBuilder ladderGameBuilder = new LadderGameBuilder();
+        return ladderGameBuilder
+            .addParticipants(participants)
+            .addLadder(ladder)
+            .addLadderResults(ladderResults)
+            .build();
     }
 
-    private Participants makeParticipants() {
+    private Participants getParticipantNames() {
         try {
             String participantsName = inputView.enterParticipantsName();
             return new Participants(participantsName);
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
-            return makeParticipants();
+            return getParticipantNames();
         }
     }
 
@@ -60,8 +67,15 @@ public class RadderGameController {
         }
     }
 
-    private void showGameMap(Participants participants, Ladder ladder, LadderResults ladderResults) {
-        outputView.printGameMap(participants, ladder, ladderResults);
+    public void play() {
+        GameResult gameResult = new GameResult(ladderGame);
+        showLadderGameMap();
+        showGameResultUntilFinish(gameResult);
+        outputView.printAllGameResult(gameResult);
+    }
+
+    private void showLadderGameMap() {
+        outputView.printGameMap(ladderGame);
     }
 
     private void showGameResultUntilFinish(GameResult gameResult) {
@@ -71,13 +85,9 @@ public class RadderGameController {
             nameForResult = getNameForResult(gameResult);
         }
     }
-    
+
     private boolean isNotFinish(String nameForResult) {
         return !nameForResult.equals(FINISH);
-    }
-
-    private GameResult makeGameResult(Ladder ladder, Participants participants, LadderResults ladderResults) {
-        return new GameResult(ladder, participants, ladderResults);
     }
 
     private String getNameForResult(GameResult gameResult) {

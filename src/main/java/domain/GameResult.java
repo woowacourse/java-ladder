@@ -4,7 +4,6 @@ import exception.NullNameException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 public class GameResult {
 
@@ -14,35 +13,35 @@ public class GameResult {
     private static final int LEFT = -1;
     private static final int STAY = 0;
     private static final int RIGHT = 1;
-    private final Ladder ladder;
-    private final Participants participants;
-    private final LadderResults ladderResults;
+    private final List<Line> lines;
+    private final List<String> participantsNames;
+    private final List<String> ladderResults;
     private final Map<String, String> results = new HashMap<>();
 
-    public GameResult(Ladder ladder, Participants participants, LadderResults ladderResults) {
-        this.ladder = ladder;
-        this.participants = participants;
-        this.ladderResults = ladderResults;
+    public GameResult(LadderGame ladderGame) {
+        this.lines = ladderGame.getLines();
+        this.participantsNames = ladderGame.getParticipantNames();
+        this.ladderResults = ladderGame.getLadderResultNames();
         setResults();
     }
 
     private void setResults() {
-        IntStream.range(0, participants.getCount()).forEach((current) -> {
-            final String participantName = participants.getNames().get(current);
-            results.put(participantName, getGameResult(current));
+        participantsNames.forEach((participantName) -> {
+            final int order = participantsNames.indexOf(participantName);
+            results.put(participantName, getGameResult(order));
         });
     }
 
     private String getGameResult(int currentPosition) {
-        for (Line line : ladder.getLines()) {
+        for (Line line : lines) {
             int move = getMove(currentPosition, line.getBlocks());
             currentPosition += move;
         }
-        return ladderResults.getResults().get(currentPosition);
+        return ladderResults.get(currentPosition);
     }
 
     private int getMove(int currentPosition, List<Boolean> blocks) {
-        final int lastBlockPosition = participants.getCount() - 1;
+        final int lastBlockPosition = participantsNames.size() - 1;
         final int prevBlockPosition = currentPosition - 1;
         if (currentPosition == FIRST_BLOCK_POSITION) {
             return decideDirection(DISCONNECTED, blocks.get(currentPosition));

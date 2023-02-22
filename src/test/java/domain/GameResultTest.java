@@ -11,13 +11,18 @@ class GameResultTest {
     @Test
     void getGameResult() {
         //given
-        Participants participants = new Participants("ash,split,ako,mako,heero,bever");
-        LadderResults ladderResults = new LadderResults("1000,2000,3000,4000,5000,6000", 6);
         TestBooleanGenerator testBooleanGenerator = new TestBooleanGenerator();
         testBooleanGenerator.addAllValues(List.of(true, false, false, true, false));
+        Participants participants = new Participants("ash,split,ako,mako,heero,bever");
+        LadderResults ladderResults = new LadderResults("1000,2000,3000,4000,5000,6000", 6);
         Ladder ladder = new Ladder("1", 5, testBooleanGenerator);
+        LadderGameBuilder ladderGameBuilder = new LadderGameBuilder();
+        LadderGame ladderGame = ladderGameBuilder.addParticipants(participants)
+            .addLadder(ladder)
+            .addLadderResults(ladderResults)
+            .build();
         //when
-        GameResult gameResult = new GameResult(ladder, participants, ladderResults);
+        GameResult gameResult = new GameResult(ladderGame);
         //then
         Assertions.assertThat(gameResult.getResultByName("ash")).isEqualTo("2000");
         Assertions.assertThat(gameResult.getResultByName("split")).isEqualTo("1000");
