@@ -1,5 +1,6 @@
 package domain;
 
+import static utils.ErrorMessage.INDEX_OUT_OF_BOUNDS;
 import static utils.ErrorMessage.INVALID_REWARDS_SIZE;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class Rewards {
 
     public String getReward(int index) {
         if (index < FIRST_INDEX || index >= rewards.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INDEX_OUT_OF_BOUNDS.getMessage());
         }
         return rewards.get(index);
     }
