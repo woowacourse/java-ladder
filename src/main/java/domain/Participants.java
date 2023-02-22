@@ -29,7 +29,7 @@ public class Participants {
 
     private void validateDistinct(Collection<?> collection) {
         if (hasDuplicateIn(collection)) {
-            throw new IllegalArgumentException("이름은 중복될 수 없습니다.");
+            throw new IllegalArgumentException("참가자는 중복될 수 없습니다.");
         }
     }
 
