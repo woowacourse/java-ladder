@@ -21,19 +21,7 @@ public class Name {
         boolean isBlank = name.isBlank();
         boolean isInvalidLength = name.length() < MIN_LENGTH || name.length() > MAX_LENGTH;
         if (isBlank || isInvalidLength) {
-            throw new IllegalArgumentException(Message.EXCEPTION_INVALID_NAME_LENGTH.message);
-        }
-    }
-
-    protected enum Message {
-
-        EXCEPTION_INVALID_NAME_LENGTH("%d글자 이상 %d글자 이하의 이름만 입력해주세요.", MIN_LENGTH, MAX_LENGTH);
-
-        public static final String BASE_MESSAGE_FORMAT = "[ERROR] %s";
-        private final String message;
-
-        Message(String message, Object... replaces) {
-            this.message = String.format(BASE_MESSAGE_FORMAT, String.format(message, replaces));
+            throw new IllegalArgumentException("1글자 이상 5글자 이하의 이름만 입력해주세요.");
         }
     }
 
