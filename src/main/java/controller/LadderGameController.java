@@ -1,5 +1,6 @@
 package controller;
 
+import domain.GameResult;
 import domain.Ladder;
 import domain.Names;
 import java.util.List;
@@ -28,10 +29,10 @@ public class LadderGameController {
         Results results = makeResults(names.findNumberOfNames());
         Ladder ladder = makeLadder(names.findNumberOfNames());
 
-        outputView.printResult(names, ladder, results);
+        Map<String, String> result = ladder.matchResult(names.getNames(), results.getResults());
+        GameResult gameResult = new GameResult(result);
 
-        Map<String, String> gameResult = ladder.matchResult(names.getNames(), results.getResults());
-        System.out.println(gameResult);
+        outputView.printResult(names, ladder, results);
     }
 
     private Names makeNames() {
