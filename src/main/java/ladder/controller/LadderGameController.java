@@ -89,7 +89,7 @@ public class LadderGameController {
     private void askResults(Map<Player, Reward> result) {
         String askedPlayerName = inputView.readAskingResult();
 
-        while (!askedPlayerName.equals("quit")) {
+        while (!askedPlayerName.equals(Command.QUIT.getCommand())) {
             searchResult(result, askedPlayerName);
 
             askedPlayerName = inputView.readAskingResult();
@@ -97,7 +97,7 @@ public class LadderGameController {
     }
 
     private void searchResult(Map<Player, Reward> result, String askedPlayerName) {
-        if (askedPlayerName.equals("all")) {
+        if (askedPlayerName.equals(Command.ALL.getCommand())) {
             showAllResult(result);
             return;
         }
