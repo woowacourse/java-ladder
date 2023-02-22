@@ -10,10 +10,12 @@ public class Reward {
 
 
     private final String reward;
+    private final int index;
 
-    public Reward(String reward) {
+    public Reward(String reward, int index) {
         validate(reward);
         this.reward = reward;
+        this.index = index;
     }
 
     private void validate(String runResult) {

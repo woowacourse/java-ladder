@@ -14,7 +14,7 @@ public class ResultTest {
     @ValueSource(strings = {"꽝", "5000", "꽝", "3000"})
     @DisplayName("실행 결과를 받아서 LadderResult를 생성한다.")
     void generateTest(String reward) {
-        Assertions.assertDoesNotThrow(() -> new Result(new Reward(reward)));
+        Assertions.assertDoesNotThrow(() -> new Result(new Reward(reward, 0)));
     }
 
 
