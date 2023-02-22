@@ -12,13 +12,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NameTest {
 
-    private Name name;
-
     @Test
     @DisplayName("Name 객체 equals 테스트")
     void equalsTest() {
         String nameValue = "pobi";
-        this.name = new Name(nameValue);
+        Name name = new Name(nameValue);
         Name other = new Name(nameValue);
         assertThat(name).isEqualTo(other);
     }
@@ -26,20 +24,20 @@ public class NameTest {
     @DisplayName("이름 생성할 때")
     @Nested
     class NameInitiatorTest {
-        @DisplayName("1자 이상 5자 이하 일 떄 정상 작동한다.")
+        @DisplayName("길이는  1 이상 5 이하일 떄 정상 작동한다. 영어 = 길이 1, 한글 = 길이 2")
         @ParameterizedTest(name = "inputName = {0}")
-        @ValueSource(strings = {"가", "가나", "가나다라마"})
+        @ValueSource(strings = {"가", "가나", "a", "aaaaa"})
         void createNameTest(String name) {
             Assertions.assertDoesNotThrow(() -> new Name(name));
         }
 
-        @DisplayName("공백, 빈문자열이거나 5자 초과 떄 예외가 발생한다.")
+        @DisplayName("공백, 빈문자열이거나 길이가 5 초과 떄 예외가 발생한다. 영어 = 길이 1, 한글 = 길이 2")
         @ParameterizedTest(name = "inputName = {0}")
-        @ValueSource(strings = {"", "    ", "가나다라마바", "가나다라마바사아자차"})
+        @ValueSource(strings = {"", "    ", "가나다", "aaaaaa"})
         void createNameExceptionTest(String name) {
             assertThatThrownBy(() -> new Name(name))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("플레이어의 이름은 1자 이상 5자 이하여야 합니다.");
+                    .hasMessageContaining("플레이어의 이름 길이는 1 이상 5 이하여야 합니다. 영어 = 길이 1, 한글 = 길이 2");
         }
 
     }
