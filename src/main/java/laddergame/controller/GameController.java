@@ -1,5 +1,6 @@
 package laddergame.controller;
 
+import laddergame.domain.Results;
 import laddergame.domain.ladder.ConnectionStrategy;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.player.Names;
@@ -16,6 +17,7 @@ public class GameController {
 
     public void process() {
         final Names names = readNamesWithRetry();
+        final Results results = readResultWithRetry(names.getSize());
         final Ladder ladder = readHeightWithRetry(names, connectionStrategy);
 
         OutputView.printPlayerAll(names);
@@ -37,6 +39,15 @@ public class GameController {
         } catch (IllegalStateException | IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             return readHeightWithRetry(names, connectionStrategy);
+        }
+    }
+
+    private Results readResultWithRetry(final int size) {
+        try {
+            return new Results(InputView.readResults(), size);
+        } catch (IllegalStateException | IllegalArgumentException e) {
+            OutputView.printMessage(e.getMessage());
+            return readResultWithRetry(size);
         }
     }
 }
