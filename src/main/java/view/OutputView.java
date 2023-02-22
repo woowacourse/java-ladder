@@ -16,6 +16,7 @@ public class OutputView {
     private static final String UNCONNECTED_LINE = "     ";
     private static final String NAME_SPACE = " ";
     private static final String DELIMITER = " : ";
+    private static final String RESULT_MASSAGE = "실행 결과";
 
     public void printResult(List<Name> names, Ladder ladder) {
         System.out.println(RESULT_ANNOUNCEMENT);
@@ -43,7 +44,9 @@ public class OutputView {
         }
         return UNCONNECTED_LINE;
     }
-
+    public void printResultMention(){
+        System.out.println(RESULT_MASSAGE);
+    }
     public void printNames(final List<Name> names) {
         StringBuilder stringBuilder = new StringBuilder();
         names.forEach(name -> {

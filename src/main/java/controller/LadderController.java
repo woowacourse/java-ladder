@@ -59,11 +59,13 @@ public class LadderController {
             return;
         }
         if (order.equals(ALL_ORDER)) {
+            outputView.printResultMention();
             printAll();
             outputData();
         }
         List<Integer> playerPositionList = players.getPlayersPosition(new Name(order));
         for (int position : playerPositionList) {
+            outputView.printResultMention();
             outputView.printPlayerAndItem(order, goods.getItemsWithPosition(position));
             outputData();
         }
