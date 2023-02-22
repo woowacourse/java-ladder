@@ -110,13 +110,17 @@ public class LadderGameController {
     }
 
     private void showAllResult(Map<Player, Reward> result) {
-        Map<String, String> convertedResult = result.keySet().stream()
+        Map<String, String> convertedResult = convertResult(result);
+
+        outputView.printAllResult(convertedResult);
+    }
+
+    private static Map<String, String> convertResult(Map<Player, Reward> result) {
+        return result.keySet().stream()
                 .collect(Collectors.toMap(
                         Player::getPlayerName,
                         key -> result.get(key).getReward()
                 ));
-
-        outputView.printAllResult(convertedResult);
     }
 
     private void showOneResult(Reward reward) {
