@@ -23,7 +23,7 @@
 - [ ] boolean contains(String value);
 - [ ] int indexOf(String value);
 - [ ] int size();
-- [ ] boolean isEmpty();
+- [x] boolean isEmpty();
 - [ ] boolean remove(String value);
 - [ ] String remove(int index);
 - [x] void clear();
