@@ -1,7 +1,10 @@
 package ladder.domain;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Position {
 
@@ -38,6 +41,12 @@ public class Position {
 
     private static boolean isInvalidPosition(final int value) {
         return value < POSITION_VALUE_LOWER_BOUND || POSITION_VALUE_UPPER_BOUND <= value;
+    }
+
+    public static List<Position> range(final int endExclusive) {
+        return IntStream.range(POSITION_VALUE_LOWER_BOUND, endExclusive)
+                .mapToObj(Position::valueOf)
+                .collect(Collectors.toList());
     }
 
     public Position getPrevious() {

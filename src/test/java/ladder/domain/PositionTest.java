@@ -3,6 +3,7 @@ package ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,20 @@ public class PositionTest {
         final Position position = Position.valueOf(value);
 
         assertThat(position.getValue()).isEqualTo(value);
+    }
+
+    @Test
+    void 입력한_값까지의_Position을_반환한다() {
+        final List<Position> positions = Position.range(3);
+
+        assertThat(positions).containsExactly(Position.valueOf(0), Position.valueOf(1), Position.valueOf(2));
+    }
+
+    @Test
+    void 허용범위_밖_위치값을_입력하는_경우_예외를_던진다() {
+        assertThatThrownBy(() -> Position.range(21))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("위치값은 0이상, 20미만이어야 합니다.");
     }
 
     @Test
