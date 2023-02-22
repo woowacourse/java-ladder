@@ -15,8 +15,8 @@ public class LadderGame {
         this.players = new Players(players);
     }
 
-    public List<Line> play(int height) {
-        Ladder ladder = Ladder.of(players.size(), new LadderHeight(height));
+    public List<Line> play(int height, List<String> results) {
+        Ladder ladder = Ladder.of(players.size(), new LadderHeight(height), new Destination(results));
         return ladder.toUnModifiableLines();
     }
 

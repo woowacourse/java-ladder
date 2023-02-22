@@ -11,10 +11,10 @@ class DestinationTest {
 
     @Test
     @DisplayName("전달받은 위치에 해당하는 결과를 반환한다.")
-    void should_ReturnResult_When_GivenLegalsIndex() {
+    void should_ReturnValue_By_Index() {
         Destination destination = new Destination(List.of("꽝", "꽝", "10000"));
 
-        assertThat(destination.getResult(0)).isEqualTo("꽝");
+        assertThat(destination.get(0)).isEqualTo("꽝");
     }
 
     @Test
@@ -22,7 +22,7 @@ class DestinationTest {
     void should_ThrowException_When_GivenIndex_OutOfBounds() {
         Destination destination = new Destination(List.of("꽝", "꽝", "10000"));
 
-        assertThatThrownBy(() -> destination.getResult(Integer.MAX_VALUE))
+        assertThatThrownBy(() -> destination.get(Integer.MAX_VALUE))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("주어진 위치가 종착지 정보의 개수보다 큽니다.");
     }

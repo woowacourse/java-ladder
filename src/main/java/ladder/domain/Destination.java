@@ -11,7 +11,11 @@ public class Destination {
         this.destination = destination;
     }
 
-    public String getResult(int index) {
+    public int size() {
+        return destination.size();
+    }
+
+    public String get(int index) {
         validateIndex(index);
         return destination.get(index);
     }

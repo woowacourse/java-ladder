@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import java.util.Collections;
 import java.util.List;
 import ladder.domain.LadderGame;
 import ladder.domain.Line;
@@ -13,7 +14,8 @@ public class LadderGameController {
 
         LadderGame game = new LadderGame(players);
         int height = InputView.askLadderHeight();
-        List<Line> result = game.play(height);
+        // TODO destination 입력받기
+        List<Line> result = game.play(height, Collections.nCopies(players.size(), "dummy"));
 
         OutputView.showGameResult(game.getPlayerNames(), result);
     }
