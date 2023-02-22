@@ -2,7 +2,7 @@ package domain;
 
 import java.util.List;
 
-public interface GenerateStrategy {
+public interface LinesGenerator {
 
     List<Line> generate(int width, int height);
 }

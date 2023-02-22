@@ -10,7 +10,7 @@ public class Ladder implements Iterable<Line>{
 
     private final List<Line> lines;
 
-    public Ladder(People people, int maxHeight, GenerateStrategy strategy) {
+    public Ladder(People people, int maxHeight, LinesGenerator strategy) {
         validateHeight(maxHeight);
         this.lines = strategy.generate(people.getCount(), maxHeight);
     }

@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import domain.Ladder;
 import domain.LadderService;
 import domain.People;
-import domain.RandomGenerateStrategy;
+import domain.RandomLinesGenerator;
 import domain.Results;
 import view.InputView;
 import view.OutputView;
@@ -28,7 +28,7 @@ public class LadderController {
         Ladder ladder = repeat(() -> new Ladder(
                 people,
                 inputView.readMaxHeight(),
-                new RandomGenerateStrategy()));
+                new RandomLinesGenerator()));
 
         ladderService = new LadderService(people, results, ladder);
         outputView.printTotalLadder(people, results, ladder);
