@@ -5,19 +5,19 @@ import domain.player.Player;
 
 public class Result {
 
-    private final Player player;
-    private final Mission mission;
+    private final String name;
+    private final String mission;
 
     public Result(Player player, Mission mission) {
-        this.player = player;
-        this.mission = mission;
+        this.name = player.getName().getName();
+        this.mission = mission.getMission();
     }
 
     public String getName() {
-        return player.getName().getName();
+        return name;
     }
 
     public String getMission() {
-        return mission.getMission();
+        return mission;
     }
 }
