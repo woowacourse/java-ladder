@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import static laddergame.utils.ErrorMessage.INVALID_GAME_RESULTS_SIZE;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class GameResults {
 
     private void validateGameResults(List<GameResult> results, int userCount) {
         if (results.size() != userCount) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_GAME_RESULTS_SIZE.getMessage());
         }
     }
 
