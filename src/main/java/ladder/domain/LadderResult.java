@@ -26,4 +26,8 @@ public class LadderResult {
             throw new IllegalStateException("플레이어의 결과가 존재하지 않습니다.");
         }
     }
+
+    public Map<Player, Item> getResult() {
+        return result;
+    }
 }
