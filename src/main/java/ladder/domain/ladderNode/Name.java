@@ -29,4 +29,9 @@ public class Name {
     public int getNameLength() {
         return name.length();
     }
+
+    public boolean equals(String o) {
+        if (o == null) return false;
+        return name.equals(o);
+    }
 }

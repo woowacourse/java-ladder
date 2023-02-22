@@ -16,6 +16,10 @@ public class Player {
         return new Position(resultPosition);
     }
 
+    public boolean isEqualName(String inputName) {
+        return name.equals(inputName);
+    }
+
     public String getName() {
         return name.getName();
     }
