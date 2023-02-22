@@ -23,17 +23,19 @@ public class OutputView {
     private static final String STEP_NONE = " ";
     private static final String MESSAGE_GAME_RESULT = "실행 결과";
 
-    public static void showGameResult(List<String> players, List<Line> lines) {
-        int pointWidth = computeMaxNameLength(players);
+    public static void showGameResult(List<String> players, List<Line> lines, List<String> results) {
+        int pointWidth = Math.max(computeMaxNameLength(players), computeMaxNameLength(results));
 
+        System.out.println();
         System.out.println(MESSAGE_GAME_RESULT);
-        System.out.println(" " + extractPlayerNames(players, pointWidth));
+        System.out.println(" " + extractWords(players, pointWidth));
         lines.stream()
                 .map(line -> extractLine(line, pointWidth))
                 .forEach(System.out::println);
+        System.out.println(" " + extractWords(results, pointWidth));
     }
 
-    private static String extractPlayerNames(List<String> players, int pointWidth) {
+    private static String extractWords(List<String> players, int pointWidth) {
         String nameFormat = "%" + pointWidth + "s";
         return players.stream()
                 .map(name -> String.format(nameFormat, name))

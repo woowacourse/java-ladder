@@ -14,9 +14,9 @@ public class LadderGameController {
         LadderGame game = new LadderGame(players);
         List<String> results = InputView.askLadderResults();
         int height = InputView.askLadderHeight();
-        List<Line> result = game.play(height, results);
+        List<Line> ladderLines = game.play(height, results);
 
-        OutputView.showGameResult(game.getPlayerNames(), result);
+        OutputView.showGameResult(game.getPlayerNames(), ladderLines, results);
 
         String playerName = InputView.askPlayerNameForResult();
     }
