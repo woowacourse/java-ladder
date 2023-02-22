@@ -69,7 +69,6 @@ public class LadderGameController {
     private void showPlayer(List<Player> players) {
         outputView.printPlayerNames(players.stream()
                 .map(Player::getPlayerName)
-                .map(PlayerName::getPlayerName)
                 .collect(Collectors.toList()));
     }
 
@@ -98,21 +97,26 @@ public class LadderGameController {
             showAllResult(result);
             return;
         }
-        showOneResult();
+
+        Player askedPlayer = result.keySet().stream()
+                .filter(key -> key.getPlayerName().equals(askedPlayerName))
+                .findFirst().orElseThrow(IllegalArgumentException::new);
+
+        showOneResult(result.get(askedPlayer));
     }
 
     private void showAllResult(Map<Player, Reward> result) {
         Map<String, String> convertedResult = result.keySet()
                 .stream()
                 .collect(Collectors.toMap(
-                        key -> key.getPlayerName().getPlayerName(),
+                        Player::getPlayerName,
                         key -> result.get(key).getReward()
                 ));
 
         outputView.printAllResult(convertedResult);
     }
 
-    private void showOneResult() {
-
+    private void showOneResult(Reward reward) {
+        outputView.printOneResult(reward.getReward());
     }
 }

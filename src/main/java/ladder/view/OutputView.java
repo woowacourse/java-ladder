@@ -20,7 +20,7 @@ public class OutputView {
 
     public void printRow(List<Boolean> points) {
         System.out.println();
-        System.out.print(LadderMark.COLUMN_LINE.getMark());
+        System.out.print("  " + LadderMark.COLUMN_LINE.getMark());
         for (boolean point : points) {
             System.out.print(LadderMark.getRowMark(point));
             System.out.print(LadderMark.COLUMN_LINE.getMark());
@@ -35,6 +35,11 @@ public class OutputView {
     public void printAllResult(Map<String, String> result) {
         System.out.println("\n실행 결과");
         result.forEach((player, reward) -> System.out.println(player + " : " + reward));
+    }
+
+    public void printOneResult(String result) {
+        System.out.println("\n실행 결과");
+        System.out.println(result);
     }
 
     public void printError(String errorMessage) {
