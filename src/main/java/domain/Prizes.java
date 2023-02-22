@@ -23,4 +23,8 @@ public class Prizes {
     public List<Prize> getPrizes() {
         return new ArrayList<>(prizes);
     }
+
+    public Prize getPrizeByIndex(int index){
+        return prizes.get(index);
+    }
 }

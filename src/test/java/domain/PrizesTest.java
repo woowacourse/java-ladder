@@ -19,12 +19,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 @DisplayName("Prizes 는")
 public class PrizesTest {
 
+    final Prize borderPrize = new Prize("보더");
+    final List<Prize> prizeList = List.of(borderPrize, new Prize("콜리"));
+
+
     @Test
     void Names_와_Prize_List_를_받아_생성된다() {
-        Names names = new Names(List.of(new Name("가비"), new Name("찰리")));
-        List<Prize> prizes = List.of(new Prize("보더"), new Prize("콜리"));
-
-        assertDoesNotThrow(() -> new Prizes(prizes, names));
+        assertDoesNotThrow(() -> new Prizes(prizeList, new Names(List.of(new Name("가비"), new Name("찰리")))));
     }
 
     @ParameterizedTest(name = "Names 와 크기가 다르면 예외가 발생한다")
@@ -48,5 +49,12 @@ public class PrizesTest {
         Prizes prizes = new Prizes(testPrizes, new Names(List.of(new Name("찰리"), new Name("가비"))));
 
         assertThat(prizes.getPrizes()).isEqualTo(testPrizes);
+    }
+
+    @Test
+    void Prize_의_순서를_알_수_있다() {
+        final Prizes prizes = new Prizes(prizeList, new Names(List.of(new Name("가비"), new Name("찰리"))));
+
+        assertThat(prizes.getPrizeByIndex(0)).isEqualTo(borderPrize);
     }
 }
