@@ -4,19 +4,22 @@ import static ladder.domain.StepPoint.EXIST;
 import static ladder.domain.StepPoint.NONE;
 
 import java.util.Arrays;
+import java.util.function.Function;
 
 public enum Direction {
 
-    DOWN(NONE, NONE),
-    LEFT(EXIST, NONE),
-    RIGHT(NONE, EXIST);
+    DOWN(NONE, NONE, index -> 0),
+    LEFT(EXIST, NONE, index -> index - 1),
+    RIGHT(NONE, EXIST, index -> index + 1);
 
     private final StepPoint left;
     private final StepPoint right;
+    private final Function<Integer, Integer> computeFunction;
 
-    Direction(StepPoint left, StepPoint right) {
+    Direction(StepPoint left, StepPoint right, Function<Integer, Integer> computeFunction) {
         this.left = left;
         this.right = right;
+        this.computeFunction = computeFunction;
     }
 
     public StepPoint getRightStepPoint() {
@@ -35,6 +38,10 @@ public enum Direction {
         if (left.isContinuous(right)) {
             throw new IllegalArgumentException("연속된 디딤대 좌표값으로는 사다리 방향을 결정할 수 없습니다.");
         }
+    }
+
+    public int computeNextIndex(int index) {
+        return computeFunction.apply(index);
     }
 
     @Override
