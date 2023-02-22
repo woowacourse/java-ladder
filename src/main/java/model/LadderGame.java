@@ -28,10 +28,10 @@ public class LadderGame {
     }
 
     private static int playLadderGame(int position, Ladder ladder) {
-        Queue<Line> queue = new LinkedList<>(ladder.getLines());
+        Queue<Line> lines = new LinkedList<>(ladder.getLines());
 
-        while (!queue.isEmpty()) {
-            Line positionLine = queue.poll();
+        while (!lines.isEmpty()) {
+            Line positionLine = lines.poll();
             Direction direction = positionLine.findDirection(position);
             position = direction.move(position);
         }
