@@ -22,4 +22,30 @@ public class Result {
             throw new IllegalArgumentException(ErrorMessage.DIFFERENT_PARTICIPANTS_AND_BETS_COUNT.getMessage());
     }
 
+    public void perform(Ladder ladder) {
+        for (Line line : ladder.getLadder()) {
+            changeResultIndex(line);
+        }
+    }
+
+    private void changeResultIndex(Line line) {
+        for (int i = 0; i < line.size(); i++) {
+            trySwapResultAtNextIndex(i, line.isExistLineAtCell(i));
+        }
+    }
+
+    private void trySwapResultAtNextIndex(int index, boolean exist) {
+        if (exist) {
+            Collections.swap(result, index, index + 1);
+        }
+    }
+
+    public List<Bet> getResult() {
+        return Collections.unmodifiableList(result);
+    }
+
+    public int size() {
+        return result.size();
+    }
+
 }

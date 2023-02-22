@@ -34,4 +34,8 @@ public class Bet {
         if (bet.contains(COMMA))
             throw new IllegalArgumentException(ErrorMessage.INVALID_BET_FORMAT.getMessage());
     }
+
+    public String getBet() {
+        return bet;
+    }
 }
