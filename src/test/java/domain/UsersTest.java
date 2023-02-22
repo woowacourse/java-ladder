@@ -39,17 +39,17 @@ public class UsersTest {
                 .doesNotThrowAnyException();
     }
 
-    @ParameterizedTest(name = "이름으로 User를 찾을 수 있다.")
-    @CsvSource({"kodak,0", "polo,1", "poz,2"})
-    void findByNameTest1(String userName, int expectedIndex) {
+    @Test
+    @DisplayName("이름으로 User를 찾을 수 있다.")
+    void findByNameTest1() {
         User kodak = new User("kodak");
         User polo = new User("polo");
         User poz = new User("poz");
 
         Users users = new Users(List.of(kodak, polo, poz));
-        int userIndex = users.findByName(userName);
+        User findedUser = users.findByName("kodak");
 
-        assertThat(userIndex).isEqualTo(expectedIndex);
+        assertThat(findedUser).isEqualTo(kodak);
     }
 
     @Test

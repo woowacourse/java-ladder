@@ -25,14 +25,11 @@ public class Users {
         }
     }
 
-    public int findByName(String name) {
-        for (int i = 0; i < users.size(); i++) {
-            User user = users.get(i);
-            if (user.getName().equals(name)) {
-                return i;
-            }
-        }
-        throw new IllegalArgumentException(NOT_EXIST_USER_ERROR);
+    public User findByName(String name) {
+        return users.stream()
+                .filter(user -> user.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_USER_ERROR));
     }
 
     public int getSize() {
