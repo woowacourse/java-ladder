@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import domain.Game;
 import domain.Ladder;
 import domain.Level;
 import domain.People;
@@ -45,7 +44,7 @@ public class LadderController {
 
 	public void play() {
 		for (int position = 0; position < people.size(); position++) {
-			int newPosition = Game.start(position, ladder);
+			int newPosition = ladder.start(position);
 			joinnedResult.put(people.getNames().get(position), results.getResult(newPosition));
 		}
 	}
@@ -56,9 +55,13 @@ public class LadderController {
 			outputView.printAll(joinnedResult);
 			return;
 		}
-		Game.validate(search, joinnedResult);
-		if (joinnedResult.containsKey(search)) {
+
+		try {
+			people.checkExistence(search);
 			outputView.printWanted(search, joinnedResult);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		} finally {
 			askWanted();
 		}
 	}

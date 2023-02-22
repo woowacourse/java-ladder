@@ -55,4 +55,12 @@ public class People {
 			.map(Person::getName)
 			.collect(Collectors.toList());
 	}
+
+	public void checkExistence(String sequence) {
+
+		boolean isExist = getNames().contains(sequence);
+		if (!isExist) {
+			throw new IllegalArgumentException(Error.NONEXIST_PARTICIPANT.getMessage());
+		}
+	}
 }
