@@ -23,7 +23,7 @@ public class Ladder {
         }
     }
 
-    public List<Line> makeLines(final int playerNumber, final int height) {
+    private List<Line> makeLines(final int playerNumber, final int height) {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
