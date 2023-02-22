@@ -16,6 +16,8 @@ import java.util.List;
 
 public class LadderGameController {
 
+    private static final String ALL_PLAYER_SIGN = "all";
+
     public void run() {
         LadderGame ladderGame = initLadderGame();
         printGeneratedLadderResult(ladderGame);
@@ -63,11 +65,21 @@ public class LadderGameController {
 
 
     private void printResult(LadderGame ladderGame) {
-        GameResult result = RepeatValidator.readUntilValidate(() -> {
-            String name = readResultShowPlayerName();
-            return ladderGame.getResult(name);
-        });
-        OutputView.printResults(List.of(result));
+        List<GameResult> results;
+        do {
+            results = RepeatValidator.readUntilValidate(() -> {
+                String name = readResultShowPlayerName();
+                return getResults(ladderGame, name);
+            });
+            OutputView.printResults(results);
+        } while (results.size() == 1);
+    }
+
+    private List<GameResult> getResults(LadderGame ladderGame, String name) {
+        if (name.equals(ALL_PLAYER_SIGN)) {
+            return ladderGame.getAllResults();
+        }
+        return List.of(ladderGame.getResult(name));
     }
 
     private String readResultShowPlayerName() {

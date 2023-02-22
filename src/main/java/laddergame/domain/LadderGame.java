@@ -2,6 +2,7 @@ package laddergame.domain;
 
 import laddergame.constant.ErrorCode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
@@ -41,5 +42,13 @@ public class LadderGame {
         String prizeValue = prizes.getPrizeValueAt(endPosition);
 
         return new GameResult(name, prizeValue);
+    }
+
+    public List<GameResult> getAllResults() {
+        List<GameResult> results = new ArrayList<>();
+        for (String playerName : players.getPlayerNames()) {
+            results.add(getResult(playerName));
+        }
+        return List.copyOf(results);
     }
 }
