@@ -35,7 +35,11 @@ public class LadderGameController {
         LadderGame ladderGame = new LadderGame(ladder, users, gameResults);
         Map<String, String> gameResultByUser = ladderGame.start();
 
-        printResultOfUser(getUserToCheckResult(), gameResultByUser);
+        String userToCheckResult = "need input";
+        while (!userToCheckResult.equals("all")) {
+            userToCheckResult = getUserToCheckResult();
+            printResultOfUser(userToCheckResult, gameResultByUser);
+        }
     }
 
     private Users setUpUsers() {
