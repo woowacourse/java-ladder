@@ -17,4 +17,5 @@ public class Result {
     public Reward getReward() {
         return this.reward;
     }
+
 }

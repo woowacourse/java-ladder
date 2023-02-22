@@ -66,4 +66,5 @@ public class LadderGame {
                 .get(player.getStandingLine())
         );
     }
+
 }
