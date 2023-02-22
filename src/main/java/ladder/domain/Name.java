@@ -41,4 +41,8 @@ public class Name {
     private boolean isWrongLength(final String name) {
         return name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH;
     }
+
+    public String getRawName() {
+        return name;
+    }
 }
