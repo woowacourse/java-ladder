@@ -26,8 +26,8 @@ public class MainController {
 
     public void start() {
         try {
-            Names names = getNames();
-            Missions missions = getMissions(names.size());
+            Names names = new Names(inputView.readNames());
+            Missions missions = new Missions(inputView.readMissions(), names.size());
 
             int lineNumber = names.getPersonNumber() - 1;
             LadderMaker ladderMaker = makeLadder(lineNumber);
@@ -44,7 +44,7 @@ public class MainController {
 
     private void queryResult(LadderGame ladderGame) {
         while (true) {
-            String player = getPlayerToQuery();
+            String player = inputView.readPlayer();
             if (player.isBlank()) {
                 return;
             }
@@ -65,22 +65,6 @@ public class MainController {
     }
 
     private LadderMaker makeLadder(int lineNumber) {
-        return LadderMaker.of(lineNumber, getHeight(), booleanGenerator);
-    }
-
-    private Names getNames() {
-        return new Names(inputView.readNames());
-    }
-
-    private Missions getMissions(int size) {
-        return new Missions(inputView.readMissions(), size);
-    }
-
-    private Height getHeight() {
-        return new Height(inputView.readHeight());
-    }
-
-    private String getPlayerToQuery() {
-        return inputView.readPlayer();
+        return LadderMaker.of(lineNumber, new Height(inputView.readHeight()), booleanGenerator);
     }
 }
