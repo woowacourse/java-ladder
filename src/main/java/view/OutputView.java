@@ -3,6 +3,7 @@ package view;
 import model.Ladder;
 import model.Line;
 import model.Name;
+import model.Result;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,13 +34,22 @@ public class OutputView {
 
     public void printAllPlayerNames(List<Name> allPlayerNames) {
         List<String> names = unwrapNames(allPlayerNames);
-        System.out.println(makeLeftFormattingFirstName(names) +
-                makeRightFormattingNamesFromSecond(names));
+        System.out.println(makeLeftFormattingFirstWord(names) +
+                makeRightFormattingWordsFromSecond(names));
     }
 
     public void printLadder(Ladder ladder) {
         IntStream.range(0, ladder.getHeight())
                 .forEach(index -> printLadderLine(ladder.getLine(index)));
+    }
+
+    public void printAllResults(List<Result> allResults) {
+        List<String> results = unwrapResults(allResults);
+        System.out.println(makeLeftFormattingFirstWord(results) + makeRightFormattingWordsFromSecond(results));
+    }
+
+    private List<String> unwrapResults(List<Result> results) {
+        return results.stream().map(Result::getValue).collect(Collectors.toList());
     }
 
     private List<String> unwrapNames(List<Name> names) {
@@ -62,12 +72,12 @@ public class OutputView {
         return EMPTY_STEP;
     }
 
-    private String makeLeftFormattingFirstName(List<String> allPlayerNames) {
-        return String.format(LEFT_FORMATTING_TEMPLATE, allPlayerNames.get(0));
+    private String makeLeftFormattingFirstWord(List<String> words) {
+        return String.format(LEFT_FORMATTING_TEMPLATE, words.get(0));
     }
 
-    private String makeRightFormattingNamesFromSecond(List<String> allPlayerNames) {
-        return allPlayerNames.subList(STARTING_INDEX_OF_RIGHT_FORMATTING, allPlayerNames.size()).stream()
+    private String makeRightFormattingWordsFromSecond(List<String> words) {
+        return words.subList(STARTING_INDEX_OF_RIGHT_FORMATTING, words.size()).stream()
                 .map(name -> String.format(RIGHT_FORMATTING_TEMPLATE, name))
                 .collect(Collectors.joining(""));
     }
