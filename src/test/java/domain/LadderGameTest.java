@@ -36,14 +36,13 @@ public class LadderGameTest {
     }
 
     @Test
-    @DisplayName("play는 LadderGameResult를 반환한다.")
-    void playTest() {
+    @DisplayName("이름으로 결과를 찾을 수 있다.")
+    void findResultByName() {
         LadderGame ladderGame = new LadderGame(ladder, users, results);
-        User user = users.getUsers().get(1);
         Result result = results.getResults().get(3);
 
-        LadderGameResult ladderGameResult = ladderGame.play();
+        Result findedResult = ladderGame.findResultByName("userB");
 
-        Assertions.assertThat(ladderGameResult.findByUser(user)).isEqualTo(result);
+        Assertions.assertThat(findedResult).isEqualTo(result);
     }
 }

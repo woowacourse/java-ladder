@@ -9,17 +9,13 @@ public class LadderGame {
     private final Ladder ladder;
     private final Users users;
     private final Results results;
+    private final LadderGameResult ladderGameResult;
 
     public LadderGame(final Ladder ladder, final Users users, final Results results) {
         this.ladder = ladder;
         this.users = users;
         this.results = results;
-    }
-
-    public LadderGameResult play() {
-        int userCount = users.getSize();
-        int ladderHeight = ladder.getLadderRows().size();
-        return getLadderGameResult(userCount, ladderHeight);
+        ladderGameResult = getLadderGameResult(users.getSize(), ladder.getLadderRows().size());
     }
 
     private LadderGameResult getLadderGameResult(int userCount, int ladderHeight) {
@@ -31,6 +27,11 @@ public class LadderGame {
             map.put(user, result);
         }
         return new LadderGameResult(map);
+    }
+
+    public Result findResultByName(String name) {
+        User user = users.findByName(name);
+        return ladderGameResult.findByUser(user);
     }
 
     private int move(int index, int currentHeight, int ladderHeight) {
@@ -47,5 +48,9 @@ public class LadderGame {
             return move(index - 1, currentHeight + 1, ladderHeight);
         }
         return move(index, currentHeight + 1, ladderHeight);
+    }
+
+    public LadderGameResult getLadderGameResult() {
+        return ladderGameResult;
     }
 }
