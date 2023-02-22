@@ -1,6 +1,8 @@
 package ladder.domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import ladder.util.ExceptionMessageFormatter;
 
@@ -37,6 +39,13 @@ public class LadderGame {
             throw new IllegalStateException("사다리가 생성되지 않은 게임의 결과를 확인할 수 없습니다.");
         }
         return ladder.findResultByStartIndex(startIndex);
+    }
+
+    public Map<String, String> findAllResultsByPlayer() {
+        Map<String, String> allResults = new LinkedHashMap<>();
+        players.getNames()
+                .forEach(name -> allResults.put(name, findResultByPlayerName(name)));
+        return allResults;
     }
 
     public List<String> getPlayerNames() {
