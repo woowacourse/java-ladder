@@ -38,4 +38,8 @@ public class Prizes {
         final Prize prize = prizes.get(position);
         return prize.getPrize();
     }
+
+    public Prize getPrize(final int index) {
+        return prizes.get(index);
+    }
 }

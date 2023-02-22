@@ -1,5 +1,6 @@
 package laddergame.domain.player;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,7 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class PlayersTest {
 
     @Test
-    void givenName_thenReturnPlayer() {
+    @DisplayName("Position이 주어지면 해당 위치에 있는 플레이어가 반환된다.")
+    void givenPosition_thenReturnPlayer() {
         // given
         final Players players = new Players(
                 List.of(
@@ -19,7 +21,7 @@ class PlayersTest {
                 ));
 
         // when
-        final Player player = players.findPlayerByName("ethan");
+        final Player player = players.findPlayerByPosition(0);
 
         // then
         assertAll(

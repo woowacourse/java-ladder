@@ -29,7 +29,18 @@ public class Players {
                 .collect(toList()));
     }
 
+    public Player findPlayerByPosition(final int position) {
+        return players.stream()
+                .filter(player -> player.getPosition() == position)
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("해당되는 플레이어를 찾을 수 없습니다."));
+    }
+
     public int getPlayerSize() {
         return players.size();
+    }
+
+    public Player getPlayer(final int index) {
+        return players.get(index);
     }
 }

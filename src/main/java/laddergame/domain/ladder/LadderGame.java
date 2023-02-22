@@ -3,9 +3,6 @@ package laddergame.domain.ladder;
 import laddergame.domain.player.Player;
 import laddergame.domain.player.Players;
 import laddergame.domain.prize.Prizes;
-import laddergame.domain.prize.Result;
-
-import java.util.List;
 
 public class LadderGame {
 
@@ -57,12 +54,4 @@ public class LadderGame {
         return ladder.canMoveRight(height, player);
     }
 
-    public Result findIndividualResult(final String name) {
-        final Player player = players.findPlayerByName(name);
-        final Players players = new Players(List.of(player));
-
-        final List<String> prizeName = List.of(this.prizes.getPrizeName(player.getPosition()));
-        final Prizes prizes = new Prizes(prizeName, players.getPlayerSize());
-        return new Result(players, prizes);
-    }
 }

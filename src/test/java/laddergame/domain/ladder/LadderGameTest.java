@@ -1,13 +1,10 @@
 package laddergame.domain.ladder;
 
 import laddergame.domain.player.Players;
-import laddergame.domain.prize.Prize;
-import laddergame.domain.prize.Result;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static laddergame.domain.ladder.LadderFixture.ethan;
 import static laddergame.domain.ladder.LadderFixture.ladder;
 import static laddergame.domain.ladder.LadderFixture.players;
 import static laddergame.domain.ladder.LadderFixture.prizes;
@@ -67,23 +64,5 @@ public class LadderGameTest {
 
     private int getPosition(final Players gameResult, final int index) {
         return gameResult.getPlayers().get(index).getPosition();
-    }
-
-    @Test
-    @DisplayName("사다리 게임을 시작하고 개인의 결과를 요청하면 결과가 반환된다.")
-    void givenLadderGame_whenFindIndividualResult_thenReturnResult() {
-        //given
-        ladderGame.startGame();
-
-        // when
-        final Result result = ladderGame.findIndividualResult("에단");
-
-        // then
-        assertAll(
-                () -> assertThat(result.getPlayers()).hasSize(1),
-                () -> assertThat(result.getPlayers()).containsExactly(ethan),
-                () -> assertThat(result.getPrizes()).hasSize(1),
-                () -> assertThat(result.getPrizes()).containsExactly(new Prize("5000"))
-        );
     }
 }
