@@ -5,6 +5,7 @@ import static laddergame.utils.ErrorMessage.INVALID_USER_NAME_LENGTH;
 
 public class Name {
     private final static int MIN_NAME_LENGTH = 1;
+    private final static String ALL = "all";
     public final static int MAX_NAME_LENGTH = 5;
     public final static String BLANK = " ";
 
@@ -38,6 +39,9 @@ public class Name {
     private void validateNameFormat(String name) {
         if (name.contains(BLANK)) {
             throw new IllegalArgumentException(INVALID_USER_NAME_FORMAT.getMessage());
+        }
+        if (name.equals(ALL)) {
+            throw new IllegalArgumentException("사용자 이름으로 등록할 수 없습니다.");
         }
     }
 
