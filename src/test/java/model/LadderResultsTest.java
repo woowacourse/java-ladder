@@ -17,6 +17,7 @@ class LadderResultsTest {
 
     @Nested
     class of_메소드_테스트 {
+
         @ParameterizedTest
         @NullSource
         void 인자로_null이_주어지면_예외가_발생한다(List<LadderResult> results) {
@@ -44,5 +45,17 @@ class LadderResultsTest {
         String actual = ladderResults.findResultByIndex(index);
 
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void calculateGameResult_메소드는_사다리_실행_결과가_주어지면_그_결과에_따라_정렬한_LadderResults를_반환한다() {
+        LadderResults ladderResults =
+                LadderResults.of(List.of(new LadderResult("a"), new LadderResult("b")), 2);
+        List<Integer> gameResult = List.of(1, 0);
+
+        LadderResults actual = ladderResults.calculateGameResult(gameResult);
+
+        assertThat(actual.findResultByIndex(0)).isEqualTo("b");
+        assertThat(actual.findResultByIndex(1)).isEqualTo("a");
     }
 }
