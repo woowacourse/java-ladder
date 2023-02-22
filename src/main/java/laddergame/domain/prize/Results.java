@@ -30,4 +30,8 @@ public class Results {
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("개인 결과 조회를 할 수 없습니다."));
     }
+
+    public List<Result> findAll() {
+        return results;
+    }
 }

@@ -2,6 +2,8 @@ package laddergame.domain.prize;
 
 import laddergame.domain.player.Player;
 
+import java.util.Objects;
+
 public class Result {
 
     private final Player player;
@@ -10,6 +12,19 @@ public class Result {
     public Result(final Player player, final Prize prize) {
         this.player = player;
         this.prize = prize;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final Result result = (Result) o;
+        return Objects.equals(player, result.player) && Objects.equals(prize, result.prize);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(player, prize);
     }
 
     public String getName() {
