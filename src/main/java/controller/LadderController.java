@@ -29,7 +29,7 @@ public class LadderController {
 
 	public void init() {
 		repeat(() -> people = People.from(inputView.readNames()));
-		repeat(() -> results = Results.from(inputView.readSequences()));
+		repeat(() -> results = Results.from(inputView.readRewards()));
 		repeat(() -> ladder = Ladder.from(inputView.readHeight(), people.size()));
 	}
 
@@ -46,7 +46,7 @@ public class LadderController {
 	}
 
 	public void askWanted() {
-		String target = inputView.readWho();
+		String target = inputView.readTarget();
 		if (target.equals("all")) {
 			outputView.printAll(resultTable);
 			return;

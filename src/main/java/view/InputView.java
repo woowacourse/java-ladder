@@ -13,7 +13,7 @@ public class InputView {
 		return List.of(scanner.nextLine().split(","));
 	}
 
-	public List<String> readSequences() {
+	public List<String> readRewards() {
 		System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
 		return List.of(scanner.nextLine().split(","));
 	}
@@ -27,7 +27,7 @@ public class InputView {
 		}
 	}
 
-	public String readWho() {
+	public String readTarget() {
 		System.out.println("\n결과를 보고 싶은 사람은?");
 		return scanner.nextLine();
 	}
