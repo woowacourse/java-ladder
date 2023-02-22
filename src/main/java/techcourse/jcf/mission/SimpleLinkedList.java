@@ -90,6 +90,6 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public void clear() {
-
+        size = 0;
     }
 }

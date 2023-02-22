@@ -26,4 +26,4 @@
 - [ ] boolean isEmpty();
 - [ ] boolean remove(String value);
 - [ ] String remove(int index);
-- [ ] void clear();
+- [x] void clear();
