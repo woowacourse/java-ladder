@@ -37,4 +37,9 @@ public class NamesTest {
     void 해당_value을_가진_Name_이_있는지_알_수_있다() {
         assertThat(names.hasName("찰리")).isEqualTo(true);
     }
+
+    @Test
+    void value_를_가진_Name의_index_를_알_수_있다() {
+        assertThat(names.getNameIndexByValue("찰리")).isEqualTo(0);
+    }
 }

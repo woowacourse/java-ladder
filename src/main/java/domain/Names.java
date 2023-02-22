@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Names {
     private static final int MIN_NAME_INCLUSIVE = 2;
@@ -18,6 +19,13 @@ public class Names {
         if (names.size() < MIN_NAME_INCLUSIVE) {
             throw new IllegalArgumentException(ERROR_MIN_PEOPLE);
         }
+    }
+
+    public int getNameIndexByValue(String value) {
+        return IntStream.range(0, names.size())
+                .filter(nameIndex -> names.get(nameIndex).getValue().equals(value))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당하는 값이 없습니다"));
     }
 
     public int size() {
