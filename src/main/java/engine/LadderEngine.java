@@ -51,10 +51,10 @@ public class LadderEngine {
     }
 
     private void repeatQueryPrizes(Ladder ladder) {
-        boolean isSearchTargetAll;
+        boolean isTargetAll;
         do {
-            isSearchTargetAll = queryPrizes(ladder).isAll();
-        } while (!isSearchTargetAll);
+            isTargetAll = queryPrizes(ladder).isAll();
+        } while (!isTargetAll);
     }
 
     private SearchTarget queryPrizes(Ladder ladder) {
