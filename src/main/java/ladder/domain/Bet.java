@@ -1,7 +1,6 @@
 package ladder.domain;
 
 public class Bet {
-    private static final int MIN_BET_LENGTH = 1;
     private static final int MAX_BET_LENGTH = 5;
 
     private final String bet;
@@ -22,7 +21,7 @@ public class Bet {
     }
 
     private void validateLength(String bet) {
-        if (bet.length() < MIN_BET_LENGTH || bet.length() > MAX_BET_LENGTH)
+        if (bet.isBlank() || bet.length() > MAX_BET_LENGTH)
             throw new IllegalArgumentException();
     }
 

@@ -29,4 +29,6 @@ public class BetTest {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new Bet(""));
     }
+
+    @DisplayName("내기 항목은 쉼표(,)를 포함할 수 없다.")
 }
