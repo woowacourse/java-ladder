@@ -37,8 +37,15 @@ public class Line {
         return cellIndex != FIRST_CELL_INDEX && line.get(cellIndex - 1);
     }
 
+    public boolean isExistLineAtCell(int cellIndex){
+        return line.get(cellIndex);
+    }
+
     public List<Boolean> getLine() {
         return Collections.unmodifiableList(line);
     }
 
+    public int size(){
+        return line.size();
+    }
 }
