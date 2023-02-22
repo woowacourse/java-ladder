@@ -33,28 +33,21 @@ public class Line {
 
 
     public int getNextStepIndex(int index) {
-        if (index > 0 && index < ladderSteps.size()) {
-            if (ladderSteps.get(index - 1).exists()) {
-                return index - 1;
-            }
-            if (ladderSteps.get(index).exists()) {
-                return index + 1;
-            }
+        if (canGoLeft(index) && ladderSteps.get(index - 1).exists()) {
+            return Movement.GO_LEFT.move(index);
         }
-        if (index == 0) {
-            if (ladderSteps.get(0).exists()) {
-                return 1;
-            }
+        if (canGoRight(index) && ladderSteps.get(index).exists()) {
+            return Movement.GO_RIGHT.move(index);
         }
-        if (index == ladderSteps.size()) {
-            if (ladderSteps.get(index - 1).exists()) {
-                return index - 1;
-            }
-        }
-        return index;
+        return Movement.STAY.move(index);
     }
 
-    private boolean isExists(int entranceIndex) {
-        return getLadderStep(entranceIndex).exists();
+    private boolean canGoRight(int index) {
+        return index < ladderSteps.size();
     }
+
+    private static boolean canGoLeft(int index) {
+        return index > 0;
+    }
+
 }
