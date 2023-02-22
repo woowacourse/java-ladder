@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.dto.BridgeGameResult;
 
 public class LadderGame {
+    private static final String INVALID_BRIGE_GAME_SIZE_ERROR_MESSAGE = "사다리, 보상, 유저 수의 크기는 같아야 합니다.";
     private final Ladder ladder;
     private final Users users;
     private final Reward reward;
@@ -16,7 +17,7 @@ public class LadderGame {
 
     private void validateLength(final Ladder ladder, final Users users, final Reward reward) {
         if (!((ladder.getWidth() == users.size()) && (users.size() == reward.size()))) {
-            throw new IllegalArgumentException("사다리, 보상, 유저 수의 크기는 같아야 합니다.");
+            throw new IllegalArgumentException(INVALID_BRIGE_GAME_SIZE_ERROR_MESSAGE);
         }
     }
 
