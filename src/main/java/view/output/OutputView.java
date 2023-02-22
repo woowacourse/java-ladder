@@ -5,7 +5,6 @@ import domain.Line;
 import domain.Participants;
 
 import java.util.List;
-import java.util.Map;
 
 public class OutputView {
 

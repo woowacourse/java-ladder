@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ResultTest {
 
     @DisplayName("입력 결과가 조건에 맞는 경우 객체가 생성된다.")

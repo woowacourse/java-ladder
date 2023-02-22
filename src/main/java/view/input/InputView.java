@@ -1,10 +1,5 @@
 package view.input;
 
-import exception.EmptyInputException;
-import exception.InvalidLadderHeightException;
-import exception.InvalidLineWeightException;
-import exception.InvalidParticipantsCountException;
-import exception.InvalidPersonNameException;
 import java.util.Scanner;
 
 public class InputView {

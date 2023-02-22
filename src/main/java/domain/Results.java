@@ -1,13 +1,10 @@
 package domain;
 
-import exception.DuplicateNameException;
 import exception.EmptyInputException;
-import exception.InvalidParticipantsCountException;
 import exception.InvalidResultsCount;
 import util.StringUtil;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
