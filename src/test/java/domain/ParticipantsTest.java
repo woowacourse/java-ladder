@@ -35,7 +35,7 @@ public class ParticipantsTest extends AbstractTestFixture {
     void 특정_참가자의_시작점을_알_수_있다(String name, int expectedPosition) {
         Participants participants = new Participants(createParticipantsFrom("a", "b", "c", "d", "e"));
 
-        Position startPosition = participants.findStartPositionOf(name);
+        Position startPosition = participants.findPositionOf(name);
 
         assertThat(startPosition).isEqualTo(new Position(expectedPosition));
     }
@@ -45,6 +45,6 @@ public class ParticipantsTest extends AbstractTestFixture {
         Participants participants = new Participants(createParticipantsFrom("a", "b", "c", "d", "e"));
 
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> participants.findStartPositionOf("unknown"));
+                .isThrownBy(() -> participants.findPositionOf("unknown"));
     }
 }
