@@ -12,30 +12,26 @@ import util.RandomValueGenerator;
 public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
-    private final RandomValueGenerator randomValueGenerator;
-
-    public Line(int personCount, RandomValueGenerator generator) {
-        this.randomValueGenerator = generator;
-        calculatePoints(personCount);
+    private Line() {
     }
 
     public List<Boolean> getPoints() {
         return points;
     }
 
-    private void calculatePoints(int personCount) {
-        points.add(generateRandomValue());
+    public static Line newInstanceWithPersonCount(int personCount, RandomValueGenerator generator){
+        Line line = new Line();
+        List<Boolean> lineValue = line.points;
+        lineValue.add(generator.generate());
         --personCount;
         for (int i = 0; i < personCount - 1; i++) {
-            if (!points.get(points.size() - 1)) {
-                points.add(generateRandomValue());
+            if (!lineValue.get(lineValue.size() - 1)) {
+                lineValue.add(generator.generate());
                 continue;
             }
-            points.add(false);
+            lineValue.add(false);
         }
+        return line;
     }
 
-    private boolean generateRandomValue() {
-        return randomValueGenerator.generate();
-    }
 }

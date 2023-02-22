@@ -24,7 +24,7 @@ public class LadderGame {
         RandomValueGenerator generator = new RandomBooleanGenerator();
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(width, generator));
+            lines.add(Line.newInstanceWithPersonCount(width, generator));
         }
         return new Lines(lines);
     }
