@@ -18,7 +18,6 @@ import view.OutputView;
 public class LadderController {
 
     private static final String DEFAULT_PARTICIPANT_NAME = "";
-    private static final String FIND_TOTAL_RESULT_COMMAND = "all";
 
     private final InputView inputView;
     private final OutputView outputView;
