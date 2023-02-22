@@ -1,88 +1,71 @@
 package techcourse.jcf.mission;
 
-import java.util.Arrays;
-
 public class SimpleArrayList implements SimpleList {
-
-    /*
-    미션 1
-    SimpleList 인터페이스의 ArrayList 구현체인 SimpleArrayList 를 구현해본다.
-    내부적으로 동적으로 배열의 크기를 조절하는 동작을 이해하는 것을 목표로 한다.
-
-    힌트
-    머리로 생각하여 구현하는 것은 매우 어렵다. 툴을 사용하거나 그림을 그리며 개념을 잡고 구현해본다.
-    자바에서 제공하는 java.util.List 구현체로 먼저 성공하는 테스트 코드를 작성하고, 직접 구현한 List 구현체로 변경한다.
-    처음부터 좋은 코드를 작성할 생각을 버려라. 구현 후 리팩토링 한다.
-    직접 구현하기 힘들다면 java.util.List 의 구현체 코드를 참고한다.
-     */
 
     private static int DEFAULT_CAPACITY = 10;
 
-    private String[] array;
+    private String[] values;
     private int size;
 
-    public SimpleArrayList(){
-        this.array = new String[DEFAULT_CAPACITY];
+    public SimpleArrayList() {
+        this.values = new String[DEFAULT_CAPACITY];
         this.size = 0;
     }
 
     @Override
     public boolean add(String value) {
-        if(size >= array.length){
-            String[] newArray = new String[array.length*2];
-            System.arraycopy(array, 0, newArray, 0, array.length);
-            array = newArray;
+        if (size >= values.length) {
+            values = increaseCapacity();
         }
-        array[size++] = value;
+        values[size++] = value;
         return true;
     }
 
     @Override
     public void add(int index, String value) {
-        if(index > size){
+        if (index > size) {
             throw new IndexOutOfBoundsException();
         }
 
-        if(index == size){
-            add(value);
-            return;
+        if (size >= values.length) {
+            values = increaseCapacity();
         }
 
-        if(size >= array.length){
-            String[] newArray = new String[array.length*2];
-            System.arraycopy(array, 0, newArray, 0, array.length);
-            array = newArray;
+        for (int i = size; i > index; i--) {
+            values[i] = values[i - 1];
         }
-
-        for(int i = size; i > index; i--){
-            array[i] = array[i-1];
-        }
-        array[index] = value;
+        values[index] = value;
         size++;
+    }
+
+    private String[] increaseCapacity() {
+        String[] newArray = new String[values.length * 2];
+        System.arraycopy(values, 0, newArray, 0, values.length);
+        return newArray;
     }
 
     @Override
     public String set(int index, String value) {
-        if(index >= size){
+        if (index >= size) {
             throw new IndexOutOfBoundsException();
         }
-        String returnValue = array[index];
-        array[index] = value;
+        String returnValue = values[index];
+        values[index] = value;
         return returnValue;
     }
 
     @Override
     public String get(int index) {
-        if(index >= size){
+        if (index >= size) {
             throw new IndexOutOfBoundsException();
         }
-        return array[index];
+        return values[index];
     }
 
     @Override
     public boolean contains(String value) {
-        for(int i = 0; i < size; i++){
-            if(array[i].equals(value)){
+        for (int i = 0; i < size; i++) {
+            if (values[i].equals(value)) {
                 return true;
             }
         }
@@ -91,8 +74,8 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public int indexOf(String value) {
-        for(int i = 0; i < size; i++){
-            if(array[i].equals(value)){
+        for (int i = 0; i < size; i++) {
+            if (values[i].equals(value)) {
                 return i;
             }
         }
@@ -106,7 +89,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean isEmpty() {
-        if(size == 0){
+        if (size == 0) {
             return true;
         }
         return false;
@@ -114,24 +97,13 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean remove(String value) {
-        int index = -1;
-        for(int i = 0; i < size; i++){
-            if(array[i].equals(value)){
-                index = i;
-                break;
-            }
-            if(i == size-1){
-                return false;
-            }
+        int index = indexOf(value);
+        if (index == -1) {
+            return false;
         }
 
-        if(index == size-1){
-            size--;
-            return true;
-        }
-
-        for(int i = index; i < size-1; i++){
-            array[i] = array[i+1];
+        for (int i = index; i < size - 1; i++) {
+            values[i] = values[i + 1];
         }
         size--;
         return true;
@@ -139,18 +111,13 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String remove(int index) {
-        if(index >= size){
+        if (index >= size) {
             throw new IndexOutOfBoundsException();
         }
 
-        if(index == size-1){
-            size--;
-            return array[index];
-        }
-
-        String returnValue = array[index];
-        for(int i = index; i < size - 1; i++) {
-            array[i] = array[i+1];
+        String returnValue = values[index];
+        for (int i = index; i < size - 1; i++) {
+            values[i] = values[i + 1];
         }
         size--;
         return returnValue;
@@ -158,7 +125,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void clear() {
-        array = new String[DEFAULT_CAPACITY];
+        values = new String[DEFAULT_CAPACITY];
         size = 0;
     }
 
