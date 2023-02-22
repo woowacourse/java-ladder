@@ -24,6 +24,7 @@ public class LadderGameController {
         this.connectionGenerator = new RandomConnectionGenerator();
     }
 
+    // 컨트롤러에서 all을 처리하면 어떨까?
     public void run() {
         Names names = makeNames();
         Results results = makeResults(names.findNumberOfNames());
@@ -33,10 +34,7 @@ public class LadderGameController {
         GameResult gameResult = new GameResult(result);
 
         outputView.printLadder(names, ladder, results);
-
-        String name = inputView.readNameToShowResult();
-        String resultByName = gameResult.findResult(name);
-        outputView.printGameResult(names, name, resultByName);
+        showResultByName(names, gameResult);
     }
 
     private Names makeNames() {
@@ -66,6 +64,15 @@ public class LadderGameController {
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return makeLadder(numberOfNames);
+        }
+    }
+
+    // TODO: 재입력 처리
+    private void showResultByName(final Names names, final GameResult gameResult) {
+        for (int i = 0; i < 2; i++) {
+            String name = inputView.readNameToShowResult();
+            String resultByName = gameResult.findResult(name);
+            outputView.printGameResult(names, name, resultByName);
         }
     }
 }

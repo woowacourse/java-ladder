@@ -139,6 +139,8 @@ public class OutputView {
                 System.out.println(names.getNames().get(i).getName() + " : " + results.get(i));
             }
         }
-
+        if (!name.equals("all")) {
+            System.out.println(gameResult);
+        }
     }
 }
