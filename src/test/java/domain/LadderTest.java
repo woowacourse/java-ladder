@@ -33,13 +33,13 @@ public class LadderTest {
 
     @DisplayName("지정한 위치에 다리의 존재 여부 확인하기")
     @ParameterizedTest
-    @CsvSource({"1,1,true", "1,2,false", "2,1,true", "2,2,false", "3,3,true", "4,1,false"})
-    void check_exist(int height, int width, boolean result) {
+    @CsvSource({"0,0,true", "0,1,false", "1,0,true", "1,1,false", "2,2,true", "3,0,false"})
+    void check_exist(int heightIndex, int widthIndex, boolean result) {
         StubTestDigitsGenerator myRandomDigitsGenerator = new StubTestDigitsGenerator(
                 List.of(1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0)
         );
         Ladder ladder = new Ladder(4, 3, myRandomDigitsGenerator);
-        assertThat(ladder.isExist(height, width)).isEqualTo(result);
+        assertThat(ladder.isExist(heightIndex, widthIndex)).isEqualTo(result);
     }
 
 }
