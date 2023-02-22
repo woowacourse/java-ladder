@@ -29,11 +29,22 @@ public class Line {
 
     public void move(Position position) {
         int column = position.getColumn();
+        checkLeft(position, column);
+        checkRight(position, column);
+    }
 
-        if (column != 0 && movements.get(column - 1)) {
+    private void checkLeft(Position position, int column) {
+        boolean isNotStartColumn = column != 0;
+        Boolean canGoLeft = movements.get(column - 1);
+        if (isNotStartColumn && canGoLeft) {
             position.goLeft();
         }
-        if (column != movements.size() && movements.get(column)) {
+    }
+
+    private void checkRight(Position position, int column) {
+        boolean isNotEndColumn = column != movements.size();
+        Boolean canGoRight = movements.get(column);
+        if (isNotEndColumn && canGoRight) {
             position.goRight();
         }
     }
