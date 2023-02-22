@@ -54,10 +54,6 @@ public class Ladder {
         return position;
     }
 
-    public int getHeight() {
-        return floors.size();
-    }
-
     public int getWidth() {
         return floors.get(0).getSize();
     }
