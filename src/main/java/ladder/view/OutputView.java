@@ -25,19 +25,21 @@ public class OutputView {
         System.out.println("사다리 결과");
         printUsersName(ladderGame.getUsers());
         printLadder(ladderGame.getLadder());
-        printReward(ladderGame.getReward())
+        printReward(ladderGame.getReward());
     }
 
     private static void printReward(final Reward rewards) {
         for (String reward : rewards.getItems()) {
             printFormatted(reward);
         }
+        System.out.println();
     }
 
     private static void printUsersName(Users users) {
         for (User user : users.getUsers()) {
             printFormatted(user.getName());
         }
+        System.out.println();
     }
 
     private static void printFormatted(final String value) {
@@ -101,5 +103,9 @@ public class OutputView {
 
     private static void printUserReward(final User user, final Map<User, String> userAndReward) {
         System.out.println(user.getName() + " : " + userAndReward.get(user));
+    }
+
+    public static void printErrorMessage(String message) {
+        System.out.println("[ERROR] : " + message);
     }
 }
