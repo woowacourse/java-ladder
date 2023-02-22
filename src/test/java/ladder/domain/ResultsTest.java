@@ -24,7 +24,7 @@ public class ResultsTest {
         // expect
         assertThatIllegalArgumentException().isThrownBy(() ->
                 new Results(inputResults, playerCount)
-        ).withMessage("[ERROR] 입력된 결과의 수가 인원 수와 다를 수 없습니다.");
+        ).withMessage("[ERROR] 입력된 결과의 수가 인원 수와 같아야 합니다.");
     }
 
     @Test
