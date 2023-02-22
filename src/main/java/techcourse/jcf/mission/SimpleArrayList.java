@@ -17,6 +17,7 @@ public class SimpleArrayList implements SimpleList {
         this.size = size;
     }
 
+    //TODO: List의 크기가 자동으로 늘어나게 수정
     @Override
     public boolean add(final String value) {
         size += 1;
@@ -24,6 +25,7 @@ public class SimpleArrayList implements SimpleList {
         return true;
     }
 
+    //TODO: add한 index 뒤에 있는 값들을 전부 이동 시키기
     @Override
     public void add(final int index, final String value) {
         size += 1;
@@ -39,7 +41,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String get(final int index) {
-        return null;
+        return list[index];
     }
 
     @Override

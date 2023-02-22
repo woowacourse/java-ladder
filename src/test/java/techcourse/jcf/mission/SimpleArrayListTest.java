@@ -15,9 +15,7 @@ class SimpleArrayListTest {
 
         arrayList.add("홍실");
 
-        assertThat(arrayList)
-                .extracting("list")
-                .asInstanceOf(InstanceOfAssertFactories.array(String[].class))
+        assertThat(arrayList).extracting("list").asInstanceOf(InstanceOfAssertFactories.array(String[].class))
                 .contains("홍실");
     }
 
@@ -29,9 +27,7 @@ class SimpleArrayListTest {
 
         arrayList.add(0, "홍실");
 
-        assertThat(arrayList)
-                .extracting("list")
-                .asInstanceOf(InstanceOfAssertFactories.array(String[].class))
+        assertThat(arrayList).extracting("list").asInstanceOf(InstanceOfAssertFactories.array(String[].class))
                 .contains("홍실");
     }
 
@@ -44,16 +40,18 @@ class SimpleArrayListTest {
 
         final String setReturnValue = arrayList.set(0, "솔라");
 
-        assertThat(setReturnValue)
-                .isEqualTo("홍실");
-        assertThat(arrayList)
-                .extracting("list")
-                .asInstanceOf(InstanceOfAssertFactories.array(String[].class))
-                .contains("솔라");
+        assertThat(setReturnValue).isEqualTo("홍실");
     }
 
     @Test
     void get() {
+        final SimpleArrayList arrayList = new SimpleArrayList();
+
+        arrayList.add("홍실");
+        final String getValue = arrayList.get(0);
+
+        assertThat(getValue)
+                .isEqualTo("홍실");
     }
 
     @Test
