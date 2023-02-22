@@ -15,7 +15,7 @@ public class Prize {
     }
 
     private void validateName(final String name) {
-        if (name.length() > MAXIMUM_NAME_LENGTH) {
+        if (name.length() < MINIMUM_NAME_LENGTH || name.length() > MAXIMUM_NAME_LENGTH) {
             throw new PrizeNameLengthException();
         }
     }

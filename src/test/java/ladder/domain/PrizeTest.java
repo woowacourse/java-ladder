@@ -21,4 +21,10 @@ class PrizeTest {
         assertThatThrownBy(() -> new Prize("여섯글자에요"))
                 .isInstanceOf(CustomException.class);
     }
+
+    @Test
+    void 결과_이름이_1자_미만이면_예외_발생() {
+        assertThatThrownBy(() -> new Prize(""))
+                .isInstanceOf(CustomException.class);
+    }
 }
