@@ -23,8 +23,8 @@ public class Result {
     }
 
     public void perform(Ladder ladder) {
-        for (Line line : ladder.getLadder()) {
-            changeResultIndex(line);
+        for (int i = ladder.getLadder().size() - 1; i >= 0; i--) {
+            changeResultIndex(ladder.getLadder().get(i));
         }
     }
 
