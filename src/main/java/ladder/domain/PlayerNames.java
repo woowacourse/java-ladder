@@ -65,6 +65,10 @@ public class PlayerNames {
         return names.get(0).length();
     }
     
+    public int getPlayerIndex(String player) {
+        return names.indexOf(player);
+    }
+    
     public List<String> getNames() {
         return names;
     }

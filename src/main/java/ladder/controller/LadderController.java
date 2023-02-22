@@ -19,5 +19,16 @@ public class LadderController {
         OutputView.printNames(playerNames);
         OutputView.printLadder(ladder, playerNames.getFirstPlayerNameLength());
         OutputView.printExecutionResults(gameResult);
+    
+        while (true) {
+            String player = InputView.inputPlayerName();
+            int playerIndex = playerNames.getPlayerIndex(player);
+    
+            if (player.equals("all")) {
+                break;
+            }
+            
+            OutputView.printOnePlayerResult(playerIndex, gameResult);
+        }
     }
 }

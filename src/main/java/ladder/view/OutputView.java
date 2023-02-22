@@ -59,6 +59,10 @@ public class OutputView {
         println(parseDisplayElements(gameResult.getExecutionResults()));
     }
     
+    public static void printOnePlayerResult(int playerIndex, GameResult gameResult) {
+        println(gameResult.getOneExecutionResult(playerIndex));
+    }
+    
     public static void printExceptionMessage(IllegalArgumentException illegalArgumentException) {
         println(illegalArgumentException.getMessage());
     }
