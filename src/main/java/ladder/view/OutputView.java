@@ -20,7 +20,7 @@ public class OutputView {
 
     public void printRow(List<Boolean> points) {
         System.out.println();
-        System.out.print("  " + LadderMark.COLUMN_LINE.getMark());
+        System.out.print(LadderMark.COLUMN_LINE.getMark());
         for (boolean point : points) {
             System.out.print(LadderMark.getRowMark(point));
             System.out.print(LadderMark.COLUMN_LINE.getMark());

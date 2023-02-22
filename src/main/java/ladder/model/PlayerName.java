@@ -1,13 +1,13 @@
 package ladder.model;
 
-import static ladder.model.ErrorMessage.EXCEPTION_PLAYER_NAME_LENGTH;
-import static ladder.model.ErrorMessage.EXCEPTION_PLAYER_NAME_RESTRICTED;
+import static ladder.model.ErrorMessage.*;
 
 public class PlayerName {
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
-    private static final String RESTRICTED_NAME = "all";
+    private static final String RESTRICTED_NAME_ALL = "all";
+    private static final String RESTRICTED_NAME_QUIT = "quit";
     private final String playerName;
 
     public PlayerName(String playerName) {
@@ -32,8 +32,11 @@ public class PlayerName {
     }
 
     private void validatePlayerNameRestricted(String playerName) {
-        if (playerName == RESTRICTED_NAME) {
-            throw new IllegalArgumentException(EXCEPTION_PLAYER_NAME_RESTRICTED.getMessage());
+        if (playerName.equals(RESTRICTED_NAME_ALL)) {
+            throw new IllegalArgumentException(EXCEPTION_PLAYER_NAME_RESTRICTED_ALL.getMessage());
+        }
+        if (playerName.equals(RESTRICTED_NAME_QUIT)) {
+            throw new IllegalArgumentException(EXCEPTION_PLAYER_NAME_RESTRICTED_QUIT.getMessage());
         }
     }
 

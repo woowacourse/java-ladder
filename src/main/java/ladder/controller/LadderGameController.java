@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static ladder.model.ErrorMessage.EXCEPTION_RESULT_NOT_FOUND;
+
 public class LadderGameController {
 
     private final InputView inputView;
@@ -86,13 +88,18 @@ public class LadderGameController {
     }
 
     private void askResults(Map<Player, Reward> result) {
-        while (true) {
-            String askedPlayerName = inputView.readAskingResult();
+        String askedPlayerName = inputView.readAskingResult();
+        while (!askedPlayerName.equals("quit")) {
             searchResult(result, askedPlayerName);
+            askedPlayerName = inputView.readAskingResult();
         }
+        ;
     }
 
     private void searchResult(Map<Player, Reward> result, String askedPlayerName) {
+        if (askedPlayerName.equals("quit")) {
+            return;
+        }
         if (askedPlayerName.equals("all")) {
             showAllResult(result);
             return;
@@ -100,7 +107,7 @@ public class LadderGameController {
 
         Player askedPlayer = result.keySet().stream()
                 .filter(key -> key.getPlayerName().equals(askedPlayerName))
-                .findFirst().orElseThrow(IllegalArgumentException::new);
+                .findFirst().orElseThrow(() -> new IllegalArgumentException(EXCEPTION_RESULT_NOT_FOUND.getMessage()));
 
         showOneResult(result.get(askedPlayer));
     }
