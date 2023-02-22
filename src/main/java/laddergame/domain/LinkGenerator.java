@@ -1,7 +1,7 @@
 package laddergame.domain;
 
 @FunctionalInterface
-public interface PickStrategy {
+public interface LinkGenerator {
 
-    boolean pick();
+    Link pick();
 }

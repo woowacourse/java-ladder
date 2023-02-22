@@ -4,7 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
 
-public class LinkPicker implements PickStrategy {
+public class RandomLinkGenerator implements LinkGenerator {
 
     public static final Random random;
 
@@ -17,7 +17,7 @@ public class LinkPicker implements PickStrategy {
     }
 
     @Override
-    public boolean pick() {
-        return random.nextBoolean();
+    public Link pick() {
+        return Link.from(random.nextBoolean());
     }
 }

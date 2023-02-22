@@ -4,16 +4,20 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class TestLinkPicker implements PickStrategy {
+import static java.util.stream.Collectors.toList;
 
-    private final Queue<Boolean> booleans;
+public class TestLinkPicker implements LinkGenerator {
+
+    private final Queue<Link> links;
 
     public TestLinkPicker(final List<Boolean> testBooleans) {
-        this.booleans = new LinkedList<>(testBooleans);
+        final List<Link> testLinks = testBooleans.stream().map(element -> Link.from(element))
+                .collect(toList());
+        this.links = new LinkedList<>(testLinks);
     }
 
     @Override
-    public boolean pick() {
-        return booleans.remove();
+    public Link pick() {
+        return links.remove();
     }
 }
