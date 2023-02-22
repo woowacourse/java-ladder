@@ -20,30 +20,30 @@ public class LadderGameController {
     }
 
     public void run() {
-        Players players = readPersons();
-        Ladder ladder = readLadder(players.getCount() - 1);
+        Players players = getPlayers();
+        Ladder ladder = getLadder(players.getCount() - 1);
 
         outputView.printPlayerNames(players.getNames());
         outputView.printLadder(ladder.getLines());
     }
 
-    private Players readPersons() {
+    private Players getPlayers() {
         try {
             List<String> names = inputView.readPlayerNames();
             return new Players(names);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return readPersons();
+            return getPlayers();
         }
     }
 
-    private Ladder readLadder(int width) {
+    private Ladder getLadder(int width) {
         try {
             int height = inputView.readLadderHeight();
             return new Ladder(height, width, generator);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return readLadder(width);
+            return getLadder(width);
         }
     }
 
