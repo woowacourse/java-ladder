@@ -60,6 +60,10 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public boolean contains(String value) {
+        if(isEmpty()){
+            return false;
+        }
+
         Node node = head;
         for(int i = 0; i < size; i++){
             if(node.getValue().equals(value)){
@@ -72,7 +76,18 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public int indexOf(String value) {
-        return 0;
+        if(isEmpty()){
+            return -1;
+        }
+
+        Node node = head;
+        for(int i = 0; i < size; i++){
+            if(node.getValue().equals(value)){
+                return i;
+            }
+            node = node.getNextNode();
+        }
+        return -1;
     }
 
     @Override
