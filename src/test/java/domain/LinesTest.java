@@ -44,10 +44,10 @@ class LinesTest {
         void 사다리를_따라_끝까지_이동한다() {
             BooleanGenerator trueBooleanGenerator = new TrueBooleanGenerator();
             Lines nonRandomLines = new Lines(3, 3, trueBooleanGenerator);
-            Assertions.assertEquals(nonRandomLines.getExitIndex(0), 1);
-            Assertions.assertEquals(nonRandomLines.getExitIndex(1), 0);
-            Assertions.assertEquals(nonRandomLines.getExitIndex(2), 3);
-            Assertions.assertEquals(nonRandomLines.getExitIndex(3), 2);
+            Assertions.assertEquals(nonRandomLines.getExitPosition(0), 1);
+            Assertions.assertEquals(nonRandomLines.getExitPosition(1), 0);
+            Assertions.assertEquals(nonRandomLines.getExitPosition(2), 3);
+            Assertions.assertEquals(nonRandomLines.getExitPosition(3), 2);
         }
     }
 }
