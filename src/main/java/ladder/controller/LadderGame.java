@@ -4,7 +4,7 @@ import java.util.List;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
-import ladder.domain.RandomLadderGenerator;
+import ladder.domain.LadderGenerator;
 import ladder.domain.Width;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -38,8 +38,8 @@ public class LadderGame {
     private Ladder makeLadder(int playersSize) {
         Height height = new Height(inputView.inputHeight());
         Width width = new Width(getWidthSize(playersSize));
-        RandomLadderGenerator randomLadderGenerator = new RandomLadderGenerator(width, height);
-        return randomLadderGenerator.generateLadder();
+        LadderGenerator ladderGenerator = new LadderGenerator(width, height);
+        return Ladder.from(ladderGenerator);
     }
 
     private int getWidthSize(int playersSize) {

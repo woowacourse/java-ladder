@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.List;
 
 public class Row {
-    private static final String ROW_LENGTH_ERROR_MESSAGE = "사다리 길이가 맞지 않습니다.";
     private static final String CONSECUTIVE_FOOTHOLD_ERROR_MESSAGE = "가로로 연속된 발판은 만들 수 없습니다.";
     private static final int MIN_INDEX = 0;
     private final List<Step> row;
