@@ -6,6 +6,7 @@ import domain.Link;
 import java.util.List;
 
 public class OutputView {
+
     private static final String RESULT_MESSAGE = "실행결과";
     private static final String BLANK_LINE = "        ";
     private static final String CONNECTED_LINE = "--------";

@@ -1,6 +1,7 @@
 package domain;
 
 public class Result {
+
     private final String name;
 
     public Result(final String name) {

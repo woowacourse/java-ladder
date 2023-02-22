@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CalculateLadderGameResultTest {
+
     private static final CalculateLadderGameResult CALCULATOR = new CalculateLadderGameResult();
     private static final List<Link> LENGTH_THREE_LINE_CASE1 = List.of(Link.LINKED, Link.UNLINKED, Link.LINKED);
     private static final List<Link> LENGTH_THREE_LINE_CASE2 = List.of(Link.LINKED, Link.UNLINKED, Link.UNLINKED);
