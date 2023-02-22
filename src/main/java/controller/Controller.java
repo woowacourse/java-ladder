@@ -26,28 +26,28 @@ public class Controller {
     public void run() {
         Users users = settingUsers();
         Width width = new Width(users.getCount() - 1);
+        List<String> inputResult = settingResult(users.getCount());
         Height height = settingHeight();
         Ladder ladder = new Ladder(height, width, new RandomLadderGenerator());
-        showLadder(users, ladder);
-        Result result = playLadderGame(users, ladder);
+        showLadder(users, ladder, inputResult);
+        Result result = playLadderGame(users, ladder, inputResult);
         checkResult(users, result);
     }
 
-    private Result playLadderGame(final Users users, final Ladder ladder) {
+    private Result playLadderGame(final Users users, final Ladder ladder, List<String> inputResult) {
         Map<String, Integer> ladderGameResult = ladder.play(users);
-        List<String> inputResult = settingResult(users.getCount());
         return new Result(inputResult, ladderGameResult);
     }
 
-    private void showLadder(final Users users, final Ladder ladder) {
+    private void showLadder(final Users users, final Ladder ladder, final List<String> inputResult) {
         outputView.printUsers(users);
         for (Line line : ladder.getLadder()) {
             outputView.printLadder(line);
         }
+        outputView.printResult(inputResult);
     }
 
     private void checkResult(final Users users, final Result userResult) {
-
         String inputResultWord = inputView.inputWantToKnowUser();
         if (wantToKnowAllResult(inputResultWord)) {
             return;

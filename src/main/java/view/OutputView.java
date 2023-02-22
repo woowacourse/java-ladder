@@ -4,6 +4,7 @@ import domain.Bridge;
 import domain.Line;
 import domain.Users;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -25,6 +26,12 @@ public class OutputView {
                 .map(Bridge::getFormat)
                 .collect(Collectors.joining(BRIDGE_DELIMITER));
         System.out.printf(LADDER_FORMAT, collect);
+    }
+
+    public void printResult(final List<String> inputResult) {
+        inputResult
+                .forEach(result -> System.out.printf(USER_NAME_FORMAT, (result)));
+        System.out.println();
     }
 
     public void printExceptionMessage(String errorMessage) {
