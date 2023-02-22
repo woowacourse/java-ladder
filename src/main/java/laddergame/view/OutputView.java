@@ -3,6 +3,8 @@ package laddergame.view;
 import static laddergame.domain.Name.BLANK;
 import static laddergame.domain.Name.MAX_NAME_LENGTH;
 
+import java.util.Map;
+import java.util.Map.Entry;
 import laddergame.domain.GameResult;
 import laddergame.domain.GameResults;
 import laddergame.domain.Ladder;
@@ -16,7 +18,7 @@ public class OutputView {
 
     private static final String USER_ENTER_NOTICE_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String LADDER_HEIGHT_ENTER_NOTICE_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
-    private static final String FINAL_RESULT = "실행결과";
+    private static final String LADDER_RESULT = "사다리 결과";
     private static final char NEXT_LINE = '\n';
 
     private static final int SECOND_INDEX = 1;
@@ -33,8 +35,8 @@ public class OutputView {
         System.out.println(LADDER_HEIGHT_ENTER_NOTICE_MESSAGE);
     }
 
-    public void printGameResult(Ladder ladder, Users users, GameResults gameResults) {
-        System.out.println(FINAL_RESULT + NEXT_LINE);
+    public void printLadderResult(Ladder ladder, Users users, GameResults gameResults) {
+        System.out.println(LADDER_RESULT + NEXT_LINE);
 
         String firstUserName = users.getFirstUserName();
         String firstResult = gameResults.getFirstResult();
@@ -43,6 +45,23 @@ public class OutputView {
         printUsers(users, firstLength);
         printLadder(ladder, users.getFirstUserName().length());
         printResults(gameResults, firstLength);
+    }
+
+    public void printEnterUserToCheckResultNotice() {
+        System.out.println("결과를 보고 싶은 사람은?");
+    }
+
+    public void printResultOfOneUser(String result) {
+        System.out.println(result + NEXT_LINE);
+    }
+
+    public void printResultOfAllUser(Map<String, String> gameResultByUserName) {
+        StringBuilder builder = new StringBuilder();
+        for (Entry<String, String> resultByUser : gameResultByUserName.entrySet()) {
+            builder.append(resultByUser.getKey()).append(" : ").append(resultByUser.getValue());
+            builder.append(NEXT_LINE);
+        }
+        System.out.println(builder);
     }
 
     public void printErrorMessage(Exception e) {
