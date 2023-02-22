@@ -65,4 +65,8 @@ public class InputView {
             throw new IllegalArgumentException(SEPARATOR_REQUIRED_ERROR_MESSAGE);
         }
     }
+
+    public String getName() {
+        return inputReader.readInput();
+    }
 }

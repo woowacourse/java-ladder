@@ -11,6 +11,7 @@ public class Names {
     public static final int MIN_SIZE = 2;
     public static final String INVALID_NAMES_SIZE_ERROR_MESSAGE = "최소 " + MIN_SIZE + "명이상 최대 " + MAX_SIZE + "명 이하 참가자가 필요합니다.";
     public static final String DUPLICATED_ERROR_MESSAGE = "중복된 사람은 참여할 수 없습니다.";
+    public static final String NOT_SAVED_PARTICIPANT_ERROR_MESSAGE = "등록되지 않은 참가자 이름입니다";
 
     private final List<Name> names;
 
@@ -64,23 +65,6 @@ public class Names {
         return List.copyOf(names);
     }
 
-    public int findMaxNameLength() {
-        int maxLength = 0;
-        for (Integer nameLength : findNameLengths()) {
-            if (maxLength < nameLength) {
-                maxLength = nameLength;
-            }
-        }
-        return maxLength;
-    }
-
-    private List<Integer> findNameLengths() {
-        return this.names
-                .stream()
-                .map(Name::length)
-                .collect(Collectors.toList());
-    }
-
     @Override
     public boolean equals(Object names) {
         if (this == names) return true;
@@ -99,5 +83,17 @@ public class Names {
         return "Names{" +
                 "names=" + names +
                 '}';
+    }
+
+    public int getSequenceOf(String name) {
+        int sequence = names.indexOf(Name.of(name));
+        if (sequence == -1) {
+            throw new IllegalArgumentException(NOT_SAVED_PARTICIPANT_ERROR_MESSAGE);
+        }
+        return sequence;
+    }
+
+    public boolean has(String name) {
+        return names.contains(Name.of(name));
     }
 }

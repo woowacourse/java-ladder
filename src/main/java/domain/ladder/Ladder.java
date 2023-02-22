@@ -1,6 +1,8 @@
 package domain.ladder;
 
+import domain.Goals;
 import domain.Height;
+import domain.Names;
 import util.BooleanGenerator;
 
 import java.util.ArrayList;
@@ -11,13 +13,17 @@ public class Ladder {
 
     private final List<Line> lines = new ArrayList<>();
     private final BooleanGenerator booleanGenerator;
+    private final Names names;
+    private final Goals goals;
 
-    private Ladder(final BooleanGenerator booleanGenerator) {
+    public Ladder(BooleanGenerator booleanGenerator, Names names, Goals goals) {
         this.booleanGenerator = booleanGenerator;
+        this.names = names;
+        this.goals = goals;
     }
 
-    public static Ladder of(final BooleanGenerator booleanGenerator) {
-        return new Ladder(booleanGenerator);
+    public static Ladder of(BooleanGenerator booleanGenerator, Names names, Goals goals) {
+        return new Ladder(booleanGenerator, names, goals);
     }
 
     public void build(final Height height, final int width) {
@@ -25,7 +31,7 @@ public class Ladder {
     }
 
     private void generateLines(final Height height, final int width, BooleanGenerator booleanGenerator) {
-        while(height.isNotBottom()){
+        while (height.isNotBottom()) {
             Line currentLine = Line.of(width, booleanGenerator);
             currentLine.generateSteps();
             this.lines.add(currentLine);
@@ -46,7 +52,12 @@ public class Ladder {
                 '}';
     }
 
-    public int ride(int startingPoint, int indexFromTop) {
+    public String ride(String participantName) {
+        int startingPoint = names.getSequenceOf(participantName);
+        return goals.getNameOfSequence(ride(startingPoint, 0));
+    }
+
+    private int ride(int startingPoint, int indexFromTop) {
         if (indexFromTop == lines.size()) {
             return startingPoint;
         }
@@ -59,5 +70,13 @@ public class Ladder {
             return ride(startingPoint + 1, indexFromTop + 1);
         }
         return ride(startingPoint, indexFromTop + 1);
+    }
+
+    public Names getNames() {
+        return names;
+    }
+
+    public Goals getGoals() {
+        return goals;
     }
 }

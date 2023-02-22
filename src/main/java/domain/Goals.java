@@ -28,4 +28,9 @@ public class Goals {
                 .map(Goal::getName)
                 .collect(Collectors.toList());
     }
+
+    public String getNameOfSequence(int sequence) {
+        return goals.get(sequence)
+                .getName();
+    }
 }
