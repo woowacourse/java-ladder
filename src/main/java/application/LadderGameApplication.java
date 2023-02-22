@@ -36,24 +36,7 @@ public class LadderGameApplication {
         Ladder ladder = ladderGenerator.generate(players.size(), ladderHeight, ladderResults);
         outputView.printLadder(players, ladder);
 
-        while (true) {
-            LadderResultRequest request = inputView.readSpecificResult();
-
-            if (request.isAll()) {
-                List<PlayerLadderResult> everyPlayerResult = getEveryPlayerResult(players, ladder);
-                outputView.printEveryPlayerResult(everyPlayerResult);
-                break;
-            }
-
-            if (request.isPlayerName(players)) {
-                outputView.printNoMatchingPlayerMessage(request);
-                continue;
-            }
-
-            Player findPlayer = players.findSpecificNamePlayer(request.getMessage());
-            String singlePlayerResult = ladder.play(findPlayer.getPosition());
-            outputView.printSinglePlayerResult(singlePlayerResult);
-        }
+        printResult(players, ladder);
     }
 
     private <T> T retryIfError(Supplier<T> inputSupplier) {
@@ -77,6 +60,31 @@ public class LadderGameApplication {
         return new Players(players);
     }
 
+    private void printResult(Players players,
+                             Ladder ladder) {
+        while (true) {
+            LadderResultRequest request = inputView.readSpecificResult();
+
+            if (request.isAll()) {
+                printEveryPlayerResult(players, ladder);
+                return;
+            }
+
+            if (!request.isPlayerName(players)) {
+                outputView.printNoMatchingPlayerMessage(request);
+                continue;
+            }
+
+            Player findPlayer = players.findSpecificNamePlayer(request.getMessage());
+            printSinglePlayerResult(findPlayer, ladder);
+        }
+    }
+
+    private void printEveryPlayerResult(Players players, Ladder ladder) {
+        List<PlayerLadderResult> everyPlayerResult = getEveryPlayerResult(players, ladder);
+        outputView.printEveryPlayerResult(everyPlayerResult);
+    }
+
     private List<PlayerLadderResult> getEveryPlayerResult(Players players, Ladder ladder) {
         return players.stream()
                 .map(player -> {
@@ -84,5 +92,10 @@ public class LadderGameApplication {
                     return new PlayerLadderResult(player.getName(), result);
                 })
                 .collect(toList());
+    }
+
+    private void printSinglePlayerResult(Player player, Ladder ladder) {
+        String singlePlayerResult = ladder.play(player.getPosition());
+        outputView.printSinglePlayerResult(singlePlayerResult);
     }
 }
