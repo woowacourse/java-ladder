@@ -20,7 +20,7 @@ public class LadderGame {
             return getAllReward();
         }
 
-        int index = players.findByName(name.getName());
+        int index = players.findIndexByName(name);
         int result = ladder.move(index);
         return Map.of(name.getName(), rewards.getReward(result).getName());
     }
@@ -30,7 +30,7 @@ public class LadderGame {
 
         for (int i = 0; i < players.getNumberOfPlayer(); i++) {
             int result = ladder.move(i);
-            reward.put(players.getNames().get(i).getName(), rewards.getReward(result).getName());
+            reward.put(players.findNameByIndex(i), rewards.getReward(result).getName());
         }
 
         return reward;

@@ -61,14 +61,14 @@ public class PlayersTest {
     @CsvSource({"pobi,0", "honux,1", "crong,2", "jk,3"})
     void shouldReturnIndexOfName(String name, int expected) {
         List<String> names = List.of("pobi", "honux", "crong", "jk");
-        assertThat(new Players(names).findByName(name)).isEqualTo(expected);
+        assertThat(new Players(names).findIndexByName(new Name(name))).isEqualTo(expected);
     }
 
     @DisplayName("이름으로 번호를 찾을 수 없다면 예외를 발생시킨다.")
     @Test
     void throwExceptionWhenCanNotFindByName() {
         List<String> names = List.of("pobi", "honux", "crong", "jk");
-        assertThatThrownBy(() -> new Players(names).findByName("odo27"))
+        assertThatThrownBy(() -> new Players(names).findIndexByName(new Name("odo27")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

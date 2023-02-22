@@ -27,14 +27,14 @@ public class LadderController {
         while (true) {
             Name name = generateName();
             if (name.getName().equals("all")) {
-                for (int i = 0; i < players.getNames().size(); i++) {
+                for (int i = 0; i < numberOfPlayer; i++) {
                     int result = ladder.move(i);
-                    System.out.printf("%s : %s%n", players.getNames().get(i).getName(), rewards.getReward(result).getName());
+                    System.out.printf("%s : %s%n", players.findNameByIndex(i), rewards.getReward(result).getName());
                 }
                 break;
             }
             try {
-                int index = players.findByName(name.getName());
+                int index = players.findIndexByName(name);
                 int result = ladder.move(index);
                 System.out.println(rewards.getReward(result).getName());
             } catch (IllegalArgumentException exception) {

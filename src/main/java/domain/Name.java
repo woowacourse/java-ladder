@@ -29,8 +29,8 @@ public class Name {
         return length >= LENGTH_LOWER_BOUND && length <= LENGTH_UPPER_BOUND;
     }
 
-    public boolean equals(String name) {
-        return this.name.equals(name);
+    public boolean equals(Name name) {
+        return this.name.equals(name.getName());
     }
 
     public String getName() {

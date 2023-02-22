@@ -11,13 +11,13 @@ public class Players {
     private static final String INVALID_SIZE_MESSAGE = "참가자는 2명 이상이어야 합니다.";
     private static final String CAN_NOT_FIND_NAME_MESSAGE = "존재하지 않는 이름입니다.";
 
-    private final List<Name> names;
+    private final List<Player> players;
 
     public Players(final List<String> names) {
         validate(names);
 
-        this.names = names.stream()
-                .map(Name::new)
+        players = names.stream()
+                .map(Player::new)
                 .collect(Collectors.toList());
     }
 
@@ -31,18 +31,22 @@ public class Players {
         }
     }
 
-    public int findByName(String name) {
-        return IntStream.range(0, names.size())
-                .filter(i -> names.get(i).getName().equals(name))
+    public int findIndexByName(Name name) {
+        return IntStream.range(0, players.size())
+                .filter(i -> players.get(i).hasSameName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(CAN_NOT_FIND_NAME_MESSAGE));
     }
 
-    public List<Name> getNames() {
-        return Collections.unmodifiableList(names);
+    public String findNameByIndex(int index) {
+        return players.get(index).getName();
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 
     public int getNumberOfPlayer() {
-        return names.size();
+        return players.size();
     }
 }
