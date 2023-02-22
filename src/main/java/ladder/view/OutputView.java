@@ -14,7 +14,7 @@ public class OutputView {
     }
     
     public static void printNames(PlayerNames playerNames) {
-        println(parseDisplayElements(playerNames.getNames()));
+        println("\n" + parseDisplayElements(playerNames.getNames()));
     }
 
     private static String parseDisplayElements(List<String> names) {
@@ -63,6 +63,7 @@ public class OutputView {
         List<String> names = playerNames.getNames();
         List<String> allExecutionResult = gameResult.getAllExecutionResult(movedPositions);
         
+        println("\n실행 결과");
         println(parseAllPlayerResult(names, allExecutionResult));
     }
     
@@ -77,7 +78,7 @@ public class OutputView {
     }
     
     public static void printOnePlayerResult(int playerIndex, List<Integer> movedPositions, GameResult gameResult) {
-        println("실행 결과");
+        println("\n실행 결과");
         println(gameResult.getOneExecutionResult(playerIndex, movedPositions));
     }
     
