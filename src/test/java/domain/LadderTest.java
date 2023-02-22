@@ -14,7 +14,7 @@ public class LadderTest {
     @ValueSource(ints = {0, 11})
     @DisplayName("사다리 높이가 1~10을 벗어나면 예외가 발생한다.")
     void LadderHeightFailTest(int height) {
-        Assertions.assertThatThrownBy(() -> new Ladder(new Height(height), new Width(5), LineGenerator.getInstance()))
+        Assertions.assertThatThrownBy(() -> new Ladder(new Height(height), new Width(5), RandomLineGenerator.getInstance()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -22,7 +22,7 @@ public class LadderTest {
     @ValueSource(ints = {1, 10})
     @DisplayName("사다리 높이가 1~10 사이면 정상적으로 수행된다.")
     void LadderHeightSuccessTest(int height) {
-        assertThatCode(() -> new Ladder(new Height(height), new Width(5), LineGenerator.getInstance()))
+        assertThatCode(() -> new Ladder(new Height(height), new Width(5), RandomLineGenerator.getInstance()))
                 .doesNotThrowAnyException();
     }
 }

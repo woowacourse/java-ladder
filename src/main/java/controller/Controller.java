@@ -20,7 +20,7 @@ public class Controller {
         Users users = settingUsers();
         Width width = new Width(users.getCount() - 1);
         Height height = settingHeight();
-        Ladder ladder = new Ladder(height, width, LineGenerator.getInstance());
+        Ladder ladder = new Ladder(height, width, RandomLineGenerator.getInstance());
         outputView.printUsers(users);
         for (Line line : ladder.getLadder()) {
             outputView.printLadder(line);
