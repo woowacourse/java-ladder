@@ -1,7 +1,21 @@
-# java-ladder
+# 기능 명세
 
-사다리 타기 미션 저장소
+## View
+- [x] 사다리 게임에 참여하는 사람의 이름을 입력 받는다.
+  - [x] 사람의 이름은 5글자 이하여야 한다.
+  - [x] 사람의 이름을 쉼표(,)로 구분해야 한다. (최소 2명 이상)
+- [x] 사다리의 높이를 입력받는다.
+  - [x] 사다리의 높이는 자연수여야 한다.
+- [x] 사다리 모양과 사람이름을 출력해야 한다.
+  - [x] 사람 이름은 5글자를 기준으로 출력한다.
+  
+## Util
+- [x] Boolean 값 랜덤 생성을 한다.
 
-## 우아한테크코스 코드리뷰
+## Model
+- [x] Peoples를 생성한다.
+  - [x] People를 생성한다.
+- [x] Lines를 생성한다.
+  - [X] Line을 생성한다.
 
-- [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
+[//]: # (- [ ] )
