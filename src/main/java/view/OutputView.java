@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class OutputView {
     private static final String RESULT_HEAD = "실행결과";
+    private static final String LADDER_HEAD = "사다리 결과";
     private static final String BLANK = " ";
     private static final String LADDER_UNIT = "|";
     private static final String BRIDGE_UNIT = "-";
@@ -17,13 +18,14 @@ public class OutputView {
 
     public void printLadder(List<String> persons, List<List<Boolean>> ladder, List<String> winningResults,
                             int bridgeSize) {
-        System.out.println(RESULT_HEAD + "\n");
+        System.out.println("\n" + LADDER_HEAD + "\n");
         int firstNameLength = printPersons(persons, bridgeSize);
         printLadder(ladder, firstNameLength, bridgeSize);
         printTextWithBridgeSize(winningResults, bridgeSize);
     }
 
     public void printResult(Map<String, String> result) {
+        System.out.println("\n" + RESULT_HEAD);
         if (result.size() == RESULT_ONLY_COUNT) {
             result.values().forEach(System.out::println);
             return;

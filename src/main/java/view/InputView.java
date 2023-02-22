@@ -19,17 +19,17 @@ public class InputView {
     }
 
     public int requestLadderHeight() {
-        System.out.println(REQUEST_LADDER_HEIGHT);
+        System.out.println("\n" + REQUEST_LADDER_HEIGHT);
         return validateOnlyNumber(readInput());
     }
 
     public String requestResultTarget() {
-        System.out.println(REQUEST_RESULT_NAME);
+        System.out.println("\n" + REQUEST_RESULT_NAME);
         return readInput();
     }
 
     public String requestGameResult() {
-        System.out.println(REQUEST_RESULTS);
+        System.out.println("\n" + REQUEST_RESULTS);
         return readInput();
     }
 

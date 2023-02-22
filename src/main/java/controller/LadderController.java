@@ -25,8 +25,8 @@ public class LadderController {
 
     public void play() {
         Persons persons = requestPlayerName();
-        Height height = requestLadderHeight();
         WinningEntry winningEntry = requestGameResult(persons.getTotalPersonCount());
+        Height height = requestLadderHeight();
 
         ladderGame = new LadderGame(persons, height, winningEntry, new RandomBooleanGenerator());
         outputView.printLadder(ladderGame.getAllPlayers(), ladderGame.getLadder(), ladderGame.getWinningEntries(),
