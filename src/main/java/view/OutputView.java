@@ -23,11 +23,11 @@ public class OutputView {
     }
 
     public void printResult(Map<String, String> result) {
+        if (result.size() == 1) {
+            result.values().forEach(System.out::println);
+            return;
+        }
         result.forEach((name, prize) -> System.out.printf(ALL_RESULT + "\n", name, prize));
-    }
-
-    public void printResult(String result) {
-        System.out.println(result);
     }
 
     private static void printLadder(List<List<Boolean>> ladder, int firstNameLength, int bridgeSize) {

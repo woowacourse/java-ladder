@@ -1,5 +1,6 @@
 package domain;
 
+import exception.ErrorCode;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.stream.Collectors;
 import util.BooleanGenerator;
 
 public class LadderGame {
+    private static final String ALL_RESULT = "all";
     private final Persons persons;
     private final Ladder ladder;
     private final WinningEntry winningEntry;
@@ -25,6 +27,16 @@ public class LadderGame {
             winningResult.put(persons.findNameByPosition(personIndex), winningEntry.findByPosition(resultPosition));
         }
         return winningResult;
+    }
+
+    public Map<String, String> pickResultForTarget(Map<String, String> results, String target) {
+        if (target.equals(ALL_RESULT)) {
+            return results;
+        }
+        if (results.containsKey(target)) {
+            return Map.of(target, results.get(target));
+        }
+        throw new IllegalArgumentException(ErrorCode.WRONG_RESULT_TARGET.getMessage());
     }
 
     public List<List<Boolean>> getLadder() {

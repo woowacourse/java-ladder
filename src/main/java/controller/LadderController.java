@@ -16,7 +16,6 @@ import view.OutputView;
 
 public class LadderController {
     private static final String DELIMITER = ",";
-    private static final String ALL_RESULT = "all";
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private LadderGame ladderGame;
@@ -73,13 +72,20 @@ public class LadderController {
     }
 
     private WinningEntry requestGameResult(int personCount) {
-        while(true) {
-            try {
-                return new WinningEntry(Arrays.stream(inputView.requestGameResult().split(DELIMITER)).collect(Collectors.toList()), personCount);
-            } catch (IllegalArgumentException exception) {
-                outputView.printErrorMessage(exception.getMessage());
-            }
+        WinningEntry winningEntry = null;
+        while (winningEntry == null) {
+            winningEntry = readWinningEntry(personCount);
         }
+        return winningEntry;
+    }
+
+    private WinningEntry readWinningEntry(int personCount) {
+        try {
+            return new WinningEntry(Arrays.asList(inputView.requestGameResult().split(DELIMITER)), personCount);
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+        }
+        return null;
     }
 
     private void printGameResult(Map<String, String> result) {
@@ -91,22 +97,17 @@ public class LadderController {
 
     private boolean isAllPrinted(Map<String, String> result) {
         try {
-            return printResult(inputView.requestResultTarget(), result);
+            int printedSize = printRequestedResult(inputView.requestResultTarget(), result);
+            return result.size() == printedSize;
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
         }
         return false;
     }
 
-    private boolean printResult(String target, Map<String, String> result) {
-        if (target.equals(ALL_RESULT)) {
-            outputView.printResult(result);
-            return true;
-        }
-        if (result.containsKey(target)) {
-            outputView.printResult(result.get(target));
-            return false;
-        }
-        throw new IllegalArgumentException(ErrorCode.WRONG_RESULT_TARGET.getMessage());
+    private int printRequestedResult(String target, Map<String, String> result) {
+        Map<String, String> requestedResult = ladderGame.pickResultForTarget(result, target);
+        outputView.printResult(requestedResult);
+        return requestedResult.size();
     }
 }
