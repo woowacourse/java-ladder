@@ -38,13 +38,23 @@ public class LadderGame {
         return position;
     }
 
-    public String findGameResultByName(String name) {
-        int indexOfName = names.findIndexByName(name);
-
-        return gameResults.findResultByIndex(indexOfName);
+    public List<GameResult> findGameResult(String name) {
+        if (LadderGameCommand.DEFAULT_COMMAND.isPlayable(name)) {
+            return findGameResultByName(name);
+        }
+        return findGameResultAll();
     }
 
-    public List<GameResult> findGameResultAll() {
+    private List<GameResult> findGameResultByName(String name) {
+        int index = names.findIndexByName(name);
+        String participantName = names.findNameByIndex(index);
+        String gameResult = gameResults.findResultByIndex(index);
+        GameResult participantGameResult = new GameResult(participantName, gameResult);
+
+        return List.of(participantGameResult);
+    }
+
+    private List<GameResult> findGameResultAll() {
         return IntStream.range(0, names.getTotalParticipantSize())
                 .mapToObj(index -> new GameResult(names.findNameByIndex(index),
                         gameResults.findResultByIndex(index)))
