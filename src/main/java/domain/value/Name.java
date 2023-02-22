@@ -1,4 +1,6 @@
-package domain;
+package domain.value;
+
+import java.util.Objects;
 
 public class Name {
 
@@ -19,11 +21,24 @@ public class Name {
         }
     }
 
-    public String getValue() {
+    public String value() {
         return value;
     }
 
     public int length() {
         return value.length();
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Name)) return false;
+        Name name = (Name) o;
+        return Objects.equals(value(), name.value());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value());
     }
 }

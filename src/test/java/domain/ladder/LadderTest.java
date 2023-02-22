@@ -1,5 +1,6 @@
-package domain;
+package domain.ladder;
 
+import domain.value.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -11,8 +12,11 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static domain.ladder.Scaffold.EXIST;
+import static domain.ladder.Scaffold.NONE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -20,13 +24,13 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 @DisplayName("Ladder 는")
 public class LadderTest {
 
+    private static final ScaffoldGenerator scaffoldGenerator = () -> EXIST;
+
     @Test
     @DisplayName("Line 을 받아 생성된다")
     void Line_을_받아_생성된다() {
         // given
-        Scaffold scaffold1 = Scaffold.EXIST;
-        Scaffold scaffold2 = Scaffold.NONE;
-        Line line = new Line(List.of(scaffold1, scaffold2));
+        Line line = new Line(List.of(EXIST, EXIST));
 
         // when & then
         assertDoesNotThrow(() -> new Ladder(List.of(line)));
@@ -61,15 +65,10 @@ public class LadderTest {
     }
 
     private static Stream<Arguments> sameLengthLines() {
-        List<Scaffold> size1Scaffolds = List.of(Scaffold.EXIST);
-        List<Scaffold> size2Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE);
-        List<Scaffold> size3Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST);
-        List<Scaffold> size4Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE);
-
-        Line line1 = new Line(size1Scaffolds);
-        Line line2 = new Line(size2Scaffolds);
-        Line line3 = new Line(size3Scaffolds);
-        Line line4 = new Line(size4Scaffolds);
+        Line line1 = new Line(List.of(EXIST));
+        Line line2 = new Line(List.of(EXIST, EXIST));
+        Line line3 = new Line(List.of(EXIST, EXIST, EXIST));
+        Line line4 = new Line(List.of(EXIST, EXIST, EXIST, EXIST));
 
         return Stream.of(
                 Arguments.of(List.of(line1, line1)),
@@ -90,21 +89,58 @@ public class LadderTest {
     }
 
     private static Stream<Arguments> differentSizeLines() {
-        List<Scaffold> size1Scaffolds = List.of(Scaffold.EXIST);
-        List<Scaffold> size2Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE);
-        List<Scaffold> size3Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST);
-        List<Scaffold> size4Scaffolds = List.of(Scaffold.EXIST, Scaffold.NONE, Scaffold.EXIST, Scaffold.NONE);
-
-        Line line1 = new Line(size1Scaffolds);
-        Line line2 = new Line(size2Scaffolds);
-        Line line3 = new Line(size3Scaffolds);
-        Line line4 = new Line(size4Scaffolds);
+        Line line1 = new Line(List.of(EXIST));
+        Line line2 = new Line(List.of(EXIST, EXIST));
+        Line line3 = new Line(List.of(EXIST, EXIST, EXIST));
+        Line line4 = new Line(List.of(EXIST, EXIST, EXIST, EXIST));
 
         return Stream.of(
                 Arguments.of(List.of(line2, line1)),
                 Arguments.of(List.of(line1, line2)),
                 Arguments.of(List.of(line1, line1, line2)),
                 Arguments.of(List.of(line3, line3, line3, line4))
+        );
+    }
+
+    /**
+     * 0     1     2     3
+     * |-----|     |-----|
+     * |     |-----|     |
+     * |-----|     |     |
+     * |     |-----|     |
+     * |-----|     |-----|
+     * 0     1     2     3
+     * <p>
+     * 0 에서 내려가는 경우 -> 0
+     * 1 에서 내려가는 경우 -> 3
+     * 2 에서 내려가는 경우 -> 2
+     * 3 에서 내려가는 경우 -> 1
+     */
+    @Test
+    void goDown_은_특정_시작_위치로부터_내려갈_수_있으며_사다리를_다_내려갔을때의_위치를_반환한다() {
+        // given
+        /*
+         * |-----|     |-----|
+         * |     |-----|     |
+         * |-----|     |     |
+         * |     |-----|     |
+         * |-----|     |-----|
+         */
+        List<Line> lines = List.of(
+                new Line(List.of(EXIST, NONE, EXIST)),
+                new Line(List.of(NONE, EXIST, NONE)),
+                new Line(List.of(EXIST, NONE, NONE)),
+                new Line(List.of(NONE, EXIST, NONE)),
+                new Line(List.of(EXIST, NONE, EXIST))
+        );
+        Ladder ladder = new Ladder(lines);
+
+        // when & then
+        assertAll(
+                () -> assertThat(ladder.goDown(Position.of(0))).isEqualTo(Position.of(0)),
+                () -> assertThat(ladder.goDown(Position.of(1))).isEqualTo(Position.of(3)),
+                () -> assertThat(ladder.goDown(Position.of(2))).isEqualTo(Position.of(2)),
+                () -> assertThat(ladder.goDown(Position.of(3))).isEqualTo(Position.of(1))
         );
     }
 }

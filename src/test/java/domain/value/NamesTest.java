@@ -1,4 +1,4 @@
-package domain;
+package domain.value;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static fixture.NameFixture.말랑;
+import static fixture.NameFixture.바다;
 import static java.util.Arrays.stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -23,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 @DisplayName("Names 는")
 class NamesTest {
 
-    private final List<Name> nameList1 = List.of(new Name("일"), new Name("말랑"), new Name("둘리"));
+    private final List<Name> nameList1 = List.of(말랑(), 바다());
 
     @Test
     void Name_List_를_통해_생성된다() {
@@ -42,7 +44,7 @@ class NamesTest {
     static Stream<Arguments> lessThan2SizeNames() {
         return Stream.of(
                 Arguments.of(List.of()),
-                Arguments.of(List.of(new Name("1")))
+                Arguments.of(List.of(바다()))
         );
     }
 
@@ -84,5 +86,66 @@ class NamesTest {
 
         // then
         assertThat(size).isEqualTo(actualLength);
+    }
+
+    @ParameterizedTest(name = "동명이인이_포함된_경우_예외를_발생시킨다.")
+    @CsvSource(value = {
+            "바다,바다:3",
+            "바다,말랑,바다,토끼:4",
+    }, delimiter = ':')
+    void 동명이인이_포함된_경우_예외를_발생시킨다(final String nameValues) {
+        // given
+        List<Name> names = stream(nameValues.split(","))
+                .map(Name::new)
+                .collect(Collectors.toList());
+
+        // when & then
+        assertThatThrownBy(() ->
+                new Names(names)
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest(name = "특정 이름의 위치를 알 수 있다. 예를 들어 [{0}] 에서 [{1}]의 위치는 [{2}] 이다.")
+    @CsvSource(value = {
+            "바다,말랑:바다:0",
+            "바다,말랑,산,토끼,당근:산:2",
+    }, delimiter = ':')
+    void 특정_이름의_위치를_알_수_있다(final String nameValues, final String nameValue, final int index) {
+        // given
+        Names names = new Names(stream(nameValues.split(","))
+                .map(Name::new)
+                .collect(Collectors.toList()));
+
+        // when & then
+        assertThat(names.indexOf(new Name(nameValue))).isEqualTo(index);
+    }
+
+    @Test
+    void indexOf_는_없는_이름에_대해서는_예외를_반환한다() {
+        // given
+        Names names = new Names(List.of(말랑(), 바다()));
+
+        // when & then
+        assertThatThrownBy(() ->
+                names.indexOf(new Name("말랑이"))
+        ).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() ->
+                names.indexOf(new Name("말랑 "))
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest(name = "특정 순서에 해당하는 이름을 알 수 있다. 예를 들어 [{0}] 에서 [{1}]의 위치에 존재하는 이름은 [{2}] 이다.")
+    @CsvSource(value = {
+            "바다,말랑:0:바다",
+            "바다,말랑,산,토끼,당근:2:산",
+    }, delimiter = ':')
+    void 특정_순서에_해당하는_이름을_알_수_있다(final String nameValues, final int index, final String nameValue) {
+        // given
+        Names names = new Names(stream(nameValues.split(","))
+                .map(Name::new)
+                .collect(Collectors.toList()));
+
+        // when & then
+        assertThat(names.get(index)).isEqualTo(new Name(nameValue));
     }
 }

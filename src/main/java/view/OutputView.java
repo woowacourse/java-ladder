@@ -1,6 +1,14 @@
 package view;
 
-import domain.*;
+import controller.response.LadderGameResponse;
+import domain.game.LadderGameResult;
+import domain.ladder.Ladder;
+import domain.ladder.Line;
+import domain.ladder.Scaffold;
+import domain.value.Name;
+import domain.value.Names;
+import domain.value.WinningEntries;
+import domain.value.WinningEntry;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -18,8 +26,10 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final String EMPTY = "";
     private static final String LINE_BLANK = "\n";
-    private static final String FIRST_NAME_FORMAT = "%s  ";
+    private static final String FIRST_NAME_FORMAT = "%s ";
     private static final String DEFAULT_NAME_FORMAT = "%5s";
+    private static final String DEFAULT_WINNING_ENTRY_FORMAT = "%5s";
+    private static final String NAME_AND_WINNING_ENTRY_FORMAT = "%s : %s";
     private static final Map<Scaffold, String> SCAFFOLD_STRING_MAP;
 
     static {
@@ -28,15 +38,17 @@ public class OutputView {
         SCAFFOLD_STRING_MAP.put(Scaffold.NONE, NONE_SCAFFOLD);
     }
 
-    public static void printResult(final Ladder ladder, final Names names) {
+    public static void printLadderGameInfo(final LadderGameResponse response) {
+        Names names = response.names();
         printNames(names);
-        printLadder(ladder, names);
+        printLadder(response.ladder(), names.firstNameLength() - 1);
+        printWinningEntries(response.winningEntries(), names.firstNameLength() - 1);
     }
 
     private static void printNames(final Names names) {
-        List<String> nameValues = names.getNames()
+        List<String> nameValues = names.names()
                 .stream()
-                .map(Name::getValue)
+                .map(Name::value)
                 .collect(toList());
         System.out.println(makeNameFormat(nameValues));
     }
@@ -48,9 +60,8 @@ public class OutputView {
                 .collect(joining(BLANK, firstName, EMPTY));
     }
 
-    private static void printLadder(final Ladder ladder, final Names names) {
-        int length = names.firstNameLength();
-        String prefixBlank = BLANK.repeat(length);
+    private static void printLadder(final Ladder ladder, final int prefixBlackLength) {
+        String prefixBlank = BLANK.repeat(prefixBlackLength);
         String ladderFormat = makeLadderFormat(ladder, prefixBlank);
         System.out.println(ladderFormat);
     }
@@ -67,5 +78,24 @@ public class OutputView {
                 .stream()
                 .map(SCAFFOLD_STRING_MAP::get)
                 .collect(joining(BAR, prefixBlank + BAR, BAR));
+    }
+
+    private static void printWinningEntries(final WinningEntries winningEntries, final int prefixBlackLength) {
+        String prefixBlank = BLANK.repeat(prefixBlackLength);
+        List<WinningEntry> winningEntryList = winningEntries.winningEntries();
+        WinningEntry firstWinningEntry = winningEntryList.remove(0);
+        String winningEntriesMessage = winningEntryList.stream()
+                .map(WinningEntry::value)
+                .map(it -> format(DEFAULT_WINNING_ENTRY_FORMAT, it))
+                .collect(joining(BLANK, prefixBlank + firstWinningEntry.value() + BLANK, EMPTY));
+        System.out.println(winningEntriesMessage);
+    }
+
+    public static void printGoDownLadderResultForName(final LadderGameResult result) {
+        System.out.println("\n실행 결과");
+        result.nameWinningEntryMap()
+                .forEach((name, value) ->
+                        System.out.println(format(NAME_AND_WINNING_ENTRY_FORMAT, name.value(), value.value()))
+                );
     }
 }

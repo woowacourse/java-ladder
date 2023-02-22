@@ -1,5 +1,7 @@
-package domain;
+package domain.ladder;
 
+import domain.value.Height;
+import domain.value.Width;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -8,7 +10,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -100,5 +104,28 @@ public class LadderFactoryTest {
                 .flatMap(it -> it.getScaffolds().stream())
                 .collect(Collectors.toList());
         assertThat(createdScaffolds).containsExactlyInAnyOrderElementsOf(assertScaffolds);
+    }
+
+    @Test
+    void Line_은_존재하는_발판을_연속으로_가지고_생성되지_않는다() {
+        // given
+        LadderFactory factory = new LadderFactory(() -> Scaffold.EXIST);
+        Width width = Width.of(5);
+        Height height = Height.of(5);
+
+        // when
+        Ladder ladder = factory.createLadder(width, height);
+
+        // then
+        ladder.getLines().forEach(line -> {
+            List<Scaffold> scaffolds = line.getScaffolds();
+            Deque<Scaffold> scaffoldDeque = new ArrayDeque<>(scaffolds);
+            scaffolds.forEach(it -> {
+                Scaffold beforeScaffold = scaffoldDeque.removeFirst();
+                if (beforeScaffold == scaffoldDeque.peekFirst()) {
+                    assertThat(beforeScaffold).isEqualTo(Scaffold.EXIST);
+                }
+            });
+        });
     }
 }

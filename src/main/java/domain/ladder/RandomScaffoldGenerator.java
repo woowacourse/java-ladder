@@ -1,10 +1,10 @@
-package domain;
+package domain.ladder;
 
 public class RandomScaffoldGenerator implements ScaffoldGenerator {
 
     @Override
     public Scaffold generate() {
-        // 25 % 확률로 NONE
+        // 33 % 확률로 NONE
         if (twentyFivePercent()) {
             return Scaffold.NONE;
         }
@@ -12,6 +12,6 @@ public class RandomScaffoldGenerator implements ScaffoldGenerator {
     }
 
     private boolean twentyFivePercent() {
-        return (int) (Math.random() * 4) == 0;
+        return (int) (Math.random() * 3) == 0;
     }
 }

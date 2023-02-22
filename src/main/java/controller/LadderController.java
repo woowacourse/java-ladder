@@ -1,7 +1,11 @@
 package controller;
 
 import common.Logger;
-import domain.*;
+import controller.response.LadderGameResponse;
+import domain.game.LadderGame;
+import domain.game.LadderGameFactory;
+import domain.game.LadderGameResult;
+import domain.value.*;
 import view.InputView;
 import view.OutputView;
 
@@ -11,17 +15,19 @@ import java.util.stream.Collectors;
 
 public class LadderController {
 
-    private final LadderFactory ladderFactory;
+    private final LadderGameFactory ladderGameFactory;
 
-    public LadderController(final LadderFactory ladderFactory) {
-        this.ladderFactory = ladderFactory;
+    public LadderController(final LadderGameFactory ladderGameFactory) {
+        this.ladderGameFactory = ladderGameFactory;
     }
 
     public void run() {
-        Names names = inputWithExceptionHandle(this::createNames);
-        Height height = inputWithExceptionHandle(this::ladderHeight);
-        Ladder ladder = createLadder(Width.of(names.size() - 1), height);
-        showLadder(names, ladder);
+        Names names = withExceptionHandle(this::createNames);
+        WinningEntries winningEntries = withExceptionHandle(() -> createWinningEntries(names));
+        Height height = withExceptionHandle(this::ladderHeight);
+        LadderGame game = ladderGameFactory.createGame(names, winningEntries, height);
+        showGameInfo(game);
+        playGame(game);
     }
 
     private Names createNames() {
@@ -32,24 +38,40 @@ public class LadderController {
         );
     }
 
+    private WinningEntries createWinningEntries(final Names names) {
+        List<WinningEntry> winningEntries = InputView.inputWinningEntries()
+                .stream().map(WinningEntry::new)
+                .collect(Collectors.toList());
+        return WinningEntries.forNames(winningEntries, names);
+    }
+
     private Height ladderHeight() {
         return Height.of(InputView.inputHeight());
     }
 
-    private Ladder createLadder(final Width width, final Height height) {
-        return ladderFactory.createLadder(width, height);
+    private void showGameInfo(final LadderGame ladderGame) {
+        OutputView.printLadderGameInfo(new LadderGameResponse(ladderGame));
     }
 
-    private void showLadder(final Names names, final Ladder ladder) {
-        OutputView.printResult(ladder, names);
+    private void playGame(final LadderGame ladderGame) {
+        while (!ladderGame.isEnd()) {
+            LadderGameResult ladderGameResult = withExceptionHandle(() -> goDownLadder(ladderGame));
+            OutputView.printGoDownLadderResultForName(ladderGameResult);
+        }
     }
 
-    private <T> T inputWithExceptionHandle(final Supplier<T> supplier) {
+    private LadderGameResult goDownLadder(final LadderGame ladderGame) {
+        String input = InputView.inputWantToKnowResultName();
+        Name name = new Name(input);
+        return ladderGame.goDownLadder(name);
+    }
+
+    private <T> T withExceptionHandle(final Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
             Logger.error(e.getMessage());
-            return inputWithExceptionHandle(supplier);
+            return withExceptionHandle(supplier);
         }
     }
 }
