@@ -1,11 +1,13 @@
 package ladder.domain;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class RewardTest {
@@ -33,5 +35,14 @@ class RewardTest {
         assertThatThrownBy(() -> new Reward(reward, 0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] \"꽝\" 이외의 실행 결과는 1 이상 10000 이하의 정수여야합니다.");
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0, true", "1, false"})
+    @DisplayName("파라미터로 받은 보상 인덱스과 보상의 인덱스가 같은지 판별한다.")
+    void isSameRewardIndexTest(int rewardIndex, boolean expected) {
+        Reward reward = new Reward("꽝", 0);
+
+        assertThat(reward.isSameRewardIndex(rewardIndex)).isEqualTo(expected);
     }
 }
