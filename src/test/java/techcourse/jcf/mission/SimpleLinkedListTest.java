@@ -31,5 +31,14 @@ class SimpleLinkedListTest {
                 .isInstanceOf(IndexOutOfBoundsException.class);
     }
 
+    @Test
+    public void isEmptyTest() {
+        SimpleLinkedList myValues = new SimpleLinkedList();
+        assertThat(myValues.isEmpty()).isTrue();
+
+        myValues.add("a");
+        assertThat(myValues.isEmpty()).isFalse();
+    }
+
 
 }
