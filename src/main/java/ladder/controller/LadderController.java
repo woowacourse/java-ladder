@@ -40,7 +40,12 @@ public class LadderController {
     }
 
     private Results createResults(int numberOfResults) {
-        return new Results(inputView.requestResults(), numberOfResults);
+        try {
+            return new Results(inputView.requestResults(), numberOfResults);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return createResults(numberOfResults);
+        }
     }
 
     private Names createNames() {
