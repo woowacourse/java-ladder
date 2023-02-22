@@ -1,6 +1,6 @@
 package domain;
 
-import exception.EmpytInputException;
+import exception.EmptyInputException;
 import exception.InvalidLadderResultCount;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +19,7 @@ public class LadderResults {
 
     private void validate(String results, int participantCount) {
         if (isBlank(results)) {
-            throw new EmpytInputException();
+            throw new EmptyInputException();
         }
         if (isInvalidResultCount(results, participantCount)) {
             throw new InvalidLadderResultCount();
@@ -34,11 +34,11 @@ public class LadderResults {
         return makeAllLadderResult(results).size() != participantCount;
     }
 
-    private List<LadderResult> makeAllLadderResult(String results) {
+    static private List<LadderResult> makeAllLadderResult(String results) {
         return Arrays.stream(results.split(DELIMITER)).map(LadderResult::new).collect(Collectors.toList());
     }
 
-    public List<String> getResults() {
+    public List<String> getResultNames() {
         return results.stream().map(LadderResult::getName).collect(Collectors.toList());
     }
 }

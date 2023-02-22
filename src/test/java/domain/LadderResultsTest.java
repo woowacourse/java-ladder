@@ -2,7 +2,7 @@ package domain;
 
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-import exception.EmpytInputException;
+import exception.EmptyInputException;
 import exception.InvalidLadderResultCount;
 import java.util.List;
 import java.util.stream.Stream;
@@ -18,7 +18,7 @@ class LadderResultsTest {
     @Test
     void createSuccess() {
         LadderResults ladderResults = new LadderResults("1000,5000", 2);
-        List<String> results = ladderResults.getResults();
+        List<String> results = ladderResults.getResultNames();
         Assertions.assertThat(results).hasSize(2);
         Assertions.assertThat(results).containsExactly("1000", "5000");
     }
@@ -29,13 +29,13 @@ class LadderResultsTest {
         return Stream.of(
             dynamicTest("결과가 null인 경우",
                 () -> Assertions.assertThatThrownBy(() -> new LadderResults(null, 1))
-                    .isExactlyInstanceOf(EmpytInputException.class)),
+                    .isExactlyInstanceOf(EmptyInputException.class)),
             dynamicTest("결과가 빈문자열인 경우",
                 () -> Assertions.assertThatThrownBy(() -> new LadderResults("", 1))
-                    .isExactlyInstanceOf(EmpytInputException.class)),
+                    .isExactlyInstanceOf(EmptyInputException.class)),
             dynamicTest("결과가 공백으로 이루어져 있는 경우",
                 () -> Assertions.assertThatThrownBy(() -> new LadderResults("    ", 1))
-                    .isExactlyInstanceOf(EmpytInputException.class)),
+                    .isExactlyInstanceOf(EmptyInputException.class)),
             dynamicTest("결과의 갯수와 참가자의 수가 다른 경우",
                 () -> Assertions.assertThatThrownBy(() -> new LadderResults("split,jamie", 3))
                     .isExactlyInstanceOf(InvalidLadderResultCount.class))
