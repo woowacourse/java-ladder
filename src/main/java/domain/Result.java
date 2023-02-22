@@ -3,6 +3,10 @@ package domain;
 import java.util.Objects;
 
 public class Result {
+
+    public static final int MIN_LENGTH = 1;
+    public static final int MAX_LENGTH = 5;
+
     private final String result;
 
     public Result(String result) {
@@ -11,8 +15,9 @@ public class Result {
     }
 
     private void validateResultLength(String result) {
-        if (result.isBlank()) {
-            throw new IllegalArgumentException("결과는 공백일 수 없습니다.");
+        if (result.isBlank() || result.length() > MAX_LENGTH) {
+            throw new IllegalArgumentException(
+                    String.format("결과는 %d자 이상 %d자 이하여야 합니다.", MIN_LENGTH, MAX_LENGTH));
         }
     }
 
