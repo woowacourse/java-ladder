@@ -50,4 +50,8 @@ public class Position {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    public int getValue() {
+        return value;
+    }
 }
