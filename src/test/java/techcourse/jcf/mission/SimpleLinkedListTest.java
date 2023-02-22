@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class SimpleLinkedListTest {
 
@@ -28,6 +27,8 @@ class SimpleLinkedListTest {
         }
 
         assertThat(myValues.get(10)).isEqualTo("k");
+        Assertions.assertThatThrownBy(() -> myValues.get(11))
+                .isInstanceOf(IndexOutOfBoundsException.class);
     }
 
 
