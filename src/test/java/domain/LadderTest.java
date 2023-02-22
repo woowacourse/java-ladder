@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.RandomBooleanGenerator;
+import util.TrueGenerator;
 
 public class LadderTest {
     @Test
@@ -20,5 +21,20 @@ public class LadderTest {
 
         //then
         assertThat(ladder.calculateTotalHeight()).isEqualTo(ladderHeight);
+    }
+
+    @Test
+    @DisplayName("한 사용자의 사다리 이동 결과 테스트")
+    void testPlayerMove() {
+        //given
+        int personStartPosition = 0;
+        int expectedDestination = 1;
+        Ladder ladder = Ladder.generate(new TrueGenerator(), new Height(5), 4);
+
+        //when
+        int destination = ladder.findDestination(personStartPosition);
+
+        //then
+        assertThat(destination).isEqualTo(expectedDestination);
     }
 }

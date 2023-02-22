@@ -48,4 +48,16 @@ class LineTest {
         assertThat(line.getBridges()).containsExactly(false, false, false, false);
     }
 
+    @Test
+    @DisplayName("한 Line 에서 현재 이동 가능한 위치 찾는 테스트")
+    void findMovePositionInLine() {
+        //given
+        int personCount = 5;
+        Line line = Line.generateWithBridges(new TrueGenerator(), personCount);
+
+        //when
+        line.findPositionAbleToMove(-1, 0, 0);
+        //then
+    }
+
 }
