@@ -36,18 +36,20 @@ public class LadderController {
         Ladder ladder = Ladder.create(players.count(), heightOfLadder.getHeight(), booleanGenerator);
         result.printLadder(players, ladder, rewards);
 
-        pop(players, ladder, rewards);
+        endOfGame(players, ladder, rewards);
     }
 
-    private void pop(Players players, Ladder ladder, Rewards rewards) {
+    private void endOfGame(Players players, Ladder ladder, Rewards rewards) {
         GameResult gameResult = GameResult.create(players, ladder, rewards);
+        Continue resultContinue;
+        do {
+            Players targetPlayers = exceptionProcess.repeat(input::inputTargetPlayerNames, players::createTargetPlayers);
+            Map<Player, Reward> resultByPlayers = gameResult.findResultByPlayers(targetPlayers);
 
-        Players targetPlayers = exceptionProcess
-                .repeat(input::inputTargetPlayerNames, players::createTargetPlayers);
+            result.printGameResult(resultByPlayers);
 
-        Map<Player, Reward> resultByPlayers = gameResult.findResultByPlayers(targetPlayers);
-
-        result.printGameResult(resultByPlayers);
+            resultContinue = exceptionProcess.repeat(input::inputContinue, Continue::getContinue);
+        } while (resultContinue == Continue.CONTINUE);
     }
 
 }

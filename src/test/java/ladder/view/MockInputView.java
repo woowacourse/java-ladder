@@ -43,4 +43,10 @@ public class MockInputView implements Input {
     public List<String> inputTargetPlayerNames() {
         return null;
     }
+
+    @Override
+    public String inputContinue() {
+        return null;
+    }
+
 }

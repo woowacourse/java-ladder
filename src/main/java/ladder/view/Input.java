@@ -12,4 +12,5 @@ public interface Input {
 
     List<String> inputTargetPlayerNames();
 
+    String inputContinue();
 }

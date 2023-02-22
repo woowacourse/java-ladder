@@ -10,7 +10,8 @@ import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
 import ladder.view.constant.LadderOutputSymbol;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static ladder.view.constant.LadderOutputSymbol.LADDER_VERTICAL_SYMBOL;
