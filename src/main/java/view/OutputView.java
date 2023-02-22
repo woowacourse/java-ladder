@@ -30,6 +30,12 @@ public class OutputView {
         }
     }
 
+    public static void printResultNames(List<String> resultNames) {
+        String formattedResultNames = formatResultNames(resultNames);
+        System.out.println(formattedResultNames);
+        System.out.println();
+    }
+
     public static void printUserResult(String result) {
         System.out.println(RESULT_MESSAGE);
         System.out.println(result);
@@ -42,11 +48,6 @@ public class OutputView {
             System.out.printf("%s : %s", userNames.get(index), resultNames.get(index));
             System.out.println();
         }
-    }
-
-    public static void printResultNames(List<String> resultNames) {
-        String formattedResultNames = formatResultNames(resultNames);
-        System.out.println(formattedResultNames);
     }
 
     private static String formatUserNames(List<String> userNames) {
