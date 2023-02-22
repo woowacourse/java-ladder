@@ -2,10 +2,13 @@ package ladder.domain;
 
 import ladder.error.ErrorMessage;
 
+import java.util.Objects;
+
 public class Name {
     private static final int MAX_NAME_LENGTH = 5;
+    private static final String ALL = "all";
     private static final String COMMA = ",";
-
+    // TODO: 2023-02-22 NullPointerException 적용 
     private final String name;
 
     public Name(String name) {
@@ -18,7 +21,7 @@ public class Name {
         validateNotNull(name);
         validateDoesNotContainComma(name);
         validateLength(name);
-        validateDoesNotEqualUnavailable(name);
+        validateIsAvailable(name);
     }
 
     private void validateNotNull(String name) {
@@ -39,9 +42,8 @@ public class Name {
         }
     }
 
-    private void validateDoesNotEqualUnavailable(String name) {
-        if (name.equals(UnavailableName.ALL.value) ||
-                name.equals(UnavailableName.EXIT.value)) {
+    private void validateIsAvailable(String name) {
+        if (name.equals(ALL)) {
             throw new IllegalArgumentException(ErrorMessage.UNAVAILABLE_NAME.getMessage());
         }
     }
@@ -55,14 +57,17 @@ public class Name {
         return this.name;
     }
 
-    private enum UnavailableName {
-        ALL("all"),
-        EXIT("exit");
-
-        final String value;
-
-        UnavailableName(String value) {
-            this.value = value;
-        }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Name name1 = (Name) o;
+        return Objects.equals(name, name1.name);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
 }

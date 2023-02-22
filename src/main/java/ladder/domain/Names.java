@@ -46,6 +46,16 @@ public class Names {
         return Collections.unmodifiableList(names);
     }
 
+    public int indexOf(Name name) {
+        int index = names.indexOf(name);
+
+        if (index == -1) {
+            throw new IllegalArgumentException(ErrorMessage.NAME_IS_NOT_EXIST.getMessage());
+        }
+
+        return index;
+    }
+
     public int size() {
         return names.size();
     }
