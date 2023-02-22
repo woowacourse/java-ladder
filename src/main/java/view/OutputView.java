@@ -7,11 +7,12 @@ import java.util.Map;
 
 //TODO: static 키워드 제거
 public class OutputView {
-    private static final String RESULT_MESSAGE = "실행결과";
+    private static final String LADDER_MESSAGE = "사다리 결과";
+    private static final String RESULT_MESSAGE = "실행 결과";
 
-    public static void printResultMessage() {
-        System.out.println(RESULT_MESSAGE);
-        System.out.println();
+    public static void printLadderResultMessage() {
+        System.out.println(LADDER_MESSAGE);
+        printBlankLine();
     }
 
     public static void printUserNames(final List<String> userNames) {
@@ -19,7 +20,7 @@ public class OutputView {
         System.out.println(formattedUserNames);
     }
 
-    public static void printResult(final List<Line> lines) {
+    public static void printLadders(final List<Line> lines) {
         for (final Line line : lines) {
             System.out.println(LineRender.render(line));
         }
@@ -40,18 +41,27 @@ public class OutputView {
 
     public static void printPrizes(final List<Prize> prizes) {
         for (final Prize prize : prizes) {
-            System.out.println(String.format("%6s", prize.getName()));
+            System.out.print(String.format("%6s", prize.getName()));
         }
+        printBlankLine();
+        printBlankLine();
     }
 
     public static void printPrize(final Prize prize) {
+        System.out.println(RESULT_MESSAGE);
         System.out.println(prize.getName());
-        System.out.println();
+        printBlankLine();
     }
 
     public static void printAllUsersAndPrizes(final Map<String, String> allUsersAndPrizes) {
+        System.out.println(RESULT_MESSAGE);
         for (final Map.Entry<String, String> entry : allUsersAndPrizes.entrySet()) {
             System.out.printf("%s: %s\n", entry.getKey(), entry.getValue());
         }
+        printBlankLine();
+    }
+
+    private static void printBlankLine() {
+        System.out.println();
     }
 }

@@ -17,31 +17,31 @@ public class InputView {
     private static final String DELIMITER = "\\s*,\\s*";
 
     //TODO: readUserNames와 readPrizeNames의 중복로직을 제거
-    public static List<String> readUserNames() {
+    public List<String> readUserNames() {
         System.out.println(USER_NAMES_GUIDE_MESSAGE);
+        return readStringListSplitByDelimiter();
+    }
+
+    private List<String> readStringListSplitByDelimiter() {
         String names = scanner.nextLine();
         System.out.println();
-        //inputValidator.validateAscii(names);
         return Arrays.stream(names.split(DELIMITER))
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public static List<String> readPrizeNames() {
+    public List<String> readPrizeNames() {
         System.out.println(PRIZE_NAMES_GUIDE_MESSAGE);
-        String names = scanner.nextLine();
-        System.out.println();
-        return Arrays.stream(names.split(DELIMITER))
-                .collect(Collectors.toUnmodifiableList());
+        return readStringListSplitByDelimiter();
     }
 
-    public static int readLadderHeight() {
+    public int readLadderHeight() {
         System.out.println(LADDER_HEIGHT_GUIDE_MESSAGE);
         String height = scanner.nextLine();
         System.out.println();
         return inputValidator.validateHeight(height);
     }
 
-    public static String readUserName() {
+    public String readUserName() {
         System.out.println(RESULT_USER_GUIDE_MESSAGE);
         return scanner.nextLine();
     }
