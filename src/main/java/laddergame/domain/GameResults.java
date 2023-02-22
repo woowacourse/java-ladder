@@ -17,6 +17,10 @@ public class GameResults {
         addResult(gameResults);
     }
 
+    public int size() {
+        return results.size();
+    }
+
     private void validateGameResults(List<GameResult> results, int userCount) {
         if (results.size() != userCount) {
             throw new IllegalArgumentException(INVALID_GAME_RESULTS_SIZE.getMessage());

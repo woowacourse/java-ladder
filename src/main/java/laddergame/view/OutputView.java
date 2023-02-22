@@ -100,8 +100,7 @@ public class OutputView {
         StringBuilder builder = new StringBuilder();
         String firstResult = gameResults.getFirstResult();
         builder.append(BLANK.repeat(firstLength - firstResult.length())).append(firstResult);
-        for (int index = SECOND_INDEX; index < gameResults.getResults()
-                .size(); index++) {
+        for (int index = SECOND_INDEX; index < gameResults.size(); index++) {
             GameResult gameResult = gameResults.getResults().get(index);
             String result = gameResult.getResult();
             builder.append(BLANK.repeat(MAX_NAME_LENGTH + 1 - result.length())).append(result);
