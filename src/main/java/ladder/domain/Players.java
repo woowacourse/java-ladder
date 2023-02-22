@@ -32,7 +32,7 @@ public class Players {
     }
 
     public int indexOf(String name) {
-        return IntStream.range(0, players.size() + 1)
+        return IntStream.range(0, players.size())
                 .filter(index -> Objects.equals(players.get(index).getName(), name))
                 .findFirst()
                 .orElseThrow(() -> {
