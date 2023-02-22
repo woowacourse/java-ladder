@@ -26,4 +26,8 @@ public class User {
     public String getName() {
         return name;
     }
+
+    public boolean isNameOf(final String nameValue) {
+        return this.name.equals(nameValue);
+    }
 }

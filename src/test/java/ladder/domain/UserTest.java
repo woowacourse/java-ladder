@@ -1,11 +1,11 @@
 package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class UserTest {
 
@@ -33,6 +33,13 @@ public class UserTest {
         assertThatThrownBy(() -> new User(value))
                 .hasMessageContaining("유저 이름 길이는 공백이거나 6 이상일 수 없습니다.")
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("해당 이름을 갖고 있는 User인지 확인하는 메서드 테스트")
+    void checkUserNameTest() {
+        final User testUser = new User("a");
+        assertThat(testUser.isNameOf("a")).isTrue();
     }
 
 }
