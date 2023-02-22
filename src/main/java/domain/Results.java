@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -17,7 +18,12 @@ public class Results implements Iterable<Result> {
     }
 
     public Results(List<Result> results) {
-        this.results = results;
+        this.results = new ArrayList<>(results);
+    }
+
+    public Results(Result singleResult) {
+        this.results = new ArrayList<>();
+        results.add(singleResult);
     }
 
     private List<Result> validateAndGet(String results, People people) {
@@ -29,6 +35,11 @@ public class Results implements Iterable<Result> {
                 .map(Result::new)
                 .collect(Collectors.toList());
     }
+
+    public boolean canTryAgain() {
+        return this.results.size() == 1;
+    }
+
 
     public Result getResultByColumn(Position position) {
         return results.get(position.getColumn());
@@ -58,5 +69,9 @@ public class Results implements Iterable<Result> {
     @Override
     public Iterator<Result> iterator() {
         return results.iterator();
+    }
+
+    public Result getSingleResult() {
+        return results.get(0);
     }
 }

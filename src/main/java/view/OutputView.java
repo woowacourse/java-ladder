@@ -51,9 +51,12 @@ public class OutputView {
         return collect;
     }
 
-    public void printSingleResult(Result result) {
-        System.out.println("\n실행 결과");
-        System.out.println(result.getResult());
+    public void printGameResults(People people, Results results) {
+        if (!results.canTryAgain()) {
+            printAllResults(people, results);
+            return;
+        }
+        printSingleResult(results);
     }
 
     public void printAllResults(People people, Results results) {
@@ -62,6 +65,11 @@ public class OutputView {
             System.out.printf(FORMAT, people.getByIndex(i).getName(), results.getResultByColumn(i).getResult());
         }
         System.out.println();
+    }
+
+    public void printSingleResult(Results results) {
+        System.out.println("\n실행 결과");
+        System.out.println(results.getSingleResult().getResult());
     }
 
     public void printError(Exception exception) {

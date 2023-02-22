@@ -15,10 +15,12 @@ public class LadderService {
         this.results = results;
     }
 
-    public Result getSingleResult(Person person) {
-        int column = people.findPersonColumn(person);
-        Position position = ladder.startByColumn(column);
-        return results.getResultByColumn(position);
+    public Results calculateAndGetResults(String input) {
+        if (input.equals("all")) {
+            return getTotalResults();
+        }
+        Result singleResult = getSingleResult(new Person(input));
+        return new Results(singleResult);
     }
 
     public Results getTotalResults() {
@@ -27,6 +29,12 @@ public class LadderService {
             results.add(getSingleResult(person));
         }
         return new Results(results);
+    }
+
+    public Result getSingleResult(Person name) {
+        int column = people.findPersonColumn(name);
+        Position position = ladder.startByColumn(column);
+        return results.getResultByColumn(position);
     }
 
     public People getPeople() {

@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import domain.Ladder;
 import domain.LadderService;
 import domain.People;
-import domain.Person;
 import domain.RandomGenerateStrategy;
 import domain.Results;
 import view.InputView;
@@ -33,10 +32,11 @@ public class LadderController {
     }
 
     public void run() {
-        boolean flag;
+        Results results;
         do {
-            flag = repeat(this::resultRequest);
-        } while (flag);
+            results = repeat(this::resultRequest);
+            outputView.printGameResults(ladderService.getPeople(), results);
+        } while (results.canTryAgain());
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
@@ -63,13 +63,8 @@ public class LadderController {
         return new Results(inputView.readResults(), people);
     }
 
-    private boolean resultRequest() {
+    private Results resultRequest() {
         String input = inputView.readResult();
-        if (input.equals("all")) {
-            outputView.printAllResults(ladderService.getPeople(), ladderService.getTotalResults());
-            return false;
-        }
-        outputView.printSingleResult(ladderService.getSingleResult(new Person(input)));
-        return true;
+        return ladderService.calculateAndGetResults(input);
     }
 }
