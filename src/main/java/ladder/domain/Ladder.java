@@ -29,6 +29,12 @@ public class Ladder {
         }
     }
 
+    public String findResultByStartIndex(int startIndex) {
+        // TODO validateIndex
+        int destinationIndex = lines.findDestinationIndex(startIndex);
+        return destination.get(destinationIndex);
+    }
+
     public List<Line> toUnModifiableLines() {
         return lines.toLines();
     }
