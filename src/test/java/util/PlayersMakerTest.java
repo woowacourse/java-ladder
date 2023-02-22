@@ -20,5 +20,4 @@ class PlayersMakerTest {
                 () -> assertThat(players.getPlayers().get(2)).isEqualTo(new Player("coy"))
         );
     }
-
 }

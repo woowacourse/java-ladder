@@ -3,6 +3,7 @@ package domain;
 import java.util.Objects;
 
 public class Player {
+
     private static final int MAXIMUM_LENGTH = 5;
 
     private final String name;

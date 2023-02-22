@@ -43,4 +43,3 @@ public class PlayersTest {
         assertThat(new Players(players).getNumberOfPlayers()).isEqualTo(2);
     }
 }
-

@@ -5,6 +5,7 @@ import util.LineGenerator;
 import util.LineMaker;
 
 public class Line {
+
     private final List<LineStatus> line;
 
     public Line(int numberOfLine, LineGenerator lineGenerator) {
