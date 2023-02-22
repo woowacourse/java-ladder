@@ -15,7 +15,7 @@ public class Line {
         validateScaffolds(scaffolds);
     }
 
-    public List<Scaffold> createLine(final Width width, final ScaffoldGenerator scaffoldGenerator) {
+    private List<Scaffold> createLine(final Width width, final ScaffoldGenerator scaffoldGenerator) {
         Deque<Scaffold> scaffolds = new ArrayDeque<>();
         for (int i = 0; i < width.getValue(); i++) {
             scaffolds.add(createScaffold(scaffoldGenerator, scaffolds));
