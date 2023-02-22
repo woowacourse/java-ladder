@@ -67,13 +67,13 @@ public class LadderController {
         return InputView.repeat(() -> getPlayer(playerNames));
     }
     
-    private List<Integer> getMovedPositions(PlayerNames playerNames, Ladder ladder) {
-        return ladder.getMovedPositions(playerNames.playerSize());
-    }
-    
     private String getPlayer(PlayerNames playerNames) {
         String player = InputView.inputPlayerName();
         return playerNames.findByName(player);
+    }
+    
+    private List<Integer> getMovedPositions(PlayerNames playerNames, Ladder ladder) {
+        return ladder.getMovedPositions(playerNames.playerSize());
     }
     
     private int getPlayerIndex(PlayerNames playerNames, String existedPlayer) {

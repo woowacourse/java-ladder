@@ -21,7 +21,7 @@ public class GameResultTest {
     void setUp() {
         playerNames = new PlayerNames("a,b,c,d");
         movedPositions = List.of(1,0,3,2);
-        gameResult = new GameResult(List.of("꽝", "5000", "꽝", "3000"), playerNames);
+        gameResult = new GameResult("꽝,5000,꽝,3000", playerNames);
     }
     
     @ParameterizedTest(name = "resultPosition : {0}, executionResult : {1}")

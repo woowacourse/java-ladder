@@ -1,21 +1,61 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 class PlayerNamesTest {
+    PlayerNames playerNames;
+    
+    @BeforeEach
+    void setUp() {
+        playerNames = new PlayerNames("abel,chech,pobi");
+    }
+    
     @Test
     @DisplayName("입력받은 이름들을 ,를 기준으로 나눈다.")
     void test_1() {
-        // when
-        PlayerNames playerNames = new PlayerNames("chech,abel");
-        
-        // then
         assertThat(playerNames.getNames())
-                .contains("chech", "abel");
+                .containsExactly( "abel", "chech", "pobi");
+    }
+    
+    @Test
+    @DisplayName("플레이어 명수를 가져온다.")
+    void playerSize() {
+        assertThat(playerNames.playerSize()).isEqualTo(3);
+    }
+    
+    @Test
+    @DisplayName("해당 플레이어 인덱스를 가져온다.")
+    void getPlayerIndex() {
+        assertThat(playerNames.getPlayerIndex("pobi")).isEqualTo(2);
+    }
+    
+    @Test
+    @DisplayName("첫번째 플레이어의 글자 길이를 가져온다.")
+    void getFirstPlayerNameLength() {
+        assertThat(playerNames.getFirstPlayerNameLength()).isEqualTo(4);
+    }
+    
+    @ParameterizedTest
+    @ValueSource(strings = {"abel", "chech", "pobi", "all"})
+    @DisplayName("all 또는 존재하는 플레이어 이름 입력 시, 정상 동작한다.")
+    void existedPlayer(String playerName) {
+        assertThatNoException()
+                .isThrownBy(() -> playerNames.findByName(playerName));
+    }
+    
+    @ParameterizedTest
+    @ValueSource(strings = {"", "aaa", "abal"})
+    @DisplayName("없는 플레이어가 인자로 전달될 경우 예외처리를 한다.")
+    void notExistedPlayerException(String playerName) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> playerNames.findByName(playerName))
+                .withMessage("존재하지 않는 플레이어입니다.");
     }
     
     @Test

@@ -11,7 +11,7 @@ public class GameResult {
         this(splitExecutionResults(executionResults), playerNames);
     }
     
-    public GameResult(List<String> executionResults, PlayerNames playerNames) {
+    private GameResult(List<String> executionResults, PlayerNames playerNames) {
         validateExecutionResults(executionResults, playerNames);
         this.executionResults = executionResults;
     }
