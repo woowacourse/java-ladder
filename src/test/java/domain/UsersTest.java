@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 class UsersTest {
     private final List<String> testUserNames = List.of("썬샷", "홍실", "다니");
 
+
     @Test
     @DisplayName("유저의 수가 0이 들어오는 경우")
     void usersNumberIsZero() {
@@ -50,17 +51,10 @@ class UsersTest {
     @DisplayName("입력한 사용자와 동일한 이름을 가진 객체가 없는 경우 예외처리")
     void throwExceptionIfCantFindUser() {
         final Users users = new Users(testUserNames);
-        assertThatThrownBy(() -> users.validateParticipateUser("로지"))
+        final Prizes prizes = new Prizes(List.of("1등", "2등", "3등"), users);
+        assertThatThrownBy(() -> users.getPrizeAndUserName("로지", prizes))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.USER_NOT_FOUND_EXCEPTION.getMessage());
-    }
-
-    @Test
-    @DisplayName("이름으로 현재 index를 반환하는 메서드 추가")
-    void getIndexByUserName() {
-        final Users users = new Users(testUserNames);
-        assertThat(users.getIndexByUserName("다니"))
-                .isEqualTo(2);
     }
 
     @Test
@@ -106,7 +100,7 @@ class UsersTest {
     void throwExceptionWhenUsersNameHasDuplicate() {
         final List<String> userNames = List.of("홍실", "홍실", "에단");
 
-        assertThatThrownBy(()-> new Users(userNames))
+        assertThatThrownBy(() -> new Users(userNames))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.USERS_NAME_HAS_DUPLICATE.getMessage());
     }

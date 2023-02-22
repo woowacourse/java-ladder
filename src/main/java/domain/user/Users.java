@@ -49,20 +49,6 @@ public class Users {
         return users.size();
     }
 
-    //TODO: 하나로 합칠 수 없는 지 고민해보기. private도
-    public void validateParticipateUser(final String userName) {
-        final Optional<User> findUser = users.stream()
-                .filter(user -> user.isSameName(userName))
-                .findFirst();
-        if (findUser.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.USER_NOT_FOUND_EXCEPTION.getMessage());
-        }
-    }
-
-    public int getIndexByUserName(final String userName) {
-        validateParticipateUser(userName);
-        return users.indexOf(new User(userName));
-    }
 
     public void swapUserByLine(final Line line) {
         final List<Integer> linkedIndexes = line.getLinkedIndexes();
@@ -73,20 +59,30 @@ public class Users {
         if (userName.equals(ALL_USERS)) {
             return getAllUsersAndPrizes(prizes);
         }
+        validateParticipateUser(userName);
         return users.stream()
                 .filter(user -> user.isSameName(userName))
                 .collect(Collectors.toUnmodifiableMap(User::getName,
                         (User user) -> getPrizeByUserName(prizes, userName).getName()));
     }
 
-    private Prize getPrizeByUserName(final Prizes prizes, final String userName) {
-        final int userIndex = getIndexByUserName(userName);
-        return prizes.getPrizeBy(userIndex);
+    private void validateParticipateUser(final String userName) {
+        final Optional<User> findUser = users.stream()
+                .filter(user -> user.isSameName(userName))
+                .findFirst();
+        if (findUser.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.USER_NOT_FOUND_EXCEPTION.getMessage());
+        }
     }
 
     private Map<String, String> getAllUsersAndPrizes(final Prizes prizes) {
         return users.stream()
                 .collect(Collectors.toUnmodifiableMap(User::getName,
                         (User user) -> getPrizeByUserName(prizes, user.getName()).getName()));
+    }
+
+    private Prize getPrizeByUserName(final Prizes prizes, final String userName) {
+        final int userIndex = users.indexOf(new User(userName));
+        return prizes.getPrizeBy(userIndex);
     }
 }
