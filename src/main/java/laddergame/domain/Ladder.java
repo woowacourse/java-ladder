@@ -15,4 +15,12 @@ public class Ladder {
     public List<Line> getLadder() {
         return lines;
     }
+
+    public Position getArrivalPosition(Position startPosition) {
+        Position currentPosition = startPosition;
+        for (Line line : lines) {
+            currentPosition = line.getConnectedPosition(currentPosition);
+        }
+        return currentPosition;
+    }
 }
