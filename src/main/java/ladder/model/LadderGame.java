@@ -1,9 +1,6 @@
 package ladder.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static ladder.model.ErrorMessage.EXCEPTION_PLAYER_COUNT;
 import static ladder.model.ErrorMessage.EXCEPTION_REWARD_COUNT;
@@ -57,11 +54,11 @@ public class LadderGame {
     }
 
     public List<Player> getPlayers() {
-        return players;
+        return Collections.unmodifiableList(players);
     }
 
     public List<Reward> getRewards() {
-        return rewards;
+        return Collections.unmodifiableList(rewards);
     }
 
     public Ladder getLadder() {
@@ -69,6 +66,6 @@ public class LadderGame {
     }
 
     public Map<Player, Reward> getResult() {
-        return result;
+        return Collections.unmodifiableMap(result);
     }
 }
