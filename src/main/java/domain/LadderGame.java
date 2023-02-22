@@ -25,4 +25,11 @@ public class LadderGame {
     public GameResults getGameResults() {
         return gameResults;
     }
+
+    public void getGameResultOf(String playerName) {
+        if (!players.contains(playerName)) {
+            throw new IllegalArgumentException("찾는 플레이어가 없습니다.");
+        }
+
+    }
 }

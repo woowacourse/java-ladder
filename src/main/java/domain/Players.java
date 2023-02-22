@@ -43,4 +43,11 @@ public class Players {
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    public boolean contains(String playerName) {
+        List<String> playerNames = players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
+        return playerNames.stream()
+                .anyMatch(name -> playerName.equals(name));
+    }
 }
