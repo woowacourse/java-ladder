@@ -15,7 +15,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderController {
-    private static final String NAME_DELIMITER = ",";
+    private static final String DELIMITER = ",";
     private static final String ALL_RESULT = "all";
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
@@ -27,9 +27,10 @@ public class LadderController {
     public void play() {
         Persons persons = requestPlayerName();
         Height height = requestLadderHeight();
+        WinningEntry winningEntry = requestGameResult(persons.getTotalPersonCount());
 
-        ladderGame = new LadderGame(persons, height, new WinningEntry(List.of("1", "2", "3", "4"), persons.getTotalPersonCount()), new RandomBooleanGenerator());
-        outputView.printLadder(ladderGame.getAllPlayers(), ladderGame.getLadderStatus(),
+        ladderGame = new LadderGame(persons, height, winningEntry, new RandomBooleanGenerator());
+        outputView.printLadder(ladderGame.getAllPlayers(), ladderGame.getLadderStatus(), winningEntry.getWinningEntry(),
                 persons.getLongestPersonNameLength());
         printGameResult(ladderGame.play());
     }
@@ -44,7 +45,7 @@ public class LadderController {
 
     private Persons readPersonNames() {
         try {
-            List<Person> personNames = Arrays.stream(inputView.requestNames().split(NAME_DELIMITER))
+            List<Person> personNames = Arrays.stream(inputView.requestNames().split(DELIMITER))
                     .map(Person::new)
                     .collect(Collectors.toList());
             return new Persons(personNames);
@@ -69,6 +70,16 @@ public class LadderController {
             outputView.printErrorMessage(exception.getMessage());
         }
         return null;
+    }
+
+    private WinningEntry requestGameResult(int personCount) {
+        while(true) {
+            try {
+                return new WinningEntry(Arrays.stream(inputView.requestGameResult().split(DELIMITER)).collect(Collectors.toList()), personCount);
+            } catch (IllegalArgumentException exception) {
+                outputView.printErrorMessage(exception.getMessage());
+            }
+        }
     }
 
     private void printGameResult(Map<String, String> result) {

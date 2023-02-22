@@ -1,6 +1,7 @@
 package domain;
 
 import exception.ErrorCode;
+import java.util.ArrayList;
 import java.util.List;
 
 public class WinningEntry {
@@ -18,7 +19,7 @@ public class WinningEntry {
     }
 
     public List<String> getWinningEntry() {
-        return winningEntry;
+        return new ArrayList<>(winningEntry);
     }
 
     public String findByPosition(int position) {

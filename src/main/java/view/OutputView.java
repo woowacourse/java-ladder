@@ -14,10 +14,12 @@ public class OutputView {
     public OutputView() {
     }
 
-    public void printLadder(List<String> persons, List<List<Boolean>> ladder, int bridgeSize) {
+    public void printLadder(List<String> persons, List<List<Boolean>> ladder, List<String> winningResults,
+                            int bridgeSize) {
         System.out.println(RESULT_HEAD + "\n");
         int firstNameLength = printPersons(persons, bridgeSize);
         printLadder(ladder, firstNameLength, bridgeSize);
+        printTextWithBridgeSize(winningResults, bridgeSize);
     }
 
     public void printResult(Map<String, String> result) {
@@ -58,9 +60,13 @@ public class OutputView {
     private int printPersons(List<String> names, int bridgeSize) {
         String firstName = names.remove(0);
         System.out.print(BLANK + firstName);
-        names.forEach(name -> System.out.printf(String.format("%%%ds", bridgeSize + 1), name));
-        System.out.println();
+        printTextWithBridgeSize(names, bridgeSize);
         return firstName.length();
+    }
+
+    private void printTextWithBridgeSize(List<String> texts, int bridgeSize) {
+        texts.forEach(text -> System.out.printf(String.format("%%%ds", bridgeSize + 1), text));
+        System.out.println();
     }
 
 }
