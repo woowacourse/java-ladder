@@ -19,7 +19,7 @@ import ladder.view.OutputView;
 public class Application {
     private static final String QUIT = "q";
     private static final String ALL = "all";
-    private static final Boolean END = false;
+    private static final Boolean END = false; // TODO: 그냥 false?
     private static final Boolean GO = true;
 
     private static Players players;
@@ -38,10 +38,10 @@ public class Application {
         ladder = ladderFactory.makeLadder();
         printLadder(players.getPlayers(), ladder.getLines(), results.getResults());
 
-        checkResult();
+        askResult();
     }
 
-    private static void checkResult() {
+    private static void askResult() {
         boolean proceed = true;
         while (proceed) {
             String input = readTargetName();
@@ -56,6 +56,10 @@ public class Application {
             return END;
         }
         return GO;
+//        if (targetName.equals(QUIT)) {
+//            return false;
+//        }
+//        return true;
     }
 
     private static boolean isAll(boolean flag, String input) {
@@ -64,6 +68,11 @@ public class Application {
             return END;
         }
         return GO;
+//        if (flag && input.equals(ALL)) {
+//            OutputView.printAllResult(players.getPlayersName(), results.findAllResult(ladder.getLines()));
+//            return false;
+//        }
+//        return true;
     }
 
     private static void isSingleResult(boolean flag, String input) {
