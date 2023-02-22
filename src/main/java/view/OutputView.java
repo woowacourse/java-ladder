@@ -1,8 +1,6 @@
 package view;
 
-import domain.BlockType;
-import domain.Line;
-import domain.Players;
+import domain.*;
 
 import java.util.List;
 
@@ -61,5 +59,11 @@ public class OutputView {
     private void printLine(Line line) {
         List<String> ladders = BlockType.getBlockTypes(line);
         System.out.println("    " + VERTICAL_BAR + String.join(VERTICAL_BAR, ladders) + VERTICAL_BAR);
+    }
+
+    public void printRewards(Rewards rewards){
+        for(Reward reward : rewards.getRewards()){
+            System.out.print(String.format(LAST_FORMAT, reward.getReward()));
+        }
     }
 }
