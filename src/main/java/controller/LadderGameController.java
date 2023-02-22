@@ -8,7 +8,7 @@ import util.BooleanGenerator;
 import view.input.InputView;
 import view.output.OutputView;
 
-public class RadderGameController {
+public class LadderGameController {
 
     public void play(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
         Participants participants = makeParticipants(inputView);

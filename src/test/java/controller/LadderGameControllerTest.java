@@ -11,14 +11,14 @@ import view.input.ErrorMessage;
 import view.input.InputView;
 import view.output.OutputView;
 
-class RadderGameControllerTest {
+class LadderGameControllerTest {
 
     private ByteArrayOutputStream byteArrayOutputStream;
-    private RadderGameController radderGameController;
+    private LadderGameController ladderGameController;
 
     @BeforeEach
     void before() {
-        radderGameController = new RadderGameController();
+        ladderGameController = new LadderGameController();
     }
 
     void setInput(String input) {
@@ -35,7 +35,7 @@ class RadderGameControllerTest {
     void playSuccess() {
         setInput("pobi,honux,crong,jk\n5\n");
         setOutput();
-        radderGameController.play(new InputView(), new OutputView(), () -> true);
+        ladderGameController.play(new InputView(), new OutputView(), () -> true);
         Assertions.assertThat(byteArrayOutputStream.toString()).contains(
             "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)\n"
             , "\n최대 사다리 높이는 몇 개인가요?\n"
@@ -54,7 +54,7 @@ class RadderGameControllerTest {
     void makeParticipantsFail() {
         setInput("abcdef,abcde\nsplit,jamie\n5\n");
         setOutput();
-        radderGameController.play(new InputView(), new OutputView(), () -> true);
+        ladderGameController.play(new InputView(), new OutputView(), () -> true);
         Assertions.assertThat(byteArrayOutputStream.toString()).contains(
             ErrorMessage.INVALID_PERSON_NAME.getMessage()
         );
@@ -65,7 +65,7 @@ class RadderGameControllerTest {
     void makeLadderFail() {
         setInput("split,jamie,pobi\n11\n3\n");
         setOutput();
-        radderGameController.play(new InputView(), new OutputView(), () -> true);
+        ladderGameController.play(new InputView(), new OutputView(), () -> true);
         Assertions.assertThat(byteArrayOutputStream.toString()).contains(
                 ErrorMessage.INVALID_LADDER_HEIGHT.getMessage()
         );

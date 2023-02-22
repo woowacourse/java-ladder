@@ -1,4 +1,4 @@
-import controller.RadderGameController;
+import controller.LadderGameController;
 import util.RandomBooleanGenerator;
 import view.input.InputView;
 import view.output.OutputView;
@@ -9,7 +9,7 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         RandomBooleanGenerator randomBooleanGenerator = new RandomBooleanGenerator();
-        RadderGameController radderGameController = new RadderGameController();
-        radderGameController.play(inputView, outputView, randomBooleanGenerator);
+        LadderGameController ladderGameController = new LadderGameController();
+        ladderGameController.play(inputView, outputView, randomBooleanGenerator);
     }
 }
