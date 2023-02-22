@@ -158,6 +158,20 @@ class SimpleArrayListTest {
     }
 
     @Test
+    void addAfterRemove() {
+        SimpleList simpleArrayList = new SimpleArrayList();
+        simpleArrayList.add("first");
+        simpleArrayList.add("second");
+
+        simpleArrayList.remove("first");
+        simpleArrayList.add("first");
+
+        assertThat(simpleArrayList.get(0)).isEqualTo("second");
+        assertThat(simpleArrayList.get(1)).isEqualTo("first");
+        assertThat(simpleArrayList.size()).isEqualTo(2);
+    }
+
+    @Test
     void clear() {
         SimpleList simpleArrayList = new SimpleArrayList();
         simpleArrayList.add("first");

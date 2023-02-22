@@ -143,6 +143,7 @@ public class SimpleArrayList implements SimpleList {
             }
         }
 
+        tailCursor -= 1;
         this.elements = copy;
         return removeValue;
     }
