@@ -1,5 +1,6 @@
 package laddergame.controller;
 
+import java.util.Map;
 import laddergame.domain.GameResult;
 import laddergame.domain.GameResults;
 import laddergame.domain.Height;
@@ -9,6 +10,7 @@ import laddergame.domain.User;
 import laddergame.domain.Users;
 import java.util.List;
 import java.util.stream.Collectors;
+import laddergame.service.LadderGame;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -29,6 +31,11 @@ public class LadderGameController {
         Ladder ladder = new Ladder(ladderHeight, users.count());
 
         outputView.printLadderResult(ladder, users, gameResults);
+
+        LadderGame ladderGame = new LadderGame(ladder, users, gameResults);
+        Map<String, String> gameResultByUser = ladderGame.start();
+
+        printResultOfUser(getUserToCheckResult(), gameResultByUser);
     }
 
     private Users setUpUsers() {
@@ -62,7 +69,6 @@ public class LadderGameController {
     }
 
     private List<GameResult> generateGameResults(List<String> results) {
-        System.out.println(results);
         return results.stream()
                 .map(GameResult::new)
                 .collect(Collectors.toUnmodifiableList());
@@ -85,5 +91,18 @@ public class LadderGameController {
     private int getLadderHeight() {
         outputView.printEnterHeightNotice();
         return inputView.inputHeight();
+    }
+
+    private String getUserToCheckResult() {
+        outputView.printEnterUserToCheckResultNotice();
+        return inputView.inputUserToCheckResult();
+    }
+
+    private void printResultOfUser(String userToCheckResult, Map<String, String> gameResultByUser) {
+        if (userToCheckResult.equals("all")) {
+            outputView.printResultOfAllUser(gameResultByUser);
+            return;
+        }
+        outputView.printResultOfOneUser(gameResultByUser.get(userToCheckResult));
     }
 }
