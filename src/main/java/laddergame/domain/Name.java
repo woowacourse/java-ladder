@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import static laddergame.utils.ErrorMessage.INVALID_USER_NAME_ALL;
 import static laddergame.utils.ErrorMessage.INVALID_USER_NAME_FORMAT;
 import static laddergame.utils.ErrorMessage.INVALID_USER_NAME_LENGTH;
 
@@ -42,7 +43,7 @@ public class Name {
             throw new IllegalArgumentException(INVALID_USER_NAME_FORMAT.getMessage());
         }
         if (name.equals(ALL)) {
-            throw new IllegalArgumentException("사용자 이름으로 등록할 수 없습니다.");
+            throw new IllegalArgumentException(INVALID_USER_NAME_ALL.getMessage());
         }
     }
 
