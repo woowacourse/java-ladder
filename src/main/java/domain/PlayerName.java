@@ -5,6 +5,7 @@ public final class PlayerName {
     private static final int NAME_MIN_LENGTH = 1;
     private static final String NAME_LENGTH_ERROR_MESSAGE = "[ERROR] 플레이어의 이름은 1이상 5글자 이하입니다.";
     private static final String NAME_BLANK_ERROR_MESSAGE = "[ERROR] 플레이어의 이름은 빈칸이면 안됩니다.";
+    private static final String NAME_IS_ALL_ERROR_MESSAGE = "[ERROR] 플레이어의 이름은 all이 될 수 없습니다";
 
     private final String name;
 
@@ -16,6 +17,13 @@ public final class PlayerName {
     public static void validateName(String name) {
         validateNameIsBlank(name);
         validateNameLength(name);
+        validateNameIsAll(name);
+    }
+
+    private static void validateNameIsAll(String name) {
+        if(name.equals("all")){
+            throw new IllegalArgumentException(NAME_IS_ALL_ERROR_MESSAGE);
+        }
     }
 
     private static void validateNameIsBlank(String name) {
