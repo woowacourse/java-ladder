@@ -1,6 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.Names;
+import ladder.domain.PlayerNames;
 import ladder.domain.RandomStepGenerator;
 import ladder.domain.Rows;
 import ladder.util.Repeater;
@@ -21,7 +22,7 @@ public class LadderController {
     }
 
     private Names inputNames() {
-        return new Names(InputView.inputPlayerNames());
+        return new PlayerNames(InputView.inputPlayerNames());
     }
 
     private Rows inputLines() {

@@ -8,8 +8,8 @@ import ladder.util.StringSplitter;
 
 public class Names {
 
-    private static final Pattern NAMES_FORMAT = Pattern.compile("[^,]+(,[^,]+)+");
-    private final List<Name> names;
+    protected static final Pattern NAMES_FORMAT = Pattern.compile("[^,]+(,[^,]+)+");
+    protected final List<Name> names;
 
     public Names(String names) {
         validateNames(names);
@@ -21,20 +21,20 @@ public class Names {
     }
 
     private void validateNames(String names) {
-        if (isNull(names)) {
+        isNull(names);
+        isFormat(names);
+    }
+
+    private void isNull(String names) {
+        if (names == null) {
             throw new IllegalArgumentException("이름이 null 입니다");
         }
-        if (isFormat(names)) {
+    }
+
+    private void isFormat(String names) {
+        if (!NAMES_FORMAT.matcher(names).matches()) {
             throw new IllegalArgumentException("이름이 형식과 맞지 않습니다");
         }
-    }
-
-    private boolean isNull(String names) {
-        return names == null;
-    }
-
-    private boolean isFormat(String names) {
-        return !NAMES_FORMAT.matcher(names).matches();
     }
 
     public int getCount() {
