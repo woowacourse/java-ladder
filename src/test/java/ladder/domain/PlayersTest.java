@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class PlayersTest {
 
@@ -81,5 +83,25 @@ class PlayersTest {
         Players players = Players.generate(names);
         //then
         assertThat(players.findPositionBy(new Name("a"))).isEqualTo(new Position(0));
+    }
+
+    /*
+    a   b   c
+    |---|   |
+    |   |---|
+    b   c   a
+    */
+    @ParameterizedTest
+    @CsvSource(value = {"a:2", "b:0", "c:1"}, delimiter = ':')
+    @DisplayName("players 모두의 위치가 이동한다")
+    void shouldChangeAllPositionsWhenMoveAll(String playerName, int expectPosition) {
+        //given
+        Players players = Players.generate(List.of("a", "b", "c"));
+        List<Boolean> determinedBars = new ArrayList<>(List.of(true, false, true));
+        Ladder ladder = Ladder.generate(2, 2, new DeterminedBooleanGenerator(determinedBars));
+        //when
+        players.moveAll(ladder);
+        //then
+        assertThat(players.findPositionBy(new Name(playerName))).isEqualTo(new Position(expectPosition));
     }
 }
