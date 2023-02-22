@@ -3,6 +3,8 @@ package ladder.view;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewValidatorTest {
@@ -25,6 +27,16 @@ class InputViewValidatorTest {
         assertThrows(IllegalArgumentException.class,
                 () -> InputViewValidator.validateNameIsAll(playerName))
                 .getMessage().equals("[ERROR] 참여자의 이름은 all일 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("참여자의 이름이 중복되면 예외를 던진다.")
+    void playerNamesDuplicateTest() {
+        List<String> playerNames = List.of("hardy", "hello", "hardy");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> InputViewValidator.validateDuplicatedNames(playerNames))
+                .getMessage().equals("[ERROR] 참여자의 이름은 중복될 수 없습니다.");
     }
 
     @Test
