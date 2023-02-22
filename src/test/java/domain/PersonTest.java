@@ -3,7 +3,7 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-import exception.EmpytInputException;
+import exception.EmptyNameException;
 import exception.InvalidPersonNameException;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
@@ -34,11 +34,11 @@ class PersonTest {
     Stream<DynamicTest> createFail() {
         return Stream.of(
             dynamicTest("null 일 때", () -> assertThatThrownBy(() -> new Person(null))
-                .isExactlyInstanceOf(EmpytInputException.class)),
+                .isExactlyInstanceOf(EmptyNameException.class)),
             dynamicTest("빈문자열 때", () -> assertThatThrownBy(() -> new Person(""))
-                .isExactlyInstanceOf(EmpytInputException.class)),
+                .isExactlyInstanceOf(EmptyNameException.class)),
             dynamicTest("띄어쓰기로만 이루어져 있을 때", () -> assertThatThrownBy(() -> new Person("    "))
-                .isExactlyInstanceOf(EmpytInputException.class)),
+                .isExactlyInstanceOf(EmptyNameException.class)),
             dynamicTest("5자보다 긴 경우", () -> assertThatThrownBy(() -> new Person("jamsil"))
                 .isExactlyInstanceOf(InvalidPersonNameException.class))
         );

@@ -1,6 +1,6 @@
 package domain;
 
-import exception.EmpytInputException;
+import exception.EmptyNameException;
 import exception.InvalidPersonNameException;
 
 public class Person {
@@ -16,7 +16,7 @@ public class Person {
 
     private void validateName(String name) {
         if (isBlank(name)) {
-            throw new EmpytInputException();
+            throw new EmptyNameException();
         }
         if (isInvalidLength(name)) {
             throw new InvalidPersonNameException();

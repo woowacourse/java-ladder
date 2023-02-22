@@ -1,6 +1,6 @@
 package domain;
 
-import exception.EmpytInputException;
+import exception.EmptyInputException;
 import exception.InvalidLadderResultException;
 
 public class LadderResult {
@@ -16,7 +16,7 @@ public class LadderResult {
 
     private void validate(String resultName) {
         if (isBlank(resultName)) {
-            throw new EmpytInputException();
+            throw new EmptyInputException();
         }
         if (isInvalidLength(resultName)) {
             throw new InvalidLadderResultException();

@@ -2,7 +2,7 @@ package domain;
 
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-import exception.EmpytInputException;
+import exception.EmptyInputException;
 import exception.InvalidLadderResultException;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
@@ -25,11 +25,11 @@ class LadderResultTest {
     Stream<DynamicTest> createFail() {
         return Stream.of(
             dynamicTest("결과가 null인 경우", () -> Assertions.assertThatThrownBy(() -> new LadderResult(null))
-                .isExactlyInstanceOf(EmpytInputException.class)),
+                .isExactlyInstanceOf(EmptyInputException.class)),
             dynamicTest("결과가 빈문자열인 경우", () -> Assertions.assertThatThrownBy(() -> new LadderResult(""))
-                .isExactlyInstanceOf(EmpytInputException.class)),
+                .isExactlyInstanceOf(EmptyInputException.class)),
             dynamicTest("결과가 공백으로 이루어져 있는 경우", () -> Assertions.assertThatThrownBy(() -> new LadderResult("    "))
-                .isExactlyInstanceOf(EmpytInputException.class)),
+                .isExactlyInstanceOf(EmptyInputException.class)),
             dynamicTest("결과가 5자보다 긴 경우", () -> Assertions.assertThatThrownBy(() -> new LadderResult("result"))
                 .isExactlyInstanceOf(InvalidLadderResultException.class))
         );
