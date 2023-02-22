@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import ladder.util.ExceptionMessageFormatter;
 
 public class Line {
 
@@ -42,5 +43,18 @@ public class Line {
 
     public List<Direction> toDirections() {
         return new ArrayList<>(directions);
+    }
+
+    public Direction getDirectionToMove(int index) {
+        validateIndex(index);
+        return directions.get(index);
+    }
+
+    private void validateIndex(int index) {
+        if (index < -1 || index > size() - 1) {
+            throw new IllegalArgumentException(
+                    ExceptionMessageFormatter.format("주어진 위치가 사다리 폭보다 큽니다.", index)
+            );
+        }
     }
 }

@@ -56,6 +56,17 @@ class LineTest {
                 .hasMessageContaining("디딤대는 연속적으로 존재할 수 없습니다.");
     }
 
+    @Test
+    @DisplayName("주어진 위치에서 이동할 방향을 반환한다.")
+    void should_ReturnDirectionToMove_By_Index() {
+        List<StepPoint> stepPoints = List.of(EXIST, NONE, EXIST, NONE, EXIST);
+
+        Queue<StepPoint> generateValues = new LinkedList<>(stepPoints);
+        Line line = Line.of(new MockedPointGenerator(generateValues), new LineWidth(stepPoints.size() + 1));
+
+        assertThat(line.getDirectionToMove(0)).isEqualTo(Direction.RIGHT);
+    }
+
     private static class MockedPointGenerator implements StepPointGenerator {
 
         private final Queue<StepPoint> queue;
