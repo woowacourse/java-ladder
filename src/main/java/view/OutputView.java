@@ -1,11 +1,15 @@
 package view;
 
 import domain.Ladder;
+import domain.LadderGameResult;
 import domain.LadderRow;
 import domain.Line;
+import domain.Result;
 import domain.Results;
+import domain.User;
 import domain.Users;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -17,6 +21,7 @@ public class OutputView {
     private static final String USER_DELIMITER = " ";
     private static final String EXIST_LINE_SYMBOL = "-----";
     private static final String NOT_EXIST_LINE_SYMBOL = "     ";
+    private static final String RESULT_FORMAT = "%s : %s";
 
     public static void printErrorMessage(final Exception exception) {
         System.out.println(exception.getMessage());
@@ -68,5 +73,20 @@ public class OutputView {
             return EXIST_LINE_SYMBOL;
         }
         return NOT_EXIST_LINE_SYMBOL;
+    }
+
+    public static void printResult(Result result) {
+        System.out.println(RESULT_MESSAGE);
+        System.out.println(result.getResultName());
+    }
+
+    public static void printAllResult(LadderGameResult ladderGameResult) {
+        System.out.println(RESULT_MESSAGE);
+        Map<User, Result> allResult = ladderGameResult.getLadderGameResult();
+        allResult.entrySet().forEach(OutputView::printResultWithFormat);
+    }
+
+    private static void printResultWithFormat(Map.Entry<User, Result> entry) {
+        System.out.printf(RESULT_FORMAT, entry.getKey(), entry.getValue());
     }
 }

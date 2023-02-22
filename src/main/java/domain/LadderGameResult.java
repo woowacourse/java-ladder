@@ -13,4 +13,8 @@ public class LadderGameResult {
     public Result findByUser(User user) {
         return ladderGameResult.get(user);
     }
+
+    public Map<User, Result> getLadderGameResult() {
+        return ladderGameResult;
+    }
 }
