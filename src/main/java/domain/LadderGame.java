@@ -1,25 +1,30 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import util.BooleanGenerator;
 
 public class LadderGame {
     private final Persons persons;
     private final Ladder ladder;
+    private final WinningEntry winningEntry;
 
-    public LadderGame(Persons persons, Height height, BooleanGenerator booleanGenerator) {
+    public LadderGame(Persons persons, Height height, WinningEntry winningEntry, BooleanGenerator booleanGenerator) {
         this.persons = persons;
         this.ladder = Ladder.generate(booleanGenerator, height, persons.getTotalPersonCount());
+        this.winningEntry = winningEntry;
     }
 
-    public List<Integer> play() {
-        List<Integer> resultIndexes = new ArrayList<>();
+    public Map<String, String> play() {
+        Map<String, String> winningResult = new LinkedHashMap<>();
+        int resultPosition;
         for (int personIndex = 0; personIndex < persons.getTotalPersonCount(); personIndex++) {
-            resultIndexes.add(move(personIndex));
+            resultPosition = move(personIndex);
+            winningResult.put(persons.findNameByPosition(personIndex), winningEntry.findByPosition(resultPosition));
         }
-        return resultIndexes;
+        return winningResult;
     }
 
     private int move(int personIndex) {

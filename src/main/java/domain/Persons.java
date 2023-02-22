@@ -40,4 +40,9 @@ public class Persons {
     public List<Person> getPersons() {
         return persons;
     }
+
+    public String findNameByPosition(int position) {
+        return persons.get(position)
+                .getName();
+    }
 }

@@ -20,4 +20,8 @@ public class WinningEntry {
     public List<String> getWinningEntry() {
         return winningEntry;
     }
+
+    public String findByPosition(int position) {
+        return winningEntry.get(position);
+    }
 }

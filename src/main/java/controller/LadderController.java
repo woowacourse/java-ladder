@@ -4,6 +4,7 @@ import domain.Height;
 import domain.LadderGame;
 import domain.Person;
 import domain.Persons;
+import domain.WinningEntry;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +25,7 @@ public class LadderController {
         Persons persons = requestPlayerName();
         Height height = requestLadderHeight();
 
-        ladderGame = new LadderGame(persons, height, new RandomBooleanGenerator());
+        ladderGame = new LadderGame(persons, height, new WinningEntry(List.of("1", "2", "3", "4"), persons.getTotalPersonCount()), new RandomBooleanGenerator());
         outputView.printLadder(ladderGame.getAllPlayers(), ladderGame.getLadderStatus(),
                 persons.getLongestPersonNameLength());
     }
