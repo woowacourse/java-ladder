@@ -36,17 +36,20 @@ public class Results implements Iterable<Result> {
                 .collect(Collectors.toList());
     }
 
-    public boolean canTryAgain() {
-        return this.results.size() == 1;
-    }
-
-
     public Result getResultByColumn(Position position) {
         return results.get(position.getColumn());
     }
 
     public Result getResultByColumn(int index) {
         return results.get(index);
+    }
+
+    public Result getSingleResult() {
+        return results.get(0);
+    }
+
+    public boolean canTryAgain() {
+        return this.results.size() == 1;
     }
 
     @Override
@@ -69,9 +72,5 @@ public class Results implements Iterable<Result> {
     @Override
     public Iterator<Result> iterator() {
         return results.iterator();
-    }
-
-    public Result getSingleResult() {
-        return results.get(0);
     }
 }

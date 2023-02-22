@@ -19,7 +19,6 @@ public class OutputView {
         printNames(people);
         printLadder(ladder);
         printResults(results);
-
     }
 
     private void printNames(People people) {

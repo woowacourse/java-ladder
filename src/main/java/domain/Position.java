@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Position {
     public static final int INITIAL_VALUE = 0;
+
     private int column;
     private int row;
 

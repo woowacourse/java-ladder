@@ -38,11 +38,11 @@ public class Line {
         }
     }
 
-    public List<Boolean> getMovements() {
-        return movements;
-    }
-
     public int size() {
         return movements.size();
+    }
+
+    public List<Boolean> getMovements() {
+        return movements;
     }
 }

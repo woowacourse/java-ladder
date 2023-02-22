@@ -55,6 +55,10 @@ public class People implements Iterable<Person> {
         return people.size();
     }
 
+    public Person getByIndex(int index) {
+        return people.get(index);
+    }
+
     public int findPersonColumn(Person person) {
         return IntStream.range(0, people.size())
                 .filter(index -> people.get(index).equals(person))
@@ -66,9 +70,5 @@ public class People implements Iterable<Person> {
     @Override
     public Iterator<Person> iterator() {
         return people.iterator();
-    }
-
-    public Person getByIndex(int index) {
-        return people.get(index);
     }
 }

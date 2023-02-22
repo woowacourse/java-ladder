@@ -5,6 +5,8 @@ import java.util.List;
 
 public class LadderService {
 
+    public static final String ALL = "all";
+    
     private final People people;
     private final Ladder ladder;
     private final Results results;
@@ -16,7 +18,7 @@ public class LadderService {
     }
 
     public Results calculateAndGetResults(String input) {
-        if (input.equals("all")) {
+        if (input.equals(ALL)) {
             return getTotalResults();
         }
         Result singleResult = getSingleResult(new Person(input));
