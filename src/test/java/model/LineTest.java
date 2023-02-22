@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullSource;
@@ -64,5 +65,16 @@ class LineTest {
         void 주어진_Line의_Path_크기가_자신과_다르다면_false를_반환한다(Line firstLine, Line secondLine) {
             assertThat(firstLine.isSamePathSize(secondLine)).isFalse();
         }
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0:RIGHT", "1:LEFT", "2:NONE"}, delimiter = ':')
+    void findDirection_메소드는_position과_paths를_전달하면_Direction을_반환한다(int position, Direction expected) {
+        List<Path> paths = List.of(Path.PASSABLE, Path.UN_PASSABLE, Path.UN_PASSABLE);
+        Line line = new Line(paths);
+
+        Direction actual = line.findDirection(position);
+
+        assertThat(actual).isSameAs(expected);
     }
 }
