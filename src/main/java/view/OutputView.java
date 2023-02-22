@@ -4,6 +4,8 @@ import domain.Direction;
 import domain.Player;
 import domain.Players;
 import domain.Point;
+import domain.Reward;
+import domain.Rewards;
 import domain.ladder.Ladder;
 
 public class OutputView {
@@ -23,7 +25,14 @@ public class OutputView {
 
     public void printPlayerNames(Players players) {
         for (Player player : players.getPlayers()) {
-            System.out.print(formatPlayerName(player.getName()) + BLANK);
+            System.out.print(formatName(player.getName()) + BLANK);
+        }
+        breakLine();
+    }
+
+    public void printRewardNames(Rewards rewards) {
+        for (Reward reward : rewards.getRewards()) {
+            System.out.print(formatName(reward.getName() + BLANK));
         }
         breakLine();
     }
@@ -32,7 +41,7 @@ public class OutputView {
         System.out.print(System.lineSeparator());
     }
 
-    public String formatPlayerName(String playerName) {
+    public String formatName(String playerName) {
         String formatPlayerName = playerName;
 
         int index = PLAYER_NAME_BOX_SIZE_MAX;
