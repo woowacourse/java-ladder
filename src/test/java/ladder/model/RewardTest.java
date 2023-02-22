@@ -17,12 +17,12 @@ class RewardTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-
     @ParameterizedTest
     @DisplayName("보상(실행 결과)이 1자 이상 5자 이하면 통과 테스트")
     @ValueSource(strings = {"꽝", "50000"})
     void validRewardLengthTest(String input) {
-        assertThatCode(() -> new Reward(input)).doesNotThrowAnyException();
+        assertThatCode(() -> new Reward(input))
+                .doesNotThrowAnyException();
     }
 
 }

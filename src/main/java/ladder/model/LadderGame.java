@@ -18,6 +18,7 @@ public class LadderGame {
     public LadderGame(List<Player> players, List<Reward> rewards, Height height) {
         validatePlayerCount(players);
         this.players = players;
+
         validateRewardsCount(rewards);
         this.rewards = rewards;
         this.height = height;
@@ -37,10 +38,12 @@ public class LadderGame {
 
     public void generateLadder(LineCreateDecider lineCreateDecider) {
         int personCount = players.size();
+
         List<Row> rows = new ArrayList<>();
         for (int i = 0; i < height.getHeight(); i++) {
             rows.add(new Row(personCount, lineCreateDecider));
         }
+
         ladder = new Ladder(rows);
     }
 
@@ -68,4 +71,5 @@ public class LadderGame {
     public Map<Player, Reward> getResult() {
         return Collections.unmodifiableMap(result);
     }
+
 }

@@ -9,8 +9,7 @@ public class Ladder {
     public Ladder(List<Row> rows) {
         this.rows = rows;
     }
-
-
+    
     public int getResult(int playerNumber) {
         int currentPosition = playerNumber;
         for (Row row : rows) {

@@ -65,4 +65,5 @@ public class OutputView {
             return ROW_EMPTY.mark;
         }
     }
+
 }

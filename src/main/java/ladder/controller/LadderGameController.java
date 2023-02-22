@@ -24,6 +24,7 @@ public class LadderGameController {
         try {
             LadderGame ladderGame = generateLadderGame();
             showLadderGame(ladderGame);
+
             ladderGame.playLadderGame();
             askResults(ladderGame.getResult());
         } catch (IllegalArgumentException e) {
@@ -43,18 +44,16 @@ public class LadderGameController {
 
     private List<Player> generatePlayers() {
         List<String> names = inputView.readNames();
-        List<Player> players = names.stream()
+        return names.stream()
                 .map(Player::new)
                 .collect(Collectors.toList());
-        return players;
     }
 
     private List<Reward> generateRewards() {
         List<String> reward = inputView.readRewards();
-        List<Reward> rewards = reward.stream()
+        return reward.stream()
                 .map(Reward::new)
                 .collect(Collectors.toList());
-        return rewards;
     }
 
     private Height generateHeight() {
@@ -89,17 +88,15 @@ public class LadderGameController {
 
     private void askResults(Map<Player, Reward> result) {
         String askedPlayerName = inputView.readAskingResult();
+
         while (!askedPlayerName.equals("quit")) {
             searchResult(result, askedPlayerName);
+
             askedPlayerName = inputView.readAskingResult();
         }
-        ;
     }
 
     private void searchResult(Map<Player, Reward> result, String askedPlayerName) {
-        if (askedPlayerName.equals("quit")) {
-            return;
-        }
         if (askedPlayerName.equals("all")) {
             showAllResult(result);
             return;
@@ -113,8 +110,7 @@ public class LadderGameController {
     }
 
     private void showAllResult(Map<Player, Reward> result) {
-        Map<String, String> convertedResult = result.keySet()
-                .stream()
+        Map<String, String> convertedResult = result.keySet().stream()
                 .collect(Collectors.toMap(
                         Player::getPlayerName,
                         key -> result.get(key).getReward()
@@ -126,4 +122,5 @@ public class LadderGameController {
     private void showOneResult(Reward reward) {
         outputView.printOneResult(reward.getReward());
     }
+
 }

@@ -36,33 +36,35 @@ class LadderGameTest {
         List<Player> input = new ArrayList<>(List.of(player1, player2));
         List<Reward> rewards = new ArrayList<>(List.of(reward1, reward2));
 
-        assertThatCode(() -> new LadderGame(input, rewards, new Height(5))).doesNotThrowAnyException();
+        assertThatCode(() -> new LadderGame(input, rewards, new Height(5)))
+                .doesNotThrowAnyException();
     }
 
     @Test
     @DisplayName("플레이어가 30명 이하이면 통과하는 테스트")
     void validMaxHeightTest() {
-        List<Player> input = new ArrayList<>(List.of(new Player("1"), new Player("2"), new Player("3"), new Player("4"), new Player("5"), new Player("6"), new Player("7"), new Player("8"), new Player("9"), new Player("10"),
-                new Player("11"), new Player("12"), new Player("13"), new Player("14"), new Player("15"), new Player("16"), new Player("17"), new Player("18"), new Player("19"), new Player("20"),
-                new Player("21"), new Player("22"), new Player("23"), new Player("24"), new Player("25"), new Player("26"), new Player("27"), new Player("28"), new Player("29"), new Player("30")));
-        List<Reward> rewards = new ArrayList<>(List.of(new Reward("1"), new Reward("2"), new Reward("3"), new Reward("4"), new Reward("5"), new Reward("6"), new Reward("7"), new Reward("8"), new Reward("9"), new Reward("10"),
-                new Reward("11"), new Reward("12"), new Reward("13"), new Reward("14"), new Reward("15"), new Reward("16"), new Reward("17"), new Reward("18"), new Reward("19"), new Reward("20"),
-                new Reward("21"), new Reward("22"), new Reward("23"), new Reward("24"), new Reward("25"), new Reward("26"), new Reward("27"), new Reward("28"), new Reward("29"), new Reward("30")));
+        List<Player> players = new ArrayList<>();
+        List<Reward> rewards = new ArrayList<>();
+        for (int i = 0; i < 30; i++) {
+            players.add(new Player(Integer.toString(i)));
+            rewards.add(new Reward(Integer.toString(i)));
+        }
 
-        assertThatCode(() -> new LadderGame(input, rewards, new Height(5))).doesNotThrowAnyException();
+        assertThatCode(() -> new LadderGame(players, rewards, new Height(5)))
+                .doesNotThrowAnyException();
     }
 
     @Test
     @DisplayName("플레이어가 30명 초과이면 예외처리 테스트")
     void invalidMaxHeightTest() {
-        List<Player> input = new ArrayList<>(List.of(new Player("1"), new Player("2"), new Player("3"), new Player("4"), new Player("5"), new Player("6"), new Player("7"), new Player("8"), new Player("9"), new Player("10"),
-                new Player("11"), new Player("12"), new Player("13"), new Player("14"), new Player("15"), new Player("16"), new Player("17"), new Player("18"), new Player("19"), new Player("20"),
-                new Player("21"), new Player("22"), new Player("23"), new Player("24"), new Player("25"), new Player("26"), new Player("27"), new Player("28"), new Player("29"), new Player("30"), new Player("31")));
-        List<Reward> rewards = new ArrayList<>(List.of(new Reward("1"), new Reward("2"), new Reward("3"), new Reward("4"), new Reward("5"), new Reward("6"), new Reward("7"), new Reward("8"), new Reward("9"), new Reward("10"),
-                new Reward("11"), new Reward("12"), new Reward("13"), new Reward("14"), new Reward("15"), new Reward("16"), new Reward("17"), new Reward("18"), new Reward("19"), new Reward("20"),
-                new Reward("21"), new Reward("22"), new Reward("23"), new Reward("24"), new Reward("25"), new Reward("26"), new Reward("27"), new Reward("28"), new Reward("29"), new Reward("30"), new Reward("31")));
+        List<Player> players = new ArrayList<>();
+        List<Reward> rewards = new ArrayList<>();
+        for (int i = 0; i < 31; i++) {
+            players.add(new Player(Integer.toString(i)));
+            rewards.add(new Reward(Integer.toString(i)));
+        }
 
-        Assertions.assertThatThrownBy(() -> new LadderGame(input, rewards, new Height(5)))
+        Assertions.assertThatThrownBy(() -> new LadderGame(players, rewards, new Height(5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -72,7 +74,8 @@ class LadderGameTest {
         List<Player> input = new ArrayList<>(List.of(player1, player2));
         List<Reward> rewards = new ArrayList<>(List.of(reward1, reward2));
 
-        assertThatCode(() -> new LadderGame(input, rewards, new Height(5))).doesNotThrowAnyException();
+        assertThatCode(() -> new LadderGame(input, rewards, new Height(5)))
+                .doesNotThrowAnyException();
     }
 
     @Test
@@ -95,7 +98,6 @@ class LadderGameTest {
         ladderGame.generateLadder(new TestLineCreateDecider(newArrayList(true, false, false, true)));
 
         List<Row> rows = ladderGame.getLadder().getRows();
-
         Assertions.assertThat(rows.get(0).getPoints()).containsExactly(true, false);
         Assertions.assertThat(rows.get(1).getPoints()).containsExactly(false, true);
     }

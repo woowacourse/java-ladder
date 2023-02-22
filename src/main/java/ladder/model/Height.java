@@ -1,6 +1,6 @@
 package ladder.model;
 
-import static ladder.model.ErrorMessage.EXCEPTION_HEIGHT;
+import static ladder.model.ErrorMessage.EXCEPTION_HEIGHT_RANGE;
 
 public class Height {
     private static final int MIN_HEIGHT = 2;
@@ -14,7 +14,7 @@ public class Height {
 
     private void validateHeight(int height) {
         if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
-            throw new IllegalArgumentException(EXCEPTION_HEIGHT.getMessage());
+            throw new IllegalArgumentException(EXCEPTION_HEIGHT_RANGE.getMessage());
         }
     }
 

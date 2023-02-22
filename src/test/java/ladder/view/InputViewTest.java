@@ -60,5 +60,4 @@ class InputViewTest {
         assertThat(inputView.readRewards().size()).isEqualTo(4);
     }
 
-
 }

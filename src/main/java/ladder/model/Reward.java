@@ -4,7 +4,6 @@ import static ladder.model.ErrorMessage.EXCEPTION_REWARD_LENGTH;
 
 public class Reward {
 
-
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
     private final String reward;
@@ -23,4 +22,5 @@ public class Reward {
     public String getReward() {
         return reward;
     }
+
 }

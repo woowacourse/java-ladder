@@ -31,7 +31,8 @@ class PlayerNameTest {
     @DisplayName("플레이어 이름이 1자 이상 5자 이하면 통과 테스트")
     @ValueSource(strings = {"이리내", "이오", "이", "이리내이오"})
     void validNameLengthTest(String input) {
-        assertThatCode(() -> new PlayerName(input)).doesNotThrowAnyException();
+        assertThatCode(() -> new PlayerName(input))
+                .doesNotThrowAnyException();
     }
 
     @ParameterizedTest
