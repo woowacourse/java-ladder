@@ -45,4 +45,11 @@ class NameTest {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new Name(name));
     }
+
+    @DisplayName("\"all\"이 될 수 없다.")
+    @Test
+    public void nameTest_all() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Name("all"));
+    }
+
 }
