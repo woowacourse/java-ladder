@@ -1,10 +1,10 @@
 package view;
 
-import domain.LadderStep;
-import domain.Line;
-import domain.Lines;
-import domain.Missions;
-import domain.Names;
+import domain.ladder.LadderStep;
+import domain.ladder.Line;
+import domain.ladder.Lines;
+import domain.mission.Missions;
+import domain.player.Names;
 import domain.Result;
 import java.util.List;
 

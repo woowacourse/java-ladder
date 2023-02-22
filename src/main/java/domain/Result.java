@@ -1,5 +1,8 @@
 package domain;
 
+import domain.mission.Mission;
+import domain.player.Player;
+
 public class Result {
 
     private final Player player;
