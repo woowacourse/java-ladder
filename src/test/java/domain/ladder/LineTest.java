@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,7 +16,7 @@ public class LineTest {
 
     @BeforeEach
     void before() {
-        pointGenerator = new RandomPointGenerator();
+        pointGenerator = new ExistPointGenerator();
     }
 
     @DisplayName("라인의 포인트 개수는 19를 넘을 수 없다.")
@@ -53,5 +54,17 @@ public class LineTest {
             assertThat(left.isExist() && right.isExist()).isFalse();
         }
     }
+
+    @DisplayName("다음 방향을 결정한다")
+    @CsvSource(value = {"0:1:0", "1:0:1", "2:3:2", "3:2:3"}, delimiter = ':')
+    @ParameterizedTest
+    void decideDirection(int startIndex, int result, int sameIndex) {
+        Line line1 = Line.of(3, new ExistPointGenerator());
+        Line line2 = Line.of(3, new NotExistPointGenerator());
+
+        assertThat(line1.decideNextIndex(startIndex)).isEqualTo(result);
+        assertThat(line2.decideNextIndex(sameIndex)).isEqualTo(sameIndex);
+    }
+
 
 }

@@ -42,12 +42,40 @@ public class Line {
         return currentPoint;
     }
 
+    public int decideNextIndex(int index) {
+        if ((index != 0) && checkPointOn(Direction.LEFT, index)) {
+            return index + Direction.LEFT.distance;
+        }
+        if ((index != points.size()) && checkPointOn(Direction.RIGHT, index)) {
+            return index + Direction.RIGHT.distance;
+        }
+        return index;
+    }
+
+    private boolean checkPointOn(Direction direction, int index) {
+        Point point = points.get(index + direction.pointDifference);
+        return point.isExist();
+    }
+
     public Point getPointAt(final int index) {
         return points.get(index);
     }
 
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    private enum Direction {
+        LEFT(-1, -1),
+        RIGHT(1, 0);
+
+        private final int distance;
+        private final int pointDifference;
+
+        Direction(int distance, int pointDifference) {
+            this.distance = distance;
+            this.pointDifference = pointDifference;
+        }
     }
 
 }
