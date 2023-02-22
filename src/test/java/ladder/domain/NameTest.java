@@ -12,7 +12,7 @@ import ladder.error.ErrorMessage;
 
 class NameTest {
 
-    @ParameterizedTest(name = "이름은 1글자 이상 5글자 이하여야 한다.")
+    @ParameterizedTest(name = "이름을 검증한다.")
     @ValueSource(strings = {"쥬니", "리  오", "123", " 킹왕짱 ", "#$%@!"})
     void createNameSuccessTest(String name) {
         assertDoesNotThrow(() -> new Name(name));
