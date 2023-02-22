@@ -10,8 +10,4 @@ public enum BridgeStatus {
     BridgeStatus(final String display) {
         this.display = display;
     }
-
-    public String getDisplay() {
-        return display;
-    }
 }
