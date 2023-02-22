@@ -1,23 +1,33 @@
 package domain;
 
-public class Position {
+class Position {
 
     private final int position;
 
-    public Position(int position) {
+    Position(int position) {
         this.position = position;
     }
 
-    public Position left() {
+    Position moveTo(Direction direction) {
+        if (direction.isLeft()) {
+            return left();
+        }
+        if (direction.isRight()) {
+            return right();
+        }
+        return new Position(position);
+    }
+
+    Position left() {
         return new Position(position - 1);
     }
 
-    public Position right() {
+    Position right() {
         return new Position(position + 1);
     }
 
-    public boolean isInBetween(int fromInclusive, int toInclusive) {
-        return fromInclusive <= position && position <= toInclusive;
+    boolean isInBetween(int fromInclusive, int toExclusive) {
+        return fromInclusive <= position && position < toExclusive;
     }
 
     @Override
@@ -39,7 +49,7 @@ public class Position {
         return position;
     }
 
-    public int getPosition() {
+    int getPosition() {
         return position;
     }
 }
