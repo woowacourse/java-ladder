@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.List;
@@ -38,6 +39,6 @@ public class ResultsTest {
                 .collect(Collectors.toList());
 
         // then
-        Assertions.assertThat(expectedResults).containsExactly("1", "2", "3");
+        assertThat(expectedResults).containsExactly("1", "2", "3");
     }
 }

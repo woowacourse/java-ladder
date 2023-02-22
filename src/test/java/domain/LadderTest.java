@@ -2,7 +2,6 @@ package domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,8 +20,6 @@ public class LadderTest {
     Name name4;
     Result result1;
     Result result2;
-
-
 
     @BeforeEach
     void setUp() {

@@ -27,13 +27,12 @@ public class Line {
     private void makeOtherConnections(final ConnectionGenerator connectionGenerator, final List<Boolean> connection,
                                       final int numberOfPoint) {
         for (int i = 1; i < numberOfPoint; i++) {
-            boolean isExisting = connectionGenerator.generate();
-            makeConnectionExceptFirst(connection, i, isExisting);
+            makeConnectionExceptFirst(connection, i, connectionGenerator.generate());
         }
     }
 
     private void makeConnectionExceptFirst(final List<Boolean> connection, final int index, final boolean isExisting) {
-        if (connection.get(index-1) && isExisting) {
+        if (connection.get(index - 1) && isExisting) {
             connection.add(false);
             return;
         }

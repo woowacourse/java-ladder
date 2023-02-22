@@ -29,8 +29,8 @@ public class LinesTest {
         // then
 
         assertSoftly(softly -> {
-            assertThat(lines.getLines().get(0).getConnections().size()).isEqualTo(expectedLadderWidth);
-            assertThat(lines.getLines().size()).isEqualTo(height);
+            softly.assertThat(lines.getLines().get(0).getConnections().size()).isEqualTo(expectedLadderWidth);
+            softly.assertThat(lines.getLines().size()).isEqualTo(height);
         });
     }
 
