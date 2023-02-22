@@ -30,5 +30,9 @@ public class LadderGameResult {
     public Map<Player, Prize> getResult() {
         return Collections.unmodifiableMap(result);
     }
-    
+
+    public Prize getPersonalResult(final Player player) {
+        return result.get(player);
+    }
+
 }

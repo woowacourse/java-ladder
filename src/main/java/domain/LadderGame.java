@@ -2,7 +2,9 @@ package domain;
 
 import domain.ladder.Ladder;
 import domain.ladder.PointGenerator;
+import domain.players.Player;
 import domain.players.Players;
+import domain.prize.Prize;
 import domain.prize.Prizes;
 
 import java.util.List;
@@ -43,5 +45,10 @@ public class LadderGame {
     public LadderGameResult getResult() {
         return result;
     }
-    
+
+    public Prize getPersonalResult(String name) {
+        Player player = players.getPlayerByName(name);
+        return result.getPersonalResult(player);
+    }
+
 }

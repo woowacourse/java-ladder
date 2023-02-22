@@ -76,4 +76,12 @@ public class LadderGameTest {
         Assertions.assertThat(totalResult.get(playerList.get(playerIndex)).getValue()).isEqualTo(prizes.get(prizeIndex));
     }
 
+    @DisplayName("개인별 사다리 게임 결과를 반환한다.")
+    @CsvSource(value = {"a:20000", "b:10000", "c:30000"}, delimiter = ':')
+    @ParameterizedTest
+    void getPersonalResult(String playerName, String prizeValue) {
+        Prize prize = ladderGame.getPersonalResult(playerName);
+        assertThat(prize.getValue()).isEqualTo(prizeValue);
+    }
+
 }

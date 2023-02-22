@@ -28,6 +28,10 @@ public class PlayerName {
         }
     }
 
+    public boolean isMyName(String playerName) {
+        return playerName.equals(name);
+    }
+
     public String getName() {
         return name;
     }

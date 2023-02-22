@@ -58,4 +58,11 @@ public class Players {
         return players.get(index);
     }
 
+    public Player getPlayerByName(final String name) {
+        return players.stream()
+                .filter(player -> player.isMyName(name))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참여자입니다."));
+    }
+
 }
