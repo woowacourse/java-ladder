@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.vo.LadderLabel;
+
 import java.util.Objects;
 
 public class Player {

@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.dto;
 
 public class GameResult {
 

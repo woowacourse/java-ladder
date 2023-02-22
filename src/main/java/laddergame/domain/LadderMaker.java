@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 import laddergame.util.BooleanGenerator;
+import laddergame.vo.LadderHeight;
 
 import java.util.ArrayList;
 import java.util.List;

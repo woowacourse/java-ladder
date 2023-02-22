@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 import laddergame.constant.ErrorCode;
+import laddergame.vo.Position;
 
 import java.util.HashSet;
 import java.util.List;

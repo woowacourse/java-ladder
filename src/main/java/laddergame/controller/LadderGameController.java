@@ -1,14 +1,14 @@
 package laddergame.controller;
 
-import laddergame.domain.GameResult;
+import laddergame.dto.GameResult;
 import laddergame.domain.Ladder;
 import laddergame.domain.LadderGame;
-import laddergame.domain.LadderHeight;
 import laddergame.domain.LadderMaker;
 import laddergame.domain.Players;
 import laddergame.domain.Prizes;
 import laddergame.util.RandomBooleanGenerator;
 import laddergame.util.RepeatValidator;
+import laddergame.vo.LadderHeight;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 

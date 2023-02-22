@@ -1,7 +1,7 @@
 package laddergame.view;
 
 import laddergame.constant.ErrorCode;
-import laddergame.domain.GameResult;
+import laddergame.dto.GameResult;
 import laddergame.domain.Line;
 import laddergame.domain.Point;
 

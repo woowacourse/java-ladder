@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 import laddergame.constant.ErrorCode;
+import laddergame.vo.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,8 @@
 package laddergame.domain;
 
 import laddergame.constant.ErrorCode;
+import laddergame.dto.GameResult;
+import laddergame.vo.Position;
 
 import java.util.ArrayList;
 import java.util.List;

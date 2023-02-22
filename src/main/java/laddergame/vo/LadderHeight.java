@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.vo;
 
 public class LadderHeight {
 

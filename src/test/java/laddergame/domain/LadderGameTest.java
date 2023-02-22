@@ -1,6 +1,8 @@
 package laddergame.domain;
 
+import laddergame.dto.GameResult;
 import laddergame.util.RandomBooleanGenerator;
+import laddergame.vo.LadderHeight;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

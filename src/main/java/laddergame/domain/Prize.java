@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.constant.ErrorCode;
+import laddergame.vo.LadderLabel;
 
 public class Prize {
 
