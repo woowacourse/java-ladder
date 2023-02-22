@@ -77,6 +77,7 @@ public class OutputView {
     }
     
     public static void printOnePlayerResult(int playerIndex, GameResult gameResult) {
+        println("실행 결과");
         println(gameResult.getOneExecutionResult(playerIndex));
     }
     

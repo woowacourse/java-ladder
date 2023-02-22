@@ -28,12 +28,12 @@ public class PlayerNames {
     }
     
     private void validateNameLength(List<String> splitNames) {
-        if (isOutOFNameLength(splitNames)) {
+        if (isOutOfNameLength(splitNames)) {
             throw new IllegalArgumentException("각 이름 길이의 범위는 1~5 글자 입니다.");
         };
     }
     
-    private boolean isOutOFNameLength(List<String> splitNames) {
+    private boolean isOutOfNameLength(List<String> splitNames) {
         return splitNames.stream()
                 .map(String::length)
                 .anyMatch(nameLength -> nameLength > 5 || nameLength < 1);
@@ -67,6 +67,17 @@ public class PlayerNames {
     
     public int getPlayerIndex(String player) {
         return names.indexOf(player);
+    }
+    
+    public String findByName(String playerName) {
+        if (playerName.equals("all")) {
+            return playerName;
+        }
+        
+        return names.stream()
+                .filter(name -> name.equals(playerName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어입니다."));
     }
     
     public List<String> getNames() {
