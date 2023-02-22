@@ -44,6 +44,7 @@
 
 - [ ] Position
  - [ ] 원시값 int 포장
+ - [ ] 위치 값을 검증한다.
 
 - [ ] Player
   - [ ] Name과 Position을 멤버로 가진다
@@ -67,14 +68,14 @@
   - [x] 높이가 최소 1 이상인지 검증
 
 - [x] Ladder
-  - [ ] Line과 Height를 멤버로 가진다.
+  - [x] Line과 Height를 멤버로 가진다.
   - [x] Line 인스턴스 생성
 
 - [ ] LadderGame
   - [ ] Players와 Ladder를 멤버로 가진다.
   - [ ] 사다리 게임을 실행한다.
 
-- [ ] Winning Prize
+- [ ] WinningPrize
   - [ ] 입력받은 실행 결과를 저장하는 일급 컬렉션
 
 - [x] LinkGenerator
@@ -83,14 +84,14 @@
 - [x] RandomLinkGenerator
   - [x] 랜덤으로 Link 생성
 
-- [ ] InputView
+- [x] InputView
   - [x] 사람 이름 입력
     - 쉼표(,)를 기준으로 구분
-  - [ ] 게임 상품 입력
+  - [x] 게임 상품 입력
     - 쉼표(,)를 기준으로 구분
   - [x] 사다리 높이 입력
     - 정수값만 리턴
-  - 결과를 보고 싶은 사람의 이름을 입력받는다.
+  - [x] 결과를 보고 싶은 사람의 이름을 입력받는다.
 
 - [ ] OutputView
   - [x] 사다리를 출력할 때 사람 이름도 같이 출력한다.
@@ -98,5 +99,5 @@
   - [x] 첫번째 Player 이름 길이의 절반을 반올림 값한만큼 공백을 생성한다.
   - [ ] 입력받은 사람의 이름을 winningPrize를 출력한다.
 
-- [ ] LadderElement
-  - [ ] 사다리의 요소들을 모아둔 Enum
+- [x] LadderElement
+  - [x] 사다리의 요소들을 모아둔 Enum
