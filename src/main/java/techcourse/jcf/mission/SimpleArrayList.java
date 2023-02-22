@@ -2,7 +2,7 @@ package techcourse.jcf.mission;
 
 public class SimpleArrayList implements SimpleList {
 
-    private static int DEFAULT_CAPACITY = 10;
+    private static final int DEFAULT_CAPACITY = 10;
 
     private String[] values;
     private int size;
@@ -89,10 +89,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        }
-        return false;
+        return size == 0;
     }
 
     @Override
