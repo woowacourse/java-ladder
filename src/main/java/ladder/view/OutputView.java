@@ -1,12 +1,14 @@
 package ladder.view;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String LINE_PART = "-";
     private static final String COLUMN_PART = "|";
     private static final String BLANK_PART = " ";
+    private static final String GAME_RESULT_MESSAGE = "실행 결과";
 
     public static void printLadder(List<String> names, List<List<Boolean>> lines, int nameMaxLength) {
         System.out.println("실행결과");
@@ -36,5 +38,17 @@ public class OutputView {
             return LINE_PART.repeat(partWidth);
         }
         return BLANK_PART.repeat(partWidth);
+    }
+
+    public static void printPlayerResult(String result) {
+        System.out.println(GAME_RESULT_MESSAGE);
+        System.out.println(result);
+    }
+
+    public static void printPlayerResultAll(Map<String, String> result) {
+        System.out.println(GAME_RESULT_MESSAGE);
+        for (String player : result.keySet()) {
+            System.out.println(player + " : " + result.get(player));
+        }
     }
 }
