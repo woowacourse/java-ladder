@@ -13,8 +13,18 @@ class InputViewValidatorTest {
         int count = 10001;
 
         assertThrows(IllegalArgumentException.class,
-                () ->  InputViewValidator.validateNamesCount(count))
+                () -> InputViewValidator.validateNamesCount(count))
                 .getMessage().equals("[ERROR] 참여자의 수는 10000명 이하여야합니다.");
+    }
+
+    @Test
+    @DisplayName("참여자의 이름이 all이면 예외를 던진다.")
+    void playerNameTest() {
+        String playerName = "all";
+
+        assertThrows(IllegalArgumentException.class,
+                () -> InputViewValidator.validateNameisAll(playerName))
+                .getMessage().equals("[ERROR] 참여자의 이름은 all일 수 없습니다");
     }
 
     @Test
