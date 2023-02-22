@@ -25,10 +25,18 @@ public class LadderGame {
         int location = 0;
 
         for (int i = 0; i < players.size(); i++) {
-            int finalDestinationForOnePlayer = ladder.getDestinationOf(location++);
-            String gameResultForOnePlayer = ladderGameResult.get(finalDestinationForOnePlayer);
-            gameRecord.add(gameResultForOnePlayer);
+            int finalDestination = ladder.getDestinationOf(location++);
+            String gameResultForOneLocation = ladderGameResult.get(finalDestination);
+            gameRecord.add(gameResultForOneLocation);
         }
         players.recordGameResult(gameRecord);
+    }
+
+    public Map<Player, String> getAllLadderGameResult() {
+        return players.getAllGameResult();
+    }
+
+    public Map.Entry<Player, String> getOneLadderGameResult(String playerName) {
+        return players.getGameResultFor(playerName);
     }
 }

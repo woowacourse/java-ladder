@@ -1,8 +1,11 @@
 package ladder.domain.player;
 
+import ladder.exception.NoSuchPlayerException;
 import ladder.exception.PlayerNumberException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -10,10 +13,12 @@ public class Players {
     private static final int PLAYER_MINIMUM_NUMBER = 2;
 
     private final List<Player> players;
+    private final Map<Player, String> mappedGameRecord;
 
     public Players(final List<String> playerNames) {
         validatePlayerNumber(playerNames);
         players = mapPlayerNamesToPlayers(playerNames);
+        mappedGameRecord = new HashMap<>();
     }
 
     private void validatePlayerNumber(final List<String> playerNames) {
@@ -26,6 +31,23 @@ public class Players {
         return playerNames.stream()
                 .map(Player::new)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public void recordGameResult(List<String> gameRecord) {
+        for (int i = 0; i < size(); i++) {
+            mappedGameRecord.put(players.get(i), gameRecord.get(i));
+        }
+    }
+
+    public Map<Player, String> getAllGameResult() {
+        return Map.copyOf(mappedGameRecord);
+    }
+
+    public Map.Entry<Player, String> getGameResultFor(String playerName) {
+        return mappedGameRecord.entrySet().stream()
+                .filter((entry -> entry.getKey().getPlayerName().getName().equals(playerName)))
+                .findFirst()
+                .orElseThrow(NoSuchPlayerException::new);
     }
 
     public List<Player> getPlayers() {
