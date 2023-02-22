@@ -27,8 +27,9 @@ public class LadderController {
         this.outputView = outputView;
         this.ladderMaker = ladderMaker;
     }
-
-    public void inputData() {
+    public void play(){
+    }
+    private void inputData() {
         names = makePlayers();
         maxPosition = names.size()-1;
         Goods goods = makeGoods(names.size());
@@ -37,7 +38,7 @@ public class LadderController {
         outputView.printResult(names, ladder);
         outputView.printNames(goods.getGoodsNames());
     }
-    public void playGame(){
+    private void playGame(){
         LadderGame ladderGame = new LadderGame(maxPosition);
         ladderGame.playLadderGame(names,ladder);
         players = ladderGame.getPlayers();
