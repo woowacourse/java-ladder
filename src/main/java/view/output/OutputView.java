@@ -1,7 +1,7 @@
 package view.output;
 
+import domain.Ladder;
 import domain.Line;
-import domain.GameMap;
 import domain.Participants;
 
 import java.util.List;
@@ -15,11 +15,11 @@ public class OutputView {
     private static final String CONNECTED_LINE = "-----";
     private static final String DISCONNECTED_LINE = "     ";
 
-    public void printMap(Participants participants, GameMap gameMap, List<String> results) {
+    public void printMap(Participants participants, Ladder ladder, List<String> results) {
         System.out.println(RESULT_MESSAGE);
         StringBuilder mapResult = new StringBuilder();
         setNames(mapResult, participants);
-        setLadder(mapResult, gameMap);
+        setLadder(mapResult, ladder);
         setResult(mapResult, results);
         System.out.print(mapResult);
     }
@@ -34,8 +34,8 @@ public class OutputView {
         return String.format("%5s ", name);
     }
 
-    private void setLadder(StringBuilder mapResult, GameMap gameMap) {
-        gameMap.getLines()
+    private void setLadder(StringBuilder mapResult, Ladder ladder) {
+        ladder.getLines()
                .forEach((line) -> mapResult.append(reformatLine(line)));
     }
 

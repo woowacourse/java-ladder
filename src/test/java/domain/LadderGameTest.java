@@ -21,10 +21,7 @@ class LadderGameTest {
     @BeforeEach
     void setUp() {
         Participants participants = new Participants("pobi,honux,crong,jk");
-        List<Line> lines = IntStream.range(0, 3)
-                                    .mapToObj((count) -> new Line(3, () -> true))
-                                    .collect(Collectors.toList());
-        Ladder ladder = new Ladder(lines);
+        Ladder ladder = new Ladder(new Height("3"), new Weight(4), () -> true);
         Results results = new Results("a,b,c,d", 4);
 
         ladderGame = new LadderGame(participants, ladder, results);
