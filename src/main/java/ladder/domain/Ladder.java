@@ -11,6 +11,13 @@ public class Ladder {
         this.rows = rows;
     }
 
+    public PlayerPosition passFrom(PlayerPosition initialPosition) {
+        return rows.stream()
+                   .reduce(initialPosition,
+                           (from, row) -> row.movePlayer(from),
+                           (dummy1, dummy2) -> dummy1);
+    }
+
     public List<Row> getRows() {
         return rows;
     }

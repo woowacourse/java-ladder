@@ -17,9 +17,8 @@ class LadderTest {
         );
     }
 
-    @ParameterizedTest(name = "Row 생성 성공")
     @Test
-    public void 생성_success(List<Row> rows) {
+    public void 생성_success() {
         assertThatNoException()
                 .isThrownBy(() -> new Ladder(generateRowList()));
     }
