@@ -28,6 +28,10 @@ public class Players {
         return players.size();
     }
 
+    public int getOrder(String name) {
+        return getNames().indexOf(name);
+    }
+
     private void validateDuplicateNames(List<String> names) {
         if (isDuplicated(names)) {
             throw new IllegalArgumentException(DUPLICATE_NAME_MESSAGE);
