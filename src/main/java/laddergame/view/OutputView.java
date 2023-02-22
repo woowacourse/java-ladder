@@ -1,8 +1,5 @@
 package laddergame.view;
 
-import static laddergame.domain.Name.BLANK;
-import static laddergame.domain.Name.MAX_NAME_LENGTH;
-
 import java.util.Map;
 import java.util.Map.Entry;
 import laddergame.domain.GameResult;
@@ -20,6 +17,9 @@ public class OutputView {
     private static final String LADDER_HEIGHT_ENTER_NOTICE_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String LADDER_RESULT = "사다리 결과";
     private static final String NEXT_LINE = "\n";
+    private static final String BLANK = " ";
+
+    private static final int MAX_NAME_LENGTH = 5;
 
     private static final int SECOND_INDEX = 1;
 
