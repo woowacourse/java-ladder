@@ -16,4 +16,8 @@ public class Prize {
             throw new IllegalArgumentException(ErrorCode.EMPTY_INPUT.getCode());
         }
     }
+
+    public String getValue() {
+        return value;
+    }
 }
