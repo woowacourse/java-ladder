@@ -41,4 +41,8 @@ public class Users {
                 .map(user -> StringParser.insertBlank(user.getName()))
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public List<User> getUsers() {
+        return users;
+    }
 }

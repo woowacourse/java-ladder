@@ -2,6 +2,7 @@ package domain;
 
 import domain.LadderTest.TestLadderRowGenerator;
 import java.util.List;
+import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -12,29 +13,37 @@ import utils.LadderRowGenerator;
 
 public class LadderGameTest {
 
-    private LadderGame ladderGame;
     private LadderRowGenerator ladderRowGenerator;
     private Ladder ladder;
     private Users users;
+    private Results results;
 
     @BeforeEach
     void init() {
         ladderRowGenerator = new TestLadderRowGenerator();
         ladder = new Ladder(4, 5, ladderRowGenerator);
-        users = new Users(List.of(new User("userA"), new User("userB"), new User("userC"), new User("userD")));
-        ladderGame = new LadderGame(ladder, users);
+        users = new Users(
+                List.of(new User("userA"), new User("userB"), new User("userC"), new User("userD")));
+        results = new Results(
+                List.of(new Result("1"), new Result("2"), new Result("3"), new Result("4")));
     }
 
     @Test
-    @DisplayName("LadderGame은 Ladder와 Users를 받아 생성된다.")
-    void LadderGame은_Ladder와_Users를_받아_생성된다() {
-        Assertions.assertThatCode(() -> new LadderGame(ladder, users))
+    @DisplayName("LadderGame은 Ladder, Users, Results를 받아 생성된다.")
+    void ladderGameTest() {
+        Assertions.assertThatCode(() -> new LadderGame(ladder, users, results))
                 .doesNotThrowAnyException();
     }
 
-    @ParameterizedTest(name = "출발할 인덱스를 주면 도착할 인덱스를 반환한다.")
-    @CsvSource({"0,0", "1,3", "2,2", "3,1"})
-    void 출발할_인덱스를_주면_사다리를_내려가_최종적으로_도착할_인덱스를_반환한다(int departureIndex, int arrivalIndex) {
-        Assertions.assertThat(ladderGame.move(departureIndex, 0, 5)).isEqualTo(arrivalIndex);
+    @Test
+    @DisplayName("play는 LadderGameResult를 반환한다.")
+    void playTest() {
+        LadderGame ladderGame = new LadderGame(ladder, users, results);
+        User user = users.getUsers().get(1);
+        Result result = results.getResults().get(3);
+
+        LadderGameResult ladderGameResult = ladderGame.play();
+
+        Assertions.assertThat(ladderGameResult.findByUser(user)).isEqualTo(result);
     }
 }

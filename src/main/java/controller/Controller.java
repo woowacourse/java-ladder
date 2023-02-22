@@ -27,13 +27,9 @@ public class Controller {
         Height height = getHeight();
 
         Ladder ladder = getLadder(users, height);
-        LadderGame ladderGame = getLadderGame(ladder, users);
+        LadderGame ladderGame = getLadderGame(ladder, users, results);
 
         OutputView.printResult(users, results, ladder);
-        String resultViewer = InputView.readResultViewer();
-        int departureIndex = users.findByName(resultViewer);
-        int arrivalIndex = ladderGame.move(departureIndex, 0, height.getHeight());
-        System.out.println(results.getResults().get(arrivalIndex).getResultName());
     }
 
     private Users getUsers() {
@@ -76,7 +72,7 @@ public class Controller {
         return new Ladder(users.getSize(), height.getHeight(), ladderRowGenerator);
     }
 
-    private LadderGame getLadderGame(final Ladder ladder, final Users users) {
-        return new LadderGame(ladder, users);
+    private LadderGame getLadderGame(final Ladder ladder, final Users users, final Results results) {
+        return new LadderGame(ladder, users, results);
     }
 }
