@@ -16,10 +16,10 @@
 
 ### SimpleLinkedList
 
-- [ ] boolean add(String value);
+- [x] boolean add(String value);
 - [ ] void add(int index, String value);
 - [ ] String set(int index, String value);
-- [ ] String get(int index);
+- [x] String get(int index);
 - [ ] boolean contains(String value);
 - [ ] int indexOf(String value);
 - [ ] int size();

@@ -31,6 +31,7 @@ public class SimpleLinkedList implements SimpleList {
 
         tail.link(node);
         tail = node;
+        size++;
         return true;
     }
 
@@ -46,7 +47,15 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public String get(int index) {
-        return null;
+        if(index >= size){
+            throw new IndexOutOfBoundsException();
+        }
+
+        Node node = head;
+        for(int i = 0; i < index; i++){
+            node = node.getNextNode();
+        }
+        return node.getValue();
     }
 
     @Override
