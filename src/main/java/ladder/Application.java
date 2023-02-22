@@ -19,7 +19,7 @@ import ladder.domain.strategy.linestrategy.RandomLineStrategy;
 public class Application {
     private static final String QUIT = "q";
     private static final String ALL = "all";
-    private static final Boolean FINISH = false; // TODO: 그냥 false?
+    private static final Boolean FINISH = false;
     private static final Boolean PROCEED = true;
 
     private static Players players;
