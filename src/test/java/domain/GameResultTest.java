@@ -1,12 +1,10 @@
 package domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -20,17 +18,28 @@ public class GameResultTest {
                 .isThrownBy(() -> new GameResult(resultInput));
     }
 
-    // TODO : 실행 결과 개수와 플레이어 수를 비교하는 것이 Result 객체의 책임인지 생각해보기
-    @DisplayName("실행 결과의 개수가 플레이어 수보다 적으면 예외 처리 한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {1, 10, 20})
-    void validateResultSize(int playerSize) {
-        List<String> results = new ArrayList<>();
-        int sizeDifference = 5;
-        for (int playerIndex = 0; playerIndex < playerSize - sizeDifference; playerIndex++) {
-            results.add(String.valueOf(playerIndex));
-        }
+    @DisplayName("실행 결과명이 1글자 이상 5글자 이하가 아니면 예외 처리한다.")
+    @Test
+    void validateGameResultNameSize() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new GameResult(playerSize, results));
+                .isThrownBy(() -> new GameResult("다섯글자이상"));
     }
+
+    @DisplayName("실행 결과를 생성한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"꽝", "3000", "20000"})
+    void generateGameResult(String resultInput) {
+        assertThatNoException()
+                .isThrownBy(() -> new GameResult(resultInput));
+    }
+
+    @DisplayName("실행 결과를 가져올 수 있다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"꽝", "3000", "20000"})
+    void getGameResult(String resultInput) {
+        GameResult gameResult = new GameResult(resultInput);
+        assertThat(gameResult.getResult())
+                .isEqualTo(resultInput);
+    }
+
 }
