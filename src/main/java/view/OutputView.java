@@ -5,6 +5,7 @@ import domain.model.Layer;
 import domain.model.Player;
 import domain.vo.Name;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 public class OutputView {
@@ -47,4 +48,11 @@ public class OutputView {
         });
         System.out.println(stringBuilder);
     }
+    public void printPlayerAndItem(Name player,Name item){
+        System.out.println(player + " : " + item);
+    }
+    public void printPlayerAndItem(String player,Name item){
+        System.out.println(player + " : " + item);
+    }
+
 }

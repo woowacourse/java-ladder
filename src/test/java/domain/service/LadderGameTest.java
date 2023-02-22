@@ -1,7 +1,10 @@
 package domain.service;
 
+import domain.model.Player;
+import domain.model.Players;
 import domain.vo.Height;
 import domain.vo.Name;
+import domain.vo.Position;
 import domain.vo.Width;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +19,10 @@ public class LadderGameTest {
     void playLadderGameTest() {
         LadderGame ladderGame = new LadderGame(2);
         LadderMaker ladderMaker = new LadderMaker(() -> true);
-        ladderGame.playLadderGame(List.of(new Name("test1"), new Name("test2"), new Name("test3")), ladderMaker.make(new Height(1), new Width(2)));
+        Players players = new Players(List.of(new Player(new Name("test1"),new Position(0)),
+                new Player(new Name("test2"),new Position(1)),
+                new Player(new Name("test3"),new Position(2))));
+        ladderGame.playLadderGame(players, ladderMaker.make(new Height(1), new Width(2)));
         assertThat(ladderGame.getPlayers().get(0).getPosition()).isEqualTo(1);
         assertThat(ladderGame.getPlayers().get(1).getPosition()).isEqualTo(0);
         assertThat(ladderGame.getPlayers().get(2).getPosition()).isEqualTo(2);

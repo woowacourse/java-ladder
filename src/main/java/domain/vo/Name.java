@@ -22,4 +22,9 @@ public class Name {
     public String get() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return this.value;
+    }
 }
