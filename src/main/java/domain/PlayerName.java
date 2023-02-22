@@ -44,4 +44,11 @@ public class PlayerName {
         return this.playerName;
     }
 
+    @Override
+    public boolean equals(Object object) {
+        return object instanceof PlayerName
+                && ((PlayerName) object).getPlayerName()
+                .equals(this.playerName);
+    }
+
 }

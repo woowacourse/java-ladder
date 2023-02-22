@@ -60,4 +60,8 @@ public class PlayerNames {
         return playerNames.size();
     }
 
+    public boolean contains(PlayerName playerName) {
+        return playerNames.contains(playerName);
+    }
+
 }
