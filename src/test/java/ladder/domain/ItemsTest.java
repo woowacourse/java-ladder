@@ -2,9 +2,12 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ItemsTest {
@@ -18,5 +21,17 @@ class ItemsTest {
         // expected
         assertThatThrownBy(() -> items.findItem(wrongPosition))
                 .isInstanceOf(IllegalStateException.class);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0,1", "1,2", "2,3"}, delimiter = ',')
+    @DisplayName("플레이어의 위치를 입력하여 동일한 위치의 실행 결과를 찾는다.")
+    void items_findSamePositionItem(int position, String expectedItem) {
+        // given
+        Items items = new Items(List.of("1", "2", "3"));
+
+        // expected
+        assertThat(items.findItem(new Position(position)).getItem())
+                .isEqualTo(expectedItem);
     }
 }
