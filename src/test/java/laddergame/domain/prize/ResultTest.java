@@ -1,27 +1,33 @@
 package laddergame.domain.prize;
 
 import laddergame.domain.player.Names;
-import laddergame.domain.player.Player;
-import laddergame.domain.player.Players;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
+import static laddergame.domain.prize.ResultFixture.coil;
+import static laddergame.domain.prize.ResultFixture.ethan;
+import static laddergame.domain.prize.ResultFixture.junPk;
+import static laddergame.domain.prize.ResultFixture.result;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ResultTest {
 
-    @Test
-    void whenFindPlayerNames_thenReturnNames() {
-        // given
-        final Players players = new Players(List.of(Player.of("ethan", 0), Player.of("coil", 1), Player.of("junPk", 2)));
-        final Prizes prizes = new Prizes(List.of("1000", "5000", "10000"), 3);
-        final Result result = new Result(players, prizes);
+    private ResultFixture fixture;
 
+    @BeforeEach
+    void setUp() {
+        fixture = new ResultFixture();
+    }
+
+    @Test
+    @DisplayName("플레이어 이름들을 찾으면 Names로 반환된다.")
+    void whenFindPlayerNames_thenReturnNames() {
         // when
         final Names playerNames = result.findPlayerNames();
 
         // then
-        assertThat(playerNames.getNames()).containsExactly("ethan", "coil", "junPk");
+        assertThat(playerNames.getNames())
+                .containsExactly(ethan.getName(), coil.getName(), junPk.getName());
     }
 }
