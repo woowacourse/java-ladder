@@ -18,5 +18,7 @@ public class Application {
         Lines lines = new Lines(players.getPlayers().size(), ladderHeight);
 
         OutputView.printResult(players, lines, results);
+
+        String player = InputView.getPlayer();
     }
 }
