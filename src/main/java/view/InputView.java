@@ -43,7 +43,6 @@ public class InputView {
         }
     }
 
-    // TODO: 사람에 대한 예외처리
     public String readNameToShowResult() {
         System.out.println(NEW_LINE + "결과를 보고 싶은 사람은?");
         return reader.next();
