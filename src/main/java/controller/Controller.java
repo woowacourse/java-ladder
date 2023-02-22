@@ -70,15 +70,17 @@ public class Controller {
         try {
             List<String> userNames = InputView.readUserNames();
             Validator.validateDuplication(userNames);
-            userNames.forEach(userName -> {
-                User newUser = new User(userName);
-                users.add(newUser);
-                resultTable.initialize(newUser);
-            });
+            userNames.forEach(this::setUpUser);
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception);
             createUser();
         }
+    }
+
+    private void setUpUser(String userName) {
+        User newUser = new User(userName);
+        users.add(newUser);
+        resultTable.initialize(newUser);
     }
 
     private void createRewards() {
