@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
+    private static final String NO_PLAYER_NAME_ERROR = "[ERROR] 해당 이름의 플레이어는 존재하지 않습니다.";
     private static final String NO_PLAYER_AT_POSITION_ERROR = "[ERROR] 해당 포지션의 플레이어는 존재하지 않습니다.";
     private final List<Player> players = new ArrayList<>();
 
@@ -34,6 +35,31 @@ public class Players {
     public void moveAllPlayersByLinePoints(List<Boolean> points) {
         IntStream.range(0, points.size())
                 .forEach(index -> changePlayerPositionsAtPoint(index, points.get(index)));
+    }
+
+    public void saveAllResults(List<Result> results) {
+        List<Player> playersOrderedByPosition = findPlayersOrderedByPosition();
+        IntStream.range(0, results.size())
+                .forEach(index -> saveResult(playersOrderedByPosition.get(index), results.get(index)));
+    }
+
+    public String getResultOf(Name name) {
+        return players.stream()
+                .filter(player -> player.isPlayerName(name))
+                .map(Player::getResult)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(NO_PLAYER_NAME_ERROR));
+    }
+
+    private void saveResult(Player player, Result result) {
+        player.saveResult(result);
+    }
+
+    private List<Player> findPlayersOrderedByPosition() {
+        return IntStream.range(0, players.size())
+                .mapToObj(Position::new)
+                .map(this::findPlayerBy)
+                .collect(Collectors.toList());
     }
 
     private void changePlayerPositionsAtPoint(int index, boolean point) {
