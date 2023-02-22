@@ -13,6 +13,7 @@ import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderServiceTest {
+
     LadderService ladderService;
 
     @BeforeEach

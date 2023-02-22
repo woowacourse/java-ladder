@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public enum LineType {
+
     GO(Boolean.TRUE, "-----"),
     STOP(Boolean.FALSE, "     ");
 
