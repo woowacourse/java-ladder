@@ -8,7 +8,7 @@ public class Player {
         this.playerName = new PlayerName(playerName);
     }
 
-    public PlayerName getPlayerName() {
-        return playerName;
+    public String getPlayerName() {
+        return playerName.getPlayerName();
     }
 }
