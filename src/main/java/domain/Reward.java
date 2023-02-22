@@ -41,7 +41,7 @@ public class Reward {
     }
 
     private boolean isNotMatches(String reward) {
-        return PLAYER_NAME_PATTERN.matcher(reward).matches();
+        return !PLAYER_NAME_PATTERN.matcher(reward).matches();
     }
 
     public String getReward() {
