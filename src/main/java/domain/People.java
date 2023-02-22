@@ -46,10 +46,6 @@ public class People {
 			throw new IllegalArgumentException(Error.DUPLICATED_NAME.getMessage());
 	}
 
-	public int size() {
-		return people.size();
-	}
-
 	public List<String> getNames() {
 		return people.stream()
 			.map(Person::getName)
@@ -57,10 +53,13 @@ public class People {
 	}
 
 	public void checkExistence(String sequence) {
-
 		boolean isExist = getNames().contains(sequence);
 		if (!isExist) {
 			throw new IllegalArgumentException(Error.NONEXIST_PARTICIPANT.getMessage());
 		}
+	}
+
+	public int size() {
+		return people.size();
 	}
 }
