@@ -27,9 +27,10 @@ public class MainController {
         try {
             Names names = inputView.readNames();
             Missions missions = inputView.readMissions();
+            validateInputSize(names, missions);
+
             Height height = inputView.readHeight();
             Players players = new Players(names);
-            // TODO: 이름 수와 미션 수가 일치하지 않는 경우
 
             int lineNumber = names.getPersonNumber() - 1;
             Lines lines = new Lines(lineNumber, height.getHeight(), booleanGenerator);
@@ -41,14 +42,22 @@ public class MainController {
             }
             players.distributeMissions(missions);
 
-            Player player = players.findByName(inputView.readPlayer());
-
-            // TODO: all을 입력한 경우
-
-            outputView.printResult(player.getMission());
+            if (inputView.readPlayer().equals("all")) {
+                // TODO: all을 입력한 경우
+            }
+            if (!inputView.readPlayer().equals("all")) {
+                Player player = players.findByName(inputView.readPlayer());
+                outputView.printResult(player.getMission());
+            }
 
         } catch (Exception exception) {
             outputView.printExceptionMessage(exception);
+        }
+    }
+
+    private static void validateInputSize(Names names, Missions missions) {
+        if (names.size() != missions.size()) {
+            throw new IllegalArgumentException("참여자의 수와 미션의 수가 다릅니다!");
         }
     }
 }

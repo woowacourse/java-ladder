@@ -33,6 +33,7 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
+
     public void distributeMissions(Missions missions) {
         for (int index = 0; index < missions.getMissions().size(); index++) {
             int finalIndex = index;

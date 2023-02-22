@@ -22,4 +22,9 @@ public class Missions {
     public List<Mission> getMissions() {
         return Collections.unmodifiableList(missions);
     }
+
+
+    public int size() {
+        return missions.size();
+    }
 }

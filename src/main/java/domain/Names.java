@@ -22,13 +22,10 @@ public class Names {
         return new ArrayList<>(names);
     }
 
-    public Name getNameByIndex(int index) {
-        return names.get(index);
-    }
-
     public int getPersonNumber() {
         return names.size();
     }
+
 
     private static void validate(int personNumber) {
         if (personNumber < MIN_RANGE || personNumber > MAX_RANGE) {
