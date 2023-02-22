@@ -34,17 +34,17 @@ public class Line {
     }
 
     private void checkLeft(Position position, int column) {
-        boolean isNotStartColumn = column != 0;
-        Boolean canGoLeft = movements.get(column - 1);
-        if (isNotStartColumn && canGoLeft) {
+        boolean isNotStartColumnAndCanGoLeft =
+                column != 0 && movements.get(column - 1);
+        if (isNotStartColumnAndCanGoLeft) {
             position.goLeft();
         }
     }
 
     private void checkRight(Position position, int column) {
-        boolean isNotEndColumn = column != movements.size();
-        Boolean canGoRight = movements.get(column);
-        if (isNotEndColumn && canGoRight) {
+        boolean isNotEndColumnAndCanGoRight =
+                column != movements.size() && movements.get(column);
+        if (isNotEndColumnAndCanGoRight) {
             position.goRight();
         }
     }

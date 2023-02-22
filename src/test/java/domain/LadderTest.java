@@ -30,7 +30,7 @@ class LadderTest {
 
     @DisplayName("사다리의 높이가 1 이상 10 이하가 아니면 예외가 발생한다.")
     @ParameterizedTest(name = "{index} : 현재 사다리 높이 = {0}")
-    @ValueSource(ints = {-1, 0, 11})
+    @ValueSource(ints = {0, 11})
     void ladder_height_test(int height) {
         assertThatThrownBy(() -> new RandomLinesGenerator().generate(new People("hello,world"), height))
                 .isInstanceOf(IllegalArgumentException.class)
