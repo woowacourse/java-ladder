@@ -2,7 +2,6 @@ package ladder.domain;
 
 import ladder.common.CustomException;
 import ladder.domain.prize.Prize;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
