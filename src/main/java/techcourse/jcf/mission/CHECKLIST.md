@@ -18,7 +18,7 @@
 
 - [x] boolean add(String value);
 - [ ] void add(int index, String value);
-- [ ] String set(int index, String value);
+- [x] String set(int index, String value);
 - [x] String get(int index);
 - [x] boolean contains(String value);
 - [x] int indexOf(String value);

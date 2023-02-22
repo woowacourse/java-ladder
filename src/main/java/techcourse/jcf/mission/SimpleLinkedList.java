@@ -42,7 +42,34 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public String set(int index, String value) {
-        return null;
+        if(index >= size){
+            throw new IndexOutOfBoundsException();
+        }
+
+        Node node = head;
+        Node beforeNode = head;
+        for(int i = 0; i < index; i++){
+            beforeNode = node;
+            node = node.getNextNode();
+        }
+        Node oldNode = node;
+        Node newNode = new Node(value);
+
+        if(!node.equals(head)){
+            beforeNode.link(newNode);
+        }
+        if(!node.equals(tail)){
+            newNode.link(oldNode.getNextNode());
+        }
+
+        if(node.equals(head)){
+            head = newNode;
+        }
+        if(node.equals(tail)){
+            tail = newNode;
+        }
+
+        return oldNode.getValue();
     }
 
     @Override
