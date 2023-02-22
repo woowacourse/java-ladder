@@ -1,11 +1,17 @@
 package controller;
 
+import domain.Command;
 import domain.Height;
 import domain.Players;
+import domain.Result;
+import domain.Rewards;
 import domain.ladder.Ladder;
+import domain.ladder.LadderGame;
 import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
+
+import java.util.List;
 
 public class LadderGameController {
 
@@ -21,18 +27,29 @@ public class LadderGameController {
 
     public void run() {
         Players players = Players.from(inputView.requestPlayerNames());
+        Rewards rewards = Rewards.from(players.getSize(), inputView.requestRewards());
         Height height = new Height(inputView.requestLadderHeight());
 
         Ladder ladder = Ladder.of(players, height, randomNumberGenerator);
         ladder.buildBridges();
-
-        printLadderGameResult(players, ladder);
+        LadderGame ladderGame = new LadderGame(ladder, players, rewards);
+        printLadderInitialState(players, ladder, rewards);
+        printResult(ladderGame);
     }
 
-    private void printLadderGameResult(Players players, Ladder ladder) {
+    private void printResult(LadderGame ladderGame) {
+        while (true) {
+            Command command = new Command(inputView.requestCommand());
+            List<Result> results = ladderGame.getResults(command); 
+            outputView.printResult(results);
+        }
+    }
+
+    private void printLadderInitialState(Players players, Ladder ladder, Rewards rewards) {
         outputView.printLadderResultPrefix();
         outputView.printPlayerNames(players);
         outputView.printLadder(ladder);
+        outputView.printRewardNames(rewards);
     }
 
     public void printError(Exception exception) {

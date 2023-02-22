@@ -10,7 +10,6 @@ import domain.Rewards;
 import domain.ladder.Ladder;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class OutputView {
 
