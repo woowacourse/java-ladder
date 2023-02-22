@@ -14,7 +14,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderController {
-	private static final Map<String, String> joinnedResult = new HashMap<>();
+	private static final Map<String, String> resultTable = new HashMap<>();
 
 	private final InputView inputView;
 	private final OutputView outputView;
@@ -40,24 +40,24 @@ public class LadderController {
 	public void play() {
 		for (int position = 0; position < people.size(); position++) {
 			int newPosition = ladder.start(position);
-			joinnedResult.put(people.getNames().get(position), results.getResult(newPosition));
+			resultTable.put(people.getNames().get(position), results.getResult(newPosition));
 		}
 		askWanted();
 	}
 
 	public void askWanted() {
-		String search = inputView.readWho();
-		if (search.equals("all")) {
-			outputView.printAll(joinnedResult);
+		String target = inputView.readWho();
+		if (target.equals("all")) {
+			outputView.printAll(resultTable);
 			return;
 		}
-		askEach(search);
+		askEach(target);
 	}
 
-	private void askEach(String search) {
+	private void askEach(String target) {
 		try {
-			people.checkExistence(search);
-			outputView.printWanted(search, joinnedResult);
+			people.checkExistence(target);
+			outputView.printWanted(target, resultTable);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 		} finally {
