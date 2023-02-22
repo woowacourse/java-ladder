@@ -22,4 +22,24 @@ class LineTest {
         // expected
         assertThat(line.getSections()).containsExactly(true, false, true, false);
     }
+
+    @Test
+    @DisplayName("위치를 입력받아 다음으로 이동할 위치를 리턴한다.")
+    void line_returnNextPosition() {
+        /*
+          1    2    3    4
+          |----|    |----|
+          |    |----|    |
+          |----|    |----|
+          4    2    3    1
+         */
+
+        // given
+        Position position = new Position(0);
+        Line line = new Line(new FixedLineStrategy(List.of(List.of(true, false, true))), 2);
+
+        // expected
+        assertThat(line.findNextPosition(position))
+                .isEqualTo(new Position(1));
+    }
 }
