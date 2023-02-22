@@ -27,11 +27,6 @@ public class Line {
         return LadderStep.from(generator.generate());
     }
 
-    private LadderStep getLadderStep(int index) {
-        return ladderSteps.get(index);
-    }
-
-
     public int getNextStepIndex(int index) {
         if (canGoLeft(index) && ladderSteps.get(index - 1).exists()) {
             return Movement.GO_LEFT.move(index);
@@ -46,7 +41,7 @@ public class Line {
         return index < ladderSteps.size();
     }
 
-    private static boolean canGoLeft(int index) {
+    private boolean canGoLeft(int index) {
         return index > 0;
     }
 

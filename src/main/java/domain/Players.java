@@ -18,17 +18,6 @@ public class Players {
         return new Position(names.getNames().indexOf(name));
     }
 
-    public Player findByIndex(int index) {
-        return players.get(index);
-    }
-
-    public Player findByName(String name) {
-        return players.stream()
-                .filter(player -> Objects.equals(player.getName(), new Name(name)))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("해당하는 플레이어가 없습니다."));
-    }
-
     public void moveAllPlayers(Lines lines) {
         players.forEach(player -> player.move(lines));
     }

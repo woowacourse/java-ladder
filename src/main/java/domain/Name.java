@@ -38,13 +38,6 @@ public class Name {
     }
 
     @Override
-    public String toString() {
-        return "Name{" +
-                "name='" + name + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
