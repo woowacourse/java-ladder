@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.domain.rule.BlockGenerator;
+import ladder.domain.rule.StoolGenerator;
 import ladder.exception.LadderLengthException;
 
 import java.util.ArrayList;
@@ -8,12 +8,12 @@ import java.util.List;
 
 public class Ladder {
 
-    private final BlockGenerator blockGenerator;
+    private final StoolGenerator stoolGenerator;
     private final List<Line> lines;
 
-    public Ladder(final int playerNumber, final int height, final BlockGenerator blockGenerator) {
+    public Ladder(final int playerNumber, final int height, final StoolGenerator stoolGenerator) {
         validateLadderLength(playerNumber, height);
-        this.blockGenerator = blockGenerator;
+        this.stoolGenerator = stoolGenerator;
         this.lines = generateEachLines(playerNumber, height);
     }
 
@@ -27,9 +27,17 @@ public class Ladder {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(playerNumber, blockGenerator));
+            lines.add(new Line(playerNumber, stoolGenerator));
         }
         return lines;
+    }
+
+    public int getFinalDestinationOf(int startingPoint) {
+        int currentPoint = startingPoint;
+        for (Line line : lines) {
+            currentPoint = line.goDownAndGetPosition(currentPoint);
+        }
+        return currentPoint;
     }
 
     public List<Line> getLines() {

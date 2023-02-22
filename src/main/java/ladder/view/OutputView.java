@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.ladder.Block;
+import ladder.domain.ladder.Stool;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 
@@ -41,14 +41,14 @@ public class OutputView {
 
     private static void printOneLine(final Line line) {
         printLadderFrame();
-        for (Block block : line.getBlocks()) {
-            printBlock(block);
+        for (Stool stool : line.getStools()) {
+            printBlock(stool);
             printLadderFrame();
         }
     }
 
-    private static void printBlock(final Block block) {
-        if (block.isExistBlock()) {
+    private static void printBlock(final Stool stool) {
+        if (stool.isExistBlock()) {
             System.out.print(LADDER_BLOCK);
             return;
         }

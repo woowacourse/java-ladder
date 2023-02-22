@@ -1,6 +1,6 @@
 package ladder.controller;
 
-import ladder.domain.rule.RandomBlockGenerator;
+import ladder.domain.rule.RandomStoolGenerator;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Players;
 import ladder.exception.CustomException;
@@ -32,7 +32,7 @@ public class LadderGameController {
     private Ladder initLadder(int playerNumber) {
         try {
             final int height = InputView.inputLadderHeight();
-            return new Ladder(playerNumber, height, new RandomBlockGenerator());
+            return new Ladder(playerNumber, height, new RandomStoolGenerator());
         } catch (CustomException e) {
             OutputView.printErrorMessage(e);
             return initLadder(playerNumber);

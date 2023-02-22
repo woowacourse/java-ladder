@@ -155,6 +155,7 @@ public class SimpleLinkedList implements SimpleList {
         }
         return result.toString();
     }
+
     static class Node {
         public Node next;
         public String value;

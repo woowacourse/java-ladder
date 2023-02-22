@@ -1,11 +1,11 @@
 package ladder.domain.ladder;
 
-public enum Block {
+public enum Stool {
 
     EMPTY,
     EXIST;
 
     public boolean isExistBlock() {
-        return this == Block.EXIST;
+        return this == Stool.EXIST;
     }
 }
