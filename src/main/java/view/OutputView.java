@@ -12,6 +12,9 @@ public class OutputView {
 
     private static final String EMPTY_BRIDGE = "     ";
     private static final String EXIST_BRIDGE = "-----";
+    private static final String RESULT_DELIM = " : ";
+    private static final String TAB = "     ";
+    private static final String LADDER_BOUNDARY = "|";
 
     public static void printLadder(final Ladder ladder) {
         System.out.println("사다리 결과");
@@ -27,7 +30,7 @@ public class OutputView {
 
     private static void printParticipantsOf(final Ladder ladder) {
         for (String name : ladder.getParticipantNames()) {
-            System.out.print(name + "\t");
+            System.out.print(name + TAB);
         }
     }
 
@@ -35,7 +38,7 @@ public class OutputView {
         List<String> resultCandidates = ladder.getResultCandidates();
 
         for (String resultCandidate : resultCandidates) {
-            System.out.print(resultCandidate + "\t");
+            System.out.print(resultCandidate + TAB);
         }
 
         System.out.println();
@@ -44,12 +47,12 @@ public class OutputView {
     public static void printLadderSpecific(final Map<Person, String> result, final Person person) {
         System.out.println("실행결과");
 
-        System.out.println(person.getName() + " : " + result.get(person));
+        System.out.println(person.getName() + RESULT_DELIM + result.get(person));
     }
 
     public static void printLadderAll(final Map<Person, String> result) {
         for (Person participant : result.keySet()) {
-            System.out.println(participant.getName() + " : " + result.get(participant));
+            System.out.println(participant.getName() + RESULT_DELIM + result.get(participant));
         }
     }
 
@@ -59,7 +62,7 @@ public class OutputView {
 
     private static void printLinesOf(final Ladder ladder) {
         for (Bridge bridge : ladder.getBridges()) {
-            System.out.print("\t|");
+            System.out.print(LADDER_BOUNDARY);
             printBridgesOf(bridge);
             System.out.println();
         }
@@ -68,7 +71,7 @@ public class OutputView {
     private static void printBridgesOf(final Bridge bridge) {
         for (BridgeStatus bridgeStatus : bridge.getBridges()) {
             System.out.print(printBridgeStatus(bridgeStatus));
-            System.out.print("|");
+            System.out.print(LADDER_BOUNDARY);
         }
     }
 
