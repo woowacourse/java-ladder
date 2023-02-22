@@ -63,7 +63,7 @@
     - [x] Player의 수와 순서 관리
 
 - [x] Link
-- [x] 원시값 boolean 포장
+    - [x] 원시값 boolean 포장
 
 - [x] Line : Link의 일급 컬렉션
     - [x] 선의 연결 상태가 최소 하나 이상인지 검증
@@ -81,7 +81,10 @@
     - [ ] Players와 Ladder를 멤버로 가진다.
     - [ ] 사다리 게임을 실행한다.
 
-- [ ] WinningPrize
+- [x] WinningPrize
+    - [x] 문자 포장
+
+- [ ] WinningPrizes
     - [ ] 입력받은 실행 결과를 저장하는 일급 컬렉션
 
 - [x] LinkGenerator
