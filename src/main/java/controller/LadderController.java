@@ -42,6 +42,7 @@ public class LadderController {
     private LadderGame generateLadderGame() {
         Players players = generatePlayers();
         int numberOfPlayer = players.getNumberOfPlayer();
+
         Rewards rewards = generateRewards(numberOfPlayer);
         Ladder ladder = generateLadder(numberOfPlayer);
 

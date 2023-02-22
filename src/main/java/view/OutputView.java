@@ -21,7 +21,7 @@ public class OutputView {
     private static final int DEFAULT_PADDING = 2;
     private static final int FLAG = 1;
 
-    public static void printPlayers(Players players) {
+    public static void printPlayers(final Players players) {
         System.out.print(NAME_START_FORMAT);
 
         players.getPlayers()
@@ -32,13 +32,13 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printName(String name) {
+    private static void printName(final String name) {
         String alignedName = alignCenter(name);
 
         System.out.print(alignedName + BLANK);
     }
 
-    private static String alignCenter(String name) {
+    private static String alignCenter(final String name) {
         int length = name.length();
 
         int leftPadding = DEFAULT_PADDING - length / DIVISOR;
@@ -47,12 +47,12 @@ public class OutputView {
         return BLANK.repeat(leftPadding) + name + BLANK.repeat(rightPadding);
     }
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadder(final Ladder ladder) {
         ladder.getLines()
                 .forEach(OutputView::printLine);
     }
 
-    private static void printLine(Line line) {
+    private static void printLine(final Line line) {
         List<Point> points = line.getPoints();
 
         StringBuilder result = new StringBuilder(LINE_START_FORMAT + DIVIDER);
@@ -63,7 +63,7 @@ public class OutputView {
         System.out.println(result);
     }
 
-    private static String toStatus(Point point) {
+    private static String toStatus(final Point point) {
         if (point.isConnected()) {
             return CONNECTED + DIVIDER;
         }
@@ -71,13 +71,13 @@ public class OutputView {
         return DISCONNECTED + DIVIDER;
     }
 
-    public static void printResults(List<Result> results) {
+    public static void printResults(final List<Result> results) {
         for (Result result : results) {
             System.out.printf("%s : %s%n", result.getPlayerName(), result.getRewardName());
         }
     }
 
-    public static void printResult(Result result) {
+    public static void printResult(final Result result) {
         System.out.println(result.getRewardName());
     }
 }

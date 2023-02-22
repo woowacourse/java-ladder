@@ -31,14 +31,14 @@ public class Players {
         }
     }
 
-    public int findIndexByName(Name name) {
+    public int findIndexByName(final Name name) {
         return IntStream.range(0, players.size())
                 .filter(i -> players.get(i).hasSameName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(CAN_NOT_FIND_NAME_MESSAGE));
     }
 
-    public String findNameByIndex(int index) {
+    public String findNameByIndex(final int index) {
         return players.get(index).getName();
     }
 

@@ -8,7 +8,7 @@ public class StringParser {
 
     private static final int SPLIT_LIMIT = -1;
 
-    public static List<String> splitByComma(String input, String delimiter) {
+    public static List<String> splitByComma(final String input, final String delimiter) {
         return Arrays.stream(input.split(delimiter, SPLIT_LIMIT))
                 .collect(Collectors.toList());
     }
