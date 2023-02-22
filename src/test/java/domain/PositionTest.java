@@ -10,25 +10,15 @@ public class PositionTest {
     @DisplayName("위치값 생성하기")
     @Test
     void create_position() {
-        assertDoesNotThrow(() -> new Position(0, 0));
-    }
-
-    @DisplayName("아래로 내려가기")
-    @Test
-    void move_down() {
-        Position position = new Position(0, 0);
-        position.moveDown();
-        Position result = new Position(0, 1);
-
-        assertThat(position).usingRecursiveComparison().isEqualTo(result);
+        assertDoesNotThrow(() -> new Position(0));
     }
 
     @DisplayName("왼쪽으로 가기")
     @Test
     void move_left() {
-        Position position = new Position(0, 0);
+        Position position = new Position(1);
         position.moveLeft();
-        Position result = new Position(-1, 0);
+        Position result = new Position(0);
 
         assertThat(position).usingRecursiveComparison().isEqualTo(result);
     }
@@ -36,12 +26,11 @@ public class PositionTest {
     @DisplayName("오른쪽으로 가기")
     @Test
     void move_right() {
-        Position position = new Position(0, 0);
+        Position position = new Position(0);
         position.moveRight();
-        Position result = new Position(1, 0);
+        Position result = new Position(1);
 
         assertThat(position).usingRecursiveComparison().isEqualTo(result);
     }
-
 
 }
