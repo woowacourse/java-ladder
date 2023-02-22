@@ -29,7 +29,7 @@ public class Command {
         return command.equals(ALL_INCLUSIVE);
     }
 
-    public boolean isSame(Player player) {
+    public boolean isCommandMatches(Player player) {
         return player.getName()
                 .equals(this.command);
     }
