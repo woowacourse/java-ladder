@@ -12,12 +12,14 @@ public class LadderGame {
     private final Players players;
     private final Ladder ladder;
     private final Prizes prizes;
+    private final LadderGameResult result;
 
     public LadderGame(final Players players, final int ladderHeight, final List<String> prizes, final PointGenerator pointGenerator) {
         validate(players, prizes);
         this.players = players;
         this.ladder = Ladder.of(players.getPlayerSize(), ladderHeight, pointGenerator);
         this.prizes = Prizes.from(prizes);
+        this.result = LadderGameResult.of(players, this.prizes, ladder.ride(players.getPlayerSize()));
     }
 
     private void validate(final Players players, final List<String> prizes) {
@@ -38,4 +40,7 @@ public class LadderGame {
         return prizes;
     }
 
+    public LadderGameResult getResult() {
+        return result;
+    }
 }

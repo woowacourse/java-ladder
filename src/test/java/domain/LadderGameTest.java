@@ -2,26 +2,33 @@ package domain;
 
 import domain.ladder.ExistPointGenerator;
 import domain.ladder.Ladder;
+import domain.players.Player;
 import domain.players.Players;
+import domain.prize.Prize;
 import domain.prize.Prizes;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderGameTest {
 
+    private Players players;
     private LadderGame ladderGame;
 
     @BeforeEach
     void before() {
         List<String> playerNames = List.of("a", "b", "c");
         int ladderHeight = 5;
-        Players players = Players.valueOf(playerNames);
+        players = Players.valueOf(playerNames);
         List<String> prizes = List.of("10000", "20000", "30000");
         ladderGame = new LadderGame(players, ladderHeight, prizes, new ExistPointGenerator());
     }
@@ -50,12 +57,23 @@ public class LadderGameTest {
     @DisplayName("참여자 수와 당첨항목의 수가 다르면 예외를 던진다.")
     @Test
     void playersSizeAndEntriesSizeSame() {
-        List<String> playerNames = List.of("a", "b", "c");
-        Players players = Players.valueOf(playerNames);
         List<String> prizes = List.of("10000", "20000", "30000", "40000");
         assertThatThrownBy(() -> new LadderGame(players, 5, prizes, new ExistPointGenerator()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("참여자 수와 당첨 항목의 수는 같아야합니다.");
+    }
+
+    @DisplayName("사다리 게임 전체 결과를 반환한다.")
+    @CsvSource(value = {"0:1", "1:0", "2:2"}, delimiter = ':')
+    @ParameterizedTest
+    void getTotalResult(int playerIndex, int prizeIndex) {
+        List<Player> playerList = List.of(new Player("a"), new Player("b"), new Player("c"));
+        Players players = new Players(playerList);
+        List<String> prizes = List.of("10000", "20000", "30000");
+        ladderGame = new LadderGame(players, 5, prizes, new ExistPointGenerator());
+        LadderGameResult result = this.ladderGame.getResult();
+        Map<Player, Prize> totalResult = result.getResult();
+        Assertions.assertThat(totalResult.get(playerList.get(playerIndex)).getValue()).isEqualTo(prizes.get(prizeIndex));
     }
 
 }

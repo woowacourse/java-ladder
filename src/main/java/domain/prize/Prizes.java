@@ -22,4 +22,8 @@ public class Prizes {
                 .map(Prize::getValue)
                 .collect(Collectors.toList());
     }
+
+    public Prize getPrizeAt(final int index) {
+        return prizes.get(index);
+    }
 }
