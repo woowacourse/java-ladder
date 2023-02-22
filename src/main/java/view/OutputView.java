@@ -23,6 +23,8 @@ public class OutputView {
     private static final String LEG = "|";
     private static final String PASSABLE = "-----";
     private static final String UN_PASSABLE = "     ";
+    private static final int DEFAULT_GAME_RESULT_SIZE = 1;
+    private static final int ONLY_ONE_GAME_RESULT_INDEX = 0;
 
     public void noticeInputParticipants() {
         notice("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -133,17 +135,20 @@ public class OutputView {
         return UN_PASSABLE;
     }
 
-    public void printResultOfName(String gameResult) {
-        print(gameResult);
+    public void printLadderGameResult(List<GameResult> gameResults) {
+        String totalResultLog = mapToGameResultLog(gameResults);
+
+        print(totalResultLog);
         print(System.lineSeparator());
     }
 
-    public void printTotalResult(List<GameResult> gameResults) {
-        String totalResultLog = gameResults.stream()
+    private String mapToGameResultLog(List<GameResult> gameResults) {
+        if (gameResults.size() == DEFAULT_GAME_RESULT_SIZE) {
+            return gameResults.get(ONLY_ONE_GAME_RESULT_INDEX).getLadderResult();
+        }
+        return gameResults.stream()
                 .map(result -> String.format(TOTAL_RESULT_FORMAT, result.getName(), result.getLadderResult()))
                 .collect(Collectors.joining(System.lineSeparator()));
-        print(totalResultLog);
-        print(System.lineSeparator());
     }
 
     public void printExceptionMessage(String message) {
