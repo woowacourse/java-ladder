@@ -6,7 +6,7 @@ public class Position {
 
     private static final int START_INDEX = 0;
 
-    private int order;
+    private final int order;
     private final int playerCount;
 
     public Position(final int order, final int playerCount) {
@@ -19,21 +19,6 @@ public class Position {
         if (order < START_INDEX || order >= playerCount) {
             throw new IllegalStateException(String.format("%d이상 %d미만의 값만 입력해주세요.", START_INDEX, playerCount));
         }
-    }
-
-    public void moveForward() {
-        if (order - 1 < START_INDEX) {
-            throw new IllegalStateException("제일 앞에선 더 앞으로 갈 수 없습니다.");
-        }
-
-        order--;
-    }
-
-    public void goBack() {
-        if (order + 1 >= playerCount) {
-            throw new IllegalStateException("제일 뒤에선 더 뒤로 갈 수 없습니다.");
-        }
-        order++;
     }
 
     @Override
