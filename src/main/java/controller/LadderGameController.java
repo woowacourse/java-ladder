@@ -3,6 +3,7 @@ package controller;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.player.Players;
+import domain.product.Products;
 import util.TrueOrFalseGenerator;
 import view.InputView;
 import view.OutputView;
@@ -20,6 +21,7 @@ public class LadderGameController {
 
     public void run() {
         Players players = Players.generate(inputView.readUserNames());
+        Products products = Products.generate(inputView.readProducts());
         Height height = new Height(inputView.readHeight());
         Ladder ladder = Ladder.generate(players, height, trueOrFalseGenerator);
         outputView.printResult(players, ladder);
