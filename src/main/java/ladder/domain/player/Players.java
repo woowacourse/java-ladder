@@ -13,13 +13,13 @@ public class Players {
 
     private Players(List<Player> players) {
         validateDuplicatedNames(players);
-        validateCountOfPlayers(players);
 
         this.players = new ArrayList<>(players);
     }
 
     public static Players create(List<String> playerNames) {
         validateContainsAll(playerNames);
+        validateCountOfPlayers(playerNames);
         List<Player> players =  playerNames.stream()
                 .map(playerName -> new Player(new Name(playerName)))
                 .collect(Collectors.toList());
@@ -58,6 +58,12 @@ public class Players {
         }
     }
 
+    private static void validateCountOfPlayers(List<String> inputPlayers) {
+        if (inputPlayers.size() < MINIMUM_COUNT_OF_PLAYERS) {
+            throw new IllegalArgumentException("플레이어의 수는 2명 이상이어야 합니다.");
+        }
+    }
+
     private void validateDoesNotExistPlayers(List<Player> targetPlayers) {
         for (Player targetPlayer : targetPlayers) {
             validateDoesNotExistPlayer(targetPlayer);
@@ -83,12 +89,6 @@ public class Players {
                 .map(Player::getName)
                 .collect(Collectors.toSet())
                 .size();
-    }
-
-    private void validateCountOfPlayers(List<Player> inputPlayers) {
-        if (inputPlayers.size() < MINIMUM_COUNT_OF_PLAYERS) {
-            throw new IllegalArgumentException("플레이어의 수는 2명 이상이어야 합니다.");
-        }
     }
 
 }
