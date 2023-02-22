@@ -30,4 +30,11 @@ public class Products {
             throw new IllegalArgumentException();
         }
     }
+
+    public int productsCount() {
+        return products.size();
+    }
+    public List<Product> getProducts() {
+        return products;
+    }
 }

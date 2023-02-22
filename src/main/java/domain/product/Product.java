@@ -6,4 +6,8 @@ public class Product {
     public Product(String product) {
         this.product = product;
     }
+
+    public String getProduct() {
+        return product;
+    }
 }
