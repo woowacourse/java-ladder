@@ -60,6 +60,7 @@ public class Controller {
             List<Integer> startIndexes = users.getIndex(usersWithoutReward);
             List<Integer> endIndexes = ladder.calculateEndIndex(startIndexes);
             List<Reward> unsavedRewards = rewards.getRewardByIndex(endIndexes);
+            resultTable.saveAll(usersWithoutReward, unsavedRewards);
             return;
         }
 

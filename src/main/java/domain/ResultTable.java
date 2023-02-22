@@ -30,4 +30,10 @@ public class ResultTable {
     private boolean isUnsaved(User key) {
         return resultTable.get(key) == null;
     }
+
+    public void saveAll(List<User> users, List<Reward> rewards) {
+        for (int i = 0; i < users.size(); i++) {
+            resultTable.put(users.get(i), rewards.get(i));
+        }
+    }
 }

@@ -43,11 +43,33 @@ class ResultTableTest {
         resultTable.initialize(fox);
         Reward first = new Reward("1");
         Reward second = new Reward("2");
-        resultTable.save(polo,first);
-        resultTable.save(mako,second);
+        resultTable.save(polo, first);
+        resultTable.save(mako, second);
 
         List<User> users = resultTable.getUsersWithoutReward();
 
         assertThat(users).containsExactly(pobi, fox);
+    }
+
+    @Test
+    @DisplayName("users와 rewards를 savaAll 을 통해 저장하면, 인덱스가 일치하는 것 끼리 매칭하여 저장한다.")
+    void saveAllTest() {
+        User polo = new User("polo");
+        User pobi = new User("pobi");
+        User mako = new User("mako");
+        User fox = new User("fox");
+        List<User> users = List.of(polo, pobi, mako, fox);
+        Reward first = new Reward("1");
+        Reward second = new Reward("2");
+        Reward third = new Reward("3");
+        Reward fourth = new Reward("4");
+        List<Reward> rewards = List.of(first, second, third, fourth);
+
+        resultTable.saveAll(users, rewards);
+
+        assertAll(() -> assertThat(resultTable.getRewardByUser(polo)).isEqualTo(first)
+                , ()->assertThat(resultTable.getRewardByUser(pobi)).isEqualTo(second)
+                , ()->assertThat(resultTable.getRewardByUser(mako)).isEqualTo(third)
+                , ()->assertThat(resultTable.getRewardByUser(fox)).isEqualTo(fourth));
     }
 }
