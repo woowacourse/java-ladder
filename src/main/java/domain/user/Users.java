@@ -20,6 +20,7 @@ public class Users {
 
     public Users(final List<String> userNames) {
         validateUserNamesEmpty(userNames);
+        validateDuplicateName(userNames);
         for (final String userName : userNames) {
             users.add(new User(userName));
         }
@@ -28,6 +29,12 @@ public class Users {
     private void validateUserNamesEmpty(final List<String> userNames) {
         if (userNames.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.USERS_NAME_BLANK_EXCEPTION.getMessage());
+        }
+    }
+
+    private void validateDuplicateName(final List<String> userNames) {
+        if (userNames.stream().distinct().count() != userNames.size()) {
+            throw new IllegalArgumentException(ErrorMessage.USERS_NAME_HAS_DUPLICATE.getMessage());
         }
     }
 

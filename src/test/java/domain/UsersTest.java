@@ -101,4 +101,13 @@ class UsersTest {
                 .contains(Map.entry("다니", "3등"));
     }
 
+    @Test
+    @DisplayName("Users를 입력받을 때 이름에 중복이 있으면 예외처리")
+    void throwExceptionWhenUsersNameHasDuplicate() {
+        final List<String> userNames = List.of("홍실", "홍실", "에단");
+
+        assertThatThrownBy(()-> new Users(userNames))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.USERS_NAME_HAS_DUPLICATE.getMessage());
+    }
 }
