@@ -1,5 +1,6 @@
 package domain;
 
+import exception.NullNameException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,7 +63,17 @@ public class GameResult {
         return STAY;
     }
 
-    public Map<String, String> getResult() {
+    public String getResultByName(String name) {
+        if (name.equals("all")) {
+            return name;
+        }
+        if (results.containsKey(name)) {
+            return results.get(name);
+        }
+        throw new NullNameException();
+    }
+
+    public Map<String, String> getResults() {
         return results;
     }
 }

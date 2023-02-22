@@ -4,6 +4,7 @@ import domain.Ladder;
 import domain.LadderResults;
 import domain.Line;
 import domain.Participants;
+import java.util.Map;
 
 public class OutputView {
 
@@ -11,11 +12,12 @@ public class OutputView {
     private static final String DISABLE_TO_MOVE = "     ";
     private static final String LINE_START = "    |";
     private static final String BLOCK_DELIMITER = "|";
-    private static final String RESULT_MESSAGE = "\n실행결과\n";
+    private static final String LADDER_RESULT_MESSAGE = "\n사다리결과\n";
+    private static final String GAME_RESULT_MESSAGE = "\n실행결과";
     private static final boolean CONNECTED = true;
 
     public void printGameMap(Participants participants, Ladder ladder, LadderResults ladderResults) {
-        System.out.println(RESULT_MESSAGE);
+        System.out.println(LADDER_RESULT_MESSAGE);
         StringBuilder gameMap = new StringBuilder();
         setNames(gameMap, participants);
         gameMap.append(System.lineSeparator());
@@ -62,5 +64,15 @@ public class OutputView {
 
     private String reformatResult(String ladderResult) {
         return String.format("%5s ", ladderResult);
+    }
+
+    public void printGameResult(String result) {
+        System.out.println(GAME_RESULT_MESSAGE);
+        System.out.println(result);
+    }
+
+    public void printAllGameResult(Map<String, String> results) {
+        System.out.println(GAME_RESULT_MESSAGE);
+        results.forEach((key, value) -> System.out.println(key + " : " + value));
     }
 }
