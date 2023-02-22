@@ -10,6 +10,7 @@ import domain.LadderGenerator;
 import domain.Name;
 import domain.Players;
 import domain.RandomBooleanGenerator;
+import domain.Result;
 import domain.Rewards;
 import utils.Log;
 import view.InputView;
@@ -31,8 +32,12 @@ public class LadderController {
         while (true) {
             Name name = generateName();
             try {
-                Map<String, String> result = ladderGame.getReward(name);
-                OutputView.printResults(result);
+                if (name.equals("all")) {
+                    List<Result> results = ladderGame.getResults();
+                    OutputView.printResults(results);
+                }
+                Result result = ladderGame.getResult(name);
+                OutputView.printResult(result);
             } catch (IllegalArgumentException exception) {
                 Log.log(exception.getMessage());
             }

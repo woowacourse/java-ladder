@@ -34,21 +34,16 @@ public class LadderGameTest {
     @CsvSource({"pobi,꽝", "honux,3000", "crong,꽝", "jk,5000"})
     void shouldContainPairOfPlayerAndReward(String playerName, String rewardName) {
         Name name = new Name(playerName);
-        Map reward = ladderGame.getReward(name);
-        assertThat(reward).containsExactly(
-                entry(playerName, rewardName)
-        );
+        Result result = ladderGame.getResult(name);
+        assertThat(result.getPlayerName()).isEqualTo(playerName);
+        assertThat(result.getRewardName()).isEqualTo(rewardName);
     }
 
-    @Test
-    void shouldContainAllPairOfPlayerAndReward() {
-        Name name = new Name("all");
-        Map reward = ladderGame.getReward(name);
-        assertThat(reward).containsExactly(
-                entry("pobi", "꽝"),
-                entry("honux", "3000"),
-                entry("crong", "꽝"),
-                entry("jk", "5000")
-        );
+    @ParameterizedTest
+    @CsvSource({"0,pobi,꽝", "1,honux,3000", "2,crong,꽝", "3,jk,5000"})
+    void shouldContainAllPairOfPlayerAndReward(int index, String playerName, String rewardName) {
+        List<Result> results = ladderGame.getResults();
+        assertThat(results.get(index).getPlayerName()).isEqualTo(playerName);
+        assertThat(results.get(index).getRewardName()).isEqualTo(rewardName);
     }
 }

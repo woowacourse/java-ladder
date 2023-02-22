@@ -1,6 +1,8 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LadderGame {
@@ -15,24 +17,20 @@ public class LadderGame {
         this.rewards = rewards;
     }
 
-    public Map<String, String> getReward(final Name name) {
-        if (name.getName().equals("all")) {
-            return getAllReward();
-        }
-
+    public Result getResult(final Name name) {
         int index = players.findIndexByName(name);
         int result = ladder.move(index);
-        return Map.of(name.getName(), rewards.getReward(result).getName());
+        return new Result(name.getName(), rewards.getReward(result).getName());
     }
 
-    private Map<String, String> getAllReward() {
-        Map<String, String> reward = new LinkedHashMap<>();
+    public List<Result> getResults() {
+        List<Result> results = new ArrayList<>();
 
         for (int i = 0; i < players.getNumberOfPlayer(); i++) {
             int result = ladder.move(i);
-            reward.put(players.findNameByIndex(i), rewards.getReward(result).getName());
+            results.add(new Result(players.findNameByIndex(i), rewards.getReward(result).getName()));
         }
 
-        return reward;
+        return results;
     }
 }
