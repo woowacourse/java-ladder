@@ -18,12 +18,12 @@ public class InputView {
 
     public String readParticipantNames() {
         OutputView.print(INPUT_PARTICIPANT_NAMES_GUIDE.getFormattedMessage());
-        return readConsole();
+        return readUserInput();
     }
 
     public String readMaxLadderHeight() {
         OutputView.print(INPUT_LADDER_MAX_HEIGHT_GUIDE.getFormattedMessage());
-        return readConsole();
+        return readUserInput();
     }
 
     public <T> T repeatUntilGettingValidValue(Supplier<T> inputReader) {
@@ -35,7 +35,7 @@ public class InputView {
         }
     }
 
-    private String readConsole() {
+    private String readUserInput() {
         try {
             return bufferedReader.readLine();
         } catch (IOException e) {
