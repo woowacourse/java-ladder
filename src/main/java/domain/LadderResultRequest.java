@@ -1,5 +1,7 @@
 package domain;
 
+import domain.player.Players;
+
 public class LadderResultRequest {
 
     private final String message;
@@ -10,6 +12,10 @@ public class LadderResultRequest {
 
     public boolean isAll() {
         return message.equals("all");
+    }
+
+    public boolean isPlayerName(Players players) {
+        return players.containPlayerBySpecificName(message);
     }
 
     public String getMessage() {
