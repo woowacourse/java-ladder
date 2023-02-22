@@ -160,7 +160,34 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public boolean remove(String value) {
-        return false;
+        Node node = head;
+        Node beforeNode = null;
+        for (int i = 0; i < size; i++) {
+            if (node.getValue().equals(value)) {
+                break;
+            }
+            node = node.getNextNode();
+        }
+
+        if(node == null){
+            return false;
+        }
+
+        if (!node.equals(head) && !node.equals(tail)) {
+            beforeNode.link(node.getNextNode());
+        }
+        if (node.equals(head)) {
+            head = node.getNextNode();
+        }
+        if (node.equals(tail)) {
+            if(beforeNode != null){
+                beforeNode.link(null);
+            }
+            tail = beforeNode;
+        }
+        size--;
+
+        return true;
     }
 
     @Override
@@ -183,7 +210,10 @@ public class SimpleLinkedList implements SimpleList {
             head = node.getNextNode();
         }
         if (node.equals(tail)) {
-            beforeNode.link(null);
+            if(beforeNode != null){
+                beforeNode.link(null);
+            }
+            tail = beforeNode;
         }
         size--;
 
