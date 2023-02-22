@@ -1,4 +1,4 @@
-package util.formatter;
+package view.util.formatter;
 
 import domain.player.Player;
 import domain.player.Players;

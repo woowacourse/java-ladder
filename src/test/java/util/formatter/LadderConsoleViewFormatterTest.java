@@ -7,6 +7,7 @@ import domain.ladder.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.TestDataManager;
+import view.util.formatter.LadderConsoleViewFormatter;
 
 class LadderConsoleViewFormatterTest {
 

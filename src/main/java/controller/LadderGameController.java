@@ -8,9 +8,9 @@ import domain.ladder.strategy.GenerateBridgeStrategy;
 import domain.player.Player;
 import domain.player.PlayerNames;
 import domain.player.Players;
-import util.formatter.LadderConsoleViewFormatter;
-import util.formatter.PlayersConsoleViewFormatter;
-import util.formatter.ResultContentsConsoleViewFormatter;
+import view.util.formatter.LadderConsoleViewFormatter;
+import view.util.formatter.PlayersConsoleViewFormatter;
+import view.util.formatter.ResultContentsConsoleViewFormatter;
 import view.InputView;
 import view.OutputView;
 

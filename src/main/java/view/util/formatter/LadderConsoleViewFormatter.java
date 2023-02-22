@@ -1,4 +1,4 @@
-package util.formatter;
+package view.util.formatter;
 
 import domain.ladder.Direction;
 import domain.ladder.Ladder;

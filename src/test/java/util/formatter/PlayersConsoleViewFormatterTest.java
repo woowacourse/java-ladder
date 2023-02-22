@@ -8,6 +8,7 @@ import domain.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.TestDataManager;
+import view.util.formatter.PlayersConsoleViewFormatter;
 
 class PlayersConsoleViewFormatterTest {
 

@@ -1,4 +1,4 @@
-package util.formatter;
+package view.util.formatter;
 
 public class LadderContentConsoleViewFormatter {
 
