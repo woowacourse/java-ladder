@@ -35,12 +35,24 @@ public class LadderGameApplication {
         Ladder ladder = ladderGenerator.generate(players.size(), ladderHeight, ladderResults);
         outputView.printLadder(players, ladder);
 
-        Player findPlayer = players.findSpecificNamePlayer(inputView.readSpecificResult());
-        String result = ladder.play(findPlayer.getPosition());
-        outputView.printSinglePlayerResult(result);
+        while (true) {
+            String request = inputView.readSpecificResult();
 
-        List<PlayerLadderResult> everyPlayerResult = getEveryPlayerResult(players, ladder);
-        outputView.printEveryPlayerResult(everyPlayerResult);
+            if (request.equals("all")) {
+                List<PlayerLadderResult> everyPlayerResult = getEveryPlayerResult(players, ladder);
+                outputView.printEveryPlayerResult(everyPlayerResult);
+                break;
+            }
+
+            if (!players.containPlayerBySpecificName(request)) {
+                System.out.println(request + "는 존재하지 않는 플레이어입니다.");
+                continue;
+            }
+
+            Player findPlayer = players.findSpecificNamePlayer(request);
+            String singlePlayerResult = ladder.play(findPlayer.getPosition());
+            outputView.printSinglePlayerResult(singlePlayerResult);
+        }
     }
 
     private <T> T retryIfError(Supplier<T> inputSupplier) {
