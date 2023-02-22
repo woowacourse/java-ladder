@@ -4,14 +4,23 @@ import java.util.Objects;
 
 public class Player {
 
-    private final Name name;
+    private final PlayerName name;
+    private Reward reward;
 
-    public Player(Name name) {
+    public Player(PlayerName name) {
         this.name = name;
     }
 
     public String getName() {
         return name.getName();
+    }
+
+    public String getReward() {
+        return reward.getName();
+    }
+
+    public void determineReward(final Reward reward) {
+        this.reward = reward;
     }
 
     @Override
