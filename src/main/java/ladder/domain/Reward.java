@@ -17,4 +17,8 @@ public class Reward {
             throw new IllegalArgumentException(OUT_OF_INDEX_ITEM_ERROR_MESSAGE, e);
         }
     }
+
+    public List<String> getItems() {
+        return items;
+    }
 }

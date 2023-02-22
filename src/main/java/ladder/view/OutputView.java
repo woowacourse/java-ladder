@@ -1,7 +1,9 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.dto.BridgeGameResult;
 
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class OutputView {
@@ -19,22 +21,33 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printResult(Users users, Ladder ladder) {
-        printUsersName(users);
-        System.out.println();
-        printLadder(ladder);
+    public static void printLadderGame(LadderGame ladderGame) {
+        System.out.println("사다리 결과");
+        printUsersName(ladderGame.getUsers());
+        printLadder(ladderGame.getLadder());
+        printReward(ladderGame.getReward())
+    }
+
+    private static void printReward(final Reward rewards) {
+        for (String reward : rewards.getItems()) {
+            printFormatted(reward);
+        }
     }
 
     private static void printUsersName(Users users) {
         for (User user : users.getUsers()) {
-            System.out.print(BLANK_SPACE.repeat(ONE_BLOCK_SIZE - calculateBlank(user)));
-            System.out.printf("%s", user.getName());
+            printFormatted(user.getName());
         }
     }
 
-    private static int calculateBlank(User user) {
+    private static void printFormatted(final String value) {
+        System.out.print(BLANK_SPACE.repeat(ONE_BLOCK_SIZE - calculateBlank(value)));
+        System.out.printf("%s", value);
+    }
+
+    private static int calculateBlank(String user) {
         double userNameSpan = INIT_SPAN;
-        for (Character word : user.getName().toCharArray()) {
+        for (Character word : user.toCharArray()) {
             userNameSpan += userNameSpanSize(word);
         }
         return (int) (userNameSpan);
@@ -73,4 +86,20 @@ public class OutputView {
         System.out.print(DELIMITER);
     }
 
+    public static void printReward(String reward) {
+        System.out.println("실행 결과");
+        System.out.println(reward);
+        System.out.println();
+    }
+
+    public static void printResult(BridgeGameResult result) {
+        final Map<User, String> userAndReward = result.getUserAndReward();
+        for (User user : userAndReward.keySet()) {
+            printUserReward(user, userAndReward);
+        }
+    }
+
+    private static void printUserReward(final User user, final Map<User, String> userAndReward) {
+        System.out.println(user.getName() + " : " + userAndReward.get(user));
+    }
 }

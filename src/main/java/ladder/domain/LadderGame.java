@@ -27,4 +27,16 @@ public class LadderGame {
         }
         return bridgeGameResult;
     }
+
+    public Ladder getLadder() {
+        return ladder;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public Reward getReward() {
+        return reward;
+    }
 }
