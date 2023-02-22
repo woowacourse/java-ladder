@@ -2,6 +2,7 @@ package domain;
 
 import exception.InvalidLadderHeightException;
 import exception.InvalidLineWeightException;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -51,7 +52,7 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return List.copyOf(lines);
+        return Collections.unmodifiableList(lines);
     }
 
     private List<Line> generate(BooleanGenerator booleanGenerator) {

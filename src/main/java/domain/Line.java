@@ -2,6 +2,7 @@ package domain;
 
 import exception.InvalidLineWeightException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 import util.BooleanGenerator;
@@ -43,6 +44,6 @@ public class Line {
     }
 
     public List<Boolean> getBlocks() {
-        return List.copyOf(blocks);
+        return Collections.unmodifiableList(blocks);
     }
 }
