@@ -1,5 +1,6 @@
 package view;
 
+import domain.LadderResultRequest;
 import domain.ladder.LadderHeight;
 import domain.player.Name;
 import java.util.Arrays;
@@ -42,9 +43,9 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public String readSpecificResult() {
+    public LadderResultRequest readSpecificResult() {
         System.out.println("결과를 보고 싶은 사람은?");
-        return scanner.nextLine();
+        return new LadderResultRequest(scanner.nextLine());
     }
 
     private static int parseInt(String rawLadderHeight) {

@@ -2,6 +2,7 @@ package application;
 
 import static java.util.stream.Collectors.toList;
 
+import domain.LadderResultRequest;
 import domain.ladder.Ladder;
 import domain.ladder.LadderGenerator;
 import domain.ladder.LadderHeight;
@@ -36,20 +37,20 @@ public class LadderGameApplication {
         outputView.printLadder(players, ladder);
 
         while (true) {
-            String request = inputView.readSpecificResult();
+            LadderResultRequest request = inputView.readSpecificResult();
 
-            if (request.equals("all")) {
+            if (request.isAll()) {
                 List<PlayerLadderResult> everyPlayerResult = getEveryPlayerResult(players, ladder);
                 outputView.printEveryPlayerResult(everyPlayerResult);
                 break;
             }
 
-            if (!players.containPlayerBySpecificName(request)) {
-                System.out.println(request + "는 존재하지 않는 플레이어입니다.");
+            if (!players.containPlayerBySpecificName(request.getMessage())) {
+                System.out.println(request.getMessage() + "는 존재하지 않는 플레이어입니다.");
                 continue;
             }
 
-            Player findPlayer = players.findSpecificNamePlayer(request);
+            Player findPlayer = players.findSpecificNamePlayer(request.getMessage());
             String singlePlayerResult = ladder.play(findPlayer.getPosition());
             outputView.printSinglePlayerResult(singlePlayerResult);
         }
