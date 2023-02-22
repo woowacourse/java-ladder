@@ -6,6 +6,7 @@ import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.ladder.generator.BlockGenerator;
 import ladder.domain.ladder.generator.RandomBlockGenerator;
+import ladder.domain.player.PlayerName;
 import ladder.domain.player.Players;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -53,7 +54,7 @@ public class LadderGameController {
 
     private List<String> toPlayersName(Players players) {
         return players.getPlayers().stream()
-                .map(player -> player.getPlayerName().getName())
+                .map(PlayerName::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
 

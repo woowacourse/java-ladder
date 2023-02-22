@@ -9,13 +9,13 @@ public class Players {
 
     private static final int PLAYER_MINIMUM_NUMBER = 2;
 
-    private final List<Player> players;
+    private final List<PlayerName> players;
 
     public Players(final List<String> playerNames) {
         validatePlayerNumber(playerNames);
 
         players = playerNames.stream()
-                .map(Player::new)
+                .map(PlayerName::new)
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -25,7 +25,7 @@ public class Players {
         }
     }
 
-    public List<Player> getPlayers() {
+    public List<PlayerName> getPlayers() {
         return List.copyOf(players);
     }
 
