@@ -19,9 +19,8 @@ public class PlayerNames {
         this.playerNames = playerNames;
     }
 
-    public static PlayerNames of(String inputValue, String delimiter) {
-        List<PlayerName> playerNames = Arrays.stream(inputValue.split(delimiter, -1))
-                .map(String::trim)
+    public static PlayerNames from(List<String> playerNamesValue) {
+        List<PlayerName> playerNames = playerNamesValue.stream()
                 .map(PlayerName::new)
                 .collect(Collectors.toList());
 

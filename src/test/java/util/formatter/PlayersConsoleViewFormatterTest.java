@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import domain.LadderGame;
 import domain.player.PlayerNames;
 import domain.player.Players;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.TestDataManager;
@@ -15,7 +16,7 @@ class PlayersConsoleViewFormatterTest {
     @Test
     @DisplayName("사다리 게임 참가자 출력 형식 생성 테스트")
     void playersFormatTest() {
-        PlayerNames playerNames = PlayerNames.of("pobi,crong,jx", ",");
+        PlayerNames playerNames = PlayerNames.from(List.of("pobi", "crong", "jx"));
         Players players = Players.from(playerNames);
         String expected = new StringBuilder()
                 .append("pobi ").append(" ")

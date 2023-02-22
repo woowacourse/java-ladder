@@ -1,6 +1,9 @@
 package view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
 
@@ -14,8 +17,11 @@ public class InputView {
     private static final String RESULT_END_COMMAND = "all";
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public String requestPlayerNames() {
-        return requestUserInput(PLAYER_NAME_INPUT_MESSAGE);
+    public List<String> requestPlayerNames() {
+        String inputValue = requestUserInput(PLAYER_NAME_INPUT_MESSAGE);
+        return Arrays.stream(inputValue.split(PLAYER_NAME_DELIMITER, -1))
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 
     public int requestLadderHeight() {

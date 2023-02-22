@@ -3,6 +3,8 @@ package domain.player;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,19 +15,17 @@ public class PlayerNamesTest {
     @Test
     @DisplayName("모든 게임 참여자들의 이름 생성")
     void createPlayerNamesSuccess() {
-        String playerNamesInput = "pobi,honux,crong,jk";
-        String delimiter = ",";
+        List<String> playerNamesInput = List.of("pobi", "honux", "crong", "jk");
 
-        assertDoesNotThrow(() -> PlayerNames.of(playerNamesInput, delimiter));
+        assertDoesNotThrow(() -> PlayerNames.from(playerNamesInput));
     }
 
     @Test
     @DisplayName("모든 게임 참여자들의 이름은 중복될 수 없다")
     void createPlayerNamesFail() {
-        String playerNamesInput = "pobi,honux,crong,pobi";
-        String delimiter = ",";
+        List<String> playerNamesInput = List.of("pobi", "honux", "crong", "pobi");
 
-        assertThatThrownBy(() -> PlayerNames.of(playerNamesInput, delimiter))
+        assertThatThrownBy(() -> PlayerNames.from(playerNamesInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름은 중복될 수 없습니다.");
     }
@@ -33,10 +33,9 @@ public class PlayerNamesTest {
     @Test
     @DisplayName("한명만 참여 할 수 없다")
     void createPlayerNumberUnderNumberFail() {
-        String playerNamesInput = "pobi";
-        String delimiter = ",";
+        List<String> playerNamesInput = List.of("pobi");
 
-        assertThatThrownBy(() -> PlayerNames.of(playerNamesInput, delimiter))
+        assertThatThrownBy(() -> PlayerNames.from(playerNamesInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE);
     }
@@ -44,14 +43,12 @@ public class PlayerNamesTest {
     @Test
     @DisplayName("20명 이상은 참여 할 수 없다")
     void createPlayerNumberOverNumberFail() {
-        StringBuilder playerNamesInput = new StringBuilder();
-        String delimiter = ",";
+        List<String> playerNamesInput = new ArrayList<>();
         for (int asciiNumber = 0; asciiNumber < 21; asciiNumber++) {
-            playerNamesInput.append(asciiNumber).append(delimiter);
+            playerNamesInput.add(String.valueOf(asciiNumber + 'a'));
         }
-        playerNamesInput.append("21a");
 
-        assertThatThrownBy(() -> PlayerNames.of(playerNamesInput.toString(), delimiter))
+        assertThatThrownBy(() -> PlayerNames.from(playerNamesInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PLAYER_NUMBER_UPPER_BOUND_INCLUSIVE);
     }

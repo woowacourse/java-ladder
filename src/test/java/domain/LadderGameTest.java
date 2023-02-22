@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import domain.ladder.Ladder;
 import domain.player.PlayerNames;
 import domain.player.Players;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.TestDataManager;
@@ -17,7 +18,7 @@ class LadderGameTest {
     @Test
     @DisplayName("사다리 게임의 참여자와 결과의 개수는 다를 수 없다.")
     void createLadderGameMismatchPlayerAndResultSizeFail() {
-        PlayerNames playerNames = PlayerNames.of("pobi,crong", ",");
+        PlayerNames playerNames = PlayerNames.from(List.of("pobi", "crong"));
         Players players = Players.from(playerNames);
         ResultContents resultContents = ResultContents.of("꽝,5000,꽝꽝꽝", ",");
         Ladder ladder = TestDataManager.ladderFromHeight(5);

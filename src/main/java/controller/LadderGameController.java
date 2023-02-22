@@ -8,6 +8,7 @@ import domain.ladder.strategy.GenerateBridgeStrategy;
 import domain.player.Player;
 import domain.player.PlayerNames;
 import domain.player.Players;
+import java.util.List;
 import view.util.formatter.LadderConsoleViewFormatter;
 import view.util.formatter.PlayersConsoleViewFormatter;
 import view.util.formatter.ResultContentsConsoleViewFormatter;
@@ -43,8 +44,8 @@ public class LadderGameController {
     }
 
     private Players getPlayers() {
-        String playerNamesInput = inputView.requestPlayerNames();
-        PlayerNames playerNames = PlayerNames.of(playerNamesInput, inputView.getPlayerNameDelimiter());
+        List<String> playerNamesInput = inputView.requestPlayerNames();
+        PlayerNames playerNames = PlayerNames.from(playerNamesInput);
         return Players.from(playerNames);
     }
 

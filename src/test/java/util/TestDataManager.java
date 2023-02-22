@@ -7,6 +7,7 @@ import domain.player.Players;
 import domain.ResultContents;
 import domain.ladder.Ladder;
 import domain.ladder.strategy.AlwaysGenerateBridgeStrategy;
+import java.util.List;
 
 public class TestDataManager {
 
@@ -30,7 +31,7 @@ public class TestDataManager {
      * @return ladderGame
      */
     public static LadderGame getLadderGame() {
-        PlayerNames playerNames = PlayerNames.of("pobi,crong,royce", ",");
+        PlayerNames playerNames = PlayerNames.from(List.of("pobi", "crong", "royce"));
         Players players = Players.from(playerNames);
         ResultContents resultContents = ResultContents.of("꽝,5000,10000", ",");
         Ladder ladder = Ladder.of(3, new Height(3), new AlwaysGenerateBridgeStrategy());
