@@ -20,7 +20,16 @@ public class Ladder {
                 .collect(collectingAndThen(toList(), Ladder::new));
     }
 
+    public Position getResultPosition(Position position) {
+        for (Line line : lines) {
+            Direction direction = line.getDirection(position);
+            position.move(direction);
+        }
+        return position;
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
+
 }

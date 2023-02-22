@@ -49,17 +49,4 @@ class LineTest {
         // then
         assertThat(direction).isEqualTo(expect);
     }
-
-    static class DeterminedBooleanGenerator implements BooleanGenerator {
-        private final List<Boolean> bars;
-
-        public DeterminedBooleanGenerator(List<Boolean> bars) {
-            this.bars = bars;
-        }
-
-        @Override
-        public boolean generate() {
-            return bars.remove(0);
-        }
-    }
 }
