@@ -15,6 +15,7 @@ import view.OutputView;
 
 public class LadderController {
 	private static final Map<String, String> joinnedResult = new HashMap<>();
+
 	private final InputView inputView;
 	private final OutputView outputView;
 	private People people;
@@ -24,12 +25,6 @@ public class LadderController {
 	public LadderController(InputView inputView, OutputView outputView) {
 		this.inputView = inputView;
 		this.outputView = outputView;
-	}
-
-	private List<Boolean> getLevel(Level level) {
-		return level.getStools().stream()
-			.map(Stool::isStool)
-			.collect(Collectors.toList());
 	}
 
 	public void init() {
@@ -47,6 +42,7 @@ public class LadderController {
 			int newPosition = ladder.start(position);
 			joinnedResult.put(people.getNames().get(position), results.getResult(newPosition));
 		}
+		askWanted();
 	}
 
 	public void askWanted() {
@@ -55,7 +51,10 @@ public class LadderController {
 			outputView.printAll(joinnedResult);
 			return;
 		}
+		askEach(search);
+	}
 
+	private void askEach(String search) {
 		try {
 			people.checkExistence(search);
 			outputView.printWanted(search, joinnedResult);
@@ -64,6 +63,12 @@ public class LadderController {
 		} finally {
 			askWanted();
 		}
+	}
+
+	private List<Boolean> getLevel(Level level) {
+		return level.getStools().stream()
+			.map(Stool::isStool)
+			.collect(Collectors.toList());
 	}
 
 	private List<List<Boolean>> getLadder() {
