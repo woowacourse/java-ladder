@@ -3,13 +3,14 @@ package laddergame.controller;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import laddergame.model.LadderGame;
-import laddergame.model.Rewards;
 import laddergame.model.Ladder.Height;
 import laddergame.model.Ladder.Ladder;
+import laddergame.model.LadderGame;
 import laddergame.model.Participants;
+import laddergame.model.Rewards;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
+import laddergame.view.Power;
 
 public class LadderGameController {
     private final InputView inputView = new InputView();
@@ -24,17 +25,6 @@ public class LadderGameController {
         LadderGame ladderGame = new LadderGame(ladder, rewards, participants);
         printReward(ladderGame);
         inputView.closeScanner();
-    }
-
-    private void printReward(LadderGame ladderGame) {
-        try{
-            String name = inputView.readParticipantWantToSee();
-            ladderGame.checkParticipant(name);
-            outputView.printReward(ladderGame, name);
-        } catch (IllegalArgumentException e) {
-            inputView.printErrorMsg(e.getMessage());
-            printReward(ladderGame);
-        }
     }
 
     private <T, R> R generate(Supplier<T> supplier, Function<T, R> function) {
@@ -52,6 +42,28 @@ public class LadderGameController {
         } catch (IllegalArgumentException e) {
             inputView.printErrorMsg(e.getMessage());
             return makeExecutionResults(participants);
+        }
+    }
+
+    private void printReward(LadderGame ladderGame) {
+        String name = inputView.readParticipantWantToSee();
+        try {
+            ladderGame.checkParticipant(name);
+        } catch (IllegalArgumentException e) {
+            inputView.printErrorMsg(e.getMessage());
+            printReward(ladderGame);
+        }
+        outputView.printReward(ladderGame, name);
+        reGame(ladderGame);
+    }
+
+    private void reGame(LadderGame ladderGame) {
+        Power power = inputView.readReGame();
+        if (power == Power.RE_GAME) {
+            run();
+        }
+        if (power == Power.PRINT) {
+            printReward(ladderGame);
         }
     }
 }

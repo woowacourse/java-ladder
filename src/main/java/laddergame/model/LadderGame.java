@@ -7,10 +7,13 @@ import java.util.Map;
 import laddergame.model.Ladder.Ladder;
 
 public class LadderGame {
-    Map<String, String> matching;
+    public static final String ALL_MATCHING_KEY = "all";
+    private static final String ERROR_MATCHING_KEY = "참여자명이 올바르지 않습니다.";
+
+    private final Map<String, String> matching;
 
     public LadderGame(Ladder ladder, Rewards rewards, Participants participants) {
-        matching = new HashMap<>();
+        this.matching = new HashMap<>();
         for (int i = 0; i < participants.getNumber(); i++) {
             String name = participants.getParticipant(i).getName();
             int position = ladder.getRewardPosition(i, participants.getNumber());
@@ -24,8 +27,8 @@ public class LadderGame {
     }
 
     public void checkParticipant(String name) {
-        if (!name.equals("all") && !matching.containsKey(name)) {
-            throw new IllegalArgumentException("참여자명이 올바르지 않습니다.");
+        if (!name.equals(ALL_MATCHING_KEY) && !matching.containsKey(name)) {
+            throw new IllegalArgumentException(ERROR_MATCHING_KEY);
         }
     }
 
