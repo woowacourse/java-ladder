@@ -21,13 +21,25 @@ public class LadderGame {
     public List<Player> startGame() {
         final int ladderHeight = ladder.getHeight();
         for (int height = 0; height < ladderHeight; height++) {
-            for (final Player player : players) {
-                if (player.canMoveLeft() && ladder.canMoveLeft(height, player)) {
-                    player.moveLeft();
-                }
-            }
+            movePlayers(height);
         }
 
         return this.players;
+    }
+
+    private void movePlayers(final int height) {
+        for (final Player player : players) {
+            movePlayer(height, player);
+        }
+    }
+
+    private void movePlayer(final int height, final Player player) {
+        if (canMoveLeft(height, player)) {
+            player.moveLeft();
+        }
+    }
+
+    private boolean canMoveLeft(final int height, final Player player) {
+        return player.canMoveLeft() && ladder.canMoveLeft(height, player);
     }
 }

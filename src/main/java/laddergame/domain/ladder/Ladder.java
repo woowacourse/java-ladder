@@ -9,6 +9,7 @@ import java.util.List;
 public class Ladder {
 
     private static final int MIN_HEIGHT = 1;
+    private static final int LEFTMOST = 0;
 
     private final List<Line> lines;
 
@@ -37,7 +38,7 @@ public class Ladder {
     public boolean canMoveLeft(final int height, final Player player) {
         final int playerPosition = player.getPosition();
 
-        if (playerPosition == 0) {
+        if (playerPosition == LEFTMOST) {
             return false;
         }
 

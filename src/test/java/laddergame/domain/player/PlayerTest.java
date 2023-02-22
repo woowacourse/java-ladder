@@ -1,8 +1,9 @@
 package laddergame.domain.player;
 
-import laddergame.domain.player.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -32,5 +33,16 @@ public class PlayerTest {
 
         // then
         assertThat(player.getPosition()).isEqualTo(0);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0, false", "1, true"})
+    @DisplayName("Player가 왼쪽으로 움직일 수 있는지 확인한다.")
+    void whenCanMoveLeft_thenReturnMovable(final int position, final boolean result) {
+        // given
+        final Player ethan = Player.of("에단", position);
+
+        // when & then
+        assertThat(ethan.canMoveLeft()).isEqualTo(result);
     }
 }
