@@ -1,17 +1,19 @@
 package dalist;
 
-public class SimpleLinkedList<T> implements SimpleList<T>{
+public class SimpleLinkedList<T> implements SimpleList<T> {
     private final Node head;
     private int size;
-    public  SimpleLinkedList(){
+
+    public SimpleLinkedList() {
         this.head = new Node(null);
         size = 0;
     }
+
     @Override
     public boolean add(T value) {
 
         Node node = head;
-        while(node.next!=null){
+        while (node.next != null) {
             node = node.next;
         }
         node.next = new Node(value);
@@ -27,31 +29,33 @@ public class SimpleLinkedList<T> implements SimpleList<T>{
         node.next.next = nextNode;
         size++;
     }
-    private Node findNodeWithIndex(int index){
+
+    private Node findNodeWithIndex(int index) {
         int count = 0;
         Node node = head;
-        while(count == index){
+        while (count == index) {
             node = node.next;
             count++;
             validateOutOfIndex(node);
         }
         return node;
     }
+
     private void validateOutOfIndex(Node node) {
-        if(node == null){
+        if (node == null) {
             throw new ArrayIndexOutOfBoundsException("");
         }
     }
 
     @Override
     public T set(int index, T value) {
-        if(index == 0){
+        if (index == 0) {
             Node nextNode = head.next;
             head.next = new Node(value);
             head.next.next = nextNode;
             return nextNode.value;
         }
-        Node preNode = findNodeWithIndex(index-1);
+        Node preNode = findNodeWithIndex(index - 1);
         T returnValue = preNode.next.value;
         Node nextNode = preNode.next.next;
         preNode.next = new Node(value);
@@ -67,8 +71,8 @@ public class SimpleLinkedList<T> implements SimpleList<T>{
     @Override
     public boolean contains(T value) {
         Node node = head;
-        while(node.next!=null){
-            if(node.value.equals(value)){
+        while (node.next != null) {
+            if (node.value.equals(value)) {
                 return true;
             }
             node = node.next;
@@ -79,13 +83,13 @@ public class SimpleLinkedList<T> implements SimpleList<T>{
     @Override
     public int indexOf(T value) {
         Node node = head;
-        int index=-1;
-        while(node.next!=null){
-            if(node.value.equals(value)){
+        int index = -1;
+        while (node.next != null) {
+            if (node.value.equals(value)) {
                 return index;
             }
             index++;
-            node =node.next;
+            node = node.next;
         }
         return index;
     }
@@ -97,15 +101,15 @@ public class SimpleLinkedList<T> implements SimpleList<T>{
 
     @Override
     public boolean isEmpty() {
-        return size==0;
+        return size == 0;
     }
 
     @Override
     public boolean remove(T value) {
         Node preNode = null;
         Node now = head;
-        while(now.next != null){
-            if(now.value.equals(value)){
+        while (now.next != null) {
+            if (now.value.equals(value)) {
                 preNode.next = now.next;
                 size--;
                 return true;
@@ -118,14 +122,14 @@ public class SimpleLinkedList<T> implements SimpleList<T>{
 
     @Override
     public T remove(int index) {
-        if(size>=index||index<0){
+        if (size >= index || index < 0) {
             throw new ArrayIndexOutOfBoundsException("");
         }
         Node preNode = null;
         Node now = head;
         int count = 0;
-        while(now.next!=null){
-            if(count==index){
+        while (now.next != null) {
+            if (count == index) {
                 preNode.next = now.next;
                 size--;
                 return now.value;
@@ -139,10 +143,12 @@ public class SimpleLinkedList<T> implements SimpleList<T>{
         this.head.next = null;
         this.size = 0;
     }
-    private class Node{
+
+    private class Node {
         private Node next = null;
         private final T value;
-        protected Node(T value){
+
+        protected Node(T value) {
             this.value = value;
         }
     }

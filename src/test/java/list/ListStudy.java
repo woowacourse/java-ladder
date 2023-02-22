@@ -1,13 +1,11 @@
 package list;
 
 import dalist.SimpleArrayList;
-import dalist.SimpleLinkedList;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-
 import java.util.ArrayList;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ListStudy {
     @Test
@@ -27,7 +25,7 @@ public class ListStudy {
     }
 
     @Test
-    public void myArrayList(){
+    public void myArrayList() {
         SimpleArrayList<String> values = new SimpleArrayList<>();
         values.add("first");
         values.add("second");
@@ -59,7 +57,7 @@ public class ListStudy {
     }
 
     @Test
-    void linkedListTest(){
+    void linkedListTest() {
         SimpleArrayList<String> values = new SimpleArrayList<>();
         values.add("first");
         values.add("second");

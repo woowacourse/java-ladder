@@ -26,60 +26,68 @@ public class LadderController {
     private Ladder ladder;
     private Players players;
     private Goods goods;
+
     public LadderController(InputView inputView, OutputView outputView, LadderMaker ladderMaker) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.ladderMaker = ladderMaker;
     }
-    public void play(){
+
+    public void play() {
         inputData();
         playGame();
         outputData();
     }
+
     private void inputData() {
         makePlayers();
         goods = makeGoods(players.size());
         int height = inputView.inputLadderHeight();
-        ladder = ladderMaker.make(new Height(height), new Width(players.size()-1));
+        ladder = ladderMaker.make(new Height(height), new Width(players.size() - 1));
         outputView.printResult(players.getPlayersName(), ladder);
         outputView.printNames(goods.getGoodsNames());
     }
-    private void playGame(){
-        LadderGame ladderGame = new LadderGame(players.size()-1);
-        ladderGame.playLadderGame(players,ladder);
+
+    private void playGame() {
+        LadderGame ladderGame = new LadderGame(players.size() - 1);
+        ladderGame.playLadderGame(players, ladder);
     }
-    private void outputData(){
+
+    private void outputData() {
         String order = inputView.inputTargetResult();
-        if(order.equals(END_ORDER)){
+        if (order.equals(END_ORDER)) {
             return;
         }
-        if(order.equals(ALL_ORDER)){
+        if (order.equals(ALL_ORDER)) {
             printAll();
             outputData();
         }
         List<Integer> playerPositionList = players.getPlayersPosition(new Name(order));
-        for(int position:playerPositionList){
-            outputView.printPlayerAndItem(order,goods.getItemsWithPosition(position));
+        for (int position : playerPositionList) {
+            outputView.printPlayerAndItem(order, goods.getItemsWithPosition(position));
             outputData();
         }
     }
-    private void printAll(){
+
+    private void printAll() {
         players.getPlayers().forEach(player -> {
-            outputView.printPlayerAndItem(player.getName(),goods.getItemsWithPosition(player.getPosition()));
+            outputView.printPlayerAndItem(player.getName(), goods.getItemsWithPosition(player.getPosition()));
         });
     }
-    private void makePlayers(){
+
+    private void makePlayers() {
         List<Player> playersList = new ArrayList<>();
         List<String> playersName = inputView.inputNames();
-        for (int i = 0; i <playersName.size(); i++) {
-            playersList.add(new Player(new Name(playersName.get(i)),new Position(i)));
+        for (int i = 0; i < playersName.size(); i++) {
+            playersList.add(new Player(new Name(playersName.get(i)), new Position(i)));
         }
         players = new Players(playersList);
     }
-    private Goods makeGoods(int nameCount){
+
+    private Goods makeGoods(int nameCount) {
         return new Goods(inputView.inputGoods().
                 stream().
-                map(item->new Name(item)).
+                map(item -> new Name(item)).
                 collect(Collectors.toList()),
                 nameCount);
     }

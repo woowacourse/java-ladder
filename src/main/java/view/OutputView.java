@@ -2,10 +2,8 @@ package view;
 
 import domain.model.Ladder;
 import domain.model.Layer;
-import domain.model.Player;
 import domain.vo.Name;
 
-import java.sql.SQLOutput;
 import java.util.List;
 
 public class OutputView {
@@ -17,16 +15,19 @@ public class OutputView {
     private static final String CONNECTED_LINE = "-----";
     private static final String UNCONNECTED_LINE = "     ";
     private static final String NAME_SPACE = " ";
+
     public void printResult(List<Name> names, Ladder ladder) {
         System.out.println(RESULT_ANNOUNCEMENT);
         printNames(names);
         printLadder(ladder);
     }
+
     public void printLadder(Ladder ladder) {
         for (Layer layer : ladder.getLayers()) {
             printLayer(layer);
         }
     }
+
     private void printLayer(Layer layer) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(FRONT_SPACE).append(LINE_DELIMITER);
@@ -34,12 +35,14 @@ public class OutputView {
         lines.forEach(line -> stringBuilder.append(selectLine(line)).append(LINE_DELIMITER));
         System.out.println(stringBuilder);
     }
+
     private String selectLine(boolean line) {
         if (line) {
             return CONNECTED_LINE;
         }
         return UNCONNECTED_LINE;
     }
+
     public void printNames(final List<Name> names) {
         StringBuilder stringBuilder = new StringBuilder();
         names.forEach(name -> {
@@ -48,10 +51,12 @@ public class OutputView {
         });
         System.out.println(stringBuilder);
     }
-    public void printPlayerAndItem(Name player,Name item){
+
+    public void printPlayerAndItem(Name player, Name item) {
         System.out.println(player + " : " + item);
     }
-    public void printPlayerAndItem(String player,Name item){
+
+    public void printPlayerAndItem(String player, Name item) {
         System.out.println(player + " : " + item);
     }
 

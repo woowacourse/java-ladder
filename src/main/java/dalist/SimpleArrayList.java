@@ -3,10 +3,12 @@ package dalist;
 public class SimpleArrayList<T> implements SimpleList<T> {
     private T[] elements;
     private int size;
-    public SimpleArrayList(){
+
+    public SimpleArrayList() {
         this.size = 0;
         this.elements = (T[]) new Object[2];
     }
+
     @Override
     public boolean add(T value) {
         extendArray();
@@ -14,14 +16,15 @@ public class SimpleArrayList<T> implements SimpleList<T> {
         size++;
         return true;
     }
-    private void extendArray(){
-        if(this.size == this.elements.length){
+
+    private void extendArray() {
+        if (this.size == this.elements.length) {
             makeNewElements();
         }
     }
 
     private void makeNewElements() {
-        T[] newElements = (T[]) new Object[this.elements.length*2];
+        T[] newElements = (T[]) new Object[this.elements.length * 2];
         for (int index = 0; index < this.size; index++) {
             newElements[index] = this.elements[index];
         }
@@ -36,21 +39,24 @@ public class SimpleArrayList<T> implements SimpleList<T> {
             newElements[i] = this.elements[i];
         }
         newElements[index] = value;
-        for(int i = index;i<size;i++){
-            newElements[i+1] = elements[i];
+        for (int i = index; i < size; i++) {
+            newElements[i + 1] = elements[i];
         }
         this.elements = newElements;
         size++;
     }
-    private T[] makeStringArray(){
-        if(this.size+1==this.elements.length){
-            return (T[]) new Object[this.elements.length*2];
+
+    private T[] makeStringArray() {
+        if (this.size + 1 == this.elements.length) {
+            return (T[]) new Object[this.elements.length * 2];
         }
         return (T[]) new Object[this.elements.length];
     }
 
     private void validateIndexOutOfRange(int index) {
-        if(0> index || size<= index){throw new ArrayIndexOutOfBoundsException("");}
+        if (0 > index || size <= index) {
+            throw new ArrayIndexOutOfBoundsException("");
+        }
     }
 
     @Override
@@ -69,17 +75,18 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     @Override
     public boolean contains(T value) {
-        for(T element:elements){
-            if(value.equals(element)){
+        for (T element : elements) {
+            if (value.equals(element)) {
                 return true;
             }
         }
         return false;
     }
+
     @Override
     public int indexOf(T value) {
         for (int index = 0; index < size; index++) {
-            if(value.equals(elements[index])){
+            if (value.equals(elements[index])) {
                 return index;
             }
         }
@@ -99,7 +106,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     @Override
     public boolean remove(T value) {
         for (int index = 0; index < size; index++) {
-            if(value.equals(elements[index])){
+            if (value.equals(elements[index])) {
                 remove(index);
                 return true;
             }
@@ -115,7 +122,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
             newElements[i] = this.elements[i];
         }
         for (int i = index; i < this.size; i++) {
-            newElements[i] = this.elements[i+1];
+            newElements[i] = this.elements[i + 1];
         }
         size--;
         T returnValue = this.elements[index];
