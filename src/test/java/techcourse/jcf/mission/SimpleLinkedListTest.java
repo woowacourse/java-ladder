@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -51,5 +52,17 @@ class SimpleLinkedListTest {
         assertThat(myValues.contains(input)).isTrue();
     }
 
+    @Test
+    public void indexOfTest() {
+        SimpleLinkedList myValues = new SimpleLinkedList();
+
+        myValues.add("first");
+        myValues.add("first");
+        myValues.add("third");
+
+        assertThat(myValues.indexOf("first")).isEqualTo(0);
+        assertThat(myValues.indexOf("third")).isEqualTo(2);
+        assertThat(myValues.indexOf("이건없지롱")).isEqualTo(-1);
+    }
 
 }
