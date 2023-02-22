@@ -1,23 +1,20 @@
 package domain;
 
-import domain.mission.Mission;
-import domain.player.Player;
-
 public class Result {
 
-    private final String name;
-    private final String mission;
+    private final Player player;
+    private final Mission mission;
 
     public Result(Player player, Mission mission) {
-        this.name = player.getName().getName();
-        this.mission = mission.getMission();
+        this.player = player;
+        this.mission = mission;
     }
 
     public String getName() {
-        return name;
+        return player.getName().getName();
     }
 
     public String getMission() {
-        return mission;
+        return mission.getMission();
     }
 }

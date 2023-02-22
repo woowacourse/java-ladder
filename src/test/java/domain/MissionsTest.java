@@ -10,7 +10,7 @@ class MissionsTest {
         Mission mission1 = new Mission("당첨");
         Mission mission2 = new Mission("꽝");
 
-        Missions missions = new Missions("당첨,꽝");
+        Missions missions = new Missions("당첨,꽝", 2);
 
         Assertions.assertThat(missions.getMissionByIndex(0)).isEqualTo(mission1);
         Assertions.assertThat(missions.getMissionByIndex(1)).isEqualTo(mission2);

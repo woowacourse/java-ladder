@@ -57,9 +57,8 @@ public class InputView {
         }
     }
 
-    public Missions readMissions() {
-        String input = readInput(Message.INPUT_MISSIONS.message);
-        return new Missions(input);
+    public String readMissions() {
+        return readInput(Message.INPUT_MISSIONS.message);
     }
 
     public Height readHeight() {
