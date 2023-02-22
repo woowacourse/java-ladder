@@ -75,7 +75,7 @@ class LadderTest {
         return ladder;
     }
 
-    private Ladder createLadder(int height, int numberOfPeople, NumberGenerator numberGenerator) {
+    public Ladder createLadder(int height, int numberOfPeople, NumberGenerator numberGenerator) {
         LadderHeight ladderHeight = new LadderHeight(height);
         Ladder ladder = Ladder.create(numberOfPeople, ladderHeight, numberGenerator);
         return ladder;

@@ -74,6 +74,12 @@ public class OutputView {
         System.out.print(result.value());
     }
 
+    public void printAllResult(Names names, Results allResult) {
+        System.out.println(GAME_RESULT_MESSAGE);
+        for (int i = 0; i < names.size(); i++) {
+            System.out.println(names.get(i).value() + " : " + allResult.get(i).value());
+        }
+    }
 
     public void printErrorMessage(String message) {
         System.out.println(ERROR_MESSAGE_PREFIX + message);

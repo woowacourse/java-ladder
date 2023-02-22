@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Stream;
@@ -40,5 +39,13 @@ public class Names {
 
     public Stream<Name> stream() {
         return List.copyOf(names).stream();
+    }
+
+    public Name get(int position) {
+        return names.get(position);
+    }
+
+    public int getPositionOf(String inputName) {
+        return names.indexOf(new Name(inputName));
     }
 }
