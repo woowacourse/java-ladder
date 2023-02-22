@@ -13,7 +13,7 @@ class PlayersTest {
         Player gitJjang = new Player(new Name("깃짱"), new Position(0));
         Player irene = new Player(new Name("이리내"), new Position(1));
 
-        Assertions.assertThat(players.getPlayers())
+        Assertions.assertThat(players.getPlayersSortedByPosition())
                 .containsExactly(gitJjang, irene);
     }
 }
