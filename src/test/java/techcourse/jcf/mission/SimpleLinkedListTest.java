@@ -40,5 +40,16 @@ class SimpleLinkedListTest {
         assertThat(myValues.isEmpty()).isFalse();
     }
 
+    @Test
+    public void containsTest() {
+        String input = "hi hi";
+        SimpleLinkedList myValues = new SimpleLinkedList();
+
+        assertThat(myValues.contains(input)).isFalse();
+
+        myValues.add(input);
+        assertThat(myValues.contains(input)).isTrue();
+    }
+
 
 }
