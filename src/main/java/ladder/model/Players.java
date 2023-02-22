@@ -30,7 +30,7 @@ public class Players {
 
     public Player findPlayerByName(String playerName) {
         Optional<Player> foundPlayer = players.stream()
-                .filter(player -> player.getPlayerName().equals(playerName))
+                .filter(player -> player.isNameSame(playerName))
                 .findFirst();
 
         if (foundPlayer.isEmpty()) {

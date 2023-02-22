@@ -2,6 +2,8 @@ package ladder.model;
 
 import ladder.exceptionMessage.ExceptionMessage;
 
+import java.util.Objects;
+
 public class Player {
 
     private static final int MIN_LENGTH = 1;
@@ -34,6 +36,10 @@ public class Player {
         if (Command.contains(playerName)) {
             throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_NAME.getMessage());
         }
+    }
+
+    public boolean isNameSame(String name){
+        return name.equals(playerName);
     }
 
     public String getPlayerName() {
