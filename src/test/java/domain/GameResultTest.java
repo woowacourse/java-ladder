@@ -23,7 +23,7 @@ class GameResultTest {
             .addLadderResults(ladderResults)
             .build();
         //when
-        GameResult gameResult = new GameResult(ladderGame);
+        GameResult gameResult = GameResult.of(ladderGame);
         //then
         Assertions.assertThat(gameResult.getResultByName("ash")).isEqualTo("2000");
         Assertions.assertThat(gameResult.getResultByName("split")).isEqualTo("1000");

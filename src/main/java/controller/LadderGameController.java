@@ -68,7 +68,7 @@ public class LadderGameController {
     }
 
     public void play() {
-        GameResult gameResult = new GameResult(ladderGame);
+        GameResult gameResult = GameResult.of(ladderGame);
         showLadderGameMap();
         showGameResultUntilFinish(gameResult);
         outputView.printAllGameResult(gameResult);

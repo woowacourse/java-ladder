@@ -13,35 +13,38 @@ public class GameResult {
     private static final int LEFT = -1;
     private static final int STAY = 0;
     private static final int RIGHT = 1;
-    private final List<Line> lines;
-    private final List<String> participantsNames;
-    private final List<String> ladderResults;
-    private final Map<String, String> results = new HashMap<>();
+    public static final String END = "all";
+    private final Map<String, String> results;
 
-    public GameResult(LadderGame ladderGame) {
-        this.lines = ladderGame.getLines();
-        this.participantsNames = ladderGame.getParticipantNames();
-        this.ladderResults = ladderGame.getLadderResultNames();
-        setResults();
+    private GameResult(Map<String, String> results) {
+        this.results = results;
     }
 
-    private void setResults() {
-        participantsNames.forEach((participantName) -> {
-            final int order = participantsNames.indexOf(participantName);
-            results.put(participantName, getGameResult(order));
+    public static GameResult of(LadderGame ladderGame) {
+        Map<String, String> result = getResults(ladderGame);
+        return new GameResult(result);
+    }
+
+    private static Map<String, String> getResults(LadderGame ladderGame) {
+        List<String> participantNames = ladderGame.getParticipantNames();
+        Map<String, String> results = new HashMap<>();
+        participantNames.forEach((participantName) -> {
+            final int order = participantNames.indexOf(participantName);
+            results.put(participantName, getGameResult(ladderGame, order));
         });
+        return results;
     }
 
-    private String getGameResult(int currentPosition) {
-        for (Line line : lines) {
+    private static String getGameResult(LadderGame ladderGame, int currentPosition) {
+        for (Line line : ladderGame.getLines()) {
             int move = getMove(currentPosition, line.getBlocks());
             currentPosition += move;
         }
-        return ladderResults.get(currentPosition);
+        return ladderGame.getLadderResultNames().get(currentPosition);
     }
 
-    private int getMove(int currentPosition, List<Boolean> blocks) {
-        final int lastBlockPosition = participantsNames.size() - 1;
+    private static int getMove(int currentPosition, List<Boolean> blocks) {
+        final int lastBlockPosition = blocks.size();
         final int prevBlockPosition = currentPosition - 1;
         if (currentPosition == FIRST_BLOCK_POSITION) {
             return decideDirection(DISCONNECTED, blocks.get(currentPosition));
@@ -52,7 +55,7 @@ public class GameResult {
         return decideDirection(blocks.get(prevBlockPosition), blocks.get(currentPosition));
     }
 
-    private int decideDirection(boolean left, boolean right) {
+    private static int decideDirection(boolean left, boolean right) {
         if (left == CONNECTED) {
             return LEFT;
         }
@@ -63,7 +66,7 @@ public class GameResult {
     }
 
     public String getResultByName(String name) {
-        if (name.equals("all")) {
+        if (name.equals(END)) {
             return name;
         }
         if (results.containsKey(name)) {
