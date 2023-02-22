@@ -1,7 +1,5 @@
 package domain;
 
-import ui.output.LadderShape;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +14,10 @@ public class Players {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public int getPlayersCount() {
+        return players.size();
     }
 
     private static void validatePlayerCount(List<String> names) {

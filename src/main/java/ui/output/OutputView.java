@@ -6,6 +6,9 @@ public class OutputView {
 
     private static final String EXECUTE_LADDER_RESULT = "사다리 결과";
     private static final String EXECUTE_RESULT = "실행 결과";
+    private static final String ALL = "all";
+    private static final String SPACE = " ";
+    private static final String COLON = " : ";
 
     public static void printLadderResult(final Players players, final Lines lines, final Results results) {
         System.out.println("\n" + EXECUTE_LADDER_RESULT + "\n");
@@ -27,9 +30,9 @@ public class OutputView {
     }
 
     private static void calculateNamePosition(Players players, int maxPlayerNameLength) {
-        players.getPlayers().stream()
+        players.getPlayers()
                 .forEach(player ->
-                        System.out.print(" ".repeat(maxPlayerNameLength - player.getName().length()) + player.getName() + " ")
+                        System.out.print(SPACE.repeat(maxPlayerNameLength - player.getName().length()) + player.getName() + SPACE)
                 );
         System.out.println();
     }
@@ -50,16 +53,16 @@ public class OutputView {
 
     public static void printExecuteResult(Players players, Results results, String playerName) {
         System.out.println("\n" + EXECUTE_RESULT);
-        if (playerName.equals("all")) {
-            printAll(players, results, playerName);
+        if (playerName.equals(ALL)) {
+            printAll(players, results);
             return;
         }
         printDetail(players, results, playerName);
     }
 
-    private static void printAll(Players players, Results results, String playerName) {
+    private static void printAll(Players players, Results results) {
         for (Player player : players.getPlayers()) {
-            System.out.println(player.getName() + " : " + results.getResults().get(player.getPosition()).getResult());
+            System.out.println(player.getName() + COLON + results.getResults().get(player.getPosition()).getResult());
         }
     }
 

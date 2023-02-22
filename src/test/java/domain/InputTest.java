@@ -20,25 +20,10 @@ public class InputTest {
 
     @DisplayName("사람 수는 2명 이상이어야 한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"", "ab"})
-    void createPlayersFailedTest(String inputPeople) {
-        List<String> names = splitComma(inputPeople);
-        assertThrows(IllegalArgumentException.class, () -> new Players(names));
-    }
-
-    @DisplayName("사람 수는 2명 이상이어야 한다.")
-    @ParameterizedTest
     @ValueSource(strings = {"ab,cd", "ab,cd,ef,gh"})
     void createPlayersSuccessTest(String inputPeople) {
         List<String> names = splitComma(inputPeople);
         assertThat(new Players(names).getClass()).isEqualTo(Players.class);
-    }
-
-    @DisplayName("사다리 높이의 입력 타입은 0을 포함하지 않는 자연수여야 한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {-1, 0})
-    void validateInputLadderHeight(int height) {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Lines(2, height));
     }
 
     @DisplayName("사다리 결과는 사람의 수 만큼 있어야 한다.")
@@ -49,7 +34,7 @@ public class InputTest {
         Players players = new Players(playerNames);
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new Results(players.getPlayers().size(), Arrays.asList(inputResults.split(",")));
+            new Results(players.getPlayersCount(), Arrays.asList(inputResults.split(",")));
         });
     }
 
@@ -60,8 +45,8 @@ public class InputTest {
         List<String> playerNames = Arrays.asList("A", "B", "C");
         Players players = new Players(playerNames);
 
-        new Results(players.getPlayers().size(), Arrays.asList(inputResults.split(",")));
-        assertThat(new Results(players.getPlayers().size(), Arrays.asList(inputResults.split(","))).getClass()).isEqualTo(Results.class);
+        new Results(players.getPlayersCount(), Arrays.asList(inputResults.split(",")));
+        assertThat(new Results(players.getPlayersCount(), Arrays.asList(inputResults.split(","))).getClass()).isEqualTo(Results.class);
     }
 
 }

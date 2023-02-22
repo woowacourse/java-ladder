@@ -1,5 +1,4 @@
 import domain.Lines;
-import domain.Player;
 import domain.Players;
 import domain.Results;
 import ui.input.InputView;
@@ -13,7 +12,8 @@ public class Application {
         Results results = getResults(players);
         Lines lines = getLines(players);
 
-        showPlayerLadderResult(players, lines, results);
+        OutputView.printLadderResult(players, lines, results);
+        showPlayerLadderResult(players, results);
     }
 
     private static Players getPlayers() {
@@ -23,20 +23,21 @@ public class Application {
 
     private static Results getResults(Players players) {
         String ladderResults = InputView.getResult();
-        return new Results(players.getPlayers().size(), Arrays.asList(ladderResults.split(",")));
+        return new Results(players.getPlayersCount(), Arrays.asList(ladderResults.split(",")));
     }
 
     private static Lines getLines(Players players) {
-        int ladderHeight = InputView.getLadderHeight();
-        Lines lines = new Lines(players.getPlayers().size(), ladderHeight);
+        Lines lines = new Lines(players.getPlayersCount(), InputView.getLadderHeight());
         lines.calculateResults(players);
         return lines;
     }
 
-    private static void showPlayerLadderResult(Players players, Lines lines, Results results) {
-        OutputView.printLadderResult(players, lines, results);
-        String playerName = InputView.getPlayer();
-        players.validateInputPlayer(playerName);
-        OutputView.printExecuteResult(players, results, playerName);
+    private static void showPlayerLadderResult(Players players, Results results) {
+        while (true) {
+            String playerName = InputView.getPlayer();
+            if (playerName.equals("q")) break;
+            players.validateInputPlayer(playerName);
+            OutputView.printExecuteResult(players, results, playerName);
+        }
     }
 }

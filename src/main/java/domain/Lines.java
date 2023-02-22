@@ -22,6 +22,10 @@ public class Lines {
         return lines;
     }
 
+    public int getLineHeight() {
+        return lines.size();
+    }
+
     private List<Line> createLines(int personCount, int height) {
         List<Line> lines = new ArrayList<>();
         while (height-- > 0) {
