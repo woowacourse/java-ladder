@@ -1,10 +1,8 @@
 package domain.ladder;
 
-import domain.Point;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import util.TrueOrFalseGenerator;
 
 import java.util.List;
 

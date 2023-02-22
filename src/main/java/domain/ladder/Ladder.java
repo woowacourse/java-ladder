@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import domain.Point;
 import domain.player.Players;
 import util.TrueOrFalseGenerator;
 

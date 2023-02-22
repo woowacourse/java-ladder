@@ -3,6 +3,7 @@ package domain;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
+import domain.ladder.Point;
 import domain.player.Player;
 import domain.player.Players;
 import domain.product.Product;
