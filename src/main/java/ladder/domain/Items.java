@@ -23,4 +23,8 @@ public class Items {
     public List<Item> toUnmodifiableItems() {
         return Collections.unmodifiableList(items);
     }
+
+    public int getSize() {
+        return items.size();
+    }
 }
