@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Assertions;
@@ -33,5 +34,14 @@ public class NameTest {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 참여자의 이름은 빈 값일 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("이름을 반환한다.")
+    void getterTest() {
+        String initName = "seong";
+        Name name = new Name(initName);
+
+        assertThat(name.getRawName()).isEqualTo(initName);
     }
 }
