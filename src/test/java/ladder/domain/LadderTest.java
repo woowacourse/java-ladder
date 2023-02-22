@@ -1,28 +1,40 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
-import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
 class LadderTest {
-    static Stream<Arguments> Row_리스트_데이터() {
-        return Stream.of(
-                Arguments.of(List.of(
-                        Row.of(List.of(Foothold.PASSABLE, Foothold.BLOCKED), 2),
-                        Row.of(List.of(Foothold.BLOCKED, Foothold.PASSABLE), 2)
-                ))
+    List<Row> generateRowList() {
+        return List.of(
+                Row.of(List.of(Foothold.PASSABLE, Foothold.BLOCKED, Foothold.BLOCKED, Foothold.PASSABLE), 4),
+                Row.of(List.of(Foothold.BLOCKED, Foothold.PASSABLE, Foothold.BLOCKED, Foothold.PASSABLE), 4)
         );
     }
 
     @ParameterizedTest(name = "Row 생성 성공")
-    @MethodSource("Row_리스트_데이터")
+    @Test
     public void 생성_success(List<Row> rows) {
         assertThatNoException()
-                .isThrownBy(() -> new Ladder(rows));
+                .isThrownBy(() -> new Ladder(generateRowList()));
+    }
+
+    @ParameterizedTest(name = "초기위치로 pass하면 사다리를 내려간다")
+    @CsvSource({"0,2", "1,0", "2,1", "3,3", "4,4"})
+    void 사다리_이동(int beforeMove, int expected) {
+        // given
+        Ladder ladder = new Ladder(generateRowList());
+        PlayerPosition initialPosition = new PlayerPosition(beforeMove);
+
+        // when
+        PlayerPosition destination = ladder.passFrom(initialPosition);
+
+        //then
+        assertThat(destination).isEqualTo(new PlayerPosition(expected));
     }
 }
