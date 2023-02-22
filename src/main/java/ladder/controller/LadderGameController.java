@@ -35,7 +35,7 @@ public class LadderGameController {
         final List<String> playerNames = ladderGame.getPlayerNames();
         final List<Line> ladder = ladderGame.getLadder();
 
-        outputView.printResult(playerNames, ladder);
+        outputView.printResult(playerNames, ladder, results);
     }
 
     private List<String> readResults(final Players players) {

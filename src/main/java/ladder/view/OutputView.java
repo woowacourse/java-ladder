@@ -20,7 +20,7 @@ public class OutputView {
     private static final String NEXT_LINE = System.lineSeparator();
     private static final String ERROR_MESSAGE = "[ERROR] ";
 
-    public void printResult(final List<String> playerNames, final List<Line> ladder) {
+    public void printResult(final List<String> playerNames, final List<Line> ladder, final List<String> results) {
         System.out.println(GAME_RESULT_MESSAGE);
 
         final int maxNameLength = getMaxNameLength(playerNames);
@@ -28,6 +28,18 @@ public class OutputView {
 
         final String initialPlayerName = findInitialPlayerName(playerNames);
         System.out.println(generateLadderMessage(initialPlayerName.length(), maxNameLength, ladder));
+        System.out.println(generateResultMessages(results, maxNameLength));
+    }
+
+    private String generateResultMessages(final List<String> results, final int maxNameLength) {
+        return results.stream()
+                .map(result -> generateResultMessage(result, maxNameLength))
+                .collect(joining());
+    }
+
+    private String generateResultMessage(final String result, final int maxNameLength) {
+        String maxNameLengthFormat = String.format(NAME_MESSAGE_FORMAT, maxNameLength);
+        return String.format(maxNameLengthFormat, result);
     }
 
     private int getMaxNameLength(final List<String> playerNames) {
