@@ -1,6 +1,7 @@
 package domain.user;
 
 import java.util.List;
+import java.util.Objects;
 
 public class User {
 	private static final int MIN_NAME_LENGTH = 1;
@@ -38,5 +39,22 @@ public class User {
 
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof User)) {
+			return false;
+		}
+		User user = (User)o;
+		return Objects.equals(this.name, user.getName());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(name);
 	}
 }

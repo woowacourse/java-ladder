@@ -38,4 +38,12 @@ class UserTest {
 		String name = "all";
 		assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class);
 	}
+
+	@Test
+	@DisplayName("user 객체의 name 필드가 같다면 같은 객체로 인식해야 한다.")
+	void equalsTest() {
+		User user1 = new User("user");
+		User user2 = new User("user");
+		assertThat(user1).isEqualTo(user2);
+	}
 }
