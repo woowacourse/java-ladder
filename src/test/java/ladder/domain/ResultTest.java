@@ -32,7 +32,7 @@ public class ResultTest {
 
     @DisplayName("참여자 수와 내기 목록의 수가 같아야 한다.")
     @Test
-    void createResultSuccessTestByDifferentCountOfNamesAndBet() {
+    void createResultSuccessTestByCountOfNamesAndBet() {
         List<String> bets = Arrays.asList("꽝", "당첨", "꽝", "꽝", "당첨");
 
         Assertions.assertDoesNotThrow(() -> new Result(names, bets));
