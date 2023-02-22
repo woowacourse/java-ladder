@@ -1,6 +1,8 @@
 package domain;
 
 import domain.generator.BooleanGenerator;
+import domain.ladder.Height;
+import domain.ladder.Lines;
 
 public class LadderMaker {
 

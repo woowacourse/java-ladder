@@ -1,5 +1,6 @@
-package domain;
+package domain.player;
 
+import domain.ladder.Lines;
 import java.util.Objects;
 
 public class Player {

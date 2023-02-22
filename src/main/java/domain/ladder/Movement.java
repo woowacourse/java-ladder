@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 public enum Movement {
     GO_RIGHT(1),
@@ -10,7 +10,7 @@ public enum Movement {
     Movement(int movement) {
         this.movement = movement;
     }
-    
+
     public int move(int index) {
         return index + movement;
     }

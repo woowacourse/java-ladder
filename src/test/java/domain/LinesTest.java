@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import domain.generator.BooleanGenerator;
 import domain.generator.RandomBooleanGenerator;
 import domain.generator.TrueBooleanGenerator;
+import domain.ladder.Lines;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

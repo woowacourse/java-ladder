@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import domain.generator.BooleanGenerator;
 import java.util.ArrayList;

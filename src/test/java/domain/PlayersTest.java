@@ -1,5 +1,10 @@
 package domain;
 
+import domain.player.Name;
+import domain.player.Names;
+import domain.player.Player;
+import domain.player.Players;
+import domain.player.Position;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
