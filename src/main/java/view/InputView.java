@@ -11,9 +11,9 @@ public class InputView {
     private static final String PLAYER_NAME_INPUT_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String REWARDS_INPUT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String LADDER_HEIGHT_INPUT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
+    private static final String COMMAND_INPUT_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final String DELIMITER = ",";
     private static final String NON_INTEGER_ERROR_MESSAGE = "높이는 정수만 입력 가능합니다.";
-    g
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public List<String> requestPlayerNames() {
@@ -37,6 +37,10 @@ public class InputView {
         String rewardsInput = requestUserInput(REWARDS_INPUT_MESSAGE);
 
         return getSplitInput(rewardsInput);
+    }
+
+    public String requestCommand() {
+        return requestUserInput(COMMAND_INPUT_MESSAGE).trim();
     }
 
     private List<String> getSplitInput(String inputToSplit) {
