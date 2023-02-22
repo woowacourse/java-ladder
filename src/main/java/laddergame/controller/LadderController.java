@@ -1,17 +1,17 @@
 package laddergame.controller;
 
-import static laddergame.utils.RetryUtils.retryOnRuntimeExceptionWithMessage;
-
 import java.util.List;
-import java.util.Map;
+import java.util.function.Consumer;
 import laddergame.domain.BooleanGenerator;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.LadderGame;
 import laddergame.domain.LadderResult;
 import laddergame.domain.Line;
+import laddergame.domain.NamesWithMatchedResult;
 import laddergame.domain.PersonalNames;
 import laddergame.domain.Width;
+import laddergame.utils.RetryUtils;
 import laddergame.view.InputView;
 import laddergame.view.LadderFormGenerator;
 import laddergame.view.OutputView;
@@ -32,22 +32,47 @@ public class LadderController {
     }
 
     public void run() {
-        final PersonalNames names = retryOnRuntimeExceptionWithMessage(() -> new PersonalNames(inputView.readNames()));
-        final LadderResult ladderResult = retryOnRuntimeExceptionWithMessage(
+        final PersonalNames names = RetryUtils.retryOnRuntimeExceptionWithMessage(
+                () -> new PersonalNames(inputView.readNames()));
+        final LadderResult ladderResult = RetryUtils.retryOnRuntimeExceptionWithMessage(
                 () -> LadderResult.of(names, inputView.readResults()));
 
-        final Height ladderHeight = retryOnRuntimeExceptionWithMessage(() -> new Height(inputView.readHeight()));
+        final Height ladderHeight = RetryUtils.retryOnRuntimeExceptionWithMessage(
+                () -> new Height(inputView.readHeight()));
         final Ladder ladder = new Ladder(new Width(names.getSize()), ladderHeight, booleanGenerator);
 
         final List<Line> lines = ladder.getLines();
-        outputView.printResult(ladderFormGenerator.generate(names, lines));
+        outputView.printLadderForm(ladderFormGenerator.generate(names, ladderResult, lines));
 
         final LadderGame ladderGame = new LadderGame(names, ladderResult);
-        Map<String, String> result = ladderGame.moveAndGetResult(ladder);
-
+        NamesWithMatchedResult result = ladderGame.moveAndGetResult(ladder);
+        retryOnRuntimeExceptionWithMessage(result, this::printResultWhileCommandIsNotAll);
     }
 
-    public void 보고싶은사람결과보여주고끝내기() {
-        
+    public void printResultWhileCommandIsNotAll(NamesWithMatchedResult namesWithMatchedResult) {
+        while (true) {
+            String name = inputView.readNameToCheckResult();
+            if (isAll(name)) {
+                outputView.printTotalResult(namesWithMatchedResult);
+                break;
+            }
+            outputView.printResult(namesWithMatchedResult.searchBy(name));
+        }
+    }
+
+    private static boolean isAll(String name) {
+        return name.equals("all");
+    }
+
+    public void retryOnRuntimeExceptionWithMessage(NamesWithMatchedResult t,
+                                                   Consumer<NamesWithMatchedResult> consumer) {
+        while (true) {
+            try {
+                consumer.accept(t);
+                return;
+            } catch (RuntimeException e) {
+                OutputView.printExceptionMessage(e.getMessage());
+            }
+        }
     }
 }
