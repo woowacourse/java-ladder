@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.exception.CustomException;
+import ladder.domain.exception.CustomException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatCode;

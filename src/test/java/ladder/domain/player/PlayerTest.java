@@ -1,7 +1,6 @@
 package ladder.domain.player;
 
-import ladder.domain.player.Player;
-import ladder.exception.PlayerNameLengthException;
+import ladder.domain.exception.PlayerNameLengthException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Java6Assertions.assertThatCode;

@@ -2,7 +2,7 @@ package ladder.domain.ladder;
 
 import ladder.domain.rule.StoolGenerator;
 import ladder.domain.rule.RandomStoolGenerator;
-import ladder.exception.LadderLengthException;
+import ladder.domain.exception.LadderLengthException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

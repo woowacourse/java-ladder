@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.rule.StoolGenerator;
-import ladder.exception.LadderLengthException;
+import ladder.domain.exception.LadderLengthException;
 
 import java.util.ArrayList;
 import java.util.List;

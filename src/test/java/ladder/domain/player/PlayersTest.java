@@ -1,10 +1,8 @@
 package ladder.domain.player;
 
-import ladder.domain.player.Players;
-import ladder.exception.PlayerNumberException;
+import ladder.domain.exception.PlayerNumberException;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

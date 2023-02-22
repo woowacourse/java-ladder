@@ -1,7 +1,7 @@
 package ladder.domain.player;
 
-import ladder.exception.NoSuchPlayerException;
-import ladder.exception.PlayerNumberException;
+import ladder.domain.exception.NoSuchPlayerException;
+import ladder.domain.exception.PlayerNumberException;
 
 import java.util.HashMap;
 import java.util.List;
