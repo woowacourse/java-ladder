@@ -10,17 +10,17 @@ public class Line {
     private static final int GENERATE_NUMBER = 1;
     private static final int INDEX_LOWER_BOUND = 0;
 
-    private final List<Point> points = new ArrayList<>();
+    private final List<Point> line = new ArrayList<>();
 
     public Line(int personCount, NumberGenerator numberGenerator) {
-        generatePoints(personCount, numberGenerator);
+        generateLine(personCount, numberGenerator);
     }
 
     private static boolean isGenerated(NumberGenerator numberGenerator) {
         return numberGenerator.generate() == GENERATE_NUMBER;
     }
 
-    private void generatePoints(int personCount, NumberGenerator numberGenerator) {
+    private void generateLine(int personCount, NumberGenerator numberGenerator) {
         for (int i = 0; i < personCount - 1; i++) {
             generatePoint(numberGenerator);
         }
@@ -28,23 +28,19 @@ public class Line {
 
     private void generatePoint(NumberGenerator numberGenerator) {
         if (isGenerated(numberGenerator) && !hasAdjacentPoint()) {
-            points.add(Point.CONNECTION);
+            line.add(Point.CONNECTION);
             return;
         }
-        points.add(Point.SEPARATION);
+        line.add(Point.SEPARATION);
     }
 
     private boolean hasAdjacentPoint() {
-        return !points.isEmpty() && points.get(points.size() - 1).getStatus();
-    }
-
-    public List<Point> getPoints() {
-        return points;
+        return !line.isEmpty() && line.get(line.size() - 1).getStatus();
     }
 
     public boolean isConnected(int index) {
         validateIndex(index);
-        return points.get(index) == Point.CONNECTION;
+        return line.get(index) == Point.CONNECTION;
     }
 
     private void validateIndex(int index) {
@@ -54,6 +50,14 @@ public class Line {
     }
 
     private boolean isInvalidIndex(int index) {
-        return index >= points.size() || index < INDEX_LOWER_BOUND;
+        return index >= line.size() || index < INDEX_LOWER_BOUND;
+    }
+
+    public List<Point> getLine() {
+        return line;
+    }
+
+    public int getPointsSize() {
+        return line.size();
     }
 }

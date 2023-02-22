@@ -8,7 +8,6 @@ import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class LineTest {
@@ -17,14 +16,14 @@ public class LineTest {
     @Test
     void createLineTest() {
         Line line = new Line(4, new TestNumberGenerator(Lists.newArrayList(1, 1, 1)));
-        assertThat(line.getPoints()).containsExactly(Point.CONNECTION, Point.SEPARATION, Point.CONNECTION);
+        assertThat(line.getLine()).containsExactly(Point.CONNECTION, Point.SEPARATION, Point.CONNECTION);
     }
 
     @DisplayName("인접한 왼쪽 가로줄의 연결구조가 없다면 현재 가로줄에서는 전달받은 값을 통해 연결구조를 놓을지 말지 결정한다.")
     @Test
     void createLineTest2() {
         Line line = new Line(4, new TestNumberGenerator(Lists.newArrayList(1, 0, 0)));
-        assertThat(line.getPoints()).containsExactly(Point.CONNECTION, Point.SEPARATION, Point.SEPARATION);
+        assertThat(line.getLine()).containsExactly(Point.CONNECTION, Point.SEPARATION, Point.SEPARATION);
     }
 
     @DisplayName("사다리의 어떤 한 가로줄은 주어진 인덱스 번호의 연결구조가 연결되어있다면 true를 반환한다.")

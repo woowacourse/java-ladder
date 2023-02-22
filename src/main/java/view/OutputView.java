@@ -48,7 +48,7 @@ public class OutputView {
     }
 
     private void printLine(Line line) {
-        List<Point> points = line.getPoints();
+        List<Point> points = line.getLine();
         StringBuilder result = new StringBuilder(LINE_START_FORMAT);
         points.forEach(point -> result.append(point.toFormattedStatus()));
         System.out.println(result);
