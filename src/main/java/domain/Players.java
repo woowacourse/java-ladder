@@ -1,44 +1,23 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Players {
 
     public static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
-    private static final String DELIMITER = ",";
-    private static final String DELIMITER_WITH_BLANK = "\\s*,\\s*";
-    private static final String INPUT_PLAYER_ERROR_MESSAGE = "[ERROR] 구분자 ,를 이용하여 두 명 이상 입력해야 합니다.";
 
     private final List<Player> players;
 
-    public Players(String names) {
-        validateDelimiter(names);
-        List<String> splitNames = getSplitNames(names);
-        validateMoreThanOnePlayer(splitNames);
-        this.players = createPlayer(splitNames);
+    public Players(List<Player> players) throws IllegalArgumentException {
+        validateMoreThanOnePlayer(players);
+        this.players = players;
     }
 
-    private List<String> getSplitNames(String names) {
-        return List.of(names.split(DELIMITER_WITH_BLANK));
-    }
-
-    private void validateMoreThanOnePlayer(List<String> splitNames) {
-        if (splitNames.size() < MINIMUM_NUMBER_OF_PLAYERS) {
-            throw new IllegalArgumentException(INPUT_PLAYER_ERROR_MESSAGE);
+    private void validateMoreThanOnePlayer(List<Player> players) {
+        if (players.size() < MINIMUM_NUMBER_OF_PLAYERS) {
+            throw new IllegalArgumentException("[ERROR] 플레이어는 두 명 이상 입력해야 합니다.");
         }
-    }
-
-    private void validateDelimiter(String names) {
-        if (!names.contains(DELIMITER)) {
-            throw new IllegalArgumentException(INPUT_PLAYER_ERROR_MESSAGE);
-        }
-    }
-
-    private List<Player> createPlayer(List<String> splitNames) {
-        return splitNames.stream()
-                .map(Player::new)
-                .collect(Collectors.toList());
     }
 
     public int getNumberOfPlayers() {
@@ -46,6 +25,6 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        return this.players;
+        return Collections.unmodifiableList(this.players);
     }
 }

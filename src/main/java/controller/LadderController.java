@@ -8,6 +8,7 @@ import domain.Players;
 import java.util.ArrayList;
 import java.util.List;
 import util.LineGenerator;
+import util.PlayersMaker;
 import util.RandomLineGenerator;
 import view.InputView;
 import view.OutputView;
@@ -23,11 +24,20 @@ public class LadderController {
 
     private Players makePlayers() {
         try {
-            String playerNames = InputView.receivePlayer();
-            return new Players(playerNames);
+            String playersName = inputPlayers();
+            return PlayersMaker.makePlayers(playersName);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
             return makePlayers();
+        }
+    }
+
+    private String inputPlayers() {
+        try{
+            return InputView.receivePlayer();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return inputPlayers();
         }
     }
 
