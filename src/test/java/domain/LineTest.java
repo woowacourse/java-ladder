@@ -27,7 +27,7 @@ public class LineTest {
                 .doesNotThrowAnyException();
     }
 
-    @DisplayName("현재 유저가 오른쪽으로 이동가능 여부를 boolean으로 리턴한다.")
+    @DisplayName("현재 유저가 오른쪽으로 이동할 수 있는지 boolean으로 리턴한다.")
     @ParameterizedTest
     @CsvSource(value = {"0,true", "1,false"})
     void checkRightBridgeTest(final int index, final boolean result) {
