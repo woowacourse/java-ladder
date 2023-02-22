@@ -53,15 +53,16 @@
     - [x] 맨 앞이 아니라면, 앞으로 한 칸 이동한다.
     - [x] 맨 뒤가 아니라면, 뒤로 한 칸 이동한다.
 
-- [ ] Player
-    - [ ] Name과 Position을 멤버로 가진다
+- [x] Player
+    - [x] Name과 Position을 멤버로 가진다
+    - [x] Position 객체를 주면 이동한다.
 
-- [ ] Players
-    - [ ] Player의 수가 2명 이상인지 검증
-    - [ ] Player 인스턴스 생성
-    - [ ] 이름이 가장 긴 선수의 이름 길이 리턴
-    - [ ] 첫번째 Player의 이름 길이 리턴
-    - [ ] Player의 수와 순서 관리
+- [x] Players
+    - [x] Player의 수가 2명 이상인지 검증
+    - [x] Player 인스턴스 생성
+    - [x] 이름이 가장 긴 선수의 이름 길이 리턴
+    - [x] 첫번째 Player의 이름 길이 리턴
+    - [x] Player의 수와 순서 관리
 
 - [x] Link
 - [x] 원시값 boolean 포장

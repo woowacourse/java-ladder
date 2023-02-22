@@ -8,19 +8,19 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class NamesTest {
+public class PlayersTest {
 
     @Test
-    @DisplayName("List<String>이 입력되면 Names 객체를 생성한다.")
+    @DisplayName("List<String>이 입력되면 Players 객체를 생성한다.")
     void givenStringList_thenCreateNames() {
         //given
         final List<String> names = List.of("에단", "준팍");
 
         //when
-        final Names result = new Names(names);
+        final Players result = Players.from(names);
 
         //then
-        assertThat(result.getNames()).isEqualTo(names);
+        assertThat(result.getPlayerName()).isEqualTo(names);
     }
 
     @Test
@@ -30,18 +30,20 @@ public class NamesTest {
         final List<String> wrongSizeList = List.of("에단");
 
         //then
-        assertThatThrownBy((() -> new Names(wrongSizeList))).isInstanceOf(IllegalArgumentException.class).hasMessage("최소 2명 이상의 플레이어가 필요합니다.");
+        assertThatThrownBy((() -> Players.from(wrongSizeList)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("최소 2명 이상의 플레이어가 필요합니다.");
     }
 
     @Test
     @DisplayName("가장 긴 이름의 길이를 반환한다.")
     void givenNames_thenReturnMaxNameLength() {
         //given
-        final List<String> input = List.of("에단", "준팍", "블랙캣");
-        final Names names = new Names(input);
+        final List<String> names = List.of("에단", "준팍", "블랙캣");
+        final Players players = Players.from(names);
 
         //when
-        final int maxNameLength = names.findMaxNameLength();
+        final int maxNameLength = players.findMaxNameLength();
 
         //then
         assertThat(maxNameLength).isEqualTo("블랙캣".length());

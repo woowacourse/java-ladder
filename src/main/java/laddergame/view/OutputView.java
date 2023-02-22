@@ -2,7 +2,7 @@ package laddergame.view;
 
 import laddergame.domain.Ladder;
 import laddergame.domain.Link;
-import laddergame.domain.Names;
+import laddergame.domain.Players;
 
 import java.util.List;
 
@@ -14,17 +14,17 @@ public class OutputView {
 
     private static final int HALF = 2;
 
-    public static void printPlayerAll(final Names names) {
+    public static void printPlayerAll(final Players names) {
         System.out.println(System.lineSeparator() + "실행결과" + System.lineSeparator());
 
-        final String allPlayerName = names.getNames().stream()
+        final String allPlayerName = names.getPlayerName().stream()
                 .map(player -> makeNameFormat(names.findMaxNameLength(), player))
                 .collect(joining(BLANK.getLadderElement()));
 
         System.out.println(allPlayerName);
     }
 
-    public static void printLadder(final Names names, final Ladder ladder) {
+    public static void printLadder(final Players names, final Ladder ladder) {
         StringBuilder result = new StringBuilder();
         ladder.getLadder().forEach(line -> result.append(makeLadderFormat(line.getLine(), names)));
         System.out.println(result);
@@ -41,7 +41,7 @@ public class OutputView {
         return String.format("%s%s", name, repeat);
     }
 
-    private static String makeLadderFormat(final List<Link> floor, final Names names) {
+    private static String makeLadderFormat(final List<Link> floor, final Players names) {
         final StringBuilder result = new StringBuilder(setUpLadder(names.getFirstNameLength()));
 
         floor.forEach(existences -> result.append(makeFloor(existences, names.findMaxNameLength())));
