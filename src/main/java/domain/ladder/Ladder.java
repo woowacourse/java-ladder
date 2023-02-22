@@ -39,6 +39,16 @@ public class Ladder {
         return playerPosition;
     }
 
+    public int decideWhereToGo(int playerPosition, int floor) {
+        if (lines.get(floor).getPoints().get(playerPosition).isPoint()) {
+            return playerPosition + 1;
+        }
+        if (lines.get(floor).getPoints().get(playerPosition-1).isPoint()) {
+            return playerPosition - 1;
+        }
+        return playerPosition;
+    }
+
     public List<Line> getLines() {
         return lines;
     }

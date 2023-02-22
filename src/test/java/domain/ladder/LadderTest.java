@@ -23,4 +23,10 @@ class LadderTest {
     void sideDecideWhereToGo() {
         assertThat(ladder.sideDecideWhereToGo(0, 0)).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("플레이어의 위치가 양쪽 사이드가 아닐때 위치 처리")
+    void decideWhereToGo() {
+        assertThat(ladder.decideWhereToGo(1, 0)).isEqualTo(2);
+    }
 }
