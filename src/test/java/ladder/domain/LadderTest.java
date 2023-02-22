@@ -29,7 +29,7 @@ class LadderTest {
         // expected
         for(Player player: players.getPlayers()) {
             assertThat(ladder.getItemOfPlayer(player).getItem())
-                    .isEqualTo(player.getName().getName());
+                    .isEqualTo(player.getName().getValue());
         }
     }
 }
