@@ -4,6 +4,7 @@ import static ladder.view.InputView.readLadderHeight;
 import static ladder.view.InputView.readPlayerNames;
 import static ladder.view.InputView.readResults;
 import static ladder.view.InputView.readTargetName;
+import static ladder.view.OutputView.printAllResult;
 import static ladder.view.OutputView.printLadder;
 import static ladder.view.OutputView.printSingleResult;
 
@@ -14,13 +15,12 @@ import ladder.domain.Players;
 import ladder.domain.Results;
 import ladder.domain.strategy.linestrategy.LineStrategy;
 import ladder.domain.strategy.linestrategy.RandomLineStrategy;
-import ladder.view.OutputView;
 
 public class Application {
     private static final String QUIT = "q";
     private static final String ALL = "all";
-    private static final Boolean END = false; // TODO: 그냥 false?
-    private static final Boolean GO = true;
+    private static final Boolean FINISH = false; // TODO: 그냥 false?
+    private static final Boolean PROCEED = true;
 
     private static Players players;
     private static Results results;
@@ -51,33 +51,24 @@ public class Application {
         }
     }
 
-    private static boolean isQuit(String targetName) {
-        if (targetName.equals(QUIT)) {
-            return END;
+    private static boolean isQuit(String input) {
+        if (input.equals(QUIT)) {
+            return FINISH;
         }
-        return GO;
-//        if (targetName.equals(QUIT)) {
-//            return false;
-//        }
-//        return true;
+        return PROCEED;
     }
 
-    private static boolean isAll(boolean flag, String input) {
-        if (flag && input.equals(ALL)) {
-            OutputView.printAllResult(players.getPlayersName(), results.findAllResult(ladder.getLines()));
-            return END;
+    private static boolean isAll(boolean proceed, String input) {
+        if (proceed && input.equals(ALL)) {
+            printAllResult(players.getPlayersName(), results.findAllResult(ladder.getLines()));
+            return FINISH;
         }
-        return GO;
-//        if (flag && input.equals(ALL)) {
-//            OutputView.printAllResult(players.getPlayersName(), results.findAllResult(ladder.getLines()));
-//            return false;
-//        }
-//        return true;
+        return PROCEED;
     }
 
-    private static void isSingleResult(boolean flag, String input) {
-        if (flag) {
-            printSingleResult(results.findResult(ladder.getLines(), players.findPosition(input)));
+    private static void isSingleResult(boolean proceed, String playerName) {
+        if (proceed) {
+            printSingleResult(results.findResult(ladder.getLines(), players.findPosition(playerName)));
         }
     }
 }
