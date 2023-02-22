@@ -30,6 +30,10 @@ public class InputView {
         return Integer.parseInt(height);
     }
 
+    public String inputUserToCheckResult() {
+        return scanner.nextLine();
+    }
+
     private void validateHeightInput(String height) {
         try {
             Integer.parseInt(height);
