@@ -6,13 +6,13 @@ import static java.util.List.copyOf;
 
 public class Bridge {
 
-    private final List<BridgeStatus> bridges;
+    private final List<BridgeStatus> bridgeStatuses;
 
-    public Bridge(final List<BridgeStatus> bridges) {
+    public Bridge(final List<BridgeStatus> bridgeStatuses) {
 
-        validateBridges(bridges);
+        validateBridges(bridgeStatuses);
 
-        this.bridges = copyOf(bridges);
+        this.bridgeStatuses = copyOf(bridgeStatuses);
     }
 
     private void validateBridges(final List<BridgeStatus> bridgeStatuses) {
@@ -33,15 +33,15 @@ public class Bridge {
         return currentBridgeStatus == BridgeStatus.EXIST && nextBridgeStatus == BridgeStatus.EXIST;
     }
 
-    public List<BridgeStatus> getBridges() {
-        return bridges;
+    public List<BridgeStatus> getBridgeStatuses() {
+        return bridgeStatuses;
     }
 
     public boolean hasRightBridge(final int index) {
-        return index < bridges.size() && bridges.get(index) != BridgeStatus.EMPTY;
+        return index < bridgeStatuses.size() && bridgeStatuses.get(index) != BridgeStatus.EMPTY;
     }
 
     public boolean hasLeftBridge(final int index) {
-        return index - 1 >= 0 && bridges.get(index - 1) != BridgeStatus.EMPTY;
+        return index - 1 >= 0 && bridgeStatuses.get(index - 1) != BridgeStatus.EMPTY;
     }
 }

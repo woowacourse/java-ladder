@@ -20,7 +20,7 @@ class BridgeGeneratorTest {
         LineGenerator lineGenerator = new LineGenerator(() -> EXIST);
         Bridge bridge = lineGenerator.generate(7);
 
-        List<BridgeStatus> bridgeStatuses = bridge.getBridges();
+        List<BridgeStatus> bridgeStatuses = bridge.getBridgeStatuses();
 
         assertThat(bridgeStatuses).containsExactly(EXIST, EMPTY, EXIST, EMPTY, EXIST, EMPTY);
     }
@@ -31,7 +31,7 @@ class BridgeGeneratorTest {
         LineGenerator lineGenerator = new LineGenerator(() -> EXIST);
         Bridge bridge = lineGenerator.generate(2);
 
-        List<BridgeStatus> bridgeStatuses = bridge.getBridges();
+        List<BridgeStatus> bridgeStatuses = bridge.getBridgeStatuses();
 
         assertThat(bridgeStatuses).containsExactly(EXIST);
     }
@@ -44,7 +44,7 @@ class BridgeGeneratorTest {
         LineGenerator lineGenerator = new LineGenerator(iterator::next);
         Bridge bridge = lineGenerator.generate(5);
 
-        List<BridgeStatus> testBridgeStatuses = bridge.getBridges();
+        List<BridgeStatus> testBridgeStatuses = bridge.getBridgeStatuses();
 
         assertThat(testBridgeStatuses).containsExactly(EMPTY, EMPTY, EXIST, EMPTY);
     }

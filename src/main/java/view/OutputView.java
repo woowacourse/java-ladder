@@ -69,7 +69,7 @@ public class OutputView {
     }
 
     private static void printBridgesOf(final Bridge bridge) {
-        for (BridgeStatus bridgeStatus : bridge.getBridges()) {
+        for (BridgeStatus bridgeStatus : bridge.getBridgeStatuses()) {
             System.out.print(printBridgeStatus(bridgeStatus));
             System.out.print(LADDER_BOUNDARY);
         }
