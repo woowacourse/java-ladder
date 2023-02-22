@@ -61,6 +61,8 @@ public class Controller {
             List<Integer> endIndexes = ladder.calculateEndIndex(startIndexes);
             List<Reward> unsavedRewards = rewards.getRewardByIndex(endIndexes);
             resultTable.saveAll(usersWithoutReward, unsavedRewards);
+            OutputView.printAllResult(resultTable);
+            playLadderGame();
             return;
         }
 
@@ -73,7 +75,7 @@ public class Controller {
             resultTable.save(user,reward);
         }
         OutputView.printResult(user, reward);
-
+        playLadderGame();
     }
 
     private void createUser() {

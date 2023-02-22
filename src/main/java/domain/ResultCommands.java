@@ -5,7 +5,7 @@ public enum ResultCommands {
     QUIT;
 
     public static boolean isQuit(String command) {
-        return ALL.name().equals(command);
+        return QUIT.name().equals(command);
     }
 
     public static boolean isAll(String command) {

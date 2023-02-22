@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import domain.Ladder;
 import domain.LadderRow;
 import domain.Point;
+import domain.ResultTable;
 import domain.Reward;
 import domain.User;
 import utils.StringParser;
@@ -85,5 +86,13 @@ public class OutputView {
         String userName = user.getName();
         String rewardName = reward.getReward();
         System.out.println(userName + " : " + rewardName);
+    }
+
+    public static void printAllResult(ResultTable resultTable) {
+        List<User> users = resultTable.getUsers();
+        List<Reward> rewards = resultTable.getRewards();
+        for (int i = 0; i < users.size(); i++) {
+            System.out.println(users.get(i).getName() + " : " + rewards.get(i).getReward());
+        }
     }
 }

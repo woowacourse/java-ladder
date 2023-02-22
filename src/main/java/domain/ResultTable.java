@@ -36,4 +36,16 @@ public class ResultTable {
             resultTable.put(users.get(i), rewards.get(i));
         }
     }
+
+    public List<User> getUsers() {
+        return resultTable.keySet()
+                .stream()
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<Reward> getRewards() {
+        return resultTable.values()
+                .stream()
+                .collect(Collectors.toUnmodifiableList());
+    }
 }
