@@ -17,4 +17,15 @@ public class Players {
                 .map(player -> player.getPosition())
                 .collect(Collectors.toList());
     }
+    public List<Name> getPlayersName(){
+        return players.stream()
+                .map(player -> new Name(player.getName()))
+                .collect(Collectors.toList());
+    }
+    public List<Player> getPlayers(){
+        return this.players;
+    }
+    public int size(){
+        return players.size();
+    }
 }
