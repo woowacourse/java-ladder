@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.Map;
 
 import static java.util.stream.Collectors.toUnmodifiableList;
 
@@ -26,5 +27,9 @@ public class Ladder {
         return rows.stream()
                    .map(Row::getFootholds)
                    .collect(toUnmodifiableList());
+    }
+
+    public Map<String, String> runGame(Players players, List<String> prizes) {
+        return null;
     }
 }
