@@ -61,4 +61,8 @@ public class Participants {
                      .map(Person::getName)
                      .collect(Collectors.toList());
     }
+
+    public Person getByIndex(int index) {
+        return people.get(index);
+    }
 }
