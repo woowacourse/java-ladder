@@ -27,4 +27,17 @@ class UsersTest {
         assertEquals(name, users.findUser(name).getName());
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"joy"})
+    void moveUsers(String name) {
+        List<List<Integer>> allNumbers = List.of(
+            List.of(0, 1),
+            List.of(3),
+            List.of(1, 3)
+        );
+
+        users.moveUsers(allNumbers);
+        assertEquals(2, users.findUser(name).getPosition());
+    }
+
 }
