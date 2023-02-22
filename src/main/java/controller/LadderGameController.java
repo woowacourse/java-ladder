@@ -1,9 +1,9 @@
 package controller;
 
+import builder.LadderGameBuilder;
 import domain.GameResult;
 import domain.Ladder;
 import domain.LadderGame;
-import domain.LadderGameBuilder;
 import domain.LadderResults;
 import domain.Participants;
 import util.BooleanGenerator;

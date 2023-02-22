@@ -1,4 +1,9 @@
-package domain;
+package builder;
+
+import domain.Ladder;
+import domain.LadderGame;
+import domain.LadderResults;
+import domain.Participants;
 
 public class LadderGameBuilder {
 
