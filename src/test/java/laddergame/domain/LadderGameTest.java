@@ -35,7 +35,7 @@ class LadderGameTest {
         //when
         //then
         assertDoesNotThrow(() -> {
-            ladderGame.match(ladder);
+            ladderGame.moveAndGetResult(ladder);
         });
     }
 
@@ -48,7 +48,7 @@ class LadderGameTest {
         Ladder ladder = new Ladder(new Width(2), new Height(3), TEST_BOOLEAN_GENERATOR);
         LadderGame ladderGame = new LadderGame(personalNames, ladderResult);
         //when
-        Map<String, String> gameResult = ladderGame.match(ladder);
+        Map<String, String> gameResult = ladderGame.moveAndGetResult(ladder);
         //then
         assertThat(gameResult.keySet()).contains("rosie", "kiara");
     }
@@ -74,7 +74,7 @@ class LadderGameTest {
         Ladder ladder = new Ladder(new Width(2), new Height(3), fixedGenerator);
         LadderGame ladderGame = new LadderGame(personalNames, ladderResult);
         //when
-        Map<String, String> matchedResult = ladderGame.match(ladder);
+        Map<String, String> matchedResult = ladderGame.moveAndGetResult(ladder);
         //then
         assertThat(matchedResult.get("rosie")).isEqualTo("result2");
         assertThat(matchedResult.get("kiara")).isEqualTo("result1");

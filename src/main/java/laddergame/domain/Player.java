@@ -20,6 +20,10 @@ public class Player {
         position = new Position(position.getValue() - 1);
     }
 
+    public PersonalName getPersonalName() {
+        return personalName;
+    }
+
     public Position getPosition() {
         return position;
     }

@@ -1,8 +1,9 @@
 package laddergame.domain;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGame {
     private final PersonalNames personalNames;
@@ -13,31 +14,39 @@ public class LadderGame {
         this.ladderResult = ladderResult;
     }
 
-    public Map<String, String> match(Ladder ladder) {
-        Map<String, String> gameResult = new HashMap<>();
+    public Map<String, String> moveAndGetResult(Ladder ladder) {
+        List<Player> players = initPlayers();
 
-        List<PersonalName> names = personalNames.getPersonalNames();
-        List<LadderResultItem> resultItems = ladderResult.getResultItems();
-
-        for (int index = 0; index < names.size(); index++) {
-            int current = index;
-            for (final Line line : ladder.getLines()) {
-                current = move(line, current, names.size());
-            }
-            gameResult.put(names.get(index).getValue(), resultItems.get(current).getName());
-        }
-
-        return gameResult;
+        return players.stream().collect(Collectors.toMap(
+                player -> player.getPersonalName().getValue(),
+                player -> moveAndGetResult(player, ladder).getName()
+        ));
     }
 
-    private int move(final Line line, final int current, final int limit) {
-        if (current < limit - 1 && line.doesRungExistsIndexOf(current)) {
-            return current + 1;
+    private List<Player> initPlayers() {
+        List<PersonalName> names = personalNames.getPersonalNames();
+        List<Player> players = IntStream.range(0, names.size())
+                .mapToObj(index -> new Player(names.get(index), index))
+                .collect(Collectors.toList());
+        return players;
+    }
 
+    private LadderResultItem moveAndGetResult(Player player, Ladder ladder) {
+        for (final Line line : ladder.getLines()) {
+            goDownOneLine(player, line);
         }
-        if (current > 0 && line.doesRungExistsIndexOf(current - 1)) {
-            return current - 1;
+        return ladderResult.getResultItems().get(player.getPosition().getValue());
+    }
+
+    private void goDownOneLine(Player player, Line line) {
+        if (player.getPosition().getValue() < personalNames.getPersonalNames().size() - 1 && line.doesRungExistsIndexOf(
+                player.getPosition().getValue())) {
+            player.moveRight();
+            return;
         }
-        return current;
+        if (player.getPosition().getValue() > 0 && line.doesRungExistsIndexOf(
+                player.getPosition().getValue() - 1)) {
+            player.moveLeft();
+        }
     }
 }
