@@ -11,41 +11,41 @@ public class Reward {
     private static final String VALID_WORD_REGEX = "(\\w)+";
     private static final Pattern PLAYER_NAME_PATTERN = Pattern.compile(VALID_WORD_REGEX);
 
-    private final String reward;
+    private final String name;
 
-    public Reward(String reward) {
-        validate(reward);
-        this.reward = reward;
+    public Reward(String name) {
+        validate(name);
+        this.name = name;
     }
 
-    private void validate(String reward) {
-        validateLength(reward);
-        validateWord(reward);
+    private void validate(String name) {
+        validateLength(name);
+        validateWord(name);
     }
 
-    private void validateLength(String reward) {
-        if (isOutOfRange(reward)) {
+    private void validateLength(String name) {
+        if (isOutOfRange(name)) {
             throw new IllegalArgumentException(REWARD_SIZE_ERROR_MESSAGE);
         }
     }
 
-    private boolean isOutOfRange(String reward) {
-        return !(REWARD_MIN_SIZE_INCLUSIVE <= reward.length()
-                && reward.length() <= REWARD_MAX_SIZE_INCLUSIVE);
+    private boolean isOutOfRange(String name) {
+        return !(REWARD_MIN_SIZE_INCLUSIVE <= name.length()
+                && name.length() <= REWARD_MAX_SIZE_INCLUSIVE);
     }
 
-    private void validateWord(String reward) {
-        if (isNotMatches(reward)) {
+    private void validateWord(String name) {
+        if (isNotMatches(name)) {
             throw new IllegalArgumentException(VALUE_ERROR_MESSAGE);
         }
     }
 
-    private boolean isNotMatches(String reward) {
-        return !PLAYER_NAME_PATTERN.matcher(reward).matches();
+    private boolean isNotMatches(String name) {
+        return !PLAYER_NAME_PATTERN.matcher(name).matches();
     }
 
-    public String getReward() {
-        return this.reward;
+    public String getName() {
+        return this.name;
     }
 
 }

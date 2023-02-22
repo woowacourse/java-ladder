@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -27,7 +26,7 @@ public class RewardsTest {
         PlayerNames playerNames = PlayerNames.from(List.of("pobi", "hell"));
         Rewards rewards = Rewards.from(playerNames.getSize(), List.of("fail", "5000"));
 
-        assertThat(rewards.getRewards()).map(Reward::getReward)
+        assertThat(rewards.getRewards()).map(Reward::getName)
                 .containsExactly("fail", "5000");
     }
 

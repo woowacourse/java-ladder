@@ -16,7 +16,7 @@ public class ResultTest {
         Result result = new Result(playerName, reward);
 
         assertThat(result.getPlayerName().getPlayerName()).isEqualTo("pobi");
-        assertThat(result.getReward().getReward()).isEqualTo("10000");
+        assertThat(result.getReward().getName()).isEqualTo("10000");
     }
 
 }

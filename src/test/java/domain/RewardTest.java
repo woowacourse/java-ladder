@@ -35,7 +35,7 @@ public class RewardTest {
     void createRewardSuccess(String input) {
         Reward reward = new Reward(input);
 
-        assertThat(reward.getReward()).isEqualTo(input);
+        assertThat(reward.getName()).isEqualTo(input);
     }
 
 }
