@@ -5,6 +5,7 @@ import model.Ladder;
 import model.LadderHeight;
 import model.LadderResult;
 import model.Names;
+import model.Player;
 import util.LineGenerator;
 import view.InputView;
 import view.OutputView;
@@ -26,7 +27,7 @@ public class Controller {
         Ladder ladder = new Ladder(names.getNamesSize(), ladderHeight,new LineGenerator());
         Game game = new Game(names, ladderResult,ladderHeight,ladder);
         printLadder(names, ladder, ladderHeight , ladderResult);
-        playLadderGame(game);
+        playLadderGame(game,names);
     }
 
     private Names setNames() {
@@ -50,7 +51,7 @@ public class Controller {
     }
 
     private LadderResult setLadderResult(int personCount) {
-        outputView.printLadderResultMessage();
+        outputView.printExecutionResultMessage();
         try {
             return new LadderResult(inputView.readLadderResult(),personCount);
         } catch (Exception e) {
@@ -61,27 +62,37 @@ public class Controller {
 
     private void printLadder(Names names, Ladder ladder, LadderHeight ladderHeight,
                              LadderResult result){
-        outputView.printResultMessage();
+        outputView.printLadderResultMessage();
         outputView.printName(names);
         outputView.printLadder(names, ladder, ladderHeight);
         outputView.printResult(result);
     }
 
-    private void playLadderGame(Game game) {
-        String playerName = new String();
-        while(!playerName.equals("all")){
-            outputView.printPlayerResultMessage();
-            playerName = inputView.readPlayerResult();
+    private void playLadderGame(Game game,Names names) {
+        Player playerName;
+        do{
+            playerName = setPlayer(names);
             outputView.printPlayerExecutionResultMessage();
             printPlayerResult(playerName, game);
         }
+        while(!playerName.getPlayer().equals(inputView.readEnd()));
     }
 
-    private void printPlayerResult(String playerName,Game game){
-        if(!playerName.equals("all")){
-            outputView.printPlayerGameResult(game.getPrizeIndividualPlayer(playerName));
+    private Player setPlayer(Names names) {
+        outputView.printPlayerResultMessage();
+        try {
+            return new Player(names, inputView.readPlayerResult());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return setPlayer(names);
+        }
+    }
+
+    private void printPlayerResult(Player player,Game game){
+        if(player.comparePlayer(player)){
+            outputView.printPlayerGameResult(game.getPrizeIndividualPlayer(player));
             return;
         }
-        outputView.printPlayerGameResult(game.getPrizePlayers());
+        outputView.printPlayerGameEndResult(game.getPrizePlayers());
     }
 }

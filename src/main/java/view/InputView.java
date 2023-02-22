@@ -5,6 +5,7 @@ import util.ExceptionMessage;
 import java.util.Scanner;
 
 public class InputView {
+    private static final String END_MESSAGE = "all";
     private final Scanner scanner;
 
     public InputView(Scanner scanner) {
@@ -28,6 +29,10 @@ public class InputView {
     }
 
     public String readPlayerResult(){
-        return scanner.nextLine();
+       return scanner.nextLine();
+    }
+
+    public String readEnd() {
+        return END_MESSAGE;
     }
 }

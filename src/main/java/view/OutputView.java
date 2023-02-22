@@ -77,8 +77,8 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printPlayerGameResult(String name) {
-        System.out.println(name);
+    public void printPlayerGameResult(String player) {
+        System.out.println(player);
     }
 
     public void printPlayerGameEndResult(HashMap<Name, String> prizeResult) {

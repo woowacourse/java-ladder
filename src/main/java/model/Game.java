@@ -42,8 +42,8 @@ public class Game {
         return column < personCount - 1 && ladder.getLadder(row).getLine(column);
     }
 
-    public String getPrizeIndividualPlayer(String name) {
-        return prizeResult.get(new Name(name));
+    public String getPrizeIndividualPlayer(Player name) {
+        return prizeResult.get(new Name(name.getPlayer()));
     }
 
     public HashMap<Name,String> getPrizePlayers() {
