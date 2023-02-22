@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import static view.InputViewValidator.validateLadderHeight;
-import static view.InputViewValidator.validatePlayerNames;
+import static view.InputViewValidator.*;
 
 public class InputView {
 
     public static final String INPUT_PLAYER_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     public static final String INPUT_LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
+    public static final String INPUT_WINNING_ENTRIES_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
 
     private final Scanner scanner;
 
@@ -23,9 +23,7 @@ public class InputView {
         printInputMessage(INPUT_PLAYER_NAMES_MESSAGE);
         String playerNamesInput = readline();
         validatePlayerNames(playerNamesInput);
-        return Arrays.stream(playerNamesInput.split(",", -1))
-                .map(String::strip)
-                .collect(Collectors.toUnmodifiableList());
+        return splitInputByDelimiter(playerNamesInput);
     }
 
     public int readLadderHeight() {
@@ -33,6 +31,21 @@ public class InputView {
         String ladderHeight = readline();
         validateLadderHeight(ladderHeight);
         return Integer.parseInt(ladderHeight);
+    }
+
+    public List<String> readWinningEntries() {
+        printInputMessage(INPUT_WINNING_ENTRIES_MESSAGE);
+        String winningEntriesInput = readline();
+        validateWinningEntries(winningEntriesInput);
+        return splitInputByDelimiter(winningEntriesInput);
+    }
+
+    private List<String> splitInputByDelimiter(final String input) {
+        final String INPUT_DELIMITER = ",";
+
+        return Arrays.stream(input.split(INPUT_DELIMITER, -1))
+                .map(String::strip)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private void printInputMessage(final String message) {

@@ -11,6 +11,10 @@ public class InputViewValidator {
         validateNotInteger(input);
     }
 
+    public static void validateWinningEntries(final String input) {
+        validateNotEmpty(input);
+    }
+
     private static void validateNotEmpty(final String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("입력값이 비어있습니다.");
