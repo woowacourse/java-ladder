@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Items {
     private static final String INVALID_ITEM_COUNT_MESSAGE = "참가인원과 동일한 개수의 실행결과를 입력해야 합니다.";
@@ -16,8 +17,9 @@ public class Items {
 
     public static Items from(final List<String> items, int playerCount) {
         validateItemCount(items, playerCount);
-        return items.stream()
-                .map(Item::new)
+        return IntStream.range(0, items.size())
+                .boxed()
+                .map(index -> new Item(items.get(index), Position.valueOf(index)))
                 .collect(collectingAndThen(toList(), Items::new));
     }
 

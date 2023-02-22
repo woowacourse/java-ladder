@@ -3,12 +3,18 @@ package ladder.domain;
 public class Player {
 
     private final Name name;
+    private Position position;
 
-    public Player(final String name) {
+    public Player(final String name, final Position position) {
         this.name = new Name(name);
+        this.position = position;
     }
 
     public String getName() {
         return name.getValue();
+    }
+
+    public Position getPosition() {
+        return position;
     }
 }

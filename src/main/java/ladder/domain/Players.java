@@ -7,6 +7,7 @@ import static java.util.stream.Collectors.toUnmodifiableList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class Players {
     private static final int PLAYERS_SIZE_LOWER_BOUND = 2;
@@ -21,8 +22,9 @@ public class Players {
 
     public static Players from(final List<String> names) {
         validate(names);
-        return names.stream()
-                .map(Player::new)
+        return IntStream.range(0, names.size())
+                .boxed()
+                .map(index -> new Player(names.get(index), Position.valueOf(index)))
                 .collect(collectingAndThen(toList(), Players::new));
     }
 
