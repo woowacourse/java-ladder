@@ -81,4 +81,15 @@ class PersonalNamesTest {
         //then
         assertThat(nameValues).containsExactly("hyena", "rosie");
     }
+
+    @DisplayName("중복인 이름이 있을 경우 예외가 발생한다.")
+    @Test
+    void throwExceptionWhenNameDuplicated() {
+        //given
+        final List<String> name = List.of("rosie", "rosie", "hihi");
+        //when
+        //then
+        assertThatThrownBy(() -> new PersonalNames(name))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

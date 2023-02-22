@@ -11,7 +11,7 @@ import laddergame.domain.PersonalNames;
 import laddergame.domain.Width;
 
 public class TestDummy {
-    public static final PersonalName PERSONAL_NAME_ROSIE = new PersonalName("rosie");
+    public static final PersonalName PERSONAL_NAME_ROSIE = PersonalName.valueOf("rosie");
     public static final PersonalNames NAME_SIZE_2 = new PersonalNames(List.of("hyena", "rosie"));
     public static final Width WIDTH_VALUE_2 = new Width(2);
     public static final Height HEIGHT_VALUE_1 = new Height(1);

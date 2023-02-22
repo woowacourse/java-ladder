@@ -11,73 +11,83 @@ import org.junit.jupiter.api.Test;
 @DisplayName("이름")
 class PersonalNameTest {
 
-	@DisplayName("값이 비어있으면 예외가 발생한다.")
-	@Test
-	void throwExceptionWhenNameIsEmpty() {
-		//given
-		final String valueEmpty = "";
+    @DisplayName("값이 비어있으면 예외가 발생한다.")
+    @Test
+    void throwExceptionWhenNameIsEmpty() {
+        //given
+        final String valueEmpty = "";
 
-		//when
-		//then
-		assertThatThrownBy(() -> new PersonalName(valueEmpty))
-				.isInstanceOf(IllegalArgumentException.class);
-	}
+        //when
+        //then
+        assertThatThrownBy(() -> PersonalName.valueOf(valueEmpty))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
-	@DisplayName("값이 공백이면 예외가 발생한다.")
-	@Test
-	void throwExceptionWhenNameIsBlank() {
-		//given
-		final String valueBlank = " ";
+    @DisplayName("값이 공백이면 예외가 발생한다.")
+    @Test
+    void throwExceptionWhenNameIsBlank() {
+        //given
+        final String valueBlank = " ";
 
-		//when
-		//then
-		assertThatThrownBy(() -> new PersonalName(valueBlank))
-			.isInstanceOf(IllegalArgumentException.class);
-	}
+        //when
+        //then
+        assertThatThrownBy(() -> PersonalName.valueOf(valueBlank))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
-	@DisplayName("값이 알파벳이 아니면 예외가 발생한다.")
-	@Test
-	void throwExceptionWhenNameIsNotAlphabet() {
-		//given
-		final String valueBlank = "한글훈글";
+    @DisplayName("값이 알파벳이 아니면 예외가 발생한다.")
+    @Test
+    void throwExceptionWhenNameIsNotAlphabet() {
+        //given
+        final String valueBlank = "한글훈글";
 
-		//when
-		//then
-		assertThatThrownBy(() -> new PersonalName(valueBlank))
-				.isInstanceOf(IllegalArgumentException.class);
-	}
+        //when
+        //then
+        assertThatThrownBy(() -> PersonalName.valueOf(valueBlank))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
-	@DisplayName("값이 null이면 예외가 발생한다.")
-	@Test
-	void throwExceptionWhenNameIsNull() {
-		//given
-		final String nullValue = null;
+    @DisplayName("값이 null이면 예외가 발생한다.")
+    @Test
+    void throwExceptionWhenNameIsNull() {
+        //given
+        final String nullValue = null;
 
-		//when
-		//then
-		assertThatThrownBy(() -> new PersonalName(nullValue))
-			.isInstanceOf(IllegalArgumentException.class);
-	}
+        //when
+        //then
+        assertThatThrownBy(() -> PersonalName.valueOf(nullValue))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
-	@DisplayName("생성된다.")
-	@Test
-	void create() {
-		// given
-		final String value = "rosie";
+    @DisplayName("생성된다.")
+    @Test
+    void create() {
+        // given
+        final String value = "rosie";
 
-		//when
-		//then
-		assertDoesNotThrow(() -> new PersonalName(value));
-	}
+        //when
+        //then
+        assertDoesNotThrow(() -> PersonalName.valueOf(value));
+    }
 
-	@DisplayName("값을 가져온다.")
-	@Test
-	void getName() {
-		//given
-		final String rosieName = PERSONAL_NAME_ROSIE.getValue();
+    @DisplayName("값을 가져온다.")
+    @Test
+    void getName() {
+        //given
+        final String rosieName = PERSONAL_NAME_ROSIE.getValue();
 
-		//when
-		//then
-		assertThat(rosieName).isEqualTo("rosie");
-	}
+        //when
+        //then
+        assertThat(rosieName).isEqualTo("rosie");
+    }
+
+    @DisplayName("이름이 같으면 동등하다")
+    @Test
+    void equalsWhenValuesAreSame() {
+        //given
+        final PersonalName personalName = PersonalName.valueOf("hihi");
+        //when
+        //then
+        assertThat(personalName).isEqualTo(PersonalName.valueOf("hihi"));
+    }
 }
