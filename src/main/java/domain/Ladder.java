@@ -32,7 +32,7 @@ public class Ladder {
         }
     }
 
-    public boolean isExist(int height, int width) {
-        return lines.get(height - 1).getPoints().get(width - 1);
+    public boolean isExist(int heightIndex, int widthIndex) {
+        return lines.get(heightIndex).getPoints().get(widthIndex);
     }
 }
