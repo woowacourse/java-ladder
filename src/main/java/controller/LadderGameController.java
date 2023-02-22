@@ -4,6 +4,7 @@ import model.Ladder;
 import model.LadderHeight;
 import model.Name;
 import model.Players;
+import model.Result;
 import view.InputView;
 import view.OutputView;
 
@@ -20,9 +21,15 @@ public class LadderGameController {
 
     public void run() {
         Players players = new Players(setPlayerNames());
+        List<Result> results = setResults(players.size());
         Ladder ladder = new Ladder(players, setLadderHeight());
         outputView.printAllPlayerNames(players.getAllPlayerNames());
         outputView.printLadder(ladder);
+    }
+
+    private List<Result> setResults(int playerCount) {
+        outputView.printResultsMessage();
+        return inputView.readResults(playerCount);
     }
 
     private List<Name> setPlayerNames() {
