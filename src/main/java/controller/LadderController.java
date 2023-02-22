@@ -1,9 +1,11 @@
 package controller;
 
 import java.util.List;
+import java.util.Map;
 
 import domain.BooleanGenerator;
 import domain.Ladder;
+import domain.LadderGame;
 import domain.LadderGenerator;
 import domain.Name;
 import domain.Players;
@@ -24,19 +26,13 @@ public class LadderController {
         OutputView.printPlayers(players);
         OutputView.printLadder(ladder);
 
+        LadderGame ladderGame = new LadderGame(ladder, players, rewards);
+
         while (true) {
             Name name = generateName();
-            if (name.getName().equals("all")) {
-                for (int i = 0; i < numberOfPlayer; i++) {
-                    int result = ladder.move(i);
-                    System.out.printf("%s : %s%n", players.findNameByIndex(i), rewards.getReward(result).getName());
-                }
-                break;
-            }
             try {
-                int index = players.findIndexByName(name);
-                int result = ladder.move(index);
-                System.out.println(rewards.getReward(result).getName());
+                Map<String, String> result = ladderGame.getReward(name);
+                OutputView.printResults(result);
             } catch (IllegalArgumentException exception) {
                 Log.log(exception.getMessage());
             }

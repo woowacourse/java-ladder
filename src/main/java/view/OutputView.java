@@ -1,6 +1,7 @@
 package view;
 
 import java.util.List;
+import java.util.Map;
 
 import domain.Ladder;
 import domain.Line;
@@ -68,5 +69,21 @@ public class OutputView {
         }
 
         return DISCONNECTED + DIVIDER;
+    }
+
+    public static void printResults(Map<String, String> results) {
+        if (results.size() == 1) {
+            printResult(results);
+            return;
+        }
+        for (String s : results.keySet()) {
+            System.out.printf("%s : %s%n", s, results.get(s));
+        }
+    }
+
+    private static void printResult(Map<String, String> result) {
+        for (String s : result.keySet()) {
+            System.out.println(result.get(s));
+        }
     }
 }

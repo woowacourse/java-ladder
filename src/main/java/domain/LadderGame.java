@@ -15,7 +15,7 @@ public class LadderGame {
         this.rewards = rewards;
     }
 
-    public Map<String, String> getReward(Name name) {
+    public Map<String, String> getReward(final Name name) {
         if (name.getName().equals("all")) {
             return getAllReward();
         }
