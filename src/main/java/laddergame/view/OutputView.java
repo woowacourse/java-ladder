@@ -24,10 +24,10 @@ public class OutputView {
         print(paddedParticipantNames.trim());
     }
 
-    public void printLadder(final List<Line> ladder, final List<String> participantNames) {
+    public void printLadder(final List<Line> lines, final List<String> participantNames) {
         String firstParticipantName = getFirstParticipant(participantNames);
         int firstNameLength = getNameLength(firstParticipantName);
-        String ladderMessage = makeLadderMessage(ladder, firstNameLength);
+        String ladderMessage = makeLadderMessage(lines, firstNameLength);
         print(ladderMessage);
     }
 
@@ -49,8 +49,8 @@ public class OutputView {
         return name.length();
     }
 
-    private String makeLadderMessage(final List<Line> ladder, final int firstNameLength) {
-        return ladder.stream()
+    private String makeLadderMessage(final List<Line> lines, final int firstNameLength) {
+        return lines.stream()
                 .map(rungs -> makeRungsMessage(rungs.getRungs(), firstNameLength))
                 .collect(Collectors.joining(System.lineSeparator()));
     }

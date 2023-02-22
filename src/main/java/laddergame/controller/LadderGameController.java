@@ -45,7 +45,7 @@ public class LadderGameController {
         outputView.printResultGuide();
         List<String> participantNames = getParticipantNames(participants);
         outputView.printParticipantNames(participantNames);
-        outputView.printLadder(ladder.getLadder(), participantNames);
+        outputView.printLadder(ladder.getLines(), participantNames);
     }
 
     private List<String> getParticipantNames(final Participants participants) {
