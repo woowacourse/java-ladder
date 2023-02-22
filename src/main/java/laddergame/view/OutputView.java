@@ -47,7 +47,7 @@ public class OutputView {
         int firstLength = Math.max(firstUserName.length(), firstResult.length());
 
         printUsers(users, firstLength);
-        printLadder(ladder, users.getFirstUserName().length());
+        printLadder(ladder, firstLength);
         printResults(gameResults, firstLength);
     }
 
@@ -99,7 +99,7 @@ public class OutputView {
     private void printResults(GameResults gameResults, int firstLength) {
         StringBuilder builder = new StringBuilder();
         String firstResult = gameResults.getFirstResult();
-        builder.append(BLANK.repeat(firstLength - firstResult.length())).append(firstResult);
+        builder.append(BLANK.repeat(firstLength - firstResult.length() + 1)).append(firstResult);
         for (int index = SECOND_INDEX; index < gameResults.size(); index++) {
             GameResult gameResult = gameResults.getResults().get(index);
             String result = gameResult.getResult();
