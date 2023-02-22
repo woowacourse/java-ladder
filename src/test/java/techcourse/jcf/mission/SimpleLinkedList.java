@@ -2,18 +2,18 @@ package techcourse.jcf.mission;
 
 public class SimpleLinkedList implements SimpleList {
 
-    Node next;
+    private Node start;
     private int size;
+
+    public SimpleLinkedList() {
+        this.start = new Node(null, null);
+        this.size = 0;
+    }
 
     @Override
     public boolean add(String value) {
         Node newNode = new Node(value, null);
-        if (next == null) {
-            next = newNode;
-            size++;
-            return true;
-        }
-        Node tmp = next;
+        Node tmp = start;
         while (tmp.next != null) {
             tmp = tmp.next;
         }
@@ -25,7 +25,7 @@ public class SimpleLinkedList implements SimpleList {
     @Override
     public void add(int index, String value) {
         Node newNode = new Node(value, null);
-        Node tmp = next;
+        Node tmp = start;
         for (int i = 0; i < index - 1; i++) {
             tmp = tmp.next;
         }
@@ -36,9 +36,9 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public String set(int index, String value) {
-        Node tmp = next;
+        Node tmp = start.next;
         String result;
-        for (int i = 0; i < index - 1; i++) {
+        for (int i = 0; i < index; i++) {
             tmp = tmp.next;
         }
         result = tmp.data;
@@ -48,21 +48,21 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public String get(int index) {
-        Node result = next;
+        Node tmp = start.next;
         for (int i = 0; i < index; i++) {
-            result = result.next;
+            tmp = tmp.next;
         }
-        return result.data;
+        return tmp.data;
     }
 
     @Override
     public boolean contains(String value) {
-        Node result = next;
-        while (result.next != null) {
-            if (result.data.equals(value)) {
+        Node tmp = start.next;
+        while (tmp.next != null) {
+            if (tmp.data.equals(value)) {
                 return true;
             }
-            result = result.next;
+            tmp = tmp.next;
         }
         return false;
     }
@@ -70,7 +70,7 @@ public class SimpleLinkedList implements SimpleList {
     @Override
     public int indexOf(String value) {
         int index = 0;
-        Node result = next;
+        Node result = start;
         while (result.next != null) {
             if (result.data.equals(value)) {
                 return index;
@@ -92,45 +92,34 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public boolean remove(String value) {
-        return false;
+        remove(indexOf(value));
+        return true;
     }
 
     @Override
     public String remove(int index) {
-        String result;
-        if (index == 0) {
-            Node tmp = next;
-            next = next.next;
-            result = tmp.data;
-            tmp = null;
-        } else if (index == size - 1) {
-            Node tmp = next;
-            while (tmp.next != null) {
-                tmp = tmp.next;
-            }
-            result = tmp.data;
-            tmp = null;
-        } else {
-            Node tmp = next;
-            for (int i = 0; i < index - 1; i++) {
-                tmp = tmp.next;
-            }
-            result = tmp.next.data;
-            tmp.next = tmp.next.next;
+        Node tmp = start;
+        for (int i = 0; i < index; i++) {
+            tmp = tmp.next;
         }
+        String result = tmp.next.data;
+        Node nextNode = tmp.next;
+        tmp.next = nextNode.next;
+        nextNode = null;
         size--;
         return result;
     }
 
     @Override
     public void clear() {
-        Node result = next;
+        Node result = start;
         while (result.next != null) {
             Node tmp = result;
-            result = tmp.next;
+            result = result.next;
             tmp = null;
         }
-        next = null;
+        start = null;
+        this.start = new Node(null, null);
         size = 0;
     }
 }

@@ -60,5 +60,12 @@ class ListStudy {
         list.clear();
         assertThat(list.size()).isEqualTo(0);
         assertThat(list.isEmpty()).isTrue();
+
+        System.out.println("========");
+
+        // values에 담긴 모든 값을 출력한다.
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
     }
 }
