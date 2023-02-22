@@ -3,6 +3,8 @@ package domain;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,10 +15,13 @@ class WinningEntryTest {
     void createWinningEntryWithWrongSize() {
         //given
         int personCount = 5;
+        List<WinningResult> winningResults = Stream.of("1", "2", "3", "4")
+                .map(WinningResult::new)
+                .collect(Collectors.toList());
 
         //when
         //then
-        assertThatThrownBy(() -> new WinningEntry(List.of("1", "2", "3", "4"), personCount))
+        assertThatThrownBy(() -> new WinningEntry(winningResults, personCount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -25,9 +30,12 @@ class WinningEntryTest {
     void createWinningEntryWithPersonCountSize() {
         //given
         int personCount = 5;
+        List<WinningResult> winningResults = Stream.of("1", "2", "3", "4", "5")
+                .map(WinningResult::new)
+                .collect(Collectors.toList());
 
         //when
-        WinningEntry winningEntry = new WinningEntry(List.of("1", "2", "3", "4", "5"), personCount);
+        WinningEntry winningEntry = new WinningEntry(winningResults, personCount);
 
         //then
         assertThat(winningEntry.getWinningEntry().size()).isEqualTo(personCount);

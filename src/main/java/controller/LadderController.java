@@ -5,7 +5,7 @@ import domain.LadderGame;
 import domain.Person;
 import domain.Persons;
 import domain.WinningEntry;
-import exception.ErrorCode;
+import domain.WinningResult;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +29,7 @@ public class LadderController {
         WinningEntry winningEntry = requestGameResult(persons.getTotalPersonCount());
 
         ladderGame = new LadderGame(persons, height, winningEntry, new RandomBooleanGenerator());
-        outputView.printLadder(ladderGame.getAllPlayers(), ladderGame.getLadder(), winningEntry.getWinningEntry(),
+        outputView.printLadder(ladderGame.getAllPlayers(), ladderGame.getLadder(), ladderGame.getWinningEntries(),
                 persons.getLongestPersonNameLength());
         printGameResult(ladderGame.play());
     }
@@ -81,7 +81,9 @@ public class LadderController {
 
     private WinningEntry readWinningEntry(int personCount) {
         try {
-            return new WinningEntry(Arrays.asList(inputView.requestGameResult().split(DELIMITER)), personCount);
+            return new WinningEntry(Arrays.stream(inputView.requestGameResult().split(DELIMITER))
+                    .map(WinningResult::new)
+                    .collect(Collectors.toList()), personCount);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
         }

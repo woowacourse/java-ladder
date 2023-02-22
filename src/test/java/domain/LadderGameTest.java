@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,9 @@ class LadderGameTest {
                 .map(Person::new)
                 .collect(Collectors.toList()));
         height = new Height(5);
-        winningEntry = new WinningEntry(List.of("0", "1", "2", "3", "4"), 5);
+        winningEntry = new WinningEntry(Stream.of("0", "1", "2", "3", "4")
+                .map(WinningResult::new)
+                .collect(Collectors.toList()), 5);
     }
 
     @Test

@@ -24,7 +24,8 @@ public class LadderGame {
         int resultPosition;
         for (int personIndex = 0; personIndex < persons.getTotalPersonCount(); personIndex++) {
             resultPosition = ladder.findDestination(personIndex);
-            winningResult.put(persons.findNameByPosition(personIndex), winningEntry.findByPosition(resultPosition));
+            winningResult.put(persons.findNameByPosition(personIndex),
+                    winningEntry.findResultByPosition(resultPosition));
         }
         return winningResult;
     }
@@ -50,6 +51,13 @@ public class LadderGame {
         return persons.getPersons()
                 .stream()
                 .map(Person::getName)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getWinningEntries() {
+        return winningEntry.getWinningEntry()
+                .stream()
+                .map(WinningResult::getResult)
                 .collect(Collectors.toList());
     }
 }
