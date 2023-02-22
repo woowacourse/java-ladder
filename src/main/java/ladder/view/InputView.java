@@ -58,6 +58,11 @@ public class InputView {
             throw new IllegalArgumentException("숫자가 아닌 값은 입력할 수 없습니다.");
         }
     }
+    
+    public static String inputExecutionResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return SCANNER.nextLine();
+    }
 
     public static <T> T repeat(Supplier<T> supplier) {
         try {

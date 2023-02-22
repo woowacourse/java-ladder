@@ -26,7 +26,7 @@ class LadderTest {
         Ladder ladder = new Ladder(() -> Bar.TRUE, 5, 4);
     
         //when
-        List<Integer> positions = ladder.getMovedPositions();
+        List<Integer> positions = ladder.getMovedPositions(4);
         
         // then
         assertThat(positions).containsExactly(1,0,3,2);
