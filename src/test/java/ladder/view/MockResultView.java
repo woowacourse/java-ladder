@@ -14,6 +14,8 @@ public class MockResultView implements Result{
 
     private List<String> players;
     private List<Line> ladder;
+    private List<Reward> rewards;
+    private Map<Player, Reward> gameResult;
 
     private Boolean hasError;
 
@@ -26,8 +28,13 @@ public class MockResultView implements Result{
     public void printLadder(Players players, Ladder ladder, Rewards rewards) {
         this.players = players.getNames();
         this.ladder = ladder.getLadder();
+        this.rewards = rewards.getRewards();
     }
 
+    @Override
+    public void printGameResult(Map<Player, Reward> gameResult) {
+        this.gameResult = gameResult;
+    }
     public Boolean hasError() {
         return hasError;
     }
@@ -40,8 +47,11 @@ public class MockResultView implements Result{
         return ladder;
     }
 
-    @Override
-    public void printGameResult(Map<Player, Reward> resultByPlayers) {
+    public List<Reward> getRewards() {
+        return rewards;
+    }
 
+    public Map<Player, Reward> getGameResult() {
+        return gameResult;
     }
 }
