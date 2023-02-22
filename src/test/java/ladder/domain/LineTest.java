@@ -66,18 +66,4 @@ class LineTest {
 
         assertThat(line.getDirectionToMove(0)).isEqualTo(Direction.RIGHT);
     }
-
-    private static class MockedPointGenerator implements StepPointGenerator {
-
-        private final Queue<StepPoint> queue;
-
-        MockedPointGenerator(Queue<StepPoint> generateValues) {
-            this.queue = generateValues;
-        }
-
-        @Override
-        public StepPoint generate(StepPoint previousValue) {
-            return queue.poll();
-        }
-    }
 }

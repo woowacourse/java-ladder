@@ -27,4 +27,13 @@ public class LadderLines {
     public int height() {
         return lines.size();
     }
+
+    public int findDestinationIndex(int startIndex) {
+        int index = startIndex;
+        for (Line line : lines) {
+            Direction nextDirection = line.getDirectionToMove(index);
+            index = nextDirection.computeNextIndex(index);
+        }
+        return index;
+    }
 }
