@@ -15,9 +15,6 @@ public class Player {
         this.position = position;
     }
 
-    public void pass(Row row) {
-        position = row.movePlayer(position);
-    }
 
     @Override
     public boolean equals(Object o) {
