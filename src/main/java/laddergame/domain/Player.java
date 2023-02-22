@@ -13,6 +13,13 @@ public class Player {
         position = new Position(position.getValue() + 1);
     }
 
+    public void moveLeft() {
+        if (position.getValue() == 0) {
+            throw new IllegalArgumentException("더이상 왼쪽으로 움직일 수 없습니다.");
+        }
+        position = new Position(position.getValue() - 1);
+    }
+
     public Position getPosition() {
         return position;
     }

@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
@@ -36,5 +37,24 @@ class PlayerTest {
 
         Position position = player.getPosition();
         assertThat(position.getValue()).isEqualTo(1);
+    }
+
+    @DisplayName("왼쪽으로 움질일 수 있다.")
+    @Test
+    void moveLeft() {
+        Player player = new Player(new PersonalName("hihi"), 2);
+
+        player.moveLeft();
+
+        Position position = player.getPosition();
+        assertThat(position.getValue()).isEqualTo(1);
+    }
+
+    @DisplayName("이미 맨 왼쪽인데 왼쪽으로 움직이려 하면 예외를 던진다.")
+    @Test
+    void throwExceptionAlreadyStartOfTheLine() {
+        Player player = new Player(new PersonalName("hihi"), 0);
+        assertThatThrownBy(() -> player.moveLeft())
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
