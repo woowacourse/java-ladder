@@ -20,15 +20,20 @@ public class Users {
         }
     }
 
+    public boolean contain(final String userName) {
+        for (User user : users) {
+            if (user.getName().equals(userName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getCount() {
         return users.size();
     }
 
     public List<User> getUsers() {
         return new ArrayList<>(users);
-    }
-
-    public boolean contain(final User user) {
-        return users.contains(user);
     }
 }
