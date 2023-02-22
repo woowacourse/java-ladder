@@ -10,6 +10,7 @@ public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final Pattern NOT_NUMERIC_FORMAT = Pattern.compile("\\D");
     private static final Pattern INPUT_NAMES_FORMAT = Pattern.compile("([a-zA-Z]*)(,[a-zA-Z]*)*");
+    private static final Pattern INPUT_EXECUTION_RESULTS_FORMAT = Pattern.compile("([가-힣|a-zA-Z0-9]*)(,[가-힣|a-zA-Z0-9]*)*");
     
     private InputView() {
         throw new IllegalStateException("인스턴스를 생성할 수 없는 유틸클래스입니다.");
@@ -61,7 +62,16 @@ public class InputView {
     
     public static String inputExecutionResults() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        return SCANNER.nextLine();
+        String inputExecutionResults = SCANNER.nextLine();
+        validateExecutionResults(inputExecutionResults);
+        return inputExecutionResults;
+    }
+    
+    private static void validateExecutionResults(String inputExecutionResults) {
+        Matcher matcher = INPUT_EXECUTION_RESULTS_FORMAT.matcher(inputExecutionResults);
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException("실행 결과 입력 형식이 올바르지 않습니다.");
+        }
     }
     
     public static String inputPlayerName() {
