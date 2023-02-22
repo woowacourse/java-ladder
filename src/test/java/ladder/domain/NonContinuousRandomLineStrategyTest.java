@@ -1,8 +1,7 @@
-package ladder.utils;
+package ladder.domain;
 
-import ladder.domain.NonContinuousRandomLineStrategy;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
