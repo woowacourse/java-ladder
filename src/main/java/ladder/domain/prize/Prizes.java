@@ -2,7 +2,6 @@ package ladder.domain.prize;
 
 import ladder.domain.prize.exception.PrizeNumberException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

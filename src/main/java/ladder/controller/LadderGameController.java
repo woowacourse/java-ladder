@@ -8,6 +8,7 @@ import ladder.domain.ladder.generator.BlockGenerator;
 import ladder.domain.ladder.generator.RandomBlockGenerator;
 import ladder.domain.player.PlayerName;
 import ladder.domain.player.Players;
+import ladder.domain.prize.Prizes;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -18,7 +19,9 @@ public class LadderGameController {
 
     public void run() {
         Players players = initPlayers();
-        Ladder ladder = initLadder(players.size());
+        int playerNumber = players.size();
+        Prizes prizes = initPrizes(playerNumber);
+        Ladder ladder = initLadder(playerNumber);
         InputView.terminate();
 
         showResult(players, ladder);
@@ -31,6 +34,16 @@ public class LadderGameController {
         } catch (CustomException e) {
             OutputView.printErrorMessage(e);
             return initPlayers();
+        }
+    }
+
+    private Prizes initPrizes(int playerNumber) {
+        try {
+            List<String> prizeNames = InputView.inputPrize();
+            return new Prizes(playerNumber, prizeNames);
+        } catch (CustomException e) {
+            OutputView.printErrorMessage(e);
+            return initPrizes(playerNumber);
         }
     }
 

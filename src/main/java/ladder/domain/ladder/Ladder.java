@@ -25,9 +25,9 @@ public class Ladder {
 
     public List<Line> makeLines(final int playerNumber, final int height) {
         List<Line> lines = new ArrayList<>();
-        Line line = new Line(blockGenerator, playerNumber);
 
         for (int i = 0; i < height; i++) {
+            Line line = new Line(blockGenerator, playerNumber);
             lines.add(line);
         }
         return lines;
