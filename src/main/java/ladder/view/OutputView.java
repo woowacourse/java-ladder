@@ -1,9 +1,6 @@
 package ladder.view;
 
 
-import ladder.model.Player;
-import ladder.model.Reward;
-
 import java.util.List;
 import java.util.Map;
 
@@ -44,12 +41,12 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printChosePlayerResult(String result) {
+    public void printSinglePlayerResult(String result) {
         System.out.println(OutputMessage.OUTPUT_EXECUTION_RESULT.getMessage());
         System.out.println(result);
     }
 
-    public void printAllPlayerResults(Map<String, String> results) {
+    public void printAllPlayersResult(Map<String, String> results) {
         System.out.println(OutputMessage.OUTPUT_EXECUTION_RESULT.getMessage());
         results.forEach((key, value) -> System.out.printf(OUTPUT_ALL_PLAYER_RESULT_FORMAT, key, value));
     }

@@ -93,21 +93,21 @@ public class LadderGameController {
         String option = inputView.readPlayerChoice();
 
         while(!option.equals(LOOK_ALL)){
-            showChosePlayer(resultBoard, option);
+            showSinglePlayer(resultBoard, option);
             option = inputView.readPlayerChoice();
         }
         showAllPlayers(resultBoard);
     }
 
     private void showAllPlayers(ResultBoard resultBoard) {
-        Map<String, String> results = new HashMap<>();
-        resultBoard.getResult().forEach((key, value) -> results.put(key.getPlayerName(), value.getReward()));
-        outputView.printAllPlayerResults(results);
+        Map<String, String> result = new HashMap<>();
+        resultBoard.getResult().forEach((key, value) -> result.put(key.getPlayerName(), value.getReward()));
+        outputView.printAllPlayersResult(result);
     }
 
-    private void showChosePlayer(ResultBoard resultBoard, String playerName) {
+    private void showSinglePlayer(ResultBoard resultBoard, String playerName) {
         try {
-            outputView.printChosePlayerResult(resultBoard.getRewardOf(playerName).getReward());
+            outputView.printSinglePlayerResult(resultBoard.getRewardOf(playerName).getReward());
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
         }
