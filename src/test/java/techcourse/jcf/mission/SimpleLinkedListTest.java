@@ -19,4 +19,16 @@ class SimpleLinkedListTest {
         Assertions.assertThat(myValues.add("second")).isTrue();
     }
 
+    @Test
+    public void getTest() {
+        List<String> values = new ArrayList<>(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"));
+        SimpleLinkedList myValues = new SimpleLinkedList();
+        for (String value : values) {
+            myValues.add(value);
+        }
+
+        assertThat(myValues.get(10)).isEqualTo("k");
+    }
+
+
 }
