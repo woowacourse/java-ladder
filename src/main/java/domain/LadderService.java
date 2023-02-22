@@ -6,7 +6,7 @@ import java.util.List;
 public class LadderService {
 
     public static final String ALL = "all";
-    
+
     private final People people;
     private final Ladder ladder;
     private final Results results;
@@ -34,9 +34,9 @@ public class LadderService {
     }
 
     public Result getSingleResult(Person name) {
-        int column = people.findPersonColumn(name);
-        Position position = ladder.startByColumn(column);
-        return results.getResultByColumn(position);
+        int startColumn = people.findPersonColumn(name);
+        int resultColumn = ladder.startFromColumnAndGetResultColumn(startColumn);
+        return results.getResultByColumn(resultColumn);
     }
 
     public People getPeople() {

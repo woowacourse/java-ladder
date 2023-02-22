@@ -23,13 +23,13 @@ public class Ladder implements Iterable<Line>{
     }
 
 
-    public Position startByColumn(int startColumn) {
+    public int startFromColumnAndGetResultColumn(int startColumn) {
         Position position = new Position(startColumn);
         for (Line line : lines) {
             line.move(position);
             position.goDown();
         }
-        return position;
+        return position.getColumn();
     }
 
     public int getHeight() {
