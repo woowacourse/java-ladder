@@ -48,6 +48,10 @@ public class LinesGame {
         return index > 0 && line.getLine().get(index - 1);
     }
 
+    public List<Integer> getResult() {
+        return gameResults;
+    }
+
     public int getResult(int index) {
         return gameResults.get(index);
     }

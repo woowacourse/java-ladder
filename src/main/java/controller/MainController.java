@@ -3,6 +3,7 @@ package controller;
 import domain.Height;
 import domain.LineSize;
 import domain.Lines;
+import domain.LinesGame;
 import domain.Names;
 import domain.Result;
 import domain.Rewards;
@@ -31,7 +32,8 @@ public class MainController {
         LineSize lineSize = new LineSize(names);
         Lines lines = new Lines(lineSize.getLineSize(), height.getHeight(), booleanGenerator);
         outputView.printLines(names, lines, rewards);
-        Result result = new Result(names, lines, rewards);
+        LinesGame linesGame = new LinesGame(lines);
+        Result result = new Result(names, linesGame.getResult(), rewards);
 
         showResult(result, names);
     }
