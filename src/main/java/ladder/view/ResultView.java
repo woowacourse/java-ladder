@@ -20,7 +20,8 @@ public class ResultView implements Result {
 
     private static final String BLANK_BETWEEN_NAMES = " ";
     private static final String FORMAT_BLANK = " ";
-    private static final String OUTPUT_RESULT_MESSAGE = "실행결과";
+    private static final String OUTPUT_LADDER_MESSAGE = "사다리 결과";
+    private static final String OUTPUT_RESULT_MESSAGE = "실행 결과";
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String OUTPUT_PATTERN = "%" + Name.NAME_MAXIMUM_LENGTH + "s";
     private static final String PATTERN_PLAYER_RESULT = "%s : %s";
@@ -34,7 +35,7 @@ public class ResultView implements Result {
 
     @Override
     public void printLadder(Players players, Ladder ladder, Rewards rewards) {
-        System.out.println(OUTPUT_RESULT_MESSAGE);
+        System.out.println(OUTPUT_LADDER_MESSAGE);
         System.out.println(convertPlayerNames(players));
         System.out.println(convertLadderSymbol(ladder));
         System.out.println(convertRewards(rewards));
@@ -42,6 +43,7 @@ public class ResultView implements Result {
 
     @Override
     public void printGameResult(Map<Player, Reward> gameResult) {
+        System.out.println(OUTPUT_RESULT_MESSAGE);
         System.out.println(convertGameResult(gameResult));
     }
 
