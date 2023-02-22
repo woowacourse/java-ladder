@@ -101,4 +101,11 @@ public class PlayersTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("플레이어 이름 중 all 이 있으면 예외 발생")
+    void createPlayersContainsAllExceptionTest() {
+        List<String> playerNames = List.of("pobi", "crong", "all");
+
+        assertThatThrownBy(() -> Players.create(playerNames)).isInstanceOf(IllegalArgumentException.class);
+    }
 }
