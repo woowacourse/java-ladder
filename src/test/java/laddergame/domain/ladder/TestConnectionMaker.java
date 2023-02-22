@@ -1,8 +1,5 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.ladder.Connection;
-import laddergame.domain.ladder.ConnectionStrategy;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
