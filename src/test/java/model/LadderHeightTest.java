@@ -1,6 +1,8 @@
 package model;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -19,6 +21,16 @@ public class LadderHeightTest {
         assertThatThrownBy(
                 () -> {
                     new LadderHeight(input);
+                }
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("LadderHeight가 20초과할 경우 객체 생성 실패")
+    void createLadderHeightMoreThanMax(){
+        assertThatThrownBy(
+                () -> {
+                    new LadderHeight(21);
                 }
         ).isInstanceOf(IllegalArgumentException.class);
     }
