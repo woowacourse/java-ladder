@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 class InputViewTest {
     @Nested
     @DisplayName("입력받은 참가자들의 이름이")
-    class NamesCase {
+    class PlayersCase {
         @Test
         @DisplayName("쉼표로 구분된 이름이 아니면 예외가 발생한다.")
         void givenNamesNotSeparatedByComma_thenThrowsException() {

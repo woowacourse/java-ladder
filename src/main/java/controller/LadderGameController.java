@@ -20,9 +20,9 @@ public class LadderGameController {
     }
 
     public void run() {
-        Names names = saveNames();
-        Goals goals = saveGoals(names.count());
-        Ladder ladder = buildLadder(names, goals);
+        Players players = saveNames();
+        Goals goals = saveGoals(players.count());
+        Ladder ladder = buildLadder(players, goals);
 
         printLadder(ladder);
         rideLadder(ladder);
@@ -69,10 +69,10 @@ public class LadderGameController {
         }
     }
 
-    private Ladder buildLadder(final Names names, final Goals goals) {
+    private Ladder buildLadder(final Players players, final Goals goals) {
         Height height = saveHeight();
-        Ladder ladder = Ladder.of(booleanGenerator, names, goals);
-        ladder.build(height, names.count());
+        Ladder ladder = Ladder.of(booleanGenerator, players, goals);
+        ladder.build(height, players.count());
         return ladder;
     }
 
@@ -80,10 +80,10 @@ public class LadderGameController {
         outputView.printLadder(ladder.getNames(), ladder, ladder.getGoals());
     }
 
-    private Names saveNames() {
+    private Players saveNames() {
         try {
             outputView.printRequestNames();
-            return Names.ofValues(inputView.getNames());
+            return Players.ofValues(inputView.getNames());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return saveNames();

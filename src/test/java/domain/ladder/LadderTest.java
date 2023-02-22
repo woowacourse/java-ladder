@@ -2,7 +2,7 @@ package domain.ladder;
 
 import domain.Goals;
 import domain.Height;
-import domain.Names;
+import domain.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,7 +23,7 @@ class LadderTest {
         @CsvSource(value = {"참가자1,골3", "참가자2,골1", "참가자3,골2"})
         void givenStaringPoint_thenReturnsGoalPoint(String participantName, String expectedGoalName) {
             Ladder ladder = Ladder.of(new FixBooleanGenerator(true, false, true, false, false),
-                    Names.ofValues(List.of("참가자1", "참가자2", "참가자3")),
+                    Players.ofValues(List.of("참가자1", "참가자2", "참가자3")),
                     Goals.of(3, List.of("골1", "골2", "골3")));
             ladder.build(Height.of(3), 3);
 

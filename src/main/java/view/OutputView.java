@@ -1,7 +1,7 @@
 package view;
 
 import domain.Goals;
-import domain.Names;
+import domain.Players;
 import domain.ladder.Ladder;
 import util.MessageGenerator;
 import util.MessagePrinter;
@@ -31,9 +31,9 @@ public class OutputView {
         messagePrinter.println(REQUEST_LADDER_HEIGHT_MESSAGE);
     }
 
-    public void printLadder(final Names names, final Ladder ladder, Goals goals) {
+    public void printLadder(final Players players, final Ladder ladder, Goals goals) {
         printResultMessage();
-        printParticipantNames(names);
+        printParticipantNames(players);
         printGeneratedLadder(ladder.getConnectedToRightConditionsOfAll());
         printGoals(goals);
     }
@@ -46,8 +46,8 @@ public class OutputView {
         messagePrinter.println(RESULT_MESSAGE);
     }
 
-    private void printParticipantNames(final Names names) {
-        messagePrinter.println(MessageGenerator.generateNamesMessage(names));
+    private void printParticipantNames(final Players players) {
+        messagePrinter.println(MessageGenerator.generateNamesMessage(players));
     }
 
     private void printGeneratedLadder(final List<List<Boolean>> ladderInfo) {

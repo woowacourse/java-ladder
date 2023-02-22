@@ -4,24 +4,24 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Name {
+public class Player {
 
     public static final int MAX_LENGTH = 5;
     public static final String LENGTH_OVER_MAX_ERROR_MESSAGE = "5글자 이하를 입력해주세요.";
     public static final String LENGTH_BLACK_ERROR_MESSAGE = "한글자 이상 입력해주세요.";
     private final String name;
 
-    private Name(final String name) {
+    private Player(final String name) {
         this.name = name;
     }
 
-    public static Name of(final String name) {
+    public static Player of(final String name) {
         validateName(name);
-        return new Name(name);
+        return new Player(name);
     }
 
-    public static List<Name> ofMultiple(final List<String> names) {
-        return names.stream().map(Name::of)
+    public static List<Player> ofMultiple(final List<String> names) {
+        return names.stream().map(Player::of)
                 .collect(Collectors.toList());
     }
 
@@ -46,16 +46,12 @@ public class Name {
         return this.name;
     }
 
-    public int length() {
-        return this.name.length();
-    }
-
     @Override
     public boolean equals(Object name) {
         if (this == name) return true;
         if (name == null || getClass() != name.getClass()) return false;
-        Name anotherName = (Name) name;
-        return this.name.equals(anotherName.name);
+        Player anotherPlayer = (Player) name;
+        return this.name.equals(anotherPlayer.name);
     }
 
     @Override

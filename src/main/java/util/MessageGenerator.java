@@ -1,7 +1,7 @@
 package util;
 
 import domain.Goals;
-import domain.Names;
+import domain.Players;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +11,10 @@ import static view.constant.LadderShapes.*;
 
 public class MessageGenerator {
 
-    public static String generateNamesMessage(Names names) {
+    public static String generateNamesMessage(Players players) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (String name : names.getNames()) {
+        for (String name : players.getNames()) {
             stringBuilder.append(alignLeft(name));
         }
 

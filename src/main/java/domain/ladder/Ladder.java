@@ -2,7 +2,7 @@ package domain.ladder;
 
 import domain.Goals;
 import domain.Height;
-import domain.Names;
+import domain.Players;
 import util.BooleanGenerator;
 
 import java.util.ArrayList;
@@ -13,17 +13,17 @@ public class Ladder {
 
     private final List<Line> lines = new ArrayList<>();
     private final BooleanGenerator booleanGenerator;
-    private final Names names;
+    private final Players players;
     private final Goals goals;
 
-    public Ladder(BooleanGenerator booleanGenerator, Names names, Goals goals) {
+    public Ladder(BooleanGenerator booleanGenerator, Players players, Goals goals) {
         this.booleanGenerator = booleanGenerator;
-        this.names = names;
+        this.players = players;
         this.goals = goals;
     }
 
-    public static Ladder of(BooleanGenerator booleanGenerator, Names names, Goals goals) {
-        return new Ladder(booleanGenerator, names, goals);
+    public static Ladder of(BooleanGenerator booleanGenerator, Players players, Goals goals) {
+        return new Ladder(booleanGenerator, players, goals);
     }
 
     public void build(final Height height, final int width) {
@@ -53,7 +53,7 @@ public class Ladder {
     }
 
     public String ride(String participantName) {
-        int startingPoint = names.getSequenceOf(participantName);
+        int startingPoint = players.getSequenceOf(participantName);
         return goals.getNameOfSequence(ride(startingPoint, 0));
     }
 
@@ -72,8 +72,8 @@ public class Ladder {
         return ride(startingPoint, indexFromTop + 1);
     }
 
-    public Names getNames() {
-        return names;
+    public Players getNames() {
+        return players;
     }
 
     public Goals getGoals() {

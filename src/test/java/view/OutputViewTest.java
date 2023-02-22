@@ -31,12 +31,12 @@ class OutputViewTest {
         @Test
         @DisplayName("주어진 이름과 사다리, 도착 결과를 바탕으로 사다리를 만든다.")
         void givenNamesAndLadder_thenReturnsLadderMessage() {
-            Names names = Names.ofValues(List.of("참가자1", "참가자2"));
+            Players players = Players.ofValues(List.of("참가자1", "참가자2"));
             Goals goals = Goals.of(2, List.of("골", "탈락"));
-            Ladder ladder = Ladder.of(new FixBooleanGenerator(true, false), names, goals);
+            Ladder ladder = Ladder.of(new FixBooleanGenerator(true, false), players, goals);
             ladder.build(Height.of(2), 2);
 
-            outputView.printLadder(names, ladder, goals);
+            outputView.printLadder(players, ladder, goals);
 
             assertThat(messagePrinter.getMessages())
                     .containsExactly(
@@ -51,15 +51,15 @@ class OutputViewTest {
         @Test
         @DisplayName("옆으로 길게 뻗은 사다리도 만들 수 있다.")
         void givenMultipleNamesAndLadder_thenReturnsLadderMessage() {
-            Names names = Names.ofValues(List.of("참가자1", "참가자2", "참가자3", "참가자4"));
+            Players players = Players.ofValues(List.of("참가자1", "참가자2", "참가자3", "참가자4"));
             Goals goals = Goals.of(4, List.of("골", "탈락", "40000", "3000"));
             Ladder ladder = Ladder.of(
                     new FixBooleanGenerator(true, true, false, true, false),
-                    names, goals
+                    players, goals
             );
             ladder.build(Height.of(2), 4);
 
-            outputView.printLadder(names, ladder, goals);
+            outputView.printLadder(players, ladder, goals);
 
             assertThat(messagePrinter.getMessages())
                     .containsExactly(

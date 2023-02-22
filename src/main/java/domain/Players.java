@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Names {
+public class Players {
 
     public static final int MAX_SIZE = 10;
     public static final int MIN_SIZE = 2;
@@ -13,53 +13,53 @@ public class Names {
     public static final String DUPLICATED_ERROR_MESSAGE = "중복된 사람은 참여할 수 없습니다.";
     public static final String NOT_SAVED_PARTICIPANT_ERROR_MESSAGE = "등록되지 않은 참가자 이름입니다";
 
-    private final List<Name> names;
+    private final List<Player> players;
 
-    private Names(final List<Name> names) {
-        this.names = names;
+    private Players(final List<Player> players) {
+        this.players = players;
     }
 
-    public static Names of(final List<Name> names) {
-        validateNames(names);
-        return new Names(names);
+    public static Players of(final List<Player> players) {
+        validateNames(players);
+        return new Players(players);
     }
 
-    public static Names ofValues(final List<String> nameValues) {
-        List<Name> names = Name.ofMultiple(nameValues);
-        validateNames(names);
-        return new Names(names);
+    public static Players ofValues(final List<String> nameValues) {
+        List<Player> players = Player.ofMultiple(nameValues);
+        validateNames(players);
+        return new Players(players);
     }
 
-    private static void validateNames(final List<Name> names) {
-        validateNamesSize(names);
-        validateDuplicated(names);
+    private static void validateNames(final List<Player> players) {
+        validateNamesSize(players);
+        validateDuplicated(players);
     }
 
-    private static void validateNamesSize(final List<Name> names) {
-        if (names.size() < MIN_SIZE || names.size() > MAX_SIZE) {
+    private static void validateNamesSize(final List<Player> players) {
+        if (players.size() < MIN_SIZE || players.size() > MAX_SIZE) {
             throw new IllegalArgumentException(INVALID_NAMES_SIZE_ERROR_MESSAGE);
         }
     }
 
-    private static void validateDuplicated(final List<Name> names) {
-        names.forEach(target -> {
-            if (hasDuplication(names, target)) {
+    private static void validateDuplicated(final List<Player> players) {
+        players.forEach(target -> {
+            if (hasDuplication(players, target)) {
                 throw new IllegalArgumentException(DUPLICATED_ERROR_MESSAGE);
             }
         });
     }
 
-    private static boolean hasDuplication(final List<Name> names, Name target) {
-        return (Collections.frequency(names, target) > 1);
+    private static boolean hasDuplication(final List<Player> players, Player target) {
+        return (Collections.frequency(players, target) > 1);
     }
 
     public int count() {
-        return this.names.size();
+        return this.players.size();
     }
 
     public List<String> getNames() {
-        List<String> names = this.names.stream()
-                .map(Name::getValue)
+        List<String> names = this.players.stream()
+                .map(Player::getValue)
                 .collect(Collectors.toList());
 
         return List.copyOf(names);
@@ -69,31 +69,27 @@ public class Names {
     public boolean equals(Object names) {
         if (this == names) return true;
         if (names == null || getClass() != names.getClass()) return false;
-        Names anotherNames = (Names) names;
-        return this.names.equals(anotherNames.names);
+        Players anotherPlayers = (Players) names;
+        return this.players.equals(anotherPlayers.players);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(names);
+        return Objects.hash(players);
     }
 
     @Override
     public String toString() {
         return "Names{" +
-                "names=" + names +
+                "names=" + players +
                 '}';
     }
 
     public int getSequenceOf(String name) {
-        int sequence = names.indexOf(Name.of(name));
+        int sequence = players.indexOf(Player.of(name));
         if (sequence == -1) {
             throw new IllegalArgumentException(NOT_SAVED_PARTICIPANT_ERROR_MESSAGE);
         }
         return sequence;
-    }
-
-    public boolean has(String name) {
-        return names.contains(Name.of(name));
     }
 }
