@@ -18,6 +18,10 @@ public class Reward {
         }
     }
 
+    public int size(){
+        return items.size();
+    }
+
     public List<String> getItems() {
         return items;
     }

@@ -43,10 +43,6 @@ public class Users {
                 .count();
     }
 
-    public List<User> getUsers() {
-        return new ArrayList<>(users);
-    }
-
     public int size() {
         return users.size();
     }
@@ -57,5 +53,9 @@ public class Users {
                     throw new IllegalArgumentException("해당 유저는 존재하지 않습니다.");
                 });
         return users.indexOf(user);
+    }
+
+    public List<User> getUsers() {
+        return new ArrayList<>(users);
     }
 }

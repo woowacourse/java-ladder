@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -145,6 +146,29 @@ class LadderGameTest {
                     assertThat(userAndReward.get(c)).isEqualTo("2");
                 }
         );
+    }
+
+    @Test
+    @DisplayName("사다리의 가로크기, 유저 수, 보상 수는 모두 같아야 하며 다를 시 예외가 발생한다")
+    void LadderGameLengthExceptionTest() {
+        assertThatThrownBy(() -> {
+            new LadderGame(DEFAULT_LADDER, DEFAULT_USERS, new Reward(List.of("a", "b")));
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리, 보상, 유저 수의 크기는 같아야 합니다.");
+
+        assertThatThrownBy(() -> {
+            new LadderGame(DEFAULT_LADDER, new Users(List.of("a", "b")), DEFAULT_REWARD);
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리, 보상, 유저 수의 크기는 같아야 합니다.");
+
+        assertThatThrownBy(() -> {
+            new LadderGame(new Ladder(3, new Users(List.of("a", "b"))), DEFAULT_USERS, DEFAULT_REWARD);
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리, 보상, 유저 수의 크기는 같아야 합니다.");
+
     }
 
     private User getUserIn(final Set<User> users, final String name) {

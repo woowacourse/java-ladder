@@ -8,9 +8,16 @@ public class LadderGame {
     private final Reward reward;
 
     public LadderGame(Ladder ladder, Users users, Reward reward) {
+        validateLength(ladder, users, reward);
         this.ladder = ladder;
         this.users = users;
         this.reward = reward;
+    }
+
+    private void validateLength(final Ladder ladder, final Users users, final Reward reward) {
+        if (!((ladder.getWidth() == users.size()) && (users.size() == reward.size()))) {
+            throw new IllegalArgumentException("사다리, 보상, 유저 수의 크기는 같아야 합니다.");
+        }
     }
 
     public String getRewardOf(final String userName) {

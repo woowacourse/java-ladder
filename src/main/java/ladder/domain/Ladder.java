@@ -46,15 +46,23 @@ public class Ladder {
         return numbers;
     }
 
-    public List<Floor> getFloors() {
-        return floors;
-    }
-
     public int resultPositionOf(final int i) {
         int position = i;
-        for(Floor floor : floors){
+        for (Floor floor : floors) {
             position = floor.getResultPosition(position);
         }
         return position;
+    }
+
+    public int getHeight() {
+        return floors.size();
+    }
+
+    public int getWidth(){
+        return floors.get(0).getSize();
+    }
+
+    public List<Floor> getFloors() {
+        return floors;
     }
 }

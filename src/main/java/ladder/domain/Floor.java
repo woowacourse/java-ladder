@@ -9,6 +9,7 @@ public class Floor {
     private static final int MOVE_INDEX_VALUE = 1;
     private static final int DONT_CHANGE_IN_INDEX = 0;
     private static final String INVALID_INDEX_ERROR_MESSAGE = "해당 위치는 존재하지 않는 값입니다.";
+    private static final int FLOORT_SIZE_HAVE_ONE_MORE_THAN_LINES = 1;
     private final List<Line> lines = new ArrayList<>();
 
     public Floor(int lineSize) {
@@ -48,7 +49,7 @@ public class Floor {
     }
 
     private void validateIndex(final int index) {
-        if (index < 0 || index > lines.size()){
+        if (index < 0 || index > lines.size()) {
             throw new IllegalArgumentException(INVALID_INDEX_ERROR_MESSAGE);
         }
     }
@@ -81,6 +82,10 @@ public class Floor {
 
     private boolean endOfLadder(final int index) {
         return index == START_POINT_OF_LADDER || index == lines.size();
+    }
+
+    public int getSize() {
+        return lines.size() + FLOORT_SIZE_HAVE_ONE_MORE_THAN_LINES;
     }
 
     public List<Line> getLines() {
