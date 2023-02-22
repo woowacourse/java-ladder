@@ -31,4 +31,10 @@ public class BetTest {
     }
 
     @DisplayName("내기 항목은 쉼표(,)를 포함할 수 없다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"a,b", "bbb,b", ","})
+    void createBetFailTestByDelimiter(String bet) {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> new Bet(bet));
+    }
 }
