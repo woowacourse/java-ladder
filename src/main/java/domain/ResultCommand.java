@@ -20,7 +20,7 @@ public class ResultCommand {
         return List.of(players.getPlayers()
                 .stream()
                 .filter(command::isCommandMatches)
-                .findFirst()
+                .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_COMMAND_ERROR_MESSAGE)));
     }
 

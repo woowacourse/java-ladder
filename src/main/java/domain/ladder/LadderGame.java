@@ -6,6 +6,7 @@ import domain.Player;
 import domain.Players;
 import domain.Point;
 import domain.Result;
+import domain.ResultCommand;
 import domain.Rewards;
 
 import java.util.List;
@@ -52,19 +53,12 @@ public class LadderGame {
     }
 
     public List<Result> getResults(Command command) {
-        return players.getPlayers()
+        ResultCommand resultCommand = new ResultCommand(players);
+
+        return resultCommand.getCommandResult(command)
                 .stream()
-                .filter(player -> isIncludedInTheResult(command, player))
                 .map(this::createResult)
                 .collect(Collectors.toList());
-    }
-
-    private boolean isIncludedInTheResult(Command command, Player player) {
-        if (command.isAllCommand()) {
-            return true;
-        }
-
-        return command.isCommandMatches(player);
     }
 
     private Result createResult(Player player) {
