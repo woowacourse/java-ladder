@@ -20,4 +20,15 @@ public class ResultsTest {
         Results results = Results.of(collectedList);
         assertThat(results.getResults().stream().map(Result::getValue).collect(Collectors.toList())).containsExactly("꽝", "5000", "꽝", "3000");
     }
+
+    @Test
+    @DisplayName("인덱스를 통해 Results에서 결과값을 찾을 수 있다.")
+    void getResultAtIndexTest(){
+        int idx = 3;
+        List<Result> collectedList = Stream.of("꽝", "5000", "꽝", "3000")
+                .map(Result::from)
+                .collect(Collectors.toList());
+        Results results = Results.of(collectedList);
+        assertThat(results.get(idx).getValue()).isEqualTo("꽝");
+    }
 }
