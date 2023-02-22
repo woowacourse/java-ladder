@@ -23,8 +23,8 @@ class InputViewValidatorTest {
         String playerName = "all";
 
         assertThrows(IllegalArgumentException.class,
-                () -> InputViewValidator.validateNameisAll(playerName))
-                .getMessage().equals("[ERROR] 참여자의 이름은 all일 수 없습니다");
+                () -> InputViewValidator.validateNameIsAll(playerName))
+                .getMessage().equals("[ERROR] 참여자의 이름은 all일 수 없습니다.");
     }
 
     @Test

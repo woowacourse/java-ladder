@@ -15,6 +15,10 @@ public class InputView {
         String rawNames = SCANNER.nextLine();
         List<String> names = List.of(rawNames.split(DELIMITER));
         InputViewValidator.validateNamesCount(names.size());
+
+        for (String playerName : names) {
+            InputViewValidator.validateNameIsAll(playerName);
+        }
         return names;
     }
 
