@@ -47,9 +47,4 @@ public class Player {
         Player player = (Player) o;
         return Objects.equals(name, player.name);
     }
-
-    @Override
-    public int hashCode() {
-        return name != null ? name.hashCode() : 0;
-    }
 }
