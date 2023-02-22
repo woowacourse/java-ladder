@@ -45,7 +45,7 @@ public class Ladder {
     public Map<String, String> calculateResult(final Names names, final Prizes prizes) {
         Map<String, String> totalResult = new HashMap<>();
         for (int position = 0; position < names.size(); position++) {
-            totalResult.put(names.getNames().get(position).getValue(), calculateSingleResult(prizes, position));
+            totalResult.put(names.getNameByIndex(position).getValue(), calculateSingleResult(prizes, position));
         }
         return new HashMap<>(totalResult);
     }
@@ -56,7 +56,7 @@ public class Ladder {
             List<Scaffold> scaffolds = line.getScaffolds();
             currentPosition = climbLadder(currentPosition, scaffolds);
         }
-        return prizes.getPrizes().get(currentPosition).getValue();
+        return prizes.getPrizeByIndex(currentPosition).getValue();
     }
 
     private int climbLadder(int position, List<Scaffold> scaffolds) {
