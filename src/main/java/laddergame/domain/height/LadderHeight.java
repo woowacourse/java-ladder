@@ -3,17 +3,17 @@ package laddergame.domain.height;
 import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_RANGE;
 import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_TYPE;
 
-public class Height {
+public class LadderHeight {
 
     private static final int MIN_HEIGHT = 1;
     private static final int MAX_HEIGHT = 10_000;
 
-    private final int heightNumber;
+    private final int height;
 
-    public Height(final String height) {
+    public LadderHeight(final String height) {
         final int heightNumber = toHeightNumber(height);
         validateHeightRange(heightNumber);
-        this.heightNumber = heightNumber;
+        this.height = heightNumber;
     }
 
     private int toHeightNumber(final String height) {
@@ -30,7 +30,7 @@ public class Height {
         }
     }
 
-    public int getHeightNumber() {
-        return heightNumber;
+    public int getHeight() {
+        return height;
     }
 }

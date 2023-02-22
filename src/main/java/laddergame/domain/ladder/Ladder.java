@@ -1,6 +1,6 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.height.Height;
+import laddergame.domain.height.LadderHeight;
 import laddergame.util.BooleanGenerator;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class Ladder {
     }
 
     public static Ladder create(final BooleanGenerator booleanGenerator, final String height, final int participantCount) {
-        final Height ladderHeight = new Height(height);
+        final LadderHeight ladderHeight = new LadderHeight(height);
         final int rungCount = makeRungCount(participantCount);
         final List<Line> lines = makeLines(booleanGenerator, ladderHeight, rungCount);
         return new Ladder(lines);
@@ -26,9 +26,9 @@ public class Ladder {
         return participantCount - DEFAULT_COUNT;
     }
 
-    private static List<Line> makeLines(final BooleanGenerator booleanGenerator, final Height ladderHeight, final int rungCount) {
+    private static List<Line> makeLines(final BooleanGenerator booleanGenerator, final LadderHeight ladderHeight, final int rungCount) {
         final LinesMaker linesMaker = LinesMaker.create(booleanGenerator);
-        return linesMaker.makeLines(ladderHeight.getHeightNumber(), rungCount);
+        return linesMaker.makeLines(ladderHeight.getHeight(), rungCount);
     }
 
     public List<Line> getLadder() {
