@@ -22,7 +22,7 @@ public class RadderGameController {
     public void play(BooleanGenerator booleanGenerator) {
         Participants participants = makeParticipants();
         Ladder ladder = generateLadder(participants, booleanGenerator);
-        LadderResults ladderResults = makeLadderResults();
+        LadderResults ladderResults = getLadderResults(participants.getCount());
         showGameMap(participants, ladder, ladderResults);
         GameResult gameResult = makeGameResult(ladder, participants, ladderResults);
         showGameResultUntilFinish(gameResult);
@@ -39,13 +39,13 @@ public class RadderGameController {
         }
     }
 
-    private LadderResults makeLadderResults() {
+    private LadderResults getLadderResults(int participantsCount) {
         try {
-            String participantsName = inputView.enterLadderResult();
-            return new LadderResults(participantsName);
+            String ladderResult = inputView.enterLadderResult();
+            return new LadderResults(ladderResult, participantsCount);
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
-            return makeLadderResults();
+            return getLadderResults(participantsCount);
         }
     }
 
