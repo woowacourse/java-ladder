@@ -25,6 +25,18 @@ public class LadderGameController {
     }
 
     public void run() {
+        LadderGame ladderGame = setUpLadderGame();
+
+        Map<String, String> gameResultByUser = ladderGame.play();
+
+        String userToCheckResult;
+        do {
+            userToCheckResult = getUserToCheckResult();
+            printResultOfUser(userToCheckResult, gameResultByUser);
+        } while (!userToCheckResult.equals("all"));
+    }
+
+    private LadderGame setUpLadderGame() {
         Users users = setUpUsers();
         GameResults gameResults = setUpGameResults(users.count());
         Height ladderHeight = setUpLadderHeight();
@@ -32,14 +44,7 @@ public class LadderGameController {
 
         outputView.printLadderResult(ladder, users, gameResults);
 
-        LadderGame ladderGame = new LadderGame(ladder, users, gameResults);
-        Map<String, String> gameResultByUser = ladderGame.start();
-
-        String userToCheckResult = "need input";
-        while (!userToCheckResult.equals("all")) {
-            userToCheckResult = getUserToCheckResult();
-            printResultOfUser(userToCheckResult, gameResultByUser);
-        }
+        return new LadderGame(ladder, users, gameResults);
     }
 
     private Users setUpUsers() {
@@ -69,7 +74,6 @@ public class LadderGameController {
             outputView.printErrorMessage(e);
             return setUpGameResults(userCount);
         }
-
     }
 
     private List<GameResult> generateGameResults(List<String> results) {
@@ -109,4 +113,5 @@ public class LadderGameController {
         }
         outputView.printResultOfOneUser(gameResultByUser.get(userToCheckResult));
     }
+
 }

@@ -1,9 +1,8 @@
 package laddergame.service;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import laddergame.domain.GameResult;
 import laddergame.domain.GameResults;
 import laddergame.domain.Ladder;
@@ -24,47 +23,44 @@ public class LadderGame {
         this.gameResults = gameResults;
     }
 
-    public Map<String, String> start() {
-        Map<Integer, User> userByPosition = new HashMap<>();
-
-        int initialPosition = 0;
+    public Map<String, String> play() {
+        Map<String, String> gameResultByUserName = new LinkedHashMap<>();
         for (User user : users.getUsers()) {
-            userByPosition.put(initialPosition++, user);
-        }
+            int userPosition = users.getUsers().indexOf(user);
 
-        for (Line line : ladder.getLines()) {
-            List<Point> points = line.getPoints();
-            for (int position = 0; position < users.count() - 1; position++) {
-                Point point = points.get(position);
-                if (point.isConnected()) {
-                    User swapUser = userByPosition.get(position);
-                    userByPosition.put(position, userByPosition.get(position + 1));
-                    userByPosition.put(position + 1, swapUser);
-                }
-            }
-        }
+            userPosition = progressLines(userPosition);
 
-        Map<User, GameResult> gameResultByUser = new HashMap<>();
-        for (Entry<Integer, User> entry : userByPosition.entrySet()) {
-            User user = entry.getValue();
-            Integer position = entry.getKey();
-            List<GameResult> results = gameResults.getResults();
-
-            gameResultByUser.put(user, results.get(position));
-        }
-
-        return convertToDataMap(gameResultByUser);
-    }
-
-    private Map<String, String> convertToDataMap(Map<User, GameResult> gameResultByUser) {
-        Map<String, String> gameResultByUserName = new HashMap<>();
-        for (Entry<User, GameResult> entry : gameResultByUser.entrySet()) {
-            String userName = entry.getKey().getName();
-            String gameResult = entry.getValue().getResult();
-
-            gameResultByUserName.put(userName, gameResult);
+            GameResult gameResult = gameResults.getResults().get(userPosition);
+            gameResultByUserName.put(user.getName(), gameResult.getResult());
         }
         return gameResultByUserName;
     }
 
+    private int progressLines(int userPosition) {
+        for (Line line : ladder.getLines()) {
+            userPosition = moveUserByConnectionStatus(userPosition, line);
+        }
+        return userPosition;
+    }
+
+    private int moveUserByConnectionStatus(int userPosition, Line line) {
+        List<Point> points = line.getPoints();
+        
+        if (isMovableToRight(userPosition, points)) {
+            return ++userPosition;
+        }
+        if (isMovableToLeft(userPosition, points)) {
+            return --userPosition;
+        }
+
+        return userPosition;
+    }
+
+    private boolean isMovableToRight(int userPosition, List<Point> points) {
+        return userPosition < points.size() && points.get(userPosition).isConnected();
+    }
+
+    private boolean isMovableToLeft(int userPosition, List<Point> points) {
+        return userPosition > 0 && points.get(userPosition - 1).isConnected();
+    }
 }
