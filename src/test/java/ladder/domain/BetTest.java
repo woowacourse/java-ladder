@@ -8,6 +8,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class BetTest {
 
+    @DisplayName("내기 항목은 쉼표를 제외한 1자 이상, 5자 이하로 생성할 수 있다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "a@a", "aa aa"})
+    void createBetSuccessTest(String bet) {
+        Assertions.assertDoesNotThrow(() -> new Bet(bet));
+    }
+
     @DisplayName("내기 항목은 5자 이하여야 한다.")
     @ParameterizedTest
     @ValueSource(strings = {"aaaaaa", "bbbbbbbb", "cdefese"})
@@ -36,5 +43,19 @@ public class BetTest {
     void createBetFailTestByComma(String bet) {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new Bet(bet));
+    }
+
+    @DisplayName("내기 항목은 공백을 포함할 수 있다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"a b", "ccc c"})
+    void createBetSuccessTestByContainingSpace(String bet) {
+        Assertions.assertDoesNotThrow(() -> new Bet(bet));
+    }
+
+    @DisplayName("내기 항목은 쉼표(,)를 제외한 특수문자를 포함할 수 있다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"@@@@", "a@b@c"})
+    void createBetSuccessTestBySpecialCharactersWithoutComma(String bet) {
+        Assertions.assertDoesNotThrow(() -> new Bet(bet));
     }
 }
