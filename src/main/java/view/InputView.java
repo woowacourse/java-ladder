@@ -12,6 +12,7 @@ public class InputView {
     private static final String USER_NAMES_GUIDE_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String RESULT_NAMES_GUIDE_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String LADDER_HEIGHT_GUIDE_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
+    private static final String WANT_USER_NAME_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final String DELIMITER = "\\s*,\\s*";
 
     public static List<String> readUserNames() {
@@ -37,5 +38,12 @@ public class InputView {
         String height = scanner.nextLine();
         System.out.println();
         return inputValidator.validateHeight(height);
+    }
+
+    public static String readWantUserName() {
+        System.out.println(WANT_USER_NAME_MESSAGE);
+        String userName = scanner.nextLine().trim();
+        System.out.println();
+        return userName;
     }
 }
