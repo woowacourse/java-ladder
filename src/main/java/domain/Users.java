@@ -18,6 +18,14 @@ public class Users {
         return users.size();
     }
 
+    public void isExist(String userName) {
+        List<String> usersName = getUsersName();
+        if (usersName.contains(userName)) {
+            return;
+        }
+        throw new IllegalArgumentException();
+    }
+
     public List<String> getUsersName() {
         final List<String> usersName = new ArrayList<>();
         for (final User user : users) {
