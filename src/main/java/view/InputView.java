@@ -10,6 +10,9 @@ public class InputView {
     private static final String USER_NAME_SPLIT_CHARACTER = ",";
     private static final int USER_NAME_SPLIT_LIMIT = -1;
     private static final String INVALID_HEIGHT_FORMAT_MESSAGE = "사다리 높이는 정수만 입력가능합니다.";
+    private static final String RESULT_INPUT_GUIDE_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String RESULT_SPLIT_CHARACTER = ",";
+    private static final String INVALID_RESULT_MESSAGE = "결과의 개수는 유저 수와 동일 해야합니다.";
     private final Scanner sc = new Scanner(System.in);
 
     public List<String> inputUsername() {
@@ -24,5 +27,14 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_HEIGHT_FORMAT_MESSAGE);
         }
+    }
+
+    public List<String> inputResult(int userCount) {
+        System.out.println(RESULT_INPUT_GUIDE_MESSAGE);
+        List<String> result = Arrays.asList(sc.nextLine().split(RESULT_SPLIT_CHARACTER));
+        if (result.size() != userCount) {
+            throw new IllegalArgumentException(INVALID_RESULT_MESSAGE);
+        }
+        return result;
     }
 }
