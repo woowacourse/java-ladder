@@ -9,6 +9,10 @@ public class Player {
         this.position = new Position(value);
     }
 
+    public void moveRight() {
+        position = new Position(position.getValue() + 1);
+    }
+
     public Position getPosition() {
         return position;
     }

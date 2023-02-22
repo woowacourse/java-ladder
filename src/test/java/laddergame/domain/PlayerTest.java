@@ -26,4 +26,15 @@ class PlayerTest {
 
         assertThat(position.getValue()).isEqualTo(value);
     }
+
+    @DisplayName("오른쪽으로 움직일 수 있다.")
+    @Test
+    void moveRight() {
+        Player player = new Player(new PersonalName("hihi"), 0);
+
+        player.moveRight();
+
+        Position position = player.getPosition();
+        assertThat(position.getValue()).isEqualTo(1);
+    }
 }
