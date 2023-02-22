@@ -1,12 +1,10 @@
 package view;
 
-import domain.Height;
-import domain.GameMap;
-import domain.Participants;
+import domain.*;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import domain.Weight;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,13 +27,16 @@ class OutputViewTest {
         Participants participants = new Participants("jamie,split,pobi");
         GameMap gameMap = new GameMap(
                 new Height("4"), new Weight(participants.getParticipantCount()), () -> true);
-        outputView.printMap(participants, gameMap);
-        Assertions.assertThat(byteArrayOutputStream).hasToString("\n실행결과\n\n"
-            + "jamie split  pobi \n"
-            + "    |-----|     |\n"
-            + "    |-----|     |\n"
-            + "    |-----|     |\n"
-            + "    |-----|     |\n");
+        Results results = new Results("a,b,c", 3);
+        outputView.printMap(participants, gameMap, results.get());
+        Assertions.assertThat(byteArrayOutputStream)
+                  .hasToString("\n사다리 결과\n\n"
+                          + "jamie split  pobi \n"
+                          + "    |-----|     |\n"
+                          + "    |-----|     |\n"
+                          + "    |-----|     |\n"
+                          + "    |-----|     |\n"
+                          + "    a     b     c \n");
     }
 
     @DisplayName("모든 라인이 연결되어 있는 않은 경우에 대한 출력.")
@@ -46,12 +47,15 @@ class OutputViewTest {
         Participants participants = new Participants("jamie,split,pobi");
         GameMap gameMap = new GameMap(
                 new Height("4"), new Weight(participants.getParticipantCount()), () -> false);
-        outputView.printMap(participants, gameMap);
-        Assertions.assertThat(byteArrayOutputStream).hasToString("\n실행결과\n\n"
-                + "jamie split  pobi \n"
-                + "    |     |     |\n"
-                + "    |     |     |\n"
-                + "    |     |     |\n"
-                + "    |     |     |\n");
+        Results results = new Results("a,b,c", 3);
+        outputView.printMap(participants, gameMap, results.get());
+        Assertions.assertThat(byteArrayOutputStream)
+                  .hasToString("\n사다리 결과\n\n"
+                          + "jamie split  pobi \n"
+                          + "    |     |     |\n"
+                          + "    |     |     |\n"
+                          + "    |     |     |\n"
+                          + "    |     |     |\n"
+                          + "    a     b     c \n");
     }
 }

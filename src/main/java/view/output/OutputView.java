@@ -4,19 +4,23 @@ import domain.Line;
 import domain.GameMap;
 import domain.Participants;
 
+import java.util.List;
+import java.util.Map;
+
 public class OutputView {
 
-    private static final String RESULT_MESSAGE = System.lineSeparator() + "실행결과" + System.lineSeparator();
+    private static final String RESULT_MESSAGE = System.lineSeparator() + "사다리 결과" + System.lineSeparator();
     private static final String START_LINE = "    |";
     private static final String END_LINE = "|";
     private static final String CONNECTED_LINE = "-----";
     private static final String DISCONNECTED_LINE = "     ";
 
-    public void printMap(Participants participants, GameMap gameMap) {
+    public void printMap(Participants participants, GameMap gameMap, List<String> results) {
         System.out.println(RESULT_MESSAGE);
         StringBuilder mapResult = new StringBuilder();
         setNames(mapResult, participants);
         setLadder(mapResult, gameMap);
+        setResult(mapResult, results);
         System.out.print(mapResult);
     }
 
@@ -52,5 +56,10 @@ public class OutputView {
             return CONNECTED_LINE;
         }
         return DISCONNECTED_LINE;
+    }
+
+    private void setResult(StringBuilder mapResult, List<String> results) {
+        results.forEach((result) -> mapResult.append(reformatName(result)));
+        mapResult.append(System.lineSeparator());
     }
 }
