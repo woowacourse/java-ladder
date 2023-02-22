@@ -30,6 +30,12 @@ public class InputView {
         return results;
     }
 
+    public String requestNameWantToKnowResult() {
+        printMessage(Message.ASK_NAME_WANT_TO_KNOW_RESULT);
+
+        return sc.nextLine();
+    }
+
     private void validateAllResultsAreNotSame(List<String> results) {
         if (results.stream().distinct().count() == 1) {
             throw new IllegalArgumentException(ErrorMessage.ALL_SAME_RESULTS.getMessage());
@@ -72,7 +78,8 @@ public class InputView {
     private enum Message {
         ASK_USER_NAMES("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"),
         ASK_LADDER_HEIGHT("최대 사다리 높이는 몇 개인가요?"),
-        ASK_RESULTS("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        ASK_RESULTS("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"),
+        ASK_NAME_WANT_TO_KNOW_RESULT("결과를 보고 싶은 사람은?");
 
         private final String value;
 
