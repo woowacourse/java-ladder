@@ -140,7 +140,7 @@ class LadderTest extends AbstractTestFixture {
 
         Ladder ladder = new Ladder(people, new Line(bridges), resultCandidate);
 
-        Map<String, String> result = ladder.getLadderMatchingResult();
+        Map<Person, String> result = ladder.getLadderMatchingResult();
 
         //then
 
@@ -153,10 +153,10 @@ class LadderTest extends AbstractTestFixture {
 //          꽝    5000  1000    3000
 
         assertAll(
-                () -> assertEquals(result.get("pobi"), "3000"),
-                () -> assertEquals(result.get("honux"), "1000"),
-                () -> assertEquals(result.get("crong"), "5000"),
-                () -> assertEquals(result.get("jk"), "꽝")
+                () -> assertEquals(result.get(new Person("pobi")), "3000"),
+                () -> assertEquals(result.get(new Person("honux")), "1000"),
+                () -> assertEquals(result.get(new Person("crong")), "5000"),
+                () -> assertEquals(result.get(new Person("jk")), "꽝")
         );
     }
 
@@ -183,7 +183,7 @@ class LadderTest extends AbstractTestFixture {
 
         Ladder ladder = new Ladder(people, new Line(bridges), resultCandidate);
 
-        Map<String, String> result = ladder.getLadderMatchingResult();
+        Map<Person, String> result = ladder.getLadderMatchingResult();
 
         //then
 
@@ -196,10 +196,10 @@ class LadderTest extends AbstractTestFixture {
 //      꽝    5000  꽝    3000
 
         assertAll(
-                () -> assertEquals(result.get("pobi"), "꽝"),
-                () -> assertEquals(result.get("honux"), "3000"),
-                () -> assertEquals(result.get("crong"), "꽝"),
-                () -> assertEquals(result.get("jk"), "5000")
+                () -> assertEquals(result.get(new Person("pobi")), "꽝"),
+                () -> assertEquals(result.get(new Person("honux")), "3000"),
+                () -> assertEquals(result.get(new Person("crong")), "꽝"),
+                () -> assertEquals(result.get(new Person("jk")), "5000")
         );
     }
 }

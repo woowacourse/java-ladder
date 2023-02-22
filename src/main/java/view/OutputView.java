@@ -3,6 +3,7 @@ package view;
 import domain.Bridge;
 import domain.BridgeStatus;
 import domain.Ladder;
+import domain.Person;
 
 import java.util.List;
 import java.util.Map;
@@ -40,7 +41,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printLadderResult(final Map<String, String> result, final String name) {
+    public static void printLadderResult(final Map<Person, String> result, final String name) {
         System.out.println("실행결과");
 
         if (name.equals("all")) {
@@ -51,9 +52,9 @@ public class OutputView {
         System.out.println(name + " : " + result.get(name));
     }
 
-    private static void printAll(final Map<String, String> result) {
-        for (String participant : result.keySet()) {
-            System.out.println(participant + " : " + result.get(participant));
+    private static void printAll(final Map<Person, String> result) {
+        for (Person participant : result.keySet()) {
+            System.out.println(participant + " : " + result.get(participant.getName()));
         }
     }
 

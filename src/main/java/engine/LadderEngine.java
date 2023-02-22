@@ -33,12 +33,12 @@ public class LadderEngine {
 
         OutputView.printLadder(ladder);
 
-        Map<String, String> result = ladder.getLadderMatchingResult();
+        Map<Person, String> result = ladder.getLadderMatchingResult();
 
         printResult(result);
     }
 
-    private void printResult(final Map<String, String> result) {
+    private void printResult(final Map<Person, String> result) {
         while (true) {
             String name = InputView.inputShowResultPerson();
 

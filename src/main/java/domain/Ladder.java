@@ -26,18 +26,18 @@ public class Ladder {
         }
     }
 
-    public Map<String, String> getLadderMatchingResult() {
+    public Map<Person, String> getLadderMatchingResult() {
 
-        Map<String, String> result = new HashMap<>();
+        Map<Person, String> result = new HashMap<>();
 
-        List<String> participantNames = getParticipantNames();
+        List<Person> participants = people.getParticipants();
 
-        for (int start = 0; start < participantNames.size(); start++) {
-            String name = participantNames.get(start);
+        for (int start = 0; start < participants.size(); start++) {
+            Person participant = participants.get(start);
 
             int destination = line.move(start);
 
-            result.put(name, resultCandidates.get(destination));
+            result.put(participant, resultCandidates.get(destination));
         }
 
         return result;
