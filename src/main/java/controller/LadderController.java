@@ -9,8 +9,6 @@ import domain.Prizes;
 import domain.RandomScaffoldGenerator;
 import domain.ScaffoldGenerator;
 import domain.Width;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import view.InputView;

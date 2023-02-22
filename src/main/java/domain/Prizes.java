@@ -20,7 +20,7 @@ public class Prizes {
         }
     }
 
-    public List<Prize> getPrizes(){
+    public List<Prize> getPrizes() {
         return new ArrayList<>(prizes);
     }
 }

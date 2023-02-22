@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 public class Names {
     private static final int MIN_NAME_INCLUSIVE = 2;
     private static final String ERROR_MIN_PEOPLE = "[ERROR] " + MIN_NAME_INCLUSIVE + "명 이상의 사람들을 입력해주세요";
+    private static final String ERROR_NAME_SEARCH_ERROR = "해당하는 값이 없습니다";
 
     private final List<Name> names;
 
@@ -25,7 +26,7 @@ public class Names {
         return IntStream.range(0, names.size())
                 .filter(nameIndex -> names.get(nameIndex).getValue().equals(value))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("해당하는 값이 없습니다"));
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_NAME_SEARCH_ERROR));
     }
 
     public int size() {
