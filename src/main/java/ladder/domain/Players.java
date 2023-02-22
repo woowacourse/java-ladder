@@ -62,7 +62,7 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
-    public List<String> getPlayerNames() {
+    public List<String> getPlayersName() {
         return players.stream()
                 .map(Player::getName)
                 .collect(toList());
