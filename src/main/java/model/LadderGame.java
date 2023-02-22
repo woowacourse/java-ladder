@@ -12,7 +12,7 @@ public class LadderGame {
     private final Names names;
     private final LadderResults gameResults;
 
-    public LadderGame(Names names, LadderResults gameResults) {
+    private LadderGame(Names names, LadderResults gameResults) {
         this.names = names;
         this.gameResults = gameResults;
     }
