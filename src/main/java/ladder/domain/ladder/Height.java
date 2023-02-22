@@ -9,7 +9,14 @@ public class Height {
     private final int height;
 
     public Height(int height) {
+        validateZeroHeight(height);
         this.height = height;
+    }
+
+    private void validateZeroHeight(int height) {
+        if (height < MINIMUM_HEIGHT) {
+            throw new IllegalArgumentException("높이는 1 이상을 입력해주세요.");
+        }
     }
 
     public int getHeight() {

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class HeightTest {
 
@@ -28,6 +29,12 @@ public class HeightTest {
     void equalsTest() {
         Height other = new Height(heightValue);
         assertThat(height).isEqualTo(other);
+    }
+
+    @Test
+    @DisplayName("Height 높이 0 예외 발생")
+    void createZeroHeightException() {
+        assertThatThrownBy(() -> new Height(0)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }
