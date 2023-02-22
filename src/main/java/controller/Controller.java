@@ -40,9 +40,9 @@ public class Controller {
     }
 
     private void showLadder(final Users users, final Ladder ladder, final List<String> inputResult) {
-        outputView.printUsers(users);
+        outputView.printUsers(users.getUsersDTO());
         for (Line line : ladder.getLadder()) {
-            outputView.printLadder(line);
+            outputView.printLadder(line.getLineDTO());
         }
         outputView.printResult(inputResult);
     }

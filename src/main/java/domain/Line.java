@@ -1,5 +1,7 @@
 package domain;
 
+import dto.LineDTO;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,5 +49,10 @@ public class Line {
 
     public List<Bridge> getLine() {
         return new ArrayList<>(line);
+    }
+
+    public LineDTO getLineDTO() {
+        List<Bridge> lineDTO = new ArrayList<>(line);
+        return new LineDTO(lineDTO);
     }
 }

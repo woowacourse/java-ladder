@@ -1,8 +1,8 @@
 package view;
 
 import domain.Bridge;
-import domain.Line;
-import domain.Users;
+import dto.LineDTO;
+import dto.UsersDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,15 +14,15 @@ public class OutputView {
     private static final String USER_NAME_FORMAT = "%5s ";
     private static final String BRIDGE_DELIMITER = "|";
 
-    public void printUsers(Users users) {
+    public void printUsers(UsersDTO usersDTO) {
         System.out.println(RESULT_MESSAGE);
-        users.getUsers()
-                .forEach(user -> System.out.printf(USER_NAME_FORMAT, user.getName()));
+        usersDTO.getUsersDTO()
+                .forEach(user -> System.out.printf(USER_NAME_FORMAT, user));
         System.out.println();
     }
 
-    public void printLadder(Line line) {
-        String collect = line.getLine().stream()
+    public void printLadder(LineDTO lineDTO) {
+        String collect = lineDTO.getLine().stream()
                 .map(Bridge::getFormat)
                 .collect(Collectors.joining(BRIDGE_DELIMITER));
         System.out.printf(LADDER_FORMAT, collect);

@@ -1,5 +1,7 @@
 package domain;
 
+import dto.UsersDTO;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,5 +37,13 @@ public class Users {
 
     public List<User> getUsers() {
         return new ArrayList<>(users);
+    }
+
+    public UsersDTO getUsersDTO() {
+        List<String> usersDTO = new ArrayList<>();
+        for (User user : users) {
+            usersDTO.add(user.getName());
+        }
+        return new UsersDTO(usersDTO);
     }
 }
