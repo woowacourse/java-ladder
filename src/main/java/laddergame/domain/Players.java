@@ -36,6 +36,19 @@ public class Players {
         return players.size();
     }
 
+    public Position positionOf(String name) {
+        Player targetPlayer = new Player(name);
+        int index = players.indexOf(targetPlayer);
+        validatePositionIndex(index);
+        return new Position(index + 1);
+    }
+
+    private void validatePositionIndex(int index) {
+        if (index == -1) {
+            throw new IllegalArgumentException(ErrorCode.PLAYER_NAME_NOT_FOUND.getCode());
+        }
+    }
+
     public List<String> getPlayerNames() {
         return players.stream()
                 .map(Player::getName)

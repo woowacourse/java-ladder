@@ -22,6 +22,9 @@ public enum ErrorCode {
     PRIZE_COUNT_NOT_MATCHED("PRIZE_COUNT_NOT_MATCHED", Map.of(
             LanguageCode.KOREAN.getCode(), "입력된 사용자와 상품의 수가 다릅니다."
     )),
+    PLAYER_NAME_NOT_FOUND("PLAYER_NAME_NOT_FOUND", Map.of(
+            LanguageCode.KOREAN.getCode(), "해당 이름의 사용자를 찾을 수 없습니다."
+    )),
     NOT_VALID_ARGUMENT("NOT_VALID_ARGUMENT", Map.of(
             LanguageCode.KOREAN.getCode(), "올바른 값이 아닙니다."
     ));
