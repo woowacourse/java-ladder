@@ -30,7 +30,7 @@ public class LadderController {
         WinningEntry winningEntry = requestGameResult(persons.getTotalPersonCount());
 
         ladderGame = new LadderGame(persons, height, winningEntry, new RandomBooleanGenerator());
-        outputView.printLadder(ladderGame.getAllPlayers(), ladderGame.getLadderStatus(), winningEntry.getWinningEntry(),
+        outputView.printLadder(ladderGame.getAllPlayers(), ladderGame.getLadder(), winningEntry.getWinningEntry(),
                 persons.getLongestPersonNameLength());
         printGameResult(ladderGame.play());
     }

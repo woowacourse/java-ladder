@@ -27,7 +27,7 @@ public class LadderGame {
         return winningResult;
     }
 
-    public List<List<Boolean>> getLadderStatus() {
+    public List<List<Boolean>> getLadder() {
         return ladder.getLines()
                 .stream()
                 .map(Line::getBridges)
