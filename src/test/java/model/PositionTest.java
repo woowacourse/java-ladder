@@ -23,6 +23,14 @@ public class PositionTest {
     @CsvSource(value = {"0:false", "1:true"}, delimiter = ':')
     @DisplayName("주어진 위치 값과의 동일 여부를 알 수 있는 기능 테스트")
     void isSamePositionValue(int testCase, boolean expected) {
-        assertThat(new Position(1).isSamePosition(new Position(testCase))).isEqualTo(expected);
+        //given
+        Position existingPosition = new Position(1);
+        Position comparePosition = new Position(testCase);
+
+        //when
+        boolean result = existingPosition.isSamePosition(comparePosition);
+
+        //then
+        assertThat(result).isEqualTo(expected);
     }
 }

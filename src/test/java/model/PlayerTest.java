@@ -37,13 +37,14 @@ public class PlayerTest {
     void savePlayerResultTest() {
         //given
         Player player = new Player(new Name("pobi"), new Position(0));
-        Result result = new Result("5000");
+        Result playerResult = new Result("5000");
 
         //when
-        player.saveResult(result);
+        player.saveResult(playerResult);
+        Result result = player.getResult();
 
         //then
-        assertThat(player.getResult()).isEqualTo("5000");
+        assertThat(result.getValue()).isEqualTo("5000");
     }
 
     @ParameterizedTest
@@ -64,16 +65,14 @@ public class PlayerTest {
     @DisplayName("참여자 간 위치를 변경하는 기능 테스트")
     void changePlayerPositionTest() {
         //given
-        Position zeroPosition = new Position(0);
-        Position firstPosition = new Position(1);
-        Player hiiro = new Player(new Name("hiiro"), zeroPosition);
-        Player ocean = new Player(new Name("ocean"), firstPosition);
+        Player hiiro = new Player(new Name("hiiro"), new Position(0));
+        Player ocean = new Player(new Name("ocean"), new Position(1));
 
         //when
         hiiro.changePositionWith(ocean);
 
         //then
-        assertThat(hiiro.isPlayerPosition(firstPosition)).isTrue();
-        assertThat(ocean.isPlayerPosition(zeroPosition)).isTrue();
+        assertThat(hiiro.isPlayerPosition(new Position(1))).isTrue();
+        assertThat(ocean.isPlayerPosition(new Position(0))).isTrue();
     }
 }

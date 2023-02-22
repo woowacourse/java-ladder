@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PlayersTest {
     private static final String NO_PLAYER_NAME_ERROR = "[ERROR] 해당 이름의 플레이어는 존재하지 않습니다.";
@@ -26,7 +27,10 @@ public class PlayersTest {
         Players players = new Players(NameFactory.create("pobi, neo, hiiro"));
 
         //when
-        List<String> result = players.getAllPlayerNames();
+        List<Name> names = players.getAllPlayerNames();
+        List<String> result = names.stream()
+                .map(Name::getValue)
+                .collect(Collectors.toList());
 
         //then
         assertThat(result).isEqualTo(List.of("pobi", "neo", "hiiro"));
@@ -48,8 +52,11 @@ public class PlayersTest {
         players.moveAllPlayersByLinePoints(thirdPoints);
         players.moveAllPlayersByLinePoints(fourthPoints);
 
+        List<Name> names = players.getAllNamesOrderedByPosition();
+        List<String> result = names.stream().map(Name::getValue).collect(Collectors.toList());
+
         //then
-        assertThat(players.getAllNamesOrderedByPosition()).isEqualTo(List.of("neo", "ocean", "hiiro", "pobi"));
+        assertThat(result).isEqualTo(List.of("neo", "ocean", "hiiro", "pobi"));
     }
 
     @Test
@@ -62,12 +69,16 @@ public class PlayersTest {
 
         //when
         players.saveAllResults(results);
+        Result pobiResult = players.getResultOf(new Name("pobi"));
+        Result neoResult = players.getResultOf(new Name("neo"));
+        Result hiiroResult = players.getResultOf(new Name("hiiro"));
+        Result oceanResult = players.getResultOf(new Name("ocean"));
 
         //then
-        assertThat(players.getResultOf(new Name("pobi"))).isEqualTo("꽝");
-        assertThat(players.getResultOf(new Name("neo"))).isEqualTo("5000");
-        assertThat(players.getResultOf(new Name("hiiro"))).isEqualTo("꽝");
-        assertThat(players.getResultOf(new Name("ocean"))).isEqualTo("3000");
+        assertThat(pobiResult.getValue()).isEqualTo("3000");
+        assertThat(neoResult.getValue()).isEqualTo("꽝");
+        assertThat(hiiroResult.getValue()).isEqualTo("꽝");
+        assertThat(oceanResult.getValue()).isEqualTo("5000");
     }
 
     @Test
@@ -88,11 +99,16 @@ public class PlayersTest {
         players.moveAllPlayersByLinePoints(fourthPoints);
         players.saveAllResults(results);
 
+        Result pobiResult = players.getResultOf(new Name("pobi"));
+        Result neoResult = players.getResultOf(new Name("neo"));
+        Result hiiroResult = players.getResultOf(new Name("hiiro"));
+        Result oceanResult = players.getResultOf(new Name("ocean"));
+
         //then
-        assertThat(players.getResultOf(new Name("pobi"))).isEqualTo("3000");
-        assertThat(players.getResultOf(new Name("neo"))).isEqualTo("꽝");
-        assertThat(players.getResultOf(new Name("hiiro"))).isEqualTo("꽝");
-        assertThat(players.getResultOf(new Name("ocean"))).isEqualTo("5000");
+        assertThat(pobiResult.getValue()).isEqualTo("3000");
+        assertThat(neoResult.getValue()).isEqualTo("꽝");
+        assertThat(hiiroResult.getValue()).isEqualTo("꽝");
+        assertThat(oceanResult.getValue()).isEqualTo("5000");
     }
 
     @Test
