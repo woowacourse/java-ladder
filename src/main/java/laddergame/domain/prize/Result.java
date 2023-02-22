@@ -16,15 +16,15 @@ public class Result {
         this.prizes = prizes;
     }
 
+    public Names findPlayerNames() {
+        return players.findPlayerNames();
+    }
+
     public List<Prize> getPrizes() {
         return prizes.getPrizes();
     }
 
     public List<Player> getPlayers() {
         return players.getPlayers();
-    }
-
-    public Names findPlayerNames() {
-        return players.findPlayerNames();
     }
 }
