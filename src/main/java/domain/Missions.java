@@ -9,10 +9,15 @@ public class Missions {
     private final List<Mission> missions;
     private static final String SPLIT_STANDARD = ",";
 
-    public Missions(String missions) {
-        System.out.println(missions);
+    public Missions(String missions, int size) {
         this.missions = formatMissions(missions);
-        System.out.println(formatMissions(missions));
+        validateMissionsSize(size);
+    }
+
+    private void validateMissionsSize(int size) {
+        if (size != this.missions.size()) {
+            throw new IllegalArgumentException("참여자의 수와 미션의 수가 다릅니다!");
+        }
     }
 
     private List<Mission> formatMissions(String missions) {

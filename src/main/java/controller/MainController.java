@@ -6,7 +6,6 @@ import domain.LadderMaker;
 import domain.Lines;
 import domain.Missions;
 import domain.Names;
-import domain.Player;
 import domain.Players;
 import domain.generator.BooleanGenerator;
 import view.InputView;
@@ -28,8 +27,7 @@ public class MainController {
     public void start() {
         try {
             Names names = getNames();
-            Missions missions = getMissions();
-            validateInputSize(names, missions);
+            Missions missions = getMissions(names.size());
 
             int lineNumber = names.getPersonNumber() - 1;
             LadderMaker ladderMaker = makeLadder(lineNumber);
@@ -38,7 +36,14 @@ public class MainController {
             Players players = new Players(names);
             LadderGame ladderGame = LadderGame.of(players, missions, ladderMaker.getLines());
 
-            printResult(players);
+            String receivedPlayer = inputView.readPlayer();
+
+            if (receivedPlayer.equals("all")) {
+                outputView.printAllResult(ladderGame.findAllResult());
+            }
+            if (!receivedPlayer.equals("all")) {
+                outputView.printSingleResult(ladderGame.findResultByName(receivedPlayer));
+            }
 
         } catch (Exception exception) {
             outputView.printExceptionMessage(exception);
@@ -53,22 +58,12 @@ public class MainController {
         return LadderMaker.of(lineNumber, getHeight(), booleanGenerator);
     }
 
-    private void printResult(Players players) {
-        if (inputView.readPlayer().equals("all")) {
-            outputView.printAllResult(players);
-        }
-        if (!inputView.readPlayer().equals("all")) {
-            Player player = players.findByName(inputView.readPlayer());
-            outputView.printPlayerResult(player.getMission());
-        }
-    }
-
     private Names getNames() {
         return inputView.readNames();
     }
 
-    private Missions getMissions() {
-        return inputView.readMissions();
+    private Missions getMissions(int size) {
+        return new Missions(inputView.readMissions(), size);
     }
 
     private Height getHeight() {
@@ -76,9 +71,4 @@ public class MainController {
     }
 
 
-    private static void validateInputSize(Names names, Missions missions) {
-        if (names.size() != missions.size()) {
-            throw new IllegalArgumentException("참여자의 수와 미션의 수가 다릅니다!");
-        }
-    }
 }

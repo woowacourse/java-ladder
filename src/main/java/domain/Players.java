@@ -22,9 +22,9 @@ public class Players {
         return players.get(index);
     }
 
-    public Player findByName(String readPlayer) {
+    public Player findByName(String name) {
         return players.stream()
-                .filter(player -> Objects.equals(player.getName(), new Name(readPlayer)))
+                .filter(player -> Objects.equals(player.getName(), new Name(name)))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("해당하는 플레이어가 없습니다."));
     }

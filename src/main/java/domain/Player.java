@@ -6,7 +6,6 @@ public class Player {
 
     private final Name name;
     private Position position;
-    private Mission mission;
 
     public Player(Name name, Position position) {
         this.name = name;
@@ -17,20 +16,12 @@ public class Player {
         this.position = new Position(lines.getExitIndex(this.position.getPosition()));
     }
 
-    public void distributeMission(Mission mission) {
-        this.mission = mission;
-    }
-
     public Name getName() {
         return name;
     }
 
     public Position getPosition() {
         return position;
-    }
-
-    public Mission getMission() {
-        return mission;
     }
 
     @Override
