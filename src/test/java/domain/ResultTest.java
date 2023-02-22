@@ -29,4 +29,14 @@ public class ResultTest {
             Result.from("500000");
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("결과값이 같으면 같은 객체를 반환한다.")
+    void createSameResultTest(){
+        Result result1 = Result.from("꽝");
+        Result result2 = Result.from("꽝");
+        assertThat(result1.equals(result2)).isTrue();
+        Result result3 = Result.from("3000");
+        assertThat(result1.equals(result3)).isFalse();
+    }
 }
