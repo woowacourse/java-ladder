@@ -20,7 +20,7 @@
 - [ ] void add(int index, String value);
 - [ ] String set(int index, String value);
 - [x] String get(int index);
-- [ ] boolean contains(String value);
+- [x] boolean contains(String value);
 - [ ] int indexOf(String value);
 - [x] int size();
 - [x] boolean isEmpty();
