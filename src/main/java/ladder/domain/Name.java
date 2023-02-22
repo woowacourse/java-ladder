@@ -26,7 +26,7 @@ public class Name {
 
     private void validateNotNull(String name) {
         if (name == null) {
-            throw new IllegalArgumentException(ErrorMessage.NAME_IS_NULL.getMessage());
+            throw new NullPointerException(ErrorMessage.NAME_IS_NULL.getMessage());
         }
     }
 

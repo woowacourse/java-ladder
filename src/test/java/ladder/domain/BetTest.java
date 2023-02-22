@@ -28,7 +28,7 @@ public class BetTest {
     @DisplayName("내기 항목은 null일 수 없다.")
     @Test
     void createBetFailTestByNullValue() {
-        Assertions.assertThrows(IllegalArgumentException.class,
+        Assertions.assertThrows(NullPointerException.class,
                 () -> new Bet(null));
     }
 

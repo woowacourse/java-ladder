@@ -58,7 +58,7 @@ public class LadderController {
     private Names createNames() {
         try {
             return new Names(readNames());
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | NullPointerException e) {
             resultView.printErrorMessage(e.getMessage());
             return createNames();
         }
@@ -75,7 +75,7 @@ public class LadderController {
     private Result createResult(Names names) {
         try {
             return new Result(names, readBets());
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | NullPointerException e) {
             resultView.printErrorMessage(e.getMessage());
             return createResult(names);
         }

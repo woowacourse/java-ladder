@@ -35,7 +35,7 @@ class NameTest {
     @Test
     @DisplayName("이름은 null일 수 없다.")
     void createNameFailByNullTest() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+        NullPointerException exception = assertThrows(NullPointerException.class,
                 () -> new Name(null));
         assertEquals(ErrorMessage.NAME_IS_NULL.getMessage(), exception.getMessage());
     }

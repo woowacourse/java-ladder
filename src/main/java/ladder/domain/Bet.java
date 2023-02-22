@@ -22,7 +22,7 @@ public class Bet {
 
     private void validateNotNull(String bet) {
         if (bet == null)
-            throw new IllegalArgumentException(ErrorMessage.BET_IS_NULL.getMessage());
+            throw new NullPointerException(ErrorMessage.BET_IS_NULL.getMessage());
     }
 
     private void validateLength(String bet) {
