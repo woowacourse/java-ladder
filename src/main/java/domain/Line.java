@@ -29,34 +29,42 @@ public class Line {
         }
     }
 
+    // position = 0, point = 0
+    // position = 1, point = 0, 1
+    // position = 2, point = 1, 2
+    // position = 3, point = 2, 3
+    // position = 4, point = 3
     public String isRightLadder(int position, List<Boolean> points) {
-        // points = [ 0   , 1    , 2   , 3     ]
-        // points = [ true, false, true, false ]
-
-        // position = 0, point = 0
-        // position = 1, point = 0, 1
-        // position = 2, point = 1, 2
-        // position = 3, point = 2, 3
-        // position = 4, point = 3
         int lastPlayerPosition = points.size();
         int firstPlayerPosition = 0;
 
-        // player가 0번째 위치에 있을 때 0번째 point가 true면 무조건 right다.
         if (position == firstPlayerPosition) {
-            if (points.get(firstPlayerPosition)) {
-                return "right";
-            } return "none";
-            // player가 마지막 위치에 있을 때 마지막 point가 true면 무조건 left다.
-        } else if (position == lastPlayerPosition) {
-            if (points.get(position - 1)) {
-                return "left";
-            } return "none";
-        } else {
-            if (points.get(position - 1)) {
-                return "left";
-            } else if (points.get(position)) {
-                return "right";
-            } return "none";
-        }
+            return getResultIsFirst(firstPlayerPosition, points);
+        } if (position == lastPlayerPosition) {
+            return getResultIsLast(lastPlayerPosition, points);
+        } return getResultElse(position, points);
+    }
+
+    // player가 첫 번째 위치에 있을 때 0번째 point가 true면 무조건 right다.
+    private String getResultIsFirst(int firstPlayerPosition, List<Boolean> points) {
+        if (points.get(firstPlayerPosition)) {
+            return "right";
+        } return null;
+    }
+
+    // player가 마지막 위치에 있을 때 마지막 point가 true면 무조건 left다.
+    private String getResultIsLast(int position, List<Boolean> points) {
+        if (points.get(position - 1)) {
+            return "left";
+        } return null;
+    }
+
+    // player가 첫 번째 위치 또는 마지막 위치가 아니라면 현재 위치의 point와 그 전 위치의 point를 계산한다.
+    private String getResultElse(int position, List<Boolean> points) {
+        if (points.get(position - 1)) {
+            return "left";
+        } if (points.get(position)) {
+            return "right";
+        } return null;
     }
 }

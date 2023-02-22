@@ -42,7 +42,7 @@ public class LineTest {
             assertEquals(new Line(5).isRightLadder(1, points), "left");
             assertEquals(new Line(5).isRightLadder(2, points), "right");
             assertEquals(new Line(5).isRightLadder(3, points), "left");
-            assertEquals(new Line(5).isRightLadder(4, points), "none");
+            assertEquals(new Line(5).isRightLadder(4, points), null);
         });
     }
 }
