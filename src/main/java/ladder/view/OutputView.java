@@ -2,6 +2,7 @@ package ladder.view;
 
 
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 import ladder.domain.Direction;
@@ -21,13 +22,17 @@ public class OutputView {
     private static final String VERTICAL = "|";
     private static final String STEP_EXIST = "-";
     private static final String STEP_NONE = " ";
+
+    private static final String MESSAGE_LADDER_RESULT = "사다리 결과";
     private static final String MESSAGE_GAME_RESULT = "실행 결과";
 
-    public static void showGameResult(List<String> players, List<Line> lines, List<String> results) {
+    private static final String FORMAT_PLAYER_RESULT = "%s : %s" + System.lineSeparator();
+
+    public static void showLadderResult(List<String> players, List<Line> lines, List<String> results) {
         int pointWidth = Math.max(computeMaxNameLength(players), computeMaxNameLength(results));
 
         System.out.println();
-        System.out.println(MESSAGE_GAME_RESULT);
+        System.out.println(MESSAGE_LADDER_RESULT);
         System.out.println(" " + extractWords(players, pointWidth));
         lines.stream()
                 .map(line -> extractLine(line, pointWidth))
@@ -66,5 +71,18 @@ public class OutputView {
             return STEP_EXIST.repeat(pointWidth);
         }
         return STEP_NONE.repeat(pointWidth);
+    }
+
+    public static void showGameResultMessage() {
+        System.out.println();
+        System.out.println(MESSAGE_GAME_RESULT);
+    }
+
+    public static void showAllResultsByPlayer(Map<String, String> allResults) {
+        allResults.forEach((name, result) -> System.out.printf(FORMAT_PLAYER_RESULT, name, result));
+    }
+
+    public static void showResultByPlayer(String result) {
+        System.out.println(result);
     }
 }
