@@ -7,22 +7,22 @@ import java.util.List;
 public class Ladder {
 
 
-    private final List<Floor> lines;
+    private final List<Line> lines;
 
     public Ladder(final Height height, final int numberOfPlayers) {
         this.lines = createLadder(height.getHeight(), numberOfPlayers);
     }
 
-    public List<Floor> getLadder() {
+    public List<Line> getLadder() {
         return Collections.unmodifiableList(lines);
     }
 
 
-    private List<Floor> createLadder(final int height, final int playerCount) {
-        final List<Floor> lines = new ArrayList<>();
+    private List<Line> createLadder(final int height, final int playerCount) {
+        final List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            lines.add(Floor.from(playerCount));
+            lines.add(Line.from(playerCount));
         }
 
         return lines;

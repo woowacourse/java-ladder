@@ -26,7 +26,7 @@ public class OutputView {
 
     public static void printLadder(final Names names, final Ladder ladder) {
         StringBuilder result = new StringBuilder();
-        ladder.getLadder().forEach(line -> result.append(makeLadderFormat(line.getFloor(), names)));
+        ladder.getLadder().forEach(line -> result.append(makeLadderFormat(line.getLine(), names)));
         System.out.println(result);
     }
 
