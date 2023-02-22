@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.dto.BridgeGameResult;
+
 public class LadderGame {
     private final Ladder ladder;
     private final Users users;
@@ -14,5 +16,15 @@ public class LadderGame {
     public String getRewardOf(final String userName) {
         final int userOrder = users.getOrderOf(userName);
         return reward.getRewardOf(ladder.resultPositionOf(userOrder));
+    }
+
+    public BridgeGameResult getGameResult() {
+        final BridgeGameResult bridgeGameResult = new BridgeGameResult();
+        for (User user : users.getUsers()) {
+            final String name = user.getName();
+            final int rewardIndex = ladder.resultPositionOf(users.getOrderOf(name));
+            bridgeGameResult.enrollReward(user, reward.getRewardOf(rewardIndex));
+        }
+        return bridgeGameResult;
     }
 }
