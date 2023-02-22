@@ -11,7 +11,9 @@ import java.util.stream.IntStream;
 
 public class Players {
     private static final int PLAYERS_SIZE_LOWER_BOUND = 2;
-    private static final String INVALID_PLAYERS_SIZE_MESSAGE = "참가자는 최소 " + PLAYERS_SIZE_LOWER_BOUND + "명이어야 합니다.";
+    private static final int PLAYERS_SIZE_UPPER_BOUND = 20;
+    private static final String INVALID_PLAYERS_SIZE_MESSAGE =
+            "참가자는 최소 " + PLAYERS_SIZE_LOWER_BOUND + "명, 최대 " + PLAYERS_SIZE_UPPER_BOUND + "명이어야 합니다.";
     private static final String DUPLICATE_NAMES_MESSAGE = "참가자의 이름은 중복되지 않아야 합니다.";
 
     private final List<Player> players;
@@ -34,7 +36,7 @@ public class Players {
     }
 
     private static void validatePlayersSize(final List<String> names) {
-        if (names.size() < PLAYERS_SIZE_LOWER_BOUND) {
+        if (names.size() < PLAYERS_SIZE_LOWER_BOUND || PLAYERS_SIZE_UPPER_BOUND < names.size()) {
             throw new IllegalArgumentException(INVALID_PLAYERS_SIZE_MESSAGE);
         }
     }
