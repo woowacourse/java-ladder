@@ -32,7 +32,10 @@ public class LadderGameController {
         Map<String, String> result = ladder.matchResult(names.getNames(), results.getResults());
         GameResult gameResult = new GameResult(result);
 
-        outputView.printResult(names, ladder, results);
+        outputView.printLadder(names, ladder, results);
+
+        String resultByName = gameResult.findResult(inputView.readNameToShowResult());
+        outputView.printGameResult(resultByName);
     }
 
     private Names makeNames() {

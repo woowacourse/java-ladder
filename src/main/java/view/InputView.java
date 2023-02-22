@@ -42,4 +42,10 @@ public class InputView {
             throw new IllegalArgumentException("사다리 높이의 입력 값은 숫자만 가능합니다.");
         }
     }
+
+    // TODO: 사람에 대한 예외처리
+    public String readNameToShowResult() {
+        System.out.println(NEW_LINE + "결과를 보고 싶은 사람은?");
+        return reader.next();
+    }
 }

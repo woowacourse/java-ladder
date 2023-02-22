@@ -16,7 +16,7 @@ public class OutputView {
     private static final StringBuilder ladderOutput = new StringBuilder();
     private static final StringBuilder resultOutput = new StringBuilder();
 
-    public void printResult(final Names names, final Ladder ladder, final Results results) {
+    public void printLadder(final Names names, final Ladder ladder, final Results results) {
         System.out.println(NEW_LINE + "사다리결과" + NEW_LINE);
 
         System.out.println(makeNamesOutput(names));
@@ -119,5 +119,10 @@ public class OutputView {
         }
 
         return resultOutput;
+    }
+
+    public void printGameResult(final String gameResult) {
+        System.out.println(NEW_LINE + "실행 결과");
+        System.out.println(gameResult);
     }
 }
