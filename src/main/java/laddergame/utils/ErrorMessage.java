@@ -11,7 +11,7 @@ public enum ErrorMessage {
     INVALID_LADDER_HEIGHT_RANGE("사다리의 높이는 %d 이상입니다."),
     INVALID_LADDER_HEIGHT_INPUT("사다리의 높이는 숫자만 입력 가능합니다."),
 
-    INVALID_GAME_RESULT_LENGTH("이름의 길이는 %d 이상 %d 이하여야 합니다."),
+    INVALID_GAME_RESULT_LENGTH("게임 결과의 길이는 %d 이상 %d 이하여야 합니다."),
     INVALID_GAME_RESULTS_SIZE("사다리 게임에서 당첨될 수 있는 결과의 수는 사용자의 수와 같아야 합니다.");
 
     private final String message;
