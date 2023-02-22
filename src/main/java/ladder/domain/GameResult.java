@@ -31,10 +31,12 @@ public class GameResult {
     }
     
     public List<String> getAllExecutionResult() {
-        System.out.println(resultPositions);
-        System.out.println(executionResults);
         return resultPositions.stream()
                 .map(executionResults::get)
                 .collect(Collectors.toUnmodifiableList());
+    }
+    
+    public List<String> getExecutionResults() {
+        return executionResults;
     }
 }

@@ -16,11 +16,8 @@ public class LadderController {
         Ladder ladder = new Ladder(new RandomBasedBarGenerator(), ladderHeight, playerNames.playerSize());
         GameResult gameResult = new GameResult(ladder.getMovedPositions(playerNames.playerSize()), executionResults);
         
-        while (true) {
-            String player = InputView.repeat(InputView::inputPlayerName);
-        }
-        
         OutputView.printNames(playerNames);
         OutputView.printLadder(ladder, playerNames.getFirstPlayerNameLength());
+        OutputView.printExecutionResults(gameResult);
     }
 }

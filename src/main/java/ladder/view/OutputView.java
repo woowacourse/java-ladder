@@ -14,10 +14,10 @@ public class OutputView {
     }
     
     public static void printNames(PlayerNames playerNames) {
-        println(parseDisplayNames(playerNames.getNames()));
+        println(parseDisplayElements(playerNames.getNames()));
     }
 
-    private static String parseDisplayNames(List<String> names) {
+    private static String parseDisplayElements(List<String> names) {
         return IntStream.range(0, names.size())
                 .mapToObj(nameIndex -> parseDisplayName(names, nameIndex))
                 .collect(Collectors.joining());
@@ -50,15 +50,19 @@ public class OutputView {
     private static String parseBar(Direction direction) {
         return parseBarMatcher(direction.getLeftBar()).getBarDisplay();
     }
-
+    
     private static BarDisplayMatcher parseBarMatcher(Bar bar) {
         return BarDisplayMatcher.valueOfBarMatcher(bar);
     }
-
+    
+    public static void printExecutionResults(GameResult gameResult) {
+        println(parseDisplayElements(gameResult.getExecutionResults()));
+    }
+    
     public static void printExceptionMessage(IllegalArgumentException illegalArgumentException) {
         println(illegalArgumentException.getMessage());
     }
-
+    
     private static void println(String message) {
         System.out.println(message);
     }
