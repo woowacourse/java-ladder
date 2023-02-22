@@ -5,7 +5,6 @@ import static domain.ResultCommands.*;
 import java.util.List;
 
 import domain.Ladder;
-import domain.ResultCommands;
 import domain.ResultTable;
 import domain.Reward;
 import domain.Rewards;
@@ -62,10 +61,10 @@ public class Controller {
 
         User user = users.findUserByName(resultOption);
         Reward reward = resultTable.getRewardByUser(user);
-//        TODO: reward null 일때 게임 돌려서 결과 가져오고 저장하기
-//        if(reward == null) {
-//
-//        }
+        if(reward == null) {
+            int startIndex = users.getIndex(user);
+            int endIndex = ladder.calculateEndIndex(startIndex);
+        }
         OutputView.printResult(user, reward);
 
     }

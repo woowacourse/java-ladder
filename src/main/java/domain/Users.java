@@ -31,4 +31,8 @@ public class Users {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NONE_EXISTED_USER.getMessage()));
     }
+
+    public int getIndex(User user) {
+        return users.indexOf(user);
+    }
 }

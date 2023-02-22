@@ -24,9 +24,11 @@ public class Ladder {
         return ladderRows;
     }
 
-//    public List<List<Boolean>> getLadderMap() {
-//        return ladderRows.stream()
-//                .map(LadderRow::getBars)
-//                .collect(Collectors.toUnmodifiableList());
-//    }
+    public int calculateEndIndex(int index) {
+        for (LadderRow ladderRow : ladderRows) {
+            int nextSummand = ladderRow.calculateNextSummand(index);
+            index += nextSummand;
+        }
+        return index;
+    }
 }

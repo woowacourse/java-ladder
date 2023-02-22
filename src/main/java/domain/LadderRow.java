@@ -13,4 +13,9 @@ public class LadderRow {
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
+
+    public int calculateNextSummand(int index) {
+        Point point = points.get(index);
+        return point.calculateMoveValue();
+    }
 }
