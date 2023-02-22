@@ -1,9 +1,9 @@
 package laddergame.controller;
 
-import laddergame.domain.Prizes;
 import laddergame.domain.ladder.ConnectionStrategy;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.player.Names;
+import laddergame.domain.prize.Prizes;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 

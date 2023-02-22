@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.prize;
 
 import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.DisplayName;

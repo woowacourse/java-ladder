@@ -1,8 +1,8 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.Players;
-import laddergame.domain.Prize;
-import laddergame.domain.Result;
+import laddergame.domain.player.Players;
+import laddergame.domain.prize.Prize;
+import laddergame.domain.prize.Result;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

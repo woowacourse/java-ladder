@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.prize;
 
 import java.util.Objects;
 
