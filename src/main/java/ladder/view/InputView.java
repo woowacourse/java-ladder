@@ -24,4 +24,9 @@ public class InputView {
         String items = scanner.reset().nextLine();
         return Arrays.stream(items.split(",")).collect(Collectors.toList());
     }
+
+    public static String readResultPlayerName() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.reset().nextLine();
+    }
 }
