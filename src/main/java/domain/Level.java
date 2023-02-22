@@ -6,17 +6,18 @@ import java.util.Random;
 
 public class Level {
 	private static final Random random = new Random();
+	public static final int PREVIOUS_STOOL = 1;
 
 	private final List<Stool> level;
 
-	public Level(int participantsSize) {
-		level = initLine(participantsSize);
+	public Level(int playerSize) {
+		level = initLine(playerSize);
 		makeStools();
 	}
 
-	private List<Stool> initLine(int participantSize) {
+	private List<Stool> initLine(int playerSize) {
 		List<Stool> stoolList = new ArrayList<>();
-		for (int i = 0; i < participantSize - 1; i++) {
+		for (int i = 0; i < playerSize - 1; i++) {
 			stoolList.add(Stool.EMPTY);
 		}
 		return stoolList;
@@ -27,9 +28,15 @@ public class Level {
 		for (int i = 1; i < level.size(); i++) {
 			makeStool(i);
 		}
-
 		if (isNotValidLevel())
 			makeStools();
+	}
+
+	private void makeStool(int now) {
+		if (getStool(now - PREVIOUS_STOOL).isStool()) {
+			return;
+		}
+		level.set(now, Stool.of(random.nextBoolean()));
 	}
 
 	private boolean isNotValidLevel() {
@@ -38,15 +45,12 @@ public class Level {
 			.count() == 0;
 	}
 
-	private void makeStool(int index) {
-		if (getStool(index - 1).isStool())
-			return;
-
-		level.set(index, Stool.of(random.nextBoolean()));
+	public List<Stool> getStools() {
+		return new ArrayList<>(level);
 	}
 
-	public int size() {
-		return level.size();
+	private Stool getStool(int index) {
+		return level.get(index);
 	}
 
 	public boolean isStoolExist(int index) {
@@ -59,11 +63,7 @@ public class Level {
 			.count();
 	}
 
-	public List<Stool> getStools() {
-		return new ArrayList<>(level);
-	}
-
-	private Stool getStool(int index) {
-		return level.get(index);
+	public int size() {
+		return level.size();
 	}
 }
