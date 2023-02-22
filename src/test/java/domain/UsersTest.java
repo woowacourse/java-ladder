@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class UsersTest {
 
-    private final List<String> testUsersName = List.of("썬샷", "홍실");
+    private final List<String> testUsersName = List.of("pobi", "crong");
 
     @Test
     @DisplayName("유저의 수가 0이 들어오는 경우")
