@@ -3,6 +3,8 @@ package view;
 import model.LadderHeight;
 import model.Name;
 import model.NameFactory;
+import model.Result;
+import model.ResultFactory;
 
 import java.util.List;
 import java.util.Scanner;
@@ -20,5 +22,9 @@ public class InputView {
 
     public LadderHeight readLadderHeight() {
         return new LadderHeight(scanner.nextInt());
+    }
+
+    public List<Result> readResults(int playerCount) {
+        return ResultFactory.create(playerCount, scanner.nextLine());
     }
 }
