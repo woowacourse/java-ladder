@@ -2,10 +2,10 @@ package laddergame.domain;
 
 public class Player {
     private final PersonalName personalName;
-    private int position;
+    private Position position;
 
-    public Player(PersonalName personalName, int position) {
+    public Player(PersonalName personalName, int value) {
         this.personalName = personalName;
-        this.position = position;
+        this.position = new Position(value);
     }
 }
