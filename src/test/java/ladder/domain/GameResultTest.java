@@ -10,8 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.Collections;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 public class GameResultTest {
     GameResult gameResult;
@@ -35,11 +34,28 @@ public class GameResultTest {
     }
     
     @ParameterizedTest
+    @ValueSource(strings = {"aaaaa,bbb,c,d", "a,b,가,나"})
+    @DisplayName("실행 결과 정상 입력 시 예외가 발생하지 않는다.")
+    void normalInput(String inputExecutionResults) {
+        assertThatNoException()
+                .isThrownBy(() -> new GameResult(List.of(1,0,3,2), inputExecutionResults));
+    }
+    
+    @ParameterizedTest
     @ValueSource(strings = {"aaaaaa,bbb", "aaaaa,,bbb", ",aaa"})
     @DisplayName("실행 결과 글자 길이가 1~5를 벗어난 경우 예외가 발생한다.")
-    void validateOutOFLength(String inputExecutionResults) {
+    void validateOutOfLength(String inputExecutionResults) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new GameResult(Collections.emptyList(), inputExecutionResults))
                 .withMessage("각 상품의 글자 길이는 1~5입니다.");
+    }
+    
+    @ParameterizedTest
+    @ValueSource(strings = {"a,b,c,가,나", "aaaaa,cc,bbb"})
+    @DisplayName("실행 결과 개수가 플레이어의 수와 다른 경우 예외가 발생한다.")
+    void validateCount(String inputExecutionResults) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new GameResult(List.of(1,0,3,2), inputExecutionResults))
+                .withMessage("실행 결과의 개수는 플레이어의 수가 같아야합니다.");
     }
 }

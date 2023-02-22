@@ -13,7 +13,7 @@ public class GameResult {
     }
     
     public GameResult(List<Integer> resultPositions, List<String> executionResults) {
-        validateExecutionResults(executionResults);
+        validateExecutionResults(executionResults, resultPositions);
         this.resultPositions = resultPositions;
         this.executionResults = executionResults;
     }
@@ -23,11 +23,12 @@ public class GameResult {
                 .collect(Collectors.toUnmodifiableList());
     }
     
-    private void validateExecutionResults(List<String> executionResults) {
-        validateOutOFLength(executionResults);
+    private void validateExecutionResults(List<String> executionResults, List<Integer> resultPositions) {
+        validateOutOfLength(executionResults);
+        validateCount(executionResults, resultPositions);
     }
     
-    private void validateOutOFLength(List<String> executionResults) {
+    private void validateOutOfLength(List<String> executionResults) {
         if (isOutOfLength(executionResults)) {
             throw new IllegalArgumentException("각 상품의 글자 길이는 1~5입니다.");
         }
@@ -37,6 +38,12 @@ public class GameResult {
         return executionResults.stream()
                 .map(String::length)
                 .anyMatch(executionResultLength -> executionResultLength < 1 || executionResultLength > 5);
+    }
+    
+    private void validateCount(List<String> executionResults, List<Integer> resultPositions) {
+        if (executionResults.size() != resultPositions.size()) {
+            throw new IllegalArgumentException("실행 결과의 개수는 플레이어의 수가 같아야합니다.");
+        }
     }
     
     public String getOneExecutionResult(int playerIndex) {
