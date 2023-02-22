@@ -3,7 +3,7 @@ package techcourse.jcf.mission;
 public class Node {
 
     private final String value;
-    private Node nextNode;
+    private Node nextNode = null;
 
     public Node(String value){
         this.value = value;
