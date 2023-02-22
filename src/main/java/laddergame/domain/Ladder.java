@@ -6,11 +6,12 @@ import java.util.List;
 
 public class Ladder {
 
-
+    private final Height height;
     private final List<Line> lines;
 
     public Ladder(final Height height, final int numberOfPlayers) {
-        this.lines = createLadder(height.getHeight(), numberOfPlayers);
+        this.height = height;
+        this.lines = createLadder(numberOfPlayers);
     }
 
     public List<Line> getLadder() {
@@ -18,10 +19,10 @@ public class Ladder {
     }
 
 
-    private List<Line> createLadder(final int height, final int playerCount) {
+    private List<Line> createLadder(final int playerCount) {
         final List<Line> lines = new ArrayList<>();
 
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < height.getHeight(); i++) {
             lines.add(Line.from(playerCount));
         }
 
