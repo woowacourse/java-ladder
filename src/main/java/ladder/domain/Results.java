@@ -35,10 +35,10 @@ public class Results {
 
     private int move(int position, List<Step> steps) {
         if (canMoveLeft(position, steps)) {
-            return --position;
+            return position - 1;
         }
         if (canMoveRight(position, steps)) {
-            return ++position;
+            return position + 1;
         }
         return position;
     }
