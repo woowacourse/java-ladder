@@ -7,10 +7,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 class RewardsTest {
 
     private final int numberOfPlayers = 3;
-    private List<Reward> rewards;
+    private List<String> rewards;
 
 
     @Nested
@@ -19,7 +21,7 @@ class RewardsTest {
         @Test
         @DisplayName("보상의 수가 입력한 플레이어의 수와 일치하지 않으면 예외가 발생한다")
         void validateNumberOfRewardTest() {
-            rewards = List.of(new Reward("꽝"));
+            rewards = List.of("꽝");
 
             Assertions.assertThatThrownBy(() -> new Rewards(numberOfPlayers, rewards))
                     .isInstanceOf(IllegalArgumentException.class)
@@ -29,7 +31,7 @@ class RewardsTest {
         @Test
         @DisplayName("보상의 수가 플레이어 수와 일치하지만, 입력 받은 보상 중에 비어있는 경우 예외가 발생한다")
         void validateBlankRewardTest() {
-            rewards = List.of(new Reward("꽝"), new Reward(""), new Reward("5만원"));
+            rewards = List.of("꽝", "", "5만원");
 
             Assertions.assertThatThrownBy(() -> new Rewards(numberOfPlayers, rewards))
                     .isInstanceOf(IllegalArgumentException.class)
@@ -38,12 +40,10 @@ class RewardsTest {
 
         @Test
         @DisplayName("모든 조건이 충족되면, 정상적으로 Rewards 객체가 생성된다")
-        void validateBlankRewardTest() {
-            rewards = List.of(new Reward("꽝"), new Reward("3000"), new Reward("500"));
+        void validateCorrectRewardTest() {
+            rewards = List.of("꽝","3000", "500");
 
-            Assertions.assertThatThrownBy(() -> new Rewards(numberOfPlayers, rewards))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("보상을 입력하지 않았습니다.");
+            assertDoesNotThrow(() -> new Rewards(numberOfPlayers, rewards));
         }
     }
 
