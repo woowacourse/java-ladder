@@ -19,24 +19,24 @@ public class Ladder {
         validateLines(lines);
     }
 
-    private static void validateLines(final List<Line> lines) {
+    private void validateLines(final List<Line> lines) {
         validateLineSizeEmpty(lines);
         validateLinesSameSize(lines);
     }
 
-    private static void validateLineSizeEmpty(final List<Line> lines) {
+    private void validateLineSizeEmpty(final List<Line> lines) {
         if (lines.isEmpty()) {
             throw new IllegalArgumentException(ERROR_LINE_SIZE_EMPTY);
         }
     }
 
-    private static void validateLinesSameSize(final List<Line> lines) {
+    private void validateLinesSameSize(final List<Line> lines) {
         for (int i = 0; i < lines.size() - 1; i++) {
             validateLineSameSize(lines, i);
         }
     }
 
-    private static void validateLineSameSize(final List<Line> lines, final int index) {
+    private void validateLineSameSize(final List<Line> lines, final int index) {
         if (lines.get(index).size() != lines.get(index + 1).size()) {
             throw new IllegalArgumentException(ERROR_SAME_LINE_SIZE);
         }

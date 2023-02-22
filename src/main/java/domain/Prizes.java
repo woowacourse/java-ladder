@@ -14,7 +14,7 @@ public class Prizes {
         this.prizes = prizes;
     }
 
-    private static void validateItemSize(final List<Prize> prizes, final Names names) {
+    private void validateItemSize(final List<Prize> prizes, final Names names) {
         if (prizes.size() != names.size()) {
             throw new IllegalArgumentException(ITEM_SIZE_NOT_MATCH);
         }

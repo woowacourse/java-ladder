@@ -31,7 +31,7 @@ public class Line {
         return scaffold;
     }
 
-    private static boolean isScaffoldExistContinually(Scaffold scaffold, final Deque<Scaffold> scaffolds){
+    private static boolean isScaffoldExistContinually(Scaffold scaffold, final Deque<Scaffold> scaffolds) {
         return scaffold == Scaffold.EXIST && scaffolds.peekLast() == Scaffold.EXIST;
     }
 
