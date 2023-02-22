@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Users {
@@ -49,5 +50,15 @@ public class Users {
 
     public int size() {
         return users.size();
+    }
+
+    public int getOrderOf(final String userName) {
+        final Optional<User> user = users.stream().filter(user1 -> user1.isNameOf(userName))
+                .findAny();
+        return findIndexOf(user.get());
+    }
+
+    private int findIndexOf(final User user) {
+        return users.indexOf(user);
     }
 }
