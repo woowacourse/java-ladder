@@ -27,7 +27,7 @@ class PrizesTest {
     @Test
     @DisplayName("사다리 위체(position)에 따라 해당 상품(prize)반환 테스트")
     void getPrizeAtTest() {
-        assertThat(prizes.getPrizeValueAt(2)).isEqualTo("1000");
+        assertThat(prizes.getPrizeValueAt(new Position(2))).isEqualTo("1000");
     }
 
 }

@@ -13,8 +13,8 @@ public class Prizes {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public String getPrizeValueAt(int position) {
-        int index = position - 1;
+    public String getPrizeValueAt(Position position) {
+        int index = position.getValue() - 1;
         return prizes.get(index).getValue();
     }
 
