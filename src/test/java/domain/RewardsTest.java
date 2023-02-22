@@ -25,4 +25,14 @@ class RewardsTest {
             IllegalArgumentException.class,
             () -> Rewards.of(rewards, rewards.size() + 1));
     }
+
+    @DisplayName("공백이 포함되어 입력되면 공백을 제거하여 저장한다.")
+    @Test
+    void rewardStripTest() {
+        List<String> input = List.of("꽝 ", "3000 ");
+        Rewards allRewards = Rewards.of(input, input.size());
+
+        assertEquals("꽝", allRewards.getReward(0));
+    }
+
 }
