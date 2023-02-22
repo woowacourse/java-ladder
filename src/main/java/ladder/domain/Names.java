@@ -40,7 +40,9 @@ public class Names {
     public int getCount() {
         return names.size();
     }
-
+    public Name getElement(int index){
+        return names.get(index);
+    }
     public NamesDto toDto() {
         return new NamesDto(names.stream()
             .map(Name::toDto)

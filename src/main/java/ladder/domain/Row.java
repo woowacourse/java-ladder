@@ -34,6 +34,24 @@ class Row {
             == Step.BLANK);
     }
 
+    public int getAdjacent(int index) {
+        if (isAdjacent(index)) {
+            return index - 1;
+        }
+        if (isAdjacent(index + 1)) {
+            return index + 1;
+        }
+        return index;
+
+    }
+
+    private boolean isAdjacent(int index) {
+        if (index >= connected.size()) {
+            return false;
+        }
+        return connected.get(index) == Step.CONNECTED;
+    }
+
     List<Step> toDto() {
         return connected.subList(BUFFER_COUNT, connected.size());
     }

@@ -10,11 +10,11 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printResult(NamesDto playerNamesDto, RowsDto rowsDto,NamesDto resultNamesDto) {
+    public static void printResult(NamesDto playerNamesDto, RowsDto rowsDto,NamesDto rewardNamesDto) {
         printResultTitle();
         printPlayerNames(playerNamesDto);
         printRows(rowsDto);
-        printPlayerNames(resultNamesDto);
+        printPlayerNames(rewardNamesDto);
     }
 
     private static void printResultTitle() {

@@ -1,8 +1,8 @@
 package ladder.domain;
 
-public class ResultNames extends Names {
+public class RewardNames extends Names {
 
-    public ResultNames(String names, int playerNamesSize) {
+    public RewardNames(String names, int playerNamesSize) {
         super(names);
         validateNamesSize(playerNamesSize);
     }
