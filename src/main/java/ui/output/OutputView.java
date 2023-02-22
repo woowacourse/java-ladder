@@ -1,9 +1,6 @@
 package ui.output;
 
-import domain.Lines;
-import domain.Players;
-import domain.Result;
-import domain.Results;
+import domain.*;
 
 public class OutputView {
 
@@ -51,7 +48,26 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printExecuteResult() {
-        System.out.println(EXECUTE_RESULT);
+    public static void printExecuteResult(Players players, Results results, String playerName) {
+        System.out.println("\n" + EXECUTE_RESULT);
+        if (playerName.equals("all")) {
+            printAll(players, results, playerName);
+            return;
+        }
+        printDetail(players, results, playerName);
+    }
+
+    private static void printAll(Players players, Results results, String playerName) {
+        for (Player player : players.getPlayers()) {
+            System.out.println(player.getName() + " : " + results.getResults().get(player.getPosition()).getResult());
+        }
+    }
+
+    private static void printDetail(Players players, Results results, String playerName) {
+        players.getPlayers().stream()
+                .filter(player -> player.getName().equals(playerName))
+                .forEach(player -> {
+                    System.out.println(results.getResults().get(player.getPosition()).getResult());
+                });
     }
 }
