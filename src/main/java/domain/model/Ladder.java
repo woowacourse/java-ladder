@@ -15,9 +15,10 @@ public class Ladder {
         this.height = height;
         this.width = width;
         this.layers = layers;
+        makeLineInLayers();
     }
 
-    public void makeLineInLayers() {
+    private void makeLineInLayers() {
         IntStream.range(0, height.getValue())
             .mapToObj(layers::get)
             .forEach(

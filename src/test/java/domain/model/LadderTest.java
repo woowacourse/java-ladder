@@ -19,22 +19,20 @@ public class LadderTest {
         //given
         Height height = new Height(10);
         Width width = new Width(5);
-        Ladder ladder = new Ladder(height, width, makeEmptyLayers(height));
-        Ladder ladderDoNothing = new Ladder(height, width, makeEmptyLayers(height));
+        Ladder ladder = new Ladder(height, width,
+            makeEmptyRandomLayers(height, new RandomPassGenerator()));
 
         //when
-        ladder.makeLineInLayers();
-
         //then
-        for (int i = 0; i < height.getValue(); i++) {
-            assertThat(ladder.getLayers().get(i).getLines()).isNotEmpty();
-            assertThat(ladderDoNothing.getLayers().get(i).getLines()).isEmpty();
-        }
+        IntStream.range(0, height.getValue())
+            .forEach(i -> assertThat(ladder.getLayers().get(i).getLines()).isNotEmpty());
     }
 
-    private List<Layer> makeEmptyLayers(Height height) {
+    private List<Layer> makeEmptyRandomLayers(final Height height,
+        final PassGenerator passGenerator) {
         return IntStream.range(0, height.getValue())
-            .mapToObj(index -> new Layer(new ArrayList<>(), new RandomPassGenerator()))
+            .mapToObj(index -> new Layer(new ArrayList<>(), passGenerator))
             .collect(Collectors.toList());
     }
+
 }

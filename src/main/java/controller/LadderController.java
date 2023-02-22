@@ -33,7 +33,6 @@ public class LadderController {
         Height height = getHeight();
         List<Layer> layers = makeEmptyLayers(height);
         Ladder ladder = new Ladder(height, getWidth(names.size() - NAMES_WIDTH_DIFFERENCE), layers);
-        ladder.makeLineInLayers();
         outputView.printResult(names, ladder);
     }
 
