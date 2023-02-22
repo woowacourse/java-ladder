@@ -46,7 +46,7 @@ public class LadderGameApplication {
             }
 
             if (request.isPlayerName(players)) {
-                System.out.println(request.getMessage() + "는 존재하지 않는 플레이어입니다.");
+                outputView.printNoMatchingPlayerMessage(request);
                 continue;
             }
 

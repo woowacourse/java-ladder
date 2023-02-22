@@ -2,6 +2,7 @@ package view;
 
 import static java.util.stream.Collectors.joining;
 
+import domain.LadderResultRequest;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.ladder.LinePoint;
@@ -68,6 +69,10 @@ public class OutputView {
             System.out.println(String.format("%s : %s",
                     playerLadderResult.getPlayerName(), playerLadderResult.getResult()));
         }
+    }
+
+    public void printNoMatchingPlayerMessage(LadderResultRequest request) {
+        System.out.println(request.getMessage() + "는 존재하지 않는 플레이어입니다.");
     }
 
     public void printErrorMessage(String message) {
