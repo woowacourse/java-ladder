@@ -28,12 +28,6 @@ public class Line {
         return steps.get(index) == Step.EXIST && steps.get(index - 1) == Step.EXIST;
     }
 
-    public String asString() {
-        return "|" + steps.stream()
-                .map(Step::getShape)
-                .collect(Collectors.joining("|")) + "|";
-    }
-
     public List<Step> getSteps() {
         return Collections.unmodifiableList(steps);
     }
