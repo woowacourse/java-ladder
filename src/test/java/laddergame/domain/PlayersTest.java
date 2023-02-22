@@ -17,10 +17,26 @@ public class PlayersTest {
         final List<String> names = List.of("에단", "준팍");
 
         //when
-        final Players result = Players.from(names);
+        final Players players = Players.from(names);
 
         //then
-        assertThat(result.getPlayerName()).isEqualTo(names);
+        assertThat(players.getPlayerName())
+                .isEqualTo(names);
+    }
+
+    @Test
+    @DisplayName("세번째 위치한 Player의 위치값은 2이다.")
+    void whenAtThird_thenPositionTwo() {
+        //given
+        final List<String> names = List.of("에단", "준팍", "또링", "코일");
+
+        //when
+        final Players players = Players.from(names);
+        final Player thirdPlayer = players.getPlayers().get(2);
+
+        //then
+        assertThat(thirdPlayer.getOrder())
+                .isEqualTo(2);
     }
 
     @Test
