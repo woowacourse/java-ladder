@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.dto.BridgeGameResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ class LadderGameTest {
     private Users DEFAULT_USERS;
     private Ladder DEFAULT_LADDER;
     private Reward DEFAULT_REWARD;
+    private LadderGame DEFAULT_LADDER_GAME;
 
     private final LineSource I_____I = LineSource.MAKE_LINE;
     private final LineSource IxxxxxI = LineSource.MAKE_BLANK;
@@ -24,6 +26,7 @@ class LadderGameTest {
         DEFAULT_USERS = new Users(List.of("a", "b", "c"));
         DEFAULT_LADDER = new Ladder(3, DEFAULT_USERS);
         DEFAULT_REWARD = new Reward(List.of("1", "2", "3"));
+        DEFAULT_LADDER_GAME = new LadderGame(DEFAULT_LADDER, DEFAULT_USERS, DEFAULT_REWARD);
     }
 
     @Test
@@ -67,14 +70,21 @@ class LadderGameTest {
 
         final LadderGame ladderGame = new LadderGame(ladder, DEFAULT_USERS, DEFAULT_REWARD);
         assertAll(() -> {
-            assertThat(ladderGame.getRewardOf("a")).isEqualTo("3");
+                    assertThat(ladderGame.getRewardOf("a")).isEqualTo("3");
                 },
                 () -> {
-            assertThat(ladderGame.getRewardOf("b")).isEqualTo("1");
+                    assertThat(ladderGame.getRewardOf("b")).isEqualTo("1");
                 },
                 () -> {
-            assertThat(ladderGame.getRewardOf("c")).isEqualTo("2");
+                    assertThat(ladderGame.getRewardOf("c")).isEqualTo("2");
                 }
         );
+    }
+
+    @Test
+    @DisplayName("사디레 게임에게 게임 결과를 반환하게하면 사다리 게임의 전체 결과를 반환한다.")
+    void getRewardOfAllTest() {
+        assertThat(DEFAULT_LADDER_GAME.getGameResult())
+                .isInstanceOf(BridgeGameResult.class);
     }
 }
