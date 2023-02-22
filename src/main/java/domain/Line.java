@@ -51,12 +51,12 @@ public class Line {
         return Bridge.EMPTY;
     }
 
-    private Bridge getBridgeAt(Position position) {
-        return bridges.get(position.getPosition());
-    }
-
     private boolean isValid(Position position) {
         return position.isInBetween(0, bridges.size());
+    }
+
+    private Bridge getBridgeAt(Position position) {
+        return bridges.get(position.getPosition());
     }
 
     public List<Bridge> getBridges() {
