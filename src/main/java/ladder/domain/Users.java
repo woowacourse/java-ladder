@@ -46,7 +46,7 @@ public class Users {
 
     public int getOrderOf(final String userName) {
         final User user = users.stream().filter(user1 -> user1.isNameOf(userName))
-                .findAny().orElseThrow(()->{
+                .findAny().orElseThrow(() -> {
                     throw new IllegalArgumentException(NOT_EXITING_USER_ERROR_MESSAGE);
                 });
         return users.indexOf(user);

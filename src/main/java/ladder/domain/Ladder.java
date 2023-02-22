@@ -58,7 +58,7 @@ public class Ladder {
         return floors.size();
     }
 
-    public int getWidth(){
+    public int getWidth() {
         return floors.get(0).getSize();
     }
 

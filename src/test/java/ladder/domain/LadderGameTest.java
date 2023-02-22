@@ -16,13 +16,12 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LadderGameTest {
 
+    private final LineSource I_____I = LineSource.MAKE_LINE;
+    private final LineSource IxxxxxI = LineSource.MAKE_BLANK;
     private Users DEFAULT_USERS;
     private Ladder DEFAULT_LADDER;
     private Reward DEFAULT_REWARD;
     private LadderGame DEFAULT_LADDER_GAME;
-
-    private final LineSource I_____I = LineSource.MAKE_LINE;
-    private final LineSource IxxxxxI = LineSource.MAKE_BLANK;
 
     @BeforeEach
     void setting() {

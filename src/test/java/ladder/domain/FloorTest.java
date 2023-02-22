@@ -61,7 +61,7 @@ public class FloorTest {
     @DisplayName("Floor의 크기에 맞지 않는 위치의 index값을 구하려 한다면 예외가 발생한다.")
     void resultPositionExceptionTest(int index) {
         final Floor floor = new Floor(3);
-        assertThatThrownBy(()-> floor.getResultPosition(index))
+        assertThatThrownBy(() -> floor.getResultPosition(index))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("해당 위치는 존재하지 않는 값입니다.");
     }

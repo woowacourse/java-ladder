@@ -9,7 +9,7 @@ public class Line {
             isExist = true;
             return;
         }
-        if( lineSource == LineSource.MAKE_BLANK){
+        if (lineSource == LineSource.MAKE_BLANK) {
             return;
         }
         throw new UnsupportedOperationException();

@@ -11,7 +11,7 @@ public class MainController {
             final LadderGame ladderGame = makeLadderGameByConsole();
             OutputView.printLadderGame(ladderGame);
             getUserAndPrint(ladderGame);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
         }
     }

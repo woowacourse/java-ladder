@@ -18,7 +18,7 @@ public class Reward {
         }
     }
 
-    public int size(){
+    public int size() {
         return items.size();
     }
 
