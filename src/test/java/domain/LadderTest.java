@@ -1,15 +1,14 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import org.assertj.core.api.Assertions;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import view.OutputView;
 
 class LadderTest {
     Ladder ladder;
@@ -33,5 +32,13 @@ class LadderTest {
         int result = ladder.calculateEndIndex(startIndex);
 
         assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("startIndexes를 입력하면 endIndexes를 반환한다")
+    void calculateEndIndexesTest() {
+        List<Integer> result = ladder.calculateEndIndex(List.of(1, 3));
+
+        assertThat(result).containsExactly(3,1);
     }
 }

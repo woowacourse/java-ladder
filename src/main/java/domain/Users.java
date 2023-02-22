@@ -35,4 +35,10 @@ public class Users {
     public int getIndex(User user) {
         return users.indexOf(user);
     }
+
+    public List<Integer> getIndex(List<User> usersInput) {
+        return usersInput.stream()
+                .map(users::indexOf)
+                .collect(Collectors.toUnmodifiableList());
+    }
 }

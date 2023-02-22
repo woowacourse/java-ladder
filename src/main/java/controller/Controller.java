@@ -56,7 +56,10 @@ public class Controller {
         }
 
         if(isAll(resultOption)) {
-
+            List<User> usersWithoutReward = resultTable.getUsersWithoutReward();
+            List<Integer> startIndexes = users.getIndex(usersWithoutReward);
+            List<Integer> endIndexes = ladder.calculateEndIndex(startIndexes);
+            return;
         }
 
         User user = users.findUserByName(resultOption);

@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import utils.LadderRowGenerator;
 
@@ -30,5 +31,11 @@ public class Ladder {
             index += nextSummand;
         }
         return index;
+    }
+
+    public List<Integer> calculateEndIndex(List<Integer> startIndexes) {
+        return startIndexes.stream()
+                .map(this::calculateEndIndex)
+                .collect(Collectors.toUnmodifiableList());
     }
 }
