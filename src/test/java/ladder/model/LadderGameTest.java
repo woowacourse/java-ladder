@@ -19,6 +19,7 @@ class LadderGameTest {
     private final Reward reward1 = new Reward("꽝");
     private final Reward reward2 = new Reward("3000");
     private final Reward reward3 = new Reward("5000");
+    private final Height height = new Height(2);
 
     @Test
     @DisplayName("플레이어가 2명 미만이면 예외처리 테스트")
@@ -26,7 +27,7 @@ class LadderGameTest {
         List<Player> input = new ArrayList<>(List.of(player1));
         List<Reward> rewards = new ArrayList<>(List.of(reward1));
 
-        Assertions.assertThatThrownBy(() -> new LadderGame(input, rewards, new Height(5)))
+        Assertions.assertThatThrownBy(() -> new LadderGame(input, rewards, height))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -36,7 +37,7 @@ class LadderGameTest {
         List<Player> input = new ArrayList<>(List.of(player1, player2));
         List<Reward> rewards = new ArrayList<>(List.of(reward1, reward2));
 
-        assertThatCode(() -> new LadderGame(input, rewards, new Height(5)))
+        assertThatCode(() -> new LadderGame(input, rewards, height))
                 .doesNotThrowAnyException();
     }
 
@@ -50,7 +51,7 @@ class LadderGameTest {
             rewards.add(new Reward(Integer.toString(i)));
         }
 
-        assertThatCode(() -> new LadderGame(players, rewards, new Height(5)))
+        assertThatCode(() -> new LadderGame(players, rewards, height))
                 .doesNotThrowAnyException();
     }
 
@@ -64,7 +65,7 @@ class LadderGameTest {
             rewards.add(new Reward(Integer.toString(i)));
         }
 
-        Assertions.assertThatThrownBy(() -> new LadderGame(players, rewards, new Height(5)))
+        Assertions.assertThatThrownBy(() -> new LadderGame(players, rewards, height))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -74,7 +75,7 @@ class LadderGameTest {
         List<Player> input = new ArrayList<>(List.of(player1, player2));
         List<Reward> rewards = new ArrayList<>(List.of(reward1, reward2));
 
-        assertThatCode(() -> new LadderGame(input, rewards, new Height(5)))
+        assertThatCode(() -> new LadderGame(input, rewards, height))
                 .doesNotThrowAnyException();
     }
 
@@ -84,7 +85,7 @@ class LadderGameTest {
         List<Player> input = new ArrayList<>(List.of(player1, player2));
         List<Reward> rewards = new ArrayList<>(List.of(reward1, reward2, reward3));
 
-        assertThatCode(() -> new LadderGame(input, rewards, new Height(5)))
+        assertThatCode(() -> new LadderGame(input, rewards, height))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -94,7 +95,7 @@ class LadderGameTest {
         List<Player> input = new ArrayList<>(List.of(player1, player2, player3));
         List<Reward> rewards = new ArrayList<>(List.of(reward1, reward2, reward3));
 
-        LadderGame ladderGame = new LadderGame(input, rewards, new Height(2));
+        LadderGame ladderGame = new LadderGame(input, rewards, height);
         ladderGame.generateLadder(new TestLineCreateDecider(newArrayList(true, false, false, true)));
 
         List<Row> rows = ladderGame.getLadder().getRows();
@@ -107,7 +108,7 @@ class LadderGameTest {
     void playLadderGameTest() {
         List<Player> input = new ArrayList<>(List.of(player1, player2, player3));
         List<Reward> rewards = new ArrayList<>(List.of(reward1, reward2, reward3));
-        LadderGame ladderGame = new LadderGame(input, rewards, new Height(2));
+        LadderGame ladderGame = new LadderGame(input, rewards, height);
         ladderGame.generateLadder(new TestLineCreateDecider(newArrayList(true, false, false, true)));
 
         ladderGame.playLadderGame();

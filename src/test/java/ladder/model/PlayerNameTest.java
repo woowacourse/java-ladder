@@ -2,7 +2,6 @@ package ladder.model;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -20,12 +19,14 @@ class PlayerNameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("플레이어 이름이 all 이면 예외처리 테스트")
-    void invalidNameLengthTest() {
-        Assertions.assertThatThrownBy(() -> new PlayerName("all"))
+    @ParameterizedTest
+    @DisplayName("플레이어 이름이 all, quit 이면 예외처리 테스트")
+    @ValueSource(strings = {"all", "quit"})
+    void invalidNameCommandTest(String input) {
+        Assertions.assertThatThrownBy(() -> new PlayerName(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
 
     @ParameterizedTest
     @DisplayName("플레이어 이름이 1자 이상 5자 이하면 통과 테스트")
