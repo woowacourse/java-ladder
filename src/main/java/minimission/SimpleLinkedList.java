@@ -53,7 +53,10 @@ public class SimpleLinkedList implements SimpleList {
             indexNode = indexNode.next;
         }
 
-        return indexNode.value = value;
+        String originalValue = indexNode.value;
+        indexNode.value = value;
+
+        return originalValue;
     }
 
     @Override

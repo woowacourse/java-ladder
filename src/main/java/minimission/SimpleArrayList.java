@@ -34,16 +34,27 @@ public class SimpleArrayList implements SimpleList{
         checkCapacity();
         validateIndexOutOfRange(index);
 
-        String originalValue = elements[index];
-        elements[position++] = originalValue;
-        elements[index] = value;
+        position++;
+
+        String[] newElements = new String[size];
+        for (int i = 0; i < index - 1; i++) {
+            newElements[i] = elements[i];
+        }
+        newElements[index] = value;
+        for (int i = index + 1; i < position; i++) {
+            newElements[i] = elements[i - 1];
+        }
+
+        elements = newElements;
     }
 
     @Override
     public String set(int index, String value) {
         validateIndexOutOfRange(index);
 
-        return elements[index] = value;
+        String originalValue = elements[index];
+        elements[index] = value;
+        return originalValue;
     }
 
     @Override
