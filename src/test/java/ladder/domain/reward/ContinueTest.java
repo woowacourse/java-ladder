@@ -13,22 +13,22 @@ public class ContinueTest {
     @DisplayName("getContinue 테스트")
     @ValueSource(strings = {"y","n","Y","N"})
     void createContinueTest(String inputContinue) {
-        assertDoesNotThrow(() -> getContinue(inputContinue));
+        assertDoesNotThrow(() -> Continue.getContinue(inputContinue));
     }
 
     @ParameterizedTest(name = "input={0}")
     @DisplayName("getContinue 생성 잘못된 문자 예외 테스트")
     @ValueSource(strings = {"x","1","o","no"})
-    void createContinueTest(String inputContinue) {
-        assertThatThrownBy(() -> getContinue(inputContinue))
+    void createContinueWrongValueExceptionTest(String inputContinue) {
+        assertThatThrownBy(() -> Continue.getContinue(inputContinue))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest(name = "input={0}")
     @DisplayName("Continue 생성 공백 문자 예외 테스트")
     @ValueSource(strings = {" ","     ",""})
-    void createContinueTest(String inputContinue) {
-        assertThatThrownBy(() -> getContinue(inputContinue))
+    void createContinueBlankExceptionTest(String inputContinue) {
+        assertThatThrownBy(() -> Continue.getContinue(inputContinue))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
