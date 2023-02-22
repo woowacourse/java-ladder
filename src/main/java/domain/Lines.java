@@ -30,5 +30,9 @@ public class Lines {
         return lines;
     }
 
-
+    public void calculateResults(Players players) {
+        for (Line line : lines) {
+            players.calculateResult(line);
+        }
+    }
 }

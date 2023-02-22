@@ -1,4 +1,5 @@
 import domain.Lines;
+import domain.Player;
 import domain.Players;
 import domain.Results;
 import ui.input.InputView;
@@ -16,9 +17,14 @@ public class Application {
 
         int ladderHeight = InputView.getLadderHeight();
         Lines lines = new Lines(players.getPlayers().size(), ladderHeight);
+        lines.calculateResults(players);
 
-        OutputView.printResult(players, lines, results);
+        OutputView.printLadderResult(players, lines, results);
 
-        String player = InputView.getPlayer();
+        String playerName = InputView.getPlayer();
+        players.validateInputPlayer(playerName);
+
+        OutputView.printExecuteResult();
+
     }
 }

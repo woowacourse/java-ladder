@@ -7,10 +7,11 @@ import domain.Results;
 
 public class OutputView {
 
-    private static final String EXECUTE_RESULT = "사다리 결과";
+    private static final String EXECUTE_LADDER_RESULT = "사다리 결과";
+    private static final String EXECUTE_RESULT = "실행 결과";
 
-    public static void printResult(final Players players, final Lines lines, final Results results) {
-        System.out.println("\n" + EXECUTE_RESULT + "\n");
+    public static void printLadderResult(final Players players, final Lines lines, final Results results) {
+        System.out.println("\n" + EXECUTE_LADDER_RESULT + "\n");
         printPlayersName(players);
         printLadder(lines, players);
         printResults(results);
@@ -48,5 +49,9 @@ public class OutputView {
             System.out.print(" ".repeat(5 - result.getResult().length()) + result.getResult() + " ");
         }
         System.out.println();
+    }
+
+    public static void printExecuteResult() {
+        System.out.println(EXECUTE_RESULT);
     }
 }

@@ -11,7 +11,7 @@
 - [x] 사다리 결과를 입력 받는다.
   - [x] 사다리 결과는 사람의 수 만큼 있어야 한다.
 - [x] 결과를 보고 싶은 player 입력 받기
-  - [ ] 존재하는 player만 입력할 수 있다.
+  - [x] 존재하는 player만 입력할 수 있다.
   
 ## Util
 - [x] Boolean 값 랜덤 생성을 한다.
@@ -25,5 +25,6 @@
   - [x] player가 첫 번째 위치에 있을 때 0번째 point가 true면 무조건 right다.
   - [x] player가 마지막 위치에 있을 때 마지막 point가 true면 무조건 left다.
   - [x] // player가 첫 번째 위치 또는 마지막 위치가 아니라면 현재 위치의 point와 그 전 위치의 point를 계산한다.
-
+- [x] 만약 player가 갈 수 있는 사다리라면 player의 position을 이동시킨다.
+  - [x] player의 position을 Line의 isRightLadder 함수의 반환 값에 따라 이동시킨다.
 [//]: # (- [ ] )

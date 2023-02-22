@@ -1,5 +1,7 @@
 package domain;
 
+import ui.output.LadderShape;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,4 +32,19 @@ public class Players {
         return playerList;
     }
 
+    public void validateInputPlayer(String playerName) {
+        int matchPlayerNameCount = (int) players.stream()
+                .filter(player -> player.getName().equals(playerName))
+                .count();
+        if (matchPlayerNameCount == 0) {
+            throw new IllegalArgumentException("존재하지 않는 플레이어의 이름은 입력할 수 없습니다.");
+        }
+    }
+
+    public void calculateResult(Line line) {
+        for (Player player : players) {
+            String ladderPosition = line.isRightLadder(player.getPosition(), line.getPoints());
+            player.calculatePosition(ladderPosition);
+        }
+    }
 }
