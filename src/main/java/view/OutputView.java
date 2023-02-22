@@ -1,8 +1,14 @@
 package view;
 
+import java.util.Arrays;
 import java.util.List;
 
-import domain.*;
+import domain.Ladder;
+import domain.Lines;
+import domain.Name;
+import domain.Names;
+import domain.Result;
+import domain.Results;
 
 public class OutputView {
 
@@ -21,7 +27,7 @@ public class OutputView {
 
         System.out.println(makeNamesOutput(names));
         System.out.print(makeLadderOutput(names, ladder));
-        System.out.println(makeResultsOutput(results));
+        System.out.println(makeResultsOutput(results, names));
     }
 
     private StringBuilder makeNamesOutput(final Names names) {
@@ -105,24 +111,34 @@ public class OutputView {
         return lines.getLines().get(selectedPosition).getConnections();
     }
 
-    private void drawExistingConnection(final Names names, final Boolean isExistingFoothold) {
-        if (isExistingFoothold) {
+    private void drawExistingConnection(final Names names, final Boolean isExistingConnection) {
+        if (isExistingConnection) {
             ladderOutput.append(CONNECTION.repeat(findLongestName(names)));
             return;
         }
         ladderOutput.append(BLANK.repeat(findLongestName(names)));
     }
 
-    private StringBuilder makeResultsOutput(final Results results) {
+    private StringBuilder makeResultsOutput(final Results results, final Names names) {
+        int longestName = findLongestName(names);
+
         for (Result result : results.getResults()) {
-            resultOutput.append(result.getResult() + "   ");
+            resultOutput.append(result.getResult())
+                    .append(BLANK.repeat(longestName - result.getResult().length()));
         }
 
         return resultOutput;
     }
 
-    public void printGameResult(final String gameResult) {
+    public void printGameResult(final Names names, final String name, final String gameResult) {
         System.out.println(NEW_LINE + "실행 결과");
-        System.out.println(gameResult);
+
+        if (name.equals("all")) {
+            List<String> results = Arrays.asList(gameResult.split(","));
+            for (int i = 0; i < results.size(); i++) {
+                System.out.println(names.getNames().get(i).getName() + " : " + results.get(i));
+            }
+        }
+
     }
 }

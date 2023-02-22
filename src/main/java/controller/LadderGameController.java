@@ -34,8 +34,9 @@ public class LadderGameController {
 
         outputView.printLadder(names, ladder, results);
 
-        String resultByName = gameResult.findResult(inputView.readNameToShowResult());
-        outputView.printGameResult(resultByName);
+        String name = inputView.readNameToShowResult();
+        String resultByName = gameResult.findResult(name);
+        outputView.printGameResult(names, name, resultByName);
     }
 
     private Names makeNames() {

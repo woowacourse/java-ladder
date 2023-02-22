@@ -8,6 +8,7 @@ public class Results {
 
     private final List<Result> results;
 
+    // TODO: 결과 값의 최대 길이는 최대 이름의 길이보다 커서는 안된다.
     public Results(final String inputResult, final int numberOfName) {
         List<Result> results = makeResults(inputResult);
         validateNumberOfResults(results.size(), numberOfName);
