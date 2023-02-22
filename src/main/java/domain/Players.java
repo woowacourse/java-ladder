@@ -1,6 +1,6 @@
 package domain;
 
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -29,7 +29,13 @@ public class Players {
                 .orElseThrow(() -> new IllegalArgumentException("해당하는 플레이어가 없습니다."));
     }
 
-    public List<Player> getPlayers() {
-        return Collections.unmodifiableList(players);
+    public void moveAllPlayers(Lines lines) {
+        players.forEach(player -> player.move(lines));
+    }
+
+    public List<Player> getPlayersSortedByPosition() {
+        return players.stream()
+                .sorted(Comparator.comparing(player -> player.getPosition().getPosition()))
+                .collect(Collectors.toUnmodifiableList());
     }
 }

@@ -1,32 +1,26 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class LadderGame {
 
 
     private LadderGame(Players players, Missions missions, Lines lines) {
-        players.getPlayers().forEach(player -> player.move(lines));
-        List<Player> finalLocationOfPlayer = players.getPlayers().stream()
-                .sorted(Comparator.comparing(player -> player.getPosition().getPosition()))
-                .collect(Collectors.toList());
-        System.out.println(finalLocationOfPlayer);
-
-        List<Mission> finalLocationOfMission = new ArrayList<>(missions.getMissions());
-        Collections.shuffle(finalLocationOfMission);
-        System.out.println(finalLocationOfMission);
-
+        List<Player> playersSortedByPosition = moveAllPlayers(players, lines);
+        List<Mission> finalMission = new ArrayList<>(missions.getMissions());
+        
         Map<Player, Mission> finalResult = new HashMap<>();
-        for (int index = 0; index < finalLocationOfPlayer.size(); index++) {
-            finalResult.put(finalLocationOfPlayer.get(index), finalLocationOfMission.get(index));
+        for (int index = 0; index < playersSortedByPosition.size(); index++) {
+            finalResult.put(playersSortedByPosition.get(index), finalMission.get(index));
         }
-        System.out.println(finalResult);
+    }
+
+    private static List<Player> moveAllPlayers(Players players, Lines lines) {
+        players.moveAllPlayers(lines);
+        return players.getPlayersSortedByPosition();
     }
 
     public static LadderGame of(Players players, Missions missions, Lines lines) {

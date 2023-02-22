@@ -60,7 +60,7 @@ public class OutputView {
 
     public void printAllResult(Players players) {
         System.out.println(Message.OUTPUT_RESULT.message);
-        for (Player player : players.getPlayers()) {
+        for (Player player : players.getPlayersSortedByPosition()) {
             System.out.printf(Message.OUTPUT_RESULT_ALL.message, player.getName().getName(),
                     player.getMission().getMission());
         }
