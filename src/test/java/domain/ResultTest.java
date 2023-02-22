@@ -11,6 +11,7 @@ import java.util.Map;
 
 public class ResultTest {
     /**
+     * 사다리 실행결과
      * pobi : 꽝
      * honux : 3000
      * crong : 꽝
