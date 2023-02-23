@@ -84,21 +84,21 @@ public class LadderGameController {
 	}
 
 	private void displayAllGameResults() {
-		String allGameResults = GameResultView.formatAllGameResults(ladderGame.getParticipants(), ladderGame.getAllGameResult());
+		String allGameResults = GameResultFormatter.formatAllGameResults(ladderGame.getParticipants(), ladderGame.getAllGameResult());
 		OutputView.printAllGameResults(allGameResults);
 	}
 
 	private void displayGameResult(String name) {
 		Participant participant = Participant.from(name);
 		Result result = ladderGame.getResultFrom(participant);
-		String formattedResult = GameResultView.formatGameResult(result);
+		String formattedResult = GameResultFormatter.formatGameResult(result);
 		OutputView.printGameResult(formattedResult);
 	}
 
 	private void displayLadder() {
-		String names = CollectionView.formatParticipants(ladderGame.getParticipants());
-		String ladder = LadderView.formatLadder(ladderGame.getLadder());
-		String results = CollectionView.formatResults(ladderGame.getResults());
+		String names = CollectionFormatter.formatParticipants(ladderGame.getParticipants());
+		String ladder = LadderFormatter.formatLadder(ladderGame.getLadder());
+		String results = CollectionFormatter.formatResults(ladderGame.getResults());
 		OutputView.printLadderResult(names, ladder, results);
 	}
 }

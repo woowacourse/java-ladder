@@ -7,7 +7,7 @@ import domain.Collection.Result;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class GameResultView {
+public class GameResultFormatter {
     private final static String ALL_GAME_RESULT_FORMAT = "%s : %s";
 
     public static String formatGameResult(Result result) {
@@ -16,7 +16,7 @@ public class GameResultView {
 
     public static String formatAllGameResults(Participants participants, Map<Participant, Result> results) {
         return participants.getParticipants().stream()
-                .map(p -> GameResultView.printNameWithResult(p, results.get(p)))
+                .map(p -> GameResultFormatter.printNameWithResult(p, results.get(p)))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 

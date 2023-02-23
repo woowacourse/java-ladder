@@ -8,13 +8,13 @@ import domain.Collection.Results;
 import java.util.stream.Collectors;
 
 // TODO: Generics 사용해보기?
-public class CollectionView {
+public class CollectionFormatter {
     private static final String ITEM_DELIMITER = "";
     private static final String RIGHT_ALIGN_PLACEHOLDER = "%6s";
 
     public static String formatParticipants(Participants participants) {
         return participants.getParticipants().stream()
-                .map(CollectionView::formatParticipant)
+                .map(CollectionFormatter::formatParticipant)
                 .collect(Collectors.joining(ITEM_DELIMITER));
     }
 
@@ -24,7 +24,7 @@ public class CollectionView {
 
     public static String formatResults(Results results) {
         return results.getResults().stream()
-                .map(CollectionView::formatResult)
+                .map(CollectionFormatter::formatResult)
                 .collect(Collectors.joining(ITEM_DELIMITER));
     }
 

@@ -5,7 +5,7 @@ import domain.Ladder.LadderHeight;
 import domain.Ladder.LadderWidth;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import view.LadderView;
+import view.LadderFormatter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,7 +17,7 @@ class LadderTest {
         LadderWidth ladderWidth = LadderWidth.from(5);
         LadderHeight ladderHeight = LadderHeight.from(3);
         Ladder ladder = Ladder.create(ladderHeight, ladderWidth, new FixedPresencePointGenerator());
-        assertThat(LadderView.formatLadder(ladder)).isEqualTo(
+        assertThat(LadderFormatter.formatLadder(ladder)).isEqualTo(
                 "     |-----|     |-----|     |-----|" + System.lineSeparator() +
                         "     |-----|     |-----|     |-----|" + System.lineSeparator() +
                         "     |-----|     |-----|     |-----|");

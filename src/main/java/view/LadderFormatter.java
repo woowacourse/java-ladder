@@ -6,7 +6,7 @@ import domain.util.Point;
 
 import java.util.stream.Collectors;
 
-public class LadderView {
+public class LadderFormatter {
     private final static String ABSENT_LINE = "     ";
     private final static String PRESENT_LINE = "-----";
     private final static String LADDER_DELIMITER = "|";
@@ -15,13 +15,13 @@ public class LadderView {
 
     public static String formatLadder(Ladder ladder) {
         return ladder.getLines().stream()
-                .map(LadderView::formatLine)
+                .map(LadderFormatter::formatLine)
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
     public static String formatLine(Line line) {
         return line.getPoints().stream()
-                .map(LadderView::formatPoint)
+                .map(LadderFormatter::formatPoint)
                 .collect(Collectors.joining(LADDER_DELIMITER, PREFIX, SUFFIX));
     }
 
