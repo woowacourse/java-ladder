@@ -5,14 +5,14 @@ import exception.ladder.InvalidLadderResultException;
 import exception.view.EmptyInputException;
 import java.util.regex.Pattern;
 
-public class LadderResult {
+public class LadderPrize {
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
     private final String resultName;
     private final Pattern compile = Pattern.compile("^[^0-9a-zA-Z]*$");
 
-    public LadderResult(String resultName) {
+    public LadderPrize(String resultName) {
         validate(resultName);
         this.resultName = resultName;
     }

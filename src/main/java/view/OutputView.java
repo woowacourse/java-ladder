@@ -3,7 +3,7 @@ package view;
 import domain.GameResult;
 import domain.LadderGame;
 import domain.ladder.Block;
-import domain.ladder.LadderResult;
+import domain.ladder.LadderPrize;
 import domain.ladder.Line;
 import domain.participants.Participant;
 
@@ -49,8 +49,7 @@ public class OutputView {
     private String reformatLine(Line line) {
         final StringBuilder reformattedLine = new StringBuilder();
         reformattedLine.append(LINE_START);
-        line.getBlocks()
-            .forEach((block) -> reformattedLine.append(reformatBlock(block)).append(BLOCK_DELIMITER));
+        line.getBlocks().forEach((block) -> reformattedLine.append(reformatBlock(block)).append(BLOCK_DELIMITER));
         reformattedLine.append(System.lineSeparator());
         return reformattedLine.toString();
     }
@@ -64,7 +63,7 @@ public class OutputView {
 
     private void addLadderResults(LadderGame ladderGame) {
         ladderGame.getResults()
-            .stream().map(LadderResult::getName)
+            .stream().map(LadderPrize::getName)
             .forEach((ladderResult) -> gameMap.append(reformatLadderResult(ladderResult)));
         gameMap.append(System.lineSeparator());
     }

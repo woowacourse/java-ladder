@@ -7,13 +7,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LadderResults {
+public class LadderPrizes {
 
     private static final String DELIMITER = ",";
 
-    private final List<LadderResult> results;
+    private final List<LadderPrize> results;
 
-    public LadderResults(String results, int participantCount) {
+    public LadderPrizes(String results, int participantCount) {
         validate(results, participantCount);
         this.results = makeAllLadderResult(results);
     }
@@ -35,15 +35,19 @@ public class LadderResults {
         return makeAllLadderResult(results).size() != participantCount;
     }
 
-    static private List<LadderResult> makeAllLadderResult(String results) {
-        return Arrays.stream(results.split(DELIMITER)).map(LadderResult::new).collect(Collectors.toList());
+    static private List<LadderPrize> makeAllLadderResult(String results) {
+        return Arrays.stream(results.split(DELIMITER))
+            .map(LadderPrize::new)
+            .collect(Collectors.toList());
     }
 
     public List<String> getResultNames() {
-        return results.stream().map(LadderResult::getName).collect(Collectors.toList());
+        return results.stream()
+            .map(LadderPrize::getName)
+            .collect(Collectors.toList());
     }
 
-    public List<LadderResult> getResults() {
+    public List<LadderPrize> getResults() {
         return Collections.unmodifiableList(results);
     }
 }

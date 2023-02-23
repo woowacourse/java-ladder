@@ -20,14 +20,18 @@ class LineTest {
             DynamicTest.dynamicTest("라인의 너비가 1인 경우(최소)", () -> {
                 Line line = Line.valueOf(new LineWeight(1), () -> false);
                 List<Block> blocks = line.getBlocks();
-                List<Boolean> connectStatuses = blocks.stream().map(Block::isConnected).collect(Collectors.toList());
+                List<Boolean> connectStatuses = blocks.stream()
+                    .map(Block::isConnected)
+                    .collect(Collectors.toList());
                 Assertions.assertThat(connectStatuses.size()).isEqualTo(1);
                 Assertions.assertThat(connectStatuses).containsExactly(false);
             }),
             DynamicTest.dynamicTest("라인의 너비가 9인 경우(최대)", () -> {
                 Line line = Line.valueOf(new LineWeight(9), () -> true);
                 List<Block> blocks = line.getBlocks();
-                List<Boolean> connectStatuses = blocks.stream().map(Block::isConnected).collect(Collectors.toList());
+                List<Boolean> connectStatuses = blocks.stream()
+                    .map(Block::isConnected)
+                    .collect(Collectors.toList());
                 Assertions.assertThat(connectStatuses.size()).isEqualTo(9);
                 Assertions.assertThat(connectStatuses)
                     .containsExactly(true, false, true, false, true, false, true, false, true);

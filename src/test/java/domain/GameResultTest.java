@@ -3,7 +3,7 @@ package domain;
 import builder.LadderGameBuilder;
 import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
-import domain.ladder.LadderResults;
+import domain.ladder.LadderPrizes;
 import domain.ladder.LadderSize;
 import domain.ladder.LineWeight;
 import domain.participants.Participants;
@@ -28,7 +28,7 @@ class GameResultTest {
             .addLadder(
                 Ladder.valueOf(new LadderSize(new LadderHeight("1"), new LineWeight(participants.getCount() - 1)),
                     testGenerator))
-            .addLadderResults(new LadderResults("1000,2000,3000,4000,5000,6000", 6))
+            .addLadderResults(new LadderPrizes("1000,2000,3000,4000,5000,6000", 6))
             .build();
         //when
         GameResult gameResult = GameResult.from(ladderGame);
@@ -59,7 +59,7 @@ class GameResultTest {
         LadderGame ladderGame = ladderGameBuilder
             .addParticipants(participants)
             .addLadder(ladder)
-            .addLadderResults(new LadderResults("1000,2000", 2))
+            .addLadderResults(new LadderPrizes("1000,2000", 2))
             .build();
 
         //GameResult 생성

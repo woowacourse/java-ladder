@@ -49,7 +49,8 @@ public class Participants {
     }
 
     private List<Participant> joinAllParticipants(String participantNames) {
-        return splitNames(participantNames).stream().map(Participant::new)
+        return splitNames(participantNames).stream()
+            .map(Participant::new)
             .collect(Collectors.toList());
     }
 

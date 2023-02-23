@@ -2,14 +2,14 @@ package builder;
 
 import domain.LadderGame;
 import domain.ladder.Ladder;
-import domain.ladder.LadderResults;
+import domain.ladder.LadderPrizes;
 import domain.participants.Participants;
 
 public class LadderGameBuilder {
 
     private Participants participants;
     private Ladder ladder;
-    private LadderResults ladderResults;
+    private LadderPrizes ladderPrizes;
 
     public LadderGameBuilder addParticipants(Participants participants) {
         this.participants = participants;
@@ -21,12 +21,12 @@ public class LadderGameBuilder {
         return this;
     }
 
-    public LadderGameBuilder addLadderResults(LadderResults ladderResults) {
-        this.ladderResults = ladderResults;
+    public LadderGameBuilder addLadderResults(LadderPrizes ladderPrizes) {
+        this.ladderPrizes = ladderPrizes;
         return this;
     }
 
     public LadderGame build() {
-        return new LadderGame(participants, ladder, ladderResults);
+        return new LadderGame(participants, ladder, ladderPrizes);
     }
 }

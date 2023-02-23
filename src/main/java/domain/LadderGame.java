@@ -1,8 +1,8 @@
 package domain;
 
 import domain.ladder.Ladder;
-import domain.ladder.LadderResult;
-import domain.ladder.LadderResults;
+import domain.ladder.LadderPrize;
+import domain.ladder.LadderPrizes;
 import domain.ladder.Line;
 import domain.participants.Participant;
 import domain.participants.Participants;
@@ -12,12 +12,12 @@ public class LadderGame {
 
     private final Participants participants;
     private final Ladder ladder;
-    private final LadderResults ladderResults;
+    private final LadderPrizes ladderPrizes;
 
-    public LadderGame(Participants participants, Ladder ladder, LadderResults ladderResults) {
+    public LadderGame(Participants participants, Ladder ladder, LadderPrizes ladderPrizes) {
         this.participants = participants;
         this.ladder = ladder;
-        this.ladderResults = ladderResults;
+        this.ladderPrizes = ladderPrizes;
     }
 
     public List<Participant> getParticipants() {
@@ -28,7 +28,7 @@ public class LadderGame {
         return ladder.getLines();
     }
 
-    public List<LadderResult> getResults() {
-        return ladderResults.getResults();
+    public List<LadderPrize> getResults() {
+        return ladderPrizes.getResults();
     }
 }
