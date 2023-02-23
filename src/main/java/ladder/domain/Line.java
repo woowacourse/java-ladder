@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ladder.utils.BooleanGenerator;
+
 public class Line {
 
     private final List<ConnectionStatus> points;

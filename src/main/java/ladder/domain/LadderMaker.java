@@ -3,6 +3,9 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import ladder.utils.BooleanGenerator;
+import ladder.utils.RandomBooleanGenerator;
+
 public class LadderMaker {
 
     private final LadderProperty ladderProperty;

@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.List;
 
+import ladder.utils.BooleanGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

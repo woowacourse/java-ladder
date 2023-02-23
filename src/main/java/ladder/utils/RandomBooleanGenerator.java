@@ -1,8 +1,10 @@
-package ladder.domain;
+package ladder.utils;
 
 import java.util.Random;
 
-public class RandomBooleanGenerator implements BooleanGenerator{
+import ladder.utils.BooleanGenerator;
+
+public class RandomBooleanGenerator implements BooleanGenerator {
 
     Random random = new Random();
 
