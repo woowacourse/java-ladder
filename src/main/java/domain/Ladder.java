@@ -23,8 +23,7 @@ public class Ladder {
     }
 
 
-    public Column startFromColumnAndGetResultColumn(int startColumn) {
-        Column column = Column.of(startColumn);
+    public Column startFromColumnAndGetResultColumn(Column column) {
         for (Line line : lines) {
             line.move(column);
         }

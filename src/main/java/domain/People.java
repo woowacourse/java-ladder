@@ -44,12 +44,12 @@ public class People {
         return people.get(index);
     }
 
-    public int findPersonColumn(Person person) {
-        return IntStream.range(0, people.size())
+    public Column findColumnByPerson(Person person) {
+        int column = IntStream.range(0, people.size())
                 .filter(index -> people.get(index).equals(person))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자는 존재하지 않습니다."));
-
+        return Column.of(column);
     }
 
     public List<Person> getPeople() {
@@ -59,5 +59,4 @@ public class People {
     public int getCount() {
         return people.size();
     }
-
 }

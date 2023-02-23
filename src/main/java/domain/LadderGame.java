@@ -34,7 +34,7 @@ public class LadderGame {
     }
 
     public Result getSingleResult(Person name) {
-        int startColumn = people.findPersonColumn(name);
+        Column startColumn = people.findColumnByPerson(name);
         Column resultColumn = ladder.startFromColumnAndGetResultColumn(startColumn);
         return results.getResultByColumn(resultColumn);
     }
