@@ -62,4 +62,8 @@ public class Result {
     public Map<PlayerName, Prize> getAllResult() {
         return results;
     }
+
+    public Prize getSinglePlayerResult(PlayerName playerName) {
+        return results.get(playerName);
+    }
 }

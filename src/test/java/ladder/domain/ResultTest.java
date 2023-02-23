@@ -20,6 +20,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ResultTest {
 
     private Result result;
+    private Players players;
+    private Prizes prizes;
 
     /**
      * pobi honux crong  jk
@@ -32,8 +34,8 @@ public class ResultTest {
      */
     @BeforeEach
     void setup() {
-        Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
-        Prizes prizes = new Prizes(players.size(), List.of("꽝", "5000", "꽝", "3000"));
+        players = new Players(List.of("pobi", "honux", "crong", "jk"));
+        prizes = new Prizes(players.size(), List.of("꽝", "5000", "꽝", "3000"));
         int playerNumber = players.size();
         int height = 5;
         Ladder ladder = setLadder(playerNumber, height);
@@ -58,5 +60,13 @@ public class ResultTest {
                 .collect(Collectors.toUnmodifiableList());
 
         assertThat(playerNames).isEqualTo(List.of("꽝", "3000", "꽝", "5000"));
+    }
+
+    @Test
+    void 플레이어_개별_조회_결과가_정확한지_확인() {
+        PlayerName playerName = players.getPlayers().get(3);
+        Prize prize = prizes.getPrizes().get(1);
+
+        assertThat(result.getSinglePlayerResult(playerName)).isEqualTo(prize);
     }
 }
