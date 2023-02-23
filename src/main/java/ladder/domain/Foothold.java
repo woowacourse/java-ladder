@@ -22,7 +22,7 @@ public enum Foothold {
                      .orElseThrow(() -> new IllegalArgumentException("잘못된 발판 인자"));
     }
 
-    public String getFormat() {
+    public String format() {
         return format;
     }
 }

@@ -3,18 +3,21 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Player {
-    private final PlayerName name;
-    private PlayerPosition position;
+    private final Name name;
+    private Position position;
 
     public Player(String name) {
-        this.name = new PlayerName(name);
+        this.name = new Name(name);
     }
 
-    public Player(PlayerName name, PlayerPosition position) {
+    public Player(Name name, Position position) {
         this.name = name;
         this.position = position;
     }
 
+    public Position climbDownLadder(Ladder ladder) {
+        return ladder.moveFrom(position);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -37,7 +40,7 @@ public class Player {
         return name.getName();
     }
 
-    public PlayerPosition getPosition() {
+    public Position getPosition() {
         return position;
     }
 }

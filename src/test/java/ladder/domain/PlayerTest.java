@@ -1,11 +1,10 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class PlayerTest {
     @ParameterizedTest(name = "이름이 길이가 안맞아 {0}이면 예외 던지기")
@@ -30,13 +29,20 @@ class PlayerTest {
         assertThatNoException().isThrownBy(() -> new Player(name));
     }
 
-    @Test
-    void should_사다리를이동_when_사다리를받았을때() {
+    @ParameterizedTest
+    @CsvSource({"0,2", "1,0", "2,1", "3,3", "4,4"})
+    void should_사다리를이동_when_사다리를받았을때(int initialPosition, int destination) {
         // given
-
+        Ladder ladder = new Ladder(LadderTest.generateRowList());
+        Name name = new Name("abc");
+        Position position = new Position(initialPosition);
+        Player player = new Player(name, position);
+        Position expected = new Position(destination);
 
         // when
+        Position result = player.climbDownLadder(ladder);
 
         //then
+        assertThat(result).isEqualTo(expected);
     }
 }

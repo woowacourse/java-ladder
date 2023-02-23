@@ -41,7 +41,7 @@ public class Row {
                 && footholds.get(position + 1) == Foothold.PASSABLE;
     }
 
-    public PlayerPosition movePlayer(PlayerPosition from) {
+    public Position movePlayer(Position from) {
         if (isMovableToRight(from)) {
             return from.increase();
         }
@@ -51,29 +51,29 @@ public class Row {
         return from;
     }
 
-    private boolean isMovableToRight(PlayerPosition from) {
+    private boolean isMovableToRight(Position from) {
         if (isEndOfRow(from)) {
             return false;
         }
         return isPassable(from);
     }
 
-    private boolean isEndOfRow(PlayerPosition position) {
+    private boolean isEndOfRow(Position position) {
         return position.getValue() >= footholds.size();
     }
 
-    private boolean isMovableToLeft(PlayerPosition from) {
+    private boolean isMovableToLeft(Position from) {
         if (isBeginOfRow(from)) {
             return false;
         }
         return isPassable(from.decrease());
     }
 
-    private boolean isBeginOfRow(PlayerPosition position) {
+    private boolean isBeginOfRow(Position position) {
         return position.getValue() == 0;
     }
 
-    private boolean isPassable(PlayerPosition position) {
+    private boolean isPassable(Position position) {
         return footholds.get(position.getValue()) == Foothold.PASSABLE;
     }
 

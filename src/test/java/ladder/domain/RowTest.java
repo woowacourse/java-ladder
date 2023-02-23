@@ -39,8 +39,8 @@ class RowTest {
         List<Foothold> footholds = List.of(Foothold.PASSABLE, Foothold.BLOCKED, Foothold.BLOCKED, Foothold.PASSABLE);
         int expectedWidth = 4;
         Row row = Row.of(footholds, expectedWidth);
-        PlayerPosition playerPosition = new PlayerPosition(beforeMove);
+        Position position = new Position(beforeMove);
 
-        assertThat(row.movePlayer(playerPosition)).isEqualTo(new PlayerPosition(after));
+        assertThat(row.movePlayer(position)).isEqualTo(new Position(after));
     }
 }

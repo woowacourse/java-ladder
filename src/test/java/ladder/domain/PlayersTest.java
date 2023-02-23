@@ -40,13 +40,13 @@ class PlayersTest {
         // given
         Players players = Players.from(List.of("첫째", "둘째", "셋째", "넷째", "다섯째"));
         Ladder ladder = new Ladder(LadderTest.generateRowList());
-        List<String> prizes = List.of(
+        Prizes prizes = new Prizes(List.of(
                 "2",
                 "0",
                 "1",
                 "3",
                 "4"
-        );
+        ));
         Map<String, String> expected = new LinkedHashMap<>(Map.of(
                 "첫째", "2",
                 "둘째", "0",

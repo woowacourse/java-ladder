@@ -2,14 +2,14 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class PlayerName {
+public class Name {
     private static final int NAME_LENGTH_LOWER_BOUND_INCLUSIVE = 1;
     private static final int NAME_LENGTH_UPPER_BOUND_INCLUSIVE = 5;
     private static final String RESTRICTED = " ";
 
     private final String name;
 
-    public PlayerName(String name) {
+    public Name(String name) {
         validateLengthInRange(name);
         validateHasNoRestricted(name);
         this.name = name;
@@ -35,7 +35,7 @@ public class PlayerName {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PlayerName p = (PlayerName) o;
+        Name p = (Name) o;
         return Objects.equals(name, p.name);
     }
 

@@ -21,13 +21,13 @@ class LadderTest {
     void should_사다리를태우다_when_초기위치가주어지면(int beforeMove, int expected) {
         // given
         Ladder ladder = new Ladder(generateRowList());
-        PlayerPosition initialPosition = new PlayerPosition(beforeMove);
+        Position initialPosition = new Position(beforeMove);
 
         // when
-        PlayerPosition destination = ladder.moveFrom(initialPosition);
+        Position destination = ladder.moveFrom(initialPosition);
 
         //then
-        assertThat(destination).isEqualTo(new PlayerPosition(expected));
+        assertThat(destination).isEqualTo(new Position(expected));
     }
 
     static List<Row> generateRowList() {
