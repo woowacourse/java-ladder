@@ -17,7 +17,6 @@ public class Rewards {
 
     private String validateRewards(String inputRewards, int minSize) {
         validateSize(inputRewards, minSize);
-
         return inputRewards;
     }
 
