@@ -1,14 +1,15 @@
 package view;
 
-import domain.ladder.Height;
 import domain.info.Names;
 import domain.info.Rewards;
+import domain.ladder.Height;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
-    private static final String STRING_DELIMITER = ",";
+    private static final String SPLIT_DELIMITER = ",";
     private static final Scanner scanner = new Scanner(System.in);
 
     private static int parseInt(String input) {
@@ -26,17 +27,18 @@ public class InputView {
 
     public Names readNames() {
         String input = readInput(Message.INPUT_NAMES.message);
-        return new Names(Arrays.stream(input.split(STRING_DELIMITER))
-                .map(String::trim)
-                .collect(Collectors.toList())
-        );
+        return new Names(splitAsList(input));
     }
 
     public Rewards readRewards(Names names) {
         String input = readInput(Message.INPUT_REWARDS.message);
-        return new Rewards(Arrays.stream(input.split(STRING_DELIMITER))
+        return new Rewards(splitAsList(input), names);
+    }
+
+    private List<String> splitAsList(String input) {
+        return Arrays.stream(input.split(SPLIT_DELIMITER))
                 .map(String::trim)
-                .collect(Collectors.toList()), names);
+                .collect(Collectors.toList());
     }
 
     public Height readHeight() {
