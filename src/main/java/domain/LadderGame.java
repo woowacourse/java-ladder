@@ -33,4 +33,9 @@ public class LadderGame {
                 .collect(Collectors.toList()),
                 names.size());
     }
+
+    public Names getAllParticipants() {
+        return this.names;
+    }
+
 }

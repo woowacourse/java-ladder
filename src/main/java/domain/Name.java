@@ -42,10 +42,6 @@ public class Name {
         return value;
     }
 
-    public int length() {
-        return value.length();
-    }
-
     @Override
     public boolean equals(Object object) {
         if (this == object) {
