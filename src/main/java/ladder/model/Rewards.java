@@ -14,4 +14,8 @@ public class Rewards {
         return Collections.unmodifiableList(rewards);
     }
 
+    public Reward getReward(int index){
+        return rewards.get(index);
+    }
+
 }

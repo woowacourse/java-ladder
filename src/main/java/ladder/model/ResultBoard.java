@@ -27,7 +27,7 @@ public class ResultBoard {
         Player player = players.findPlayer(givenPlayer);
         int entrance = players.findPositionOf(player);
         int exit = ladder.findExitFrom(entrance);
-        return rewards.getRewards().get(exit);
+        return rewards.getReward(exit);
     }
 
 }
