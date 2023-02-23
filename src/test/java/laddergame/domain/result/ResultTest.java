@@ -6,10 +6,18 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class ResultTest {
 
     private static final String ERROR_MESSAGE_HEAD = "[ERROR]";
+
+    @ParameterizedTest
+    @ValueSource(strings = {"꽝", "당첨", "5000"})
+    @DisplayName("실행 결과가 빈 값이 아니고 공백을 포함하지 않는다면, 예외가 발생하지 않는다.")
+    void does_not_throw_exception_if_result_is_not_empty_and_has_not_blank(String invalidResult) {
+        assertDoesNotThrow(() -> new Result(invalidResult));
+    }
 
     @ParameterizedTest
     @NullAndEmptySource
