@@ -2,7 +2,6 @@ package laddergame.domain;
 
 public class Height {
     private static final int FINISH_NUMBER = 0;
-    private static final String NOT_POSITIVE_ERROR_MESSAGE = "양의 정수만 입력해주세요.";
 
     private final int height;
 
@@ -23,10 +22,10 @@ public class Height {
         try {
             int heightNumber = Integer.parseInt(height);
             if (heightNumber <= 0) {
-                throw new IllegalArgumentException(NOT_POSITIVE_ERROR_MESSAGE);
+                throw new IllegalArgumentException("양의 정수만 입력해주세요.");
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_POSITIVE_ERROR_MESSAGE);
+            throw new IllegalArgumentException("양의 정수만 입력해주세요.");
         }
     }
 }
