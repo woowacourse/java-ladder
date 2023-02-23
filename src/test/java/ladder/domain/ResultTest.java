@@ -3,7 +3,6 @@ package ladder.domain;
 import static ladder.domain.Direction.RIGHT;
 import static ladder.domain.Direction.STAY;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import ladder.domain.generator.DirectionGenerator;
@@ -37,16 +36,6 @@ class ResultTest {
 
         assertThat(result.extract("pobi")).isEqualTo("3000");
         assertThat(result.extract("crong")).isEqualTo("꽝");
-    }
-
-    @Test
-    @DisplayName("존재하지 않는 대상이라면 예외를 던진다.")
-    void throwExceptionWhenNotExistTarget() {
-        final String target = "honux";
-        final Result result = Result.of(players, ladder, prizes);
-
-        assertThatThrownBy(() -> result.extract(target))
-                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest(name = "입력: {0}, 결과: {1}")

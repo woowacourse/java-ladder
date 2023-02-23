@@ -7,9 +7,6 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
-    private static final String DELIMITER = ",";
-    private static final int LIMIT = -1;
-
     private final Scanner scanner;
 
     public InputView(final Scanner scanner) {
@@ -23,7 +20,7 @@ public class InputView {
     }
 
     private List<String> parseNames(final String input) {
-        return Arrays.stream(input.split(DELIMITER, LIMIT))
+        return Arrays.stream(input.split(",", -1))
                 .collect(Collectors.toUnmodifiableList());
     }
 

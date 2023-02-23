@@ -29,7 +29,7 @@ public class LadderController {
         final Prizes prizes = readPrizes(new Retry(5), players);
         final Height height = readHeight(new Retry(5));
         final Ladder ladder = Ladder.of(new RandomDirectionGenerator(), players, height);
-        outputView.printLadderResult(players, ladder, prizes);
+        outputView.printLadderGame(players, ladder, prizes);
         final Result result = Result.of(players, ladder, prizes);
         final String target = readTarget(new Retry(5), result);
         printResult(result, target);
@@ -37,7 +37,7 @@ public class LadderController {
 
     private Players readPlayers(final Retry retry) {
         checkCount(retry);
-        Optional<Players> players = generatePlayers(inputView.readPlayerNames());
+        final Optional<Players> players = generatePlayers(inputView.readPlayerNames());
         if (players.isEmpty()) {
             retry.decrease();
             return readPlayers(retry);
@@ -62,7 +62,7 @@ public class LadderController {
 
     private Prizes readPrizes(final Retry retry, final Players players) {
         checkCount(retry);
-        Optional<Prizes> prizes = generatePrizes(inputView.readPrizeNames(), players);
+        final Optional<Prizes> prizes = generatePrizes(inputView.readPrizeNames(), players);
         if (prizes.isEmpty()) {
             retry.decrease();
             return readPrizes(retry, players);

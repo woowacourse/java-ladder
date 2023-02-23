@@ -9,23 +9,23 @@ public enum Direction {
     RIGHT(1, "     "),
     ;
 
-    private final int move;
+    private final int value;
     private final String foothold;
 
-    Direction(final int move, final String foothold) {
-        this.move = move;
+    Direction(final int value, final String foothold) {
+        this.value = value;
         this.foothold = foothold;
     }
 
     public static Direction from(final int value) {
         return Arrays.stream(Direction.values())
-                .filter(direction -> direction.getMove() == value)
+                .filter(direction -> direction.getValue() == value)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 값입니다."));
     }
 
-    public int getMove() {
-        return move;
+    public int getValue() {
+        return value;
     }
 
     public String getFoothold() {

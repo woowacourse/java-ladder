@@ -18,8 +18,7 @@ public class Players {
     }
 
     public static Players from(final List<String> names) {
-        final List<Player> players = generatePlayers(names);
-        return new Players(players);
+        return new Players(generatePlayers(names));
     }
 
     private static List<Player> generatePlayers(final List<String> names) {
@@ -29,24 +28,20 @@ public class Players {
     }
 
     private void validate(final List<Player> players) {
-        validatePlayerSize(players);
+        validateSize(players);
         validateDuplicatePlayer(players);
     }
 
-    private void validatePlayerSize(final List<Player> players) {
-        if (hasSmallSize(players) || hasLargeSize(players)) {
+    private void validateSize(final List<Player> players) {
+        if (isInvalidSize(players)) {
             throw new IllegalArgumentException(
                     "플레이어는 " + MINIMUM_PLAYER_SIZE + "명 이상, " + MAXIMUM_PLAYER_SIZE + "명 이하만 가능합니다."
                             + " 현재 입력한 플레이어 수는 " + players.size() + "명 입니다.");
         }
     }
 
-    private boolean hasSmallSize(final List<Player> players) {
-        return players.size() < MINIMUM_PLAYER_SIZE;
-    }
-
-    private boolean hasLargeSize(final List<Player> players) {
-        return MAXIMUM_PLAYER_SIZE < players.size();
+    private boolean isInvalidSize(final List<Player> players) {
+        return players.size() < MINIMUM_PLAYER_SIZE || MAXIMUM_PLAYER_SIZE < players.size();
     }
 
     private void validateDuplicatePlayer(final List<Player> players) {
@@ -69,9 +64,5 @@ public class Players {
 
     public int size() {
         return players.size();
-    }
-
-    public boolean exists(final Player player) {
-        return players.contains(player);
     }
 }

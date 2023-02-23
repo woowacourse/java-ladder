@@ -17,7 +17,7 @@ class DirectionTest {
     @DisplayName("방향에 따라 이동할 특정 값을 가진다.")
     void directionHasMoveValue() {
         final List<Integer> moves = Arrays.stream(Direction.values())
-                .map(Direction::getMove)
+                .map(Direction::getValue)
                 .collect(Collectors.toList());
 
         assertThat(moves).containsExactly(-1, 0, 1);

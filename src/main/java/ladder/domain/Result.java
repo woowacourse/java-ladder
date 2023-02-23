@@ -25,14 +25,7 @@ public class Result {
     }
 
     public String extract(final String key) {
-        validate(key);
         return value.get(key);
-    }
-
-    private void validate(final String key) {
-        if (!value.containsKey(key)) {
-            throw new IllegalArgumentException("결과를 확인할 수 없는 대상입니다. 존재하는 대상 :" + value.keySet());
-        }
     }
 
     public boolean exist(final String key) {

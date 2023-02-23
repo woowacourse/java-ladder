@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 
 public class Player {
 
-    private static final Pattern VALUE_FORMAT = Pattern.compile("[a-zA-Z]+");
-    private static final int VALUE_MAX_LENGTH = 5;
+    private static final Pattern NAME_FORMAT = Pattern.compile("[a-zA-Z]+");
+    private static final int NAME_MAX_LENGTH = 5;
 
     private final String value;
 
@@ -27,17 +27,17 @@ public class Player {
     }
 
     private boolean isNotEnglish(final String value) {
-        return !VALUE_FORMAT.matcher(value).matches();
+        return !NAME_FORMAT.matcher(value).matches();
     }
 
     private void validateLength(final String value) {
-        if (hasExceedLength(value)) {
-            throw new IllegalArgumentException("플레이어 이름은 " + VALUE_MAX_LENGTH + "글자까지 가능합니다. 현재 입력은 " + value + "입니다.");
+        if (isInvalidLength(value)) {
+            throw new IllegalArgumentException("플레이어 이름은 " + NAME_MAX_LENGTH + "글자까지 가능합니다. 현재 입력은 " + value + "입니다.");
         }
     }
 
-    private boolean hasExceedLength(final String value) {
-        return VALUE_MAX_LENGTH < value.length();
+    private boolean isInvalidLength(final String value) {
+        return value.length() > NAME_MAX_LENGTH;
     }
 
     public String getValue() {

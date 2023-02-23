@@ -42,7 +42,7 @@ class LineTest {
     void moveToDirection(final int position, final int expected) {
         final Line line = new Line(List.of(RIGHT, LEFT, STAY));
 
-        final int result = line.moveTo(position);
+        final int result = line.moveFrom(position);
 
         assertThat(result).isEqualTo(expected);
     }

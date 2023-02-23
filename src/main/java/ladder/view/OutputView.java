@@ -18,7 +18,7 @@ public class OutputView {
     private static final String EXECUTION_RESULT = "실행 결과";
     private static final String LADDER = "|";
 
-    public void printLadderResult(final Players players, final Ladder ladder, final Prizes prizes) {
+    public void printLadderGame(final Players players, final Ladder ladder, final Prizes prizes) {
         System.out.println(LINE_BREAK + "사다리 결과" + LINE_BREAK);
         printPlayerNames(players);
         printLadder(ladder);
@@ -45,23 +45,23 @@ public class OutputView {
         final List<Line> lines = ladder.getLines();
 
         for (final Line line : lines) {
-            printLine(line);
+            System.out.println(getFormattedLine(line));
         }
     }
 
-    private void printLine(final Line line) {
+    private String getFormattedLine(final Line line) {
         final List<Direction> directions = line.getDirections();
-        final StringJoiner stringJoiner = new StringJoiner(LADDER, "", LADDER);
+        final StringJoiner joiner = new StringJoiner(LADDER, "", LADDER);
 
         for (final Direction direction : directions) {
-            stringJoiner.add(direction.getFoothold());
+            joiner.add(direction.getFoothold());
         }
 
-        System.out.println(stringJoiner);
+        return joiner.toString();
     }
 
     private void printPrizeNames(final Prizes prizes) {
-        final List<String> resultNames = prizes.getResultNames();
+        final List<String> resultNames = prizes.getPrizeNames();
         System.out.println(getFormattedNames(resultNames));
     }
 

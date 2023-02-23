@@ -13,18 +13,14 @@ public class Height {
     }
 
     private void validate(final int value) {
-        if (hasShort(value) || hasLong(value)) {
+        if (isInvalidRange(value)) {
             throw new IllegalArgumentException("높이는 " + MINIMUM_HEIGHT + "이상, " + MAXIMUM_HEIGHT + "이하여야 합니다."
                     + " 현재 높이는 " + value + "입니다.");
         }
     }
 
-    private boolean hasShort(final int value) {
-        return value < MINIMUM_HEIGHT;
-    }
-
-    private boolean hasLong(final int value) {
-        return MAXIMUM_HEIGHT < value;
+    private boolean isInvalidRange(final int value) {
+        return value < MINIMUM_HEIGHT || MAXIMUM_HEIGHT < value;
     }
 
     public int getValue() {

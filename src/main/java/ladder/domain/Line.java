@@ -5,6 +5,7 @@ import static ladder.domain.Direction.RIGHT;
 import static ladder.domain.Direction.STAY;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import ladder.domain.generator.DirectionGenerator;
 
@@ -36,11 +37,11 @@ public class Line {
         }
     }
 
-    public int moveTo(final int position) {
-        return position + directions.get(position).getMove();
+    public int moveFrom(final int position) {
+        return position + directions.get(position).getValue();
     }
 
     public List<Direction> getDirections() {
-        return directions;
+        return Collections.unmodifiableList(directions);
     }
 }
