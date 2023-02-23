@@ -38,4 +38,13 @@ public class LadderGame {
         moveLeft(line, position);
     }
 
+    public int getResultIndex(String name){
+        int playerIndex = players.getOrder(name);
+        Position position = new Position(playerIndex);
+        for(Line line: ladder.getLines()){
+            move(line,position);
+        }
+        return position.getIndex();
+    }
+
 }
