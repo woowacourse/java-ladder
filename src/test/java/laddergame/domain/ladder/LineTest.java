@@ -1,7 +1,7 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.rung.RandomBooleanGenerator;
 import laddergame.domain.rung.Rung;
-import laddergame.domain.rung.RungBooleanGenerator;
 import laddergame.util.BooleanGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +21,7 @@ public class LineTest {
 
     @BeforeEach
     void init() {
-        rungBooleanGenerator = new RungBooleanGenerator();
+        rungBooleanGenerator = new RandomBooleanGenerator();
     }
 
     @ParameterizedTest
