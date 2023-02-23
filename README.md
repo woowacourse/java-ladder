@@ -58,10 +58,10 @@
 - [x] Output view -> 사용자 이름 길이에 맞게 수정되게 하는 로직 변수 선언
 - [x] parameterized test 사용. 테스트 추가
 - [x] Height 만큼 반복문 돌리기
-    - [ ] getter 사용 or Height 에 메세지 보내기
+    - [x] Height 에 메세지 보내기(isOver 구현)
 - [x] 하나의 step 도 연결 안된 bar 가 있는 ladder validate check
-- [ ] 반복문 최대한 적게 사용하기. while 보단 for 문 이용
-- [ ] indent depth 1 이하
+- [x] 반복문 최대한 적게 사용하기. while 보단 for 문 이용
+- [x] indent depth 1 이하
 
 ## 기능 목록
 
