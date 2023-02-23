@@ -1,9 +1,7 @@
 package laddergame.view;
 
-import laddergame.domain.Height;
-import laddergame.domain.Players;
-import laddergame.domain.Rewards;
 import laddergame.domain.Target;
+import laddergame.util.Validator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,30 +12,28 @@ public class InputView {
     private static final String DELIMITER = ",";
 
 
-    public Players readUserNames() {
+    public List<String> readUserNames() {
         String inputUserNames = scanner.nextLine();
-        List<String> inputPlayers = splitByDelimiter(inputUserNames);
-        Players players = new Players(inputPlayers);
-        return players;
+        Validator.checkNull(inputUserNames);
+        return splitByDelimiter(inputUserNames);
     }
 
-    public Height readHeight() {
+    public String readHeight() {
         String inputHeight = scanner.nextLine();
-        Height height = new Height(inputHeight);
-        return height;
+        Validator.checkNull(inputHeight);
+        return inputHeight;
     }
 
-    public Rewards readRewards() {
+    public List<String> readRewards() {
         String inputReward = scanner.nextLine();
-        List<String> inputRewards = splitByDelimiter(inputReward);
-        Rewards rewards = new Rewards(inputRewards);
-        return rewards;
+        Validator.checkNull(inputReward);
+        return splitByDelimiter(inputReward);
     }
 
-    public Target readTarget() {
+    public String readTarget() {
         String inputTarget = scanner.nextLine();
-        Target target = new Target(inputTarget);
-        return target;
+        Validator.checkNull(inputTarget);
+        return inputTarget;
     }
 
     private List<String> splitByDelimiter(String str) {
