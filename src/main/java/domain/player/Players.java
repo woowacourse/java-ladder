@@ -27,4 +27,11 @@ public class Players {
                 .sorted(Comparator.comparing(player -> player.getPosition().getPosition()))
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public Player findPlayerByName(String name) {
+        return players.stream()
+                .filter(player -> player.getName().getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름의 사용자가 존재하지 않습니다!"));
+    }
 }

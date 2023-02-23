@@ -2,6 +2,8 @@ package controller;
 
 import domain.LadderGame;
 import domain.LadderMaker;
+import domain.Result;
+import domain.SearchCommand;
 import domain.generator.BooleanGenerator;
 import domain.ladder.Height;
 import domain.ladder.Lines;
@@ -29,42 +31,58 @@ public class MainController {
             Names names = receiveNames();
             Missions missions = receiveMissions(names.size());
 
-            int lineNumber = names.getPersonNumber() - 1;
-            LadderMaker ladderMaker = makeLadder(lineNumber);
+            LadderMaker ladderMaker = makeLadder(names.getPersonNumber());
             printLadder(names, missions, ladderMaker.getLines());
 
-            Players players = new Players(names);
-            LadderGame ladderGame = LadderGame.of(players, missions, ladderMaker.getLines());
-
-            queryResult(ladderGame);
+            LadderGame ladderGame = LadderGame.of(new Players(names), missions, ladderMaker.getLines());
+            displayResult(ladderGame);
         } catch (Exception exception) {
             outputView.printExceptionMessage(exception);
         }
     }
 
-    private void queryResult(LadderGame ladderGame) {
-        while (true) {
-            String player = inputView.readPlayer();
-            if (player.isBlank()) {
-                return;
-            }
-            if (showAll(player)) {
-                outputView.printAllResult(ladderGame.findAllResult());
-                return;
-            }
-            outputView.printSingleResult(ladderGame.findResultByName(player));
+    private void displayResult(LadderGame ladderGame) {
+        boolean isRepeatable = Boolean.TRUE;
+        while (isRepeatable) {
+            isRepeatable = printResult(ladderGame);
         }
     }
 
-    private static boolean showAll(String player) {
-        return player.equals("all");
+    private boolean printResult(LadderGame ladderGame) {
+        String searchWord = inputView.readSearchCommand();
+        SearchCommand searchCommand = SearchCommand.from(searchWord);
+        if (searchCommand.equals(SearchCommand.SEARCH_ALL)) {
+            printAllResult(ladderGame);
+        }
+        if (searchCommand.equals(SearchCommand.SEARCH_ONE)) {
+            printSingleResult(ladderGame, searchWord);
+        }
+        if (searchCommand.isDone()) {
+            return Boolean.FALSE;
+        }
+        return Boolean.TRUE;
+    }
+
+
+    private void printAllResult(LadderGame ladderGame) {
+        outputView.printAllResult(ladderGame.findAllResult());
+    }
+
+    private void printSingleResult(LadderGame ladderGame, String searchWord) {
+        try {
+            Result result = ladderGame.findResultByName(searchWord);
+            outputView.printSingleResult(result);
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+        }
     }
 
     private void printLadder(Names names, Missions missions, Lines lines) {
         outputView.printResult(names, lines, missions);
     }
 
-    private LadderMaker makeLadder(int lineNumber) {
+    private LadderMaker makeLadder(int nameNumber) {
+        int lineNumber = nameNumber - 1;
         return LadderMaker.of(lineNumber, receiveHeight(), booleanGenerator);
     }
 

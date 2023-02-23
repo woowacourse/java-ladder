@@ -26,7 +26,7 @@ public class InputView {
         return parseHeight(input);
     }
 
-    public String readPlayer() {
+    public String readSearchCommand() {
         return readInput(Message.INPUT_PLAYER_FOR_RESULT.message);
     }
 
