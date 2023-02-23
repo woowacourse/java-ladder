@@ -27,6 +27,11 @@ public class Participants {
         return participants.size();
     }
 
+    public boolean contains(final String requestContent) {
+        return participants.stream()
+                .anyMatch(participant -> participant.isSameName(requestContent));
+    }
+
     public List<Participant> findParticipants(final String requestContent) {
         if (requestContent.equals("all")) {
             return participants;
