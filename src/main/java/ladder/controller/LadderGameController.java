@@ -10,13 +10,18 @@ import ladder.domain.player.PlayerName;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
+import ladder.domain.result.Result;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderGameController {
+
+    private static final String SEARCH_ALL_KEYWORD = "all";
 
     public void run() {
         Players players = initPlayers();
@@ -24,13 +29,9 @@ public class LadderGameController {
         Prizes prizes = initPrizes(playerNumber);
         Ladder ladder = initLadder(playerNumber);
 
-        showLadderResult(players, ladder, prizes);
-        showPlayerResult(players, prizes, ladder);
+        showDrawnResult(players, prizes, ladder);
+        showAnalyzedResult(players, prizes, ladder);
         InputView.terminate();
-    }
-
-    private void showPlayerResult(Players players, Prizes prizes, Ladder ladder) {
-        String input = InputView.inputPlayerResult();
     }
 
     private Players initPlayers() {
@@ -64,7 +65,7 @@ public class LadderGameController {
         }
     }
 
-    private void showLadderResult(Players players, Ladder ladder, Prizes prizes) {
+    private void showDrawnResult(Players players, Prizes prizes, Ladder ladder) {
         OutputView.printGameResultHeader();
         printPlayersName(players);
         OutputView.printLadder(toLines(ladder));
@@ -103,5 +104,26 @@ public class LadderGameController {
         return prizes.getPrizes().stream()
                 .map(Prize::getName)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    private void showAnalyzedResult(Players players, Prizes prizes, Ladder ladder) {
+        Result result = new Result(players, prizes, ladder);
+        String input = InputView.inputPlayerResult();
+        OutputView.printPlayerResultHeaderMessage();
+        if (input.equals(SEARCH_ALL_KEYWORD)) {
+            showAllPlayersResult(result);
+            return;
+        }
+        PlayerName playerName = players.findByName(input);
+    }
+
+    private void showAllPlayersResult(Result result) {
+        Map<String, String> resultForView = new LinkedHashMap<>();
+        Map<PlayerName, Prize> results = result.getAllResult();
+        for (PlayerName playerName : results.keySet()) {
+            String prizeName = results.get(playerName).getName();
+            resultForView.put(playerName.getName(), prizeName);
+        }
+        OutputView.printAllResults(resultForView);
     }
 }
