@@ -110,7 +110,8 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String get(int index) {
-        return null;
+        Objects.checkIndex(index, size);
+        return elementData[index];
     }
 
     @Override
