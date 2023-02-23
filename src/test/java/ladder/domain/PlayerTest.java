@@ -29,4 +29,11 @@ public class PlayerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참가자의 이름은 1자 이상, 5자 이하여야 합니다.");
     }
+
+    @Test
+    void all을_이름으로_사용할_수_없다() {
+        assertThatThrownBy(() -> new Player("all"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("all은 사용할 수 없는 이름입니다.");
+    }
 }
