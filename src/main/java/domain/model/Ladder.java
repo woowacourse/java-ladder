@@ -14,13 +14,19 @@ public class Ladder {
     private final List<Layer> layers;
 
     public Ladder(final Height height, final Width width, final List<Layer> layers) {
+        validate(height, layers);
         this.height = height;
         this.width = width;
         this.layers = layers;
-        makeLineInLayers();
     }
 
-    private void makeLineInLayers() {
+    private void validate(final Height height, final List<Layer> layers) {
+        if (layers.size() != height.getValue()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void makeLineInLayers() {
         IntStream.range(0, height.getValue())
             .mapToObj(layers::get)
             .forEach(
@@ -35,13 +41,13 @@ public class Ladder {
         return location.getHorizon();
     }
 
-    public List<Layer> getLayers() {
-        return List.copyOf(layers);
-    }
-
     private void checkStartLocation(final Location location) {
         if (location.getHorizon() > width.getValue() + 1) {
             throw new IllegalArgumentException(START_LOCATION_NOT_EXIST);
         }
+    }
+
+    public List<Layer> getLayers() {
+        return List.copyOf(layers);
     }
 }
