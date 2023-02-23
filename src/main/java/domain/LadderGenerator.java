@@ -1,6 +1,6 @@
 package domain;
 
-public interface LinesGenerator {
+public interface LadderGenerator {
 
     Ladder generate(People people, int height);
 }

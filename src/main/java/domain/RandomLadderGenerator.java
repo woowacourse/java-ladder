@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomLinesGenerator implements LinesGenerator {
+public class RandomLadderGenerator implements LadderGenerator {
 
     private static final Random random = new Random();
 

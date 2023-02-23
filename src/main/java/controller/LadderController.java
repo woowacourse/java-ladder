@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import domain.Ladder;
 import domain.LadderService;
 import domain.People;
-import domain.RandomLinesGenerator;
+import domain.RandomLadderGenerator;
 import domain.Results;
 import view.InputView;
 import view.OutputView;
@@ -25,7 +25,7 @@ public class LadderController {
     private void initLadderService() {
         People people = repeat(() -> new People(inputView.readNames()));
         Results results = repeat(() -> new Results(inputView.readResults(), people));
-        Ladder ladder = repeat(() -> new RandomLinesGenerator().generate(people, inputView.readMaxHeight()));
+        Ladder ladder = repeat(() -> new RandomLadderGenerator().generate(people, inputView.readMaxHeight()));
 
         ladderService = new LadderService(people, results, ladder);
         outputView.printTotalLadder(people, results, ladder);
@@ -34,7 +34,10 @@ public class LadderController {
     public void run() {
         Results results;
         do {
-            results = repeat(this::resultRequest);
+            results = repeat(() -> {
+                String input = inputView.readResult();
+                return ladderService.calculateAndGetResults(input);
+            });
             outputView.printGameResults(ladderService.getPeople(), results);
         } while (results.canTryAgain());
     }
@@ -49,10 +52,5 @@ public class LadderController {
             outputView.printCriticalError(exception);
             return repeat(inputReader);
         }
-    }
-
-    private Results resultRequest() {
-        String input = inputView.readResult();
-        return ladderService.calculateAndGetResults(input);
     }
 }
