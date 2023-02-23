@@ -45,4 +45,8 @@ public class Line {
     public boolean getLine(int column) {
         return points.get(column).getStatus();
     }
+
+    public int getLineSize() {
+        return points.size();
+    }
 }

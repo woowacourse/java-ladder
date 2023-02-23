@@ -21,4 +21,12 @@ public class Ladder {
     public boolean getLadderLine(int column, int row) {
         return ladder.get(row).getLine(column);
     }
+
+    public int getLadderSize(){
+        return ladder.size();
+    }
+
+    public int getLadderLineSize(int row){
+        return ladder.get(row).getLineSize();
+    }
 }

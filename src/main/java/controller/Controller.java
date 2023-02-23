@@ -3,13 +3,16 @@ package controller;
 import model.*;
 import model.LadderHeight;
 import model.Player;
+import util.GameStrategy;
+import util.LadderGameStrategy;
 import util.LineGenerator;
 import view.InputView;
 import view.OutputView;
 
 public class Controller {
-    public InputView inputView;
-    public OutputView outputView;
+    private InputView inputView;
+    private OutputView outputView;
+    private GameStrategy gameStrategy = new LadderGameStrategy();
 
     public Controller(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -21,7 +24,7 @@ public class Controller {
         LadderResult ladderResult = setLadderResult(names.getNamesSize());
         LadderHeight ladderHeight = setLadderHeight();
         Ladder ladder = new Ladder(names.getNamesSize(), ladderHeight, new LineGenerator());
-        Game game = new Game(names, ladderResult, ladderHeight, ladder);
+        Game game = new Game(names, ladderResult, ladder, gameStrategy);
         printLadder(names, ladder, ladderHeight, ladderResult);
         playLadderGame(game, names);
     }

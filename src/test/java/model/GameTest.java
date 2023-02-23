@@ -6,6 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import util.GameStrategy;
+import util.LadderGameStrategy;
 import util.LineGenerator;
 
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ public class GameTest {
     private static LadderHeight height;
     private static List<Boolean> randomLine;
     private static Ladder ladder;
+    private static GameStrategy gameStrategy;
 
     @BeforeEach
     void beforeEach() {
@@ -26,6 +29,7 @@ public class GameTest {
         randomLine = new ArrayList<>(List.of(false, true));
         ladder = new Ladder(names.getNamesSize(), height,
                 new LineTest.TestLineGenerator(randomLine));
+        gameStrategy = new LadderGameStrategy();
     }
 
     @Test
@@ -34,14 +38,14 @@ public class GameTest {
         Ladder ladder = new Ladder(names.getNamesSize(), height, new LineGenerator());
 
         Assertions.assertThatNoException().isThrownBy(
-                () -> new Game(names, result, height, ladder)
+                () -> new Game(names, result, ladder, gameStrategy)
         );
     }
 
     @ParameterizedTest(name = "Game 결과 호출 성공 테스트 name = {0}")
     @CsvSource(value = {"pobi:꽝", "honux:꽝", "crong:10000"}, delimiter = ':')
     void getGamePrizeTest(String input, String prize) {
-        Game game = new Game(names, result, height, ladder);
+        Game game = new Game(names, result, ladder, gameStrategy);
         Names names = new Names("pobi,honux,crong");
         Assertions.assertThat(game.getPrizeIndividualPlayer(new Player(names, input))).isEqualTo(prize);
     }
@@ -49,7 +53,7 @@ public class GameTest {
     @Test
     @DisplayName("Game 결과 전체 호출 성공 테스트")
     void getGamePrizeAllTest() {
-        Game game = new Game(names, result, height, ladder);
+        Game game = new Game(names, result, ladder, gameStrategy);
 
         Assertions.assertThatNoException().isThrownBy(() -> game.getPrizePlayers());
     }
