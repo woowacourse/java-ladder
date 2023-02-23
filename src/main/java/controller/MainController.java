@@ -1,7 +1,6 @@
 package controller;
 
 import domain.Height;
-import domain.LineSize;
 import domain.Lines;
 import domain.LinesGame;
 import domain.Names;
@@ -29,8 +28,7 @@ public class MainController {
         Rewards rewards = inputView.readRewards(names);
         Height height = inputView.readHeight();
 
-        LineSize lineSize = new LineSize(names.getPersonNumber());
-        Lines lines = new Lines(lineSize.getLineSize(), height.getHeight(), booleanGenerator);
+        Lines lines = new Lines(names.getPersonNumber(), height.getHeight(), booleanGenerator);
         outputView.printLines(names, lines, rewards);
         LinesGame linesGame = new LinesGame(lines.getLines());
         Result result = new Result(names.getNames(), linesGame.getResult(), rewards.getRewards());

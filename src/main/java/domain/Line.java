@@ -5,12 +5,14 @@ import java.util.List;
 import utils.BooleanGenerator;
 
 public class Line {
+    private static final int PERSON_NUMBER_LINE_SIZE_DIFFERENCE = 1;
+
     private final BooleanGenerator generator;
     private final List<Boolean> line = new ArrayList<>();
 
-    public Line(int lineSize, BooleanGenerator generator) {
+    public Line(int personNumber, BooleanGenerator generator) {
         this.generator = generator;
-        generateLine(lineSize);
+        generateLine(personNumber);
     }
 
     public List<Boolean> getLine() {
@@ -21,8 +23,8 @@ public class Line {
         return line.size();
     }
 
-    private void generateLine(int lineSize) {
-        for (int index = 0; index < lineSize; index++) {
+    private void generateLine(int personNumber) {
+        for (int index = 0; index < personNumber - PERSON_NUMBER_LINE_SIZE_DIFFERENCE; index++) {
             line.add(getPoint(index));
         }
     }
