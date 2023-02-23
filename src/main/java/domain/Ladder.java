@@ -2,6 +2,8 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> ladder;
@@ -15,10 +17,10 @@ public class Ladder {
     }
 
     private void matchRewardsForPlayers(Rewards rewards) {
-        for (int playerIndex = 0; playerIndex < result.size(); playerIndex++) {
+        IntStream.range(0, result.size()).forEach(playerIndex -> {
             Player player = result.get(playerIndex);
             player.setReward(rewards.getRewards().get(playerIndex));
-        }
+        });
     }
 
     private void traverseLine(Line line) {
@@ -47,12 +49,8 @@ public class Ladder {
     }
 
     public List<Line> createLadder(int ladderHeight, Players players) {
-        List<Line> list = new ArrayList<>();
+        List<Line> list = IntStream.range(0, ladderHeight).mapToObj(i -> createLine(players)).collect(Collectors.toList());
 
-        for (int i = 0; i < ladderHeight; i++) {
-            Line line = createLine(players);
-            list.add(line);
-        }
         return list;
     }
 
