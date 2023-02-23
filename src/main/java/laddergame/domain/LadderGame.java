@@ -36,7 +36,7 @@ public class LadderGame {
 
     public List<Line> generateLadder(int height, List<String> results) {
         ladder = Ladder.of(new LineWidth(players.size()), new LadderHeight(height), results);
-        return ladder.toUnModifiableLines();
+        return ladder.toLines();
     }
 
     public String findResultByPlayerName(String playerName) {

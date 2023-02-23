@@ -38,7 +38,7 @@ public class Ladder {
         return destination.get(destinationIndex);
     }
 
-    public List<Line> toUnModifiableLines() {
+    public List<Line> toLines() {
         return lines.toLines();
     }
 }
