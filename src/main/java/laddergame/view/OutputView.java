@@ -26,7 +26,7 @@ public class OutputView {
 
     public static void printLadder(final Players names, final Ladder ladder) {
         StringBuilder result = new StringBuilder();
-        ladder.getLadder().forEach(line -> result.append(makeLadderFormat(line.getLine(), names)));
+        ladder.getLadder().forEach(layer -> result.append(makeLadderFormat(layer.getLayer(), names)));
         System.out.println(result);
     }
 
@@ -41,10 +41,10 @@ public class OutputView {
         return String.format("%s%s", name, repeat);
     }
 
-    private static String makeLadderFormat(final List<Link> floor, final Players names) {
+    private static String makeLadderFormat(final List<Link> layer, final Players names) {
         final StringBuilder result = new StringBuilder(setUpLadder(names.getFirstNameLength()));
 
-        floor.forEach(existences -> result.append(makeFloor(existences, names.findMaxNameLength())));
+        layer.forEach(link -> result.append(visualizeLink(link, names.findMaxNameLength())));
         result.append(System.lineSeparator());
 
         return result.toString();
@@ -55,7 +55,7 @@ public class OutputView {
         return String.format("%s%s", BLANK.getLadderElement().repeat(leftBlankCount), VERTICAL_LINE.getLadderElement());
     }
 
-    private static String makeFloor(final Link link, final int maxNameLength) {
+    private static String visualizeLink(final Link link, final int maxNameLength) {
         return String.format("%s%s", LadderElement.convertFormat(link).repeat(maxNameLength), VERTICAL_LINE.getLadderElement());
     }
 

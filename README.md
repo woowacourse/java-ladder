@@ -84,8 +84,8 @@
 - [x] WinningPrize
     - [x] 문자 포장
 
-- [ ] WinningPrizes
-    - [ ] 입력받은 실행 결과를 저장하는 일급 컬렉션
+- [x] WinningPrizes
+    - [x] 입력받은 실행 결과를 저장하는 일급 컬렉션
 
 - [x] LinkGenerator
     - [x] RandomLinkGenerator를 위한 인터페이스
