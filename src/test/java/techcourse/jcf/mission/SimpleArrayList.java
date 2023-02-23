@@ -48,6 +48,11 @@ public class SimpleArrayList implements SimpleList {
     }
 
     @Override
+    public String get(int index) {
+        return this.values[index];
+    }
+
+    @Override
     public boolean add(String value) {
         this.values[pointer] = value;
         this.pointer += 1;
@@ -75,11 +80,6 @@ public class SimpleArrayList implements SimpleList {
     @Override
     public String set(int index, String value) {
         return null;
-    }
-
-    @Override
-    public String get(int index) {
-        return this.values[index];
     }
 
     @Override

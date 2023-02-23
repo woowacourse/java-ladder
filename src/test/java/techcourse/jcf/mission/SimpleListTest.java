@@ -18,13 +18,13 @@ class SimpleListTest {
 
     @Test
     void get() {
-        assertThat(list.get(0)).isEqualTo("first");
+        assertThat(list.get(0)).isEqualTo("0");
     }
 
     @Test
     void addWithOnlyValue() {
-        assertThat(list.add("third")).isTrue();
-        assertThat(list.get(2)).isEqualTo("third");
+        assertThat(list.add("3")).isTrue();
+        assertThat(list.get(2)).isEqualTo("3");
     }
 
     @Test
@@ -38,8 +38,8 @@ class SimpleListTest {
 
     @Test
     void addWithVIndexValue() {
-        list.add(1, "third");
-        assertThat(list.get(1)).isEqualTo("third");
+        list.add(1, "3");
+        assertThat(list.get(1)).isEqualTo("3");
     }
 
     @Test
@@ -53,19 +53,19 @@ class SimpleListTest {
 
     @Test
     void addWithVIndexValueThrowException() {
-        assertThatThrownBy(() -> list.add(3, "third"))
+        assertThatThrownBy(() -> list.add(3, "3"))
                 .isInstanceOf(IndexOutOfBoundsException.class);
     }
 
     @Test
     void set() {
-        assertThat(list.set(1, "third")).isEqualTo("second");
-        assertThat(list.get(1)).isEqualTo("third");
+        assertThat(list.set(1, "3")).isEqualTo("2");
+        assertThat(list.get(1)).isEqualTo("3");
     }
 
     @Test
     void setThrowException() {
-        assertThatThrownBy(() -> list.set(2, "third"))
+        assertThatThrownBy(() -> list.set(2, "3"))
                 .isInstanceOf(IndexOutOfBoundsException.class);
     }
 
@@ -77,14 +77,14 @@ class SimpleListTest {
 
     @Test
     void contains() {
-        assertThat(list.contains("first")).isTrue();
-        assertThat(list.contains("third")).isFalse();
+        assertThat(list.contains("1")).isTrue();
+        assertThat(list.contains("3")).isFalse();
     }
 
     @Test
     void indexOf() {
-        assertThat(list.indexOf("first")).isEqualTo(0);
-        assertThat(list.indexOf("third")).isEqualTo(-1);
+        assertThat(list.indexOf("1")).isEqualTo(0);
+        assertThat(list.indexOf("3")).isEqualTo(-1);
     }
 
     @Test
@@ -101,19 +101,19 @@ class SimpleListTest {
 
     @Test
     void removeWithValue() {
-        assertThat(list.remove("first")).isTrue();
-        assertThat(list.get(0)).isEqualTo("second");
+        assertThat(list.remove("1")).isTrue();
+        assertThat(list.get(0)).isEqualTo("2");
     }
 
     @Test
     void removeFailWithValue() {
-        assertThat(list.remove("third")).isFalse();
+        assertThat(list.remove("3")).isFalse();
     }
 
     @Test
     void removeWithIndex() {
-        assertThat(list.remove(0)).isEqualTo("first");
-        assertThat(list.get(0)).isEqualTo("second");
+        assertThat(list.remove(0)).isEqualTo("1");
+        assertThat(list.get(0)).isEqualTo("2");
     }
 
     @Test
