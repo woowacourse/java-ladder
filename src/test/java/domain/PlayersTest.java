@@ -50,4 +50,14 @@ public class PlayersTest {
 
     }
 
+    @DisplayName("플레이어의 인덱스 가져올떄 해당되는 이름이 존재하지 않는경우 예외 발생")
+    @Test
+    void createExceptionWhenCanNotFindName() {
+        Players players = new Players(List.of("a", "b", "c", "d"));
+        assertThatThrownBy(() -> players.getOrder("e"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
+
 }
