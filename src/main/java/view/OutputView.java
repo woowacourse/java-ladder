@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String LADDER_RESULT_MESSAGE = "사다리 결과";
     private static final String RESULT_MESSAGE = "실행결과";
     private static final String LADDER_DELIMITER = "|";
@@ -21,7 +22,7 @@ public class OutputView {
     private static final String USER_DELIMITER = " ";
     private static final String EXIST_LINE_SYMBOL = "-----";
     private static final String NOT_EXIST_LINE_SYMBOL = "     ";
-    private static final String RESULT_FORMAT = "%s : %s";
+    private static final String RESULT_FORMAT = "%s : %s" + LINE_SEPARATOR;
 
     public static void printErrorMessage(final Exception exception) {
         System.out.println(exception.getMessage());
@@ -82,6 +83,6 @@ public class OutputView {
     }
 
     private static void printResultWithFormat(Map.Entry<User, Result> entry) {
-        System.out.printf(RESULT_FORMAT, entry.getKey(), entry.getValue());
+        System.out.printf(RESULT_FORMAT, entry.getKey().getName(), entry.getValue().getResultName());
     }
 }
