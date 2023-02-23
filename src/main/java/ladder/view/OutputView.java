@@ -28,4 +28,18 @@ public class OutputView {
     private static void printResults(String results) {
         System.out.println(results);
     }
+
+    public static void printAllPlayerResults(List<String> playerResults) {
+        System.out.println();
+        System.out.println("실행 결과");
+        for (String playerResult : playerResults) {
+            System.out.println(playerResult);
+        }
+    }
+
+    public static void printPlayerResult(String result) {
+        System.out.println();
+        System.out.println("실행 결과");
+        System.out.println(result);
+    }
 }

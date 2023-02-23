@@ -28,4 +28,10 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
         }
     }
+
+    public static String readPlayerName() {
+        System.out.println();
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
+    }
 }
