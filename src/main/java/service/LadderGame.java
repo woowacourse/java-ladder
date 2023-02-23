@@ -1,7 +1,9 @@
-package domain.ladder;
+package service;
 
 import static java.util.stream.Collectors.toList;
 
+import domain.ladder.Ladder;
+import domain.ladder.LadderResult;
 import domain.player.Player;
 import domain.player.Players;
 import dto.GameResultDto;

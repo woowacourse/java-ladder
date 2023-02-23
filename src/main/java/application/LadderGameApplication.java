@@ -3,7 +3,6 @@ package application;
 import static java.util.stream.Collectors.toList;
 
 import domain.ladder.Ladder;
-import domain.ladder.LadderGame;
 import domain.ladder.LadderGenerator;
 import domain.ladder.LadderHeight;
 import domain.ladder.LadderResult;
@@ -17,6 +16,7 @@ import dto.ResultRequestDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+import service.LadderGame;
 import view.InputView;
 import view.OutputView;
 
