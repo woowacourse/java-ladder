@@ -115,6 +115,21 @@ class SimpleArrayListTest {
     }
 
     @Test
+    @DisplayName("clear는 list안에 있는 값을 초기화 시킨다.")
     void clear() {
+        final String[] array = {"홍실"};
+        final SimpleArrayList arrayList = new SimpleArrayList(array);
+
+        arrayList.clear();
+
+        Assertions.assertAll(
+                () -> assertThat(arrayList)
+                        .extracting("size")
+                        .isEqualTo(0),
+                () -> assertThat(arrayList)
+                        .extracting("values")
+                        .asInstanceOf(InstanceOfAssertFactories.array(String[].class))
+                        .containsExactly()
+        );
     }
 }

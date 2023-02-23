@@ -88,7 +88,8 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void clear() {
-
+        values = new String[0];
+        size = 0;
     }
 
     @Override
