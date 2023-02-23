@@ -42,30 +42,12 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
-    public Player findByPlayerName(String PlayerName) {
-        return players.stream()
-                .filter(player -> player.isNameMatch(PlayerName))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 참여자가 없습니다."));
-    }
-
     public int findIndexByPlayer(Player player) {
         int index = players.indexOf(player);
         if (index == -1) {
             throw new IllegalArgumentException("[ERROR] 해당 참여자가 없습니다.");
         }
         return index;
-    }
-
-    public Player findPlayerByIndex(int index) {
-        if (isProperIndex(index)) {
-            throw new IllegalArgumentException("[ERROR] 인덱스 범위를 초과했습니다.");
-        }
-        return players.get(index);
-    }
-
-    private boolean isProperIndex(int index) {
-        return index < 0 || index >= players.size();
     }
 
     public int getPlayersCount() {

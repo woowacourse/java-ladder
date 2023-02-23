@@ -9,13 +9,9 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(List<Line> lines, Players players) {
-        validateLadder(lines, players);
-        this.lines = lines;
-    }
-
-    private void validateLadder(List<Line> lines, Players players) {
         validateLinesWidth(lines, players.getPlayersCount());
         validatePlayersCount(lines.size(), players.getPlayersCount());
+        this.lines = lines;
     }
 
     private void validateLinesWidth(List<Line> lines, int playerCount) {
@@ -40,26 +36,11 @@ public class Ladder {
         return playersCount * MAX_HEIGHT_RATIO < height || height < playersCount;
     }
 
-    public Line findLineByIndex(int index) {
-        if (isProperIndex(index)) {
-            throw new IllegalArgumentException("[ERROR] 인덱스 범위를 초과했습니다.");
-        }
-        return lines.get(index);
-    }
-
-    private boolean isProperIndex(int index) {
-        return index < 0 || index >= lines.size();
-    }
-
     public int getLadderIndexResult(int index) {
         for (Line line : lines) {
             index = line.nextLadderIndex(index);
         }
         return index;
-    }
-
-    public int getHeight() {
-        return lines.size();
     }
 
     public List<Line> getLines() {

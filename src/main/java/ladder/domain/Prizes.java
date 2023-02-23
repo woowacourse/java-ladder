@@ -28,10 +28,6 @@ public class Prizes {
         return index < 0 || index >= prizes.size();
     }
 
-    public int getPrizesCount() {
-        return prizes.size();
-    }
-
     public List<Prize> getPrizes() {
         return Collections.unmodifiableList(prizes);
     }

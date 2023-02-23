@@ -31,12 +31,9 @@ public class LadderController {
     }
 
     private PlayerResults createPlayerResults() {
-        String inputNames = ladderView.readPlayerNames();
-        int inputHeight = ladderView.readLadderHeight();
-        String resultsInput = ladderView.readPrizes();
-        Players players = ladderService.createPlayers(inputNames);
-        Height height = new Height(inputHeight);
-        Prizes prizes = ladderService.createPrizes(resultsInput, players);
+        Players players = ladderService.createPlayers(ladderView.readPlayerNames());
+        Height height = new Height(ladderView.readLadderHeight());
+        Prizes prizes = ladderService.createPrizes(ladderView.readPrizes(), players);
         Ladder ladder = ladderService.createLadder(height, players);
         ladderView.printLadderResult(PlayersResponse.ofPlayers(players), LadderResponse.ofLadder(ladder),
                 PrizesResponse.ofPrizes(prizes));

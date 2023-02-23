@@ -1,13 +1,12 @@
 package ladder.service;
 
 import static ladder.Util.createPlayers;
+import static ladder.Util.createPrizes;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
-import ladder.domain.Prize;
 import ladder.domain.Prizes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -46,7 +45,7 @@ class LadderServiceTest {
         Ladder ladder = ladderService.createLadder(height, createPlayers(5));
 
         // then
-        assertThat(ladder.getHeight())
+        assertThat(ladder.getLines().size())
                 .isEqualTo(5);
     }
 
@@ -60,9 +59,7 @@ class LadderServiceTest {
         Prizes prizes = ladderService.createPrizes(input, createPlayers(4));
 
         // then
-        assertThat(prizes.getPrizesCount())
-                .isEqualTo(4);
         assertThat(prizes.getPrizes())
-                .isEqualTo(List.of(new Prize("꽝"), new Prize("5000"), new Prize("꽝"), new Prize("3000")));
+                .isEqualTo(createPrizes("꽝", "5000", "꽝", "3000"));
     }
 }
