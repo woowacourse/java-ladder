@@ -84,7 +84,19 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
+        rangeCheckForAdd(index);
+        final int s;
+        Object[] elementData;
+        if ((s = size) == (elementData = this.elementData).length)
+            elementData = grow();
+        System.arraycopy(elementData, index, elementData, index + 1, s - index);
+        elementData[index] = value;
+        size = s + 1;
+    }
 
+    private void rangeCheckForAdd(int index) {
+        if (index > size || index < 0)
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
     }
 
     @Override
@@ -109,7 +121,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
@@ -130,5 +142,9 @@ public class SimpleArrayList implements SimpleList {
     @Override
     public void clear() {
 
+    }
+
+    public String[] getElementData() {
+        return elementData;
     }
 }
