@@ -2,11 +2,14 @@ package controller;
 
 import domain.Height;
 import domain.Ladder;
+import domain.LadderGame;
 import domain.Name;
+import domain.Position;
+import domain.Rewards;
 import domain.User;
 import domain.Users;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import view.InputView;
 import view.OutputView;
 
@@ -47,7 +50,13 @@ public class LadderGameController {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private void printResult(Ladder ladder, Users users) {
-        outputView.printGameResult(ladder, users);
+    private void printRewardResult(LadderGame ladderGame, Users users, String name) {
+        if (name.equals(TOTAL_RESULT_KEYWORD)) {
+            outputView.printTotalRewards(users, ladderGame);
+            return;
+        }
+
+        outputView.printSingleReward(ladderGame, name);
     }
+
 }
