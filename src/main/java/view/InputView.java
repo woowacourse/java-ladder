@@ -36,7 +36,7 @@ public class InputView {
     }
 
     private List<String> splitInputValues(String inputUserNames) {
-        return Arrays.asList(inputUserNames.split(DELIMITER));
+        return Arrays.asList(inputUserNames.split(DELIMITER,-1));
     }
 
     private void checkInputHeight(String inputHeight) {
