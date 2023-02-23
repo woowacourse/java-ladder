@@ -15,6 +15,9 @@ public class OutputView {
     private final String LINE_START_FORMAT = "    |";
     private final String NAME_START_FORMAT = "  ";
     private final String PRIZE_START_FORMAT = "  ";
+    private final String FORMATTED_DASH = "-----";
+    private final String FORMATTED_BLANK = "     ";
+    private final String DIVIDER = "|";
     private final int DIVISOR = 2;
     private final int DEFAULT_PADDING = 2;
     private final int FLAG = 1;
@@ -50,8 +53,15 @@ public class OutputView {
     private void printLine(Line line) {
         List<Point> points = line.getLine();
         StringBuilder result = new StringBuilder(LINE_START_FORMAT);
-        points.forEach(point -> result.append(point.toFormattedStatus()));
+        points.forEach(point -> result.append(toFormattedPoint(point)));
         System.out.println(result);
+    }
+
+    private String toFormattedPoint(Point point) {
+        if (point.getStatus()) {
+            return FORMATTED_DASH + DIVIDER;
+        }
+        return FORMATTED_BLANK + DIVIDER;
     }
 
     public void printPrizes(Prize prizes) {

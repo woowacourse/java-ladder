@@ -51,6 +51,7 @@ public class InputView {
     public String readResultOfPlayer() {
         System.out.println(READ_RESULT_COMMAND_MESSAGE);
         String line = scanner.nextLine();
+        System.out.println();
         return line;
     }
 }
