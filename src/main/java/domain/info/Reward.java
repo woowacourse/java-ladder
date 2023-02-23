@@ -1,4 +1,4 @@
-package domain;
+package domain.info;
 
 public class Reward {
     private static final int MIN_LENGTH = 1;

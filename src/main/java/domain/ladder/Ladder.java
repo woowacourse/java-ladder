@@ -1,5 +1,6 @@
-package domain;
+package domain.ladder;
 
+import domain.info.Names;
 import java.util.ArrayList;
 import java.util.List;
 import utils.BooleanGenerator;

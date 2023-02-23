@@ -1,5 +1,9 @@
-package domain;
+package domain.game;
 
+import domain.info.Name;
+import domain.info.Names;
+import domain.info.Reward;
+import domain.info.Rewards;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -2,6 +2,7 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
+import domain.info.Names;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;

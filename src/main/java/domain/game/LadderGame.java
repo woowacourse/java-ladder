@@ -1,5 +1,8 @@
-package domain;
+package domain.game;
 
+import domain.info.Names;
+import domain.ladder.Floor;
+import domain.ladder.Ladder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,10 +46,6 @@ public class LadderGame {
 
     private boolean isAbleBackward(int index, Floor floor) {
         return index > 0 && floor.getPoint(index - 1);
-    }
-
-    public List<Integer> getResult() {
-        return results;
     }
 
     public int getResult(int index) {

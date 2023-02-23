@@ -1,12 +1,12 @@
 package view;
 
-import domain.Floor;
-import domain.Ladder;
-import domain.Name;
-import domain.Names;
-import domain.Results;
-import domain.Reward;
-import domain.Rewards;
+import domain.ladder.Floor;
+import domain.ladder.Ladder;
+import domain.info.Name;
+import domain.info.Names;
+import domain.game.Results;
+import domain.info.Reward;
+import domain.info.Rewards;
 import java.util.List;
 
 public class OutputView {

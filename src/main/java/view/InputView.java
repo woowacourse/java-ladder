@@ -1,8 +1,8 @@
 package view;
 
-import domain.Height;
-import domain.Names;
-import domain.Rewards;
+import domain.ladder.Height;
+import domain.info.Names;
+import domain.info.Rewards;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
