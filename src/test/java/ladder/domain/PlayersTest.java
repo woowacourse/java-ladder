@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.domain.player.Players;
 import ladder.domain.player.exception.DuplicatePlayerNameException;
 import ladder.domain.player.exception.PlayerNumberException;
+import ladder.domain.player.exception.NoSuchPlayerException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -29,5 +30,13 @@ class PlayersTest {
     void 겹치는_플레이어_이름이_있으면_예외_발생() {
         assertThatThrownBy(() -> new Players(List.of("pobi", "crong", "pobi")))
                 .isInstanceOf(DuplicatePlayerNameException.class);
+    }
+
+    @Test
+    void 없는_플레이어_조회_시_예외_발생() {
+        Players players = new Players(List.of("pobi", "crong"));
+
+        assertThatThrownBy(() -> players.findByName("po"))
+                .isInstanceOf(NoSuchPlayerException.class);
     }
 }

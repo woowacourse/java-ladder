@@ -1,6 +1,7 @@
 package ladder.domain.player;
 
 import ladder.domain.player.exception.DuplicatePlayerNameException;
+import ladder.domain.player.exception.NoSuchPlayerException;
 import ladder.domain.player.exception.PlayerNumberException;
 
 import java.util.List;
@@ -38,6 +39,13 @@ public class Players {
 
     public List<PlayerName> getPlayers() {
         return List.copyOf(players);
+    }
+
+    public PlayerName findByName(String name) {
+        return players.stream()
+                .filter(playerName -> playerName.getName().equals(name))
+                .findFirst()
+                .orElseThrow(NoSuchPlayerException::new);
     }
 
     public int size() {

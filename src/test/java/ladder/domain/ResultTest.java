@@ -8,7 +8,7 @@ import ladder.domain.player.Players;
 import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
 import ladder.domain.result.Result;
-import ladder.domain.result.exception.NoSuchPlayerException;
+import ladder.domain.player.exception.NoSuchPlayerException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
