@@ -7,6 +7,7 @@ import java.util.List;
 import static java.util.stream.Collectors.joining;
 
 public class ResultView {
+    private static final String FOOTHOLD_DELIMITER = "|";
     private static final String ERROR_MESSAGE_HEADER = "[ERROR] ";
 
     public void printPlayersName(List<String> names) {
@@ -18,14 +19,14 @@ public class ResultView {
 
     public void printLadder(List<List<Foothold>> footholdsMap) {
         footholdsMap.stream()
-                    .map(this::toFormattedRow)
+                    .map(this::toRowFormat)
                     .forEach(System.out::println);
     }
 
-    private String toFormattedRow(List<Foothold> footholds) {
+    private String toRowFormat(List<Foothold> footholds) {
         return footholds.stream()
-                        .map(Foothold::getFormat)
-                        .collect(joining("|", "     |", "|"));
+                        .map(Foothold::format)
+                        .collect(joining(FOOTHOLD_DELIMITER, "     " + FOOTHOLD_DELIMITER, FOOTHOLD_DELIMITER));
     }
 
     public void printErrorMessage(String message) {

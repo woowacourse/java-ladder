@@ -41,9 +41,9 @@ class PlayersTest {
         Players players = Players.from(List.of("첫째", "둘째", "셋째", "넷째", "다섯째"));
         Ladder ladder = new Ladder(LadderTest.generateRowList());
         Prizes prizes = Prizes.from(List.of(
-                "2",
                 "0",
                 "1",
+                "2",
                 "3",
                 "4"
         ));

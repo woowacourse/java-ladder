@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class PrizesTest {
     Prizes prizes = Prizes.from(List.of(
             "0",

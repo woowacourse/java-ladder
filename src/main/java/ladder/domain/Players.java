@@ -1,10 +1,8 @@
 package ladder.domain;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 public class Players {
@@ -18,9 +16,15 @@ public class Players {
     }
 
     public static Players from(List<String> names) {
-        return names.stream()
-                    .map(Player::new)
-                    .collect(collectingAndThen(toUnmodifiableList(), Players::new));
+        List<Player> players = new ArrayList<>();
+        for (int i = 0; i < names.size(); i++) {
+            Name name = new Name(names.get(i));
+            Position position = new Position(i);
+            Player nextPlayer = new Player(name, position);
+
+            players.add(nextPlayer);
+        }
+        return new Players(players);
     }
 
     private void validate(List<Player> players) {
@@ -39,6 +43,15 @@ public class Players {
         if (distinctPlayers.size() != players.size()) {
             throw new IllegalArgumentException("이름에 중복이 존재합니다");
         }
+    }
+
+    public Map<String, String> climbDownLadderAndWinPrize(Ladder ladder, Prizes prizes) {
+        return players.stream()
+                      .collect(toMap(Player::getName, (player -> {
+                          var position = player.climbDownLadder(ladder);
+                          return prizes.get(position)
+                                       .getName();
+                      })));
     }
 
     public int getCount() {
