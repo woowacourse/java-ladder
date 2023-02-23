@@ -23,10 +23,10 @@ public class GameResult {
         if (name.equals("all")) {
             return findAll();
         }
-        if (!results.containsKey(name)) {
-            throw new IllegalArgumentException("해당 이름의 결과를 찾을 수 없습니다");
+        if (results.containsKey(name)) {
+            return Map.of(name, results.get(name));
         }
-        return Map.of(name, results.get(name));
+        throw new IllegalArgumentException("해당 이름의 결과를 찾을 수 없습니다");
     }
 
     public Map<String, String> findAll() {
