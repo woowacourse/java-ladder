@@ -25,7 +25,7 @@ public class Users {
         }
     }
 
-    public User findByName(String name) {
+    public User findByName(final String name) {
         return users.stream()
                 .filter(user -> user.getName().equals(name))
                 .findFirst()

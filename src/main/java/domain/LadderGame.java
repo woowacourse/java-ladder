@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -31,20 +30,6 @@ public class LadderGame {
         return new LadderGameResult(map);
     }
 
-    public void play() {
-        inProgress = true;
-    }
-
-    public LadderGameResult getLadderGameResultByName(String name) {
-        if (name.equals("all")) {
-            inProgress = false;
-            return ladderGameResult;
-        }
-        User user = users.findByName(name);
-        Result result = ladderGameResult.findByUser(user);
-        return new LadderGameResult(user, result);
-    }
-
     private int move(int index, int currentHeight, int ladderHeight) {
         if (currentHeight == ladderHeight) {
             return index;
@@ -71,6 +56,20 @@ public class LadderGame {
 
     private boolean isLeft(final int index, final int existingLineIndex) {
         return index == existingLineIndex + 1;
+    }
+
+    public void play() {
+        inProgress = true;
+    }
+
+    public LadderGameResult getLadderGameResultByName(String name) {
+        if (name.equals("all")) {
+            inProgress = false;
+            return ladderGameResult;
+        }
+        User user = users.findByName(name);
+        Result result = ladderGameResult.findByUser(user);
+        return new LadderGameResult(user, result);
     }
 
     public boolean inProgress() {
