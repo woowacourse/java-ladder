@@ -1,8 +1,8 @@
 package ladder.view;
 
-import ladder.domain.Bar;
-import ladder.domain.Ladder;
-import ladder.domain.Line;
+import ladder.domain.ladder.Bar;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,23 +11,24 @@ import java.util.stream.IntStream;
 public class OutputView {
     private static final int PER_NAME_SPACE = 6;
 
-    private OutputView(){}
-
-    public static void printNames(List<String> names) {
-        println(parseDisplayNames(names));
+    private OutputView() {
     }
 
-    private static String parseDisplayNames(List<String> names) {
-        return IntStream.range(0, names.size())
-                .mapToObj(nameIndex -> parseDisplayName(names, nameIndex))
+    public static void printInputString(List<String> inputString) {
+        println(parseDisplayInputStrings(inputString));
+    }
+
+    private static String parseDisplayInputStrings(List<String> inputString) {
+        return IntStream.range(0, inputString.size())
+                .mapToObj(nameIndex -> parseDisplayInputString(inputString, nameIndex))
                 .collect(Collectors.joining());
     }
 
-    private static String parseDisplayName(List<String> names, int nameIndex) {
-        if (nameIndex == 0) {
-            return names.get(nameIndex);
+    private static String parseDisplayInputString(List<String> inputString, int stringIndex) {
+        if (stringIndex == 0) {
+            return inputString.get(stringIndex);
         }
-        return String.format("%6s", names.get(nameIndex));
+        return String.format("%6s", inputString.get(stringIndex));
     }
 
     public static void printLadder(Ladder ladder, int firstNameLength) {
@@ -48,11 +49,7 @@ public class OutputView {
     }
 
     private static String parseBar(Bar bar) {
-        return parseBarMatcher(bar).getBarDisplay();
-    }
-
-    private static BarMatcher parseBarMatcher(Bar bar) {
-        return BarMatcher.valueOfBarMatcher(bar);
+        return bar.getBarDisplay();
     }
 
     public static void printExceptionMessage(IllegalArgumentException illegalArgumentException) {

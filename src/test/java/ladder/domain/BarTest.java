@@ -1,23 +1,26 @@
 package ladder.domain;
 
+import ladder.domain.ladder.Bar;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BarTest {
-    public static final Bar FALSE = new Bar(() -> false);
-    public static final Bar TRUE = new Bar(() -> true);
+    public static final Bar FALSE = Bar.of(false);
+    public static final Bar TRUE = Bar.of(true);
 
-    @DisplayName("isExistBar()에서 랜덤값을 인자로 받아 존재하는지 확인")
-    @ParameterizedTest
-    @ValueSource(booleans = {true, false})
-    void test_1(boolean isExist) {
-        // given & when
-        Bar bar = new Bar(() -> isExist);
-
+    @Test
+    @DisplayName("Bar.of()에서 false 값을 받으면 FALSE enum을 반환한다.")
+    void test_false_bar() {
         // then
-        assertThat(bar.isExistBar()).isEqualTo(isExist);
+        assertThat(Bar.of(false)).isEqualTo(Bar.FALSE);
+    }
+
+    @Test
+    @DisplayName("Bar.of()에서 true 값을 받으면 TRUE enum을 반환한다.")
+    void test_true_bar() {
+        // then
+        assertThat(Bar.of(true)).isEqualTo(TRUE);
     }
 }
