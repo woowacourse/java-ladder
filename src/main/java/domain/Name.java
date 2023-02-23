@@ -14,10 +14,6 @@ public class Name {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     private void validateNameBlank(String name) {
         if (name.isBlank()){
             throw new IllegalArgumentException(BLANK_NAME_ERROR);
@@ -29,4 +25,9 @@ public class Name {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR);
         }
     }
+
+    public String getName() {
+        return name;
+    }
+
 }

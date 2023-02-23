@@ -15,10 +15,6 @@ public class Ladder {
         addLine(height, playerCount, generator);
     }
 
-    public List<Line> getLines() {
-        return lines;
-    }
-
     private void addLine(int height, int playerCount, RandomGenerator generator) {
         for (int i = 0; i < height; i++) {
             lines.add(new Line(playerCount, generator));
@@ -29,6 +25,10 @@ public class Ladder {
         if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException(INVALID_HEIGHT_ERROR);
         }
+    }
+
+    public List<Line> getLines() {
+        return lines;
     }
 
 }

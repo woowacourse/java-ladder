@@ -12,10 +12,6 @@ public class Player {
         this.position = new Position(position);
     }
 
-    public String getName() {
-        return name.getName();
-    }
-
     public String calculateResult(Ladder ladder, Results results) {
         int currentPosition = position.getPosition();
         List<Line> lines = ladder.getLines();
@@ -48,4 +44,9 @@ public class Player {
     private boolean isLeft(int currentPosition, List<Boolean> points) {
         return currentPosition != 0 && points.get(currentPosition - 1);
     }
+
+    public String getName() {
+        return name.getName();
+    }
+
 }

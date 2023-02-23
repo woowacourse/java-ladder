@@ -14,11 +14,6 @@ public class Results {
         addResult(results);
     }
 
-    public String getResult(int position) {
-        return results.get(position)
-                .getName();
-    }
-
     private void addResult(List<String> results) {
         for (String result : results) {
             this.results.add(new Result(result));
@@ -38,5 +33,10 @@ public class Results {
             results.add(result.getName());
         }
         return results;
+    }
+
+    public String getResult(int position) {
+        return results.get(position)
+                .getName();
     }
 }

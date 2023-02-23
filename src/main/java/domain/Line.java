@@ -16,10 +16,6 @@ public class Line {
         addPoints(playerCount, generator);
     }
 
-    public List<Boolean> getPoints() {
-        return points;
-    }
-
     public int getPointsSize() {
         return points.size();
     }
@@ -53,6 +49,10 @@ public class Line {
 
     private void addPoint(boolean state) {
         points.add(state);
+    }
+
+    public List<Boolean> getPoints() {
+        return points;
     }
     
 }
