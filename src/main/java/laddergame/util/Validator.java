@@ -14,16 +14,18 @@ public class Validator {
     }
 
     public void validateLadder(Ladder ladder, int height) {
-        List<Line> lines = ladder.getLines();
-        if (height != 1) {
-            HashMap<Integer, Integer> falseIndexCountmap = new HashMap<>();
-            for (Line line : lines) {
-                falseIndexCountmap = line.checkFalseIndex(falseIndexCountmap);
-            }
-            if (falseIndexCountmap.containsValue(height)) {
-                throw new LadderStateException("잘못된 사다리가 만들어졌습니다.");
-            }
+        if (height == 1) {
+            return;
         }
+        List<Line> lines = ladder.getLines();
+        HashMap<Integer, Integer> falseIndexCountmap = new HashMap<>();
+        for (Line line : lines) {
+            falseIndexCountmap = line.checkFalseIndex(falseIndexCountmap);
+        }
+        if (falseIndexCountmap.containsValue(height)) {
+            throw new LadderStateException("잘못된 사다리가 만들어졌습니다.");
+        }
+
     }
 
     public void validateRewards(List<String> rewardNames, int playerCount) {
