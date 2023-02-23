@@ -1,18 +1,20 @@
 package engine;
 
+import common.cache.LadderResultCacheManager;
 import common.exception.handler.IllegalArgumentExceptionHandler;
 import domain.Bridge;
 import domain.Ladder;
 import domain.Line;
 import domain.People;
 import domain.Person;
+import engine.model.ResultModel;
 import generator.LineGenerator;
 import view.InputView;
-import view.OutputView;
+import view.OutputLadderView;
+import view.OutputResultView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderEngine {
@@ -20,9 +22,11 @@ public class LadderEngine {
     private static final String END_OF_FILE = "all";
 
     private final LineGenerator lineGenerator;
+    private final LadderResultCacheManager ladderResultCacheManager;
 
-    public LadderEngine(final LineGenerator lineGenerator) {
+    public LadderEngine(final LineGenerator lineGenerator, final LadderResultCacheManager ladderResultCacheManager) {
         this.lineGenerator = lineGenerator;
+        this.ladderResultCacheManager = ladderResultCacheManager;
     }
 
     public void start() {
@@ -31,32 +35,29 @@ public class LadderEngine {
         List<String> resultCandidates = makeResultCandidates();
         Ladder ladder = makesLadder(people, resultCandidates);
 
-        OutputView.printLadder(ladder);
+        OutputLadderView.printLadder(ladder);
 
-        Map<Person, String> result = playLadder(ladder);
-
-        printResult(result, people);
+        printResult(ladder);
     }
 
-    private Map<Person, String> playLadder(Ladder ladder) {
-        return ladder.getLadderMatchingResult();
-    }
-
-    private void printResult(final Map<Person, String> result, People people) {
+    private void printResult(final Ladder ladder) {
         while (true) {
             String name = InputView.inputShowResultPerson();
 
             if (name.equals(END_OF_FILE)) {
-                OutputView.printLadderAll(result);
+                OutputResultView.printLadderAll(ladderResultCacheManager.getLadderResultAllCache(ladder));
                 break;
             }
 
-            people.findPersonByName(name)
-                  .ifPresentOrElse(
-                          (person) -> OutputView.printLadderSpecific(result, person),
+            try {
+                String ladderResult = ladderResultCacheManager.getLadderResultCache(name, ladder);
+                ResultModel resultModel = new ResultModel(name, ladderResult);
 
-                          OutputView::printNotExistedParticipant
-                  );
+                OutputResultView.printLadderSpecific(resultModel);
+
+            } catch (IllegalArgumentException exception) {
+                OutputResultView.printNotExistedParticipant();
+            }
         }
     }
 

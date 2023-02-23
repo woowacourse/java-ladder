@@ -1,3 +1,4 @@
+import common.cache.LadderResultCacheManager;
 import engine.LadderEngine;
 import generator.BridgeGenerator;
 import generator.LineGenerator;
@@ -8,7 +9,9 @@ public class LadderApplication {
     public static void main(String[] args) {
         BridgeGenerator bridgeGenerator = new RandomBridgeGenerator();
         LineGenerator lineGenerator = new LineGenerator(bridgeGenerator);
-        LadderEngine ladderEngine = new LadderEngine(lineGenerator);
+        LadderResultCacheManager ladderResultCacheManager = new LadderResultCacheManager();
+
+        LadderEngine ladderEngine = new LadderEngine(lineGenerator, ladderResultCacheManager);
 
         ladderEngine.start();
     }
