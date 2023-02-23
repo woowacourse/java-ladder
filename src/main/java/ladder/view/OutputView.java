@@ -9,6 +9,7 @@ import ladder.domain.LadderGame;
 import ladder.domain.Line;
 import ladder.domain.LineStatus;
 import ladder.domain.Players;
+import ladder.domain.Result;
 
 public class OutputView {
     private static final String GAME_RESULT_MESSAGE = System.lineSeparator() + "실행결과";
@@ -102,15 +103,16 @@ public class OutputView {
         System.out.println(ERROR_MESSAGE + message);
     }
 
-    public void printSearchResult(final Map<String, String> searchResultPlayerName,
+    public void printSearchResult(final Result result,
                                   final Players earlyPlayers) {
         System.out.println(GAME_RESULT_MESSAGE);
-        if (searchResultPlayerName.size() == ONE_NAME_SEARCH_CONDITION) {
-            searchResultPlayerName.forEach((key, value) -> System.out.println(value + NEXT_LINE));
+        Map<String, String> overallResult = result.getOverallResult();
+        if (overallResult.size() == ONE_NAME_SEARCH_CONDITION) {
+            overallResult.forEach((key, value) -> System.out.println(value + NEXT_LINE));
             return;
         }
 
-        printAllResult(searchResultPlayerName, earlyPlayers);
+        printAllResult(overallResult, earlyPlayers);
     }
 
     private void printAllResult(final Map<String, String> searchResultPlayerName, final Players earlyPlayers) {

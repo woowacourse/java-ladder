@@ -1,7 +1,6 @@
 package ladder.controller;
 
 import java.util.List;
-import java.util.Map;
 import ladder.domain.Bottoms;
 import ladder.domain.Height;
 import ladder.domain.LadderGame;
@@ -36,10 +35,10 @@ public class LadderGameRunner {
         final LadderGame ladderGame = new LadderGame(booleanGenerator, players, height);
         outputView.printResult(ladderGame, bottoms);
 
-        search(ladderGame, bottoms, height);
+        playLadderGame(ladderGame, bottoms, height);
     }
 
-    private void search(final LadderGame ladderGame, final Bottoms bottoms, final Height height) {
+    private void playLadderGame(final LadderGame ladderGame, final Bottoms bottoms, final Height height) {
         Players earlyPlayers = new Players(ladderGame.getPlayerNames());
         Players playersWhoFinishedGame = ladderGame.makePlayersWhoFinishedGame(height);
         Result result = new Result(playersWhoFinishedGame, bottoms);
@@ -51,7 +50,7 @@ public class LadderGameRunner {
         String searchPlayerName = "";
         while (!searchPlayerName.equals(QUIT_COMMAND)) {
             searchPlayerName = getSearchResult(result);
-            Map<String, String> searchResult = result.resultByName(searchPlayerName);
+            Result searchResult = result.resultByName(searchPlayerName);
             outputView.printSearchResult(searchResult, earlyPlayers);
         }
     }

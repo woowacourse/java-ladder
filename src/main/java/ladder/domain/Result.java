@@ -24,6 +24,13 @@ public class Result {
         result = makeResult(names, bottoms);
     }
 
+    public Result(final Map<String, String> searchNameResult) {
+        if (searchNameResult.isEmpty()) {
+            throw new IllegalArgumentException("비어있는 결과는 초기화 시킬 수 없습니다.");
+        }
+        this.result = searchNameResult;
+    }
+
     private Map<String, String> makeResult(final List<String> names, final List<String> results) {
         Map<String, String> map = new HashMap<>();
         for (int i = 0; i < names.size(); i++) {
@@ -51,12 +58,16 @@ public class Result {
         }
     }
 
-    public Map<String, String> resultByName(final String playerName) {
+    public Result resultByName(final String playerName) {
         if (playerName.equals(ALL_SEARCH_CONDITION)) {
-            return result;
+            return this;
         }
         HashMap<String, String> searchNameResult = new HashMap<>();
         searchNameResult.put(playerName, result.get(playerName));
-        return searchNameResult;
+        return new Result(searchNameResult);
+    }
+
+    public Map<String, String> getOverallResult() {
+        return this.result;
     }
 }
