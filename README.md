@@ -16,6 +16,7 @@
 - 이름은 1~5자리 이다.
 - 이름이 공백이거나 5자리를 초과하면 `IllegalArgumentException` 예외가 발생한다.
 - 이름에 null 값이 주어지면 `IllegalArgumentException` 예외가 발생한다.
+- 이름이 블랙리스트에 있으면 `IllegalArgumentException` 예외가 발생한다.
 
 ### Players
 
