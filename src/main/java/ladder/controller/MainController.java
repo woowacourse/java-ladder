@@ -26,7 +26,7 @@ public class MainController {
     }
 
     private static void controlPrintReward(final LadderGame ladderGame, final PrintCommand command, final String userName) {
-        if (command == PrintCommand.PRINT_ONE) {
+        if (PrintCommand.PRINT_ONE.isSame(command)) {
             OutputView.printReward(ladderGame.getRewardOf(userName));
             return;
         }

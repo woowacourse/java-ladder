@@ -16,4 +16,8 @@ public enum PrintCommand {
         }
         return PRINT_ONE;
     }
+
+    public boolean isSame(final PrintCommand command) {
+        return this.equals(command);
+    }
 }
