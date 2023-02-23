@@ -6,7 +6,6 @@ import util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Results {
 
@@ -42,10 +41,8 @@ public class Results {
                 .forEach((result) -> this.results.add(new Result(result)));
     }
 
-    public List<String> get() {
-        return results.stream()
-                      .map(Result::getResult)
-                      .collect(Collectors.toList());
+    public List<Result> getResult() {
+        return results;
     }
 
     public Result getByIndex(int index) {

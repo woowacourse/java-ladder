@@ -14,7 +14,9 @@ class ResultsTest {
     @Test
     void createSuccess() {
         Results results = new Results("a,b,c", 3);
-        Assertions.assertThat(results.get()).containsExactly("a", "b", "c");
+        Assertions.assertThat(results.getResult().get(0).getResult()).isEqualTo("a");
+        Assertions.assertThat(results.getResult().get(1).getResult()).isEqualTo("b");
+        Assertions.assertThat(results.getResult().get(2).getResult()).isEqualTo("c");
     }
 
     @DisplayName("실행 결과를 입력하지 않은 경우 오류를 반환한다.")

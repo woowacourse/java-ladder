@@ -60,11 +60,11 @@ public class OutputView {
         ladderResult.append(System.lineSeparator());
     }
 
-    public void printMatchAllResult(Map<String, String> matchResult) {
+    public void printMatchAllResult(Map<String, String> matchResult, List<String> participants) {
         StringBuilder result = new StringBuilder();
         result.append(MATCH_RESULT_MESSAGE);
-        matchResult.forEach((name, reward) ->
-                result.append(String.format(MATCH_RESULT_ALL_FORMAT, name, reward)));
+        participants.forEach(name -> result.append(
+                String.format(MATCH_RESULT_ALL_FORMAT, name, matchResult.get(name))));
         System.out.println(result);
     }
 

@@ -13,9 +13,10 @@ public class LadderGameController {
         Participants participants = setParticipants(inputView);
         Results results = setResults(inputView, participants);
         Ladder ladder = generateLadder(inputView, participants, booleanGenerator);
-        printLadder(outputView, participants, ladder, results);
 
-        LadderGame ladderGame = new LadderGame(participants, ladder, results);
+        LadderGame ladderGame = new LadderGame(participants, results, ladder);
+        printLadder(outputView, ladderGame);
+
         printResult(inputView, outputView, ladderGame);
     }
 
@@ -50,9 +51,9 @@ public class LadderGameController {
         }
     }
 
-    private void printLadder(OutputView outputView, Participants participants, Ladder ladder,
-                             Results results) {
-        outputView.printLadder(participants.getParticipantNames(), ladder.getLines(), results.get());
+    private void printLadder(OutputView outputView, LadderGame ladderGame) {
+        outputView.printLadder(ladderGame.getParticipants(), ladderGame.getLadder(),
+                ladderGame.getResults());
     }
 
     private void printResult(InputView inputView, OutputView outputView, LadderGame ladderGame) {
@@ -74,11 +75,12 @@ public class LadderGameController {
 
     private boolean getResultByInput(OutputView outputView, LadderGame ladderGame, String inputValue) {
         if (GET_RESULT_ALL.equals(inputValue)) {
-            outputView.printMatchAllResult(ladderGame.getAllResult());
+            outputView.printMatchAllResult(ladderGame.getGameAllResult(),
+                    ladderGame.getParticipants());
             return false;
         }
 
-        outputView.printMatchResult(ladderGame.getResultByName(inputValue));
+        outputView.printMatchResult(ladderGame.getGameResultByName(inputValue));
         return true;
     }
 }

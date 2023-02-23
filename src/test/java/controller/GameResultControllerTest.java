@@ -12,7 +12,7 @@ import view.input.ErrorMessage;
 import view.input.InputView;
 import view.output.OutputView;
 
-class LadderGameControllerTest {
+class GameResultControllerTest {
 
     private ByteArrayOutputStream byteArrayOutputStream;
     private LadderGameController ladderGameController;
