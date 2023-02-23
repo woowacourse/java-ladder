@@ -2,7 +2,6 @@ package controller;
 
 import dto.GameResult;
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import model.Height;
 import model.Ladder;
@@ -11,7 +10,7 @@ import model.LadderGameCommand;
 import model.LadderResult;
 import model.LadderResults;
 import model.Names;
-import model.LadderMaker;
+import strategy.PassGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -27,13 +26,13 @@ public class LadderController {
         this.outputView = outputView;
     }
 
-    public void run(LadderMaker ladderMaker) {
+    public void run(PassGenerator generator) {
         try {
             Names participants = inputParticipantsName();
             LadderResults ladderResults = inputLadderResults(participants.getTotalParticipantSize());
-            initLadder(ladderMaker, participants.getTotalParticipantSize());
-            printLadder(ladderMaker, participants, ladderResults);
-            LadderGame ladderGame = LadderGame.of(participants, ladderMaker.findLadder(), ladderResults);
+            Ladder ladder = generateLadder(generator, participants.getTotalParticipantSize());
+            printLadder(ladder, participants, ladderResults);
+            LadderGame ladderGame = LadderGame.of(participants, ladder, ladderResults);
             printLadderGame(ladderGame);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
@@ -57,19 +56,17 @@ public class LadderController {
         return LadderResults.of(ladderResults, totalParticipantSize);
     }
 
-    private void initLadder(LadderMaker ladderMaker, int totalParticipantSize) {
+    private Ladder generateLadder(PassGenerator generator, int totalParticipantSize) {
         outputView.noticeInputHeightOfLadder();
 
         int heightOfLadder = inputView.inputHeightOfLadder();
         Height height = new Height(heightOfLadder);
 
-        ladderMaker.initLadder(height, totalParticipantSize);
+        return Ladder.of(generator, height, totalParticipantSize);
     }
 
-    private void printLadder(LadderMaker ladderMaker, Names names, LadderResults ladderResults) {
+    private void printLadder(Ladder ladder, Names names, LadderResults ladderResults) {
         outputView.noticeLadderResult();
-
-        Ladder ladder = ladderMaker.findLadder();
 
         outputView.printNameOfParticipants(names);
         outputView.printLadder(ladder);
@@ -84,32 +81,6 @@ public class LadderController {
             targetParticipantName = inputView.inputNameForGameResult();
             List<GameResult> gameResults = ladderGame.findGameResult(targetParticipantName);
             outputView.printLadderGameResult(gameResults);
-        }
-    }
-
-    //
-    private static final Boolean DONE = Boolean.FALSE;
-    private static final Boolean RETRY = Boolean.TRUE;
-
-    private void run() {
-        testRun(this::testMethod);
-    }
-
-    private void testRun(Supplier<Boolean> logic) {
-        boolean isRepeatable = RETRY;
-
-        while (isRepeatable) {
-            isRepeatable = logic.get();
-        }
-    }
-
-    private Boolean testMethod() {
-        try {
-            // logic
-            return DONE;
-        } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
-            return RETRY;
         }
     }
 }
