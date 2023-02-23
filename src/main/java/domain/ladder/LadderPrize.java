@@ -18,7 +18,7 @@ public class LadderPrize {
     }
 
     private void validate(String resultName) {
-        if (isBlank(resultName)) {
+        if (isNotEmpty(resultName)) {
             throw new EmptyInputException();
         }
         if (isInvalidLength(resultName)) {
@@ -29,7 +29,7 @@ public class LadderPrize {
         }
     }
 
-    private boolean isBlank(String results) {
+    private boolean isNotEmpty(String results) {
         return results == null || results.isBlank();
     }
 
