@@ -65,7 +65,7 @@ public class LadderGameController {
 
     private Users getUsers() {
         outputView.printEnterUserNotice();
-        List<String> userNames = inputView.inputUserNames();
+        List<String> userNames = inputView.inputUsernames();
 
         return new Users(generateUsers(userNames));
     }

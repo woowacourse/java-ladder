@@ -54,9 +54,9 @@ public class OutputView {
 
     public void printTotalRewards(Users users, LadderGame ladderGame) {
         for (User user : users.getUsers()) {
-            String userName = user.getName();
+            String username = user.getName();
             String reward = ladderGame.findUserReward(user.getPosition());
-            System.out.println(userName + RESULT_DELIMITER + reward);
+            System.out.println(username + RESULT_DELIMITER + reward);
         }
     }
 
