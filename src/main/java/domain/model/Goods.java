@@ -2,6 +2,7 @@ package domain.model;
 
 import domain.vo.Name;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Goods {
@@ -13,6 +14,10 @@ public class Goods {
         validate(items, playerCounts);
         this.items = items;
         this.playerCounts = playerCounts;
+    }
+    public Goods(Goods goods){
+        this.items = Collections.unmodifiableList(goods.items);
+        this.playerCounts = goods.playerCounts;
     }
 
     public String get(int index) {

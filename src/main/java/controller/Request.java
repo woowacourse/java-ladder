@@ -22,14 +22,12 @@ public class Request {
     }
 
     public Players getPlayers() {
-        return this.players;
+        return new Players(this.players);
     }
 
     public Goods getGoods() {
-        return this.goods;
+        return new Goods(this.goods);
     }
 
-    public Ladder getLadder() {
-        return this.ladder;
-    }
+    public Ladder getLadder() {return new Ladder(this.ladder);}
 }

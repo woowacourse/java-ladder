@@ -4,6 +4,7 @@ import domain.vo.Height;
 import domain.vo.Width;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -15,6 +16,11 @@ public class Ladder {
         this.height = height;
         this.width = width;
         this.layers = new ArrayList<>();
+    }
+    public Ladder(Ladder ladder){
+        this.height = new Height(ladder.height.get());
+        this.width = new Width(ladder.width.get());
+        this.layers = Collections.unmodifiableList(ladder.layers);
     }
 
     public List<Layer> getLayers() {

@@ -12,6 +12,9 @@ public class Players {
     public Players(List<Player> players) {
         this.players = players;
     }
+    public Players(Players players){
+        this.players = players.getPlayers();
+    }
 
     public List<Integer> getPlayersPosition(Name name) {
         return players.stream()
