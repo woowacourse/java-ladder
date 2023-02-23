@@ -7,23 +7,23 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 
-class NameTest {
+class PlayerTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"a", "aaaaa"})
     void Name의_길이가_1_이상_5_이하이면_예외가_발생하지_않는다(String name) {
-        assertThatCode(() -> new Name(name)).doesNotThrowAnyException();
+        assertThatCode(() -> new Player(name)).doesNotThrowAnyException();
     }
 
     @Test
     void Name의_길이가_5를_초과하면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Name("aaaaaa")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Player("aaaaaa")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"", "           "})
     void Name이_공백이면_예외가_발생한다(String name) {
-        assertThatThrownBy(() -> new Name(name)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Player(name)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }
