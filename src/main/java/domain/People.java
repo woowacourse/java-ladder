@@ -48,6 +48,9 @@ public class People implements Iterable<Person> {
     }
 
     public Person getByIndex(int index) {
+        if (index < 0 || index >= people.size()) {
+            throw new IndexOutOfBoundsException("인덱스의 범위를 벗어났습니다.");
+        }
         return people.get(index);
     }
 
