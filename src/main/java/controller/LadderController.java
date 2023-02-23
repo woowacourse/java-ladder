@@ -10,6 +10,7 @@ import domain.Name;
 import domain.Players;
 import domain.RandomBooleanGenerator;
 import domain.Result;
+import domain.Results;
 import domain.Rewards;
 import utils.Log;
 import view.InputView;
@@ -26,7 +27,7 @@ public class LadderController {
             name = generateName();
         }
 
-        List<Result> results = ladderGame.getResults();
+        Results results = ladderGame.getResults();
         OutputView.printResults(results);
     }
 

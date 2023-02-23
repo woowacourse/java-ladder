@@ -39,8 +39,8 @@ public class LadderGameTest {
     @ParameterizedTest
     @CsvSource({"0,pobi,꽝", "1,honux,3000", "2,crong,꽝", "3,jk,5000"})
     void shouldContainAllPairOfPlayerAndReward(int index, String playerName, String rewardName) {
-        List<Result> results = ladderGame.getResults();
-        assertThat(results.get(index).getPlayerName()).isEqualTo(playerName);
-        assertThat(results.get(index).getRewardName()).isEqualTo(rewardName);
+        Results results = ladderGame.getResults();
+        assertThat(results.getResults().get(index).getPlayerName()).isEqualTo(playerName);
+        assertThat(results.getResults().get(index).getRewardName()).isEqualTo(rewardName);
     }
 }

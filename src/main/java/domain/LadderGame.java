@@ -21,14 +21,15 @@ public class LadderGame {
         return new Result(name.getName(), rewards.getRewardName(result));
     }
 
-    public List<Result> getResults() {
+    public Results getResults() {
         List<Result> results = new ArrayList<>();
 
         for (int i = 0; i < players.getNumberOfPlayer(); i++) {
-            int result = ladder.move(i);
-            results.add(new Result(players.getPlayerName(i), rewards.getRewardName(result)));
+            int rewardIndex = ladder.move(i);
+            Result result = new Result(players.getPlayerName(i), rewards.getRewardName(rewardIndex));
+            results.add(result);
         }
 
-        return results;
+        return new Results(results);
     }
 }

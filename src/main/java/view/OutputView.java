@@ -8,6 +8,7 @@ import domain.Player;
 import domain.Players;
 import domain.Point;
 import domain.Result;
+import domain.Results;
 
 public class OutputView {
 
@@ -71,8 +72,8 @@ public class OutputView {
         return DISCONNECTED + DIVIDER;
     }
 
-    public static void printResults(final List<Result> results) {
-        for (Result result : results) {
+    public static void printResults(final Results results) {
+        for (Result result : results.getResults()) {
             System.out.printf("%s : %s%n", result.getPlayerName(), result.getRewardName());
         }
     }
