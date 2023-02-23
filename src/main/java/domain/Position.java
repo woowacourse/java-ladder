@@ -14,4 +14,8 @@ public class Position {
     public void moveRight() {
         ++index;
     }
+
+    public int getIndex() {
+        return index;
+    }
 }
