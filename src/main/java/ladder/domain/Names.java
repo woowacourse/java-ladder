@@ -40,9 +40,24 @@ public class Names {
     public int getCount() {
         return names.size();
     }
-    public Name getElement(int index){
+
+    public Name getElement(int index) {
         return names.get(index);
     }
+
+    public Name findName(String name) {
+        if (!contains(name)) {
+            return null;
+        }
+        return names.stream().filter((el) -> el.toDto().equals(name))
+            .collect(Collectors.toList()).get(0);
+
+    }
+
+    private boolean contains(String name) {
+        return names.stream().filter((el) -> el.toDto().equals(name)).count() > 0;
+    }
+
     public NamesDto toDto() {
         return new NamesDto(names.stream()
             .map(Name::toDto)

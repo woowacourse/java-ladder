@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,29 +32,36 @@ public class LadderGameTest {
          */
         ladderGame.makeResultMap();
         Assertions.assertThat(ladderGame.getReward(players.getElement(0)))
-            .isEqualTo(rewards.getElement(1));
+            .isEqualTo(rewards.getElement(1).toDto());
         Assertions.assertThat(ladderGame.getReward(players.getElement(1)))
-            .isEqualTo(rewards.getElement(0));
+            .isEqualTo(rewards.getElement(0).toDto());
         Assertions.assertThat(ladderGame.getReward(players.getElement(2)))
-            .isEqualTo(rewards.getElement(3));
+            .isEqualTo(rewards.getElement(3).toDto());
         Assertions.assertThat(ladderGame.getReward(players.getElement(3)))
-            .isEqualTo(rewards.getElement(2));
+            .isEqualTo(rewards.getElement(2).toDto());
     }
 
     @Test
     void False_사다리_결과() {
         rows.generateLegsOfLines(new MockStepGenerator(Step.BLANK));
         LadderGame ladderGame = new LadderGame(players, rows, rewards);
-
+        /**
+         * 피0  세1  김2   엘3
+         * |    |    |    |
+         * |    |    |    |
+         * |    |    |    |
+         * |    |    |    |
+         * |    |    |    |
+         * 꽝 5000   꽝   3000
+         */
         ladderGame.makeResultMap();
         Assertions.assertThat(ladderGame.getReward(players.getElement(0)))
-            .isEqualTo(rewards.getElement(0));
+            .isEqualTo(rewards.getElement(0).toDto());
         Assertions.assertThat(ladderGame.getReward(players.getElement(1)))
-            .isEqualTo(rewards.getElement(1));
+            .isEqualTo(rewards.getElement(1).toDto());
         Assertions.assertThat(ladderGame.getReward(players.getElement(2)))
-            .isEqualTo(rewards.getElement(2));
+            .isEqualTo(rewards.getElement(2).toDto());
         Assertions.assertThat(ladderGame.getReward(players.getElement(3)))
-            .isEqualTo(rewards.getElement(3));
+            .isEqualTo(rewards.getElement(3).toDto());
     }
 }
-

@@ -1,7 +1,11 @@
 package ladder.domain;
 
+import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+import ladder.dto.NamesDto;
+import ladder.dto.ResultDto;
 
 public class LadderGame {
 
@@ -22,7 +26,17 @@ public class LadderGame {
             resultMap.put(players.getElement(i), rewards.getElement(rows.followLadder(i)));
         }
     }
-    public Name getReward(Name name){
-        return resultMap.get(name);
+
+    public String getReward(Name name) {
+        return resultMap.get(name).toDto();
+    }
+
+    public ResultDto toDto() {
+        return new ResultDto(resultMap.entrySet().stream()
+            .collect(Collectors
+                .toMap(
+                    e -> e.getKey().toDto(),
+                    e -> e.getValue().toDto()
+                )));
     }
 }

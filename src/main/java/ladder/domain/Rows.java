@@ -33,7 +33,7 @@ public class Rows {
     public int followLadder(int initPos) {
         int curPos = initPos;    //시작 위치
         for (int i = 0; i < height.getHeight(); i++) {
-            curPos=rows.get(i).getAdjacent(curPos);
+            curPos = rows.get(i).getAdjacent(curPos);
         }
         return curPos;
     }

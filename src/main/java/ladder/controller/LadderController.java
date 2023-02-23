@@ -1,5 +1,7 @@
 package ladder.controller;
 
+import ladder.domain.Command;
+import ladder.domain.LadderGame;
 import ladder.domain.Names;
 import ladder.domain.PlayerNames;
 import ladder.domain.RandomStepGenerator;
@@ -14,6 +16,7 @@ public class LadderController {
     private Names playerNames;
     private Names rewardNames;
     private Rows rows;
+    private LadderGame ladderGame;
 
     public void run() {
         playerNames = Repeater.repeatIfError(this::inputPlayerNames, ResultView::printErrorMessage);
@@ -21,6 +24,9 @@ public class LadderController {
         rows = Repeater.repeatIfError(this::inputLines, ResultView::printErrorMessage);
         rows.generateLegsOfLines(new RandomStepGenerator());
         ResultView.printResult(playerNames.toDto(), rows.toDto(), rewardNames.toDto());
+        ladderGame = new LadderGame(playerNames, rows, rewardNames);
+        ladderGame.makeResultMap();
+        repeatQuestionAwnser();
     }
 
     private Names inputPlayerNames() {
@@ -34,5 +40,33 @@ public class LadderController {
     private Rows inputLines() {
         int intervalCount = playerNames.getCount() - 1;
         return new Rows(InputView.inputLadderHeight(), intervalCount);
+    }
+
+    private void repeatQuestionAwnser() {
+        String cmd = Repeater.repeatIfError(this::inputCommand, ResultView::printErrorMessage);
+        if (Command.QUIT.isEqual(cmd)) {
+            ResultView.printQuitMessage();
+            return;
+        }
+        if (Command.ALL.isEqual(cmd)) {
+            ResultView.printAllResult(ladderGame.toDto());
+        }
+        if (playerNames.findName(cmd) != null) {
+            ResultView.printResult(ladderGame.getReward(playerNames.findName(cmd)));
+        }
+        repeatQuestionAwnser();
+    }
+
+    private String inputCommand() {
+        String cmd = InputView.inputCommand();
+        validateCommand(cmd);
+        return cmd;
+    }
+
+    private void validateCommand(String cmd) {
+        if (playerNames.findName(cmd) == null && !Command.ALL.isEqual(cmd) && !Command.QUIT.isEqual(
+            cmd)) {
+            throw new IllegalArgumentException(String.format("%s라는 이름의 참여자는 없습니다.", cmd));
+        }
     }
 }

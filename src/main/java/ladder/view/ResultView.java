@@ -2,27 +2,33 @@ package ladder.view;
 
 import java.util.List;
 import ladder.domain.Step;
+import ladder.dto.ResultDto;
 import ladder.dto.RowsDto;
 import ladder.dto.NamesDto;
 
 public class ResultView {
 
+    private static final String RESULT_MESSAGE = "실행 결과";
+
     private ResultView() {
     }
 
-    public static void printResult(NamesDto playerNamesDto, RowsDto rowsDto,NamesDto rewardNamesDto) {
+    public static void printResult(NamesDto playerNamesDto, RowsDto rowsDto,
+        NamesDto rewardNamesDto) {
         printResultTitle();
-        printPlayerNames(playerNamesDto);
+        printNames(playerNamesDto);
         printRows(rowsDto);
-        printPlayerNames(rewardNamesDto);
-    }
-
-    private static void printResultTitle() {
-        System.out.println("실행 결과");
+        printNames(rewardNamesDto);
+        System.out.println();
         System.out.println();
     }
 
-    private static void printPlayerNames(NamesDto namesDto) {
+    private static void printResultTitle() {
+        System.out.println(RESULT_MESSAGE);
+        System.out.println();
+    }
+
+    private static void printNames(NamesDto namesDto) {
         namesDto.getNames().forEach(ResultView::printName);
     }
 
@@ -51,6 +57,26 @@ public class ResultView {
         }
         System.out.print("     |");
     }
+
+    public static void printResult(String result) {
+        System.out.println();
+        System.out.println(RESULT_MESSAGE);
+        System.out.println(result);
+        System.out.println();
+    }
+
+    public static void printAllResult(ResultDto resultDto) {
+        System.out.println();
+        System.out.println(RESULT_MESSAGE);
+        resultDto.getResults().entrySet().stream()
+            .forEach(result -> System.out.println(result.getKey() + " : " + result.getValue()));
+        System.out.println();
+    }
+
+    public static void printQuitMessage() {
+        System.out.println("사다리 게임을 종료합니다.");
+    }
+
     public static void printErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }

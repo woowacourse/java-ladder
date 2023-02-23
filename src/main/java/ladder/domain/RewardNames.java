@@ -14,6 +14,4 @@ public class RewardNames extends Names {
                     playerNamesSize, this.names.size()));
         }
     }
-
-
 }
