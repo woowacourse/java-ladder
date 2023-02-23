@@ -39,6 +39,15 @@ public class PlayersTest {
                 .hasMessage("사다리 게임 참여자의 이름은 중복이 없어야합니다.");
     }
 
+    @DisplayName("사다리 게임 참여자의 이름에 공백을 제외한 뒤 중복이 있는 경우에는 예외를 발생시킨다.")
+    @Test
+    void createPlayersTest4() {
+        List<String> names = List.of("kong", "odo", "gray", " kong ");
+        assertThatThrownBy(() -> new Players(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리 게임 참여자의 이름은 중복이 없어야합니다.");
+    }
+
     @DisplayName("사다리 한 줄에 대한 정보가 주어지면 사다리 게임 참여자의 위치를 옮길 수 있다.")
     @ParameterizedTest
     @CsvSource(value = {"1:1:0", "0:0:1"}, delimiter = ':')

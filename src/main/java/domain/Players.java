@@ -31,6 +31,7 @@ public class Players {
 
     private long getDistinctNameCount(List<String> names) {
         return names.stream()
+                .map(String::trim)
                 .distinct()
                 .count();
     }
