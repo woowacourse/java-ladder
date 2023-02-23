@@ -22,6 +22,12 @@ class SimpleListTest {
     }
 
     @Test
+    void getThrowException() {
+        assertThatThrownBy(() -> list.get(2))
+                .isInstanceOf(IndexOutOfBoundsException.class);
+    }
+
+    @Test
     void addWithOnlyValue() {
         assertThat(list.add("2")).isTrue();
         assertThat(list.get(2)).isEqualTo("2");
@@ -66,12 +72,6 @@ class SimpleListTest {
     @Test
     void setThrowException() {
         assertThatThrownBy(() -> list.set(2, "2"))
-                .isInstanceOf(IndexOutOfBoundsException.class);
-    }
-
-    @Test
-    void getThrowException() {
-        assertThatThrownBy(() -> list.get(2))
                 .isInstanceOf(IndexOutOfBoundsException.class);
     }
 
