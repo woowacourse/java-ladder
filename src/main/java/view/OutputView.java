@@ -10,8 +10,6 @@ import domain.Reward;
 import domain.Rewards;
 import domain.ladder.Ladder;
 
-import java.util.List;
-
 public class OutputView {
 
     private static final int PLAYER_NAME_BOX_SIZE_MAX = 5;
