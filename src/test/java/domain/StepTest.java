@@ -10,14 +10,14 @@ class StepTest {
     @Test
     @DisplayName("없을 경우 발을 디딜 수 없다고 알려준다.")
     void unsteppableCase() {
-        assertThat(new Step(false).isSteppable())
+        assertThat(Step.NONE.isSteppable())
                 .isFalse();
     }
 
     @Test
     @DisplayName("있을 경우 발을 디딜 수 있다고 알려준다.")
     void steppableCase() {
-        assertThat(new Step(true).isSteppable())
+        assertThat(Step.RIGHT.isSteppable())
                 .isTrue();
     }
 }

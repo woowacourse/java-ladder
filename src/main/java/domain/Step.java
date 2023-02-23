@@ -1,20 +1,29 @@
 package domain;
 
-public class Step {
-    private final boolean steppable;
+public enum Step {
+    NONE(0),
+    LEFT(-1),
+    RIGHT(1);
 
-    public Step(final boolean steppable) {
-        this.steppable = steppable;
+    private final int moveDirection;
+
+    Step(final int movePosition) {
+        this.moveDirection = movePosition;
     }
 
     public boolean isSteppable() {
-        return steppable;
+        return this == LEFT || this == RIGHT;
     }
 
-    @Override
-    public String toString() {
-        return "FootStep{" +
-                "steppable=" + steppable +
-                '}';
+    public boolean isRightConnection() {
+        return this == RIGHT;
+    }
+
+    public static Step getRandomValidStep(boolean rightStepFlag) {
+        if (rightStepFlag) {
+            return Step.RIGHT;
+        }
+
+        return Step.NONE;
     }
 }
