@@ -16,6 +16,8 @@ import laddergame.view.LadderFormGenerator;
 import laddergame.view.OutputView;
 
 public class LadderController {
+    public static final String ALL = "all";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final BooleanGenerator booleanGenerator;
@@ -87,6 +89,6 @@ public class LadderController {
     }
 
     private static boolean isAll(String name) {
-        return name.equals("all");
+        return name.equals(ALL);
     }
 }
