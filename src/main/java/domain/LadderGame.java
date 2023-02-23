@@ -41,19 +41,13 @@ public class LadderGame {
         }
     }
 
-    public Map<Player, String> getLadderGameResult() {
-        Map<Player, String> ladderGameResult = new HashMap<>();
+    public Map<String, String> getLadderGameResult() {
+        Map<String, String> ladderGameResult = new HashMap<>();
 
         for (int index = 0; index < playersInGame.getNumberOfPlayers(); index++) {
-            ladderGameResult.put(playersInGame.getPlayers().get(index), results.getResultByIndex(index));
+            ladderGameResult.put(playersInGame.getPlayers().get(index).getName(), results.getResultByIndex(index));
         }
 
         return ladderGameResult;
-    }
-
-    public void printResult2() {
-        for (Player player : playersInGame.getPlayers()) {
-            System.out.println(player.getName());
-        }
     }
 }
