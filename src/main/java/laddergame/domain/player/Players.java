@@ -3,8 +3,6 @@ package laddergame.domain.player;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
-
 public class Players {
 
     private final List<Player> players;
@@ -27,21 +25,8 @@ public class Players {
         return players;
     }
 
-    public Player findPlayerByName(final String name) {
-        return players.stream()
-                .filter(player -> player.equalName(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("해당하는 플레이어가 없습니다."));
-    }
-
     public List<Player> getPlayers() {
         return players;
-    }
-
-    public Names findPlayerNames() {
-        return new Names(players.stream()
-                .map(Player::getName)
-                .collect(toList()));
     }
 
     public Player findPlayerByPosition(final int position) {
@@ -53,9 +38,5 @@ public class Players {
 
     public int getPlayerSize() {
         return players.size();
-    }
-
-    public Player getPlayer(final int index) {
-        return players.get(index);
     }
 }

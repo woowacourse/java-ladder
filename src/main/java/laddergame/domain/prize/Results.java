@@ -1,6 +1,7 @@
 package laddergame.domain.prize;
 
 import laddergame.domain.player.Name;
+import laddergame.domain.player.Player;
 import laddergame.domain.player.Players;
 
 import java.util.ArrayList;
@@ -18,7 +19,8 @@ public class Results {
         final List<Result> results = new ArrayList<>();
 
         for (int i = 0; i < players.getPlayerSize(); i++) {
-            final Result result = new Result(players.findPlayerByPosition(i), prizes.getPrize(i));
+            final Player player = players.getPlayers().get(i);
+            final Result result = new Result(player, prizes.getPrize(player.getPosition()));
             results.add(result);
         }
 
