@@ -25,14 +25,23 @@ public class Players {
         return this.players.size();
     }
 
-    // TODO: depth 줄이기
-    public Player findPlayerByName(String playerName) {
+    public void validateExistPlayer(String playerName) {
+        boolean isExist = false;
+
         for (Player player : players) {
-            if (player.getName().equals(playerName)) {
-                return player;
-            }
+            isExist = isTherePlayerByName(playerName, player);
+            if (isExist) return;
         }
-        throw new IllegalArgumentException("[ERROR] 존재하지 않는 사람입니다.");
+        if (playerName.equals("all")) {
+            isExist = true;
+        }
+        if (!isExist) {
+            throw new IllegalArgumentException("[ERROR] 존재하지 않는 사람입니다.");
+        }
+    }
+
+    private boolean isTherePlayerByName(String playerName, Player player) {
+        return player.getName().equals(playerName);
     }
 
     public void changePosition(int index1, int index2) {
