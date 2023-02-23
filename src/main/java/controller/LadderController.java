@@ -5,7 +5,6 @@ import domain.Ladder;
 import domain.LadderGame;
 import domain.Line;
 import domain.Lines;
-import domain.Player;
 import domain.Players;
 import domain.Results;
 import java.util.ArrayList;
@@ -26,30 +25,19 @@ public class LadderController {
         Results results = makeResult(players.getNumberOfPlayers());
         Height height = new Height(inputHeight());
         Ladder ladder = makeLadder(height, players.getNumberOfPlayers());
-        LadderGame ladderGame = new LadderGame(players, ladder, results);
-        ladderGame.printLadder();
-        ladderGame.playGame();
-        Map<Player, String> ladderGameResult = ladderGame.getLadderGameResult();
-        Player player = inputPlayerNameWantToSee(players);
-        OutputView.printPlayerResultWantToSee(player, ladderGameResult);
+
+        LadderGame ladderGame = playLadderGame(players, results, ladder);
+        getResult(players, ladderGame);
     }
 
-    private Player inputPlayerNameWantToSee(Players players) {
+    private String inputPlayerNameWantToSeeResult(Players players) {
         try {
-            String playerName = inputPlayerNameToSeeResult();
-            return players.findPlayerByName(playerName);
+            String playerName = InputView.receivePlayerName();
+            players.validateExistPlayer(playerName);
+            return playerName;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            return inputPlayerNameWantToSee(players);
-        }
-    }
-
-    private String inputPlayerNameToSeeResult() {
-        try {
-            return InputView.receivePlayerName();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e);
-            return inputPlayerNameToSeeResult();
+            return inputPlayerNameWantToSeeResult(players);
         }
     }
 
@@ -120,5 +108,20 @@ public class LadderController {
         }
 
         return new Lines(lines);
+    }
+
+    private LadderGame playLadderGame(Players players, Results results, Ladder ladder) {
+        LadderGame ladderGame = new LadderGame(players, ladder, results);
+
+        ladderGame.printLadder();
+        ladderGame.playGame();
+
+        return ladderGame;
+    }
+
+    private void getResult(Players players, LadderGame ladderGame) {
+        Map<String, String> ladderGameResult = ladderGame.getLadderGameResult();
+        String playerNameWantToSeeResult = inputPlayerNameWantToSeeResult(players);
+        OutputView.printResult(ladderGameResult, players, playerNameWantToSeeResult);
     }
 }
