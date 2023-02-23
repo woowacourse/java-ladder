@@ -41,7 +41,7 @@ public class InputViewValidator {
         return !playerNames.contains(PLAYER_NAMES_SPLIT_DELIMITER);
     }
 
-    public static void validateReadRunResults(String runResults) {
+    public static void validateReadResults(String runResults) {
         if (isRunResultsSplitDelimiterWrong(runResults)) {
             throw new IllegalArgumentException(RUN_RESULTS_IS_WRONG_SPLIT_DELIMITER_EXCEPTION_MESSAGE);
         }

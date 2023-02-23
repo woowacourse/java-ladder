@@ -43,7 +43,7 @@ class InputViewValidatorTest {
     @DisplayName("실행 결과의 구분자가 ','가 아니면 예외를 던진다.")
     void isRunResultsDelimiterWrongTest(String runResult) {
 
-        assertThatThrownBy(() -> InputViewValidator.validateReadRunResults(runResult))
+        assertThatThrownBy(() -> InputViewValidator.validateReadResults(runResult))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 실행 결과는 ','로 구분되어야합니다.");
     }
