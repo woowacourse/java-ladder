@@ -19,4 +19,8 @@ public class Height {
     public int getHeight() {
         return height;
     }
+
+    public boolean isOver(int number){
+        return height > number;
+    }
 }
