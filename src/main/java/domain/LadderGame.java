@@ -18,7 +18,7 @@ public class LadderGame {
     }
 
     public Map<String, String> run() {
-        if (!isDone()) {
+        if (isDone()) {
             return result;
         }
         play();
