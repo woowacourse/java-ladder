@@ -8,12 +8,12 @@ public class LadderGameController {
 
 	private final LadderGame ladderGame;
 
-	public LadderGameController() {
+	public LadderGameController(PointGenerator pointGenerator) {
 		Participants participants = retrieveParticipants();
 		Results results = retrieveResults();
 		LadderHeight ladderHeight = retrieveHeight();
-		LadderWidth ladderWidth = new LadderWidth(participants.getParticipantsNum() - 1);
-		Ladder ladder = Ladder.create(ladderHeight, ladderWidth, PointGenerator.getInstance(true));
+		LadderWidth ladderWidth = retrieveWidth(participants);
+		Ladder ladder = Ladder.create(ladderHeight, ladderWidth, pointGenerator);
 		this.ladderGame = new LadderGame(participants, results, ladder);
 	}
 
@@ -48,15 +48,18 @@ public class LadderGameController {
 		}
 	}
 
-	// TODO: LadderHeight, LadderWidth -> Singleton
 	private LadderHeight retrieveHeight() {
 		try {
 			int height = InputView.readHeight();
-			return new LadderHeight(height);
+			return LadderHeight.from(height);
 		} catch (IllegalArgumentException e) {
 			OutputView.printError(e.getMessage());
 			return retrieveHeight();
 		}
+	}
+
+	private LadderWidth retrieveWidth(Participants participants) {
+		return LadderWidth.from(participants.getParticipantsNum() - 1);
 	}
 
 	private String retrieveNameToFind() {

@@ -1,6 +1,5 @@
 package domain;
 
-import domain.util.PointGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +12,7 @@ public class LadderGameTest {
     void generateLadderGame(){
         Participants participants = Participants.of("echo", "modi", "neo");
         Results results = Results.of("3000", "꽝", "5000");
-        Ladder ladder = Ladder.create(new LadderHeight(1), new LadderWidth(2), PointGenerator.getInstance(false));
+        Ladder ladder = Ladder.create(LadderHeight.from(1), LadderWidth.from(2), new FixedPresencePointGenerator());
         ladderGame = new LadderGame(participants, results, ladder);
     }
     @Test

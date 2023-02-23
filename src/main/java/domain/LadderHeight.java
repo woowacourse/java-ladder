@@ -5,16 +5,20 @@ public class LadderHeight {
 
 	private final int height;
 
-	public LadderHeight(final int height) {
+	private LadderHeight(final int number) {
+		this.height = number;
+	}
+
+	public static LadderHeight from(final int height) {
 		validateHeight(height);
-		this.height = height;
+		return new LadderHeight(height);
 	}
 
 	public int getHeight() {
 		return height;
 	}
 
-	private void validateHeight(final int height) {
+	private static void validateHeight(final int height) {
 		if (height < 1) {
 			throw new IllegalArgumentException(HEIGHT_ERROR_MSG);
 		}
