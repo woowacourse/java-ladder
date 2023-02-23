@@ -71,7 +71,7 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    public void printPlayResult(String result) {
+    public void printPlayerResult(String result) {
         System.out.println("\n" + PLAY_RESULT);
         System.out.println(result);
     }
