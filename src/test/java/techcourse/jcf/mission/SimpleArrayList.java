@@ -93,6 +93,11 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean contains(String value) {
+        for (int i = 0; i < this.pointerToNext; i++) {
+            if (this.values[i].equals(value)) {
+                return true;
+            }
+        }
         return false;
     }
 

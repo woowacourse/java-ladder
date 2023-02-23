@@ -78,7 +78,7 @@ class SimpleListTest {
     @Test
     void contains() {
         assertThat(list.contains("1")).isTrue();
-        assertThat(list.contains("3")).isFalse();
+        assertThat(list.contains("2")).isFalse();
     }
 
     @Test
