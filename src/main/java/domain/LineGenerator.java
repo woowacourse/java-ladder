@@ -21,11 +21,10 @@ public class LineGenerator {
     private List<Point> generatePoints(final int number) {
         List<Point> points = new ArrayList<>();
 
-        Point previousPoint = Point.DISCONNECTED;
+        Point latestPoint = Point.DISCONNECTED;
         for (int i = 0; i < number; i++) {
-            Point currentPoint = generatePoint(previousPoint);
-            points.add(currentPoint);
-            previousPoint = currentPoint;
+            latestPoint = generatePoint(latestPoint);
+            points.add(latestPoint);
         }
 
         return points;
