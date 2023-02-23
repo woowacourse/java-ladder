@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Missions {
-    private final List<Mission> missions;
     private static final String SPLIT_STANDARD = ",";
+    private final List<Mission> missions;
 
     public Missions(String missions, int size) {
         this.missions = formatMissions(missions);
