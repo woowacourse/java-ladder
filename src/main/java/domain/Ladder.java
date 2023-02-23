@@ -4,7 +4,6 @@ import exception.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -16,10 +15,11 @@ public class Ladder {
     public Ladder(final int height, final int personCount, final LinkGenerator linkGenerator) {
         validateHeight(height);
         LineGenerator lineGenerator = new LineGenerator(linkGenerator);
-        lines = new ArrayList<>();
 
-        IntStream.rangeClosed(1, height)
-                .forEach(count -> lines.add(lineGenerator.generate(personCount)));
+        lines = new ArrayList<>();
+        for(int floor = 0; floor < height; floor++) {
+            lines.add(lineGenerator.generate(personCount));
+        }
     }
 
     public void validateHeight(final int height) {
