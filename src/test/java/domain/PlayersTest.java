@@ -2,6 +2,7 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.ArrayList;
@@ -14,6 +15,10 @@ import util.PlayersMaker;
 public class PlayersTest {
 
     private List<Player> players = new ArrayList<>();
+
+    private static Players getPlayers() {
+        return PlayersMaker.makePlayers("a,b,c,d");
+    }
 
     @BeforeEach
     void init() {
@@ -47,7 +52,7 @@ public class PlayersTest {
     @Test
     @DisplayName("입력받은 이름의 플레이어 반환")
     void findPlayerByName() {
-        Players resultPlayers = PlayersMaker.makePlayers("a,b,c,d");
+        Players resultPlayers = getPlayers();
 
         assertThat(resultPlayers.findPlayerByName("b")).isEqualTo(new Player("b"));
     }
@@ -55,10 +60,22 @@ public class PlayersTest {
     @Test
     @DisplayName("입력받은 플레이어가 존재하지 않으면 예외 발생")
     void doesNotFindPlayerByName() {
-        Players resultPlayers = PlayersMaker.makePlayers("a,b,c,d");
+        Players resultPlayers = getPlayers();
 
         assertThatThrownBy(() -> resultPlayers.findPlayerByName("e"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 존재하지 않는 사람입니다.");
+    }
+
+    @Test
+    @DisplayName("사다리 한 층 내려간 후 플레이어끼리 위치 변경")
+    void changePositionBetweenPlayer() {
+        Players resultPlayers = getPlayers();
+
+        resultPlayers.changePosition(1, 2);
+        assertAll(
+                () -> assertThat(resultPlayers.getPlayers().get(1)).isEqualTo(new Player("c")),
+                () -> assertThat(resultPlayers.getPlayers().get(2)).isEqualTo(new Player("b"))
+        );
     }
 }

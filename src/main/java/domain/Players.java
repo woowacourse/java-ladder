@@ -35,6 +35,10 @@ public class Players {
         throw new IllegalArgumentException("[ERROR] 존재하지 않는 사람입니다.");
     }
 
+    public void changePosition(int index1, int index2) {
+        Collections.swap(players, index1, index2);
+    }
+
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(this.players);
     }
