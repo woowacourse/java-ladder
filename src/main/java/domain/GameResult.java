@@ -4,6 +4,7 @@ import domain.ladder.Block;
 import domain.ladder.LadderResult;
 import domain.ladder.Line;
 import domain.participants.Participant;
+import exception.ladder.GameEndException;
 import exception.participants.NullNameException;
 import java.util.HashMap;
 import java.util.List;
@@ -53,10 +54,11 @@ public class GameResult {
         if (order == FIRST_BLOCK_POSITION) {
             return decideDirection(DISCONNECTED, blocks.get(order).isConnected());
         }
+        boolean prevBlockConnectStatus = blocks.get(prevBlockPosition).isConnected();
         if (order == lastBlockPosition) {
-            return decideDirection(blocks.get(prevBlockPosition).isConnected(), DISCONNECTED);
+            return decideDirection(prevBlockConnectStatus, DISCONNECTED);
         }
-        return decideDirection(blocks.get(prevBlockPosition).isConnected(), blocks.get(order).isConnected());
+        return decideDirection(prevBlockConnectStatus, blocks.get(order).isConnected());
     }
 
     private static int decideDirection(boolean left, boolean right) {
@@ -70,6 +72,9 @@ public class GameResult {
     }
 
     public LadderResult getResultByName(final String name) {
+        if (name.equals("exit")) {
+            throw new GameEndException();
+        }
         Optional<Participant> findParticipant = results.keySet()
             .stream()
             .filter((participant) -> participant.getName().equals(name))

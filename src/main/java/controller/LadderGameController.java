@@ -9,6 +9,7 @@ import domain.ladder.LadderResults;
 import domain.ladder.LadderSize;
 import domain.ladder.LineWeight;
 import domain.participants.Participants;
+import exception.ladder.GameEndException;
 import util.BooleanGenerator;
 import util.RandomBooleanGenerator;
 import view.InputView;
@@ -110,14 +111,13 @@ public class LadderGameController {
     private String getNameForResult(GameResult gameResult) {
         try {
             String nameForResult = inputView.enterNameForResult();
-            if (nameForResult.equals(EXIT)) {
-                return nameForResult;
-            }
             outputView.printGameResult(nameForResult, gameResult);
             return nameForResult;
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
             return getNameForResult(gameResult);
+        } catch (GameEndException exception) {
+            return EXIT;
         }
     }
 }

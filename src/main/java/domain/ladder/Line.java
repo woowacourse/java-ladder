@@ -8,6 +8,7 @@ import util.BooleanGenerator;
 
 public class Line {
 
+    public static final int EMPTY = 0;
     private final List<Block> blocks;
 
     private Line(List<Block> blocks) {
@@ -26,10 +27,11 @@ public class Line {
     }
 
     private static boolean generateBlock(List<Block> blocks, BooleanGenerator booleanGenerator) {
-        if (blocks.size() == 0) {
+        final int lastBlockIndex = blocks.size() - 1;
+        if (blocks.size() == EMPTY) {
             return booleanGenerator.generate();
         }
-        Block prevBlock = blocks.get(blocks.size() - 1);
+        Block prevBlock = blocks.get(lastBlockIndex);
         if (prevBlock.isConnected()) {
             return false;
         }

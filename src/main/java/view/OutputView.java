@@ -17,6 +17,8 @@ public class OutputView {
     private static final String GAME_RESULT_MESSAGE = "\n실행결과";
     private static final boolean CONNECTED = true;
     private static final int EMPTY = 0;
+    public static final String ALL = "all";
+    public static final String EXIT = "exit";
 
     private final StringBuilder gameMap = new StringBuilder();
 
@@ -48,8 +50,7 @@ public class OutputView {
         final StringBuilder reformattedLine = new StringBuilder();
         reformattedLine.append(LINE_START);
         line.getBlocks()
-            .forEach((block) -> reformattedLine.append(reformatBlock(block))
-                .append(BLOCK_DELIMITER));
+            .forEach((block) -> reformattedLine.append(reformatBlock(block)).append(BLOCK_DELIMITER));
         reformattedLine.append(System.lineSeparator());
         return reformattedLine.toString();
     }
@@ -73,8 +74,11 @@ public class OutputView {
     }
 
     public void printGameResult(String name, GameResult gameResult) {
+        if (name.equals(EXIT)) {
+            return;
+        }
         System.out.println(GAME_RESULT_MESSAGE);
-        if (name.equals("all")) {
+        if (name.equals(ALL)) {
             printAllGameResult(gameResult);
             return;
         }
