@@ -15,7 +15,7 @@ public class PlayerTest {
         Player player = new Player("jena", 1);
         Line line = new Line(3,
                 new TestTrueOrFalseGenerator(new ArrayList<>(List.of(true, false))));
-        player.move(line.isStep(player.getPosition() -1), line.isStep(player.getPosition()));
+        player.move(line.isStep(player.getPosition() - 1), line.isStep(player.getPosition()));
         assertThat(player.getPosition()).isEqualTo(0);
     }
 

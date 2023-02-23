@@ -12,7 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LineTest {
     Line line;
-    
+
     @Nested
     @DisplayName("랜덤 값의 의한 라인 생성 테스트(첫번째 좌표는 이전 좌표가 없는것을 표시)")
     class Creat {

@@ -21,7 +21,7 @@ class RewardsTest {
     @DisplayName("입력 목록 중에 공백이 입력되었을 때 에러 확인")
     @Test
     void checkBlank() {
-        Players players = new Players(List.of("one","two"));
+        Players players = new Players(List.of("one", "two"));
         Assertions.assertThatThrownBy(() -> validator.validateRewards(List.of(" ", "jena"), players.getPlayersCount())).isInstanceOf(IllegalArgumentException.class);
     }
 

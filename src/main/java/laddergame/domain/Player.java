@@ -7,7 +7,7 @@ public class Player {
     private String reward;
     private int position;
 
-    public Player(String name, int position){
+    public Player(String name, int position) {
         this.name = name;
         this.position = position;
     }
@@ -24,21 +24,21 @@ public class Player {
         return reward;
     }
 
-    public void move(boolean isLeftStep, boolean isRightStep){
+    public void move(boolean isLeftStep, boolean isRightStep) {
         if (isLeftStep) {
             position--;
-            return ;
+            return;
         }
-        if (isRightStep){
+        if (isRightStep) {
             position++;
         }
     }
 
-    public void matchReward(List<String> rewards){
+    public void matchReward(List<String> rewards) {
         this.reward = rewards.get(position);
     }
 
-    public boolean isTarget(String name){
+    public boolean isTarget(String name) {
         return this.name.equals(name);
     }
 }

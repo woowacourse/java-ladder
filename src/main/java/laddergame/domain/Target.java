@@ -5,6 +5,7 @@ import java.util.List;
 public class Target {
     private static final String ALL = "all";
     private static final String QUIT = "Q";
+    
     private String name;
 
     public Target(String name) {

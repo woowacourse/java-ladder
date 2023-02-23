@@ -20,7 +20,7 @@ public class Height {
         return height;
     }
 
-    public boolean isOver(int number){
+    public boolean isOver(int number) {
         return height > number;
     }
 }
