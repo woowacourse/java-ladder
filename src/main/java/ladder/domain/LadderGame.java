@@ -2,6 +2,8 @@ package ladder.domain;
 
 import ladder.dto.BridgeGameResult;
 
+import java.util.HashMap;
+
 public class LadderGame {
     private static final String INVALID_BRIGE_GAME_SIZE_ERROR_MESSAGE = "사다리, 보상, 유저 수의 크기는 같아야 합니다.";
     private final Ladder ladder;
@@ -37,13 +39,13 @@ public class LadderGame {
     }
 
     public BridgeGameResult getGameResult() {
-        final BridgeGameResult bridgeGameResult = new BridgeGameResult();
+        final HashMap<User, String> userAndReward = new HashMap<>();
         for (User user : users.getUsers()) {
             final String name = user.getName();
             final int rewardIndex = ladder.resultPositionOf(users.getOrderOf(name));
-            bridgeGameResult.enrollReward(user, reward.getRewardOf(rewardIndex));
+            userAndReward.put(user, reward.getRewardOf(rewardIndex));
         }
-        return bridgeGameResult;
+        return new BridgeGameResult(userAndReward);
     }
 
     public Ladder getLadder() {
