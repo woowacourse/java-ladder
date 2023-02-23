@@ -29,6 +29,10 @@ public class Player {
         return position.canMoveLeft();
     }
 
+    public boolean equalsName(final Name name) {
+        return this.name.equals(name);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

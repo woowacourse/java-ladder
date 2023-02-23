@@ -9,6 +9,8 @@ import java.util.List;
 
 public class Results {
 
+    private static final String FIND_ALL_KEYWORD = "all";
+
     private final List<Result> results;
 
     public Results(final Players players, final Prizes prizes) {
@@ -28,17 +30,20 @@ public class Results {
     }
 
     public List<Result> findResults(final Name name) {
-        final String playerName = name.getName();
-        if ("all".equals(playerName)) {
+        if (isSearchAllResults(name)) {
             return findAll();
         }
 
-        return List.of(findIndividualResultByName(playerName));
+        return List.of(findIndividualResultByName(name));
     }
 
-    public Result findIndividualResultByName(final String name) {
+    private static boolean isSearchAllResults(final Name name) {
+        return FIND_ALL_KEYWORD.equals(name.getName());
+    }
+
+    public Result findIndividualResultByName(final Name name) {
         return results.stream()
-                .filter(result -> result.getName().equals(name))
+                .filter(result -> result.equalsName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("개인 결과 조회를 할 수 없습니다."));
     }

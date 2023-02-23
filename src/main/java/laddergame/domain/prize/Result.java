@@ -1,5 +1,6 @@
 package laddergame.domain.prize;
 
+import laddergame.domain.player.Name;
 import laddergame.domain.player.Player;
 
 import java.util.Objects;
@@ -12,6 +13,10 @@ public class Result {
     public Result(final Player player, final Prize prize) {
         this.player = player;
         this.prize = prize;
+    }
+
+    public boolean equalsName(final Name name) {
+        return player.equalsName(name);
     }
 
     @Override
