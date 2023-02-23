@@ -63,4 +63,15 @@ public class LadderGameTest {
         assertThat(position.getIndex()).isEqualTo(0);
     }
 
+    @DisplayName("참여자의 위치를 받아 양쪽에 다리가 없는 경우 건너지 않는다.")
+    @Test
+    void move_bridge() {
+        Position position = new Position(1);
+        Line line = ladder.getLines().get(2);
+        
+        ladderGame.move(line,position);
+
+        assertThat(position.getIndex()).isEqualTo(1);
+    }
+
 }
