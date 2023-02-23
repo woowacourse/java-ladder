@@ -16,9 +16,19 @@ public class LadderGame {
     }
 
     private void validateLength(final Ladder ladder, final Users users, final Reward reward) {
-        if (!((ladder.getWidth() == users.size()) && (users.size() == reward.size()))) {
+        if (!sameSize(ladder, users, reward)) {
             throw new IllegalArgumentException(INVALID_BRIGE_GAME_SIZE_ERROR_MESSAGE);
         }
+    }
+
+    private boolean sameSize(final Ladder ladder, final Users users, final Reward reward) {
+        final boolean sameSizeForLadderAndUsers = isSameSize(ladder.getWidth(), users.size());
+        final boolean sameSizeForUsersAndReward = isSameSize(users.size(), reward.size());
+        return sameSizeForLadderAndUsers && sameSizeForUsersAndReward;
+    }
+
+    private boolean isSameSize(final int size1, final int size2) {
+        return size1 == size2;
     }
 
     public String getRewardOf(final String userName) {
