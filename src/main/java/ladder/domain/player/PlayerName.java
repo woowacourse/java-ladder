@@ -3,6 +3,8 @@ package ladder.domain.player;
 import ladder.domain.player.exception.ForbiddenPlayerNameException;
 import ladder.domain.player.exception.PlayerNameLengthException;
 
+import java.util.Objects;
+
 public class PlayerName {
 
     private static final int MINIMUM_NAME_LENGTH = 1;
@@ -31,5 +33,22 @@ public class PlayerName {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PlayerName p = (PlayerName) o;
+        return Objects.equals(name, p.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

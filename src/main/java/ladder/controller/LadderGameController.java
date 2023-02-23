@@ -23,9 +23,14 @@ public class LadderGameController {
         int playerNumber = players.size();
         Prizes prizes = initPrizes(playerNumber);
         Ladder ladder = initLadder(playerNumber);
-        InputView.terminate();
 
-        showResult(players, ladder, prizes);
+        showLadderResult(players, ladder, prizes);
+        showPlayerResult(players, prizes, ladder);
+        InputView.terminate();
+    }
+
+    private void showPlayerResult(Players players, Prizes prizes, Ladder ladder) {
+        String input = InputView.inputPlayerResult();
     }
 
     private Players initPlayers() {
@@ -59,7 +64,7 @@ public class LadderGameController {
         }
     }
 
-    private void showResult(Players players, Ladder ladder, Prizes prizes) {
+    private void showLadderResult(Players players, Ladder ladder, Prizes prizes) {
         OutputView.printGameResultHeader();
         printPlayersName(players);
         OutputView.printLadder(toLines(ladder));
