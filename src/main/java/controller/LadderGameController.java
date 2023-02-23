@@ -5,7 +5,7 @@ import domain.GameResult;
 import domain.LadderGame;
 import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
-import domain.ladder.LadderResults;
+import domain.ladder.LadderPrizes;
 import domain.ladder.LadderSize;
 import domain.ladder.LineWeight;
 import domain.participants.Participants;
@@ -35,8 +35,8 @@ public class LadderGameController {
 
     private LadderGame generateLadderGame() {
         Participants participants = getParticipants();
+        LadderPrizes ladderPrizes = getLadderResults(participants.getCount());
         LadderHeight ladderHeight = getLadderHeight();
-        LadderResults ladderResults = getLadderResults(participants.getCount());
 
         LineWeight lineWeight = new LineWeight(participants.getCount() - 1);
         LadderSize ladderSize = getLadderSize(ladderHeight, lineWeight);
@@ -46,7 +46,7 @@ public class LadderGameController {
         return ladderGameBuilder
             .addParticipants(participants)
             .addLadder(ladder)
-            .addLadderResults(ladderResults)
+            .addLadderResults(ladderPrizes)
             .build();
     }
 
@@ -70,10 +70,10 @@ public class LadderGameController {
         }
     }
 
-    private LadderResults getLadderResults(int participantsCount) {
+    private LadderPrizes getLadderResults(int participantsCount) {
         try {
             String ladderResult = inputView.enterLadderResult();
-            return new LadderResults(ladderResult, participantsCount);
+            return new LadderPrizes(ladderResult, participantsCount);
         } catch (IllegalArgumentException exception) {
             inputView.printErrorMessage(exception);
             return getLadderResults(participantsCount);
