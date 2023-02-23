@@ -19,19 +19,19 @@ public class Ladder implements Iterable<Line> {
         } while (hasNoLine());
     }
 
+    private void createLadder(int numberOfPeople, int ladderHeight, BooleanGenerator generator) {
+        ladder.clear();
+        for (int i = 0; i < ladderHeight; i++) {
+            ladder.add(new Line(numberOfPeople, generator));
+        }
+    }
+
     private boolean hasNoLine() {
         return ladder.stream().noneMatch(this::hasLine);
     }
 
     private boolean hasLine(Line line) {
         return line.getLine().stream().anyMatch(condition -> condition == Boolean.TRUE);
-    }
-
-    private void createLadder(int numberOfPeople, int ladderHeight, BooleanGenerator generator) {
-        ladder.clear();
-        for (int i = 0; i < ladderHeight; i++) {
-            ladder.add(new Line(numberOfPeople, generator));
-        }
     }
 
     @Override

@@ -21,15 +21,6 @@ public class OutputView {
         printResults(results);
     }
 
-    private void printResults(Results results) {
-        String resultLine = results.getResults()
-            .stream()
-            .map(result -> String.format(RESULT_FORMAT, result.getResult()) + BLANK)
-            .collect(Collectors.joining());
-        System.out.println(resultLine);
-        printEmptyLine();
-    }
-
     private void printNames(Names names) {
         String nameLine = names.getNames()
             .stream()
@@ -48,6 +39,15 @@ public class OutputView {
             result += LEG;
             System.out.println(result);
         }
+    }
+
+    private void printResults(Results results) {
+        String resultLine = results.getResults()
+            .stream()
+            .map(result -> String.format(RESULT_FORMAT, result.getResult()) + BLANK)
+            .collect(Collectors.joining());
+        System.out.println(resultLine);
+        printEmptyLine();
     }
 
     private String shapeOf(Line line) {

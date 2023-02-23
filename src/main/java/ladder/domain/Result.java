@@ -13,14 +13,16 @@ public class Result {
         this.result = result;
     }
 
-    public String getResult() {
-        return result;
-    }
-
     private void validate(String result) {
         validateNotNull(result);
         validateDoesNotContainComma(result);
         validateLength(result);
+    }
+
+    private void validateNotNull(String result) {
+        if (result == null) {
+            throw new IllegalArgumentException(ErrorMessage.RESULT_IS_NULL.getMessage());
+        }
     }
 
     private void validateDoesNotContainComma(String result) {
@@ -35,10 +37,7 @@ public class Result {
         }
     }
 
-    private void validateNotNull(String result) {
-        if (result == null) {
-            throw new IllegalArgumentException(ErrorMessage.RESULT_IS_NULL.getMessage());
-        }
+    public String getResult() {
+        return result;
     }
-
 }

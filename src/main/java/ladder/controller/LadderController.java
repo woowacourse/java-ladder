@@ -30,11 +30,65 @@ public class LadderController {
 
         Ladder ladder = createLadder(names, results, ladderHeight);
 
+        calculateMatchingResult(names, results, ladder);
+    }
+
+    private Names createNames() {
+        try {
+            return new Names(readNames());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return createNames();
+        }
+    }
+
+    private List<String> readNames() {
+        return inputView.requestNames();
+    }
+
+    private Results createResults(int numberOfResults) {
+        try {
+            return new Results(readResults(), numberOfResults);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return createResults(numberOfResults);
+        }
+    }
+
+    private List<String> readResults() {
+        return inputView.requestResults();
+    }
+
+    private LadderHeight createLadderHeight() {
+        try {
+            return new LadderHeight(readLadderHeight());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return createLadderHeight();
+        }
+    }
+
+    private int readLadderHeight() {
+        return inputView.requestLadderHeight();
+    }
+
+    private Ladder createLadder(Names names, Results results, LadderHeight ladderHeight) {
+        Ladder ladder = makeLadder(names, ladderHeight);
+        outputView.printLadder(names, results, ladder);
+        return ladder;
+    }
+
+    private Ladder makeLadder(Names names, LadderHeight ladderHeight) {
+        Ladder ladder = new Ladder();
+        ladder.drawLine(names.size(), ladderHeight.getLadderHeight(), generator);
+        return ladder;
+    }
+
+    private void calculateMatchingResult(Names names, Results results, Ladder ladder) {
         MatchingCalculator matchingCalculator = new MatchingCalculator(ladder, names, results);
         Matchings matchings = matchingCalculator.calculate();
 
         match(matchings);
-
     }
 
     private void match(Matchings matchings) {
@@ -51,53 +105,6 @@ public class LadderController {
             String nameWantToKnowResult = inputView.requestNameWantToKnowResult();
             outputView.printMatching(matchings.getMatchingResult(nameWantToKnowResult));
         }
-    }
-
-    private Ladder createLadder(Names names, Results results, LadderHeight ladderHeight) {
-        Ladder ladder = createLadder(names, ladderHeight);
-        outputView.printLadder(names, results, ladder);
-        return ladder;
-    }
-
-    private Results createResults(int numberOfResults) {
-        try {
-            return new Results(inputView.requestResults(), numberOfResults);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-            return createResults(numberOfResults);
-        }
-    }
-
-    private Names createNames() {
-        try {
-            return new Names(readNames());
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-            return createNames();
-        }
-    }
-
-    private LadderHeight createLadderHeight() {
-        try {
-            return new LadderHeight(readLadderHeight());
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-            return createLadderHeight();
-        }
-    }
-
-    private Ladder createLadder(Names names, LadderHeight ladderHeight) {
-        Ladder ladder = new Ladder();
-        ladder.drawLine(names.size(), ladderHeight.getLadderHeight(), generator);
-        return ladder;
-    }
-
-    private List<String> readNames() {
-        return inputView.requestNames();
-    }
-
-    private int readLadderHeight() {
-        return inputView.requestLadderHeight();
     }
 
 }

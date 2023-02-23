@@ -15,18 +15,16 @@ public class Name {
         this.name = name;
     }
 
-    public int length() {
-        return name.length();
-    }
-
-    public String getName() {
-        return name;
-    }
-
     private void validate(String name) {
         validateNotNull(name);
         validateDoesNotContainComma(name);
         validateLength(name);
+    }
+
+    private void validateNotNull(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException(ErrorMessage.NAME_IS_NULL.getMessage());
+        }
     }
 
     private void validateDoesNotContainComma(String name) {
@@ -41,10 +39,8 @@ public class Name {
         }
     }
 
-    private void validateNotNull(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException(ErrorMessage.NAME_IS_NULL.getMessage());
-        }
+    public String getName() {
+        return name;
     }
 
     @Override

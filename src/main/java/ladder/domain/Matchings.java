@@ -24,9 +24,11 @@ public class Matchings {
         return findMatching(new Name(name));
     }
 
-    private String findMatching(Name name) {
-        checked.put(name, Boolean.TRUE);
-        return matchings.get(name).getResult();
+    private void validate(String name) {
+        Name targetName = new Name(name);
+        if (!name.equals("all") && !matchings.containsKey(targetName)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_WANT_TO_KNOW.getMessage());
+        }
     }
 
     private String findAllMatchings() {
@@ -42,15 +44,13 @@ public class Matchings {
         return stringBuilder.toString();
     }
 
-    public HashMap<Name, Result> getMatchings() {
-        return matchings;
+    private String findMatching(Name name) {
+        checked.put(name, Boolean.TRUE);
+        return matchings.get(name).getResult();
     }
 
-    private void validate(String name) {
-        Name targetName = new Name(name);
-        if (!name.equals("all") && !matchings.containsKey(targetName)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_WANT_TO_KNOW.getMessage());
-        }
+    public HashMap<Name, Result> getMatchings() {
+        return matchings;
     }
 
     public boolean isAllChecked() {
