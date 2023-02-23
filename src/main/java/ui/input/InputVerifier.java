@@ -28,6 +28,12 @@ class InputVerifier {
         }
     }
 
+    public static void validateRewardsNum(List<String> rewardStr, int peopleNum) {
+        if (rewardStr.size() != peopleNum) {
+            throw new IllegalArgumentException("결과의 수는 참가자의 수와 동일해야합니다. ");
+        }
+    }
+
     public static int validateLadderHeight(String numberStr) {
         int number = Integer.parseInt(numberStr);
         if (number <= 0) {

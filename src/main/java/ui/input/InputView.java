@@ -1,5 +1,6 @@
 package ui.input;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -20,6 +21,19 @@ public class InputView {
         while (true) {
             try {
                 return InputVerifier.validateName(scanner.nextLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static List<String> inputRewards(int peopleNum){
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        while (true) {
+            try {
+                List<String> rewards = Arrays.asList(scanner.nextLine().split(","));
+                InputVerifier.validateRewardsNum(rewards, peopleNum);
+                return rewards;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
