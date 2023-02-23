@@ -90,7 +90,7 @@ public class LadderController {
 
     private Height readHeight(final Retry retry) {
         checkCount(retry);
-        final Optional<Height> height = generateHeight(inputView.readHeight());
+        final Optional<Height> height = generateHeight();
         if (height.isEmpty()) {
             retry.decrease();
             return readHeight(retry);
@@ -98,8 +98,9 @@ public class LadderController {
         return height.get();
     }
 
-    private Optional<Height> generateHeight(final int height) {
+    private Optional<Height> generateHeight() {
         try {
+            final int height = inputView.readHeight();
             return Optional.of(new Height(height));
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
