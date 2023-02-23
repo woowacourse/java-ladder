@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SequenceSwapper {
@@ -26,6 +27,6 @@ public class SequenceSwapper {
     }
 
     public List<Integer> getSequence() {
-        return sequence;
+        return Collections.unmodifiableList(this.sequence);
     }
 }
