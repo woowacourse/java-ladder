@@ -71,7 +71,8 @@ public class OutputView {
     }
 
     public void printOnePlayerResult(Map<String, String> results, String name) {
-        String result = results.get(name);
+        String trimmedName = name.trim();
+        String result = results.get(trimmedName);
         if (result == null) {
             throw new IllegalArgumentException(NAME_ERROR_MESSAGE);
         }
