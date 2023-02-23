@@ -11,6 +11,7 @@ public class Result {
 
     public Result(String result) {
         validateResult(result);
+        result = result.trim();
         this.result = result;
     }
 
@@ -21,7 +22,7 @@ public class Result {
     }
 
     private boolean isValidLength(String result) {
-        return StringUtil.isNullOrBlank(result) || result.length() > MAX_NAME_LENGTH;
+        return StringUtil.isNullOrBlank(result) || result.trim().length() > MAX_NAME_LENGTH;
     }
 
     public String getResult() {

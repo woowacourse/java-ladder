@@ -16,6 +16,13 @@ class PersonTest {
         Assertions.assertThat(person.getName()).isEqualTo("abcde");
     }
 
+    @DisplayName("사람 이름 옆에 공백이 있는 경우 제거하고 저장한다.")
+    @Test
+    void nameWithBlank() {
+        Person person = new Person(" abcde ");
+        Assertions.assertThat(person.getName()).isEqualTo("abcde");
+    }
+
     @DisplayName("사람이름이 5글자보다 많을 경우 오류를 던진다.")
     @Test
     void nameOver5() {

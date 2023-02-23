@@ -13,6 +13,7 @@ public class Person {
 
     public Person(String name) {
         validateName(name);
+        name = name.trim();
         this.name = name;
     }
 
@@ -23,7 +24,7 @@ public class Person {
     }
 
     private boolean isValidLength(String name) {
-        return StringUtil.isNullOrBlank(name) || name.length() > MAX_NAME_LENGTH;
+        return StringUtil.isNullOrBlank(name) || name.trim().length() > MAX_NAME_LENGTH;
     }
 
     @Override

@@ -16,6 +16,13 @@ class ResultTest {
         Assertions.assertEquals(result.getResult(), "test");
     }
 
+    @DisplayName("입력 결과 앞뒤에 공백이 있는 경우 제거하고 생성된다.")
+    @Test
+    void resultWithBlank() {
+        Result result = new Result(" test ");
+        Assertions.assertEquals(result.getResult(), "test");
+    }
+
     @DisplayName("입력 결과가 5글자가 넘는 경우 예외를 던진다.")
     @Test
     void resultOver5() {
