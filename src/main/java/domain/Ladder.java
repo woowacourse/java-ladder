@@ -8,17 +8,35 @@ import util.BridgeGenerator;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(Height height, int personCount) {
-        this.lines = new ArrayList<>();
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public static Ladder of(Height height, int personCount) {
+        List<Line> lines = new ArrayList<>();
         for (int index = 0; index < height.getHeight(); index++) {
             lines.add(new Line(personCount));
         }
+        return new Ladder(lines);
     }
 
     public void generate(BridgeGenerator bridgeGenerator) {
         for (Line line : lines) {
             line.generate(bridgeGenerator);
         }
+    }
+
+    public int findFinalPosition(int position) {
+        for (Line line : lines) {
+            if (line.hasBridgeInRight(position)) {
+                position++;
+                continue;
+            }
+            if (line.hasBridgeInLeft(position)) {
+                position--;
+            }
+        }
+        return position;
     }
 
     public int calculateTotalHeight() {
