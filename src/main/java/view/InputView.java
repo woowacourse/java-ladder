@@ -19,8 +19,7 @@ public class InputView {
 
         Scanner scanner = new Scanner(System.in);
         String playerName = scanner.nextLine();
-
-        return List.of(playerName.split(DELIMITER));
+        return List.of(playerName.split(DELIMITER, -1));
     }
 
     public String readLadderHeight() {

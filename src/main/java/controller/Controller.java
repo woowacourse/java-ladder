@@ -16,40 +16,39 @@ public class Controller {
     }
 
     public void run() {
-        Players players = getPlayers();
-        Rewards rewards = getRewards(players);
-        Ladder ladder = getLadder(players);
+        Players players = createPlayers();
+        Rewards rewards = createRewards(players);
+        Ladder ladder = createLadder(players);
 
-        getResult(players, rewards, ladder);
-        ladder.getRewardsForPlayers(players, rewards);
+        printLadders(players, rewards, ladder);
+        ladder.getRewardsForPlayers(rewards);
 
-        selectPlayerName(players, ladder, rewards);
+        selectPlayerName(players);
     }
 
-    private void getResult(Players players, Rewards rewards, Ladder ladder) {
+    private void printLadders(Players players, Rewards rewards, Ladder ladder) {
         outputView.printResult(players, ladder.getLadder(), rewards);
     }
 
-    private Ladder getLadder(Players players) {
+    private Ladder createLadder(Players players) {
         int ladderHeight = new LadderHeight(inputView.readLadderHeight(), inputView).getLadderHeight();
         Ladder ladder = new Ladder(ladderHeight, players, booleanCreator);
         return ladder;
     }
 
-    private Rewards getRewards(Players players) {
+    private Rewards createRewards(Players players) {
         Rewards rewards = new Rewards(inputView.readRewards(), players.getPlayersSize(), inputView);
         return rewards;
     }
 
-    private Players getPlayers() {
+    private Players createPlayers() {
         PlayerNames playerNames = new PlayerNames(inputView.readPlayerNames(), inputView);
         Players players = new Players(playerNames);
         return players;
     }
 
-    private void selectPlayerName(Players players, Ladder ladder, Rewards rewards) {
+    private void selectPlayerName(Players players) {
         String selectedPlayerName = inputView.readSelectPlayer();
-        ladder.getRewardsForPlayers(players, rewards);
         outputView.printReward(selectedPlayerName, players);
     }
 }

@@ -2,37 +2,41 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> ladder;
+    private final List<Player> result;
     private final BooleanCreator booleanCreator;
 
     public Ladder(int ladderHeight, Players players, BooleanCreator booleanCreator) {
+        this.result = players.getPlayers();
         this.booleanCreator = booleanCreator;
         this.ladder = createLadder(ladderHeight, players);
     }
 
-    private static void matchRewardsForPlayers(Rewards rewards, List<Player> result) {
-        for (Player player : result) {
-            player.setReward(rewards.getRewards().get(result.indexOf(player)));
+    private void matchRewardsForPlayers(Rewards rewards) {
+        for (int playerIndex = 0; playerIndex < result.size(); playerIndex++) {
+            Player player = result.get(playerIndex);
+            player.setReward(rewards.getRewards().get(playerIndex));
         }
     }
 
-    private static void traverseLine(List<Player> result, Line line) {
-        IntStream.range(0, line.getLine().size()).forEach(Playerindex -> crossLine(result, line, Playerindex));
+    private void traverseLine(Line line) {
+        for (int Playerindex = 0; Playerindex < line.getLine().size(); Playerindex++) {
+            crossLine(line, Playerindex);
+        }
     }
 
-    private static void crossLine(List<Player> result, Line line, int Playerindex) {
-        boolean isCross = line.getLine().get(Playerindex);
+    private void crossLine(Line line, int playerIndex) {
+        boolean isCross = line.getLine().get(playerIndex);
 
         if (isCross) {
-            swapPlayers(result, Playerindex);
+            swapPlayers(playerIndex);
         }
     }
 
-    private static void swapPlayers(List<Player> result, int i) {
-        int prePlayerIndex = i;
+    private void swapPlayers(int playerIndex) {
+        int prePlayerIndex = playerIndex;
         Player prePlayer = result.get(prePlayerIndex);
 
         int postPlayerIndex = prePlayerIndex + 1;
@@ -69,15 +73,14 @@ public class Ladder {
         return blocks;
     }
 
-    public void getRewardsForPlayers(Players players, Rewards rewards) {
-        List<Player> result = players.getPlayers();
-        traverseLines(result);
-        matchRewardsForPlayers(rewards, result);
+    public void getRewardsForPlayers(Rewards rewards) {
+        traverseLines();
+        matchRewardsForPlayers(rewards);
     }
 
-    private void traverseLines(List<Player> result) {
+    private void traverseLines() {
         for (Line line : ladder) {
-            traverseLine(result, line);
+            traverseLine(line);
         }
     }
 
