@@ -90,7 +90,20 @@ class SimpleArrayListTest {
     }
 
     @Test
-    void isEmpty() {
+    @DisplayName("아무 값도 안들어 있으면 true를 반환한다")
+    void isEmptyReturnTrueWhenListHasNotAnyValue() {
+        final SimpleArrayList arrayList = new SimpleArrayList();
+
+        assertThat(arrayList.isEmpty()).isTrue();
+    }
+
+    @Test
+    @DisplayName("값이 하나라도 들어있으면 false를 반환한다.")
+    void isEmptyReturnFalseWhenListHasValue() {
+        final String[] array = {"홍실"};
+        final SimpleArrayList arrayList = new SimpleArrayList(array);
+
+        assertThat(arrayList.isEmpty()).isFalse();
     }
 
     @Test
