@@ -39,7 +39,7 @@ public class LadderGame {
     }
 
     public List<GameResult> findGameResult(String name) {
-        if (LadderGameCommand.DEFAULT_COMMAND.isPlayable(name)) {
+        if (LadderGameCommand.ALL_RESULT_PRINT_AND_EXIT_COMMAND.isPlayable(name)) {
             return findGameResultByName(name);
         }
         return findGameResultAll();

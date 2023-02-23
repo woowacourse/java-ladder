@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 @DisplayNameGeneration(ReplaceUnderscores.class)
 class LadderGameCommandTest {
 
-    private final LadderGameCommand command = LadderGameCommand.DEFAULT_COMMAND;
+    private final LadderGameCommand command = LadderGameCommand.ALL_RESULT_PRINT_AND_EXIT_COMMAND;
 
     @Nested
     class isPlayable_메소드_테스트 {

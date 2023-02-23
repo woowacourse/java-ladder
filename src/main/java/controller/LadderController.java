@@ -76,7 +76,7 @@ public class LadderController {
     private void printLadderGame(LadderGame ladderGame) {
         String targetParticipantName = DEFAULT_PARTICIPANT_NAME;
 
-        while (LadderGameCommand.DEFAULT_COMMAND.isPlayable(targetParticipantName)) {
+        while (LadderGameCommand.ALL_RESULT_PRINT_AND_EXIT_COMMAND.isPlayable(targetParticipantName)) {
             outputView.noticeFindResultOfName();
             targetParticipantName = inputView.inputNameForGameResult();
             List<GameResult> gameResults = ladderGame.findGameResult(targetParticipantName);

@@ -2,7 +2,7 @@ package model;
 
 public enum LadderGameCommand {
 
-    DEFAULT_COMMAND("all");
+    ALL_RESULT_PRINT_AND_EXIT_COMMAND("all");
 
     private final String command;
 
