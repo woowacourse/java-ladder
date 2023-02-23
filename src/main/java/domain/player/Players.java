@@ -10,18 +10,16 @@ public class Players {
     private static final int PLAYER_MAX_COUNT = 12;
     private static final String PLAYER_COUNT_ERROR_MESSAGE = "[ERROR] 플레이어 수는 2~12명만 입력 가능합니다.";
     private static final String PLAYER_NAME_DUPLICATE_ERROR_MESSAGE = "[ERROR] 플레이어의 이름은 중복이 불가능합니다.";
-    private static final String BLANK_MESSAGE = "[ERROR] 입력값이 비어있습니다.";
-    private static final String NULL_MESSAGE = "[ERROR] 아무것도 입력하지 않았습니다.";
 
     public Players(List<Player> players) {
-        checkPlayers(players);
         this.players = players;
     }
 
     public static Players generate(List<String> playersName) {
+        checkPlayers(playersName);
         List<Player> players = new ArrayList<>();
-        for (String playerName : playersName) {
-            players.add(new Player(playerName));
+        for (int index = 0; index < playersName.size(); index++) {
+            players.add(new Player(playersName.get(index), index));
         }
         return new Players(players);
     }
@@ -41,41 +39,20 @@ public class Players {
         return players;
     }
 
-    private void checkPlayers(List<Player> players) {
-        checkDuplicatePlayers(players);
-        checkPlayerCount(players);
-        checkNotEmpty(players);
-
+    private static void checkPlayers(List<String> playerNames) {
+        checkPlayerCount(playerNames);
+        checkDuplicatePlayers(playerNames);
     }
 
-    private void checkPlayerCount(List<Player> players) {
+    private static void checkPlayerCount(List<String> players) {
         if (players.size() < PLAYER_MIN_COUNT || players.size() > PLAYER_MAX_COUNT) {
             throw new IllegalArgumentException(PLAYER_COUNT_ERROR_MESSAGE);
         }
     }
 
-    private void checkDuplicatePlayers(List<Player> players) {
+    private static void checkDuplicatePlayers(List<String> players) {
         if (players.stream().distinct().count() != players.size()) {
             throw new IllegalArgumentException(PLAYER_NAME_DUPLICATE_ERROR_MESSAGE);
-        }
-    }
-
-    private static void checkNotEmpty(List<Player> players) {
-        for (Player player : players) {
-            checkBlank(player);
-            checkNull(player);
-        }
-    }
-
-    private static void checkBlank(Player player) {
-        if (player.getPlayerName().isBlank()) {
-            throw new IllegalArgumentException(BLANK_MESSAGE);
-        }
-    }
-
-    private static void checkNull(Player player) {
-        if (player == null) {
-            throw new IllegalArgumentException(NULL_MESSAGE);
         }
     }
 }
