@@ -14,12 +14,12 @@ public enum Direction {
 
     private final StepPoint left;
     private final StepPoint right;
-    private final Function<Integer, Integer> computeFunction;
+    private final Function<Integer, Integer> indexComputer;
 
-    Direction(StepPoint left, StepPoint right, Function<Integer, Integer> computeFunction) {
+    Direction(StepPoint left, StepPoint right, Function<Integer, Integer> indexComputer) {
         this.left = left;
         this.right = right;
-        this.computeFunction = computeFunction;
+        this.indexComputer = indexComputer;
     }
 
     public StepPoint getRightStepPoint() {
@@ -41,14 +41,6 @@ public enum Direction {
     }
 
     public int computeNextIndex(int index) {
-        return computeFunction.apply(index);
-    }
-
-    @Override
-    public String toString() {
-        return "Direction{" +
-                "left=" + left +
-                ", right=" + right +
-                '}';
+        return indexComputer.apply(index);
     }
 }
