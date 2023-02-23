@@ -22,7 +22,7 @@ public class SimpleLinkedList implements SimpleList {
         Node pointer = this.head;
         for (int i = 0; i <= index; i++) {
             pointer = pointer.next;
-            if (pointer.next == null) {
+            if (pointer == null) {
                 throw new IndexOutOfBoundsException();
             }
         }
@@ -31,7 +31,9 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public boolean add(String value) {
-        return false;
+        this.tail.next = new Node(value);
+        this.tail = this.tail.next;
+        return true;
     }
 
     @Override
