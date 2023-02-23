@@ -34,8 +34,18 @@ public class LadderGameController {
 
     private void showGameResult(Players players) {
         Name name = getDesirousResultName();
+        Name all = new Name("all");
+        while(!name.isSame(all)) {
+            outputView.printResultHeaderMessage();
+            outputView.printResult(players.getResultOf(name));
+            name = getDesirousResultName();
+        }
+        showAllResults(players);
+    }
+
+    private void showAllResults(Players players) {
         outputView.printResultHeaderMessage();
-        outputView.printResult(players.getResultOf(name));
+        players.getAllPlayerNames().forEach(name -> outputView.printNameAndResult(name,players.getResultOf(name)));
     }
 
     private Name getDesirousResultName() {
