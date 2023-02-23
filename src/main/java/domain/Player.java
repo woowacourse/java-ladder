@@ -3,6 +3,7 @@ package domain;
 import exception.InvalidPlayerNameException;
 
 public class Player {
+
     private static final String NAME_LENGTH_ERROR_MESSAGE = "플레이어의 이름은 1이상 5글자 이하입니다.";
     private static final String NAME_BLANK_ERROR_MESSAGE = "플레이어의 이름은 빈칸이면 안됩니다.";
     private static final int NAME_MAX_LENGTH = 5;

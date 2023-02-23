@@ -38,7 +38,7 @@ public class Line {
     }
 
     public int getLineSize() {
-       return blocks.size();
+        return blocks.size();
     }
 
     public boolean isCross(int position) {

@@ -5,6 +5,7 @@ import exception.InvalidPlayerNameException;
 import exception.InvalidPrizeNameException;
 
 public class InputValidator {
+
     private static final String PLAYER_NAME_NULL_BLANK_ERROR_MESSAGE = "플레이어의 이름으로 공백 혹은 빈 칸을 입력할 수 없습니다";
     private static final String LADDER_HEIGHT_ERROR_MESSAGE = "사다리의 높이는 숫자를 입력해야합니다";
     private static final String LADDER_HEIGHT_NEGATIVE_NUMBER_ERROR_MESSAGE = "사다리는 양의 정수여야 합니다.";

@@ -1,6 +1,7 @@
 package domain;
 
 public class Block {
+
     private final boolean isCross;
 
     public Block(boolean isCross) {

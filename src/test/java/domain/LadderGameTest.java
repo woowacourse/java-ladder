@@ -12,13 +12,7 @@ import org.junit.jupiter.api.Test;
 public class LadderGameTest {
 
     /**
-    ako   split     ash
-      |-------|       |
-      |-------|       |
-      |-------|       |
-      |-------|       |
-      |-------|       |
-     꽝    5000       꽝
+     * ako   split     ash |-------|       | |-------|       | |-------|       | |-------|       | |-------|       | 꽝    5000       꽝
      */
     @Test
     void 사다리_게임을_실행하면_사다리_결과를_반환한다() {
@@ -29,7 +23,7 @@ public class LadderGameTest {
         TestGenerator testGenerator = setUpTestGenerator();
         Ladder ladder = Ladder.generateLadder(height, players, testGenerator);
         List<Prize> prize = List.of(new Prize("꽝"), new Prize("5000"), new Prize("꽝"));
-        Prizes prizes = new Prizes(players.getPlayersSize(),prize);
+        Prizes prizes = new Prizes(players.getPlayersSize(), prize);
         LadderGame ladderGame = new LadderGame(players, ladder, prizes);
 
         //when

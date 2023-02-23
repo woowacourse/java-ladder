@@ -41,7 +41,7 @@ public class OutputView {
 
     public void printPrize(Prizes prizes) {
         List<String> prizeNames = prizes.getPrizeName();
-        for(String prizeName : prizeNames) {
+        for (String prizeName : prizeNames) {
             System.out.printf(NAME_FORMAT, prizeName);
         }
         System.out.println();

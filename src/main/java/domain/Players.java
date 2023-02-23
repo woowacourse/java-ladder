@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Players {
+
     private static final String PLAYERS_SIZE_ERROR_MESSAGE = "사다리 게임을 위해서는 2명 이상의 플레이어가 필요합니다";
     private static final int PLAYERS_MIN_SIZE = 2;
 
@@ -32,8 +33,8 @@ public class Players {
 
     public List<String> getPlayersName() {
         return players.stream()
-                .map(Player::getName)
-                .collect(Collectors.toUnmodifiableList());
+            .map(Player::getName)
+            .collect(Collectors.toUnmodifiableList());
     }
 
     public Player findPlayer(String name) {

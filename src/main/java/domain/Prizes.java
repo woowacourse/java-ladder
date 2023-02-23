@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Prizes {
+
     private static final String PRIZES_SIZE_ERROR_MESSAGE = "상품의 수는 플레이어의 수와 같아야한다.";
 
     private List<Prize> prizes;
