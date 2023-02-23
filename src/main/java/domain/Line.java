@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import domain.numbergenerator.NumberGenerator;
@@ -54,7 +55,7 @@ public class Line {
     }
 
     public List<Point> getLine() {
-        return line;
+        return Collections.unmodifiableList(line);
     }
 
     public int getPointsSize() {

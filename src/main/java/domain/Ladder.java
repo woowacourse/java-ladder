@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import domain.numbergenerator.NumberGenerator;
@@ -42,6 +43,6 @@ public class Ladder {
     }
 
     public List<Line> getLadder() {
-        return ladder;
+        return Collections.unmodifiableList(ladder);
     }
 }

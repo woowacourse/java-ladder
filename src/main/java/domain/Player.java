@@ -56,6 +56,6 @@ public class Player {
     public void move(MoveType moveType) {
         int step = moveType.getStep();
         validatePosition(position + step);
-        position = position + step;
+        position += step;
     }
 }
