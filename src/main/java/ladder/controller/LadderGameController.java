@@ -3,7 +3,7 @@ package ladder.controller;
 import java.util.List;
 import java.util.Map;
 
-import ladder.domain.LadderGame;
+import ladder.service.LadderGame;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 import ladder.view.ResultView;

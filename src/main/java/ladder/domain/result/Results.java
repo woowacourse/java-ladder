@@ -1,7 +1,9 @@
-package ladder.domain;
+package ladder.domain.result;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ladder.domain.result.Result;
 
 public class Results {
 

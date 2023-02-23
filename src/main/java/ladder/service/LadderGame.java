@@ -1,10 +1,23 @@
-package ladder.domain;
+package ladder.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderMaker;
+import ladder.domain.ladder.LadderProperty;
+import ladder.domain.ladder.Line;
+import ladder.domain.player.Name;
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
+import ladder.domain.player.StartIndex;
+import ladder.domain.result.Result;
+import ladder.domain.result.ResultByPlayer;
+import ladder.domain.result.Results;
+import ladder.domain.result.Reward;
 
 public class LadderGame {
 

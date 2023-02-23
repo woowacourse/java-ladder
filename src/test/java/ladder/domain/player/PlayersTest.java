@@ -1,9 +1,13 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
+import ladder.domain.player.Name;
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
+import ladder.domain.player.StartIndex;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

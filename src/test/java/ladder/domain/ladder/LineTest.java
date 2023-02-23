@@ -1,7 +1,9 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.List;
 
+import ladder.domain.ladder.ConnectionStatus;
+import ladder.domain.ladder.Line;
 import ladder.utils.BooleanGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

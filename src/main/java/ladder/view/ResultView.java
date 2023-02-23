@@ -1,7 +1,7 @@
 package ladder.view;
 
-import ladder.domain.ConnectionStatus;
-import ladder.domain.Line;
+import ladder.domain.ladder.ConnectionStatus;
+import ladder.domain.ladder.Line;
 
 import java.util.List;
 import java.util.Map;

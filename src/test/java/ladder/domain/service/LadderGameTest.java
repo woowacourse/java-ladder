@@ -1,13 +1,13 @@
-package ladder.domain;
+package ladder.domain.service;
 
 import static org.assertj.core.api.Assertions.*;
 
+import ladder.service.LadderGame;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Map;
 
 public class LadderGameTest {
 

@@ -1,7 +1,10 @@
-package ladder.domain;
+package ladder.domain.result;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import ladder.domain.player.Player;
+import ladder.domain.result.Result;
 
 public class ResultByPlayer {
 

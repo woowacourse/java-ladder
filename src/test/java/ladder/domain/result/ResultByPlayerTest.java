@@ -1,10 +1,16 @@
-package ladder.domain;
+package ladder.domain.result;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import ladder.domain.player.Name;
+import ladder.domain.player.Player;
+import ladder.domain.player.StartIndex;
+import ladder.domain.result.Result;
+import ladder.domain.result.ResultByPlayer;
+import ladder.domain.result.Reward;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

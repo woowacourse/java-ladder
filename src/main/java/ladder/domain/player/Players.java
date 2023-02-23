@@ -1,8 +1,9 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import ladder.domain.player.Player;
 
 public class Players {
 

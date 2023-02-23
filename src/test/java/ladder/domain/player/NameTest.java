@@ -1,8 +1,9 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import ladder.domain.player.Name;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

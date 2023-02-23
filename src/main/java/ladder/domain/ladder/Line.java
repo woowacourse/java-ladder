@@ -1,10 +1,11 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ladder.domain.ladder.ConnectionStatus;
 import ladder.utils.BooleanGenerator;
 
 public class Line {

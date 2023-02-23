@@ -1,7 +1,4 @@
-package ladder.domain;
-
-import java.sql.Connection;
-import java.util.Arrays;
+package ladder.domain.ladder;
 
 public enum ConnectionStatus {
 
