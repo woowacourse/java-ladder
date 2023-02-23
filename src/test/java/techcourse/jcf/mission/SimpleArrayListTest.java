@@ -127,7 +127,18 @@ class SimpleArrayListTest {
     }
 
     @Test
-    void testRemove() {
+    void removeValueAndReturn() {
+        final String[] array = {"홍실", "다니"};
+        final SimpleArrayList arrayList = new SimpleArrayList(array);
+
+        final String removedValue = arrayList.remove(0);
+
+        Assertions.assertAll(
+                () -> assertThat(removedValue).isEqualTo("홍실"),
+                () -> assertThat(arrayList)
+                        .extracting("size")
+                        .isEqualTo(1)
+        );
     }
 
     @Test

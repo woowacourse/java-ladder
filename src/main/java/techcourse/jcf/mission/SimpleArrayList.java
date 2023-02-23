@@ -89,7 +89,11 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String remove(final int index) {
-        return null;
+        final String removedValue = values[index];
+        size -= 1;
+        System.arraycopy(values, index + 1, values, index, size - index);
+        values[size] = null;
+        return removedValue;
     }
 
     @Override
