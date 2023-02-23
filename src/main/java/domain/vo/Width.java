@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Width {
 
-    private static final int MIN_WIDTH = 1;
+    private static final int MIN_WIDTH = 0;
     private static final int MAX_WIDTH = 99;
     private static final String WIDTH_NOT_IN_RANGE_ERROR_MESSAGE = "참여자의 수는 %d~%d명 입니다.";
     private final int value;
