@@ -30,7 +30,7 @@ class LadderTest {
         assertThat(destination).isEqualTo(new PlayerPosition(expected));
     }
 
-    List<Row> generateRowList() {
+    static List<Row> generateRowList() {
         return List.of(
                 Row.of(List.of(Foothold.PASSABLE, Foothold.BLOCKED, Foothold.BLOCKED, Foothold.PASSABLE), 4),
                 Row.of(List.of(Foothold.BLOCKED, Foothold.PASSABLE, Foothold.BLOCKED, Foothold.PASSABLE), 4)
