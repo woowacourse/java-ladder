@@ -1,18 +1,20 @@
 package laddergame.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class Results {
+public class GameResults {
     private static final int MIN_RESULTS_SIZE = 2;
+    private static final int MIN_RESULT_LENGTH = 0;
     private static final String RESULTS_EMPTY_EXCEPTION = "Results는 비어있을 수 없습니다.";
     private static final String RESULTS_NAMES_NOT_SAME_SIZE_EXCEPTION ="결과 목록과 이름 목록 개수가 동일해야 합니다.";
 
     private final List<Result> results;
 
-    public Results(final List<String> inputResults, final Names names) {
-        final List<String> results = getResults(inputResults);
+    public GameResults(final List<String> inputResults, final Names names) {
+        final List<String> results = getResultValues(inputResults);
         validateResults(results, names);
         this.results = createResults(results);
     }
@@ -21,7 +23,19 @@ public class Results {
         return results.get(position.getValue());
     }
 
-    public List<String> getResults() {
+    public int getMaxResultLength() {
+        return results.stream()
+                .map(Result::getValue)
+                .mapToInt(String::length)
+                .max()
+                .orElse(MIN_RESULT_LENGTH);
+    }
+
+    public List<Result> getResults() {
+        return new ArrayList<>(results);
+    }
+
+    public List<String> getResultValues() {
         return results.stream()
                 .map(Result::getValue)
                 .collect(Collectors.toList());
@@ -33,7 +47,7 @@ public class Results {
                 .collect(Collectors.toList());
     }
 
-    private List<String> getResults(final List<String> inputResults) {
+    private List<String> getResultValues(final List<String> inputResults) {
         return Optional.ofNullable(inputResults).orElse(List.of());
     }
 
