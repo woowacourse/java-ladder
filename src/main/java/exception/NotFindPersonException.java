@@ -1,7 +1,5 @@
 package exception;
 
-import view.input.ErrorMessage;
-
 public class NotFindPersonException extends IllegalArgumentException {
 
     public NotFindPersonException() {

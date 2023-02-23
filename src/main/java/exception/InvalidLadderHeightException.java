@@ -1,7 +1,5 @@
 package exception;
 
-import view.input.ErrorMessage;
-
 public class InvalidLadderHeightException extends IllegalArgumentException {
 
     public InvalidLadderHeightException() {

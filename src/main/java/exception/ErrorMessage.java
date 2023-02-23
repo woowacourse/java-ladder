@@ -1,4 +1,4 @@
-package view.input;
+package exception;
 
 public enum ErrorMessage {
     EMPTY_INPUT("입력값이 없습니다. 다시 입력해주세요"),

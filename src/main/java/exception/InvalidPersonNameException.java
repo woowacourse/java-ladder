@@ -1,7 +1,5 @@
 package exception;
 
-import view.input.ErrorMessage;
-
 public class InvalidPersonNameException extends IllegalArgumentException {
 
     public InvalidPersonNameException() {
