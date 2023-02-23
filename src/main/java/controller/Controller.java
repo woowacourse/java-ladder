@@ -4,8 +4,6 @@ import domain.*;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
-
 public class Controller {
     private final InputView inputView;
     private final OutputView outputView;
@@ -18,18 +16,40 @@ public class Controller {
     }
 
     public void run() {
-        PlayerNames playerNames = new PlayerNames(inputView.readPlayerNames(), inputView);
-        Players players = new Players(playerNames);
+        Players players = getPlayers();
+        Rewards rewards = getRewards(players);
+        Ladder ladder = getLadder(players);
 
-        Rewards rewards = new Rewards(inputView.readRewards(), players.getPlayersSize(), inputView);
-        int ladderHeight = new LadderHeight(inputView.readLadderHeight(), inputView).getLadderHeight();
-        Ladder ladder = new Ladder(ladderHeight, players, booleanCreator);
-        List<Line> ladderList = ladder.getLadder();
-
-        outputView.printResult(players, ladderList, rewards);
+        getResult(players, rewards, ladder);
         ladder.getRewardsForPlayers(players, rewards);
 
+        selectPlayerName(players, ladder, rewards);
+    }
+
+    private void getResult(Players players, Rewards rewards, Ladder ladder) {
+        outputView.printResult(players, ladder.getLadder(), rewards);
+    }
+
+    private Ladder getLadder(Players players) {
+        int ladderHeight = new LadderHeight(inputView.readLadderHeight(), inputView).getLadderHeight();
+        Ladder ladder = new Ladder(ladderHeight, players, booleanCreator);
+        return ladder;
+    }
+
+    private Rewards getRewards(Players players) {
+        Rewards rewards = new Rewards(inputView.readRewards(), players.getPlayersSize(), inputView);
+        return rewards;
+    }
+
+    private Players getPlayers() {
+        PlayerNames playerNames = new PlayerNames(inputView.readPlayerNames(), inputView);
+        Players players = new Players(playerNames);
+        return players;
+    }
+
+    private void selectPlayerName(Players players, Ladder ladder, Rewards rewards) {
         String selectedPlayerName = inputView.readSelectPlayer();
+        ladder.getRewardsForPlayers(players, rewards);
         outputView.printReward(selectedPlayerName, players);
     }
 }
