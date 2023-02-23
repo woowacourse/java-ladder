@@ -29,4 +29,12 @@ public class LadderGame {
         return new Lines(lines);
     }
 
+    public Rewards createRewards(List<String> names, int peopleNum) {
+        List<Reward> rewards = new ArrayList<>();
+        for (String name : names) {
+            rewards.add(new Reward(name));
+        }
+
+        return new Rewards(rewards, peopleNum);
+    }
 }
