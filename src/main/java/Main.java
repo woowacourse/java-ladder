@@ -1,11 +1,12 @@
 import controller.LadderGameController;
+import domain.InputValidator;
 import view.InputView;
 import view.OutputView;
 
 public class Main {
     public static void main(String[] args) {
         LadderGameController controller = new LadderGameController(
-                new InputView(),
+                new InputView(new InputValidator()),
                 new OutputView()
         );
 
