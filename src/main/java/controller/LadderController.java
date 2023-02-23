@@ -32,6 +32,10 @@ public class LadderController {
         Prize prize = generatePrize(playerCount);
         LadderGame ladderGame = new LadderGame(ladder, players, prize);
         Map<String, String> result = ladderGame.run();
+        print(players, ladder, prize, result);
+    }
+
+    private void print(Players players, Ladder ladder, Prize prize, Map<String, String> result) {
         outputView.printNames(players);
         outputView.printLadder(ladder);
         outputView.printPrizes(prize);
