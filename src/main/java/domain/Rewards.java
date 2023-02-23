@@ -27,7 +27,7 @@ public class Rewards {
     }
 
     private void createRewards(String inputRewards) {
-        for (String input : List.of(inputRewards.split(DELIMITER))) {
+        for (String input : List.of(inputRewards.split(DELIMITER,-1))) {
             this.rewards.add(new Reward(input));
         }
     }
