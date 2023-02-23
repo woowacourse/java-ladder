@@ -1,5 +1,6 @@
 package domain;
 
+import exception.InvalidPlayerNameException;
 import exception.InvalidPlayersSizeException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +34,13 @@ public class Players {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public Player findPlayer(String name) {
+        return players.stream()
+            .filter(player -> player.getName() == name)
+            .findFirst()
+            .orElseThrow(() -> new InvalidPlayerNameException("없는 플레이어 입니다."));
     }
 
     public Player getPlayer(int index) {

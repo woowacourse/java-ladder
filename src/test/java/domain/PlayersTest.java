@@ -1,10 +1,15 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import exception.InvalidPlayerNameException;
 import org.junit.jupiter.api.*;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -28,5 +33,30 @@ public class PlayersTest {
 
         //then
         Assertions.assertTrue(test.containsAll(List.of("ako", "judy", "pobi")));
+    }
+
+    @ParameterizedTest
+    @NullSource
+    @ValueSource(strings = {"", " ", "  ", "maco"})
+    void 입력값이_players에_포함되지_않은면_에러를_발생시킨다(String player) {
+        //given
+        Players players = new Players(List.of(new Player("ako"), new Player("split"), new Player("ash")));
+
+        //when + then
+        assertThatThrownBy(() -> players.findPlayer(player))
+            .isInstanceOf(InvalidPlayerNameException.class);
+    }
+
+    @Test
+    void 입력값이_players에_포함되면_객체를_반환한다() {
+        //given
+        Players players = new Players(List.of(new Player("ako"), new Player("split"), new Player("ash")));
+        String playerName = "ako";
+
+        //when
+        Player result = players.findPlayer(playerName);
+
+        //then
+        assertThat(result.getName()).isEqualTo(playerName);
     }
 }

@@ -2,9 +2,12 @@ package view;
 
 import domain.Ladder;
 import domain.Line;
+import domain.Player;
 import domain.Players;
 
+import domain.Prize;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,6 +35,13 @@ public class OutputView {
         for (Line line : ladder.getLines()) {
             printLine(line, playerNames);
         }
+    }
+
+    public void printIndividualResult(Map<Player, Prize> result, Player player) {
+        System.out.println();
+        System.out.println("실행 결과");
+        Prize prize = result.get(player);
+        System.out.println(prize.getPrize());
     }
 
     private void firstPlayerPrint(List<String> names, int index) {

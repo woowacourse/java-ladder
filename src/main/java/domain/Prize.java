@@ -16,6 +16,10 @@ public class Prize {
         this.prize = prize;
     }
 
+    public String getPrize() {
+        return prize;
+    }
+
     private void validatePrizeNameIsNull(String prize) {
         if (prize == null) {
             throw new InvalidPrizeNameException(PRIZE_NAME_NULL_ERROR_MESSAGE);
