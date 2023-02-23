@@ -2,11 +2,10 @@ package controller;
 
 import domain.Height;
 import domain.LadderGame;
-import domain.Person;
-import domain.Persons;
 import exception.ErrorCode;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import view.InputView;
 import view.OutputView;
@@ -23,23 +22,24 @@ public class LadderGameController {
     }
 
     public void play() {
-        Persons persons = requestPlayerName();
+        List<String> names = requestPlayerName();
+        List<String> prizes = requestLadderPrize();
         Height height = requestLadderHeight();
-        List<String> results = requestLadderResult();
 
-        ladderGame = new LadderGame(persons, height, results);
+        ladderGame = new LadderGame(names, height, prizes);
         ladderGame.run();
-        outputView.printLadder(ladderGame.getAllPlayers(), ladderGame.getLadderStatus(),
-                persons.getLongestPersonNameLength());
+        outputView.printLadderResult(ladderGame.getAllPlayerNames(), ladderGame.getLadderStatus(), prizes);
+
+        Map<String, String> gameResults = ladderGame.getGameResults();
+        requestShowingPerson(gameResults);
     }
 
-    private Persons requestPlayerName() {
+    private List<String> requestPlayerName() {
         try {
             String inputNames = inputView.requestNames();
-            List<Person> personNames = Arrays.stream(inputNames.split(DELIMITER))
-                    .map(Person::new)
+            List<String> playerNames = Arrays.stream(inputNames.split(","))
                     .collect(Collectors.toList());
-            return new Persons(personNames);
+            return playerNames;
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             return requestPlayerName();
@@ -63,15 +63,24 @@ public class LadderGameController {
         }
     }
 
-    private List<String> requestLadderResult() {
+    private List<String> requestLadderPrize() {
         try {
-            String inputResults = inputView.requestResult();
-            List<String> results = Arrays.stream(inputResults.split(DELIMITER))
+            String inputprizes = inputView.requestPrize();
+            List<String> prizes = Arrays.stream(inputprizes.split(DELIMITER))
                     .collect(Collectors.toList());
-            return results;
+            return prizes;
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
-            return requestLadderResult();
+            return requestLadderPrize();
         }
+    }
+
+    private void requestShowingPerson(Map<String, String> gameResults) {
+        String inputName = inputView.requestShowingName();
+        do {
+            outputView.printPersonalResult(gameResults.get(inputName));
+            inputName = inputView.requestShowingName();
+        } while (!inputName.equals("all"));
+        outputView.printAllResult(gameResults);
     }
 }
