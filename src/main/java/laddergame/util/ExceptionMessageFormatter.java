@@ -1,4 +1,4 @@
-package laddergame.domain.util;
+package laddergame.util;
 
 import java.util.Formatter;
 

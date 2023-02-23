@@ -1,6 +1,6 @@
 package laddergame.domain.players;
 
-import laddergame.domain.util.ExceptionMessageFormatter;
+import laddergame.util.ExceptionMessageFormatter;
 
 public class Name {
 

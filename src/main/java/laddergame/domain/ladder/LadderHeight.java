@@ -1,6 +1,6 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.util.ExceptionMessageFormatter;
+import laddergame.util.ExceptionMessageFormatter;
 
 public class LadderHeight {
 

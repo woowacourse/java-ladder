@@ -3,7 +3,7 @@ package laddergame.domain.ladder.line;
 import java.util.ArrayList;
 import java.util.List;
 import laddergame.domain.generator.StepPointGenerator;
-import laddergame.domain.util.IndexValidator;
+import laddergame.util.IndexValidator;
 
 public class Line {
 

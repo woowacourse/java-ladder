@@ -2,7 +2,7 @@ package laddergame.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import laddergame.domain.util.IndexValidator;
+import laddergame.util.IndexValidator;
 
 public class Destination {
 

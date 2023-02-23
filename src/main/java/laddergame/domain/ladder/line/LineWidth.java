@@ -1,6 +1,6 @@
 package laddergame.domain.ladder.line;
 
-import laddergame.domain.util.ExceptionMessageFormatter;
+import laddergame.util.ExceptionMessageFormatter;
 
 public class LineWidth {
 

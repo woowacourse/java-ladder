@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 import laddergame.domain.generator.RandomStepPointGenerator;
 import laddergame.domain.ladder.line.Line;
 import laddergame.domain.ladder.line.LineWidth;
-import laddergame.domain.util.ExceptionMessageFormatter;
-import laddergame.domain.util.IndexValidator;
+import laddergame.util.ExceptionMessageFormatter;
+import laddergame.util.IndexValidator;
 
 public class Ladder {
 
