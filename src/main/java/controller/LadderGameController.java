@@ -17,7 +17,7 @@ public class LadderGameController {
 
 	public LadderGameController(PointGenerator pointGenerator) {
 		Participants participants = retrieveParticipants();
-		Results results = retrieveResults();
+		Results results = retrieveResults(participants.getParticipantsNum());
 		LadderHeight ladderHeight = retrieveHeight();
 		LadderWidth ladderWidth = retrieveWidth(participants);
 		Ladder ladder = Ladder.create(ladderHeight, ladderWidth, pointGenerator);
@@ -45,13 +45,13 @@ public class LadderGameController {
 		}
 	}
 
-	private Results retrieveResults() {
+	private Results retrieveResults(int size) {
 		try {
-			String[] results = InputView.readResults();
-			return Results.of(results);
+			String[] strings = InputView.readResults(size);
+			return Results.of(strings);
 		} catch (IllegalArgumentException e) {
 			OutputView.printError(e.getMessage());
-			return retrieveResults();
+			return retrieveResults(size);
 		}
 	}
 
