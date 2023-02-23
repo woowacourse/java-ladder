@@ -41,12 +41,12 @@ public class LadderService {
         return new Players(players);
     }
 
-    public Prizes createPrizes(String resultsInput, int playerCount) {
+    public Prizes createPrizes(String resultsInput, Players players) {
         String[] resultsStrings = resultsInput.split(RESULTS_STRING_DELIMITER);
         List<Prize> prizes = Arrays.stream(resultsStrings)
                 .map(Prize::new)
                 .collect(toList());
-        return new Prizes(prizes, playerCount);
+        return new Prizes(prizes, players);
     }
 
     public PlayerResults createPlayerResults(Players players, Ladder ladder, Prizes prizes) {

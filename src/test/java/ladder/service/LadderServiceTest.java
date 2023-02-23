@@ -1,5 +1,6 @@
 package ladder.service;
 
+import static ladder.Util.createPlayers;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -56,7 +57,7 @@ class LadderServiceTest {
         String input = "꽝,5000,꽝,3000";
 
         // when
-        Prizes prizes = ladderService.createPrizes(input, 4);
+        Prizes prizes = ladderService.createPrizes(input, createPlayers(4));
 
         // then
         assertThat(prizes.getPrizesCount())

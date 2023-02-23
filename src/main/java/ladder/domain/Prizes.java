@@ -6,8 +6,8 @@ import java.util.List;
 public class Prizes {
     private final List<Prize> prizes;
 
-    public Prizes(List<Prize> prizes, int playerCount) {
-        validatePlayerCount(prizes.size(), playerCount);
+    public Prizes(List<Prize> prizes, Players players) {
+        validatePlayerCount(prizes.size(), players.getPlayersCount());
         this.prizes = prizes;
     }
 

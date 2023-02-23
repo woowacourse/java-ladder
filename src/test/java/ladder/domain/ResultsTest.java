@@ -1,8 +1,9 @@
 package ladder.domain;
 
+import static ladder.Util.createPlayers;
+import static ladder.Util.createResults;
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +16,7 @@ class ResultsTest {
     void create_notEqualsPlayersCount() {
         // expect
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Prizes(createResults(), 5))
+                .isThrownBy(() -> new Prizes(createResults(5), createPlayers(4)))
                 .withMessage("[ERROR] 실행 결과의 갯수와 참여할 사람이 같아야 합니다.");
     }
 
@@ -24,21 +25,22 @@ class ResultsTest {
     void create_success() {
         // expect
         assertThatNoException()
-                .isThrownBy(() -> new Prizes(createResults(), 4));
+                .isThrownBy(() -> new Prizes(createResults(5), createPlayers(5)));
     }
 
     @Test
     @DisplayName("인덱스로 Result를 찾을 수 있어야 한다.")
     void findResultByIndex_success() {
         // given
-        Prizes prizes = new Prizes(createResults(), 4);
+        Prizes prizes = new Prizes(createResults(5), createPlayers(5));
 
         // when
         Prize prize = prizes.findPrizeByIndex(1);
 
         // then
-        assertThat(prize.getPrize())
-                .isEqualTo("5000");
+        Prize expectPrize = prizes.getPrizes().get(1);
+        assertThat(prize)
+                .isEqualTo(expectPrize);
     }
 
     @ParameterizedTest
@@ -46,18 +48,11 @@ class ResultsTest {
     @DisplayName("인덱스로 Result를 찾을때 범위를 초과하면 예외가 발생한다.")
     void findByResultByIndex_wrongIndex(int index) {
         // given
-        Prizes prizes = new Prizes(createResults(), 4);
+        Prizes prizes = new Prizes(createResults(4), createPlayers(4));
 
         // expect
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> prizes.findPrizeByIndex(index))
                 .withMessage("[ERROR] 인덱스 범위를 초과했습니다.");
-    }
-
-    private static List<Prize> createResults() {
-        return List.of(new Prize("꽝"),
-                new Prize("5000"),
-                new Prize("꽝"),
-                new Prize("3000"));
     }
 }

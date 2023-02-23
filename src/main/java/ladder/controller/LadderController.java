@@ -29,7 +29,7 @@ public class LadderController {
         String resultsInput = ladderView.readPrizes();
         Players players = ladderService.createPlayers(inputNames);
         Height height = new Height(inputHeight);
-        Prizes prizes = ladderService.createPrizes(resultsInput, players.getPlayersCount());
+        Prizes prizes = ladderService.createPrizes(resultsInput, players);
         Ladder ladder = ladderService.createLadder(height, players.getPlayersCount());
         ladderView.printLadderResult(PlayersResponse.ofPlayers(players), LadderResponse.ofLadder(ladder),
                 PrizesResponse.ofResults(prizes));
