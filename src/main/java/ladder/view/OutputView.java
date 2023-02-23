@@ -4,7 +4,9 @@ import ladder.domain.ladder.Bar;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -12,6 +14,17 @@ public class OutputView {
     private static final int PER_NAME_SPACE = 6;
 
     private OutputView() {
+    }
+
+    public static void printGameResultsAll(HashMap<String, String> gameResults) {
+        for (Map.Entry<String, String> entrySet : gameResults.entrySet()) {
+            System.out.println(entrySet.getKey() + " : " + entrySet.getValue());
+        }
+    }
+
+    public static void printGameResultsUnique(HashMap<String, String> gameResults, String name) {
+        System.out.println("유니크출력");
+        System.out.println(gameResults.get(name));
     }
 
     public static void printInputString(List<String> inputString) {
