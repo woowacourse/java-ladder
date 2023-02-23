@@ -39,6 +39,6 @@ class LadderGeneratorTest {
         List<LadderResult> ladderResults = Arrays.stream(result)
                 .map(LadderResult::new)
                 .collect(toList());
-        return LadderResults.createByPlayersSize(ladderResults, numberOfPeople);
+        return LadderResults.createWithSameSize(ladderResults, numberOfPeople);
     }
 }

@@ -11,8 +11,8 @@ public class LadderResults {
         this.ladderResults = ladderResults;
     }
 
-    public static LadderResults createByPlayersSize(List<LadderResult> ladderResults,
-                                                    int size) {
+    public static LadderResults createWithSameSize(List<LadderResult> ladderResults,
+                                                   int size) {
         if (ladderResults.size() != size) {
             throw new IllegalArgumentException("크기가 일치하지 않습니다.");
         }

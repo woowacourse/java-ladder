@@ -18,7 +18,7 @@ class LadderResultsTest {
 
         // then
         assertThatNoException().isThrownBy(
-                () -> LadderResults.createByPlayersSize(ladderResults, ladderResults.size()));
+                () -> LadderResults.createWithSameSize(ladderResults, ladderResults.size()));
     }
 
     @DisplayName("입력받은 크기와 LadderResults의 크기가 다르면 생성시 예외를 반환한다.")
@@ -28,7 +28,7 @@ class LadderResultsTest {
         List<LadderResult> ladderResults = List.of(new LadderResult("any"), new LadderResult("any"));
 
         // then
-        assertThatThrownBy(() -> LadderResults.createByPlayersSize(ladderResults, ladderResults.size() - 1))
+        assertThatThrownBy(() -> LadderResults.createWithSameSize(ladderResults, ladderResults.size() - 1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("크기가 일치하지 않습니다.");
     }

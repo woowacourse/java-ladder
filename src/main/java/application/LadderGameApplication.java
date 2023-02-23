@@ -80,7 +80,7 @@ public class LadderGameApplication {
 
     private LadderResults createLadderResults(int size) {
         List<LadderResult> ladderResults = inputView.readLadderResults();
-        return LadderResults.createByPlayersSize(ladderResults, size);
+        return LadderResults.createWithSameSize(ladderResults, size);
     }
 
     private void printResult(LadderGame ladderGame) {
