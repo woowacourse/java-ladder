@@ -29,6 +29,10 @@ public class Participant implements Display {
 		}
 	}
 
+	public String getName(){
+		return this.name;
+	}
+
 	@Override
 	public String format() {
 		return String.format(RIGHT_ALIGN_PLACEHOLDER, name);
