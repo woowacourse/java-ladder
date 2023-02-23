@@ -3,7 +3,8 @@ package domain.player;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.ladder.Line;
-import domain.ladder.LineGenerator;
+import domain.ladder.LinePoint;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +38,7 @@ class PlayerTest {
         // given
         Name name = new Name("name");
         Player player = new Player(name, new Position(1));
-        Line line = generateLine();
+        Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
 
         // when
         player.move(line);
@@ -52,7 +53,7 @@ class PlayerTest {
         // given
         Name name = new Name("name");
         Player player = new Player(name, new Position(2));
-        Line line = generateLine();
+        Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
 
         // when
         player.move(line);
@@ -67,17 +68,12 @@ class PlayerTest {
         // given
         Name name = new Name("name");
         Player player = new Player(name, new Position(3));
-        Line line = generateLine();
+        Line line = new Line(List.of(LinePoint.BLOCKED, LinePoint.BLOCKED));
 
         // when
         player.move(line);
 
         // then
         assertThat(player.getPosition()).isEqualTo(3);
-    }
-
-    private Line generateLine() {
-        LineGenerator lineGenerator = new LineGenerator(() -> 4);
-        return lineGenerator.generate(2);
     }
 }
