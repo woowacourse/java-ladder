@@ -13,7 +13,7 @@ class SimpleListTest {
     @BeforeEach
     void initList() {
         // 구현한 구현체로 바꾸기
-        list = new SimpleArrayList(Arrays.asList("first", "second"));
+        list = new SimpleArrayList(new String[]{"first", "second"});
     }
 
     @Test
@@ -100,6 +100,7 @@ class SimpleListTest {
 
     @Test
     void clear() {
+        assertThat(list.size()).isEqualTo(2);
         list.clear();
         assertThat(list.size()).isEqualTo(0);
     }

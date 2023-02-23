@@ -1,23 +1,20 @@
-package techcourse.jcf.mission;
-
-import java.util.Arrays;
-import java.util.List;
+package techcourse.jcf.mission
 
 public class SimpleArrayList implements SimpleList {
     private static final int DEFAULT_CAPACITY = 10;
 
     private int capacity;
     private int pointer;
-    private String[] values;
+    private final String[] values;
 
     public SimpleArrayList() {
         this.capacity = DEFAULT_CAPACITY;
         this.values = new String[10];
     }
 
-    public SimpleArrayList(List<String> valuesList) {
+    public SimpleArrayList(String[] values) {
         this.capacity = DEFAULT_CAPACITY;
-        this.values = (String[]) valuesList.toArray();
+        this.values = values;
         manageCapacity();
     }
 
@@ -70,7 +67,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean remove(String value) {
-        return false;
+        return true;
     }
 
     @Override
