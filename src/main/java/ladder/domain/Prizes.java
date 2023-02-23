@@ -30,8 +30,4 @@ public class Prizes {
                 .map(Prize::getName)
                 .collect(Collectors.toList());
     }
-
-    public int getSize() {
-        return prizes.size();
-    }
 }
