@@ -27,6 +27,7 @@ public class OutputView {
             .map(result -> String.format(RESULT_FORMAT, result.getResult()) + BLANK)
             .collect(Collectors.joining());
         System.out.println(resultLine);
+        printEmptyLine();
     }
 
     private void printNames(Names names) {
@@ -34,12 +35,15 @@ public class OutputView {
             .stream()
             .map(name -> String.format(NAME_FORMAT, name.getName()) + BLANK)
             .collect(Collectors.joining());
+        printEmptyLine();
+        System.out.println("사다리 결과");
+        printEmptyLine();
         System.out.println(nameLine);
     }
 
     private void printLadder(Ladder ladder) {
         for (Line line : ladder) {
-            String result = BLANK.repeat(WIDTH-1);
+            String result = BLANK.repeat(WIDTH - 1);
             result += shapeOf(line);
             result += LEG;
             System.out.println(result);
@@ -54,7 +58,18 @@ public class OutputView {
             .collect(Collectors.joining());
     }
 
+    private void printEmptyLine() {
+        System.out.println();
+    }
+
     public void printErrorMessage(Exception e) {
         System.out.println(e.getMessage());
+    }
+
+    public void printMatching(String matchingResult) {
+        printEmptyLine();
+        System.out.println("실행 결과");
+        System.out.println(matchingResult);
+        printEmptyLine();
     }
 }

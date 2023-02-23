@@ -22,6 +22,7 @@ public class InputView {
     }
 
     public List<String> requestResults() {
+        printEmptyLine();
         printMessage(Message.ASK_RESULTS);
 
         List<String> results = Arrays.asList(sc.nextLine().split(DELIMITER));
@@ -43,6 +44,7 @@ public class InputView {
     }
 
     public int requestLadderHeight() {
+        printEmptyLine();
         printMessage(Message.ASK_LADDER_HEIGHT);
 
         String input = sc.nextLine();
@@ -75,11 +77,13 @@ public class InputView {
         System.out.println(message.value);
     }
 
+    private void printEmptyLine() {
+        System.out.println();
+    }
+
     private enum Message {
-        ASK_USER_NAMES("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"),
-        ASK_LADDER_HEIGHT("최대 사다리 높이는 몇 개인가요?"),
-        ASK_RESULTS("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"),
-        ASK_NAME_WANT_TO_KNOW_RESULT("결과를 보고 싶은 사람은?");
+        ASK_USER_NAMES("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"), ASK_LADDER_HEIGHT("최대 사다리 높이는 몇 개인가요?"), ASK_RESULTS(
+            "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"), ASK_NAME_WANT_TO_KNOW_RESULT("결과를 보고 싶은 사람은?");
 
         private final String value;
 
