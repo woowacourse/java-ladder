@@ -42,4 +42,14 @@ public class LineTest {
             assertThat(points.get(index)).isNotEqualTo(points.get(index + 1));
         }
     }
+
+    @Test
+    @DisplayName("올바른(LEFT, RIGHT, STRAIGHT) Direction 반환하는지 확인")
+    void getDirection() {
+        Line line = new Line(3, new StubPossiblePointGenerator());
+
+        assertThat(line.getDirection(0)).isEqualTo(Direction.RIGHT);
+        assertThat(line.getDirection(1)).isEqualTo(Direction.LEFT);
+        assertThat(line.getDirection(2)).isEqualTo(Direction.STRAIGHT);
+    }
 }
