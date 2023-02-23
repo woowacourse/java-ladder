@@ -37,7 +37,6 @@ public class Util {
                 .collect(collectingAndThen(toList(), Players::new));
     }
 
-
     public static List<Line> createLines(int height, int width) {
         List<Step> steps = createEmptySteps(width);
         return createLines(height, steps);
