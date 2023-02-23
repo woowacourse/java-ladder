@@ -1,6 +1,7 @@
 package domain;
 
 import exception.InvalidPrizesSizeException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,14 @@ public class Prizes {
     public Prizes(int playerCount, List<Prize> prizes) {
         validatePrizesSize(playerCount, prizes);
         this.prizes = prizes;
+    }
+
+    public static Prizes generatePrizes(int playerCount, List<String> prizeNames) {
+        List<Prize> prizes = new ArrayList<>();
+        for (String prizeName : prizeNames) {
+            prizes.add(new Prize(prizeName));
+        }
+        return new Prizes(playerCount, prizes);
     }
 
     public List<String> getPrizeName() {
@@ -29,5 +38,4 @@ public class Prizes {
             throw new InvalidPrizesSizeException(PRIZES_SIZE_ERROR_MESSAGE);
         }
     }
-
 }

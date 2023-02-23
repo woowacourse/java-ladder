@@ -38,7 +38,7 @@ public class Players {
 
     public Player findPlayer(String name) {
         return players.stream()
-            .filter(player -> player.getName() == name)
+            .filter(player -> player.getName().equals(name))
             .findFirst()
             .orElseThrow(() -> new InvalidPlayerNameException("없는 플레이어 입니다."));
     }
