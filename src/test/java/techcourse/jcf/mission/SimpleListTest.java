@@ -1,8 +1,6 @@
 package techcourse.jcf.mission;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,24 +8,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class SimpleListTest {
-    List<String> list;
+    SimpleList list;
 
     @BeforeEach
     void initList() {
         // 구현한 구현체로 바꾸기
-        list = new ArrayList<>(Arrays.asList("first", "second"));
+        list = new SimpleArrayList(Arrays.asList("first", "second"));
     }
 
     @Test
     void addWithOnlyValue() {
         assertThat(list.add("third")).isTrue();
-        assertThat(list).containsExactly("first", "second", "third");
+        assertThat(list.get(2)).isEqualTo("third");
     }
 
     @Test
     void addWithVIndexValue() {
         list.add(1, "third");
-        assertThat(list).containsExactly("first", "third", "second");
+        assertThat(list.get(1)).isEqualTo("third");
     }
 
     @Test
@@ -39,7 +37,7 @@ class SimpleListTest {
     @Test
     void set() {
         assertThat(list.set(1, "third")).isEqualTo("second");
-        assertThat(list).containsExactly("first", "third");
+        assertThat(list.get(1)).isEqualTo("third");
     }
 
     @Test
@@ -86,18 +84,23 @@ class SimpleListTest {
     @Test
     void removeWithValue() {
         assertThat(list.remove("first")).isTrue();
-        assertThat(list).containsExactly("second");
+        assertThat(list.get(0)).isEqualTo("second");
+    }
+
+    @Test
+    void removeFailWithValue() {
+        assertThat(list.remove("third")).isFalse();
     }
 
     @Test
     void removeWithIndex() {
         assertThat(list.remove(0)).isEqualTo("first");
-        assertThat(list).containsExactly("second");
+        assertThat(list.get(0)).isEqualTo("second");
     }
 
     @Test
     void clear() {
         list.clear();
-        assertThat(list).hasSize(0);
+        assertThat(list.size()).isEqualTo(0);
     }
 }
