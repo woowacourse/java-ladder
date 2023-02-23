@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Height;
 import domain.Ladder;
 import domain.LadderGame;
 import domain.Names;
@@ -25,7 +26,7 @@ public class MainController {
     public void start() {
         Names names = inputView.readNames();
         Rewards rewards = inputView.readRewards(names.getNamesSize());
-        int height = inputView.readHeight();
+        Height height = inputView.readHeight();
 
         Ladder ladder = new Ladder(names.getNamesSize(), height, booleanGenerator);
         outputView.printLadderBoard(names, ladder.getFloors(), rewards.getRewards());

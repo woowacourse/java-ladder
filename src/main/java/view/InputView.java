@@ -1,5 +1,6 @@
 package view;
 
+import domain.Height;
 import domain.Names;
 import domain.Rewards;
 import java.util.Arrays;
@@ -31,9 +32,9 @@ public class InputView {
         );
     }
 
-    public int readHeight() {
+    public Height readHeight() {
         String input = readInput(Message.INPUT_LADDER_SIZE.message);
-        return parseInt(input);
+        return new Height(parseInt(input));
     }
 
     public Rewards readRewards(int namesSize) {

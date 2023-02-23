@@ -18,7 +18,8 @@ public class LadderGameTest {
     @DisplayName("생성된 사다리를 타는 것을 테스트한다.")
     @Test
     void validLinesGameTest() {
-        Ladder ladder = new Ladder(4, 1, booleanGenerator);
+        Height height = new Height(1);
+        Ladder ladder = new Ladder(4, height, booleanGenerator);
         LadderGame ladderGame = new LadderGame(4, ladder.getFloors());
 
         Assertions.assertThat(ladderGame.getResult(0)).isEqualTo(1);
