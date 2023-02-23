@@ -123,7 +123,19 @@ class SimpleArrayListTest {
     }
 
     @Test
-    void remove() {
+    @DisplayName("값을 넣어 있다면 삭제 후 true를 반환하고, 없다면 false를 반환한다.")
+    void removeValueAndReturnBoolean() {
+        final String[] array = {"홍실"};
+        final SimpleArrayList arrayList = new SimpleArrayList(array);
+
+        final boolean isRemove = arrayList.remove("홍실");
+
+        Assertions.assertAll(
+                () -> assertThat(isRemove).isTrue(),
+                () -> assertThat(arrayList)
+                        .extracting("size")
+                        .isEqualTo(0)
+        );
     }
 
     @Test

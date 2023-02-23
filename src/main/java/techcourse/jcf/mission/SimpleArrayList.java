@@ -84,6 +84,12 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean remove(final String value) {
+        for (int index = 0; index < size; index++) {
+            if (values[index].equals(value)) {
+                remove(index);
+                return true;
+            }
+        }
         return false;
     }
 
