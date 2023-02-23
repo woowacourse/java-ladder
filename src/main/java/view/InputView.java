@@ -23,8 +23,10 @@ public class InputView {
 
     public List<String> inputUserNames() {
         String userNames = scanner.nextLine();
+
         List<String> allUserNames = Arrays.asList(
             userNames.split(DELIMITER));
+
         validateUserName(allUserNames);
 
         return allUserNames;
@@ -43,7 +45,7 @@ public class InputView {
         List<String> allRewards = Arrays.stream(rewards.split(DELIMITER))
                 .map(String::strip)
                 .collect(Collectors.toList());
-        
+
         validateRewardsLength(allRewards);
 
         return allRewards;
@@ -62,7 +64,8 @@ public class InputView {
 
     private void validateRewardLengthByMaximumLimit(String reward) {
         if (reward.length() > MAXIMUM_REWARD_LENGTH_LIMIT) {
-            throw new IllegalArgumentException(String.format(
+            throw new IllegalArgumentException(
+                    String.format(
                 INVALID_REWARD_LENGTH_BY_MAXIMUM_LIMIT.getMessage()
                 , MAXIMUM_REWARD_LENGTH_LIMIT));
         }
