@@ -14,8 +14,8 @@ public class Line {
     private List<Boolean> createLine(int personCount, RandomNumberGenerator randomNumberGenerator) {
         List<Boolean> points = new ArrayList<>();
         points.add(false);
-        for (int i = 1; i < personCount; i++) {
-            points.add(isContinuousPoint(points, i, randomNumberGenerator));
+        for (int index = 1; index < personCount; index++) {
+            points.add(isContinuousPoint(points, index, randomNumberGenerator));
         }
         return points;
     }
