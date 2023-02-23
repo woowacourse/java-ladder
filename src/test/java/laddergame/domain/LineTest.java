@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 @DisplayName("라인")
 class LineTest {
 
-    List<Boolean> given;
+    private List<Boolean> given;
 
     @DisplayName("생성된다.")
     @Test
