@@ -16,21 +16,18 @@ class LineTest {
     @Test
     @DisplayName("bar를 3개를 생성한다")
     void should3barWhenCreateLine() {
-        // given
-        // when
         Line line = Line.generate(3, new RandomBooleanGenerator());
-        // then
+
         assertThat(line.getBars()).hasSize(3);
     }
 
     @Test
     @DisplayName("bar가 연속되지 않게 Line을 생성한다")
     void shouldDeterminedValuesWhenCreateLine() {
-        // given
         List<Boolean> determinedBars = new ArrayList<>(List.of(true, true));
-        // when
+
         Line line = Line.generate(3, new DeterminedBooleanGenerator(determinedBars));
-        // then
+
         assertThat(line.getBars()).containsExactly(MOVABLE, IMMOVABLE, MOVABLE);
     }
 
@@ -41,12 +38,11 @@ class LineTest {
     @CsvSource(value = {"0:RIGHT", "1:LEFT", "2:RIGHT", "3:LEFT", "4:NONE"}, delimiter = ':')
     @DisplayName("position의 기준으로 bar의 위치를 반환한다")
     void shouldReturnDirectionWhenGetPosition(int currentPosition, Direction expect) {
-        // given
         List<Boolean> determinedBars = new ArrayList<>(List.of(true, true, false));
         Line line = Line.generate(4, new DeterminedBooleanGenerator(determinedBars));
-        // when
+
         Direction direction = line.getDirection(new Position(currentPosition));
-        // then
+
         assertThat(direction).isEqualTo(expect);
     }
 }

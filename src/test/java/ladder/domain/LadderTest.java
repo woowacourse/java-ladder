@@ -29,13 +29,12 @@ class LadderTest {
     @CsvSource(value = {"0:2", "1:0", "2:1"}, delimiter = ':')
     @DisplayName("출발 위치에 따라 결과를 반환한다")
     void shouldReturnResultPositionWhenMoveLadder(int startPosition, int expectPosition) {
-        //given
         List<Boolean> determinedBars = new ArrayList<>(List.of(true, false, true));
         Ladder ladder = Ladder.generate(2, 2, new DeterminedBooleanGenerator(determinedBars));
-        //when
         Position position = new Position(startPosition);
+
         ladder.moveToResult(position);
-        //then
+
         assertThat(position).isEqualTo(new Position(expectPosition));
     }
 }

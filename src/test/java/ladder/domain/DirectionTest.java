@@ -2,7 +2,6 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -20,11 +19,9 @@ class DirectionTest {
     @CsvSource(value = {"true:false:LEFT", "false:true:RIGHT", "false:false:NONE"}, delimiter = ':')
     @DisplayName("bar의 유무에 따라 방향을 반환한다")
     void shouldReturnDirectionWhenBarExist(boolean isLeftExist, boolean isRightExist, Direction expect) {
-        //given
-        //when
         Direction direction = Direction.of(isLeftExist, isRightExist);
-        //then
-        Assertions.assertThat(direction).isEqualTo(expect);
+
+        assertThat(direction).isEqualTo(expect);
     }
 
 }

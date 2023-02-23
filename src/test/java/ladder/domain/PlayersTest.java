@@ -17,42 +17,36 @@ class PlayersTest {
     @Test
     @DisplayName("여러 개의 이름을 입력받고 players를 생성한다")
     void shouldCreatePlayersWhenInputStrings() {
-        //given
         List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
-        //when
-        //then
+
         assertDoesNotThrow(() -> Players.generate(names));
     }
 
     @Test
     @DisplayName("플레이어의 수를 반환한다")
     void shouldReturnSizeWhenRequest() {
-        //given
         List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
-        //when
+
         Players players = Players.generate(names);
-        //then
+
         assertThat(players.getSize()).isEqualTo(3);
     }
 
     @Test
     @DisplayName("플레이어들의 이름을 문자열로 반환한다")
     void shouldReturnNameValuesWhenRequest() {
-        //given
         List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
-        //when
+
         Players players = Players.generate(names);
-        //then
+
         assertThat(players.getNameValues()).containsExactly("a", "ab", "abc");
     }
 
     @Test
     @DisplayName("플레이어는 2명 이상이여야 한다")
     void shouldMinimum2PlayersWhenCreate() {
-        //given
         List<String> names = new ArrayList<>(List.of("a"));
-        //when
-        //then
+
         assertThatThrownBy(() -> Players.generate(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("플레이어는 최소 2명 이상이여야 합니다");
@@ -61,12 +55,11 @@ class PlayersTest {
     @Test
     @DisplayName("플레이어의 위치는 입력 순이다")
     void shouldPlayersOrderIsSameWithInputOrderWhenCreate() {
-        //given
         List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
-        //when
         Players players = Players.generate(names);
+
         List<Player> playerList = players.toUnmodifiablePlayers();
-        //then
+
         assertAll(
                 () -> assertThat(playerList.get(0).getPosition()).isEqualTo(0),
                 () -> assertThat(playerList.get(1).getPosition()).isEqualTo(1),
@@ -77,11 +70,10 @@ class PlayersTest {
     @Test
     @DisplayName("플레이어의 이름으로 위치를 알 수 있다")
     void shouldFindPositionWhenInputName() {
-        //given
         List<String> names = new ArrayList<>(List.of("a", "b"));
-        //when
+
         Players players = Players.generate(names);
-        //then
+
         assertThat(players.findPositionBy(new Name("a"))).isEqualTo(0);
     }
 
@@ -95,13 +87,12 @@ class PlayersTest {
     @CsvSource(value = {"a:2", "b:0", "c:1"}, delimiter = ':')
     @DisplayName("players 모두의 위치가 이동한다")
     void shouldChangeAllPositionsWhenMoveAll(String playerName, int expectPosition) {
-        //given
         Players players = Players.generate(List.of("a", "b", "c"));
         List<Boolean> determinedBars = new ArrayList<>(List.of(true, false, true));
         Ladder ladder = Ladder.generate(2, 2, new DeterminedBooleanGenerator(determinedBars));
-        //when
+
         players.moveAll(ladder);
-        //then
+
         assertThat(players.findPositionBy(new Name(playerName))).isEqualTo(expectPosition);
     }
 }

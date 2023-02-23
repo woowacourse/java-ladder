@@ -12,11 +12,10 @@ class PositionTest {
     @ParameterizedTest
     @CsvSource(value = {"LEFT:1", "RIGHT:3", "NONE:2"}, delimiter = ':')
     void shouldPositionIsChangedWhenMoveByDirection(Direction direction, int expectPosition) {
-        //given
         Position position = new Position(2);
-        //when
+
         position.move(direction);
-        //then
+
         assertThat(position).isEqualTo(new Position(expectPosition));
     }
 }

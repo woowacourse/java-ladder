@@ -12,10 +12,8 @@ class BarTest {
     @CsvSource(value = {"true:MOVABLE", "false:IMMOVABLE"}, delimiter = ':')
     @DisplayName("입력에 알맞은 bar를 생성한다")
     void shouldCreateBarWhenInput(boolean input, Bar expectedBar) {
-        // given
-        // when
         Bar bar = Bar.of(input);
-        // then
+
         assertThat(bar).isEqualTo(expectedBar);
     }
 
@@ -23,10 +21,8 @@ class BarTest {
     @CsvSource(value = {"true:true", "false:false"}, delimiter = ':')
     @DisplayName("건널 수 있는 bar인지 확인한다.")
     public void shouldReturnWhetherCanMoveWhenRequest(boolean input, boolean expected) {
-        //given
-        //when
         Bar bar = Bar.of(input);
-        //then
+
         assertThat(bar.isMovable()).isEqualTo(expected);
     }
 }

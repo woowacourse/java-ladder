@@ -22,8 +22,8 @@ class LadderGameTest {
         List<Boolean> determinedBars = new ArrayList<>(List.of(true, false, true));
         Ladder ladder = Ladder.generate(2, 2, new DeterminedBooleanGenerator(determinedBars));
         Items items = Items.generate(List.of("1000", "2000", "0"), players.getSize());
-
         LadderGame ladderGame = new LadderGame(players, ladder, items);
+
         GameResult gameResult = ladderGame.play();
 
         assertThat(gameResult.findResult("a")).containsEntry("a", "0");
