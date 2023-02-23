@@ -9,7 +9,6 @@ import java.util.List;
 public class LadderGameController {
 
     private static final String TARGET_PLAYER_BLANK_ERROR = "[ERROR] 빈 문자열 입니다.";
-    private static final String TARGET_PLAYER_EXIST_ERROR = "[ERROR] 없는 참가자입니다.";
     private static final String ALL_PLAYER = "all";
 
     private final InputView inputView;
@@ -31,24 +30,16 @@ public class LadderGameController {
         outputView.printLadder(ladder.getLines());
         outputView.printResults(results.getResults());
 
-        processResult(players, results, ladder);
-    }
-
-    private void processResult(Players players, Results results, Ladder ladder) {
         String targetPlayer = inputView.readTargetPlayer();
-
         validateTargetPlayerBlank(targetPlayer);
+
         if (!targetPlayer.equals(ALL_PLAYER)) {
-            Player player = getPlayer(players, targetPlayer);
+            players.validateTargetPlayer(targetPlayer);
+            Player player = players.getPlayerByName(targetPlayer);
             outputView.printPlayResult(player.calculateResult(ladder, results));
             return;
         }
         outputView.printAllPlayerResult(players.getPlayersName(), getPlayersResult(players, results, ladder));
-    }
-
-    private Player getPlayer(Players players, String targetPlayer) {
-        validateTargetPlayerExist(players.getPlayersName(), targetPlayer);
-        return players.getPlayerByName(targetPlayer);
     }
 
     private List<String> getPlayersResult(Players players, Results results, Ladder ladder) {
@@ -58,12 +49,6 @@ public class LadderGameController {
             playersResult.add(player.calculateResult(ladder, results));
         }
         return playersResult;
-    }
-
-    private void validateTargetPlayerExist(List<String> names, String targetPlayer) {
-        if (!names.contains(targetPlayer)) {
-            throw new IllegalArgumentException(TARGET_PLAYER_EXIST_ERROR);
-        }
     }
 
     private void validateTargetPlayerBlank(String targetPlayer) {

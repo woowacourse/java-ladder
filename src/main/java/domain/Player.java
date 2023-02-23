@@ -45,6 +45,10 @@ public class Player {
         return currentPosition != 0 && points.get(currentPosition - 1);
     }
 
+    public boolean isTargetPlayer(String name) {
+        return getName().equals(name);
+    }
+
     public String getName() {
         return name.getName();
     }

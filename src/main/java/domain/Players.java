@@ -7,6 +7,7 @@ public class Players {
 
     static final String DUPLICATE_NAME_ERROR = "[ERROR] 중복된 이름입니다.";
     static final String SIZE_ERROR = "[ERROR] 2명 이상 입력해야 합니다.";
+    static final String TARGET_PLAYER_EXIST_ERROR = "[ERROR] 없는 참가자입니다.";
 
     private static final int MIN_SIZE = 2;
 
@@ -56,11 +57,22 @@ public class Players {
                 .orElseThrow();
     }
 
-    public List<Player> getPlayers() {
-        return players;
-    }
-
     public int getSize() {
         return players.size();
+    }
+
+    public void validateTargetPlayer(String targetPlayer) {
+        if (!hasTargetPlayer(targetPlayer)) {
+            throw new IllegalArgumentException(TARGET_PLAYER_EXIST_ERROR);
+        }
+    }
+
+    private boolean hasTargetPlayer(String targetPlayer) {
+        return players.stream()
+                .anyMatch(player -> player.isTargetPlayer(targetPlayer));
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
 }
