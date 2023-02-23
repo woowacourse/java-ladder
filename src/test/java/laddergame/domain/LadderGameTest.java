@@ -20,29 +20,28 @@ class LadderGameTest {
         //given
         names = List.of("준팍", "에단", "또링", "코일");
         players = Players.from(names);
-        final Ladder ladder = new Ladder(new Height(1), names.size());
-        final List<String> prizes = List.of("꽝", "당첨", "꽝", "다음 기회에");
-        final WinningPrizes winningPrizes = WinningPrizes.of(prizes, names.size());
-
-        ladderGame = new LadderGame(players, ladder, winningPrizes);
+        ladderGame = new LadderGame();
     }
 
     @Test
-    @DisplayName("Layer와 Players를 입력하면 해당 층의 결과를 반환한다.")
-    void givenLayerAndPlayers_thenReturnLayerResult() {
+    @DisplayName("Layer와 Players를 입력하면 게임의 결과를 반환한다.")
+    void givenLayerAndPlayers_thenReturnGameResult() {
 
         //when
-        final Layer layer = Layer.of(names.size(), new TestLinkGenerator(List.of(true, false, true)));
-        final List<Player> testPlayers = players.getPlayers();
+        final List<Layer> layers = List.of(
+                Layer.of(names.size(), new TestLinkGenerator(List.of(true, false, true))),
+                Layer.of(names.size(), new TestLinkGenerator(List.of(false, true, false))),
+                Layer.of(names.size(), new TestLinkGenerator(List.of(true, false, true))));
 
-        ladderGame.evaluateLayerResult(testPlayers, layer);
-        final List<Player> playerResult = Players.from(List.of("에단", "준팍", "코일", "또링")).getPlayers();
+
+        final List<Player> gameResult = ladderGame.playGame(players.getPlayers(), layers);
+
+        final List<Player> playerResult = Players.from(List.of("코일", "에단", "또링", "준팍")).getPlayers();
 
 
         //then
-        assertThat(testPlayers)
+        assertThat(gameResult)
                 .isEqualTo(playerResult);
     }
-
 
 }

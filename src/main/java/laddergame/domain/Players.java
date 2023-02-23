@@ -1,7 +1,6 @@
 package laddergame.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -77,6 +76,6 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        return Collections.unmodifiableList(players);
+        return new ArrayList<>(players);
     }
 }
