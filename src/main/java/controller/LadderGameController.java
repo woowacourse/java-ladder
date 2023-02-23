@@ -1,6 +1,5 @@
 package controller;
 
-import builder.LadderGameBuilder;
 import domain.GameResult;
 import domain.LadderGame;
 import domain.ladder.Ladder;
@@ -42,11 +41,10 @@ public class LadderGameController {
         LadderSize ladderSize = getLadderSize(ladderHeight, lineWeight);
 
         Ladder ladder = generateLadder(ladderSize, new RandomBooleanGenerator());
-        LadderGameBuilder ladderGameBuilder = new LadderGameBuilder();
-        return ladderGameBuilder
+        return LadderGame.builder()
             .addParticipants(participants)
             .addLadder(ladder)
-            .addLadderResults(ladderPrizes)
+            .addLadderPrizes(ladderPrizes)
             .build();
     }
 

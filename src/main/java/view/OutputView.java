@@ -19,6 +19,7 @@ public class OutputView {
     private static final int EMPTY = 0;
     public static final String ALL = "all";
     public static final String EXIT = "exit";
+    public static final String DELIMITER = " : ";
 
     private final StringBuilder gameMap = new StringBuilder();
 
@@ -89,6 +90,6 @@ public class OutputView {
     }
 
     public void printAllGameResult(GameResult gameResult) {
-        gameResult.getResults().forEach((key, value) -> System.out.println(key.getName() + " : " + value.getName()));
+        gameResult.getResults().forEach((key, value) -> System.out.println(key.getName() + DELIMITER + value.getName()));
     }
 }
