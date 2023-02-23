@@ -29,7 +29,7 @@ public class PlayerTest {
     }
 
     @Test
-    @DisplayName("결과가 잘 나오는지 확인")
+    @DisplayName("플레이어에 따른 원하는 결과값이 나오는지 확인")
     void calculateResult() {
         int startIndex = 0;
         String result = "2";
