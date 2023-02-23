@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class SequenceSwapperTest {
     @Test
@@ -17,9 +18,18 @@ public class SequenceSwapperTest {
 
     @Test
     @DisplayName("index를 입력하면 양 옆의 순서를 바꿔준다.")
-    void swapSequenceTest(){
+    void swapSequenceTest() {
         SequenceSwapper swapper = SequenceSwapper.of(List.of(0, 1, 2, 3));
         swapper.swap(0);
-        assertThat(swapper.getSequence()).containsExactly(1,0,2,3);
+        assertThat(swapper.getSequence()).containsExactly(1, 0, 2, 3);
+    }
+
+    @Test
+    @DisplayName("마지막 index를 넣으면 예외가 발생한다.")
+    void makeInvalidSwapTest() {
+        SequenceSwapper swapper = SequenceSwapper.of(List.of(0, 1, 2, 3));
+        assertThatThrownBy(() -> {
+            swapper.swap(3);
+        }).isInstanceOf(IndexOutOfBoundsException.class);
     }
 }
