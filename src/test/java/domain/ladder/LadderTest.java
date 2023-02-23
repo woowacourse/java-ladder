@@ -1,15 +1,9 @@
-package domain;
+package domain.ladder;
 
 
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.ladder.Ladder;
-import domain.ladder.LadderGenerator;
-import domain.ladder.LadderHeight;
-import domain.ladder.LadderResult;
-import domain.ladder.LadderResults;
-import domain.ladder.LineGenerator;
 import domain.player.Name;
 import domain.player.Player;
 import domain.player.Position;

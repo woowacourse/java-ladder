@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

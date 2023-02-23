@@ -1,12 +1,9 @@
-package domain;
+package domain.player;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.ladder.Line;
 import domain.ladder.LineGenerator;
-import domain.player.Name;
-import domain.player.Player;
-import domain.player.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,8 +1,7 @@
-package domain;
+package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.ladder.LinePoint;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

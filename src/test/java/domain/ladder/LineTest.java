@@ -21,6 +21,4 @@ class LineTest {
         // then
         assertThat(lastPosition).isEqualTo(linePoints.size() + 1);
     }
-
-
 }
