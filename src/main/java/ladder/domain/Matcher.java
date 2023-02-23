@@ -5,24 +5,24 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class MatchingCalculator {
+public class Matcher {
     private final Ladder ladder;
     private final Names names;
     private final Results results;
-    private Matchings matchings;
+    private MatchResults matchResults;
 
-    public MatchingCalculator(Ladder ladder, Names names, Results results) {
+    public Matcher(Ladder ladder, Names names, Results results) {
         this.ladder = ladder;
         this.names = names;
         this.results = results;
     }
 
-    public Matchings calculate() {
+    public MatchResults match() {
         List<Name> participants = new ArrayList<>(names.getNames());
 
         climbDown(participants);
         match(participants);
-        return matchings;
+        return matchResults;
     }
 
     private void climbDown(List<Name> participants) {
@@ -47,29 +47,29 @@ public class MatchingCalculator {
     }
 
     private void match(List<Name> participants) {
-        HashMap<Name, Result> matchingResult = matchResult(participants);
+        HashMap<Name, Result> matchResult = matchResult(participants);
 
-        LinkedHashMap<Name, Result> orderedMatchingResult = sortByInputOrder(matchingResult);
+        LinkedHashMap<Name, Result> orderedMatchResult = sortByInputOrder(matchResult);
 
-        matchings = new Matchings(orderedMatchingResult);
+        matchResults = new MatchResults(orderedMatchResult);
     }
 
     private HashMap<Name, Result> matchResult(List<Name> participants) {
-        HashMap<Name, Result> matchingResult = new HashMap<>();
+        HashMap<Name, Result> matchResult = new HashMap<>();
 
         for (int i = 0; i < participants.size(); i++) {
-            matchingResult.put(participants.get(i), results.getResults().get(i));
+            matchResult.put(participants.get(i), results.getResults().get(i));
         }
-        return matchingResult;
+        return matchResult;
     }
 
-    private LinkedHashMap<Name, Result> sortByInputOrder(HashMap<Name, Result> matchingResult) {
-        LinkedHashMap<Name, Result> orderedMatchingResult = new LinkedHashMap<>();
+    private LinkedHashMap<Name, Result> sortByInputOrder(HashMap<Name, Result> matchResult) {
+        LinkedHashMap<Name, Result> orderedMatchResult = new LinkedHashMap<>();
 
         for (Name name : names.getNames()) {
-            orderedMatchingResult.put(name, matchingResult.get(name));
+            orderedMatchResult.put(name, matchResult.get(name));
         }
-        return orderedMatchingResult;
+        return orderedMatchResult;
     }
 
 }

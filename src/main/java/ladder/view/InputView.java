@@ -21,6 +21,16 @@ public class InputView {
         return names;
     }
 
+    private void validateNoDuplication(List<String> names) {
+        if (hasDuplicateName(names)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATION.getMessage());
+        }
+    }
+
+    private boolean hasDuplicateName(List<String> names) {
+        return names.size() != names.stream().distinct().count();
+    }
+
     public List<String> requestResults() {
         printEmptyLine();
         printMessage(Message.ASK_RESULTS);
@@ -45,16 +55,6 @@ public class InputView {
         validateIsNumeric(input);
 
         return Integer.parseInt(input);
-    }
-
-    private void validateNoDuplication(List<String> names) {
-        if (hasDuplicateName(names)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATION.getMessage());
-        }
-    }
-
-    private boolean hasDuplicateName(List<String> names) {
-        return names.size() != names.stream().distinct().count();
     }
 
     private void validateIsNumeric(String input) {

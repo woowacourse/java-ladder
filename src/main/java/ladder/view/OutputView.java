@@ -15,39 +15,35 @@ public class OutputView {
     private static final String NAME_FORMAT = "%5s";
     private static final String RESULT_FORMAT = "%5s";
 
-    public void printLadder(Names names, Results results, Ladder ladder) {
+    public void printLadderShape(Names names, Results results, Ladder ladder) {
+        printInfo();
         printNames(names);
-        printLadder(ladder);
+        printLadderShape(ladder);
         printResults(results);
     }
 
-    private void printNames(Names names) {
-        String nameLine = names.getNames()
-            .stream()
-            .map(name -> String.format(NAME_FORMAT, name.getName()) + BLANK)
-            .collect(Collectors.joining());
+    private void printInfo() {
         printEmptyLine();
         System.out.println("사다리 결과");
         printEmptyLine();
-        System.out.println(nameLine);
     }
 
-    private void printLadder(Ladder ladder) {
+    private void printNames(Names names) {
+        String nameRow = names.getNames()
+            .stream()
+            .map(name -> String.format(NAME_FORMAT, name.getName()) + BLANK)
+            .collect(Collectors.joining());
+
+        System.out.println(nameRow);
+    }
+
+    private void printLadderShape(Ladder ladder) {
         for (Line line : ladder) {
             String result = BLANK.repeat(WIDTH - 1);
             result += shapeOf(line);
             result += LEG;
             System.out.println(result);
         }
-    }
-
-    private void printResults(Results results) {
-        String resultLine = results.getResults()
-            .stream()
-            .map(result -> String.format(RESULT_FORMAT, result.getResult()) + BLANK)
-            .collect(Collectors.joining());
-        System.out.println(resultLine);
-        printEmptyLine();
     }
 
     private String shapeOf(Line line) {
@@ -58,6 +54,15 @@ public class OutputView {
             .collect(Collectors.joining());
     }
 
+    private void printResults(Results results) {
+        String resultsRow = results.getResults()
+            .stream()
+            .map(result -> String.format(RESULT_FORMAT, result.getResult()) + BLANK)
+            .collect(Collectors.joining());
+        System.out.println(resultsRow);
+        printEmptyLine();
+    }
+
     private void printEmptyLine() {
         System.out.println();
     }
@@ -66,10 +71,10 @@ public class OutputView {
         System.out.println(e.getMessage());
     }
 
-    public void printMatching(String matchingResult) {
+    public void printMatchResult(String matchResult) {
         printEmptyLine();
         System.out.println("실행 결과");
-        System.out.println(matchingResult);
+        System.out.println(matchResult);
         printEmptyLine();
     }
 }

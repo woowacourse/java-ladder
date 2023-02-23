@@ -29,7 +29,7 @@ public class LadderController {
         LadderHeight ladderHeight = createLadderHeight();
 
         Ladder ladder = createLadder(names, ladderHeight);
-        outputView.printLadder(names, results, ladder);
+        outputView.printLadderShape(names, results, ladder);
 
         MatchResults matchResults = matchNamesWithResults(names, results, ladder);
         searchResult(matchResults);
@@ -82,7 +82,7 @@ public class LadderController {
 
     private MatchResults matchNamesWithResults(Names names, Results results, Ladder ladder) {
         Matcher matcher = new Matcher(ladder, names, results);
-        return matcher.calculate();
+        return matcher.match();
     }
 
     private void searchResult(MatchResults matchResults) {
@@ -97,7 +97,7 @@ public class LadderController {
     private void printResult(MatchResults matchResults) {
         while (!matchResults.isAllChecked()) {
             String nameWantToKnowResult = inputView.requestNameWantToKnowResult();
-            outputView.printResult(matchResults.findMatchResult(nameWantToKnowResult));
+            outputView.printMatchResult(matchResults.findMatchResult(nameWantToKnowResult));
         }
     }
 }
