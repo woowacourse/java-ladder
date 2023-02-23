@@ -26,4 +26,12 @@ public class PlayerTest {
         assertThat(player.isSameName(name)).isTrue();
         assertThat(player.isSameName(name + "1")).isFalse();
     }
+
+    @Test
+    @DisplayName("이름 문자열을 반환한다")
+    void getNameTest() {
+        Player player = new Player(new Name("seong"), new StartIndex(0));
+
+        assertThat(player.getName()).isEqualTo("seong");
+    }
 }

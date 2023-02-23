@@ -45,4 +45,12 @@ class RewardTest {
 
         assertThat(reward.isSameRewardIndex(rewardIndex)).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("보상을 반환한다.")
+    void getRawRewardTest() {
+        Reward reward = new Reward("꽝", 0);
+
+        assertThat(reward.getRawReword()).isEqualTo("꽝");
+    }
 }

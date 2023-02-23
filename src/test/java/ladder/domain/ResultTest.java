@@ -27,4 +27,12 @@ public class ResultTest {
 
         assertThat(result.isSameReward(rewardIndex)).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("보상 문자열을 반환한다.")
+    void getRewardTest() {
+        Result result = new Result(new Reward("꽝", 0));
+
+        assertThat(result.getReward()).isEqualTo("꽝");
+    }
 }
