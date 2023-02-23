@@ -10,7 +10,7 @@ public class Goods {
     private final int playerCounts;
 
     public Goods(List<Name> items, int playerCounts) {
-        validate(items,playerCounts);
+        validate(items, playerCounts);
         this.items = items;
         this.playerCounts = playerCounts;
     }

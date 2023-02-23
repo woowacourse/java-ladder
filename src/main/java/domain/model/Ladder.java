@@ -32,5 +32,4 @@ public class Ladder {
     public void addLayer(Layer layer) {
         layers.add(layer);
     }
-
 }

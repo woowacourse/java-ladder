@@ -44,9 +44,11 @@ public class OutputView {
         }
         return UNCONNECTED_LINE;
     }
-    public void printResultMention(){
+
+    public void printResultMention() {
         System.out.println(RESULT_MASSAGE);
     }
+
     public void printNames(final List<Name> names) {
         StringBuilder stringBuilder = new StringBuilder();
         names.forEach(name -> {
