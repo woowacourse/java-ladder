@@ -2,6 +2,8 @@ package laddergame.view;
 
 import laddergame.domain.Height;
 import laddergame.domain.Players;
+import laddergame.domain.Rewards;
+import laddergame.domain.Target;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +16,7 @@ public class InputView {
 
     public Players readUserNames() {
         String inputUserNames = scanner.nextLine();
-        List<String> inputPlayers = splitInputUserNames(inputUserNames);
+        List<String> inputPlayers = splitByDelimiter(inputUserNames);
         Players players = new Players(inputPlayers);
         return players;
     }
@@ -25,7 +27,20 @@ public class InputView {
         return height;
     }
 
-    private List<String> splitInputUserNames(String inputUserNames) {
-        return Arrays.asList(inputUserNames.split(DELIMITER));
+    public Rewards readRewards() {
+        String inputReward = scanner.nextLine();
+        List<String> inputRewards = splitByDelimiter(inputReward);
+        Rewards rewards = new Rewards(inputRewards);
+        return rewards;
+    }
+
+    public Target readTarget() {
+        String inputTarget = scanner.nextLine();
+        Target target = new Target(inputTarget);
+        return target;
+    }
+
+    private List<String> splitByDelimiter(String str) {
+        return Arrays.asList(str.split(DELIMITER));
     }
 }

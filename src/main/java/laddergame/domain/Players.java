@@ -1,6 +1,8 @@
 package laddergame.domain;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Players {
     public static final String PLAYER_COUNT_ERROR_MESSAGE = "플레이어 수는 2~12명만 입력 가능합니다.";
@@ -12,25 +14,33 @@ public class Players {
     private static final String PLAYER_NAME_LENGTH_ERROR_MESSAGE = "플레이어 이름음 1~5글자만 가능합니다.";
     private static final String PLAYER_NAME_DUPLICATE_ERROR_MESSAGE = "플레이어의 이름은 중복이 불가능합니다.";
 
-    private final List<String> players;
+    private final List<Player> players = new ArrayList<>();
 
-    public Players(List<String> players) {
-        checkPlayerCount(players);
-        checkPlayerNameLength(players);
-        checkDuplicatePlayers(players);
-        this.players = players;
+    public Players(List<String> playerNames) {
+        checkPlayerCount(playerNames);
+        checkPlayerNameLength(playerNames);
+        checkDuplicatePlayers(playerNames);
+        int position = 0;
+        for (String playerName : playerNames) {
+            players.add(new Player(playerName, position));
+            position++;
+        }
     }
 
     public int getMaxPlayerNameLength() {
-        return players.stream().mapToInt(String::length).max().orElse(0);
+        return players.stream().mapToInt(e -> e.getName().length()).max().orElse(0);
     }
 
     public int getPlayersCount() {
         return players.size();
     }
 
-    public List<String> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
+    }
+
+    public Player getTargetPlayer(String name) {
+        return players.stream().filter(player -> player.isTarget(name)).findAny().orElseThrow();
     }
 
     private void checkPlayerCount(List<String> players) {

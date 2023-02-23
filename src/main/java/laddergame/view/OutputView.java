@@ -1,6 +1,8 @@
 package laddergame.view;
 
 import laddergame.domain.Line;
+import laddergame.domain.Player;
+import laddergame.domain.Players;
 
 import java.util.List;
 
@@ -21,6 +23,20 @@ public class OutputView {
 
     public void printErrormessage(String errorMessage) {
         System.out.println(ERROR_PREFIX + errorMessage);
+    }
+
+    public void printPlayerResult(Player player) {
+        System.out.println("실행 결과");
+        System.out.println(player.getReward());
+    }
+
+    public void printAllResult(Players players) {
+        System.out.println("실행 결과");
+        players.getPlayers().stream()
+                .forEach(player -> {
+                    System.out.printf("%s : %s", player.getName(), player.getReward());
+                    System.lineSeparator();
+                });
     }
 
     private String changeFormat(Line line, int maxPlayerNameLength) {

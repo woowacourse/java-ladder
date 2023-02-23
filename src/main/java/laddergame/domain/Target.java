@@ -10,6 +10,14 @@ public class Target {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public boolean isAll(){
+        return name.equals("all");
+    }
+
     private void checkNullOrBlank(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("이름은 공백일 수 없습니다.");
@@ -19,6 +27,7 @@ public class Target {
     public void checkNotPlayerNameOrNotAll(List<String> playerNames) {
         if (!playerNames.contains(name) && !name.equals("all")) {
             throw new IllegalArgumentException("player 이름이나 all 을 입력해주세요.");
+
         }
     }
 }

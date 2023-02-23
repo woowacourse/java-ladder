@@ -31,11 +31,14 @@ public class Player {
         }
         if (isRightStep){
             position++;
-            return ;
         }
     }
 
     public void matchReward(List<String> rewards){
         this.reward = rewards.get(position);
+    }
+
+    public boolean isTarget(String name){
+        return this.name == name;
     }
 }
