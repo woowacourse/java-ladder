@@ -11,7 +11,6 @@ import java.util.List;
 public class OutputView {
 
     private static final OutputView instance = new OutputView();
-
     public static OutputView getInstance() {
         return instance;
     }
@@ -26,11 +25,11 @@ public class OutputView {
     public void printResult(Names names, Lines lines, Missions missions) {
         System.out.println(Message.OUTPUT_RESULT.message);
         names.getNames()
-                .forEach(name -> System.out.printf("%-5s", name.getName()));
+                .forEach(name -> System.out.printf(Message.LADDER_FORMAT.message, name.getName()));
         System.out.println();
         printLines(lines);
         missions.getMissions()
-                .forEach(mission -> System.out.printf("%-5s", mission.getMission()));
+                .forEach(mission -> System.out.printf(Message.LADDER_FORMAT.message, mission.getMission()));
         System.out.println();
     }
 
@@ -70,7 +69,8 @@ public class OutputView {
         OUTPUT_RESULT_ALL("%s : %s" + System.lineSeparator()),
         COLUMN_LADDER("  |"),
         ROW_LADDER("-----|"),
-        EMPTY_ROW_LADDER("     |");
+        EMPTY_ROW_LADDER("     |"),
+        LADDER_FORMAT("%-5s");
 
         private final String message;
 
