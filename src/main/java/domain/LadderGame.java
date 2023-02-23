@@ -24,13 +24,16 @@ public class LadderGame {
 
     public void run() {
         this.ladder.readLines(swapper);
-        setGameResult(swapper.getSequence());
+        setGameResult();
     }
 
 
-    private void setGameResult(List<Integer> resultSequence) {
-        for (int i : resultSequence) {
-            gameResult.put(participants.get(i), results.get(i));
+    private void setGameResult() {
+        List<Integer> sequence = this.swapper.getSequence();
+        int sequenceSize = sequence.size();
+        for (int i = 0; i < sequenceSize; i++) {
+            int changedRank = sequence.get(i);
+            gameResult.put(participants.get(changedRank), results.get(i));
         }
     }
 
@@ -48,5 +51,9 @@ public class LadderGame {
 
     public Ladder getLadder() {
         return ladder;
+    }
+
+    public Results getResults() {
+        return results;
     }
 }

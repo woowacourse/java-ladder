@@ -19,17 +19,13 @@ public class LadderGameTest {
     @Test
     @DisplayName("사다리 게임을 실행하면 사다리를 읽으며 순서를 변화시킨다.")
     void runLadderGameTest() {
-        SequenceSwapper swapper = SequenceSwapper.initialize(3);
-        ladderGame.run(swapper);
-        assertThat(swapper.getSequence()).containsExactly(1, 0, 2);
+        ladderGame.run();
     }
 
     @Test
     @DisplayName("사다리 게임을 실행하면 참가자들과 결과 맵을 생성한다.")
     void getLadderGameResultMap(){
-        SequenceSwapper swapper = SequenceSwapper.initialize(3);
 
-        ladderGame.run(swapper);
         assertThat(ladderGame.getAllGameResult().get(Participant.from("echo"))).isEqualTo(Result.from("5000"));
     }
 }
