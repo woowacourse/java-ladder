@@ -29,7 +29,7 @@ public class Result {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Result result = (Result) o;
+        final Result result = (Result) o;
         return Objects.equals(value, result.value);
     }
 

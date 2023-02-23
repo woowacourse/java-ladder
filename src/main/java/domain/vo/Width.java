@@ -22,14 +22,14 @@ public class Width {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Width width = (Width) o;
+        final Width width = (Width) o;
         return getValue() == width.getValue();
     }
 

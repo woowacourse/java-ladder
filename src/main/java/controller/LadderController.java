@@ -24,27 +24,27 @@ public class LadderController {
     private final OutputView outputView;
     private final LadderGameSupport ladderGameSupport;
 
-    public LadderController(InputView inputView, OutputView outputView,
-        LadderGameSupport ladderGameSupport) {
+    public LadderController(final InputView inputView, final OutputView outputView,
+        final LadderGameSupport ladderGameSupport) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.ladderGameSupport = ladderGameSupport;
     }
 
     public void play() {
-        List<Name> names = getNames();
-        List<Result> results = getResults(names.size());
-        Height height = getHeight();
-        Ladder ladder = ladderGameSupport.makeLadder(height,
-            new Width(names.size() - NAMES_WIDTH_DIFFERENCE));
+        final List<Name> names = getNames();
+        final List<Result> results = getResults(names.size());
+        final Height height = getHeight();
+        final Width width = new Width(names.size() - NAMES_WIDTH_DIFFERENCE);
+        final Ladder ladder = ladderGameSupport.makeLadder(height, width);
         outputView.printLadder(names, ladder, results);
-        Map<Name, Result> resultBoard = ladderGameSupport.makeResultBoard(ladder, names, results);
+        final Map<Name, Result> resultBoard = ladderGameSupport.makeResultBoard(ladder, names, results);
         ExecuteContext.workWithExecuteStrategy(() -> printResult(resultBoard));
     }
 
-    private Boolean printResult(Map<Name, Result> resultBoard) {
-        String input = inputView.inputResultTarget();
-        Name name = new Name(input);
+    private Boolean printResult(final Map<Name, Result> resultBoard) {
+        final String input = inputView.inputResultTarget();
+        final Name name = new Name(input);
         if (name.getValue().equals(ALL)) {
             outputView.printAllResult(resultBoard);
             return true;
@@ -54,7 +54,7 @@ public class LadderController {
         return null;
     }
 
-    private void printOneResult(Map<Name, Result> resultBoard, Name name) {
+    private void printOneResult(final Map<Name, Result> resultBoard, final Name name) {
         if (resultBoard.containsKey(name)) {
             outputView.printResult(resultBoard.get(name));
             return;
@@ -64,7 +64,7 @@ public class LadderController {
 
     private List<Name> getNames() {
         return ExecuteContext.workWithExecuteStrategy(() -> {
-            List<Name> names = inputView.inputNames()
+            final List<Name> names = inputView.inputNames()
                 .stream()
                 .map(Name::new)
                 .collect(Collectors.toList());
@@ -80,7 +80,7 @@ public class LadderController {
 
     private List<Result> getResults(final int namesSize) {
         return ExecuteContext.workWithExecuteStrategy(() -> {
-                List<Result> results = inputView.inputResults()
+                final List<Result> results = inputView.inputResults()
                     .stream()
                     .map(Result::new)
                     .collect(Collectors.toList());
@@ -90,13 +90,13 @@ public class LadderController {
         );
     }
 
-    private void checkNamesAndResultsSize(int namesSize, List<Result> results) {
+    private void checkNamesAndResultsSize(final int namesSize, final List<Result> results) {
         if (results.size() != namesSize) {
             throw new IllegalArgumentException(NAME_RESULT_COUNT_NOT_MATCH_MESSAGE);
         }
     }
 
-    private void checkNameDuplicate(List<Name> names) {
+    private void checkNameDuplicate(final List<Name> names) {
         if (names.stream().distinct().count() != names.size()) {
             throw new IllegalArgumentException(DUPLICATE_NAME_ERROR_MESSAGE);
         }

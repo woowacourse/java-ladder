@@ -38,7 +38,7 @@ public class Layer {
         judgeLeft(location);
     }
 
-    private boolean moveInEnds(Location location) {
+    private boolean moveInEnds(final Location location) {
         if (location.getHorizon() == 0) {
             judgeRight(location);
             return true;
@@ -50,7 +50,7 @@ public class Layer {
         return false;
     }
 
-    private boolean judgeRight(Location location) {
+    private boolean judgeRight(final Location location) {
         if (findRightLines(location).equals(Line.CONNECTED)) {
             location.goRight();
             return true;
@@ -58,7 +58,7 @@ public class Layer {
         return false;
     }
 
-    private void judgeLeft(Location location) {
+    private void judgeLeft(final Location location) {
         if (findLeftLines(location).equals(Line.CONNECTED)) {
             location.goLeft();
         }
@@ -72,7 +72,7 @@ public class Layer {
         return lines.get(location.getHorizon() - LOCATION_DIFFERENCE);
     }
 
-    private void checkLocation(Location location) {
+    private void checkLocation(final Location location) {
         if (location.getHorizon() > lines.size()) {
             throw new IllegalArgumentException(LOCATION_NOT_EXIST);
         }

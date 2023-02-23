@@ -26,7 +26,7 @@ public class InputView {
 
     public int inputLadderHeight() {
         System.out.println(INPUT_LADDER_HEIGHT_MESSAGE);
-        String input = scanner.nextLine();
+        final String input = scanner.nextLine();
         validator.validate(new InputValidationRequest(
             List.of(ValidateType.EMPTY_VALUE, ValidateType.INTEGER_VALUE), input));
         return Integer.parseInt(input);
@@ -38,14 +38,14 @@ public class InputView {
 
     public String inputResultTarget() {
         System.out.println(INPUT_RESULT_TARGET_MESSAGE);
-        String input = scanner.nextLine();
+        final String input = scanner.nextLine();
         validator.validate(new InputValidationRequest(List.of(ValidateType.EMPTY_VALUE), input));
         return input;
     }
 
-    private List<String> getInputs(String inputResultMessage, List<ValidateType> validateTypes) {
+    private List<String> getInputs(final String inputResultMessage, final List<ValidateType> validateTypes) {
         System.out.println(inputResultMessage);
-        String input = scanner.nextLine();
+        final String input = scanner.nextLine();
         validator.validate(new InputValidationRequest(validateTypes, input));
         return List.of(input.replace(" ", "").trim().split(DELIMITER));
     }

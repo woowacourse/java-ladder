@@ -25,17 +25,17 @@ public class LadderGameSupport {
     }
 
     public Ladder makeLadder(final Height height, final Width width) {
-        List<Layer> layers = IntStream.range(0, height.getValue())
+        final List<Layer> layers = IntStream.range(0, height.getValue())
             .mapToObj(index -> new Layer(new ArrayList<>(), passGenerator))
             .collect(Collectors.toList());
-        Ladder ladder = new Ladder(height, width, layers);
+        final Ladder ladder = new Ladder(height, width, layers);
         ladder.makeLineInLayers();
         return ladder;
     }
 
     public Map<Name, Result> makeResultBoard(final Ladder ladder, final List<Name> names,
         final List<Result> results) {
-        Map<Name, Result> resultBoard = new HashMap<>();
+        final Map<Name, Result> resultBoard = new HashMap<>();
         IntStream.range(0, names.size()).forEach(index -> {
             int resultIndex = ladder.ride(new Location(index, INITIAL_VERTICAL));
             Result result = results.get(resultIndex);

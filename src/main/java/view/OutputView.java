@@ -20,7 +20,7 @@ public class OutputView {
     private static final String SPACE = " ";
     public static final String RESULT_DELIMITER = " : ";
 
-    public void printLadder(List<Name> names, Ladder ladder, List<Result> results) {
+    public void printLadder(final List<Name> names, final Ladder ladder, final List<Result> results) {
         System.out.println(RESULT_ANNOUNCEMENT);
         printValues(names.stream().map(Name::getValue).collect(Collectors.toList()));
         printLadder(ladder,
@@ -31,34 +31,34 @@ public class OutputView {
         printValues(results.stream().map(Result::getValue).collect(Collectors.toList()));
     }
 
-    public void printResult(Result result) {
+    public void printResult(final Result result) {
         System.out.println(RESULT_ANNOUNCEMENT);
         System.out.println(result.getValue());
     }
 
-    public void printAllResult(Map<Name, Result> result) {
+    public void printAllResult(final Map<Name, Result> result) {
         System.out.println(RESULT_ANNOUNCEMENT);
         for (Name name : result.keySet()) {
             System.out.println(name.getValue() + RESULT_DELIMITER + result.get(name).getValue());
         }
     }
 
-    private void printLadder(Ladder ladder, int lineLength) {
+    private void printLadder(final Ladder ladder, final int lineLength) {
         ladder.getLayers()
             .forEach(layer -> printLayer(layer, lineLength));
     }
 
-    private void printLayer(Layer layer, int lineLength) {
-        StringBuilder stringBuilder = new StringBuilder();
+    private void printLayer(final Layer layer, final int lineLength) {
+        final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(FRONT_SPACE).append(LINE_DELIMITER);
-        List<Line> lines = layer.getLines();
+        final List<Line> lines = layer.getLines();
         lines.forEach(
             line -> stringBuilder.append(selectLine(line).repeat(lineLength))
                 .append(LINE_DELIMITER));
         System.out.println(stringBuilder);
     }
 
-    private String selectLine(Line line) {
+    private String selectLine(final Line line) {
         if (line.equals(Line.CONNECTED)) {
             return CONNECTED_LINE;
         }
@@ -66,7 +66,7 @@ public class OutputView {
     }
 
     private void printValues(final List<String> values) {
-        StringBuilder stringBuilder = new StringBuilder();
+        final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\n");
         values.forEach(value -> {
             int difference = INTERVAL_UNIT - value.length();
