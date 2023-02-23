@@ -30,13 +30,13 @@ public class Line {
     }
 
     private boolean getPoint(int index) {
-        if (isBeforePointTrue(index)) {
+        if (isAbleTrue(index)) {
             return false;
         }
         return generator.generate();
     }
 
-    private boolean isBeforePointTrue(int index) {
+    private boolean isAbleTrue(int index) {
         return index > 0 && line.get(index - 1);
     }
 }
