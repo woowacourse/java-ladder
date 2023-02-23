@@ -4,6 +4,7 @@ import domain.*;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGameController {
@@ -62,8 +63,25 @@ public class LadderGameController {
     private void printLadder() {
         OutputView.printResultMessage();
         OutputView.printUserNames(users.getUserNames());
-        OutputView.printLadder(ladder.getLadder());
+        OutputView.printLadder(formatPrimitiveLadder());
         OutputView.printResultNames(results.getResultNames());
+    }
+
+    private List<List<Boolean>> formatPrimitiveLadder() {
+        List<List<Boolean>> primitiveLadder = new ArrayList<>();
+        List<Line> lines = ladder.getLadder();
+        for (Line line : lines) {
+            formatPrimitiveLine(primitiveLadder, line);
+        }
+        return primitiveLadder;
+    }
+
+    private void formatPrimitiveLine(final List<List<Boolean>> primitiveLadder, final Line line) {
+        List<Boolean> primitiveLine = new ArrayList<>();
+        for (Link link : line.getLinks()) {
+            primitiveLine.add(link.isLink());
+        }
+        primitiveLadder.add(primitiveLine);
     }
 
     private void calculateLadderGameResult() {
@@ -72,7 +90,7 @@ public class LadderGameController {
     }
 
     private void printResultWhenTargetIsNotAll(String name) {
-        while(!name.equals("all")) {
+        while (!name.equals("all")) {
             printTargetUserResult(name);
             name = InputView.readTargetUserName();
         }

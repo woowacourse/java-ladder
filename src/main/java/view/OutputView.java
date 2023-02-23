@@ -1,8 +1,5 @@
 package view;
 
-import domain.Line;
-import domain.Link;
-
 import java.util.List;
 
 public class OutputView {
@@ -24,8 +21,8 @@ public class OutputView {
         System.out.println(formattedUserNames);
     }
 
-    public static void printLadder(List<Line> lines) {
-        for (Line line : lines) {
+    public static void printLadder(List<List<Boolean>> lines) {
+        for (List<Boolean> line : lines) {
             System.out.println(renderLine(line));
         }
     }
@@ -59,19 +56,19 @@ public class OutputView {
         return builder.toString();
     }
 
-    private static String renderLine(Line line) {
+    private static String renderLine(List<Boolean> line) {
         StringBuilder builder = new StringBuilder();
         builder.append(BLANK_LINE);
         builder.append(LADDER);
-        for (Link connected : line.getLinks()) {
+        for (boolean connected : line) {
             renderLink(builder, connected);
             builder.append(LADDER);
         }
         return builder.toString();
     }
 
-    private static void renderLink(StringBuilder builder, Link connected) {
-        if (connected.isLink()) {
+    private static void renderLink(StringBuilder builder, boolean connected) {
+        if (connected) {
             builder.append(CONNECTED_LINE);
             return;
         }
