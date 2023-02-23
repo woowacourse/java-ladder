@@ -23,4 +23,10 @@ public class InputView {
         InputViewValidator.validateNumeric(rawHeight);
         return Integer.parseInt(rawHeight);
     }
+
+    public static List<String> readResults() {
+        String rawResult = SCANNER.nextLine();
+        InputViewValidator.validateReadResults(rawResult);
+        return List.of(rawResult.split(DELIMITER, -1));
+    }
 }
