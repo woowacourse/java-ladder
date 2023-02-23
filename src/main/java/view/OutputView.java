@@ -23,7 +23,7 @@ public class OutputView {
         System.out.println(PLAYER_NAMES_MESSAGE);
     }
 
-    public void printExecutionResultMessage() {
+    public void printExecutionGoalMessage() {
         System.out.println(System.lineSeparator() + EXECUTION_RESULT_MESSAGE);
     }
 
@@ -77,8 +77,8 @@ public class OutputView {
             stringBuilder.append(LadderPrintMessage.NO_CONNECT_LADDER.getMessage());
     }
 
-    public void printResult(LadderResult result) {
-        result.getLadderResult().forEach(name -> System.out.printf("%-" + MAXIMUM_PLAYER_NAME_SPACE + "s ",
+    public void printGoal(LadderGoal ladderGoal) {
+        ladderGoal.getLadderGoal().forEach(name -> System.out.printf("%-" + MAXIMUM_PLAYER_NAME_SPACE + "s ",
                 name.getResult()));
         System.out.println();
     }

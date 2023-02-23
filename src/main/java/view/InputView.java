@@ -23,7 +23,7 @@ public class InputView {
         }
     }
 
-    public String readLadderResult() {
+    public String readLadderGoal() {
         return scanner.nextLine();
     }
 

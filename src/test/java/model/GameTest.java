@@ -15,7 +15,7 @@ import java.util.List;
 
 public class GameTest {
     private static Names names;
-    private static LadderResult result;
+    private static LadderGoal goal;
     private static LadderHeight height;
     private static List<Boolean> randomLine;
     private static Ladder ladder;
@@ -24,7 +24,7 @@ public class GameTest {
     @BeforeEach
     void beforeEach() {
         names = new Names("pobi,honux,crong");
-        result = new LadderResult("꽝,10000,꽝", names.getNamesSize());
+        goal = new LadderGoal("꽝,10000,꽝", names.getNamesSize());
         height = new LadderHeight(1);
         randomLine = new ArrayList<>(List.of(false, true));
         ladder = new Ladder(names.getNamesSize(), height,
@@ -38,14 +38,14 @@ public class GameTest {
         Ladder ladder = new Ladder(names.getNamesSize(), height, new LineGenerator());
 
         Assertions.assertThatNoException().isThrownBy(
-                () -> new Game(names, result, ladder, gameStrategy)
+                () -> new Game(names, goal, ladder, gameStrategy)
         );
     }
 
     @ParameterizedTest(name = "Game 결과 호출 성공 테스트 name = {0}")
     @CsvSource(value = {"pobi:꽝", "honux:꽝", "crong:10000"}, delimiter = ':')
     void getGamePrizeTest(String input, String prize) {
-        Game game = new Game(names, result, ladder, gameStrategy);
+        Game game = new Game(names, goal, ladder, gameStrategy);
         Names names = new Names("pobi,honux,crong");
         Assertions.assertThat(game.getPrizeIndividualPlayer(new Player(names, input))).isEqualTo(prize);
     }
@@ -53,7 +53,7 @@ public class GameTest {
     @Test
     @DisplayName("Game 결과 전체 호출 성공 테스트")
     void getGamePrizeAllTest() {
-        Game game = new Game(names, result, ladder, gameStrategy);
+        Game game = new Game(names, goal, ladder, gameStrategy);
 
         Assertions.assertThatNoException().isThrownBy(() -> game.getPrizePlayers());
     }

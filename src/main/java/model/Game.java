@@ -9,15 +9,15 @@ import java.util.Map;
 public class Game {
     private Map<Name, Result> prizeResult = new HashMap<>();
 
-    public Game(Names names, LadderResult result, Ladder ladder, GameStrategy gameStrategy) {
+    public Game(Names names, LadderGoal goal, Ladder ladder, GameStrategy gameStrategy) {
         prizeResult = convertPrize(gameStrategy.playGame(ladder),
-                names, result);
+                names, goal);
     }
 
-    private Map<Name, Result> convertPrize(Map<Integer,Integer> prize,Names names, LadderResult result){
+    private Map<Name, Result> convertPrize(Map<Integer,Integer> prize,Names names, LadderGoal goal){
         prize.forEach((key,value) -> {
             prizeResult.put(names.getNames().get(key),
-                    result.getLadderResult().get(value));
+                    goal.getLadderGoal().get(value));
         });
         return prizeResult;
     }

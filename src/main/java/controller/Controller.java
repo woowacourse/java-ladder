@@ -21,11 +21,11 @@ public class Controller {
 
     public void run() {
         Names names = setNames();
-        LadderResult ladderResult = setLadderResult(names.getNamesSize());
+        LadderGoal ladderGoal = setLadderGoal(names.getNamesSize());
         LadderHeight ladderHeight = setLadderHeight();
         Ladder ladder = new Ladder(names.getNamesSize(), ladderHeight, new LineGenerator());
-        Game game = new Game(names, ladderResult, ladder, gameStrategy);
-        printLadder(names, ladder, ladderHeight, ladderResult);
+        Game game = new Game(names, ladderGoal, ladder, gameStrategy);
+        printLadder(names, ladder, ladderHeight, ladderGoal);
         playLadderGame(game, names);
     }
 
@@ -49,22 +49,22 @@ public class Controller {
         }
     }
 
-    private LadderResult setLadderResult(int personCount) {
-        outputView.printExecutionResultMessage();
+    private LadderGoal setLadderGoal(int personCount) {
+        outputView.printExecutionGoalMessage();
         try {
-            return new LadderResult(inputView.readLadderResult(), personCount);
+            return new LadderGoal(inputView.readLadderGoal(), personCount);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return setLadderResult(personCount);
+            return setLadderGoal(personCount);
         }
     }
 
     private void printLadder(Names names, Ladder ladder, LadderHeight ladderHeight,
-                             LadderResult result) {
+                             LadderGoal goal) {
         outputView.printLadderResultMessage();
         outputView.printName(names);
         outputView.printLadder(names, ladder, ladderHeight);
-        outputView.printResult(result);
+        outputView.printGoal(goal);
     }
 
     private void playLadderGame(Game game, Names names) {
