@@ -8,47 +8,47 @@ import util.BridgeGenerator;
 
 public class Line {
     private final List<Bridge> bridges;
+    private final int lineSize;
 
     public Line(int personCount) {
-        this.bridges = IntStream.range(0,personCount - 1)
-                .mapToObj(it->Bridge.EMPTY)
+        this.bridges = IntStream.range(0, personCount - 1)
+                .mapToObj(it -> Bridge.EMPTY)
                 .collect(Collectors.toList());
+        this.lineSize = bridges.size();
     }
 
     public void generate(BridgeGenerator bridgeGenerator) {
-        for (int bridgeIndex = 0; bridgeIndex < bridges.size(); bridgeIndex++) {
+        for (int bridgeIndex = 0; bridgeIndex < lineSize; bridgeIndex++) {
             generateBridge(bridgeGenerator, bridgeIndex);
         }
     }
 
     private void generateBridge(BridgeGenerator bridgeGenerator, int bridgeIndex) {
-        if (!hasBridgeInLeftOrRight(bridgeIndex, bridges.size() - 1)) {
-            bridges.set(bridgeIndex, bridgeGenerator.generate());
+        Bridge bridge = bridgeGenerator.generate();
+        if (!hasBridgeInLeftOrRight(bridgeIndex)) {
+            bridges.set(bridgeIndex, bridge);
         }
     }
 
-    private boolean hasBridgeInLeftOrRight(int bridgeIndex, int maxIndex) {
-        if (bridgeIndex == 0 && maxIndex == 0) {
+    private boolean hasBridgeInLeftOrRight(int bridgeIndex) {
+        if (bridgeIndex == 0 && lineSize == 1) {
             return false;
         }
-
-        if (bridgeIndex == 0) {
-            return hasBridgeInRight(bridgeIndex + 1);
-        }
-
-        if (bridgeIndex == maxIndex) {
-            return hasBridgeInLeft(bridgeIndex - 1);
-        }
-
-        return hasBridgeInLeft(bridgeIndex - 1) || hasBridgeInRight(bridgeIndex + 1);
+        return hasBridgeInLeft(bridgeIndex) || hasBridgeInRight(bridgeIndex);
     }
 
-    private Boolean hasBridgeInLeft(int leftIndex) {
-        return bridges.get(leftIndex).getStatus();
+    public Boolean hasBridgeInLeft(int position) {
+        if (position == 0) {
+            return false;
+        }
+        return bridges.get(position - 1).getStatus();
     }
 
-    private Boolean hasBridgeInRight(int rightIndex) {
-        return bridges.get(rightIndex).getStatus();
+    public Boolean hasBridgeInRight(int position) {
+        if (position == lineSize) {
+            return false;
+        }
+        return bridges.get(position).getStatus();
     }
 
     public List<Bridge> getBridges() {
