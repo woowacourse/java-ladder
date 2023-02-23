@@ -49,7 +49,7 @@ public class InputView {
         return allRewards;
     }
 
-    public String inputFinalChoice() {
+    public String inputChoiceUser() {
         return scanner.nextLine().strip();
     }
 

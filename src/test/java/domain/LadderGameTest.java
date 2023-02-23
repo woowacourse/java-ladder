@@ -14,7 +14,7 @@ class LadderGameTest {
 
     @BeforeEach
     void setUp() {
-        Ladder ladder = new Ladder(new Height(5), 3);
+        Ladder ladder = Ladder.of(new Height(5), 3);
         Users users = new Users(List.of(
             new User(new Name("pobi"), new Position(0)),
             new User(new Name("joy"), new Position(1)),

@@ -46,7 +46,7 @@ public class LadderGameController {
 
     private String getChoiceUser() {
         outputView.printEnterChoiceUserNotice();
-        return inputView.inputFinalChoice();
+        return inputView.inputChoiceUser();
     }
 
     private Rewards getRewards(int userCount) {
@@ -59,11 +59,12 @@ public class LadderGameController {
     private Ladder getLadder(int userCount) {
         Height ladderHeight = getLadderHeight();
 
-        return new Ladder(ladderHeight, userCount);
+        return Ladder.of(ladderHeight, userCount);
     }
 
     private Users getUsers() {
-        List<String> userNames = getUserNames();
+        outputView.printEnterUserNotice();
+        List<String> userNames = inputView.inputUserNames();
 
         return new Users(generateUsers(userNames));
     }
@@ -73,12 +74,6 @@ public class LadderGameController {
         int height = inputView.inputHeight();
 
         return new Height(height);
-    }
-
-    private List<String> getUserNames() {
-        outputView.printEnterUserNotice();
-
-        return inputView.inputUserNames();
     }
 
     private List<User> generateUsers(List<String> userNames) {
