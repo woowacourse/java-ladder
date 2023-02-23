@@ -79,7 +79,7 @@ public class InputView {
 
     private void checkNull(String productOfPlayerName) {
         if (productOfPlayerName == null) {
-            throw new IllegalArgumentException(NULL_MESSAGE)
+            throw new IllegalArgumentException(NULL_MESSAGE);
         }
     }
     private void checkBlank(String productOfPlayerName) {
