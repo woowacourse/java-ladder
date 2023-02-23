@@ -14,11 +14,14 @@ class PrizesTest {
     @Test
     void should_상품을반환한다_when_위치를넣으면() {
         // given
-        prizes.get(new Position(0));
+        Position position = new Position(0);
 
         // when
+        Prize prize = prizes.get(position);
+
 
         //then
+        assertThat(prize.getName()).isEqualTo("0");
     }
 
 }
