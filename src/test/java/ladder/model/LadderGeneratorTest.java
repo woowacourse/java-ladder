@@ -1,11 +1,11 @@
 package ladder.model;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 class LadderGeneratorTest {
@@ -17,8 +17,8 @@ class LadderGeneratorTest {
 
         List<Row> rows = ladderGenerator.generateLadder(3, new Height(2)).getRows();
 
-        Assertions.assertThat(rows.get(0).getPoints()).containsExactly(true, false);
-        Assertions.assertThat(rows.get(1).getPoints()).containsExactly(false, true);
+        assertThat(rows.get(0).getPoints()).containsExactly(true, false);
+        assertThat(rows.get(1).getPoints()).containsExactly(false, true);
     }
 
 

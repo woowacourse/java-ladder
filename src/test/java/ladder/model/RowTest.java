@@ -1,11 +1,11 @@
 package ladder.model;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 class RowTest {
@@ -16,7 +16,7 @@ class RowTest {
         int personCount = 5;
         List<Boolean> test = newArrayList(true, false, false, true);
         Row row = new Row(personCount, new TestLineCreateDecider(test));
-        Assertions.assertThat(row.getPoints()).containsExactly(true, false, false, true);
+        assertThat(row.getPoints()).containsExactly(true, false, false, true);
     }
 
     @Test
@@ -25,7 +25,7 @@ class RowTest {
         int personCount = 5;
         List<Boolean> test = newArrayList(true, true, false, true);
         Row row = new Row(personCount, new TestLineCreateDecider(test));
-        Assertions.assertThat(row.getPoints()).containsExactly(true, false, false, true);
+        assertThat(row.getPoints()).containsExactly(true, false, false, true);
     }
 
     static class TestLineCreateDecider implements LineCreateDecider {
