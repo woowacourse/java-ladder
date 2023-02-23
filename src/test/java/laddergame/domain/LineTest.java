@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.fixture.PositionFixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,6 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -33,6 +35,25 @@ class LineTest {
         assertThatThrownBy(() -> new Line(List.of()));
     }
 
+    @DisplayName("포인트 하나를 위치로 조회한다.")
+    @Test
+    void getPointByPosition() {
+        final Line line = new Line(List.of(true, false, true));
+        final boolean isPointTrue = line.getPointByPosition(PositionFixture.createPosition(0));
+        assertThat(isPointTrue).isTrue();
+    }
+
+    @DisplayName("가로 길이로 포인트 사이즈를 가져온다.")
+    @ParameterizedTest(name = "lines = {0}")
+    @MethodSource("lineParameterDummy")
+    void getWidth(final List<Boolean> inputPoints) {
+        final Line line = new Line(inputPoints);
+        final Width width = line.getWidth();
+        final int pointsSize = inputPoints.size();
+
+        assertThat(width.getValue()).isEqualTo(pointsSize);
+    }
+
     static Stream<Arguments> lineParameterDummy() {
         return Stream.of(
                 Arguments.arguments(List.of(true, false)),
@@ -41,19 +62,6 @@ class LineTest {
                 Arguments.arguments(List.of(true, false, true, false)),
                 Arguments.arguments(List.of(true, false, false, true)),
                 Arguments.arguments(List.of(true, false, false, false))
-        );
-    }
-
-    static Stream<Arguments> lineCrossedParameterDummy() {
-        return Stream.of(
-                Arguments.arguments(List.of(true, true)),
-                Arguments.arguments(List.of(true, true, false)),
-                Arguments.arguments(List.of(false, true, true)),
-                Arguments.arguments(List.of(true, true, true)),
-                Arguments.arguments(List.of(true, false, true, true)),
-                Arguments.arguments(List.of(true, true, false, true)),
-                Arguments.arguments(List.of(true, true, false, false)),
-                Arguments.arguments(List.of(true, true, true, true))
         );
     }
 }

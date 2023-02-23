@@ -3,13 +3,13 @@ package laddergame.controller;
 import laddergame.domain.*;
 import laddergame.view.InputView;
 import laddergame.view.LadderForm;
+import laddergame.view.LadderMatchForm;
 import laddergame.view.OutputView;
-
-import java.util.List;
 
 import static laddergame.utils.ExceptionTemplate.repeatAndPrintCause;
 
 public class LadderController {
+    private static final String FIND_ALL_MATCH_RESULTS_COMMAND = "all";
     private final InputView inputView;
     private final OutputView outputView;
     private final BooleanGenerator booleanGenerator;
@@ -25,11 +25,29 @@ public class LadderController {
 
     public void run() {
         final Participants participants = repeatAndPrintCause(() -> new Participants(inputView.readNames()));
+        final GameResults gameResults = repeatAndPrintCause(() -> new GameResults(inputView.readResults(), participants.getNames()));
         final Height height = repeatAndPrintCause(() -> new Height(inputView.readHeight()));
+        final Width width = new Width(participants.getSize() - 1);
+        final LineCreator lineCreator = new LineCreator(booleanGenerator);
+        final Ladder ladder = new Ladder(lineCreator.createLines(width, height));
+        final Lines findLines = ladder.getLines();
 
-        final Ladder ladder = new Ladder(participants, height);
+        outputView.printResult(LadderForm.joinUnitsFrom(participants.getNames(), findLines, gameResults));
+        repeatAndPrintCause(() -> runLadderMatch(ladder, participants, gameResults));
+    }
 
-        final List<Line> lines = ladder.createLines(booleanGenerator);
-        outputView.printResult(LadderForm.joinUnitsFrom(participants.getNames(), lines));
+    private boolean runLadderMatch(final Ladder ladder, final Participants participants, final GameResults gameResults) {
+        final LadderMatch ladderMatch = new LadderMatch(ladder, participants, gameResults);
+        boolean isContinue = true;
+        while (isContinue) {
+            final String command = inputView.readName();
+            isContinue = !command.equals(FIND_ALL_MATCH_RESULTS_COMMAND);
+            if (isContinue) {
+                outputView.printMatchResult(LadderMatchForm.joinUnitsFrom(ladderMatch.getOneMatchedResult(command)));
+                continue;
+            }
+            outputView.printMatchResult(LadderMatchForm.joinUnitsFrom(ladderMatch.getAllMatchedResults()));
+        }
+        return false;
     }
 }

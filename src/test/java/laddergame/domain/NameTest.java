@@ -21,21 +21,19 @@ class NameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("값이 알파벳이 아니면 예외가 발생한다.")
+    @DisplayName("값이 알파벳, 숫자가 아니면 예외가 발생한다.")
     @ParameterizedTest(name = "value = {0}")
-    @ValueSource(strings = {"한글훈글", "한글", "훈글", "123", "a1c", "한a", "!!!!", "a!c"})
+    @ValueSource(strings = {"한글훈글", "한글", "훈글", "한a", "!!!!", "a!c"})
     void throwExceptionWhenNameIsNotAlphabet(final String value) {
         assertThatThrownBy(() -> new Name(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("값이 null이면 기본 이름이 입력으로 대체된다.")
+    @DisplayName("값이 null이면 예외가 발생한다.")
     @Test
     void throwExceptionWhenNameIsNull() {
-        final Name name = new Name(null);
-        final String defaultName = name.getValue();
-
-        assertThat(defaultName).isEqualTo("ANONY");
+        assertThatThrownBy(() -> new Name(null))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("값이 길이를 초과하면 예외가 발생한다.")
@@ -57,7 +55,18 @@ class NameTest {
     @ParameterizedTest(name = "value = {0}")
     @ValueSource(strings = {"rosie", "hyena", "jayon"})
     void getName(final String value) {
-        Name name = new Name(value);
+        final Name name = new Name(value);
+
         assertThat(name.getValue()).isEqualTo(value);
+    }
+
+    @DisplayName("값을 비교한다.")
+    @ParameterizedTest(name = "value = {0}")
+    @ValueSource(strings = {"rosie", "hyena", "jayon"})
+    void isSame(final String value) {
+        final Name name = new Name(value);
+        final boolean isNameSame = name.isSame(value);
+
+        assertThat(isNameSame).isTrue();
     }
 }

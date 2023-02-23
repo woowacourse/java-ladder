@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.fixture.NameFixture;
+import laddergame.fixture.NamesFixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -65,20 +65,52 @@ class NamesTest {
         assertThat(findNames).containsExactlyElementsOf(inputNames);
     }
 
+    @DisplayName("Name 값 리스트를 가져온다.")
+    @ParameterizedTest
+    @MethodSource("namesDummy")
+    void getNameValues(final List<String> inputNames) {
+        final Names names = new Names(inputNames);
+        final List<String> findNames = names.getNameValues();
+
+        assertThat(findNames).containsExactlyElementsOf(inputNames);
+    }
+
+    @DisplayName("Names 리스트에서 이름을 통해서 현재 위치를 검색할 수 있다.")
+    @Test
+    void findPositionByName() {
+        final Names names = NamesFixture.createNames(3);
+        final int positionValue = 1;
+        final String nameValue = names.getNameValues().get(positionValue);
+        final Position findPosition = names.findPositionByName(nameValue);
+
+        assertThat(findPosition.getValue()).isEqualTo(positionValue);
+    }
+
+    @DisplayName("현재 위치를 통해서 Name을 검색할 수 있다.")
+    @Test
+    void findNameByPosition() {
+        final Names names = NamesFixture.createNames(3);
+        final Position position = new Position(1);
+        final String nameValue = names.getNameValues().get(position.getValue());
+        final Name findName = names.findNameByPosition(position);
+
+        assertThat(findName.getValue()).isEqualTo(nameValue);
+    }
+
     static Stream<Arguments> namesWrongParameterDummy() {
         return Stream.of(
-                Arguments.arguments(List.of(NameFixture.createNameRosie().getValue())),
-                Arguments.arguments(List.of(NameFixture.createNameHyena().getValue())),
-                Arguments.arguments(List.of(NameFixture.createNameJayon().getValue()))
+                Arguments.arguments(List.of("name0")),
+                Arguments.arguments(List.of("name1")),
+                Arguments.arguments(List.of("name2"))
         );
     }
 
     static Stream<Arguments> namesDummy() {
         return Stream.of(
-                Arguments.arguments(List.of(NameFixture.createNameRosie().getValue(), NameFixture.createNameHyena().getValue())),
-                Arguments.arguments(List.of(NameFixture.createNameRosie().getValue(), NameFixture.createNameJayon().getValue())),
-                Arguments.arguments(List.of(NameFixture.createNameHyena().getValue(), NameFixture.createNameJayon().getValue())),
-                Arguments.arguments(List.of(NameFixture.createNameRosie().getValue(), NameFixture.createNameHyena().getValue(), NameFixture.createNameJayon().getValue()))
+                Arguments.arguments(List.of("name0", "name1")),
+                Arguments.arguments(List.of("name0", "name1")),
+                Arguments.arguments(List.of("name0", "name1")),
+                Arguments.arguments(List.of("name0", "name1", "name2"))
         );
     }
 }

@@ -1,32 +1,40 @@
 package laddergame.domain;
 
-import java.util.List;
-import java.util.Objects;
+import static laddergame.utils.OptionalUtils.getValueAfterNullCheck;
 
 public class Ladder {
-    private static final String LADDER_PARTICIPANTS_NULL_EXCEPTION = "참여자는 null이 될 수 없습니다.";
-    private static final String LADDER_HEIGHT_NULL_EXCEPTION = "높이는 null이 될 수 없습니다.";
+    private final Lines lines;
 
-    private final Participants participants;
-    private final Height height;
-
-    public Ladder(final Participants participants, final Height height) {
-        validateNotNull(participants, height);
-        this.participants = participants;
-        this.height = height;
+    public Ladder(final Lines inputLines) {
+        this.lines = getValueAfterNullCheck(inputLines);
     }
 
-    private void validateNotNull(final Participants participants, final Height height) {
-        if (Objects.isNull(participants)) {
-            throw new IllegalArgumentException(LADDER_PARTICIPANTS_NULL_EXCEPTION);
+    public Position findLastDestination(final Position row) {
+        final Height height = lines.getHeight();
+        Position participantRow = row;
+        for (int column = 0; column < height.getValue(); column++) {
+            final Position currentColumn = new Position(column);
+            participantRow = findNextPosition(currentColumn, participantRow);
         }
-        if (Objects.isNull(height)) {
-            throw new IllegalArgumentException(LADDER_HEIGHT_NULL_EXCEPTION);
-        }
+        return participantRow;
     }
 
-    public List<Line> createLines(final BooleanGenerator booleanGenerator) {
-        final LineCreator lineCreator = new LineCreator(booleanGenerator);
-        return lineCreator.createLines(participants.getSize() - 1, height.getValue());
+    public Lines getLines() {
+        return lines;
+    }
+
+    private Position findNextPosition(final Position column, final Position row) {
+        final Width width = lines.getLines().get(column.getValue()).getWidth();
+        final Position maxPosition = new Position(width.getValue());
+        final Position leftPosition = row.move(-1);
+        final Position rightPosition = row.move(0);
+
+        if (leftPosition.checkBetweenZeroAnd(maxPosition) && lines.getPointByColumnAndRow(column, leftPosition)) {
+            return row.move(-1);
+        }
+        if (rightPosition.checkBetweenZeroAnd(maxPosition) && lines.getPointByColumnAndRow(column, rightPosition)) {
+            return row.move(1);
+        }
+        return row;
     }
 }
