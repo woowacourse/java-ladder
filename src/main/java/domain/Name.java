@@ -5,7 +5,8 @@ import static utils.ErrorMessage.INVALID_USER_NAME_LENGTH_BY_MINIMUM_LIMIT;
 
 public class Name {
 
-    public final static int MAX_NAME_LENGTH = 5;
+    public static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_NAME_LENGTH = 1;
 
     private final int MIN_NAME_LENGTH = 1;
     private final String name;

@@ -5,8 +5,9 @@ import static utils.ErrorMessage.INVALID_LADDER_HEIGHT_BY_MINIMUM_LIMIT;
 
 public class Height {
 
-    private final int MINIMUM_HEIGHT_LIMIT = 1;
-    private final int MAXIMUM_HEIGHT_LIMIT = 100;
+    private static final int MINIMUM_HEIGHT_LIMIT = 1;
+    private static final int MAXIMUM_HEIGHT_LIMIT = 100;
+
     private final int height;
 
     public Height(int height) {

@@ -9,9 +9,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    private final String DELIMITER = ",";
-    private final int MINIMUM_USER_NUMBER_LIMIT = 1;
-    private final int MAXIMUM_USER_NUMBER_LIMIT = 100;
+    private static final String DELIMITER = ",";
+    private static final int MINIMUM_USER_NUMBER_LIMIT = 1;
+    private static final int MAXIMUM_USER_NUMBER_LIMIT = 100;
+    private static final int MAXIMUM_REWARD_LENGTH_LIMIT = 5;
+    private static final int MINIMUM_REWARD_LENGTH_LIMIT = 1;
 
     private final Scanner scanner = new Scanner(System.in);
 

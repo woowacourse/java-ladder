@@ -8,7 +8,8 @@ import java.util.stream.Collectors;
 
 public class Rewards {
 
-    private final int FIRST_INDEX = 0;
+    public static final int FIRST_INDEX = 0;
+
     private final List<String> rewards;
 
     private Rewards(List<String> rewards) {

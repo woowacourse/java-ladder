@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomLineMaker implements LineMaker {
-    private final int BOUND = 1;
+    private static final int BOUND = 1;
 
     private final Random random;
 

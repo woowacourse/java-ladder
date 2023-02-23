@@ -12,6 +12,8 @@ import view.OutputView;
 
 public class LadderGameController {
 
+    private static final String TOTAL_RESULT_KEYWORD = "all";
+
     private final InputView inputView;
     private final OutputView outputView;
 
