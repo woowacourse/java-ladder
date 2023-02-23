@@ -1,8 +1,6 @@
 package laddergame.domain;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -21,39 +19,37 @@ public class LadderMatch {
         this.gameResults = getValueAfterNullCheck(gameResults);
     }
 
-    public Map<Name, Result> getLadderMatchResults(final String command) {
+    public LadderMatchResults getLadderMatchResults(final String command) {
         if (command.equals(MATCH_RESULTS_COMMAND)) {
             return getAllMatchedResults();
         }
         return getOneMatchedResult(command);
     }
 
-    private Map<Name, Result> getAllMatchedResults() {
-        final int matchSize = participants.getSize();
-        final Map<Name, Result> matchResults = new LinkedHashMap<>();
-        final List<Result> findResults = findMatchResults(matchSize);
-        for (int index = 0; index < matchSize; index++) {
-            final Position position = new Position(index);
-            matchResults.put(participants.findNameByPosition(position), findResults.get(index));
-        }
+    private LadderMatchResults getAllMatchedResults() {
+        final List<String> findResults = findMatchResultValues();
+        final Names names = participants.getNames();
+        final GameResults matchedGameResult = new GameResults(findResults, names);
 
-        return matchResults;
+        return new LadderMatchResults(names, matchedGameResult);
     }
 
-    private Map<Name, Result> getOneMatchedResult(final String name) {
+    private LadderMatchResults getOneMatchedResult(final String name) {
         final Position findParticipantPosition = participants.findPositionByName(name);
         final Position findDestination = ladder.findLastDestination(findParticipantPosition);
         final Result findResult = gameResults.findResultByPosition(findDestination);
         final Name findName = participants.findNameByPosition(findParticipantPosition);
 
-        return Map.of(findName, findResult);
+        return new LadderMatchResults(findName, findResult);
     }
 
-    private List<Result> findMatchResults(final int matchSize) {
+    private List<String> findMatchResultValues() {
+        final int matchSize = participants.getSize();
         return IntStream.range(0, matchSize)
                 .mapToObj(Position::new)
                 .map(ladder::findLastDestination)
                 .map(gameResults::findResultByPosition)
+                .map(Result::getValue)
                 .collect(Collectors.toUnmodifiableList());
     }
 }
