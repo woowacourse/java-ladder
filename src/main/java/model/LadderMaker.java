@@ -18,28 +18,10 @@ public class LadderMaker {
         List<Line> lines = new ArrayList<>();
 
         while (height.isContinueMakeLadder(lines.size())) {
-            Line line = initLine(totalParticipantSize);
+            Line line = Line.of(totalParticipantSize, generator);
             lines.add(line);
         }
         ladder = new Ladder(lines);
-    }
-
-    private Line initLine(int peopleCount) {
-        List<Path> paths = new ArrayList<>();
-
-        while (--peopleCount > 0) {
-            paths.add(generatePath(paths));
-        }
-        return new Line(paths);
-    }
-
-    private Path generatePath(List<Path> paths) {
-        int size = paths.size();
-
-        if (size > 0) {
-            return Path.calculatePath(paths.get(size - 1), generator.generate());
-        }
-        return Path.calculatePath(generator.generate());
     }
 
     public Ladder findLadder() {
