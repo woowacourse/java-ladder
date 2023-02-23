@@ -26,17 +26,6 @@ class PersonsTest {
         void notDuplicateName() {
             assertDoesNotThrow(() -> Persons.from(List.of("baron", "oing")));
         }
-
-        @Test
-        @DisplayName("가장 이름이 긴 사용자의 이름 길이를 반환한다")
-        void checkLongestNameLength() {
-            //given
-            Persons persons = Persons.from(List.of("baron", "oing"));
-
-            //when
-            //then
-            assertThat(persons.getLongestPersonNameLength()).isEqualTo(5);
-        }
     }
 
     @Nested
@@ -53,6 +42,19 @@ class PersonsTest {
 
             //then
             Assertions.assertThat(persons.getAllPersonPosition()).isEqualTo(List.of(0, 1, 2));
+        }
+
+        @Test
+        @DisplayName("해당 위치에 있는 사람의 이름을 제대로 반환하는지")
+        void findPersonNameInPositionTest() {
+            //given
+            Persons persons = Persons.from(List.of("oing", "baron", "woowa"));
+
+            //when
+            String name = persons.findPersonNameInPosition(1);
+
+            //then
+            Assertions.assertThat(name).isEqualTo("baron");
         }
     }
 }
