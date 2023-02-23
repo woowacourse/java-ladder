@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,5 +32,9 @@ public class Rewards {
         Reward reward = rewards.get(index);
 
         return reward.getName();
+    }
+
+    public List<Reward> getRewards() {
+        return Collections.unmodifiableList(rewards);
     }
 }

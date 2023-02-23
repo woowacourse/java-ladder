@@ -9,6 +9,8 @@ import domain.Players;
 import domain.Point;
 import domain.Result;
 import domain.Results;
+import domain.Reward;
+import domain.Rewards;
 
 public class OutputView {
 
@@ -19,6 +21,9 @@ public class OutputView {
     private static final String CONNECTED = "-----";
     private static final String DISCONNECTED = "     ";
     private static final String RESULT_FORMAT = "%s : %s%n";
+    private static final String LADDER_START_MESSAGE = "사다리 결과";
+    private static final String RESULT_START_MESSAGE = "실행 결과";
+    private static final String NEW_LINE = "\n";
     private static final int DIVISOR = 2;
     private static final int DEFAULT_PADDING = 2;
     private static final int FLAG = 1;
@@ -29,6 +34,17 @@ public class OutputView {
         players.getPlayers()
                 .stream()
                 .map(Player::getName)
+                .forEach(OutputView::printName);
+
+        System.out.println();
+    }
+
+    public static void printRewards(final Rewards rewards) {
+        System.out.print(NAME_START_FORMAT);
+
+        rewards.getRewards()
+                .stream()
+                .map(Reward::getName)
                 .forEach(OutputView::printName);
 
         System.out.println();
@@ -74,12 +90,22 @@ public class OutputView {
     }
 
     public static void printResults(final Results results) {
+        printResultStart();
         for (Result result : results.getResults()) {
             System.out.printf(RESULT_FORMAT, result.getPlayerName(), result.getRewardName());
         }
     }
 
     public static void printResult(final Result result) {
+        printResultStart();
         System.out.println(result.getRewardName());
+    }
+
+    public static void printLadderStart() {
+        System.out.println(NEW_LINE + LADDER_START_MESSAGE + NEW_LINE);
+    }
+
+    public static void printResultStart() {
+        System.out.println(NEW_LINE + RESULT_START_MESSAGE);
     }
 }

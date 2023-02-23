@@ -11,6 +11,7 @@ public class InputView {
     private static final String READ_NAME_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final String NOT_INTEGER_MESSAGE = "사다리의 높이는 숫자여야 합니다.";
     private static final String DELIMITER = ",";
+    private static final String NEW_LINE = "\n";
     private static final Scanner scanner = new Scanner(System.in);
 
     public static List<String> readPlayers() {
@@ -20,13 +21,13 @@ public class InputView {
     }
 
     public static List<String> readRewards() {
-        System.out.println(READ_REWARDS_MESSAGE);
+        System.out.println(NEW_LINE + READ_REWARDS_MESSAGE);
         String line = scanner.nextLine();
         return StringParser.splitByComma(line, DELIMITER);
     }
 
     public static int readHeight() {
-        System.out.println(READ_HEIGHT_MESSAGE);
+        System.out.println(NEW_LINE + READ_HEIGHT_MESSAGE);
         String line = scanner.nextLine();
         try {
             return Integer.parseInt(line);
@@ -36,7 +37,7 @@ public class InputView {
     }
 
     public static String readName() {
-        System.out.println(READ_NAME_MESSAGE);
+        System.out.println(NEW_LINE + READ_NAME_MESSAGE);
         return scanner.nextLine();
     }
 }

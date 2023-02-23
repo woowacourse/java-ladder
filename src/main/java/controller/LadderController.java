@@ -38,8 +38,10 @@ public class LadderController {
         Rewards rewards = generateRewards(numberOfPlayer);
         Ladder ladder = generateLadder(numberOfPlayer);
 
+        OutputView.printLadderStart();
         OutputView.printPlayers(players);
         OutputView.printLadder(ladder);
+        OutputView.printRewards(rewards);
 
         return new LadderGame(ladder, players, rewards);
     }
