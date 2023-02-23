@@ -29,7 +29,7 @@ public class OutputView {
             StringBuilder result = new StringBuilder();
             floor.getPoints()
                     .forEach(point -> result.append(getPointString(point)));
-            System.out.println(result);
+            System.out.println(Message.COLUMN_LADDER.message + result);
         });
     }
 
@@ -37,6 +37,7 @@ public class OutputView {
         for (Reward reward : rewards) {
             System.out.printf(Message.STRING_FORMAT.message, reward.getReward());
         }
+        System.out.println();
     }
 
     private String getPointString(boolean isPoint) {
@@ -47,7 +48,6 @@ public class OutputView {
     }
 
     public void printResult(String name, Names names, Result result) {
-        System.out.println();
         System.out.println(Message.OUTPUT_RESULT_MESSAGE.message);
         for (Name nameObj : names.getNames()) {
             printOrPass(name, result, nameObj);

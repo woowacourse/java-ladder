@@ -52,4 +52,8 @@ public class Names {
     public int getNamesSize() {
         return names.size();
     }
+
+    public Name getName(int index) {
+        return names.get(index);
+    }
 }
