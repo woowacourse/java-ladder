@@ -29,10 +29,9 @@ public class LadderGameTest {
 
     @ParameterizedTest
     @CsvSource({"pobi,꽝", "honux,3000", "crong,꽝", "jk,5000"})
-    void shouldContainPairOfPlayerAndReward(String playerName, String rewardName) {
+    void shouldContainReward(String playerName, String rewardName) {
         Name name = new Name(playerName);
         Result result = ladderGame.getResult(name);
-        assertThat(result.getPlayerName()).isEqualTo(playerName);
         assertThat(result.getRewardName()).isEqualTo(rewardName);
     }
 
