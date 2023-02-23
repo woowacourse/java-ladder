@@ -39,7 +39,8 @@ public class Layer {
     }
 
     private static boolean isAllFalse(final int linkCount, final List<Link> layer) {
-        return new HashSet<>(layer).size() == LINK_COUNT && linkCount > MIN_LINK_COUNT;
+        final boolean hasBothBoolean = new HashSet<>(layer).size() == LINK_COUNT;
+        return hasBothBoolean && linkCount > MIN_LINK_COUNT;
     }
 
     private Link checkLink(final List<Link> layer, final int index, final Link link) {
