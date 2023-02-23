@@ -10,15 +10,15 @@ import java.util.List;
 public class OutputView {
     private static final String PRINT_ALL_COMMEND = "all";
 
-    public void printLadderBoard(List<Name> names, List<Floor> floors, List<Reward> rewards) {
+    public void printLadderBoard(Names names, List<Floor> floors, List<Reward> rewards) {
         System.out.println(Message.OUTPUT_LINES_MESSAGE.message);
         printNames(names);
         printLadder(floors);
         printRewards(rewards);
     }
 
-    private void printNames(List<Name> names) {
-        for (Name name : names) {
+    private void printNames(Names names) {
+        for (Name name : names.getNames()) {
             System.out.printf(Message.STRING_FORMAT.message, name.getName());
         }
         System.out.println();
