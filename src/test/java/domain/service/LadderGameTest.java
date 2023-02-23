@@ -4,9 +4,7 @@ import domain.model.Ladder;
 import domain.model.Layer;
 import domain.model.Player;
 import domain.model.Players;
-import domain.vo.Height;
-import domain.vo.Name;
-import domain.vo.Width;
+import domain.vo.*;
 import domain.wrapper.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,6 +18,7 @@ class LadderGameTest {
 
     Players players;
     Ladder ladder;
+    Results results;
 
     @BeforeEach
     void setUp() {
@@ -50,12 +49,20 @@ class LadderGameTest {
         ladder.addLayer(layer1);
         ladder.addLayer(layer2);
         ladder.addLayer(layer3);
+
+        Result result1 = new Result("꽝");
+        Result result2 = new Result("1000");
+        Result result3 = new Result("2000");
+        Result result4 = new Result("3000");
+
+        results = new Results();
+        results.addAll(List.of(result1, result2, result3, result4));
     }
 
     @ParameterizedTest(name = "{0}이 사다리 높이 만큼 이동했을 때의 위치는 ({1}, 3)")
     @CsvSource(value = {"p1:3", "p2:1", "p3:2", "p4:0"}, delimiter = ':')
     void play(String name, int xPosition) {
-        LadderGame ladderGame = new LadderGame(ladder, players);
+        LadderGame ladderGame = new LadderGame(ladder, players, results);
 
         ladderGame.play();
 
@@ -65,5 +72,30 @@ class LadderGameTest {
 
         assertThat(player.getXPosition()).isEqualTo(xPosition);
         assertThat(player.getYPosition()).isEqualTo(3);
+    }
+
+
+    @ParameterizedTest(name = "결과를 원하는 {0}번 째 player의 결과는 {1}")
+    @CsvSource(value = {"0:3000", "1:1000", "2:2000", "3:꽝"}, delimiter = ':')
+    void resultsByNames(int index, String expected) {
+        LadderGame ladderGame = new LadderGame(ladder, players, results);
+
+        ladderGame.play();
+        List<String> wantResult = List.of("p1", "p2", "p3", "p4");
+        List<String> resultsByNames = ladderGame.resultsByNames(wantResult);
+
+        assertThat(resultsByNames.get(index)).isEqualTo(expected);
+    }
+
+    @ParameterizedTest(name = "결과를 원하는 {0}번 째 player의 결과는 {1}")
+    @CsvSource(value = {"0:2000", "1:꽝"}, delimiter = ':')
+    void resultsByNames2(int index, String expected) {
+        LadderGame ladderGame = new LadderGame(ladder, players, results);
+
+        ladderGame.play();
+        List<String> wantResult = List.of("p3", "p4");
+        List<String> resultsByNames = ladderGame.resultsByNames(wantResult);
+
+        assertThat(resultsByNames.get(index)).isEqualTo(expected);
     }
 }
