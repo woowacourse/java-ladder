@@ -3,11 +3,11 @@ package laddergame.domain.ladder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class LadderGameResult {
+public class GameResult {
 
     private final Map<String, String> result;
 
-    public LadderGameResult(Map<String, String> result) {
+    public GameResult(Map<String, String> result) {
         this.result = result;
     }
 

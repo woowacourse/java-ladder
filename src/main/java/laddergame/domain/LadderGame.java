@@ -4,8 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import laddergame.domain.ladder.GameResult;
 import laddergame.domain.ladder.Ladder;
-import laddergame.domain.ladder.LadderGameResult;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.ladder.line.LineWidth;
 import laddergame.domain.players.Player;
@@ -22,15 +22,13 @@ public class LadderGame {
         List<Player> players = names.stream()
                 .map(Player::new)
                 .collect(Collectors.toList());
-
         this.players = new Players(players);
     }
 
     private static void validatePlayerCount(int playerCount) {
         if (playerCount < Players.MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException(
-                    ExceptionMessageFormatter.format("참여자가 " + Players.MIN_PLAYER_COUNT + "명 이상이어야 사다리를 만들 수 있습니다.",
-                            playerCount));
+            String message = String.format("참여자가 %d명 이상이어야 사다리를 만들 수 있습니다.", Players.MIN_PLAYER_COUNT);
+            throw new IllegalArgumentException(ExceptionMessageFormatter.format(message, playerCount));
         }
     }
 
@@ -38,9 +36,9 @@ public class LadderGame {
         this.ladder = Ladder.of(new LineWidth(players.size()), new LadderHeight(height), results);
     }
 
-    public LadderGameResult computeResult() {
+    public GameResult computeResult() {
         validateLadderStatus();
-        return new LadderGameResult(findAllResultsByPlayer());
+        return new GameResult(findAllResultsByPlayer());
     }
 
     private void validateLadderStatus() {

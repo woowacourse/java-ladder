@@ -3,8 +3,8 @@ package laddergame.controller;
 import java.util.List;
 import java.util.Objects;
 import laddergame.domain.LadderGame;
+import laddergame.domain.ladder.GameResult;
 import laddergame.domain.ladder.Ladder;
-import laddergame.domain.ladder.LadderGameResult;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 import laddergame.view.constant.FindCommand;
@@ -18,7 +18,7 @@ public class LadderGameController {
         Ladder ladder = play();
 
         showLadderResult(ladder);
-        LadderGameResult gameResult = game.computeResult();
+        GameResult gameResult = game.computeResult();
 
         while (gameStatus == GameStatus.PLAYED) {
             String keyword = InputView.askFindResultKeyword();
@@ -40,7 +40,7 @@ public class LadderGameController {
         OutputView.showLadderResult(game.playerNames(), ladder.toLines(), ladder.toResults());
     }
 
-    private void showGameResult(LadderGameResult gameResult, String keyword) {
+    private void showGameResult(GameResult gameResult, String keyword) {
         validateGameStatus(gameStatus);
         if (Objects.equals(FindCommand.QUIT, keyword)) {
             gameStatus = GameStatus.QUIT;
