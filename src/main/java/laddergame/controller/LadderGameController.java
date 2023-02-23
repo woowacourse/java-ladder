@@ -1,5 +1,6 @@
 package laddergame.controller;
 
+import laddergame.controller.dto.ResultParticipantsDto;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.result.LadderResult;
 import laddergame.domain.ladder.result.LadderResultName;
@@ -10,10 +11,12 @@ import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static laddergame.view.message.Message.*;
+import static laddergame.view.message.Message.EXIT_INPUT_MESSAGE;
+import static laddergame.view.message.Message.LADDER_RESULT_GUIDE;
 
 public class LadderGameController {
 
@@ -94,37 +97,25 @@ public class LadderGameController {
     }
 
     private void printGameResultWithRetry(final Participants participants, final List<String> ladderResultNames) {
-        List<Participant> resultParticipants;
+        ResultParticipantsDto resultParticipantsDto;
         do {
-            resultParticipants = getResultParticipants(participants);
-            printGameResult(resultParticipants, ladderResultNames);
-        } while (isProceed(resultParticipants));
+            resultParticipantsDto = getResultParticipantsDto(participants);
+            outputView.printLadderGameResult(resultParticipantsDto, ladderResultNames);
+        } while (resultParticipantsDto.isProceed());
     }
 
-    private List<Participant> getResultParticipants(final Participants participants) {
+    private ResultParticipantsDto getResultParticipantsDto(final Participants participants) {
         return inputView.getInputWithRetry(() -> {
             String resultParticipantName = inputView.getResultParticipantName();
-            return getParticipants(participants, resultParticipantName);
+            return makeResultParticipantsDto(participants, resultParticipantName);
         });
     }
 
-    private List<Participant> getParticipants(final Participants participants, final String resultParticipantName) {
+    private ResultParticipantsDto makeResultParticipantsDto(final Participants participants, final String resultParticipantName) {
         if (resultParticipantName.equalsIgnoreCase(EXIT_INPUT_MESSAGE.getMessage())) {
-            return null;
+            return ResultParticipantsDto.create(Collections.emptyList(), false);
         }
-        return participants.getResultParticipants(resultParticipantName);
-    }
-
-    private boolean isProceed(final List<Participant> resultParticipants) {
-        return resultParticipants != null;
-    }
-
-    private void printGameResult(final List<Participant> resultParticipants,
-                                 final List<String> ladderResultNames) {
-        if (resultParticipants == null) {
-            return;
-        }
-        OutputView.print(System.lineSeparator() + RESULT_GAME_GUIDE.getMessage());
-        outputView.printLadderGameResult(resultParticipants, ladderResultNames);
+        List<Participant> resultParticipants = participants.getResultParticipants(resultParticipantName);
+        return ResultParticipantsDto.create(resultParticipants, true);
     }
 }

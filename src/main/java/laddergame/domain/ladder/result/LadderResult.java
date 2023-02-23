@@ -7,8 +7,7 @@ import java.util.stream.Collectors;
 public class LadderResult {
 
     private static final String DELIMITER = ",";
-    private static final String LADDER_RESULT_SIZE = "사다리 결과의 개수는";
-    private static final String INVALID_LADDER_RESULT_SIZE = "[ERROR] %s %d개여야 합니다.";
+    private static final String INVALID_LADDER_RESULT_SIZE = "[ERROR] 사다리 결과의 개수는 %d개여야 합니다.";
 
     private final List<LadderResultName> resultNames;
 
@@ -45,7 +44,7 @@ public class LadderResult {
 
     private void validateNameSize(final List<LadderResultName> ladderResultNames, final int participantCount) {
         if (ladderResultNames.size() != participantCount) {
-            throw new IllegalArgumentException(String.format(INVALID_LADDER_RESULT_SIZE, LADDER_RESULT_SIZE, participantCount));
+            throw new IllegalArgumentException(String.format(INVALID_LADDER_RESULT_SIZE, participantCount));
         }
     }
 

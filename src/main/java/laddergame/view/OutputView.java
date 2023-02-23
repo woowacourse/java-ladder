@@ -1,5 +1,6 @@
 package laddergame.view;
 
+import laddergame.controller.dto.ResultParticipantsDto;
 import laddergame.domain.participant.Participant;
 import laddergame.domain.rung.Rung;
 import laddergame.domain.rung.Rungs;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.joining;
 import static laddergame.view.message.LadderMessage.*;
+import static laddergame.view.message.Message.RESULT_GAME_GUIDE;
 
 public class OutputView {
 
@@ -41,14 +43,13 @@ public class OutputView {
         print(ladderResultMessage.toString().trim());
     }
 
-    public void printLadderGameResult(final List<Participant> resultParticipants, final List<String> ladderResultNames) {
-        if (resultParticipants.size() == SINGLE_PRINT_COUNT) {
-            String singleResultMessage = getSingleGameResultMessage(resultParticipants.get(0), ladderResultNames);
-            print(singleResultMessage);
+    public void printLadderGameResult(ResultParticipantsDto resultParticipantsDto, final List<String> ladderResultNames) {
+        if (!resultParticipantsDto.isProceed()) {
             return;
         }
-        String gameResultMessage = getAllResultMessage(resultParticipants, ladderResultNames);
-        print(gameResultMessage);
+        print(System.lineSeparator() + RESULT_GAME_GUIDE.getMessage());
+        List<Participant> resultParticipants = resultParticipantsDto.getParticipants();
+        printResultByParticipantSize(ladderResultNames, resultParticipants);
     }
 
     private String makePaddedParticipantNames(final List<String> participantNames) {
@@ -89,6 +90,16 @@ public class OutputView {
     private String getFirstPaddedFormat(final List<String> participantNames) {
         int firstPaddedCount = getFirstParticipantNameLength(participantNames) + PADDING_DEFAULT_COUNT;
         return "%-" + firstPaddedCount + "s";
+    }
+
+    private void printResultByParticipantSize(final List<String> ladderResultNames, final List<Participant> resultParticipants) {
+        if (resultParticipants.size() == SINGLE_PRINT_COUNT) {
+            String singleResultMessage = getSingleGameResultMessage(resultParticipants.get(0), ladderResultNames);
+            print(singleResultMessage);
+            return;
+        }
+        String gameResultMessage = getAllResultMessage(resultParticipants, ladderResultNames);
+        print(gameResultMessage);
     }
 
     private String getSingleGameResultMessage(final Participant participant, final List<String> ladderResultNames) {
