@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.ladderNode.Position;
 import ladder.utils.LineStrategy;
 
 import java.util.Collections;
@@ -15,15 +16,17 @@ public class Line {
         validate();
     }
 
-    public int moveFrom(int startPosition) {
-        validateOutBound(startPosition);
-        if (isRightMoveAble(startPosition) && isBridgeExist(startPosition)) {
-            return startPosition + 1;
+    public Position moveFrom(Position startPosition) {
+        int position = startPosition.getPosition();
+        validateOutBound(position);
+
+        if (isRightMoveAble(position) && isBridgeExist(position)) {
+            return new Position(position + 1);
         }
-        if (isLeftMoveAble(startPosition) && isBridgeExist(startPosition - 1)) {
-            return startPosition - 1;
+        if (isLeftMoveAble(position) && isBridgeExist(position - 1)) {
+            return new Position(position - 1);
         }
-        return startPosition;
+        return new Position(position);
     }
 
     private boolean isBridgeExist(int startPosition) {

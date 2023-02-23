@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.ladderNode.Position;
 import ladder.utils.LineStrategy;
 
 import java.util.ArrayList;
@@ -24,8 +25,8 @@ public class Ladder {
         return lines;
     }
 
-    public int moveThrough(int startPoint) {
-        int position = startPoint;
+    public Position moveThrough(final Position startPoint) {
+        Position position = startPoint;
         for (Line line : lines) {
             position = line.moveFrom(position);
         }

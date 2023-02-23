@@ -23,7 +23,8 @@ public class Players {
         Map<Position, String> result = new HashMap<>();
 
         Player player = getByName(playerName);
-        result.put(player.moveThroughLadder(ladder), player.getName());
+        Position destination = player.moveThroughLadder(ladder);
+        result.put(destination, player.getName());
         return Collections.unmodifiableMap(result);
     }
 

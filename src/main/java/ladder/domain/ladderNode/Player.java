@@ -12,8 +12,8 @@ public class Player {
     }
 
     public Position moveThroughLadder(Ladder ladder) {
-        int resultPosition = ladder.moveThrough(position.getPosition());
-        return new Position(resultPosition);
+        Position resultPosition = ladder.moveThrough(position);
+        return resultPosition;
     }
 
     public boolean isEqualName(String inputName) {

@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.FixedLineStrategy;
+import ladder.domain.ladderNode.Position;
 import ladder.utils.LineStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,7 +43,7 @@ class LineTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-1, 4})
+    @ValueSource(ints = {4, 9})
     @DisplayName("라인의 범위를 벗어난 시작점에 대해서는 예외를 던진다.")
     void line_move_from_when_out_bound(int start) {
         //given
@@ -50,11 +51,10 @@ class LineTest {
         Line line = new Line(fixedStrategy, 3);
 
         assertThatThrownBy(() -> {
-            line.moveFrom(start);
+            line.moveFrom(new Position(start));
         })
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("line 범위 밖의 시작점입니다.");
-
     }
 
     @ParameterizedTest
@@ -67,9 +67,9 @@ class LineTest {
         // |--|  |--|  |
 
         //when
-        int arrive = line.moveFrom(start);
+        Position arrive = line.moveFrom(new Position(start));
 
         //then
-        assertThat(arrive).isEqualTo(expected);
+        assertThat(arrive).isEqualTo(new Position(expected));
     }
 }

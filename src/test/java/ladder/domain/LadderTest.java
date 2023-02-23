@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.FixedLineStrategy;
+import ladder.domain.ladderNode.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -22,9 +23,9 @@ class LadderTest {
         // |  |--|  |
 
         // when
-        int arrived = ladder.moveThrough(start);
+        Position arrived  = ladder.moveThrough(new Position(start));
 
         //then
-        assertThat(arrived).isEqualTo(expected);
+        assertThat(arrived).isEqualTo(new Position(expected));
     }
 }
