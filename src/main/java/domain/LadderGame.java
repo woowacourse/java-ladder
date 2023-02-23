@@ -6,15 +6,18 @@ import java.util.List;
 public class LadderGame {
     private final List<Integer> results;
 
-    public LadderGame(int personCount, List<Floor> floors) {
-        results = new ArrayList<>();
-        addResults(personCount, floors);
+    public LadderGame(Names names, Ladder ladder) {
+        results = generateResults(names.getNamesSize(), ladder.getFloors());
     }
 
-    private void addResults(int personCount, List<Floor> floors) {
+    private List<Integer> generateResults(int personCount, List<Floor> floors) {
+        List<Integer> results = new ArrayList<>();
+
         for (int i = 0; i < personCount; i++) {
             results.add(calculateResultIndex(floors, i));
         }
+
+        return results;
     }
 
     private int calculateResultIndex(List<Floor> floors, int index) {

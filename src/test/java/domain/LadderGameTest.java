@@ -22,7 +22,7 @@ public class LadderGameTest {
         Height height = new Height(1);
         Names names = new Names(Arrays.asList("a", "b", "c", "d"));
         Ladder ladder = new Ladder(names, height, booleanGenerator);
-        LadderGame ladderGame = new LadderGame(4, ladder.getFloors());
+        LadderGame ladderGame = new LadderGame(names, ladder);
 
         Assertions.assertThat(ladderGame.getResult(0)).isEqualTo(1);
         Assertions.assertThat(ladderGame.getResult(1)).isEqualTo(0);

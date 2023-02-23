@@ -30,7 +30,7 @@ public class MainController {
 
         Ladder ladder = new Ladder(names, height, booleanGenerator);
         outputView.printLadderBoard(names, ladder, rewards);
-        LadderGame ladderGame = new LadderGame(names.getNamesSize(), ladder.getFloors());
+        LadderGame ladderGame = new LadderGame(names, ladder);
         Result result = new Result(names.getNames(), ladderGame.getResult(), rewards.getRewards());
 
         showResult(result, names);
