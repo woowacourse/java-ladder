@@ -33,4 +33,13 @@ class NamesTest {
                 .isThrownBy(() -> new Names(names.repeat(repeatCount)))
                 .withMessageContainingAll("[ERROR]", "이하의 사람 수를 입력해 주세요.");
     }
+
+    @DisplayName("중복된 이름이 있으면 예외처리한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"a,a", "a,b,c,c"})
+    void duplicationNameTest(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Names(input))
+                .withMessageContaining("중복된 이름은 입력할 수 없습니다.");
+    }
 }
