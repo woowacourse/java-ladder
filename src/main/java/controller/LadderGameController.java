@@ -25,6 +25,7 @@ public class LadderGameController {
         Players players = new Players(setPlayerNames());
         List<Result> results = setResults(players.size());
         Ladder ladder = new Ladder(players, setLadderHeight());
+        outputView.printMakeLadderResultMessage();
         outputView.printAllPlayerNames(players.getAllPlayerNames());
         outputView.printLadder(ladder);
         outputView.printAllResults(results);
