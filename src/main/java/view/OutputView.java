@@ -21,6 +21,7 @@ public class OutputView {
     private static final String RESULTS_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String DESIROUS_RESULT_NAME_MESSAGE = "\n결과를 보고 싶은 사람은?";
     private static final String RESULT_HEADER = "\n실행 결과";
+    private static final String NAME_RESULT_DELIMITER = " : ";
 
     public void printPlayerNamesMessage() {
         System.out.println(PLAYER_NAME_MESSAGE);
@@ -94,5 +95,9 @@ public class OutputView {
         return words.subList(STARTING_INDEX_OF_RIGHT_FORMATTING, words.size()).stream()
                 .map(name -> String.format(RIGHT_FORMATTING_TEMPLATE, name))
                 .collect(Collectors.joining(""));
+    }
+
+    public void printNameAndResult(Name name, Result result) {
+        System.out.println(name.getValue() + NAME_RESULT_DELIMITER + result.getValue());
     }
 }
