@@ -4,7 +4,7 @@ import static java.util.stream.Collectors.toList;
 
 import domain.player.Player;
 import domain.player.Players;
-import dto.PlayerLadderResult;
+import dto.GameResultDto;
 import java.util.List;
 
 public class LadderGame {
@@ -21,11 +21,11 @@ public class LadderGame {
         return players.containPlayerBySpecificName(name);
     }
 
-    public List<PlayerLadderResult> findAllPlayerResult() {
+    public List<GameResultDto> findAllPlayerResult() {
         return players.stream()
                 .map(player -> {
                     LadderResult ladderResult = ladder.play(player);
-                    return new PlayerLadderResult(player.getName(), ladderResult.getResult());
+                    return new GameResultDto(player.getName(), ladderResult.getResult());
                 })
                 .collect(toList());
     }

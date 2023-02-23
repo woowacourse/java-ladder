@@ -13,7 +13,7 @@ import domain.player.Name;
 import domain.player.Player;
 import domain.player.Players;
 import domain.player.Position;
-import dto.PlayerLadderResult;
+import dto.GameResultDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -102,7 +102,7 @@ public class LadderGameApplication {
     }
 
     private void printEveryPlayerResult(LadderGame ladderGame) {
-        List<PlayerLadderResult> allPlayerResult = ladderGame.findAllPlayerResult();
+        List<GameResultDto> allPlayerResult = ladderGame.findAllPlayerResult();
         outputView.printAllPlayerResult(allPlayerResult);
     }
 

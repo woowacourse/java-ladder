@@ -9,7 +9,7 @@ import domain.ladder.LadderResults;
 import domain.ladder.Line;
 import domain.ladder.LinePoint;
 import domain.player.Players;
-import dto.PlayerLadderResult;
+import dto.GameResultDto;
 import java.util.List;
 
 public class OutputView {
@@ -66,9 +66,9 @@ public class OutputView {
         System.out.println(result.getResult());
     }
 
-    public void printAllPlayerResult(List<PlayerLadderResult> everyPlayerResult) {
+    public void printAllPlayerResult(List<GameResultDto> everyPlayerResult) {
         System.out.println("실행 결과");
-        for (PlayerLadderResult playerLadderResult : everyPlayerResult) {
+        for (GameResultDto playerLadderResult : everyPlayerResult) {
             System.out.println(String.format("%s : %s",
                     playerLadderResult.getPlayerName(), playerLadderResult.getResult()));
         }
