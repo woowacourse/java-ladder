@@ -21,19 +21,19 @@ public class Users {
     }
 
     public void isExist(String userName) {
-        List<String> usersName = getUsersName();
-        if (usersName.contains(userName)) {
+        List<String> userNames = getUserNames();
+        if (userNames.contains(userName)) {
             return;
         }
         throw new IllegalArgumentException(USER_NAME_NOT_EXISTS_IN_USERS_EXCEPTION.getMessage());
     }
 
-    public List<String> getUsersName() {
-        final List<String> usersName = new ArrayList<>();
+    public List<String> getUserNames() {
+        final List<String> userNames = new ArrayList<>();
         for (final User user : users) {
-            usersName.add(user.getName());
+            userNames.add(user.getName());
         }
-        return usersName;
+        return userNames;
     }
 
     private void validateUserNamesEmpty(final List<String> userNames) {

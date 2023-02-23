@@ -16,13 +16,13 @@ class ResultsTest {
     @ParameterizedTest(name = "입력된 참여자 = {0}, 입력된 실행 결과 = {1}")
     @DisplayName("입력된 실행 결과들의 수가 참여자의 수와 일치하는지 확인한다.")
     @MethodSource("resultsAndUsersNumberSameDummy")
-    void resultsNumberSameWithUsersNumber(List<String> usersName, List<String> resultsName) {
-        Users users = new Users(usersName);
-        int usersNumber = users.getUsersName().size();
+    void resultsNumberSameWithUsersNumber(List<String> userNames, List<String> resultsName) {
+        Users users = new Users(userNames);
+        int usersNumber = users.getUserNames().size();
 
         Results results = new Results(resultsName, usersNumber);
 
-        assertThat(results.getResultsName().size()).isEqualTo(usersNumber);
+        assertThat(results.getResultNames().size()).isEqualTo(usersNumber);
     }
 
     @ParameterizedTest(name = "입력된 참여자 = {0}, 입력된 실행 결과 = {1}")
@@ -30,7 +30,7 @@ class ResultsTest {
     @MethodSource("resultsAndUsersNumberNotSameDummy")
     void resultsNumberNotSameWithUsersNumber(List<String> usersName, List<String> resultsName) {
         Users users = new Users(usersName);
-        int usersNumber = users.getUsersName().size();
+        int usersNumber = users.getUserNames().size();
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Results(resultsName, usersNumber));
     }

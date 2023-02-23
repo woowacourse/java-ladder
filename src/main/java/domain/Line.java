@@ -1,7 +1,8 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static exception.ErrorMessage.NON_VALID_LINE_EXCEPTION;
 
 public class Line {
 
@@ -13,7 +14,7 @@ public class Line {
     }
 
     public List<Link> getLinks() {
-        return new ArrayList<>(links);
+        return List.copyOf(links);
     }
 
     private void validateLine(final List<Link> line) {
@@ -25,7 +26,7 @@ public class Line {
 
     private Link comparePastPointAndPresentPoint(Link pastLink, final Link link) {
         if (link.isLink() && pastLink.isLink()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NON_VALID_LINE_EXCEPTION.getMessage());
         }
         pastLink = link;
         return pastLink;

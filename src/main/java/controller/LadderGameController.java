@@ -32,13 +32,6 @@ public class LadderGameController {
         }
     }
 
-    private void printResultWhenNotWantAll(String name) {
-        while(!name.equals("all")) {
-            printUserResult(name);
-            name = InputView.readWantUserName();
-        }
-    }
-
     private void generateUsers() {
         try {
             users = new Users(InputView.readUserNames());
@@ -68,24 +61,31 @@ public class LadderGameController {
 
     private void printLadder() {
         OutputView.printResultMessage();
-        OutputView.printUserNames(users.getUsersName());
+        OutputView.printUserNames(users.getUserNames());
         OutputView.printLadder(ladder.getLadder());
-        OutputView.printResultNames(results.getResultsName());
+        OutputView.printResultNames(results.getResultNames());
     }
 
     private void calculateLadderGameResult() {
         CalculateLadderGameResult calculator = new CalculateLadderGameResult();
-        lastUserPositions = calculator.passLadder(ladder.getLadder(), users.getUsersName());
+        lastUserPositions = calculator.passLadder(ladder.getLadder(), users.getUserNames());
     }
 
-    private void printUserResult(String userName) {
+    private void printResultWhenNotWantAll(String name) {
+        while(!name.equals("all")) {
+            printUserResult(name);
+            name = InputView.readWantUserName();
+        }
+    }
+
+    private void printUserResult(final String userName) {
         users.isExist(userName);
         int index = lastUserPositions.indexOf(userName);
-        String result = results.getResultsName().get(index);
+        String result = results.getResultNames().get(index);
         OutputView.printUserResult(result);
     }
 
     private void printAllResult() {
-        OutputView.printAllResult(lastUserPositions, results.getResultsName());
+        OutputView.printAllResult(lastUserPositions, results.getResultNames());
     }
 }

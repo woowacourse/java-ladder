@@ -3,32 +3,34 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import static exception.ErrorMessage.RESULT_NUMBERS_NOT_SAME_WITH_USER_NUMBERS;
+
 public class Results {
 
     private final List<Result> results;
 
-    public Results(final List<String> resultsName, final int usersNumber) {
-        hasSameNumberWithUsersNumber(resultsName, usersNumber);
-        results = initResults(resultsName);
+    public Results(final List<String> resultNames, final int userNumbers) {
+        hasSameNumberWithUserNumbers(resultNames, userNumbers);
+        results = initResults(resultNames);
     }
 
-    public List<String> getResultsName() {
-        final List<String> resultsName = new ArrayList<>();
+    public List<String> getResultNames() {
+        final List<String> resultNames = new ArrayList<>();
         for (final Result result : results) {
-            resultsName.add(result.getName());
+            resultNames.add(result.getName());
         }
-        return resultsName;
+        return List.copyOf(resultNames);
     }
 
-    private void hasSameNumberWithUsersNumber(final List<String> resultsName, final int usersNumber) {
-        if (resultsName.size() != usersNumber) {
-            throw new IllegalArgumentException();
+    private void hasSameNumberWithUserNumbers(final List<String> resultNames, final int userNumbers) {
+        if (resultNames.size() != userNumbers) {
+            throw new IllegalArgumentException(RESULT_NUMBERS_NOT_SAME_WITH_USER_NUMBERS.getMessage());
         }
     }
 
-    private List<Result> initResults(List<String> resultsName) {
+    private List<Result> initResults(final List<String> resultNames) {
         final List<Result> results = new ArrayList<>();
-        for (final String resultName : resultsName) {
+        for (final String resultName : resultNames) {
             results.add(new Result(resultName));
         }
         return results;

@@ -17,13 +17,13 @@ public class Result {
         return name;
     }
 
-    private void validateLength(String name) {
+    private void validateLength(final String name) {
         if (name.length() > 8) {
             throw new IllegalArgumentException(RESULT_NAME_LENGTH_EXCEPTION.getMessage());
         }
     }
 
-    private void validateBlank(String name) {
+    private void validateBlank(final String name) {
         if (name.isBlank()) {
             throw new IllegalArgumentException(RESULT_NAME_BLANK_EXCEPTION.getMessage());
         }
