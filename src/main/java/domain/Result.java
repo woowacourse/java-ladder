@@ -9,7 +9,7 @@ public class Result {
     private final String mission;
 
     public Result(Player player, Mission mission) {
-        this.name = player.getName().getName();
+        this.name = player.getName().getValue();
         this.mission = mission.getMission();
     }
 

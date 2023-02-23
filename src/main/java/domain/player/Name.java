@@ -6,15 +6,15 @@ public class Name {
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
-    private final String name;
+    private final String value;
 
     public Name(String name) {
         validate(name);
-        this.name = name;
+        this.value = name;
     }
 
-    public String getName() {
-        return name;
+    public String getValue() {
+        return value;
     }
 
     private void validate(String name) {
@@ -34,11 +34,11 @@ public class Name {
             return false;
         }
         Name name1 = (Name) o;
-        return Objects.equals(name, name1.name);
+        return Objects.equals(value, name1.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(value);
     }
 }

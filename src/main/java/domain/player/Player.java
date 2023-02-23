@@ -14,7 +14,7 @@ public class Player {
     }
 
     public void move(Lines lines) {
-        this.position = new Position(lines.getExitPosition(this.position.getPosition()));
+        this.position = new Position(lines.getExitPosition(this.position.getValue()));
     }
 
     public Name getName() {

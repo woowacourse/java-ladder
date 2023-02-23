@@ -25,7 +25,7 @@ public class OutputView {
     public void printResult(Names names, Lines lines, Missions missions) {
         System.out.println(Message.OUTPUT_RESULT.message);
         names.getNames()
-                .forEach(name -> System.out.printf(Message.LADDER_FORMAT.message, name.getName()));
+                .forEach(name -> System.out.printf(Message.LADDER_FORMAT.message, name.getValue()));
         System.out.println();
         printLines(lines);
         missions.getMissions()
