@@ -27,4 +27,5 @@ public class Player {
     public int getPosition() {
         return this.position.get();
     }
+
 }

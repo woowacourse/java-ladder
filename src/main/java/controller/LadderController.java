@@ -18,15 +18,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderController {
-    private static final String END_ORDER = "end";
-    private static final String ALL_ORDER = "all";
     private static final int WIDTH_PLAYERS_DIFFERENCE = 1;
     private final InputView inputView;
     private final OutputView outputView;
     private final LadderMaker ladderMaker;
-    private Ladder ladder;
-    private Players players;
-    private Goods goods;
 
     public LadderController(InputView inputView, OutputView outputView, LadderMaker ladderMaker) {
         this.inputView = inputView;
@@ -35,56 +30,65 @@ public class LadderController {
     }
 
     public void play() {
-        inputData();
-        playGame();
-        outputData();
+        Request inputRequest = inputData();
+        Request gameRequest = playGame(inputRequest);
+        outputData(gameRequest);
     }
 
-    private void inputData() {
-        makePlayers();
-        goods = makeGoods(players.size());
+    private Request inputData() {
+        Players players = makePlayers();
+        Goods goods = makeGoods(players.size());
         int height = inputView.inputLadderHeight();
-        ladder = ladderMaker.make(new Height(height), new Width(players.size() - WIDTH_PLAYERS_DIFFERENCE));
+        Ladder ladder = ladderMaker.make(new Height(height), new Width(players.size() - WIDTH_PLAYERS_DIFFERENCE));
         outputView.printResult(players.getPlayersName(), ladder);
         outputView.printNames(goods.getGoodsNames());
+        return new Request(players, goods, ladder);
     }
 
-    private void playGame() {
-        LadderGame ladderGame = new LadderGame(ladder.getLineCountInt());
-        ladderGame.playLadderGame(players, ladder);
+    private Request playGame(Request request) {
+        LadderGame ladderGame = new LadderGame(request.getLadder().getLineCountInt());
+        ladderGame.playLadderGame(request.getPlayers(), request.getLadder());
+        return new Request(ladderGame.getPlayers(), request.getGoods());
     }
 
-    private void outputData() {
-        String order = inputView.inputTargetResult();
-        if (order.equals(END_ORDER)) {
+    private void outputData(Request request) {
+        Order order = new Order(inputView.inputTargetResult(), request.getPlayers().getPlayersName());
+        if (order.isEnd()) {
             return;
         }
-        if (order.equals(ALL_ORDER)) {
-            outputView.printResultMention();
-            printAll();
-            outputData();
+        if (order.isAll()) {
+            printAll(request);
+            return;
         }
-        List<Integer> playerPositionList = players.getPlayersPosition(new Name(order));
+        printOnePlayer(request, order);
+    }
+
+    private void printOnePlayer(Request request, Order order) {
+        List<Integer> playerPositionList = request.getPlayers().getPlayersPosition(new Name(order.getValue()));
+        outputView.printResultMention();
         for (int position : playerPositionList) {
-            outputView.printResultMention();
-            outputView.printPlayerAndItem(order, goods.getItemsWithPosition(position));
-            outputData();
+            outputView.printPlayerAndItem(order.getValue(), request.getGoods().getItemsWithPosition(position));
         }
+        outputData(request);
     }
 
-    private void printAll() {
-        players.getPlayers().forEach(player -> {
-            outputView.printPlayerAndItem(player.getName(), goods.getItemsWithPosition(player.getPosition()));
+
+    private void printAll(Request request) {
+        outputView.printResultMention();
+        request.getPlayers().getPlayers().forEach(player -> {
+            outputView.printPlayerAndItem(player.getName(), request.getGoods().getItemsWithPosition(player.getPosition()));
         });
+        outputData(request);
     }
 
-    private void makePlayers() {
+    private Players makePlayers() {
         List<Player> playersList = new ArrayList<>();
         List<String> playersName = inputView.inputNames();
         for (int i = 0; i < playersName.size(); i++) {
             playersList.add(new Player(new Name(playersName.get(i)), new Position(i)));
         }
-        players = new Players(playersList);
+        Players players = new Players(playersList);
+        return players;
     }
 
     private Goods makeGoods(int nameCount) {

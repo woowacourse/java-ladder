@@ -5,19 +5,17 @@ import domain.model.Layer;
 import domain.model.Player;
 import domain.model.Players;
 
-import java.util.List;
-
 public class LadderGame {
     private int maxPosition;
-    private List<Player> players;
+    private Players players;
 
     public LadderGame(final int maxPosition) {
         this.maxPosition = maxPosition;
     }
 
     public void playLadderGame(Players players, Ladder ladder) {
-        this.players = players.getPlayers();
-        this.players.forEach(player -> {
+        this.players = players;
+        this.players.getPlayers().forEach(player -> {
             movePlayer(ladder, player);
         });
     }
@@ -52,7 +50,7 @@ public class LadderGame {
         }
     }
 
-    public List<Player> getPlayers() {
+    public Players getPlayers() {
         return this.players;
     }
 }
