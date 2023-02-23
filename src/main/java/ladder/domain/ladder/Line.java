@@ -23,7 +23,7 @@ public class Line {
     }
 
     private void addBar(BarGenerator barGenerator) {
-        if (lastBar()==Bar.TRUE) {
+        if (lastBar() == Bar.TRUE) {
             addFalseBar();
             return;
         }
