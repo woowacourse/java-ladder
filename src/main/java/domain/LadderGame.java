@@ -22,13 +22,21 @@ public class LadderGame {
         if (!result.isEmpty()) {
             return result;
         }
-        for (Line line : ladder.getLadder()) {
-            players.move(line);
-        }
+        play();
+        generateResult();
+        return result;
+    }
+
+    private void generateResult() {
         for (Player player : players.getPlayers()) {
             int position = player.getPosition();
             result.put(player.getName(), prize.getOnePrizeByIndex(position));
         }
-        return result;
+    }
+
+    private void play() {
+        for (Line line : ladder.getLadder()) {
+            players.move(line);
+        }
     }
 }
