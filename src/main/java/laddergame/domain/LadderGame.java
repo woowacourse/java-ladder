@@ -9,35 +9,22 @@ import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.ladder.Result;
 import laddergame.domain.ladder.line.LineWidth;
-import laddergame.domain.players.Player;
 import laddergame.domain.players.Players;
-import laddergame.domain.util.ExceptionMessageFormatter;
 
 public class LadderGame {
 
     private final Players players;
     private Ladder ladder;
 
-    public LadderGame(List<String> names) {
-        validatePlayerCount(names.size());
-        List<Player> players = names.stream()
-                .map(Player::new)
-                .collect(Collectors.toList());
-        this.players = new Players(players);
+    public LadderGame(List<String> playerNames) {
+        this.players = Players.of(playerNames);
     }
 
-    private static void validatePlayerCount(int playerCount) {
-        if (playerCount < Players.MIN_PLAYER_COUNT) {
-            String message = String.format("참여자가 %d명 이상이어야 사다리를 만들 수 있습니다.", Players.MIN_PLAYER_COUNT);
-            throw new IllegalArgumentException(ExceptionMessageFormatter.format(message, playerCount));
-        }
-    }
-
-    public void generateLadder(int height, List<String> results) {
-        List<Result> ladderResults = results.stream()
+    public void generateLadder(int height, List<String> resultValues) {
+        List<Result> results = resultValues.stream()
                 .map(Result::new)
                 .collect(Collectors.toList());
-        this.ladder = Ladder.of(new LineWidth(players.size()), new LadderHeight(height), ladderResults);
+        this.ladder = Ladder.of(new LineWidth(players.size()), new LadderHeight(height), results);
     }
 
     public GameResult computeResult() {

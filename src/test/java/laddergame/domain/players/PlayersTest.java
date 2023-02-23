@@ -14,10 +14,10 @@ class PlayersTest {
     @Test
     @DisplayName("참여자 수가 2명 미만이면 예외를 던진다.")
     void should_ThrowException_When_CountLessThan2() {
-        List<Player> dummy = List.of(new Player("주노"));
+        List<String> dummy = List.of("주노");
 
-        assertThatThrownBy(() -> new Players(dummy))
+        assertThatThrownBy(() -> Players.of(dummy))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("참가자는 2명 이상이어야 합니다.");
+                .hasMessageContaining("참여자는 2명 이상이어야 합니다.");
     }
 }

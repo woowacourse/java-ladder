@@ -13,6 +13,6 @@ class LadderGameTest {
     void should_ThrowException_When_PlayersCountLessThan2() {
         assertThatThrownBy(() -> new LadderGame(List.of("name")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("참여자가 2명 이상이어야 사다리를 만들 수 있습니다.");
+                .hasMessageContaining("참여자는 2명 이상이어야 합니다.");
     }
 }
