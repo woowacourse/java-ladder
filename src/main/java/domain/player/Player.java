@@ -1,6 +1,6 @@
 package domain.player;
 
-import domain.ladder.Lines;
+import domain.ladder.Ladder;
 import java.util.Objects;
 
 public class Player {
@@ -13,8 +13,8 @@ public class Player {
         this.position = position;
     }
 
-    public void move(Lines lines) {
-        this.position = new Position(lines.getExitPosition(this.position.getValue()));
+    public void move(Ladder ladder) {
+        this.position = new Position(ladder.getExitPosition(this.position.getValue()));
     }
 
     public Name getName() {

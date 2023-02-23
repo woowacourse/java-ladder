@@ -1,4 +1,4 @@
-# java-lines
+# java-ladder
 
 사다리 타기 미션 저장소
 
@@ -31,7 +31,7 @@
 - `Map`을 사용해 `Controller`를 정리할 때에, 필드에 변수가 너무 많아지는 문제점이 발생한다. 어떻게 하면 개선할 수 있을까?
     - 내가 생각한 해법
 
-    1. `GameProperty` 클래스를 새로 만든 뒤, 필드에 `names`, `lines`와 같은 클래스들을 넣어서 관리한다.
+    1. `GameProperty` 클래스를 새로 만든 뒤, 필드에 `names`, `ladder`와 같은 클래스들을 넣어서 관리한다.
     2. `ApplicationStatus`를 너무 촘촘하게 작성하지 말고, `SET_GAME`, `CREATE_LINES`, `APPLICATION_EXIT` 이런 식으로 퉁 쳐서 필드를 좀 줄여본다.
 
 - `util` 패키지의 `BooleanGenerator`는 테스트를 용이하게 하기 위해서 만들었지만, 현재 코드에서는 `TrueBooleanGenerator`를 활용하지 못했다. 어떤 식으로 테스트 코드, 프로덕션
@@ -114,8 +114,8 @@
     - 도메인의 두 클래스가 굉장히 서로 연관이 크게 되어 있는데, 개선할 수 있는 방법을 모르겠다.
     - `오잉`은 `Player`가 스스로 움직일 수 있어야 한다고 생각한다고 했다. `오잉`이 `허브`에게 질문했을 때에는 단방향 의존(?) 어려운말... 은 괜찮다고 했다고 한다
     ``` 
-    public void move(Lines lines) {
-        this.position = new Position(lines.getExitIndex(this.position.getPosition()));
+    public void move(Lines ladder) {
+        this.position = new Position(ladder.getExitIndex(this.position.getPosition()));
     }
     ```
 - 객체의 생성과 동시에 객체의 상태를 모두 정의하고 싶은데, 객체 생성 이후에 상태를 추가해야 하는 경우에 응집도가 떨어진 객체가 만들어지는 것 같다.

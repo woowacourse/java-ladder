@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Lines {
+public class Ladder {
     private final List<Line> lines = new ArrayList<>();
 
-    public Lines(int count, int height, BooleanGenerator booleanGenerator) {
+    public Ladder(int count, int height, BooleanGenerator booleanGenerator) {
         Height linesHeight = new Height(height);
         for (int i = 0; i < linesHeight.getHeight(); i++) {
             lines.add(new Line(count, booleanGenerator));

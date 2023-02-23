@@ -5,7 +5,7 @@ import domain.Result;
 import domain.SearchCommand;
 import domain.generator.BooleanGenerator;
 import domain.ladder.Height;
-import domain.ladder.Lines;
+import domain.ladder.Ladder;
 import domain.mission.Missions;
 import domain.player.Names;
 import domain.player.Players;
@@ -29,7 +29,7 @@ public class MainController {
         Names names = receiveNames();
         Missions missions = receiveMissions(names.size());
 
-        Lines ladder = makeLadder(names.getPersonNumber());
+        Ladder ladder = makeLadder(names.getPersonNumber());
         printLadder(names, missions, ladder);
 
         LadderGame ladderGame = LadderGame.of(new Players(names), missions, ladder);
@@ -72,13 +72,13 @@ public class MainController {
         }
     }
 
-    private void printLadder(Names names, Missions missions, Lines lines) {
-        outputView.printResult(names, lines, missions);
+    private void printLadder(Names names, Missions missions, Ladder ladder) {
+        outputView.printResult(names, ladder, missions);
     }
 
-    private Lines makeLadder(int nameNumber) {
+    private Ladder makeLadder(int nameNumber) {
         int lineNumber = nameNumber - 1;
-        return new Lines(lineNumber, receiveHeight().getHeight(), booleanGenerator);
+        return new Ladder(lineNumber, receiveHeight().getHeight(), booleanGenerator);
     }
 
     private Names receiveNames() {

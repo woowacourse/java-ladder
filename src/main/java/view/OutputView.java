@@ -1,9 +1,9 @@
 package view;
 
 import domain.Result;
+import domain.ladder.Ladder;
 import domain.ladder.LadderStep;
 import domain.ladder.Line;
-import domain.ladder.Lines;
 import domain.mission.Missions;
 import domain.player.Names;
 import java.util.List;
@@ -22,19 +22,19 @@ public class OutputView {
         System.out.println(exception.getMessage());
     }
 
-    public void printResult(Names names, Lines lines, Missions missions) {
+    public void printResult(Names names, Ladder ladder, Missions missions) {
         System.out.println(Message.OUTPUT_RESULT.message);
         names.getNames()
                 .forEach(name -> System.out.printf(Message.LADDER_FORMAT.message, name.getValue()));
         System.out.println();
-        printLines(lines);
+        printLines(ladder);
         missions.getMissions()
                 .forEach(mission -> System.out.printf(Message.LADDER_FORMAT.message, mission.getMission()));
         System.out.println();
     }
 
-    public void printLines(Lines lines) {
-        for (Line line : lines.getLines()) {
+    public void printLines(Ladder ladder) {
+        for (Line line : ladder.getLines()) {
             StringBuilder ladderDisplay = new StringBuilder();
             ladderDisplay.append(Message.COLUMN_LADDER.message);
             line.getLadderSteps()

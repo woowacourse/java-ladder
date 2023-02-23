@@ -1,6 +1,6 @@
 package domain.player;
 
-import domain.ladder.Lines;
+import domain.ladder.Ladder;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,8 +18,8 @@ public class Players {
         return new Position(names.getNames().indexOf(name));
     }
 
-    public void moveAllPlayers(Lines lines) {
-        players.forEach(player -> player.move(lines));
+    public void moveAllPlayers(Ladder ladder) {
+        players.forEach(player -> player.move(ladder));
     }
 
     public List<Player> getPlayersSortedByPosition() {

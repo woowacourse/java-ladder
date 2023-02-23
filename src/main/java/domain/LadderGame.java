@@ -1,6 +1,6 @@
 package domain;
 
-import domain.ladder.Lines;
+import domain.ladder.Ladder;
 import domain.mission.Mission;
 import domain.mission.Missions;
 import domain.player.Player;
@@ -15,12 +15,12 @@ public class LadderGame {
 
     private final List<Result> result;
 
-    private LadderGame(Players players, Missions missions, Lines lines) {
-        this.result = getResults(players, missions, lines);
+    private LadderGame(Players players, Missions missions, Ladder ladder) {
+        this.result = getResults(players, missions, ladder);
     }
 
-    private List<Result> getResults(Players players, Missions missions, Lines lines) {
-        List<Player> playersSortedByPosition = moveAllPlayers(players, lines);
+    private List<Result> getResults(Players players, Missions missions, Ladder ladder) {
+        List<Player> playersSortedByPosition = moveAllPlayers(players, ladder);
         List<Mission> missionsSortedRandomly = getMissions(missions);
 
         return IntStream.range(0, missions.size())
@@ -28,16 +28,16 @@ public class LadderGame {
                 .collect(Collectors.toList());
     }
 
-    public static LadderGame of(Players players, Missions missions, Lines lines) {
-        return new LadderGame(players, missions, lines);
+    public static LadderGame of(Players players, Missions missions, Ladder ladder) {
+        return new LadderGame(players, missions, ladder);
     }
 
-    private static ArrayList<Mission> getMissions(Missions missions) {
+    private List<Mission> getMissions(Missions missions) {
         return new ArrayList<>(missions.getMissions());
     }
 
-    private List<Player> moveAllPlayers(Players players, Lines lines) {
-        players.moveAllPlayers(lines);
+    private List<Player> moveAllPlayers(Players players, Ladder ladder) {
+        players.moveAllPlayers(ladder);
         return players.getPlayersSortedByPosition();
     }
 
