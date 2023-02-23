@@ -1,5 +1,6 @@
 package laddergame.domain.result;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,5 +36,11 @@ public class Results {
         if (uniqueCount == MINIMUM_COUNT) {
             throw new IllegalArgumentException("[ERROR] 실행 결과가 모두 동일합니다.");
         }
+    }
+
+    public List<String> getResultNames() {
+        return results.stream()
+                .map(Result::getResultName)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }

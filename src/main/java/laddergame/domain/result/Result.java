@@ -41,4 +41,8 @@ public class Result {
     public int hashCode() {
         return Objects.hash(resultName);
     }
+
+    public String getResultName() {
+        return resultName;
+    }
 }

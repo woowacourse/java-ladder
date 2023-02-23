@@ -33,6 +33,11 @@ public class OutputView {
         print(ladderMessage);
     }
 
+    public void printResultNames(final List<String> resultNames) {
+        String paddedResultNames = padAllValues(resultNames, "%-6s");
+        print(paddedResultNames.trim());
+    }
+
     public void printResultGuide() {
         print(System.lineSeparator() + "실행결과" + System.lineSeparator());
     }

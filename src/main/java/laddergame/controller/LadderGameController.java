@@ -26,7 +26,12 @@ public class LadderGameController {
         Ladder ladder = createLadder(participants);
         Results results = createResults(participants);
 
-        printLadderResult(participants, ladder);
+        outputView.printLadderResultGuide();
+        List<String> participantNames = getParticipantNames(participants);
+        outputView.printParticipantNames(participantNames);
+        outputView.printLadder(ladder.getLines(), participantNames);
+        List<String> resultNames = getResultNames(results);
+        outputView.printResultNames(resultNames);
     }
 
     private Participants createParticipants() {
@@ -51,16 +56,13 @@ public class LadderGameController {
         });
     }
 
-    private void printLadderResult(final Participants participants, final Ladder ladder) {
-        outputView.printLadderResultGuide();
-        List<String> participantNames = getParticipantNames(participants);
-        outputView.printParticipantNames(participantNames);
-        outputView.printLadder(ladder.getLines(), participantNames);
-    }
-
     private List<String> getParticipantNames(final Participants participants) {
         return participants.getParticipants().stream()
                 .map(Participant::getName)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    private List<String> getResultNames(final Results results) {
+        return results.getResultNames();
     }
 }
