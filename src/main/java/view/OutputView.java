@@ -20,7 +20,7 @@ public class OutputView {
 
     public void printResultByUser(Map<String, String> resultMap, String findUser, List<String> userNames) {
         System.out.println(OUTPUT_RESULT_MESSAGE);
-        if (findUser.equals(LadderGameController.FIND_ALL_RESULT)) {
+        if (findUser.equals(Users.ALL)) {
             printAllUserResult(resultMap, userNames);
             return;
         }
