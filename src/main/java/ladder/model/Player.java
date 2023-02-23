@@ -43,10 +43,11 @@ public class Player {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof Player)) return false;
-        Player player = (Player) object;
-        return this.playerName.equals(player.playerName);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(playerName, player.playerName);
     }
 
     @Override
