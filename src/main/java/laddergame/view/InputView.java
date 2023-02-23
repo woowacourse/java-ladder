@@ -23,6 +23,10 @@ public class InputView {
         return readUserInputBy(NEW_LINE + "최대 사다리 높이는 몇 개인가요?");
     }
 
+    public String readResults() {
+        return readUserInputBy(NEW_LINE + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    }
+
     public <T> T repeatUntilGettingValidValue(Supplier<T> inputReader) {
         try {
             return inputReader.get();

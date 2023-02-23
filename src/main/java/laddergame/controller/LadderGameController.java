@@ -3,6 +3,7 @@ package laddergame.controller;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.participant.Participant;
 import laddergame.domain.participant.Participants;
+import laddergame.domain.result.Results;
 import laddergame.domain.rung.RandomBooleanGenerator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
@@ -23,6 +24,8 @@ public class LadderGameController {
     public void start() {
         Participants participants = createParticipants();
         Ladder ladder = createLadder(participants);
+        Results results = createResults(participants);
+
         printGameResult(participants, ladder);
     }
 
@@ -38,6 +41,13 @@ public class LadderGameController {
         return inputView.repeatUntilGettingValidValue(() -> {
             String maxLadderHeight = inputView.readMaxLadderHeight();
             return Ladder.create(randomBooleanGenerator, maxLadderHeight, participants.size());
+        });
+    }
+
+    private Results createResults(final Participants participants) {
+        return inputView.repeatUntilGettingValidValue(() -> {
+            String resultNames = inputView.readResults();
+            return new Results(resultNames, participants.size());
         });
     }
 
