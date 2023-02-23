@@ -1,6 +1,7 @@
 package ladder.domain;
 
-import java.util.LinkedHashMap;
+import static java.util.stream.Collectors.toMap;
+
 import java.util.Map;
 
 class LadderGameResult {
@@ -8,9 +9,9 @@ class LadderGameResult {
     private static final String PRINT_ALL = "all";
     private static final String INVALID_PLAYER_MESSAGE = "사다리 게임에 참가한 사람의 이름을 입력해야합니다.";
 
-    private final Map<String, String> result;
+    private final Map<Player, Item> result;
 
-    public LadderGameResult(final Map<String, String> result) {
+    public LadderGameResult(final Map<Player, Item> result) {
         this.result = result;
     }
 
@@ -22,13 +23,20 @@ class LadderGameResult {
     }
 
     private Map<String, String> getAll() {
-        return new LinkedHashMap<>(result);
+        return result.keySet().stream()
+                .collect(toMap(Player::getName, this::getItemName));
+    }
+
+    private String getItemName(final Player player) {
+        return result.get(player).getName();
     }
 
     private Map<String, String> getSingle(final String name) {
-        if (!result.containsKey(name)) {
+        final Player player = new Player(name);
+        if (!result.containsKey(player)) {
             throw new IllegalArgumentException(INVALID_PLAYER_MESSAGE);
         }
-        return Map.of(name, result.get(name));
+        final Item item = result.get(player);
+        return Map.of(player.getName(), item.getName());
     }
 }
