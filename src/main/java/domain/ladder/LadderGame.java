@@ -21,6 +21,17 @@ public class LadderGame {
         return new LadderGame(gameResult);
     }
 
+    public String findByName(String name) {
+        if (!result.containsKey(name)) {
+            throw new IllegalArgumentException("이름과 일치하는 참가자가 존재하지 않습니다.");
+        }
+        return result.get(name);
+    }
+
+    public boolean hasContain(String name) {
+        return result.containsKey(name);
+    }
+
     private static HashMap<String, String> start(Players players, Prizes prizes, Ladder ladder) {
         HashMap<String, String> gameResult = new HashMap<>();
         for (int playerIndex = 0; playerIndex < players.getPlayers().size(); playerIndex++) {
@@ -37,13 +48,6 @@ public class LadderGame {
         if (players.getPlayers().size() != prizes.getPrizes().size()) {
             throw new IllegalArgumentException("참가자 수와 결과 수는 일치해야 합니다.");
         }
-    }
-
-    public String findByName(String name) {
-        if (!result.containsKey(name)) {
-            throw new IllegalArgumentException("이름과 일치하는 참가자가 존재하지 않습니다.");
-        }
-        return result.get(name);
     }
 
     public Map<String, String> findAllResults() {
