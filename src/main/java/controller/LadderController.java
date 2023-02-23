@@ -5,10 +5,12 @@ import domain.Ladder;
 import domain.LadderGame;
 import domain.Line;
 import domain.Lines;
+import domain.Player;
 import domain.Players;
 import domain.Results;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import util.LineGenerator;
 import util.PlayersMaker;
 import util.RandomLineGenerator;
@@ -27,6 +29,28 @@ public class LadderController {
         LadderGame ladderGame = new LadderGame(players, ladder, results);
         ladderGame.printLadder();
         ladderGame.playGame();
+        Map<Player, String> ladderGameResult = ladderGame.getLadderGameResult();
+        Player player = inputPlayerNameWantToSee(players);
+        OutputView.printPlayerResultWantToSee(player, ladderGameResult);
+    }
+
+    private Player inputPlayerNameWantToSee(Players players) {
+        try {
+            String playerName = inputPlayerNameToSeeResult();
+            return players.findPlayerByName(playerName);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return inputPlayerNameWantToSee(players);
+        }
+    }
+
+    private String inputPlayerNameToSeeResult() {
+        try {
+            return InputView.receivePlayerName();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return inputPlayerNameToSeeResult();
+        }
     }
 
     private Players makePlayers() {

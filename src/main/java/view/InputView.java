@@ -37,6 +37,15 @@ public class InputView {
         return Integer.parseInt(height);
     }
 
+    public static String receivePlayerName() {
+        System.out.println("\n결과를 보고싶은 사람은?");
+
+        String playerName = input();
+        validateBlank(playerName);
+
+        return playerName;
+    }
+
     private static void validateBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없습니다.");
