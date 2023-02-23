@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class PlayersTest {
 
@@ -18,7 +18,9 @@ public class PlayersTest {
     void createPlayerNamesSuccess() {
         List<String> playerNamesInput = List.of("pobi", "honux", "crong", "jk");
 
-        assertDoesNotThrow(() -> Players.from(playerNamesInput));
+        assertThat(Players.from(playerNamesInput).getPlayers())
+                .map(Player::getName)
+                .containsExactly(String.valueOf(playerNamesInput));
     }
 
     @Test

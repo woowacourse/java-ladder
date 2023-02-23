@@ -28,7 +28,9 @@ public class PlayerTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "12345"})
     void createNameSuccess(String input) {
-        Assertions.assertDoesNotThrow(() -> new Player(input, 0));
+        Player player = new Player(input, 0);
+
+        assertThat(player.getName()).isEqualTo(input);
     }
 
     @DisplayName("이름이 문자나 숫자 이외의 값이 포함되면 예외 발생")
