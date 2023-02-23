@@ -1,5 +1,8 @@
 package domain;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class LadderGame {
     private final Players players;
     private final Ladder ladder;
@@ -47,4 +50,8 @@ public class LadderGame {
         return position.getIndex();
     }
 
+    public List<Integer> getResultAllIndex() {
+        return players.getNames().stream()
+                .map(this::getResultIndex).collect(Collectors.toList());
+    }
 }
