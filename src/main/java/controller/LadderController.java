@@ -12,7 +12,6 @@ import domain.RandomBooleanGenerator;
 import domain.Result;
 import domain.Results;
 import domain.Rewards;
-import utils.Log;
 import view.InputView;
 import view.OutputView;
 
@@ -51,7 +50,7 @@ public class LadderController {
             List<String> names = InputView.readPlayers();
             return new Players(names);
         } catch (IllegalArgumentException exception) {
-            Log.log(exception.getMessage());
+            OutputView.printErrorMessage(exception.getMessage());
             return generatePlayers();
         }
     }
@@ -61,7 +60,7 @@ public class LadderController {
             List<String> names = InputView.readRewards();
             return new Rewards(names, playersSize);
         } catch (IllegalArgumentException exception) {
-            Log.log(exception.getMessage());
+            OutputView.printErrorMessage(exception.getMessage());
             return generateRewards(playersSize);
         }
     }
@@ -73,7 +72,7 @@ public class LadderController {
             LadderGenerator ladderGenerator = new LadderGenerator(booleanGenerator);
             return ladderGenerator.generateLadder(height, personCount);
         } catch (IllegalArgumentException exception) {
-            Log.log(exception.getMessage());
+            OutputView.printErrorMessage(exception.getMessage());
             return generateLadder(personCount);
         }
     }
@@ -83,7 +82,7 @@ public class LadderController {
             String name = InputView.readName();
             return new Name(name);
         } catch (IllegalArgumentException exception) {
-            Log.log(exception.getMessage());
+            OutputView.printErrorMessage(exception.getMessage());
             return generateName();
         }
     }
@@ -93,7 +92,7 @@ public class LadderController {
             Result result = ladderGame.getResult(name);
             OutputView.printResult(result);
         } catch (IllegalArgumentException exception) {
-            Log.log(exception.getMessage());
+            OutputView.printErrorMessage(exception.getMessage());
         }
     }
 }

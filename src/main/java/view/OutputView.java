@@ -23,6 +23,7 @@ public class OutputView {
     private static final String RESULT_FORMAT = "%s : %s%n";
     private static final String LADDER_START_MESSAGE = "사다리 결과";
     private static final String RESULT_START_MESSAGE = "실행 결과";
+    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s%n";
     private static final String NEW_LINE = "\n";
     private static final int DIVISOR = 2;
     private static final int DEFAULT_PADDING = 2;
@@ -107,5 +108,9 @@ public class OutputView {
 
     public static void printResultStart() {
         System.out.println(NEW_LINE + RESULT_START_MESSAGE);
+    }
+
+    public static void printErrorMessage(final String message) {
+        System.out.printf(ERROR_MESSAGE_FORMAT, message);
     }
 }
