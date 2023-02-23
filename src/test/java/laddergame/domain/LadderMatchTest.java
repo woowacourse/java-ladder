@@ -58,7 +58,7 @@ class LadderMatchTest {
         final GameResults gameResults = new GameResults(List.of("aaa", "bbb", "ccc"), participants.getNames());
 
         final LadderMatch ladderMatch = new LadderMatch(ladder, participants, gameResults);
-        final LadderMatchResults matchResult = ladderMatch.getLadderMatchResults("hyena");
+        final LadderMatchResults matchResult = ladderMatch.getOneMatchedResult("hyena");
         final Map<Name, Result> findMatchResults = matchResult.getMatchResults();
         final String findName = findMatchResults.get(new Name("hyena")).getValue();
 
@@ -76,9 +76,9 @@ class LadderMatchTest {
         final GameResults gameResults = new GameResults(List.of("aaa", "bbb", "ccc"), participants.getNames());
 
         final LadderMatch ladderMatch = new LadderMatch(ladder, participants, gameResults);
-        final LadderMatchResults ladderMatchResults = ladderMatch.getLadderMatchResults("all");
-        final Map<Name, Result> findMatchResutls = ladderMatchResults.getMatchResults();
+        final LadderMatchResults ladderMatchResults = ladderMatch.getAllMatchedResults();
+        final Map<Name, Result> findMatchResults = ladderMatchResults.getMatchResults();
 
-        assertThat(findMatchResutls).hasSize(3);
+        assertThat(findMatchResults).hasSize(3);
     }
 }

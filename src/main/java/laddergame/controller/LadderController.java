@@ -38,11 +38,15 @@ public class LadderController {
 
     private void runLadderMatch(final Ladder ladder, final Participants participants, final GameResults gameResults) {
         final LadderMatch ladderMatch = new LadderMatch(ladder, participants, gameResults);
-        String command = "";
-        while (!command.equals(FIND_ALL_MATCH_RESULTS_COMMAND)) {
-            command = inputView.readName();
-            final LadderMatchResults matchResults = ladderMatch.getLadderMatchResults(command);
-            outputView.printMatchResult(LadderMatchForm.joinUnitsFrom(matchResults));
+        boolean isContinue = true;
+        while (isContinue) {
+            final String command = inputView.readName();
+            isContinue = !command.equals(FIND_ALL_MATCH_RESULTS_COMMAND);
+            if (isContinue) {
+                outputView.printMatchResult(LadderMatchForm.joinUnitsFrom(ladderMatch.getOneMatchedResult(command)));
+                continue;
+            }
+            outputView.printMatchResult(LadderMatchForm.joinUnitsFrom(ladderMatch.getAllMatchedResults()));
         }
     }
 }

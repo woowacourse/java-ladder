@@ -7,8 +7,6 @@ import java.util.stream.IntStream;
 import static laddergame.utils.OptionalUtils.getValueAfterNullCheck;
 
 public class LadderMatch {
-    private static final String MATCH_RESULTS_COMMAND = "all";
-
     private final Ladder ladder;
     private final Participants participants;
     private final GameResults gameResults;
@@ -19,14 +17,7 @@ public class LadderMatch {
         this.gameResults = getValueAfterNullCheck(gameResults);
     }
 
-    public LadderMatchResults getLadderMatchResults(final String command) {
-        if (command.equals(MATCH_RESULTS_COMMAND)) {
-            return getAllMatchedResults();
-        }
-        return getOneMatchedResult(command);
-    }
-
-    private LadderMatchResults getAllMatchedResults() {
+    public LadderMatchResults getAllMatchedResults() {
         final List<String> findResults = findMatchResultValues();
         final Names names = participants.getNames();
         final GameResults matchedGameResult = new GameResults(findResults, names);
@@ -34,7 +25,7 @@ public class LadderMatch {
         return new LadderMatchResults(names, matchedGameResult);
     }
 
-    private LadderMatchResults getOneMatchedResult(final String name) {
+    public LadderMatchResults getOneMatchedResult(final String name) {
         final Position findParticipantPosition = participants.findPositionByName(name);
         final Position findDestination = ladder.findLastDestination(findParticipantPosition);
         final Result findResult = gameResults.findResultByPosition(findDestination);
