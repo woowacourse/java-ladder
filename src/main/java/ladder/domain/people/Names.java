@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.people;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,20 +18,20 @@ public class Names {
         this.names = split(names);
     }
 
-    public List<String> getNames(){
+    public List<String> getNames() {
         return this.names;
     }
 
     private List<String> split(String names) {
         validateNamesInputForm(names);
-        List<String> splitedNames = namesSplit(names);
-        validateRange(splitedNames);
-        validateDuplicateNames(splitedNames);
-        return splitedNames;
+        List<String> splitNames = namesSplit(names);
+        validateRange(splitNames);
+        validateDuplicateNames(splitNames);
+        return splitNames;
     }
 
-    private void validateRange(List<String> splitedNames) {
-        if (splitedNames.size() < MINIMUM_NAMES_RANGE || splitedNames.size() > MAXIMUM_NAMES_RANGE) {
+    private void validateRange(List<String> splitNames) {
+        if (splitNames.size() < MINIMUM_NAMES_RANGE || splitNames.size() > MAXIMUM_NAMES_RANGE) {
             throw new IllegalArgumentException("이름의 수가 2이상 100이하여야 합니다.");
         }
     }
@@ -48,14 +48,14 @@ public class Names {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private void validateDuplicateNames(List<String> splitedNames) {
-        if (getDistinctNames(splitedNames) != splitedNames.size()) {
+    private void validateDuplicateNames(List<String> splitNames) {
+        if (getDistinctNames(splitNames) != splitNames.size()) {
             throw new IllegalArgumentException("중복된 이름은 입력할 수 없습니다.");
         }
     }
 
-    private int getDistinctNames(List<String> splitedNames) {
-        return (int) splitedNames.stream()
+    private int getDistinctNames(List<String> splitNames) {
+        return (int) splitNames.stream()
                 .distinct()
                 .count();
     }

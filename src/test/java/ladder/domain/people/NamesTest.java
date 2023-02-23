@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.people;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,7 +38,7 @@ class NamesTest {
     void test_3() {
         // then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Names("12345,123"))
+                .isThrownBy(() -> new Names("abcdef,acd"))
                 .withMessage("입력된 플레이어들의 이름 형식이 올바르지 않습니다.");
     }
 
@@ -47,8 +47,8 @@ class NamesTest {
     void test_4() {
         // then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Names("123"))
-                .withMessage("입력된 플레이어들의 이름 형식이 올바르지 않습니다.");
+                .isThrownBy(() -> new Names("abc"))
+                .withMessage("이름의 수가 2이상 100이하여야 합니다.");
     }
 
     @Test
@@ -56,7 +56,7 @@ class NamesTest {
     void test_5() {
         // then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Names("123,123"))
-                .withMessage("입력된 플레이어들의 이름 형식이 올바르지 않습니다.");
+                .isThrownBy(() -> new Names("abc,abc"))
+                .withMessage("중복된 이름은 입력할 수 없습니다.");
     }
 }
