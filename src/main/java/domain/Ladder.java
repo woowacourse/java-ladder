@@ -17,7 +17,7 @@ public class Ladder {
         LineGenerator lineGenerator = new LineGenerator(linkGenerator);
 
         lines = new ArrayList<>();
-        for(int floor = 0; floor < height; floor++) {
+        for(int line = 0; line < height; line++) {
             lines.add(lineGenerator.generate(personCount));
         }
     }
