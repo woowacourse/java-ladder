@@ -7,7 +7,6 @@ import static java.util.stream.Collectors.toList;
 
 public class Names {
     private static final int MIN_NUMBER_OF_PLAYERS = 2;
-    private static final int HALF = 2;
 
     private final List<Name> names;
 
@@ -22,10 +21,6 @@ public class Names {
                 .mapToInt(Name::getNameLength)
                 .max()
                 .orElseThrow(() -> new IllegalStateException("가장 긴 이름을 찾을 수 없습니다."));
-    }
-
-    public int getFirstNameLengthDividedByTwoRounded() {
-        return Math.round(names.get(0).getNameLength() / HALF);
     }
 
     private static List<Name> createNames(final List<String> names) {
