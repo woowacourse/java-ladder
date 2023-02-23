@@ -14,22 +14,13 @@ public class Height {
 
     public void validate(int height) {
         if (height < MIN_RANGE || height > MAX_RANGE) {
-            throw new IllegalArgumentException(Message.EXCEPTION_RANGE.message);
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] %d 이상 %d 이하의 자연수만 입력해 주세요.", MIN_RANGE, MAX_RANGE)
+            );
         }
     }
 
     public int getHeight() {
         return height;
-    }
-
-    private enum Message {
-        EXCEPTION_RANGE("%d 이상 %d 이하의 자연수만 입력해 주세요.", MIN_RANGE, MAX_RANGE);
-
-        public static final String BASE_MESSAGE_FORMAT = "[ERROR] %s";
-        private final String message;
-
-        Message(String message, Object... replaces) {
-            this.message = String.format(BASE_MESSAGE_FORMAT, String.format(message, replaces));
-        }
     }
 }

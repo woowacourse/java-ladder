@@ -23,26 +23,17 @@ public class Name {
 
     private void validateLength(String name) {
         if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(Message.EXCEPTION_NAME_LENGTH_FORMAT.message);
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] %d글자 이상 %d글자 이하의 이름만 입력해주세요.", MIN_LENGTH, MAX_LENGTH)
+            );
         }
     }
 
     private void validateBlank(String name) {
         if (name.isBlank()) {
-            throw new IllegalArgumentException(Message.EXCEPTION_NAME_BLANK.message);
-        }
-    }
-
-    private enum Message {
-
-        EXCEPTION_NAME_LENGTH_FORMAT("%d글자 이상 %d글자 이하의 이름만 입력해주세요.", MIN_LENGTH, MAX_LENGTH),
-        EXCEPTION_NAME_BLANK("빈 이름(공백)은 입력이 불가능합니다.");
-
-        public static final String BASE_MESSAGE_FORMAT = "[ERROR] %s";
-        private final String message;
-
-        Message(String message, Object... replaces) {
-            this.message = String.format(BASE_MESSAGE_FORMAT, String.format(message, replaces));
+            throw new IllegalArgumentException(
+                    "[ERROR] 빈 이름(공백)은 입력이 불가능합니다."
+            );
         }
     }
 }

@@ -33,14 +33,16 @@ public class Names {
                 .map(Name::getName)
                 .collect(Collectors.toSet());
         if (set.size() != names.size()) {
-            throw new IllegalArgumentException(Message.EXCEPTION_DUPLICATION.message);
+            throw new IllegalArgumentException("[ERROR] 중복된 이름은 입력할 수 없습니다.");
         }
     }
 
     private void validateLength() {
         int nameSize = this.names.size();
         if (nameSize < MIN_RANGE || nameSize > MAX_RANGE) {
-            throw new IllegalArgumentException(Message.EXCEPTION_RANGE.message);
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] %d명 이상 %d명 이하의 사람 수를 입력해 주세요.", MIN_RANGE, MAX_RANGE)
+            );
         }
     }
 
@@ -50,17 +52,5 @@ public class Names {
 
     public int getPersonNumber() {
         return names.size();
-    }
-
-    private enum Message {
-        EXCEPTION_RANGE("%d명 이상 %d명 이하의 사람 수를 입력해 주세요.", MIN_RANGE, MAX_RANGE),
-        EXCEPTION_DUPLICATION("중복된 이름은 입력할 수 없습니다.");
-
-        public static final String BASE_MESSAGE_FORMAT = "[ERROR] %s";
-        private final String message;
-
-        Message(String message, Object... replaces) {
-            this.message = String.format(BASE_MESSAGE_FORMAT, String.format(message, replaces));
-        }
     }
 }
