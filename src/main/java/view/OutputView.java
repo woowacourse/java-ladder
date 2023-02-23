@@ -10,11 +10,10 @@ public class OutputView {
     private static final OutputView outputView = new OutputView();
 
     private final String RESULT_MESSAGE = "실행결과";
-
+    private final String NAME_ERROR_MESSAGE = "사다리 게임에 참여한 플레이어의 이름을 입력해주세요.";
     private final String BLANK = " ";
     private final String LINE_START_FORMAT = "    |";
-    private final String NAME_START_FORMAT = "  ";
-    private final String PRIZE_START_FORMAT = "  ";
+    private final String OBJECT_START_FORMAT = "  ";
     private final String FORMATTED_DASH = "-----";
     private final String FORMATTED_BLANK = "     ";
     private final String DIVIDER = "|";
@@ -27,7 +26,7 @@ public class OutputView {
     }
 
     public void printNames(Players players) {
-        System.out.print(NAME_START_FORMAT);
+        System.out.print(OBJECT_START_FORMAT);
         players.getPlayers().stream()
                 .map(Player::getName)
                 .forEach(outputView::printObject);
@@ -65,7 +64,7 @@ public class OutputView {
     }
 
     public void printPrizes(Prize prizes) {
-        System.out.print(PRIZE_START_FORMAT);
+        System.out.print(OBJECT_START_FORMAT);
         prizes.getPrizes()
                 .forEach(outputView::printObject);
         System.out.println();
@@ -73,8 +72,8 @@ public class OutputView {
 
     public void printOnePlayerResult(Map<String, String> results, String name) {
         String result = results.get(name);
-        if (result.isEmpty()) {
-            throw new IllegalArgumentException();
+        if (result == null) {
+            throw new IllegalArgumentException(NAME_ERROR_MESSAGE);
         }
         System.out.println(RESULT_MESSAGE);
         System.out.println(result);
