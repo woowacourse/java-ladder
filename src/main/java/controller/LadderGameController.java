@@ -29,7 +29,6 @@ public class LadderGameController {
         Users users = getUsers();
         Rewards rewards = getRewards(users.size());
         Ladder ladder = getLadder(users.size());
-        printLadderResult(ladder, users, rewards);
         LadderGame ladderGame = new LadderGame(ladder, users, rewards);
         ladderGame.moveUsers();
 
