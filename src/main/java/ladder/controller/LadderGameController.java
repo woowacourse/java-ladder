@@ -49,13 +49,20 @@ public class LadderGameController {
 
     private Rewards generateRewards(int playerCount) {
         try {
-            List<Reward> rewards = inputView.readRewards().stream()
+            List<String> rewards = inputView.readRewards();
+            validateRewardCount(rewards.size(), playerCount);
+            return new Rewards(rewards.stream()
                     .map(Reward::new)
-                    .collect(Collectors.toList());
-            return new Rewards(rewards, playerCount);
+                    .collect(Collectors.toList()));
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
             return generateRewards(playerCount);
+        }
+    }
+
+    private void validateRewardCount(int rewardCount, int playerCount) {
+        if (rewardCount != playerCount) {
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_REWARD_COUNT.getMessage());
         }
     }
 
