@@ -49,8 +49,4 @@ public class Player {
     public String getName() {
         return name.getName();
     }
-
-    public boolean equalName(final String name) {
-        return this.name.equalName(name);
-    }
 }
