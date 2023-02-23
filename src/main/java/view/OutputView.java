@@ -59,10 +59,6 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printErrorMessage(String errorMessage) {
-        System.out.println(ErrorCode.HEAD.getMessage() + errorMessage);
-    }
-
     public void printPersonalResult(String result) {
         System.out.println(RESULT_HEAD);
         System.out.println(result);
@@ -74,5 +70,9 @@ public class OutputView {
             String prize = results.get(name);
             System.out.println(name + DELIMITER + prize);
         }
+    }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(ErrorCode.HEAD.getMessage() + errorMessage);
     }
 }

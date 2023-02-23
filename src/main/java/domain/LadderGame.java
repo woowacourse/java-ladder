@@ -33,16 +33,16 @@ public class LadderGame {
         }
     }
 
-    public Map<String, String> getAllResult() {
-        return new HashMap<>(mappingResult);
-    }
-
     public String getPersonalResult(String inputName) {
         String result = mappingResult.get(inputName);
-        if (result==null) {
+        if (result == null) {
             throw new IllegalArgumentException(ErrorCode.NOT_PLAYER.getMessage());
         }
         return result;
+    }
+
+    public Map<String, String> getAllResult() {
+        return new HashMap<>(mappingResult);
     }
 
     public List<List<Bridge>> getLadderStatus() {

@@ -5,7 +5,6 @@ import domain.LadderGame;
 import exception.ErrorCode;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import view.InputView;
 import view.OutputView;
@@ -30,7 +29,7 @@ public class LadderGameController {
         ladderGame.run();
         ladderGame.makeGameResult(prizes);
 
-        outputView.printLadderResult(ladderGame.getAllPlayerNames(), ladderGame.getLadderStatus(), prizes);
+        showLadder(prizes);
         showResult();
     }
 
@@ -73,6 +72,10 @@ public class LadderGameController {
             outputView.printErrorMessage(exception.getMessage());
             return requestLadderPrize();
         }
+    }
+
+    private void showLadder(List<String> prizes) {
+        outputView.printLadderResult(ladderGame.getAllPlayerNames(), ladderGame.getLadderStatus(), prizes);
     }
 
     private void showResult() {

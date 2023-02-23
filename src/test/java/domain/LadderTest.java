@@ -1,14 +1,12 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import util.TestGenerator;
-import util.TrueGenerator;
 
 public class LadderTest {
     @Nested
@@ -52,7 +50,7 @@ public class LadderTest {
     @DisplayName("사다리 게임")
     class climbLadder {
         @Test
-        @DisplayName("사다리를 타고난 후의 위치값을 제대로 반환하는지 테스")
+        @DisplayName("사다리를 타고난 후의 위치값을 제대로 반환하는지 테스트")
         void climbTest() {
             //given
             int personCount = 5;
@@ -61,13 +59,13 @@ public class LadderTest {
 
             //when
             ladder.generate(new TestGenerator(
-                    List.of(true, false, true, false, false, true, false, true, false, false, true, false)));
+                    List.of(true, false, true, false,
+                            false, true, false, true,
+                            false, false, true, false)));
 
             //then
-            assertThat(ladder.findFinalPosition(0))
-                    .isEqualTo(3);
-            assertThat(ladder.findFinalPosition(1))
-                    .isEqualTo(0);
+            assertThat(ladder.findFinalPosition(0)).isEqualTo(3);
+            assertThat(ladder.findFinalPosition(1)).isEqualTo(0);
         }
     }
 }

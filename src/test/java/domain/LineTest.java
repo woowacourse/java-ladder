@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -64,7 +63,7 @@ class LineTest {
         void hasBridgeInLeftTest() {
             //given
             Line line = new Line(5);
-            line.generate(new TestGenerator(List.of(true,false,true,false)));
+            line.generate(new TestGenerator(List.of(true, false, true, false)));
 
             //when
             Assertions.assertThat(line.hasBridgeInLeft(1)).isTrue();
@@ -76,12 +75,11 @@ class LineTest {
         void hasBridgeInRightTest() {
             //given
             Line line = new Line(5);
-            line.generate(new TestGenerator(List.of(true,false,true,false)));
+            line.generate(new TestGenerator(List.of(true, false, true, false)));
 
             //when
             Assertions.assertThat(line.hasBridgeInRight(0)).isTrue();
             Assertions.assertThat(line.hasBridgeInRight(1)).isFalse();
         }
-
     }
 }
