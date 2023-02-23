@@ -15,7 +15,7 @@ public class LadderResponse {
     private final List<String> players;
     private final List<String> prizes;
 
-    public LadderResponse(List<List<Boolean>> ladder, List<String> players, List<String> prizes) {
+    private LadderResponse(List<List<Boolean>> ladder, List<String> players, List<String> prizes) {
         this.ladder = ladder;
         this.players = players;
         this.prizes = prizes;
@@ -48,5 +48,5 @@ public class LadderResponse {
     public List<String> getPrizes() {
         return prizes;
     }
-    
+
 }
