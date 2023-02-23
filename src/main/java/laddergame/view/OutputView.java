@@ -35,7 +35,7 @@ public class OutputView {
         players.getPlayers().stream()
                 .forEach(player -> {
                     System.out.printf("%s : %s", player.getName(), player.getReward());
-                    System.lineSeparator();
+                    System.out.print(System.lineSeparator());
                 });
     }
 

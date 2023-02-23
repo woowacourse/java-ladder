@@ -12,7 +12,7 @@ public class LadderGameController {
     private static final String NAME_INPUT_REQUEST = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String HEIGHT_INPUT_REQUEST = "최대 사다리 높이는 몇 개인가요?";
     private static final String REWARD_INPUT_REQUEST = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
-    private static final String TARGET_INPUT_REQUEST = "결과를 보고 싶은 사람은?";
+    private static final String TARGET_INPUT_REQUEST = "결과를 보고 싶은 사람은? (종료하려면 Q를 입력하세요!)";
 
 
     private final InputView inputView;
@@ -35,12 +35,17 @@ public class LadderGameController {
         List<String> playerNames = players.getPlayers().stream().map(Player::getName).collect(Collectors.toList());
         outputView.printResult(playerNames, ladder.getLines(), players.getMaxPlayerNameLength());
         Target target = requestTarget(playerNames);
-        if (target.isAll()){
-            outputView.printAllResult(players);
-            return ;
+        while (!target.isQuit())
+        {
+            if (target.isAll()) {
+                outputView.printAllResult(players);
+                target = requestTarget(playerNames);
+                continue;
+            }
+            Player targetPlayer = players.getTargetPlayer(target.getName());
+            outputView.printPlayerResult(targetPlayer);
+            target = requestTarget(playerNames);
         }
-        Player targetPlayer = players.getTargetPlayer(target.getName());
-        outputView.printPlayerResult(targetPlayer);
     }
 
     private Players requestUserNames() {
@@ -79,7 +84,7 @@ public class LadderGameController {
         try {
             outputView.printMessage(TARGET_INPUT_REQUEST);
             Target target = inputView.readTarget();
-            target.checkNotPlayerNameOrNotAll(playerNames);
+            target.checkNotPlayerNameOrNotKeyword(playerNames);
             return target;
         } catch (IllegalArgumentException e) {
             outputView.printErrormessage(e.getMessage());

@@ -30,7 +30,7 @@ class TargetTest {
         Target target = new Target("extra");
         Players player = new Players(List.of("pobi", "crong", "jena"));
         List<String> playerNames = player.getPlayers().stream().map(Player::getName).collect(Collectors.toList());
-        Assertions.assertThatThrownBy(() -> target.checkNotPlayerNameOrNotAll(playerNames))
+        Assertions.assertThatThrownBy(() -> target.checkNotPlayerNameOrNotKeyword(playerNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -39,7 +39,7 @@ class TargetTest {
     void checkContent2() {
         Players player = new Players(List.of("pobi", "crong", "jena"));
         List<String> playerNames = player.getPlayers().stream().map(Player::getName).collect(Collectors.toList());
-        assertDoesNotThrow(() -> new Target("jena").checkNotPlayerNameOrNotAll(playerNames));
-        assertDoesNotThrow(() -> new Target("all").checkNotPlayerNameOrNotAll(playerNames));
+        assertDoesNotThrow(() -> new Target("jena").checkNotPlayerNameOrNotKeyword(playerNames));
+        assertDoesNotThrow(() -> new Target("all").checkNotPlayerNameOrNotKeyword(playerNames));
     }
 }
