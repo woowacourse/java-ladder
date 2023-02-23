@@ -33,7 +33,7 @@ public class LadderGameTest {
     void getResultsAllSuccess() {
         Command command = new Command("all");
 
-        List<Result> results = ladderGame.getResults(command);
+        List<Result> results = ladderGame.getResults(command).getResults();
         Result firstResult = results.get(0);
         Result secondResult = results.get(1);
 
@@ -48,7 +48,7 @@ public class LadderGameTest {
     void getResultSuccess() {
         Command command = new Command("crong");
 
-        List<Result> results = ladderGame.getResults(command);
+        List<Result> results = ladderGame.getResults(command).getResults();
 
         assertThat(results).hasSize(1);
         assertThat(results.get(0).getPlayer().getName()).isEqualTo("crong");

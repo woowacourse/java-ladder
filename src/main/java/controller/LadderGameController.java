@@ -3,15 +3,13 @@ package controller;
 import domain.Command;
 import domain.Height;
 import domain.Players;
-import domain.Result;
+import domain.Results;
 import domain.Rewards;
 import domain.ladder.Ladder;
 import domain.ladder.LadderGame;
 import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
-
-import java.util.List;
 
 public class LadderGameController {
 
@@ -40,7 +38,7 @@ public class LadderGameController {
     private void printResult(LadderGame ladderGame) {
         while (true) {
             Command command = new Command(inputView.requestCommand());
-            List<Result> results = ladderGame.getResults(command); 
+            Results results = ladderGame.getResults(command);
             outputView.printResult(results);
         }
     }

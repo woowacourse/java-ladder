@@ -5,12 +5,11 @@ import domain.Direction;
 import domain.Player;
 import domain.Players;
 import domain.Point;
-import domain.Result;
 import domain.ResultCommand;
+import domain.Results;
 import domain.Rewards;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderGame {
 
@@ -52,19 +51,10 @@ public class LadderGame {
         }
     }
 
-    public List<Result> getResults(Command command) {
+    public Results getResults(Command command) {
         ResultCommand resultCommand = new ResultCommand(players);
-
-        return resultCommand.getCommandResult(command)
-                .stream()
-                .map(this::createResult)
-                .collect(Collectors.toList());
-    }
-
-    private Result createResult(Player player) {
-        return new Result(player, rewards.getRewards()
-                .get(player.getStandingLine())
-        );
+        List<Player> playerFromCommand = resultCommand.getCommandResult(command);
+        return Results.from(playerFromCommand, rewards.getRewards());
     }
 
 }

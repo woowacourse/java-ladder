@@ -5,6 +5,7 @@ import domain.Player;
 import domain.Players;
 import domain.Point;
 import domain.Result;
+import domain.Results;
 import domain.Reward;
 import domain.Rewards;
 import domain.ladder.Ladder;
@@ -44,10 +45,10 @@ public class OutputView {
         breakLine();
     }
 
-    public void printResult(List<Result> results) {
+    public void printResult(Results results) {
         System.out.println(RESULT_PREFIX_MESSAGE);
-
-        results.forEach(this::getFormatResult);
+        results.getResults()
+                .forEach(this::getFormatResult);
     }
 
     private void getFormatResult(Result result) {
