@@ -20,12 +20,12 @@ public class Players {
     }
 
     public void validateSize(List<Player> players) {
-        if (isProper(players)) {
+        if (isProperPlayerLength(players)) {
             throw new IllegalArgumentException("[ERROR] 사용자는 2명에서 13명까지 가능합니다.");
         }
     }
 
-    private boolean isProper(List<Player> players) {
+    private boolean isProperPlayerLength(List<Player> players) {
         return MAX_PLAYERS < players.size() || players.size() < MIN_PLAYERS;
     }
 
@@ -38,16 +38,16 @@ public class Players {
         }
     }
 
-    public List<Player> getPlayers() {
-        return Collections.unmodifiableList(players);
-    }
-
     public int findIndexByPlayer(Player player) {
         int index = players.indexOf(player);
         if (index == -1) {
             throw new IllegalArgumentException("[ERROR] 해당 참여자가 없습니다.");
         }
         return index;
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 
     public int getPlayersCount() {
