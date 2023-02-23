@@ -21,6 +21,7 @@ class LadderTest {
     @DisplayName("결과의 개수가 라인의 폭이 같지 않으면 예외를 던진다.")
     void should_ThrowException_When_DestinationSizeNotEqualWithPlayersCount() {
         List<Result> wrongResults = List.of(new Result("실패"));
+        
         assertThatThrownBy(() -> Ladder.of(DEFAULT_WIDTH, DEFAULT_HEIGHT, wrongResults))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("결과의 개수와 라인의 폭(3)은 일치해야 합니다.");

@@ -22,6 +22,7 @@ class DestinationTest {
     @DisplayName("전달받은 위치에 해당하는 결과를 반환한다.")
     void should_ReturnValue_By_Index(int index, String expected) {
         Result result = destination.get(index);
+        
         assertThat(result.getValue()).isEqualTo(expected);
     }
 

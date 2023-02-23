@@ -22,7 +22,7 @@ class NameTest {
 
     @ParameterizedTest
     @NullAndEmptySource
-    @DisplayName("이름 길이가 5를 초과하면 예외를 던진다.")
+    @DisplayName("이름이 null 또는 빈문자열이면 예외를 던진다.")
     void should_ThrowException_When_NullOrEmpty(String value) {
         assertThatThrownBy(() -> new Name(value))
                 .isInstanceOf(IllegalArgumentException.class)
