@@ -64,19 +64,14 @@ class LadderGameTest {
         List<Line> lines = ladder.getLines();
         List<String> resultReward = new ArrayList<>();
 
-        for (Line line : lines) {
-            for (Player player : players.getPlayers()) {
-                player.move(line.isStep(player.getPosition() - 1), line.isStep(player.getPosition()));
-            }
-        }
+        LadderGame ladderGame = new LadderGame(players, rewards, ladder);
+        ladderGame.start();
 
         for (Player player : players.getPlayers()) {
-            player.matchReward(rewards.getRewards());
             resultReward.add(player.getReward());
         }
 
         assertThat(resultReward).isEqualTo(List.of("꽝", "3000", "60"));
-
     }
 
 }
