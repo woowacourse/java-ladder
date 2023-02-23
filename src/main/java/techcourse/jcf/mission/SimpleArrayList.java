@@ -6,22 +6,21 @@ public class SimpleArrayList implements SimpleList {
 
     private int size = 0;
     private int currentIndex = 0;
-    private String[] list;
+    private String[] values;
 
     public SimpleArrayList() {
-        list = new String[MINIMUM_SIZE];
+        values = new String[MINIMUM_SIZE];
     }
 
-    public SimpleArrayList(int size) {
-        list = new String[size];
-        this.size = size;
+    public SimpleArrayList(final String[] values) {
+        this.values = values;
     }
 
     //TODO: List의 크기가 자동으로 늘어나게 수정
     @Override
     public boolean add(final String value) {
         size += 1;
-        list[currentIndex++] = value;
+        values[currentIndex++] = value;
         return true;
     }
 
@@ -29,23 +28,28 @@ public class SimpleArrayList implements SimpleList {
     @Override
     public void add(final int index, final String value) {
         size += 1;
-        list[index] = value;
+        values[index] = value;
     }
 
     @Override
     public String set(final int index, final String value) {
-        final String previousValue = list[index];
-        list[index] = value;
+        final String previousValue = values[index];
+        values[index] = value;
         return previousValue;
     }
 
     @Override
     public String get(final int index) {
-        return list[index];
+        return values[index];
     }
 
     @Override
     public boolean contains(final String value) {
+        for (String storedValue : values) {
+            if (storedValue.equals(value)) {
+                return true;
+            }
+        }
         return false;
     }
 
