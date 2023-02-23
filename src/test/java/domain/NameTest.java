@@ -51,7 +51,7 @@ class NameTest {
         Name name = new Name("name");
 
         // then
-        assertThat(name.same("name")).isTrue();
+        assertThat(name.isSame("name")).isTrue();
     }
 
     @DisplayName("이름이 다르면 false를 반환한다.")
@@ -61,6 +61,6 @@ class NameTest {
         Name name = new Name("name");
 
         // then
-        assertThat(name.same("differentName")).isFalse();
+        assertThat(name.isSame("differentName")).isFalse();
     }
 }

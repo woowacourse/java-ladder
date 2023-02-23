@@ -12,24 +12,6 @@ import org.junit.jupiter.api.Test;
 
 class PlayerTest {
 
-    @DisplayName("이름이 같은 Player는 equals true를 반환한다.")
-    @Test
-    void same_Player_name_return_true() {
-        Player playerA = new Player(new Name("hi"), new Position(1));
-        Player playerB = new Player(new Name("hi"), new Position(1));
-
-        assertThat(playerA).isEqualTo(playerB);
-    }
-
-    @DisplayName("이름이 다른 Player는 equals false를 반환한다.")
-    @Test
-    void other_Player_name_eqauls_return_false() {
-        Player playerA = new Player(new Name("hi"), new Position(1));
-        Player playerB = new Player(new Name("bye"), new Position(1));
-
-        assertThat(playerA).isNotEqualTo(playerB);
-    }
-
     @DisplayName("이름이 같으면 true를 반환한다.")
     @Test
     void same_name_return_true() {

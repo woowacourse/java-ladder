@@ -27,7 +27,7 @@ public class Name {
         }
     }
 
-    public boolean same(String otherName) {
+    public boolean isSame(String otherName) {
         return name.equals(otherName);
     }
 
