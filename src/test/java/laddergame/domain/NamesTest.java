@@ -65,6 +65,16 @@ class NamesTest {
         assertThat(findNames).containsExactlyElementsOf(inputNames);
     }
 
+    @DisplayName("Name 값 리스트를 가져온다.")
+    @ParameterizedTest
+    @MethodSource("namesDummy")
+    void getNameValues(final List<String> inputNames) {
+        final Names names = new Names(inputNames);
+        final List<String> findNames = names.getNameValues();
+
+        assertThat(findNames).containsExactlyElementsOf(inputNames);
+    }
+
     @DisplayName("Names 리스트에서 이름을 통해서 현재 위치를 검색할 수 있다.")
     @Test
     void findPositionByName() {
