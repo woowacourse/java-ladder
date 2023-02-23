@@ -35,10 +35,9 @@ public class LadderService {
 
     public Players createPlayers(String namesInput) {
         String[] playerNames = namesInput.split(PLAYERS_STRING_DELIMITER);
-        List<Player> players = Arrays.stream(playerNames)
+        return Arrays.stream(playerNames)
                 .map(Player::new)
-                .collect(toList());
-        return new Players(players);
+                .collect(collectingAndThen(toList(), Players::new));
     }
 
     public Prizes createPrizes(String resultsInput, Players players) {
