@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.HashMap;
+import java.util.Map;
 import view.OutputView;
 
 public class LadderGame {
@@ -37,6 +39,16 @@ public class LadderGame {
         if (line.getLine().get(index).getStatus()) {
             playersInGame.changePosition(index, index + 1);
         }
+    }
+
+    public Map<Player, String> getLadderGameResult() {
+        Map<Player, String> ladderGameResult = new HashMap<>();
+
+        for (int index = 0; index < playersInGame.getNumberOfPlayers(); index++) {
+            ladderGameResult.put(playersInGame.getPlayers().get(index), results.getResultByIndex(index));
+        }
+
+        return ladderGameResult;
     }
 
     public void printResult2() {
