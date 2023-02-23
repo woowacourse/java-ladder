@@ -23,8 +23,8 @@ public class LadderGameController {
 
     public void start() {
         Participants participants = createParticipants();
-        Ladder ladder = createLadder(participants);
         Results results = createResults(participants);
+        Ladder ladder = createLadder(participants);
 
         outputView.printLadderResultGuide();
         List<String> participantNames = getParticipantNames(participants);
