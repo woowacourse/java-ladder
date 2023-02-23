@@ -13,7 +13,7 @@ class SimpleListTest {
     @BeforeEach
     void initList() {
         // 구현한 구현체로 바꾸기
-        list = new SimpleArrayList(new String[]{"0", "1"});
+        list = new SimpleLinkedList(new String[]{"0", "1"});
     }
 
     @Test
