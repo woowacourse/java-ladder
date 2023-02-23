@@ -68,9 +68,9 @@ class PlayersTest {
         List<Player> playerList = players.toUnmodifiablePlayers();
         //then
         assertAll(
-                () -> assertThat(playerList.get(0).getPosition()).isEqualTo(new Position(0)),
-                () -> assertThat(playerList.get(1).getPosition()).isEqualTo(new Position(1)),
-                () -> assertThat(playerList.get(2).getPosition()).isEqualTo(new Position(2))
+                () -> assertThat(playerList.get(0).getPosition()).isEqualTo(0),
+                () -> assertThat(playerList.get(1).getPosition()).isEqualTo(1),
+                () -> assertThat(playerList.get(2).getPosition()).isEqualTo(2)
         );
     }
 
@@ -82,7 +82,7 @@ class PlayersTest {
         //when
         Players players = Players.generate(names);
         //then
-        assertThat(players.findPositionBy(new Name("a"))).isEqualTo(new Position(0));
+        assertThat(players.findPositionBy(new Name("a"))).isEqualTo(0);
     }
 
     /*
@@ -102,6 +102,6 @@ class PlayersTest {
         //when
         players.moveAll(ladder);
         //then
-        assertThat(players.findPositionBy(new Name(playerName))).isEqualTo(new Position(expectPosition));
+        assertThat(players.findPositionBy(new Name(playerName))).isEqualTo(expectPosition);
     }
 }

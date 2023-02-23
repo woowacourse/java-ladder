@@ -13,11 +13,11 @@ public class Item {
         return name.getValue();
     }
 
-    public Position getPosition() {
-        return position;
+    public int getPosition() {
+        return position.getValue();
     }
 
-    public boolean isSamePosition(Position position) {
-        return this.position.equals(position);
+    public boolean isSamePosition(int position) {
+        return this.position.getValue() == position;
     }
 }

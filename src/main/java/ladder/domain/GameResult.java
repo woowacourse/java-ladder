@@ -14,7 +14,7 @@ public class GameResult {
     public static GameResult of(Players players, Items items) {
         Map<String, String> results = new LinkedHashMap<>();
         for (Player player : players.toUnmodifiablePlayers()) {
-            results.put(player.getName().getValue(), items.findBy(player.getPosition()).getName());
+            results.put(player.getName(), items.findBy(player.getPosition()).getName());
         }
         return new GameResult(results);
     }

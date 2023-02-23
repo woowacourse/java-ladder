@@ -17,7 +17,7 @@ public class ItemTest {
         //then
         assertAll(
                 () -> assertThat(item.getName()).isEqualTo("3000"),
-                () -> assertThat(item.getPosition()).isEqualTo(new Position(0))
+                () -> assertThat(item.getPosition()).isEqualTo(0)
         );
     }
 }

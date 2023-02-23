@@ -40,6 +40,6 @@ class PlayerTest {
         //when
         player.move(ladder);
         //then
-        assertThat(player.getPosition()).isEqualTo(new Position(2));
+        assertThat(player.getPosition()).isEqualTo(2);
     }
 }

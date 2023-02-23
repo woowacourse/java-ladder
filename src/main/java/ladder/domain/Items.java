@@ -36,7 +36,7 @@ public class Items {
         return items.size();
     }
 
-    public Item findBy(Position resultPosition) {
+    public Item findBy(int resultPosition) {
         return items.stream()
                 .filter(item -> item.isSamePosition(resultPosition))
                 .findFirst()

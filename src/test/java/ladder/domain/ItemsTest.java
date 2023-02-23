@@ -23,9 +23,9 @@ class ItemsTest {
         List<Item> itemList = items.toUnmodifiableItems();
         //then
         assertAll(
-                () -> assertThat(itemList.get(0).getPosition()).isEqualTo(new Position(0)),
-                () -> assertThat(itemList.get(1).getPosition()).isEqualTo(new Position(1)),
-                () -> assertThat(itemList.get(2).getPosition()).isEqualTo(new Position(2))
+                () -> assertThat(itemList.get(0).getPosition()).isEqualTo(0),
+                () -> assertThat(itemList.get(1).getPosition()).isEqualTo(1),
+                () -> assertThat(itemList.get(2).getPosition()).isEqualTo(2)
         );
     }
 
@@ -48,7 +48,7 @@ class ItemsTest {
         List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
         //when
         Items items = Items.generate(names, 3);
-        Item item = items.findBy(new Position(position));
+        Item item = items.findBy(position);
         //then
         assertThat(item.getName()).isEqualTo(itemName);
     }

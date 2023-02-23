@@ -36,7 +36,7 @@ public class Players {
         }
     }
 
-    public Position findPositionBy(Name name) {
+    public int findPositionBy(Name name) {
         Player findPlayer = players.stream()
                 .filter(player -> player.isMatchesBy(name))
                 .findFirst()
@@ -51,7 +51,6 @@ public class Players {
     public List<String> getNameValues() {
         return players.stream()
                 .map(Player::getName)
-                .map(Name::getValue)
                 .collect(Collectors.toList());
     }
 

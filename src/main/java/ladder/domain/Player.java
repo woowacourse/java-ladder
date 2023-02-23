@@ -9,12 +9,12 @@ public class Player {
         this.position = new Position(positionValue);
     }
 
-    public Name getName() {
-        return name;
+    public String getName() {
+        return name.getValue();
     }
 
-    public Position getPosition() {
-        return position;
+    public int getPosition() {
+        return position.getValue();
     }
 
     public void move(Ladder ladder) {
