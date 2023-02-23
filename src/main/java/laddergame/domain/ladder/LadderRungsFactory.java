@@ -1,7 +1,7 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.exception.RangeException;
 import laddergame.domain.exception.TypeException;
+import laddergame.domain.exception.ladder.LadderHeightRangeException;
 import laddergame.domain.rung.Rungs;
 import laddergame.util.BooleanGenerator;
 
@@ -61,7 +61,7 @@ public class LadderRungsFactory {
 
     private void validateHeightRange(final int height) {
         if (height < MIN_HEIGHT || MAX_HEIGHT < height) {
-            throw new RangeException(MIN_HEIGHT, MAX_HEIGHT);
+            throw new LadderHeightRangeException(MIN_HEIGHT, MAX_HEIGHT);
         }
     }
 }

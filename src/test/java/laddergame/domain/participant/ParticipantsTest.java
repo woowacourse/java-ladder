@@ -1,7 +1,8 @@
 package laddergame.domain.participant;
 
 import laddergame.domain.exception.DuplicateException;
-import laddergame.domain.exception.EmptyException;
+import laddergame.domain.exception.participant.ParticipantCountLowerException;
+import laddergame.domain.exception.participant.ParticipantsNotFoundException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInstance;
@@ -29,7 +30,7 @@ public class ParticipantsTest {
     @DisplayName("입력받은 참여자의 수가 1명이면, 예외가 발생한다.")
     void create_givenSingleCountParticipant_thenFail(final String names) {
         assertThatThrownBy(() -> Participants.create(names))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(ParticipantCountLowerException.class)
                 .hasMessage("[ERROR] 참가자 이름은 최소 1명 이상 입력해야 합니다.");
     }
 
@@ -40,7 +41,7 @@ public class ParticipantsTest {
         assertThatThrownBy(() -> Participants.create(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .isExactlyInstanceOf(DuplicateException.class)
-                .hasMessage(DuplicateException.errorMessage);
+                .hasMessage("[ERROR] 중복된 값을 입력할 수 없습니다.");
     }
 
     @ParameterizedTest
@@ -49,7 +50,6 @@ public class ParticipantsTest {
     void create_givenEmptyNames_thenFail(final String names) {
         assertThatThrownBy(() -> Participants.create(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .isExactlyInstanceOf(EmptyException.class)
                 .hasMessage("[ERROR] 참가자 이름은 비어있을 수 없습니다.");
     }
 
@@ -118,7 +118,7 @@ public class ParticipantsTest {
 
         // when, then
         assertThatThrownBy(() -> participants.getResultParticipants(invalidParticipantName))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 참여자 리스트에 존재하지 않습니다. 현재 참여자 리스트 = " + participantNames);
+                .isInstanceOf(ParticipantsNotFoundException.class)
+                .hasMessage("[ERROR] 존재하지 않는 값입니다. 현재 참여자 리스트 = " + participantNames);
     }
 }

@@ -1,6 +1,6 @@
 package laddergame.domain.ladder.result;
 
-import laddergame.domain.exception.BlankException;
+import laddergame.domain.exception.ladder.result.LadderResultNameBlankException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
@@ -29,7 +29,7 @@ public class LadderResultNameTest {
     void create_givenBlankName_thenFail(final String name) {
         assertThatThrownBy(() -> LadderResultName.create(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .isExactlyInstanceOf(BlankException.class)
-                .hasMessageContaining(String.format(BlankException.errorMessage, "사다리 결과 이름은"));
+                .isExactlyInstanceOf(LadderResultNameBlankException.class)
+                .hasMessage("[ERROR] 사다리 결과 이름은 공백이 포함될 수 없습니다.");
     }
 }

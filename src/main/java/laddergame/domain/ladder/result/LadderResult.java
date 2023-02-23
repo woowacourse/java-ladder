@@ -1,5 +1,7 @@
 package laddergame.domain.ladder.result;
 
+import laddergame.domain.exception.ladder.result.LadderResultCountException;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,7 +9,6 @@ import java.util.stream.Collectors;
 public class LadderResult {
 
     private static final String DELIMITER = ",";
-    private static final String INVALID_LADDER_RESULT_SIZE = "[ERROR] 사다리 결과의 개수는 %d개여야 합니다.";
 
     private final List<LadderResultName> resultNames;
 
@@ -44,7 +45,7 @@ public class LadderResult {
 
     private void validateNameSize(final List<LadderResultName> ladderResultNames, final int participantCount) {
         if (ladderResultNames.size() != participantCount) {
-            throw new IllegalArgumentException(String.format(INVALID_LADDER_RESULT_SIZE, participantCount));
+            throw new LadderResultCountException(participantCount);
         }
     }
 

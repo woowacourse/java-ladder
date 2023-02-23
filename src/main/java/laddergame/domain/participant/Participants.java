@@ -1,7 +1,9 @@
 package laddergame.domain.participant;
 
 import laddergame.domain.exception.DuplicateException;
-import laddergame.domain.exception.EmptyException;
+import laddergame.domain.exception.participant.ParticipantCountLowerException;
+import laddergame.domain.exception.participant.ParticipantNamesEmptyException;
+import laddergame.domain.exception.participant.ParticipantsNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,10 +14,7 @@ public class Participants {
 
     private static final int MIN_COUNT = 1;
     private static final String DELIMITER = ",";
-    private static final String PARTICIPANTS = "참가자 이름은";
     private static final String ALL_PARTICIPANTS = "all";
-    private static final String INVALID_PARTICIPANT_COUNT = "[ERROR] %s 최소 %d명 이상 입력해야 합니다.";
-    private static final String INVALID_PARTICIPANT_NAME = "[ERROR] 참여자 리스트에 존재하지 않습니다. 현재 참여자 리스트 = %s";
 
     private final List<Participant> participants;
 
@@ -57,13 +56,13 @@ public class Participants {
 
     private void validateBlankNames(final List<String> participantNames) {
         if (participantNames.isEmpty()) {
-            throw new EmptyException(PARTICIPANTS);
+            throw new ParticipantNamesEmptyException();
         }
     }
 
     private void validateParticipantCount(final List<String> participantNames) {
         if (participantNames.size() == MIN_COUNT) {
-            throw new IllegalArgumentException(String.format(INVALID_PARTICIPANT_COUNT, PARTICIPANTS, MIN_COUNT));
+            throw new ParticipantCountLowerException(MIN_COUNT);
         }
     }
 
@@ -89,7 +88,7 @@ public class Participants {
         return participants.stream()
                 .filter(participant -> participant.isSameName(trimName))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format(INVALID_PARTICIPANT_NAME, String.join(",", participantNames))));
+                .orElseThrow(() -> new ParticipantsNotFoundException(String.join(",", participantNames)));
     }
 
     private List<String> getParticipantNames() {

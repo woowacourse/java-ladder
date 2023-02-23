@@ -4,12 +4,12 @@ import java.util.Objects;
 
 public class Participant {
 
-    private final ParticipantName participantName;
-    private final ParticipantOrder participantOrder;
+    private final ParticipantName name;
+    private final ParticipantOrder order;
 
     private Participant(final String name, final int order) {
-        this.participantName = ParticipantName.create(name);
-        this.participantOrder = ParticipantOrder.create(order);
+        this.name = ParticipantName.create(name);
+        this.order = ParticipantOrder.create(order);
     }
 
     public static Participant create(final String name, final int order) {
@@ -25,19 +25,19 @@ public class Participant {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Participant that = (Participant) o;
-        return Objects.equals(participantName, that.participantName) && Objects.equals(participantOrder, that.participantOrder);
+        return Objects.equals(name, that.name) && Objects.equals(order, that.order);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(participantName, participantOrder);
+        return Objects.hash(name, order);
     }
 
     public String getName() {
-        return participantName.getName();
+        return name.getName();
     }
 
     public int getOrder() {
-        return participantOrder.getOrder();
+        return order.getOrder();
     }
 }

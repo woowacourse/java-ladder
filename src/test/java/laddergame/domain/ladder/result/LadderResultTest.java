@@ -1,5 +1,6 @@
 package laddergame.domain.ladder.result;
 
+import laddergame.domain.exception.ladder.result.LadderResultCountException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInstance;
@@ -52,8 +53,9 @@ public class LadderResultTest {
     @DisplayName("사다리의 결과의 수와 참여자의 수가 일치하지 않으면, 예외가 발생한다.")
     void create_givenInValidSizeByLadderResult_thenFail(final String invalidLadderResultNames) {
         assertThatThrownBy(() -> LadderResult.create(invalidLadderResultNames, participantCount))
-                .isExactlyInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 사다리 결과의 개수는 4개여야 합니다.");
+                .isInstanceOf(IllegalArgumentException.class)
+                .isExactlyInstanceOf(LadderResultCountException.class)
+                .hasMessage("[ERROR] 사다리 결과의 개수는 4개여야 합니다.");
     }
 
     @ParameterizedTest

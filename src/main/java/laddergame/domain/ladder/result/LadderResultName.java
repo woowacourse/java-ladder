@@ -1,10 +1,8 @@
 package laddergame.domain.ladder.result;
 
-import laddergame.domain.exception.BlankException;
+import laddergame.domain.exception.ladder.result.LadderResultNameBlankException;
 
 public class LadderResultName {
-
-    private static final String LADDER_RESULT_NAME = "사다리 결과 이름은";
 
     private final String name;
 
@@ -19,7 +17,7 @@ public class LadderResultName {
 
     private void validateNameBlank(final String name) {
         if (name.isBlank()) {
-            throw new BlankException(LADDER_RESULT_NAME);
+            throw new LadderResultNameBlankException();
         }
     }
 

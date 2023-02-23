@@ -1,7 +1,7 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.exception.RangeException;
 import laddergame.domain.exception.TypeException;
+import laddergame.domain.exception.ladder.LadderHeightRangeException;
 import laddergame.domain.rung.RungGenerator;
 import laddergame.util.BooleanGenerator;
 import org.junit.jupiter.api.BeforeAll;
@@ -47,7 +47,7 @@ public class LadderTest {
         assertThatThrownBy(() -> Ladder.create(invalidHeight, participantCount, rungGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .isExactlyInstanceOf(TypeException.class)
-                .hasMessage(TypeException.errorMessage);
+                .hasMessage("[ERROR] 올바른 타입의 값을 입력해 주세요.");
     }
 
     @ParameterizedTest
@@ -57,8 +57,8 @@ public class LadderTest {
         // when & then
         assertThatThrownBy(() -> Ladder.create(invalidHeight, participantCount, rungGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
-                .isExactlyInstanceOf(RangeException.class)
-                .hasMessage(String.format(RangeException.errorMessage, 1, 10_000));
+                .isExactlyInstanceOf(LadderHeightRangeException.class)
+                .hasMessage("[ERROR] 사다리 높이는 1 ~ 10000 사이의 값만 입력할 수 있습니다.");
     }
 
     @ParameterizedTest
