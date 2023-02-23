@@ -21,20 +21,24 @@ public class Line {
     }
 
     private LadderStep getPoint(int index) {
-        if (index > 0 && ladderSteps.get(index - 1).exists()) {
+        if (index > 0 && isLadderStepExists(index - 1)) {
             return LadderStep.from(false);
         }
         return LadderStep.from(generator.generate());
     }
 
     public int getNextStepIndex(int index) {
-        if (canGoLeft(index) && ladderSteps.get(index - 1).exists()) {
+        if (canGoLeft(index) && isLadderStepExists(index - 1)) {
             return Movement.GO_LEFT.move(index);
         }
-        if (canGoRight(index) && ladderSteps.get(index).exists()) {
+        if (canGoRight(index) && isLadderStepExists(index)) {
             return Movement.GO_RIGHT.move(index);
         }
         return Movement.STAY.move(index);
+    }
+
+    private boolean isLadderStepExists(int index) {
+        return ladderSteps.get(index).exists();
     }
 
     private boolean canGoRight(int index) {
