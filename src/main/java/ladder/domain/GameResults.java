@@ -30,7 +30,7 @@ public class GameResults {
         return gameResults;
     }
 
-    public void goDownLadder(Ladder ladder, Position position) {
+    private void goDownLadder(Ladder ladder, Position position) {
         for (Line line : ladder.getLines()) {
             Bar leftBar = line.getIndexBar(position.getPosition());
             Bar rightBar = line.getIndexBar(position.getPosition() + 1);
