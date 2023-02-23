@@ -1,6 +1,6 @@
 package view;
 
-import dto.GameResult;
+import model.GameResult;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

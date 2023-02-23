@@ -1,6 +1,6 @@
 package controller;
 
-import dto.GameResult;
+import model.GameResult;
 import java.util.List;
 import java.util.stream.Collectors;
 import model.Height;
@@ -67,7 +67,6 @@ public class LadderController {
 
     private void printLadder(Ladder ladder, Names names, LadderResults ladderResults) {
         outputView.noticeLadderResult();
-
         outputView.printNameOfParticipants(names);
         outputView.printLadder(ladder);
         outputView.printLadderResult(ladderResults);
