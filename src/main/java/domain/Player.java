@@ -1,6 +1,7 @@
 package domain;
 
 import exception.InvalidPlayerNameException;
+import java.util.Objects;
 
 public class Player {
 
@@ -10,7 +11,7 @@ public class Player {
     private static final int NAME_MIN_LENGTH = 1;
     private static final String NAME_NULL_ERROR_MESSAGE = "플레이어의 이름은 null이면 안됩니다.";
 
-    private String name;
+    private final String name;
 
     public Player(String name) {
         this.name = validateName(name);
@@ -47,5 +48,28 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+
+        if (o == this) {
+            return true;
+        }
+
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+
+        Player check = (Player) o;
+        return this.getName().equals(check.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
