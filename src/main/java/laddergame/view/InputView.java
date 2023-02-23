@@ -46,6 +46,16 @@ public class InputView {
         }
     }
 
+    public static String readResultPlayerName() {
+        System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
+
+        try {
+            return read();
+        } catch (IOException e) {
+            throw new IllegalStateException("입력값을 받을 수 없습니다.");
+        }
+    }
+
     private static String read() throws IOException {
         return bufferedReader.readLine();
     }

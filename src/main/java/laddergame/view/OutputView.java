@@ -3,6 +3,7 @@ package laddergame.view;
 import laddergame.domain.ladder.Connection;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.player.Names;
+import laddergame.domain.prize.Result;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public enum OutputView {
     VERTICAL_LINE("|"),
     HORIZONTAL_LINE("-");
 
+    private static final String RESULT_ALL_OUTPUT_MESSAGE = "%s : %s";
     private final String ladderElement;
 
     OutputView(final String ladderElement) {
@@ -69,5 +71,21 @@ public enum OutputView {
         }
 
         return BLANK.ladderElement.repeat(maxNameLength) + VERTICAL_LINE.ladderElement;
+    }
+
+    public static void printResult(final List<Result> results) {
+        System.out.println(System.lineSeparator() + "실행 결과");
+
+        if (results.size() == 1) {
+            System.out.println(results.get(0).getPrize());
+            return;
+        }
+
+        results.forEach(OutputView::printResultAll);
+
+    }
+
+    private static void printResultAll(final Result result) {
+        System.out.println(String.format(RESULT_ALL_OUTPUT_MESSAGE, result.getName(), result.getPrize()));
     }
 }

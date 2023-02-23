@@ -1,5 +1,6 @@
 package laddergame.domain.prize;
 
+import laddergame.domain.player.Name;
 import laddergame.domain.player.Players;
 
 import java.util.ArrayList;
@@ -22,6 +23,15 @@ public class Results {
         }
 
         return results;
+    }
+
+    public List<Result> findResults(final Name name) {
+        final String playerName = name.getName();
+        if ("all".equals(playerName)) {
+            return findAll();
+        }
+
+        return List.of(findIndividualResultByName(playerName));
     }
 
     public Result findIndividualResultByName(final String name) {

@@ -66,6 +66,10 @@ public class Line {
     }
 
     public boolean canMoveRight(final int playerPosition) {
+        if (playerPosition == connections.size()) {
+            return false;
+        }
+
         final Connection rightConnection = connections.get(playerPosition);
 
         return rightConnection.isConnected();

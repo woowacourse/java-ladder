@@ -3,6 +3,7 @@ package laddergame.domain.ladder;
 import laddergame.domain.player.Player;
 import laddergame.domain.player.Players;
 import laddergame.domain.prize.Prizes;
+import laddergame.domain.prize.Results;
 
 public class LadderGame {
 
@@ -54,4 +55,7 @@ public class LadderGame {
         return ladder.canMoveRight(height, player);
     }
 
+    public Results createResults() {
+        return new Results(players, prizes);
+    }
 }

@@ -2,10 +2,17 @@ package laddergame.controller;
 
 import laddergame.domain.ladder.ConnectionStrategy;
 import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.LadderGame;
+import laddergame.domain.player.Name;
 import laddergame.domain.player.Names;
+import laddergame.domain.player.Players;
 import laddergame.domain.prize.Prizes;
+import laddergame.domain.prize.Result;
+import laddergame.domain.prize.Results;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
+
+import java.util.List;
 
 public class GameController {
 
@@ -22,6 +29,17 @@ public class GameController {
 
         OutputView.printPlayerAll(names);
         OutputView.printLadder(names, ladder);
+
+        final LadderGame ladderGame = new LadderGame(ladder, new Players(names), prizes);
+        ladderGame.startGame();
+        final Results results = ladderGame.createResults();
+
+        while (true) {
+            final Name resultName = readResultPlayerNameWithRetry();
+            final List<Result> result = results.findResults(resultName);
+            OutputView.printResult(result);
+        }
+
     }
 
     private Names readNamesWithRetry() {
@@ -48,6 +66,15 @@ public class GameController {
         } catch (IllegalStateException | IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             return readResultWithRetry(size);
+        }
+    }
+
+    private Name readResultPlayerNameWithRetry() {
+        try {
+            return new Name(InputView.readResultPlayerName());
+        } catch (IllegalStateException e) {
+            OutputView.printMessage(e.getMessage());
+            return readResultPlayerNameWithRetry();
         }
     }
 }

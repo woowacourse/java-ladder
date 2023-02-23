@@ -1,5 +1,6 @@
 package laddergame.domain.player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -10,6 +11,20 @@ public class Players {
 
     public Players(final List<Player> players) {
         this.players = players;
+    }
+
+    public Players(final Names names) {
+        this(createPlayers(names.getNames()));
+
+    }
+
+    private static List<Player> createPlayers(final List<String> playerNames) {
+        List<Player> players = new ArrayList<>();
+        for (int position = 0; position < playerNames.size(); position++) {
+            players.add(Player.of(playerNames.get(position) ,position));
+        }
+
+        return players;
     }
 
     public Player findPlayerByName(final String name) {
