@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -40,9 +41,7 @@ public class Matcher {
 
     private void swap(List<Name> participants, List<Boolean> conditions, int i) {
         if (conditions.get(i)) {
-            Name temp = participants.get(i);
-            participants.set(i, participants.get(i + 1));
-            participants.set(i + 1, temp);
+            Collections.swap(participants, i, i + 1);
         }
     }
 
