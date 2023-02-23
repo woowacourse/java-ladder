@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static laddergame.domain.TestFixture.ERROR_MESSAGE_HEAD;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -25,7 +26,7 @@ class ResultsTest {
 
         assertThatThrownBy(() -> new Results(resultNames, participantsCount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .hasMessageContaining(ERROR_MESSAGE_HEAD);
     }
 
     @ParameterizedTest
@@ -34,6 +35,6 @@ class ResultsTest {
     void throws_exception_if_all_results_are_identical(String resultNames, int participantsCount) {
         assertThatThrownBy(() -> new Results(resultNames, participantsCount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .hasMessageContaining(ERROR_MESSAGE_HEAD);
     }
 }

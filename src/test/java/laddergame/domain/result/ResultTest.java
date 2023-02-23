@@ -5,12 +5,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static laddergame.domain.TestFixture.ERROR_MESSAGE_HEAD;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class ResultTest {
-
-    private static final String ERROR_MESSAGE_HEAD = "[ERROR]";
 
     @ParameterizedTest
     @ValueSource(strings = {"꽝", "당첨", "5000"})
