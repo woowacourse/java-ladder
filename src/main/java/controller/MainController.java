@@ -26,8 +26,8 @@ public class MainController {
 
     public void start() {
         try {
-            Names names = new Names(inputView.readNames());
-            Missions missions = new Missions(inputView.readMissions(), names.size());
+            Names names = receiveNames();
+            Missions missions = receiveMissions(names.size());
 
             int lineNumber = names.getPersonNumber() - 1;
             LadderMaker ladderMaker = makeLadder(lineNumber);
@@ -65,6 +65,34 @@ public class MainController {
     }
 
     private LadderMaker makeLadder(int lineNumber) {
-        return LadderMaker.of(lineNumber, new Height(inputView.readHeight()), booleanGenerator);
+        return LadderMaker.of(lineNumber, receiveHeight(), booleanGenerator);
     }
+
+    private Names receiveNames() {
+        try {
+            return new Names(inputView.readNames());
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+            return receiveNames();
+        }
+    }
+
+    private Missions receiveMissions(int size) {
+        try {
+            return new Missions(inputView.readMissions(), size);
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+            return receiveMissions(size);
+        }
+    }
+
+    private Height receiveHeight() {
+        try {
+            return new Height(inputView.readHeight());
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+            return receiveHeight();
+        }
+    }
+
 }
