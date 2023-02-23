@@ -149,7 +149,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
