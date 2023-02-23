@@ -29,7 +29,7 @@ public class GameController {
 
         OutputView.printPlayerAll(names);
         OutputView.printLadder(names, ladder);
-        OutputView.printPrizesAll(prizes);
+        OutputView.printPrizesAll(prizes, names.findMaxNameLength());
 
         final LadderGame ladderGame = new LadderGame(ladder, new Players(names), prizes);
         ladderGame.startGame();

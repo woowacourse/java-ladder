@@ -78,11 +78,11 @@ public enum OutputView {
         System.out.println(String.format(RESULT_ALL_OUTPUT_MESSAGE, result.getName(), result.getPrize()));
     }
 
-    public static void printPrizesAll(final Prizes prizes) {
+    public static void printPrizesAll(final Prizes prizes, final int maxNameLength) {
         final StringBuilder result = new StringBuilder();
         result.append(createStartBlank(prizes.getPrize(0).getPrize()));
         final String prizeFormat = prizes.getPrizes().stream()
-                .map(prize -> makeNameFormat(prizes.getMaxPrizeLength(), prize.getPrize()))
+                .map(prize -> makeNameFormat(maxNameLength, prize.getPrize()))
                 .collect(joining(BLANK.ladderElement));
         result.append(prizeFormat);
 
