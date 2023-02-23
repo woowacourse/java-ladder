@@ -29,7 +29,9 @@ public class Controller {
         List<String> inputResult = settingResult(users.getCount());
         Height height = settingHeight();
         Ladder ladder = new Ladder(height, width, new RandomLadderGenerator());
+
         showLadder(users, ladder, inputResult);
+
         Result result = playLadderGame(users, ladder, inputResult);
         checkResult(users, result);
     }
