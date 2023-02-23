@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.LadderGameResult;
 import laddergame.domain.ladder.LadderHeight;
-import laddergame.domain.ladder.line.Line;
 import laddergame.domain.ladder.line.LineWidth;
 import laddergame.domain.players.Player;
 import laddergame.domain.players.Players;
@@ -34,27 +34,39 @@ public class LadderGame {
         }
     }
 
-    public List<Line> generateLadder(int height, List<String> results) {
-        ladder = Ladder.of(new LineWidth(players.size()), new LadderHeight(height), results);
-        return ladder.toLines();
+    public void generateLadder(int height, List<String> results) {
+        this.ladder = Ladder.of(new LineWidth(players.size()), new LadderHeight(height), results);
     }
 
-    public String findResultByPlayerName(String playerName) {
-        int startIndex = players.indexOf(playerName);
+    public LadderGameResult computeResult() {
+        validateLadderStatus();
+        return new LadderGameResult(findAllResultsByPlayer());
+    }
+
+    private void validateLadderStatus() {
         if (ladder == null) {
-            throw new IllegalStateException("사다리가 생성되지 않은 게임의 결과를 확인할 수 없습니다.");
+            throw new IllegalStateException("아직 사다리가 생성되지 않은 게임입니다.");
         }
-        return ladder.findResultByStartIndex(startIndex);
     }
 
-    public Map<String, String> findAllResultsByPlayer() {
+    private Map<String, String> findAllResultsByPlayer() {
         Map<String, String> allResults = new LinkedHashMap<>();
         players.getNames()
                 .forEach(name -> allResults.put(name, findResultByPlayerName(name)));
         return allResults;
     }
 
-    public List<String> getPlayerNames() {
+    private String findResultByPlayerName(String playerName) {
+        int startIndex = players.indexOf(playerName);
+        return ladder.findResultByStartIndex(startIndex);
+    }
+
+    public List<String> playerNames() {
         return players.getNames();
+    }
+
+    public Ladder ladder() {
+        validateLadderStatus();
+        return ladder;
     }
 }

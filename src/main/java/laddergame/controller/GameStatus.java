@@ -2,6 +2,7 @@ package laddergame.controller;
 
 public enum GameStatus {
 
-    RUN,
+    START,
+    PLAYED,
     QUIT
 }

@@ -40,4 +40,8 @@ public class Ladder {
     public List<Line> toLines() {
         return lines.toLines();
     }
+
+    public List<String> toResults() {
+        return destination.results();
+    }
 }
