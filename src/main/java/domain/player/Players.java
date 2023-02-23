@@ -1,9 +1,6 @@
 package domain.player;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -12,11 +9,15 @@ public class Players {
     private static final int MAX_PLAYER_SIZE = 50;
 
     private final List<Player> players;
+    private final List<Name> playersName;
 
     public Players(List<String> playersName) {
         validateDuplicate(playersName);
         validateSize(playersName);
         this.players = createPlayers(playersName);
+        this.playersName = playersName.stream()
+                .map(Name::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private List<Player> createPlayers(List<String> playersName) {
@@ -41,5 +42,9 @@ public class Players {
 
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
+    }
+
+    public List<Name> getPlayersName() {
+        return playersName;
     }
 }

@@ -29,4 +29,8 @@ public class Item {
             throw new IllegalArgumentException("실행 결과에는 공백이 들어갈 수 없습니다.");
         }
     }
+
+    public String getItem() {
+        return item;
+    }
 }
