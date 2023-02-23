@@ -19,7 +19,7 @@ public class LadderController {
     private Players makePlayers() {
         try {
             String[] playerNames = InputView.receivePlayer();
-            return new Players(playerNames);
+            return Players.of(playerNames);
         } catch (IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             return makePlayers();

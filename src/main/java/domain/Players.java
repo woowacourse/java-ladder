@@ -10,21 +10,23 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(String[] names) {
-        validateMoreThanOnePlayer(names);
-        this.players = createPlayer(names);
+    private Players(List<Player> players) {
+        validateMoreThanOnePlayer(players);
+        this.players = players;
     }
 
-    private void validateMoreThanOnePlayer(String[] names) {
-        if (names.length < MINIMUM_NUMBER_OF_PLAYERS) {
-            throw new IllegalArgumentException("[ERROR] 두 명 이상 입력해야 합니다.");
-        }
-    }
-
-    private List<Player> createPlayer(String[] names) {
-        return Arrays.stream(names)
+    public static Players of(String[] names) {
+        List<Player> players = Arrays.stream(names)
                 .map(Player::new)
                 .collect(Collectors.toList());
+
+        return new Players(players);
+    }
+
+    private void validateMoreThanOnePlayer(List<Player> players) {
+        if (players.size() < MINIMUM_NUMBER_OF_PLAYERS) {
+            throw new IllegalArgumentException("[ERROR] 두 명 이상 입력해야 합니다.");
+        }
     }
 
     public int getNumberOfPlayers() {
