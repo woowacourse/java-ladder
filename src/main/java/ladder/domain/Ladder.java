@@ -36,4 +36,8 @@ public class Ladder {
     private Item findSamePositionItem(Position position) {
         return items.findItem(position);
     }
+
+    public List<String> getItems() {
+        return items.getItems();
+    }
 }

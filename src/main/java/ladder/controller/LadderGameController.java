@@ -21,7 +21,7 @@ public class LadderGameController {
         List<String> items = InputView.readItems();
         int height = InputView.readLadderHeight();
         this.ladderGame = new LadderGame(names, items, height, lineStrategy);
-        OutputView.printLadder(ladderGame.getPlayerNames(), ladderGame.getLines(), ladderGame.getNameMaxLength());
+        OutputView.printLadder(ladderGame.getPlayerNames(), ladderGame.getLines(), ladderGame.getItems(), ladderGame.getNameMaxLength());
     }
 
     private void findPlayerResult() {

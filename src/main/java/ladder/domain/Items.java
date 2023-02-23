@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Items {
@@ -18,5 +19,11 @@ public class Items {
                 .filter(item -> item.isSamePosition(position))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("플레이어의 실행 결과가 존재하지 않습니다."));
+    }
+
+    public List<String> getItems() {
+        return items.stream()
+                .map(Item::getItem)
+                .collect(Collectors.toList());
     }
 }
