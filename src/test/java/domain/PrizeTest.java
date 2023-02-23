@@ -1,6 +1,6 @@
 package domain;
 
-import exception.InvalidPrizeName;
+import exception.InvalidPrizeNameException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -17,7 +17,7 @@ public class PrizeTest {
     void 상품명은_빈칸이거나_null_값이_들어오면_에러를_발생시킨다(String prize) {
         //when + then
         Assertions.assertThatThrownBy(() -> new Prize(prize))
-            .isInstanceOf(InvalidPrizeName.class);
+            .isInstanceOf(InvalidPrizeNameException.class);
     }
 
 }
