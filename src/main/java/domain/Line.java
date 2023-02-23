@@ -47,10 +47,6 @@ public class Line {
         return Direction.DOWN;
     }
 
-    public List<Bridge> getLine() {
-        return new ArrayList<>(line);
-    }
-
     public LineDTO getLineDTO() {
         List<Bridge> lineDTO = new ArrayList<>(line);
         return new LineDTO(lineDTO);
