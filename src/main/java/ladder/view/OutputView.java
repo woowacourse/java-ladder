@@ -13,26 +13,26 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final int DEFAULT_NAME_LENGTH = 6;
 
-    public static void printPlayers(List<String> playerNames) {
+    public void printPlayers(List<String> playerNames) {
         for (String playerName : playerNames) {
             printNameOnSquares(playerName);
         }
         System.out.println();
     }
 
-    private static void printNameOnSquares(String playerName) {
+    private void printNameOnSquares(String playerName) {
         int nameLength = playerName.length();
         System.out.print(BLANK.repeat(DEFAULT_NAME_LENGTH - nameLength));
         System.out.print(playerName);
     }
 
-    public static void printLadder(List<Line> lines) {
+    public void printLadder(List<Line> lines) {
         for (Line line : lines) {
             printLine(line);
         }
     }
 
-    private static void printLine(Line line) {
+    private void printLine(Line line) {
         System.out.print(WIDTH_PREFIX);
         for (Bar bar : line.getBars()) {
             printBar(bar);
@@ -40,7 +40,7 @@ public class OutputView {
         System.out.println(WIDTH_SUFFIX);
     }
 
-    private static void printBar(Bar bar) {
+    private void printBar(Bar bar) {
         if (bar.isMovable()) {
             System.out.print(MOVABLE_BAR);
             return;
@@ -48,14 +48,14 @@ public class OutputView {
         System.out.print(IMMOVABLE_BAR);
     }
 
-    public static void printItems(List<String> itemNames) {
+    public void printItems(List<String> itemNames) {
         for (String itemName : itemNames) {
             printNameOnSquares(itemName);
         }
         System.out.println();
     }
 
-    public static void printResult(Map<String, String> result) {
+    public void printResult(Map<String, String> result) {
         printResultMessage();
         if (result.size() != 1) {
             printAllResult(result);
@@ -66,13 +66,13 @@ public class OutputView {
         }
     }
 
-    private static void printAllResult(Map<String, String> result) {
+    private void printAllResult(Map<String, String> result) {
         for (String name : result.keySet()) {
             System.out.println(name + " : " + result.get(name));
         }
     }
 
-    private static void printResultMessage() {
+    private void printResultMessage() {
         System.out.println("실행 결과");
     }
 }
