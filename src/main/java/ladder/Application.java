@@ -20,7 +20,10 @@ public class Application {
 
         final LadderGame game = repeat(() -> initGame(lineStrategy));
         OutputView.printLadder(game.getPlayerNames(), game.getLadder(), game.getResults());
+        inquireGameResult(game);
+    }
 
+    private static void inquireGameResult(LadderGame game) {
         String queryName = "";
         while (!queryName.equals(QUERY_ALL)) {
             queryName = inquireResult(game);
