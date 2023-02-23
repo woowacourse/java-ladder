@@ -30,7 +30,7 @@ class LadderGameTest {
         Ladder ladder = Ladder.create(numberOfPeople, ladderHeight, numberGenerator);
         Names names = new Names(List.of(new Name("pobi"), new Name("glen"), new Name("vero")));
         Results results = new Results(List.of(new Result("포비결과"), new Result("글렌결과"), new Result("베로결과")), names.size());
-        LadderGame ladderGame = new LadderGame(ladder, names, results);
+        LadderGame ladderGame = new LadderGame(names, ladder, results);
         return ladderGame;
     }
 }
