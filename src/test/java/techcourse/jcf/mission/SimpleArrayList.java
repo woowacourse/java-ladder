@@ -6,7 +6,7 @@ public class SimpleArrayList implements SimpleList {
     private static final int DEFAULT_CAPACITY = 10;
 
     private int capacity;
-    private int pointer;
+    private int pointerToNext;
     private String[] values;
 
     public SimpleArrayList() {
@@ -17,7 +17,7 @@ public class SimpleArrayList implements SimpleList {
     public SimpleArrayList(String[] values) {
         this.capacity = DEFAULT_CAPACITY;
         this.values = values;
-        this.pointer = values.length;
+        this.pointerToNext = values.length;
         checkCapacityUnderKeepingOrder();
         checkCapacityOverKeepingOrder();
     }
@@ -33,7 +33,7 @@ public class SimpleArrayList implements SimpleList {
     }
 
     private void checkCapacityOverKeepingOrder() {
-        if (pointer >= capacity * 0.8) {
+        if (pointerToNext >= capacity * 0.8) {
             copyValuesIntactly();
         }
     }
@@ -47,6 +47,12 @@ public class SimpleArrayList implements SimpleList {
         this.values = newValues;
     }
 
+    private void checkIndexWithInRange(int index) {
+        if (index > this.pointerToNext) {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
     @Override
     public String get(int index) {
         return this.values[index];
@@ -54,8 +60,8 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean add(String value) {
-        this.values[pointer] = value;
-        this.pointer += 1;
+        this.values[pointerToNext] = value;
+        this.pointerToNext += 1;
         checkCapacityOverKeepingOrder();
         return true;
     }
@@ -63,18 +69,12 @@ public class SimpleArrayList implements SimpleList {
     @Override
     public void add(int index, String value) {
         checkIndexWithInRange(index);
-        for (int i = pointer; i > index; i--) {
+        for (int i = pointerToNext; i > index; i--) {
             values[i] = values[i - 1];
         }
         this.values[index] = value;
-        this.pointer += 1;
+        this.pointerToNext += 1;
         checkCapacityOverKeepingOrder();
-    }
-
-    private void checkIndexWithInRange(int index) {
-        if (index > this.pointer) {
-            throw new IndexOutOfBoundsException();
-        }
     }
 
     @Override
@@ -121,7 +121,7 @@ public class SimpleArrayList implements SimpleList {
     public String toString() {
         return "SimpleArrayList{" +
                 "capacity=" + capacity +
-                ", pointer=" + pointer +
+                ", pointer=" + pointerToNext +
                 ", values=" + Arrays.toString(values) +
                 '}';
     }
