@@ -22,4 +22,10 @@ public class LadderGame {
         }
     }
 
+    // todo : if문 이용하기
+    public void move(Line line, Position position) {
+        moveRight(line,position);
+        moveLeft(line,position);
+    }
+
 }
