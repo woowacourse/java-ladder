@@ -1,6 +1,5 @@
 package view;
 
-import domain.Height;
 import domain.Names;
 import domain.Rewards;
 import java.util.Scanner;
@@ -8,7 +7,7 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    private static int parseHeight(String input) {
+    private static int parseInt(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
@@ -26,9 +25,9 @@ public class InputView {
         return new Names(input);
     }
 
-    public Height readHeight() {
+    public int readHeight() {
         String input = readInput(Message.INPUT_LADDER_SIZE.message);
-        return new Height(parseHeight(input));
+        return parseInt(input);
     }
 
     public Rewards readRewards(Names names) {
