@@ -9,8 +9,8 @@ public class Item {
         this.position = new Position(position);
     }
 
-    public ItemName getName() {
-        return name;
+    public String getName() {
+        return name.getValue();
     }
 
     public Position getPosition() {

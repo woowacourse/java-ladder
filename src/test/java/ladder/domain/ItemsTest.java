@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ class ItemsTest {
         //given
         List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
         //when
-        Items items = Items.generate(names);
+        Items items = Items.generate(names, 3);
         List<Item> itemList = items.toUnmodifiableItems();
         //then
         assertAll(
@@ -34,7 +35,7 @@ class ItemsTest {
         //given
         List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
         //when
-        Items items = Items.generate(names);
+        Items items = Items.generate(names, 3);
         //then
         assertThat(items.getSize()).isEqualTo(3);
     }
@@ -46,9 +47,19 @@ class ItemsTest {
         //given
         List<String> names = new ArrayList<>(List.of("a", "ab", "abc"));
         //when
-        Items items = Items.generate(names);
+        Items items = Items.generate(names, 3);
         Item item = items.findBy(new Position(position));
         //then
-        assertThat(item.getName()).isEqualTo(new ItemName(itemName));
+        assertThat(item.getName()).isEqualTo(itemName);
+    }
+
+    @Test
+    @DisplayName("당첨 결과와 플레이어 사이가즈가 다르면 예외를 발생한다")
+    void shouldThrowExceptionWhenCreateDifferentSize() {
+        Players players = Players.generate(List.of("a", "b"));
+
+        assertThatThrownBy(() -> Items.generate(List.of("a"), players.getSize()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("플레이어와 당첨 결과는 개수가 같아야 합니다.");
     }
 }

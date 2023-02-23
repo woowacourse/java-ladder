@@ -16,7 +16,7 @@ public class ItemTest {
         Item item = new Item("3000", 0);
         //then
         assertAll(
-                () -> assertThat(item.getName()).isEqualTo(new ItemName("3000")),
+                () -> assertThat(item.getName()).isEqualTo("3000"),
                 () -> assertThat(item.getPosition()).isEqualTo(new Position(0))
         );
     }
