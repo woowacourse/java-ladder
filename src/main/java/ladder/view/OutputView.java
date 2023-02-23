@@ -88,14 +88,10 @@ public class OutputView {
         System.out.print(DELIMITER);
     }
 
-    public static void printSingleResult(Prizes prizes, int index) {
+    public static void printSingleResult(String prizeName) {
         System.out.println("실행 결과");
-        System.out.println(prizes.getPrizeNameByIndex(index));
+        System.out.println(prizeName);
         System.out.println();
-    }
-
-    public static void printNoUser() {
-        System.out.println("없는 유저입니다.");
     }
 
     public static void printAll(Map<String, String> allResult) {
