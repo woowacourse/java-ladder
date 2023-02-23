@@ -30,7 +30,7 @@ public class Ladder {
     }
 
     public Map<Integer, Integer> ride(final int playersSize) {
-        Map<Integer, Integer> result = new HashMap<>();
+        Map<Integer, Integer> result = new LinkedHashMap<>();
         for (int initialIndex = 0; initialIndex < playersSize; initialIndex++) {
             int finalIndex = decideFinalIndex(initialIndex);
             result.put(initialIndex, finalIndex);

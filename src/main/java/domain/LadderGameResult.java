@@ -6,7 +6,7 @@ import domain.prize.Prize;
 import domain.prize.Prizes;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LadderGameResult {
@@ -14,17 +14,15 @@ public class LadderGameResult {
     private final Map<Player, Prize> result;
 
     private LadderGameResult(final Map<Player, Prize> result) {
-        this.result = new HashMap<>(result);
+        this.result = new LinkedHashMap<>(result);
     }
 
     public static LadderGameResult of(Players players, Prizes prizes, Map<Integer, Integer> ladderResult) {
-        Map<Player, Prize> result = new HashMap<>();
-        ladderResult.keySet().forEach((playerIndex) -> {
-            Player player = players.getPlayerAt(playerIndex);
-            Prize prize = prizes.getPrizeAt(ladderResult.get(playerIndex));
-            result.put(player, prize);
-        });
-        return new LadderGameResult(Collections.unmodifiableMap(result));
+        Map<Player, Prize> playerToPrize = new LinkedHashMap<>();
+        ladderResult.forEach((playerIndex, prizeIndex) ->
+                playerToPrize.put(players.getPlayerAt(playerIndex), prizes.getPrizeAt(prizeIndex))
+        );
+        return new LadderGameResult(Collections.unmodifiableMap(playerToPrize));
     }
 
     public Map<Player, Prize> getResult() {

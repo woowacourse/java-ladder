@@ -1,10 +1,14 @@
 package controller;
 
 import controller.dto.LadderResponse;
+import controller.dto.PersonalResultResponse;
+import controller.dto.TotalResultResponse;
 import domain.LadderGame;
+import domain.LadderGameResult;
 import domain.ladder.Ladder;
 import domain.ladder.PointGenerator;
 import domain.players.Players;
+import domain.prize.Prize;
 import domain.prize.Prizes;
 import view.InputView;
 import view.OutputView;
@@ -27,6 +31,7 @@ public class LadderGameController {
     public void play() {
         ready();
         printGeneratedLadder();
+        printResult();
     }
 
     private void ready() {
@@ -43,6 +48,29 @@ public class LadderGameController {
         Prizes prizes = ladderGame.getPrizes();
         LadderResponse ladderResponse = LadderResponse.of(ladder, players, prizes);
         outputView.printGeneratedLadder(ladderResponse);
+    }
+
+    private void printResult() {
+        String resultInput = inputView.readResult();
+        // TODO 재귀로 입력받도록 수정
+        if (resultInput.equals("all")) {
+            printTotalResult();
+        } else {
+            printPersonalResult(resultInput);
+        }
+    }
+
+    private void printTotalResult() {
+        LadderGameResult result = ladderGame.getResult();
+        TotalResultResponse totalResultResponse = TotalResultResponse.from(result);
+        outputView.printTotalResult(totalResultResponse);
+
+    }
+
+    private void printPersonalResult(String playerName) {
+        Prize prize = ladderGame.getPersonalResult(playerName);
+        PersonalResultResponse personalResultResponse = PersonalResultResponse.from(prize);
+        outputView.printPersonalResult(personalResultResponse);
     }
 
 }
