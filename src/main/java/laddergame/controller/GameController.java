@@ -3,18 +3,21 @@ package laddergame.controller;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
 import laddergame.domain.Players;
+import laddergame.domain.WinningPrizes;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
 public class GameController {
 
     public void process() {
-        final Players names = readNames();
+        final Players players = readNames();
         final Height height = readHeight();
-        final Ladder ladder = new Ladder(height, names.getSize());
+        final Ladder ladder = new Ladder(height, players.getSize());
+        final WinningPrizes winningPrizes = WinningPrizes.of(InputView.readWiningPrize(), players.getSize());
 
-        OutputView.printPlayerAll(names);
-        OutputView.printLadder(names, ladder);
+        OutputView.printPlayerAll(players);
+        OutputView.printLadder(players, ladder);
+        OutputView.printWinningPrizeAll(winningPrizes);
     }
 
     private Players readNames() {

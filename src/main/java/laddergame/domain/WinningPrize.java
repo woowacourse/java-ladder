@@ -33,4 +33,8 @@ public class WinningPrize {
     public String getWinningPrize() {
         return winningPrize;
     }
+
+    public int getWinningPrizeLength() {
+        return winningPrize.length();
+    }
 }

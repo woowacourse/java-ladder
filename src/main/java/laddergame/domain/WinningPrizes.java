@@ -18,6 +18,13 @@ public class WinningPrizes {
         return new WinningPrizes(winningPrizes);
     }
 
+    public int findMaxNameLength() {
+        return winningPrizes.stream()
+                .mapToInt(WinningPrize::getWinningPrizeLength)
+                .max()
+                .orElseThrow(() -> new IllegalStateException("가장 긴 상품을 찾을 수 없습니다."));
+    }
+
     private static List<WinningPrize> createWinningPrizes(final List<String> prizes, final int playerCount) {
         final List<WinningPrize> winningPrizes = new ArrayList<>();
         for (int i = 0; i < playerCount; i++) {

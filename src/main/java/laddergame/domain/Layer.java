@@ -26,9 +26,6 @@ public class Layer {
         return new Layer(playerCount, linkGenerator);
     }
 
-    public List<Link> getLayer() {
-        return new ArrayList<>(layer);
-    }
 
     private List<Link> createLayer(final int linkCount, final LinkGenerator linkGenerator) {
         List<Link> layer = new ArrayList<>();
@@ -67,5 +64,17 @@ public class Layer {
         if (linkCount < MIN_LINK_COUNT) {
             throw new IllegalStateException(String.format("Layer의 길이는 %d보다 작을 수 없습니다.", MIN_LINK_COUNT));
         }
+    }
+
+    public List<Link> getLayer() {
+        return new ArrayList<>(layer);
+    }
+
+    public boolean getIndexLink(int index) {
+        return layer.get(index).isLink();
+    }
+
+    public int getLayerSize() {
+        return layer.size();
     }
 }

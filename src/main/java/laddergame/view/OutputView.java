@@ -3,6 +3,7 @@ package laddergame.view;
 import laddergame.domain.Ladder;
 import laddergame.domain.Link;
 import laddergame.domain.Players;
+import laddergame.domain.WinningPrizes;
 
 import java.util.List;
 
@@ -14,20 +15,28 @@ public class OutputView {
 
     private static final int HALF = 2;
 
-    public static void printPlayerAll(final Players names) {
+    public static void printPlayerAll(final Players players) {
         System.out.println(System.lineSeparator() + "실행결과" + System.lineSeparator());
 
-        final String allPlayerName = names.getPlayerName().stream()
-                .map(player -> makeNameFormat(names.findMaxNameLength(), player))
+        final String allPlayerName = players.getPlayerName().stream()
+                .map(player -> makeNameFormat(players.findMaxNameLength(), player))
                 .collect(joining(BLANK.getLadderElement()));
 
         System.out.println(allPlayerName);
     }
 
-    public static void printLadder(final Players names, final Ladder ladder) {
+    public static void printLadder(final Players players, final Ladder ladder) {
         StringBuilder result = new StringBuilder();
-        ladder.getLadder().forEach(layer -> result.append(makeLadderFormat(layer.getLayer(), names)));
+        ladder.getLadder().forEach(layer -> result.append(makeLadderFormat(layer.getLayer(), players)));
         System.out.println(result);
+    }
+
+    public static void printWinningPrizeAll(final WinningPrizes winningPrizes) {
+        final String allWinningPrize = winningPrizes.getWinningPrizes().stream()
+                .map(winningPrize -> makeNameFormat(winningPrizes.findMaxNameLength(), winningPrize.getWinningPrize()))
+                .collect(joining(BLANK.getLadderElement()));
+
+        System.out.println(allWinningPrize);
     }
 
     public static void printMessage(final String message) {
