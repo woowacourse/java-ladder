@@ -9,23 +9,33 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-
-    public void moveRight(Line line, Position position) {
-        if(line.isMovablePoint(position.getIndex())){
+    public boolean moveRight(Line line, Position position) {
+        if (position.getIndex() == line.getPointsSize()) {
+            return false;
+        }
+        if (line.isMovablePoint(position.getIndex())) {
             position.moveRight();
+            return true;
         }
+        return false;
     }
 
-    public void moveLeft(Line line, Position position) {
-        if(line.isMovablePoint(position.getIndex() - 1)){
+    public boolean moveLeft(Line line, Position position) {
+        if (position.getIndex() == 0) {
+            return false;
+        }
+        if (line.isMovablePoint(position.getIndex() - 1)) {
             position.moveLeft();
+            return true;
         }
+        return false;
     }
 
-    // todo : if문 이용하기
     public void move(Line line, Position position) {
-        moveRight(line,position);
-        moveLeft(line,position);
+        if (moveRight(line, position)) {
+            return;
+        }
+        moveLeft(line, position);
     }
 
 }
