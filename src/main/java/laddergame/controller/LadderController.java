@@ -8,7 +8,7 @@ import laddergame.domain.Ladder;
 import laddergame.domain.LadderGame;
 import laddergame.domain.LadderResult;
 import laddergame.domain.Line;
-import laddergame.domain.NamesWithMatchedResult;
+import laddergame.domain.NamesWithItem;
 import laddergame.domain.PersonalNames;
 import laddergame.domain.Width;
 import laddergame.view.InputView;
@@ -45,7 +45,7 @@ public class LadderController {
 
     private void playGame(PersonalNames names, LadderResult ladderResult, Ladder ladder) {
         final LadderGame ladderGame = new LadderGame(names, ladderResult);
-        final NamesWithMatchedResult result = ladderGame.moveAndGetResult(ladder);
+        final NamesWithItem result = ladderGame.moveAndGetResult(ladder);
         searchResultItemByNameFrom(result);
     }
 
@@ -64,7 +64,7 @@ public class LadderController {
         }
     }
 
-    private void searchResultItemByNameFrom(NamesWithMatchedResult t) {
+    private void searchResultItemByNameFrom(NamesWithItem t) {
         while (true) {
             try {
                 printResultForName(t);
@@ -75,14 +75,14 @@ public class LadderController {
         }
     }
 
-    private void printResultForName(NamesWithMatchedResult namesWithMatchedResult) {
+    private void printResultForName(NamesWithItem namesWithItem) {
         while (true) {
             String name = inputView.readNameToCheckResult();
             if (isAll(name)) {
-                outputView.printTotalResult(namesWithMatchedResult);
+                outputView.printTotalResult(namesWithItem);
                 break;
             }
-            outputView.printResult(namesWithMatchedResult.searchBy(name));
+            outputView.printResult(namesWithItem.searchBy(name));
         }
     }
 

@@ -3,7 +3,7 @@ package laddergame.view;
 
 import java.util.Map;
 import laddergame.domain.LadderResultItem;
-import laddergame.domain.NamesWithMatchedResult;
+import laddergame.domain.NamesWithItem;
 import laddergame.domain.PersonalName;
 
 public class OutputView {
@@ -17,9 +17,9 @@ public class OutputView {
         System.out.println(item.getName());
     }
 
-    public void printTotalResult(final NamesWithMatchedResult namesWithMatchedResult) {
+    public void printTotalResult(final NamesWithItem namesWithItem) {
         System.out.println("실행결과");
-        final Map<PersonalName, LadderResultItem> nameToItem = namesWithMatchedResult.getNameToItem();
+        final Map<PersonalName, LadderResultItem> nameToItem = namesWithItem.getNameToItem();
         for (PersonalName name : nameToItem.keySet()) {
             System.out.println(String.format("%s : %s", name.getValue(), nameToItem.get(name).getName()));
         }

@@ -14,12 +14,12 @@ public class LadderGame {
         this.players = initPlayers(personalNames);
     }
 
-    public NamesWithMatchedResult moveAndGetResult(Ladder ladder) {
+    public NamesWithItem moveAndGetResult(Ladder ladder) {
         Map<PersonalName, LadderResultItem> nameToItem = players.stream().collect(Collectors.toMap(
                 player -> player.getPersonalName(),
                 player -> moveAndGetResult(player, ladder)
         ));
-        return new NamesWithMatchedResult(nameToItem);
+        return new NamesWithItem(nameToItem);
     }
 
     private List<Player> initPlayers(PersonalNames personalNames) {

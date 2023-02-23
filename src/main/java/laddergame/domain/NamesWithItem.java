@@ -2,10 +2,10 @@ package laddergame.domain;
 
 import java.util.Map;
 
-public class NamesWithMatchedResult {
+public class NamesWithItem {
     final private Map<PersonalName, LadderResultItem> nameToItem;
 
-    public NamesWithMatchedResult(Map<PersonalName, LadderResultItem> nameToItem) {
+    public NamesWithItem(Map<PersonalName, LadderResultItem> nameToItem) {
         this.nameToItem = nameToItem;
     }
 

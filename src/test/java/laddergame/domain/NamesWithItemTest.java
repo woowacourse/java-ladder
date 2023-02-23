@@ -8,13 +8,13 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class NamesWithMatchedResultTest {
+class NamesWithItemTest {
     @DisplayName("생성된다.")
     @Test
     void create() {
         PersonalName personalName = PersonalName.valueOf("name");
         LadderResultItem ladderResultItem = new LadderResultItem("item");
-        assertDoesNotThrow(() -> new NamesWithMatchedResult(Map.of(personalName, ladderResultItem)));
+        assertDoesNotThrow(() -> new NamesWithItem(Map.of(personalName, ladderResultItem)));
     }
 
     @DisplayName("이름으로 결과를 검색할 수 있다.")
@@ -25,10 +25,10 @@ class NamesWithMatchedResultTest {
         LadderResultItem ladderResultItem1 = new LadderResultItem("item1");
         PersonalName personalName2 = PersonalName.valueOf("bye");
         LadderResultItem ladderResultItem2 = new LadderResultItem("item2");
-        NamesWithMatchedResult namesWithMatchedResult = new NamesWithMatchedResult(
+        NamesWithItem namesWithItem = new NamesWithItem(
                 Map.of(personalName1, ladderResultItem1, personalName2, ladderResultItem2));
         //when
-        LadderResultItem searchResult = namesWithMatchedResult.searchBy("hi");
+        LadderResultItem searchResult = namesWithItem.searchBy("hi");
         //then
         assertThat(searchResult).isEqualTo(ladderResultItem1);
     }
@@ -37,10 +37,10 @@ class NamesWithMatchedResultTest {
     @Test
     void throwExceptionWhenNameNotFound() {
         //given
-        NamesWithMatchedResult namesWithMatchedResult = new NamesWithMatchedResult(Map.of());
+        NamesWithItem namesWithItem = new NamesWithItem(Map.of());
         //when
         //then
-        Assertions.assertThatThrownBy(() -> namesWithMatchedResult.searchBy("no"))
+        Assertions.assertThatThrownBy(() -> namesWithItem.searchBy("no"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -48,12 +48,12 @@ class NamesWithMatchedResultTest {
     @Test
     void getNameToItem() {
         //given
-        NamesWithMatchedResult namesWithMatchedResult = new NamesWithMatchedResult(
+        NamesWithItem namesWithItem = new NamesWithItem(
                 Map.of(PersonalName.valueOf("first"), new LadderResultItem("item1"),
                         PersonalName.valueOf("second"), new LadderResultItem("item2"))
         );
 
-        Map<PersonalName, LadderResultItem> nameToItem = namesWithMatchedResult.getNameToItem();
+        Map<PersonalName, LadderResultItem> nameToItem = namesWithItem.getNameToItem();
         assertThat(nameToItem.keySet()).contains(PersonalName.valueOf("first"), PersonalName.valueOf("second"));
     }
 
