@@ -24,7 +24,7 @@ class LadderTest {
         Position initialPosition = new Position(beforeMove);
 
         // when
-        Position destination = ladder.moveFrom(initialPosition);
+        Position destination = ladder.climbDownFrom(initialPosition);
 
         //then
         assertThat(destination).isEqualTo(new Position(expected));

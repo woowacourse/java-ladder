@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.*;
 
+import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
@@ -45,19 +46,18 @@ public class Players {
         }
     }
 
-    public Map<String, String> climbDownLadderAndWinPrize(Ladder ladder, Prizes prizes) {
+    public Map<Player, Position> climbDownLadder(Ladder ladder) {
         return players.stream()
-                      .collect(toMap(Player::getName, (player -> {
-                          var position = player.climbDownLadder(ladder);
-                          return prizes.get(position)
-                                       .getName();
-                      })));
+                      .collect(toMap(identity(), player -> player.climbDownLadder(ladder)));
     }
 
     public int getCount() {
         return players.size();
     }
 
+    public Player get(int index) {
+        return players.get(index);
+    }
 
     public List<String> getNames() {
         return players.stream()

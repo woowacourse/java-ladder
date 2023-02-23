@@ -16,7 +16,7 @@ public class Player {
     }
 
     public Position climbDownLadder(Ladder ladder) {
-        return ladder.moveFrom(position);
+        return ladder.climbDownFrom(position);
     }
 
     @Override

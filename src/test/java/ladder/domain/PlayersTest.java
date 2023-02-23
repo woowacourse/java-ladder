@@ -3,7 +3,7 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,27 +36,27 @@ class PlayersTest {
     }
 
     @Test
-    void should_플레이어의이름과상품을반환_when_사다리가주어졌을때() {
+    void should_플레이어와위치를반환_when_사다리가주어졌을때() {
         // given
         Players players = Players.from(List.of("첫째", "둘째", "셋째", "넷째", "다섯째"));
         Ladder ladder = new Ladder(LadderTest.generateRowList());
-        Prizes prizes = Prizes.from(List.of(
-                "0",
-                "1",
-                "2",
-                "3",
-                "4"
-        ));
-        Map<String, String> expected = new LinkedHashMap<>(Map.of(
-                "첫째", "2",
-                "둘째", "0",
-                "셋째", "1",
-                "넷째", "3",
-                "다섯째", "4"
+//        Prizes prizes = Prizes.from(List.of(
+//                "0",
+//                "1",
+//                "2",
+//                "3",
+//                "4"
+//        ));
+        Map<Player, Position> expected = new HashMap<>(Map.of(
+                players.get(0), new Position(2),
+                players.get(1), new Position(0),
+                players.get(2), new Position(1),
+                players.get(3), new Position(3),
+                players.get(4), new Position(4)
         ));
 
         // when
-        Map<String, String> gameResult = players.climbDownLadderAndWinPrize(ladder, prizes);
+        Map<Player, Position> gameResult = players.climbDownLadder(ladder);
 
         //then
         assertThat(gameResult).isEqualTo(expected);
