@@ -4,6 +4,7 @@ import ladder.domain.ConnectionStatus;
 import ladder.domain.Line;
 
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 
 public class ResultView {
@@ -12,6 +13,7 @@ public class ResultView {
     private static final String NAME_DELIMITER = " ";
     private static final String LADDER_DELIMITER = "|";
     private static final String RESULT_DELIMITER = " ";
+    private static final String RESULT_BY_PLAYER_NAME_DELIMITER = " : ";
     private static final String LINE_START_WITH = "    ";
     private static final String LINE_END_WITH = "|";
     private static final String CONNECTED_MARKER = "-----";
@@ -75,5 +77,11 @@ public class ResultView {
     public static void printOneResult(String result) {
         System.out.println(EXECUTION_MESSAGE);
         System.out.println(result);
+    }
+
+    public static void printAllResult(Map<String, String> resultsByPlayerName) {
+        for (String playerName : resultsByPlayerName.keySet()) {
+            System.out.println(playerName + RESULT_BY_PLAYER_NAME_DELIMITER + resultsByPlayerName.get(playerName));
+        }
     }
 }
