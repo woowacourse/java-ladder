@@ -1,6 +1,9 @@
 package domain;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LadderGame {
 
     private final Ladder ladder;
@@ -20,6 +23,36 @@ public class LadderGame {
     public String findUserReward(String name) {
         int index = users.findUser(name).getPosition();
         return rewards.getReward(index);
+    }
+
+    public void moveUsers() {
+        users.moveUsers(getConnections());
+    }
+
+    private List<List<Integer>> getConnections() {
+        List<List<Integer>> allConnections = new ArrayList<>();
+
+        for (Line line : ladder.getLines()) {
+            allConnections.add(getConnection(line.getPoints()));
+        }
+
+        return allConnections;
+    }
+
+    private List<Integer> getConnection(List<Boolean> points) {
+        List<Integer> connections = new ArrayList<>();
+
+        for (int i = 0; i < points.size(); i++) {
+            addIndex(points.get(i), connections, i);
+        }
+
+        return connections;
+    }
+
+    private void addIndex(boolean point, List<Integer> connections, int i) {
+        if (point) {
+            connections.add(i);
+        }
     }
 
 }
