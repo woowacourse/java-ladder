@@ -51,6 +51,16 @@ class LadderMatchResultsTest {
                 .isEqualTo(expectedResult);
     }
 
+    @DisplayName("매칭 결과 개수가 하나 이상인지 확인한다.")
+    @ParameterizedTest
+    @MethodSource("matchResultsParameterDummy")
+    void hasSizeGreaterThanOne(final Names names, final GameResults gameResults) {
+        final LadderMatchResults matchResults = new LadderMatchResults(names, gameResults);
+        final boolean isMatchResultSizeGreaterThanOne = matchResults.hasSizeGreaterThanOne();
+
+        assertThat(isMatchResultSizeGreaterThanOne).isTrue();
+    }
+
     @DisplayName("사다리 매칭 결과를 가져온다.")
     @ParameterizedTest
     @MethodSource("matchResultsParameterDummy")
@@ -60,17 +70,6 @@ class LadderMatchResultsTest {
         final int expectedSize = names.getSize();
 
         assertThat(findMatchResults).hasSize(expectedSize);
-    }
-
-    @DisplayName("사다리 매칭 결과 개수를 가져온다.")
-    @ParameterizedTest
-    @MethodSource("matchResultsParameterDummy")
-    void getSize(final Names names, final GameResults gameResults) {
-        final LadderMatchResults matchResults = new LadderMatchResults(names, gameResults);
-        final int matchResultsSize = matchResults.getSize();
-        final int expectedSize = names.getSize();
-
-        assertThat(matchResultsSize).isEqualTo(expectedSize);
     }
 
     static Stream<Arguments> matchResultsParameterDummy() {

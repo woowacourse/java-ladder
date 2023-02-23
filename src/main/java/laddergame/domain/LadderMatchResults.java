@@ -14,12 +14,7 @@ public class LadderMatchResults {
     public LadderMatchResults(final Names inputNames, final GameResults inputGameResults) {
         final Names names = getValueAfterNullCheck(inputNames);
         final GameResults gameResults = getValueAfterNullCheck(inputGameResults);
-        matchResults = new LinkedHashMap<>();
-        IntStream.range(0, names.getSize())
-                .forEach(index -> {
-                    final Position current = new Position(index);
-                    matchResults.put(names.findNameByPosition(current), gameResults.findResultByPosition(current));
-                });
+        matchResults = createMatchResults(names, gameResults);
     }
 
     public LadderMatchResults(final Name name, final Result gameResult) {
@@ -43,7 +38,13 @@ public class LadderMatchResults {
         return new LinkedHashMap<>(matchResults);
     }
 
-    public int getSize() {
-        return matchResults.size();
+    private Map<Name, Result> createMatchResults(final Names names, final GameResults gameResults) {
+        final Map<Name, Result> matchResults = new LinkedHashMap<>();
+        IntStream.range(0, names.getSize())
+                .forEach(index -> {
+                    final Position current = new Position(index);
+                    matchResults.put(names.findNameByPosition(current), gameResults.findResultByPosition(current));
+                });
+        return matchResults;
     }
 }
