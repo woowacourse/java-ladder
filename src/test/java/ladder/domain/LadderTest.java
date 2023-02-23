@@ -16,7 +16,8 @@ public class LadderTest {
 
     @Test
     void 사다리는_라인을_가진다() {
-        final BooleanGenerator booleanGenerator = new TestBooleanGenerator(List.of(false, false, true, false));
+        final LadderGameCreateLineBooleanGenerator booleanGenerator = new TestBooleanGenerator(
+                List.of(false, false, true, false));
         final Ladder ladder = new Ladder(booleanGenerator, new Height(2), 2);
 
         assertThat(ladder.getLines())

@@ -2,10 +2,10 @@ package ladder.controller;
 
 import java.util.List;
 import java.util.Map;
-import ladder.domain.BooleanGenerator;
 import ladder.domain.Bottoms;
 import ladder.domain.Height;
 import ladder.domain.LadderGame;
+import ladder.domain.LadderGameCreateLineBooleanGenerator;
 import ladder.domain.Players;
 import ladder.domain.Result;
 import ladder.view.InputView;
@@ -14,12 +14,12 @@ import ladder.view.OutputView;
 public class LadderGameRunner {
 
     private static final String QUIT_COMMAND = "all";
-    private final BooleanGenerator booleanGenerator;
+    private final LadderGameCreateLineBooleanGenerator booleanGenerator;
     private final InputView inputView;
     private final OutputView outputView;
 
     public LadderGameRunner(
-            final BooleanGenerator booleanGenerator,
+            final LadderGameCreateLineBooleanGenerator booleanGenerator,
             final InputView inputView,
             final OutputView outputView
     ) {
