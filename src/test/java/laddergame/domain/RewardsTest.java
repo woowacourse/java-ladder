@@ -1,0 +1,42 @@
+package laddergame.domain;
+
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+class RewardsTest {
+    @DisplayName("입력이 안들어왔을 때 에러 확인")
+    @Test
+    void checknull() {
+        Assertions.assertThatThrownBy(() -> new Rewards(List.of())).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 목록 중에 공백이 입력되었을 때 에러 확인")
+    @Test
+    void checkBlank() {
+        Assertions.assertThatThrownBy(() -> new Rewards(List.of(" ", "jena"))).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 목록이 '꽝' 아니면 숫자만 입력되지 않았을 때 에러 확인")
+    @Test
+    void checkContent() {
+        Assertions.assertThatThrownBy(() -> new Rewards(List.of("꽈앙"))).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> new Rewards(List.of("2500", "abc"))).isInstanceOf(IllegalArgumentException.class);
+        assertDoesNotThrow(() -> new Rewards(List.of("꽝")));
+        assertDoesNotThrow(() -> new Rewards(List.of("꽝", "3000")));
+        Assertions.assertThatThrownBy(() -> new Rewards(List.of("3000", "-1"))).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보상 목록 수가 플레이어 수와 같지 않을때 에러 확인")
+    @Test
+    void checkRewardCount() {
+        Rewards rewards = new Rewards(List.of("꽝", "3000"));
+        Players players = new Players(List.of("jena", "pobi", "crong"));
+        Assertions.assertThatThrownBy(()->rewards.checkRewardsCount(players.getPlayersCount()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+}
