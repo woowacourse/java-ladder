@@ -38,6 +38,16 @@ public class InputView {
         return List.of(prizeName.split(DELIMITER));
     }
 
+    public String readWantedResultPlayer() {
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        String playerName = scanner.nextLine();
+
+        InputValidator.validatePlayerNameInput(playerName);
+
+        return playerName.trim();
+    }
+
     private static void printPlayerNameInputGuideMessage() {
         System.out.println(PLAYER_NAME_INPUT_GUIDE_MESSAGE);
     }
