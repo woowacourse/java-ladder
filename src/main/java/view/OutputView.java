@@ -18,6 +18,7 @@ public class OutputView {
     private static final String NAME_START_FORMAT = "  ";
     private static final String CONNECTED = "-----";
     private static final String DISCONNECTED = "     ";
+    private static final String RESULT_FORMAT = "%s : %s%n";
     private static final int DIVISOR = 2;
     private static final int DEFAULT_PADDING = 2;
     private static final int FLAG = 1;
@@ -74,7 +75,7 @@ public class OutputView {
 
     public static void printResults(final Results results) {
         for (Result result : results.getResults()) {
-            System.out.printf("%s : %s%n", result.getPlayerName(), result.getRewardName());
+            System.out.printf(RESULT_FORMAT, result.getPlayerName(), result.getRewardName());
         }
     }
 

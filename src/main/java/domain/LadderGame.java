@@ -16,9 +16,9 @@ public class LadderGame {
     }
 
     public Result getResult(final Name name) {
-        int index = players.findIndexByName(name);
-        int result = ladder.move(index);
-        return new Result(name.getName(), rewards.getRewardName(result));
+        int playerIndex = players.findIndexByName(name);
+        int rewardIndex = ladder.move(playerIndex);
+        return new Result(rewards.getRewardName(rewardIndex));
     }
 
     public Results getResults() {
