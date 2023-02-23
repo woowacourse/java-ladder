@@ -29,7 +29,13 @@ public class LadderGameController {
         outputView.printLadder(ladder);
         outputView.printAllResults(results);
         playGame(players, ladder, results);
+        showGameResult(players);
+    }
+
+    private void showGameResult(Players players) {
         Name name = getDesirousResultName();
+        outputView.printResultHeaderMessage();
+        outputView.printResult(players.getResultOf(name));
     }
 
     private Name getDesirousResultName() {
