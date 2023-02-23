@@ -83,7 +83,7 @@ class SimpleListTest {
 
     @Test
     void indexOf() {
-        assertThat(list.indexOf("1")).isEqualTo(0);
+        assertThat(list.indexOf("1")).isEqualTo(1);
         assertThat(list.indexOf("3")).isEqualTo(-1);
     }
 
