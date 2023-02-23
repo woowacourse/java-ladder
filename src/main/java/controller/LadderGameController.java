@@ -23,8 +23,8 @@ public class LadderGameController {
 
     public void printResult() {
         try {
-            String name = InputView.readWantUserName();
-            printResultWhenNotWantAll(name);
+            String name = InputView.readTargetUserName();
+            printResultWhenTargetIsNotAll(name);
             printAllResult();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -71,14 +71,14 @@ public class LadderGameController {
         lastUserPositions = calculator.passLadder(ladder.getLadder(), users.getUserNames());
     }
 
-    private void printResultWhenNotWantAll(String name) {
+    private void printResultWhenTargetIsNotAll(String name) {
         while(!name.equals("all")) {
-            printUserResult(name);
-            name = InputView.readWantUserName();
+            printTargetUserResult(name);
+            name = InputView.readTargetUserName();
         }
     }
 
-    private void printUserResult(final String userName) {
+    private void printTargetUserResult(final String userName) {
         users.isExist(userName);
         int index = lastUserPositions.indexOf(userName);
         String result = results.getResultNames().get(index);
