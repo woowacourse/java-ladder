@@ -1,10 +1,10 @@
-package domain.ladder;
+package dto;
 
-public class LadderResultRequest {
+public class ResultRequestDto {
 
     private final String message;
 
-    public LadderResultRequest(String message) {
+    public ResultRequestDto(String message) {
         this.message = message;
     }
 

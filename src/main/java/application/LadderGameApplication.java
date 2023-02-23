@@ -7,13 +7,13 @@ import domain.ladder.LadderGame;
 import domain.ladder.LadderGenerator;
 import domain.ladder.LadderHeight;
 import domain.ladder.LadderResult;
-import domain.ladder.LadderResultRequest;
 import domain.ladder.LadderResults;
 import domain.player.Name;
 import domain.player.Player;
 import domain.player.Players;
 import domain.player.Position;
 import dto.GameResultDto;
+import dto.ResultRequestDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -89,7 +89,7 @@ public class LadderGameApplication {
 
     private void printResult(LadderGame ladderGame) {
         while (true) {
-            LadderResultRequest request = inputView.readSpecificResult();
+            ResultRequestDto request = inputView.readSpecificResult();
 
             if (request.isAll()) {
                 printEveryPlayerResult(ladderGame);
@@ -110,7 +110,7 @@ public class LadderGameApplication {
         outputView.printAllPlayerResult(allPlayerResult);
     }
 
-    private void printSinglePlayerResult(LadderGame ladderGame, LadderResultRequest request) {
+    private void printSinglePlayerResult(LadderGame ladderGame, ResultRequestDto request) {
         LadderResult ladderResult = ladderGame.findSinglePlayerResultByName(request.getMessage());
         outputView.printSinglePlayerResult(ladderResult);
     }

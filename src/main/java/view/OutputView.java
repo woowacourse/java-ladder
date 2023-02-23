@@ -4,12 +4,12 @@ import static java.util.stream.Collectors.joining;
 
 import domain.ladder.Ladder;
 import domain.ladder.LadderResult;
-import domain.ladder.LadderResultRequest;
 import domain.ladder.LadderResults;
 import domain.ladder.Line;
 import domain.ladder.LinePoint;
 import domain.player.Players;
 import dto.GameResultDto;
+import dto.ResultRequestDto;
 import java.util.List;
 
 public class OutputView {
@@ -74,7 +74,7 @@ public class OutputView {
         }
     }
 
-    public void printPlayerNotExistMessage(LadderResultRequest request) {
+    public void printPlayerNotExistMessage(ResultRequestDto request) {
         System.out.println(request.getMessage() + "는 존재하지 않는 플레이어입니다.");
     }
 

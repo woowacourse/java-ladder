@@ -2,7 +2,7 @@ package view;
 
 import static java.util.stream.Collectors.toList;
 
-import domain.ladder.LadderResultRequest;
+import dto.ResultRequestDto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -40,9 +40,9 @@ public class InputView {
                 .collect(toList());
     }
 
-    public LadderResultRequest readSpecificResult() {
+    public ResultRequestDto readSpecificResult() {
         System.out.println("결과를 보고 싶은 사람은?");
-        return new LadderResultRequest(scanner.nextLine());
+        return new ResultRequestDto(scanner.nextLine());
     }
 
     private int parseInt(String rawLadderHeight) {
