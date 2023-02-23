@@ -1,5 +1,6 @@
-package domain;
+package domain.Ladder;
 
+import domain.LadderGame.SequenceSwapper;
 import domain.util.PointGenerator;
 
 import java.util.ArrayList;

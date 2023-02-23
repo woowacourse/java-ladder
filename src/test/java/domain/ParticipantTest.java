@@ -1,5 +1,6 @@
 package domain;
 
+import domain.Collection.Participant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

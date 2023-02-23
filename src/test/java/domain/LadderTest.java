@@ -1,5 +1,8 @@
 package domain;
 
+import domain.Ladder.Ladder;
+import domain.Ladder.LadderHeight;
+import domain.Ladder.LadderWidth;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import view.LadderView;

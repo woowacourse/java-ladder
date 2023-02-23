@@ -1,4 +1,4 @@
-package domain;
+package domain.Ladder;
 
 public class LadderHeight {
 	private final static String HEIGHT_ERROR_MSG = "사다리의 높이는 1 이상이어야 합니다.";

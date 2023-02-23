@@ -1,5 +1,7 @@
 package domain;
 
+import domain.Ladder.LadderWidth;
+import domain.Ladder.Line;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

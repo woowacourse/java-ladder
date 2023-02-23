@@ -1,4 +1,10 @@
-package domain;
+package domain.LadderGame;
+
+import domain.Collection.Participant;
+import domain.Collection.Participants;
+import domain.Collection.Result;
+import domain.Collection.Results;
+import domain.Ladder.Ladder;
 
 import java.util.HashMap;
 import java.util.List;

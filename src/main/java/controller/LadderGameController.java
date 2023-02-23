@@ -1,6 +1,13 @@
 package controller;
 
-import domain.*;
+import domain.Collection.Participant;
+import domain.Collection.Participants;
+import domain.Collection.Result;
+import domain.Collection.Results;
+import domain.Ladder.Ladder;
+import domain.Ladder.LadderHeight;
+import domain.Ladder.LadderWidth;
+import domain.LadderGame.LadderGame;
 import domain.util.PointGenerator;
 import view.*;
 

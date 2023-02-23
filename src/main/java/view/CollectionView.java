@@ -1,9 +1,9 @@
 package view;
 
-import domain.Participant;
-import domain.Participants;
-import domain.Result;
-import domain.Results;
+import domain.Collection.Participant;
+import domain.Collection.Participants;
+import domain.Collection.Result;
+import domain.Collection.Results;
 
 import java.util.stream.Collectors;
 

@@ -1,5 +1,6 @@
 package domain;
 
+import domain.Ladder.LadderWidth;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
