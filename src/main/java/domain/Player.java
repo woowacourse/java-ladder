@@ -10,4 +10,7 @@ public class Player {
         this.currentColumnPosition = startPosition;
     }
 
+    public void move(final int move) {
+        currentColumnPosition += move;
+    }
 }
