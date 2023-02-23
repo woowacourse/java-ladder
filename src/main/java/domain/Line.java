@@ -31,11 +31,11 @@ public class Line {
         return scaffold;
     }
 
-    private static boolean isScaffoldExistContinually(Scaffold scaffold, final Deque<Scaffold> scaffolds) {
+    private static boolean isScaffoldExistContinually(final Scaffold scaffold, final Deque<Scaffold> scaffolds) {
         return scaffold == Scaffold.EXIST && scaffolds.peekLast() == Scaffold.EXIST;
     }
 
-    public int move(int position) {
+    public int move(final int position) {
         if (isLeftMovable(position)) {
             return position - 1;
         }
@@ -45,11 +45,11 @@ public class Line {
         return position;
     }
 
-    private boolean isRightMovable(int position) {
+    private boolean isRightMovable(final int position) {
         return position != scaffolds.size() && scaffolds.get(position).equals(Scaffold.EXIST);
     }
 
-    private boolean isLeftMovable(int position) {
+    private boolean isLeftMovable(final int position) {
         return position != 0 && scaffolds.get(position - 1).equals(Scaffold.EXIST);
     }
 
