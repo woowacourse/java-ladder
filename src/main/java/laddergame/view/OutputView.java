@@ -22,7 +22,7 @@ public class OutputView {
     }
 
     public void printParticipantNames(final List<String> participantNames) {
-        String paddedParticipantNames = makePaddedParticipantNames(participantNames);
+        String paddedParticipantNames = padAllValues(participantNames, "%6s");
         print(paddedParticipantNames.trim());
     }
 
@@ -37,14 +37,14 @@ public class OutputView {
         print(System.lineSeparator() + "실행결과" + System.lineSeparator());
     }
 
-    private String makePaddedParticipantNames(final List<String> participantNames) {
-        return participantNames.stream()
-                .map(this::getPaddedName)
+    private String padAllValues(final List<String> values, final String paddingFormat) {
+        return values.stream()
+                .map(value -> pad(paddingFormat, value))
                 .collect(Collectors.joining());
     }
 
-    private String getPaddedName(final String participantName) {
-        return String.format("%6s", participantName);
+    private String pad(final String paddingFormat, final String participantName) {
+        return String.format(paddingFormat, participantName);
     }
 
     private String getFirstParticipant(final List<String> participantNames) {
