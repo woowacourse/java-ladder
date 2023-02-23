@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import java.util.Map;
@@ -8,17 +9,31 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class GameResultTest {
-    //플레이어 기준  아이템과 매칭
-    // ㅍㄹ레이어의 포지션을 읽고 아이템의 포지션을 읽어 저장한다
+
     @Test
-    @DisplayName("플레이어의 position과 같은 item을 입력한다")
+    @DisplayName("플레이어의 position과 같은 item을 반환")
     void shouldSamePositionPlayerAndItemWhenInput() {
-        GameResult gameResult = GameResult.generate(Players.generate(List.of("a", "b")),
-                Items.generate(List.of("1", "2")));
+        Players players = Players.generate(List.of("a", "b"));
+        Items items = Items.generate(List.of("1", "2"), players.getSize());
+        GameResult gameResult = GameResult.of(players, items);
 
         Map<String, String> result = gameResult.findResult(new Name("a"));
 
         assertThat(result).containsEntry("a", "1");
+    }
+
+    @Test
+    @DisplayName("플레이어 전체의 결과를 반환")
+    void shouldReturnAllPlayerResultsWhenRequest() {
+        Players players = Players.generate(List.of("a", "b"));
+        Items items = Items.generate(List.of("1", "2"), players.getSize());
+        GameResult gameResult = GameResult.of(players, items);
+
+        Map<String, String> result = gameResult.findAll();
+
+        assertAll(
+                () -> assertThat(result).containsEntry("a", "1"),
+                () -> assertThat(result).containsEntry("b", "2"));
     }
 
 }
