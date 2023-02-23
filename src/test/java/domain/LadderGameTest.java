@@ -51,4 +51,16 @@ public class LadderGameTest {
 
         assertThat(position.getIndex()).isEqualTo(1);
     }
+
+    @DisplayName("참여자의 위치를 받아 왼쪽에 다리가 있으면 건넌다.")
+    @Test
+    void move_bridge_to_left() {
+        int index = players.getOrder("b");
+        Position position = new Position(index);
+        Line line = ladder.getLines().get(0);
+        ladderGame.moveLeft(line, position);
+
+        assertThat(position.getIndex()).isEqualTo(0);
+    }
+
 }
