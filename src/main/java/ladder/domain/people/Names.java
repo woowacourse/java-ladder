@@ -1,5 +1,7 @@
 package ladder.domain.people;
 
+import ladder.util.StringSplitter;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -24,7 +26,7 @@ public class Names {
 
     private List<String> split(String names) {
         validateNamesInputForm(names);
-        List<String> splitNames = namesSplit(names);
+        List<String> splitNames = StringSplitter.splitString(names);
         validateRange(splitNames);
         validateDuplicateNames(splitNames);
         return splitNames;
@@ -41,11 +43,6 @@ public class Names {
         if (!matcher.matches()) {
             throw new IllegalArgumentException("입력된 플레이어들의 이름 형식이 올바르지 않습니다.");
         }
-    }
-
-    private List<String> namesSplit(String names) {
-        return Arrays.stream(names.split(","))
-                .collect(Collectors.toUnmodifiableList());
     }
 
     private void validateDuplicateNames(List<String> splitNames) {

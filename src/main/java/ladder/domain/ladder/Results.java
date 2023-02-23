@@ -1,10 +1,10 @@
 package ladder.domain.ladder;
 
-import java.util.Arrays;
+import ladder.util.StringSplitter;
+
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class Results {
     private static final Pattern INPUT_NAMES_PATTERN = Pattern.compile("([a-zA-Z]{1,5})(,[a-zA-Z]{1,5})*");
@@ -21,7 +21,7 @@ public class Results {
 
     private List<String> split(String results, int peopleSize) {
         validateNamesInputForm(results);
-        List<String> splitResults = namesSplit(results);
+        List<String> splitResults = StringSplitter.splitString(results);
         validateRange(splitResults.size(), peopleSize);
         return splitResults;
     }
@@ -38,10 +38,5 @@ public class Results {
         if (!matcher.matches()) {
             throw new IllegalArgumentException("입력된 실행결과의 형식이 올바르지 않습니다.");
         }
-    }
-
-    private List<String> namesSplit(String names) {
-        return Arrays.stream(names.split(","))
-                .collect(Collectors.toUnmodifiableList());
     }
 }
