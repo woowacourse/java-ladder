@@ -26,23 +26,6 @@ public class Ladder {
         }
     }
 
-    public Map<Person, String> getLadderMatchingResult() {
-
-        Map<Person, String> result = new HashMap<>();
-
-        List<Person> participants = people.getParticipants();
-
-        for (int start = 0; start < participants.size(); start++) {
-            Person participant = participants.get(start);
-
-            int destination = line.move(start);
-
-            result.put(participant, resultCandidates.get(destination));
-        }
-
-        return result;
-    }
-
     public String getLadderMatchingPersonalResult(String name) {
 
         int ladderStartIndex = people.getParticipants().indexOf(new Person(name));

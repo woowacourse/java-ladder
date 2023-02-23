@@ -8,11 +8,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LadderTest extends AbstractTestFixture {
@@ -115,92 +113,6 @@ class LadderTest extends AbstractTestFixture {
         assertThatThrownBy(() -> new Ladder(people, new Line(bridges), resultCandidates))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("실행 결과 개수는 참가자 수와 같아야합니다.");
-    }
-
-    @Test
-    @DisplayName("사다리 게임 시작하면 각 참여자의 결과를 알 수 있다")
-    void start_ladder1() throws Exception {
-        //given
-        People people = new People(List.of(new Person("pobi"),
-                                           new Person("honux"),
-                                           new Person("crong"),
-                                           new Person("jk")));
-
-        List<Bridge> bridges = List.of(
-                new Bridge(convert(false, true, false)),
-                new Bridge(convert(true, false, true)),
-                new Bridge(convert(false, true, false)),
-                new Bridge(convert(true, false, true)),
-                new Bridge(convert(false, false, false))
-        );
-
-        List<String> resultCandidate = List.of("꽝", "5000", "1000", "3000");
-
-        //when
-
-        Ladder ladder = new Ladder(people, new Line(bridges), resultCandidate);
-
-        Map<Person, String> result = ladder.getLadderMatchingResult();
-
-        //then
-
-//          pobi  honux crong jk
-//          |     |-----|     |
-//          |-----|     |-----|
-//          |     |-----|     |
-//          |-----|     |-----|
-//          |     |     |     |
-//          꽝    5000  1000    3000
-
-        assertAll(
-                () -> assertEquals(result.get(new Person("pobi")), "3000"),
-                () -> assertEquals(result.get(new Person("honux")), "1000"),
-                () -> assertEquals(result.get(new Person("crong")), "5000"),
-                () -> assertEquals(result.get(new Person("jk")), "꽝")
-        );
-    }
-
-    @Test
-    @DisplayName("사다리 게임 시작하면 각 참여자의 결과를 알 수 있다")
-    void start_ladder2() throws Exception {
-        //given
-        People people = new People(List.of(new Person("pobi"),
-                                           new Person("honux"),
-                                           new Person("crong"),
-                                           new Person("jk")));
-
-        List<Bridge> bridges = List.of(
-                new Bridge(convert(true, false, true)),
-                new Bridge(convert(false, true, false)),
-                new Bridge(convert(true, false, false)),
-                new Bridge(convert(false, true, false)),
-                new Bridge(convert(true, false, true))
-        );
-
-        List<String> resultCandidate = List.of("꽝", "5000", "꽝", "3000");
-
-        //when
-
-        Ladder ladder = new Ladder(people, new Line(bridges), resultCandidate);
-
-        Map<Person, String> result = ladder.getLadderMatchingResult();
-
-        //then
-
-//      pobi  honux crong jk
-//      |-----|     |-----|
-//      |     |-----|     |
-//      |-----|     |     |
-//      |     |-----|     |
-//      |-----|     |-----|
-//      꽝    5000  꽝    3000
-
-        assertAll(
-                () -> assertEquals(result.get(new Person("pobi")), "꽝"),
-                () -> assertEquals(result.get(new Person("honux")), "3000"),
-                () -> assertEquals(result.get(new Person("crong")), "꽝"),
-                () -> assertEquals(result.get(new Person("jk")), "5000")
-        );
     }
 
     @Test
