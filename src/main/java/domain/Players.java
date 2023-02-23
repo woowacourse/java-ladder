@@ -35,6 +35,10 @@ public class Players {
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    public Player getPlayer(int index) {
+        return players.get(index);
+    }
+
     public int getPlayersSize() {
         return players.size();
     }

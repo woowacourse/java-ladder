@@ -37,6 +37,14 @@ public class Line {
             .collect(Collectors.toUnmodifiableList());
     }
 
+    public int getLineSize() {
+       return blocks.size();
+    }
+
+    public boolean isCross(int position) {
+        return blocks.get(position).getIsCross();
+    }
+
     private void validateLineLength(int playerCount, List<Block> blocks) {
         if (blocks.size() != playerCount - 1) {
             throw new InvalidLineSizeException(LINE_LENGTH_ERROR_MESSAGE);

@@ -13,6 +13,10 @@ public class Prizes {
         this.prizes = prizes;
     }
 
+    public Prize getPrize(int index) {
+        return prizes.get(index);
+    }
+
     private void validatePrizesSize(int playerCount, List<Prize> prizes) {
         if (prizes.size() != playerCount) {
             throw new InvalidPrizesSizeException(PRIZES_SIZE_ERROR_MESSAGE);
