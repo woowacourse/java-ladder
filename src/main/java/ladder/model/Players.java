@@ -28,14 +28,12 @@ public class Players {
         return MIN_PLAYER_COUNT <= playerCount && playerCount <= MAX_PLAYER_COUNT;
     }
 
-    public Player findPlayer(Player givenPlayer){
-        Optional<Player> foundPlayer = players.stream()
+    public Player findPlayer(Player givenPlayer) {
+        Optional<Player> foundPlayer = Optional.ofNullable(players.stream()
                 .filter(player1 -> player1.equals(givenPlayer))
-                .findFirst();
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_PLAYER_NAME.getMessage())));
 
-        if (foundPlayer.isEmpty()) {
-            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_PLAYER_NAME.getMessage());
-        }
         return foundPlayer.get();
     }
 
