@@ -31,7 +31,7 @@ public class LadderGameController {
     public void play() {
         ready();
         printGeneratedLadder();
-        printResult();
+        printGameResult();
     }
 
     private void ready() {
@@ -50,7 +50,7 @@ public class LadderGameController {
         outputView.printGeneratedLadder(ladderResponse);
     }
 
-    private void printResult() {
+    private void printGameResult() {
         RequestType requestType = RequestType.PERSONAL;
         while (requestType == RequestType.PERSONAL) {
             String resultRequest = inputView.readResultRequest();
