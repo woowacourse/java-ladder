@@ -35,6 +35,10 @@ public class Result {
         }
     }
 
+    public boolean exist(final String key) {
+        return value.containsKey(key);
+    }
+
     public Map<String, String> getValue() {
         return Collections.unmodifiableMap(value);
     }

@@ -12,6 +12,8 @@ import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class ResultTest {
 
@@ -45,5 +47,14 @@ class ResultTest {
 
         assertThatThrownBy(() -> result.extract(target))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest(name = "입력: {0}, 결과: {1}")
+    @CsvSource(value = {"pobi:true", "honux:false"}, delimiter = ':')
+    @DisplayName("결과를 확인할 수 있는 대상인지 판별한다.")
+    void existResultTarget(final String target, final boolean expected) {
+        final Result result = Result.of(players, ladder, prizes);
+
+        assertThat(result.exist(target)).isEqualTo(expected);
     }
 }
