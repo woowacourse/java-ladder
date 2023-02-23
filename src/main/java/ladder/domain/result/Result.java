@@ -21,9 +21,7 @@ public class Result {
 
     private Map<PlayerName, Prize> makeResult(final Players players, final Prizes prizes, final Ladder ladder) {
         List<PlayerName> playerNames = new ArrayList<>(players.getPlayers());
-        for (Line line : ladder.getLines()) {
-            moveOneLine(playerNames, line);
-        }
+        ladder.getLines().forEach(line -> moveOneLine(playerNames, line));
         Map<PlayerName, Prize> unSortedResults = connectPlayerAndPrize(playerNames, prizes.getPrizes());
         return sort(unSortedResults, players.getPlayers());
     }
