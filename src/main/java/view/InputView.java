@@ -21,7 +21,7 @@ public class InputView {
     }
 
     public LadderHeight readLadderHeight() {
-        return new LadderHeight(scanner.nextInt());
+        return new LadderHeight(Integer.parseInt(scanner.nextLine()));
     }
 
     public List<Result> readResults(int playerCount) {
