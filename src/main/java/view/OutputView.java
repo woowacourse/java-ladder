@@ -19,6 +19,7 @@ public class OutputView {
     private static final String SPACE = " ";
     private static final double KOREAN_SIZE = 1.3;
     private static final int NAME_SIZE = 8;
+    private static final String RESULT_MESSAGE = "\n실행 결과";
 
 
     public void printNames(Players players) {
@@ -38,11 +39,19 @@ public class OutputView {
     }
 
     public void printIndividualResult(Map<Player, Prize> result, Player player) {
-        System.out.println();
-        System.out.println("실행 결과");
+        printResultMessage();
         Prize prize = result.get(player);
         System.out.println(prize.getPrize());
     }
+
+    public void printAllResult(Map<Player, Prize> result) {
+        printResultMessage();
+        for (Player player : result.keySet()) {
+            Prize prize = result.get(player);
+            System.out.println(player.getName() + " : " + prize.getPrize());
+        }
+    }
+
 
     private void firstPlayerPrint(List<String> names, int index) {
         if (isFirstPlayer(index)) {
@@ -110,5 +119,9 @@ public class OutputView {
 
     private int calculateNameSpace(String name) {
         return NAME_SIZE - name.length();
+    }
+
+    private void printResultMessage() {
+        System.out.println(RESULT_MESSAGE);
     }
 }
