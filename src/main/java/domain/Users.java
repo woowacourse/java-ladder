@@ -17,7 +17,7 @@ public class Users {
         return users.stream()
             .filter(user -> user.getName().equals(name))
             .findAny()
-            .orElseThrow();
+            .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_USER.getMessage()));
     }
 
     public void moveUsers(List<List<Integer>> allNumbers) {
