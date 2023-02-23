@@ -22,21 +22,12 @@ public class LadderController {
 
         Name name = generateName();
         while (name.isNotAll()) {
-            responseResult(ladderGame, name);
+            printResult(ladderGame, name);
             name = generateName();
         }
 
         List<Result> results = ladderGame.getResults();
         OutputView.printResults(results);
-    }
-
-    private void responseResult(final LadderGame ladderGame, final Name name) {
-        try {
-            Result result = ladderGame.getResult(name);
-            OutputView.printResult(result);
-        } catch (IllegalArgumentException exception) {
-            Log.log(exception.getMessage());
-        }
     }
 
     private LadderGame generateLadderGame() {
@@ -54,7 +45,7 @@ public class LadderController {
 
     private Players generatePlayers() {
         try {
-            List<String> names = InputView.readNames();
+            List<String> names = InputView.readPlayers();
             return new Players(names);
         } catch (IllegalArgumentException exception) {
             Log.log(exception.getMessage());
@@ -64,7 +55,7 @@ public class LadderController {
 
     private Rewards generateRewards(final int playersSize) {
         try {
-            List<String> names = InputView.readResults();
+            List<String> names = InputView.readRewards();
             return new Rewards(names, playersSize);
         } catch (IllegalArgumentException exception) {
             Log.log(exception.getMessage());
@@ -91,6 +82,15 @@ public class LadderController {
         } catch (IllegalArgumentException exception) {
             Log.log(exception.getMessage());
             return generateName();
+        }
+    }
+
+    private void printResult(final LadderGame ladderGame, final Name name) {
+        try {
+            Result result = ladderGame.getResult(name);
+            OutputView.printResult(result);
+        } catch (IllegalArgumentException exception) {
+            Log.log(exception.getMessage());
         }
     }
 }

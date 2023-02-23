@@ -5,22 +5,22 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private static final String READ_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String READ_RESULTS_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String READ_PLAYERS_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String READ_REWARDS_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String READ_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String READ_NAME_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final String NOT_INTEGER_MESSAGE = "사다리의 높이는 숫자여야 합니다.";
     private static final String DELIMITER = ",";
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> readNames() {
-        System.out.println(READ_NAMES_MESSAGE);
+    public static List<String> readPlayers() {
+        System.out.println(READ_PLAYERS_MESSAGE);
         String line = scanner.nextLine();
         return StringParser.splitByComma(line, DELIMITER);
     }
 
-    public static List<String> readResults() {
-        System.out.println(READ_RESULTS_MESSAGE);
+    public static List<String> readRewards() {
+        System.out.println(READ_REWARDS_MESSAGE);
         String line = scanner.nextLine();
         return StringParser.splitByComma(line, DELIMITER);
     }
