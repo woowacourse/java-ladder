@@ -154,7 +154,41 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean remove(String value) {
-        return false;
+        final String[] es = elementData;
+        final int size = this.size;
+        int foundIndex = findIndex(es, size, value);
+        fastRemove(elementData, foundIndex);
+        return true;
+    }
+
+    private int findIndex(String[] elementData, int size, String valueToFind) {
+        int foundIndex = 0;
+        if (valueToFind == null) {
+            for (int i = 0; i < size; i++) {
+                if (elementData[i] == null) {
+                    foundIndex = i;
+                }
+            }
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (valueToFind.equals(elementData[i])) {
+                    foundIndex = i;
+                }
+            }
+        }
+        return foundIndex;
+    }
+
+    private void fastRemove(String[] elementData, int index) {
+        final int newSize;
+        newSize = size -1;
+        if (newSize > index) {
+            // 지우려는 인덱스 뒤 요소들을 하나씩 앞으로 땡긴다.
+            System.arraycopy(elementData, index + 1, elementData, index, newSize - index);
+        }
+        // 땡긴 후 마지막 인덱스를 null 처리로 지운다.
+        size = newSize;
+        elementData[size] = null;
     }
 
     @Override
