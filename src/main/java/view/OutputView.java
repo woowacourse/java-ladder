@@ -75,15 +75,10 @@ public class OutputView {
         return NOT_EXIST_LINE_SYMBOL;
     }
 
-    public static void printResult(Result result) {
+    public static void printResult(LadderGameResult ladderGameResult) {
         System.out.println(RESULT_MESSAGE);
-        System.out.println(result.getResultName());
-    }
-
-    public static void printAllResult(LadderGameResult ladderGameResult) {
-        System.out.println(RESULT_MESSAGE);
-        Map<User, Result> allResult = ladderGameResult.getLadderGameResult();
-        allResult.entrySet().forEach(OutputView::printResultWithFormat);
+        Map<User, Result> result = ladderGameResult.getLadderGameResult();
+        result.entrySet().forEach(OutputView::printResultWithFormat);
     }
 
     private static void printResultWithFormat(Map.Entry<User, Result> entry) {
