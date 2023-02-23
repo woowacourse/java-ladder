@@ -25,9 +25,9 @@ public class LadderGameTest {
                 new Line(List.of(FALSE, TRUE, FALSE)),
                 new Line(List.of(TRUE, FALSE, TRUE))
         );
+        List<String> resultList = List.of("꽝", "5000", "꽝", "3000");
         People people = new People(List.of("pobi", "honux", "crong", "jk"));
-//        LinesGenerator generator = (a, b) -> new Ladder(customizedLines);
-        Results results = new Results("꽝,5000,꽝,3000", people);
+        Results results = new Results(resultList, people);
         ladderGame = new LadderGame(people, results, new Ladder(customizedLines));
     }
 

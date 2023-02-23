@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -9,12 +8,13 @@ import java.util.stream.Collectors;
 
 public class Results implements Iterable<Result> {
 
-    private static final String DELIMITER = ",";
-
     private final List<Result> results;
 
-    public Results(String result, People people) {
-        this.results = validateAndGet(result, people);
+    public Results(List<String> results, People people) {
+        validateResultsCount(results, people);
+        this.results = results.stream()
+                .map(Result::new)
+                .collect(Collectors.toList());
     }
 
     public Results(List<Result> results) {
@@ -26,14 +26,10 @@ public class Results implements Iterable<Result> {
         results.add(singleResult);
     }
 
-    private List<Result> validateAndGet(String results, People people) {
-        String[] split = results.split(DELIMITER);
-        if (split.length != people.getCount()) {
+    private void validateResultsCount(List<String> results, People people) {
+        if (results.size() != people.getCount()) {
             throw new IllegalArgumentException("실행 결과의 수는 사람 수와 같아야 합니다.");
         }
-        return Arrays.stream(split)
-                .map(Result::new)
-                .collect(Collectors.toList());
     }
 
     public Result getResultByColumn(int index) {

@@ -41,9 +41,12 @@ public class InputView {
         }
     }
 
-    public String readResults() {
+    public List<String> readResults() {
         System.out.printf("실행 결과를 입력하세요. (결과는 쉼표(%s)로 구분하세요)\n", DELIMITER);
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+        validateDelimiter(input);
+        return Arrays.stream(input.split(DELIMITER))
+                .collect(Collectors.toList());
     }
 
     public String readResult() {

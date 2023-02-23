@@ -24,7 +24,7 @@ public class OutputView {
 
     private void printNames(People people) {
         for (Person person : people) {
-            System.out.printf("%5s", person.getName());
+            System.out.printf("%5s ", person.getName());
         }
         System.out.println();
     }
