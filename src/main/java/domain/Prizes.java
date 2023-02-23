@@ -32,4 +32,8 @@ public class Prizes {
                 String.format(NAME_LENGTH_FORMAT, MIN_LENGTH, MAX_LENGTH));
         }
     }
+
+    public String getPrize(int index) {
+        return prizes.get(index);
+    }
 }

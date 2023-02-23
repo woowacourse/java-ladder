@@ -38,4 +38,16 @@ public class Ladder {
     public List<Line> getLines() {
         return new ArrayList<>(lines);
     }
+
+    public ShiftType findShiftType(int widthIndex, int heightIndex) {
+        Line currentLine = lines.get(heightIndex);
+
+        if (currentLine.canGoRight(widthIndex)) {
+            return ShiftType.RIGHT;
+        }
+        if (currentLine.canGoLeft(widthIndex)) {
+            return ShiftType.LEFT;
+        }
+        return ShiftType.NO;
+    }
 }

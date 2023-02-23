@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,5 +44,16 @@ public class People {
 
     public int getCount() {
         return people.size();
+    }
+
+    public List<Person> getPeople() {
+        return new ArrayList<>(people);
+    }
+
+    public Person searchByName(String name) {
+        return people.stream()
+            .filter(p -> p.getName().equals(name))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이름입니다"));
     }
 }
