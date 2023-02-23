@@ -16,12 +16,10 @@ public class LadderGame {
     public void start() {
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
-            for (Player player : players) {
-                player.move(line.isStep(player.getPosition() - 1), line.isStep(player.getPosition()));
-            }
+            players.stream()
+                    .forEach(player -> player.move(line.isStep(player.getPosition() - 1),
+                            line.isStep(player.getPosition())));
         }
-        for (Player player : players) {
-            player.matchReward(rewards.getRewards());
-        }
+        players.stream().forEach(player -> player.matchReward(rewards.getRewards()));
     }
 }

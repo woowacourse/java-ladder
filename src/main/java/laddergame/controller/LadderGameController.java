@@ -37,17 +37,29 @@ public class LadderGameController {
         ladderGame.start();
         List<String> playerNames = players.getPlayers().stream().map(Player::getName).collect(Collectors.toList());
         outputView.printResult(playerNames, ladder.getLines(), players.getMaxPlayerNameLength());
+        showLadderRunResult(playerNames, players);
+    }
+
+    private void showLadderRunResult(List<String> playerNames, Players players) {
         Target target = requestTarget(playerNames);
-        while (!target.isQuit()) {
-            if (target.isAll()) {
-                outputView.printAllResult(players);
-                target = requestTarget(playerNames);
-                continue;
-            }
-            Player targetPlayer = players.getTargetPlayer(target.getName());
-            outputView.printPlayerResult(targetPlayer);
-            target = requestTarget(playerNames);
+        if (isKeyword(playerNames, players, target)) {
+            return;
         }
+        Player targetPlayer = players.getTargetPlayer(target.getName());
+        outputView.printPlayerResult(targetPlayer);
+        showLadderRunResult(playerNames, players);
+    }
+
+    private boolean isKeyword(List<String> playerNames, Players players, Target target) {
+        if (target.isQuit()) {
+            return true;
+        }
+        if (target.isAll()) {
+            outputView.printAllResult(players);
+            showLadderRunResult(playerNames, players);
+            return true;
+        }
+        return false;
     }
 
     private Players requestUserNames() {
