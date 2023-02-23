@@ -31,14 +31,14 @@ public class LadderGame {
         return result;
     }
 
-    public int oneClimbTheLadder(Player player, Ladder ladder) {
+    private int oneClimbTheLadder(Player player, Ladder ladder) {
         for (Line line : ladder.getLines()) {
             climbTheLadderPlayerPosition(player, line);
         }
         return player.getPosition();
     }
 
-    public void climbTheLadderPlayerPosition(Player player, Line line) {
+    private void climbTheLadderPlayerPosition(Player player, Line line) {
         if (line.getDirection(player) == Direction.LEFT) {
             player.left();
             return;
