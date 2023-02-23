@@ -31,19 +31,19 @@ public class LadderGame {
 
         List<String> playerNames = new ArrayList<>(getPlayerNames());
         for (int index = 0; index < height.getHeight(); index++) {
-            findConnected(width, lines.get(index), playerNames);
+            crossConnectedLine(width, lines.get(index), playerNames);
         }
 
         return new Players(playerNames);
     }
 
-    private void findConnected(final int width, final Line line, final List<String> playerNames) {
+    private void crossConnectedLine(final int width, final Line line, final List<String> playerNames) {
         for (int index = 0; index < width; index++) {
-            changePlayerPosition(index, line.isConnected(index), playerNames);
+            changePlayerByConnected(index, line.isConnected(index), playerNames);
         }
     }
 
-    private void changePlayerPosition(final int index, final boolean connected, final List<String> playerNames) {
+    private void changePlayerByConnected(final int index, final boolean connected, final List<String> playerNames) {
         if (connected) {
             Collections.swap(playerNames, index, index + 1);
         }
