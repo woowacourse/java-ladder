@@ -23,4 +23,11 @@ public class ResultsTest {
         Results results = new Results(List.of("꽝", "당첨1", "당첨2", "당첨3"), 4);
         assertThat(results.getResultByIndex(2)).isEqualTo("당첨2");
     }
+
+    @Test
+    @DisplayName("결과 수 반환 확인")
+    void getResultSize() {
+        Results results = new Results(List.of("꽝", "당첨1", "당첨2", "당첨3"), 4);
+        assertThat(results.getSize()).isEqualTo(4);
+    }
 }

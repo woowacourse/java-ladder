@@ -6,6 +6,7 @@ import domain.LineStatus;
 import domain.Lines;
 import domain.Player;
 import domain.Players;
+import domain.Results;
 import java.util.List;
 
 public class OutputView {
@@ -63,6 +64,22 @@ public class OutputView {
             sb.append(NON_EXIST_LINE);
         }
         sb.append(WALL);
+    }
+
+    public static void printLadderResult(Results results) {
+        System.out.println(getLadderResult(results));
+    }
+
+    private static String getLadderResult(Results results) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < results.getSize(); i++) {
+            sb.append(results.getResultByIndex(i));
+            String blank = " ".repeat(STANDARD_BLANK - results.getSize());
+            sb.append(blank);
+        }
+
+        return sb.toString();
     }
 
     public static void printErrorMessage(Exception e) {

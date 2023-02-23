@@ -20,4 +20,8 @@ public class Results {
     public String getResultByIndex(int index) {
         return results.get(index);
     }
+
+    public int getSize() {
+        return results.size();
+    }
 }
