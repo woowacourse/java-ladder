@@ -3,6 +3,7 @@ package model;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import helper.StubPassGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
@@ -39,7 +40,10 @@ class LadderMakerTest {
 
         @Test
         void 인자로_비어있지_않은_컬렉션을_전달하면_Ladder를_생성한다() {
-            assertThatCode(() -> new Ladder(List.of(new Line(List.of(Path.PASSABLE)))))
+            PassGenerator trueFalseGenerator = new StubPassGenerator(List.of(Boolean.TRUE, Boolean.FALSE));
+            Line line = Line.of(2, trueFalseGenerator);
+
+            assertThatCode(() -> new Ladder(List.of(line)))
                     .doesNotThrowAnyException();
         }
 

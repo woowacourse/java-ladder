@@ -3,6 +3,7 @@ package model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import dto.GameResult;
+import helper.StubPassGenerator;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import strategy.PassGenerator;
 
 @DisplayNameGeneration(ReplaceUnderscores.class)
 class LadderGameTest {
@@ -21,8 +23,8 @@ class LadderGameTest {
     void beforeEach() {
         List<String> collectNames = List.of("a", "b");
         Names names = Names.of(collectNames);
-        List<Path> passable = List.of(Path.UN_PASSABLE, Path.UN_PASSABLE);
-        Line line = new Line(passable);
+        PassGenerator falseFalseGenerator = new StubPassGenerator(List.of(Boolean.FALSE, Boolean.FALSE));
+        Line line = Line.of(2, falseFalseGenerator);
         Ladder ladder = new Ladder(List.of(line));
         List<LadderResult> results = List.of(new LadderResult("1"), new LadderResult("2"));
         LadderResults ladderResults = LadderResults.of(results, 2);

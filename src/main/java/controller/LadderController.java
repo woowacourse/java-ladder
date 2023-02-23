@@ -2,6 +2,7 @@ package controller;
 
 import dto.GameResult;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import model.Height;
 import model.Ladder;
@@ -83,6 +84,32 @@ public class LadderController {
             targetParticipantName = inputView.inputNameForGameResult();
             List<GameResult> gameResults = ladderGame.findGameResult(targetParticipantName);
             outputView.printLadderGameResult(gameResults);
+        }
+    }
+
+    //
+    private static final Boolean DONE = Boolean.FALSE;
+    private static final Boolean RETRY = Boolean.TRUE;
+
+    private void run() {
+        testRun(this::testMethod);
+    }
+
+    private void testRun(Supplier<Boolean> logic) {
+        boolean isRepeatable = RETRY;
+
+        while (isRepeatable) {
+            isRepeatable = logic.get();
+        }
+    }
+
+    private Boolean testMethod() {
+        try {
+            // logic
+            return DONE;
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
+            return RETRY;
         }
     }
 }
