@@ -19,6 +19,10 @@ public class Players {
         players.forEach(player -> player.move(ladder));
     }
 
+    public int orderByName(String name) {
+        Player player = findByName(name);
+        return player.getXPosition();
+    }
 
     public Player findByName(String name) {
         return players.stream()

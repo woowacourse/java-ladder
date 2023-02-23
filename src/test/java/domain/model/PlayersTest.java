@@ -58,5 +58,13 @@ class PlayersTest {
         assertThat(player.getYPosition()).isEqualTo(expectedY);
     }
 
+    @ParameterizedTest(name = "사다리를 모두 이동했을 때 {0}의 위치는 {1}")
+    @CsvSource(value = {"p1:3", "p2:1", "p3:2", "p4:0"}, delimiter = ':')
+    void orderByName(String name, int expected) {
+        for (int i = 0; i < ladder.getHeight(); i++) {
+            players.moveAll(ladder);
+        }
 
+        assertThat(players.orderByName(name)).isEqualTo(expected);
+    }
 }
