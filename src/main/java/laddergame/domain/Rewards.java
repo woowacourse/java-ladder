@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Rewards {
@@ -7,8 +8,6 @@ public class Rewards {
     List<String> rewards;
 
     public Rewards(List<String> rewards) {
-        checknull(rewards);
-        checkBlank(rewards);
         checkNotFailMessageOrNotDigit(rewards);
         this.rewards = rewards;
     }
@@ -20,19 +19,7 @@ public class Rewards {
     }
 
     public List<String> getRewards() {
-        return rewards;
-    }
-
-    private void checknull(List<String> rewards) {
-        if (rewards.isEmpty()) {
-            throw new IllegalArgumentException("reward 목록을 입력해주세요.");
-        }
-    }
-
-    private void checkBlank(List<String> rewards) {
-        if (rewards.stream().filter(e -> e.isBlank()).count() != 0) {
-            throw new IllegalArgumentException("reward 목록에 공백이 입력될 수 없습니다.");
-        }
+        return Collections.unmodifiableList(rewards);
     }
 
     private void checkNotFailMessageOrNotDigit(List<String> rewards) {

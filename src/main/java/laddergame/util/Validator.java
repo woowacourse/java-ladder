@@ -25,4 +25,10 @@ public class Validator {
             }
         }
     }
+
+    public void validateRewards(List<String> rewardNames) {
+        if (rewardNames.stream().filter(rewardName -> rewardName.isBlank()).count() != 0) {
+            throw new IllegalArgumentException("reward 목록에 공백이 입력될 수 없습니다.");
+        }
+    }
 }

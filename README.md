@@ -16,15 +16,15 @@
 
 ## 유효성 검증 분리
 
-- [ ] 공통 : null check
+- [x] 공통 : null check
 - [ ] validator 객체 : controller 에서 view 에서 입력한 값을 전달할 때 호출
 - [ ] domain : 최소한의 검증
-    - [ ] Players
-        - [ ] 이름 1자 이상 5자 이하
-        - [ ] 중복 불가
-        - [ ] 플레이어 수 2~12명
+    - [x] Players
+        - [x] 이름 1자 이상 5자 이하
+        - [x] 중복 불가
+        - [x] 플레이어 수 2~12명
     - [ ] Rewards
-        - [ ] 보상이 꽝 or 숫자인지 확인
+        - [x] 보상이 꽝 or 숫자인지 확인
     - [ ] Height
         - [ ] 1 이상 10 이하
  

@@ -1,6 +1,8 @@
 package laddergame.domain;
 
+import laddergame.util.Validator;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,16 +11,17 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class RewardsTest {
-    @DisplayName("입력이 안들어왔을 때 에러 확인")
-    @Test
-    void checknull() {
-        Assertions.assertThatThrownBy(() -> new Rewards(List.of())).isInstanceOf(IllegalArgumentException.class);
+    static private Validator validator;
+
+    @BeforeAll
+    static void setup(){
+        validator = new Validator();
     }
 
     @DisplayName("입력 목록 중에 공백이 입력되었을 때 에러 확인")
     @Test
     void checkBlank() {
-        Assertions.assertThatThrownBy(() -> new Rewards(List.of(" ", "jena"))).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> validator.validateRewards(List.of(" ", "jena"))).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("입력 목록이 '꽝' 아니면 숫자만 입력되지 않았을 때 에러 확인")
