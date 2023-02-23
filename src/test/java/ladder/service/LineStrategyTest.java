@@ -20,8 +20,8 @@ class LineStrategyTest {
         Line line = lineStrategy.generate(5);
 
         // then
-        assertThat(line.getSize())
-                .isEqualTo(4);
+        assertThat(line.getWidth())
+                .isEqualTo(5);
     }
 
     @Test
@@ -35,8 +35,8 @@ class LineStrategyTest {
         List<Step> steps = line.getSteps();
 
         // then
-        assertThat(line.getSize())
-                .isEqualTo(3);
+        assertThat(line.getWidth())
+                .isEqualTo(4);
         assertThat(steps)
                 .isEqualTo(List.of(Step.EXIST, Step.EMPTY, Step.EXIST));
     }

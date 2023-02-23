@@ -25,7 +25,7 @@ class LineTest {
         Line line = new Line(List.of(Step.EMPTY, Step.EXIST, Step.EMPTY));
 
         // expect
-        assertThat(line.getSize())
-                .isEqualTo(3);
+        assertThat(line.getWidth())
+                .isEqualTo(4);
     }
 }

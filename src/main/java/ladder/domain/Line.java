@@ -55,7 +55,7 @@ public class Line {
         return Collections.unmodifiableList(steps);
     }
 
-    public int getSize() {
-        return steps.size();
+    public int getWidth() {
+        return steps.size() + 1;
     }
 }
