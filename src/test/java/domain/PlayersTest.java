@@ -35,7 +35,7 @@ class PlayersTest {
         // then
         assertThatThrownBy(() -> new Players(players))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("이름은 최소 2개 이상이여햡니다.");
+                .hasMessageContaining("플레이어는 최소 2명 이상이여햡니다.");
     }
 
     @DisplayName("사람 이름이 중복되면 예외를 반환한다.")
@@ -47,7 +47,7 @@ class PlayersTest {
         // then
         assertThatThrownBy(() -> new Players(players))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("이름은 중복 될 수 없습니다.");
+                .hasMessageContaining("플레이어의 이름은 중복 될 수 없습니다.");
     }
 
     @DisplayName("size()를 통해서 Player의 숫자를 정확하게 반환한다.")

@@ -1,5 +1,7 @@
 package domain.player;
 
+import domain.ladder.Line;
+
 public class Position {
 
     private int position;
@@ -8,11 +10,19 @@ public class Position {
         this.position = position;
     }
 
-    public boolean isLeftEnd() {
+    public boolean isLeftSidePassable(Line line) {
+        return !isLeftEnd() && line.isLeftPointPassableBySpecificPosition(position);
+    }
+
+    private boolean isLeftEnd() {
         return position == 1;
     }
 
-    public boolean isRightEnd(int rightEnd) {
+    public boolean isRightSidePassable(Line line) {
+        return !isRightEnd(line.getLastPosition()) && line.isRightPointPassableBySpecificPosition(position);
+    }
+
+    private boolean isRightEnd(int rightEnd) {
         return position == rightEnd;
     }
 

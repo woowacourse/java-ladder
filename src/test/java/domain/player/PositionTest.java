@@ -2,61 +2,93 @@ package domain.player;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.ladder.Line;
+import domain.ladder.LinePoint;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class PositionTest {
 
-    @DisplayName("Position 내부 값이 1이면 left end이다.")
+    @DisplayName("좌측 이동이 가능하면 true를 반환한다.")
     @Test
-    void is_left_end_true() {
+    void left_passable_true() {
         // given
-        Position position = new Position(1);
+        Position position = new Position(2);
+        Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
 
         // when
-        boolean result = position.isLeftEnd();
+        boolean result = position.isLeftSidePassable(line);
 
         // then
         assertThat(result).isTrue();
     }
 
-    @DisplayName("Position 내부 값이 1이 아니면 left end가 아니다.")
-    @ParameterizedTest
-    @ValueSource(ints = {2, 5, 10})
-    void is_left_end_false(int wrongValue) {
+    @DisplayName("position이 좌측 끝이면 좌측 이동이 불가능하다.")
+    @Test
+    void left_passable_false_by_left_end() {
         // given
-        Position position = new Position(wrongValue);
+        Position position = new Position(1);
+        Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
 
         // when
-        boolean result = position.isLeftEnd();
+        boolean result = position.isLeftSidePassable(line);
 
         // then
         assertThat(result).isFalse();
     }
 
-    @DisplayName("Position 내부 값과 주어진 값이 같으면 isRightEnd는 true를 반환한다.")
+    @DisplayName("좌측 point가 block이라면 좌측 이동이 불가능하다.")
     @Test
-    void is_right_end_true() {
+    void left_passable_false_by_left_point_block() {
         // given
-        Position position = new Position(5);
+        Position position = new Position(2);
+        Line line = new Line(List.of(LinePoint.BLOCKED, LinePoint.PASSABLE));
 
         // when
-        boolean result = position.isRightEnd(5);
+        boolean result = position.isLeftSidePassable(line);
+
+        // then
+        assertThat(result).isFalse();
+    }
+
+    @DisplayName("우측 이동이 가능하면 true를 반환한다.")
+    @Test
+    void right_passable_true() {
+        // given
+        Position position = new Position(2);
+        Line line = new Line(List.of(LinePoint.BLOCKED, LinePoint.PASSABLE));
+
+        // when
+        boolean result = position.isRightSidePassable(line);
 
         // then
         assertThat(result).isTrue();
     }
 
-    @DisplayName("Position 내부 값과 주어진 값이 다르면 isRightEnd는 false를 반환한다.")
+    @DisplayName("position이 우측 끝이면 우측 이동이 불가능하다.")
     @Test
-    void is_right_end_false() {
+    void right_passable_false_by_right_end() {
         // given
-        Position position = new Position(5);
+        Position position = new Position(3);
+        Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
 
         // when
-        boolean result = position.isRightEnd(4);
+        boolean result = position.isRightSidePassable(line);
+
+        // then
+        assertThat(result).isFalse();
+    }
+
+    @DisplayName("우측 point가 block이라면 우측 이동이 불가능하다.")
+    @Test
+    void right_passable_false_by_right_point_block() {
+        // given
+        Position position = new Position(2);
+        Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
+
+        // when
+        boolean result = position.isRightSidePassable(line);
 
         // then
         assertThat(result).isFalse();

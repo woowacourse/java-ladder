@@ -1,8 +1,6 @@
 package domain.player;
 
 import domain.ladder.Line;
-import domain.ladder.LinePoint;
-import java.util.List;
 import java.util.Objects;
 
 public class Player {
@@ -20,14 +18,12 @@ public class Player {
     }
 
     public void move(Line line) {
-        List<LinePoint> points = line.getPoints();
-
-        if (!position.isLeftEnd() && points.get(position.getPosition() - 2).isPassable()) {
+        if (position.isLeftSidePassable(line)) {
             position.moveLeft();
             return;
         }
 
-        if (!position.isRightEnd(points.size() + 1) && points.get(position.getPosition() - 1).isPassable()) {
+        if (position.isRightSidePassable(line)) {
             position.moveRight();
         }
     }
