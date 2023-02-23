@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-class LadderGameResult {
+public class LadderGameResult {
 
     private static final String PRINT_ALL = "all";
     private static final String INVALID_PLAYER_MESSAGE = "사다리 게임에 참가한 사람의 이름을 입력해야합니다.";
@@ -16,12 +16,12 @@ class LadderGameResult {
 
     public Map<String, String> get(final String name) {
         if (name.equals(PRINT_ALL)) {
-            return getAll();
+            return getMultipleResult();
         }
-        return getSingle(name);
+        return getSingleResult(name);
     }
 
-    private Map<String, String> getAll() {
+    private Map<String, String> getMultipleResult() {
         final Map<String, String> playerToItem = new LinkedHashMap<>();
         for (Player player : result.keySet()) {
             playerToItem.put(player.getName(), getItemName(player));
@@ -33,7 +33,7 @@ class LadderGameResult {
         return result.get(player).getName();
     }
 
-    private Map<String, String> getSingle(final String name) {
+    private Map<String, String> getSingleResult(final String name) {
         final Player player = new Player(name);
         if (!result.containsKey(player)) {
             throw new IllegalArgumentException(INVALID_PLAYER_MESSAGE);

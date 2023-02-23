@@ -1,9 +1,12 @@
 package ladder.controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
 import ladder.domain.BooleanGenerator;
 import ladder.domain.Items;
 import ladder.domain.LadderGame;
+import ladder.domain.LadderGameResult;
 import ladder.domain.Line;
 import ladder.domain.Players;
 import ladder.view.InputView;
@@ -27,6 +30,29 @@ public class LadderGameController {
 
     public void run() {
         final LadderGame ladderGame = initialize();
+        printLadderResult(ladderGame);
+        final LadderGameResult ladderGameResult = ladderGame.play();
+        printLadderGameResult(ladderGameResult);
+    }
+
+    private LadderGame initialize() {
+        final Players players = repeatUntilGetValidInput(() -> Players.from(inputView.readPlayerNames()));
+        final Items items = repeatUntilGetValidInput(() -> Items.from(inputView.readItemNames(), players.count()));
+        final int height = repeatUntilGetValidInput(inputView::readLadderHeight);
+
+        return LadderGame.initialize(players, booleanGenerator, height, items);
+    }
+
+    private <T> T repeatUntilGetValidInput(Supplier<T> inputReader) {
+        try {
+            return inputReader.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return repeatUntilGetValidInput(inputReader);
+        }
+    }
+
+    private void printLadderResult(final LadderGame ladderGame) {
         final List<String> players = ladderGame.getPlayers();
         final List<Line> ladder = ladderGame.getLadder();
         final List<String> items = ladderGame.getItems();
@@ -34,38 +60,35 @@ public class LadderGameController {
         outputView.printLadderResult(players, ladder, items);
     }
 
-    private LadderGame initialize() {
-        final Players players = readPlayers();
-        final int height = readHeight();
-        final Items items = readItems(players.count());
-
-        return LadderGame.initialize(players, booleanGenerator, height, items);
-    }
-
-    private Players readPlayers() {
-        try {
-            return Players.from(inputView.readPlayerNames());
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return readPlayers();
+    private void printLadderGameResult(final LadderGameResult ladderGameResult) {
+        LadderGameCommand command = LadderGameCommand.SINGLE;
+        while (command.isContinued()) {
+            final Map<String, String> result = repeatUntilGetValidInput(() -> getLadderGameResult(ladderGameResult));
+            command = LadderGameCommand.from(result.size());
+            outputView.printLadderGameResult(result);
         }
     }
 
-    private int readHeight() {
-        try {
-            return inputView.readLadderHeight();
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return readHeight();
-        }
+    private Map<String, String> getLadderGameResult(final LadderGameResult ladderGameResult) {
+        final String name = inputView.readPlayerName();
+        return ladderGameResult.get(name);
     }
 
-    private Items readItems(final int playerCount) {
-        try {
-            return Items.from(inputView.readItemNames(), playerCount);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return readItems(playerCount);
+    enum LadderGameCommand {
+        ALL,
+        SINGLE;
+
+        private static final int SINGLE_RESULT_SIZE = 1;
+
+        public static LadderGameCommand from(final int size) {
+            if (size == SINGLE_RESULT_SIZE) {
+                return SINGLE;
+            }
+            return ALL;
+        }
+
+        public boolean isContinued() {
+            return this == SINGLE;
         }
     }
 }

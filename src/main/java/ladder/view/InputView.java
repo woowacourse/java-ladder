@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
+    private static final String NEXT_LINE = System.lineSeparator();
     private static final String READ_PLAYER_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String DELIMITER = ",";
     private static final int SPLIT_LIMIT = -1;
@@ -16,6 +17,7 @@ public class InputView {
     private static final String INVALID_NUMBER_MESSAGE = LADDER_HEIGHT_UPPER_BOUND + " 이하의 정수만 입력 가능합니다.";
     private static final String INVALID_HEIGHT_MESSAGE =
             "높이는 최소 " + LADDER_HEIGHT_LOWER_BOUND + "이상, " + LADDER_HEIGHT_UPPER_BOUND + "이하여야 합니다.";
+    private static final String READ_PLAYER_NAME_MESSAGE = NEXT_LINE + "결과를 보고 싶은 사람은? [all 입력시 전체 결과 출력 후 종료]";
 
     private final Scanner scanner;
 
@@ -30,7 +32,7 @@ public class InputView {
         return splitCsvInput(input);
     }
 
-    public List<String> splitCsvInput(String input) {
+    private List<String> splitCsvInput(String input) {
         return Arrays.stream(input.split(DELIMITER, SPLIT_LIMIT))
                 .map(String::trim)
                 .collect(Collectors.toList());
@@ -69,5 +71,10 @@ public class InputView {
 
     private boolean isInvalidHeight(final int height) {
         return height < LADDER_HEIGHT_LOWER_BOUND || LADDER_HEIGHT_UPPER_BOUND < height;
+    }
+
+    public String readPlayerName() {
+        System.out.println(READ_PLAYER_NAME_MESSAGE);
+        return scanner.nextLine();
     }
 }
