@@ -1,11 +1,12 @@
 package domain;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class LadderGameResult {
 
-    Map<User, Result> ladderGameResult;
+    private final Map<User, Result> ladderGameResult;
 
     public LadderGameResult(final Map<User, Result> ladderGameResult) {
         this.ladderGameResult = ladderGameResult;
@@ -16,11 +17,11 @@ public class LadderGameResult {
         ladderGameResult.put(user, result);
     }
 
-    public Result findByUser(User user) {
+    public Result findByUser(final User user) {
         return ladderGameResult.get(user);
     }
 
     public Map<User, Result> getLadderGameResult() {
-        return ladderGameResult;
+        return Collections.unmodifiableMap(ladderGameResult);
     }
 }
