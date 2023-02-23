@@ -75,7 +75,7 @@ public class OutputView {
         return NOT_EXIST_LINE_SYMBOL;
     }
 
-    public static void printResult(LadderGameResult ladderGameResult) {
+    public static void printLadderGameResult(LadderGameResult ladderGameResult) {
         System.out.println(RESULT_MESSAGE);
         Map<User, Result> result = ladderGameResult.getLadderGameResult();
         result.entrySet().forEach(OutputView::printResultWithFormat);
