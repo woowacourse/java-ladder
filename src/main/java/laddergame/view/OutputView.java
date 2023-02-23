@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static laddergame.view.message.LadderMessage.*;
-import static laddergame.view.message.Message.RESULT_GUIDE;
 
 public class OutputView {
 
@@ -16,7 +15,7 @@ public class OutputView {
     }
 
     public void printResultGuide() {
-        print(RESULT_GUIDE.getFormattedMessage());
+        print(System.lineSeparator() + "실행결과" + System.lineSeparator());
     }
 
     public void printParticipantNames(final List<String> participantNames) {

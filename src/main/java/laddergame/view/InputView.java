@@ -5,9 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.function.Supplier;
 
-import static laddergame.view.message.Message.INPUT_LADDER_MAX_HEIGHT_GUIDE;
-import static laddergame.view.message.Message.INPUT_PARTICIPANT_NAMES_GUIDE;
-
 public class InputView {
 
     private final BufferedReader bufferedReader;
@@ -17,12 +14,12 @@ public class InputView {
     }
 
     public String readParticipantNames() {
-        OutputView.print(INPUT_PARTICIPANT_NAMES_GUIDE.getFormattedMessage());
+        OutputView.print("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 분리하세요)");
         return readUserInput();
     }
 
     public String readMaxLadderHeight() {
-        OutputView.print(INPUT_LADDER_MAX_HEIGHT_GUIDE.getFormattedMessage());
+        OutputView.print(System.lineSeparator() + "최대 사다리 높이는 몇 개인가요?");
         return readUserInput();
     }
 
