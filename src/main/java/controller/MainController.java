@@ -16,13 +16,13 @@ public class MainController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final BooleanGenerator booleanGenerator;
+    private final BooleanGenerator ladderGenerator;
 
 
-    public MainController(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
+    public MainController(InputView inputView, OutputView outputView, BooleanGenerator ladderGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.booleanGenerator = booleanGenerator;
+        this.ladderGenerator = ladderGenerator;
     }
 
     public void start() {
@@ -78,7 +78,7 @@ public class MainController {
 
     private Ladder makeLadder(int nameNumber) {
         int lineNumber = nameNumber - 1;
-        return new Ladder(lineNumber, receiveHeight().getHeight(), booleanGenerator);
+        return new Ladder(lineNumber, receiveHeight().getHeight(), ladderGenerator);
     }
 
     private Names receiveNames() {

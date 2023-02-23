@@ -6,11 +6,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private final BooleanGenerator generator;
+    private final BooleanGenerator ladderGenerator;
     List<LadderStep> ladderSteps = new ArrayList<>();
 
-    public Line(int count, BooleanGenerator generator) {
-        this.generator = generator;
+    public Line(int count, BooleanGenerator ladderGenerator) {
+        this.ladderGenerator = ladderGenerator;
         for (int index = 0; index < count; index++) {
             ladderSteps.add(getPoint(index));
         }
@@ -24,7 +24,7 @@ public class Line {
         if (index > 0 && isLadderStepExists(index - 1)) {
             return LadderStep.from(false);
         }
-        return LadderStep.from(generator.generate());
+        return LadderStep.from(ladderGenerator.generate());
     }
 
     public int getNextStepIndex(int index) {
