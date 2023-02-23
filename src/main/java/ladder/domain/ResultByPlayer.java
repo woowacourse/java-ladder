@@ -12,6 +12,7 @@ public class ResultByPlayer {
     }
 
     public Result findResultByPlayer(Player player) {
-        return resultByPlayer.get(player);
+        Result findResult = resultByPlayer.get(player);
+        return findResult;
     }
 }

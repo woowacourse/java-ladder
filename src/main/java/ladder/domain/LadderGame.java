@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LadderGame {
 
@@ -40,7 +41,7 @@ public class LadderGame {
         return gameResults;
     }
 
-    public ResultByPlayer generateResultByPlayer() {
+    private ResultByPlayer generateResultByPlayer() {
         Map<Player, Result> gameResultByPlayer = new HashMap<>();
         for (Player player : players.getPlayers()) {
             int rewardIndex = ladder.moveToEnd(player.getStartIndex());
@@ -50,11 +51,12 @@ public class LadderGame {
         return new ResultByPlayer(gameResultByPlayer);
     }
 
-    public Result findResultByPlayerName(String playerName) {
+    public String findResultByPlayerName(String playerName) {
         Player findPlayer = players.findByPlayerName(playerName);
-        return resultByPlayer.findResultByPlayer(findPlayer);
+        Result findResult = resultByPlayer.findResultByPlayer(findPlayer);
+        return findResult.getReward();
     }
-
+    
     public List<Line> getLines() {
         return ladder.getLines();
     }

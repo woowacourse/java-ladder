@@ -51,4 +51,8 @@ public class Reward {
     public boolean isSameRewardIndex(int rewardIndex) {
         return this.index == rewardIndex;
     }
+
+    public String getRawReword() {
+        return reward;
+    }
 }
