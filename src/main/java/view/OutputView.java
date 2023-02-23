@@ -65,11 +65,11 @@ public class OutputView {
     private void addLadderResults(LadderGame ladderGame) {
         ladderGame.getResults()
             .stream().map(LadderResult::getName)
-            .forEach((ladderResult) -> gameMap.append(reformatResult(ladderResult)));
+            .forEach((ladderResult) -> gameMap.append(reformatLadderResult(ladderResult)));
         gameMap.append(System.lineSeparator());
     }
 
-    private String reformatResult(String ladderResult) {
+    private String reformatLadderResult(String ladderResult) {
         return String.format("%5s ", ladderResult);
     }
 
