@@ -8,6 +8,8 @@ import domain.player.Players;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGame {
 
@@ -21,14 +23,9 @@ public class LadderGame {
         List<Player> playersSortedByPosition = moveAllPlayers(players, lines);
         List<Mission> missionsSortedRandomly = getMissions(missions);
 
-        List<Result> results = new ArrayList<>();
-        for (int index = 0; index < missions.size(); index++) {
-            Player player = playersSortedByPosition.get(index);
-            Mission mission = missionsSortedRandomly.get(index);
-            Result result = new Result(player, mission);
-            results.add(result);
-        }
-        return results;
+        return IntStream.range(0, missions.size())
+                .mapToObj(index -> new Result(playersSortedByPosition.get(index), missionsSortedRandomly.get(index)))
+                .collect(Collectors.toList());
     }
 
     public static LadderGame of(Players players, Missions missions, Lines lines) {
