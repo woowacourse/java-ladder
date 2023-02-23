@@ -28,6 +28,26 @@ public class Ladder {
         }
     }
 
+    public int getLastPosition(int position) {
+        for (Line line : lines) {
+            Direction direction = line.getDirection(position);
+
+            position = move(position, direction);
+        }
+        return position;
+    }
+
+    private int move(int position, Direction direction) {
+        if (direction == Direction.LEFT) {
+            position--;
+        }
+        if (direction == Direction.RIGHT){
+            position++;
+        }
+        return position;
+    }
+
+
     public List<Line> getLines() {
         return lines;
     }
