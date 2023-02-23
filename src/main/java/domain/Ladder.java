@@ -25,6 +25,6 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return this.lines;
+        return new ArrayList<>(lines);
     }
 }

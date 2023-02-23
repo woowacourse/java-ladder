@@ -34,7 +34,7 @@ public class Line {
     public List<Boolean> getLine() {
         return blocks.stream()
             .map(Block::getIsCross)
-            .collect(Collectors.toList());
+            .collect(Collectors.toUnmodifiableList());
     }
 
     private void validateLineLength(int playerCount, List<Block> blocks) {

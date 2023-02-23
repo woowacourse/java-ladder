@@ -32,7 +32,7 @@ public class Players {
     public List<String> getPlayersName() {
         return players.stream()
                 .map(Player::getName)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public int getPlayersSize() {
