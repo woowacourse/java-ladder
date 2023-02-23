@@ -7,6 +7,9 @@ import strategy.PassGenerator;
 
 public class Line {
 
+    private static final int LEFT_BLOCK_INDEX = 1;
+    private static final int MINIMUM_PARTICIPANT_NUM = 2;
+
     private final List<Block> line = new ArrayList<>();
 
     public Line(int personCount, PassGenerator passGenerator) {
@@ -19,13 +22,17 @@ public class Line {
     }
 
     private Block getLeftBlock() {
-        return line.get(line.size() - 1);
+        return line.get(line.size() - LEFT_BLOCK_INDEX);
     }
 
     private void validateMinPerson(int personCount) {
-        if (personCount < 2){
+        if (personCount < MINIMUM_PARTICIPANT_NUM) {
             throw new IllegalArgumentException("참여인원은 최소 두명이어야 합니다");
         }
+    }
+
+    public List<Block> getLine() {
+        return line;
     }
 
     public List<String> getLineBlockPass() {
