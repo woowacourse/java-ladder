@@ -27,7 +27,6 @@ public class LadderGameController {
 		return new LadderGame(participants, ladderHeight);
 	}
 
-
 	private Participants retrieveParticipants() {
 		List<Participant> names = retrieveParticipantsNames();
 		Participants participants = new Participants();
