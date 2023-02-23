@@ -1,6 +1,8 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class MatchingCalculator {
@@ -30,7 +32,7 @@ public class MatchingCalculator {
     }
 
     public Matchings calculate() {
-        List<Name> participants = names.getNames();
+        List<Name> participants = new ArrayList<>(names.getNames());
         for (Line line : ladder) {
             List<Boolean> conditions = line.getLine();
             climbDown(participants, conditions);
@@ -44,7 +46,13 @@ public class MatchingCalculator {
         for (int i = 0; i < participants.size(); i++) {
             matchingResult.put(participants.get(i), results.getResults().get(i));
         }
-        matchings = new Matchings(matchingResult);
+
+        LinkedHashMap<Name, Result> orderedMatchingResult = new LinkedHashMap<>();
+        for (Name name : names.getNames()) {
+            orderedMatchingResult.put(name, matchingResult.get(name));
+        }
+
+        matchings = new Matchings(orderedMatchingResult);
     }
 
 }

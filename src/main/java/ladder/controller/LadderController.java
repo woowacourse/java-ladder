@@ -5,6 +5,7 @@ import java.util.List;
 import ladder.domain.Ladder;
 import ladder.domain.LadderHeight;
 import ladder.domain.MatchingCalculator;
+import ladder.domain.Matchings;
 import ladder.domain.Names;
 import ladder.domain.Results;
 import ladder.util.BooleanGenerator;
@@ -30,9 +31,26 @@ public class LadderController {
         Ladder ladder = createLadder(names, results, ladderHeight);
 
         MatchingCalculator matchingCalculator = new MatchingCalculator(ladder, names, results);
-        matchingCalculator.calculate();
+        Matchings matchings = matchingCalculator.calculate();
 
-        inputView.requestNameWantToKnowResult();
+        match(matchings);
+
+    }
+
+    private void match(Matchings matchings) {
+        try {
+            printMatchResult(matchings);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            match(matchings);
+        }
+    }
+
+    private void printMatchResult(Matchings matchings) {
+        while (!matchings.isAllChecked()) {
+            String nameWantToKnowResult = inputView.requestNameWantToKnowResult();
+            outputView.printMatching(matchings.getMatchingResult(nameWantToKnowResult));
+        }
     }
 
     private Ladder createLadder(Names names, Results results, LadderHeight ladderHeight) {
