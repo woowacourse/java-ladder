@@ -1,5 +1,6 @@
 package domain.prize;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,7 +9,7 @@ public class Prizes {
     private final List<Prize> prizes;
 
     private Prizes(List<Prize> prizes) {
-        this.prizes = prizes;
+        this.prizes = new ArrayList<>(prizes);
     }
 
     public static Prizes from(List<String> prizeValues) {
@@ -26,5 +27,5 @@ public class Prizes {
     public Prize getPrizeAt(final int index) {
         return prizes.get(index);
     }
-    
+
 }
