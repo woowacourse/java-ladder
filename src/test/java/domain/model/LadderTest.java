@@ -1,6 +1,7 @@
 package domain.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.vo.Height;
 import domain.vo.Location;
@@ -9,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +25,8 @@ public class LadderTest {
             makeEmptyLayers(height, new RandomPassGenerator()));
 
         //when
+        ladder.makeLineInLayers();
+
         //then
         IntStream.range(0, height.getValue())
             .forEach(index -> assertThat(ladder.getLayers().get(index).getLines()).isNotEmpty());
@@ -38,6 +40,7 @@ public class LadderTest {
         Width width = new Width(2);
         List<Layer> layers = makeEmptyLayers(height, () -> true);
         Ladder ladder = new Ladder(height, width, layers);
+        ladder.makeLineInLayers();
         Location location = new Location(0, 0);
 
         //when
@@ -55,6 +58,7 @@ public class LadderTest {
         Width width = new Width(2);
         List<Layer> layers = makeEmptyLayers(height, () -> false);
         Ladder ladder = new Ladder(height, width, layers);
+        ladder.makeLineInLayers();
         Location location = new Location(1, 0);
 
         //when
@@ -72,11 +76,26 @@ public class LadderTest {
         Width width = new Width(2);
         List<Layer> layers = makeEmptyLayers(height, () -> true);
         Ladder ladder = new Ladder(height, width, layers);
+        ladder.makeLineInLayers();
         Location location = new Location(3, 0);
 
         //when
         //then
-        Assertions.assertThatThrownBy(() -> ladder.ride(location))
+        assertThatThrownBy(() -> ladder.ride(location))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("Ladder 생성 시 높이와 List의 크기가 다를 시 예외")
+    public void validateTest() {
+        //given
+        Height height = new Height(5);
+        Width width = new Width(2);
+        List<Layer> layers = makeEmptyLayers(new Height(6), () -> true);
+
+        //when
+        //then
+        assertThatThrownBy(() -> new Ladder(height, width, layers))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
