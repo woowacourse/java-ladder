@@ -79,7 +79,11 @@ public class LadderGameApplication {
     }
 
     private LadderResults createLadderResults(int size) {
-        List<LadderResult> ladderResults = inputView.readLadderResults();
+        List<String> rawLadderResults = inputView.readLadderResults();
+        List<LadderResult> ladderResults = rawLadderResults.stream()
+                .map(LadderResult::new)
+                .collect(toList());
+
         return LadderResults.createWithSameSize(ladderResults, size);
     }
 
