@@ -78,7 +78,7 @@ class SimpleLinkedListTest {
         System.out.println("before remove: " + simpleLinkedList);
         simpleLinkedList.remove("second");
         System.out.println("after remove: " + simpleLinkedList);
-        
+
         assertThat(simpleLinkedList.size()).isEqualTo(2);
         assertThat(simpleLinkedList.get(0)).isEqualTo("first");
         assertThat(simpleLinkedList.get(1)).isEqualTo("third");

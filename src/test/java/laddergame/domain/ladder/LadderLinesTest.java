@@ -12,8 +12,11 @@ import laddergame.domain.generator.StepPointGenerator;
 import laddergame.domain.ladder.line.LineWidth;
 import laddergame.domain.ladder.line.StepPoint;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class LadderLinesTest {
 
     @Test
