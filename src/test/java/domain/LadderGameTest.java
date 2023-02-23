@@ -6,8 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import helper.StubTestDigitsGenerator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
@@ -44,9 +46,9 @@ public class LadderGameTest {
     @DisplayName("참여자의 위치를 받아 오른쪽에 다리가 있으면 건넌다.")
     @Test
     void move_bridge_to_right() {
-        int index = players.getOrder("a");
-        Position position = new Position(index);
+        Position position = new Position(0);
         Line line = ladder.getLines().get(0);
+
         ladderGame.moveRight(line, position);
 
         assertThat(position.getIndex()).isEqualTo(1);
@@ -55,9 +57,9 @@ public class LadderGameTest {
     @DisplayName("참여자의 위치를 받아 왼쪽에 다리가 있으면 건넌다.")
     @Test
     void move_bridge_to_left() {
-        int index = players.getOrder("b");
-        Position position = new Position(index);
+        Position position = new Position(1);
         Line line = ladder.getLines().get(0);
+
         ladderGame.moveLeft(line, position);
 
         assertThat(position.getIndex()).isEqualTo(0);
@@ -65,10 +67,10 @@ public class LadderGameTest {
 
     @DisplayName("참여자의 위치를 받아 양쪽에 다리가 없는 경우 건너지 않는다.")
     @Test
-    void move_bridge() {
+    void move_bridge_stay() {
         Position position = new Position(1);
         Line line = ladder.getLines().get(2);
-        
+
         ladderGame.move(line,position);
 
         assertThat(position.getIndex()).isEqualTo(1);
