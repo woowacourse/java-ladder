@@ -17,7 +17,7 @@ class GameResultTest {
         Items items = Items.generate(List.of("1", "2"), players.getSize());
         GameResult gameResult = GameResult.of(players, items);
 
-        Map<String, String> result = gameResult.findResult(new Name("a"));
+        Map<String, String> result = gameResult.findResult("a");
 
         assertThat(result).containsEntry("a", "1");
     }

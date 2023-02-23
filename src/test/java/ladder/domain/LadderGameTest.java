@@ -26,6 +26,6 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(players, ladder, items);
         GameResult gameResult = ladderGame.play();
 
-        assertThat(gameResult.findResult(new Name("a"))).containsEntry("a", "0");
+        assertThat(gameResult.findResult("a")).containsEntry("a", "0");
     }
 }

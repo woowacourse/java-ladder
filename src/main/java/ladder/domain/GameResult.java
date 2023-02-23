@@ -19,11 +19,14 @@ public class GameResult {
         return new GameResult(results);
     }
 
-    public Map<String, String> findResult(Name name) {
-        if (!results.containsKey(name.getValue())) {
+    public Map<String, String> findResult(String name) {
+        if (name.equals("all")) {
+            return findAll();
+        }
+        if (!results.containsKey(name)) {
             throw new IllegalArgumentException("해당 이름의 결과를 찾을 수 없습니다");
         }
-        return Map.of(name.getValue(), results.get(name.getValue()));
+        return Map.of(name, results.get(name));
     }
 
     public Map<String, String> findAll() {
