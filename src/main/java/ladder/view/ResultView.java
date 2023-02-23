@@ -8,8 +8,6 @@ import ladder.dto.NamesDto;
 
 public class ResultView {
 
-    private static final String RESULT_MESSAGE = "실행 결과";
-
     private ResultView() {
     }
 
@@ -20,16 +18,16 @@ public class ResultView {
         printRows(rowsDto);
         printNames(rewardNamesDto);
         System.out.println();
-        System.out.println();
     }
 
     private static void printResultTitle() {
-        System.out.println(RESULT_MESSAGE);
+        System.out.println("사다리 결과");
         System.out.println();
     }
 
     private static void printNames(NamesDto namesDto) {
         namesDto.getNames().forEach(ResultView::printName);
+        System.out.println();
     }
 
     private static void printName(String name) {
@@ -37,7 +35,6 @@ public class ResultView {
     }
 
     private static void printRows(RowsDto rowsDto) {
-        System.out.println();
         List<List<Step>> lines = rowsDto.getLines();
         lines.forEach(ResultView::printRow);
     }
@@ -60,14 +57,14 @@ public class ResultView {
 
     public static void printResult(String result) {
         System.out.println();
-        System.out.println(RESULT_MESSAGE);
+        System.out.println("실행 결과");
         System.out.println(result);
         System.out.println();
     }
 
     public static void printAllResult(ResultDto resultDto) {
         System.out.println();
-        System.out.println(RESULT_MESSAGE);
+        System.out.println("실행 결과");
         resultDto.getResults().entrySet().stream()
             .forEach(result -> System.out.println(result.getKey() + " : " + result.getValue()));
         System.out.println();

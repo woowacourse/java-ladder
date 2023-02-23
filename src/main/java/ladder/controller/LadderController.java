@@ -63,6 +63,7 @@ public class LadderController {
         return cmd;
     }
 
+    //입력값에 대한 유효성 검사를 하는 Domain 클래스를 만들어서 분리하는 게 더 좋을까요??
     private void validateCommand(String cmd) {
         if (playerNames.findName(cmd) == null && !Command.ALL.isEqual(cmd) && !Command.QUIT.isEqual(
             cmd)) {
