@@ -18,8 +18,8 @@ class LadderMatchTest {
     @Test
     void throwExceptionWhenLadderIsNull() {
         final Ladder ladder = null;
-        final Participants participants = ParticipantsFixture.createParticipantsSize3();
-        final GameResults gameResults = GameResultsFixture.createResultsSize2();
+        final Participants participants = ParticipantsFixture.createParticipants(2);
+        final GameResults gameResults = GameResultsFixture.createGameResults(2);
 
         assertThatThrownBy(() -> new LadderMatch(ladder, participants, gameResults))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -28,9 +28,9 @@ class LadderMatchTest {
     @DisplayName("Participants가 null일 경우 예외가 발생한다.")
     @Test
     void throwExceptionWhenParticipantsIsNull() {
-        final Ladder ladder = LadderFixture.createLadderWidth3Height3();
+        final Ladder ladder = LadderFixture.createLadder(3, 3);
         final Participants participants = null;
-        final GameResults gameResults = GameResultsFixture.createResultsSize3();
+        final GameResults gameResults = GameResultsFixture.createGameResults(3);
 
         assertThatThrownBy(() -> new LadderMatch(ladder, participants, gameResults))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -39,8 +39,8 @@ class LadderMatchTest {
     @DisplayName("Results가 null일 경우 예외가 발생한다.")
     @Test
     void throwExceptionWhenResultsIsNull() {
-        final Ladder ladder = LadderFixture.createLadderWidth3Height3();
-        final Participants participants = ParticipantsFixture.createParticipantsSize3();
+        final Ladder ladder = LadderFixture.createLadder(3, 3);
+        final Participants participants = ParticipantsFixture.createParticipants(3);
         final GameResults gameResults = null;
 
         assertThatThrownBy(() -> new LadderMatch(ladder, participants, gameResults))

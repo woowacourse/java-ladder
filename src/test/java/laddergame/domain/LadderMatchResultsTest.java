@@ -21,7 +21,7 @@ class LadderMatchResultsTest {
     @Test
     void throwExceptionWhenNamesIsNull() {
         final Names names = null;
-        final GameResults gameResults = GameResultsFixture.createResultsSize3();
+        final GameResults gameResults = GameResultsFixture.createGameResults(3);
 
         assertThatThrownBy(() -> new LadderMatchResults(names, gameResults))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -30,7 +30,7 @@ class LadderMatchResultsTest {
     @DisplayName("매칭될 결과들이 null일 경우 예외가 발생한다.")
     @Test
     void throwExceptionWhenGameResultsIsNull() {
-        final Names names = NamesFixture.getNamesSize3();
+        final Names names = NamesFixture.createNames(3);
         final GameResults gameResults = null;
 
         assertThatThrownBy(() -> new LadderMatchResults(names, gameResults))
@@ -40,8 +40,8 @@ class LadderMatchResultsTest {
     @DisplayName("첫 번째 매칭 결과를 가져온다.")
     @RepeatedTest(10)
     void getFirstMatchResult() {
-        final Names names = NamesFixture.getNamesSize3();
-        final GameResults gameResults = GameResultsFixture.createResultsSize3();
+        final Names names = NamesFixture.createNames(3);
+        final GameResults gameResults = GameResultsFixture.createGameResults(3);
         final LadderMatchResults matchResults = new LadderMatchResults(names, gameResults);
         final Result findResult = matchResults.getFirstMatchResult();
         final Result expectedResult = gameResults.getResults().get(0);
@@ -74,8 +74,8 @@ class LadderMatchResultsTest {
 
     static Stream<Arguments> matchResultsParameterDummy() {
         return Stream.of(
-                Arguments.arguments(NamesFixture.getNamesSize2(), GameResultsFixture.createResultsSize2()),
-                Arguments.arguments(NamesFixture.getNamesSize3(), GameResultsFixture.createResultsSize3())
+                Arguments.arguments(NamesFixture.createNames(2), GameResultsFixture.createGameResults(2)),
+                Arguments.arguments(NamesFixture.createNames(3), GameResultsFixture.createGameResults(3))
         );
     }
 }

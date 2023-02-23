@@ -77,8 +77,8 @@ class LinesTest {
 
     static Stream<Arguments> linesParameterDummy() {
         return Stream.of(
-                Arguments.arguments(List.of(LineFixture.createLineSize2())),
-                Arguments.arguments(List.of(LineFixture.createLineSize3()))
+                Arguments.arguments(List.of(LineFixture.createLine(2))),
+                Arguments.arguments(List.of(LineFixture.createLine(3)))
         );
     }
 }

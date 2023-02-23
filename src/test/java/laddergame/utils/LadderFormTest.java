@@ -24,10 +24,10 @@ class LadderFormTest {
         final List<Line> linesValue = List.of(line, line2);
         final Lines lines = new Lines(linesValue);
 
-        final Names names = ParticipantsFixture.createParticipantsSize2().getNames();
-        final GameResults gameResults = GameResultsFixture.createResultsSize2();
+        final Names names = ParticipantsFixture.createParticipants(2).getNames();
+        final GameResults gameResults = GameResultsFixture.createGameResults(2);
         final String ladderForm = LadderForm.joinUnitsFrom(names, lines, gameResults);
         System.out.println( ladderForm);
-        assertThat(ladderForm).contains(" rosie hyena\n     |-----|\n     |-----|\n hello  helo");
+        assertThat(ladderForm).contains(" name0 name1\n     |-----|\n     |-----|\n name0 name1");
     }
 }

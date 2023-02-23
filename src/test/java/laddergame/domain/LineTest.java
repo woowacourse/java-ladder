@@ -39,7 +39,7 @@ class LineTest {
     @Test
     void getPointByPosition() {
         final Line line = new Line(List.of(true, false, true));
-        final boolean isPointTrue = line.getPointByPosition(PositionFixture.createPositionZero());
+        final boolean isPointTrue = line.getPointByPosition(PositionFixture.createPosition(0));
         assertThat(isPointTrue).isTrue();
     }
 

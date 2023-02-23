@@ -2,14 +2,15 @@ package laddergame.fixture;
 
 import laddergame.domain.GameResults;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class GameResultsFixture {
-    public static GameResults createResultsSize2() {
-        return new GameResults(List.of("hello", "helo"), NamesFixture.getNamesSize2());
-    }
-
-    public static GameResults createResultsSize3() {
-        return new GameResults(List.of("hello", "helo", "hi"), NamesFixture.getNamesSize3());
+    public static GameResults createGameResults(final int size) {
+        final List<String> resultValues = new ArrayList<>();
+        for (int count = 0; count < size; count++) {
+            resultValues.add("name" + count);
+        }
+        return new GameResults(resultValues, NamesFixture.createNames(size));
     }
 }

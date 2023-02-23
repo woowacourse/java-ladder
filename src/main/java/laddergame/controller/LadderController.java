@@ -33,10 +33,10 @@ public class LadderController {
         final Lines findLines = ladder.getLines();
 
         outputView.printResult(LadderForm.joinUnitsFrom(participants.getNames(), findLines, gameResults));
-        runLadderMatch(ladder, participants, gameResults);
+        repeatAndPrintCause(() -> runLadderMatch(ladder, participants, gameResults));
     }
 
-    private void runLadderMatch(final Ladder ladder, final Participants participants, final GameResults gameResults) {
+    private boolean runLadderMatch(final Ladder ladder, final Participants participants, final GameResults gameResults) {
         final LadderMatch ladderMatch = new LadderMatch(ladder, participants, gameResults);
         boolean isContinue = true;
         while (isContinue) {
@@ -48,5 +48,6 @@ public class LadderController {
             }
             outputView.printMatchResult(LadderMatchForm.joinUnitsFrom(ladderMatch.getAllMatchedResults()));
         }
+        return false;
     }
 }

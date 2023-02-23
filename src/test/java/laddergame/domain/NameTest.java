@@ -21,9 +21,9 @@ class NameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("값이 알파벳이 아니면 예외가 발생한다.")
+    @DisplayName("값이 알파벳, 숫자가 아니면 예외가 발생한다.")
     @ParameterizedTest(name = "value = {0}")
-    @ValueSource(strings = {"한글훈글", "한글", "훈글", "123", "a1c", "한a", "!!!!", "a!c"})
+    @ValueSource(strings = {"한글훈글", "한글", "훈글", "한a", "!!!!", "a!c"})
     void throwExceptionWhenNameIsNotAlphabet(final String value) {
         assertThatThrownBy(() -> new Name(value))
                 .isInstanceOf(IllegalArgumentException.class);

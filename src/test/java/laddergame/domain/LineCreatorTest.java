@@ -31,7 +31,7 @@ class LineCreatorTest {
     void throwExceptionWhenWidthIsNull() {
         final LineCreator lineCreator = new LineCreator(BooleanGeneratorFixture.TEST_BOOLEAN_GENERATOR);
         final Width width = null;
-        final Height height = HeightFixture.createHeightValue3();
+        final Height height = HeightFixture.createHeight(3);
         assertThatThrownBy(() -> lineCreator.createLines(width, height))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -40,7 +40,7 @@ class LineCreatorTest {
     @Test
     void throwExceptionWhenHeightIsNull() {
         final LineCreator lineCreator = new LineCreator(BooleanGeneratorFixture.TEST_BOOLEAN_GENERATOR);
-        final Width width = WidthFixture.createWidthValue3();
+        final Width width = WidthFixture.createWidth(3);
         final Height height = null;
         assertThatThrownBy(() -> lineCreator.createLines(width, height))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -69,9 +69,9 @@ class LineCreatorTest {
 
     static Stream<Arguments> createLinesParameterDummy() {
         return Stream.of(
-                Arguments.arguments(WidthFixture.createWidthValue2(), HeightFixture.createHeightValue1()),
-                Arguments.arguments(WidthFixture.createWidthValue3(), HeightFixture.createHeightValue2()),
-                Arguments.arguments(WidthFixture.createWidthValue3(), HeightFixture.createHeightValue3())
+                Arguments.arguments(WidthFixture.createWidth(2), HeightFixture.createHeight(1)),
+                Arguments.arguments(WidthFixture.createWidth(3), HeightFixture.createHeight(2)),
+                Arguments.arguments(WidthFixture.createWidth(3), HeightFixture.createHeight(3))
         );
     }
 }

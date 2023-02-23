@@ -21,7 +21,7 @@ class GameResultsTest {
     void throwExceptionWhenResultsIsNull() {
         final List<String> results = null;
 
-        assertThatThrownBy(() -> new GameResults(results, NamesFixture.getNamesSize3()));
+        assertThatThrownBy(() -> new GameResults(results, NamesFixture.createNames(3)));
     }
 
     @DisplayName("결과 목록이 비어있을 경우 예외가 발생한다.")
@@ -29,14 +29,14 @@ class GameResultsTest {
     void throwExceptionWhenResultsIsEmpty() {
         final List<String> results = List.of();
 
-        assertThatThrownBy(() -> new GameResults(results, NamesFixture.getNamesSize3()));
+        assertThatThrownBy(() -> new GameResults(results, NamesFixture.createNames(3)));
     }
 
     @DisplayName("결과 목록이 2개 미만일 경우 예외가 발생한다.")
     @ParameterizedTest(name = "results = {0}")
     @MethodSource("wrongResultsParameterDummy")
     void throwExceptionWhenResultsHasSizeLessThan2(final List<String> inputResults) {
-        assertThatThrownBy(() -> new GameResults(inputResults, NamesFixture.getNamesSize3()))
+        assertThatThrownBy(() -> new GameResults(inputResults, NamesFixture.createNames(3)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -64,8 +64,8 @@ class GameResultsTest {
     @DisplayName("결과 목록에서 위치를 통해서 결과를 가져올 수 있다.")
     @Test
     void findResultByPosition() {
-        final GameResults gameResults = new GameResults(List.of("hello", "helo", "heeeee"), NamesFixture.getNamesSize3());
-        final Result findResult = gameResults.findResultByPosition(PositionFixture.createPositionZero());
+        final GameResults gameResults = new GameResults(List.of("hello", "helo", "heeeee"), NamesFixture.createNames(3));
+        final Result findResult = gameResults.findResultByPosition(PositionFixture.createPosition(0));
 
         assertThat(findResult.getValue()).isEqualTo("hello");
     }
@@ -73,13 +73,13 @@ class GameResultsTest {
     @DisplayName("결과 목록 개수가 이름 목록 개수와 같지 않을 경우 예외가 발생한다.")
     @Test
     void throwExceptionWhenResultsAndNamesHasNotSameSize() {
-        assertThatThrownBy(() -> new GameResults(List.of("hello", "helo"), NamesFixture.getNamesSize3()));
+        assertThatThrownBy(() -> new GameResults(List.of("hello", "helo"), NamesFixture.createNames(3)));
     }
 
     static Stream<Arguments> resultParametersDummy() {
         return Stream.of(
-                Arguments.arguments(List.of("hello", "helo"), NamesFixture.getNamesSize2()),
-                Arguments.arguments(List.of("hello", "helo", "hi"), NamesFixture.getNamesSize3())
+                Arguments.arguments(List.of("hello", "helo"), NamesFixture.createNames(2)),
+                Arguments.arguments(List.of("hello", "helo", "hi"), NamesFixture.createNames(3))
         );
     }
 

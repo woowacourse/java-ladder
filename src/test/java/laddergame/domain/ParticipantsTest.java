@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.fixture.NameFixture;
+import laddergame.fixture.ParticipantsFixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -50,7 +49,8 @@ class ParticipantsTest {
     void getNames(final List<String> names) {
         final Participants participants = new Participants(names);
         final Names findNames = participants.getNames();
-        final List<String> findNameValues = findNames.getNames().stream().map(Name::getValue).collect(Collectors.toList());
+        final List<String> findNameValues = findNames.getNameValues();
+
         assertThat(findNameValues).containsExactlyElementsOf(names);
     }
 
@@ -60,37 +60,37 @@ class ParticipantsTest {
     void getNameValues(final List<String> names) {
         final Participants participants = new Participants(names);
         final List<String> nameValues = participants.getNameValues();
+
         assertThat(nameValues).containsExactlyElementsOf(names);
     }
 
     @DisplayName("참여자 위치를 이름을 통해서 가져온다.")
     @Test
     void findPositionByName() {
-        final Participants participants = new Participants(
-                List.of(NameFixture.createNameHyena().getValue(), NameFixture.createNameJayon().getValue()));
-        final Position findPosition = participants.findPositionByName(NameFixture.createNameHyena().getValue());
+        final Participants participants = ParticipantsFixture.createParticipants(3);
+        final String nameValue = participants.getNames().getNameValues().get(2);
+        final Position findPosition = participants.findPositionByName(nameValue);
 
-        assertThat(findPosition.getValue()).isZero();
+        assertThat(findPosition.getValue()).isEqualTo(2);
     }
 
     @DisplayName("위치를 통해서 이름을 가져온다.")
     @Test
     void findNameByPosition() {
-        final String hyena = NameFixture.createNameHyena().getValue();
-        final String jayon = NameFixture.createNameJayon().getValue();
-        final Participants participants = new Participants(List.of(hyena, jayon));
+        final Participants participants = ParticipantsFixture.createParticipants(3);
         final Position position = new Position(0);
+        final String nameValue = participants.getNameValues().get(position.getValue());
         final Name findName = participants.findNameByPosition(position);
 
-        assertThat(findName.getValue()).isEqualTo(hyena);
+        assertThat(findName.getValue()).isEqualTo(nameValue);
     }
 
     static Stream<Arguments> namesDummy() {
         return Stream.of(
-                Arguments.arguments(List.of(NameFixture.createNameRosie().getValue(), NameFixture.createNameHyena().getValue())),
-                Arguments.arguments(List.of(NameFixture.createNameRosie().getValue(), NameFixture.createNameJayon().getValue())),
-                Arguments.arguments(List.of(NameFixture.createNameHyena().getValue(), NameFixture.createNameJayon().getValue())),
-                Arguments.arguments(List.of(NameFixture.createNameRosie().getValue(), NameFixture.createNameHyena().getValue(), NameFixture.createNameHyena().getValue()))
+                Arguments.arguments(List.of("name0", "name1")),
+                Arguments.arguments(List.of("name0", "name1")),
+                Arguments.arguments(List.of("name0", "name1")),
+                Arguments.arguments(List.of("name0", "name1", "name2"))
         );
     }
 }

@@ -23,7 +23,7 @@ class LadderTest {
     @DisplayName("생성한다.")
     @Test
     void create() {
-        final Lines lines = LinesFixture.getLinesWidth3Height3();
+        final Lines lines = LinesFixture.createLines(3, 3);
 
         assertDoesNotThrow(() -> new Ladder(lines));
     }
@@ -31,7 +31,7 @@ class LadderTest {
     @DisplayName("사다리 라인들을 가져올 수 있다.")
     @Test
     void getLines() {
-        final Lines lines = LinesFixture.getLinesWidth3Height3();
+        final Lines lines = LinesFixture.createLines(3, 3);
         final Ladder ladder = new Ladder(lines);
         final Lines findLines = ladder.getLines();
 
@@ -43,9 +43,9 @@ class LadderTest {
     @DisplayName("시작 지점에 대한 결과 지점을 찾는다.")
     @Test
     void findLastDestination() {
-        final Position startIndex = PositionFixture.createPositionZero();
+        final Position startIndex = PositionFixture.createPosition(0);
         final int expectedIndex = 1;
-        final Ladder ladder = new Ladder(LinesFixture.getLinesWidth3Height3());
+        final Ladder ladder = new Ladder(LinesFixture.createLines(3, 3));
 
         final Position lastDestination = ladder.findLastDestination(startIndex);
 
