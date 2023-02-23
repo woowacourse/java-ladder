@@ -1,6 +1,7 @@
 package domain.vo;
 
 public class Result {
+
     private final String value;
 
     public Result(String value) {
