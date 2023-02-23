@@ -44,7 +44,7 @@ public class LadderGameController {
         }
     }
 
-    private Prizes initPrizes(int playerNumber) {
+    private Prizes initPrizes(final int playerNumber) {
         try {
             List<String> prizeNames = InputView.inputPrize();
             return new Prizes(playerNumber, prizeNames);
@@ -54,7 +54,7 @@ public class LadderGameController {
         }
     }
 
-    private Ladder initLadder(int playerNumber) {
+    private Ladder initLadder(final int playerNumber) {
         try {
             final int height = InputView.inputLadderHeight();
             BlockGenerator blockGenerator = new RandomBlockGenerator();
@@ -65,19 +65,19 @@ public class LadderGameController {
         }
     }
 
-    private void showDrawnResult(Players players, Prizes prizes, Ladder ladder) {
+    private void showDrawnResult(final Players players, final Prizes prizes, final Ladder ladder) {
         OutputView.printGameResultHeader();
         printPlayersName(players);
         OutputView.printLadder(toLines(ladder));
         printPrizesName(prizes);
     }
 
-    private void printPlayersName(Players players) {
+    private void printPlayersName(final Players players) {
         List<String> playersName = toPlayersName(players);
         OutputView.printPlayersName(playersName);
     }
 
-    private List<String> toPlayersName(Players players) {
+    private List<String> toPlayersName(final Players players) {
         return players.getPlayers().stream()
                 .map(PlayerName::getName)
                 .collect(Collectors.toUnmodifiableList());

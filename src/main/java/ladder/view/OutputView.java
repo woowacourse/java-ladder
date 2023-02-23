@@ -70,13 +70,13 @@ public class OutputView {
         System.out.println(BLANK + PLAYER_RESULT_HEADER_MESSAGE);
     }
 
-    public static void printAllResults(Map<String, String> results) {
+    public static void printAllResults(final Map<String, String> results) {
         for (String playerName : results.keySet()) {
             System.out.println(playerName + DELIMITER + results.get(playerName));
         }
     }
 
-    public static void printSingleResult(String prizeName) {
+    public static void printSingleResult(final String prizeName) {
         System.out.println(prizeName);
     }
 }

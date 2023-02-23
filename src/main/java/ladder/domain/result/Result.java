@@ -28,14 +28,14 @@ public class Result {
         return sort(unSortedResults, players.getPlayers());
     }
 
-    private void moveOneLine(List<PlayerName> playerNames, Line line) {
+    private void moveOneLine(List<PlayerName> playerNames, final Line line) {
         for (int i = 0; i < line.getBlocks().size(); i++) {
             Block block = line.getBlocks().get(i);
             moveEachPlayer(playerNames, i, block);
         }
     }
 
-    private void moveEachPlayer(List<PlayerName> playerNames, int blockIndex, Block block) {
+    private void moveEachPlayer(List<PlayerName> playerNames, final int blockIndex, final Block block) {
         if (block.isExistBlock()) {
             int leftPlayerIndex = blockIndex;
             int rightPlayerIndex = blockIndex + 1;
@@ -43,7 +43,7 @@ public class Result {
         }
     }
 
-    private Map<PlayerName, Prize> connectPlayerAndPrize(List<PlayerName> playerNames, List<Prize> prizes) {
+    private Map<PlayerName, Prize> connectPlayerAndPrize(List<PlayerName> playerNames, final List<Prize> prizes) {
         Map<PlayerName, Prize> connection = new HashMap<>();
         for (int i = 0; i < playerNames.size(); i++) {
             connection.put(playerNames.get(i), prizes.get(i));
@@ -51,7 +51,8 @@ public class Result {
         return connection;
     }
 
-    private Map<PlayerName, Prize> sort(Map<PlayerName, Prize> unSortedResults, List<PlayerName> playerNames) {
+    private Map<PlayerName, Prize> sort(
+            final Map<PlayerName, Prize> unSortedResults, final List<PlayerName> playerNames) {
         Map<PlayerName, Prize> sortedResults = new LinkedHashMap<>();
         for (PlayerName playerName : playerNames) {
             Prize prize = unSortedResults.get(playerName);
@@ -64,13 +65,13 @@ public class Result {
         return results;
     }
 
-    public Prize getSinglePlayerResult(PlayerName playerName) {
+    public Prize getSinglePlayerResult(final PlayerName playerName) {
         Prize prize = results.get(playerName);
         validatePlayerName(prize);
         return prize;
     }
 
-    private void validatePlayerName(Prize prize) {
+    private void validatePlayerName(final Prize prize) {
         if (prize == null) {
             throw new NoSuchPlayerException();
         }
