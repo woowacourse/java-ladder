@@ -7,6 +7,9 @@ import ladder.dto.PrizesResponse;
 
 public class OutputView {
 
+    private OutputView() {
+    }
+
     public static void printLadderResult(PlayersResponse playersResponse, LadderResponse ladderResponse,
                                          PrizesResponse prizesResponse) {
         System.out.println("사다리 결과");
