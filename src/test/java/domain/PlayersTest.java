@@ -28,8 +28,8 @@ public class PlayersTest {
     }
 
     @Test
-    @DisplayName("2명 미만의 플레이어 이름이 입려되었을 때 예외 발생")
-    void makePayersByLessThanTwoPlayersAsParameter() {
+    @DisplayName("2명 미만의 플레이어 이름이 입력되었을 때 예외 발생")
+    void throwExceptionUsingLessThanTwoPlayersAsAnInput() {
         String[] name = {"roy"};
 
         assertThatThrownBy(() -> Players.of(name))
