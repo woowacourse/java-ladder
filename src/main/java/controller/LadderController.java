@@ -31,15 +31,15 @@ public class LadderController {
         Ladder ladder = generateLadder(playerCount);
         Prize prize = generatePrize(playerCount);
         LadderGame ladderGame = new LadderGame(ladder, players, prize);
-        Map<String, String> result = ladderGame.run();
-        print(players, ladder, prize, result);
+        Map<String, String> results = ladderGame.run();
+        print(players, ladder, prize, results);
     }
 
-    private void print(Players players, Ladder ladder, Prize prize, Map<String, String> result) {
+    private void print(Players players, Ladder ladder, Prize prize, Map<String, String> results) {
         outputView.printNames(players);
         outputView.printLadder(ladder);
         outputView.printPrizes(prize);
-        printResult(result);
+        printResults(results);
     }
 
     private Players generatePlayers() {
@@ -79,17 +79,29 @@ public class LadderController {
         }
     }
 
-    private void printResult(Map<String, String> result) {
+    private void printResults(Map<String, String> results) {
         String command = inputView.readResultOfPlayer();
-        if (command.equals(Command.FINISH_GAME_COMMAND.getCommand())) {
+        if (Command.FINISH_GAME_COMMAND.isEqualTo(command)) {
             return;
         }
-        if (command.equals(Command.ALL_PRINT_COMMAND.getCommand())) {
-            outputView.printAllPlayerResult(result);
-            printResult(result);
+        if (Command.ALL_PRINT_COMMAND.isEqualTo(command)) {
+            printAllResult(results);
             return;
         }
-        outputView.printOnePlayerResult(result, command);
-        printResult(result);
+        printOneResult(results, command);
+    }
+
+    private void printOneResult(Map<String, String> results, String command) {
+        try {
+            outputView.printOnePlayerResult(results, command);
+        } catch (IllegalArgumentException exception) {
+            LogType.ERROR_MESSAGE.log(exception.getMessage());
+        }
+        printResults(results);
+    }
+
+    private void printAllResult(Map<String, String> results) {
+        outputView.printAllPlayerResult(results);
+        printResults(results);
     }
 }

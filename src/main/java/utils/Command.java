@@ -19,7 +19,11 @@ public enum Command {
                 .count() != 0;
     }
 
-    public String getCommand() {
+    private String getCommand() {
         return command;
+    }
+
+    public boolean isEqualTo(String command) {
+        return this.command.equals(command);
     }
 }

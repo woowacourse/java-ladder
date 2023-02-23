@@ -71,9 +71,13 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printOnePlayerResult(Map<String, String> result, String name) {
+    public void printOnePlayerResult(Map<String, String> results, String name) {
+        String result = results.get(name);
+        if (result.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
         System.out.println(RESULT_MESSAGE);
-        System.out.println(result.get(name));
+        System.out.println(result);
         System.out.println();
     }
 
