@@ -15,4 +15,11 @@ public class LadderGame {
             position.moveRight();
         }
     }
+
+    public void moveLeft(Line line, Position position) {
+        if(line.isMovablePoint(position.getIndex() - 1)){
+            position.moveLeft();
+        }
+    }
+
 }
