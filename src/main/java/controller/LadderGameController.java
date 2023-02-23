@@ -23,11 +23,9 @@ public class LadderGameController {
     }
 
     public void run() {
-        List<String> names = inputView.readPlayersName();
-        Players players = new Players(names);
-        Results results = new Results(names.size(), inputView.readResults());
-        int height = inputView.readLadderHeight();
-        Ladder ladder = new Ladder(height, names.size(), generator);
+        Players players = new Players(inputView.readPlayersName());
+        Results results = new Results(players.getSize(), inputView.readResults());
+        Ladder ladder = new Ladder(inputView.readLadderHeight(), players.getSize(), generator);
 
         outputView.printPlayersName(players.getPlayersName());
         outputView.printLadder(ladder.getLines());
@@ -38,6 +36,7 @@ public class LadderGameController {
 
     private void processResult(Players players, Results results, Ladder ladder) {
         String targetPlayer = inputView.readTargetPlayer();
+
         validateTargetPlayerBlank(targetPlayer);
         if (!targetPlayer.equals(ALL_PLAYER)) {
             Player player = getPlayer(players, targetPlayer);
