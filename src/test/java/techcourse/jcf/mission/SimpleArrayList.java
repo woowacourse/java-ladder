@@ -11,6 +11,7 @@ public class SimpleArrayList implements SimpleList {
 
     public SimpleArrayList() {
         this.capacity = DEFAULT_CAPACITY;
+        this.pointerToNext = 0;
         this.values = new String[10];
     }
 
@@ -22,45 +23,9 @@ public class SimpleArrayList implements SimpleList {
         checkCapacityOverKeepingOrder();
     }
 
-    private void checkCapacityUnderKeepingOrder() {
-        if (this.values.length < 10) {
-            String[] newValues = new String[DEFAULT_CAPACITY];
-            for (int i = 0; i < this.values.length; i++) {
-                newValues[i] = this.values[i];
-            }
-            this.values = newValues;
-        }
-    }
-
-    private void checkCapacityOverKeepingOrder() {
-        if (pointerToNext >= capacity * 0.8) {
-            copyValuesIntactly();
-        }
-    }
-
-    private void copyValuesIntactly() {
-        this.capacity *= 2;
-        String[] newValues = new String[this.capacity];
-        for (int i = 0; i < this.values.length; i++) {
-            newValues[i] = this.values[i];
-        }
-        this.values = newValues;
-    }
-
-    private void checkIndexBeforeAdd(int index) {
-        if (index > this.pointerToNext) {
-            throw new IndexOutOfBoundsException();
-        }
-    }
-
-    private void checkIndexBeforeSet(int index) {
-        if (index >= this.pointerToNext) {
-            throw new IndexOutOfBoundsException();
-        }
-    }
-
     @Override
     public String get(int index) {
+        checkIndexHaveValue(index);
         return this.values[index];
     }
 
@@ -74,7 +39,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
-        checkIndexBeforeAdd(index);
+        checkIndexHaveValue(index - 1);
         for (int i = pointerToNext; i > index; i--) {
             values[i] = values[i - 1];
         }
@@ -85,7 +50,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String set(int index, String value) {
-        checkIndexBeforeSet(index);
+        checkIndexHaveValue(index);
         String valueBeforeChange = this.values[index];
         this.values[index] = value;
         return valueBeforeChange;
@@ -118,22 +83,33 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.pointerToNext == 0;
     }
 
     @Override
     public boolean remove(String value) {
-        return true;
+        for (int i = 0; i < this.pointerToNext; i++) {
+            if (this.values[i].equals(value)) {
+                moveToLeftFromIndexToEnd(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public String remove(int index) {
-        return null;
+        checkIndexHaveValue(index);
+        String valueToRemove = this.values[index];
+        moveToLeftFromIndexToEnd(index);
+        return valueToRemove;
     }
 
     @Override
     public void clear() {
-
+        this.capacity = DEFAULT_CAPACITY;
+        this.pointerToNext = 0;
+        this.values = new String[10];
     }
 
     @Override
@@ -143,5 +119,43 @@ public class SimpleArrayList implements SimpleList {
                 ", pointer=" + pointerToNext +
                 ", values=" + Arrays.toString(values) +
                 '}';
+    }
+
+    private void checkCapacityUnderKeepingOrder() {
+        if (this.values.length < 10) {
+            String[] newValues = new String[DEFAULT_CAPACITY];
+            for (int i = 0; i < this.values.length; i++) {
+                newValues[i] = this.values[i];
+            }
+            this.values = newValues;
+        }
+    }
+
+    private void checkCapacityOverKeepingOrder() {
+        if (pointerToNext >= capacity * 0.8) {
+            copyValuesIntactly();
+        }
+    }
+
+    private void copyValuesIntactly() {
+        this.capacity *= 2;
+        String[] newValues = new String[this.capacity];
+        for (int i = 0; i < this.values.length; i++) {
+            newValues[i] = this.values[i];
+        }
+        this.values = newValues;
+    }
+
+    private void checkIndexHaveValue(int index) {
+        if (index >= this.pointerToNext) {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+    private void moveToLeftFromIndexToEnd(int index) {
+        for (int i = index; i < this.pointerToNext; i++) {
+            this.values[i] = this.values[i + 1];
+        }
+        this.pointerToNext -= 1;
     }
 }

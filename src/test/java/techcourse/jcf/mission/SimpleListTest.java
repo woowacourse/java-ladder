@@ -95,14 +95,13 @@ class SimpleListTest {
     @Test
     void isEmpty() {
         assertThat(list.isEmpty()).isFalse();
-        list.clear();
-        assertThat(list.isEmpty()).isTrue();
+        assertThat(new SimpleArrayList().isEmpty()).isTrue();
     }
 
     @Test
     void removeWithValue() {
-        assertThat(list.remove("1")).isTrue();
-        assertThat(list.get(0)).isEqualTo("2");
+        assertThat(list.remove("0")).isTrue();
+        assertThat(list.get(0)).isEqualTo("1");
     }
 
     @Test
@@ -112,8 +111,8 @@ class SimpleListTest {
 
     @Test
     void removeWithIndex() {
-        assertThat(list.remove(0)).isEqualTo("1");
-        assertThat(list.get(0)).isEqualTo("2");
+        assertThat(list.remove(0)).isEqualTo("0");
+        assertThat(list.get(0)).isEqualTo("1");
     }
 
     @Test
