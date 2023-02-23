@@ -1,5 +1,7 @@
 package util;
 
+import domain.ladder.Line;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -7,6 +9,9 @@ import java.util.List;
 import static view.constant.LadderShapes.*;
 
 public class MessageGenerator {
+
+    private MessageGenerator() {
+    }
 
     public static String generateNamesMessage(Iterator<String> playerNames) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -67,7 +72,7 @@ public class MessageGenerator {
     }
 
     private static String generateLineMessage(final String shape) {
-        String footSteps = shape.repeat(5);
+        String footSteps = shape.repeat(Line.BRIDGE_LENGTH);
         return String.format("%s%s", PILLAR.getShape(), footSteps);
     }
 }
