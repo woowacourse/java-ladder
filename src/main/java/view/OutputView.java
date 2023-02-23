@@ -66,7 +66,7 @@ public class OutputView {
         System.out.println(result.getResult());
     }
 
-    public void printEveryPlayerResult(List<PlayerLadderResult> everyPlayerResult) {
+    public void printAllPlayerResult(List<PlayerLadderResult> everyPlayerResult) {
         System.out.println("실행 결과");
         for (PlayerLadderResult playerLadderResult : everyPlayerResult) {
             System.out.println(String.format("%s : %s",

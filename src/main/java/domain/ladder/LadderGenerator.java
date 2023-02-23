@@ -23,6 +23,6 @@ public class LadderGenerator {
         while (height-- > 0) {
             lines.add(lineGenerator.generate(width));
         }
-        return new Ladder(lines, ladderHeight, ladderResults);
+        return new Ladder(lines, ladderResults);
     }
 }

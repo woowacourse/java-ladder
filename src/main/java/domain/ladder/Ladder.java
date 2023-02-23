@@ -1,21 +1,16 @@
 package domain.ladder;
 
 import domain.player.Player;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
 
     private final List<Line> lines;
-    private final LadderHeight ladderHeight;
-    private LadderResults ladderResults;
+    private final LadderResults ladderResults;
 
-    public Ladder(List<Line> lines,
-                  LadderHeight ladderHeight,
-                  LadderResults ladderResults) {
-        this.lines = new ArrayList<>(lines);
-        this.ladderHeight = ladderHeight;
+    public Ladder(List<Line> lines, LadderResults ladderResults) {
+        this.lines = lines;
         this.ladderResults = ladderResults;
     }
 
