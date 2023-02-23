@@ -9,9 +9,13 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(List<Line> lines, Players players) {
+        validateLadder(lines, players);
+        this.lines = lines;
+    }
+
+    private void validateLadder(List<Line> lines, Players players) {
         validateLinesWidth(lines, players.getPlayersCount());
         validatePlayersCount(lines.size(), players.getPlayersCount());
-        this.lines = lines;
     }
 
     private void validateLinesWidth(List<Line> lines, int playerCount) {
@@ -32,7 +36,7 @@ public class Ladder {
         }
     }
 
-    private static boolean isProperRange(int height, int playersCount) {
+    private boolean isProperRange(int height, int playersCount) {
         return playersCount * MAX_HEIGHT_RATIO < height || height < playersCount;
     }
 

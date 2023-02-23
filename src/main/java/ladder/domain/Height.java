@@ -17,7 +17,7 @@ public class Height {
         }
     }
 
-    private static boolean isProperHeight(int height) {
+    private boolean isProperHeight(int height) {
         return height <= MIN_HEIGHT || height > MAX_HEIGHT;
     }
 

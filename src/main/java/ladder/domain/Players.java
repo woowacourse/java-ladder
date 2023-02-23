@@ -10,9 +10,13 @@ public class Players {
     private final List<Player> players;
 
     public Players(List<Player> players) {
+        validatePlayers(players);
+        this.players = players;
+    }
+
+    private void validatePlayers(List<Player> players) {
         validateSize(players);
         validateDuplicate(players);
-        this.players = players;
     }
 
     public void validateSize(List<Player> players) {
@@ -63,7 +67,6 @@ public class Players {
     private boolean isProperIndex(int index) {
         return index < 0 || index >= players.size();
     }
-
 
     public int getPlayersCount() {
         return players.size();
