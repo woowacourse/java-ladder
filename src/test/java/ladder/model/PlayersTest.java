@@ -51,7 +51,7 @@ class PlayersTest {
         List<String> playerNames = new ArrayList<>(List.of("a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".split(",")));
         List<Player> input = playerNames.stream().map(Player::new).collect(Collectors.toList());
         Players players = new Players(input);
-        assertThat(players.findPlayerByName("b")).isEqualTo(input.get(1));
+        assertThat(players.findPlayer(new Player("b"))).isEqualTo(input.get(1));
     }
 
     @Test
@@ -60,7 +60,7 @@ class PlayersTest {
         List<String> playerNames = new ArrayList<>(List.of("a,b,c,d,e".split(",")));
         List<Player> input = playerNames.stream().map(Player::new).collect(Collectors.toList());
         Players players = new Players(input);
-        Assertions.assertThatThrownBy(() -> players.findPlayerByName("z"))
+        Assertions.assertThatThrownBy(() -> players.findPlayer(new Player("z")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

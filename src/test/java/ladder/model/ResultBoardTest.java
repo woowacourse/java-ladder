@@ -32,10 +32,10 @@ class ResultBoardTest {
         꽝1   꽝2   3000  5000
          */
         ResultBoard resultBoard = new ResultBoard(players, ladder, rewards);
-        assertThat(resultBoard.getRewardOf("a").getReward()).isEqualTo("3000");
-        assertThat(resultBoard.getRewardOf("b").getReward()).isEqualTo("꽝1");
-        assertThat(resultBoard.getRewardOf("c").getReward()).isEqualTo("5000");
-        assertThat(resultBoard.getRewardOf("d").getReward()).isEqualTo("꽝2");
+        assertThat(resultBoard.getRewardOf(new Player("a")).getReward()).isEqualTo("3000");
+        assertThat(resultBoard.getRewardOf(new Player("b")).getReward()).isEqualTo("꽝1");
+        assertThat(resultBoard.getRewardOf(new Player("c")).getReward()).isEqualTo("5000");
+        assertThat(resultBoard.getRewardOf(new Player("d")).getReward()).isEqualTo("꽝2");
     }
 
 }
