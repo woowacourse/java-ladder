@@ -12,18 +12,18 @@ public class Line {
         bars = new ArrayList<>(List.of(Bar.FALSE));
     }
 
+    public Bar getIndexBar(int index) {
+        return this.bars.get(index);
+    }
+
     public void addBars(int peopleSize, BarGenerator barGenerator) {
         IntStream.range(0, peopleSize - FIRST_BAR)
                 .forEach(count -> addBar(barGenerator));
-        addLastBar();
-    }
-
-    private void addLastBar() {
-        this.bars.add(Bar.FALSE);
+        addFalseBar();
     }
 
     private void addBar(BarGenerator barGenerator) {
-        if (lastBar()==Bar.FALSE) {
+        if (lastBar()==Bar.TRUE) {
             addFalseBar();
             return;
         }
