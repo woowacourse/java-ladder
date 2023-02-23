@@ -35,7 +35,7 @@ public class OutputViewTest {
     @Test
     void calculateBlank_메서드_테스트() {
         out = new ByteArrayOutputStream();
-        players = new Players(new PlayerNames(nameList, new InputView()));
+        players = new Players(new PlayerNames(nameList));
         OutputView outputView = new OutputView();
         String expect = "judy " + "   ako" + " pobi";
 

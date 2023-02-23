@@ -1,7 +1,5 @@
 package domain;
 
-import view.InputView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,22 +8,16 @@ public class Rewards {
     private static final String DELIMITER = ",";
 
     private final List<Reward> rewards;
-    private final InputView inputView;
 
-    public Rewards(String inputRewards, int minSize, InputView inputView) {
-        inputRewards = validateRewards(inputRewards, minSize, inputView);
+    public Rewards(String inputRewards, int minSize) {
+        inputRewards = validateRewards(inputRewards, minSize);
         this.rewards = new ArrayList<>();
-        this.inputView = inputView;
         createRewards(inputRewards);
     }
 
-    private String validateRewards(String inputRewards, int minSize, InputView inputView) {
-        try {
-            validateSize(inputRewards, minSize);
-        } catch (IllegalArgumentException exception) {
-            inputView.printErrorMessage(exception.getMessage());
-            inputRewards = validateRewards(inputView.readRewards(), minSize, inputView);
-        }
+    private String validateRewards(String inputRewards, int minSize) {
+        validateSize(inputRewards, minSize);
+
         return inputRewards;
     }
 

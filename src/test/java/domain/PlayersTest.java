@@ -21,7 +21,7 @@ public class PlayersTest {
 
     @Test
     void getPlayersName_메서드_테스트() {
-        this.players = new Players(new PlayerNames(nameList, new InputView()));
+        this.players = new Players(new PlayerNames(nameList));
         List<String> test = players.getPlayersName();
         Assertions.assertTrue(test.containsAll(List.of("ako", "judy", "pobi")));
     }

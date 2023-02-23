@@ -18,7 +18,7 @@ public class LineTest {
     void initSetting() {
         List<String> nameList = new ArrayList<>(List.of("judy","ako", "pobi"));
 
-        players = new Players(new PlayerNames (nameList, new InputView()));
+        players = new Players(new PlayerNames (nameList));
     }
 
     @Test

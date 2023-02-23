@@ -16,9 +16,9 @@ public class LadderGame {
     }
 
     public void ladderGame() {
-        Players players = createPlayers();
-        Rewards rewards = createRewards(players);
-        Ladder ladder = createLadder(players);
+        Players players = validatePlayersInput();
+        Rewards rewards = validateRewardsInput(players);
+        Ladder ladder = validateLadderInput(players);
 
         printLadders(players, rewards, ladder);
         ladder.getRewardsForPlayers(rewards);
@@ -26,21 +26,52 @@ public class LadderGame {
         selectPlayerName(players);
     }
 
-    private Players createPlayers() {
-        PlayerNames playerNames = new PlayerNames(inputView.readPlayerNames(), inputView);
-        Players players = new Players(playerNames);
+    private Players validatePlayersInput() {
+        Players players;
+        try {
+            players = createPlayers();
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            players = validatePlayersInput();
+        }
         return players;
     }
 
-    private Rewards createRewards(Players players) {
-        Rewards rewards = new Rewards(inputView.readRewards(), players.getPlayersSize(), inputView);
+    private Players createPlayers() {
+        PlayerNames playerNames = new PlayerNames(inputView.readPlayerNames());
+        return new Players(playerNames);
+    }
+
+
+    private Rewards validateRewardsInput(Players players) {
+        Rewards rewards;
+        try {
+            rewards = createRewards(players);
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            rewards = validateRewardsInput(players);
+        }
         return rewards;
     }
 
-    private Ladder createLadder(Players players) {
-        int ladderHeight = new LadderHeight(inputView.readLadderHeight(), inputView).getLadderHeight();
-        Ladder ladder = new Ladder(ladderHeight, players, booleanCreator);
+    private Rewards createRewards(Players players) {
+        return new Rewards(inputView.readRewards(), players.getPlayersSize());
+    }
+
+    private Ladder validateLadderInput(Players players) {
+        Ladder ladder;
+        try {
+            ladder = createLadder(players);
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            ladder = validateLadderInput(players);
+        }
         return ladder;
+    }
+
+    private Ladder createLadder(Players players) {
+        int ladderHeight = new LadderHeight(inputView.readLadderHeight()).getLadderHeight();
+        return new Ladder(ladderHeight, players, booleanCreator);
     }
 
     private void printLadders(Players players, Rewards rewards, Ladder ladder) {
