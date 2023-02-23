@@ -14,6 +14,7 @@ public class Ladder {
 
     public List<Line> createLadder(int ladderHeight, Players players) {
         List<Line> list = new ArrayList<>();
+
         for (int i = 0; i < ladderHeight; i++) {
             Line line = createLine(players);
             list.add(line);
@@ -29,15 +30,56 @@ public class Ladder {
 
     private List<Block> createBlocks(Players players, Block preBlock) {
         List<Block> blocks = new ArrayList<>(List.of(preBlock));
-
-        int bound = players.getPlayersSize() - 1;
-        for (int i = 1; i < bound; i++) {
+        for (int i = 1; i < players.getPlayersSize() - 1; i++) {
             Block nextBlock = new Block(booleanCreator.generate());
             nextBlock.comparePreBlock(preBlock);
             blocks.add(nextBlock);
             preBlock = nextBlock;
         }
         return blocks;
+    }
+
+    public void getRewardsForPlayers(Players players, Rewards rewards) {
+        List<Player> result = players.getPlayers();
+        traverseLines(result);
+        matchRewardsForPlayers(rewards, result);
+    }
+
+    private static void matchRewardsForPlayers(Rewards rewards, List<Player> result) {
+        for(Player player : result){
+            player.setReward(rewards.getRewards().get(result.indexOf(player)));
+        }
+    }
+
+    private void traverseLines(List<Player> result) {
+        for (Line line : ladder) {
+            traverseLine(result, line);
+        }
+    }
+
+    private static void traverseLine(List<Player> result, Line line) {
+        for (int Playerindex = 0; Playerindex < line.getLine().size(); Playerindex++) {
+            crossLine(result, line, Playerindex);
+        }
+    }
+
+    private static void crossLine(List<Player> result, Line line, int Playerindex) {
+        boolean isCross = line.getLine().get(Playerindex);
+
+        if (isCross) {
+            swapPlayers(result, Playerindex);
+        }
+    }
+
+    private static void swapPlayers(List<Player> result, int i) {
+        int prePlayerIndex = i;
+        Player prePlayer = result.get(prePlayerIndex);
+
+        int postPlayerIndex = prePlayerIndex + 1;
+        Player postPlayer = result.get(postPlayerIndex);
+
+        result.set(prePlayerIndex, postPlayer);
+        result.set(postPlayerIndex, prePlayer);
     }
 
     public List<Line> getLadder() {

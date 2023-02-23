@@ -24,4 +24,8 @@ public class Line {
             throw new IllegalArgumentException(LINE_LENGTH_ERROR_MESSAGE);
         }
     }
+
+    public List<Block> getBlocks() {
+        return blocks;
+    }
 }

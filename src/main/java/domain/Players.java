@@ -28,4 +28,8 @@ public class Players {
     public int getPlayersSize() {
         return players.size();
     }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
 }
