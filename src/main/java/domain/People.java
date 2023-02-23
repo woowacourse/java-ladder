@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,16 +38,6 @@ public class People implements Iterable<Person> {
         }
     }
 
-    public List<String> getNames() {
-        return people.stream()
-            .map(Person::getName)
-            .collect(Collectors.toList());
-    }
-
-    public int getCount() {
-        return people.size();
-    }
-
     public Person getByIndex(int index) {
         if (index < 0 || index >= people.size()) {
             throw new IndexOutOfBoundsException("인덱스의 범위를 벗어났습니다.");
@@ -60,6 +51,14 @@ public class People implements Iterable<Person> {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자는 존재하지 않습니다."));
 
+    }
+
+    public List<Person> getPeople() {
+        return Collections.unmodifiableList(people);
+    }
+
+    public int getCount() {
+        return people.size();
     }
 
     @Override

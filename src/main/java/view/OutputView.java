@@ -1,10 +1,6 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.People;
-import domain.Result;
-import domain.Results;
+import domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +18,8 @@ public class OutputView {
     }
 
     private void printNames(People people) {
-        for (String name : people.getNames()) {
-            System.out.printf("%5s ", name);
+        for (Person person : people.getPeople()) {
+            System.out.printf("%5s", person.getName());
         }
         System.out.println();
     }
