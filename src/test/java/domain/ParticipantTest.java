@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 import domain.participants.Participant;
+import exception.NotEnglishAndNumberException;
 import exception.participants.EmptyNameException;
 import exception.participants.InvalidPersonNameException;
 import java.util.stream.Stream;
@@ -41,7 +42,9 @@ class ParticipantTest {
             dynamicTest("띄어쓰기로만 이루어져 있을 때", () -> assertThatThrownBy(() -> new Participant("    "))
                 .isExactlyInstanceOf(EmptyNameException.class)),
             dynamicTest("5자보다 긴 경우", () -> assertThatThrownBy(() -> new Participant("jamsil"))
-                .isExactlyInstanceOf(InvalidPersonNameException.class))
+                .isExactlyInstanceOf(InvalidPersonNameException.class)),
+            dynamicTest("영어와 숫자로 이루어지지 않은 경우", () -> assertThatThrownBy(() -> new Participant("인밸리드"))
+                .isExactlyInstanceOf(NotEnglishAndNumberException.class))
         );
     }
 }
