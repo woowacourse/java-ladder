@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
+import strategy.PassGenerator;
 
 public class Ladder {
 
@@ -11,7 +12,7 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines) {
+    private Ladder(List<Line> lines) {
         validateLine(lines);
 
         this.lines = new ArrayList<>(lines);
@@ -27,6 +28,16 @@ public class Ladder {
         if (isNoneEqualLineSize(lines)) {
             throw new IllegalArgumentException("각 사다리 줄에서 이동할 수 있는 경로의 수가 일치하지 않습니다.");
         }
+    }
+
+    public static Ladder of(PassGenerator generator, Height height, int totalParticipantSize) {
+        List<Line> lines = new ArrayList<>();
+
+        while (height.isContinueMakeLadder(lines.size())) {
+            Line line = Line.of(totalParticipantSize, generator);
+            lines.add(line);
+        }
+        return new Ladder(lines);
     }
 
     private boolean isNoneEqualLineSize(List<Line> lines) {

@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import strategy.PassGenerator;
 
@@ -15,13 +13,7 @@ public class LadderMaker {
     }
 
     public void initLadder(Height height, int totalParticipantSize) {
-        List<Line> lines = new ArrayList<>();
-
-        while (height.isContinueMakeLadder(lines.size())) {
-            Line line = Line.of(totalParticipantSize, generator);
-            lines.add(line);
-        }
-        ladder = new Ladder(lines);
+        ladder = Ladder.of(generator, height, totalParticipantSize);
     }
 
     public Ladder findLadder() {
