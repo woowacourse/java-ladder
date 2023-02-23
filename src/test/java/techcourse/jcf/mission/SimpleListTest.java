@@ -121,4 +121,9 @@ class SimpleListTest {
         list.clear();
         assertThat(list.size()).isEqualTo(0);
     }
+
+    @Test
+    void toStringTest() {
+        assertThat(list.toString()).isEqualTo("0, 1");
+    }
 }

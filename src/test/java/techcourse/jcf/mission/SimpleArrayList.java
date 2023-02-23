@@ -114,11 +114,13 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String toString() {
-        return "SimpleArrayList{" +
-                "capacity=" + capacity +
-                ", pointer=" + pointerToNext +
-                ", values=" + Arrays.toString(values) +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < this.pointerToNext; i++) {
+            sb.append(this.values[i]);
+            sb.append(", ");
+        }
+        sb.replace(sb.length() - 2, sb.length(), "");
+        return sb.toString();
     }
 
     private void checkCapacityUnderKeepingOrder() {
