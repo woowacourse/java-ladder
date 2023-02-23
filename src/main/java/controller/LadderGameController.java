@@ -47,14 +47,14 @@ public class LadderGameController {
 
     private Height requestLadderHeight() {
         try {
-            return new Height(validateNumber(inputView.requestHeight()));
+            return new Height(validateIntegerNumber(inputView.requestHeight()));
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             return requestLadderHeight();
         }
     }
 
-    private int validateNumber(String height) {
+    private int validateIntegerNumber(String height) {
         try {
             return Integer.parseInt(height);
         } catch (NumberFormatException exception) {

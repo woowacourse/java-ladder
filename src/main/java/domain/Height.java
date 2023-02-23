@@ -3,7 +3,8 @@ package domain;
 import exception.ErrorCode;
 
 public class Height {
-    private static final int HEIGHT_LIMIT = 2;
+    private static final int MIN_HEIGHT = 2;
+    private static final int MAX_HEIGHT = 100;
     private final int height;
 
     public Height(int height) {
@@ -12,8 +13,11 @@ public class Height {
     }
 
     private void validate(int height) {
-        if (height < HEIGHT_LIMIT) {
-            throw new IllegalArgumentException(ErrorCode.NEGATIVE_NUMBER.getMessage());
+        if (height < MIN_HEIGHT) {
+            throw new IllegalArgumentException(ErrorCode.NUMBER_UNDER_2.getMessage());
+        }
+        if (height > MAX_HEIGHT) {
+            throw new IllegalArgumentException(ErrorCode.NUMBER_OVER_100.getMessage());
         }
     }
 
