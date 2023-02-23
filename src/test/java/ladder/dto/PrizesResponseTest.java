@@ -17,7 +17,7 @@ class PrizesResponseTest {
         Prizes prizes = new Prizes(createPrizes("꽝", "5000", "꽝", "3000"), createPlayers(4));
 
         // when
-        PrizesResponse prizesResponse = PrizesResponse.ofResults(prizes);
+        PrizesResponse prizesResponse = PrizesResponse.ofPrizes(prizes);
 
         // then
         assertThat(prizesResponse.getPrizes())

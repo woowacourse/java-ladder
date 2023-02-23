@@ -12,7 +12,7 @@ public class PrizesResponse {
         this.prizes = prizes;
     }
 
-    public static PrizesResponse ofResults(Prizes prizes) {
+    public static PrizesResponse ofPrizes(Prizes prizes) {
         String resultsString = prizes.getPrizes().stream()
                 .map(Prize::getPrize)
                 .map(result -> String.format("%-5s", result))
