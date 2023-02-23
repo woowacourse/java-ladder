@@ -53,4 +53,9 @@ public class OutputView {
         return UNCONNECTED_LINE;
     }
 
+    public void printGameResult(List<String> viewers, List<String> viewResult) {
+        for (int i = 0; i < viewers.size(); i++) {
+            System.out.println(viewers.get(i) + " : " + viewResult.get(i));
+        }
+    }
 }
