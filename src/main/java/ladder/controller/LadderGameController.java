@@ -53,8 +53,8 @@ public class LadderGameController {
 
     private LadderGame initLadderGame(Players players, Ladder ladder) {
         try {
-            List<String> gameResult = InputView.inputLadderGameResult();
-            return new LadderGame(players, ladder, gameResult);
+            List<String> destinations = InputView.inputLadderDestination();
+            return new LadderGame(players, ladder, destinations);
         } catch (CustomException e) {
             OutputView.printErrorMessage(e);
             return initLadderGame(players, ladder);
@@ -65,7 +65,7 @@ public class LadderGameController {
         OutputView.printGameResultHeader();
         OutputView.printWithFormat(mapPlayersToPlayersName(ladderGame.getPlayers()));
         OutputView.printLadder(ladderGame.getLadder());
-        OutputView.printWithFormat(ladderGame.getLadderGameResult());
+        OutputView.printWithFormat(ladderGame.getDestinations());
     }
 
     private List<String> mapPlayersToPlayersName(Players players) {

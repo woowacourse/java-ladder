@@ -13,12 +13,12 @@ public class Players {
     private static final int PLAYER_MINIMUM_NUMBER = 2;
 
     private final List<Player> players;
-    private final Map<Player, String> mappedGameRecord;
+    private final Map<Player, String> gameRecords;
 
     public Players(final List<String> playerNames) {
         validatePlayerNumber(playerNames);
         players = mapPlayerNamesToPlayers(playerNames);
-        mappedGameRecord = new HashMap<>();
+        gameRecords = new HashMap<>();
     }
 
     private void validatePlayerNumber(final List<String> playerNames) {
@@ -35,16 +35,16 @@ public class Players {
 
     public void recordGameResult(List<String> gameRecord) {
         for (int i = 0; i < size(); i++) {
-            mappedGameRecord.put(players.get(i), gameRecord.get(i));
+            gameRecords.put(players.get(i), gameRecord.get(i));
         }
     }
 
-    public Map<Player, String> getAllGameResult() {
-        return Map.copyOf(mappedGameRecord);
+    public Map<Player, String> getAllGameRecords() {
+        return Map.copyOf(gameRecords);
     }
 
-    public Map.Entry<Player, String> getGameResultFor(String playerName) {
-        return mappedGameRecord.entrySet().stream()
+    public Map.Entry<Player, String> getGameRecordFor(String playerName) {
+        return gameRecords.entrySet().stream()
                 .filter((entry -> entry.getKey().getPlayerName().getName().equals(playerName)))
                 .findFirst()
                 .orElseThrow(NoSuchPlayerException::new);

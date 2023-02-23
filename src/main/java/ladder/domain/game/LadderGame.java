@@ -12,12 +12,12 @@ public class LadderGame {
 
     private final Players players;
     private final Ladder ladder;
-    private final List<String> ladderGameResult;
+    private final List<String> destinations;
 
-    public LadderGame(Players players, Ladder ladder, List<String> ladderGameResult) {
+    public LadderGame(Players players, Ladder ladder, List<String> destinations) {
         this.players = players;
         this.ladder = ladder;
-        this.ladderGameResult = List.copyOf(ladderGameResult);
+        this.destinations = List.copyOf(destinations);
     }
 
     public void letPlayersToGoDown() {
@@ -26,18 +26,18 @@ public class LadderGame {
 
         for (int i = 0; i < players.size(); i++) {
             int finalDestination = ladder.getDestinationOf(location++);
-            String gameResultForOneLocation = ladderGameResult.get(finalDestination);
+            String gameResultForOneLocation = destinations.get(finalDestination);
             gameRecord.add(gameResultForOneLocation);
         }
         players.recordGameResult(gameRecord);
     }
 
     public Map<Player, String> getAllLadderGameResult() {
-        return players.getAllGameResult();
+        return players.getAllGameRecords();
     }
 
     public Map.Entry<Player, String> getOneLadderGameResult(String playerName) {
-        return players.getGameResultFor(playerName);
+        return players.getGameRecordFor(playerName);
     }
 
     public Players getPlayers() {
@@ -48,7 +48,7 @@ public class LadderGame {
         return ladder;
     }
 
-    public List<String> getLadderGameResult() {
-        return List.copyOf(ladderGameResult);
+    public List<String> getDestinations() {
+        return List.copyOf(destinations);
     }
 }

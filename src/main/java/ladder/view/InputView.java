@@ -32,7 +32,7 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public static List<String> inputLadderGameResult() {
+    public static List<String> inputLadderDestination() {
         System.out.println(LADDER_GAME_RESULT_INPUT_MESSAGE);
 
         String gameResult = scanner.nextLine();

@@ -11,7 +11,6 @@ public class RandomStoolGenerator implements StoolGenerator {
 
     private final Random random;
 
-
     public RandomStoolGenerator() {
         this.random = new Random();
     }
