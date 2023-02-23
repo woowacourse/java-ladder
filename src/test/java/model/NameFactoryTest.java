@@ -34,7 +34,7 @@ public class NameFactoryTest {
     @ParameterizedTest
     @MethodSource("provideNamesInputValues")
     @DisplayName("참여자 이름은 쉼표를 기준으로 입력받는 기능 테스트")
-    void splitNamesByCommas(String inputValue, List<String> expectedResult) {
+    void splitNamesByCommasTest(String inputValue, List<String> expectedResult) {
         //given
         List<Name> createdNames= NameFactory.create(inputValue);
 

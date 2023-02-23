@@ -22,7 +22,7 @@ public class PositionTest {
     @ParameterizedTest
     @CsvSource(value = {"0:false", "1:true"}, delimiter = ':')
     @DisplayName("주어진 위치 값과의 동일 여부를 알 수 있는 기능 테스트")
-    void isSamePositionValue(int testCase, boolean expected) {
+    void isSamePositionValueTest(int testCase, boolean expected) {
         //given
         Position existingPosition = new Position(1);
         Position comparePosition = new Position(testCase);

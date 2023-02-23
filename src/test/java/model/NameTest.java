@@ -36,7 +36,7 @@ public class NameTest {
     @ParameterizedTest
     @ValueSource(strings = {"1234", " ", "@#$@", "abs@#"})
     @DisplayName("사람 이름은 문자로만 이루어져 있는지 확인하는 기능 테스트")
-    void validateNameHasOnlyCharacters(String inputName) {
+    void validateNameHasOnlyCharactersTest(String inputName) {
         assertThatThrownBy(() -> new Name(inputName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NAME_HAS_NON_ALPHABETIC_ERROR);
