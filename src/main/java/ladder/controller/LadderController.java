@@ -2,9 +2,9 @@ package ladder.controller;
 
 import ladder.domain.GameResults;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.people.Names;
 import ladder.domain.ladder.RandomBarGenerator;
 import ladder.domain.ladder.Results;
+import ladder.domain.people.Names;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -42,7 +42,7 @@ public class LadderController {
             return;
         }
 
-        printGameResultsUnique(gameResults,name);
+        printGameResultsUnique(gameResults, name);
         viewGameResults(gameResults, namesList);
     }
 
