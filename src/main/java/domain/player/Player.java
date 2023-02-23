@@ -1,18 +1,27 @@
 package domain.player;
 
+import domain.Position;
+
 import java.util.Objects;
 
 public class Player {
 
     private final Name name;
+    private Position position;
+    private String result;
 
-    public Player(String name) {
+    public Player(String name, int index) {
         this.name = new Name(name);
+        this.position = new Position(index);
     }
 
 
     public String getName() {
         return name.getName();
+    }
+
+    public String getResult() {
+        return result;
     }
 
     @Override

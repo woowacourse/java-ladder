@@ -2,6 +2,7 @@ package domain.player;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
 
@@ -21,9 +22,9 @@ public class Players {
     }
 
     private List<Player> createPlayers(List<String> playersName) {
-        return playersName.stream()
-                .map(Player::new)
-                .collect(Collectors.toList());
+        return IntStream.range(0, playersName.size())
+                .mapToObj(i -> new Player(playersName.get(i), i))
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private void validateDuplicate(List<String> playersName) {
