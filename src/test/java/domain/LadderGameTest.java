@@ -19,7 +19,7 @@ public class LadderGameTest {
     @Test
     void validLinesGameTest() {
         Ladder ladder = new Ladder(4, 1, booleanGenerator);
-        LadderGame ladderGame = new LadderGame(ladder.getLines());
+        LadderGame ladderGame = new LadderGame(4, ladder.getFloors());
 
         Assertions.assertThat(ladderGame.getResult(0)).isEqualTo(1);
         Assertions.assertThat(ladderGame.getResult(1)).isEqualTo(0);

@@ -9,26 +9,26 @@ public class Rewards {
 
     private final List<Reward> rewards;
 
-    public Rewards(String rewards, int personNumber) {
+    public Rewards(String input, int namesSize) {
         this.rewards = new ArrayList<>();
-        String[] splitRewards = rewards.split(REWARD_DELIMITER);
-        validate(splitRewards.length, personNumber);
+        String[] splitRewards = input.split(REWARD_DELIMITER);
+        validate(splitRewards.length, namesSize);
         addRewards(splitRewards);
     }
 
-    private static void validate(int rewardCount, int personCount) {
-        if (rewardCount != personCount) {
+    private static void validate(int rewardsSize, int namesSize) {
+        if (rewardsSize != namesSize) {
             throw new IllegalArgumentException(EXCEPTION_COUNT_MESSAGE);
         }
-    }
-
-    public List<Reward> getRewards() {
-        return rewards;
     }
 
     private void addRewards(String[] splitRewards) {
         for (String reward : splitRewards) {
             this.rewards.add(new Reward(reward));
         }
+    }
+
+    public List<Reward> getRewards() {
+        return List.copyOf(rewards);
     }
 }

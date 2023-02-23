@@ -30,9 +30,9 @@ public class InputView {
         return parseInt(input);
     }
 
-    public Rewards readRewards(Names names) {
+    public Rewards readRewards(int namesSize) {
         String input = readInput(Message.INPUT_REWARDS.message);
-        return new Rewards(input, names.getPersonNumber());
+        return new Rewards(input, namesSize);
     }
 
 

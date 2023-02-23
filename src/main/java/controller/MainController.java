@@ -24,12 +24,12 @@ public class MainController {
 
     public void start() {
         Names names = inputView.readNames();
-        Rewards rewards = inputView.readRewards(names);
+        Rewards rewards = inputView.readRewards(names.getNamesSize());
         int height = inputView.readHeight();
 
-        Ladder ladder = new Ladder(names.getPersonNumber(), height, booleanGenerator);
-        outputView.printLines(names, ladder, rewards);
-        LadderGame ladderGame = new LadderGame(ladder.getLines());
+        Ladder ladder = new Ladder(names.getNamesSize(), height, booleanGenerator);
+        outputView.printLadderBoard(names.getNames(), ladder.getFloors(), rewards.getRewards());
+        LadderGame ladderGame = new LadderGame(names.getNamesSize(), ladder.getFloors());
         Result result = new Result(names.getNames(), ladderGame.getResult(), rewards.getRewards());
 
         showResult(result, names);

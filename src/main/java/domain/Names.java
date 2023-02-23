@@ -32,13 +32,15 @@ public class Names {
         Set<String> set = names.stream()
                 .map(Name::getName)
                 .collect(Collectors.toSet());
+
         if (set.size() != names.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 이름은 입력할 수 없습니다.");
         }
     }
 
     private void validateLength() {
-        int nameSize = this.names.size();
+        int nameSize = names.size();
+
         if (nameSize < MIN_RANGE || nameSize > MAX_RANGE) {
             throw new IllegalArgumentException(
                     String.format("[ERROR] %d명 이상 %d명 이하의 사람 수를 입력해 주세요.", MIN_RANGE, MAX_RANGE)
@@ -50,7 +52,7 @@ public class Names {
         return names;
     }
 
-    public int getPersonNumber() {
+    public int getNamesSize() {
         return names.size();
     }
 }

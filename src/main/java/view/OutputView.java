@@ -1,45 +1,42 @@
 package view;
 
 import domain.Floor;
-import domain.Ladder;
 import domain.Name;
 import domain.Names;
 import domain.Result;
 import domain.Reward;
-import domain.Rewards;
+import java.util.List;
 
 public class OutputView {
     private static final String PRINT_ALL_COMMEND = "all";
 
-    public void printLines(Names names, Ladder ladder, Rewards rewards) {
+    public void printLadderBoard(List<Name> names, List<Floor> floors, List<Reward> rewards) {
         System.out.println(Message.OUTPUT_LINES_MESSAGE.message);
-        printEachName(names);
-        printEachLine(ladder);
-        printEachReward(rewards);
+        printNames(names);
+        printLadder(floors);
+        printRewards(rewards);
     }
 
-    private void printEachName(Names names) {
-        for (Name name : names.getNames()) {
+    private void printNames(List<Name> names) {
+        for (Name name : names) {
             System.out.printf(Message.STRING_FORMAT.message, name.getName());
         }
         System.out.println();
     }
 
-    private void printEachLine(Ladder ladder) {
-        for (Floor floor : ladder.getLines()) {
+    private void printLadder(List<Floor> floors) {
+        floors.forEach(floor -> {
             StringBuilder result = new StringBuilder();
-            result.append(Message.COLUMN_LADDER.message);
-            floor.getLine()
-                    .forEach(isPoint -> result.append(getPointString(isPoint)));
+            floor.getPoints()
+                    .forEach(point -> result.append(getPointString(point)));
             System.out.println(result);
-        }
+        });
     }
 
-    private void printEachReward(Rewards rewards) {
-        for (Reward reward : rewards.getRewards()) {
+    private void printRewards(List<Reward> rewards) {
+        for (Reward reward : rewards) {
             System.out.printf(Message.STRING_FORMAT.message, reward.getReward());
         }
-        System.out.println();
     }
 
     private String getPointString(boolean isPoint) {

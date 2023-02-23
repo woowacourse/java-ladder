@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Result {
-    private final Map<Name, Reward> result = new HashMap<>();
+    private final Map<Name, Reward> results = new HashMap<>();
 
     public Result(List<Name> names, List<Integer> results, List<Reward> rewards) {
         mapResults(names, results, rewards);
@@ -15,11 +15,11 @@ public class Result {
         for (int i = 0; i < names.size(); i++) {
             Name name = names.get(i);
             Reward reward = rewards.get(results.get(i));
-            result.put(name, reward);
+            this.results.put(name, reward);
         }
     }
 
     public Reward getReward(Name name) {
-        return result.get(name);
+        return results.get(name);
     }
 }

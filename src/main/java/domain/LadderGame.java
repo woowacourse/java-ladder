@@ -4,21 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
-    private final List<Integer> gameResults;
+    private final List<Integer> results;
 
-    public LadderGame(List<Floor> floors) {
-        gameResults = new ArrayList<>();
-        startGame(floors);
+    public LadderGame(int personCount, List<Floor> floors) {
+        results = new ArrayList<>();
+        addResults(personCount, floors);
     }
 
-    private void startGame(List<Floor> floors) {
-        for (int i = 0; i < calculatePersonCount(floors); i++) {
-            gameResults.add(calculateResultIndex(floors, i));
+    private void addResults(int personCount, List<Floor> floors) {
+        for (int i = 0; i < personCount; i++) {
+            results.add(calculateResultIndex(floors, i));
         }
-    }
-
-    private int calculatePersonCount(List<Floor> floors) {
-        return floors.get(0).getLineSize() + 1;
     }
 
     private int calculateResultIndex(List<Floor> floors, int index) {
@@ -39,18 +35,18 @@ public class LadderGame {
     }
 
     private boolean isAbleForward(int index, Floor floor) {
-        return index < floor.getLineSize() && floor.getLine().get(index);
+        return index < floor.getPointsSize() && floor.getPoint(index);
     }
 
     private boolean isAbleBackward(int index, Floor floor) {
-        return index > 0 && floor.getLine().get(index - 1);
+        return index > 0 && floor.getPoint(index - 1);
     }
 
     public List<Integer> getResult() {
-        return gameResults;
+        return results;
     }
 
     public int getResult(int index) {
-        return gameResults.get(index);
+        return results.get(index);
     }
 }

@@ -8,14 +8,12 @@ public class Ladder {
     private static final int MIN_HEIGHT = 1;
     private static final int MAX_HEIGHT = 100;
 
-    private final List<Floor> floors = new ArrayList<>();
+    private final List<Floor> floors;
 
     public Ladder(int personNumber, int height, BooleanGenerator booleanGenerator) {
         validateHeight(height);
-        for (int i = 0; i < height; i++) {
-            Floor floor = new Floor(personNumber, booleanGenerator);
-            floors.add(floor);
-        }
+        floors = new ArrayList<>();
+        addFloors(personNumber, height, booleanGenerator);
     }
 
     private static void validateHeight(int height) {
@@ -26,7 +24,13 @@ public class Ladder {
         }
     }
 
-    public List<Floor> getLines() {
+    private void addFloors(int personNumber, int height, BooleanGenerator booleanGenerator) {
+        for (int i = 0; i < height; i++) {
+            floors.add(new Floor(personNumber, booleanGenerator));
+        }
+    }
+
+    public List<Floor> getFloors() {
         return floors;
     }
 }
