@@ -34,7 +34,8 @@ public class Line {
     }
 
     private boolean validateConnectLine(int column) {
-        return points.get(column).equals(points.get(column - 1));
+        int leftLadderLine = column - 1;
+        return points.get(column).equals(points.get(leftLadderLine));
     }
 
     private boolean validateTrueLine(int index) {
