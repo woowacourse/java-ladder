@@ -31,4 +31,11 @@ class LadderGameTest {
         assertEquals(expected, ladderGame.findUserReward(index));
     }
 
+
+    @DisplayName("사용자명을 통해 실행 결과를 조회한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"pobi:꽝", "joy:3000", "crong:2000"}, delimiter = ':')
+    void FindUserRewardTest(String name, String expected) {
+        assertEquals(expected, ladderGame.findUserReward(name));
+    }
 }
