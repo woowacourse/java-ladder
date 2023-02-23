@@ -6,6 +6,7 @@ import domain.Player;
 import domain.Players;
 
 import domain.Prize;
+import domain.Prizes;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -36,6 +37,14 @@ public class OutputView {
         for (Line line : ladder.getLines()) {
             printLine(line, playerNames);
         }
+    }
+
+    public void printPrize(Prizes prizes) {
+        List<String> prizeNames = prizes.getPrizeName();
+        for(String prizeName : prizeNames) {
+            System.out.printf(NAME_FORMAT, prizeName);
+        }
+        System.out.println();
     }
 
     public void printIndividualResult(Map<Player, Prize> result, Player player) {

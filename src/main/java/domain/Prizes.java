@@ -2,6 +2,7 @@ package domain;
 
 import exception.InvalidPrizesSizeException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Prizes {
     private static final String PRIZES_SIZE_ERROR_MESSAGE = "상품의 수는 플레이어의 수와 같아야한다.";
@@ -11,6 +12,12 @@ public class Prizes {
     public Prizes(int playerCount, List<Prize> prizes) {
         validatePrizesSize(playerCount, prizes);
         this.prizes = prizes;
+    }
+
+    public List<String> getPrizeName() {
+        return prizes.stream()
+            .map(Prize::getPrize)
+            .collect(Collectors.toUnmodifiableList());
     }
 
     public Prize getPrize(int index) {
