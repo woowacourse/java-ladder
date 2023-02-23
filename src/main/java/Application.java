@@ -11,32 +11,21 @@ import java.util.function.Supplier;
 public class Application {
     private final InputView inputView;
     private final OutputView outputView;
-    private LadderGame ladderGame;
+    private final LadderGame ladderGame;
 
     private Application(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        initLadderGame();
+        this.ladderGame = initLadderGame();
     }
 
-    private void initLadderGame() {
+    private LadderGame initLadderGame() {
         People people = repeat(() -> new People(inputView.readNames()));
         Results results = repeat(() -> new Results(inputView.readResults(), people));
         Ladder ladder = repeat(() -> new RandomLadderGenerator().generate(people, inputView.readMaxHeight()));
 
-        ladderGame = new LadderGame(people, results, ladder);
         outputView.printTotalLadder(people, results, ladder);
-    }
-
-    private void run() {
-        Results results;
-        do {
-            results = repeat(() -> {
-                String input = inputView.readResult();
-                return ladderGame.calculateAndGetResults(input);
-            });
-            outputView.printGameResults(ladderGame.getPeople(), results);
-        } while (results.canTryAgain());
+        return new LadderGame(people, results, ladder);
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
@@ -49,6 +38,17 @@ public class Application {
             outputView.printCriticalError(exception);
             return repeat(inputReader);
         }
+    }
+
+    private void run() {
+        Results results;
+        do {
+            results = repeat(() -> {
+                String input = inputView.readResult();
+                return ladderGame.calculateAndGetResults(input);
+            });
+            outputView.printGameResults(ladderGame.getPeople(), results);
+        } while (results.canTryAgain());
     }
 
 
