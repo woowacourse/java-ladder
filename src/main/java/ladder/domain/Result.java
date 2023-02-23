@@ -17,10 +17,11 @@ public class Result {
 
     private final Map<String, String> result;
 
-    public Result(final Players players, final List<String> results) {
+    public Result(final Players players, final Bottoms bottom) {
         List<String> names = players.getNames();
-        validateSize(names, results);
-        result = makeResult(names, results);
+        List<String> bottoms = bottom.toList();
+        validateSize(names, bottoms);
+        result = makeResult(names, bottoms);
     }
 
     private Map<String, String> makeResult(final List<String> names, final List<String> results) {

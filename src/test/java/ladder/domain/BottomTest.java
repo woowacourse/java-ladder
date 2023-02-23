@@ -19,7 +19,7 @@ public class BottomTest {
     @Test
     void 사다리_실행결과는_참가자수와_다른경우_예외를_던진다() {
         Players players = new Players(of("wuga", "dino"));
-        assertThatThrownBy(() -> new Bottom(of("꽝", "당첨", "꽝"), players))
+        assertThatThrownBy(() -> new Bottoms(of("꽝", "당첨", "꽝"), players))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("실행결과수와 참가자수가 같아야합니다.");
     }

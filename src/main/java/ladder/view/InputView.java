@@ -52,7 +52,7 @@ public class InputView {
         }
     }
 
-    public List<String> readResult() {
+    public List<String> readBottoms() {
         System.out.println(READ_RESULT_MESSAGE);
         final String input = scanner.nextLine();
 

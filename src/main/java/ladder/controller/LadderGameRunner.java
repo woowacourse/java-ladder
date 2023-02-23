@@ -3,7 +3,7 @@ package ladder.controller;
 import java.util.List;
 import java.util.Map;
 import ladder.domain.BooleanGenerator;
-import ladder.domain.Bottom;
+import ladder.domain.Bottoms;
 import ladder.domain.Height;
 import ladder.domain.LadderGame;
 import ladder.domain.Players;
@@ -30,19 +30,19 @@ public class LadderGameRunner {
 
     public void run() {
         final Players players = readPlayers();
-        final Bottom bottom = readResults(players);
+        final Bottoms bottoms = readResults(players);
         final Height height = readHeight();
 
         final LadderGame ladderGame = new LadderGame(booleanGenerator, players, height);
-        outputView.printResult(ladderGame, bottom);
+        outputView.printResult(ladderGame, bottoms);
 
-        search(ladderGame, bottom, height);
+        search(ladderGame, bottoms, height);
     }
 
-    private void search(final LadderGame ladderGame, final Bottom bottom, final Height height) {
+    private void search(final LadderGame ladderGame, final Bottoms bottoms, final Height height) {
         List<String> initializedNames = ladderGame.getPlayerNames();
         Players players = ladderGame.makeResult(height);
-        Result result = new Result(players, bottom);
+        Result result = new Result(players, bottoms);
 
         searchResult(result, initializedNames);
     }
@@ -67,10 +67,10 @@ public class LadderGameRunner {
         }
     }
 
-    private Bottom readResults(final Players players) {
+    private Bottoms readResults(final Players players) {
         try {
-            List<String> bottomsInput = inputView.readResult();
-            return new Bottom(bottomsInput, players);
+            final List<String> bottomsInput = inputView.readBottoms();
+            return new Bottoms(bottomsInput, players);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return readResults(players);
