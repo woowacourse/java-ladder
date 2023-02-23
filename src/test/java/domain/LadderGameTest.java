@@ -15,10 +15,7 @@ public class LadderGameTest {
     private LadderGame ladderGame;
     @BeforeEach
     void generateLadderGame(){
-        Participants participants = new Participants();
-        participants.add(new Participant("echo"));
-        participants.add(new Participant("modi"));
-        participants.add(new Participant("neo"));
+        Participants participants = Participants.of("echo", "modi", "neo");
         List<Result> collectedList = Stream.of("꽝", "5000", "꽝")
                 .map(Result::from)
                 .collect(Collectors.toList());
@@ -41,6 +38,6 @@ public class LadderGameTest {
         SequenceSwapper swapper = SequenceSwapper.of(List.of(0,1,2));
 
         ladderGame.run(swapper);
-        assertThat(ladderGame.getGameResult().getValue("echo")).isEqualTo("5000");
+        assertThat(ladderGame.getGameResult().get("echo")).isEqualTo("5000");
     }
 }
