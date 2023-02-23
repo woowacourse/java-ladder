@@ -1,4 +1,4 @@
-package model;
+package model.VO;
 
 public class Position {
     private final int position;

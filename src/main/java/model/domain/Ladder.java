@@ -1,4 +1,6 @@
-package model;
+package model.domain;
+
+import model.VO.LadderHeight;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,8 @@
-package model;
+package model.domain;
+
+import model.VO.Name;
+import model.VO.Position;
+import model.VO.Result;
 
 import java.util.ArrayList;
 import java.util.List;

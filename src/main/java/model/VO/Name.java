@@ -1,6 +1,5 @@
-package model;
+package model.VO;
 
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,8 +12,8 @@ public class Name {
     private final String name;
 
     public Name(String name) {
-        validateNameLength(name);
-        validateNameHasOnlyCharacters(name);
+        validateLength(name);
+        validateHasOnlyCharacters(name);
         this.name = name;
     }
 
@@ -26,13 +25,13 @@ public class Name {
         return this.name.equals(other.name);
     }
 
-    private void validateNameLength(String name) {
+    private void validateLength(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(String.format(MAXIMUM_NAME_LENGTH_ERROR, MAXIMUM_NAME_LENGTH));
         }
     }
 
-    private void validateNameHasOnlyCharacters(String name) {
+    private void validateHasOnlyCharacters(String name) {
         Matcher matcher = pattern.matcher(name);
         if (!matcher.matches()) {
             throw new IllegalArgumentException(NAME_HAS_NON_ALPHABETIC_ERROR);

@@ -1,4 +1,4 @@
-package model;
+package model.VO;
 
 public class Result {
     private static final int MAXIMUM_RESULT_LENGTH = 5;
@@ -16,7 +16,7 @@ public class Result {
     }
 
     private void validateResultLength(String result) {
-        if(result.length() > MAXIMUM_RESULT_LENGTH) {
+        if (result.length() > MAXIMUM_RESULT_LENGTH) {
             throw new IllegalArgumentException(String.format(MAXIMUM_RESULT_LENGTH_ERROR, MAXIMUM_RESULT_LENGTH));
         }
     }

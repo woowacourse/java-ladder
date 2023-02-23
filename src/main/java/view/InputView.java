@@ -1,10 +1,10 @@
 package view;
 
-import model.LadderHeight;
-import model.Name;
-import model.NameFactory;
-import model.Result;
-import model.ResultFactory;
+import model.VO.LadderHeight;
+import model.VO.Name;
+import model.factory.NameFactory;
+import model.VO.Result;
+import model.factory.ResultFactory;
 
 import java.util.List;
 import java.util.Scanner;

@@ -1,4 +1,6 @@
-package model;
+package model.factory;
+
+import model.VO.Result;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +19,7 @@ public class ResultFactory {
     }
 
     private static void validateRightResultsSize(int playersSize, List<String> results) {
-        if(results.size() != playersSize) {
+        if (results.size() != playersSize) {
             throw new IllegalArgumentException(WRONG_SIZE_RESULTS_ERROR);
         }
     }

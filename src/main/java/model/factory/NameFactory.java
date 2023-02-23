@@ -1,4 +1,6 @@
-package model;
+package model.factory;
+
+import model.VO.Name;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +25,7 @@ public class NameFactory {
     }
 
     private static void validateDuplicatedNames(List<String> names) {
-        if(names.size() != getDistinctCount(names)) {
+        if (names.size() != getDistinctCount(names)) {
             throw new IllegalArgumentException(DUPLICATED_NAME_ERROR);
         }
     }
@@ -33,6 +35,4 @@ public class NameFactory {
                 .distinct()
                 .count();
     }
-
-
 }

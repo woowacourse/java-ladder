@@ -1,9 +1,11 @@
-package model;
+package model.factory;
 
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import model.VO.Result;
+import model.domain.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,7 +28,7 @@ public class ResultFactoryTest {
     @Test
     @DisplayName("결과값 길이 제한으로 인한 Result 객체 생성 실패 테스트")
     void limitResultLengthTest() {
-        assertThatThrownBy(() -> ResultFactory.create(2,"abcdef, gehijk"))
+        assertThatThrownBy(() -> ResultFactory.create(2, "abcdef, gehijk"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(String.format(MAXIMUM_RESULT_LENGTH_ERROR, MAXIMUM_RESULT_LENGTH));
     }

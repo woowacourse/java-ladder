@@ -1,11 +1,11 @@
 package controller;
 
-import model.Ladder;
-import model.LadderHeight;
-import model.Line;
-import model.Name;
-import model.Players;
-import model.Result;
+import model.domain.Ladder;
+import model.VO.LadderHeight;
+import model.domain.Line;
+import model.VO.Name;
+import model.domain.Players;
+import model.VO.Result;
 import view.InputView;
 import view.OutputView;
 
@@ -36,7 +36,7 @@ public class LadderGameController {
     private void showGameResult(Players players) {
         Name name = getDesirousResultName();
         Name all = new Name("all");
-        while(!name.isSame(all)) {
+        while (!name.isSame(all)) {
             outputView.printResultHeaderMessage();
             outputView.printResult(players.getResultOf(name));
             name = getDesirousResultName();
@@ -46,7 +46,7 @@ public class LadderGameController {
 
     private void showAllResults(Players players) {
         outputView.printResultHeaderMessage();
-        players.getAllPlayerNames().forEach(name -> outputView.printNameAndResult(name,players.getResultOf(name)));
+        players.getAllPlayerNames().forEach(name -> outputView.printNameAndResult(name, players.getResultOf(name)));
     }
 
     private Name getDesirousResultName() {

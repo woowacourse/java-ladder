@@ -1,9 +1,10 @@
-package model;
+package model.factory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import model.VO.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -36,7 +37,7 @@ public class NameFactoryTest {
     @DisplayName("참여자 이름은 쉼표를 기준으로 입력받는 기능 테스트")
     void splitNamesByCommasTest(String inputValue, List<String> expectedResult) {
         //given
-        List<Name> createdNames= NameFactory.create(inputValue);
+        List<Name> createdNames = NameFactory.create(inputValue);
 
         //when
         List<String> thenResult = createdNames.stream()

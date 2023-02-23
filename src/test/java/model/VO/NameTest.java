@@ -1,4 +1,4 @@
-package model;
+package model.VO;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -43,7 +43,7 @@ public class NameTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"pobi:pobi:true", "pobi:neo:false"},delimiter = ':')
+    @CsvSource(value = {"pobi:pobi:true", "pobi:neo:false"}, delimiter = ':')
     @DisplayName("사람 이름 간 비교 기능 테스트")
     void isSameTest(String name1, String name2, boolean answer) {
         //given
