@@ -25,6 +25,12 @@ public class Ladder implements Display {
 		return new Ladder(lines);
 	}
 
+	public void readLines(SequenceSwapper swapper) {
+		for (Line line : lines) {
+			line.readPoints(swapper);
+		}
+	}
+
 	@Override
 	public String format() {
 		String ladder = lines.stream()

@@ -35,6 +35,20 @@ public class Line implements Display {
 			line.add(Point.ABSENCE);
 		}
 	}
+
+	public void readPoints(SequenceSwapper swapper) {
+		final int size = points.size();
+		for (int i = 0; i < size; i++) {
+			swapIfPresent(i, swapper);
+		}
+	}
+
+	private void swapIfPresent(int index, SequenceSwapper swapper) {
+		if (points.get(index).isPresent()) {
+			swapper.swap(index);
+		}
+	}
+
 	@Override
 	public String format() {
 		String line = points.stream()

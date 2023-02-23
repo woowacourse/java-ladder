@@ -4,6 +4,7 @@ import domain.LadderGame;
 import domain.LadderHeight;
 import domain.Participant;
 import domain.Participants;
+import domain.util.PointGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -24,7 +25,7 @@ public class LadderGameController {
 	public LadderGame setUpLadderGame() {
 		Participants participants = retrieveParticipants();
 		LadderHeight ladderHeight = new LadderHeight(retrieveLadderHeight());
-		return new LadderGame(participants, ladderHeight);
+		return new LadderGame(participants, ladderHeight, PointGenerator.getInstance(true));
 	}
 
 	private Participants retrieveParticipants() {

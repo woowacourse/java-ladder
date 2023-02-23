@@ -9,10 +9,14 @@ public class LadderGame {
     private final Ladder ladder;
 
 
-    public LadderGame(Participants participants, LadderHeight height) {
+    public LadderGame(Participants participants, LadderHeight height, PointGenerator pointGenerator) {
         this.participants = participants;
         LadderWidth width = new LadderWidth(participants.getParticipantsNum() - GAP_BETWEEN_PARTICIPANTS_AND_WIDTH);
-        this.ladder = Ladder.create(height, width, PointGenerator.getInstance(true));
+        this.ladder = Ladder.create(height, width, pointGenerator);
+    }
+
+    public void run(SequenceSwapper swapper) {
+        this.ladder.readLines(swapper);
     }
 
     public Participants getParticipants() {
