@@ -32,6 +32,10 @@ public class Rewards {
         }
     }
 
+    public int size() {
+        return rewards.size();
+    }
+
     public String getReward(int index) {
         if (index < FIRST_INDEX || index >= rewards.size()) {
             throw new IllegalArgumentException(INDEX_OUT_OF_BOUNDS.getMessage());

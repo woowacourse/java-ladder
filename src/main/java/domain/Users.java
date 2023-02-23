@@ -32,15 +32,8 @@ public class Users {
         }
     }
 
-    private void validateFirstUser() {
-        if (users.isEmpty()) {
-            throw new IllegalArgumentException(NOT_FOUND_USER.getMessage());
-        }
-    }
-
-    public String getFirstUserName() {
-        validateFirstUser();
-        return users.get(FIRST).getName();
+    public int size() {
+        return users.size();
     }
 
     public List<User> getUsers() {
