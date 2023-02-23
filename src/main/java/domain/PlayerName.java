@@ -20,12 +20,6 @@ public final class PlayerName {
         validateNameIsAll(name);
     }
 
-    private static void validateNameIsAll(String name) {
-        if (name.equals(ALL)) {
-            throw new IllegalArgumentException(NAME_IS_ALL_ERROR_MESSAGE);
-        }
-    }
-
     private static void validateNameIsBlank(String name) {
         if (name.isBlank() || name.isEmpty()) {
             throw new IllegalArgumentException(NAME_BLANK_ERROR_MESSAGE);
@@ -35,6 +29,12 @@ public final class PlayerName {
     private static void validateNameLength(String name) {
         if (isLengthError(name)) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR_MESSAGE);
+        }
+    }
+
+    private static void validateNameIsAll(String name) {
+        if (name.equals(ALL)) {
+            throw new IllegalArgumentException(NAME_IS_ALL_ERROR_MESSAGE);
         }
     }
 

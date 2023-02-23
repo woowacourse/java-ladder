@@ -1,21 +1,21 @@
-package controller;
+package LadderGame;
 
 import domain.*;
 import view.InputView;
 import view.OutputView;
 
-public class Controller {
+public class LadderGame {
     private final InputView inputView;
     private final OutputView outputView;
     private final BooleanCreator booleanCreator;
 
-    public Controller(InputView inputView, OutputView outputView, BooleanCreator booleanCreator) {
+    public LadderGame(InputView inputView, OutputView outputView, BooleanCreator booleanCreator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.booleanCreator = booleanCreator;
     }
 
-    public void run() {
+    public void ladderGame() {
         Players players = createPlayers();
         Rewards rewards = createRewards(players);
         Ladder ladder = createLadder(players);
@@ -26,8 +26,15 @@ public class Controller {
         selectPlayerName(players);
     }
 
-    private void printLadders(Players players, Rewards rewards, Ladder ladder) {
-        outputView.printResult(players, ladder.getLadder(), rewards);
+    private Players createPlayers() {
+        PlayerNames playerNames = new PlayerNames(inputView.readPlayerNames(), inputView);
+        Players players = new Players(playerNames);
+        return players;
+    }
+
+    private Rewards createRewards(Players players) {
+        Rewards rewards = new Rewards(inputView.readRewards(), players.getPlayersSize(), inputView);
+        return rewards;
     }
 
     private Ladder createLadder(Players players) {
@@ -36,15 +43,8 @@ public class Controller {
         return ladder;
     }
 
-    private Rewards createRewards(Players players) {
-        Rewards rewards = new Rewards(inputView.readRewards(), players.getPlayersSize(), inputView);
-        return rewards;
-    }
-
-    private Players createPlayers() {
-        PlayerNames playerNames = new PlayerNames(inputView.readPlayerNames(), inputView);
-        Players players = new Players(playerNames);
-        return players;
+    private void printLadders(Players players, Rewards rewards, Ladder ladder) {
+        outputView.printResult(players, ladder.getLadder(), rewards);
     }
 
     private void selectPlayerName(Players players) {

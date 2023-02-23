@@ -9,7 +9,6 @@ public class Players {
 
     public Players(PlayerNames playerNames) {
         players = new ArrayList<>();
-
         createPlayers(playerNames);
     }
 

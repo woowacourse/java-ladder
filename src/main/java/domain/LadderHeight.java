@@ -14,14 +14,6 @@ public final class LadderHeight {
         this.ladderHeight = Integer.parseInt(ladderHeight);
     }
 
-    public static void validateLadderHeightIsNumber(String ladderHeight) {
-        try {
-            Integer.parseInt(ladderHeight);
-        } catch (Exception exception) {
-            throw new IllegalArgumentException(LADDER_HEIGHT_ERROR_MESSAGE);
-        }
-    }
-
     private String validateLadderHeight(String ladderHeight) {
         try {
             validateLadderHeightIsNumber(ladderHeight);
@@ -30,6 +22,14 @@ public final class LadderHeight {
             ladderHeight = validateLadderHeight(inputView.readLadderHeight());
         }
         return ladderHeight;
+    }
+
+    public static void validateLadderHeightIsNumber(String ladderHeight) {
+        try {
+            Integer.parseInt(ladderHeight);
+        } catch (Exception exception) {
+            throw new IllegalArgumentException(LADDER_HEIGHT_ERROR_MESSAGE);
+        }
     }
 
     public int getLadderHeight() {

@@ -16,11 +16,37 @@ public class Ladder {
         this.ladder = createLadder(ladderHeight, players);
     }
 
-    private void matchRewardsForPlayers(Rewards rewards) {
-        IntStream.range(0, result.size()).forEach(playerIndex -> {
-            Player player = result.get(playerIndex);
-            player.setReward(rewards.getRewards().get(playerIndex));
-        });
+    public List<Line> createLadder(int ladderHeight, Players players) {
+        return IntStream.range(0, ladderHeight).mapToObj(i -> createLine(players)).collect(Collectors.toList());
+    }
+
+    private Line createLine(Players players) {
+        Block preBlock = new Block(booleanCreator.generate());
+        List<Block> blocks = createBlocks(players, preBlock);
+        return new Line(players, blocks);
+    }
+
+    private List<Block> createBlocks(Players players, Block preBlock) {
+        List<Block> blocks = new ArrayList<>(List.of(preBlock));
+        for (int i = 1; i < players.getPlayersSize() - 1; i++) {
+            Block nextBlock = new Block(booleanCreator.generate());
+            nextBlock.comparePreBlock(preBlock);
+            blocks.add(nextBlock);
+            preBlock = nextBlock;
+        }
+        return blocks;
+    }
+
+    //TODO: 이 함수의 네이밍이 getter와 혼동될까요? 더 나은 이름으로 짓고 싶은데 아이디어가 없네요..
+    public void getRewardsForPlayers(Rewards rewards) {
+        traverseLines();
+        matchRewardsForPlayers(rewards);
+    }
+
+    private void traverseLines() {
+        for (Line line : ladder) {
+            traverseLine(line);
+        }
     }
 
     private void traverseLine(Line line) {
@@ -48,38 +74,11 @@ public class Ladder {
         result.set(postPlayerIndex, prePlayer);
     }
 
-    public List<Line> createLadder(int ladderHeight, Players players) {
-        List<Line> list = IntStream.range(0, ladderHeight).mapToObj(i -> createLine(players)).collect(Collectors.toList());
-
-        return list;
-    }
-
-    private Line createLine(Players players) {
-        Block preBlock = new Block(booleanCreator.generate());
-        List<Block> blocks = createBlocks(players, preBlock);
-        return new Line(players, blocks);
-    }
-
-    private List<Block> createBlocks(Players players, Block preBlock) {
-        List<Block> blocks = new ArrayList<>(List.of(preBlock));
-        for (int i = 1; i < players.getPlayersSize() - 1; i++) {
-            Block nextBlock = new Block(booleanCreator.generate());
-            nextBlock.comparePreBlock(preBlock);
-            blocks.add(nextBlock);
-            preBlock = nextBlock;
-        }
-        return blocks;
-    }
-
-    public void getRewardsForPlayers(Rewards rewards) {
-        traverseLines();
-        matchRewardsForPlayers(rewards);
-    }
-
-    private void traverseLines() {
-        for (Line line : ladder) {
-            traverseLine(line);
-        }
+    private void matchRewardsForPlayers(Rewards rewards) {
+        IntStream.range(0, result.size()).forEach(playerIndex -> {
+            Player player = result.get(playerIndex);
+            player.setReward(rewards.getRewards().get(playerIndex));
+        });
     }
 
     public List<Line> getLadder() {
