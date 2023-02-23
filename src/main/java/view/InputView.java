@@ -1,6 +1,9 @@
 package view;
 
+import static utils.ErrorMessage.DUPLICATE_USER_NAME;
 import static utils.ErrorMessage.INVALID_LADDER_HEIGHT_INPUT;
+import static utils.ErrorMessage.INVALID_REWARD_LENGTH_BY_MAXIMUM_LIMIT;
+import static utils.ErrorMessage.INVALID_REWARD_LENGTH_BY_MINIMUM_LIMIT;
 import static utils.ErrorMessage.INVALID_USER_NUMBER_NUMBER_BY_MAXIMUM_LIMIT;
 import static utils.ErrorMessage.INVALID_USER_NUMBER_NUMBER_BY_MINIMUM_LIMIT;
 
@@ -27,20 +30,22 @@ public class InputView {
     }
 
     public int inputHeight() {
-        String height = scanner.nextLine();
+        String height = scanner.nextLine().strip();
 
         validateHeightInput(height);
 
         return Integer.parseInt(height);
     }
 
-    public List<String> inputResults() {
-        String results = scanner.nextLine();
-        return Arrays.asList(
-            results.split(DELIMITER));
+    public List<String> inputRewards() {
+        String rewards = scanner.nextLine();
+        List<String> allRewards = Arrays.asList(
+            rewards.split(DELIMITER));
+        validateRewardsLength(allRewards);
+
+        return allRewards;
     }
 
-    // TODO: 2023/02/20 메서드 명 변경
     public String inputFinalChoice() {
         return scanner.nextLine().strip();
     }
