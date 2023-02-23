@@ -24,14 +24,14 @@ class LineTest {
     @Test
     void weightOverNine() {
         Assertions.assertThatThrownBy(() -> new Line(10, new RandomBooleanGenerator()))
-            .isExactlyInstanceOf(InvalidLineWeightException.class);
+                  .isExactlyInstanceOf(InvalidLineWeightException.class);
     }
 
     @DisplayName("라인의 너비가 1보다 작을 경우 오류를 던진다.")
     @Test
     void weightUnderOne() {
         Assertions.assertThatThrownBy(() -> new Line(0, new RandomBooleanGenerator()))
-            .isExactlyInstanceOf(InvalidLineWeightException.class);
+                  .isExactlyInstanceOf(InvalidLineWeightException.class);
     }
 
     @DisplayName("라인이 정상적으로 생성된 경우. (전부 비연결)")

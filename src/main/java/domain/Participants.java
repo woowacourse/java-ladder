@@ -7,7 +7,6 @@ import exception.NotFindPersonException;
 import util.StringUtil;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Participants {
 
