@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder.player;
 
 import java.util.Collections;
 import java.util.Iterator;

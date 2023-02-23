@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder.goal;
 
 public class Goal {
     public static final String MIN_LENGTH_ERROR_MESSAGE = "최소 한 글자 이상 작성해주세요.";

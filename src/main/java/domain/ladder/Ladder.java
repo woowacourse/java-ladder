@@ -1,8 +1,7 @@
 package domain.ladder;
 
-import domain.Goals;
-import domain.Height;
-import domain.Players;
+import domain.ladder.goal.Goals;
+import domain.ladder.player.Players;
 import util.BooleanGenerator;
 
 import java.util.*;

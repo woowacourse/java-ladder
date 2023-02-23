@@ -1,7 +1,9 @@
 package view;
 
-import domain.*;
+import domain.ladder.Height;
 import domain.ladder.Ladder;
+import domain.ladder.goal.Goals;
+import domain.ladder.player.Players;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

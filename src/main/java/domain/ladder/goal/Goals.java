@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder.goal;
 
 import java.util.Iterator;
 import java.util.List;

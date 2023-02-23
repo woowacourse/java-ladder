@@ -1,8 +1,7 @@
 package domain.ladder;
 
-import domain.Goals;
-import domain.Height;
-import domain.Players;
+import domain.ladder.goal.Goals;
+import domain.ladder.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;

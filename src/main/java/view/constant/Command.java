@@ -1,4 +1,4 @@
-package view;
+package view.constant;
 
 public enum Command {
     ALL("all");
