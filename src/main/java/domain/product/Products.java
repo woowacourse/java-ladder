@@ -6,8 +6,8 @@ import java.util.List;
 public class Products {
     private final List<Product> products;
 
-    private static int MAX_PRODUCTS_SIZE = 5;
-    private static int MIN_PRODUCTS_SIZE = 1;
+    private static final int MAX_PRODUCTS_SIZE = 12;
+    private static final int MIN_PRODUCTS_SIZE = 2;
     public Products(List<Product> products) {
         checkProducts(products);
         this.products = products;
@@ -31,10 +31,13 @@ public class Products {
         }
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
     public int productsCount() {
         return products.size();
     }
-    public List<Product> getProducts() {
-        return products;
+    public Product productOfIndex(int index) {
+        return products.get(index);
     }
 }
