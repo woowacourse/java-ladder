@@ -33,7 +33,7 @@ public class Line {
     }
 
     private boolean isRightPointExist(int position) {
-        return position < points.size() && points.get(position) == true;
+        return position < points.size() && points.get(position);
     }
 
     private void validate(int personCount) {
@@ -59,17 +59,14 @@ public class Line {
     }
 
     private static boolean canMake(List<Boolean> points, boolean flag, int index) {
-        if (flag == true) {
+        if (flag) {
             return isFirstIndexOrLeftEmpty(points, index);
         }
         return false;
     }
 
     private static boolean isFirstIndexOrLeftEmpty(List<Boolean> points, int index) {
-        if (index == 0 || points.get(index - 1) == false) {
-            return true;
-        }
-        return false;
+        return index == 0 || points.get(index - 1) == false;
     }
 
     public List<Boolean> getPoints() {

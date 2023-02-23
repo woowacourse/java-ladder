@@ -42,12 +42,6 @@ public class LadderGame {
         return gameResult;
     }
 
-    private static void validate(Players players, Prizes prizes) {
-        if (players.getPlayers().size() != prizes.getPrizes().size()) {
-            throw new IllegalArgumentException("참가자 수와 결과 수는 일치해야 합니다.");
-        }
-    }
-
     public Map<String, String> findAllResults() {
         return this.result;
     }
