@@ -4,7 +4,7 @@ import java.util.List;
 
 public class BridgeJudge {
 
-    public static boolean canMake(List<Boolean> bridges, boolean flag, int index) {
+    public boolean canMake(List<Bridge> bridges, boolean flag, int index) {
         if (flag) {
             return isFirstLine(index) || isLeftEmpty(bridges, index);
         }
@@ -12,11 +12,13 @@ public class BridgeJudge {
     }
 
 
-    private static boolean isFirstLine(int index) {
+    private boolean isFirstLine(int index) {
         return index == 0;
     }
 
-    private static boolean isLeftEmpty(List<Boolean> bridges, int index) {
-        return !bridges.get(index - 1);
+    private boolean isLeftEmpty(List<Bridge> bridges, int index) {
+        if (bridges.get(index - 1) == Bridge.BLOCKED)
+            return true;
+        return false;
     }
 }

@@ -1,7 +1,6 @@
 package view;
 
-import domain.Items;
-import domain.ladder.Ladder;
+import domain.ladder.Bridge;
 import domain.ladder.Line;
 import domain.player.Player;
 
@@ -29,7 +28,7 @@ public class OutputView {
 
     public void showLadder(List<Line> lines) {
         for (Line line : lines) {
-            List<Boolean> bridges = line.getBridges();
+            List<Bridge> bridges = line.getBridges();
             showBridges(bridges);
             System.out.println();
         }
@@ -39,9 +38,9 @@ public class OutputView {
         items.forEach(item -> printMessageFormat(item, ITEM_SHOW_FORMAT));
     }
 
-    private void showBridges(List<Boolean> bridges) {
+    private void showBridges(List<Bridge> bridges) {
         System.out.printf(LINE_SPACE_MESSAGE + LINE_BAR_MESSAGE);
-        for (Boolean bridge : bridges) {
+        for (Bridge bridge : bridges) {
             printMessageFormat(draw(bridge) + LINE_BAR_MESSAGE, BRIDGE_SHOW_FORMAT);
         }
     }
@@ -50,8 +49,8 @@ public class OutputView {
         System.out.printf(format, playerName);
     }
 
-    private String draw(Boolean bridge) {
-        if (bridge) {
+    private String draw(Bridge bridge) {
+        if (bridge.isPassable()) {
             return BRIDGE_TRUE;
         }
         return BRIDGE_FALSE;

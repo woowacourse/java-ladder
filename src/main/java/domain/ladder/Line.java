@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Line {
 
-    private List<Boolean> bridges = new ArrayList<>();
+    private List<Bridge> bridges = new ArrayList<>();
 
     public Line(int personCount, BooleanGenerator booleanGenerator) {
         createBridges(personCount, booleanGenerator);
@@ -21,14 +21,15 @@ public class Line {
     }
 
     private void addBridge(int index, boolean flag) {
-        if (BridgeJudge.canMake(bridges, flag, index)) {
-            bridges.add(true);
+        BridgeJudge bridgeJudge = new BridgeJudge();
+        if (bridgeJudge.canMake(bridges, flag, index)) {
+            bridges.add(Bridge.PASSABLE);
             return;
         }
-        bridges.add(false);
+        bridges.add(Bridge.BLOCKED);
     }
 
-    public List<Boolean> getBridges() {
+    public List<Bridge> getBridges() {
         return bridges;
     }
 }
