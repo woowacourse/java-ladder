@@ -29,4 +29,8 @@ public class InputView {
         InputViewValidator.validateReadResults(rawResult);
         return List.of(rawResult.split(DELIMITER, -1));
     }
+
+    public static String readPlayerNameToShowResult() {
+        return SCANNER.nextLine();
+    }
 }
