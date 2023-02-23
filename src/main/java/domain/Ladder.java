@@ -1,7 +1,9 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import utils.NumberGenerator;
 
 public class Ladder {
@@ -26,6 +28,37 @@ public class Ladder {
     private void addLines(int numberOfPeople, NumberGenerator numberGenerator) {
         for (int i = 0; i < height(); i++) {
             lines.add(Line.create(numberOfPeople, numberGenerator));
+        }
+        if (isLadderNotConnected(numberOfPeople)) {
+            lines.clear();
+            addLines(numberOfPeople, numberGenerator);
+        }
+    }
+
+    private boolean isLadderNotConnected(int numberOfPeople) {
+        Boolean[] isConnectedAt = getLadderConnectionStatus(numberOfPeople);
+        return Arrays.stream(isConnectedAt)
+                .collect(Collectors.toSet())
+                .size() != 1;
+    }
+
+    private Boolean[] getLadderConnectionStatus(int numberOfPeople) {
+        int lineWidth = numberOfPeople - 1;
+        Boolean[] isConnectedAt = new Boolean[lineWidth];
+        Arrays.fill(isConnectedAt, false);
+        lines.forEach(line -> getLineConnectionStatus(isConnectedAt, line));
+        return isConnectedAt;
+    }
+
+    private void getLineConnectionStatus(Boolean[] isConnectedAt, Line line) {
+        for (int i = 0; i < line.points().size(); i++) {
+            getPointConnectionStatus(isConnectedAt, line, i);
+        }
+    }
+
+    private void getPointConnectionStatus(Boolean[] isConnectedAt, Line line, int i) {
+        if(line.points().get(i).isPassable()) {
+            isConnectedAt[i] = true;
         }
     }
 
