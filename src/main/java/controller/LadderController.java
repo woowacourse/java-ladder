@@ -33,7 +33,7 @@ public class LadderController {
     public void run() {
         Names names = createNames();
         Results results = createResults(names.size());
-        LadderHeight ladderHeight = createLadderHeight();
+        LadderHeight ladderHeight = createLadderHeight(names.size());
         Ladder ladder = Ladder.create(names.size(), ladderHeight, numberGenerator);
         LadderGame ladderGame = new LadderGame(names, ladder, results);
 
@@ -65,13 +65,13 @@ public class LadderController {
         }
     }
 
-    private LadderHeight createLadderHeight() {
+    private LadderHeight createLadderHeight(int numberOfPeople) {
         try {
             int userInput = inputView.readLadderHeight();
-            return new LadderHeight(userInput);
+            return new LadderHeight(userInput, numberOfPeople);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return createLadderHeight();
+            return createLadderHeight(numberOfPeople);
         }
     }
 

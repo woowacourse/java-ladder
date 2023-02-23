@@ -24,7 +24,7 @@ class LadderGameTest {
 
     private static LadderGame createLadderGame() {
         int numberOfPeople = 3;
-        LadderHeight ladderHeight = new LadderHeight(3);
+        LadderHeight ladderHeight = new LadderHeight(3, numberOfPeople);
         List<Integer> numberListToGenerate = List.of(0);
         MockNumberGenerator numberGenerator = new MockNumberGenerator(numberListToGenerate);
         Ladder ladder = Ladder.create(numberOfPeople, ladderHeight, numberGenerator);
