@@ -7,6 +7,7 @@ import ladder.domain.player.PlayerName;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
+import ladder.domain.result.exception.NoSuchPlayerException;
 
 import java.util.*;
 
@@ -64,6 +65,14 @@ public class Result {
     }
 
     public Prize getSinglePlayerResult(PlayerName playerName) {
-        return results.get(playerName);
+        Prize prize = results.get(playerName);
+        validatePlayerName(prize);
+        return prize;
+    }
+
+    private void validatePlayerName(Prize prize) {
+        if (prize == null) {
+            throw new NoSuchPlayerException();
+        }
     }
 }

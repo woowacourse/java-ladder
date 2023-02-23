@@ -8,6 +8,7 @@ import ladder.domain.player.Players;
 import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
 import ladder.domain.result.Result;
+import ladder.domain.result.exception.NoSuchPlayerException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +17,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ResultTest {
 
@@ -68,5 +70,13 @@ public class ResultTest {
         Prize prize = prizes.getPrizes().get(1);
 
         assertThat(result.getSinglePlayerResult(playerName)).isEqualTo(prize);
+    }
+
+    @Test
+    void 없는_플레이어_조회_시_예외_발생() {
+        PlayerName playerName = new PlayerName("ditoo");
+
+        assertThatThrownBy(() -> result.getSinglePlayerResult(playerName))
+                .isInstanceOf(NoSuchPlayerException.class);
     }
 }
