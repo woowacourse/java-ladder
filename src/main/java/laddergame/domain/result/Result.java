@@ -5,12 +5,12 @@ import java.util.Objects;
 public class Result {
 
     public static final String INVALID_INCLUSION = " ";
-    private final String result;
+    private final String resultName;
 
-    public Result(final String result) {
-        validateNullOrEmpty(result);
-        validateBlank(result);
-        this.result = result;
+    public Result(final String resultName) {
+        validateNullOrEmpty(resultName);
+        validateBlank(resultName);
+        this.resultName = resultName;
     }
 
     private void validateNullOrEmpty(final String result) {
@@ -26,19 +26,19 @@ public class Result {
     }
 
     @Override
-    public boolean equals(final Object diffResult) {
-        if (this == diffResult) {
+    public boolean equals(final Object diffResultName) {
+        if (this == diffResultName) {
             return true;
         }
-        if (diffResult == null || getClass() != diffResult.getClass()) {
+        if (diffResultName == null || getClass() != diffResultName.getClass()) {
             return false;
         }
-        Result result1 = (Result) diffResult;
-        return result.equals(result1.result);
+        Result result1 = (Result) diffResultName;
+        return resultName.equals(result1.resultName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(result);
+        return Objects.hash(resultName);
     }
 }
