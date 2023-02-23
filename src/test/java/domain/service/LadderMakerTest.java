@@ -23,8 +23,8 @@ public class LadderMakerTest {
         Height height = new Height(5);
         Width width = new Width(5);
         Ladder ladder = ladderMaker.make(height, width);
-        assertThat(ladder.getHeight()).isEqualTo(height);
-        assertThat(ladder.getWidth()).isEqualTo(width);
+        assertThat(ladder.getHeight()).isEqualTo(5);
+        assertThat(ladder.getWidth()).isEqualTo(5);
     }
 
     @Test

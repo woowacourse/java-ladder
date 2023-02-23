@@ -42,12 +42,12 @@ public class Ladder {
         return Collections.unmodifiableList(layers);
     }
 
-    public Height getHeight() {
-        return this.height;
+    public int getHeight() {
+        return this.height.getValue();
     }
 
-    public Width getWidth() {
-        return this.width;
+    public int getWidth() {
+        return this.width.getValue();
     }
 
 }
