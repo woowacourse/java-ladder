@@ -38,14 +38,23 @@ public class LadderGame {
     }
 
     private void goDownOneLine(Player player, Line line) {
-        if (player.getPosition().getValue() < players.size() - 1 && line.isPointFilledAt(
-                player.getPosition().getValue())) {
+        int currentPosition = player.getPosition().getValue();
+        if (isRightPointFilled(line, currentPosition)) {
             player.moveRight();
             return;
         }
-        if (player.getPosition().getValue() > 0 && line.isPointFilledAt(
-                player.getPosition().getValue() - 1)) {
+        if (isLeftPointFilled(line, currentPosition)) {
             player.moveLeft();
         }
+    }
+
+    private boolean isLeftPointFilled(Line line, int currentPosition) {
+        boolean hasLeftSide = currentPosition > 0;
+        return hasLeftSide && line.isPointFilledAt(currentPosition - 1);
+    }
+
+    private boolean isRightPointFilled(Line line, int currentPosition) {
+        boolean hasRightSide = currentPosition < players.size() - 1;
+        return hasRightSide && line.isPointFilledAt(currentPosition);
     }
 }
