@@ -14,12 +14,10 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
-    public static final String NOT_CONTAIN_NAME_ERROR = "[ERROR] 해당하는 이름이 없습니다.";
-    public static final String ALL = "all";
     public static final String FIND_ALL_RESULT = "전체 결과 조회";
     private final InputView inputView;
     private final OutputView outputView;
-    private static Users users;
+    private Users users;
     private Ladder ladder;
     private Results results;
 
@@ -37,7 +35,7 @@ public class LadderGameController {
     public void run() {
         printGameSet();
         Map<String, String> resultMap = playGame();
-        String findUser = findResultByUser(resultMap, findUserResult());
+        String findUser = findUserResult();
         outputView.printResultByUser(resultMap, findUser, users.getUserNames());
     }
 
@@ -51,16 +49,6 @@ public class LadderGameController {
         outputView.printUserNames(users);
         outputView.printLadder(ladder);
         outputView.printResults(results);
-    }
-
-    public static String findResultByUser(Map<String, String> resultMap, String findUser) {
-        if (findUser.equals(ALL)) {
-            return FIND_ALL_RESULT;
-        }
-        if (resultMap.containsKey(findUser)) {
-            return findUser;
-        }
-        throw new IllegalArgumentException();
     }
 
     private Results initializeResults() {
@@ -110,17 +98,11 @@ public class LadderGameController {
     private String findUserResult() {
         try {
             String checkNameInput = inputView.inputResultUser();
-            checkNameInUsers(checkNameInput, users);
+            users.checkNameInUsers(checkNameInput);
             return checkNameInput;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return findUserResult();
-        }
-    }
-
-    public static void checkNameInUsers(String nameInput, Users users) {
-        if (!nameInput.equals(ALL) && !users.getUserNames().contains(nameInput)) {
-            throw new IllegalArgumentException(NOT_CONTAIN_NAME_ERROR);
         }
     }
 }

@@ -2,14 +2,13 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
+import static view.InputView.RESULT_LENGTH_ERROR;
+import static domain.user.Users.NOT_CONTAIN_NAME_ERROR;
 
-import controller.LadderGameController;
 import domain.game.Results;
 import domain.user.User;
 import domain.user.Users;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.*;
 
 public class ResultTest {
@@ -18,7 +17,8 @@ public class ResultTest {
     void shouldFailResultNotEqualUserLength() {
         Users users = new Users(List.of(new User("dino"), new User("mango")));
         List<String> results = List.of("꽝", "1000", "꽝", "5000");
-        assertThatThrownBy(() -> new Results(results, users.getPersonCount()));
+        assertThatThrownBy(() -> new Results(results, users.getPersonCount()))
+                .hasMessageContaining(RESULT_LENGTH_ERROR);
     }
 
     @DisplayName("입력받은 값과 같은 이름의 유저가 없으면 실패한다.")
@@ -26,7 +26,8 @@ public class ResultTest {
     void shouldFailInputIsNotUser() {
         Users users = new Users(List.of(new User("dino"), new User("mango")));
         String input = "dinos";
-        assertThatThrownBy(() -> LadderGameController.checkNameInUsers(input, users));
+        assertThatThrownBy(() -> users.checkNameInUsers(input))
+                .hasMessageContaining(NOT_CONTAIN_NAME_ERROR);
     }
 
     @DisplayName("결과를 보고싶은 유저로 'all'을 입력받으면 성공한다.")
@@ -34,14 +35,6 @@ public class ResultTest {
     void shouldSuccessInputIsAll() {
         Users users = new Users(List.of(new User("dino"), new User("mango")));
         String input = "all";
-        assertDoesNotThrow(() -> LadderGameController.checkNameInUsers(input, users));
-    }
-
-    @DisplayName("입력받은 유저의위치에 해당하는 결과값을 반환한다.")
-    @Test
-    void shouldSuccessFindResultByUser() {
-        Map<String, String> resultMap = new HashMap<>();
-        resultMap.put("mango", "1");
-        assertEquals(LadderGameController.findResultByUser(resultMap, "mango"), "mango");
+        assertDoesNotThrow(() -> users.checkNameInUsers(input));
     }
 }

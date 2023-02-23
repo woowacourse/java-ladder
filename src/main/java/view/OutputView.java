@@ -15,7 +15,8 @@ public class OutputView {
     private static final String OUTPUT_EXECUTE_MESSAGE = "\n사다리 결과\n";
     private static final String OUTPUT_RESULT_MESSAGE = "\n실행 결과";
     private static final String LINE_DELIMITER = "|";
-    private static final String NAME_DELIMITER = " ";
+    private static final String SPACE_SEPARATOR = " ";
+    public static final String RESULT_SEPARATOR = " : ";
 
     public void printResultByUser(Map<String, String> resultMap, String findUser, List<String> userNames) {
         System.out.println(OUTPUT_RESULT_MESSAGE);
@@ -28,23 +29,23 @@ public class OutputView {
 
     private void printAllUserResult(Map<String, String> resultMap, List<String> userNames) {
         for (String name : userNames) {
-            System.out.println(name + " : " + resultMap.get(name));
+            System.out.println(new StringBuilder().append(name).append(RESULT_SEPARATOR).append(resultMap.get(name)));
         }
     }
 
     public void printUserNames(Users users) {
         System.out.println(OUTPUT_EXECUTE_MESSAGE);
-        System.out.println(" " + users.getUserNames()
+        System.out.println(SPACE_SEPARATOR + users.getUserNames()
                 .stream()
                 .map(this::convertBlankString)
-                .collect(Collectors.joining(NAME_DELIMITER)));
+                .collect(Collectors.joining(SPACE_SEPARATOR)));
     }
 
     public void printResults(Results results) {
-        System.out.println(" " + results.getResults()
+        System.out.println(SPACE_SEPARATOR + results.getResults()
                 .stream()
                 .map(this::convertBlankString)
-                .collect(Collectors.joining(NAME_DELIMITER)));
+                .collect(Collectors.joining(SPACE_SEPARATOR)));
     }
 
     public String convertBlankString(String word) {
@@ -55,9 +56,9 @@ public class OutputView {
     }
 
     private String insertBlank(String name) {
-        StringBuilder nameBuilder = new StringBuilder(name + " ");
+        StringBuilder nameBuilder = new StringBuilder(name + SPACE_SEPARATOR);
         while (nameBuilder.length() < User.MAX_NAME_LENGTH) {
-            nameBuilder.insert(0, " ");
+            nameBuilder.insert(0, SPACE_SEPARATOR);
         }
         return nameBuilder.toString();
     }
