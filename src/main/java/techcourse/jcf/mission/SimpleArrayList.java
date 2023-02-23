@@ -4,26 +4,28 @@ import java.util.Arrays;
 
 public class SimpleArrayList implements SimpleList {
 
-    private static final int DEFAULT_SIZE = 10;
+    private static final int DEFAULT_CAPACITY = 10;
 
     private int size = 0;
-    private int currentIndex = 0;
+    private int currentCapacity = DEFAULT_CAPACITY;
     private String[] values;
 
     public SimpleArrayList() {
-        values = new String[DEFAULT_SIZE];
+        values = new String[DEFAULT_CAPACITY];
     }
 
     public SimpleArrayList(final String[] values) {
+        this.currentCapacity = values.length;
         this.size = values.length;
-        this.values = values;
+        this.values = values.clone();
     }
 
-    //TODO: List의 크기가 자동으로 늘어나게 수정
     @Override
     public boolean add(final String value) {
-        size += 1;
-        values[currentIndex++] = value;
+        if (size == currentCapacity) {
+            extendCapacity();
+        }
+        values[size++] = value;
         return true;
     }
 
@@ -92,12 +94,7 @@ public class SimpleArrayList implements SimpleList {
         size = 0;
     }
 
-    @Override
-    public String toString() {
-        return "SimpleArrayList{" +
-                "size=" + size +
-                ", currentIndex=" + currentIndex +
-                ", values=" + Arrays.toString(values) +
-                '}';
+    private void extendCapacity() {
+        this.values = Arrays.copyOf(this.values, currentCapacity * 2);
     }
 }

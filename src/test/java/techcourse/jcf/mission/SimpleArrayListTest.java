@@ -21,6 +21,19 @@ class SimpleArrayListTest {
                 .contains("홍실");
     }
 
+    @Test
+    @DisplayName("List에 기본 사이즈에서 더 add해도 크기가 자동으로 늘어나는지 테스트")
+    void addStringOverDefaultCapacity() {
+        String[] array = {"홍실", "다니", "준팍", "에단", "로지", "애쉬", "디투", "블랙캣", "네오", "왼손"};
+        final SimpleArrayList arrayList = new SimpleArrayList(array);
+
+        arrayList.add("져니");
+
+        assertThat(arrayList).extracting("values")
+                .asInstanceOf(InstanceOfAssertFactories.array(String[].class))
+                .contains("져니");
+    }
+
     //ArrayList의 rangeCheckForAdd 확인하기.
     @Test
     @DisplayName("List안에 원하는 index에 값을 add한다.")
