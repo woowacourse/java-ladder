@@ -26,7 +26,7 @@ class ResultTest {
         final Height height = new Height(2);
         final DirectionGenerator directionGenerator = new TestDirectionGenerator(Lists.newArrayList(RIGHT, STAY));
         ladder = Ladder.of(directionGenerator, players, height);
-        prizes = Prizes.from(List.of("꽝", "3000"));
+        prizes = Prizes.from(List.of("꽝", "3000"), players);
     }
 
     @Test

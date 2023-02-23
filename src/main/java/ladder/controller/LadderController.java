@@ -37,7 +37,7 @@ public class LadderController {
 
     private Players readPlayers(final Retry retry) {
         checkCount(retry);
-        final Optional<Players> players = generatePlayers(inputView.readPlayerNames());
+        final Optional<Players> players = generatePlayers();
         if (players.isEmpty()) {
             retry.decrease();
             return readPlayers(retry);
@@ -51,8 +51,9 @@ public class LadderController {
         }
     }
 
-    private Optional<Players> generatePlayers(final List<String> playerNames) {
+    private Optional<Players> generatePlayers() {
         try {
+            final List<String> playerNames = inputView.readPlayerNames();
             return Optional.of(Players.from(playerNames));
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
@@ -62,7 +63,7 @@ public class LadderController {
 
     private Prizes readPrizes(final Retry retry, final Players players) {
         checkCount(retry);
-        final Optional<Prizes> prizes = generatePrizes(inputView.readPrizeNames(), players);
+        final Optional<Prizes> prizes = generatePrizes(players);
         if (prizes.isEmpty()) {
             retry.decrease();
             return readPrizes(retry, players);
@@ -70,22 +71,14 @@ public class LadderController {
         return prizes.get();
     }
 
-    private Optional<Prizes> generatePrizes(final List<String> prizeNames, final Players players) {
+    private Optional<Prizes> generatePrizes(final Players players) {
         try {
-            final Prizes prizes = Prizes.from(prizeNames);
-            validateSameSize(players, prizes);
-            return Optional.of(prizes);
+            final List<String> prizeNames = inputView.readPrizeNames();
+            return Optional.of(Prizes.from(prizeNames, players));
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
         }
         return Optional.empty();
-    }
-
-    private void validateSameSize(final Players players, final Prizes prizes) {
-        if (players.size() != prizes.size()) {
-            throw new IllegalArgumentException(
-                    "실행 결과 개수는 플레이어 수와 동일해야 합니다. 플레이어 수: " + players.size() + ", 실행 결과 개수: " + prizes.size());
-        }
     }
 
     private Height readHeight(final Retry retry) {
@@ -110,7 +103,7 @@ public class LadderController {
 
     private String readTarget(final Retry retry, final Result result) {
         checkCount(retry);
-        final Optional<String> target = generateTarget(inputView.readTarget(), result);
+        final Optional<String> target = generateTarget(result);
         if (target.isEmpty()) {
             retry.decrease();
             return readTarget(retry, result);
@@ -118,7 +111,8 @@ public class LadderController {
         return target.get();
     }
 
-    private Optional<String> generateTarget(final String target, final Result result) {
+    private Optional<String> generateTarget(final Result result) {
+        final String target = inputView.readTarget();
         if (target.equals(ALL_COMMAND) || result.exist(target)) {
             return Optional.of(target);
         }
