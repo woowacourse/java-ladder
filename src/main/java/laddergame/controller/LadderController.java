@@ -17,6 +17,7 @@ import laddergame.view.OutputView;
 
 public class LadderController {
     public static final String ALL = "all";
+    public static final int RETRY_LIMIT = 5;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -57,17 +58,20 @@ public class LadderController {
     }
 
     private <T> T retryOnInvalidInputWithAlert(Supplier<T> supplier) {
-        while (true) {
+        int count = 0;
+        while (count++ < RETRY_LIMIT) {
             try {
                 return supplier.get();
             } catch (RuntimeException e) {
                 OutputView.printExceptionMessage(e.getMessage());
             }
         }
+        throw new IllegalStateException("재시도 횟수를 넘었습니다.");
     }
 
     private void searchResultItemByNameFrom(NamesWithItem t) {
-        while (true) {
+        int count = 0;
+        while (count++ < RETRY_LIMIT) {
             try {
                 printResultForName(t);
                 return;
@@ -75,10 +79,12 @@ public class LadderController {
                 OutputView.printExceptionMessage(e.getMessage());
             }
         }
+        throw new IllegalStateException("재시도 횟수를 넘었습니다.");
     }
 
     private void printResultForName(NamesWithItem namesWithItem) {
-        while (true) {
+        int count = 0;
+        while (count++ < RETRY_LIMIT) {
             String name = inputView.readNameToCheckResult();
             if (isAll(name)) {
                 outputView.printTotalResult(namesWithItem);
@@ -86,6 +92,7 @@ public class LadderController {
             }
             outputView.printResult(namesWithItem.searchBy(name));
         }
+        throw new IllegalStateException("재시도 횟수를 넘었습니다.");
     }
 
     private static boolean isAll(String name) {
