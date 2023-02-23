@@ -32,6 +32,8 @@ public class LadderGameController {
         printLadderResult(ladder, users, rewards);
         LadderGame ladderGame = new LadderGame(ladder, users, rewards);
         ladderGame.moveUsers();
+
+        printLadderResult(ladder, users, rewards);
         confirmResult(users, ladderGame);
     }
 
