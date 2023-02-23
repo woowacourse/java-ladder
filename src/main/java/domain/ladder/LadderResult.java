@@ -1,6 +1,6 @@
-package domain;
+package domain.ladder;
 
-import exception.domain.InvalidLadderResultException;
+import exception.ladder.InvalidLadderResultException;
 import exception.view.EmptyInputException;
 
 public class LadderResult {

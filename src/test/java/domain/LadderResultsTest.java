@@ -2,7 +2,8 @@ package domain;
 
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-import exception.domain.InvalidLadderResultCount;
+import domain.ladder.LadderResults;
+import exception.ladder.InvalidLadderResultCount;
 import exception.view.EmptyInputException;
 import java.util.List;
 import java.util.stream.Stream;

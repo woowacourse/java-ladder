@@ -1,4 +1,4 @@
-package exception.domain;
+package exception.participants;
 
 public class DuplicateNameException extends IllegalArgumentException {
 

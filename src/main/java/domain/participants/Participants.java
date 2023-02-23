@@ -1,8 +1,9 @@
-package domain;
+package domain.participants;
 
-import exception.domain.DuplicateNameException;
-import exception.domain.InvalidParticipantsCountException;
+import exception.participants.DuplicateNameException;
+import exception.participants.InvalidParticipantsCountException;
 import exception.view.EmptyInputException;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,11 +12,11 @@ public class Participants {
     private static final int MIN_PARTICIPANT_COUNT = 2;
     private static final int MAX_PARTICIPANT_COUNT = 10;
     private static final String DELIMITER = ",";
-    private final List<Person> people;
+    private final List<Participant> participants;
 
     public Participants(String participantNames) {
         validate(participantNames);
-        people = joinAllParticipants(participantNames);
+        participants = joinAllParticipants(participantNames);
     }
 
     private void validate(String participantNames) {
@@ -47,18 +48,16 @@ public class Participants {
         return names.size() > names.stream().distinct().count();
     }
 
-    private List<Person> joinAllParticipants(String participantNames) {
-        return splitNames(participantNames).stream().map(Person::new)
+    private List<Participant> joinAllParticipants(String participantNames) {
+        return splitNames(participantNames).stream().map(Participant::new)
             .collect(Collectors.toList());
     }
 
     public int getCount() {
-        return people.size();
+        return participants.size();
     }
 
-    public List<String> getNames() {
-        return people.stream()
-            .map(Person::getName)
-            .collect(Collectors.toList());
+    public List<Participant> getAllParticipants() {
+        return Collections.unmodifiableList(participants);
     }
 }

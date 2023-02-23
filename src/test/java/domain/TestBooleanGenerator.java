@@ -8,7 +8,7 @@ public class TestBooleanGenerator implements BooleanGenerator {
 
     private final List<Boolean> generateValues = new ArrayList<>();
 
-    public void addAllValues(List<Boolean> orderedValue) {
+    public void addOrderedValues(List<Boolean> orderedValue) {
         generateValues.addAll(orderedValue);
     }
 

@@ -1,9 +1,14 @@
 package domain;
 
-import exception.domain.NullNameException;
+import domain.ladder.Block;
+import domain.ladder.LadderResult;
+import domain.ladder.Line;
+import domain.participants.Participant;
+import exception.participants.NullNameException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class GameResult {
 
@@ -13,46 +18,45 @@ public class GameResult {
     private static final int LEFT = -1;
     private static final int STAY = 0;
     private static final int RIGHT = 1;
-    public static final String END = "all";
-    private final Map<String, String> results;
+    private final Map<Participant, LadderResult> results;
 
-    private GameResult(Map<String, String> results) {
+    private GameResult(Map<Participant, LadderResult> results) {
         this.results = results;
     }
 
-    public static GameResult of(LadderGame ladderGame) {
-        Map<String, String> result = getResults(ladderGame);
+    public static GameResult from(LadderGame ladderGame) {
+        Map<Participant, LadderResult> result = makeResults(ladderGame);
         return new GameResult(result);
     }
 
-    private static Map<String, String> getResults(LadderGame ladderGame) {
-        List<String> participantNames = ladderGame.getParticipantNames();
-        Map<String, String> results = new HashMap<>();
-        participantNames.forEach((participantName) -> {
-            final int order = participantNames.indexOf(participantName);
-            results.put(participantName, getGameResult(ladderGame, order));
+    private static Map<Participant, LadderResult> makeResults(LadderGame ladderGame) {
+        List<Participant> participants = ladderGame.getParticipants();
+        Map<Participant, LadderResult> results = new HashMap<>();
+        participants.forEach((participant) -> {
+            final int order = participants.indexOf(participant);
+            results.put(participant, getGameResultByOrder(ladderGame, order));
         });
         return results;
     }
 
-    private static String getGameResult(LadderGame ladderGame, int currentPosition) {
+    private static LadderResult getGameResultByOrder(LadderGame ladderGame, int order) {
         for (Line line : ladderGame.getLines()) {
-            int move = getMove(currentPosition, line.getBlocks());
-            currentPosition += move;
+            int move = getMove(order, line.getBlocks());
+            order += move;
         }
-        return ladderGame.getLadderResultNames().get(currentPosition);
+        return ladderGame.getResults().get(order);
     }
 
-    private static int getMove(int currentPosition, List<Boolean> blocks) {
+    private static int getMove(int order, List<Block> blocks) {
         final int lastBlockPosition = blocks.size();
-        final int prevBlockPosition = currentPosition - 1;
-        if (currentPosition == FIRST_BLOCK_POSITION) {
-            return decideDirection(DISCONNECTED, blocks.get(currentPosition));
+        final int prevBlockPosition = order - 1;
+        if (order == FIRST_BLOCK_POSITION) {
+            return decideDirection(DISCONNECTED, blocks.get(order).isConnected());
         }
-        if (currentPosition == lastBlockPosition) {
-            return decideDirection(blocks.get(prevBlockPosition), DISCONNECTED);
+        if (order == lastBlockPosition) {
+            return decideDirection(blocks.get(prevBlockPosition).isConnected(), DISCONNECTED);
         }
-        return decideDirection(blocks.get(prevBlockPosition), blocks.get(currentPosition));
+        return decideDirection(blocks.get(prevBlockPosition).isConnected(), blocks.get(order).isConnected());
     }
 
     private static int decideDirection(boolean left, boolean right) {
@@ -65,17 +69,19 @@ public class GameResult {
         return STAY;
     }
 
-    public String getResultByName(String name) {
-        if (name.equals(END)) {
-            return name;
+    public LadderResult getResultByName(final String name) {
+        Optional<Participant> findParticipant = results.keySet()
+            .stream()
+            .filter((participant) -> participant.getName().equals(name))
+            .findFirst();
+        if (findParticipant.isEmpty()) {
+            throw new NullNameException();
         }
-        if (results.containsKey(name)) {
-            return results.get(name);
-        }
-        throw new NullNameException();
+        return results.get(findParticipant.get());
     }
 
-    public Map<String, String> getResults() {
+
+    public Map<Participant, LadderResult> getResults() {
         return results;
     }
 }

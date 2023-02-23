@@ -1,4 +1,4 @@
-package exception.domain;
+package exception.ladder;
 
 public class InvalidLineWeightException extends IllegalArgumentException {
 

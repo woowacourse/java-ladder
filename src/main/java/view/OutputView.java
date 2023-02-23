@@ -2,7 +2,10 @@ package view;
 
 import domain.GameResult;
 import domain.LadderGame;
-import domain.Line;
+import domain.ladder.Block;
+import domain.ladder.LadderResult;
+import domain.ladder.Line;
+import domain.participants.Participant;
 
 public class OutputView {
 
@@ -28,12 +31,12 @@ public class OutputView {
     }
 
     private void addNames(LadderGame ladderGame) {
-        ladderGame.getParticipantNames().forEach((participantName) -> gameMap.append(reformatName(participantName)));
+        ladderGame.getParticipants().forEach((participant) -> gameMap.append(reformatName(participant)));
         gameMap.append(System.lineSeparator());
     }
 
-    private String reformatName(String name) {
-        return String.format("%5s ", name);
+    private String reformatName(Participant participant) {
+        return String.format("%5s ", participant.getName());
     }
 
     private void addLadder(LadderGame ladderGame) {
@@ -51,15 +54,16 @@ public class OutputView {
         return reformattedLine.toString();
     }
 
-    private String reformatBlock(Boolean status) {
-        if (status == CONNECTED) {
+    private String reformatBlock(Block block) {
+        if (block.isConnected() == CONNECTED) {
             return ABLE_TO_MOVE;
         }
         return DISABLE_TO_MOVE;
     }
 
     private void addLadderResults(LadderGame ladderGame) {
-        ladderGame.getLadderResultNames()
+        ladderGame.getResults()
+            .stream().map(LadderResult::getName)
             .forEach((ladderResult) -> gameMap.append(reformatResult(ladderResult)));
         gameMap.append(System.lineSeparator());
     }
@@ -68,13 +72,20 @@ public class OutputView {
         return String.format("%5s ", ladderResult);
     }
 
-    public void printGameResult(String result) {
+    public void printGameResult(String name, GameResult gameResult) {
         System.out.println(GAME_RESULT_MESSAGE);
-        System.out.println(result);
+        if (name.equals("all")) {
+            printAllGameResult(gameResult);
+            return;
+        }
+        printOneGameResult(name, gameResult);
+    }
+
+    public void printOneGameResult(String name, GameResult gameResult) {
+        System.out.println(gameResult.getResultByName(name).getName());
     }
 
     public void printAllGameResult(GameResult gameResult) {
-        System.out.println(GAME_RESULT_MESSAGE);
-        gameResult.getResults().forEach((key, value) -> System.out.println(key + " : " + value));
+        gameResult.getResults().forEach((key, value) -> System.out.println(key.getName() + " : " + value.getName()));
     }
 }

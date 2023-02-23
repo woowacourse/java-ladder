@@ -1,15 +1,15 @@
-package domain;
+package domain.participants;
 
-import exception.domain.EmptyNameException;
-import exception.domain.InvalidPersonNameException;
+import exception.participants.EmptyNameException;
+import exception.participants.InvalidPersonNameException;
 
-public class Person {
+public class Participant {
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
     private final String name;
 
-    public Person(String name) {
+    public Participant(String name) {
         validateName(name);
         this.name = name;
     }

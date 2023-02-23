@@ -1,9 +1,9 @@
 package builder;
 
-import domain.Ladder;
 import domain.LadderGame;
-import domain.LadderResults;
-import domain.Participants;
+import domain.ladder.Ladder;
+import domain.ladder.LadderResults;
+import domain.participants.Participants;
 
 public class LadderGameBuilder {
 
@@ -27,6 +27,6 @@ public class LadderGameBuilder {
     }
 
     public LadderGame build() {
-        return new LadderGame(this.participants, this.ladder, this.ladderResults);
+        return new LadderGame(participants, ladder, ladderResults);
     }
 }

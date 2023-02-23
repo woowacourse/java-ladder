@@ -3,28 +3,29 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-import exception.domain.EmptyNameException;
-import exception.domain.InvalidPersonNameException;
+import domain.participants.Participant;
+import exception.participants.EmptyNameException;
+import exception.participants.InvalidPersonNameException;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
-class PersonTest {
+class ParticipantTest {
 
     @DisplayName("사람이름이 요구사항에 충족할 경우.")
     @TestFactory
     Stream<DynamicTest> createSuccess() {
         return Stream.of(
             dynamicTest("영어로만 이루어진 1글자의 이름", () -> {
-                Person person = new Person("a");
-                String name = person.getName();
+                Participant participant = new Participant("a");
+                String name = participant.getName();
                 Assertions.assertThat(name).isEqualTo("a");
             }),
             dynamicTest("영어로만 이루어진 5글자의 이름", () -> {
-                Person person = new Person("split");
-                String name = person.getName();
+                Participant participant = new Participant("split");
+                String name = participant.getName();
                 Assertions.assertThat(name).isEqualTo("split");
             }));
     }
@@ -33,13 +34,13 @@ class PersonTest {
     @TestFactory
     Stream<DynamicTest> createFail() {
         return Stream.of(
-            dynamicTest("null 일 때", () -> assertThatThrownBy(() -> new Person(null))
+            dynamicTest("null 일 때", () -> assertThatThrownBy(() -> new Participant(null))
                 .isExactlyInstanceOf(EmptyNameException.class)),
-            dynamicTest("빈문자열 때", () -> assertThatThrownBy(() -> new Person(""))
+            dynamicTest("빈문자열 때", () -> assertThatThrownBy(() -> new Participant(""))
                 .isExactlyInstanceOf(EmptyNameException.class)),
-            dynamicTest("띄어쓰기로만 이루어져 있을 때", () -> assertThatThrownBy(() -> new Person("    "))
+            dynamicTest("띄어쓰기로만 이루어져 있을 때", () -> assertThatThrownBy(() -> new Participant("    "))
                 .isExactlyInstanceOf(EmptyNameException.class)),
-            dynamicTest("5자보다 긴 경우", () -> assertThatThrownBy(() -> new Person("jamsil"))
+            dynamicTest("5자보다 긴 경우", () -> assertThatThrownBy(() -> new Participant("jamsil"))
                 .isExactlyInstanceOf(InvalidPersonNameException.class))
         );
     }

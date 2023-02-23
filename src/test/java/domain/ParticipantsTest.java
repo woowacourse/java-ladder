@@ -2,8 +2,9 @@ package domain;
 
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-import exception.domain.DuplicateNameException;
-import exception.domain.InvalidParticipantsCountException;
+import domain.participants.Participants;
+import exception.participants.DuplicateNameException;
+import exception.participants.InvalidParticipantsCountException;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

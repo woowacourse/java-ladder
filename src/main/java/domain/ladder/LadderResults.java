@@ -1,8 +1,9 @@
-package domain;
+package domain.ladder;
 
-import exception.domain.InvalidLadderResultCount;
+import exception.ladder.InvalidLadderResultCount;
 import exception.view.EmptyInputException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,5 +41,9 @@ public class LadderResults {
 
     public List<String> getResultNames() {
         return results.stream().map(LadderResult::getName).collect(Collectors.toList());
+    }
+
+    public List<LadderResult> getResults() {
+        return Collections.unmodifiableList(results);
     }
 }

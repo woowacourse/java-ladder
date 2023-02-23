@@ -1,12 +1,18 @@
 package domain;
 
+import domain.ladder.Ladder;
+import domain.ladder.LadderResult;
+import domain.ladder.LadderResults;
+import domain.ladder.Line;
+import domain.participants.Participant;
+import domain.participants.Participants;
 import java.util.List;
 
 public class LadderGame {
 
-    private static Participants participants;
-    private static Ladder ladder;
-    private static LadderResults ladderResults;
+    private final Participants participants;
+    private final Ladder ladder;
+    private final LadderResults ladderResults;
 
     public LadderGame(Participants participants, Ladder ladder, LadderResults ladderResults) {
         this.participants = participants;
@@ -14,15 +20,15 @@ public class LadderGame {
         this.ladderResults = ladderResults;
     }
 
-    public List<String> getParticipantNames() {
-        return participants.getNames();
+    public List<Participant> getParticipants() {
+        return participants.getAllParticipants();
     }
 
     public List<Line> getLines() {
         return ladder.getLines();
     }
 
-    public List<String> getLadderResultNames() {
-        return ladderResults.getResultNames();
+    public List<LadderResult> getResults() {
+        return ladderResults.getResults();
     }
 }
