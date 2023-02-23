@@ -28,7 +28,7 @@ class LadderServiceTest {
     @DisplayName("사용자 이름이 입력되면 콤마(,) 로 구분한다.")
     void createPlayers_usingComma() {
         // given
-        String input = "glen,doggy";
+        String[] input = {"glen", "doggy"};
 
         // when
         Players players = ladderService.createPlayers(input);
@@ -56,7 +56,7 @@ class LadderServiceTest {
     @DisplayName("실행 결과가 입력되면 콤마(,) 로 구분한다.")
     void createResults_usingComma() {
         // given
-        String input = "꽝,5000,꽝,3000";
+        String[] input = {"꽝", "5000", "꽝", "3000"};
 
         // when
         Prizes prizes = ladderService.createPrizes(input, createPlayers(4));

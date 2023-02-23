@@ -6,12 +6,17 @@ import ladder.dto.PlayersResponse;
 import ladder.dto.PrizesResponse;
 
 public class LadderView {
-    public String readPlayerNames() {
-        return InputView.readPlayerNames();
+    private static final String PLAYERS_STRING_DELIMITER = ",";
+    private static final String PRIZES_STRING_DELIMITER = ",";
+
+    public String[] readPlayerNames() {
+        String playerNames = InputView.readPlayerNames();
+        return playerNames.split(PLAYERS_STRING_DELIMITER);
     }
 
-    public String readPrizes() {
-        return InputView.readPrizes();
+    public String[] readPrizes() {
+        String prizes = InputView.readPrizes();
+        return prizes.split(PRIZES_STRING_DELIMITER);
     }
 
     public int readLadderHeight() {

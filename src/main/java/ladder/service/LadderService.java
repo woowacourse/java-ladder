@@ -3,9 +3,9 @@ package ladder.service;
 import static java.util.stream.Collectors.*;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
-import ladder.domain.Line;
 import java.util.ArrayList;
 import java.util.List;
 import ladder.domain.Player;
@@ -16,9 +16,6 @@ import ladder.domain.Prize;
 import ladder.domain.Prizes;
 
 public class LadderService {
-    private static final String PLAYERS_STRING_DELIMITER = ",";
-    private static final String RESULTS_STRING_DELIMITER = ",";
-
     private final LineStrategy lineStrategy;
 
     public LadderService(LineStrategy lineStrategy) {
@@ -26,26 +23,21 @@ public class LadderService {
     }
 
     public Ladder createLadder(Height height, Players players) {
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height.getHeight(); i++) {
-            lines.add(lineStrategy.generate(players.getPlayersCount()));
-        }
-        return new Ladder(lines, players);
+        return IntStream.range(0, height.getHeight())
+                .mapToObj(v -> lineStrategy.generate(players.getPlayersCount()))
+                .collect(collectingAndThen(toList(), lines -> new Ladder(lines, players)));
     }
 
-    public Players createPlayers(String namesInput) {
-        String[] playerNames = namesInput.split(PLAYERS_STRING_DELIMITER);
+    public Players createPlayers(String[] playerNames) {
         return Arrays.stream(playerNames)
                 .map(Player::new)
                 .collect(collectingAndThen(toList(), Players::new));
     }
 
-    public Prizes createPrizes(String resultsInput, Players players) {
-        String[] resultsStrings = resultsInput.split(RESULTS_STRING_DELIMITER);
-        List<Prize> prizes = Arrays.stream(resultsStrings)
+    public Prizes createPrizes(String[] prizesNames, Players players) {
+        return Arrays.stream(prizesNames)
                 .map(Prize::new)
-                .collect(toList());
-        return new Prizes(prizes, players);
+                .collect(collectingAndThen(toList(), prizes -> new Prizes(prizes, players)));
     }
 
     public PlayerResults createPlayerResults(Players players, Ladder ladder, Prizes prizes) {
