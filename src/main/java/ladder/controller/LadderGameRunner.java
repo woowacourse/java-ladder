@@ -12,7 +12,8 @@ import ladder.view.OutputView;
 
 public class LadderGameRunner {
 
-    private static final String QUIT_COMMAND = "all";
+    private static final String ALL_CONDITION = "all";
+    private boolean QUIT_CONDITION = true;
     private final LadderGameCreateLineBooleanGenerator booleanGenerator;
     private final InputView inputView;
     private final OutputView outputView;
@@ -43,26 +44,32 @@ public class LadderGameRunner {
         Players playersWhoFinishedGame = ladderGame.makePlayersWhoFinishedGame(height);
         Result result = new Result(playersWhoFinishedGame, bottoms);
 
-        searchResult(result, earlyPlayers);
+        searchLadderGameResultByInput(result, earlyPlayers);
     }
 
-    private void searchResult(final Result result, final Players earlyPlayers) {
-        String searchPlayerName = "";
-        while (!searchPlayerName.equals(QUIT_COMMAND)) {
-            searchPlayerName = getSearchResult(result);
-            Result searchResult = result.resultByName(searchPlayerName);
+    private void searchLadderGameResultByInput(final Result result, final Players earlyPlayers) {
+        while (QUIT_CONDITION) {
+            String input = getSearchLadderGameResultInput(result);
+            Result searchResult = result.resultByName(input);
             outputView.printSearchResult(searchResult, earlyPlayers);
+            isInputAll(input);
         }
     }
 
-    private String getSearchResult(final Result result) {
+    private void isInputAll(final String input) {
+        if (input.equals(ALL_CONDITION)) {
+            QUIT_CONDITION = false;
+        }
+    }
+
+    private String getSearchLadderGameResultInput(final Result result) {
         try {
             String input = inputView.readSearchName();
             result.isExistPlayerName(input);
             return input;
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return getSearchResult(result);
+            return getSearchLadderGameResultInput(result);
         }
     }
 
