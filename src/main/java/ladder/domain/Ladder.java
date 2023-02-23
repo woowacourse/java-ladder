@@ -24,4 +24,12 @@ public class Ladder {
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
+
+    public Position play(final Position position) {
+        Position currentPosition = position;
+        for (Line line : lines) {
+            currentPosition = line.play(currentPosition);
+        }
+        return currentPosition;
+    }
 }
