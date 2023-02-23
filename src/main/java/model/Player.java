@@ -1,11 +1,11 @@
 package model;
 
-public class Name {
+public class Player {
 
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private final String name;
 
-    public Name(String name) {
+    public Player(String name) {
         validateBlank(name);
         validateLength(name);
         this.name = name;
@@ -25,5 +25,24 @@ public class Name {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Player player = (Player) o;
+
+        return getName() != null ? getName().equals(player.getName()) : player.getName() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return getName() != null ? getName().hashCode() : 0;
     }
 }
