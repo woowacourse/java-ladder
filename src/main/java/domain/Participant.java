@@ -2,7 +2,7 @@ package domain;
 
 import domain.util.Display;
 
-public class ParticipantName implements Display {
+public class Participant implements Display {
 
 	private static final String RIGHT_ALIGN_PLACEHOLDER = "%6s";
 	private static final int MIN_NAME_LENGTH = 1;
@@ -11,7 +11,7 @@ public class ParticipantName implements Display {
 	private static final String NAME_LENGTH_ERROR_MSG = "참가자의 이름은 1글자 이상 5글자 이하여야 한다.";
 	private final String name;
 
-	public ParticipantName(final String name) {
+	public Participant(final String name) {
 		validateIsBlank(name);
 		validateNameLength(name);
 		this.name = name;

@@ -2,7 +2,7 @@ package controller;
 
 import domain.LadderGame;
 import domain.LadderHeight;
-import domain.ParticipantName;
+import domain.Participant;
 import domain.Participants;
 import view.InputView;
 import view.OutputView;
@@ -28,18 +28,18 @@ public class LadderGameController {
 
 
 	private Participants retrieveParticipants() {
-		List<ParticipantName> names = retrieveParticipantsNames();
+		List<Participant> names = retrieveParticipantsNames();
 		Participants participants = new Participants();
-		for (ParticipantName name : names) {
+		for (Participant name : names) {
 			participants.add(name);
 		}
 		return participants;
 	}
 
-	private List<ParticipantName> retrieveParticipantsNames() {
+	private List<Participant> retrieveParticipantsNames() {
 		try {
 			List<String> names = InputView.readParticipantsNames();
-			return names.stream().map(ParticipantName::new).collect(Collectors.toList());
+			return names.stream().map(Participant::new).collect(Collectors.toList());
 		} catch (IllegalArgumentException e) {
 			OutputView.printError(e.getMessage());
 			return retrieveParticipantsNames();

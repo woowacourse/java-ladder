@@ -10,9 +10,9 @@ public class Participants implements Display {
 
 	private static final String PARTICIPANT_DELIMITER = "";
 
-	private final List<ParticipantName> names = new ArrayList<>();
+	private final List<Participant> names = new ArrayList<>();
 
-	public void add(final ParticipantName name) {
+	public void add(final Participant name) {
 		names.add(name);
 	}
 
@@ -24,7 +24,7 @@ public class Participants implements Display {
 	@Override
 	public String format() {
 		String formattedNames = names.stream()
-				.map(ParticipantName::format)
+				.map(Participant::format)
 				.collect(Collectors.joining(PARTICIPANT_DELIMITER));
 		return formattedNames;
 	}
