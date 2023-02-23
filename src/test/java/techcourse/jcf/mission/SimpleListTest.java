@@ -46,6 +46,8 @@ class SimpleListTest {
     void addWithVIndexValue() {
         list.add(1, "2");
         assertThat(list.get(1)).isEqualTo("2");
+        list.add(2, "3");
+        assertThat(list.get(2)).isEqualTo("3");
     }
 
     @Test

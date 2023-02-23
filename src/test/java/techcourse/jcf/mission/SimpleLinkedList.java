@@ -38,7 +38,16 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
-
+        Node prevPointer = this.head;
+        Node nextPointer = this.head;
+        for (int i = 0; i <= index; i++) {
+            prevPointer = nextPointer;
+            if (prevPointer == null) {
+                throw new IndexOutOfBoundsException();
+            }
+            nextPointer = nextPointer.next;
+        }
+        prevPointer.next = new Node(value, nextPointer);
     }
 
     @Override
