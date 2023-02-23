@@ -30,7 +30,7 @@ public class InputView {
         return parseInt(rawLadderHeight);
     }
 
-    private static int parseInt(String rawLadderHeight) {
+    private int parseInt(String rawLadderHeight) {
         try {
             return Integer.parseInt(rawLadderHeight);
         } catch (NumberFormatException e) {

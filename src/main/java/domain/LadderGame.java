@@ -28,9 +28,10 @@ public class LadderGame {
     }
 
     public Results getAllResult() {
-        return new Results(names.stream()
-                .map(name -> getResultOf(name.value()))
-                .collect(Collectors.toList()),
+        return new Results(
+                names.stream()
+                        .map(name -> getResultOf(name.value()))
+                        .collect(Collectors.toList()),
                 names.size());
     }
 

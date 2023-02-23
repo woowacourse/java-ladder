@@ -7,14 +7,14 @@ import java.util.stream.Stream;
 public class Results {
     private final List<Result> results;
 
-    public Results(List<Result> results, int numberOfNames) {
-        validate(results, numberOfNames);
+    public Results(List<Result> results, int numberOfPeople) {
+        validate(results, numberOfPeople);
         this.results = new ArrayList<>(results);
     }
 
-    private void validate(List<Result> results, int numberOfNames) {
-        if (results.size() != numberOfNames) {
-            throw new IllegalArgumentException("이름과 결과의 수는 같아야 합니다.");
+    private void validate(List<Result> results, int numberOfPeople) {
+        if (results.size() != numberOfPeople) {
+            throw new IllegalArgumentException("참가자의 수와 결과의 수는 같아야 합니다.");
         }
     }
 
