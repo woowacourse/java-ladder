@@ -12,6 +12,7 @@ public class Participants implements Display {
 
 	private final List<Participant> participants = new ArrayList<>();
 
+	//TODO: SFM 구현 및 List<String>으로부터 참여자 생성하기
 	public void add(final Participant name) {
 		participants.add(name);
 	}
