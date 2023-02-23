@@ -17,8 +17,8 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printResultGuide() {
-        print(System.lineSeparator() + "실행결과" + System.lineSeparator());
+    public void printLadderResultGuide() {
+        print(System.lineSeparator() + "사다리 결과" + System.lineSeparator());
     }
 
     public void printParticipantNames(final List<String> participantNames) {
@@ -31,6 +31,10 @@ public class OutputView {
         int firstNameLength = getNameLength(firstParticipantName);
         String ladderMessage = makeLadderMessage(lines, firstNameLength);
         print(ladderMessage);
+    }
+
+    public void printResultGuide() {
+        print(System.lineSeparator() + "실행결과" + System.lineSeparator());
     }
 
     private String makePaddedParticipantNames(final List<String> participantNames) {

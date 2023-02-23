@@ -26,7 +26,7 @@ public class LadderGameController {
         Ladder ladder = createLadder(participants);
         Results results = createResults(participants);
 
-        printGameResult(participants, ladder);
+        printLadderResult(participants, ladder);
     }
 
     private Participants createParticipants() {
@@ -51,8 +51,8 @@ public class LadderGameController {
         });
     }
 
-    private void printGameResult(final Participants participants, final Ladder ladder) {
-        outputView.printResultGuide();
+    private void printLadderResult(final Participants participants, final Ladder ladder) {
+        outputView.printLadderResultGuide();
         List<String> participantNames = getParticipantNames(participants);
         outputView.printParticipantNames(participantNames);
         outputView.printLadder(ladder.getLines(), participantNames);
