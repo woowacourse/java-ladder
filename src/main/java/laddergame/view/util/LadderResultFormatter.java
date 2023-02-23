@@ -15,11 +15,13 @@ public class LadderResultFormatter {
 
     public static String extractLadderResult(List<String> players, List<Line> lines, List<String> results) {
         int pointWidth = computePointWidth(players, results);
+
         String formattedPlayers = " " + LadderResultFormatter.extractWords(players, pointWidth);
         String formattedLadder = lines.stream()
                 .map(line -> LadderResultFormatter.extractLine(line, pointWidth))
                 .collect(Collectors.joining(System.lineSeparator()));
         String formattedResults = " " + LadderResultFormatter.extractWords(results, pointWidth);
+
         return String.join(System.lineSeparator(), formattedPlayers, formattedLadder, formattedResults);
     }
 

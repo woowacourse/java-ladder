@@ -31,7 +31,6 @@ class LineTest {
     @DisplayName("주어진 개수 만큼의 방향을 주어진 생성방식에 따라 생성된다.")
     void should_GenerateDirections_By_GivenStepPointGenerator() {
         List<StepPoint> stepPoints = List.of(EXIST, NONE, EXIST, NONE, EXIST);
-        // TODO 테스트코드 리팩터링
         List<Direction> expected = List.of(
                 Direction.findDirection(NONE, EXIST),
                 Direction.findDirection(EXIST, NONE),
@@ -40,8 +39,8 @@ class LineTest {
                 Direction.findDirection(NONE, EXIST),
                 Direction.findDirection(EXIST, NONE)
         );
-
         Queue<StepPoint> generateValues = new LinkedList<>(stepPoints);
+
         Line line = Line.of(new MockedPointGenerator(generateValues), new LineWidth(expected.size()));
 
         assertThat(line.toDirections()).isEqualTo(expected);

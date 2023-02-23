@@ -22,11 +22,11 @@ public class Line {
         StepPoint left = StepPoint.NONE;
         for (int i = 0; i < (width - 1); i++) {
             StepPoint generated = generateStepPoint(stepPointGenerator, left);
-            Direction direction = Direction.findDirection(left, generated);
-            directions.add(direction);
+            directions.add(Direction.findDirection(left, generated));
             left = generated;
         }
         directions.add(Direction.findDirection(left, StepPoint.NONE));
+
         return directions;
     }
 
