@@ -19,7 +19,7 @@ public class InputView {
         System.out.println(INPUT_PEOPLES_NAME);
         while (true) {
             try {
-                return InputVerifier.validateName(scanner.next());
+                return InputVerifier.validateName(scanner.nextLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -28,7 +28,6 @@ public class InputView {
 
     public static int inputLadderHeight() {
         System.out.println("\n" + INPUT_LADDER_HEIGHT);
-        scanner.nextLine();
         while (true) {
             try {
                 return InputVerifier.validateLadderHeight(scanner.nextLine());
