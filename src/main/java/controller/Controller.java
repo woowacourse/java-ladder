@@ -27,8 +27,10 @@ public class Controller {
         List<Line> ladderList = ladder.getLadder();
 
         outputView.printResult(players, ladderList, rewards);
+        ladder.getRewardsForPlayers(players, rewards);
 
         String selectedPlayerName = inputView.readSelectPlayer();
-        ladder.getRewardsForPlayers(players, rewards);
+        outputView.printReward(selectedPlayerName, players);
+
     }
 }
