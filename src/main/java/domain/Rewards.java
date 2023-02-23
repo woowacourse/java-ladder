@@ -4,7 +4,6 @@ import static utils.ErrorMessage.INDEX_OUT_OF_BOUNDS;
 import static utils.ErrorMessage.INVALID_REWARDS_SIZE;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Rewards {
 
@@ -13,9 +12,7 @@ public class Rewards {
     private final List<String> rewards;
 
     private Rewards(List<String> rewards) {
-        this.rewards = rewards.stream()
-            .map(String::strip)
-            .collect(Collectors.toList());
+        this.rewards = rewards;
     }
 
     public static Rewards of(List<String> rewards, int userCount) {

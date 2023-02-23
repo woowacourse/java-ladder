@@ -10,6 +10,7 @@ import static utils.ErrorMessage.INVALID_USER_NUMBER_NUMBER_BY_MINIMUM_LIMIT;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
     private static final String DELIMITER = ",";
@@ -39,8 +40,10 @@ public class InputView {
 
     public List<String> inputRewards() {
         String rewards = scanner.nextLine();
-        List<String> allRewards = Arrays.asList(
-            rewards.split(DELIMITER));
+        List<String> allRewards = Arrays.stream(rewards.split(DELIMITER))
+                .map(String::strip)
+                .collect(Collectors.toList());
+        
         validateRewardsLength(allRewards);
 
         return allRewards;
