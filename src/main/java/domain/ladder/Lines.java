@@ -2,6 +2,7 @@ package domain.ladder;
 
 import domain.generator.BooleanGenerator;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lines {
@@ -15,7 +16,7 @@ public class Lines {
     }
 
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 
     public int getExitPosition(int entranceIndex) {
