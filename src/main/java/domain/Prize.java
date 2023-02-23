@@ -2,6 +2,7 @@ package domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Prize {
 
@@ -14,8 +15,9 @@ public class Prize {
     private final List<String> prizes;
 
     public Prize(List<String> prizes, int personCount) {
-        validate(prizes, personCount);
-        this.prizes = prizes;
+        List<String> timedPrizes = trimPrizes(prizes);
+        validate(timedPrizes, personCount);
+        this.prizes = timedPrizes;
     }
 
     private void validate(List<String> prizes, int personCount) {
@@ -41,13 +43,23 @@ public class Prize {
 
     private boolean hasInvalidPrizeLength(List<String> prizes) {
         return prizes.stream()
-                .filter(prize -> isInvalidNameLength(prize.trim()))
+                .filter(prize -> isInvalidNameLength(prize))
                 .count() != 0;
     }
 
     private boolean isInvalidNameLength(String prize) {
         int length = prize.length();
         return length < PRIZE_LENGTH_LOWER_BOUND || length > PRIZE_LENGTH_UPPER_BOUND;
+    }
+
+    private List<String> trimPrizes(List<String> prizes) {
+        return prizes.stream()
+                .map(prize -> prize.trim())
+                .collect(Collectors.toList());
+    }
+
+    public String getOnePrizeByIndex(int index) {
+        return prizes.get(index);
     }
 
     public List<String> getPrizes() {
