@@ -19,11 +19,15 @@ public class LadderGame {
 
     public void start() {
         for (Person person : people.getPeople()) {
-            for (int heightIndex = 0; heightIndex < ladder.getHeight(); heightIndex++) {
-                int currentPosition = person.getPosition().getValue();
-                ShiftType shiftType = ladder.findShiftType(currentPosition, heightIndex);
-                person.move(shiftType);
-            }
+            move(person);
+        }
+    }
+
+    private void move(Person person) {
+        for (int heightIndex = 0; heightIndex < ladder.getHeight(); heightIndex++) {
+            int currentPosition = person.getPosition().getValue();
+            ShiftType shiftType = ladder.findShiftType(currentPosition, heightIndex);
+            person.move(shiftType);
         }
     }
 
