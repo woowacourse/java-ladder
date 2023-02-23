@@ -17,17 +17,15 @@ public class Name {
     }
 
     private void validate(final String name) {
-        if (isValidLength(name)) {
-            return;
-        }
-
-        throw new IllegalArgumentException(INVALID_LENGTH_MESSAGE);
+        validateLength(name);
     }
 
-    private boolean isValidLength(final String name) {
+    private void validateLength(final String name) {
         int length = name.length();
 
-        return length >= LENGTH_LOWER_BOUND && length <= LENGTH_UPPER_BOUND;
+        if (length < LENGTH_LOWER_BOUND || length > LENGTH_UPPER_BOUND) {
+            throw new IllegalArgumentException(INVALID_LENGTH_MESSAGE);
+        }
     }
 
     public boolean equals(final Name name) {
