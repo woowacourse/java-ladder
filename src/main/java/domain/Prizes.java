@@ -17,10 +17,9 @@ public class Prizes {
     }
 
     public static Prizes generatePrizes(int playerCount, List<String> prizeNames) {
-        List<Prize> prizes = new ArrayList<>();
-        for (String prizeName : prizeNames) {
-            prizes.add(new Prize(prizeName));
-        }
+        List<Prize> prizes = prizeNames.stream()
+            .map(Prize::new)
+            .collect(Collectors.toList());
         return new Prizes(playerCount, prizes);
     }
 
