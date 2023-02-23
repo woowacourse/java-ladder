@@ -27,12 +27,7 @@ public class Line {
         }
     }
 
-    public Position moveFrom(final Position currentPosition) {
-        Direction nextDirection = getNextDirectionFrom(currentPosition);
-        return currentPosition.moveTo(nextDirection);
-    }
-
-    private Direction getNextDirectionFrom(final Position position) {
+    public Direction getNextDirectionFrom(final Position position) {
         if (getLeftBridgeFrom(position).doesExist()) {
             return Direction.LEFT;
         }
