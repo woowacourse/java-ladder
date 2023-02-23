@@ -12,11 +12,7 @@ public class Rewards {
         this.rewards = rewards;
     }
 
-    public void checkRewardsCount(int playerCount) {
-        if (rewards.size() != playerCount) {
-            throw new IllegalArgumentException("reward 개수는 플레이어의 수와 같아야 합니다.");
-        }
-    }
+
 
     public List<String> getRewards() {
         return Collections.unmodifiableList(rewards);

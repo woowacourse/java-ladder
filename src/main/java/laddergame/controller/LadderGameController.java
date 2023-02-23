@@ -53,9 +53,7 @@ public class LadderGameController {
     private Players requestUserNames() {
         try {
             outputView.printMessage(NAME_INPUT_REQUEST);
-            List<String> playerNames = inputView.readUserNames();
-//            validate
-            return new Players(playerNames);
+            return new Players(inputView.readUserNames());
         } catch (IllegalArgumentException e) {
             outputView.printErrormessage(e.getMessage());
             return requestUserNames();
@@ -78,9 +76,8 @@ public class LadderGameController {
         try {
             outputView.printMessage(REWARD_INPUT_REQUEST);
             List<String> rewardNames = inputView.readRewards();
-            validator.validateRewards(rewardNames);
+            validator.validateRewards(rewardNames, playerCount);
             Rewards rewards = new Rewards(rewardNames);
-            rewards.checkRewardsCount(playerCount);
             return rewards;
         } catch (IllegalArgumentException e) {
             outputView.printErrormessage(e.getMessage());

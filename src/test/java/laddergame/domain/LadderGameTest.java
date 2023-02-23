@@ -13,7 +13,7 @@ class LadderGameTest {
     @Test
     void player3_height2() {
         Players players = new Players(List.of("jena", "beav", "pobi"));
-        Ladder ladder = new Ladder(players, new Height("2"),
+        Ladder ladder = new Ladder(players, new Height(2),
                 new TestTrueOrFalseGenerator(new ArrayList<>(List.of(true, false, false, true))));
 
         List<Line> lines = ladder.getLines();
@@ -35,7 +35,7 @@ class LadderGameTest {
     @Test
     void player3_height5() {
         Players players = new Players(List.of("jena", "beav", "pobi"));
-        Ladder ladder = new Ladder(players, new Height("5"),
+        Ladder ladder = new Ladder(players, new Height(5),
                 new TestTrueOrFalseGenerator(new ArrayList<>(List.of(true, false, false, true, false, true, true, false, false, false))));
 
         List<Line> lines = ladder.getLines();
@@ -57,7 +57,7 @@ class LadderGameTest {
     @Test
     void player_get_right_reward() {
         Players players = new Players(List.of("jena", "beav", "pobi"));
-        Ladder ladder = new Ladder(players, new Height("5"),
+        Ladder ladder = new Ladder(players, new Height(5),
                 new TestTrueOrFalseGenerator(new ArrayList<>(List.of(true, false, false, true, false, true, true, false, false, false))));
         Rewards rewards = new Rewards(List.of("꽝", "3000", "60"));
 

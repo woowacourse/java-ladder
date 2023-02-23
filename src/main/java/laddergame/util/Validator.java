@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Validator {
-    public static void checkNull(String str) {
+    public void checkNull(String str) {
         if (str == null || str.trim().isEmpty()) {
             throw new IllegalArgumentException("입력에는 공백이 들어올 수 없습니다");
         }
@@ -26,10 +26,14 @@ public class Validator {
         }
     }
 
-    public void validateRewards(List<String> rewardNames) {
+    public void validateRewards(List<String> rewardNames, int playerCount) {
         if (rewardNames.stream().filter(rewardName -> rewardName.isBlank()).count() != 0) {
             throw new IllegalArgumentException("reward 목록에 공백이 입력될 수 없습니다.");
         }
+        if (rewardNames.size() != playerCount) {
+            throw new IllegalArgumentException("reward 개수는 플레이어의 수와 같아야 합니다.");
+        }
+
     }
 
     public int validateHeight(String height) {

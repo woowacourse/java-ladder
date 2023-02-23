@@ -14,14 +14,15 @@ class RewardsTest {
     static private Validator validator;
 
     @BeforeAll
-    static void setup(){
+    static void setup() {
         validator = new Validator();
     }
 
     @DisplayName("입력 목록 중에 공백이 입력되었을 때 에러 확인")
     @Test
     void checkBlank() {
-        Assertions.assertThatThrownBy(() -> validator.validateRewards(List.of(" ", "jena"))).isInstanceOf(IllegalArgumentException.class);
+        Players players = new Players(List.of("one","two"));
+        Assertions.assertThatThrownBy(() -> validator.validateRewards(List.of(" ", "jena"), players.getPlayersCount())).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("입력 목록이 '꽝' 아니면 숫자만 입력되지 않았을 때 에러 확인")
@@ -39,7 +40,7 @@ class RewardsTest {
     void checkRewardCount() {
         Rewards rewards = new Rewards(List.of("꽝", "3000"));
         Players players = new Players(List.of("jena", "pobi", "crong"));
-        Assertions.assertThatThrownBy(()->rewards.checkRewardsCount(players.getPlayersCount()))
+        Assertions.assertThatThrownBy(() -> validator.validateRewards(rewards.getRewards(), players.getPlayersCount()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
