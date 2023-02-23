@@ -3,7 +3,6 @@ package laddergame.view;
 import static laddergame.domain.Point.FILLED;
 
 import java.text.MessageFormat;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -28,8 +27,8 @@ public class LadderFormGenerator {
         return joinNames(mapToValue(personalNames)) + joinRows(lines) + joinNames(mapToName(ladderResult));
     }
 
-    private List<String> concat(List<String> values, List<String> itemNames) {
-        return Arrays.asList(values, itemNames).stream().flatMap(list -> list.stream()).collect(Collectors.toList());
+    private List<String> concat(List<String>... lists) {
+        return Stream.of(lists).flatMap(list -> list.stream()).collect(Collectors.toList());
     }
 
     private List<String> mapToValue(PersonalNames personalNames) {
