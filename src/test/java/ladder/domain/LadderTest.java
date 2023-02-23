@@ -4,6 +4,8 @@ import ladder.domain.generator.PointGenerator;
 import ladder.domain.generator.RandomPointGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -46,5 +48,31 @@ public class LadderTest {
                 .map(Floor::getPoints)
                 .map(List::size)
                 .containsExactlyElementsOf(List.of(2, 2, 2));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0:1", "1:0", "2:3", "3:2"}, delimiter = ':')
+    @DisplayName("사다리 결과 도출 로직 테스트")
+    void getResultAllTrueTest(int start, int end) {
+        //given
+        Users users = new Users(List.of("0", "1", "2", "3"));
+        Ladder ladder = new Ladder(3, users, () -> true);
+        //when
+        int result = ladder.getResult(start);
+        //then
+        assertThat(result).isEqualTo(end);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0:0", "1:1", "2:2", "3:3"}, delimiter = ':')
+    @DisplayName("사다리 결과 도출 로직 테스트")
+    void getResultAllFalseTest(int start, int end) {
+        //given
+        Users users = new Users(List.of("0", "1", "2", "3"));
+        Ladder ladder = new Ladder(3, users, () -> false);
+        //when
+        int result = ladder.getResult(start);
+        //then
+        assertThat(result).isEqualTo(end);
     }
 }
