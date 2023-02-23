@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class LadderResult {
 
-    private final Person person;
+    private final String personName;
     private final String prize;
 
     public LadderResult(Person person, String prize) {
-        this.person = person;
+        this.personName = person.getName();
         this.prize = prize;
     }
 
@@ -21,17 +21,17 @@ public class LadderResult {
             return false;
         }
         LadderResult that = (LadderResult) o;
-        return Objects.equals(person, that.person) && Objects.equals(prize,
+        return Objects.equals(personName, that.personName) && Objects.equals(prize,
             that.prize);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(person, prize);
+        return Objects.hash(personName, prize);
     }
 
-    public Person getPerson() {
-        return person;
+    public String getPersonName() {
+        return personName;
     }
 
     public String getPrize() {

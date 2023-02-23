@@ -47,7 +47,7 @@ public class OutputView {
             return;
         }
         for (LadderResult ladderResult : ladderResults) {
-            System.out.printf("%s : %s%n", ladderResult.getPerson().getName(),
+            System.out.printf("%s : %s%n", ladderResult.getPersonName(),
                 ladderResult.getPrize());
         }
     }
