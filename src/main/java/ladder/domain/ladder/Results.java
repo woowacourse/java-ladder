@@ -1,0 +1,47 @@
+package ladder.domain.ladder;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+public class Results {
+    private static final Pattern INPUT_NAMES_PATTERN = Pattern.compile("([a-zA-Z]{1,5})(,[a-zA-Z]{1,5})*");
+
+    private final List<String> results;
+
+    public Results(String results, int peopleSize) {
+        this.results = split(results, peopleSize);
+    }
+
+    public List<String> getResults() {
+        return this.results;
+    }
+
+    private List<String> split(String results, int peopleSize) {
+        validateNamesInputForm(results);
+        List<String> splitResults = namesSplit(results);
+        validateRange(splitResults.size(), peopleSize);
+        return splitResults;
+    }
+
+
+    private void validateRange(int resultSize, int peopleSize) {
+        if (resultSize != peopleSize) {
+            throw new IllegalArgumentException("사람 수와 결과의 개수가 같아야 합니다.");
+        }
+    }
+
+    private void validateNamesInputForm(String names) {
+        Matcher matcher = INPUT_NAMES_PATTERN.matcher(names);
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException("입력된 실행결과의 형식이 올바르지 않습니다.");
+        }
+    }
+
+    private List<String> namesSplit(String names) {
+        return Arrays.stream(names.split(","))
+                .collect(Collectors.toUnmodifiableList());
+    }
+}
