@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class GameResult {
+    public static final String RESERVED_WORD = "all";
+
     private final Map<String, String> results;
 
     private GameResult(Map<String, String> results) {
@@ -20,7 +22,7 @@ public class GameResult {
     }
 
     public Map<String, String> findResult(String name) {
-        if (name.equals("all")) {
+        if (name.equals(RESERVED_WORD)) {
             return findAll();
         }
         if (results.containsKey(name)) {
