@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> ladder;
@@ -46,7 +47,7 @@ public class Ladder {
     }
 
     private static void matchRewardsForPlayers(Rewards rewards, List<Player> result) {
-        for(Player player : result){
+        for (Player player : result) {
             player.setReward(rewards.getRewards().get(result.indexOf(player)));
         }
     }
@@ -58,9 +59,7 @@ public class Ladder {
     }
 
     private static void traverseLine(List<Player> result, Line line) {
-        for (int Playerindex = 0; Playerindex < line.getLine().size(); Playerindex++) {
-            crossLine(result, line, Playerindex);
-        }
+        IntStream.range(0, line.getLine().size()).forEach(Playerindex -> crossLine(result, line, Playerindex));
     }
 
     private static void crossLine(List<Player> result, Line line, int Playerindex) {
