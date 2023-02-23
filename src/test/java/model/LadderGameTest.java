@@ -24,8 +24,8 @@ class LadderGameTest {
         List<String> collectNames = List.of("a", "b");
         Names names = Names.of(collectNames);
         PassGenerator falseFalseGenerator = new StubPassGenerator(List.of(Boolean.FALSE, Boolean.FALSE));
-        Line line = Line.of(2, falseFalseGenerator);
-        Ladder ladder = new Ladder(List.of(line));
+        Height height = new Height(5);
+        Ladder ladder = Ladder.of(falseFalseGenerator, height, 2);
         List<LadderResult> results = List.of(new LadderResult("1"), new LadderResult("2"));
         LadderResults ladderResults = LadderResults.of(results, 2);
 
