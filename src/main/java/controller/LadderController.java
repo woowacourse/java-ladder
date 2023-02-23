@@ -5,6 +5,7 @@ import java.util.List;
 import domain.Ladder;
 import domain.Players;
 import domain.numbergenerator.NumberGenerator;
+import utils.Command;
 import utils.LogType;
 import view.InputView;
 import view.OutputView;
@@ -32,6 +33,7 @@ public class LadderController {
     private Players generatePlayers() {
         try {
             List<String> names = inputView.readNames();
+            validateCommandNames(names);
             return new Players(names);
         } catch (IllegalArgumentException exception) {
             LogType.ERROR_MESSAGE.log(exception.getMessage());
@@ -46,6 +48,12 @@ public class LadderController {
         } catch (IllegalArgumentException exception) {
             LogType.ERROR_MESSAGE.log(exception.getMessage());
             return generateLadder(personCount);
+        }
+    }
+
+    private void validateCommandNames(List<String> names) {
+        if (Command.isIn(names)) {
+            throw new IllegalArgumentException("사다리 게임 참여자의 이름은 결과 검색 명령어와는 달라야합니다.");
         }
     }
 }
