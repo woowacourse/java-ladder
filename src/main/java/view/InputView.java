@@ -1,9 +1,6 @@
 package view;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class InputView {
 
@@ -17,25 +14,23 @@ public class InputView {
 	private static final String HEIGHT_NATURAL_NUMBER_ERROR_MSG = "사다리 높이는 자연수여야합니다.";
 
 
-	public static List<String> readResults() {
+	public static String[] readResults() {
 		System.out.println(RESULTS_REQUEST_MSG);
 		return parseListFromInput();
 	}
 
-	public static List<String> readParticipantsNames() {
+	public static String[] readNames() {
 		System.out.println(PARTICIPANTS_NAMES_REQUEST_MSG);
 		return parseListFromInput();
 	}
 
-	private static List<String> parseListFromInput() {
+	private static String[] parseListFromInput() {
 		String line = scanner.nextLine();
 		System.out.println();
 		validateLastComma(line);
 		String[] items = line.split(DELIMITER);
 		validateListLength(items);
-		return Arrays.stream(items)
-				.map(String::trim)
-				.collect(Collectors.toList());
+		return items;
 	}
 
 	private static void validateLastComma(String input) {
