@@ -33,4 +33,15 @@ public class Prizes {
     public Prize getPrize(final int index) {
         return prizes.get(index);
     }
+
+    public List<Prize> getPrizes() {
+        return prizes;
+    }
+
+    public int getMaxPrizeLength() {
+        return prizes.stream()
+                .mapToInt(prize -> prize.getPrize().length())
+                .max()
+                .orElseThrow(() -> new IllegalStateException("이름의 길이 최대값의 찾을 수 없습니다."));
+    }
 }
