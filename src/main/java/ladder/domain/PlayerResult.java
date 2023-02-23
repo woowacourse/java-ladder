@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class PlayerResult {
     private final Player player;
-    private final Result result;
+    private final Prize prize;
 
-    public PlayerResult(Player player, Result result) {
+    public PlayerResult(Player player, Prize prize) {
         this.player = player;
-        this.result = result;
+        this.prize = prize;
     }
 
     public boolean isPlayerMatch(Player player) {
@@ -19,7 +19,7 @@ public class PlayerResult {
         return player.getName();
     }
 
-    public String getResult() {
-        return result.getResult();
+    public String getPrize() {
+        return prize.getPrize();
     }
 }

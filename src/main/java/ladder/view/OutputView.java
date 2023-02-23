@@ -3,16 +3,16 @@ package ladder.view;
 import java.util.List;
 import ladder.dto.LadderResponse;
 import ladder.dto.PlayersResponse;
-import ladder.dto.ResultsResponse;
+import ladder.dto.PrizesResponse;
 
 public class OutputView {
 
     public static void printLadderResult(PlayersResponse playersResponse, LadderResponse ladderResponse,
-                                         ResultsResponse resultsResponse) {
+                                         PrizesResponse prizesResponse) {
         System.out.println("사다리 결과");
         printNames(playersResponse.getPlayers());
         printLadder(ladderResponse.getLines());
-        printResults(resultsResponse.getResults());
+        printPrizes(prizesResponse.getPrizes());
     }
 
     private static void printLadder(List<String> lines) {
@@ -25,8 +25,8 @@ public class OutputView {
         System.out.println(names);
     }
 
-    private static void printResults(String results) {
-        System.out.println(results);
+    private static void printPrizes(String prizes) {
+        System.out.println(prizes);
     }
 
     public static void printAllPlayerResults(List<String> playerResults) {

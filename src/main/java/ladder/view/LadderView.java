@@ -3,15 +3,15 @@ package ladder.view;
 import ladder.dto.LadderResponse;
 import ladder.dto.PlayerResultsResponse;
 import ladder.dto.PlayersResponse;
-import ladder.dto.ResultsResponse;
+import ladder.dto.PrizesResponse;
 
 public class LadderView {
     public String readPlayerNames() {
         return InputView.readPlayerNames();
     }
 
-    public String readResults() {
-        return InputView.readResults();
+    public String readPrizes() {
+        return InputView.readPrizes();
     }
 
     public int readLadderHeight() {
@@ -19,8 +19,8 @@ public class LadderView {
     }
 
     public void printLadderResult(PlayersResponse playersResponse, LadderResponse ladderResponse,
-                                  ResultsResponse resultsResponse) {
-        OutputView.printLadderResult(playersResponse, ladderResponse, resultsResponse);
+                                  PrizesResponse prizesResponse) {
+        OutputView.printLadderResult(playersResponse, ladderResponse, prizesResponse);
     }
 
     public String readPlayerName() {

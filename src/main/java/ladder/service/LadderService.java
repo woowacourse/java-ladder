@@ -12,8 +12,8 @@ import ladder.domain.Player;
 import ladder.domain.PlayerResult;
 import ladder.domain.PlayerResults;
 import ladder.domain.Players;
-import ladder.domain.Result;
-import ladder.domain.Results;
+import ladder.domain.Prize;
+import ladder.domain.Prizes;
 
 public class LadderService {
     private static final String PLAYERS_STRING_DELIMITER = ",";
@@ -41,27 +41,27 @@ public class LadderService {
         return new Players(players);
     }
 
-    public Results createResults(String resultsInput, int playerCount) {
+    public Prizes createPrizes(String resultsInput, int playerCount) {
         String[] resultsStrings = resultsInput.split(RESULTS_STRING_DELIMITER);
-        List<Result> results = Arrays.stream(resultsStrings)
-                .map(Result::new)
+        List<Prize> prizes = Arrays.stream(resultsStrings)
+                .map(Prize::new)
                 .collect(toList());
-        return new Results(results, playerCount);
+        return new Prizes(prizes, playerCount);
     }
 
-    public PlayerResults createPlayerResults(Players players, Ladder ladder, Results results) {
-        List<Result> playerResults = players.getPlayers().stream()
+    public PlayerResults createPlayerResults(Players players, Ladder ladder, Prizes prizes) {
+        List<Prize> playerPrizes = players.getPlayers().stream()
                 .map(players::findIndexByPlayer)
                 .map(ladder::getLadderIndexResult)
-                .map(results::findResultByIndex)
+                .map(prizes::findPrizeByIndex)
                 .collect(toList());
-        return combinePlayerResults(players.getPlayers(), playerResults);
+        return combinePlayerResults(players.getPlayers(), playerPrizes);
     }
 
-    private PlayerResults combinePlayerResults(List<Player> players, List<Result> results) {
+    private PlayerResults combinePlayerResults(List<Player> players, List<Prize> prizes) {
         List<PlayerResult> resultList = new ArrayList<>();
         for (int i = 0; i < players.size(); i++) {
-            resultList.add(new PlayerResult(players.get(i), results.get(i)));
+            resultList.add(new PlayerResult(players.get(i), prizes.get(i)));
         }
         return new PlayerResults(resultList);
     }

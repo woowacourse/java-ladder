@@ -18,7 +18,7 @@ class PlayerResultsTest {
         PlayerResult result = playerResults.findByPlayer(new Player("glen"));
 
         // then
-        assertThat(result.getResult())
+        assertThat(result.getPrize())
                 .isEqualTo("1000");
     }
 
@@ -26,15 +26,15 @@ class PlayerResultsTest {
         return List.of(
                 new PlayerResult(
                         new Player("glen"),
-                        new Result("1000")
+                        new Prize("1000")
                 ),
                 new PlayerResult(
                         new Player("doggy"),
-                        new Result("5000")
+                        new Prize("5000")
                 ),
                 new PlayerResult(
                         new Player("pobi"),
-                        new Result("꽝")
+                        new Prize("꽝")
                 )
         );
     }

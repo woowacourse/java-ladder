@@ -3,8 +3,8 @@ package ladder.dto;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
-import ladder.domain.Result;
-import ladder.domain.Results;
+import ladder.domain.Prize;
+import ladder.domain.Prizes;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,21 +14,21 @@ class ResultsResponseTest {
     @DisplayName("정상적으로 문자열을 반환해야 한다.")
     void ofResults_success() {
         // given
-        Results results = new Results(createResults(), 4);
+        Prizes prizes = new Prizes(createResults(), 4);
 
         // when
-        ResultsResponse resultsResponse = ResultsResponse.ofResults(results);
+        PrizesResponse prizesResponse = PrizesResponse.ofResults(prizes);
 
         // then
-        assertThat(resultsResponse.getResults())
+        assertThat(prizesResponse.getPrizes())
                 .isEqualTo("꽝     5000  꽝     3000 ");
     }
 
-    private static List<Result> createResults() {
+    private static List<Prize> createResults() {
         return List.of(
-                new Result("꽝"),
-                new Result("5000"),
-                new Result("꽝"),
-                new Result("3000"));
+                new Prize("꽝"),
+                new Prize("5000"),
+                new Prize("꽝"),
+                new Prize("3000"));
     }
 }

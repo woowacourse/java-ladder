@@ -2,14 +2,14 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class Result {
+public class Prize {
     private final String result;
 
-    public Result(String result) {
+    public Prize(String result) {
         this.result = result;
     }
 
-    public String getResult() {
+    public String getPrize() {
         return result;
     }
 
@@ -18,11 +18,11 @@ public class Result {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Result)) {
+        if (!(o instanceof Prize)) {
             return false;
         }
-        Result result1 = (Result) o;
-        return Objects.equals(result, result1.result);
+        Prize prize1 = (Prize) o;
+        return Objects.equals(result, prize1.result);
     }
 
     @Override

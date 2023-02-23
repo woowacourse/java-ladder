@@ -14,7 +14,7 @@ public class PlayerResultsResponse {
 
     public static PlayerResultsResponse of(PlayerResults playerResults) {
         List<String> resultsStrings = playerResults.getPlayerResults().stream()
-                .map(playerResult -> playerResult.getPlayerName() + " : " + playerResult.getResult())
+                .map(playerResult -> playerResult.getPlayerName() + " : " + playerResult.getPrize())
                 .collect(toList());
         return new PlayerResultsResponse(resultsStrings);
     }

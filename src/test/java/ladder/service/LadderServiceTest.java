@@ -6,8 +6,8 @@ import java.util.List;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
-import ladder.domain.Result;
-import ladder.domain.Results;
+import ladder.domain.Prize;
+import ladder.domain.Prizes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,12 +56,12 @@ class LadderServiceTest {
         String input = "꽝,5000,꽝,3000";
 
         // when
-        Results results = ladderService.createResults(input, 4);
+        Prizes prizes = ladderService.createPrizes(input, 4);
 
         // then
-        assertThat(results.getResultsCount())
+        assertThat(prizes.getPrizesCount())
                 .isEqualTo(4);
-        assertThat(results.getResults())
-                .isEqualTo(List.of(new Result("꽝"), new Result("5000"), new Result("꽝"), new Result("3000")));
+        assertThat(prizes.getPrizes())
+                .isEqualTo(List.of(new Prize("꽝"), new Prize("5000"), new Prize("꽝"), new Prize("3000")));
     }
 }

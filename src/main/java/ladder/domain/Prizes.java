@@ -3,12 +3,12 @@ package ladder.domain;
 import java.util.Collections;
 import java.util.List;
 
-public class Results {
-    private final List<Result> results;
+public class Prizes {
+    private final List<Prize> prizes;
 
-    public Results(List<Result> results, int playerCount) {
-        validatePlayerCount(results.size(), playerCount);
-        this.results = results;
+    public Prizes(List<Prize> prizes, int playerCount) {
+        validatePlayerCount(prizes.size(), playerCount);
+        this.prizes = prizes;
     }
 
     private void validatePlayerCount(int resultsCount, int playerCount) {
@@ -17,22 +17,22 @@ public class Results {
         }
     }
 
-    public Result findResultByIndex(int index) {
+    public Prize findPrizeByIndex(int index) {
         if (isProperIndex(index)) {
             throw new IllegalArgumentException("[ERROR] 인덱스 범위를 초과했습니다.");
         }
-        return results.get(index);
+        return prizes.get(index);
     }
 
     private boolean isProperIndex(int index) {
-        return index < 0 || index >= results.size();
+        return index < 0 || index >= prizes.size();
     }
 
-    public int getResultsCount() {
-        return results.size();
+    public int getPrizesCount() {
+        return prizes.size();
     }
 
-    public List<Result> getResults() {
-        return Collections.unmodifiableList(results);
+    public List<Prize> getPrizes() {
+        return Collections.unmodifiableList(prizes);
     }
 }
