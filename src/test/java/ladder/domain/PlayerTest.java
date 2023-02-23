@@ -47,4 +47,13 @@ class PlayerTest {
             new Player("123456");
         }).withMessage("[ERROR] 이름이 5글자를 초과할 수 없습니다.");
     }
+
+    @Test
+    @DisplayName("사용자의 이름이 블랙리스트에 있으면 예외가 발생한다.")
+    void create_blacklist() {
+        // expect
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new Player("all");
+        }).withMessage("[ERROR] 해당 이름으로 만들 수 없습니다.");
+    }
 }

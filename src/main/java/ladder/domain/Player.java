@@ -1,9 +1,11 @@
 package ladder.domain;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Player {
     private static final int MAX_NAME_LENGTH = 5;
+    private static final String[] BLACKLIST_NAME = {"all"};
 
     private final String name;
 
@@ -16,6 +18,7 @@ public class Player {
         validateNullName(name);
         validateBlankName(name);
         validateNameLength(name);
+        validateBlacklist(name);
     }
 
     private void validateNullName(String name) {
@@ -34,6 +37,16 @@ public class Player {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 이름이 5글자를 초과할 수 없습니다.");
         }
+    }
+
+    private void validateBlacklist(String name) {
+        if (isInBlacklist(name)) {
+            throw new IllegalArgumentException("[ERROR] 해당 이름으로 만들 수 없습니다.");
+        }
+    }
+
+    private static boolean isInBlacklist(String name) {
+        return Arrays.asList(BLACKLIST_NAME).contains(name);
     }
 
     public boolean isNameMatch(String name) {
