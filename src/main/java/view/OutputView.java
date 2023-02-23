@@ -30,7 +30,7 @@ public class OutputView {
     }
 
     public void printError(Exception exception) {
-        System.out.println(exception.getMessage());
+        System.out.printf("[ERROR] : %s%n", exception.getMessage());
     }
 
     public void printCriticalError(Exception exception) {
