@@ -2,9 +2,12 @@ package view;
 
 import domain.Names;
 import domain.Rewards;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
+    private static final String STRING_DELIMITER = ",";
     private static final Scanner scanner = new Scanner(System.in);
 
     private static int parseInt(String input) {
@@ -22,7 +25,10 @@ public class InputView {
 
     public Names readNames() {
         String input = readInput(Message.INPUT_NAMES.message);
-        return new Names(input);
+        return new Names(Arrays.stream(input.split(STRING_DELIMITER))
+                .map(String::trim)
+                .collect(Collectors.toList())
+        );
     }
 
     public int readHeight() {
