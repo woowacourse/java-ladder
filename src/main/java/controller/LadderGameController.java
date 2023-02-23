@@ -20,6 +20,7 @@ public class LadderGameController {
 		);
 	}
 
+	// TODO: extract this method to LadderGame.setup()
 	public LadderGame setUpLadderGame() {
 		Participants participants = retrieveParticipants();
 		LadderHeight ladderHeight = new LadderHeight(retrieveLadderHeight());
@@ -46,6 +47,7 @@ public class LadderGameController {
 		}
 	}
 
+	// TODO: makes method to return LadderHeight
 	private int retrieveLadderHeight() {
 		try{
 			return InputView.readHeight();
