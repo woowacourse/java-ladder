@@ -1,8 +1,8 @@
 package laddergame.controller;
 
 import laddergame.domain.ladder.Ladder;
-import laddergame.domain.ladder_result.LadderResult;
-import laddergame.domain.ladder_result.LadderResultName;
+import laddergame.domain.ladder.result.LadderResult;
+import laddergame.domain.ladder.result.LadderResultName;
 import laddergame.domain.participant.Participant;
 import laddergame.domain.participant.Participants;
 import laddergame.util.BooleanGenerator;

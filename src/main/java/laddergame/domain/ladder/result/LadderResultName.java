@@ -1,4 +1,4 @@
-package laddergame.domain.ladder_result;
+package laddergame.domain.ladder.result;
 
 import laddergame.domain.exception.BlankException;
 

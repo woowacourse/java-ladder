@@ -1,4 +1,4 @@
-package laddergame.domain.ladder_result;
+package laddergame.domain.ladder.result;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
