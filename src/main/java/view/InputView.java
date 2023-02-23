@@ -48,7 +48,7 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public String readCommand() {
+    public String readCommandOrName() {
         System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
         return scanner.nextLine().trim();
     }

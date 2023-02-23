@@ -43,8 +43,8 @@ public class LadderController {
 
     private Names createNames() {
         try {
-            List<String> rawNames = inputView.readNames();
-            return rawNames.stream()
+            List<String> userInput = inputView.readNames();
+            return userInput.stream()
                     .map(Name::new)
                     .collect(collectingAndThen(toList(), Names::new));
         } catch (IllegalArgumentException e) {
@@ -53,22 +53,22 @@ public class LadderController {
         }
     }
 
-    private Results createResults(int numberOfPeople) {
+    private Results createResults(int numberOfParticipants) {
         try {
-            List<String> rawResults = inputView.readResults();
-            return new Results(rawResults.stream()
+            List<String> userInput = inputView.readResults();
+            return new Results(userInput.stream()
                     .map(Result::new)
-                    .collect(Collectors.toList()), numberOfPeople);
+                    .collect(Collectors.toList()), numberOfParticipants);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return createResults(numberOfPeople);
+            return createResults(numberOfParticipants);
         }
     }
 
     private LadderHeight createLadderHeight() {
         try {
-            int height = inputView.readLadderHeight();
-            return new LadderHeight(height);
+            int userInput = inputView.readLadderHeight();
+            return new LadderHeight(userInput);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return createLadderHeight();
@@ -76,18 +76,18 @@ public class LadderController {
     }
 
     private void showResultByCommandOrName(LadderGame ladderGame) {
-        String command = inputView.readCommand();
-        if (command.equals("all")) {
+        String userInput = inputView.readCommandOrName();
+        if (userInput.equals("all")) {
             outputView.printAllResult(ladderGame.getAllParticipants(), ladderGame.getAllResult());
             return;
         }
-        showResultByName(ladderGame, command);
+        showResultByName(ladderGame, userInput);
         showResultByCommandOrName(ladderGame);
     }
 
-    private void showResultByName(LadderGame ladderGame, String command) {
+    private void showResultByName(LadderGame ladderGame, String name) {
         try {
-            outputView.printOneResult(ladderGame.getResultOf(command));
+            outputView.printOneResult(ladderGame.getResultOf(name));
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
         }
