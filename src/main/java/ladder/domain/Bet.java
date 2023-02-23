@@ -19,7 +19,6 @@ public class Bet {
         validateDoesNotContainComma(bet);
     }
 
-
     private void validateNotNull(String bet) {
         if (bet == null)
             throw new NullPointerException(ErrorMessage.BET_IS_NULL.getMessage());
