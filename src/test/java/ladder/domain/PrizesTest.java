@@ -9,10 +9,10 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class PrizesTest {
 
-    @ParameterizedTest(name = "입력: {0}, 출력: {1}")
+    @ParameterizedTest(name = "위치: {0}, 당첨 항목: {1}")
     @CsvSource(value = {"0:꽝", "1:3000", "2:5000"}, delimiter = ':')
-    @DisplayName("당첨 결과를 확인한다.")
-    void checkPrize(final int position, final String expected) {
+    @DisplayName("위치에 알맞은 당첨 항목을 반환한다.")
+    void return_prize_in_position(final int position, final String expected) {
         final Prizes prizes = Prizes.from(List.of("꽝", "3000", "5000"));
 
         final String result = prizes.check(position);

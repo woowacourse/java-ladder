@@ -9,10 +9,10 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class RetryTest {
 
-    @ParameterizedTest(name = "입력: {0}, 출력: {1}")
+    @ParameterizedTest(name = "횟수: {0}, 재시도 가능: {1}")
     @CsvSource(value = {"2:true", "1:true", "0:false"}, delimiter = ':')
     @DisplayName("남아 있는 횟수가 1회 이상이라면 재시도가 가능하다.")
-    void checkRetryState(final int value, final boolean result) {
+    void possible_retry_count_more_1(final int value, final boolean result) {
         final Retry retry = new Retry(value);
 
         assertThat(retry.isPossible()).isEqualTo(result);
@@ -20,7 +20,7 @@ class RetryTest {
 
     @Test
     @DisplayName("재시도 횟수를 감소시킨다.")
-    void decreaseRetryCount() {
+    void decrease_retry_count() {
         final Retry retry = new Retry(1);
 
         retry.decrease();

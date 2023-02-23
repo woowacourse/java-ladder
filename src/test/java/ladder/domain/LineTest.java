@@ -26,24 +26,25 @@ class LineTest {
         );
     }
 
-    @ParameterizedTest(name = "입력: {0}, 출력: {1}, 개수: {2}")
+    @ParameterizedTest(name = "입력: {0}, 생성된 방향: {1}, 개수: {2}")
     @MethodSource("generateDirections")
-    @DisplayName("발판이 정상적으로 만들어진다.")
-    void validLine(final List<Direction> directions, final Direction[] expected, final int directionCount) {
+    @DisplayName("선은 개수에 알맞은 방향 정보를 가진다.")
+    void direction_size_equal_count(final List<Direction> directions, final Direction[] expected,
+                                    final int count) {
         final DirectionGenerator directionGenerator = new TestDirectionGenerator(directions);
-        final Line line = Line.of(directionGenerator, directionCount);
+        final Line line = Line.of(directionGenerator, count);
 
         assertThat(line.getDirections()).containsExactly(expected);
     }
 
-    @ParameterizedTest(name = "입력: {0}, 출력: {1}")
+    @ParameterizedTest(name = "출발 위치: {0}, 도착 위치: {1}")
     @CsvSource(value = {"0:1", "1:0", "2:2"}, delimiter = ':')
     @DisplayName("해당 위치에서 알맞은 방향으로 이동시킨다.")
-    void moveToDirection(final int position, final int expected) {
+    void move_to_direction(final int start, final int end) {
         final Line line = new Line(List.of(RIGHT, LEFT, STAY));
 
-        final int result = line.moveFrom(position);
+        final int result = line.moveFrom(start);
 
-        assertThat(result).isEqualTo(expected);
+        assertThat(result).isEqualTo(end);
     }
 }

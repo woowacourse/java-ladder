@@ -27,27 +27,27 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("사다리 높이만큼 선을 생성한다.")
-    void validLadder() {
-        final Players players = Players.from(List.of("grey", "hoi"));
+    @DisplayName("높이와 선의 개수는 동일해야 한다.")
+    void should_line_count_and_height_equal() {
+        final Players players = Players.from(List.of("pobi", "honux"));
         final Height height = new Height(5);
 
         final Ladder ladder = Ladder.of(new RandomDirectionGenerator(), players, height);
 
-        assertThat(ladder.getLines()).hasSize(5);
+        assertThat(ladder.getLines()).hasSize(height.getValue());
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "방향: {0}, 출발 위치: {1}, 도착 위치: {2}")
     @MethodSource("generateDirections")
-    @DisplayName("사다리를 탄다.")
-    void climbLadder(final List<Direction> directions, final int position, final int expected) {
+    @DisplayName("사다리를 타면 도착 위치를 반환한다.")
+    void return_end_position_when_ladder_climb(final List<Direction> directions, final int start, final int end) {
         final DirectionGenerator directionGenerator = new TestDirectionGenerator(directions);
-        final Players players = Players.from(List.of("grey", "hoi"));
+        final Players players = Players.from(List.of("pobi", "honux"));
         final Height height = new Height(2);
         final Ladder ladder = Ladder.of(directionGenerator, players, height);
 
-        final int result = ladder.climb(position);
+        final int result = ladder.climb(start);
 
-        assertThat(result).isEqualTo(expected);
+        assertThat(result).isEqualTo(end);
     }
 }

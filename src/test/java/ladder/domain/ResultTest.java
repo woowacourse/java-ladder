@@ -31,7 +31,7 @@ class ResultTest {
 
     @Test
     @DisplayName("사다리 결과를 생성한다.")
-    void generateResult() {
+    void should_generate_result() {
         final Result result = Result.of(players, ladder, prizes);
 
         assertThat(result.extract("pobi")).isEqualTo("3000");
@@ -40,8 +40,8 @@ class ResultTest {
 
     @ParameterizedTest(name = "입력: {0}, 결과: {1}")
     @CsvSource(value = {"pobi:true", "honux:false"}, delimiter = ':')
-    @DisplayName("결과를 확인할 수 있는 대상인지 판별한다.")
-    void existResultTarget(final String target, final boolean expected) {
+    @DisplayName("사다리 결과를 확인할 수 있는 대상인지 판별한다.")
+    void check_valid_result_target(final String target, final boolean expected) {
         final Result result = Result.of(players, ladder, prizes);
 
         assertThat(result.exist(target)).isEqualTo(expected);
