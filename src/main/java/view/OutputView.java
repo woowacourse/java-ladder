@@ -20,6 +20,7 @@ public class OutputView {
     private static final String LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String RESULTS_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String DESIROUS_RESULT_NAME_MESSAGE = "\n결과를 보고 싶은 사람은?";
+    private static final String RESULT_HEADER = "\n실행 결과";
 
     public void printPlayerNamesMessage() {
         System.out.println(PLAYER_NAME_MESSAGE);
@@ -31,6 +32,10 @@ public class OutputView {
 
     public void printResultsMessage() {
         System.out.println(RESULTS_MESSAGE);
+    }
+
+    public void printResultHeaderMessage() {
+        System.out.println(RESULT_HEADER);
     }
 
     public void printDesirousResultNameMessage() {
@@ -51,6 +56,10 @@ public class OutputView {
     public void printAllResults(List<Result> allResults) {
         List<String> results = unwrapResults(allResults);
         System.out.println(makeLeftFormattingFirstWord(results) + makeRightFormattingWordsFromSecond(results));
+    }
+
+    public void printResult(Result result) {
+        System.out.println(result.getValue());
     }
 
     private List<String> unwrapResults(List<Result> results) {
