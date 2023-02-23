@@ -23,15 +23,34 @@ class SimpleLinkedListTest {
     }
 
     @Test
-    void testAdd() {
+    void addListAtIndex() {
+        final String[] values = {"홍실", "다니"};
+        final SimpleLinkedList list = new SimpleLinkedList(values);
+
+        list.add(0, "썬샷");
+
+        Assertions.assertAll(
+                () -> assertThat(list.getStartNode().getValue())
+                        .isEqualTo("썬샷"),
+                () -> assertThat(list.getStartNode().getNext().getValue())
+                        .isEqualTo("홍실")
+        );
     }
 
     @Test
     void set() {
+
     }
 
     @Test
     void get() {
+        final String[] values = {"홍실", "썬샷"};
+        final SimpleLinkedList linkedList = new SimpleLinkedList(values);
+
+        Assertions.assertAll(
+                () -> assertThat(linkedList.get(0)).isEqualTo("홍실"),
+                () -> assertThat(linkedList.get(1)).isEqualTo("썬샷")
+        );
     }
 
     @Test

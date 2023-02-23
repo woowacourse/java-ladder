@@ -23,4 +23,8 @@ public class Node {
     public String getValue() {
         return value;
     }
+
+    public Node getNext() {
+        return next;
+    }
 }

@@ -5,6 +5,15 @@ public class SimpleLinkedList implements SimpleList {
     private int size = 0;
     private Node startNode;
 
+    public SimpleLinkedList() {
+    }
+
+    public SimpleLinkedList(final String[] values) {
+        for (final String value : values) {
+            this.add(value);
+        }
+    }
+
     @Override
     public boolean add(final String value) {
         final Node newNode = new Node(value, null);
@@ -20,7 +29,18 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public void add(final int index, final String value) {
-
+        Node curNode = startNode;
+        if (index == 0) {
+            startNode = new Node(value, curNode);
+            size += 1;
+            return;
+        }
+        for (int i = 0; i < index - 1; i++) {
+            curNode = curNode.getNext();
+        }
+        final Node nodeAtIndex = curNode.getNext();
+        curNode.setNext(new Node(value, nodeAtIndex));
+        size += 1;
     }
 
     @Override
@@ -30,7 +50,11 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public String get(final int index) {
-        return null;
+        Node curNode = startNode;
+        for (int i = 0; i < index; i++) {
+            curNode = curNode.getNext();
+        }
+        return curNode.getValue();
     }
 
     @Override
