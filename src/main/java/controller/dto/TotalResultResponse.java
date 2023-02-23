@@ -18,9 +18,9 @@ public class TotalResultResponse {
 
     public static TotalResultResponse from(LadderGameResult ladderGameResult) {
         Map<Player, Prize> result = ladderGameResult.getPlayerToPrize();
-        Map<String, String> playerToResult = new LinkedHashMap<>();
-        result.forEach((player, prize) -> playerToResult.put(player.getName(), prize.getValue()));
-        return new TotalResultResponse(Collections.unmodifiableMap(playerToResult));
+        Map<String, String> playerToPrize = new LinkedHashMap<>();
+        result.forEach((player, prize) -> playerToPrize.put(player.getName(), prize.getValue()));
+        return new TotalResultResponse(Collections.unmodifiableMap(playerToPrize));
     }
 
     public Map<String, String> getPlayerToPrize() {
