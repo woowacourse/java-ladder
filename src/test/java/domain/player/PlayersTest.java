@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class PlayersTest {
 
@@ -40,5 +39,31 @@ public class PlayersTest {
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("게임 참여자 수는 최소 2명 최대 50명까지 가능합니다.");
+    }
+
+    @Test
+    @DisplayName("인덱스에 해당하는 참가자 이름을 반환한다.")
+    void getPlayerByIndex_Success() {
+        List<String> names = List.of("gray", "encho", "pobi");
+
+        Players players = new Players(names);
+        int size = players.getPlayers().size();
+
+        for (int index = 0; index < size; index++) {
+            assertThat(players.findNameByIndex(index)).isEqualTo(names.get(index));
+        }
+    }
+
+    @Test
+    @DisplayName("참가자 수 보다 큰 인덱스가 들어오는 경우 예외가 발생한다.")
+    void getPlayerByIndex_Fail() {
+        List<String> names = List.of("gray", "encho", "pobi");
+
+        Players players = new Players(names);
+        int size = players.getPlayers().size();
+
+        assertThatThrownBy(() -> players.findNameByIndex(size))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참가자 수 보다 큰 인덱스가 입력 되었습니다.");
     }
 }

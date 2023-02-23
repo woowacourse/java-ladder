@@ -10,6 +10,8 @@ public class Players {
 
     private static final String PLAYER_DUPLICATE_ERROR_MESSAGE = "게임 참여자의 이름은 중복될 수 없습니다.";
     private static final String PLAYER_SIZE_ERROR_MESSAGE = "게임 참여자 수는 최소 2명 최대 50명까지 가능합니다.";
+    private static final String PLAYER_INDEX_ERROR_MESSAGE = "참가자 수 보다 큰 인덱스가 입력 되었습니다.";
+
     private static final int MIN_PLAYER_SIZE = 2;
     private static final int MAX_PLAYER_SIZE = 50;
 
@@ -39,5 +41,12 @@ public class Players {
 
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
+    }
+
+    public String findNameByIndex(int playerIndex) {
+        if (playerIndex > getPlayers().size() - 1) {
+            throw new IllegalArgumentException(PLAYER_INDEX_ERROR_MESSAGE);
+        }
+        return players.get(playerIndex).getName();
     }
 }
