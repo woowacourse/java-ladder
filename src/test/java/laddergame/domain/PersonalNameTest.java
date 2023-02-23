@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("이름")
+@DisplayName("참여자 이름 클래스는")
 class PersonalNameTest {
 
     @DisplayName("값이 비어있으면 예외가 발생한다.")
