@@ -1,9 +1,6 @@
 package laddergame.view;
 
-import laddergame.domain.Ladder;
-import laddergame.domain.Link;
-import laddergame.domain.Players;
-import laddergame.domain.WinningPrizes;
+import laddergame.domain.*;
 
 import java.util.List;
 
@@ -28,7 +25,7 @@ public class OutputView {
     public static void printLadder(final Players players, final Ladder ladder) {
         StringBuilder result = new StringBuilder();
         ladder.getLadder().forEach(layer -> result.append(makeLadderFormat(layer.getLayer(), players)));
-        System.out.println(result);
+        System.out.print(result);
     }
 
     public static void printWinningPrizeAll(final WinningPrizes winningPrizes) {
@@ -37,6 +34,24 @@ public class OutputView {
                 .collect(joining(BLANK.getLadderElement()));
 
         System.out.println(allWinningPrize);
+    }
+
+    public static void printAllResult(final GameResult gameResult) {
+        final StringBuilder result = new StringBuilder();
+        final List<Player> players = gameResult.getGameResult();
+        final WinningPrizes winningPrizes = gameResult.getWinningPrizes();
+        for (int i = 0; i < players.size(); i++) {
+
+            result.append(String.format("%s : %s%n", players.get(i).getName(), winningPrizes.getIndexPrize(i).getWinningPrize()));
+        }
+        System.out.println("실행 결과");
+        System.out.println(result + System.lineSeparator());
+    }
+
+    public static void printResult(final String message) {
+        System.out.println("실행 결과");
+        System.out.println(message + System.lineSeparator());
+
     }
 
     public static void printMessage(final String message) {
@@ -67,6 +82,6 @@ public class OutputView {
     private static String visualizeLink(final Link link, final int maxNameLength) {
         return String.format("%s%s", LadderElement.convertFormat(link).repeat(maxNameLength), VERTICAL_LINE.getLadderElement());
     }
-
-
 }
+
+

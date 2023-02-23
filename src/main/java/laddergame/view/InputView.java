@@ -36,7 +36,7 @@ public class InputView {
         }
     }
 
-    public static String readPlayer() {
+    public static String readCommand() {
         System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
 
         try {
