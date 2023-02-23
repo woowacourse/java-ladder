@@ -28,12 +28,13 @@ public class LadderGameController {
         outputView.printAllPlayerNames(players.getAllPlayerNames());
         outputView.printLadder(ladder);
         outputView.printAllResults(results);
-        playGame(players, ladder);
+        playGame(players, ladder, results);
     }
 
-    private void playGame(Players players, Ladder ladder) {
+    private void playGame(Players players, Ladder ladder, List<Result> results) {
         IntStream.range(0, ladder.getHeight())
                 .forEach(index -> playOneLine(players, ladder.getLine(index)));
+        players.saveAllResults(results);
     }
 
     private void playOneLine(Players players, Line line) {
