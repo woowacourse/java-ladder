@@ -4,6 +4,10 @@ import exception.InvalidPrizeName;
 
 public class Prize {
 
+    private static final String PRIZE_NAME_NULL_ERROR_MESSAGE = "상품의 이름은 null이면 안됩니다.";
+    private static final String PRIZE_NAME_BLANK_ERROR_MESSAGE = "상품의 이름은 빈칸이면 안됩니다.";
+
+
     private final String prize;
 
     public Prize(String prize) {
@@ -14,13 +18,13 @@ public class Prize {
 
     private void validatePrizeNameIsNull(String prize) {
         if (prize == null) {
-            throw new InvalidPrizeName("상품의 이름은 null이면 안됩니다.");
+            throw new InvalidPrizeName(PRIZE_NAME_NULL_ERROR_MESSAGE);
         }
     }
 
     private void validatePrizeNameIsBlank(String prize) {
         if (prize.isBlank()) {
-            throw new InvalidPrizeName("상품의 이름은 빈칸이면 안됩니다.");
+            throw new InvalidPrizeName(PRIZE_NAME_BLANK_ERROR_MESSAGE);
         }
     }
 }
