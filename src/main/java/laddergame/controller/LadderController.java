@@ -35,17 +35,23 @@ public class LadderController {
                 () -> new PersonalNames(inputView.readNames()));
         final LadderResult ladderResult = retryOnInvalidInputWithAlert(
                 () -> LadderResult.of(names, inputView.readResults()));
-
         final Height ladderHeight = retryOnInvalidInputWithAlert(
                 () -> new Height(inputView.readHeight()));
         final Ladder ladder = new Ladder(new Width(names.getSize()), ladderHeight, booleanGenerator);
 
-        final List<Line> lines = ladder.getLines();
-        outputView.printLadderForm(ladderFormGenerator.generate(names, ladderResult, lines));
+        showGeneratedLadder(names, ladderResult, ladder);
+        playGame(names, ladderResult, ladder);
+    }
 
+    private void playGame(PersonalNames names, LadderResult ladderResult, Ladder ladder) {
         final LadderGame ladderGame = new LadderGame(names, ladderResult);
         final NamesWithMatchedResult result = ladderGame.moveAndGetResult(ladder);
         searchResultItemByNameFrom(result);
+    }
+
+    private void showGeneratedLadder(PersonalNames names, LadderResult ladderResult, Ladder ladder) {
+        final List<Line> lines = ladder.getLines();
+        outputView.printLadderForm(ladderFormGenerator.generate(names, ladderResult, lines));
     }
 
     private <T> T retryOnInvalidInputWithAlert(Supplier<T> supplier) {
