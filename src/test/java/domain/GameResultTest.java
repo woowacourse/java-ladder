@@ -6,6 +6,7 @@ import domain.ladder.LadderPrizes;
 import domain.ladder.LadderSize;
 import domain.ladder.LineWeight;
 import domain.participants.Participants;
+import exception.ladder.GameEndException;
 import exception.participants.NullNameException;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -57,6 +58,7 @@ class GameResultTest {
         List<String> names = List.of("ash", "split", "ako", "mako", "heero", "bever");
         List<String> expected = List.of("2000", "1000", "3000", "4000", "6000", "5000");
         //when then
+        Assertions.assertThat(gameResult.getResults()).hasSize(6);
         IntStream.range(0, expected.size())
             .forEach((index) -> Assertions.assertThat(gameResult.getResultByName(names.get(index)).getName())
                 .isEqualTo(expected.get(index)));
@@ -69,5 +71,14 @@ class GameResultTest {
         //when, then
         Assertions.assertThatThrownBy(() -> gameResult.getResultByName("none"))
             .isExactlyInstanceOf(NullNameException.class);
+    }
+
+    @DisplayName("exit 을 조회시 오류를 던진다.")
+    @Test
+    void findExit() {
+        //given
+        //when, then
+        Assertions.assertThatThrownBy(() -> gameResult.getResultByName("exit"))
+            .isExactlyInstanceOf(GameEndException.class);
     }
 }

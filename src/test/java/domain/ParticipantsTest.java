@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import domain.participants.Participants;
 import exception.participants.DuplicateNameException;
 import exception.participants.InvalidParticipantsCountException;
+import exception.view.EmptyInputException;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -32,6 +33,8 @@ class ParticipantsTest {
     @TestFactory
     Stream<DynamicTest> createFail() {
         return Stream.of(
+            dynamicTest("입력이 없는 경우", () -> Assertions.assertThatThrownBy(() -> new Participants(""))
+                .isExactlyInstanceOf(EmptyInputException.class)),
             dynamicTest("참가자의 수가 1명인 경우", () -> Assertions.assertThatThrownBy(() -> new Participants("split"))
                 .isExactlyInstanceOf(InvalidParticipantsCountException.class)),
             dynamicTest("참가자의 수가 11명인 경우",
