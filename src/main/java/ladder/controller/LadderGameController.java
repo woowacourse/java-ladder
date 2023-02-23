@@ -29,8 +29,9 @@ public class LadderGameController {
         final LadderGame ladderGame = initialize();
         final List<String> players = ladderGame.getPlayers();
         final List<Line> ladder = ladderGame.getLadder();
+        final List<String> items = ladderGame.getItems();
 
-        outputView.printResult(players, ladder);
+        outputView.printLadderResult(players, ladder, items);
     }
 
     private LadderGame initialize() {

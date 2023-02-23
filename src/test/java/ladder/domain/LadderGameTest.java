@@ -56,6 +56,18 @@ public class LadderGameTest {
     }
 
     @Test
+    void 모든_실행결과를_반환한다() {
+        final LadderGame ladderGame = initializeLadderGame(
+                List.of("name1", "name2"),
+                List.of(true, true),
+                2,
+                List.of("item1", "item2")
+        );
+
+        assertThat(ladderGame.getItems()).containsExactly("item1", "item2");
+    }
+
+    @Test
     void 모든_참가자에_대한_사다리게임을_진행한다() {
         final LadderGame ladderGame = initializeLadderGame(
                 List.of("name1", "name2", "name3"),

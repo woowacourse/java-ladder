@@ -16,12 +16,14 @@ graph TD
     LadderGame --> Players
     LadderGame --> Items
 
-    Player --> Name
-    Player --> Position
-    Item --> Position
-    Item --> Name
+    Ladder --> Line
+    Line --> LineStatus
 
+    LadderGame --> Position
+    Ladder --> Position
+    Items --> Position
     Line --> Position
+    Players --> Position
 
     LadderGame --> LadderGameResult
 
@@ -31,8 +33,6 @@ graph TD
     LadderGameController --> InputView
     LadderGameController --> OutputView
 
-    Ladder --> Line
-    Line --> LineStatus
 ```
 
 ### 참가자
