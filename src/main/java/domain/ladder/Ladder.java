@@ -19,6 +19,15 @@ public class Ladder {
         this.lines = createLadder(personCount, height, booleanGenerator);
     }
 
+    public int move(int playerPosition) {
+        int position = playerPosition;
+        for (Line line : lines) {
+            Direction direction = line.chooseMoveDirection(position);
+            position += direction.getMovement();
+        }
+        return position;
+    }
+
     private void validateHeight(int height) {
         if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
             throw new IllegalArgumentException(HEIGHT_ERROR_MESSAGE);
