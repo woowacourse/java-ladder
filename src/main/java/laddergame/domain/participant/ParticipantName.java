@@ -23,7 +23,7 @@ public class ParticipantName {
 
     private void validateNameNullOrEmpty(final String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] ");
+            throw new IllegalArgumentException("[ERROR] 이름을 입력하셔아 합니다.");
         }
     }
 
