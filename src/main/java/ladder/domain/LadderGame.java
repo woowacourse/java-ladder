@@ -79,6 +79,13 @@ public class LadderGame {
                 ));
     }
 
+    public List<String> getPlayerNames() {
+        List<Player> receivedPlayers = players.getPlayers();
+        return receivedPlayers.stream()
+                .map(Player::getName)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
     public List<String> getResults() {
         List<Result> receivedResults = results.getResults();
         return receivedResults.stream()

@@ -17,10 +17,11 @@ public class ResultView {
     private static final String CONNECTED_MARKER = "-----";
     private static final String DISCONNECTED_MARKER = "     ";
 
-    private static final String EXECUTION_MESSAGE = System.lineSeparator() + "사다리 결과" + System.lineSeparator();
+    private static final String LADDER_RESULT_MESSAGE = System.lineSeparator() + "사다리 결과" + System.lineSeparator();
+    private static final String EXECUTION_MESSAGE = System.lineSeparator() + "실행 결과";
 
-    public static void printExecutionMessage() {
-        System.out.println(EXECUTION_MESSAGE);
+    public static void printLadderResultMessage() {
+        System.out.println(LADDER_RESULT_MESSAGE);
     }
 
     public static void printPlayerNames(List<String> names) {
@@ -69,5 +70,10 @@ public class ResultView {
             resultsForPrint.add(formatWithSpace(result));
         }
         System.out.println(resultsForPrint);
+    }
+
+    public static void printOneResult(String result) {
+        System.out.println(EXECUTION_MESSAGE);
+        System.out.println(result);
     }
 }
