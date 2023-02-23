@@ -7,6 +7,8 @@ import java.util.function.Supplier;
 
 public class InputView {
 
+    private static final String NEW_LINE = System.lineSeparator();
+
     private final BufferedReader bufferedReader;
 
     public InputView() {
@@ -14,13 +16,11 @@ public class InputView {
     }
 
     public String readParticipantNames() {
-        OutputView.print("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 분리하세요)");
-        return readUserInput();
+        return readUserInputBy("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 분리하세요)");
     }
 
     public String readMaxLadderHeight() {
-        OutputView.print(System.lineSeparator() + "최대 사다리 높이는 몇 개인가요?");
-        return readUserInput();
+        return readUserInputBy(NEW_LINE + "최대 사다리 높이는 몇 개인가요?");
     }
 
     public <T> T repeatUntilGettingValidValue(Supplier<T> inputReader) {
@@ -32,8 +32,9 @@ public class InputView {
         }
     }
 
-    private String readUserInput() {
+    private String readUserInputBy(final String guideMessage) {
         try {
+            OutputView.print(guideMessage);
             return bufferedReader.readLine();
         } catch (IOException e) {
             OutputView.print(e.getMessage());
