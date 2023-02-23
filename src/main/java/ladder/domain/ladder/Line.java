@@ -8,24 +8,22 @@ import java.util.Stack;
 public class Line {
 
     private final List<Block> blocks;
-    private final BlockGenerator blockGenerator;
 
-    public Line(BlockGenerator blockGenerator, final int playerNumber) {
-        this.blockGenerator = blockGenerator;
-        this.blocks = makeBlocks(playerNumber - 1);
+    public Line(final BlockGenerator blockGenerator, final int playerNumber) {
+        this.blocks = makeBlocks(blockGenerator, playerNumber - 1);
     }
 
-    private List<Block> makeBlocks(int blockCount) {
+    private List<Block> makeBlocks(final BlockGenerator blockGenerator, int blockCount) {
         Stack<Block> blocks = new Stack<>();
         blocks.push(blockGenerator.generate());
         while (blocks.size() != blockCount) {
-            Block block = generateBlock(blocks.peek());
+            Block block = generateBlock(blockGenerator, blocks.peek());
             blocks.push(block);
         }
         return List.copyOf(blocks);
     }
 
-    private Block generateBlock(Block previousBlock) {
+    private Block generateBlock(final BlockGenerator blockGenerator, final Block previousBlock) {
         if (previousBlock.isExistBlock()) {
             return Block.EMPTY;
         }

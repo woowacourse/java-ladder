@@ -9,12 +9,10 @@ import java.util.List;
 public class Ladder {
 
     private final List<Line> lines;
-    private final BlockGenerator blockGenerator;
 
     public Ladder(final BlockGenerator blockGenerator, final int playerNumber, final int height) {
         validateLadderLength(playerNumber, height);
-        this.blockGenerator = blockGenerator;
-        this.lines = makeLines(playerNumber, height);
+        this.lines = makeLines(blockGenerator, playerNumber, height);
     }
 
     private void validateLadderLength(final int playerNumber, final int height) {
@@ -23,7 +21,7 @@ public class Ladder {
         }
     }
 
-    private List<Line> makeLines(final int playerNumber, final int height) {
+    private List<Line> makeLines(final BlockGenerator blockGenerator, final int playerNumber, final int height) {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
