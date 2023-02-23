@@ -30,29 +30,8 @@ public class LadderController {
 
         result.perform(ladder);
 
-        while (response(names, result)) {
+        while (response(result)) {
         }
-    }
-
-    private boolean response(Names names, Result result) {
-        String name = readName();
-
-        try {
-            return printGameResult(names, result, name);
-        } catch (IllegalArgumentException e) {
-            resultView.printErrorMessage(e.getMessage());
-            return response(names, result);
-        }
-    }
-
-    private boolean printGameResult(Names names, Result result, String name) {
-        if (name.equals(ALL)) {
-            resultView.printGameResult(names, result);
-            return false;
-        }
-
-        resultView.printGameResult(result, names.indexOf(new Name(name)));
-        return true;
     }
 
     private Names createNames() {
@@ -74,10 +53,19 @@ public class LadderController {
 
     private Result createResult(Names names) {
         try {
-            return new Result(names, readBets());
+            return new Result(names, createBets());
         } catch (IllegalArgumentException | NullPointerException e) {
             resultView.printErrorMessage(e.getMessage());
             return createResult(names);
+        }
+    }
+
+    private Bets createBets() {
+        try {
+            return new Bets(readBets());
+        } catch (IllegalArgumentException e) {
+            resultView.printErrorMessage(e.getMessage());
+            return createBets();
         }
     }
 
@@ -96,6 +84,27 @@ public class LadderController {
 
     private int readLadderHeight() {
         return inputView.requestLadderHeight();
+    }
+
+    private boolean response(Result result) {
+        String name = readName();
+
+        try {
+            return printGameResult(result, name);
+        } catch (IllegalArgumentException e) {
+            resultView.printErrorMessage(e.getMessage());
+            return response(result);
+        }
+    }
+
+    private boolean printGameResult(Result result, String name) {
+        if (name.equals(ALL)) {
+            resultView.printGameAllResult(result);
+            return false;
+        }
+
+        resultView.printGameResult(result, new Name(name));
+        return true;
     }
 
 }

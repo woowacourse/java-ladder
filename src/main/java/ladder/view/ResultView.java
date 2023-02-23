@@ -1,11 +1,9 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Names;
-import ladder.domain.Result;
+import ladder.domain.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -21,29 +19,29 @@ public class ResultView {
         System.out.println(message);
     }
 
-    public void printForm(Names names, Ladder ladder, Result bets) {
-        System.out.println("실행결과\n");
+    public void printForm(Names names, Ladder ladder, Result result) {
+        int lengthOfFirstName = names.lengthOfFirstName();
 
+        System.out.println("실행결과\n");
         printNames(names);
-        printLadder(ladder, names.lengthOfFirstName());
-        printBets(bets, names.lengthOfFirstName());
+        printLadder(ladder, lengthOfFirstName);
+        printBets(result, lengthOfFirstName);
     }
 
-
     private void printNames(Names names) {
-        String result = names.getNames()
+        String resultMessage = names.getNames()
                 .stream()
                 .map(name -> String.format(NAME_FORMAT, name) + BLANK)
                 .collect(Collectors.joining());
-        System.out.println(result.trim());
+        System.out.println(resultMessage.trim());
     }
 
     private void printLadder(Ladder ladder, int lengthOfFirstName) {
         for (Line line : ladder.getLadder()) {
-            String result = BLANK.repeat(lengthOfFirstName - 1);
-            result += getShapeOf(line);
-            result += LEG;
-            System.out.println(result);
+            String resultMessage = BLANK.repeat(lengthOfFirstName - 1);
+            resultMessage += getShapeOf(line);
+            resultMessage += LEG;
+            System.out.println(resultMessage);
         }
     }
 
@@ -55,30 +53,32 @@ public class ResultView {
                 .collect(Collectors.joining());
     }
 
-    private void printBets(Result bets, int lengthOfFirstName) {
-        String result = BLANK.repeat(lengthOfFirstName - 1);
-        result += bets.getResult()
+    private void printBets(Result result, int lengthOfFirstName) {
+        String resultMessage = BLANK.repeat(lengthOfFirstName - 1);
+        resultMessage += result.getResult().values()
                 .stream()
                 .map(bet -> String.format(BET_FORMAT, bet) + BLANK)
                 .collect(Collectors.joining());
-        System.out.println(result);
+        System.out.println(resultMessage);
     }
 
-    public void printGameResult(Names names, Result bets) {
+    public void printGameResult(Result result, Name name) {
         System.out.println("실행결과");
+        System.out.println(result.getBetByName(name));
+    }
 
-        String result = "";
+    public void printGameAllResult(Result result) {
+        System.out.println("실행결과");
+        List<Name> names = List.copyOf(result.getResult().keySet());
+        List<Bet> bets = List.copyOf(result.getResult().values());
+
+        String resultMessage = "";
         for (int i = 0; i < names.size(); i++) {
-            result += String.format(RESULT_FORMAT, names.getNames().get(i), bets.getResult().get(i));
-            result += "\n";
+            resultMessage += String.format(RESULT_FORMAT, names.get(i), bets.get(i));
+            resultMessage += "\n";
         }
 
-        System.out.print(result);
-    }
-
-    public void printGameResult(Result bets, int index) {
-        System.out.println("실행결과");
-        System.out.println(bets.getResult().get(index));
+        System.out.print(resultMessage);
     }
 
     private enum LadderFormat {

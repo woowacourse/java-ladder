@@ -37,7 +37,7 @@ public class Line {
         return cellIndex != FIRST_CELL_INDEX && line.get(cellIndex - 1);
     }
 
-    public boolean isExistLineAtCell(int cellIndex){
+    public boolean existLineAtCell(int cellIndex){
         return line.get(cellIndex);
     }
 
