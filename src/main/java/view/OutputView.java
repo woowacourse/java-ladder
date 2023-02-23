@@ -16,6 +16,10 @@ public class OutputView {
     private static final String NON_EXIST_LINE = "       ";
     private static final String WALL = "|";
 
+    public static void printLadderMessage() {
+        System.out.println("\n사다리 결과\n");
+    }
+
     public static void printResultMessage() {
         System.out.println("\n실행 결과\n");
     }

@@ -14,6 +14,13 @@ public class LadderGame {
         this.results = results;
     }
 
+    public void printLadder() {
+        OutputView.printLadderMessage();
+        OutputView.printPlayers(playersInGame);
+        OutputView.printLadder(ladder);
+        OutputView.printLadderResult(results);
+    }
+
     public void playGame() {
         for (Line line : ladder.getLines().getLines()) {
             crossLadder(line);
