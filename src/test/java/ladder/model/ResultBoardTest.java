@@ -20,7 +20,7 @@ class ResultBoardTest {
         Players players = new Players(playerNames.stream().map(Player::new).collect(Collectors.toList()));
 
         List<Reward> rewardNames = new ArrayList<>(List.of(new Reward("꽝1"), new Reward("꽝2"), new Reward("3000"), new Reward("5000")));
-        Rewards rewards = new Rewards(rewardNames, players.getSize());
+        Rewards rewards = new Rewards(rewardNames);
 
         LadderGenerator generator = new LadderGenerator(new LadderGeneratorTest.TestLineCreateDecider(newArrayList(true, false, true, false, true, true)));
         Ladder ladder = generator.generateLadder(players.getSize(), new Height(2));
