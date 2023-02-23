@@ -3,6 +3,7 @@ package domain;
 import java.util.List;
 
 public class Prizes {
+
     public static final int MIN_LENGTH = 1;
     public static final int MAX_LENGTH = 10;
     public static final String INVALID_COUNT_MESSAGE = "상품의 수는 참여할 사람 수와 같아야합니다";
@@ -35,5 +36,9 @@ public class Prizes {
 
     public String getPrize(int index) {
         return prizes.get(index);
+    }
+
+    public List<String> getPrizes() {
+        return prizes;
     }
 }

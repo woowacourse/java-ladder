@@ -19,4 +19,8 @@ public class LadderResults implements Iterable<LadderResult> {
     public Iterator<LadderResult> iterator() {
         return results.iterator();
     }
+
+    public boolean isSingleResult() {
+        return results.size() == 1;
+    }
 }

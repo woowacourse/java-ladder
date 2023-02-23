@@ -29,12 +29,20 @@ public class LadderGame {
 
     public LadderResults searchResult(String personName) {
         if (ALL.equals(personName)) {
-            List<Person> people = this.people.getPeople();
-            List<LadderResult> ladderResults = people.stream()
-                .map((p) -> new LadderResult(p, prizes.getPrize(p.getPosition().getValue())))
-                .collect(Collectors.toUnmodifiableList());
-            return new LadderResults(ladderResults);
+            return searchAllResult();
         }
+        return searchOne(personName);
+    }
+
+    private LadderResults searchAllResult() {
+        List<Person> people = this.people.getPeople();
+        List<LadderResult> ladderResults = people.stream()
+            .map((p) -> new LadderResult(p, prizes.getPrize(p.getPosition().getValue())))
+            .collect(Collectors.toUnmodifiableList());
+        return new LadderResults(ladderResults);
+    }
+
+    private LadderResults searchOne(String personName) {
         Person person = people.searchByName(personName);
         int personIndex = person.getPosition()
             .getValue();

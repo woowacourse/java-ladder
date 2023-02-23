@@ -29,4 +29,12 @@ public class LadderResult {
     public int hashCode() {
         return Objects.hash(person, prize);
     }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public String getPrize() {
+        return prize;
+    }
 }
