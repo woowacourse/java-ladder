@@ -49,16 +49,28 @@ public class LadderGame {
         if (currentHeight == ladderHeight) {
             return index;
         }
-        List<LadderRow> ladderRows = ladder.getLadderRows();
-        LadderRow ladderRow = ladderRows.get(currentHeight);
-        int existingLineIndex = ladderRow.getExistingLineIndex(index);
-        if (index == existingLineIndex) {
+        int existingLineIndex = getExistingLineIndex(index, currentHeight);
+        if (isRight(index, existingLineIndex)) {
             return move(index + 1, currentHeight + 1, ladderHeight);
         }
-        if (index == existingLineIndex + 1) {
+        if (isLeft(index, existingLineIndex)) {
             return move(index - 1, currentHeight + 1, ladderHeight);
         }
         return move(index, currentHeight + 1, ladderHeight);
+    }
+
+    private int getExistingLineIndex(final int index, final int currentHeight) {
+        List<LadderRow> ladderRows = ladder.getLadderRows();
+        LadderRow ladderRow = ladderRows.get(currentHeight);
+        return ladderRow.getExistingLineIndex(index);
+    }
+
+    private boolean isRight(final int index, final int existingLineIndex) {
+        return index == existingLineIndex;
+    }
+
+    private boolean isLeft(final int index, final int existingLineIndex) {
+        return index == existingLineIndex + 1;
     }
 
     public boolean inProgress() {
