@@ -42,10 +42,10 @@ public class Line {
         }
     }
 
-    // TODO 바로 인덱스 구해서 주기
-    public Direction getDirectionToMove(int index) {
+    public int findNextLineIndex(int index) {
         IndexValidator.validateBounds(index, directions.size(), "주어진 위치가 사다리 폭보다 큽니다.");
-        return directions.get(index);
+        Direction direction = directions.get(index);
+        return direction.computeNextIndex(index);
     }
 
     public int size() {

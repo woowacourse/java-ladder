@@ -31,6 +31,7 @@ class LineTest {
     @DisplayName("주어진 개수 만큼의 방향을 주어진 생성방식에 따라 생성된다.")
     void should_GenerateDirections_By_GivenStepPointGenerator() {
         List<StepPoint> stepPoints = List.of(EXIST, NONE, EXIST, NONE, EXIST);
+        // TODO 테스트코드 리팩터링
         List<Direction> expected = List.of(
                 Direction.findDirection(NONE, EXIST),
                 Direction.findDirection(EXIST, NONE),
@@ -49,11 +50,12 @@ class LineTest {
     @Test
     @DisplayName("라인 생성 시 연속된 디딤대를 제공하면 예외를 던진다.")
     void should_ThrowException_When_GenerateContinuousStepPoints() {
-        List<StepPoint> expected = List.of(EXIST, EXIST);
+        List<StepPoint> stepPoints = List.of(EXIST, EXIST);
 
-        Queue<StepPoint> generateValues = new LinkedList<>(expected);
+        Queue<StepPoint> generateValues = new LinkedList<>(stepPoints);
 
-        assertThatThrownBy(() -> Line.of(new MockedPointGenerator(generateValues), new LineWidth(expected.size() + 1)))
+        assertThatThrownBy(
+                () -> Line.of(new MockedPointGenerator(generateValues), new LineWidth(stepPoints.size() + 1)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("디딤대는 연속적으로 존재할 수 없습니다.");
     }
@@ -66,6 +68,6 @@ class LineTest {
         Queue<StepPoint> generateValues = new LinkedList<>(stepPoints);
         Line line = Line.of(new MockedPointGenerator(generateValues), new LineWidth(stepPoints.size() + 1));
 
-        assertThat(line.getDirectionToMove(0)).isEqualTo(Direction.RIGHT);
+        assertThat(line.findNextLineIndex(0)).isEqualTo(1);
     }
 }

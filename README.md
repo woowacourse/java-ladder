@@ -91,7 +91,6 @@
         - [x] 아래 방향이면 (현재 위치)
         - [x] 왼쪽 방향이면 (현재 위치 - 1)
         - [x] 오른쪽 방향이면 (현재위치 + 1)
-
 - 디딤대 좌표값 랜덤 생성기
     - [x] 랜덤하게 존재 유/무를 결정하되, 연속되지 않도록 생성한다.
 - 디딤대 좌표값
@@ -146,7 +145,6 @@
   li1 --> d1(Direction)
   li1 --> d2(Direction)
   li1 --> d3(Direction)
-  li1 --> d4(Direction)
   
   d1 --> s1(Left StepPoint)
   d1 --> s2(Right StepPoint)

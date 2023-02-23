@@ -3,7 +3,6 @@ package laddergame.domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import laddergame.domain.generator.StepPointGenerator;
-import laddergame.domain.ladder.line.Direction;
 import laddergame.domain.ladder.line.Line;
 import laddergame.domain.ladder.line.LineWidth;
 
@@ -27,8 +26,7 @@ public class LadderLines {
     public int findDestinationIndex(int startIndex) {
         int index = startIndex;
         for (Line line : lines) {
-            Direction nextDirection = line.getDirectionToMove(index);
-            index = nextDirection.computeNextIndex(index);
+            index = line.findNextLineIndex(index);
         }
         return index;
     }
