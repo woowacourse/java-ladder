@@ -32,6 +32,10 @@ public class LadderLines {
         return lines.size();
     }
 
+    public int width() {
+        return lines.get(0).size();
+    }
+
     public int findDestinationIndex(int startIndex) {
         int index = startIndex;
         for (Line line : lines) {

@@ -15,9 +15,8 @@ public class Name {
 
     private void validate(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(
-                    ExceptionMessageFormatter.format("참여자의 이름은 최대 " + MAX_NAME_LENGTH + "글자를 넘을 수 없습니다.",
-                            name.length()));
+            String message = String.format("참여자의 이름은 최대 %d글자를 넘을 수 없습니다.", MAX_NAME_LENGTH);
+            throw new IllegalArgumentException(ExceptionMessageFormatter.format(message, name.length()));
         }
     }
 

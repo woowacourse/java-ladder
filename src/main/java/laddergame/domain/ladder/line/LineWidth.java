@@ -14,9 +14,9 @@ public class LineWidth {
     }
 
     private void validate(int value) {
+        String message = String.format("사다리 폭은 %d 이상이어야 합니다.", MIN_VALUE);
         if (value < MIN_VALUE) {
-            throw new IllegalArgumentException(
-                    ExceptionMessageFormatter.format("사다리 폭은 " + MIN_VALUE + " 이상이어야 합니다.", value));
+            throw new IllegalArgumentException(ExceptionMessageFormatter.format(message, value));
         }
     }
 

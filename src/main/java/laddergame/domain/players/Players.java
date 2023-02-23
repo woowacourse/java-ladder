@@ -19,8 +19,8 @@ public class Players {
 
     private void validate(List<Player> players) {
         if (players.size() < MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException(
-                    ExceptionMessageFormatter.format("참가자는 " + MIN_PLAYER_COUNT + "명 이상이어야 합니다.", players.size()));
+            String message = String.format("참가자는 %d명 이상이어야 합니다.", MIN_PLAYER_COUNT);
+            throw new IllegalArgumentException(ExceptionMessageFormatter.format(message, players.size()));
         }
         // TODO 중복 검사
     }

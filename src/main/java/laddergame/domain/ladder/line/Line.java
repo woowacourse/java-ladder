@@ -3,7 +3,7 @@ package laddergame.domain.ladder.line;
 import java.util.ArrayList;
 import java.util.List;
 import laddergame.domain.generator.StepPointGenerator;
-import laddergame.domain.util.ExceptionMessageFormatter;
+import laddergame.domain.util.IndexValidator;
 
 public class Line {
 
@@ -17,6 +17,7 @@ public class Line {
         return new Line(generateDirections(stepPointGenerator, width.get()));
     }
 
+    // TODO 메소드 길이 줄이기
     private static List<Direction> generateDirections(StepPointGenerator stepPointGenerator, int width) {
         List<Direction> directions = new ArrayList<>();
 
@@ -38,24 +39,16 @@ public class Line {
         }
     }
 
+    public Direction getDirectionToMove(int index) {
+        IndexValidator.validateBounds(index, directions.size(), "주어진 위치가 사다리 폭보다 큽니다.");
+        return directions.get(index);
+    }
+
     public int size() {
         return directions.size();
     }
 
     public List<Direction> toDirections() {
         return new ArrayList<>(directions);
-    }
-
-    public Direction getDirectionToMove(int index) {
-        validateIndex(index);
-        return directions.get(index);
-    }
-
-    private void validateIndex(int index) {
-        if (index < -1 || index > size() - 1) {
-            throw new IllegalArgumentException(
-                    ExceptionMessageFormatter.format("주어진 위치가 사다리 폭보다 큽니다.", index)
-            );
-        }
     }
 }

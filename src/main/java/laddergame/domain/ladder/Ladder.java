@@ -5,6 +5,7 @@ import laddergame.domain.generator.RandomStepPointGenerator;
 import laddergame.domain.ladder.line.Line;
 import laddergame.domain.ladder.line.LineWidth;
 import laddergame.domain.util.ExceptionMessageFormatter;
+import laddergame.domain.util.IndexValidator;
 
 public class Ladder {
 
@@ -25,15 +26,13 @@ public class Ladder {
 
     private static void validateResults(int linesWidth, int resultsCount) {
         if (linesWidth != resultsCount) {
-            throw new IllegalArgumentException(
-                    ExceptionMessageFormatter.format("결과의 개수와 라인의 폭(" + linesWidth + ")은 일치해야 합니다.",
-                            linesWidth)
-            );
+            String message = String.format("결과의 개수와 라인의 폭(%d)은 일치해야 합니다.", linesWidth);
+            throw new IllegalArgumentException(ExceptionMessageFormatter.format(message, resultsCount));
         }
     }
 
     public String findResultByStartIndex(int startIndex) {
-        // TODO validateIndex
+        IndexValidator.validateBounds(startIndex, lines.width(), "출발 위치가 사다리 폭보다 큽니다.");
         int destinationIndex = lines.findDestinationIndex(startIndex);
         return destination.get(destinationIndex);
     }
