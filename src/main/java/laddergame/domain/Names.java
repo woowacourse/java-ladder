@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 
 public class Names {
     private static final int MIN_PARTICIPANTS_SIZE = 2;
+    private static final int MIN_NAME_LENGTH = 0;
     private static final String NAMES_MIN_SIZE_EXCEPTION = "Names 리스트는 {0}명 미만이 될 수 없습니다.";
     private static final String NAME_NOT_EXISTS_EXCEPTION = "Names에서 {0} 라는 이름을 찾을 수 없습니다.";
 
@@ -32,8 +33,22 @@ public class Names {
         return names.get(position.getValue());
     }
 
+    public int getMaxNameLength() {
+        return names.stream()
+                .map(Name::getValue)
+                .mapToInt(String::length)
+                .max()
+                .orElse(MIN_NAME_LENGTH);
+    }
+
     public int getSize() {
         return names.size();
+    }
+
+    public List<String> getNameValues() {
+        return names.stream()
+                .map(Name::getValue)
+                .collect(Collectors.toList());
     }
 
     public List<Name> getNames() {
