@@ -1,6 +1,7 @@
 package laddergame.view;
 
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import laddergame.domain.LadderResult;
@@ -17,8 +18,14 @@ public class LadderFormGenerator {
     private int rungLength;
 
     public String generate(final PersonalNames personalNames, final LadderResult ladderResult, final List<Line> lines) {
-        rungLength = getMaximumLengthOfNames(personalNames.getPersonalNames(), ladderResult.getResultItems());
+        List<String> values = mapToValue(personalNames);
+        List<String> itemNames = mapToName(ladderResult);
+        rungLength = getMaximumElementLengthOf(concat(values, itemNames));
         return joinNames(mapToValue(personalNames)) + joinRows(lines) + joinNames(mapToName(ladderResult));
+    }
+
+    private List<String> concat(List<String> values, List<String> itemNames) {
+        return Arrays.asList(values, itemNames).stream().flatMap(list -> list.stream()).collect(Collectors.toList());
     }
 
     private List<String> mapToValue(PersonalNames personalNames) {
@@ -29,13 +36,8 @@ public class LadderFormGenerator {
         return ladderResult.getResultItems().stream().map(LadderResultItem::getName).collect(Collectors.toList());
     }
 
-    private int getMaximumLengthOfNames(final List<PersonalName> personalNames,
-                                        final List<LadderResultItem> ladderResult) {
-        int maxLengthOfNames = personalNames.stream().map(PersonalName::getValue).mapToInt(String::length).max()
-                .getAsInt();
-        int maxLengthOfItems = ladderResult.stream().map(LadderResultItem::getName).mapToInt(String::length).max()
-                .getAsInt();
-        return Math.max(maxLengthOfNames, maxLengthOfItems);
+    private int getMaximumElementLengthOf(final List<String> names) {
+        return names.stream().mapToInt(String::length).max().getAsInt();
     }
 
     private String joinNames(final List<String> names) {
