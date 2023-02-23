@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import util.BridgeGenerator;
+import util.BooleanGenerator;
 
 public class Line {
     private final List<Bridge> bridges;
@@ -17,17 +17,24 @@ public class Line {
         this.lineSize = bridges.size();
     }
 
-    public void generate(BridgeGenerator bridgeGenerator) {
+    public void generate(BooleanGenerator booleanGenerator) {
         for (int bridgeIndex = 0; bridgeIndex < lineSize; bridgeIndex++) {
-            generateBridge(bridgeGenerator, bridgeIndex);
+            generateBridge(booleanGenerator, bridgeIndex);
         }
     }
 
-    private void generateBridge(BridgeGenerator bridgeGenerator, int bridgeIndex) {
-        Bridge bridge = bridgeGenerator.generate();
+    private void generateBridge(BooleanGenerator booleanGenerator, int bridgeIndex) {
+        Bridge randomBridge = generateRandomBridge(booleanGenerator);
         if (!hasBridgeInLeftOrRight(bridgeIndex)) {
-            bridges.set(bridgeIndex, bridge);
+            bridges.set(bridgeIndex, randomBridge);
         }
+    }
+
+    public Bridge generateRandomBridge(BooleanGenerator booleanGenerator) {
+        if (booleanGenerator.generate()) {
+            return Bridge.EXIST;
+        }
+        return Bridge.EMPTY;
     }
 
     private boolean hasBridgeInLeftOrRight(int bridgeIndex) {
@@ -41,14 +48,14 @@ public class Line {
         if (position == 0) {
             return false;
         }
-        return bridges.get(position - 1).getStatus();
+        return bridges.get(position - 1).isExist();
     }
 
     public Boolean hasBridgeInRight(int position) {
         if (position == lineSize) {
             return false;
         }
-        return bridges.get(position).getStatus();
+        return bridges.get(position).isExist();
     }
 
     public List<Bridge> getBridges() {

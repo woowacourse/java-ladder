@@ -3,7 +3,7 @@ package util;
 import domain.Bridge;
 import java.util.List;
 
-public class TestGenerator implements BridgeGenerator {
+public class TestGenerator implements BooleanGenerator {
     private final List<Boolean> list;
     private int index = 0;
 
@@ -12,7 +12,7 @@ public class TestGenerator implements BridgeGenerator {
     }
 
     @Override
-    public Bridge generate() {
-        return Bridge.from(list.get(index++));
+    public Boolean generate() {
+        return list.get(index++);
     }
 }

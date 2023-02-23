@@ -41,7 +41,7 @@ public class OutputView {
     }
 
     private static void printEachLine(List<Bridge> line) {
-        line.forEach(hasBridge -> printEachBridge(hasBridge.getStatus()));
+        line.forEach(hasBridge -> printEachBridge(hasBridge.isExist()));
     }
 
     private static void printEachBridge(boolean hasBridge) {

@@ -2,9 +2,9 @@ package util;
 
 import domain.Bridge;
 
-public class FalseGenerator implements BridgeGenerator {
+public class FalseGenerator implements BooleanGenerator {
     @Override
-    public Bridge generate() {
-        return Bridge.EMPTY;
+    public Boolean generate() {
+        return false;
     }
 }

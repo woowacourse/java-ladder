@@ -3,7 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import util.BridgeGenerator;
+import util.BooleanGenerator;
 
 public class Ladder {
     private final List<Line> lines;
@@ -20,9 +20,9 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public void generate(BridgeGenerator bridgeGenerator) {
+    public void generate(BooleanGenerator booleanGenerator) {
         for (Line line : lines) {
-            line.generate(bridgeGenerator);
+            line.generate(booleanGenerator);
         }
     }
 

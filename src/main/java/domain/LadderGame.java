@@ -4,24 +4,24 @@ import exception.ErrorCode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import util.BridgeGenerator;
-import util.RandomBridgeGenerator;
+import util.BooleanGenerator;
+import util.RandomBooleanGenerator;
 
 public class LadderGame {
     private final Persons persons;
     private final Ladder ladder;
     private Map<String, String> mappingResult = new HashMap<>();
 
-    private final BridgeGenerator bridgeGenerator;
+    private final BooleanGenerator booleanGenerator;
 
     public LadderGame(List<String> names, Height height) {
         this.persons = Persons.from(names);
         this.ladder = Ladder.of(height, persons.getTotalPersonCount());
-        this.bridgeGenerator = new RandomBridgeGenerator();
+        this.booleanGenerator = new RandomBooleanGenerator();
     }
 
     public void run() {
-        ladder.generate(bridgeGenerator);
+        ladder.generate(booleanGenerator);
         persons.playGame(ladder);
     }
 
