@@ -13,11 +13,10 @@ public class PrizesResponse {
     }
 
     public static PrizesResponse ofPrizes(Prizes prizes) {
-        String resultsString = prizes.getPrizes().stream()
+        return prizes.getPrizes().stream()
                 .map(Prize::getPrize)
                 .map(result -> String.format("%-5s", result))
-                .collect(joining(" "));
-        return new PrizesResponse(resultsString);
+                .collect(collectingAndThen(joining(" "), PrizesResponse::new));
     }
 
     public String getPrizes() {

@@ -13,11 +13,10 @@ public class PlayersResponse {
     }
 
     public static PlayersResponse ofPlayers(Players players) {
-        String playersString = players.getPlayers().stream()
+        return players.getPlayers().stream()
                 .map(Player::getName)
                 .map(name -> String.format("%-5s", name))
-                .collect(joining(" "));
-        return new PlayersResponse(playersString);
+                .collect(collectingAndThen(joining(" "), PlayersResponse::new));
     }
 
     public String getPlayers() {

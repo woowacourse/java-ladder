@@ -15,11 +15,10 @@ public class LadderResponse {
     }
 
     public static LadderResponse ofLadder(Ladder ladder) {
-        List<String> linesString = ladder.getLines().stream()
+        return ladder.getLines().stream()
                 .map(Line::getSteps)
                 .map(LadderResponse::stepsToString)
-                .collect(toList());
-        return new LadderResponse(linesString);
+                .collect(collectingAndThen(toList(), LadderResponse::new));
     }
 
     private static String stepsToString(List<Step> steps) {
