@@ -1,17 +1,20 @@
 package controller;
 
 import domain.Ladder;
-import domain.Level;
 import domain.People;
-import domain.Stool;
+import domain.Prizes;
 import util.StoolGenerator;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderController {
+    private static final String ALL_PEOPLE = "all";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final StoolGenerator stoolGenerator;
@@ -23,46 +26,58 @@ public class LadderController {
     }
 
     public void run() {
-        People people = initPeople();
-        Ladder ladder = initLadder(people.size());
+        People people = repeat(() -> People.from(inputView.readNames()));
+        Ladder ladder = repeat(() -> Ladder.of(inputView.readHeight(), people.size(), stoolGenerator));
+        Prizes prizes = repeat(() -> Prizes.of(inputView.readResults(), people.size()));
 
-        showLadder(people, ladder);
-        getLadder(ladder);
+        showLadder(people, ladder, prizes);
+        showResult(people, ladder, prizes);
     }
 
-    private People initPeople() {
+    private <T> T repeat(Supplier<T> supplier) {
         try {
-            return People.from(inputView.readNames());
+            return supplier.get();
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
 
-            return initPeople();
+            return repeat(supplier);
         }
     }
 
-    private Ladder initLadder(int participantsSize) {
+    private void showLadder(People people, Ladder ladder, Prizes prizes) {
+        outputView.printLadder(people.getNames(), ladder, prizes.getPrizes());
+    }
+
+    private void showResult(People people, Ladder ladder, Prizes prizes) {
+        String target = inputView.readTargetName();
+
+        if (!target.equals(ALL_PEOPLE)) {
+            printPerson(people, ladder, prizes, target);
+            showResult(people, ladder, prizes);
+        }
+
+        if (target.equals(ALL_PEOPLE)) {
+            printAllPeople(people, ladder, prizes);
+        }
+    }
+
+    private void printAllPeople(People people, Ladder ladder, Prizes prizes) {
+        List<String> prizesOfAll = IntStream.range(0, people.size())
+                .map(ladder::getResult)
+                .mapToObj(prizes::getPrizeByPosition)
+                .collect(Collectors.toList());
+
+        outputView.printAllResults(people.getNames(), prizesOfAll);
+    }
+
+    private void printPerson(People people, Ladder ladder, Prizes prizes, String name) {
         try {
-            return Ladder.from(inputView.readHeight(), participantsSize, stoolGenerator);
+            int startPosition = people.getPosition(name);
+            int endPosition = ladder.getResult(startPosition);
+
+            outputView.printResult(prizes.getPrizeByPosition(endPosition));
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-
-            return initLadder(participantsSize);
         }
-    }
-
-    private void showLadder(People people, Ladder ladder) {
-        outputView.printResult(people.getNames(), getLadder(ladder));
-    }
-
-    private List<List<Boolean>> getLadder(Ladder ladder) {
-        return ladder.getLevels().stream()
-                .map(this::getLevel)
-                .collect(Collectors.toList());
-    }
-
-    private List<Boolean> getLevel(Level level) {
-        return level.getStools().stream()
-                .map(Stool::isExist)
-                .collect(Collectors.toList());
     }
 }

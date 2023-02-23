@@ -1,7 +1,8 @@
 package domain;
 
 public enum Stool {
-	EXIST(true), EMPTY(false);
+	EXIST(true),
+	EMPTY(false);
 
 	private final boolean isExist;
 
@@ -10,8 +11,9 @@ public enum Stool {
 	}
 
 	public static Stool of(boolean isExist) {
-		if (isExist)
+		if (isExist) {
 			return Stool.EXIST;
+		}
 
 		return Stool.EMPTY;
 	}
