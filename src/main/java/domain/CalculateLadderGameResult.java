@@ -5,24 +5,26 @@ import java.util.List;
 
 public class CalculateLadderGameResult {
 
-    public List<String> passLadder(List<Line> ladder, List<String> userNames) {
+    public List<String> passLadder(final List<Line> ladder, final List<String> userNames) {
         List<String> userPositions = new ArrayList<>(userNames);
         for (Line line : ladder) {
             List<Link> links = line.getLinks();
-            userPositions = passLine(links, userPositions);
+            passLine(links, userPositions);
         }
-        return userPositions;
+        return List.copyOf(userPositions);
     }
 
-    private List<String> passLine(List<Link> links, List<String> prevUserPositions) {
-        List<String> postUserPositions = new ArrayList<>(prevUserPositions);
+    private void passLine(final List<Link> links, List<String> userPositions) {
         for (int index = 0; index < links.size(); index++) {
-            if (links.get(index).isLink()) {
-                String swapName = postUserPositions.get(index);
-                postUserPositions.set(index, postUserPositions.get(index + 1));
-                postUserPositions.set(index + 1, swapName);
-            }
+            swapUserPositions(links, index, userPositions);
         }
-        return postUserPositions;
+    }
+
+    private static void swapUserPositions(final List<Link> links, final int index, List<String> userPositions) {
+        if (links.get(index).isLink()) {
+            String swapUserName = userPositions.get(index);
+            userPositions.set(index, userPositions.get(index + 1));
+            userPositions.set(index + 1, swapUserName);
+        }
     }
 }
