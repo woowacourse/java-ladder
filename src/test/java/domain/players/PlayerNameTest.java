@@ -34,4 +34,12 @@ public class PlayerNameTest {
                 .isThrownBy(() -> new Player(playerName));
     }
 
+    @DisplayName("참여자 이름은 all일 수 없다.")
+    @Test
+    void playerNameAllIsForbidden() {
+        assertThatThrownBy(() -> new Player("all"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참여자 이름은 \"all\"일 수 없습니다.");
+    }
+
 }
