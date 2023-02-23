@@ -1,5 +1,7 @@
 package laddergame.domain.result;
 
+import java.util.Objects;
+
 public class Result {
 
     public static final String INVALID_INCLUSION = " ";
@@ -21,5 +23,22 @@ public class Result {
         if (result.contains(INVALID_INCLUSION)) {
             throw new IllegalArgumentException("[ERROR] 실행 결과에 공백이 포함될 수 없습니다.");
         }
+    }
+
+    @Override
+    public boolean equals(final Object diffResult) {
+        if (this == diffResult) {
+            return true;
+        }
+        if (diffResult == null || getClass() != diffResult.getClass()) {
+            return false;
+        }
+        Result result1 = (Result) diffResult;
+        return result.equals(result1.result);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(result);
     }
 }
