@@ -1,6 +1,7 @@
 package laddergame.domain.participant;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -41,6 +42,16 @@ public class ParticipantNameTest {
     @NullAndEmptySource
     @DisplayName("이름이 빈값이라면, 예외가 발생한다.")
     void throws_exception_if_name_is_null_or_blank(String invalidName) {
+        assertThatThrownBy(() -> ParticipantName.create(invalidName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE_HEAD);
+    }
+
+    @Test
+    @DisplayName("이름이 \"all\" 이라면, 예외가 발생한다.")
+    void throws_exception_if_name_is_all() {
+        String invalidName = "all";
+
         assertThatThrownBy(() -> ParticipantName.create(invalidName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE_HEAD);

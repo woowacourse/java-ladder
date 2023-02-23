@@ -11,6 +11,9 @@ public class ParticipantName {
         validateNameNullOrEmpty(name);
         validateNameBlank(name);
         validateNameLength(name);
+        if (name.equals("all")) {
+            throw new IllegalArgumentException("[ERROR] 이름은 \"all\"일 수 없습니다.");
+        }
         this.name = name;
     }
 
@@ -20,7 +23,7 @@ public class ParticipantName {
 
     private void validateNameNullOrEmpty(final String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException("[ERROR] ");
         }
     }
 
