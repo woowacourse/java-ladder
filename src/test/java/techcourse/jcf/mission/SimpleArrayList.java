@@ -87,7 +87,7 @@ public class SimpleArrayList implements SimpleList {
     public void add(int index, String value) {
         rangeCheckForAdd(index);
         final int s;
-        Object[] elementData;
+        String[] elementData;
         if ((s = size) == (elementData = this.elementData).length)
             elementData = grow();
         System.arraycopy(elementData, index, elementData, index + 1, s - index);
@@ -115,13 +115,32 @@ public class SimpleArrayList implements SimpleList {
     }
 
     @Override
-    public boolean contains(String value) {
-        return false;
+    public int indexOf(String value) {
+        return indexOfRange(value, 0, size);
+    }
+
+    private int indexOfRange(String value, int start, int end) {
+        String[] es = elementData;
+        if (value == null) {
+            for (int i = start; i < end; i++) {
+                if (es[i] == null) {
+                    return i;
+                }
+            }
+        } else {
+            for (int i = start; i < end; i++) {
+                if (value.equals(es[i])) {
+                    return i;
+                }
+            }
+        }
+        return -1;
     }
 
     @Override
-    public int indexOf(String value) {
-        return 0;
+    public boolean contains(String value) {
+
+        return false;
     }
 
     @Override
