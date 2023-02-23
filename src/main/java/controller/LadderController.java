@@ -2,12 +2,10 @@ package controller;
 
 import model.GameResult;
 import java.util.List;
-import java.util.stream.Collectors;
 import model.Height;
 import model.Ladder;
 import model.LadderGame;
 import model.LadderGameCommand;
-import model.LadderResult;
 import model.LadderResults;
 import model.Names;
 import strategy.PassGenerator;
@@ -50,10 +48,8 @@ public class LadderController {
         outputView.noticeInputLadderResult();
 
         List<String> results = inputView.inputLadderResults();
-        List<LadderResult> ladderResults = results.stream()
-                .map(LadderResult::new)
-                .collect(Collectors.toUnmodifiableList());
-        return LadderResults.of(ladderResults, totalParticipantSize);
+
+        return LadderResults.of(results, totalParticipantSize);
     }
 
     private Ladder generateLadder(PassGenerator generator, int totalParticipantSize) {

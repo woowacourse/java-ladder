@@ -14,13 +14,17 @@ public class LadderResults {
         this.results = new ArrayList<>(results);
     }
 
-    public static LadderResults of(List<LadderResult> results, int validResultSize) {
+    public static LadderResults of(List<String> results, int validResultSize) {
         validateResults(results, validResultSize);
 
-        return new LadderResults(results);
+        List<LadderResult> ladderResults = results.stream()
+                .map(LadderResult::new)
+                .collect(Collectors.toUnmodifiableList());
+
+        return new LadderResults(ladderResults);
     }
 
-    private static void validateResults(List<LadderResult> results, int validResultSize) {
+    private static void validateResults(List<String> results, int validResultSize) {
         if (Objects.isNull(results)) {
             throw new IllegalStateException("실행 결과가 정상적으로 입력되지 않았습니다.");
         }
