@@ -26,28 +26,78 @@ public class LadderGameController {
     }
 
     public void run() {
+        Users users = getUsers();
+        Rewards rewards = getRewards(users.size());
+        Ladder ladder = getLadder(users.size());
+        printLadderResult(ladder, users, rewards);
+        LadderGame ladderGame = new LadderGame(ladder, users, rewards);
+        ladderGame.moveUsers();
+        confirmResult(users, ladderGame);
+    }
+
+    private void confirmResult(Users users, LadderGame ladderGame) {
+        String name;
+
+        do {
+            name = getChoiceUser();
+            printFinalResult(ladderGame, users, name);
+        } while (!name.equals(TOTAL_RESULT_KEYWORD));
+    }
+
+    private String getChoiceUser() {
+        outputView.printEnterChoiceUserNotice();
+        return inputView.inputFinalChoice();
+    }
+
+    private Rewards getRewards(int userCount) {
+        outputView.printEnterRewardNotice();
+        List<String> rewards = inputView.inputRewards();
+
+        return Rewards.of(rewards, userCount);
+    }
+
+    private Ladder getLadder(int userCount) {
+        Height ladderHeight = getLadderHeight();
+
+        return new Ladder(ladderHeight, userCount);
+    }
+
+    private Users getUsers() {
         List<String> userNames = getUserNames();
-        Users users = new Users(generateUsers(userNames));
-        Height ladderHeight = new Height(getLadderHeight());
-        Ladder ladder = new Ladder(ladderHeight, userNames.size());
-        printResult(ladder, users);
+
+        return new Users(generateUsers(userNames));
+    }
+
+    private Height getLadderHeight() {
+        outputView.printEnterHeightNotice();
+        int height = inputView.inputHeight();
+
+        return new Height(height);
     }
 
     private List<String> getUserNames() {
         outputView.printEnterUserNotice();
+
         return inputView.inputUserNames();
     }
 
-    private int getLadderHeight() {
-        outputView.printEnterHeightNotice();
-        return inputView.inputHeight();
+    private List<User> generateUsers(List<String> userNames) {
+        List<User> users = new ArrayList<>();
+
+        for (int i = 0; i < userNames.size(); i++) {
+            users.add(new User(new Name(userNames.get(i)), new Position(i)));
+        }
+
+        return users;
     }
 
-    private List<User> generateUsers(List<String> userNames) {
-        return userNames.stream()
-                .map(Name::new)
-                .map(User::new)
-                .collect(Collectors.toUnmodifiableList());
+    private void printLadderResult(Ladder ladder, Users users, Rewards rewards) {
+        outputView.printGameResult(ladder, users, rewards);
+    }
+
+    private void printFinalResult(LadderGame ladderGame, Users users, String name) {
+        outputView.printFinalResultNotice();
+        printRewardResult(ladderGame, users, name);
     }
 
     private void printRewardResult(LadderGame ladderGame, Users users, String name) {
