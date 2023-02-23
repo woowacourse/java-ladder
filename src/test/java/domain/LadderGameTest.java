@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Arrays;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +20,8 @@ public class LadderGameTest {
     @Test
     void validLinesGameTest() {
         Height height = new Height(1);
-        Ladder ladder = new Ladder(4, height, booleanGenerator);
+        Names names = new Names(Arrays.asList("a", "b", "c", "d"));
+        Ladder ladder = new Ladder(names, height, booleanGenerator);
         LadderGame ladderGame = new LadderGame(4, ladder.getFloors());
 
         Assertions.assertThat(ladderGame.getResult(0)).isEqualTo(1);

@@ -28,8 +28,8 @@ public class MainController {
         Rewards rewards = inputView.readRewards(names.getNamesSize());
         Height height = inputView.readHeight();
 
-        Ladder ladder = new Ladder(names.getNamesSize(), height, booleanGenerator);
-        outputView.printLadderBoard(names, ladder.getFloors(), rewards.getRewards());
+        Ladder ladder = new Ladder(names, height, booleanGenerator);
+        outputView.printLadderBoard(names, ladder, rewards);
         LadderGame ladderGame = new LadderGame(names.getNamesSize(), ladder.getFloors());
         Result result = new Result(names.getNames(), ladderGame.getResult(), rewards.getRewards());
 

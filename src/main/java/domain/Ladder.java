@@ -7,9 +7,9 @@ import utils.BooleanGenerator;
 public class Ladder {
     private final List<Floor> floors;
 
-    public Ladder(int personNumber, Height height, BooleanGenerator booleanGenerator) {
+    public Ladder(Names names, Height height, BooleanGenerator booleanGenerator) {
         floors = new ArrayList<>();
-        addFloors(personNumber, height.getValue(), booleanGenerator);
+        addFloors(names.getNamesSize(), height.getValue(), booleanGenerator);
     }
 
     private void addFloors(int personNumber, int height, BooleanGenerator booleanGenerator) {

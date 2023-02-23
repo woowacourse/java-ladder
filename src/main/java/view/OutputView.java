@@ -1,20 +1,22 @@
 package view;
 
 import domain.Floor;
+import domain.Ladder;
 import domain.Name;
 import domain.Names;
 import domain.Result;
 import domain.Reward;
+import domain.Rewards;
 import java.util.List;
 
 public class OutputView {
     private static final String PRINT_ALL_COMMEND = "all";
 
-    public void printLadderBoard(Names names, List<Floor> floors, List<Reward> rewards) {
+    public void printLadderBoard(Names names, Ladder ladder, Rewards rewards) {
         System.out.println(Message.OUTPUT_LINES_MESSAGE.message);
         printNames(names);
-        printLadder(floors);
-        printRewards(rewards);
+        printLadder(ladder.getFloors());
+        printRewards(rewards.getRewards());
     }
 
     private void printNames(Names names) {
