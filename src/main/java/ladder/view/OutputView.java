@@ -67,12 +67,16 @@ public class OutputView {
     }
 
     public static void printPlayerResultHeaderMessage() {
-        System.out.println(BLANK + PLAYER_RESULT_HEADER_MESSAGE + BLANK);
+        System.out.println(BLANK + PLAYER_RESULT_HEADER_MESSAGE);
     }
 
     public static void printAllResults(Map<String, String> results) {
         for (String playerName : results.keySet()) {
             System.out.println(playerName + DELIMITER + results.get(playerName));
         }
+    }
+
+    public static void printSingleResult(String prizeName) {
+        System.out.println(prizeName);
     }
 }
