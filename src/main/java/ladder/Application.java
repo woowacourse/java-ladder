@@ -18,7 +18,7 @@ public class Application {
     public static void main(String[] args) {
         final var lineStrategy = new RandomDiscreteStrategy();
 
-        final LadderGame game = repeat(() -> initGame(lineStrategy));
+        final LadderGame game = repeatUntilValid(() -> initGame(lineStrategy));
         OutputView.printLadder(game.getPlayerNames(), game.getLadder(), game.getResults());
         inquireGameResult(game);
     }
@@ -49,12 +49,12 @@ public class Application {
         return new Command(names, results, height);
     }
 
-    private static <T>T repeat(Supplier<T> reader) {
+    private static <T>T repeatUntilValid(Supplier<T> reader) {
         try {
             return reader.get();
         } catch(Exception e) {
             System.out.println(e.getMessage());
-            return repeat(reader);
+            return repeatUntilValid(reader);
         }
     }
 }
