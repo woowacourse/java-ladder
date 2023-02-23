@@ -1,5 +1,6 @@
 package ladder.dto;
 
+import static ladder.Util.createPlayers;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
@@ -14,7 +15,7 @@ class ResultsResponseTest {
     @DisplayName("정상적으로 문자열을 반환해야 한다.")
     void ofResults_success() {
         // given
-        Prizes prizes = new Prizes(createResults(), 4);
+        Prizes prizes = new Prizes(createResults(), createPlayers(4));
 
         // when
         PrizesResponse prizesResponse = PrizesResponse.ofResults(prizes);
