@@ -21,6 +21,7 @@ public class OutputView {
     }
 
     public static void printInquireResult(List<ResultDto> results) {
+        StringBuilder sb = new StringBuilder();
         System.out.println();
         System.out.println("실행 결과");
         if (results.size() == INQUIRE_ONE_NAME) {
@@ -28,7 +29,8 @@ public class OutputView {
             return;
         }
         for (ResultDto result : results) {
-            System.out.println(result.getName() + RESULT_DELIMITER + result.getResult());
+            System.out.println(sb.append(result.getName()).append(RESULT_DELIMITER).append(result.getResult()));
+            sb.setLength(0);
         }
     }
 
@@ -40,16 +42,21 @@ public class OutputView {
     }
 
     private static void printLines(List<List<Boolean>> lines) {
+        StringBuilder sb = new StringBuilder();
         for (List<Boolean> bridges : lines) {
             String line = generateLine(bridges);
-            System.out.println(BLANK_BRIDGE + line + COLUMN_PART);
+            System.out.println(sb.append(BLANK_BRIDGE).append(line).append(COLUMN_PART));
+            sb.setLength(0);
         }
     }
 
     private static String generateLine(List<Boolean> bridges) {
-        return bridges.stream()
-                .map(isAssigned -> COLUMN_PART + getBridge(isAssigned))
-                .collect(Collectors.joining());
+        StringBuilder sb = new StringBuilder();
+
+        bridges.forEach(isAssigned -> {
+            sb.append(COLUMN_PART).append(getBridge(isAssigned));
+        });
+        return sb.toString();
     }
 
     private static String getBridge(boolean isAssigned) {
