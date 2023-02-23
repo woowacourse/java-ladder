@@ -2,6 +2,7 @@ package techcourse.jcf.mission;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class SimpleArrayList implements SimpleList {
 
@@ -101,7 +102,10 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String set(int index, String value) {
-        return null;
+        Objects.checkIndex(index, size);
+        String oldValue = elementData[index];
+        elementData[index] = value;
+        return oldValue;
     }
 
     @Override
