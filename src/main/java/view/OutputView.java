@@ -21,6 +21,10 @@ public class OutputView {
         System.out.println("\n사다리 결과\n");
     }
 
+    private static void printResultMessage() {
+        System.out.println("\n실행 결과");
+    }
+
     public static void printPlayers(Players players) {
         System.out.println(getPlayersNames(players));
     }
@@ -83,9 +87,25 @@ public class OutputView {
         return sb.toString();
     }
 
-    public static void printPlayerResultWantToSee(Player player, Map<Player, String> ladderGameResult) {
-        System.out.println("\n실행 결과");
-        System.out.println(ladderGameResult.get(player));
+    public static void printResult(Map<String, String> ladderGameResult, Players players,
+                                   String playerNameWantToSeeResult) {
+        if (playerNameWantToSeeResult.equals("all")) {
+            printAllPlayerResult(ladderGameResult, players);
+            return;
+        }
+        printPlayerResultWantToSee(ladderGameResult, playerNameWantToSeeResult);
+    }
+
+    public static void printAllPlayerResult(Map<String, String> ladderGameResult, Players players) {
+        printResultMessage();
+        for (Player player : players.getPlayers()) {
+            System.out.println(player.getName() + " : " + ladderGameResult.get(player.getName()));
+        }
+    }
+
+    public static void printPlayerResultWantToSee(Map<String, String> ladderGameResult, String playerName) {
+        printResultMessage();
+        System.out.println(ladderGameResult.get(playerName));
     }
 
     public static void printErrorMessage(Exception e) {
