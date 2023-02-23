@@ -9,6 +9,8 @@ import java.util.Map;
 public enum LadderMatchForm {
     SEPARATE(" : ");
 
+    private static final int ONE_MATCH_RESULT_SIZE = 1;
+
     private final String unit;
 
     LadderMatchForm(String unit) {
@@ -16,7 +18,7 @@ public enum LadderMatchForm {
     }
 
     public static String joinUnitsFrom(final Map<Name, Result> matchResults) {
-        if (matchResults.size() > 1) {
+        if (matchResults.size() > ONE_MATCH_RESULT_SIZE) {
             return createMatchForms(matchResults);
         }
         final Result result = createOneMatchForm(matchResults);
@@ -25,7 +27,7 @@ public enum LadderMatchForm {
 
     private static String createMatchForms(final Map<Name, Result> matchResults) {
         final StringBuilder matchBuilder = new StringBuilder();
-        if (matchResults.size() > 1) {
+        if (matchResults.size() > ONE_MATCH_RESULT_SIZE) {
             matchResults.forEach((name, result) ->
                     matchBuilder.append(name.getValue())
                             .append(SEPARATE.unit)
