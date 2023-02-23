@@ -4,7 +4,6 @@ import static ladder.Util.createPlayers;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +16,7 @@ class PlayersTest {
     void create_duplicateName() {
         // expect
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Players(List.of(new Player("glen"), new Player("glen")));
+            createPlayers("glen", "glen");
         }).withMessage("[ERROR] 중복된 이름이 있습니다.");
     }
 
@@ -43,22 +42,21 @@ class PlayersTest {
     @DisplayName("참여자 이름으로 참여자를 찾을 수 있어야 한다.")
     void findIndexByPlayerName_success() {
         // given
-        Players players = createPlayers(5);
+        Players players = createPlayers("glen", "pobi", "bero");
 
         // when
-        Player foundPlayer = players.getPlayers().get(0);
+        Player foundPlayer = players.findByPlayerName("glen");
 
         // then
-        Player expectPlayer = players.findByPlayerName(foundPlayer.getName());
-        assertThat(expectPlayer)
-                .isEqualTo(foundPlayer);
+        assertThat(foundPlayer.getName())
+                .isEqualTo("glen");
     }
 
     @Test
     @DisplayName("참여자 이름으로 참여자를 찾을 때 이름이 없으면 예와가 발생한다.")
     void findIndexByPlayerName_wrongName() {
         // given
-        Players players = createPlayers(5);
+        Players players = createPlayers("glen", "pobi", "mango");
 
         // expect
         assertThatIllegalArgumentException()
@@ -70,15 +68,14 @@ class PlayersTest {
     @DisplayName("인덱스로 Player를 찾을 수 있어야 한다.")
     void findPlayerByIndex_success() {
         // given
-        Players players = createPlayers(3);
+        Players players = createPlayers("glen","bero","mango");
 
         // when
         Player foundPlayer = players.findPlayerByIndex(1);
 
         // then
-        Player expectPlayer = players.getPlayers().get(1);
-        assertThat(foundPlayer)
-                .isEqualTo(expectPlayer);
+        assertThat(foundPlayer.getName())
+                .isEqualTo("bero");
     }
 
     @ParameterizedTest

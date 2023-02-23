@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import static ladder.Util.createPlayers;
-import static ladder.Util.createResults;
+import static ladder.Util.createPrizes;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class ResultsTest {
+class PrizesTest {
 
     @Test
     @DisplayName("실행 결과의 갯수가 참여하는 인원과 같지 않으면 예외가 발생한다.")
     void create_notEqualsPlayersCount() {
         // expect
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Prizes(createResults(5), createPlayers(4)))
+                .isThrownBy(() -> new Prizes(createPrizes(5), createPlayers(4)))
                 .withMessage("[ERROR] 실행 결과의 갯수와 참여할 사람이 같아야 합니다.");
     }
 
@@ -25,14 +25,14 @@ class ResultsTest {
     void create_success() {
         // expect
         assertThatNoException()
-                .isThrownBy(() -> new Prizes(createResults(5), createPlayers(5)));
+                .isThrownBy(() -> new Prizes(createPrizes(5), createPlayers(5)));
     }
 
     @Test
-    @DisplayName("인덱스로 Result를 찾을 수 있어야 한다.")
-    void findResultByIndex_success() {
+    @DisplayName("인덱스로 Prize를 찾을 수 있어야 한다.")
+    void findPrizeByIndex_success() {
         // given
-        Prizes prizes = new Prizes(createResults(5), createPlayers(5));
+        Prizes prizes = new Prizes(createPrizes(5), createPlayers(5));
 
         // when
         Prize prize = prizes.findPrizeByIndex(1);
@@ -45,10 +45,10 @@ class ResultsTest {
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 5, 6})
-    @DisplayName("인덱스로 Result를 찾을때 범위를 초과하면 예외가 발생한다.")
-    void findByResultByIndex_wrongIndex(int index) {
+    @DisplayName("인덱스로 Prize를 찾을때 범위를 초과하면 예외가 발생한다.")
+    void findByPrizeByIndex_wrongIndex(int index) {
         // given
-        Prizes prizes = new Prizes(createResults(4), createPlayers(4));
+        Prizes prizes = new Prizes(createPrizes(4), createPlayers(4));
 
         // expect
         assertThatIllegalArgumentException()
