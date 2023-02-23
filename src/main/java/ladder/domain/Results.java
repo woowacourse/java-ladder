@@ -13,6 +13,10 @@ public class Results {
         this.results = new ArrayList<>(results);
     }
 
+    public int getSize() {
+        return results.size();
+    }
+
     public Result findResultByRewardIndex(int rewardIndex) {
         return results.stream()
                 .filter(result -> result.isSameReward(rewardIndex))

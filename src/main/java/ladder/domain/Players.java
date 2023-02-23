@@ -19,6 +19,10 @@ public class Players {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
+    public int getSize() {
+        return players.size();
+    }
+
     public List<Player> getPlayers() {
         return List.copyOf(players);
     }

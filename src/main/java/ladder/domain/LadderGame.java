@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 public class LadderGame {
 
+    private static final String RESULT_SIZE_NOT_MATCH_PLAYER_SIZE_ERROR_MESSAGE = "[ERROR] 실행 결과의 수는 참여자의 수와 같아야합니다.";
+
     private final Players players;
     private final Results results;
     private final Ladder ladder;
@@ -16,6 +18,7 @@ public class LadderGame {
     public LadderGame(List<String> names, List<String> results, int height) {
         this.players = new Players(generatePlayers(names));
         this.results = new Results(generateResults(results));
+        validateResultsSize();
         LadderMaker ladderMaker = new LadderMaker(new LadderProperty(names.size() - 1, height));
 
         this.ladder = ladderMaker.generate();
@@ -49,6 +52,16 @@ public class LadderGame {
             gameResultByPlayer.put(player, result);
         }
         return new ResultByPlayer(gameResultByPlayer);
+    }
+
+    public void validateResultsSize() {
+        if (isNotEqualResultsSizeToPlayersSize()) {
+            throw new IllegalArgumentException(RESULT_SIZE_NOT_MATCH_PLAYER_SIZE_ERROR_MESSAGE);
+        }
+    }
+
+    private boolean isNotEqualResultsSizeToPlayersSize() {
+        return results.getSize() != players.getSize();
     }
 
     public String findResultByPlayerName(String playerName) {
