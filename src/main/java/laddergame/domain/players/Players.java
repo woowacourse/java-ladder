@@ -1,7 +1,9 @@
 package laddergame.domain.players;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import laddergame.util.ExceptionMessageFormatter;
@@ -25,11 +27,32 @@ public class Players {
     }
 
     private static void validate(List<Player> players) {
-        if (players.size() < MIN_PLAYER_COUNT) {
+        validateCount(players.size());
+        validateDuplicated(players);
+    }
+
+    private static void validateCount(int playerCount) {
+        if (playerCount < MIN_PLAYER_COUNT) {
             String message = String.format("참여자는 %d명 이상이어야 합니다.", MIN_PLAYER_COUNT);
-            throw new IllegalArgumentException(ExceptionMessageFormatter.format(message, players.size()));
+            throw new IllegalArgumentException(ExceptionMessageFormatter.format(message, playerCount));
         }
-        // TODO 중복 검사
+    }
+
+    private static void validateDuplicated(List<Player> players) {
+        List<String> duplicatedNames = findDuplicatedNames(players);
+        if (duplicatedNames.size() != 0) {
+            String message = "참여자 간 이름은 중복되지 않아야 합니다.";
+            throw new IllegalArgumentException(
+                    ExceptionMessageFormatter.format(message, String.join(",", duplicatedNames)));
+        }
+    }
+
+    private static List<String> findDuplicatedNames(List<Player> players) {
+        Set<Player> checker = new HashSet<>();
+        return players.stream()
+                .filter(player -> !(checker.add(player)))
+                .map(Player::getName)
+                .collect(Collectors.toList());
     }
 
     public List<String> getNames() {
