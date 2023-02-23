@@ -46,7 +46,7 @@ public class Results {
         return results.stream()
                 .filter(result -> result.equalsName(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException("개인 결과 조회를 할 수 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("해당하는 이름의 플레이어가 없습니다."));
     }
 
     public List<Result> findAll() {
