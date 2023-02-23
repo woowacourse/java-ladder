@@ -1,4 +1,6 @@
-package ladder.domain.ladder;
+package ladder.util;
+
+import ladder.domain.ladder.Bar;
 
 public class MoveDirection {
 

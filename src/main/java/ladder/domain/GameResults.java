@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.ladder.Bar;
-import ladder.domain.ladder.MoveDirection;
+import ladder.util.MoveDirection;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.people.Position;
