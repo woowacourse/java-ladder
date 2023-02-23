@@ -23,4 +23,8 @@ public class Results {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_RESULT_ERROR_MESSAGE));
     }
+
+    public List<Result> getResults() {
+        return List.copyOf(results);
+    }
 }

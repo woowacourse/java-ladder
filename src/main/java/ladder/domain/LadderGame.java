@@ -79,6 +79,13 @@ public class LadderGame {
                 ));
     }
 
+    public List<String> getResults() {
+        List<Result> receivedResults = results.getResults();
+        return receivedResults.stream()
+                .map(Result::getReward)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
     public List<Line> getLines() {
         return ladder.getLines();
     }
