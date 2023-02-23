@@ -46,7 +46,7 @@ public class GameController {
     private Names readNamesWithRetry() {
         try {
             return new Names(InputView.readNames());
-        } catch (IllegalStateException | IllegalArgumentException e) {
+        } catch (final IllegalStateException | IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             return readNamesWithRetry();
         }
@@ -55,7 +55,7 @@ public class GameController {
     private Ladder readHeightWithRetry(final Names names, final ConnectionStrategy connectionStrategy) {
         try {
             return new Ladder(InputView.readHeight(), names.getSize(), connectionStrategy);
-        } catch (IllegalStateException | IllegalArgumentException e) {
+        } catch (final IllegalStateException | IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             return readHeightWithRetry(names, connectionStrategy);
         }
@@ -64,7 +64,7 @@ public class GameController {
     private Prizes readResultWithRetry(final int size) {
         try {
             return new Prizes(InputView.readResults(), size);
-        } catch (IllegalStateException | IllegalArgumentException e) {
+        } catch (final IllegalStateException | IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             return readResultWithRetry(size);
         }
@@ -73,7 +73,7 @@ public class GameController {
     private Name readResultPlayerNameWithRetry() {
         try {
             return new Name(InputView.readResultPlayerName());
-        } catch (IllegalStateException e) {
+        } catch (final IllegalStateException | IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             return readResultPlayerNameWithRetry();
         }

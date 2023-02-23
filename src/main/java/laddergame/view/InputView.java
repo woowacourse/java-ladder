@@ -31,7 +31,7 @@ public class InputView {
         } catch (IOException e) {
             throw new IllegalStateException("입력값을 받을 수 없습니다.");
         } catch (NumberFormatException e) {
-            throw new IllegalStateException("숫자만 입력해주세요.");
+            throw new IllegalArgumentException("숫자만 입력해주세요.");
         }
     }
 
@@ -41,7 +41,7 @@ public class InputView {
         try {
             final String[] results = read().split(RESULT_SEPARATOR);
             return Arrays.asList(results);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new IllegalStateException("입력값을 받을 수 없습니다.");
         }
     }
@@ -51,7 +51,7 @@ public class InputView {
 
         try {
             return read();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new IllegalStateException("입력값을 받을 수 없습니다.");
         }
     }
