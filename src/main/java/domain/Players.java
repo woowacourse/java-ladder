@@ -21,7 +21,7 @@ public class Players {
         return players;
     }
 
-    private static void validatePlayersSize(List<String> names) {
+    private void validatePlayersSize(List<String> names) {
         if (names.size() < MIN_SIZE) {
             throw new IllegalArgumentException(SIZE_ERROR);
         }

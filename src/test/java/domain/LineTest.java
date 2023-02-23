@@ -37,7 +37,7 @@ public class LineTest {
         }
     }
 
-    private static void check(List<Boolean> points, int index) {
+    private void check(List<Boolean> points, int index) {
         if (points.get(index)) {
             assertThat(points.get(index)).isNotEqualTo(points.get(index + 1));
         }

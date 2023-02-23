@@ -22,7 +22,7 @@ public class OutputView {
         System.out.println(builder);
     }
 
-    private static void appendNewLine(List<Line> lines, StringBuilder builder, int index) {
+    private void appendNewLine(List<Line> lines, StringBuilder builder, int index) {
         if (index != lines.size() - 1) {
             builder.append("\n");
         }
