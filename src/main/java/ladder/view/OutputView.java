@@ -1,6 +1,7 @@
 package ladder.view;
 
 import java.util.List;
+import java.util.Map;
 import ladder.domain.Bar;
 import ladder.domain.Line;
 
@@ -10,12 +11,11 @@ public class OutputView {
     private static final String MOVABLE_BAR = "|-----";
     private static final String IMMOVABLE_BAR = "|     ";
     private static final String BLANK = " ";
-    private static final int DEFAULT_NAME_LENGTH = 7;
+    private static final int DEFAULT_NAME_LENGTH = 6;
 
     public static void printPlayers(List<String> playerNames) {
-        System.out.print(playerNames.get(0));
-        for (int i = 1; i < playerNames.size(); i++) {
-            printNameOnSquares(playerNames.get(i));
+        for (String playerName : playerNames) {
+            printNameOnSquares(playerName);
         }
         System.out.println();
     }
@@ -46,5 +46,33 @@ public class OutputView {
             return;
         }
         System.out.print(IMMOVABLE_BAR);
+    }
+
+    public static void printItems(List<String> itemNames) {
+        for (String itemName : itemNames) {
+            printNameOnSquares(itemName);
+        }
+        System.out.println();
+    }
+
+    public static void printResult(Map<String, String> result) {
+        printResultMessage();
+        if (result.size() != 1) {
+            printAllResult(result);
+            return;
+        }
+        for (String name : result.keySet()) {
+            System.out.println(result.get(name));
+        }
+    }
+
+    private static void printAllResult(Map<String, String> result) {
+        for (String name : result.keySet()) {
+            System.out.println(name + " : " + result.get(name));
+        }
+    }
+
+    private static void printResultMessage() {
+        System.out.println("실행 결과");
     }
 }
