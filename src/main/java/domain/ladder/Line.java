@@ -9,6 +9,7 @@ import java.util.Objects;
 
 public class Line {
 
+    public static final int BRIDGE_LENGTH = 5;
     private final List<Step> steps = new ArrayList<>();
     private final BooleanGenerator generator;
     private final Integer width;

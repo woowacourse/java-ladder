@@ -34,7 +34,7 @@ public class Game {
 
     private Players savePlayerNames() {
         try {
-            outputView.printRequestNames();
+            outputView.printRequestPlayerNames();
             return Players.ofNames(inputView.getNames());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());

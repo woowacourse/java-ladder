@@ -22,7 +22,7 @@ public class OutputView {
         this.messagePrinter = messagePrinter;
     }
 
-    public void printRequestNames() {
+    public void printRequestPlayerNames() {
         messagePrinter.println(String.format(REQUEST_NAME_MESSAGE, Sign.COMMA.getKorean(), Sign.COMMA.getShape()));
     }
 
