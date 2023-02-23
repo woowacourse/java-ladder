@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class LadderGameResult {
 
-    private static final String PRINT_ALL = "all";
+    private static final String MULTIPLE_RESULT_RESERVED_NAME = "all";
     private static final String INVALID_PLAYER_MESSAGE = "사다리 게임에 참가한 사람의 이름을 입력해야합니다.";
 
     private final Map<Player, Item> result;
@@ -15,7 +15,7 @@ public class LadderGameResult {
     }
 
     public Map<String, String> get(final String name) {
-        if (name.equals(PRINT_ALL)) {
+        if (MULTIPLE_RESULT_RESERVED_NAME.equals(name)) {
             return getMultipleResult();
         }
         return getSingleResult(name);
