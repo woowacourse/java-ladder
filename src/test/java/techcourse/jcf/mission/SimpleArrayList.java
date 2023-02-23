@@ -57,7 +57,19 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
+        checkIndexWithInRange(index);
+        for (int i = pointer; i > index; i--) {
+            values[i] = values[i - 1];
+        }
+        this.values[index] = value;
+        this.pointer += 1;
+        checkCapacityOverKeepingOrder();
+    }
 
+    private void checkIndexWithInRange(int index) {
+        if (index > this.pointer) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     @Override

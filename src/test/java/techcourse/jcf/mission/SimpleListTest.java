@@ -28,7 +28,7 @@ class SimpleListTest {
     }
 
     @Test
-    void addManyValuesWithNoException() {
+    void addManyValuesThrowNoException() {
         assertDoesNotThrow(() -> {
             for (int i = 2; i < 50; i++) {
                 list.add(String.format("%d", i));
@@ -40,6 +40,15 @@ class SimpleListTest {
     void addWithVIndexValue() {
         list.add(1, "third");
         assertThat(list.get(1)).isEqualTo("third");
+    }
+
+    @Test
+    void addManyValuesWithIndexThrowNoException() {
+        assertDoesNotThrow(() -> {
+            for (int i = 2; i < 50; i++) {
+                list.add(i, String.format("%d", i));
+            }
+        });
     }
 
     @Test
