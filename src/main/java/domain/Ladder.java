@@ -8,15 +8,11 @@ public class Ladder {
 
     private static final int MIN_HEIGHT = 0;
 
-    private final Participants participants;
     private final List<Line> lines;
-    private final List<String> prizes;
 
-    public Ladder(final Participants participants, final List<Line> lines, List<String> prizes) {
+    public Ladder(List<Line> lines) {
         validateHeightOf(lines);
-        this.participants = participants;
         this.lines = copyOf(lines);
-        this.prizes = copyOf(prizes);
     }
 
     private void validateHeightOf(final List<Line> lines) {
@@ -25,28 +21,16 @@ public class Ladder {
         }
     }
 
-    public String findPrizeFor(String participantName) {
-        Position position = participants.findPositionOf(participantName);
+    public Position findDestinationFrom(final Position start) {
+        Position position = start;
         for (Line line : lines) {
-            Direction nextDirection = line.getNextDirectionFrom(position);
-            position = position.moveTo(nextDirection);
+            Direction direction = line.findDirectionFrom(position);
+            position = position.moveTo(direction);
         }
-        return getPrizeAt(position);
-    }
-
-    private String getPrizeAt(Position position) {
-        return prizes.get(position.getPosition());
-    }
-
-    public List<String> getParticipantNames() {
-        return participants.getNames();
+        return position;
     }
 
     public List<Line> getLines() {
         return lines;
-    }
-
-    public List<String> getPrizes() {
-        return prizes;
     }
 }

@@ -5,8 +5,8 @@ import java.util.Map;
 
 import domain.Bridge;
 import domain.Ladder;
+import domain.LadderGame;
 import domain.Line;
-import domain.Participants;
 
 public class OutputView {
 
@@ -14,11 +14,11 @@ public class OutputView {
     private static final String BRIDGE_EXIST_EXPRESSION = "-----";
     private static final String BRIDGE_EMPTY_EXPRESSION = "     ";
 
-    public static void printLadder(final Ladder ladder) {
+    public static void printLadder(final LadderGame ladderGame) {
         System.out.println("실행결과");
-        printParticipantNamesOf(ladder);
-        printLinesOf(ladder);
-        printPrizesOf(ladder);
+        printParticipantNames(ladderGame.getParticipantNames());
+        printLinesOf(ladderGame.getLadder());
+        printPrizes(ladderGame.getPrizes());
     }
 
     public static void printException(Exception exception) {
@@ -34,8 +34,8 @@ public class OutputView {
         }
     }
 
-    private static void printParticipantNamesOf(Ladder ladder) {
-        for (String name : ladder.getParticipantNames()) {
+    private static void printParticipantNames(List<String> participantNames) {
+        for (String name : participantNames) {
             System.out.print(name + "\t");
         }
         System.out.println();
@@ -49,8 +49,8 @@ public class OutputView {
         }
     }
 
-    private static void printPrizesOf(final Ladder ladder) {
-        for (String prize : ladder.getPrizes()) {
+    private static void printPrizes(final List<String> prizes) {
+        for (String prize : prizes) {
             System.out.print(prize + "\t");
         }
         System.out.println();

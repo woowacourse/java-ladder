@@ -1,9 +1,9 @@
 package engine;
 
-import static view.InputView.inputSearchTarget;
 import static view.InputView.inputMaxLadderHeight;
 import static view.InputView.inputNames;
 import static view.InputView.inputPrizes;
+import static view.InputView.inputSearchTarget;
 import static view.OutputView.printLadder;
 import static view.OutputView.printResults;
 
@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 import common.exception.handler.IllegalArgumentExceptionHandler;
 import domain.Ladder;
+import domain.LadderGame;
 import domain.Line;
 import domain.Participant;
 import domain.Participants;
@@ -25,13 +26,13 @@ import view.SearchTarget;
 public class LadderEngine {
 
     public void start() {
-        Ladder ladder = IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
+        LadderGame ladderGame = IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
             Participants participants = gatherParticipants();
-            List<Line> lines = makeLines(participants.count(), inputMaxLadderHeight());
-            return new Ladder(participants, lines, inputPrizes());
+            Ladder ladder = makeLadder(participants.count(), inputMaxLadderHeight());
+            return new LadderGame(participants, ladder, inputPrizes());
         });
-        printLadder(ladder);
-        repeatQueryPrizes(ladder);
+        printLadder(ladderGame);
+        repeatQueryPrizes(ladderGame);
     }
 
     private Participants gatherParticipants() {
@@ -40,29 +41,45 @@ public class LadderEngine {
         );
     }
 
-    private List<Line> makeLines(final int participantsCount, final int height) {
-        List<Line> lines = new ArrayList<>();
+    private Ladder makeLadder(final int participantsCount, final int height) {
         LineGenerator lineGenerator = new LineGenerator(new RandomBridgeGenerator());
+        List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             Line line = lineGenerator.generate(participantsCount);
             lines.add(line);
         }
-        return lines;
+        return new Ladder(lines);
     }
 
-    private void repeatQueryPrizes(Ladder ladder) {
+    private void repeatQueryPrizes(LadderGame ladderGame) {
         boolean isTargetAll;
         do {
-            isTargetAll = queryPrizes(ladder).isAll();
+            isTargetAll = queryPrizes(ladderGame).isAll();
         } while (!isTargetAll);
     }
 
-    private SearchTarget queryPrizes(Ladder ladder) {
+    private SearchTarget queryPrizes(LadderGame ladderGame) {
         return IllegalArgumentExceptionHandler.handleExceptionByRepeating(() -> {
             SearchTarget searchTarget = inputSearchTarget();
-            printResults(getResults(ladder, searchTarget));
+            printResults(getResults(ladderGame, searchTarget));
             return searchTarget;
         });
+    }
+
+    private Map<String, String> getResults(LadderGame ladderGame, SearchTarget searchTarget) {
+        if (searchTarget.isAll()) {
+            return getAllResultsOf(ladderGame);
+        }
+        String searchTargetName = searchTarget.getName();
+        return Map.of(searchTargetName, ladderGame.findPrizeFor(searchTargetName));
+    }
+
+    private Map<String, String> getAllResultsOf(LadderGame ladderGame) {
+        Map<String, String> prizes = new HashMap<>();
+        for (String name : ladderGame.getParticipantNames()) {
+            prizes.put(name, ladderGame.findPrizeFor(name));
+        }
+        return prizes;
     }
 
     private Participants createParticipantsWith(final List<String> names) {
@@ -70,21 +87,5 @@ public class LadderEngine {
                 .map(Participant::new)
                 .collect(Collectors.toList());
         return new Participants(participants);
-    }
-
-    private Map<String, String> getResults(Ladder ladder, SearchTarget searchTarget) {
-        if (searchTarget.isAll()) {
-            return getAllResultsOf(ladder);
-        }
-        String searchTargetName = searchTarget.getName();
-        return Map.of(searchTargetName, ladder.findPrizeFor(searchTargetName));
-    }
-
-    private Map<String, String> getAllResultsOf(Ladder ladder) {
-        Map<String, String> prizes = new HashMap<>();
-        for (String name : ladder.getParticipantNames()) {
-            prizes.put(name, ladder.findPrizeFor(name));
-        }
-        return prizes;
     }
 }

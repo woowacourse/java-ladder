@@ -27,7 +27,7 @@ public class Line {
         }
     }
 
-    public Direction getNextDirectionFrom(final Position position) {
+    public Direction findDirectionFrom(final Position position) {
         if (getLeftBridgeFrom(position).doesExist()) {
             return Direction.LEFT;
         }

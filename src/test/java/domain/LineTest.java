@@ -47,6 +47,6 @@ class LineTest extends AbstractTestFixture {
         Line line = new Line(convert(true, false, false, true, false));
         Position position = new Position(currentPosition);
 
-        assertThat(line.getNextDirectionFrom(position)).isEqualTo(nextDirection);
+        assertThat(line.findDirectionFrom(position)).isEqualTo(nextDirection);
     }
 }

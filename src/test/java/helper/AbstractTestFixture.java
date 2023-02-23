@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import domain.Bridge;
+import domain.Ladder;
 import domain.Line;
 import domain.Participant;
 import domain.Participants;
@@ -43,5 +44,9 @@ public abstract class AbstractTestFixture {
             lines.add(new Line(convert(true, false, true)));
         }
         return lines;
+    }
+
+    public Ladder createLadderWith(Line... lines) {
+        return new Ladder(List.of(lines));
     }
 }
