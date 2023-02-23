@@ -1,5 +1,7 @@
 package domain;
 
+import static domain.ErrorMessages.CONFLICT_NAME;
+import static domain.ErrorMessages.NAME_LENGTH;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -21,7 +23,7 @@ public class UserTest {
     void userFailureTest(String name) {
         assertThatThrownBy(() -> new User(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .hasMessageContaining(NAME_LENGTH.getMessage());
     }
 
     @ParameterizedTest(name = "이름이 일치하면 true를 반환하고, 일치하지 않으면 false를 반환한다..")
@@ -32,5 +34,13 @@ public class UserTest {
         boolean result = pobi.isEqualName(userName);
 
         assertThat(result).isEqualTo(expected);
+    }
+
+    @ParameterizedTest(name = "QUIT 또는 ALL 은 사용자의 이름으로 사용할 수 없습니다. 입력값 = {0}")
+    @ValueSource(strings = {"ALL","QUIT"})
+    void conflictNameUserTest(String conflictName) {
+        assertThatThrownBy(() -> new User(conflictName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(CONFLICT_NAME.getMessage());
     }
 }

@@ -67,8 +67,8 @@ class ResultTableTest {
         resultTable.saveAll(users, rewards);
 
         assertAll(() -> assertThat(resultTable.getRewardByUser(polo)).isEqualTo(first)
-                , ()->assertThat(resultTable.getRewardByUser(pobi)).isEqualTo(second)
-                , ()->assertThat(resultTable.getRewardByUser(mako)).isEqualTo(third)
-                , ()->assertThat(resultTable.getRewardByUser(fox)).isEqualTo(fourth));
+                , () -> assertThat(resultTable.getRewardByUser(pobi)).isEqualTo(second)
+                , () -> assertThat(resultTable.getRewardByUser(mako)).isEqualTo(third)
+                , () -> assertThat(resultTable.getRewardByUser(fox)).isEqualTo(fourth));
     }
 }

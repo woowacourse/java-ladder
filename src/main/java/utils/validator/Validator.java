@@ -1,5 +1,6 @@
 package utils.validator;
 
+import static domain.ErrorMessages.CONFLICT_NAME;
 import static domain.ErrorMessages.DIFFERENT_LENGTH;
 import static domain.ErrorMessages.DUPLICATED_INPUT;
 import static domain.ErrorMessages.NAME_LENGTH;
@@ -13,13 +14,27 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import domain.ResultCommands;
+
 public class Validator {
 
     public static void validateName(String name) {
+        validateNameLength(name);
+        validateNameConflictWithCommand(name);
+    }
+
+    private static void validateNameLength(String name) {
         if (name.isEmpty() || name.length() > MAX_NAME_LENGTH.getValue()) {
             throw new IllegalArgumentException(NAME_LENGTH.getMessage());
         }
     }
+
+    private static void validateNameConflictWithCommand(String name) {
+        if (ResultCommands.isQuit(name) || ResultCommands.isAll(name)) {
+            throw new IllegalArgumentException(CONFLICT_NAME.getMessage());
+        }
+    }
+
 
     public static void validateReward(String reward) {
         if (reward.isEmpty() || reward.length() > MAX_NAME_LENGTH.getValue()) {
