@@ -9,6 +9,9 @@ import java.util.stream.IntStream;
 
 public class Line {
     private static final boolean LINKED = true;
+    private static final int MOVE_DISTANCE = 1;
+    private static final int MIN_LINE_BOUND = 0;
+
     private final List<Boolean> bridges;
 
     public Line(LineStrategy lineStrategy, int bridgeCount) {
@@ -21,10 +24,10 @@ public class Line {
         validateOutBound(position);
 
         if (isRightMoveAble(position) && isBridgeExist(position)) {
-            return new Position(position + 1);
+            return new Position(position + MOVE_DISTANCE);
         }
-        if (isLeftMoveAble(position) && isBridgeExist(position - 1)) {
-            return new Position(position - 1);
+        if (isLeftMoveAble(position) && isBridgeExist(position - MOVE_DISTANCE)) {
+            return new Position(position - MOVE_DISTANCE);
         }
         return new Position(position);
     }
@@ -34,11 +37,11 @@ public class Line {
     }
 
     private boolean isRightMoveAble(int position) {
-        return position + 1 <= bridges.size();
+        return position + MOVE_DISTANCE <= bridges.size();
     }
 
     private boolean isLeftMoveAble(int position) {
-        return position - 1 >= 0;
+        return position - MOVE_DISTANCE >= MIN_LINE_BOUND;
     }
 
     private void validate() {
@@ -53,11 +56,11 @@ public class Line {
     }
 
     private boolean isContinuous(List<Boolean> line, int idx) {
-        return line.get(idx) && line.get(idx + 1);
+        return line.get(idx) && line.get(idx + MOVE_DISTANCE);
     }
 
     private void validateOutBound(int startPoint) {
-        if ((startPoint < 0) || (startPoint > bridges.size())) {
+        if ((startPoint < MIN_LINE_BOUND) || (startPoint > bridges.size())) {
             throw new IllegalArgumentException("line 범위 밖의 시작점입니다.");
         }
     }
