@@ -21,9 +21,7 @@ public class InputView {
         String userNames = scanner.nextLine();
         List<String> allUserNames = Arrays.asList(
             userNames.split(DELIMITER));
-
-        validateUserNamesNumberByMinimumLimit(allUserNames);
-        validateUserNamesNumberByMaximumLimit(allUserNames);
+        validateUserName(allUserNames);
 
         return allUserNames;
     }
@@ -55,6 +53,12 @@ public class InputView {
         }
     }
 
+    private void validateUserName(List<String> allUserNames) {
+        validateUserNameDuplication(allUserNames);
+        validateUserNamesNumberByMinimumLimit(allUserNames);
+        validateUserNamesNumberByMaximumLimit(allUserNames);
+    }
+
     private void validateUserNamesNumberByMinimumLimit(List<String> allUserNames) {
         if (allUserNames.size() < MINIMUM_USER_NUMBER_LIMIT) {
             throw new IllegalArgumentException(
@@ -71,6 +75,19 @@ public class InputView {
                 INVALID_USER_NUMBER_NUMBER_BY_MAXIMUM_LIMIT.getMessage(),
                     MAXIMUM_USER_NUMBER_LIMIT));
         }
+    }
+
+    private void validateUserNameDuplication(List<String> allUserNames) {
+        if (allUserNames.size() != checkDistinctSize(allUserNames)) {
+            throw new IllegalArgumentException(
+                DUPLICATE_USER_NAME.getMessage());
+        }
+    }
+
+    private long checkDistinctSize(List<String> allUserNames) {
+        return allUserNames.stream()
+            .distinct()
+            .count();
     }
 
 }
