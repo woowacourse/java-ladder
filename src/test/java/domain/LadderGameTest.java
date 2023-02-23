@@ -25,7 +25,7 @@ class LadderGameTest {
     @DisplayName("요청 값으로 all을 전달한 경우 전체 결과를 반환한다.")
     @Test
     void getAllResult() {
-        Assertions.assertThat(ladderGame.getResult("all"))
+        Assertions.assertThat(ladderGame.getAllResult())
                   .containsEntry("pobi", "b")
                   .containsEntry("honux", "a")
                   .containsEntry("crong", "d")
@@ -35,14 +35,14 @@ class LadderGameTest {
     @DisplayName("요청 값으로 존재하는 사람의 이름을 전달한 경우 해당 사람의 결과를 반환한다.")
     @Test
     void getResultByName() {
-        Assertions.assertThat(ladderGame.getResult("pobi"))
-                  .containsEntry("pobi", "b");
+        Assertions.assertThat(ladderGame.getResultByName("pobi"))
+                  .isEqualTo("b");
     }
 
     @DisplayName("요청 값으로 존재하지 않는 사람의 이름을 전달한 경우 오류를 반환한다.")
     @Test
     void getResultNotFindName() {
-        Assertions.assertThatThrownBy(() -> ladderGame.getResult("test"))
+        Assertions.assertThatThrownBy(() -> ladderGame.getResultByName("test"))
                   .isExactlyInstanceOf(NotFindPersonException.class);
     }
 
@@ -50,14 +50,14 @@ class LadderGameTest {
     @ParameterizedTest
     @NullAndEmptySource
     void getResultNullAndEmpty(String input) {
-        Assertions.assertThatThrownBy(() -> ladderGame.getResult(input))
+        Assertions.assertThatThrownBy(() -> ladderGame.getResultByName(input))
                   .isExactlyInstanceOf(InvalidPersonNameException.class);
     }
 
     @DisplayName("요청 값으로 공백만 전달한 경우 오류를 반환한다.")
     @Test
     void getResultBlank() {
-        Assertions.assertThatThrownBy(() -> ladderGame.getResult("   "))
+        Assertions.assertThatThrownBy(() -> ladderGame.getResultByName("   "))
                   .isExactlyInstanceOf(InvalidPersonNameException.class);
     }
 }

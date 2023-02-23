@@ -34,7 +34,7 @@ class LadderGameControllerTest {
     @DisplayName("정삭적으로 사다리가 생성된다.")
     @Test
     void playSuccess() {
-        setInput("pobi,honux,crong,jk\na,b,c,d\n5\n");
+        setInput("pobi,honux,crong,jk\na,b,c,d\n5\nall\n");
         setOutput();
         ladderGameController.play(new InputView(), new OutputView(), () -> true);
         Assertions.assertThat(byteArrayOutputStream.toString())
@@ -49,13 +49,18 @@ class LadderGameControllerTest {
                           , "    |-----|     |-----|\n"
                           , "    |-----|     |-----|\n"
                           , "    |-----|     |-----|\n"
-                          , "    a     b     c     d \n");
+                          , "    a     b     c     d \n"
+                          , "실행 결과\n"
+                          , "pobi : b\n"
+                          , "honux : a\n"
+                          , "crong : d\n"
+                          , "jk : c\n");
     }
 
     @DisplayName("컨트롤러는 잘못된 입력으로 Participant를 생성 시 오류를 던진다.")
     @Test
     void makeParticipantsFail() {
-        setInput("abcdef,abcde\nsplit,jamie\na,b\n5\n");
+        setInput("abcdef,abcde\nsplit,jamie\na,b\n5\nall");
         setOutput();
         ladderGameController.play(new InputView(), new OutputView(), () -> true);
         Assertions.assertThat(byteArrayOutputStream.toString())
@@ -65,7 +70,7 @@ class LadderGameControllerTest {
     @DisplayName("컨트롤러는 잘못된 입력으로 Results 생성 시 오류를 던진다.")
     @Test
     void makeResultsFail() {
-        setInput("split,jamie\na,b,c\na,b\n5\n");
+        setInput("split,jamie\na,b,c\na,b\n5\nall");
         setOutput();
         ladderGameController.play(new InputView(), new OutputView(), () -> true);
         Assertions.assertThat(byteArrayOutputStream.toString())
@@ -75,7 +80,7 @@ class LadderGameControllerTest {
     @DisplayName("컨트롤러는 잘못된 입력으로 사다리 생성시 오류를 던진다.")
     @Test
     void makeLadderFail() {
-        setInput("split,jamie,pobi\na,b,c\n11\n3\n");
+        setInput("split,jamie,pobi\na,b,c\n11\n3\nall");
         setOutput();
         ladderGameController.play(new InputView(), new OutputView(), () -> true);
         Assertions.assertThat(byteArrayOutputStream.toString())
