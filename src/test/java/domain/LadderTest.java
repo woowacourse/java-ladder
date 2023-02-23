@@ -14,12 +14,12 @@ import domain.generator.NonExistConnectionGenerator;
 
 public class LadderTest {
 
-    Name name1;
-    Name name2;
-    Name name3;
-    Name name4;
-    Result result1;
-    Result result2;
+    private Name name1;
+    private Name name2;
+    private Name name3;
+    private Name name4;
+    private Result result1;
+    private Result result2;
 
     @BeforeEach
     void setUp() {

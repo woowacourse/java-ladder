@@ -14,8 +14,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class NamesTest {
 
-    String firstPlayerName;
-    String secondPlayerName;
+    private String firstPlayerName;
+    private String secondPlayerName;
 
     @BeforeEach
     void setUp() {

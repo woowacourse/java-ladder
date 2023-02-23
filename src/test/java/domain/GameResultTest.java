@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 
 public class GameResultTest {
 
-    Map<String, String> result;
-    GameResult gameResult;
+    private Map<String, String> result;
+    private GameResult gameResult;
 
     @BeforeEach
     void setUp() {
