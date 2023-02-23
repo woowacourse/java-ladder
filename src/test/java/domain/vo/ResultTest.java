@@ -1,5 +1,6 @@
 package domain.vo;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -34,5 +35,19 @@ class ResultTest {
         //then
         assertDoesNotThrow(() -> new Result(value1));
         assertDoesNotThrow(() -> new Result(value2));
+    }
+
+    @Test
+    @DisplayName("동등성 비교 테스트")
+    public void equalsTest() {
+        //given
+        String value = "value";
+        Result target = new Result(value);
+
+        //when
+        boolean result = target.equals(new Result("value"));
+
+        //then
+        assertThat(result).isTrue();
     }
 }
