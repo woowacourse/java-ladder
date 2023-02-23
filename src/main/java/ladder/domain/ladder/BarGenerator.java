@@ -1,6 +1,6 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 @FunctionalInterface
 public interface BarGenerator {
-    boolean createBar();
+    Bar generateBar();
 }
