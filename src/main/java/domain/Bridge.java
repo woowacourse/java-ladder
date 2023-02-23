@@ -10,5 +10,14 @@ public enum Bridge {
         this.status = generateResult;
     }
 
-    public boolean getStatus() {return status;}
+    public static Bridge from(boolean status) {
+        if (status) {
+            return EXIST;
+        }
+        return EMPTY;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
 }
