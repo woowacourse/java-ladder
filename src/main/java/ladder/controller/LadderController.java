@@ -2,7 +2,6 @@ package ladder.controller;
 
 import ladder.domain.Height;
 import ladder.domain.Ladder;
-import ladder.domain.Player;
 import ladder.domain.PlayerResult;
 import ladder.domain.PlayerResults;
 import ladder.domain.Players;
@@ -15,6 +14,8 @@ import ladder.service.LadderService;
 import ladder.view.LadderView;
 
 public class LadderController {
+    private static final String EXIT_COMMAND = "all";
+
     private final LadderService ladderService;
     private final LadderView ladderView;
 
@@ -24,6 +25,12 @@ public class LadderController {
     }
 
     public void run() {
+        PlayerResults playerResults = createPlayerResults();
+        printPlayerResult(playerResults);
+        ladderView.printAllPlayerResults(PlayerResultsResponse.of(playerResults));
+    }
+
+    private PlayerResults createPlayerResults() {
         String inputNames = ladderView.readPlayerNames();
         int inputHeight = ladderView.readLadderHeight();
         String resultsInput = ladderView.readPrizes();
@@ -33,15 +40,16 @@ public class LadderController {
         Ladder ladder = ladderService.createLadder(height, players.getPlayersCount());
         ladderView.printLadderResult(PlayersResponse.ofPlayers(players), LadderResponse.ofLadder(ladder),
                 PrizesResponse.ofResults(prizes));
-        PlayerResults playerResults = ladderService.createPlayerResults(players, ladder, prizes);
-        while (true) {
-            String playerName = ladderView.readPlayerName();
-            if (playerName.equals("all")) {
-                break;
-            }
-            PlayerResult playerResult = playerResults.findByPlayerName(playerName);
-            ladderView.printResult(playerResult.getPrize());
+        return ladderService.createPlayerResults(players, ladder, prizes);
+    }
+
+    private void printPlayerResult(PlayerResults playerResults) {
+        String playerName = ladderView.readPlayerName();
+        if (playerName.equals(EXIT_COMMAND)) {
+            return;
         }
-        ladderView.printAllPlayerResults(PlayerResultsResponse.of(playerResults));
+        PlayerResult playerResult = playerResults.findByPlayerName(playerName);
+        ladderView.printResult(playerResult.getPrize());
+        printPlayerResult(playerResults);
     }
 }
