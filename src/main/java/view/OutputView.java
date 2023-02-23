@@ -1,6 +1,11 @@
 package view;
 
-import domain.*;
+import domain.Ladder;
+import domain.Line;
+import domain.People;
+import domain.Person;
+import domain.Result;
+import domain.Results;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +23,7 @@ public class OutputView {
     }
 
     private void printNames(People people) {
-        for (Person person : people.getPeople()) {
+        for (Person person : people) {
             System.out.printf("%5s", person.getName());
         }
         System.out.println();

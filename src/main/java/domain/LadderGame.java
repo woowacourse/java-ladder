@@ -3,7 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LadderService {
+public class LadderGame {
 
     public static final String ALL = "all";
 
@@ -11,7 +11,7 @@ public class LadderService {
     private final Ladder ladder;
     private final Results results;
 
-    public LadderService(People people, Results results, Ladder ladder) {
+    public LadderGame(People people, Results results, Ladder ladder) {
         this.people = people;
         this.ladder = ladder;
         this.results = results;

@@ -12,9 +12,9 @@ import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderServiceTest {
+public class LadderGameTest {
 
-    LadderService ladderService;
+    LadderGame ladderGame;
 
     @BeforeEach
     void init() {
@@ -28,7 +28,7 @@ public class LadderServiceTest {
         People people = new People(List.of("pobi", "honux", "crong", "jk"));
 //        LinesGenerator generator = (a, b) -> new Ladder(customizedLines);
         Results results = new Results("꽝,5000,꽝,3000", people);
-        ladderService = new LadderService(people, results, new Ladder(customizedLines));
+        ladderGame = new LadderGame(people, results, new Ladder(customizedLines));
     }
 
     @DisplayName("단일 사용자의 결과 출력")
@@ -40,13 +40,13 @@ public class LadderServiceTest {
             "jk,5000",
     })
     void single_result_test(String name, String result) {
-        assertThat(ladderService.getSingleResult(new Person(name))).isEqualTo(new Result(result));
+        assertThat(ladderGame.getSingleResult(new Person(name))).isEqualTo(new Result(result));
     }
 
     @DisplayName("모든 사용자의 결과 출력")
     @Test
     void all_result_test() {
-        assertThat(ladderService.getTotalResults())
+        assertThat(ladderGame.getTotalResults())
                 .isEqualTo(new Results(
                         List.of(
                                 new Result("꽝"),
