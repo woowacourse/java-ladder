@@ -25,7 +25,7 @@ public class MainController {
 
     public void start() {
         Names names = inputView.readNames();
-        Rewards rewards = inputView.readRewards(names.getNamesSize());
+        Rewards rewards = inputView.readRewards(names);
         Height height = inputView.readHeight();
 
         Ladder ladder = new Ladder(names, height, booleanGenerator);

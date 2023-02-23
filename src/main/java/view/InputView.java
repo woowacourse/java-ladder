@@ -32,14 +32,16 @@ public class InputView {
         );
     }
 
+    public Rewards readRewards(Names names) {
+        String input = readInput(Message.INPUT_REWARDS.message);
+        return new Rewards(Arrays.stream(input.split(STRING_DELIMITER))
+                .map(String::trim)
+                .collect(Collectors.toList()), names);
+    }
+
     public Height readHeight() {
         String input = readInput(Message.INPUT_LADDER_SIZE.message);
         return new Height(parseInt(input));
-    }
-
-    public Rewards readRewards(int namesSize) {
-        String input = readInput(Message.INPUT_REWARDS.message);
-        return new Rewards(input, namesSize);
     }
 
 
