@@ -32,4 +32,8 @@ public class Rewards {
     public List<Reward> getRewards() {
         return List.copyOf(rewards);
     }
+
+    public Reward getReward(int index) {
+        return rewards.get(index);
+    }
 }

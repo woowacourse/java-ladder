@@ -4,7 +4,7 @@ import domain.Floor;
 import domain.Ladder;
 import domain.Name;
 import domain.Names;
-import domain.Result;
+import domain.Results;
 import domain.Reward;
 import domain.Rewards;
 import java.util.List;
@@ -49,17 +49,17 @@ public class OutputView {
         return Message.EMPTY_ROW_LADDER.message;
     }
 
-    public void printResult(String name, Names names, Result result) {
+    public void printResult(String name, Names names, Results results) {
         System.out.println(Message.OUTPUT_RESULT_MESSAGE.message);
         for (Name nameObj : names.getNames()) {
-            printOrPass(name, result, nameObj);
+            printOrPass(name, results, nameObj);
         }
     }
 
-    private void printOrPass(String name, Result result, Name nameObj) {
+    private void printOrPass(String name, Results results, Name nameObj) {
         if (isPrint(name, nameObj)) {
             System.out.printf(Message.REWARD_MESSAGE_FORMAT.message, nameObj.getName(),
-                    result.getReward(nameObj).getReward());
+                    results.getReward(nameObj).getReward());
             System.out.println();
         }
     }

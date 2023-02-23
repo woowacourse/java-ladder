@@ -4,7 +4,7 @@ import domain.Height;
 import domain.Ladder;
 import domain.LadderGame;
 import domain.Names;
-import domain.Result;
+import domain.Results;
 import domain.Rewards;
 import utils.BooleanGenerator;
 import view.InputView;
@@ -26,21 +26,25 @@ public class MainController {
     public void start() {
         Names names = inputView.readNames();
         Rewards rewards = inputView.readRewards(names);
-        Height height = inputView.readHeight();
+        Ladder ladder = generateLadder(names);
 
-        Ladder ladder = new Ladder(names, height, booleanGenerator);
         outputView.printLadderBoard(names, ladder, rewards);
         LadderGame ladderGame = new LadderGame(names, ladder);
-        Result result = new Result(names.getNames(), ladderGame.getResult(), rewards.getRewards());
+        Results results = new Results(names, ladderGame, rewards);
 
-        showResult(result, names);
+        showResult(results, names);
     }
 
-    private void showResult(Result result, Names names) {
+    private Ladder generateLadder(Names names) {
+        Height height = inputView.readHeight();
+        return new Ladder(names, height, booleanGenerator);
+    }
+
+    private void showResult(Results results, Names names) {
         boolean isEnd = false;
         while (!isEnd) {
             String name = inputView.readShowName();
-            outputView.printResult(name, names, result);
+            outputView.printResult(name, names, results);
             isEnd = name.equals(END_COMMEND);
         }
     }
