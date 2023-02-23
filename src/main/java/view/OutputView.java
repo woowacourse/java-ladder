@@ -21,6 +21,7 @@ public class OutputView {
     private static final String RESULTS_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String DESIROUS_RESULT_NAME_MESSAGE = "\n결과를 보고 싶은 사람은?";
     private static final String RESULT_HEADER = "\n실행 결과";
+    private static final String LADDER_RESULT_MESSAGE = "\n사다리 결과\n";
     private static final String NAME_RESULT_DELIMITER = " : ";
 
     public void printPlayerNamesMessage() {
@@ -41,6 +42,10 @@ public class OutputView {
 
     public void printDesirousResultNameMessage() {
         System.out.println(DESIROUS_RESULT_NAME_MESSAGE);
+    }
+
+    public void printMakeLadderResultMessage() {
+        System.out.println(LADDER_RESULT_MESSAGE);
     }
 
     public void printAllPlayerNames(List<Name> allPlayerNames) {
