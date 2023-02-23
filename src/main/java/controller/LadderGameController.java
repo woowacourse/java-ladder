@@ -25,23 +25,31 @@ public class LadderGameController {
         Players players = new Players(setPlayerNames());
         List<Result> results = setResults(players.size());
         Ladder ladder = new Ladder(players, setLadderHeight());
-        outputView.printMakeLadderResultMessage();
-        outputView.printAllPlayerNames(players.getAllPlayerNames());
-        outputView.printLadder(ladder);
-        outputView.printAllResults(results);
+        showCreateLadderResult(players, results, ladder);
         playGame(players, ladder, results);
         showGameResult(players);
     }
 
+    private void showCreateLadderResult(Players players, List<Result> results, Ladder ladder) {
+        outputView.printMakeLadderResultMessage();
+        outputView.printAllPlayerNames(players.getAllPlayerNames());
+        outputView.printLadder(ladder);
+        outputView.printAllResults(results);
+    }
+
     private void showGameResult(Players players) {
         Name name = getDesirousResultName();
+        repeatShowResultUntilInputAll(players, name);
+        showAllResults(players);
+    }
+
+    private void repeatShowResultUntilInputAll(Players players, Name name) {
         Name all = new Name("all");
         while (!name.isSame(all)) {
             outputView.printResultHeaderMessage();
             outputView.printResult(players.getResultOf(name));
             name = getDesirousResultName();
         }
-        showAllResults(players);
     }
 
     private void showAllResults(Players players) {
