@@ -92,6 +92,7 @@ public class Game {
 
         String goalName = ladder.ride(playerName);
         outputView.printResult(playerName, goalName);
+        rideLadder(ladder);
     }
 
     private String getPlayerName() {
