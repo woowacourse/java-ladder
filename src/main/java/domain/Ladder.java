@@ -43,6 +43,19 @@ public class Ladder {
         return result;
     }
 
+    public String getLadderMatchingPersonalResult(String name) {
+
+        int ladderStartIndex = people.getParticipants().indexOf(new Person(name));
+
+        if (ladderStartIndex == -1) {
+            throw new IllegalArgumentException("참여자가 없습니다.");
+        }
+
+        int destination = line.move(ladderStartIndex);
+
+        return resultCandidates.get(destination);
+    }
+
     public List<Bridge> getBridges() {
         return line.getBridges();
     }

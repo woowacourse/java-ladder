@@ -202,4 +202,69 @@ class LadderTest extends AbstractTestFixture {
                 () -> assertEquals(result.get(new Person("jk")), "5000")
         );
     }
+
+    @Test
+    @DisplayName("getLadderMatchingPersonalResult() : name 이 주어질 경우 특정 사용자의 결과를 알 수 있다.")
+    void test_getLadderMatchingPersonalResult() throws Exception {
+        //given
+        People people = new People(List.of(new Person("pobi"),
+                                           new Person("honux"),
+                                           new Person("crong"),
+                                           new Person("jk")));
+
+        List<Bridge> bridges = List.of(
+                new Bridge(convert(true, false, true)),
+                new Bridge(convert(false, true, false)),
+                new Bridge(convert(true, false, false)),
+                new Bridge(convert(false, true, false)),
+                new Bridge(convert(true, false, true))
+        );
+
+        List<String> resultCandidate = List.of("꽝", "5000", "꽝", "3000");
+
+        //when
+
+        Ladder ladder = new Ladder(people, new Line(bridges), resultCandidate);
+
+        String ladderResult = ladder.getLadderMatchingPersonalResult("pobi");
+
+        //then
+
+//      pobi  honux crong jk
+//      |-----|     |-----|
+//      |     |-----|     |
+//      |-----|     |     |
+//      |     |-----|     |
+//      |-----|     |-----|
+//      꽝    5000  꽝    3000
+
+        assertEquals(ladderResult, "꽝");
+    }
+
+    @Test
+    @DisplayName("getLadderMatchingPersonalResult() : 참여자 중에 없는 name 을 조회할 경우 IllegalArgumentException 반환한다. ")
+    void test_getLadderMatchingPersonalResult_IllegalArgumentException() throws Exception {
+        //given
+        People people = new People(List.of(new Person("pobi"),
+                                           new Person("honux"),
+                                           new Person("crong"),
+                                           new Person("jk")));
+
+        List<Bridge> bridges = List.of(
+                new Bridge(convert(true, false, true)),
+                new Bridge(convert(false, true, false)),
+                new Bridge(convert(true, false, false)),
+                new Bridge(convert(false, true, false)),
+                new Bridge(convert(true, false, true))
+        );
+
+        List<String> resultCandidate = List.of("꽝", "5000", "꽝", "3000");
+
+        //when & then
+
+        Ladder ladder = new Ladder(people, new Line(bridges), resultCandidate);
+
+        assertThatThrownBy(() -> ladder.getLadderMatchingPersonalResult("abd"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
