@@ -99,4 +99,12 @@ public class LadderGameTest {
         assertThat(result).isEqualTo(expected);
     }
     
+    @DisplayName("모든 플레이어들의 사다리 최종 위치를 반환한다.")
+    @Test
+    void get_result_of_All() {
+        List<Integer> result = ladderGame.getResultAllIndex();
+
+        assertThat(result).isEqualTo(List.of(0,2,3,1));
+    }
+
 }
