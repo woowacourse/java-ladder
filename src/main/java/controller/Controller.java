@@ -24,7 +24,7 @@ public class Controller {
 
     public void run() {
         Users users = getUsers();
-        Results results = getResults();
+        Results results = getResults(users.getSize());
         Height height = getHeight();
 
         Ladder ladder = getLadder(users, height);
@@ -49,16 +49,16 @@ public class Controller {
         }
     }
 
-    private Results getResults() {
+    private Results getResults(int userCount) {
         try {
             List<String> resultNames = InputView.readResultNames();
             List<Result> results = resultNames.stream()
                     .map(Result::new)
                     .collect(Collectors.toList());
-            return new Results(results);
+            return new Results(results, userCount);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            return getResults();
+            return getResults(userCount);
         }
     }
 

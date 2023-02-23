@@ -22,7 +22,7 @@ public class LadderGameTest {
         users = new Users(
                 List.of(new User("userA"), new User("userB"), new User("userC"), new User("userD")));
         results = new Results(
-                List.of(new Result("1"), new Result("2"), new Result("3"), new Result("4")));
+                List.of(new Result("1"), new Result("2"), new Result("3"), new Result("4")), 4);
     }
 
     @Test
