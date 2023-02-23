@@ -6,9 +6,11 @@ import static java.util.stream.Collectors.toList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
+import ladder.domain.Line;
 import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.domain.Prize;
+import ladder.domain.Step;
 
 public class Util {
     public static List<Prize> createPrizes(int count) {
@@ -33,5 +35,12 @@ public class Util {
         return Arrays.stream(names)
                 .map(Player::new)
                 .collect(collectingAndThen(toList(), Players::new));
+    }
+
+
+    public static List<Line> createLines(int count) {
+        return IntStream.range(0, count)
+                .mapToObj(value -> new Line(List.of(Step.EMPTY)))
+                .collect(toList());
     }
 }

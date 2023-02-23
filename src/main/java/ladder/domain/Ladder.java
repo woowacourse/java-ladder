@@ -8,8 +8,8 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines, int playerCount) {
-        validatePlayersCount(lines.size(), playerCount);
+    public Ladder(List<Line> lines, Players players) {
+        validatePlayersCount(lines.size(), players.getPlayersCount());
         this.lines = lines;
     }
 

@@ -25,12 +25,12 @@ public class LadderService {
         this.lineStrategy = lineStrategy;
     }
 
-    public Ladder createLadder(Height height, int playerCount) {
+    public Ladder createLadder(Height height, Players players) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.getHeight(); i++) {
-            lines.add(lineStrategy.generate(playerCount));
+            lines.add(lineStrategy.generate(players.getPlayersCount()));
         }
-        return new Ladder(lines, playerCount);
+        return new Ladder(lines, players);
     }
 
     public Players createPlayers(String namesInput) {

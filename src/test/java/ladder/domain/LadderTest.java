@@ -1,12 +1,12 @@
 package ladder.domain;
 
-import static java.util.stream.Collectors.toList;
+import static ladder.Util.createLines;
+import static ladder.Util.createPlayers;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import java.util.List;
-import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,18 +17,24 @@ class LadderTest {
     @Test
     @DisplayName("입력된 사다리의 높이가 인원 수보다 작으면 예외가 발생한다.")
     void create_heightMinPlayersCount() {
+        // given
+        int height = 3;
+
         // expect
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Ladder(makeLines(), 12);
+            new Ladder(createLines(height), createPlayers(12));
         }).withMessage("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
     }
 
     @Test
     @DisplayName("입력된 사다리의 높이가 인원 수의 2배보다 크면 예외가 발생한다.")
     void create_heightMaxPlayersCount() {
+        // given
+        int height = 10;
+
         // expect
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Ladder(makeLines(), 2);
+            new Ladder(createLines(height), createPlayers(3));
         }).withMessage("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
     }
 
@@ -37,7 +43,7 @@ class LadderTest {
     void create_success() {
         // expect
         assertThatNoException().isThrownBy(() -> {
-            new Ladder(makeLines(), 3);
+            new Ladder(createLines(3), createPlayers(3));
         });
     }
 
@@ -89,12 +95,6 @@ class LadderTest {
                 new Line(List.of(Step.EXIST, Step.EMPTY, Step.EXIST)),
                 new Line(List.of(Step.EMPTY, Step.EMPTY, Step.EMPTY)),
                 new Line(List.of(Step.EMPTY, Step.EXIST, Step.EMPTY))
-        ), 3);
-    }
-
-    private List<Line> makeLines() {
-        return IntStream.range(0, 5)
-                .mapToObj(value -> new Line(List.of(Step.EMPTY)))
-                .collect(toList());
+        ), createPlayers(3));
     }
 }

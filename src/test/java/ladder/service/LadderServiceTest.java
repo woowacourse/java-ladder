@@ -43,7 +43,7 @@ class LadderServiceTest {
         Height height = new Height(5);
 
         // when
-        Ladder ladder = ladderService.createLadder(height, 5);
+        Ladder ladder = ladderService.createLadder(height, createPlayers(5));
 
         // then
         assertThat(ladder.getHeight())
