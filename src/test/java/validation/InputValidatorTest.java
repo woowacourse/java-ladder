@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import exception.InvalidLadderHeightException;
 import exception.InvalidPlayerNameException;
+import exception.InvalidPrizeNameException;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -43,5 +44,13 @@ class InputValidatorTest {
     void 사다리_높이_입력이_양의_정수이면_에러를_발생시키지_않는다(String ladderHeight) {
         //when + then
         assertDoesNotThrow(() -> InputValidator.validateLadderHeightInput(ladderHeight));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "  "})
+    void 상품의_입력_값이_공백이나_Null이면_에러를_발생시킨다(String prizeName) {
+        //when + then
+        assertThatThrownBy(() -> InputValidator.validatePrizeNameInput(prizeName))
+            .isInstanceOf(InvalidPrizeNameException.class);
     }
 }

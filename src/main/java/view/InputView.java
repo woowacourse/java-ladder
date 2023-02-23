@@ -29,6 +29,15 @@ public class InputView {
         return Integer.parseInt(ladderHeight);
     }
 
+    public List<String> readPrizeName() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        String prizeName = scanner.nextLine();
+
+        InputValidator.validatePrizeNameInput(prizeName);
+        return List.of(prizeName.split(DELIMITER));
+    }
+
     private static void printPlayerNameInputGuideMessage() {
         System.out.println(PLAYER_NAME_INPUT_GUIDE_MESSAGE);
     }
