@@ -25,7 +25,7 @@ public class LadderServiceTest {
                 new Line(List.of(FALSE, TRUE, FALSE)),
                 new Line(List.of(TRUE, FALSE, TRUE))
         );
-        People people = new People("pobi,honux,crong,jk");
+        People people = new People(List.of("pobi", "honux", "crong", "jk"));
 //        LinesGenerator generator = (a, b) -> new Ladder(customizedLines);
         Results results = new Results("꽝,5000,꽝,3000", people);
         ladderService = new LadderService(people, results, new Ladder(customizedLines));

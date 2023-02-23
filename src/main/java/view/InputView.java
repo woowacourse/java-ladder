@@ -1,17 +1,21 @@
 package view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
     public static final String DELIMITER = ",";
 
-    public String readNames() {
+    public List<String> readNames() {
         System.out.printf("참여할 사람 이름을 입력하세요. (이름은 쉼표(%s)로 구분하세요)%n", DELIMITER);
         String input = readLine();
         validateDelimiter(input);
-        return input;
+        return Arrays.stream(input.split(DELIMITER))
+                .collect(Collectors.toList());
     }
 
     private String readLine() {

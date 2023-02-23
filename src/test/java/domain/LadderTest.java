@@ -8,6 +8,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class LadderTest {
 
     @DisplayName("사다리의 높이와 사람 수만큼 라인을 생성한다")
@@ -18,12 +21,12 @@ class LadderTest {
             "3, 5",
     })
     void ladder_test(int personCount, int maxHeight) {
-        StringBuilder names = new StringBuilder();
+        List<String> names = new ArrayList<>();
         for (int i = 0; i < personCount; i++) {
-            names.append("hi").append(i).append(",");
+            names.add("hi" + i);
         }
         Ladder ladder = new RandomLadderGenerator()
-                .generate(new People(names.toString()), maxHeight);
+                .generate(new People(names), maxHeight);
         assertThat(ladder.getWidth()).isEqualTo(personCount - 1);
         assertThat(ladder.getHeight()).isEqualTo(maxHeight);
     }
@@ -32,7 +35,7 @@ class LadderTest {
     @ParameterizedTest(name = "{index} : 현재 사다리 높이 = {0}")
     @ValueSource(ints = {0, 11})
     void ladder_height_test(int height) {
-        assertThatThrownBy(() -> new RandomLadderGenerator().generate(new People("hello,world"), height))
+        assertThatThrownBy(() -> new RandomLadderGenerator().generate(new People(List.of("hello", "world")), height))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 높이는 1 이상 10 이하여야 합니다.");
     }

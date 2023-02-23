@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,21 +8,14 @@ import java.util.stream.IntStream;
 public class People implements Iterable<Person> {
 
     public static final int MIN_PERSON_COUNT = 2;
-    public static final String DELIMITER = ",";
 
     private final List<Person> people;
 
-    public People(String input) {
-        List<String> names = toNames(input);
+    public People(List<String> names) {
         validateDuplicate(names);
         List<Person> people = toList(names);
         validatePersonCount(people);
         this.people = people;
-    }
-
-    private List<String> toNames(String names) {
-        return Arrays.stream(names.split(DELIMITER))
-                .collect(Collectors.toList());
     }
 
     private void validateDuplicate(List<String> result) {

@@ -4,6 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -17,7 +21,8 @@ public class ResultsTest {
             "꽝,5000,꽝,3000:user1,user2,user3,user4",
     }, delimiter = ':')
     void success(String input, String people) {
-        assertDoesNotThrow(() -> new Results(input, new People(people)));
+        List<String> names = Arrays.stream(people.split(",")).collect(Collectors.toList());
+        assertDoesNotThrow(() -> new Results(input, new People(names)));
     }
 
     @DisplayName("실행 결과의 수가 일치하지 않으면 예외가 발생한다.")
@@ -28,7 +33,8 @@ public class ResultsTest {
             "꽝,5000,꽝,3000:user1,user2,user3",
     }, delimiter = ':')
     void fail(String input, String people) {
-        assertThatThrownBy(() -> new Results(input, new People(people)))
+        List<String> names = Arrays.stream(people.split(",")).collect(Collectors.toList());
+        assertThatThrownBy(() -> new Results(input, new People(names)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("실행 결과의 수는 사람 수와 같아야 합니다.");
     }
