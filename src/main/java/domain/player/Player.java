@@ -1,6 +1,5 @@
 package domain.player;
 
-import domain.Position;
 import domain.item.Item;
 import domain.ladder.Bridge;
 import domain.ladder.Line;
