@@ -1,6 +1,8 @@
 package domain.ladder;
 
 
+import static domain.ladder.LinePoint.BLOCKED;
+import static domain.ladder.LinePoint.PASSABLE;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,7 +14,6 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import utils.NumberGenerator;
 
 class LadderTest {
 
@@ -29,7 +30,8 @@ class LadderTest {
     @CsvSource(value = {"1:5000", "2:꽝", "3:2000", "4:3000", "5:1000"}, delimiter = ':')
     void move_result_test(int position, String expectResult) {
         // given
-        Ladder ladder = createLadder();
+        LadderResults ladderResults = createLadderResults(5, "꽝", "3000", "5000", "1000", "2000");
+        Ladder ladder = new Ladder(createLine(), ladderResults);
         Player player = new Player(new Name("hs"), new Position(position));
 
         // when
@@ -37,14 +39,6 @@ class LadderTest {
 
         // then
         assertThat(ladderResult.getResult()).isEqualTo(expectResult);
-    }
-
-    private Ladder createLadder() {
-        LadderGenerator ladderGenerator = new LadderGenerator(
-                new LineGenerator(new MockNumberGenerator()));
-        int numberOfPeople = 5;
-        LadderResults ladderResults = createLadderResults(numberOfPeople, "꽝", "3000", "5000", "1000", "2000");
-        return ladderGenerator.generate(numberOfPeople, new LadderHeight(4), ladderResults);
     }
 
     private LadderResults createLadderResults(int numberOfPeople,
@@ -55,14 +49,11 @@ class LadderTest {
         return LadderResults.createByPlayersSize(ladderResults, numberOfPeople);
     }
 
-    static class MockNumberGenerator implements NumberGenerator {
-
-        private final List<Integer> list = List.of(3, 4, 4);
-        private int index = 0;
-
-        @Override
-        public int generate() {
-            return list.get((++index) % list.size());
-        }
+    private List<Line> createLine() {
+        return List.of(
+                new Line(List.of(PASSABLE, BLOCKED, PASSABLE, BLOCKED)),
+                new Line(List.of(BLOCKED, PASSABLE, BLOCKED, PASSABLE)),
+                new Line(List.of(BLOCKED, PASSABLE, BLOCKED, PASSABLE)),
+                new Line(List.of(BLOCKED, PASSABLE, BLOCKED, PASSABLE)));
     }
 }
