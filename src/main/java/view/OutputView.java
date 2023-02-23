@@ -44,13 +44,13 @@ public class OutputView {
         System.out.println(FINAL_RESULT);
     }
 
-    public void printGameResult(Ladder ladder, Users users) {
+    public void printGameResult(Ladder ladder, Users users, Rewards rewards) {
         System.out.println(LADDER_RESULT + NEXT_LINE);
-
-        String firstUsersName = users.getFirstUserName();
-
         printUsers(users);
-        printLadder(ladder, firstUsersName.length());
+        printLadder(ladder);
+        printRewards(rewards);
+        System.out.println();
+    }
 
     public void printTotalRewards(Users users, LadderGame ladderGame) {
         for (User user : users.getUsers()) {
@@ -66,8 +66,6 @@ public class OutputView {
 
     private void printUsers(Users users) {
         StringBuilder result = new StringBuilder();
-        result.append(BLANK)
-            .append(users.getFirstUserName());
         buildUserPrintingFormat(users, result);
         System.out.println(result);
     }
@@ -107,7 +105,7 @@ public class OutputView {
         System.out.print(result);
     }
 
-    private StringBuilder buildLadderLine( Line line) {
+    private StringBuilder buildLadderLine(Line line) {
         StringBuilder result = new StringBuilder();
 
         result.append(BLANK.repeat(MAX_NAME_LENGTH))
