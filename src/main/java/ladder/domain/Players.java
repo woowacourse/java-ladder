@@ -1,13 +1,12 @@
 package ladder.domain;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.stream.IntStream;
 
 public class Players {
     private static final int PLAYERS_SIZE_LOWER_BOUND = 2;
@@ -16,18 +15,19 @@ public class Players {
             "참가자는 최소 " + PLAYERS_SIZE_LOWER_BOUND + "명, 최대 " + PLAYERS_SIZE_UPPER_BOUND + "명이어야 합니다.";
     private static final String DUPLICATE_NAMES_MESSAGE = "참가자의 이름은 중복되지 않아야 합니다.";
 
-    private final List<Player> players;
+    private final Map<Position, Player> players;
 
-    private Players(final List<Player> players) {
+    private Players(final Map<Position, Player> players) {
         this.players = players;
     }
 
     public static Players from(final List<String> names) {
         validate(names);
-        return IntStream.range(0, names.size())
-                .boxed()
-                .map(index -> new Player(names.get(index), Position.valueOf(index)))
-                .collect(collectingAndThen(toList(), Players::new));
+        final Map<Position, Player> players = new LinkedHashMap<>();
+        for (int index = 0; index < names.size(); index++) {
+            players.put(Position.valueOf(index), new Player(names.get(index)));
+        }
+        return new Players(players);
     }
 
     private static void validate(final List<String> names) {
@@ -48,13 +48,13 @@ public class Players {
         }
     }
 
-    public List<String> getNames() {
-        return players.stream()
-                .map(Player::getName)
-                .collect(toUnmodifiableList());
-    }
-
     public int count() {
         return players.size();
+    }
+
+    public List<String> getNames() {
+        return players.values().stream()
+                .map(Player::getName)
+                .collect(toUnmodifiableList());
     }
 }
