@@ -29,7 +29,7 @@ public class Name {
     }
 
     private void validateGameCommand(String name) {
-        if(name.equals(GAME_COMMAND)) {
+        if (name.equals(GAME_COMMAND)) {
             throw new IllegalArgumentException("all이라는 이름을 쓸 수 없습니다.");
         }
     }

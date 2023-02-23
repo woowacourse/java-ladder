@@ -17,10 +17,10 @@ public class Line {
     }
 
     public Position findNextPosition(Position playerPosition) {
-        if(existLeft(playerPosition)) {
+        if (existLeft(playerPosition)) {
             return new Position(playerPosition.getValue() - 1);
         }
-        if(existRight(playerPosition)) {
+        if (existRight(playerPosition)) {
             return new Position(playerPosition.getValue() + 1);
         }
         return playerPosition;
@@ -28,7 +28,7 @@ public class Line {
 
     private boolean existLeft(Position playerPosition) {
         int leftPosition = playerPosition.getValue() - 1;
-        if(leftPosition < 0) {
+        if (leftPosition < 0) {
             return false;
         }
         return sections.get(leftPosition);
@@ -36,7 +36,7 @@ public class Line {
 
     private boolean existRight(Position playerPosition) {
         int rightPosition = playerPosition.getValue();
-        if(rightPosition >= lineLength) {
+        if (rightPosition >= lineLength) {
             return false;
         }
         return sections.get(rightPosition);

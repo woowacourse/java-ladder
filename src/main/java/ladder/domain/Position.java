@@ -11,7 +11,7 @@ public class Position {
     }
 
     private void validateNegative(int value) {
-        if(value < 0) {
+        if (value < 0) {
             throw new IllegalArgumentException("위치는 음수 값일 수 없습니다.");
         }
     }
