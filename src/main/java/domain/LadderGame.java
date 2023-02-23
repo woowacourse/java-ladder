@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class LadderGame {
 
-    public static final int START_LINE = 0;
+    private static final int START_LINE = 0;
     private final Players players;
     private final Ladder ladder;
     private final Prizes prizes;
