@@ -35,6 +35,12 @@ public class Persons {
         return new Persons(persons);
     }
 
+    public void playGame(Ladder ladder) {
+        for (Person person : persons) {
+            person.climb(ladder);
+        }
+    }
+
     public int getTotalPersonCount() {
         return persons.size();
     }

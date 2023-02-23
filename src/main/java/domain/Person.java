@@ -21,6 +21,9 @@ public class Person {
         }
     }
 
+    public void climb(Ladder ladder) {
+        position = ladder.findFinalPosition(position);
+    }
 
     public String getName() {
         return name;

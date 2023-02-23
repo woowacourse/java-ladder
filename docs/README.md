@@ -22,7 +22,7 @@
   - [x] 다리가 두 칸 이상 연속되게 생기면 안된다 Line#hasBridgeInLeftOrRight
   - [x] 각 칸마다 다리 생성 여부는 랜덤값으로 결정 RandomBridgeGenerator
 
-- [ ] 사다리 게임 실행
+- [x] 사다리 게임 실행
   - [x] 시작 위치는 입력 순서대로 Persons#initializePerson
   - [x] 칸 이동
     - [x] 연결된 다리가 있는지 확인

@@ -22,6 +22,7 @@ public class LadderGame {
 
     public void run() {
         ladder.generate(bridgeGenerator);
+        persons.playGame(ladder);
     }
 
     public Map<String, String> getGameResults() {
@@ -33,7 +34,7 @@ public class LadderGame {
         }
         return mappingResult;
     }
-    
+
     public List<List<Bridge>> getLadderStatus() {
         return ladder.getStatus();
     }
