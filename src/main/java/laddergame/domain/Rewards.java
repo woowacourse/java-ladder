@@ -19,6 +19,10 @@ public class Rewards {
         }
     }
 
+    public List<String> getRewards() {
+        return rewards;
+    }
+
     private void checknull(List<String> rewards) {
         if (rewards.isEmpty()) {
             throw new IllegalArgumentException("reward 목록을 입력해주세요.");

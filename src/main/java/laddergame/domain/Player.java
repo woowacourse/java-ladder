@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import java.util.List;
+
 public class Player {
     private String name;
     private String reward;
@@ -14,6 +16,14 @@ public class Player {
         return position;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getReward() {
+        return reward;
+    }
+
     public void move(boolean isLeftStep, boolean isRightStep){
         if (isLeftStep) {
             position--;
@@ -23,5 +33,9 @@ public class Player {
             position++;
             return ;
         }
+    }
+
+    public void matchReward(List<String> rewards){
+        this.reward = rewards.get(position);
     }
 }
