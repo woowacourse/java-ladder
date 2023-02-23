@@ -6,8 +6,6 @@ import laddergame.view.LadderForm;
 import laddergame.view.LadderMatchForm;
 import laddergame.view.OutputView;
 
-import java.util.Map;
-
 import static laddergame.utils.ExceptionTemplate.repeatAndPrintCause;
 
 public class LadderController {
@@ -43,7 +41,7 @@ public class LadderController {
         String command = "";
         while (!command.equals(FIND_ALL_MATCH_RESULTS_COMMAND)) {
             command = inputView.readName();
-            final Map<Name, Result> matchResults = ladderMatch.getLadderMatchResults(command);
+            final LadderMatchResults matchResults = ladderMatch.getLadderMatchResults(command);
             outputView.printMatchResult(LadderMatchForm.joinUnitsFrom(matchResults));
         }
     }
