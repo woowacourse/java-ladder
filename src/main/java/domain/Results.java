@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -63,6 +64,8 @@ public class Results implements Iterable<Result> {
 
     @Override
     public Iterator<Result> iterator() {
-        return results.iterator();
+        return Collections
+                .unmodifiableCollection(results)
+                .iterator();
     }
 }
