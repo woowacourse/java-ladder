@@ -23,16 +23,13 @@ public class LadderGameController {
     }
 
     public void run() {
-        try {
-            Players players = generatePlayers();
-            Rewards rewards = generateRewards(players.getSize());
-            Height height = generateHeight();
-            Ladder ladder = generateLadder(players, height);
-            showLadderGame(players, ladder, rewards);
-            showResultBoard(new ResultBoard(players, ladder, rewards));
-        } catch (Exception exception) {
-            outputView.printExceptionMessage(ExceptionMessage.EXCEPTION_EXIT.getMessage());
-        }
+        Players players = generatePlayers();
+        Rewards rewards = generateRewards(players.getSize());
+        Height height = generateHeight();
+        Ladder ladder = generateLadder(players, height);
+
+        showLadderGame(players, ladder, rewards);
+        showResultBoard(new ResultBoard(players, ladder, rewards));
     }
 
     private Players generatePlayers() {
@@ -122,7 +119,8 @@ public class LadderGameController {
 
     private void showSinglePlayer(ResultBoard resultBoard, String playerName) {
         try {
-            outputView.printSinglePlayerResult(resultBoard.getRewardOf(playerName).getReward());
+            Player player = new Player(playerName);
+            outputView.printSinglePlayerResult(resultBoard.getRewardOf(player).getReward());
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
         }

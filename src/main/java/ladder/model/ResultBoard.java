@@ -23,15 +23,11 @@ public class ResultBoard {
         return result;
     }
 
-    public Reward getRewardOf(Player player) {
+    public Reward getRewardOf(Player givenPlayer) {
+        Player player = players.findPlayer(givenPlayer);
         int entrance = players.findPositionOf(player);
         int exit = ladder.findExitFrom(entrance);
         return rewards.getRewards().get(exit);
-    }
-
-    public Reward getRewardOf(String playerName) {
-        Player player = players.findPlayerByName(playerName);
-        return getRewardOf(player);
     }
 
 }

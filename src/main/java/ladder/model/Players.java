@@ -28,9 +28,9 @@ public class Players {
         return MIN_PLAYER_COUNT <= playerCount && playerCount <= MAX_PLAYER_COUNT;
     }
 
-    public Player findPlayerByName(String playerName) {
+    public Player findPlayer(Player givenPlayer){
         Optional<Player> foundPlayer = players.stream()
-                .filter(player -> player.isNameSame(playerName))
+                .filter(player1 -> player1.equals(givenPlayer))
                 .findFirst();
 
         if (foundPlayer.isEmpty()) {

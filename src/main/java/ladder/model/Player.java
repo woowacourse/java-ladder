@@ -2,6 +2,8 @@ package ladder.model;
 
 import ladder.exceptionMessage.ExceptionMessage;
 
+import java.util.Objects;
+
 public class Player {
 
     private static final int MIN_LENGTH = 1;
@@ -36,12 +38,20 @@ public class Player {
         }
     }
 
-    public boolean isNameSame(String name) {
-        return name.equals(playerName);
-    }
-
     public String getPlayerName() {
         return playerName;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Player)) return false;
+        Player player = (Player) object;
+        return this.playerName.equals(player.playerName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(playerName);
     }
 
 }
