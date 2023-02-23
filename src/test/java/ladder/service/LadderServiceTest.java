@@ -4,10 +4,13 @@ import static ladder.Util.createPlayers;
 import static ladder.Util.createPrizes;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
+import ladder.domain.PlayerResults;
 import ladder.domain.Players;
 import ladder.domain.Prizes;
+import ladder.domain.Step;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +21,7 @@ class LadderServiceTest {
 
     @BeforeEach
     void setUp() {
-        ladderService = new LadderService(new RandomLineStrategy());
+        ladderService = new LadderService(new CustomLineStrategy(List.of(Step.EMPTY)));
     }
 
     @Test
@@ -61,5 +64,27 @@ class LadderServiceTest {
         // then
         assertThat(prizes.getPrizes())
                 .isEqualTo(createPrizes("꽝", "5000", "꽝", "3000"));
+    }
+
+    @Test
+    @DisplayName("게임의 결과가 정확히 반환되어야 한다.")
+    void createPlayerResults_success() {
+        // given
+        Players players = createPlayers("glen", "pobi", "bero");
+        Ladder ladder = ladderService.createLadder(new Height(5), players);
+        Prizes prizes = new Prizes(createPrizes("1000", "꽝", "5000"), players);
+
+        // when
+        PlayerResults playerResults = ladderService.createPlayerResults(players, ladder, prizes);
+
+        // then
+        assertThat(playerResults.getPlayerResults())
+                .hasSize(3);
+        assertThat(playerResults.findByPlayerName("glen").getPrize())
+                .isEqualTo("1000");
+        assertThat(playerResults.findByPlayerName("pobi").getPrize())
+                .isEqualTo("꽝");
+        assertThat(playerResults.findByPlayerName("bero").getPrize())
+                .isEqualTo("5000");
     }
 }
