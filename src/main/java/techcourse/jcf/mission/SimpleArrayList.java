@@ -4,14 +4,14 @@ import java.util.Arrays;
 
 public class SimpleArrayList implements SimpleList {
 
-    private static final int MINIMUM_SIZE = 2;
+    private static final int DEFAULT_SIZE = 10;
 
     private int size = 0;
     private int currentIndex = 0;
     private String[] values;
 
     public SimpleArrayList() {
-        values = new String[MINIMUM_SIZE];
+        values = new String[DEFAULT_SIZE];
     }
 
     public SimpleArrayList(final String[] values) {
@@ -68,7 +68,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override

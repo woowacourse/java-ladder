@@ -16,7 +16,7 @@ class SimpleArrayListTest {
 
         arrayList.add("홍실");
 
-        assertThat(arrayList).extracting("list")
+        assertThat(arrayList).extracting("values")
                 .asInstanceOf(InstanceOfAssertFactories.array(String[].class))
                 .contains("홍실");
     }
@@ -29,7 +29,7 @@ class SimpleArrayListTest {
 
         arrayList.add(0, "홍실");
 
-        assertThat(arrayList).extracting("list")
+        assertThat(arrayList).extracting("values")
                 .asInstanceOf(InstanceOfAssertFactories.array(String[].class));
     }
 
@@ -81,7 +81,12 @@ class SimpleArrayListTest {
     }
 
     @Test
+    @DisplayName("size는 현재 리스트에 들어있는 값의 개수를 반환한다")
     void size() {
+        final String[] array = {"홍실", "다니"};
+        final SimpleArrayList arrayList = new SimpleArrayList(array);
+
+        assertThat(arrayList.size()).isEqualTo(2);
     }
 
     @Test
