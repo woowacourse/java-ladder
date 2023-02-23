@@ -18,7 +18,7 @@ class PlayerTest {
     void create12Players() {
         List<Player> players = new ArrayList<>();
         for (int i = 0; i < 13; i++) {
-            players.add(new Player(String.valueOf(i)));
+            players.add(new Player(String.valueOf(i), i));
         }
         Assertions.assertThatThrownBy(() -> new Players(players))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -30,7 +30,7 @@ class PlayerTest {
     void create1Player(int count) {
         List<Player> players = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            players.add(new Player(String.valueOf(i)));
+            players.add(new Player(String.valueOf(i), i));
         }
         Assertions.assertThatThrownBy(() -> new Players(players))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -39,7 +39,8 @@ class PlayerTest {
     @DisplayName("플레이어 이름이 중복일때 에러 확인")
     @Test
     void duplicatePlayerName() {
-        List<Player> players = List.of(new Player("aa"), new Player("aa"));
+        List<Player> players =
+                List.of(new Player("aa",0), new Player("aa",1));
         Assertions.assertThatThrownBy(() -> new Players(players))
                 .isInstanceOf(IllegalArgumentException.class);
     }

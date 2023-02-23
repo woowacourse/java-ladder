@@ -31,9 +31,9 @@ public class PlayerName {
     }
 
     private void checkPlayerName(String playerName) {
-        checkPlayerNameLength(playerName);
         checkBlank(playerName);
         checkNull(playerName);
+        checkPlayerNameLength(playerName);
     }
 
 
