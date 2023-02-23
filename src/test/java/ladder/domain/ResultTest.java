@@ -8,24 +8,28 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ResultTest {
     private Names names;
-    private List<String> bets;
+    private Bets bets;
 
     @BeforeAll
     void setup() {
         names = new Names(
                 Arrays.asList("AAAA", "BBBB", "CCCC", "DDDD", "EEEE")
         );
-        bets = Arrays.asList("A", "B", "C", "D", "E");
+        bets = new Bets(
+                Arrays.asList("A", "B", "C", "D", "E")
+        );
     }
 
     @DisplayName("참여자 수와 내기 목록의 수가 같아야 한다.")
     @Test
     void createResultFailTestByDifferentCountOfNamesAndBet() {
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> new Result(names, Arrays.asList("꽝", "꽝", "당첨")));
+                () -> new Result(names, new Bets(Arrays.asList("꽝", "꽝", "당첨"))));
     }
 
     @DisplayName("참여자 수와 내기 목록의 수가 같아야 한다.")
@@ -42,10 +46,11 @@ public class ResultTest {
 
         result.perform(ladder); // ladder를 기반으로 내기 목록 위치 변경
 
-        List<String> performedResult = Arrays.asList("B", "A", "D", "C", "E"); // 예상 결과
+        List<String> expectedBets = Arrays.asList("B", "A", "D", "C", "E"); // 예상 결과
+        List<Bet> actualBets = List.copyOf(result.getResult().values());
 
-        for (int i = 0; i < performedResult.size(); i++) {
-            Assertions.assertEquals(performedResult.get(i), result.getResult().get(i).toString());
+        for (int i = 0; i < expectedBets.size(); i++) {
+            assertEquals(expectedBets.get(i), actualBets.get(i).toString());
         }
     }
 
@@ -57,10 +62,11 @@ public class ResultTest {
 
         result.perform(ladder); // ladder를 기반으로 내기 목록 위치 변경
 
-        List<String> performedResult = Arrays.asList("A", "B", "C", "D", "E"); // 예상 결과
+        List<String> expectedBets = Arrays.asList("A", "B", "C", "D", "E"); // 예상 결과
+        List<Bet> actualBets = List.copyOf(result.getResult().values());
 
-        for (int i = 0; i < performedResult.size(); i++) {
-            Assertions.assertEquals(performedResult.get(i), result.getResult().get(i).toString());
+        for (int i = 0; i < expectedBets.size(); i++) {
+            assertEquals(expectedBets.get(i), actualBets.get(i).toString());
         }
     }
 }
