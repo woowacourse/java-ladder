@@ -19,7 +19,7 @@ public class LadderGame {
         ladderGameResult = getLadderGameResult(users.getSize(), ladder.getLadderRows().size());
     }
 
-    private LadderGameResult getLadderGameResult(int userCount, int ladderHeight) {
+    private LadderGameResult getLadderGameResult(final int userCount, final int ladderHeight) {
         Map<User, Result> map = new HashMap<>();
         for (int i = 0; i < userCount; i++) {
             User user = users.getUsers().get(i);
@@ -30,7 +30,7 @@ public class LadderGame {
         return new LadderGameResult(map);
     }
 
-    private int move(int index, int currentHeight, int ladderHeight) {
+    private int move(final int index, final int currentHeight, final int ladderHeight) {
         if (currentHeight == ladderHeight) {
             return index;
         }
@@ -62,7 +62,7 @@ public class LadderGame {
         inProgress = true;
     }
 
-    public LadderGameResult getLadderGameResultByName(String name) {
+    public LadderGameResult getLadderGameResultByName(final String name) {
         if (name.equals("all")) {
             inProgress = false;
             return ladderGameResult;

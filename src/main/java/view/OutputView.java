@@ -76,13 +76,13 @@ public class OutputView {
         return NOT_EXIST_LINE_SYMBOL;
     }
 
-    public static void printLadderGameResult(LadderGameResult ladderGameResult) {
+    public static void printLadderGameResult(final LadderGameResult ladderGameResult) {
         System.out.println(RESULT_MESSAGE);
         Map<User, Result> result = ladderGameResult.getLadderGameResult();
         result.entrySet().forEach(OutputView::printResultWithFormat);
     }
 
-    private static void printResultWithFormat(Map.Entry<User, Result> entry) {
+    private static void printResultWithFormat(final Map.Entry<User, Result> entry) {
         System.out.printf(RESULT_FORMAT, entry.getKey().getName(), entry.getValue().getResultName());
     }
 }

@@ -20,13 +20,13 @@ public class LadderRow {
         }
     }
 
-    private void isAllExist(Line current, Line next) {
+    private void isAllExist(final Line current, final Line next) {
         if (current == Line.EXIST && next == Line.EXIST) {
             throw new IllegalArgumentException(CONSECUTIVE_LINE_ERROR);
         }
     }
 
-    public int getExistingLineIndex(int index) {
+    public int getExistingLineIndex(final int index) {
         int leftLineIndex = getLeftLineIndex(index);
         int rightLineIndex = getRightLineIndex(index);
         if (lines.get(leftLineIndex) == Line.EXIST) {
@@ -38,14 +38,14 @@ public class LadderRow {
         return -100;
     }
 
-    private int getLeftLineIndex(int index) {
+    private int getLeftLineIndex(final int index) {
         if (index == 0) {
             return index;
         }
         return index - 1;
     }
 
-    private int getRightLineIndex(int index) {
+    private int getRightLineIndex(final int index) {
         if (index == lines.size()) {
             return index - 1;
         }
