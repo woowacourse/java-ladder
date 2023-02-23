@@ -39,6 +39,6 @@ public class Player {
     }
 
     public boolean isTarget(String name){
-        return this.name == name;
+        return this.name.equals(name);
     }
 }

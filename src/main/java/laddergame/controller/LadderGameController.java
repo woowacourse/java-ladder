@@ -39,8 +39,8 @@ public class LadderGameController {
             outputView.printAllResult(players);
             return ;
         }
-        Player player = players.getTargetPlayer(target.getName());
-//        outputView.printPlayerResult(players.getTargetPlayer(target.getName()));
+        Player targetPlayer = players.getTargetPlayer(target.getName());
+        outputView.printPlayerResult(targetPlayer);
     }
 
     private Players requestUserNames() {

@@ -40,7 +40,10 @@ public class Players {
     }
 
     public Player getTargetPlayer(String name) {
-        return players.stream().filter(player -> player.isTarget(name)).findAny().orElseThrow();
+        return players.stream()
+                .filter(player -> player.isTarget(name))
+                .findAny()
+                .orElseThrow(()->new IllegalStateException("일치하는 플레이어가 없습니다"));
     }
 
     private void checkPlayerCount(List<String> players) {
