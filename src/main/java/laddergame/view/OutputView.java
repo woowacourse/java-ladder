@@ -6,9 +6,12 @@ import laddergame.domain.rung.Rung;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static laddergame.view.message.LadderMessage.*;
-
 public class OutputView {
+
+    private static final String LADDER_FRAME = "|";
+    private static final String LADDER_RUNG = "-----";
+    private static final String LADDER_BLANK = "     ";
+    private static final String LADDER_PADDING = " ";
 
     public static void print(final String message) {
         System.out.println(message);
@@ -55,16 +58,16 @@ public class OutputView {
     }
 
     private String makeRungsMessage(final List<Rung> rungs, final int firstNameLength) {
-        final String firstLadderFrame = LADDER_PADDING.getMessage().repeat(firstNameLength) + LADDER_FRAME.getMessage();
+        final String firstLadderFrame = LADDER_PADDING.repeat(firstNameLength) + LADDER_FRAME;
         return rungs.stream()
                 .map(rung -> makeRungMessage(rung.exists()))
-                .collect(Collectors.joining(LADDER_FRAME.getMessage(), firstLadderFrame, LADDER_FRAME.getMessage()));
+                .collect(Collectors.joining(LADDER_FRAME, firstLadderFrame, LADDER_FRAME));
     }
 
     private String makeRungMessage(final boolean isExistence) {
         if (isExistence) {
-            return LADDER_RUNG.getMessage();
+            return LADDER_RUNG;
         }
-        return LADDER_BLANK.getMessage();
+        return LADDER_BLANK;
     }
 }
