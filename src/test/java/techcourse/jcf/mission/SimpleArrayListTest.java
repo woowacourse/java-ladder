@@ -11,12 +11,9 @@ class SimpleArrayListTest {
     void add() {
         SimpleArrayList simpleArrayList = new SimpleArrayList();
 
-        System.out.println("before add: " + simpleArrayList);
         assertThat(simpleArrayList.add("first")).isTrue();
-        System.out.println("after add: " + simpleArrayList);
 
         simpleArrayList.add(0, "newFirst");
-        System.out.println("after addByIndex: " + simpleArrayList);
 
         assertThatThrownBy(() -> simpleArrayList.add(-1, "fail"))
                 .isInstanceOf(IndexOutOfBoundsException.class);
@@ -26,9 +23,7 @@ class SimpleArrayListTest {
     void set() {
         SimpleArrayList simpleArrayList = new SimpleArrayList(new String[]{"first", "second", "third"});
 
-        System.out.println("before set: " + simpleArrayList);
         assertThat(simpleArrayList.set(1, "newSecond")).isEqualTo("second");
-        System.out.println("after set: " + simpleArrayList);
 
         assertThatThrownBy(() -> simpleArrayList.set(-1, "fail"))
                 .isInstanceOf(IndexOutOfBoundsException.class);

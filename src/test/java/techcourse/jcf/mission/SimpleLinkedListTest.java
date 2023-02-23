@@ -10,27 +10,25 @@ class SimpleLinkedListTest {
     void add() {
         SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
 
-        System.out.println("before add: " + simpleLinkedList);
         assertThat(simpleLinkedList.add("first")).isTrue();
-        System.out.println("after add: " + simpleLinkedList);
         assertThat(simpleLinkedList.size()).isEqualTo(1);
     }
 
     @Test
     void set() {
         SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+
         simpleLinkedList.add("first");
         simpleLinkedList.add("second");
 
-        System.out.println("before set: " + simpleLinkedList);
         assertThat(simpleLinkedList.set(0, "newFirst")).isEqualTo("first");
-        System.out.println("after set: " + simpleLinkedList);
         assertThat(simpleLinkedList.get(0)).isEqualTo("newFirst");
     }
 
     @Test
     void get() {
         SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+
         simpleLinkedList.add("first");
 
         assertThat(simpleLinkedList.get(0)).isEqualTo("first");
@@ -39,6 +37,7 @@ class SimpleLinkedListTest {
     @Test
     void contains() {
         SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+
         simpleLinkedList.add("first");
 
         assertThat(simpleLinkedList.contains("first")).isTrue();
@@ -47,6 +46,7 @@ class SimpleLinkedListTest {
     @Test
     void indexOf() {
         SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+
         simpleLinkedList.add("first");
         simpleLinkedList.add("second");
         simpleLinkedList.add("third");
@@ -71,13 +71,11 @@ class SimpleLinkedListTest {
     @Test
     void remove() {
         SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+
         simpleLinkedList.add("first");
         simpleLinkedList.add("second");
         simpleLinkedList.add("third");
-
-        System.out.println("before remove: " + simpleLinkedList);
         simpleLinkedList.remove("second");
-        System.out.println("after remove: " + simpleLinkedList);
 
         assertThat(simpleLinkedList.size()).isEqualTo(2);
         assertThat(simpleLinkedList.get(0)).isEqualTo("first");
@@ -88,6 +86,7 @@ class SimpleLinkedListTest {
     @Test
     void clear() {
         SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+
         simpleLinkedList.add("first");
         simpleLinkedList.add("second");
         simpleLinkedList.add("third");
