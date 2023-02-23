@@ -19,6 +19,7 @@ public class Rewards {
 
     public static Rewards of(List<String> rewards, int userCount) {
         validateRewardsSize(rewards, userCount);
+
         return new Rewards(rewards);
     }
 
@@ -36,4 +37,5 @@ public class Rewards {
         }
         return rewards.get(index);
     }
+
 }

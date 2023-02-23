@@ -12,8 +12,10 @@ public class Name {
 
     public Name(String name) {
         name = name.strip();
+
         validateNameLengthByMinimumLimit(name);
         validateNameLengthByMaximumLimit(name);
+
         this.name = name;
     }
 

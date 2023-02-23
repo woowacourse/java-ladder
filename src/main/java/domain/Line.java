@@ -10,6 +10,7 @@ public class Line {
 
     public Line(LineMaker lineMaker, int userCount) {
         this.points = new ArrayList<>();
+
         addPoint(lineMaker.generateLine(userCount));
     }
 
