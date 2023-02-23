@@ -32,7 +32,9 @@ public class Layer {
         if (moveInEnds(location)) {
             return;
         }
-        judgeRight(location);
+        if (judgeRight(location)) {
+            return;
+        }
         judgeLeft(location);
     }
 
@@ -48,10 +50,12 @@ public class Layer {
         return false;
     }
 
-    private void judgeRight(Location location) {
+    private boolean judgeRight(Location location) {
         if (findRightLines(location).equals(Line.CONNECTED)) {
             location.goRight();
+            return true;
         }
+        return false;
     }
 
     private void judgeLeft(Location location) {
