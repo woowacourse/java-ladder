@@ -1,27 +1,32 @@
 package ladder.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import ladder.domain.LadderGame;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 import ladder.view.ResultView;
 
-import java.util.List;
-
 public class LadderGameController {
+
+    private static final String ALL_PLAYER_NAME = "all";
+    private static final String WRONG_PLAYER_NAME_ERROR_MESSAGE = "[ERROR] 결과를 보고 싶은 사람은 참여자 중에 1명을 입력하거나, 모든 참여자의 결과를 보고 싶으면 \"all\"을 입력해주세요.";
 
     private LadderGame ladderGame;
 
     public void start() {
-        init();
-        printGameResult();
+        generateLadderGameStep();
+        printGameResultStep();
+        printResultByPlayerStep();
     }
 
-    private void init() {
+    private void generateLadderGameStep() {
         try {
-            this.ladderGame = new LadderGame(readNames(), readLadderHeight());
+            this.ladderGame = new LadderGame(readNames(), readResults(), readLadderHeight());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            init();
+            generateLadderGameStep();
         }
     }
 
@@ -35,6 +40,16 @@ public class LadderGameController {
         }
     }
 
+    private List<String> readResults() {
+        OutputView.printRunResultReadMessage();
+        try {
+            return InputView.readResults();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return readResults();
+        }
+    }
+
     private int readLadderHeight() {
         OutputView.printMaxLadderHeightReadMessage();
         try {
@@ -45,9 +60,53 @@ public class LadderGameController {
         }
     }
 
-    private void printGameResult() {
-        ResultView.printExecutionMessage();
-        ResultView.printPlayerNames(ladderGame.getNames());
+    private void printGameResultStep() {
+        ResultView.printLadderResultMessage();
+        ResultView.printPlayerNames(ladderGame.getPlayerNames());
         ResultView.printLadder(ladderGame.getLines());
+        ResultView.printRunResults(ladderGame.getResults());
     }
+
+    private void printResultByPlayerStep() {
+        String playerNameToShowResult = readPlayerNameToShowResult();
+        if (!playerNameToShowResult.equals(ALL_PLAYER_NAME)) {
+            printOneResult(playerNameToShowResult);
+        }
+        if (playerNameToShowResult.equals(ALL_PLAYER_NAME)) {
+            printAllResult();
+        }
+    }
+
+    private String readPlayerNameToShowResult() {
+        OutputView.printPlayerNameToShowResultReadMessage();
+        return InputView.readPlayerNameToShowResult();
+    }
+
+    private void printOneResult(String playerNameToShowResult) {
+        try {
+            String oneResult = findOneResult(playerNameToShowResult);
+            ResultView.printOneResult(oneResult);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            printResultByPlayerStep();
+        }
+    }
+
+    private void printAllResult() {
+        Map<String, String> allResult = findAllResult();
+        ResultView.printAllResult(allResult);
+    }
+
+    private String findOneResult(String playerName) {
+        try {
+            return ladderGame.findResultByPlayerName(playerName);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(WRONG_PLAYER_NAME_ERROR_MESSAGE);
+        }
+    }
+
+    private Map<String, String> findAllResult() {
+        return ladderGame.findAllResultByPlayerName();
+    }
+
 }
