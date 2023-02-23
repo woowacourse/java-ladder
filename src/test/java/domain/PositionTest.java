@@ -3,7 +3,9 @@ package domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -23,10 +25,11 @@ class PositionTest {
         assertEquals(expected, position.getPosition());
     }
 
-    @ParameterizedTest
-    @CsvSource(value = {"1:false", "3:true", "2:true", "0:false", "4:false"}, delimiter = ':')
-    void checkConnectionTest(int number, boolean expected) {
-        assertEquals(expected, position.checkConnection(number));
+    @Test
+    void findConnectionNumberTest() {
+        List<Integer> numbers = List.of(0, 3, 5);
+        assertEquals(3,
+            position.findConnectionNumber(numbers));
     }
 
 }
