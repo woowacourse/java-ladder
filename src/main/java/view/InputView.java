@@ -45,6 +45,30 @@ public class InputView {
         return scanner.nextLine().strip();
     }
 
+    private void validateRewardsLength(List<String> rewards) {
+        for (String reward : rewards) {
+            validateRewardLengthByMaximumLimit(reward);
+            validateRewardLengthByMinimumLimit(reward);
+        }
+    }
+
+    private void validateRewardLengthByMaximumLimit(String reward) {
+        if (reward.length() > MAXIMUM_REWARD_LENGTH_LIMIT) {
+            throw new IllegalArgumentException(String.format(
+                INVALID_REWARD_LENGTH_BY_MAXIMUM_LIMIT.getMessage()
+                , MAXIMUM_REWARD_LENGTH_LIMIT));
+        }
+    }
+
+    private void validateRewardLengthByMinimumLimit(String reward) {
+        if (reward.length() < MINIMUM_REWARD_LENGTH_LIMIT) {
+            throw new IllegalArgumentException(
+                String.format(
+                    INVALID_REWARD_LENGTH_BY_MINIMUM_LIMIT.getMessage(),
+                    MINIMUM_REWARD_LENGTH_LIMIT));
+        }
+    }
+
     private void validateHeightInput(String height) {
         try {
             Integer.parseInt(height);
