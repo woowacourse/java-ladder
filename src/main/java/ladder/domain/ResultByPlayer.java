@@ -15,4 +15,8 @@ public class ResultByPlayer {
         Result findResult = resultByPlayer.get(player);
         return findResult;
     }
+
+    public Map<Player, Result> findAll() {
+        return Map.copyOf(resultByPlayer);
+    }
 }

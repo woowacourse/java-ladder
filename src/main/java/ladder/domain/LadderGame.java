@@ -56,7 +56,16 @@ public class LadderGame {
         Result findResult = resultByPlayer.findResultByPlayer(findPlayer);
         return findResult.getReward();
     }
-    
+
+    public Map<String, String> findAllResultByPlayerName() {
+        Map<Player, Result> allResultByPlayer = resultByPlayer.findAll();
+        return allResultByPlayer.entrySet().stream()
+                .collect(Collectors.toMap(
+                        entry -> entry.getKey().getName(),
+                        entry -> entry.getValue().getReward()
+                ));
+    }
+
     public List<Line> getLines() {
         return ladder.getLines();
     }
