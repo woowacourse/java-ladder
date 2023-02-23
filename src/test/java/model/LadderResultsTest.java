@@ -20,7 +20,7 @@ class LadderResultsTest {
 
         @ParameterizedTest
         @NullSource
-        void 인자로_null이_주어지면_예외가_발생한다(List<LadderResult> results) {
+        void 인자로_null이_주어지면_예외가_발생한다(List<String> results) {
             assertThatThrownBy(() -> LadderResults.of(results, 3))
                     .isInstanceOf(IllegalStateException.class)
                     .hasMessageContaining("실행 결과가 정상적으로 입력되지 않았습니다.");
@@ -28,7 +28,7 @@ class LadderResultsTest {
 
         @Test
         void 인자로_results의_크기와_참가자의_크기가_일치하지_않으면_예외가_발생한다() {
-            List<LadderResult> results = List.of(new LadderResult("abc"), new LadderResult("bcd"));
+            List<String> results = List.of("abc", "bcd");
 
             assertThatThrownBy(() -> LadderResults.of(results, 3))
                     .isInstanceOf(IllegalArgumentException.class)
@@ -40,7 +40,7 @@ class LadderResultsTest {
     @CsvSource(value = {"0:a", "1:b"}, delimiter = ':')
     void findResultByIndex_메소드는_인덱스를_전달하면_인덱스에_위치한_사다리_결과를_반환한다(int index, String expected) {
         LadderResults ladderResults =
-                LadderResults.of(List.of(new LadderResult("a"), new LadderResult("b")), 2);
+                LadderResults.of(List.of("a", "b"), 2);
 
         String actual = ladderResults.findResultByIndex(index);
 
@@ -50,7 +50,7 @@ class LadderResultsTest {
     @Test
     void calculateGameResult_메소드는_사다리_실행_결과가_주어지면_그_결과에_따라_정렬한_LadderResults를_반환한다() {
         LadderResults ladderResults =
-                LadderResults.of(List.of(new LadderResult("a"), new LadderResult("b")), 2);
+                LadderResults.of(List.of("a", "b"), 2);
         List<Integer> gameResult = List.of(1, 0);
 
         LadderResults actual = ladderResults.calculateGameResult(gameResult);

@@ -26,7 +26,7 @@ class GameResultsTest {
         PassGenerator falseFalseGenerator = new StubPassGenerator(List.of(Boolean.FALSE, Boolean.FALSE));
         Height height = new Height(5);
         Ladder ladder = Ladder.of(falseFalseGenerator, height, 2);
-        List<LadderResult> results = List.of(new LadderResult("1"), new LadderResult("2"));
+        List<String> results = List.of("1", "2");
         LadderResults ladderResults = LadderResults.of(results, 2);
 
         gameResults = GameResults.of(names, ladder, ladderResults);
