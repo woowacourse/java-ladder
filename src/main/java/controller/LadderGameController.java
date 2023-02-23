@@ -26,29 +26,44 @@ public class LadderGameController {
         Results results = new Results(players.getSize(), inputView.readResults());
         Ladder ladder = new Ladder(inputView.readLadderHeight(), players.getSize(), generator);
 
+        showLadder(players, results, ladder);
+        showResult(players, results, ladder);
+    }
+
+    private void showLadder(Players players, Results results, Ladder ladder) {
         outputView.printPlayersName(players.getPlayersName());
         outputView.printLadder(ladder.getLines());
         outputView.printResults(results.getResults());
+    }
 
+    private void showResult(Players players, Results results, Ladder ladder) {
         String targetPlayer = inputView.readTargetPlayer();
         validateTargetPlayerBlank(targetPlayer);
 
-        if (!targetPlayer.equals(ALL_PLAYER)) {
-            players.validateTargetPlayer(targetPlayer);
-            Player player = players.getPlayerByName(targetPlayer);
-            outputView.printPlayResult(player.calculateResult(ladder, results));
+        if (targetPlayer.equals(ALL_PLAYER)) {
+            processAllPlayerResult(players, results, ladder);
             return;
         }
-        outputView.printAllPlayerResult(players.getPlayersName(), getPlayersResult(players, results, ladder));
+        processPlayerResult(players, results, ladder, targetPlayer);
     }
 
-    private List<String> getPlayersResult(Players players, Results results, Ladder ladder) {
+    private void processPlayerResult(Players players, Results results, Ladder ladder, String targetPlayer) {
+        players.validateTargetPlayer(targetPlayer);
+        int position = players.getTargetPlayerPosition(targetPlayer);
+        int lastPosition = ladder.getLastPosition(position);
+
+        outputView.printPlayerResult(results.getResult(lastPosition));
+    }
+
+    private void processAllPlayerResult(Players players, Results results, Ladder ladder) {
         List<String> playersResult = new ArrayList<>();
 
-        for (Player player : players.getPlayers()) {
-            playersResult.add(player.calculateResult(ladder, results));
+        for (int position = 0; position < players.getSize(); position++) {
+            int lastPosition = ladder.getLastPosition(position);
+
+            playersResult.add(results.getResult(lastPosition));
         }
-        return playersResult;
+        outputView.printAllPlayerResult(players.getPlayersName(), playersResult);
     }
 
     private void validateTargetPlayerBlank(String targetPlayer) {
@@ -57,6 +72,3 @@ public class LadderGameController {
         }
     }
 }
-
-
-
