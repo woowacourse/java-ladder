@@ -62,5 +62,4 @@ class MatchResultsTest {
         matchResults.findMatchResult("a");
         assertFalse(matchResults.isAllChecked());
     }
-
 }
