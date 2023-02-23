@@ -14,13 +14,21 @@ import java.util.stream.Collectors;
 public class LadderGameController {
 
     public void run() {
+        try {
+            LadderGame ladderGame = initLadderGame();
+
+            ladderGame.letPlayersToGoDown();
+            showLadder(ladderGame);
+            startGameResultLoop(ladderGame);
+        } catch (CustomException e) {
+            OutputView.printErrorMessage(e);
+        }
+    }
+
+    private LadderGame initLadderGame() {
         Players players = initPlayers();
         Ladder ladder = initLadder(players.size());
-        LadderGame ladderGame = initLadderGame(players, ladder);
-
-        ladderGame.letPlayersToGoDown();
-        showResult(ladderGame);
-        startCheckingGameResultLoop(ladderGame);
+        return initLadderGame(players, ladder);
     }
 
     private Players initPlayers() {
@@ -53,7 +61,7 @@ public class LadderGameController {
         }
     }
 
-    private void showResult(LadderGame ladderGame) {
+    private void showLadder(LadderGame ladderGame) {
         OutputView.printGameResultHeader();
         OutputView.printWithFormat(mapPlayersToPlayersName(ladderGame.getPlayers()));
         OutputView.printLadder(ladderGame.getLadder());
@@ -66,20 +74,13 @@ public class LadderGameController {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private void startCheckingGameResultLoop(LadderGame ladderGame) {
-        try {
-            final String playerName = InputView.inputPlayerWhoNeedsGameResult();
+    private void startGameResultLoop(LadderGame ladderGame) {
+        String playerName = InputView.inputPlayerWhoNeedsGameResult();
 
-            if (playerName.equals("all")) {
-                OutputView.printAllGameResult(ladderGame.getAllLadderGameResult());
-                startCheckingGameResultLoop(ladderGame);
-            }
+        while (!playerName.equals("all")) {
             OutputView.printOneGameResult(ladderGame.getOneLadderGameResult(playerName));
-            startCheckingGameResultLoop(ladderGame);
-
-        } catch (CustomException e) {
-            OutputView.printErrorMessage(e);
-            startCheckingGameResultLoop(ladderGame);
+            playerName = InputView.inputPlayerWhoNeedsGameResult();
         }
+        OutputView.printAllGameResult(ladderGame.getAllLadderGameResult());
     }
 }
