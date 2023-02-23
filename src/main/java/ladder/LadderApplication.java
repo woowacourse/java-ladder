@@ -11,7 +11,7 @@ public class LadderApplication {
         final var inputView = new InputView(new Scanner(System.in));
         final var outputView = new OutputView();
 
-        LadderController ladderController = new LadderController(inputView, outputView);
+        final var ladderController = new LadderController(inputView, outputView);
         ladderController.run();
     }
 }
