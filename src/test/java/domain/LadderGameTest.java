@@ -6,8 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,13 +14,9 @@ public class LadderGameTest {
     @BeforeEach
     void generateLadderGame(){
         Participants participants = Participants.of("echo", "modi", "neo");
-        List<Result> collectedList = Stream.of("꽝", "5000", "꽝")
-                .map(Result::from)
-                .collect(Collectors.toList());
-        Results results = Results.of(collectedList);
-        LadderHeight ladderHeight = new LadderHeight(1);
-        PointGenerator generator = PointGenerator.getInstance(false);
-        ladderGame = new LadderGame(participants,ladderHeight, results,PointGenerator.getInstance(false));
+        Results results = Results.of("3000", "꽝", "5000");
+        Ladder ladder = Ladder.create(new LadderHeight(1), new LadderWidth(2), PointGenerator.getInstance(false));
+        ladderGame = new LadderGame(participants, results, ladder);
     }
     @Test
     @DisplayName("사다리 게임을 실행하면 사다리를 읽으며 순서를 변화시킨다.")
@@ -38,6 +32,6 @@ public class LadderGameTest {
         SequenceSwapper swapper = SequenceSwapper.of(List.of(0,1,2));
 
         ladderGame.run(swapper);
-        assertThat(ladderGame.getGameResult().get("echo")).isEqualTo("5000");
+        assertThat(ladderGame.getGameResult().get(Participant.from("echo"))).isEqualTo(Result.from("5000"));
     }
 }
