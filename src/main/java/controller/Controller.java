@@ -3,6 +3,7 @@ package controller;
 import domain.Height;
 import domain.Ladder;
 import domain.LadderGame;
+import domain.LadderGameResult;
 import domain.Result;
 import domain.Results;
 import domain.User;
@@ -30,6 +31,9 @@ public class Controller {
         LadderGame ladderGame = getLadderGame(ladder, users, results);
 
         OutputView.printResult(users, results, ladder);
+
+        ladderGame.play();
+        searchResult(ladderGame);
     }
 
     private Users getUsers() {
@@ -74,5 +78,22 @@ public class Controller {
 
     private LadderGame getLadderGame(final Ladder ladder, final Users users, final Results results) {
         return new LadderGame(ladder, users, results);
+    }
+
+    private void searchResult(final LadderGame ladderGame) {
+        while (ladderGame.inProgress()) {
+            LadderGameResult ladderGameResult = getLadderGameResult(ladderGame);
+            OutputView.printLadderGameResult(ladderGameResult);
+        }
+    }
+
+    private LadderGameResult getLadderGameResult(final LadderGame ladderGame) {
+        try {
+            String resultViewer = InputView.readResultViewer();
+            return ladderGame.getLadderGameResultByName(resultViewer);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return getLadderGameResult(ladderGame);
+        }
     }
 }
