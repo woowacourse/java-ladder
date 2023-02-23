@@ -7,17 +7,21 @@ import strategy.PassGenerator;
 
 public class Ladder {
 
-    private final List<Line> lines = new ArrayList<>();
+    private static final int MINIMUM_HEIGHT = 1;
 
-    public Ladder(int height, Names names, PassGenerator passGenerator) {
+    private final List<Line> lines = new ArrayList<>();
+    private final Players players;
+
+    public Ladder(int height, Players players, PassGenerator passGenerator) {
         validateMinHeight(height);
+        this.players = players;
         while (height-- > 0) {
-            lines.add(new Line(names.getNames().size(), passGenerator));
+            lines.add(new Line(players.getPlayersName().size(), passGenerator));
         }
     }
 
     private void validateMinHeight(int height) {
-        if (height < 1) {
+        if (height < MINIMUM_HEIGHT) {
             throw new IllegalArgumentException("높이는 최소 1 이상이어야 합니다");
         }
     }
@@ -28,4 +32,11 @@ public class Ladder {
             .collect(Collectors.toList());
     }
 
+    public List<Line> getLines() {
+        return lines;
+    }
+
+    public Players getPlayers() {
+        return players;
+    }
 }
