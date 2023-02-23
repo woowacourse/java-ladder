@@ -32,6 +32,6 @@ public class LadderGameTest {
         SequenceSwapper swapper = SequenceSwapper.of(List.of(0,1,2));
 
         ladderGame.run(swapper);
-        assertThat(ladderGame.getGameResult().get(Participant.from("echo"))).isEqualTo(Result.from("5000"));
+        assertThat(ladderGame.getAllGameResult().get(Participant.from("echo"))).isEqualTo(Result.from("5000"));
     }
 }

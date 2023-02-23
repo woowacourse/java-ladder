@@ -26,14 +26,19 @@ public class LadderGame {
         setGameResult(swapper.getSequence());
     }
 
-    public Map<Participant, Result> getGameResult() {
-        return gameResult;
-    }
 
     private void setGameResult(List<Integer> resultSequence) {
         for (int i : resultSequence) {
             gameResult.put(participants.get(i), results.get(i));
         }
+    }
+
+    public Result getResultFrom(Participant participant) {
+        return gameResult.get(participant);
+    }
+
+    public Map<Participant, Result> getAllGameResult() {
+        return new HashMap<>(gameResult);
     }
 
     public Participants getParticipants() {
