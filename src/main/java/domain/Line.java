@@ -55,4 +55,8 @@ public class Line {
     public List<Bridge> getBridges() {
         return bridges;
     }
+
+    public boolean hasSameWidthWith(Line line) {
+        return line.bridges.size() == bridges.size();
+    }
 }

@@ -12,6 +12,7 @@ public class Ladder {
 
     public Ladder(List<Line> lines) {
         validateHeightOf(lines);
+        validateEvenWidth(lines);
         this.lines = copyOf(lines);
     }
 
@@ -19,6 +20,18 @@ public class Ladder {
         if (lines.size() <= MIN_HEIGHT) {
             throw new IllegalArgumentException("높이는 양수만 가능합니다");
         }
+    }
+
+    private void validateEvenWidth(final List<Line> lines) {
+        Line firstLine = lines.get(0);
+        if (!isWidthEven(firstLine, lines)) {
+            throw new IllegalArgumentException("사다리 너비는 균일해야 합니다");
+        }
+    }
+
+    private boolean isWidthEven(Line firstLine, List<Line> lines) {
+        return lines.stream()
+                .allMatch(line -> line.hasSameWidthWith(firstLine));
     }
 
     public Position findDestinationFrom(final Position start) {
