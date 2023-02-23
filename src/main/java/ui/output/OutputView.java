@@ -13,11 +13,10 @@ public class OutputView {
 
     private static final String EXECUTE_RESULT = "실행결과";
 
-    public static void printResult(People people, Lines lines) {
+    public static void printResult(People people, Lines lines, int maxNameLength) {
         System.out.println("\n" + EXECUTE_RESULT + "\n");
-        int maxLength = people.calculateMaxNameLength();
-        printNames(people, maxLength);
-        printLadder(lines, maxLength);
+        printNames(people, maxNameLength);
+        printLadder(lines, maxNameLength);
     }
 
     private static void printNames(People people, int maxLength) {
