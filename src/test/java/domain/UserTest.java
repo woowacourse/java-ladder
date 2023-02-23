@@ -37,7 +37,7 @@ public class UserTest {
     }
 
     @ParameterizedTest(name = "QUIT 또는 ALL 은 사용자의 이름으로 사용할 수 없습니다. 입력값 = {0}")
-    @ValueSource(strings = {"ALL","QUIT"})
+    @ValueSource(strings = {"ALL", "QUIT"})
     void conflictNameUserTest(String conflictName) {
         assertThatThrownBy(() -> new User(conflictName))
                 .isInstanceOf(IllegalArgumentException.class)

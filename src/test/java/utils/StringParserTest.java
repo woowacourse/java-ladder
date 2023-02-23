@@ -54,7 +54,7 @@ class StringParserTest {
     }
 
     @ParameterizedTest(name = "문자열에 공백을 삽입하여 5글자로 만든다.")
-    @ValueSource(strings = {"a","adf","asdfg"})
+    @ValueSource(strings = {"a", "adf", "asdfg"})
     void insertBlankTest(String input) {
         String result = StringParser.insertBlank(input);
 

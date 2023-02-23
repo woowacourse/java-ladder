@@ -16,7 +16,7 @@ class LadderTest {
     @BeforeEach
     void setUp() {
         ladder = new Ladder(new TestLadderRowGenerator());
-        ladder.create(5,4);
+        ladder.create(5, 4);
     }
 
 //    생성한 사다라의 모양은 다음과 같다.
@@ -27,7 +27,7 @@ class LadderTest {
 //      |-----|     |-----|
 
     @ParameterizedTest(name = "startIndex({0}) 을 입력하면 endIndex({1})을 반환한다")
-    @CsvSource({"0,0","1,3","2,2","3,1"})
+    @CsvSource({"0,0", "1,3", "2,2", "3,1"})
     void calculateEndIndexTest(int startIndex, int expected) {
         int result = ladder.calculateEndIndex(startIndex);
 
@@ -39,6 +39,6 @@ class LadderTest {
     void calculateEndIndexesTest() {
         List<Integer> result = ladder.calculateEndIndex(List.of(1, 3));
 
-        assertThat(result).containsExactly(3,1);
+        assertThat(result).containsExactly(3, 1);
     }
 }
