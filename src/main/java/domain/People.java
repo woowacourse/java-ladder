@@ -4,7 +4,6 @@ import exception.Error;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class People {
     private static final int MIN_PEOPLE_SIZE_INCLUSIVE = 2;
@@ -47,10 +46,14 @@ public class People {
     }
 
     public int getPosition(String name) {
-        return IntStream.range(0, people.size())
-                .filter(index -> people.get(index).equals(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(Error.NAME_IS_NOT_EXIST.getMessage()));
+        final int NOT_EXIST = -1;
+
+        int position = getNames().indexOf(name);
+        if (position == NOT_EXIST) {
+            throw new IllegalArgumentException(Error.NAME_IS_NOT_EXIST.getMessage());
+        }
+
+        return position;
     }
 
     public int size() {
