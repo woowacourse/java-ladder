@@ -3,7 +3,6 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -30,17 +29,8 @@ class ParticipantTest {
 	}
 
 	@Test
-	@DisplayName("이름 포맷을 정상적으로 반환해야한다.")
-	void participantNameFormatSuccessTest() {
-		String name = "echo";
-		Participant participantName = Participant.from(name);
-		assertThat(participantName.format()).isEqualTo("  echo");
-	}
-
-	@Test
 	void checkEmptyNameTest() {
 		String input = "echo,,echo2";
 		String[] names = input.split(",");
-
 	}
 }

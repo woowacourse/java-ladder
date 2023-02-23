@@ -1,14 +1,11 @@
 package domain;
 
-import domain.util.Display;
-
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Participants implements Display {
-
-	private static final String PARTICIPANT_DELIMITER = "";
+public class Participants {
 
 	private final List<Participant> participants;
 
@@ -35,12 +32,9 @@ public class Participants implements Display {
 		return participants.get(index);
 	}
 
-	@Override
-	public String format() {
-		String formattedNames = participants.stream()
-				.map(Participant::format)
-				.collect(Collectors.joining(PARTICIPANT_DELIMITER));
-		return formattedNames;
+	public List<Participant> getParticipants() {
+		return Collections.unmodifiableList(this.participants);
 	}
+
 }
 

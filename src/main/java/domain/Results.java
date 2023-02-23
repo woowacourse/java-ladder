@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,6 @@ public class Results {
     }
 
     public List<Result> getResults() {
-        return results;
+        return Collections.unmodifiableList(this.results);
     }
 }

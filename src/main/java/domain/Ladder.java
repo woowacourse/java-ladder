@@ -1,13 +1,12 @@
 package domain;
 
-import domain.util.Display;
 import domain.util.PointGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class Ladder implements Display {
+public class Ladder {
 
 	private final List<Line> lines;
 
@@ -31,11 +30,7 @@ public class Ladder implements Display {
 		}
 	}
 
-	@Override
-	public String format() {
-		String ladder = lines.stream()
-				.map(Line::format)
-				.collect(Collectors.joining(System.lineSeparator()));
-		return ladder;
+	public List<Line> getLines() {
+		return Collections.unmodifiableList(this.lines);
 	}
 }

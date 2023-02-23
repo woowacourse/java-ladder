@@ -2,8 +2,7 @@ package controller;
 
 import domain.*;
 import domain.util.PointGenerator;
-import view.InputView;
-import view.OutputView;
+import view.*;
 
 public class LadderGameController {
 
@@ -19,14 +18,14 @@ public class LadderGameController {
 	}
 
 	public void runGame() {
-		OutputView.printLadder(ladderGame.getParticipants(), ladderGame.getLadder(), ladderGame.getResults());
+		displayLadder();
 		ladderGame.run();
 		String name = retrieveNameToFind();
 		while (!name.equals("all")) {
-			printResult(name);
+			displayGameResult(name);
 			name = retrieveNameToFind();
 		}
-		printAllResult();
+		displayAllGameResults();
 	}
 
 	private Participants retrieveParticipants() {
@@ -74,13 +73,22 @@ public class LadderGameController {
 		}
 	}
 
-	private void printAllResult() {
-		OutputView.printAllResult(ladderGame.getParticipants(), ladderGame.getAllGameResult());
+	private void displayAllGameResults() {
+		String allGameResults = GameResultView.formatAllGameResults(ladderGame.getParticipants(), ladderGame.getAllGameResult());
+		OutputView.printAllGameResults(allGameResults);
 	}
 
-	private void printResult(String name) {
+	private void displayGameResult(String name) {
 		Participant participant = Participant.from(name);
 		Result result = ladderGame.getResultFrom(participant);
-		OutputView.printParticipantResult(result);
+		String formattedResult = GameResultView.formatGameResult(result);
+		OutputView.printGameResult(formattedResult);
+	}
+
+	private void displayLadder() {
+		String names = CollectionView.formatParticipants(ladderGame.getParticipants());
+		String ladder = LadderView.formatLadder(ladderGame.getLadder());
+		String results = CollectionView.formatResults(ladderGame.getResults());
+		OutputView.printLadderResult(names, ladder, results);
 	}
 }

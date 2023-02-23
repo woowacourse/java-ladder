@@ -1,18 +1,14 @@
 package domain;
 
-import domain.util.Display;
 import domain.util.Point;
 import domain.util.PointGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class Line implements Display {
+public class Line {
 
-	private final static String LADDER_DELIMITER = "|";
-	private final static String PREFIX = "     |";
-	private final static String SUFFIX = "|";
 	private final List<Point> points;
 
 	private Line(List<Point> points) {
@@ -49,11 +45,7 @@ public class Line implements Display {
 		}
 	}
 
-	@Override
-	public String format() {
-		String line = points.stream()
-				.map(Point::format)
-				.collect(Collectors.joining(LADDER_DELIMITER, PREFIX, SUFFIX));
-		return line;
+	public List<Point> getPoints() {
+		return Collections.unmodifiableList(this.points);
 	}
 }
