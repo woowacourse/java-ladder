@@ -37,7 +37,7 @@ public class LadderGameTest {
         final Players players = getPlayers("name1", "name2");
         LadderGame ladderGame = new LadderGame(new TestBooleanGenerator(List.of(true, true)), players, new Height(1));
 
-        Players resultPlayers = ladderGame.makeResult(new Height(1));
+        Players resultPlayers = ladderGame.makePlayersWhoFinishedGame(new Height(1));
 
         Assertions.assertAll(
                 () -> assertThat(resultPlayers.getNames().get(0)).isEqualTo("name2"),

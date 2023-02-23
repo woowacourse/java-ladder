@@ -30,7 +30,7 @@ public class LadderGameRunner {
 
     public void run() {
         final Players players = readPlayers();
-        final Bottoms bottoms = readResults(players);
+        final Bottoms bottoms = readBottoms(players);
         final Height height = readHeight();
 
         final LadderGame ladderGame = new LadderGame(booleanGenerator, players, height);
@@ -40,19 +40,19 @@ public class LadderGameRunner {
     }
 
     private void search(final LadderGame ladderGame, final Bottoms bottoms, final Height height) {
-        List<String> initializedNames = ladderGame.getPlayerNames();
-        Players players = ladderGame.makeResult(height);
-        Result result = new Result(players, bottoms);
+        Players earlyPlayers = new Players(ladderGame.getPlayerNames());
+        Players playersWhoFinishedGame = ladderGame.makePlayersWhoFinishedGame(height);
+        Result result = new Result(playersWhoFinishedGame, bottoms);
 
-        searchResult(result, initializedNames);
+        searchResult(result, earlyPlayers);
     }
 
-    private void searchResult(final Result result, final List<String> initializedNames) {
+    private void searchResult(final Result result, final Players earlyPlayers) {
         String searchPlayerName = "";
         while (!searchPlayerName.equals(QUIT_COMMAND)) {
             searchPlayerName = getSearchResult(result);
             Map<String, String> searchResult = result.resultByName(searchPlayerName);
-            outputView.printSearchResult(searchResult, initializedNames);
+            outputView.printSearchResult(searchResult, earlyPlayers);
         }
     }
 
@@ -67,13 +67,13 @@ public class LadderGameRunner {
         }
     }
 
-    private Bottoms readResults(final Players players) {
+    private Bottoms readBottoms(final Players players) {
         try {
             final List<String> bottomsInput = inputView.readBottoms();
             return new Bottoms(bottomsInput, players);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return readResults(players);
+            return readBottoms(players);
         }
     }
 

@@ -25,7 +25,7 @@ public class LadderGame {
         return ladder.getLines();
     }
 
-    public Players makeResult(final Height height) {
+    public Players makePlayersWhoFinishedGame(final Height height) {
         List<Line> lines = ladder.getLines();
         int width = players.count() - 1;
 
