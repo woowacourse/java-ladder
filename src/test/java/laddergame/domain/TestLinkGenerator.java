@@ -6,11 +6,11 @@ import java.util.Queue;
 
 import static java.util.stream.Collectors.toList;
 
-public class TestLinkPicker implements LinkGenerator {
+public class TestLinkGenerator implements LinkGenerator {
 
     private final Queue<Link> links;
 
-    public TestLinkPicker(final List<Boolean> testBooleans) {
+    public TestLinkGenerator(final List<Boolean> testBooleans) {
         final List<Link> testLinks = testBooleans.stream().map(element -> Link.from(element))
                 .collect(toList());
         this.links = new LinkedList<>(testLinks);

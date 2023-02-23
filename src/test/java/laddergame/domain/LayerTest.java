@@ -42,7 +42,7 @@ public class LayerTest {
             final List<Boolean> statuses = List.of(true, false, false);
 
             //when
-            final Layer layer = Layer.of(statuses.size(), new TestLinkPicker(statuses));
+            final Layer layer = Layer.of(statuses.size(), new TestLinkGenerator(statuses));
 
             //then
             assertThat(layer)
@@ -56,7 +56,7 @@ public class LayerTest {
     void givenLine_thenNotOverLap() {
         //given
         final List<Boolean> statuses = List.of(true, true, false);
-        final Layer layer = Layer.of(statuses.size(), new TestLinkPicker(statuses));
+        final Layer layer = Layer.of(statuses.size(), new TestLinkGenerator(statuses));
 
         //then
         assertThat(layer)
