@@ -26,9 +26,9 @@
 #### Ladder
 
 - 여러 개의 `Line`을 가진다.
-- `Line`의 크기는 `Players`의 인원 수의 1~2배 사이여야 한다.
+- `Line`의 개수는 `Players`의 인원 수의 1~2배 사이여야 한다.
 - 인원 수 범위를 벗어나면 `IllegalArgumentException` 예외가 발생한다.
-- `Height`를 가진다.
+- 각 `Line`의 너비가 `Players`의 인원 수와 같지 않으면 `IllegalArgumentException` 예외가 발생한다.
 
 #### Line
 
@@ -44,16 +44,25 @@
 - 1~26 까지 값을 가진다.
 - 이 외의 값이 들어오면 `IllegalArgumentException` 예외가 발생한다.
 
-#### Results
+#### Prizes
 
-- 여러 개의 `Result`를 가진다.
-- `Result`의 갯수가 참여할 인원 수와 같지 않으면 `IllegalArgumentException` 예외가 발생한다.
+- 여러 개의 `Prize`를 가진다.
+- `Prize`의 갯수가 참여할 인원 수와 같지 않으면 `IllegalArgumentException` 예외가 발생한다.
 
-#### Result
+#### Prize
 
 - 결과를 가진다.
 
+#### PlayerResult
+
+- `Player`와 `Prize`를 가진다.
+
+#### PlayerResults
+
+- 여러 개의 `PlayerResult`를 가진다.
+
 ### 기능 요구 사항
+
 - [X] 사다리를 생성할 때 `Step`이 서로 연속되면 안된다.
 - [X] 참여한 인원의 사다리 결과를 맞춰야 한다.
 
@@ -67,7 +76,7 @@
 - [X] 사다리의 높이를 입력 받으면 실행 결과를 입력 받는다.
     - [X] 실행 결과는 `,`로 구분된다.
 - [X] 사다리 결과를 출력하면 결과를 보고 싶은 사람을 입력 받는다.
-    - [X] `all`을 입력하면 모든 사람의 결과를 출력한다. 
+    - [X] `all`을 입력하면 모든 사람의 결과를 출력한다.
 
 ### 출력 요구사항
 
