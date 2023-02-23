@@ -37,7 +37,7 @@ public class InputView {
     }
 
     public static String inputWantGameResults(List<String> namesList) {
-        System.out.println("결과를 보고 싶은 사람은?");
+        System.out.println("\n결과를 보고 싶은 사람은?");
         String inputWantGameResults = sc.nextLine();
         validateBlank(inputWantGameResults);
         validateContainName(namesList, inputWantGameResults);

@@ -17,14 +17,19 @@ public class OutputView {
     }
 
     public static void printGameResultsAll(HashMap<String, String> gameResults) {
+        println("\n실행 결과");
         for (Map.Entry<String, String> entrySet : gameResults.entrySet()) {
-            System.out.println(entrySet.getKey() + " : " + entrySet.getValue());
+            println(entrySet.getKey() + " : " + entrySet.getValue());
         }
     }
 
     public static void printGameResultsUnique(HashMap<String, String> gameResults, String name) {
-        System.out.println("유니크출력");
-        System.out.println(gameResults.get(name));
+        println("\n실행 결과");
+        println(gameResults.get(name));
+    }
+
+    public static void printLadderResultMessage(){
+        System.out.println("\n사다리 결과\n");
     }
 
     public static void printInputString(List<String> inputString) {
@@ -58,7 +63,7 @@ public class OutputView {
     private static String parseLine(Line line) {
         return line.getBars().stream()
                 .map(OutputView::parseBar)
-                .collect(Collectors.joining("|", "", "|"));
+                .collect(Collectors.joining("|"));
     }
 
     private static String parseBar(Bar bar) {
@@ -72,4 +77,5 @@ public class OutputView {
     private static void println(String message) {
         System.out.println(message);
     }
+
 }

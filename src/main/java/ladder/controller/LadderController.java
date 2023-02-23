@@ -24,6 +24,7 @@ public class LadderController {
 
         GameResults gameResults = new GameResults(namesList, resultsList, ladder);
 
+        OutputView.printLadderResultMessage();
         printLadder(ladder, namesList, resultsList);
         viewGameResults(gameResults.calculateGameResults(), namesList);
     }
