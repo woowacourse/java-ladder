@@ -18,7 +18,7 @@ class ResultTest {
 
     @DisplayName("길이 조건에 맞지 안흔 결과를 입력하면 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"너무긴결과임",""})
+    @ValueSource(strings = {"너무긴결과임", ""})
     void create_fail_with_wrong_length_name(String result) {
         assertThatThrownBy(() -> new Result(result))
                 .isInstanceOf(IllegalArgumentException.class)

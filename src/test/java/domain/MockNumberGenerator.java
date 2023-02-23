@@ -19,7 +19,7 @@ public class MockNumberGenerator implements NumberGenerator {
     public int generate() {
         Integer value = values.get(index);
         index++;
-        if(index >= values.size()) {
+        if (index >= values.size()) {
             index = 0;
         }
         return value;
