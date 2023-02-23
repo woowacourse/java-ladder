@@ -5,8 +5,9 @@ import java.util.List;
 
 public class Players {
 
-    private static final String DUPLICATE_NAME_ERROR = "[ERROR] 중복된 이름입니다.";
-    private static final String SIZE_ERROR = "[ERROR] 2명 이상 입력해야 합니다.";
+    static final String DUPLICATE_NAME_ERROR = "[ERROR] 중복된 이름입니다.";
+    static final String SIZE_ERROR = "[ERROR] 2명 이상 입력해야 합니다.";
+
     private static final int MIN_SIZE = 2;
 
     private final List<Player> players = new ArrayList<>();
