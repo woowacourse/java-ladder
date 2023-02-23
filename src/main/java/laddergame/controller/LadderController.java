@@ -1,7 +1,7 @@
 package laddergame.controller;
 
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.function.Supplier;
 import laddergame.domain.BooleanGenerator;
 import laddergame.domain.Height;
 import laddergame.domain.Ladder;
@@ -11,7 +11,6 @@ import laddergame.domain.Line;
 import laddergame.domain.NamesWithMatchedResult;
 import laddergame.domain.PersonalNames;
 import laddergame.domain.Width;
-import laddergame.utils.RetryUtils;
 import laddergame.view.InputView;
 import laddergame.view.LadderFormGenerator;
 import laddergame.view.OutputView;
@@ -32,12 +31,12 @@ public class LadderController {
     }
 
     public void run() {
-        final PersonalNames names = RetryUtils.retryOnRuntimeExceptionWithMessage(
+        final PersonalNames names = retryOnInvalidInputWithAlert(
                 () -> new PersonalNames(inputView.readNames()));
-        final LadderResult ladderResult = RetryUtils.retryOnRuntimeExceptionWithMessage(
+        final LadderResult ladderResult = retryOnInvalidInputWithAlert(
                 () -> LadderResult.of(names, inputView.readResults()));
 
-        final Height ladderHeight = RetryUtils.retryOnRuntimeExceptionWithMessage(
+        final Height ladderHeight = retryOnInvalidInputWithAlert(
                 () -> new Height(inputView.readHeight()));
         final Ladder ladder = new Ladder(new Width(names.getSize()), ladderHeight, booleanGenerator);
 
@@ -45,11 +44,32 @@ public class LadderController {
         outputView.printLadderForm(ladderFormGenerator.generate(names, ladderResult, lines));
 
         final LadderGame ladderGame = new LadderGame(names, ladderResult);
-        NamesWithMatchedResult result = ladderGame.moveAndGetResult(ladder);
-        retryOnRuntimeExceptionWithMessage(result, this::printResultWhileCommandIsNotAll);
+        final NamesWithMatchedResult result = ladderGame.moveAndGetResult(ladder);
+        searchResultItemByNameFrom(result);
     }
 
-    public void printResultWhileCommandIsNotAll(NamesWithMatchedResult namesWithMatchedResult) {
+    private <T> T retryOnInvalidInputWithAlert(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (RuntimeException e) {
+                OutputView.printExceptionMessage(e.getMessage());
+            }
+        }
+    }
+
+    private void searchResultItemByNameFrom(NamesWithMatchedResult t) {
+        while (true) {
+            try {
+                printResultWhileCommandIsNotAll(t);
+                return;
+            } catch (RuntimeException e) {
+                OutputView.printExceptionMessage(e.getMessage());
+            }
+        }
+    }
+
+    private void printResultWhileCommandIsNotAll(NamesWithMatchedResult namesWithMatchedResult) {
         while (true) {
             String name = inputView.readNameToCheckResult();
             if (isAll(name)) {
@@ -62,17 +82,5 @@ public class LadderController {
 
     private static boolean isAll(String name) {
         return name.equals("all");
-    }
-
-    public void retryOnRuntimeExceptionWithMessage(NamesWithMatchedResult t,
-                                                   Consumer<NamesWithMatchedResult> consumer) {
-        while (true) {
-            try {
-                consumer.accept(t);
-                return;
-            } catch (RuntimeException e) {
-                OutputView.printExceptionMessage(e.getMessage());
-            }
-        }
     }
 }

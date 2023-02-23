@@ -1,7 +1,5 @@
 package laddergame.domain;
 
-import static laddergame.utils.RetryUtils.retryOnRuntimeException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,21 +34,35 @@ public class Ladder {
 
     public void createLines() {
         lines = new ArrayList<>();
-
         int heightLength = height.getValue();
 
         while (heightLength-- > 0) {
-            final Line line = retryOnRuntimeException(() -> createLine(width.getValue() - 1));
+            final Line line = createLine();
             lines.add(line);
         }
     }
 
-    private Line createLine(int width) {
-        final List<Boolean> points = new ArrayList<>();
-        while (width-- > 0) {
-            points.add(booleanGenerator.generate());
+    public Line createLine() {
+        while (true) {
+            try {
+                return tryToCreateLine();
+            } catch (IllegalArgumentException ignored) {
+                /* IGNORED */
+            }
         }
+    }
 
+    private List<Boolean> decideRungExistenceOfLine() {
+        int count = width.getValue() - 1;
+        final List<Boolean> doesRungExistOnPoint = new ArrayList<>();
+        while (count-- > 0) {
+            doesRungExistOnPoint.add(booleanGenerator.generate());
+        }
+        return doesRungExistOnPoint;
+    }
+
+    private Line tryToCreateLine() {
+        final List<Boolean> points = decideRungExistenceOfLine();
         return new Line(points);
     }
 
