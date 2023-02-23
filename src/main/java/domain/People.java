@@ -63,6 +63,8 @@ public class People implements Iterable<Person> {
 
     @Override
     public Iterator<Person> iterator() {
-        return people.iterator();
+        return Collections
+                .unmodifiableCollection(this.people)
+                .iterator();
     }
 }
