@@ -11,10 +11,17 @@ public class LadderGame {
     private final LadderResult result;
 
     public LadderGame(List<String> names, List<String> items, int height, LineStrategy lineStrategy) {
+        validateNameItemSizeEquality(names, items);
         this.players = new Players(names);
         this.ladder = new Ladder(height, items);
         ladder.assignLines(lineStrategy, names.size() - 1);
         this.result = new LadderResult(makeLadderResult());
+    }
+
+    private void validateNameItemSizeEquality(List<String> names, List<String> items) {
+        if (names.size() != items.size()) {
+            throw new IllegalArgumentException("이름과 실행 결과의 개수가 맞지 않습니다.");
+        }
     }
 
     private Map<Player, Item> makeLadderResult() {
