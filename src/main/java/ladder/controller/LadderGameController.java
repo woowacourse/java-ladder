@@ -1,10 +1,10 @@
 package ladder.controller;
 
-import static ladder.view.FindCommand.FIND_ALL;
-
 import java.util.List;
+import java.util.Objects;
 import ladder.domain.LadderGame;
 import ladder.domain.Line;
+import ladder.view.FindCommand;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -13,10 +13,11 @@ public class LadderGameController {
     private LadderGame game;
 
     public void run() {
+        GameStatus gameStatus = GameStatus.RUN;
         play();
-        String playerName = InputView.askPlayerNameForResult();
-        // TODO 종료할 때까지 반복하기
-        findResultByPlayer(playerName);
+        while (gameStatus == GameStatus.RUN) {
+            gameStatus = findResultByPlayer();
+        }
     }
 
     public void play() {
@@ -25,18 +26,23 @@ public class LadderGameController {
         game = new LadderGame(players);
         List<String> results = InputView.askLadderResults();
         int height = InputView.askLadderHeight();
-        List<Line> ladderLines = game.makeLadder(height, results);
+        List<Line> ladderLines = game.generateLadder(height, results);
 
         OutputView.showLadderResult(game.getPlayerNames(), ladderLines, results);
     }
 
-    public void findResultByPlayer(String playerName) {
+    public GameStatus findResultByPlayer() {
         OutputView.showGameResultMessage();
-        
-        if (FIND_ALL.equals(playerName)) {
-            OutputView.showAllResultsByPlayer(game.findAllResultsByPlayer());
-            return;
+        String keyword = InputView.askFindResultKeyword();
+
+        if (Objects.equals(FindCommand.QUIT, keyword)) {
+            return GameStatus.QUIT;
         }
-        OutputView.showResultByPlayer(game.findResultByPlayerName(playerName));
+        if (Objects.equals(FindCommand.FIND_ALL, keyword)) {
+            OutputView.showAllResultsByPlayer(game.findAllResultsByPlayer());
+            return GameStatus.RUN;
+        }
+        OutputView.showResultByPlayer(game.findResultByPlayerName(keyword));
+        return GameStatus.RUN;
     }
 }

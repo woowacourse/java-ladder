@@ -21,7 +21,7 @@ public class InputView {
         return ConsoleReader.readNaturalNumber();
     }
 
-    public static String askPlayerNameForResult() {
+    public static String askFindResultKeyword() {
         System.out.println();
         System.out.println("결과를 보고 싶은 사람은?");
         return ConsoleReader.readLine();
