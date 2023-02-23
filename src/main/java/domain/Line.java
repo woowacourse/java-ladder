@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class Line {
 
-    private final List<Step> footSteps = new ArrayList<>();
+    private final List<Step> steps = new ArrayList<>();
     private final BooleanGenerator generator;
 
     public Line(final BooleanGenerator generator) {
@@ -17,71 +17,74 @@ public class Line {
     }
 
     public boolean isSteppableAt(final int index) {
-        if(this.footSteps.isEmpty()){
+        if (this.steps.isEmpty()) {
             return false;
         }
 
-        return this.footSteps
+        return this.steps
                 .get(index)
                 .isSteppable();
     }
 
-    public void generateFootStep() {
+    public void generateStep() {
         if (!isStartEdge()) {
-            Step previous = getPreviousFootStep();
-            addFootStep(previous.isSteppable());
+            addFootStep(getPreviousFootStep().isRightConnection());
             return;
         }
         addFootStep(false);
     }
 
     private Step getPreviousFootStep() {
-        return this.footSteps.get(this.footSteps.size() - 1);
+        return this.steps.get(this.steps.size() - 1);
     }
 
-    private void addFootStep(final boolean isPreviousFootStepSteppable) {
-        if (isPreviousFootStepSteppable) {
-            this.footSteps.add(new Step(false));
+    private void addFootStep(final boolean isPreviousStepRightConnected) {
+        if (isPreviousStepRightConnected) {
+            this.steps.add(Step.LEFT);
             return;
         }
-        this.footSteps.add(new Step(generator.generate()));
+        this.steps.add(Step.getRandomValidStep(generator.generate()));
     }
 
     private boolean isStartEdge() {
-        return this.footSteps.isEmpty();
+        return this.steps.isEmpty();
     }
 
     public int getWidth() {
-        if(this.footSteps.isEmpty()){
+        if (this.steps.isEmpty()) {
             return 0;
         }
 
-        return this.footSteps.size();
+        return this.steps.size();
     }
 
-    public List<Boolean> getValue(){
-        return List.copyOf(footSteps.stream()
-                .map(Step::isSteppable)
+    public List<Boolean> getRightConnectionCondition() {
+        return List.copyOf(steps.stream()
+                .map(Step::isRightConnection)
                 .collect(Collectors.toList()));
     }
 
     @Override
     public boolean equals(Object line) {
-        if (this == line) return true;
-        if (line == null || getClass() != line.getClass()) return false;
+        if (this == line) {
+            return true;
+        }
+        if (line == null || getClass() != line.getClass()) {
+            return false;
+        }
         Line anotherLine = (Line) line;
-        return this.footSteps.equals(anotherLine.footSteps) && this.generator.equals(anotherLine.generator);
+        return this.steps.equals(anotherLine.steps) && this.generator.equals(anotherLine.generator);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(footSteps, generator);
+        return Objects.hash(steps, generator);
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "footSteps=" + footSteps +
+                "footSteps=" + steps +
                 ", generator=" + generator +
                 '}';
     }

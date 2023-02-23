@@ -33,7 +33,7 @@ public class Ladder {
 
     private void generateFootsteps(final int width, final Line line) {
         for (int currentWidth = 0; currentWidth < width - 1; currentWidth++) {
-            line.generateFootStep();
+            line.generateStep();
         }
     }
 
@@ -49,7 +49,7 @@ public class Ladder {
 
     public List<List<Boolean>> getLadderShape() {
         return lines.stream()
-                .map(Line::getValue)
+                .map(Line::getRightConnectionCondition)
                 .collect(Collectors.toList());
     }
 
