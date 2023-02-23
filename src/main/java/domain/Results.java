@@ -2,12 +2,11 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Results implements Iterable<Result> {
+public class Results {
 
     private final List<Result> results;
 
@@ -33,16 +32,20 @@ public class Results implements Iterable<Result> {
         }
     }
 
-    public Result getResultByColumn(int index) {
-        return results.get(index);
+    public boolean canTryAgain() {
+        return this.results.size() == 1;
+    }
+
+    public Result getResultByColumn(Column column) {
+        return results.get(column.get());
     }
 
     public Result getSingleResult() {
         return results.get(0);
     }
 
-    public boolean canTryAgain() {
-        return this.results.size() == 1;
+    public List<Result> getResults() {
+        return Collections.unmodifiableList(results);
     }
 
     @Override
@@ -60,12 +63,5 @@ public class Results implements Iterable<Result> {
     @Override
     public int hashCode() {
         return Objects.hash(results);
-    }
-
-    @Override
-    public Iterator<Result> iterator() {
-        return Collections
-                .unmodifiableCollection(results)
-                .iterator();
     }
 }

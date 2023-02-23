@@ -1,5 +1,6 @@
 package view;
 
+import domain.Column;
 import domain.Ladder;
 import domain.Line;
 import domain.People;
@@ -23,21 +24,21 @@ public class OutputView {
     }
 
     private void printNames(People people) {
-        for (Person person : people) {
+        for (Person person : people.getPeople()) {
             System.out.printf("%5s ", person.getName());
         }
         System.out.println();
     }
 
     private void printLadder(Ladder ladder) {
-        for (Line line : ladder) {
+        for (Line line : ladder.getLines()) {
             List<String> collect = getHorizonLine(line.getMovements());
             System.out.printf("    |%s|%n", String.join(DELIMITER, collect));
         }
     }
 
     private void printResults(Results results) {
-        for (Result result : results) {
+        for (Result result : results.getResults()) {
             System.out.printf("%5s ", result.getResult());
         }
         System.out.println();
@@ -62,7 +63,7 @@ public class OutputView {
     public void printAllResults(People people, Results results) {
         System.out.println("\n실행 결과");
         for (int i = 0; i < people.getCount(); i++) {
-            System.out.printf(FORMAT, people.getByIndex(i).getName(), results.getResultByColumn(i).getResult());
+            System.out.printf(FORMAT, people.getByIndex(i).getName(), results.getResultByColumn(Column.of(i)).getResult());
         }
         System.out.println();
     }

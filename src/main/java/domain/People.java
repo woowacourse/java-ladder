@@ -1,12 +1,11 @@
 package domain;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class People implements Iterable<Person> {
+public class People {
 
     public static final int MIN_PERSON_COUNT = 2;
 
@@ -61,10 +60,4 @@ public class People implements Iterable<Person> {
         return people.size();
     }
 
-    @Override
-    public Iterator<Person> iterator() {
-        return Collections
-                .unmodifiableCollection(this.people)
-                .iterator();
-    }
 }

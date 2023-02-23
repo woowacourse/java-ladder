@@ -27,7 +27,7 @@ public class LadderGame {
 
     public Results getTotalResults() {
         List<Result> results = new ArrayList<>();
-        for (Person person : people) {
+        for (Person person : people.getPeople()) {
             results.add(getSingleResult(person));
         }
         return new Results(results);
@@ -35,7 +35,7 @@ public class LadderGame {
 
     public Result getSingleResult(Person name) {
         int startColumn = people.findPersonColumn(name);
-        int resultColumn = ladder.startFromColumnAndGetResultColumn(startColumn);
+        Column resultColumn = ladder.startFromColumnAndGetResultColumn(startColumn);
         return results.getResultByColumn(resultColumn);
     }
 

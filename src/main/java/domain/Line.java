@@ -27,13 +27,13 @@ public class Line {
         }
     }
 
-    public void move(Position position) {
-        int column = position.getColumn();
+    public void move(Column position) {
+        int column = position.get();
         checkLeft(position, column);
         checkRight(position, column);
     }
 
-    private void checkLeft(Position position, int column) {
+    private void checkLeft(Column position, int column) {
         boolean isNotStartColumnAndCanGoLeft =
                 column != 0 && movements.get(column - 1);
         if (isNotStartColumnAndCanGoLeft) {
@@ -41,7 +41,7 @@ public class Line {
         }
     }
 
-    private void checkRight(Position position, int column) {
+    private void checkRight(Column position, int column) {
         boolean isNotEndColumnAndCanGoRight =
                 column != movements.size() && movements.get(column);
         if (isNotEndColumnAndCanGoRight) {

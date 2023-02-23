@@ -1,9 +1,9 @@
 package domain;
 
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 
-public class Ladder implements Iterable<Line>{
+public class Ladder {
 
     public static final int MIN_RANGE = 1;
     public static final int MAX_RANGE = 10;
@@ -23,13 +23,12 @@ public class Ladder implements Iterable<Line>{
     }
 
 
-    public int startFromColumnAndGetResultColumn(int startColumn) {
-        Position position = new Position(startColumn);
+    public Column startFromColumnAndGetResultColumn(int startColumn) {
+        Column column = Column.of(startColumn);
         for (Line line : lines) {
-            line.move(position);
-            position.goDown();
+            line.move(column);
         }
-        return position.getColumn();
+        return column;
     }
 
     public int getHeight() {
@@ -40,8 +39,7 @@ public class Ladder implements Iterable<Line>{
         return lines.get(0).size();
     }
 
-    @Override
-    public Iterator<Line> iterator() {
-        return lines.iterator();
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }

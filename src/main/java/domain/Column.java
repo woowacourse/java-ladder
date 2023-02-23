@@ -2,20 +2,16 @@ package domain;
 
 import java.util.Objects;
 
-public class Position {
-
-    public static final int INITIAL_VALUE = 0;
+public class Column {
 
     private int column;
-    private int row;
 
-    public Position(int column) {
+    private Column(int column) {
         this.column = column;
-        this.row = INITIAL_VALUE;
     }
 
-    public void goDown() {
-        this.row++;
+    public static Column of(int column) {
+        return new Column(column);
     }
 
     public void goLeft() {
@@ -26,7 +22,7 @@ public class Position {
         this.column++;
     }
 
-    public int getColumn() {
+    public int get() {
         return column;
     }
 
@@ -38,20 +34,19 @@ public class Position {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Position position = (Position) o;
-        return column == position.column && row == position.row;
+        Column column1 = (Column) o;
+        return column == column1.column;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(column, row);
+        return Objects.hash(column);
     }
 
     @Override
     public String toString() {
-        return "Position{" +
+        return "Column{" +
                 "column=" + column +
-                ", row=" + row +
                 '}';
     }
 }
