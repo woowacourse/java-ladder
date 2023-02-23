@@ -3,6 +3,7 @@ package ladder.controller;
 import java.util.List;
 import java.util.Map;
 import ladder.domain.BooleanGenerator;
+import ladder.domain.Bottom;
 import ladder.domain.Height;
 import ladder.domain.LadderGame;
 import ladder.domain.Players;
@@ -10,14 +11,14 @@ import ladder.domain.Result;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-public class LadderGameController {
+public class LadderGameRunner {
 
     private static final String QUIT_COMMAND = "all";
     private final BooleanGenerator booleanGenerator;
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LadderGameController(
+    public LadderGameRunner(
             final BooleanGenerator booleanGenerator,
             final InputView inputView,
             final OutputView outputView
@@ -29,19 +30,19 @@ public class LadderGameController {
 
     public void run() {
         final Players players = readPlayers();
-        final List<String> results = readResults(players);
+        final Bottom bottom = readResults(players);
         final Height height = readHeight();
 
         final LadderGame ladderGame = new LadderGame(booleanGenerator, players, height);
-        outputView.printResult(ladderGame, results);
+        outputView.printResult(ladderGame, bottom);
 
-        search(ladderGame, results, height);
+        search(ladderGame, bottom, height);
     }
 
-    private void search(final LadderGame ladderGame, final List<String> results, final Height height) {
+    private void search(final LadderGame ladderGame, final Bottom bottom, final Height height) {
         List<String> initializedNames = ladderGame.getPlayerNames();
         Players players = ladderGame.makeResult(height);
-        Result result = new Result(players, results);
+        Result result = new Result(players, bottom);
 
         searchResult(result, initializedNames);
     }
@@ -66,11 +67,10 @@ public class LadderGameController {
         }
     }
 
-    private List<String> readResults(final Players players) {
+    private Bottom readResults(final Players players) {
         try {
-            List<String> results = inputView.readResult();
-            players.validateSameSize(results);
-            return results;
+            List<String> bottomsInput = inputView.readResult();
+            return new Bottom(bottomsInput, players);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return readResults(players);

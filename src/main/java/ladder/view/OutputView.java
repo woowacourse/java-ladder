@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.joining;
 
 import java.util.List;
 import java.util.Map;
+import ladder.domain.Bottom;
 import ladder.domain.LadderGame;
 import ladder.domain.Line;
 import ladder.domain.LineStatus;
@@ -23,7 +24,7 @@ public class OutputView {
     private static final String ERROR_MESSAGE = "[ERROR] ";
     private static final int ONE_NAME_SEARCH_CONDITION = 1;
 
-    public void printResult(final LadderGame ladderGame, final List<String> results) {
+    public void printResult(final LadderGame ladderGame, final Bottom bottom) {
         System.out.println(GAME_RESULT_MESSAGE);
 
         final int maxNameLength = getMaxNameLength(ladderGame.getPlayerNames());
@@ -31,11 +32,11 @@ public class OutputView {
 
         final String initialPlayerName = findInitialPlayerName(ladderGame.getPlayerNames());
         System.out.println(generateLadderMessage(initialPlayerName.length(), maxNameLength, ladderGame.getLadder()));
-        System.out.println(generateResultMessages(results, maxNameLength));
+        System.out.println(generateResultMessages(bottom, maxNameLength));
     }
 
-    private String generateResultMessages(final List<String> results, final int maxNameLength) {
-        String resultMessage = results.stream()
+    private String generateResultMessages(final Bottom bottom, final int maxNameLength) {
+        String resultMessage = bottom.toList().stream()
                 .map(result -> generateResultMessage(result, maxNameLength))
                 .collect(joining());
         return resultMessage + NEXT_LINE;
