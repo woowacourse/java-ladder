@@ -1,24 +1,53 @@
 package domain.ladder;
 
-import domain.generator.RandomBooleanGenerator;
 import domain.player.Players;
+import domain.result.Prizes;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LadderGame {
 
-    private final Players players;
+    private final Map<String, String> result;
 
-    public LadderGame(List<String> names) {
-        this.players = new Players(names);
+    private LadderGame(Map<String, String> result) {
+        this.result = result;
     }
 
-    public Ladder createLadder(int height) {
-        int personCount = players.getPlayers().size();
-        return new Ladder(personCount, height, new RandomBooleanGenerator());
+    public static LadderGame of(Players players, Prizes prizes, Ladder ladder) {
+        validate(players, prizes);
+
+        HashMap<String, String> gameResult = start(players, prizes, ladder);
+        return new LadderGame(gameResult);
     }
 
-    public Players getPlayers() {
-        return players;
+    private static HashMap<String, String> start(Players players, Prizes prizes, Ladder ladder) {
+        HashMap<String, String> gameResult = new HashMap<>();
+        for (int playerIndex = 0; playerIndex < players.getPlayers().size(); playerIndex++) {
+            String playerName = players.findNameByIndex(playerIndex);
+
+            int playerLastPosition = ladder.move(playerIndex);
+            String prize = prizes.findByIndex(playerLastPosition);
+            gameResult.put(playerName, prize);
+        }
+        return gameResult;
     }
+
+    private static void validate(Players players, Prizes prizes) {
+        if (players.getPlayers().size() != prizes.getPrizes().size()) {
+            throw new IllegalArgumentException("참가자 수와 결과 수는 일치해야 합니다.");
+        }
+    }
+
+    public String findByName(String name) {
+        if (!result.containsKey(name)) {
+            throw new IllegalArgumentException("이름과 일치하는 참가자가 존재하지 않습니다.");
+        }
+        return result.get(name);
+    }
+
+    public Map<String, String> findAllResults() {
+        return this.result;
+    }
+
 }
