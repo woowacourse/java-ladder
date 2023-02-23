@@ -23,8 +23,8 @@ class SimpleListTest {
 
     @Test
     void addWithOnlyValue() {
-        assertThat(list.add("3")).isTrue();
-        assertThat(list.get(2)).isEqualTo("3");
+        assertThat(list.add("2")).isTrue();
+        assertThat(list.get(2)).isEqualTo("2");
     }
 
     @Test
@@ -38,8 +38,8 @@ class SimpleListTest {
 
     @Test
     void addWithVIndexValue() {
-        list.add(1, "3");
-        assertThat(list.get(1)).isEqualTo("3");
+        list.add(1, "2");
+        assertThat(list.get(1)).isEqualTo("2");
     }
 
     @Test
@@ -59,13 +59,13 @@ class SimpleListTest {
 
     @Test
     void set() {
-        assertThat(list.set(1, "3")).isEqualTo("2");
-        assertThat(list.get(1)).isEqualTo("3");
+        assertThat(list.set(1, "2")).isEqualTo("1");
+        assertThat(list.get(1)).isEqualTo("2");
     }
 
     @Test
     void setThrowException() {
-        assertThatThrownBy(() -> list.set(2, "3"))
+        assertThatThrownBy(() -> list.set(2, "2"))
                 .isInstanceOf(IndexOutOfBoundsException.class);
     }
 

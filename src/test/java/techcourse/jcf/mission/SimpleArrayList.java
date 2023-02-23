@@ -47,8 +47,14 @@ public class SimpleArrayList implements SimpleList {
         this.values = newValues;
     }
 
-    private void checkIndexWithInRange(int index) {
+    private void checkIndexBeforeAdd(int index) {
         if (index > this.pointerToNext) {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+    private void checkIndexBeforeSet(int index) {
+        if (index >= this.pointerToNext) {
             throw new IndexOutOfBoundsException();
         }
     }
@@ -68,7 +74,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public void add(int index, String value) {
-        checkIndexWithInRange(index);
+        checkIndexBeforeAdd(index);
         for (int i = pointerToNext; i > index; i--) {
             values[i] = values[i - 1];
         }
@@ -79,7 +85,10 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String set(int index, String value) {
-        return null;
+        checkIndexBeforeSet(index);
+        String valueBeforeChange = this.values[index];
+        this.values[index] = value;
+        return valueBeforeChange;
     }
 
     @Override
