@@ -18,6 +18,24 @@ public class Line {
         createPoints(personCount, booleanGenerator);
     }
 
+    public Direction chooseMoveDirection(int position) {
+        if (isLeftPointExist(position)) {
+            return Direction.LEFT;
+        }
+        if (isRightPointExist(position)) {
+            return Direction.RIGHT;
+        }
+        return Direction.STAY;
+    }
+
+    private boolean isLeftPointExist(int position) {
+        return position > 0 && points.get(position - 1);
+    }
+
+    private boolean isRightPointExist(int position) {
+        return position < points.size() && points.get(position) == true;
+    }
+
     private void validate(int personCount) {
         int pointSize = personCount - 1;
         if (pointSize < POINTS_MIN_SIZE || pointSize > POINTS_MAX_SIZE) {
