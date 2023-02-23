@@ -26,12 +26,6 @@ public class Line {
         return new Line(points);
     }
 
-    private static void validate(final int pointSize) {
-        if (pointSize < POINT_MIN_SIZE || pointSize > POINT_MAX_SIZE) {
-            throw new IllegalArgumentException("포인트 범위는 0부터 19까지입니다.");
-        }
-    }
-
     private static Point choosePoint(final List<Point> points, final PointGenerator pointGenerator) {
         Point currentPoint = Point.choosePoint(pointGenerator);
         int pointIndex = points.size();
@@ -40,6 +34,12 @@ public class Line {
             currentPoint = Point.choosePoint(points.get(pointIndex - 1), pointGenerator);
         }
         return currentPoint;
+    }
+
+    private static void validate(final int pointSize) {
+        if (pointSize < POINT_MIN_SIZE || pointSize > POINT_MAX_SIZE) {
+            throw new IllegalArgumentException("포인트 범위는 0부터 19까지입니다.");
+        }
     }
 
     public int decideNextIndex(int index) {
