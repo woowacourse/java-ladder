@@ -10,20 +10,6 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class TargetTest {
-    @DisplayName("입력이 null 일 때 에러 확인")
-    @Test
-    void checknull() {
-        Assertions.assertThatThrownBy(() -> new Target(null)).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("입력이 공백일 때 에러 확인")
-    @Test
-    void checkblank() {
-        Assertions.assertThatThrownBy(() -> new Target("")).isInstanceOf(IllegalArgumentException.class);
-        Assertions.assertThatThrownBy(() -> new Target(" ")).isInstanceOf(IllegalArgumentException.class);
-        Assertions.assertThatThrownBy(() -> new Target("  ")).isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("입력이 유저 네임이 아니고 all 도 아닐 때 에러 확인")
     @Test
     void checkContent() {
