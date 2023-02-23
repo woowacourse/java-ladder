@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class People {
     }
 
     public List<Person> getPeople() {
-        return Collections.unmodifiableList(people);
+        return new ArrayList<>(people);
     }
 
     public int calculateMaxNameLength(){
