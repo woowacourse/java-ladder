@@ -6,11 +6,11 @@ import java.util.Map;
 
 public class LadderGame {
 
-    private static final int GAP_BETWEEN_PARTICIPANTS_AND_WIDTH = 1;
     private final Participants participants;
     private final Ladder ladder;
 
     private final Results results;
+    private final SequenceSwapper swapper;
 
     private final Map<Participant, Result> gameResult = new HashMap<>();
 
@@ -19,9 +19,10 @@ public class LadderGame {
         this.participants = participants;
         this.results = results;
         this.ladder = ladder;
+        this.swapper = SequenceSwapper.initialize(participants.getParticipantsNum());
     }
 
-    public void run(SequenceSwapper swapper) {
+    public void run() {
         this.ladder.readLines(swapper);
         setGameResult(swapper.getSequence());
     }
