@@ -45,8 +45,8 @@ public class Players {
     }
 
     private void addPlayer(List<String> names) {
-        for (int position = 0; position < names.size(); position++) {
-            players.add(new Player(names.get(position), position));
+        for (String name : names) {
+            players.add(new Player(name));
         }
     }
 
@@ -72,7 +72,8 @@ public class Players {
                 .anyMatch(player -> player.isTargetPlayer(targetPlayer));
     }
 
-    public List<Player> getPlayers() {
-        return players;
+    public int getTargetPlayerPosition(String targetPlayer) {
+        return getPlayersName().indexOf(targetPlayer);
     }
+
 }
