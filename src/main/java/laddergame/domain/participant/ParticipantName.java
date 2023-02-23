@@ -1,5 +1,7 @@
 package laddergame.domain.participant;
 
+import java.util.Objects;
+
 public class ParticipantName {
 
     private static final char INVALID_INCLUSION = ' ';
@@ -21,6 +23,10 @@ public class ParticipantName {
         return new ParticipantName(name);
     }
 
+    public boolean isSameName(final String otherName) {
+        return name.equals(otherName);
+    }
+
     private void validateNameNullOrEmpty(final String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 이름을 입력하셔아 합니다.");
@@ -37,6 +43,26 @@ public class ParticipantName {
         if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(String.format("[ERROR] 이름은 %d 글자를 초과할 수 없습니다.", MAX_LENGTH));
         }
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ParticipantName that = (ParticipantName) o;
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return "ParticipantName{" +
+                "name='" + name + '\'' +
+                '}';
     }
 
     public String getName() {

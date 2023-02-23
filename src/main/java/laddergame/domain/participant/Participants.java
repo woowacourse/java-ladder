@@ -1,5 +1,6 @@
 package laddergame.domain.participant;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +25,15 @@ public class Participants {
 
     public int size() {
         return participants.size();
+    }
+
+    public List<Participant> findParticipants(final String requestContent) {
+        if (requestContent.equals("all")) {
+            return participants;
+        }
+        return participants.stream()
+                .filter(participant -> participant.isSameName(requestContent))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     private List<String> splitNames(final String names) {
