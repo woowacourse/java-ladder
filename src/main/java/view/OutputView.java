@@ -24,6 +24,7 @@ public class OutputView {
         printNames(playerNames, nameFormatSize);
         printLadder(ladderResponse.getLadder(), nameFormatSize);
         printNames(prizes, nameFormatSize);
+        printEmptyLine();
     }
 
     public void printPersonalResult(PersonalResultResponse personalResultResponse) {
@@ -38,7 +39,6 @@ public class OutputView {
         printLine(PRIZE_RESULT_TITLE);
         Map<String, String> playerToPrize = totalResultResponse.getPlayerToPrize();
         playerToPrize.forEach((player, prize) -> printLine(player + " : " + prize));
-        printEmptyLine();
     }
 
     private int getNameFormatSize(List<String> playerNames, List<String> prizes) {
@@ -68,7 +68,6 @@ public class OutputView {
             printLine(stringBuilder.toString());
             stringBuilder.setLength(0);
         }
-        printEmptyLine();
     }
 
     private String getLineUi(List<Boolean> line, int nameFormatSize) {

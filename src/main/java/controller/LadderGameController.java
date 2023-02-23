@@ -51,26 +51,45 @@ public class LadderGameController {
     }
 
     private void printResult() {
-        String resultInput = inputView.readResult();
-        // TODO 재귀로 입력받도록 수정
-        if (resultInput.equals("all")) {
-            printTotalResult();
-        } else {
-            printPersonalResult(resultInput);
+        RequestType requestType = RequestType.PERSONAL;
+        while (requestType == RequestType.PERSONAL) {
+            String resultRequest = inputView.readResultRequest();
+            requestType = checkRequestType(resultRequest);
+            printResultByRequestType(requestType, resultRequest);
         }
+    }
+
+    private RequestType checkRequestType(final String input) {
+        final String TOTAL_REQUEST = "all";
+
+        if (input.equals(TOTAL_REQUEST)) {
+            return RequestType.TOTAL;
+        }
+        return RequestType.PERSONAL;
+    }
+
+    private void printResultByRequestType(RequestType requestType, String input) {
+        if (requestType == RequestType.TOTAL) {
+            printTotalResult();
+            return;
+        }
+        printPersonalResult(input);
     }
 
     private void printTotalResult() {
         LadderGameResult result = ladderGame.getResult();
         TotalResultResponse totalResultResponse = TotalResultResponse.from(result);
         outputView.printTotalResult(totalResultResponse);
-
     }
 
     private void printPersonalResult(String playerName) {
         Prize prize = ladderGame.getPersonalResult(playerName);
         PersonalResultResponse personalResultResponse = PersonalResultResponse.from(prize);
         outputView.printPersonalResult(personalResultResponse);
+    }
+
+    private enum RequestType {
+        TOTAL, PERSONAL,
     }
 
 }
