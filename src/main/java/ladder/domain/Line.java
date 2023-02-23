@@ -1,19 +1,21 @@
 package ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
-    private final List<Boolean> sections;
+    private final List<Step> steps;
     private final int lineLength;
 
     public Line(LineStrategy lineStrategy, int sectionCount) {
-        this.sections = lineStrategy.generate(sectionCount);
+        this.steps = lineStrategy.generate(sectionCount);
         this.lineLength = sectionCount;
     }
 
-    public List<Boolean> getSections() {
-        return Collections.unmodifiableList(sections);
+    public List<Boolean> getSteps() {
+        return steps.stream()
+                .map(Step::getStatus)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public Position findNextPosition(Position playerPosition) {
@@ -31,7 +33,7 @@ public class Line {
         if (leftPosition < 0) {
             return false;
         }
-        return sections.get(leftPosition);
+        return Step.isExist(steps.get(leftPosition));
     }
 
     private boolean existRight(Position playerPosition) {
@@ -39,6 +41,6 @@ public class Line {
         if (rightPosition >= lineLength) {
             return false;
         }
-        return sections.get(rightPosition);
+        return Step.isExist(steps.get(rightPosition));
     }
 }

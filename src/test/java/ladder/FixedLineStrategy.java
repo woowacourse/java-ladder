@@ -1,8 +1,10 @@
 package ladder;
 
 import ladder.domain.LineStrategy;
+import ladder.domain.Step;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FixedLineStrategy implements LineStrategy {
     private final List<List<Boolean>> lines;
@@ -14,8 +16,10 @@ public class FixedLineStrategy implements LineStrategy {
     }
 
     @Override
-    public List<Boolean> generate(int sectionCount) {
-        List<Boolean> line = lines.get(generateCount);
+    public List<Step> generate(int sectionCount) {
+        List<Step> line = lines.get(generateCount).stream()
+                .map(Step::from)
+                .collect(Collectors.toList());
         ++generateCount;
         return line;
     }

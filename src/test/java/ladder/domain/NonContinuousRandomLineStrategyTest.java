@@ -15,10 +15,10 @@ class NonContinuousRandomLineStrategyTest {
         NonContinuousRandomLineStrategy nonContinuousRandomLineStrategy = new NonContinuousRandomLineStrategy();
 
         // when
-        List<Boolean> randomLine = nonContinuousRandomLineStrategy.generate(5);
+        List<Step> randomLine = nonContinuousRandomLineStrategy.generate(5);
         boolean isSame = false;
         for (int i = 0; i < randomLine.size() - 1; i++) {
-            if ((randomLine.get(i).equals(randomLine.get(i + 1))) && randomLine.get(i)) {
+            if ((randomLine.get(i).equals(randomLine.get(i + 1))) && randomLine.get(i).equals(Step.EXIST)) {
                 isSame = true;
                 break;
             }
