@@ -1,5 +1,7 @@
 package techcourse.jcf.mission;
 
+import java.util.Arrays;
+
 public class SimpleArrayList implements SimpleList {
 
     private static final int MINIMUM_SIZE = 2;
@@ -13,6 +15,7 @@ public class SimpleArrayList implements SimpleList {
     }
 
     public SimpleArrayList(final String[] values) {
+        this.size = values.length;
         this.values = values;
     }
 
@@ -55,7 +58,12 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public int indexOf(final String value) {
-        return 0;
+        for (int index = 0; index < size; index++) {
+            if (values[index].equals(value)) {
+                return index;
+            }
+        }
+        return -1;
     }
 
     @Override
@@ -81,5 +89,14 @@ public class SimpleArrayList implements SimpleList {
     @Override
     public void clear() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "SimpleArrayList{" +
+                "size=" + size +
+                ", currentIndex=" + currentIndex +
+                ", values=" + Arrays.toString(values) +
+                '}';
     }
 }

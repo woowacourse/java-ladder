@@ -69,7 +69,15 @@ class SimpleArrayListTest {
     }
 
     @Test
+    @DisplayName("리스트 안에 값이 있으면 값의 위치를 반환하고 없으면 -1을 반환한다.")
     void indexOf() {
+        final String[] array = {"홍실", "다니"};
+        final SimpleArrayList arrayList = new SimpleArrayList(array);
+
+        Assertions.assertAll(
+                () -> assertThat(arrayList.indexOf("다니")).isEqualTo(1),
+                () -> assertThat(arrayList.indexOf("썬샷")).isEqualTo(-1)
+        );
     }
 
     @Test
