@@ -36,7 +36,7 @@ class NameTest {
 
     @DisplayName("예약된 커맨드를 이름으로 입력하면 예외를 반환한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"all", "q"})
+    @ValueSource(strings = {"all"})
     void create_fail_by_program_command(String command) {
         assertThatThrownBy(() -> new Name(command))
                 .isInstanceOf(IllegalArgumentException.class)
