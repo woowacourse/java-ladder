@@ -52,6 +52,7 @@ public class OutputView {
     public static void printPlayerResult(String result) {
         System.out.println(GAME_RESULT_MESSAGE);
         System.out.println(result);
+        System.out.println();
     }
 
     public static void printPlayerResultAll(Map<String, String> result) {
