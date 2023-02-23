@@ -1,7 +1,6 @@
 package controller;
 
 import domain.LadderGame;
-import domain.LadderMaker;
 import domain.Result;
 import domain.SearchCommand;
 import domain.generator.BooleanGenerator;
@@ -27,18 +26,14 @@ public class MainController {
     }
 
     public void start() {
-        try {
-            Names names = receiveNames();
-            Missions missions = receiveMissions(names.size());
+        Names names = receiveNames();
+        Missions missions = receiveMissions(names.size());
 
-            LadderMaker ladderMaker = makeLadder(names.getPersonNumber());
-            printLadder(names, missions, ladderMaker.getLines());
+        Lines ladder = makeLadder(names.getPersonNumber());
+        printLadder(names, missions, ladder);
 
-            LadderGame ladderGame = LadderGame.of(new Players(names), missions, ladderMaker.getLines());
-            displayResult(ladderGame);
-        } catch (Exception exception) {
-            outputView.printExceptionMessage(exception);
-        }
+        LadderGame ladderGame = LadderGame.of(new Players(names), missions, ladder);
+        displayResult(ladderGame);
     }
 
     private void displayResult(LadderGame ladderGame) {
@@ -81,9 +76,9 @@ public class MainController {
         outputView.printResult(names, lines, missions);
     }
 
-    private LadderMaker makeLadder(int nameNumber) {
+    private Lines makeLadder(int nameNumber) {
         int lineNumber = nameNumber - 1;
-        return LadderMaker.of(lineNumber, receiveHeight(), booleanGenerator);
+        return new Lines(lineNumber, receiveHeight().getHeight(), booleanGenerator);
     }
 
     private Names receiveNames() {
