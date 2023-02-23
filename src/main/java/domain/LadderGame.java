@@ -9,29 +9,24 @@ public class LadderGame {
     private final Players players;
     private final Prize prize;
 
-    private final Map<String, String> result;
-
     public LadderGame(Ladder ladder, Players players, Prize prize) {
         this.ladder = ladder;
         this.players = players;
         this.prize = prize;
-        result = new HashMap<>();
     }
 
     public Map<String, String> run() {
-        if (!result.isEmpty()) {
-            return result;
-        }
         play();
-        generateResult();
-        return result;
+        return finish();
     }
 
-    private void generateResult() {
+    private Map<String, String> finish() {
+        HashMap<String, String> result = new HashMap<>();
         for (Player player : players.getPlayers()) {
             int position = player.getPosition();
             result.put(player.getName(), prize.getOnePrizeByIndex(position));
         }
+        return result;
     }
 
     private void play() {
