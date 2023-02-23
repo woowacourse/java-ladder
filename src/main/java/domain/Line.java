@@ -35,6 +35,24 @@ public class Line {
         return scaffold == Scaffold.EXIST && scaffolds.peekLast() == Scaffold.EXIST;
     }
 
+    public int move(int position) {
+        if (isLeftMovable(position)) {
+            return position - 1;
+        }
+        if (isRightMovable(position)) {
+            return position + 1;
+        }
+        return position;
+    }
+
+    private boolean isRightMovable(int position) {
+        return position != scaffolds.size() && scaffolds.get(position).equals(Scaffold.EXIST);
+    }
+
+    private boolean isLeftMovable(int position) {
+        return position != 0 && scaffolds.get(position - 1).equals(Scaffold.EXIST);
+    }
+
     private static void validateScaffolds(final List<Scaffold> scaffolds) {
         validateScaffoldSizeEmpty(scaffolds);
         validateConsistExistScaffolds(scaffolds);

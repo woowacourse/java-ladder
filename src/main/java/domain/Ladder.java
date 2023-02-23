@@ -54,27 +54,9 @@ public class Ladder {
         int currentPosition = startPosition;
         for (Line line : lines) {
             List<Scaffold> scaffolds = line.getScaffolds();
-            currentPosition = climbLadder(currentPosition, scaffolds);
+            currentPosition = line.move(currentPosition);
         }
         return prizes.getPrizeByIndex(currentPosition).getValue();
-    }
-
-    private int climbLadder(int position, List<Scaffold> scaffolds) {
-        if (isLeftMovable(position, scaffolds)) {
-            return position - 1;
-        }
-        if (isRightMovable(position, scaffolds)) {
-            return position + 1;
-        }
-        return position;
-    }
-
-    private boolean isRightMovable(int position, List<Scaffold> scaffold) {
-        return position != scaffold.size() && scaffold.get(position).equals(Scaffold.EXIST);
-    }
-
-    private boolean isLeftMovable(int position, List<Scaffold> scaffold) {
-        return position != 0 && scaffold.get(position - 1).equals(Scaffold.EXIST);
     }
 
     public int getHeight() {
