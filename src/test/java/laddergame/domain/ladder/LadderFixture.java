@@ -1,5 +1,6 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.player.Names;
 import laddergame.domain.player.Player;
 import laddergame.domain.player.Players;
 import laddergame.domain.prize.Prizes;
@@ -27,7 +28,7 @@ public class LadderFixture {
         ethan = Player.of("에단", 0);
         coil = Player.of("코일", 1);
         junPark = Player.of("준팍", 2);
-        players = new Players(List.of(ethan, coil, junPark));
+        players = new Players(new Names(List.of(ethan.getName(), coil.getName(), junPark.getName())));
 
         prizes = new Prizes(List.of("1000", "5000", "10000"), 3);
 

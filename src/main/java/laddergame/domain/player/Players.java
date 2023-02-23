@@ -8,29 +8,20 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(final List<Player> players) {
-        this.players = new ArrayList<>(players);
-    }
-
     public Players(final Names names) {
-        this(createPlayers(names.getNames()));
-
+        this.players = createPlayers(names);
     }
 
-    private static List<Player> createPlayers(final List<String> playerNames) {
+    private static List<Player> createPlayers(final Names names) {
         List<Player> players = new ArrayList<>();
+
+        final List<String> playerNames = names.getNames();
         for (int position = 0; position < playerNames.size(); position++) {
-            players.add(Player.of(playerNames.get(position), position));
+            final Player player = Player.of(playerNames.get(position), position);
+            players.add(player);
         }
 
         return players;
-    }
-
-    public Player findPlayerByPosition(final int position) {
-        return players.stream()
-                .filter(player -> player.getPosition() == position)
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException("해당되는 플레이어를 찾을 수 없습니다."));
     }
 
     public List<Player> getPlayers() {

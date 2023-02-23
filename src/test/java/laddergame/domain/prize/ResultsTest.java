@@ -1,5 +1,6 @@
 package laddergame.domain.prize;
 
+import laddergame.domain.player.Name;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,8 @@ class ResultsTest {
     @DisplayName("결과가 주어졌을때 개인 조회를 이름으로 하면 결과가 반환된다.")
     void givenResults_whenFindIndividualResultByName_thenReturnResult() {
         // when
-        final Result result = results.findIndividualResultByName("ethan");
+        final Name ethanName = new Name("ethan");
+        final Result result = results.findIndividualResultByName(ethanName);
 
         // then
         assertAll(

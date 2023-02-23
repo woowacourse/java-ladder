@@ -25,10 +25,6 @@ public class Player {
         position.moveLeft();
     }
 
-    public boolean canMoveLeft() {
-        return position.canMoveLeft();
-    }
-
     public boolean equalsName(final Name name) {
         return this.name.equals(name);
     }

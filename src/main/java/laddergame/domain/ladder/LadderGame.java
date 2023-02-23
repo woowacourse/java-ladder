@@ -48,7 +48,7 @@ public class LadderGame {
     }
 
     private boolean canMoveLeft(final int height, final Player player) {
-        return player.canMoveLeft() && ladder.canMoveLeft(height, player);
+        return ladder.canMoveLeft(height, player);
     }
 
     private boolean canMoveRight(final int height, final Player player) {
