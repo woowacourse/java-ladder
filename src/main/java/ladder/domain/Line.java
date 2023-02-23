@@ -36,7 +36,7 @@ public class Line {
         }
         return Point.DISABLE;
     }
-
+    
     private Boolean isPossible(final int index) {
         if (points.isEmpty()) {
             return true;
@@ -50,24 +50,12 @@ public class Line {
     }
 
     public Direction decideDirection(final int position) {
-        validatePosition(position);
-
-        try {
-            return getDirection(position);
-        } catch (Exception e) {
-            return Direction.STRAIGHT;
-        }
-    }
-
-    private Direction getDirection(final int position) {
-        int next = position;
-        Point right = points.get(next);
+        Point right = decidePoint(position);
         if (right.isAvailable()) {
             return Direction.RIGHT;
         }
 
-        int before = position - 1;
-        Point left = points.get(before);
+        Point left = decidePoint(position - 1);
         if (left.isAvailable()) {
             return Direction.LEFT;
         }
@@ -75,13 +63,14 @@ public class Line {
         return Direction.STRAIGHT;
     }
 
-    private void validatePosition(final int position) {
+    private Point decidePoint(final int position) {
         if (isOutOfBound(position)) {
-            throw new IllegalArgumentException("주어진 값은 라인의 넓이 이하여야 합니다.\n" + "position : " + position);
+            return Point.DISABLE;
         }
+        return points.get(position);
     }
 
     private boolean isOutOfBound(final int position) {
-        return position < 0 || position > points.size();
+        return position < 0 || points.size() <= position;
     }
 }

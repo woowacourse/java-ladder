@@ -24,7 +24,7 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
-    public void moveAll(Line line) {
+    public void moveAll(final Line line) {
         for (final Player player : players) {
             int position = player.getPosition();
             Direction direction = line.decideDirection(position);

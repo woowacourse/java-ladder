@@ -1,8 +1,12 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class Results {
+
+    private final static String delimiter = " : ";
 
     private final List<String> products;
     private final Players players;
@@ -20,8 +24,30 @@ public class Results {
     }
 
     public String toResultByPlayerName(final String name) {
+        if ("all".equals(name)) {
+            return createAllResultMessage();
+        }
+
         Player player = players.getPlayerByName(name);
         int position = player.getPosition();
         return products.get(position);
+    }
+
+    private String createAllResultMessage() {
+        StringBuilder builder = new StringBuilder();
+        StringJoiner joiner = new StringJoiner(delimiter);
+
+        for (Player player : players.toUnmodifiablePlayers()) {
+            String name = player.getName();
+            String product = products.get(player.getPosition());
+            String join = String.join(delimiter, name, product);
+            builder.append(join + "\n");
+        }
+
+        return builder.toString();
+    }
+
+    public List<String> toUnmodifiableResults() {
+        return Collections.unmodifiableList(products);
     }
 }

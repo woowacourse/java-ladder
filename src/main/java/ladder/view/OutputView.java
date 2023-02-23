@@ -12,18 +12,26 @@ public class OutputView {
     private static final String VERTICAL = "|";
     private static final String HORIZON = "-----";
     private static final String NONE = "     ";
-    private static final String MESSAGE_GAME_RESULT = "실행 결과";
 
-    public void showGameResult(final List<String> players, final List<Line> lines) {
-        String result = players.stream()
-                .map(name -> String.format("%5s", name))
-                .collect(Collectors.joining());
+    public void showLadderGame(final List<String> players, final List<Line> lines, final List<String> results) {
+        System.out.println("사다리 결과");
+        printEndLines(players);
+        printLadder(lines);
+        printEndLines(results);
+    }
 
-        System.out.println(MESSAGE_GAME_RESULT);
-        System.out.println(result);
+    private void printLadder(final List<Line> lines) {
         lines.stream()
                 .map(this::extractLine)
                 .forEach(System.out::println);
+    }
+
+    private void printEndLines(final List<String> players) {
+        String names = players.stream()
+                .map(name -> String.format("%5s", name))
+                .collect(Collectors.joining());
+
+        System.out.println(names);
     }
 
     private String extractLine(final Line line) {
@@ -42,5 +50,10 @@ public class OutputView {
             return HORIZON;
         }
         return NONE;
+    }
+
+    public void showResult(final String product) {
+        System.out.println(product);
+        
     }
 }

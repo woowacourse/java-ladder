@@ -23,11 +23,13 @@ public class LadderGame {
 
     private void initializeLines(final int height) {
         int width = players.size() - 1;
-        this.lines = new Lines(height, width);
+        this.lines = new Lines(randomGenerator, height, width);
     }
 
-    public void goLine() {
-
+    public void play() {
+        for (final Line line : lines.toUnModifiableLines()) {
+            players.moveAll(line);
+        }
     }
 
     public List<Player> toUnmodifiablePlayers() {
