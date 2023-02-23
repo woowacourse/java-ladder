@@ -6,6 +6,11 @@ import java.util.stream.Collectors;
 import ladder.dto.NamesDto;
 import ladder.util.StringSplitter;
 
+/**
+ * Names의 경우 거의 요구사항에서 요구하는 Player와 Reward 정보가 동일한 규칙을 가지고 있어서 PlayerNames와 RewardNames를 Names를 상속받는
+ * 자식클래스로 만들어주었습니다. 인터페이스를 쓸까 고민을 했는데 몇몇 메서드는 수정 없이 그대로 사용해서 클래스 상속으로 구현했습니다. 구현하면서 우려스럽긴 했는데, 혹시 이런
+ * 상속 구조를 사용함에 있어서 성능/유지보수 측면의 결함이 있을까요?
+ */
 public class Names {
 
     protected static final Pattern NAMES_FORMAT = Pattern.compile("[^,]+(,[^,]+)+");
