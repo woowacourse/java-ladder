@@ -108,12 +108,25 @@ public class LadderGameController {
 
     private void showAnalyzedResult(Players players, Prizes prizes, Ladder ladder) {
         Result result = new Result(players, prizes, ladder);
-        String input = InputView.inputPlayerResult();
+        searchPlayerResult(result, players);
+    }
+
+    private void searchPlayerResult(Result result, Players players) {
+        try {
+            String input = InputView.inputPlayerResult();
+            showResult(result, players, input);
+        } catch (CustomException e) {
+            OutputView.printErrorMessage(e);
+            searchPlayerResult(result, players);
+        }
+    }
+
+    private void showResult(Result result, Players players, String input) {
         if (input.equals(SEARCH_ALL_KEYWORD)) {
             showAllPlayersResult(result);
             return;
         }
-        showSinglePlayerResult(result, input, players);
+        showSinglePlayerResult(result, players, input);
     }
 
     private void showAllPlayersResult(Result result) {
@@ -127,7 +140,7 @@ public class LadderGameController {
         OutputView.printAllResults(resultForView);
     }
 
-    private void showSinglePlayerResult(Result result, String name, Players players) {
+    private void showSinglePlayerResult(Result result, Players players, String name) {
         OutputView.printPlayerResultHeaderMessage();
         PlayerName playerName = players.findByName(name);
         Prize prize = result.getSinglePlayerResult(playerName);

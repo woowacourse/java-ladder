@@ -19,7 +19,7 @@ public class Result {
         this.results = makeResult(players, prizes, ladder);
     }
 
-    private Map<PlayerName, Prize> makeResult(Players players, Prizes prizes, Ladder ladder) {
+    private Map<PlayerName, Prize> makeResult(final Players players, final Prizes prizes, final Ladder ladder) {
         List<PlayerName> playerNames = new ArrayList<>(players.getPlayers());
         for (Line line : ladder.getLines()) {
             moveOneLine(playerNames, line);
