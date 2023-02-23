@@ -63,8 +63,7 @@ public class OutputView {
     private void buildUserPrintingFormat(Users users, StringBuilder result) {
         List<User> allUsers = users.getUsers();
 
-        for (int index = SECOND_USER_INDEX; index < allUsers.size(); index++) {
-            User user = allUsers.get(index);
+        for (User user : allUsers) {
             String name = user.getName();
             result.append(BLANK.repeat(MAX_NAME_LENGTH + 1 - name.length()))
                 .append(name);
@@ -73,13 +72,22 @@ public class OutputView {
 
     private void printLadder(Ladder ladder, int width) {
         StringBuilder result = new StringBuilder();
-        for (Line line : ladder.getLines()) {
-            result.append(BLANK.repeat(width))
-                .append(LADDER_COLUMN);
-            appendLine(result, line);
+        List<Line> lines = ladder.getLines();
+        for (int i = 0; i < lines.size() - 1; i++) {
+            result.append(buildLadderLine(lines.get(i)));
             result.append(NEXT_LINE);
         }
-        System.out.println(result);
+        System.out.print(result);
+    }
+
+    private StringBuilder buildLadderLine( Line line) {
+        StringBuilder result = new StringBuilder();
+
+        result.append(BLANK.repeat(MAX_NAME_LENGTH))
+            .append(LADDER_COLUMN);
+        appendLine(result, line);
+
+        return result;
     }
 
     private void appendLine(StringBuilder result, Line line) {
