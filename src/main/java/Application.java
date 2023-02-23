@@ -13,7 +13,7 @@ public class Application {
 
     public static void main(String[] args) {
         Players players = readPlayers();
-        Prizes prizes = readPrizes();
+        Prizes prizes = readPrizes(players.getPlayers().size());
         Ladder ladder = createLadder(players.getPlayers().size());
         LadderGame ladderGame = LadderGame.of(players, prizes, ladder);
 
@@ -32,13 +32,20 @@ public class Application {
         }
     }
 
-    private static Prizes readPrizes() {
+    private static Prizes readPrizes(int playerSize) {
         try {
             List<String> prizes = InputView.readPrizes();
+            validatePrizes(prizes, playerSize);
             return new Prizes(prizes);
         } catch (IllegalArgumentException e) {
             Log.error(e.getMessage());
-            return readPrizes();
+            return readPrizes(playerSize);
+        }
+    }
+
+    private static void validatePrizes(List<String> prizes, int playerSize) {
+        if (prizes.size() != playerSize) {
+            throw new IllegalArgumentException("참가자 수와 상품 수는 일치해야 합니다.");
         }
     }
 

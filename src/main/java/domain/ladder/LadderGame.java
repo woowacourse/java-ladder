@@ -15,8 +15,6 @@ public class LadderGame {
     }
 
     public static LadderGame of(Players players, Prizes prizes, Ladder ladder) {
-        validate(players, prizes);
-
         HashMap<String, String> gameResult = start(players, prizes, ladder);
         return new LadderGame(gameResult);
     }
