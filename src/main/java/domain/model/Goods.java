@@ -10,9 +10,9 @@ public class Goods {
     private final int playerCounts;
 
     public Goods(List<Name> items, int playerCounts) {
+        validate(items,playerCounts);
         this.items = items;
         this.playerCounts = playerCounts;
-        validate();
     }
 
     public String get(int index) {
@@ -23,7 +23,7 @@ public class Goods {
         return items;
     }
 
-    private void validate() {
+    private void validate(List<Name> items, int playerCounts) {
         if (items.size() != playerCounts) {
             throw new IllegalArgumentException(NOT_SAME_COUNT_ERROR);
         }
