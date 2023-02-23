@@ -18,7 +18,7 @@ public class RandomLadderRowGenerator implements LadderRowGenerator {
 
     private List<Point> createPoints(int userCount) {
         List<Point> points = new ArrayList<>();
-        Point previousPoint = new Point(false, RANDOM.nextBoolean());
+        Point previousPoint = Point.from(RANDOM.nextBoolean());
         points.add(previousPoint);
         for (int i = 0; i < userCount - 2; i++) {
             Point nextPoint = generateBarByPrevious(previousPoint);
@@ -31,15 +31,16 @@ public class RandomLadderRowGenerator implements LadderRowGenerator {
     }
 
     private Point createLastPoint(Point previous) {
-        boolean currentLeft = previous.getRight();
-        return new Point(currentLeft, false);
+        if(previous.isRight()){
+            return Point.LEFT;
+        }
+        return Point.NONE;
     }
 
     private Point generateBarByPrevious(Point previous) {
-        boolean currentLeft = previous.getRight();
-        if (currentLeft) {
-            return new Point(currentLeft, false);
+        if (previous.isRight()) {
+            return Point.LEFT;
         }
-        return new Point(currentLeft, RANDOM.nextBoolean());
+        return Point.from(RANDOM.nextBoolean());
     }
 }

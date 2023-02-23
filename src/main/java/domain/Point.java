@@ -1,34 +1,28 @@
 package domain;
 
-public class Point {
-    private final boolean left;
-    private final boolean right;
+public enum Point {
+    LEFT(-1),
+    RIGHT(1),
+    NONE(0);
 
-    public Point(boolean left, boolean right) {
-        validate(left, right);
-        this.left = left;
-        this.right = right;
+    private final int moveValue;
+
+    Point(int moveValue) {
+        this.moveValue = moveValue;
     }
 
-    private void validate(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalArgumentException();
+    public static Point from(boolean status) {
+        if(status) {
+            return RIGHT;
         }
+        return NONE;
     }
 
-    public boolean getRight() {
-        return right;
+    public boolean isRight() {
+        return this == RIGHT;
     }
 
-    public int calculateMoveValue() {
-        if (left && !right) {
-            return -1;
-        }
-
-        if (!left && right) {
-            return 1;
-        }
-
-        return 0;
+    public int getMoveValue() {
+        return moveValue;
     }
 }

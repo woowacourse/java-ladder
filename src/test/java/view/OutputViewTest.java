@@ -37,7 +37,7 @@ class OutputViewTest {
 //        |-----|     |     |
 //        |     |-----|     |
 //        |-----|     |-----|
-        String expected = "    |-----|     |-----|\n    |     |-----|     |\n    |-----|     |     |\n    |     |-----|     |\n    |-----|     |-----|\n";
+        String expected = "    |-----|     |-----|     \n    |     |-----|     |     \n    |-----|     |     |     \n    |     |-----|     |     \n    |-----|     |-----|     \n";
         LadderRowGenerator ladderRowGenerator = new TestLadderRowGenerator();
         Ladder ladder = new Ladder(ladderRowGenerator);
 

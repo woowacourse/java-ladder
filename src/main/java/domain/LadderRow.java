@@ -16,6 +16,6 @@ public class LadderRow {
 
     public int calculateNextSummand(int index) {
         Point point = points.get(index);
-        return point.calculateMoveValue();
+        return point.getMoveValue();
     }
 }

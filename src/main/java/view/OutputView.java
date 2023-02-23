@@ -42,7 +42,7 @@ public class OutputView {
     private static List<Boolean> getRight(LadderRow ladderRow) {
         return ladderRow.getPoints()
                 .stream()
-                .map(Point::getRight)
+                .map(Point::isRight)
                 .collect(Collectors.toList());
     }
 
