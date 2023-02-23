@@ -1,7 +1,9 @@
 package laddergame.controller;
 
 import laddergame.domain.*;
+import laddergame.util.LadderStateException;
 import laddergame.util.TrueOrFalseGenerator;
+import laddergame.util.Validator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -18,6 +20,7 @@ public class LadderGameController {
     private final InputView inputView;
     private final OutputView outputView;
     private final TrueOrFalseGenerator trueOrFalseGenerator;
+    private final Validator validator = new Validator();
 
     public LadderGameController(InputView inputView, OutputView outputView, TrueOrFalseGenerator trueOrFalseGenerator) {
         this.inputView = inputView;
@@ -29,14 +32,13 @@ public class LadderGameController {
         Players players = requestUserNames();
         Rewards rewards = requestRewards(players.getPlayersCount());
         Height height = requestLadderHeight();
-        Ladder ladder = new Ladder(players, height, trueOrFalseGenerator);
+        Ladder ladder = makeLadder(players, height, trueOrFalseGenerator);
         LadderGame ladderGame = new LadderGame(players, rewards, ladder);
         ladderGame.start();
         List<String> playerNames = players.getPlayers().stream().map(Player::getName).collect(Collectors.toList());
         outputView.printResult(playerNames, ladder.getLines(), players.getMaxPlayerNameLength());
         Target target = requestTarget(playerNames);
-        while (!target.isQuit())
-        {
+        while (!target.isQuit()) {
             if (target.isAll()) {
                 outputView.printAllResult(players);
                 target = requestTarget(playerNames);
@@ -51,7 +53,9 @@ public class LadderGameController {
     private Players requestUserNames() {
         try {
             outputView.printMessage(NAME_INPUT_REQUEST);
-            return inputView.readUserNames();
+            List<String> playerNames = inputView.readUserNames();
+//            validate
+            return new Players(playerNames);
         } catch (IllegalArgumentException e) {
             outputView.printErrormessage(e.getMessage());
             return requestUserNames();
@@ -61,7 +65,10 @@ public class LadderGameController {
     private Height requestLadderHeight() {
         try {
             outputView.printMessage(HEIGHT_INPUT_REQUEST);
-            return inputView.readHeight();
+            String heightStr = inputView.readHeight();
+//            validate
+            Height height = new Height(heightStr);
+            return height;
         } catch (IllegalArgumentException e) {
             outputView.printErrormessage(e.getMessage());
             return requestLadderHeight();
@@ -71,7 +78,9 @@ public class LadderGameController {
     private Rewards requestRewards(int playerCount) {
         try {
             outputView.printMessage(REWARD_INPUT_REQUEST);
-            Rewards rewards = inputView.readRewards();
+            List<String> rewardNames = inputView.readRewards();
+//            validate
+            Rewards rewards = new Rewards(rewardNames);
             rewards.checkRewardsCount(playerCount);
             return rewards;
         } catch (IllegalArgumentException e) {
@@ -83,12 +92,25 @@ public class LadderGameController {
     private Target requestTarget(List<String> playerNames) {
         try {
             outputView.printMessage(TARGET_INPUT_REQUEST);
-            Target target = inputView.readTarget();
+            String targetName = inputView.readTarget();
+            // validate
+            Target target = new Target(targetName);
             target.checkNotPlayerNameOrNotKeyword(playerNames);
             return target;
         } catch (IllegalArgumentException e) {
             outputView.printErrormessage(e.getMessage());
             return requestTarget(playerNames);
         }
+    }
+
+    private Ladder makeLadder(Players players, Height height, TrueOrFalseGenerator trueOrFalseGenerator) {
+        try {
+            Ladder ladder = new Ladder(players, height, trueOrFalseGenerator);
+            validator.validateLadder(ladder, height.getHeight());
+
+        } catch (LadderStateException e) {
+            return makeLadder(players, height, trueOrFalseGenerator);
+        }
+
     }
 }
