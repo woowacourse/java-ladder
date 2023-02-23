@@ -27,19 +27,19 @@ public class LadderController {
 
     public void run() {
         final Participants participants = repeatAndPrintCause(() -> new Participants(inputView.readNames()));
-        final Results results = repeatAndPrintCause(() -> new Results(inputView.readResults(), participants.getNames()));
+        final GameResults gameResults = repeatAndPrintCause(() -> new GameResults(inputView.readResults(), participants.getNames()));
         final Height height = repeatAndPrintCause(() -> new Height(inputView.readHeight()));
         final Width width = new Width(participants.getSize() - 1);
         final LineCreator lineCreator = new LineCreator(booleanGenerator);
         final Ladder ladder = new Ladder(lineCreator.createLines(width, height));
         final Lines findLines = ladder.getLines();
 
-        outputView.printResult(LadderForm.joinUnitsFrom(participants.getNameValues(), findLines.getLines(), results.getResults()));
-        runLadderMatch(ladder, participants, results);
+        outputView.printResult(LadderForm.joinUnitsFrom(participants.getNames(), findLines, gameResults));
+        runLadderMatch(ladder, participants, gameResults);
     }
 
-    private void runLadderMatch(final Ladder ladder, final Participants participants, final Results results) {
-        final LadderMatch ladderMatch = new LadderMatch(ladder, participants, results);
+    private void runLadderMatch(final Ladder ladder, final Participants participants, final GameResults gameResults) {
+        final LadderMatch ladderMatch = new LadderMatch(ladder, participants, gameResults);
         String command = "";
         while (!command.equals(FIND_ALL_MATCH_RESULTS_COMMAND)) {
             command = inputView.readName();

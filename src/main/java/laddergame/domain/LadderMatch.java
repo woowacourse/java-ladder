@@ -3,24 +3,22 @@ package laddergame.domain;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static laddergame.utils.OptionalUtils.getValueAfterNullCheck;
+
 public class LadderMatch {
     private static final String MATCH_RESULTS_COMMAND = "all";
-    private static final String LADDER_NULL_EXCEPTION = "Ladder는 null이 될 수 없습니다.";
-    private static final String PARTICIPANTS_NULL_EXCEPTION = "Participants는 null이 될 수 없습니다.";
-    private static final String RESULTS_NULL_EXCEPTION = "Results는 null이 될 수 없습니다.";
 
     private final Ladder ladder;
     private final Participants participants;
-    private final Results results;
+    private final GameResults gameResults;
 
-    public LadderMatch(final Ladder ladder, final Participants participants, final Results results) {
-        this.ladder = getLadder(ladder);
-        this.participants = getParticipants(participants);
-        this.results = getResults(results);
+    public LadderMatch(final Ladder ladder, final Participants participants, final GameResults gameResults) {
+        this.ladder = getValueAfterNullCheck(ladder);
+        this.participants = getValueAfterNullCheck(participants);
+        this.gameResults = getValueAfterNullCheck(gameResults);
     }
 
     public Map<Name, Result> getLadderMatchResults(final String command) {
@@ -45,7 +43,7 @@ public class LadderMatch {
     private Map<Name, Result> getOneMatchedResult(final String name) {
         final Position findParticipantPosition = participants.findPositionByName(name);
         final Position findDestination = ladder.findLastDestination(findParticipantPosition);
-        final Result findResult = results.findResultByPosition(findDestination);
+        final Result findResult = gameResults.findResultByPosition(findDestination);
         final Name findName = participants.findNameByPosition(findParticipantPosition);
 
         return Map.of(findName, findResult);
@@ -55,22 +53,7 @@ public class LadderMatch {
         return IntStream.range(0, matchSize)
                 .mapToObj(Position::new)
                 .map(ladder::findLastDestination)
-                .map(results::findResultByPosition)
+                .map(gameResults::findResultByPosition)
                 .collect(Collectors.toUnmodifiableList());
-    }
-
-    private Results getResults(final Results results) {
-        return Optional.ofNullable(results)
-                .orElseThrow(() -> new IllegalArgumentException(RESULTS_NULL_EXCEPTION));
-    }
-
-    private Participants getParticipants(final Participants participants) {
-        return Optional.ofNullable(participants)
-                .orElseThrow(() -> new IllegalArgumentException(PARTICIPANTS_NULL_EXCEPTION));
-    }
-
-    private Ladder getLadder(final Ladder ladder) {
-        return Optional.ofNullable(ladder)
-                .orElseThrow(() -> new IllegalArgumentException(LADDER_NULL_EXCEPTION));
     }
 }

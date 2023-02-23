@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import java.util.Optional;
+import static laddergame.utils.OptionalUtils.getValueAfterNullCheck;
 
 public class Ladder {
     private static final String LADDER_LINES_NULL_EXCEPTION = "Lines는 null이 될 수 없습니다.";
@@ -8,7 +8,7 @@ public class Ladder {
     private final Lines lines;
 
     public Ladder(final Lines inputLines) {
-        this.lines = getLines(inputLines);
+        this.lines = getValueAfterNullCheck(inputLines);
     }
 
     public Position findLastDestination(final Position row) {
@@ -48,10 +48,5 @@ public class Ladder {
             return false;
         }
         return lines.getPointByColumnAndRow(column, row);
-    }
-
-    private Lines getLines(final Lines inputLines) {
-        return Optional.ofNullable(inputLines)
-                .orElseThrow(() -> new IllegalArgumentException(LADDER_LINES_NULL_EXCEPTION));
     }
 }

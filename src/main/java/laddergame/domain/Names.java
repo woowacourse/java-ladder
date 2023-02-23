@@ -3,9 +3,10 @@ package laddergame.domain;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static laddergame.utils.OptionalUtils.getValueAfterNullCheck;
 
 public class Names {
     private static final int MIN_PARTICIPANTS_SIZE = 2;
@@ -16,7 +17,7 @@ public class Names {
     private final List<Name> names;
 
     public Names(final List<String> inputNameValues) {
-        final List<String> names = getNames(inputNameValues);
+        final List<String> names = getValueAfterNullCheck(inputNameValues);
         validateNames(names);
         this.names = createNames(names);
     }
@@ -59,10 +60,6 @@ public class Names {
         return names.stream()
                 .map(Name::new)
                 .collect(Collectors.toList());
-    }
-
-    private List<String> getNames(final List<String> inputNameValues) {
-        return Optional.ofNullable(inputNameValues).orElse(List.of());
     }
 
     private void validateNames(final List<String> names) {

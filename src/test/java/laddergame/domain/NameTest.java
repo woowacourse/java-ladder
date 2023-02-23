@@ -29,13 +29,11 @@ class NameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("값이 null이면 기본 이름이 입력으로 대체된다.")
+    @DisplayName("값이 null이면 예외가 발생한다.")
     @Test
     void throwExceptionWhenNameIsNull() {
-        final Name name = new Name(null);
-        final String defaultName = name.getValue();
-
-        assertThat(defaultName).isEqualTo("ANONY");
+        assertThatThrownBy(() -> new Name(null))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("값이 길이를 초과하면 예외가 발생한다.")

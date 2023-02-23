@@ -1,8 +1,9 @@
 package laddergame.domain;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static laddergame.utils.OptionalUtils.getValueAfterNullCheck;
 
 public class Participants {
     private static final String PARTICIPANTS_EMPTY_EXCEPTION = "입력된 참여자 이름 목록이 비어있을 수 없습니다.";
@@ -10,7 +11,7 @@ public class Participants {
     private final Names names;
 
     public Participants(final List<String> nameValues) {
-        final List<String> names = getNames(nameValues);
+        final List<String> names = getValueAfterNullCheck(nameValues);
         validateParticipants(names);
         this.names = new Names(names);
     }
@@ -36,10 +37,6 @@ public class Participants {
                 .stream()
                 .map(Name::getValue)
                 .collect(Collectors.toList());
-    }
-
-    private  List<String> getNames(final List<String> nameValues) {
-        return Optional.ofNullable(nameValues).orElse(List.of());
     }
 
     private void validateParticipants(final List<String> names) {

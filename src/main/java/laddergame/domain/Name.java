@@ -2,8 +2,9 @@ package laddergame.domain;
 
 import java.text.MessageFormat;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.regex.Pattern;
+
+import static laddergame.utils.OptionalUtils.getValueAfterNullCheck;
 
 public class Name {
     private static final int MAX_NAME_LENGTH = 5;
@@ -15,7 +16,7 @@ public class Name {
     private final String value;
 
     public Name(final String inputName) {
-        final String value = getValue(inputName);
+        final String value = getValueAfterNullCheck(inputName);
         validateName(value);
         this.value = value;
     }
@@ -26,10 +27,6 @@ public class Name {
 
     public String getValue() {
         return value;
-    }
-
-    private String getValue(final String inputName) {
-        return Optional.ofNullable(inputName).orElse(DEFAULT_NAME);
     }
 
     private void validateName(final String value) {

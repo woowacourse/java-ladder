@@ -2,8 +2,9 @@ package laddergame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static laddergame.utils.OptionalUtils.getValueAfterNullCheck;
 
 public class GameResults {
     private static final int MIN_RESULTS_SIZE = 2;
@@ -14,7 +15,7 @@ public class GameResults {
     private final List<Result> results;
 
     public GameResults(final List<String> inputResults, final Names names) {
-        final List<String> results = getResultValues(inputResults);
+        final List<String> results = getValueAfterNullCheck(inputResults);
         validateResults(results, names);
         this.results = createResults(results);
     }
@@ -45,10 +46,6 @@ public class GameResults {
         return results.stream()
                 .map(Result::new)
                 .collect(Collectors.toList());
-    }
-
-    private List<String> getResultValues(final List<String> inputResults) {
-        return Optional.ofNullable(inputResults).orElse(List.of());
     }
 
     private void validateResults(final List<String> results, final Names names) {

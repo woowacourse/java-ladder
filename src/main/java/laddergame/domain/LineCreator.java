@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static laddergame.utils.OptionalUtils.getValueAfterNullCheck;
+
 public class LineCreator {
     private static final String LINE_WIDTH_NULL_EXCEPTION = "넓이는 null이 될 수 없습니다.";
     private static final String LINE_HEIGHT_NULL_EXCEPTION = "높이는 null이 될 수 없습니다.";
@@ -11,7 +13,7 @@ public class LineCreator {
     private final BooleanGenerator booleanGenerator;
 
     public LineCreator(final BooleanGenerator inputGenerator) {
-        this.booleanGenerator = getBooleanGenerator(inputGenerator);
+        this.booleanGenerator = getValueAfterNullCheck(inputGenerator);
     }
 
     public Lines createLines(final Width inputWidth, final Height inputHeight) {
@@ -32,10 +34,6 @@ public class LineCreator {
             points.add(generatedBoolean);
         }
         return new Line(points);
-    }
-
-    private BooleanGenerator getBooleanGenerator(final BooleanGenerator inputGenerator) {
-        return Optional.ofNullable(inputGenerator).orElse(new RandomBooleanGenerator());
     }
 
     private Height getHeight(final Height inputHeight) {

@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import java.util.Optional;
+import static laddergame.utils.OptionalUtils.getValueAfterNullCheck;
 
 public class Result {
     private static final String RESULT_VALUE_NULL_EXCEPTION = "결과는 null일 수 없습니다.";
@@ -9,17 +9,13 @@ public class Result {
     private final String value;
 
     public Result(final String inputValue) {
-        final String value = getValue(inputValue);
+        final String value = getValueAfterNullCheck(inputValue);
         validateValue(value);
         this.value = value;
     }
 
     public String getValue() {
         return value;
-    }
-
-    private  String getValue(final String inputValue) {
-        return Optional.ofNullable(inputValue).orElseThrow(() -> new IllegalArgumentException(RESULT_VALUE_NULL_EXCEPTION));
     }
 
     private void validateValue(final String value) {

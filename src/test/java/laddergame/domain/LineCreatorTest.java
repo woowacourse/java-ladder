@@ -15,7 +15,6 @@ import java.util.stream.Stream;
 import static laddergame.fixture.LineCreatorFixture.TEST_LINE_CREATOR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @DisplayName("라인 Creator")
 class LineCreatorTest {
@@ -23,7 +22,8 @@ class LineCreatorTest {
     @Test
     void throwExceptionWhenBooleanGeneratorIsNull() {
         final BooleanGenerator generator = null;
-        assertDoesNotThrow(() -> new LineCreator(generator));
+        assertThatThrownBy(() -> new LineCreator(generator))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("createLines 메서드의 인자인 Width가 null일 경우 예외가 발생한다.")
