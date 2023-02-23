@@ -45,19 +45,16 @@ public class PlayersTest {
     void moveAllPlayersByLinePointsTest() {
         //given
         Players players = new Players(NameFactory.create("pobi, neo, hiiro, ocean"));
-        List<Boolean> firstPoints = List.of(true, false, true);
-        List<Boolean> secondPoints = List.of(false, true, false);
-        List<Boolean> thirdPoints = List.of(true, false, false);
-        List<Boolean> fourthPoints = List.of(true, false, true);
+        List<List<Boolean>> givenLines = List.of(List.of(true, false, true), List.of(false, true, false),
+                List.of(true, false, false), List.of(true, false, true));
 
         //when
-        players.moveAllPlayersByLinePoints(firstPoints);
-        players.moveAllPlayersByLinePoints(secondPoints);
-        players.moveAllPlayersByLinePoints(thirdPoints);
-        players.moveAllPlayersByLinePoints(fourthPoints);
+        givenLines.forEach(players::moveAllPlayersByLinePoints);
 
         List<Name> names = players.getAllNamesOrderedByPosition();
-        List<String> result = names.stream().map(Name::getValue).collect(Collectors.toList());
+        List<String> result = names.stream()
+                .map(Name::getValue)
+                .collect(Collectors.toList());
 
         //then
         assertThat(result).isEqualTo(List.of("neo", "ocean", "hiiro", "pobi"));
@@ -67,22 +64,22 @@ public class PlayersTest {
     @Disabled("참여자 이름을 검색하여 최종결과 반환 기능 테스트 내용과 중복되므로 비활성화한다.")
     @DisplayName("사다리 타기가 완료된 참여자의 위치에 맞는 결과 저장 기능 테스트")
     void saveResultByPositionTest() {
-        //given
-        Players players = new Players(NameFactory.create("pobi, neo, hiiro, ocean"));
-        List<Result> results = ResultFactory.create(players.size(), "꽝, 5000, 꽝, 3000");
-
-        //when
-        players.saveAllResults(results);
-        Result pobiResult = players.getResultOf(new Name("pobi"));
-        Result neoResult = players.getResultOf(new Name("neo"));
-        Result hiiroResult = players.getResultOf(new Name("hiiro"));
-        Result oceanResult = players.getResultOf(new Name("ocean"));
-
-        //then
-        assertThat(pobiResult.getValue()).isEqualTo("3000");
-        assertThat(neoResult.getValue()).isEqualTo("꽝");
-        assertThat(hiiroResult.getValue()).isEqualTo("꽝");
-        assertThat(oceanResult.getValue()).isEqualTo("5000");
+//        //given
+//        Players players = new Players(NameFactory.create("pobi, neo, hiiro, ocean"));
+//        List<Result> results = ResultFactory.create(players.size(), "꽝, 5000, 꽝, 3000");
+//
+//        //when
+//        players.saveAllResults(results);
+//        Result pobiResult = players.getResultOf(new Name("pobi"));
+//        Result neoResult = players.getResultOf(new Name("neo"));
+//        Result hiiroResult = players.getResultOf(new Name("hiiro"));
+//        Result oceanResult = players.getResultOf(new Name("ocean"));
+//
+//        //then
+//        assertThat(pobiResult.getValue()).isEqualTo("3000");
+//        assertThat(neoResult.getValue()).isEqualTo("꽝");
+//        assertThat(hiiroResult.getValue()).isEqualTo("꽝");
+//        assertThat(oceanResult.getValue()).isEqualTo("5000");
     }
 
     @Test
@@ -90,17 +87,12 @@ public class PlayersTest {
     void getResultByNameTest() {
         //given
         Players players = new Players(NameFactory.create("pobi, neo, hiiro, ocean"));
-        List<Boolean> firstPoints = List.of(true, false, true);
-        List<Boolean> secondPoints = List.of(false, true, false);
-        List<Boolean> thirdPoints = List.of(true, false, false);
-        List<Boolean> fourthPoints = List.of(true, false, true);
+        List<List<Boolean>> givenLines = List.of(List.of(true, false, true), List.of(false, true, false),
+                List.of(true, false, false), List.of(true, false, true));
         List<Result> results = ResultFactory.create(players.size(), "꽝, 5000, 꽝, 3000");
 
         //when
-        players.moveAllPlayersByLinePoints(firstPoints);
-        players.moveAllPlayersByLinePoints(secondPoints);
-        players.moveAllPlayersByLinePoints(thirdPoints);
-        players.moveAllPlayersByLinePoints(fourthPoints);
+        givenLines.forEach(players::moveAllPlayersByLinePoints);
         players.saveAllResults(results);
 
         Result pobiResult = players.getResultOf(new Name("pobi"));
