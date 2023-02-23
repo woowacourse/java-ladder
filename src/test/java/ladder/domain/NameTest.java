@@ -49,4 +49,12 @@ class NameTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage(ErrorMessage.INVALID_NAME_FORMAT.getMessage());
     }
+
+    @Test
+    @DisplayName("이름이 all일 수 없다.")
+    void createNameFailByNameIsallTest() {
+        assertThatThrownBy(() -> new Name("all"))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(ErrorMessage.NAME_IS_ALL.getMessage());
+    }
 }
