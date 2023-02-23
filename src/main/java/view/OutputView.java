@@ -8,6 +8,7 @@ import domain.Player;
 import domain.Players;
 import domain.Results;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -18,10 +19,6 @@ public class OutputView {
 
     public static void printLadderMessage() {
         System.out.println("\n사다리 결과\n");
-    }
-
-    public static void printResultMessage() {
-        System.out.println("\n실행 결과\n");
     }
 
     public static void printPlayers(Players players) {
@@ -84,6 +81,11 @@ public class OutputView {
         }
 
         return sb.toString();
+    }
+
+    public static void printPlayerResultWantToSee(Player player, Map<Player, String> ladderGameResult) {
+        System.out.println("\n실행 결과");
+        System.out.println(ladderGameResult.get(player));
     }
 
     public static void printErrorMessage(Exception e) {
