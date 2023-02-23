@@ -13,6 +13,35 @@ public class Ladder {
         this.ladder = createLadder(ladderHeight, players);
     }
 
+    private static void matchRewardsForPlayers(Rewards rewards, List<Player> result) {
+        for (Player player : result) {
+            player.setReward(rewards.getRewards().get(result.indexOf(player)));
+        }
+    }
+
+    private static void traverseLine(List<Player> result, Line line) {
+        IntStream.range(0, line.getLine().size()).forEach(Playerindex -> crossLine(result, line, Playerindex));
+    }
+
+    private static void crossLine(List<Player> result, Line line, int Playerindex) {
+        boolean isCross = line.getLine().get(Playerindex);
+
+        if (isCross) {
+            swapPlayers(result, Playerindex);
+        }
+    }
+
+    private static void swapPlayers(List<Player> result, int i) {
+        int prePlayerIndex = i;
+        Player prePlayer = result.get(prePlayerIndex);
+
+        int postPlayerIndex = prePlayerIndex + 1;
+        Player postPlayer = result.get(postPlayerIndex);
+
+        result.set(prePlayerIndex, postPlayer);
+        result.set(postPlayerIndex, prePlayer);
+    }
+
     public List<Line> createLadder(int ladderHeight, Players players) {
         List<Line> list = new ArrayList<>();
 
@@ -46,39 +75,10 @@ public class Ladder {
         matchRewardsForPlayers(rewards, result);
     }
 
-    private static void matchRewardsForPlayers(Rewards rewards, List<Player> result) {
-        for (Player player : result) {
-            player.setReward(rewards.getRewards().get(result.indexOf(player)));
-        }
-    }
-
     private void traverseLines(List<Player> result) {
         for (Line line : ladder) {
             traverseLine(result, line);
         }
-    }
-
-    private static void traverseLine(List<Player> result, Line line) {
-        IntStream.range(0, line.getLine().size()).forEach(Playerindex -> crossLine(result, line, Playerindex));
-    }
-
-    private static void crossLine(List<Player> result, Line line, int Playerindex) {
-        boolean isCross = line.getLine().get(Playerindex);
-
-        if (isCross) {
-            swapPlayers(result, Playerindex);
-        }
-    }
-
-    private static void swapPlayers(List<Player> result, int i) {
-        int prePlayerIndex = i;
-        Player prePlayer = result.get(prePlayerIndex);
-
-        int postPlayerIndex = prePlayerIndex + 1;
-        Player postPlayer = result.get(postPlayerIndex);
-
-        result.set(prePlayerIndex, postPlayer);
-        result.set(postPlayerIndex, prePlayer);
     }
 
     public List<Line> getLadder() {

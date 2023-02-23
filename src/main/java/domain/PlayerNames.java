@@ -11,13 +11,25 @@ public class PlayerNames {
     public static final String SAME_PLAYER_NAME_ERROR_MESSAGE = "[ERROR] 중복된 플레이어의 이름이 존재합니다";
 
     InputView inputView;
-    private List<PlayerName> playerNames;
+    private final List<PlayerName> playerNames;
 
     public PlayerNames(List<String> playerNames, InputView inputView) {
         this.playerNames = new ArrayList<>();
         this.inputView = inputView;
         playerNames = validatePlayerNames(playerNames);
         createPlayerNames(playerNames);
+    }
+
+    private static void validatePlayerName(List<String> playerNames) {
+        for (String playerName : playerNames) {
+            PlayerName.validateName(playerName);
+        }
+    }
+
+    private static void validatePlayerSize(List<String> playerNames) {
+        if (playerNames.size() < MIN_PLAYERS_SIZE) {
+            throw new IllegalArgumentException(PLAYERS_SIZE_ERROR_MESSAGE);
+        }
     }
 
     private void createPlayerNames(List<String> playerNames) {
@@ -44,18 +56,6 @@ public class PlayerNames {
     private void validateSamePlayerName(List<String> playerNames) {
         if (playerNames.size() != playerNames.stream().distinct().count()) {
             throw new IllegalArgumentException(SAME_PLAYER_NAME_ERROR_MESSAGE);
-        }
-    }
-
-    private static void validatePlayerName(List<String> playerNames) {
-        for (String playerName : playerNames) {
-            PlayerName.validateName(playerName);
-        }
-    }
-
-    private static void validatePlayerSize(List<String> playerNames) {
-        if (playerNames.size() < MIN_PLAYERS_SIZE) {
-            throw new IllegalArgumentException(PLAYERS_SIZE_ERROR_MESSAGE);
         }
     }
 

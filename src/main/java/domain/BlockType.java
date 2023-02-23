@@ -10,7 +10,7 @@ public enum BlockType {
     private final String type;
     private final boolean isCross;
 
-    private BlockType(String type, boolean isCross) {
+    BlockType(String type, boolean isCross) {
         this.type = type;
         this.isCross = isCross;
     }

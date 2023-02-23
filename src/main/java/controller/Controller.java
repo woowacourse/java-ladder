@@ -31,6 +31,5 @@ public class Controller {
 
         String selectedPlayerName = inputView.readSelectPlayer();
         outputView.printReward(selectedPlayerName, players);
-
     }
 }

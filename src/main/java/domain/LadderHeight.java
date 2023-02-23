@@ -8,20 +8,10 @@ public final class LadderHeight {
     private final int ladderHeight;
     private final InputView inputView;
 
-    public LadderHeight(String ladderHeight, InputView inputView){
+    public LadderHeight(String ladderHeight, InputView inputView) {
         this.inputView = inputView;
         ladderHeight = validateLadderHeight(ladderHeight);
         this.ladderHeight = Integer.parseInt(ladderHeight);
-    }
-
-    private String validateLadderHeight(String ladderHeight) {
-        try{
-            validateLadderHeightIsNumber(ladderHeight);
-        }catch(IllegalArgumentException exception){
-            inputView.printErrorMessage(exception.getMessage());
-            ladderHeight = validateLadderHeight(inputView.readLadderHeight());
-        }
-        return ladderHeight;
     }
 
     public static void validateLadderHeightIsNumber(String ladderHeight) {
@@ -30,6 +20,16 @@ public final class LadderHeight {
         } catch (Exception exception) {
             throw new IllegalArgumentException(LADDER_HEIGHT_ERROR_MESSAGE);
         }
+    }
+
+    private String validateLadderHeight(String ladderHeight) {
+        try {
+            validateLadderHeightIsNumber(ladderHeight);
+        } catch (IllegalArgumentException exception) {
+            inputView.printErrorMessage(exception.getMessage());
+            ladderHeight = validateLadderHeight(inputView.readLadderHeight());
+        }
+        return ladderHeight;
     }
 
     public int getLadderHeight() {

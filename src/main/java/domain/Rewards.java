@@ -10,7 +10,7 @@ public class Rewards {
     private static final String DELIMITER = ",";
 
     private final List<Reward> rewards;
-    private InputView inputView;
+    private final InputView inputView;
 
     public Rewards(String inputRewards, int minSize, InputView inputView) {
         inputRewards = validateRewards(inputRewards, minSize, inputView);

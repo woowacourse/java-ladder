@@ -1,7 +1,7 @@
 package domain;
 
 public class Reward {
-    private String reward;
+    private final String reward;
 
     public Reward(String reward) {
         this.reward = reward;
