@@ -13,7 +13,8 @@ public enum ErrorMessage {
     INVALID_RESULT_LENGTH("결과는 5글자 이하여야 합니다."),
     RESULT_IS_NULL("null은 결과로 설정할 수 없습니다."),
     INVALID_NUMBER_OF_RESULTS("실행결과의 수가 참여자의 수와 다릅니다."),
-    INVALID_NAME_WANT_TO_KNOW("참여자 중에 해당하는 이름이 없습니다.");
+    INVALID_NAME_WANT_TO_KNOW("참여자 중에 해당하는 이름이 없습니다."),
+    NAME_IS_ALL("이름이 all이신 경우, All로 입력해주세요.");
 
     private static final String ERROR_FORMAT = "[ERROR] %s";
 

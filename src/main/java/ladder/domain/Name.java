@@ -19,6 +19,7 @@ public class Name {
         validateNotNull(name);
         validateDoesNotContainComma(name);
         validateLength(name);
+        validateNameIsNotall(name);
     }
 
     private void validateNotNull(String name) {
@@ -36,6 +37,12 @@ public class Name {
     private void validateLength(String name) {
         if (name.isBlank() || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_LENGTH.getMessage());
+        }
+    }
+
+    private void validateNameIsNotall(String name) {
+        if (name.equals("all")) {
+            throw new IllegalArgumentException(ErrorMessage.NAME_IS_ALL.getMessage());
         }
     }
 

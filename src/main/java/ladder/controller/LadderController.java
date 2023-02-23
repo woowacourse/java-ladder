@@ -4,8 +4,8 @@ import java.util.List;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderHeight;
-import ladder.domain.MatchingCalculator;
-import ladder.domain.Matchings;
+import ladder.domain.Matcher;
+import ladder.domain.MatchResults;
 import ladder.domain.Names;
 import ladder.domain.Results;
 import ladder.util.BooleanGenerator;
@@ -28,9 +28,11 @@ public class LadderController {
         Results results = createResults(names.size());
         LadderHeight ladderHeight = createLadderHeight();
 
-        Ladder ladder = createLadder(names, results, ladderHeight);
+        Ladder ladder = createLadder(names, ladderHeight);
+        outputView.printLadder(names, results, ladder);
 
-        calculateMatchingResult(names, results, ladder);
+        MatchResults matchResults = matchNamesWithResults(names, results, ladder);
+        searchResult(matchResults);
     }
 
     private Names createNames() {
@@ -72,39 +74,30 @@ public class LadderController {
         return inputView.requestLadderHeight();
     }
 
-    private Ladder createLadder(Names names, Results results, LadderHeight ladderHeight) {
-        Ladder ladder = makeLadder(names, ladderHeight);
-        outputView.printLadder(names, results, ladder);
-        return ladder;
-    }
-
-    private Ladder makeLadder(Names names, LadderHeight ladderHeight) {
+    private Ladder createLadder(Names names, LadderHeight ladderHeight) {
         Ladder ladder = new Ladder();
         ladder.drawLine(names.size(), ladderHeight.getLadderHeight(), generator);
         return ladder;
     }
 
-    private void calculateMatchingResult(Names names, Results results, Ladder ladder) {
-        MatchingCalculator matchingCalculator = new MatchingCalculator(ladder, names, results);
-        Matchings matchings = matchingCalculator.calculate();
-
-        match(matchings);
+    private MatchResults matchNamesWithResults(Names names, Results results, Ladder ladder) {
+        Matcher matcher = new Matcher(ladder, names, results);
+        return matcher.calculate();
     }
 
-    private void match(Matchings matchings) {
+    private void searchResult(MatchResults matchResults) {
         try {
-            printMatchResult(matchings);
+            printResult(matchResults);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            match(matchings);
+            searchResult(matchResults);
         }
     }
 
-    private void printMatchResult(Matchings matchings) {
-        while (!matchings.isAllChecked()) {
+    private void printResult(MatchResults matchResults) {
+        while (!matchResults.isAllChecked()) {
             String nameWantToKnowResult = inputView.requestNameWantToKnowResult();
-            outputView.printMatching(matchings.getMatchingResult(nameWantToKnowResult));
+            outputView.printResult(matchResults.findMatchResult(nameWantToKnowResult));
         }
     }
-
 }
