@@ -1,12 +1,15 @@
 package view;
 
 import java.util.List;
+import java.util.Map;
 
 import domain.*;
 
 public class OutputView {
 
     private static final OutputView outputView = new OutputView();
+
+    private final String RESULT_MESSAGE = "실행결과";
 
     private final String BLANK = " ";
     private final String LINE_START_FORMAT = "    |";
@@ -55,6 +58,20 @@ public class OutputView {
         System.out.print(PRIZE_START_FORMAT);
         prizes.getPrizes()
                 .forEach(outputView::printObject);
+        System.out.println();
+    }
+
+    public void printOnePlayerResult(Map<String, String> result, String name) {
+        System.out.println(RESULT_MESSAGE);
+        System.out.println(result.get(name));
+        System.out.println();
+    }
+
+    public void printAllPlayerResult(Map<String, String> result) {
+        System.out.println(RESULT_MESSAGE);
+        for (String key : result.keySet()) {
+            System.out.println(key + " : " + result.get(key));
+        }
         System.out.println();
     }
 }

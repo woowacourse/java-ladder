@@ -35,7 +35,7 @@ public class LadderController {
         outputView.printNames(players);
         outputView.printLadder(ladder);
         outputView.printPrizes(prize);
-
+        printResult(result);
     }
 
     private Players generatePlayers() {
@@ -73,5 +73,19 @@ public class LadderController {
             LogType.ERROR_MESSAGE.log(exception.getMessage());
             return generatePrize(playerCount);
         }
+    }
+
+    private void printResult(Map<String, String> result) {
+        String command = inputView.readResultOfPlayer();
+        if (command.equals(Command.FINISH_GAME_COMMAND.getCommand())) {
+            return;
+        }
+        if (command.equals(Command.ALL_PRINT_COMMAND.getCommand())) {
+            outputView.printAllPlayerResult(result);
+            printResult(result);
+            return;
+        }
+        outputView.printOnePlayerResult(result, command);
+        printResult(result);
     }
 }

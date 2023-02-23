@@ -19,7 +19,7 @@ public enum Command {
                 .count() != 0;
     }
 
-    private String getCommand() {
+    public String getCommand() {
         return command;
     }
 }
