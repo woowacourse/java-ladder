@@ -1,5 +1,8 @@
 package techcourse.jcf.mission;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class SimpleArrayList implements SimpleList {
     private static final int DEFAULT_CAPACITY = 10;
 
@@ -8,8 +11,20 @@ public class SimpleArrayList implements SimpleList {
     private String[] values;
 
     public SimpleArrayList() {
-        capacity = DEFAULT_CAPACITY;
-        values = new String[10];
+        this.capacity = DEFAULT_CAPACITY;
+        this.values = new String[10];
+    }
+
+    public SimpleArrayList(List<String> valuesList) {
+        this.capacity = DEFAULT_CAPACITY;
+        this.values = (String[]) valuesList.toArray();
+        manageCapacity();
+    }
+
+    private void manageCapacity() {
+        if (values.length >= capacity * 0.8) {
+            capacity *= 2;
+        }
     }
 
     @Override
