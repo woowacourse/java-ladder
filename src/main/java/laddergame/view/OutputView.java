@@ -73,16 +73,15 @@ public class OutputView {
         return STEP_NONE.repeat(pointWidth);
     }
 
-    public static void showGameResultMessage() {
+    public static void showAllResultsByPlayer(Map<String, String> allResults) {
         System.out.println();
         System.out.println(MESSAGE_GAME_RESULT);
-    }
-
-    public static void showAllResultsByPlayer(Map<String, String> allResults) {
         allResults.forEach((name, result) -> System.out.printf(FORMAT_PLAYER_RESULT, name, result));
     }
 
     public static void showResultByPlayer(String result) {
+        System.out.println();
+        System.out.println(MESSAGE_GAME_RESULT);
         System.out.println(result);
     }
 }

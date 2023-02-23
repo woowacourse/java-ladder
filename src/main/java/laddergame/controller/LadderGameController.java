@@ -21,7 +21,6 @@ public class LadderGameController {
         LadderGameResult gameResult = game.computeResult();
 
         while (gameStatus == GameStatus.PLAYED) {
-            OutputView.showGameResultMessage();
             String keyword = InputView.askFindResultKeyword();
             showGameResult(gameResult, keyword);
         }
