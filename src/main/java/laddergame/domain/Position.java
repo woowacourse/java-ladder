@@ -11,6 +11,10 @@ public class Position {
         return new Position(this.value + value);
     }
 
+    public boolean checkBetweenZeroAnd(final Position maxPosition) {
+        return 0 <= this.value && this.value < maxPosition.value;
+    }
+
     public int getValue() {
         return this.value;
     }
