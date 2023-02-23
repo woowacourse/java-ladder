@@ -27,11 +27,11 @@ class LadderTest {
     @DisplayName("참가자 수에서 1을 뺀 만큼의 라인을 가진사다리를 만든다.")
     @Test
     void generateMap() {
-        List<Line> lines = ladder.getLines();
+        List<List<Boolean>> lines = ladder.getLines();
         Assertions.assertThat(lines).hasSize(3);
-        Assertions.assertThat(lines.get(0).getStatus()).containsExactly(true, false);
-        Assertions.assertThat(lines.get(1).getStatus()).containsExactly(true, false);
-        Assertions.assertThat(lines.get(2).getStatus()).containsExactly(true, false);
+        Assertions.assertThat(lines.get(0)).containsExactly(true, false);
+        Assertions.assertThat(lines.get(1)).containsExactly(true, false);
+        Assertions.assertThat(lines.get(2)).containsExactly(true, false);
     }
 
     @DisplayName("각 인덱스에 따른 결과를 반환한다")

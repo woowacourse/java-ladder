@@ -52,7 +52,7 @@ public class LadderGameController {
 
     private void printLadder(OutputView outputView, Participants participants, Ladder ladder,
                              Results results) {
-        outputView.printLadder(participants, ladder, results.get());
+        outputView.printLadder(participants.getParticipantNames(), ladder.getLines(), results.get());
     }
 
     private void printResult(InputView inputView, OutputView outputView, LadderGame ladderGame) {

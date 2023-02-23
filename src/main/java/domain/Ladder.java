@@ -2,6 +2,7 @@ package domain;
 
 import util.BooleanGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -20,8 +21,10 @@ public class Ladder {
                         .collect(Collectors.toList());
     }
 
-    public List<Line> getLines() {
-        return List.copyOf(lines);
+    public List<List<Boolean>> getLines() {
+        List<List<Boolean>> ladderStatus = new ArrayList<>();
+        lines.forEach(line -> ladderStatus.add(line.getStatus()));
+        return List.copyOf(ladderStatus);
     }
 
     public int getResultIndex(int index) {

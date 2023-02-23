@@ -28,7 +28,7 @@ class OutputViewTest {
         Ladder ladder = new Ladder(
                 new Height("4"), new Weight(participants.getParticipantCount()), () -> true);
         Results results = new Results("a,b,c", 3);
-        outputView.printLadder(participants, ladder, results.get());
+        outputView.printLadder(participants.getParticipantNames(), ladder.getLines(), results.get());
         Assertions.assertThat(byteArrayOutputStream)
                   .hasToString("\n사다리 결과\n\n"
                           + "jamie split  pobi \n"
@@ -48,7 +48,7 @@ class OutputViewTest {
         Ladder ladder = new Ladder(
                 new Height("4"), new Weight(participants.getParticipantCount()), () -> false);
         Results results = new Results("a,b,c", 3);
-        outputView.printLadder(participants, ladder, results.get());
+        outputView.printLadder(participants.getParticipantNames(), ladder.getLines(), results.get());
         Assertions.assertThat(byteArrayOutputStream)
                   .hasToString("\n사다리 결과\n\n"
                           + "jamie split  pobi \n"

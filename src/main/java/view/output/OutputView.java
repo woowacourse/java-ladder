@@ -1,9 +1,5 @@
 package view.output;
 
-import domain.Ladder;
-import domain.Line;
-import domain.Participants;
-
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +13,8 @@ public class OutputView {
     private static final String MATCH_RESULT_MESSAGE = System.lineSeparator() + "실행 결과" + System.lineSeparator();
     private static final String MATCH_RESULT_ALL_FORMAT = "%s : %s" + System.lineSeparator();
 
-    public void printLadder(Participants participants, Ladder ladder, List<String> results) {
+    public void printLadder(List<String> participants, List<List<Boolean>> ladder,
+                            List<String> results) {
         System.out.println(RESULT_MESSAGE);
         StringBuilder ladderResult = new StringBuilder();
         setNames(ladderResult, participants);
@@ -26,9 +23,8 @@ public class OutputView {
         System.out.print(ladderResult);
     }
 
-    private void setNames(StringBuilder ladderResult, Participants participants) {
-        participants.getParticipantNames()
-                    .forEach((participantName) -> ladderResult.append(reformatName(participantName)));
+    private void setNames(StringBuilder ladderResult, List<String> participants) {
+        participants.forEach((participantName) -> ladderResult.append(reformatName(participantName)));
         ladderResult.append(System.lineSeparator());
     }
 
@@ -36,15 +32,14 @@ public class OutputView {
         return String.format("%5s ", name);
     }
 
-    private void setLadder(StringBuilder ladderResult, Ladder ladder) {
-        ladder.getLines()
-               .forEach((line) -> ladderResult.append(reformatLine(line)));
+    private void setLadder(StringBuilder ladderResult, List<List<Boolean>> ladder) {
+        ladder.forEach((line) -> ladderResult.append(reformatLine(line)));
     }
 
-    private String reformatLine(Line line) {
+    private String reformatLine(List<Boolean> line) {
         final StringBuilder result = new StringBuilder();
         result.append(START_LINE);
-        for (Boolean status : line.getStatus()) {
+        for (Boolean status : line) {
             result.append(reformatStatus(status));
             result.append(END_LINE);
         }
