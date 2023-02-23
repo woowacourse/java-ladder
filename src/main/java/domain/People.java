@@ -41,10 +41,4 @@ public class People {
     public int getParticipantsSize() {
         return people.size();
     }
-
-    public Optional<Person> findPersonByName(String name) {
-        return people.stream()
-                     .filter((person) -> person.isSamePerson(name))
-                     .findFirst();
-    }
 }

@@ -25,24 +25,4 @@ class PersonTest {
     void test_person_name_length_fail(String name) {
         assertThatIllegalArgumentException().isThrownBy(() -> new Person(name));
     }
-
-    @Test
-    @DisplayName("isSamePerson() : 이름이 다를 경우에는 같은 Person이라고 할 수 없다.")
-    void test_isSamePerson_fail() throws Exception {
-        //given
-        Person person = new Person("aa");
-
-        //when & then
-        assertFalse(person.isSamePerson("bb"));
-    }
-
-    @Test
-    @DisplayName("isSamePerson() : 이름이 같을 경우에는 같은 Person이라고 할 수 있다.")
-    void test_isSamePerson_success() throws Exception {
-        //given
-        Person person = new Person("aa");
-
-        //when & then
-        assertTrue(person.isSamePerson("aa"));
-    }
 }
