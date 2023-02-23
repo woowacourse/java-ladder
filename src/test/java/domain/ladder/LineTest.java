@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.generator.BooleanGenerator;
+import domain.generator.MockBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -39,7 +39,7 @@ public class LineTest {
     }
 
 
-    static Stream<Arguments> generateFlag() {
+    private static Stream<Arguments> generateFlag() {
         return Stream.of(
                 Arguments.arguments(2, List.of(true), List.of(PASSABLE)),
                 Arguments.arguments(3, List.of(true, false), List.of(PASSABLE, BLOCKED)),
@@ -53,19 +53,5 @@ public class LineTest {
         return IntStream.range(0, size)
                 .mapToObj(i -> true)
                 .collect(Collectors.toList());
-    }
-
-    class MockBooleanGenerator implements BooleanGenerator {
-        private final List<Boolean> values;
-        private int index = 0;
-
-        public MockBooleanGenerator(List<Boolean> values) {
-            this.values = values;
-        }
-
-        @Override
-        public boolean generate() {
-            return values.get(index++);
-        }
     }
 }
