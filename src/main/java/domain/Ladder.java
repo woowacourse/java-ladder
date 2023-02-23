@@ -53,7 +53,6 @@ public class Ladder {
     private String calculateSingleResult(final Prizes prizes, final int startPosition) {
         int currentPosition = startPosition;
         for (Line line : lines) {
-            List<Scaffold> scaffolds = line.getScaffolds();
             currentPosition = line.move(currentPosition);
         }
         return prizes.getPrizeByIndex(currentPosition).getValue();
