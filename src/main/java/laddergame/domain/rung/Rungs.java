@@ -21,6 +21,14 @@ public class Rungs {
         return new Rungs(rungCount, rungGenerator);
     }
 
+    public boolean canMove(final int rungPosition) {
+        if (rungPosition < 0 || rungPosition >= rungs.size()) {
+            return false;
+        }
+        Rung rung = rungs.get(rungPosition);
+        return rung.isExistence();
+    }
+
     private List<Rung> makeRungs(final int rungCount) {
         List<Rung> rungs = new ArrayList<>();
         Rung firstRung = Rung.create(rungGenerator.generate());

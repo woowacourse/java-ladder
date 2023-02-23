@@ -18,10 +18,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class RungsTest {
 
+    private int rungCount;
     private BooleanGenerator rungGenerator;
 
     @BeforeAll
     void init() {
+        rungCount = 4;
         rungGenerator = new RungGenerator();
     }
 
@@ -53,8 +55,8 @@ public class RungsTest {
     @MethodSource("getTestRungsWithNumberGenerator")
     @DisplayName("NumberGenerator의 반환값에 따라, 생성되는 Rungs의 형태가 달라진다.")
     void getRungs_whenCreateWithNumberGenerator_thenReturnRungs(final int rungCount,
-                                                              final BooleanGenerator booleanGenerator,
-                                                              final List<Rung> expectedRungs) {
+                                                                final BooleanGenerator booleanGenerator,
+                                                                final List<Rung> expectedRungs) {
         // given
         Rungs rungs = Rungs.create(rungCount, booleanGenerator);
 
@@ -63,6 +65,38 @@ public class RungsTest {
 
         // then
         assertThat(actualRungs).isEqualTo(expectedRungs);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 2})
+    @DisplayName("범위가 벗어나지 않았으면서 대상 위치에 사다리 가로대가 존재하면, 다음 행의 해당 가로대(열)로 이동이 가능하다.")
+    void canMoveDown_whenTargetRungExists_thenReturnTrue(final int rungPosition) {
+        // given
+        final BooleanGenerator sufficientMaterialGenerator = () -> true;
+        Rungs rungs = Rungs.create(rungCount, sufficientMaterialGenerator);
+
+        // when
+        boolean canMoveDown = rungs.canMove(rungPosition);
+
+        // then
+        assertThat(canMoveDown)
+                .isTrue();
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 1, 3, 4})
+    @DisplayName("범위가 벗어났거나 대상 위치에 사다리 가로대가 존재하지 않다면, 다음 행의 해당 가로대(열)로 이동이 불가능하다.")
+    void canMoveDown_whenTargetRungExists_thenReturnFalse(final int rungPosition) {
+        // given
+        final BooleanGenerator sufficientMaterialGenerator = () -> true;
+        Rungs rungs = Rungs.create(rungCount, sufficientMaterialGenerator);
+
+        // when
+        boolean canMoveDown = rungs.canMove(rungPosition);
+
+        // then
+        assertThat(canMoveDown)
+                .isFalse();
     }
 
     private static Stream<Arguments> getTestRungsWithNumberGenerator() {

@@ -1,6 +1,7 @@
 package laddergame.domain.participant;
 
-import laddergame.domain.exception.BlankException;
+import laddergame.domain.exception.participant.ParticipantNameBlankException;
+import laddergame.domain.exception.participant.ParticipantNameLengthException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -24,7 +25,8 @@ public class ParticipantNameTest {
     void create_givenInvalidLengthName_thenFail(final String invalidName) {
         assertThatThrownBy(() -> ParticipantName.create(invalidName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ParticipantName.INVALID_NANE_LENGTH);
+                .isExactlyInstanceOf(ParticipantNameLengthException.class)
+                .hasMessage("[ERROR] 참가자 이름은 5글자를 초과할 수 없습니다.");
     }
 
     @ParameterizedTest
@@ -33,7 +35,7 @@ public class ParticipantNameTest {
     void create_givenIncludedBlankName_thenFail(final String invalidName) {
         assertThatThrownBy(() -> ParticipantName.create(invalidName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .isExactlyInstanceOf(BlankException.class)
-                .hasMessage(BlankException.errorMessage);
+                .isExactlyInstanceOf(ParticipantNameBlankException.class)
+                .hasMessage("[ERROR] 참가자 이름은 공백이 포함될 수 없습니다.");
     }
 }
