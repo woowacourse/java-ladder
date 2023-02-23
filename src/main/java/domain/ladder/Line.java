@@ -66,7 +66,7 @@ public class Line {
         }
     }
 
-    public int decideNextIndex(int index) {
+    public int decideNextIndex(final int index) {
         if ((index != 0) && checkPointOn(Direction.LEFT, index)) {
             return index + Direction.LEFT.distance;
         }
@@ -76,7 +76,7 @@ public class Line {
         return index;
     }
 
-    private boolean checkPointOn(Direction direction, int index) {
+    private boolean checkPointOn(final Direction direction, final int index) {
         Point point = points.get(index + direction.pointDifference);
         return point.isExist();
     }

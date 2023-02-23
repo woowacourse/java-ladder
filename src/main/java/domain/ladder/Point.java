@@ -24,7 +24,7 @@ public enum Point {
         return choosePoint(pointGenerator);
     }
 
-    public static Point choosePoint(PointGenerator pointGenerator) {
+    public static Point choosePoint(final PointGenerator pointGenerator) {
         return pointGenerator.generate();
     }
 
