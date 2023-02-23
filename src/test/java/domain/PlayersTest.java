@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import util.PlayersMaker;
 
 public class PlayersTest {
 
@@ -41,5 +42,23 @@ public class PlayersTest {
         players.add(new Player("soy"));
 
         assertThat(new Players(players).getNumberOfPlayers()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("입력받은 이름의 플레이어 반환")
+    void findPlayerByName() {
+        Players resultPlayers = PlayersMaker.makePlayers("a,b,c,d");
+
+        assertThat(resultPlayers.findPlayerByName("b")).isEqualTo(new Player("b"));
+    }
+
+    @Test
+    @DisplayName("입력받은 플레이어가 존재하지 않으면 예외 발생")
+    void doesNotFindPlayerByName() {
+        Players resultPlayers = PlayersMaker.makePlayers("a,b,c,d");
+
+        assertThatThrownBy(() -> resultPlayers.findPlayerByName("e"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 존재하지 않는 사람입니다.");
     }
 }

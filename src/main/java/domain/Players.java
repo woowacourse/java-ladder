@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class Players {
 
     public Players(List<Player> players) throws IllegalArgumentException {
         validateMoreThanOnePlayer(players);
-        this.players = players;
+        this.players = new ArrayList<>(players);
     }
 
     private void validateMoreThanOnePlayer(List<Player> players) {
@@ -22,6 +23,16 @@ public class Players {
 
     public int getNumberOfPlayers() {
         return this.players.size();
+    }
+
+    // TODO: depth 줄이기
+    public Player findPlayerByName(String playerName) {
+        for (Player player : players) {
+            if (player.getName().equals(playerName)) {
+                return player;
+            }
+        }
+        throw new IllegalArgumentException("[ERROR] 존재하지 않는 사람입니다.");
     }
 
     public List<Player> getPlayers() {
