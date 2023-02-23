@@ -24,7 +24,9 @@ public class Player {
         }
         if (ladder.hasRightAt(position)) {
             moveRight();
+            return;
         }
+        position.addY();
     }
 
     private void moveLeft() {
@@ -45,7 +47,7 @@ public class Player {
         return position.getY();
     }
 
-    public Name getName() {
-        return name;
+    public String getName() {
+        return name.getValue();
     }
 }
