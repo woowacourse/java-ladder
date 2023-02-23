@@ -17,6 +17,7 @@ public class EmptyInputValidatorChain implements InputValidatorChain {
     public void validate(final InputValidationRequest request) throws IllegalArgumentException {
         if (!request.getValidateTypes().contains(ValidateType.EMPTY_VALUE)) {
             next.validate(request);
+            return;
         }
         if (request.getTarget().isBlank()) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
