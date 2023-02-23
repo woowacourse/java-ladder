@@ -12,7 +12,7 @@ public class PlayersTest {
     void validatePlayersSize() {
         Assertions.assertThatThrownBy(() -> new Players(List.of("a")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 2명 이상 입력해야 합니다.");
+                .hasMessage(Players.SIZE_ERROR);
     }
 
     @Test
@@ -20,6 +20,6 @@ public class PlayersTest {
     void validateDuplicateName() {
         Assertions.assertThatThrownBy(() -> new Players(List.of("a", "b", "a")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 중복된 이름입니다.");
+                .hasMessage(Players.DUPLICATE_NAME_ERROR);
     }
 }

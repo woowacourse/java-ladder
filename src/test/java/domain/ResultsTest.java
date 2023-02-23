@@ -12,7 +12,7 @@ class ResultsTest {
     void test() {
         Assertions.assertThatThrownBy(() -> new Results(3, List.of("꽝,꽝")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 결과값을 참여자 수 만큼 입력해야합니다.");
+                .hasMessage(Results.SIZE_ERROR);
     }
 
 }

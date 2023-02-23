@@ -1,7 +1,6 @@
 package domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -15,6 +14,6 @@ public class LadderTest {
     void validateHeight(int height) {
         assertThatThrownBy(() -> new Ladder(height, 4, new RandomPointGenerator()))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 사다리 높이는 1이상이어야 합니다.");
+                .hasMessage(Ladder.INVALID_HEIGHT_ERROR);
     }
 }
