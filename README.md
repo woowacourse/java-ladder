@@ -115,15 +115,17 @@
   s1 --> b2(NONE);
 ```
 
-- 2단계 (구현 예정)
+- 2단계
 
 ```mermaid
-  graph LR;
+    graph LR;
   
-  la(Ladder) --> li1(Line);
-  la --> li2(Line);
-  la --> li3(Line);
+  la(Ladder) --> ls(LadderLines)
   la --> de(Destination);
+  
+  ls --> li1(Line);
+  ls --> li2(Line);
+  ls --> li3(Line);
   
   li1 --> d1(Direction)
   li1 --> d2(Direction)
@@ -133,9 +135,7 @@
   d1 --> s1(Left StepPoint)
   d1 --> s2(Right StepPoint)
   
-  s1 --> b1(EXIST);
-  s1 --> b2(NONE);
-  
-  s2 --> b3(EXIST);
-  s2 --> b4(NONE);
+  s1 --> b1(EXIST/NONE);  
+  s2 --> b2(EXIST/NONE);
+
 ```
