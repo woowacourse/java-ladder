@@ -11,7 +11,6 @@ public class GameResult {
         this.result = result;
     }
 
-    // TODO name 객체 사용 여부, result 원시값 포장
     public String findByPlayerName(String name) {
         return result.get(name);
     }
