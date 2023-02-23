@@ -1,60 +1,56 @@
 package domain;
 
-import domain.ladder.Height;
 import domain.ladder.Ladder;
+import domain.ladder.Line;
 import domain.player.Player;
 import domain.player.Players;
 import domain.product.Product;
 import domain.product.Products;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LadderGame {
+    public static final String PLAYER_COUNT_SAME_PRODUCT = "[ERROR] 상품의 개수와 플레이어의 수가 일치하지 않습니다.";
     Products products;
     Players players;
     Ladder ladder;
-    Height height;
 
-    public LadderGame(Players players, Products products, Ladder ladder, Height height) {
+    public LadderGame(Players players, Products products, Ladder ladder) {
         checkLadderGame(players, products);
-        this.height = height;
         this.players = players;
         this.products = products;
         this.ladder = ladder;
     }
 
     public Map<Player, Product> play() {
-        Map<Player, Product> result = new HashMap<>();
-        for (int index = 0; index < players.getPlayersCount(); index++) {
-            result.put(players.getPlayers().get(index), products.getProducts().get(oneClimbTheLadder(index)));
+        Map<Player, Product> result = new LinkedHashMap<>();
+        for (Player player : players.getPlayers()) {
+            result.put(player, products.productOfIndex(oneClimbTheLadder(player, ladder)));
         }
         return result;
     }
 
-    public int oneClimbTheLadder(int playerPosition) {
-        int floor = 0;
-        int position = playerPosition;
-        while (height.isSameHeight(floor)) {
-            position = climbTheLadderPlayerPosition(position,floor);
-            floor++;
+    public int oneClimbTheLadder(Player player, Ladder ladder) {
+        for (Line line : ladder.getLines()) {
+            climbTheLadderPlayerPosition(player, line);
         }
-        return playerPosition;
+        return player.getPosition();
     }
 
-    public int climbTheLadderPlayerPosition(int playerPosition,int floor) {
-        if (playerPosition == 0) {
-            return ladder.sideDecideWhereToGo(playerPosition, floor);
+    public void climbTheLadderPlayerPosition(Player player, Line line) {
+        if (line.getDirection(player) == Direction.LEFT) {
+            player.left();
+            return;
         }
-        if (playerPosition == players.getPlayersCount() - 1) {
-            return ladder.sideDecideWhereToGo(playerPosition,floor);
+        if (line.getDirection(player) == Direction.RIGHT) {
+            player.right();
         }
-        return ladder.decideWhereToGo(playerPosition, floor);
     }
 
     private void checkLadderGame(Players players, Products products) {
         if (players.getPlayersCount() != products.productsCount()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(PLAYER_COUNT_SAME_PRODUCT);
         }
     }
 }
