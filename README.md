@@ -77,15 +77,20 @@
     - [x] Line과 Height를 멤버로 가진다.
     - [x] Line 인스턴스 생성
 
-- [ ] LadderGame
-    - [ ] Players와 Ladder를 멤버로 가진다.
-    - [ ] 사다리 게임을 실행한다.
+- [x] LadderGame
+    - [x] 사다리 게임을 실행한다.
+    - [x] 결과를 리턴한다.
 
 - [x] WinningPrize
     - [x] 문자 포장
 
 - [x] WinningPrizes
     - [x] 입력받은 실행 결과를 저장하는 일급 컬렉션
+
+- [x] GameResult
+  - [x] 최종 결과 순으로 나열된 List<Player>를 가진다.
+  - [x] winningPrizes 객체를 가진다.
+  - [x] 우승자의 이름이 입력되면 해당 winningPrize를 리턴한다.
 
 - [x] LinkGenerator
     - [x] RandomLinkGenerator를 위한 인터페이스
@@ -102,11 +107,11 @@
         - 정수값만 리턴
     - [x] 결과를 보고 싶은 사람의 이름을 입력받는다.
 
-- [ ] OutputView
+- [x] OutputView
     - [x] 사다리를 출력할 때 사람 이름도 같이 출력한다.
     - [x] 가장 긴 이름의 길이를 기준으로 사다리 폭이 변화한다.
     - [x] 첫번째 Player 이름 길이의 절반을 반올림 값한만큼 공백을 생성한다.
-    - [ ] 입력받은 사람의 이름을 winningPrize를 출력한다.
+    - [x] 입력받은 사람의 이름을 winningPrize를 출력한다.
 
 - [x] LadderElement
     - [x] 사다리의 요소들을 모아둔 Enum
