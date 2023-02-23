@@ -17,8 +17,7 @@ public enum Command {
     }
 
     public static boolean contains(String word) {
-        Command[] commands = Command.values();
-        return Arrays.stream(commands)
+        return  Arrays.stream(values())
                 .map(Command::getCommand)
                 .anyMatch(command -> command.equals(word));
     }
