@@ -27,7 +27,7 @@ public class InputView {
     public int readLadderHeight(){
         System.out.println(LADDER_HEIGHT_INPUT_NOTICE);
         try {
-            return Integer.parseInt(scanner.next());
+            return Integer.parseInt(scanner.nextLine());
         }catch (NumberFormatException exception){
             throw new IllegalArgumentException(NUMBER_ERROR);
         }
@@ -41,7 +41,6 @@ public class InputView {
 
     public String readTargetPlayer() {
         System.out.println(TARGET_PLAYER_NOTICE);
-        scanner.nextLine();
         return readInput();
     }
 }
