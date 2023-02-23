@@ -4,7 +4,6 @@ import java.util.List;
 
 import domain.Line;
 import domain.Name;
-import domain.Player;
 
 public class OutputView {
     private static final String BRIDGE = "-----";
@@ -23,10 +22,11 @@ public class OutputView {
         for (Line line : lines) {
             appendLine(builder, line);
         }
+        builder.deleteCharAt(builder.length() - 1);
         System.out.println(builder);
     }
 
-    public void printPlayerNames(List<String> names) {
+    public void printNames(List<String> names) {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (String name : names) {
