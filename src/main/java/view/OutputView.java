@@ -4,7 +4,9 @@ import static domain.LadderConnectionStatus.getConnectionStatus;
 import static domain.Name.MAX_NAME_LENGTH;
 
 import domain.Ladder;
+import domain.LadderGame;
 import domain.Line;
+import domain.Rewards;
 import domain.User;
 import domain.Users;
 import java.util.List;
@@ -70,7 +72,22 @@ public class OutputView {
         }
     }
 
-    private void printLadder(Ladder ladder, int width) {
+    public void printRewards(Rewards rewards) {
+        System.out.println(buildRewardPrintingFormat(rewards));
+    }
+
+    private StringBuilder buildRewardPrintingFormat(Rewards rewards) {
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < rewards.size(); i++) {
+            String reward = rewards.getReward(i);
+            result.append(BLANK.repeat(MAX_NAME_LENGTH + 1 - reward.length()))
+                .append(reward);
+        }
+        return result;
+    }
+
+    private void printLadder(Ladder ladder) {
         StringBuilder result = new StringBuilder();
         List<Line> lines = ladder.getLines();
         for (int i = 0; i < lines.size() - 1; i++) {
