@@ -46,14 +46,10 @@ public class Line {
     }
 
     private Bridge getBridgeAt(Position position) {
-        if (isInLine(position)) {
+        if (position.isInRangeOf(bridges)) {
             return bridges.get(position.getPosition());
         }
         return Bridge.EMPTY;
-    }
-
-    private boolean isInLine(Position position) {
-        return position.isInBetween(0, bridges.size());
     }
 
     public List<Bridge> getBridges() {

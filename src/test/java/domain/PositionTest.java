@@ -2,6 +2,8 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -23,11 +25,11 @@ public class PositionTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"0,1,false", "1,1,false", "1,2,true", "2,3,false"})
-    void 두_위치_사이에_있는지_알_수_있다(int fromInclusive, int toExclusive, boolean isInBetween) {
-        Position position = new Position(1);
+    @CsvSource({"-1,false", "0,true", "2,true", "3,false"})
+    void 컬렉션의_범위에_있는지_알_수_있다(int position, boolean isInRange) {
+        Position currentPosition = new Position(position);
 
-        assertThat(position.isInBetween(fromInclusive, toExclusive)).isEqualTo(isInBetween);
+        assertThat(currentPosition.isInRangeOf(List.of(0, 0, 0))).isEqualTo(isInRange);
     }
 
     @ParameterizedTest

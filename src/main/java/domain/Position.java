@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Collection;
+
 class Position {
 
     private final int position;
@@ -15,7 +17,7 @@ class Position {
         if (direction.isRight()) {
             return right();
         }
-        return new Position(position);
+        return stay();
     }
 
     Position left() {
@@ -26,8 +28,12 @@ class Position {
         return new Position(position + 1);
     }
 
-    boolean isInBetween(int fromInclusive, int toExclusive) {
-        return fromInclusive <= position && position < toExclusive;
+    Position stay() {
+        return new Position(position);
+    }
+
+    public boolean isInRangeOf(Collection<?> collection) {
+        return 0 <= position && position < collection.size();
     }
 
     @Override
@@ -38,7 +44,6 @@ class Position {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         Position position1 = (Position)o;
 
         return position == position1.position;
