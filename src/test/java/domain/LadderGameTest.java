@@ -76,4 +76,18 @@ public class LadderGameTest {
         assertThat(position.getIndex()).isEqualTo(1);
     }
 
+    @DisplayName("모든 사다리를 타고난 뒤의 최종 위치를 확인한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"a,0", "b,2", "c,3", "d,1"})
+    void move_brdige(String name, int resultIndex) {
+        int startIndex = players.getOrder(name);
+        Position position = new Position(startIndex);
+
+        for (Line line : ladder.getLines()) {
+            ladderGame.move(line, position);
+        }
+
+        assertThat(position.getIndex()).isEqualTo(resultIndex);
+    }
+
 }
