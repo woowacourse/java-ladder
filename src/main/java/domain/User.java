@@ -3,6 +3,9 @@ package domain;
 import java.util.List;
 
 public class User {
+
+    private static final int NOT_FOUND_CONNECTION = -1;
+
     private final Name name;
     private final Position position;
 
@@ -12,11 +15,10 @@ public class User {
     }
 
     public void movePosition(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (position.checkConnection(number)) {
-                position.move(number);
-                break;
-            }
+        int number = position.findConnectionNumber(numbers);
+
+        if (number != NOT_FOUND_CONNECTION) {
+            position.move(number);
         }
     }
 
