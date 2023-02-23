@@ -1,17 +1,23 @@
 package controller;
 
 import domain.*;
+import exception.NotFindPersonException;
 import util.BooleanGenerator;
 import view.input.InputView;
 import view.output.OutputView;
 
 public class LadderGameController {
 
+    private static final String GET_RESULT_ALL = "all";
+
     public void play(InputView inputView, OutputView outputView, BooleanGenerator booleanGenerator) {
         Participants participants = setParticipants(inputView);
         Results results = setResults(inputView, participants);
         Ladder ladder = generateLadder(inputView, participants, booleanGenerator);
         printLadder(outputView, participants, ladder, results);
+
+        LadderGame ladderGame = new LadderGame(participants, ladder, results);
+        printResult(inputView, outputView, ladderGame);
     }
 
     private Participants setParticipants(InputView inputView) {
@@ -47,6 +53,33 @@ public class LadderGameController {
 
     private void printLadder(OutputView outputView, Participants participants, Ladder ladder,
                              Results results) {
-        outputView.printMap(participants, ladder, results.get());
+        outputView.printLadder(participants, ladder, results.get());
+    }
+
+    private void printResult(InputView inputView, OutputView outputView, LadderGame ladderGame) {
+        boolean isContinue = true;
+        while (isContinue) {
+            isContinue = getResult(inputView, outputView, ladderGame);
+        }
+    }
+
+    private boolean getResult(InputView inputView, OutputView outputView, LadderGame ladderGame) {
+        try {
+            String inputResult = inputView.enterGetResult();
+            return getResultByInput(outputView, ladderGame, inputResult);
+        } catch (IllegalArgumentException exception) {
+            inputView.printErrorMessage(exception);
+            return true;
+        }
+    }
+
+    private boolean getResultByInput(OutputView outputView, LadderGame ladderGame, String inputValue) {
+        if (GET_RESULT_ALL.equals(inputValue)) {
+            outputView.printMatchAllResult(ladderGame.getAllResult());
+            return false;
+        }
+
+        outputView.printMatchResult(ladderGame.getResultByName(inputValue));
+        return true;
     }
 }

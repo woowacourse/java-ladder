@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderGame {
-    private static final String GET_RESULT_ALL = "all";
 
     private final Map<Person, Result> ladderResult = new HashMap<>();
 
@@ -22,34 +21,23 @@ public class LadderGame {
         }
     }
 
-    public Map<String, String> getResult(String requireValue) {
-        if (GET_RESULT_ALL.equals(requireValue)) {
-            return getAllResult();
-        }
-
-        Map<String, String> resultByName = getResultByName(requireValue);
-        if (resultByName.isEmpty()) {
-            throw new NotFindPersonException();
-        }
-
-        return resultByName;
-    }
-
-    private Map<String, String> getAllResult() {
+    public Map<String, String> getAllResult() {
         return ladderResult.entrySet()
                            .stream()
                            .collect(Collectors.toMap(
                                    key -> key.getKey().getName(),
-                                   value -> value.getValue().get()));
+                                   value -> value.getValue().getResult()));
     }
 
-    private Map<String, String> getResultByName(String name) {
+    public String getResultByName(String name) {
         Person findPerson = new Person(name);
         return ladderResult.entrySet()
                            .stream()
-                           .filter(resultEntry -> resultEntry.getKey().equals(findPerson))
-                           .collect(Collectors.toMap(
-                                   key -> key.getKey().getName(),
-                                   value -> value.getValue().get()));
+                           .filter(resultEntry -> resultEntry.getKey()
+                                                             .equals(findPerson))
+                           .findFirst()
+                           .orElseThrow(NotFindPersonException::new)
+                           .getValue()
+                           .getResult();
     }
 }

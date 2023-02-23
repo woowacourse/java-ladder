@@ -43,7 +43,9 @@ public class Results {
     }
 
     public List<String> get() {
-        return results.stream().map(Result::get).collect(Collectors.toList());
+        return results.stream()
+                      .map(Result::getResult)
+                      .collect(Collectors.toList());
     }
 
     public Result getByIndex(int index) {

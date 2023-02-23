@@ -24,7 +24,7 @@ public class Result {
         return StringUtil.isNullOrBlank(result) || result.length() > MAX_NAME_LENGTH;
     }
 
-    public String get() {
+    public String getResult() {
         return result;
     }
 }

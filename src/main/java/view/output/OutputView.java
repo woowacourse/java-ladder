@@ -5,6 +5,7 @@ import domain.Line;
 import domain.Participants;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -13,6 +14,8 @@ public class OutputView {
     private static final String END_LINE = "|";
     private static final String CONNECTED_LINE = "-----";
     private static final String DISCONNECTED_LINE = "     ";
+    private static final String MATCH_RESULT_MESSAGE = System.lineSeparator() + "실행 결과" + System.lineSeparator();
+    private static final String MATCH_RESULT_ALL_FORMAT = "%s : %s" + System.lineSeparator();
 
     public void printLadder(Participants participants, Ladder ladder, List<String> results) {
         System.out.println(RESULT_MESSAGE);
@@ -60,5 +63,18 @@ public class OutputView {
     private void setResult(StringBuilder ladderResult, List<String> results) {
         results.forEach((result) -> ladderResult.append(reformatName(result)));
         ladderResult.append(System.lineSeparator());
+    }
+
+    public void printMatchAllResult(Map<String, String> matchResult) {
+        StringBuilder result = new StringBuilder();
+        result.append(MATCH_RESULT_MESSAGE);
+        matchResult.forEach((name, reward) ->
+                result.append(String.format(MATCH_RESULT_ALL_FORMAT, name, reward)));
+        System.out.println(result);
+    }
+
+    public void printMatchResult(String matchResult) {
+        String result = MATCH_RESULT_MESSAGE + matchResult;
+        System.out.println(result);
     }
 }

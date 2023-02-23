@@ -66,4 +66,12 @@ public class Participants {
     public Person getByIndex(int index) {
         return people.get(index);
     }
+
+    public Person getByName(String name) {
+        Person findPerson = new Person(name);
+        return people.stream()
+                     .filter(person -> person.equals(findPerson))
+                     .findFirst()
+                     .orElseThrow(NotFindPersonException::new);
+    }
 }

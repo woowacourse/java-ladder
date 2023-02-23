@@ -13,7 +13,7 @@ class ResultTest {
     @Test
     void createSuccess() {
         Result result = new Result("test");
-        Assertions.assertEquals(result.get(), "test");
+        Assertions.assertEquals(result.getResult(), "test");
     }
 
     @DisplayName("입력 결과가 5글자가 넘는 경우 예외를 던진다.")
