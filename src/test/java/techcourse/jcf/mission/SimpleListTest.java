@@ -1,9 +1,9 @@
 package techcourse.jcf.mission;
 
-import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -13,13 +13,27 @@ class SimpleListTest {
     @BeforeEach
     void initList() {
         // 구현한 구현체로 바꾸기
-        list = new SimpleArrayList(new String[]{"first", "second"});
+        list = new SimpleArrayList(new String[]{"0", "1"});
+    }
+
+    @Test
+    void get() {
+        assertThat(list.get(0)).isEqualTo("first");
     }
 
     @Test
     void addWithOnlyValue() {
         assertThat(list.add("third")).isTrue();
         assertThat(list.get(2)).isEqualTo("third");
+    }
+
+    @Test
+    void addManyValuesWithNoException() {
+        assertDoesNotThrow(() -> {
+            for (int i = 2; i < 50; i++) {
+                list.add(String.format("%d", i));
+            }
+        });
     }
 
     @Test
@@ -44,11 +58,6 @@ class SimpleListTest {
     void setThrowException() {
         assertThatThrownBy(() -> list.set(2, "third"))
                 .isInstanceOf(IndexOutOfBoundsException.class);
-    }
-
-    @Test
-    void get() {
-        assertThat(list.get(0)).isEqualTo("first");
     }
 
     @Test

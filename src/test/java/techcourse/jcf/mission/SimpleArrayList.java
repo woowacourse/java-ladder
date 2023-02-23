@@ -1,11 +1,13 @@
-package techcourse.jcf.mission
+package techcourse.jcf.mission;
+
+import java.util.Arrays;
 
 public class SimpleArrayList implements SimpleList {
     private static final int DEFAULT_CAPACITY = 10;
 
     private int capacity;
     private int pointer;
-    private final String[] values;
+    private String[] values;
 
     public SimpleArrayList() {
         this.capacity = DEFAULT_CAPACITY;
@@ -15,19 +17,42 @@ public class SimpleArrayList implements SimpleList {
     public SimpleArrayList(String[] values) {
         this.capacity = DEFAULT_CAPACITY;
         this.values = values;
-        manageCapacity();
+        this.pointer = values.length;
+        checkCapacityUnderKeepingOrder();
+        checkCapacityOverKeepingOrder();
     }
 
-    private void manageCapacity() {
-        if (values.length >= capacity * 0.8) {
-            capacity *= 2;
+    private void checkCapacityUnderKeepingOrder() {
+        if (this.values.length < 10) {
+            String[] newValues = new String[DEFAULT_CAPACITY];
+            for (int i = 0; i < this.values.length; i++) {
+                newValues[i] = this.values[i];
+            }
+            this.values = newValues;
         }
+    }
+
+    private void checkCapacityOverKeepingOrder() {
+        if (pointer >= capacity * 0.8) {
+            copyValuesIntactly();
+        }
+    }
+
+    private void copyValuesIntactly() {
+        this.capacity *= 2;
+        String[] newValues = new String[this.capacity];
+        for (int i = 0; i < this.values.length; i++) {
+            newValues[i] = this.values[i];
+        }
+        this.values = newValues;
     }
 
     @Override
     public boolean add(String value) {
-
-        return false;
+        this.values[pointer] = value;
+        this.pointer += 1;
+        checkCapacityOverKeepingOrder();
+        return true;
     }
 
     @Override
@@ -42,7 +67,7 @@ public class SimpleArrayList implements SimpleList {
 
     @Override
     public String get(int index) {
-        return null;
+        return this.values[index];
     }
 
     @Override
@@ -78,5 +103,14 @@ public class SimpleArrayList implements SimpleList {
     @Override
     public void clear() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "SimpleArrayList{" +
+                "capacity=" + capacity +
+                ", pointer=" + pointer +
+                ", values=" + Arrays.toString(values) +
+                '}';
     }
 }
