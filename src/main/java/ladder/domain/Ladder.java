@@ -26,5 +26,23 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
+    public int findEndPositionFrom(int startIndex) {
+        int current = startIndex;
+
+        for (Line line : lines) {
+            int left = current - 1;
+            int right = current;
+
+            if (left >= 0 && line.getLine().get(left).getValue()) {
+                //왼쪽이 참이면
+                current--;
+            }
+            if (right < line.getLine().size() && line.getLine().get(right).getValue()) {
+                //오른쪽이 참이면
+                current++;
+            }
+        }
+        return current;
+    }
 
 }
