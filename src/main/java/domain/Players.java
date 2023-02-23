@@ -37,7 +37,7 @@ public class Players {
     }
 
     public void move(Line line) {
-        for (Player player: players) {
+        for (Player player : players) {
             MoveType moveType = MoveType.getMoveTypeByPosition(player, line);
             player.move(moveType);
         }

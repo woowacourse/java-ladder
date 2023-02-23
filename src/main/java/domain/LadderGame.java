@@ -22,10 +22,10 @@ public class LadderGame {
         if (!result.isEmpty()) {
             return result;
         }
-        for (Line line: ladder.getLadder()) {
+        for (Line line : ladder.getLadder()) {
             players.move(line);
         }
-        for (Player player: players.getPlayers()) {
+        for (Player player : players.getPlayers()) {
             int position = player.getPosition();
             result.put(player.getName(), prize.getOnePrizeByIndex(position));
         }

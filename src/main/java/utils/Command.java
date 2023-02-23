@@ -8,6 +8,7 @@ public enum Command {
     FINISH_GAME_COMMAND("finish");
 
     private String command;
+
     Command(String command) {
         this.command = command;
     }

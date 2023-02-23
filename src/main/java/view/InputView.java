@@ -17,7 +17,8 @@ public class InputView {
     private final String PRIZE_DELIMITER = ",";
     private final Scanner scanner = new Scanner(System.in);
 
-    private InputView() { }
+    private InputView() {
+    }
 
     public static InputView getInputView() {
         return inputView;
