@@ -34,31 +34,31 @@ public class GameResult {
         List<Participant> participants = ladderGame.getParticipants();
         Map<Participant, LadderPrize> results = new LinkedHashMap<>();
         participants.forEach((participant) -> {
-            final int order = participants.indexOf(participant);
-            results.put(participant, getGameResultByOrder(ladderGame, order));
+            final int position = participants.indexOf(participant);
+            results.put(participant, getGameResultByPosition(ladderGame, position));
         });
         return results;
     }
 
-    private static LadderPrize getGameResultByOrder(LadderGame ladderGame, int order) {
+    private static LadderPrize getGameResultByPosition(LadderGame ladderGame, int position) {
         for (Line line : ladderGame.getLines()) {
-            int move = getMove(order, line.getBlocks());
-            order += move;
+            int move = getMove(position, line.getBlocks());
+            position += move;
         }
-        return ladderGame.getResults().get(order);
+        return ladderGame.getResults().get(position);
     }
 
-    private static int getMove(int order, List<Block> blocks) {
+    private static int getMove(int position, List<Block> blocks) {
         final int lastBlockPosition = blocks.size();
-        final int prevBlockPosition = order - 1;
-        if (order == FIRST_BLOCK_POSITION) {
-            return decideDirection(DISCONNECTED, blocks.get(order).isConnected());
+        final int prevPosition = position - 1;
+        if (position == FIRST_BLOCK_POSITION) {
+            return decideDirection(DISCONNECTED, blocks.get(position).isConnected());
         }
-        boolean prevBlockConnectStatus = blocks.get(prevBlockPosition).isConnected();
-        if (order == lastBlockPosition) {
+        boolean prevBlockConnectStatus = blocks.get(prevPosition).isConnected();
+        if (position == lastBlockPosition) {
             return decideDirection(prevBlockConnectStatus, DISCONNECTED);
         }
-        return decideDirection(prevBlockConnectStatus, blocks.get(order).isConnected());
+        return decideDirection(prevBlockConnectStatus, blocks.get(position).isConnected());
     }
 
     private static int decideDirection(boolean left, boolean right) {
