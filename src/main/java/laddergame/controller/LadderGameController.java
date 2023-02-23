@@ -66,8 +66,7 @@ public class LadderGameController {
         try {
             outputView.printMessage(HEIGHT_INPUT_REQUEST);
             String heightStr = inputView.readHeight();
-//            validate
-            Height height = new Height(heightStr);
+            Height height = new Height(validator.validateHeight(heightStr));
             return height;
         } catch (IllegalArgumentException e) {
             outputView.printErrormessage(e.getMessage());
@@ -79,7 +78,7 @@ public class LadderGameController {
         try {
             outputView.printMessage(REWARD_INPUT_REQUEST);
             List<String> rewardNames = inputView.readRewards();
-//            validate
+            validator.validateRewards(rewardNames);
             Rewards rewards = new Rewards(rewardNames);
             rewards.checkRewardsCount(playerCount);
             return rewards;
@@ -92,9 +91,7 @@ public class LadderGameController {
     private Target requestTarget(List<String> playerNames) {
         try {
             outputView.printMessage(TARGET_INPUT_REQUEST);
-            String targetName = inputView.readTarget();
-            // validate
-            Target target = new Target(targetName);
+            Target target = new Target(inputView.readTarget());
             target.checkNotPlayerNameOrNotKeyword(playerNames);
             return target;
         } catch (IllegalArgumentException e) {
@@ -107,10 +104,10 @@ public class LadderGameController {
         try {
             Ladder ladder = new Ladder(players, height, trueOrFalseGenerator);
             validator.validateLadder(ladder, height.getHeight());
+            return ladder;
 
         } catch (LadderStateException e) {
             return makeLadder(players, height, trueOrFalseGenerator);
         }
-
     }
 }

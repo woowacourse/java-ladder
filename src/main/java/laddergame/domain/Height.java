@@ -5,9 +5,11 @@ public class Height {
 
     private final int height;
 
-    public Height(String height) {
-        validate(height);
-        this.height = Integer.parseInt(height);
+    public Height(int height) {
+        if (height < 1 || height > 10) {
+            throw new IllegalArgumentException("height 높이는 1 이상 10 이하만 가능합니다.");
+        }
+        this.height = height;
     }
 
     public boolean isPossibleCount() {
@@ -16,16 +18,5 @@ public class Height {
 
     public int getHeight() {
         return height;
-    }
-
-    private void validate(String height) {
-        try {
-            int heightNumber = Integer.parseInt(height);
-            if (heightNumber <= 0) {
-                throw new IllegalArgumentException("양의 정수만 입력해주세요.");
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("양의 정수만 입력해주세요.");
-        }
     }
 }

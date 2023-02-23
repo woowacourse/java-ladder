@@ -31,4 +31,12 @@ public class Validator {
             throw new IllegalArgumentException("reward 목록에 공백이 입력될 수 없습니다.");
         }
     }
+
+    public int validateHeight(String height) {
+        try {
+            return Integer.parseInt(height);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("양의 정수만 입력해주세요.");
+        }
+    }
 }
