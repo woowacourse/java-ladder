@@ -5,11 +5,11 @@ public class Height {
     private static final int MINIMUM_LENGTH_OF_HEIGHT = 1;
     private static final int MAXIMUM_LENGTH_OF_HEIGHT = 10;
 
-    private final int height;
+    private final int value;
 
-    public Height(final int height) {
-        validateLengthOfHeight(height);
-        this.height = height;
+    public Height(final int value) {
+        validateLengthOfHeight(value);
+        this.value = value;
     }
 
     private void validateLengthOfHeight(final int height) {
@@ -22,7 +22,7 @@ public class Height {
         return (height < MINIMUM_LENGTH_OF_HEIGHT) || (height > MAXIMUM_LENGTH_OF_HEIGHT);
     }
 
-    public int getHeight() {
-        return height;
+    public int getValue() {
+        return this.value;
     }
 }

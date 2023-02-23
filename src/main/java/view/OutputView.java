@@ -1,6 +1,5 @@
 package view;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -36,13 +35,13 @@ public class OutputView {
                 .append(BLANK);
 
         for (int i = 1; i < names.getNames().size(); i++) {
-            appendPlayerNames(findLongestName(names), names.getNames().get(i));
+            appendPlayerNames(findLongestLengthOfName(names), names.getNames().get(i));
         }
 
         return namesOutput;
     }
 
-    private int findLongestName(final Names names) {
+    private int findLongestLengthOfName(final Names names) {
         return names.getNames()
                 .stream()
                 .mapToInt(player -> player.getName().length())
@@ -84,7 +83,7 @@ public class OutputView {
     }
 
     private int findLadderHeight(final Ladder ladder) {
-        return ladder.getHeight().getHeight();
+        return ladder.getHeight().getValue();
     }
 
     private int findLengthOfFirstPlayerName(final Names names) {
@@ -114,18 +113,16 @@ public class OutputView {
 
     private void drawExistingConnection(final Names names, final Boolean isExistingConnection) {
         if (isExistingConnection) {
-            ladderOutput.append(CONNECTION.repeat(findLongestName(names)));
+            ladderOutput.append(CONNECTION.repeat(findLongestLengthOfName(names)));
             return;
         }
-        ladderOutput.append(BLANK.repeat(findLongestName(names)));
+        ladderOutput.append(BLANK.repeat(findLongestLengthOfName(names)));
     }
 
     private StringBuilder makeResultsOutput(final Results results, final Names names) {
-        int longestName = findLongestName(names);
-
         for (Result result : results.getResults()) {
             resultOutput.append(result.getResult())
-                    .append(BLANK.repeat(longestName - result.getResult().length()));
+                    .append(BLANK.repeat(findLongestLengthOfName(names) - result.getResult().length()));
         }
 
         return resultOutput;

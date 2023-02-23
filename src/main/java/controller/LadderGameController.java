@@ -1,13 +1,12 @@
 package controller;
 
-import domain.GameResult;
-import domain.Ladder;
-import domain.Names;
 import java.util.List;
 import java.util.Map;
 
+import domain.GameResult;
+import domain.Ladder;
+import domain.Names;
 import domain.Results;
-import domain.generator.ConnectionGenerator;
 import domain.generator.RandomConnectionGenerator;
 import view.InputView;
 import view.OutputView;
