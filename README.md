@@ -56,8 +56,7 @@
 - 사다리 게임 참여자
     - [x] 이름을 가질 수 있다.
         - [x] `예외` 이름이 5글자를 초과하면 예외를 던진다.
-        - [ ] `예외` 이름이 공백 또는 빈문자열이면 예외를 던진다.
-        - [ ] `예외` 이름이 null 이면 예외를 던진다.
+        - [x] `예외` 이름이 null 또는 빈문자열이면 예외를 던진다.
 
 - 사다리 게임
     - [x] 사다리를 생성한다.
@@ -137,6 +136,9 @@
   la(Ladder) --> ls(LadderLines)
   la --> de(Destination);
   
+  de --> rs1(Result);
+  de --> rs2(Result);
+  
   ls --> li1(Line);
   ls --> li2(Line);
   ls --> li3(Line);
@@ -152,16 +154,16 @@
   s1 --> b1(EXIST/NONE);  
   s2 --> b2(EXIST/NONE);
 
-	ps(Players) --> p1(Player) --> n1(Name);
-	ps(Players) --> p2(Player)--> n2(Name);
-
-	LadderGame --> la;
-	LadderGame --> ps;
-	LadderGame -.-> gr(GameResult);
-
-	gc(LadderGameController) --> LadderGame
-	gc --> InputView;
-	gc --> OutputView;
-	gc --> gr;
+    ps(Players) --> p1(Player) --> n1(Name);
+    ps(Players) --> p2(Player)--> n2(Name);
+    
+    LadderGame --> la;
+    LadderGame --> ps;
+    LadderGame -.-> gr(GameResult);
+    
+    gc(LadderGameController) --> LadderGame
+    gc --> InputView;
+    gc --> OutputView;
+    gc --> gr;
 
 ```
