@@ -17,7 +17,7 @@ class PrizesTest {
         int participantSize = 3;
         List<String> results = List.of("hi", "hi", "hi");
 
-        assertDoesNotThrow(() -> new Prizes(results, participantSize));
+        assertDoesNotThrow(() -> Prizes.of(results, participantSize));
     }
 
     @DisplayName("참가자의 수와 다르면 예외가 발생한다")
@@ -26,7 +26,7 @@ class PrizesTest {
         int participantSize = 2;
         List<String> results = List.of("hi", "hi", "hi");
 
-        assertThatThrownBy(() -> new Prizes(results, participantSize))
+        assertThatThrownBy(() -> Prizes.of(results, participantSize))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 결과는 참가자의 수와 같아야 합니다");
     }
@@ -35,7 +35,7 @@ class PrizesTest {
     @Test
     void getResultByPosition() {
         List<String> resultStrings = List.of("a", "b", "c");
-        Prizes prizes = new Prizes(resultStrings, resultStrings.size());
+        Prizes prizes = Prizes.of(resultStrings, resultStrings.size());
 
         assertThat(List.of(0, 1, 2)).map(prizes::getPrizeByPosition).isEqualTo(resultStrings);
     }

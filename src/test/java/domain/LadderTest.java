@@ -27,7 +27,7 @@ class LadderTest {
     @ParameterizedTest
     @ValueSource(ints = {-2, 101})
     void heightNot1_100(int height) {
-        assertThatThrownBy(() -> Ladder.from(height, 5, new RandomStoolGenerator()))
+        assertThatThrownBy(() -> Ladder.of(height, 5, new RandomStoolGenerator()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 높이는 1부터 100까지만 가능합니다");
     }
@@ -72,7 +72,7 @@ class LadderTest {
     }
 
     private static Ladder initLadder(int height, int participantSize) {
-        return Ladder.from(height, participantSize, new TestGenerator());
+        return Ladder.of(height, participantSize, new TestGenerator());
     }
 
     private static class TestGenerator implements StoolGenerator {

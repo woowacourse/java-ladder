@@ -20,7 +20,7 @@ public class Ladder {
         this.levels = level;
     }
 
-    public static Ladder from(int height, int participantSize, StoolGenerator stoolGenerator) {
+    public static Ladder of(int height, int participantSize, StoolGenerator stoolGenerator) {
         validate(height);
 
         return Stream.generate(() -> new Level(participantSize, stoolGenerator))

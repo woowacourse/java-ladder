@@ -8,15 +8,21 @@ import java.util.stream.Collectors;
 public class Prizes {
     private final List<Prize> prizes;
 
-    public Prizes(List<String> results, int participantSize) {
-        validate(results, participantSize);
-
-        this.prizes = results.stream()
-                .map(Prize::new)
-                .collect(Collectors.toList());
+    private Prizes(List<Prize> prizes) {
+        this.prizes = prizes;
     }
 
-    private void validate(List<String> results, int participantSize) {
+    public static Prizes of(List<String> results, int participantSize) {
+        validate(results, participantSize);
+
+        List<Prize> prizes = results.stream()
+                .map(Prize::new)
+                .collect(Collectors.toList());
+
+        return new Prizes(prizes);
+    }
+
+    private static void validate(List<String> results, int participantSize) {
         if (results.size() != participantSize) {
             throw new IllegalArgumentException(Error.INVALID_RESULTS_SIZE.getMessage());
         }

@@ -27,8 +27,8 @@ public class LadderController {
 
     public void run() {
         People people = repeat(() -> People.from(inputView.readNames()));
-        Ladder ladder = repeat(() -> Ladder.from(inputView.readHeight(), people.size(), stoolGenerator));
-        Prizes prizes = repeat(() -> new Prizes(inputView.readResults(), people.size()));
+        Ladder ladder = repeat(() -> Ladder.of(inputView.readHeight(), people.size(), stoolGenerator));
+        Prizes prizes = repeat(() -> Prizes.of(inputView.readResults(), people.size()));
 
         showLadder(people, ladder, prizes);
         showResult(people, ladder, prizes);
