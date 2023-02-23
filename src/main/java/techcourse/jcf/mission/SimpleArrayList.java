@@ -32,8 +32,12 @@ public class SimpleArrayList implements SimpleList {
     //TODO: add한 index 뒤에 있는 값들을 전부 이동 시키기
     @Override
     public void add(final int index, final String value) {
-        size += 1;
+        if (size == currentCapacity) {
+            extendCapacity();
+        }
+        System.arraycopy(values, index, values, index + 1, size - index);
         values[index] = value;
+        size += 1;
     }
 
     @Override

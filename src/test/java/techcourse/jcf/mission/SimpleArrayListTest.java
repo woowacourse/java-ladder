@@ -1,6 +1,7 @@
 package techcourse.jcf.mission;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.atIndex;
 
 import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.Assertions;
@@ -34,16 +35,18 @@ class SimpleArrayListTest {
                 .contains("져니");
     }
 
-    //ArrayList의 rangeCheckForAdd 확인하기.
     @Test
-    @DisplayName("List안에 원하는 index에 값을 add한다.")
+    @DisplayName("List안에 원하는 index에 값을 넣고, 기존에 있는 값을 한칸 뒤로 민다.")
     void addValueAtIndexTest() {
-        final SimpleArrayList arrayList = new SimpleArrayList();
+        String[] array = {"홍실", "다니", "준팍"};
+        final SimpleArrayList arrayList = new SimpleArrayList(array);
 
-        arrayList.add(0, "홍실");
+        arrayList.add(0, "썬샷");
 
         assertThat(arrayList).extracting("values")
-                .asInstanceOf(InstanceOfAssertFactories.array(String[].class));
+                .asInstanceOf(InstanceOfAssertFactories.array(String[].class))
+                .contains("썬샷", atIndex(0))
+                .contains("홍실", atIndex(1));
     }
 
     @Test
