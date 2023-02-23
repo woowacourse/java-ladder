@@ -2,9 +2,7 @@ package controller;
 
 import java.util.List;
 
-import domain.Ladder;
-import domain.Players;
-import domain.RandomDigitsGenerator;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
@@ -24,8 +22,11 @@ public class LadderGameController {
         Prizes prizes = getPrizes(players.getCount());
         Ladder ladder = getLadder(players.getCount() - 1);
 
-        outputView.printPlayerNames(players.getNames());
+        outputView.printNames(players.getNames());
         outputView.printLadder(ladder.getLines());
+        outputView.printNames(prizes.getNames());
+    }
+
     private Prizes getPrizes(int count) {
         try {
             List<String> names = inputView.readPrizeNames();
