@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
 
 import java.util.List;
 import ladder.util.TestBooleanGenerator;
@@ -52,5 +53,26 @@ public class LadderGameTest {
                         List.of(LineStatus.CONNECTED),
                         List.of(LineStatus.CONNECTED)
                 );
+    }
+
+    @Test
+    void 모든_참가자에_대한_사다리게임을_진행한다() {
+        final LadderGame ladderGame = initializeLadderGame(
+                List.of("name1", "name2", "name3"),
+                List.of(
+                        true, false,
+                        false, true
+                ),
+                2,
+                List.of("item1", "item2", "item3")
+        );
+
+        LadderGameResult ladderGameResult = ladderGame.play();
+
+        assertThat(ladderGameResult.get("all")).containsExactly(
+                entry("name1", "item3"),
+                entry("name2", "item1"),
+                entry("name3", "item2")
+        );
     }
 }

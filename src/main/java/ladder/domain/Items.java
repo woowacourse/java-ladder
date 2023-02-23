@@ -30,6 +30,10 @@ public class Items {
         }
     }
 
+    public Item get(final Position position) {
+        return items.get(position);
+    }
+
     public List<String> getNames() {
         return items.values().stream()
                 .map(Item::getName)

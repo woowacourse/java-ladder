@@ -20,6 +20,15 @@ public class ItemsTest {
     }
 
     @Test
+    void 입력받은_위치에_해당하는_실행결과를_반환한다() {
+        final Items items = Items.from(List.of("item1", "item2", "item3"), 3);
+
+        final Item item = items.get(Position.valueOf(1));
+
+        assertThat(item.getName()).isEqualTo("item2");
+    }
+
+    @Test
     void 모든_실행결과의_이름을_반환한다() {
         final Items items = Items.from(List.of("item1", "item2", "item3"), 3);
 

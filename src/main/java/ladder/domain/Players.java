@@ -52,6 +52,10 @@ public class Players {
         return players.size();
     }
 
+    public Player get(final Position position) {
+        return players.get(position);
+    }
+
     public List<String> getNames() {
         return players.values().stream()
                 .map(Player::getName)

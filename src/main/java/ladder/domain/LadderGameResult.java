@@ -1,7 +1,6 @@
 package ladder.domain;
 
-import static java.util.stream.Collectors.toMap;
-
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 class LadderGameResult {
@@ -23,8 +22,11 @@ class LadderGameResult {
     }
 
     private Map<String, String> getAll() {
-        return result.keySet().stream()
-                .collect(toMap(Player::getName, this::getItemName));
+        final Map<String, String> playerToItem = new LinkedHashMap<>();
+        for (Player player : result.keySet()) {
+            playerToItem.put(player.getName(), getItemName(player));
+        }
+        return playerToItem;
     }
 
     private String getItemName(final Player player) {

@@ -43,16 +43,25 @@ public class PlayersTest {
     }
 
     @Test
-    void 모든_참가자의_이름을_반환한다() {
-        final Players players = Players.from(List.of("name1", "name2"));
-
-        assertThat(players.getNames()).containsExactly("name1", "name2");
-    }
-
-    @Test
     void 참가_인원을_반환한다() {
         final Players players = Players.from(List.of("name1", "name2"));
 
         assertThat(players.count()).isEqualTo(2);
+    }
+
+    @Test
+    void 입력받은_위치에_해당하는_참가자를_반환한다() {
+        final Players players = Players.from(List.of("name1", "name2"));
+
+        final Player result = players.get(Position.valueOf(0));
+
+        assertThat(result).isEqualTo(new Player("name1"));
+    }
+
+    @Test
+    void 모든_참가자의_이름을_반환한다() {
+        final Players players = Players.from(List.of("name1", "name2"));
+
+        assertThat(players.getNames()).containsExactly("name1", "name2");
     }
 }
