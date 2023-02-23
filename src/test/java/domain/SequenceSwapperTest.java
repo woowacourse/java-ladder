@@ -15,4 +15,12 @@ public class SequenceSwapperTest {
         SequenceSwapper swapper = SequenceSwapper.of(List.of(0, 1, 2, 3));
         assertThat(swapper.getSequence()).containsExactly(0, 1, 2, 3);
     }
+
+    @Test
+    @DisplayName("index를 입력하면 양 옆의 순서를 바꿔준다.")
+    void swapSequenceTest(){
+        SequenceSwapper swapper = SequenceSwapper.of(List.of(0, 1, 2, 3));
+        swapper.swap(0);
+        assertThat(swapper.getSequence()).containsExactly(1,0,2,3);
+    }
 }
