@@ -7,33 +7,49 @@ import java.util.List;
 
 public class Line {
 
-    private final int numberOfLine;
-    private final List<LineStatus> line;
+    private final List<LineStep> line;
+    private final BooleanGenerator booleanGenerator;
 
-    public Line(int numberOfLineStatus, BooleanGenerator booleanGenerator) {
-        this.numberOfLine = numberOfLineStatus;
-        this.line = makeLine(booleanGenerator);
+    private Line(List<LineStep> line, BooleanGenerator booleanGenerator) {
+        this.line = line;
+        this.booleanGenerator = booleanGenerator;
     }
 
-    private List<LineStatus> makeLine(BooleanGenerator booleanGenerator) {
-        List<LineStatus> line = new ArrayList<>();
-        makeFirstLineStatus(booleanGenerator, line);
-        makeElseLineStatus(booleanGenerator, line);
-        return line;
+    public static Line of(int numberOfHorizontalSteps, BooleanGenerator booleanGenerator) {
+        List<LineStep> line = new ArrayList<>();
+        for (int horizontalStep = 0; horizontalStep < numberOfHorizontalSteps; horizontalStep++) {
+            line.add(LineStep.NON_EXIST);
+        }
+        return new Line(line, booleanGenerator);
     }
 
-    private void makeFirstLineStatus(BooleanGenerator booleanGenerator, List<LineStatus> line) {
-        line.add(LineStatus.findBy(booleanGenerator.generate(false)));
-    }
-
-    private void makeElseLineStatus(BooleanGenerator booleanGenerator, List<LineStatus> line) {
-        for (int i = 1; i < this.numberOfLine; i++) {
-            int leftIndex = i - 1;
-            line.add(LineStatus.findBy(booleanGenerator.generate(line.get(leftIndex).getStatus())));
+    public void generateRandomLine() {
+        makeFirstRandomStep();
+        for (int stepIndex = 1; stepIndex < line.size(); stepIndex++) {
+            makeNextRandomSteps(stepIndex);
         }
     }
 
-    public List<LineStatus> getLine() {
+    private void makeFirstRandomStep() {
+        if (booleanGenerator.generate()) {
+            line.set(0, LineStep.EXIST);
+        }
+    }
+
+    private void makeNextRandomSteps(int stepIndex) {
+        if (!isExistPrevStep(stepIndex) && booleanGenerator.generate()) {
+            line.set(stepIndex, LineStep.EXIST);
+        }
+        if (isExistPrevStep(stepIndex)) {
+            line.set(stepIndex, LineStep.NON_EXIST);
+        }
+    }
+
+    private boolean isExistPrevStep(int stepIndex) {
+        return this.line.get(stepIndex - 1).equals(LineStep.EXIST);
+    }
+
+    public List<LineStep> getLine() {
         return this.line;
     }
 }

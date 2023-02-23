@@ -4,7 +4,7 @@ import domain.Height;
 import domain.Ladder;
 import domain.Players;
 import util.BooleanGenerator;
-import util.ConditionalBooleanGenerator;
+import util.RandomBooleanGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -13,6 +13,7 @@ public class LadderController {
     public void run() {
         Players players = makePlayers();
         Ladder ladder = makeLadder(players);
+        ladder.generateRandomLadder();
         printLadder(players, ladder);
     }
 
@@ -27,10 +28,10 @@ public class LadderController {
     }
 
     private Ladder makeLadder(Players players) {
-        BooleanGenerator booleanGenerator = new ConditionalBooleanGenerator();
+        BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
         try {
             int height = InputView.receiveHeight();
-            return new Ladder(players.getNumberOfPlayers(), new Height(height), booleanGenerator);
+            return Ladder.makeDefaultLadder(players.getNumberOfPlayers(), new Height(height).getHeight(), booleanGenerator);
         } catch (IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
             return makeLadder(players);

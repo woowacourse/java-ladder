@@ -3,51 +3,53 @@ package domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import util.ExistBooleanGenerator;
-import util.ConditionalBooleanGenerator;
-import util.NonExistBooleanGenerator;
+import util.BooleanGenerator;
+import util.RandomBooleanGenerator;
+import util.TrueGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
     @Test
-    @DisplayName("참가자수-1만큼 status 생성")
+    @DisplayName("입력값으로 LineStep의 개수(플레이어수-1)가 주어졌을 때 LineStep이 해당 개수만큼 생성")
     void makeLine() {
-        int numberOfLineStatus = 3;
-        Line line = new Line(numberOfLineStatus, new ConditionalBooleanGenerator());
-        assertThat(line.getLine().size()).isEqualTo(numberOfLineStatus);
+        int numberOfLineStep = 3;
+
+        BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
+        Line line = Line.of(numberOfLineStep, booleanGenerator);
+
+        assertThat(line.getLine().size()).isEqualTo(numberOfLineStep);
     }
 
     @Test
-    @DisplayName("라인이 겹치는 경우가 존재하는지 확인")
-    void makeRandomLines() {
-        int numberOfLineStatus = 1000;
-        Line line = new Line(numberOfLineStatus, new ConditionalBooleanGenerator());
+    @DisplayName("첫째 다리스텝이 존재할 경우 둘째 스텝은 생성되지 않음")
+    void ifFirstStepExistSecondStepIsNotExist() {
+        int numberOfHorizontalSteps = 2;
+        BooleanGenerator booleanGenerator = new TrueGenerator();
 
-        for (int i = 0; i < numberOfLineStatus - 1; i++) {
-            int rightLineStatusIndex = i + 1;
-            if (line.getLine().get(i) == LineStatus.EXIST) {
-                Assertions.assertThat(line.getLine().get(rightLineStatusIndex)).isEqualTo(LineStatus.NON_EXIST);
+        Line line = Line.of(numberOfHorizontalSteps, booleanGenerator);
+        line.generateRandomLine();
+
+        org.junit.jupiter.api.Assertions.assertAll(
+                () -> assertThat(line.getLine().get(0)).isEqualTo(LineStep.EXIST),
+                () -> assertThat(line.getLine().get(1)).isEqualTo(LineStep.NON_EXIST)
+        );
+    }
+
+    @Test
+    @DisplayName("충분히 많은 RandomLineStep을 생성했을 때도 라인이 겹치는 경우는 존재하지 않음")
+    void NoneDuplicationOfLineStepStatus() {
+        int numberOfLineStep = 1000;
+        Line line = Line.of(numberOfLineStep, new RandomBooleanGenerator());
+
+        line.generateRandomLine();
+
+        for (int i = 0; i < numberOfLineStep - 1; i++) {
+            int rightLineStepsIndex = i + 1;
+            if (line.getLine().get(i) == LineStep.EXIST) {
+                Assertions.assertThat(line.getLine().get(rightLineStepsIndex)).isEqualTo(LineStep.NON_EXIST);
             }
         }
-    }
-
-    @Test
-    @DisplayName("다리가 존재하는 Line생성")
-    void makeExistLine() {
-        int numberOfLineStatus = 1;
-        Line line = new Line(numberOfLineStatus, new ExistBooleanGenerator());
-
-        assertThat(line.getLine().get(0)).isEqualTo(LineStatus.EXIST);
-    }
-
-    @Test
-    @DisplayName("다리가 존재하지 않는 Line생성")
-    void makeNonExistLine() {
-        int numberOfLineStatus = 3;
-        Line line = new Line(numberOfLineStatus, new NonExistBooleanGenerator());
-
-        assertThat(line.getLine().get(0)).isEqualTo(LineStatus.NON_EXIST);
     }
 }

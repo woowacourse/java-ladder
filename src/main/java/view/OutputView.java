@@ -30,29 +30,29 @@ public class OutputView {
     }
 
     public static void printLadder(Ladder ladder) {
-        Lines lines = ladder.getLines();
-        for (Line line : lines.getLines()) {
-            List<LineStatus> oneLine = line.getLine();
+        List<Line> lines = ladder.getLines();
+        for (Line line : lines) {
+            List<LineStep> oneLine = line.getLine();
             System.out.println(getLineStatus(oneLine));
         }
     }
 
-    private static String getLineStatus(List<LineStatus> line) {
+    private static String getLineStatus(List<LineStep> line) {
         StringBuilder sb = new StringBuilder();
 
         sb.append(WALL);
-        for (LineStatus lineStatus : line) {
-            buildLine(sb, lineStatus);
+        for (LineStep lineStep : line) {
+            buildLine(sb, lineStep);
         }
 
         return sb.toString();
     }
 
-    private static void buildLine(StringBuilder sb, LineStatus lineStatus) {
-        if (lineStatus.getStatus()) {
+    private static void buildLine(StringBuilder sb, LineStep lineStep) {
+        if (lineStep.getStatus()) {
             sb.append(EXIST_LINE);
         }
-        if (!lineStatus.getStatus()) {
+        if (!lineStep.getStatus()) {
             sb.append(NON_EXIST_LINE);
         }
         sb.append(WALL);
