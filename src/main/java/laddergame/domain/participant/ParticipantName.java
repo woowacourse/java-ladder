@@ -1,8 +1,5 @@
 package laddergame.domain.participant;
 
-import static laddergame.domain.message.ErrorMessage.INVALID_NAME_BLANK;
-import static laddergame.domain.message.ErrorMessage.INVALID_NANE_LENGTH;
-
 public class ParticipantName {
 
     private static final char INVALID_INCLUSION = ' ';
@@ -29,13 +26,13 @@ public class ParticipantName {
 
     private void validateNameBlank(final String name) {
         if (name.indexOf(INVALID_INCLUSION) != -1) {
-            throw new IllegalArgumentException(INVALID_NAME_BLANK.getMessage());
+            throw new IllegalArgumentException("[ERROR] 이름에 공백이 포함될 수 없습니다.");
         }
     }
 
     private void validateNameLength(final String name) {
         if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(INVALID_NANE_LENGTH.getMessage());
+            throw new IllegalArgumentException(String.format("[ERROR] 이름은 %d 글자를 초과할 수 없습니다.", MAX_LENGTH));
         }
     }
 

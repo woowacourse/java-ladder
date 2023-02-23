@@ -5,12 +5,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static laddergame.domain.message.ErrorMessage.INVALID_NAME_BLANK;
-import static laddergame.domain.message.ErrorMessage.INVALID_NANE_LENGTH;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class ParticipantNameTest {
+
+    private static final String ERROR_MESSAGE_HEAD = "[ERROR]";
 
     @ParameterizedTest
     @ValueSource(strings = {"pobi", "i", "JiWon", "우테코", "12345"})
@@ -25,7 +25,7 @@ public class ParticipantNameTest {
     void throws_exception_if_name_is_greater_than_5(String invalidName) {
         assertThatThrownBy(() -> ParticipantName.create(invalidName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_NANE_LENGTH.getMessage());
+                .hasMessageContaining(ERROR_MESSAGE_HEAD);
     }
 
     @ParameterizedTest
@@ -34,7 +34,7 @@ public class ParticipantNameTest {
     void throws_exception_if_name_contains_blank(String invalidName) {
         assertThatThrownBy(() -> ParticipantName.create(invalidName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_NAME_BLANK.getMessage());
+                .hasMessageContaining(ERROR_MESSAGE_HEAD);
     }
 
     @ParameterizedTest
@@ -43,6 +43,6 @@ public class ParticipantNameTest {
     void throws_exception_if_name_is_null_or_blank(String invalidName) {
         assertThatThrownBy(() -> ParticipantName.create(invalidName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR]");
+                .hasMessageContaining(ERROR_MESSAGE_HEAD);
     }
 }

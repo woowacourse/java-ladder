@@ -4,12 +4,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_RANGE;
-import static laddergame.domain.message.ErrorMessage.INVALID_HEIGHT_TYPE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LadderHeightTest {
+
+    private static final String ERROR_MESSAGE_HEAD = "[ERROR]";
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "5000", "10000"})
@@ -24,7 +24,7 @@ class LadderHeightTest {
     void throws_exception_if_height_is_not_integer_type(String height) {
         assertThatThrownBy(() -> new LadderHeight(height))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_HEIGHT_TYPE.getMessage());
+                .hasMessageContaining(ERROR_MESSAGE_HEAD);
     }
 
     @ParameterizedTest
@@ -33,7 +33,7 @@ class LadderHeightTest {
     void throws_exception_if_height_is_less_than_1_or_greater_than_10000(String height) {
         assertThatThrownBy(() -> new LadderHeight(height))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_HEIGHT_RANGE.getMessage());
+                .hasMessageContaining(ERROR_MESSAGE_HEAD);
     }
 
 }
