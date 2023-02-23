@@ -9,8 +9,21 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(List<Line> lines, Players players) {
+        validateLinesWidth(lines, players.getPlayersCount());
         validatePlayersCount(lines.size(), players.getPlayersCount());
         this.lines = lines;
+    }
+
+    private void validateLinesWidth(List<Line> lines, int playerCount) {
+        for (Line line : lines) {
+            validateLineWidth(line, playerCount);
+        }
+    }
+
+    private void validateLineWidth(Line line, int playerCount) {
+        if (line.getWidth() != playerCount) {
+            throw new IllegalArgumentException("[ERROR] 사다리의 너비는 사람의 수와 같아야 합니다.");
+        }
     }
 
     private void validatePlayersCount(int height, int playersCount) {

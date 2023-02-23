@@ -22,7 +22,7 @@ class LadderTest {
 
         // expect
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Ladder(createLines(height), createPlayers(12));
+            new Ladder(createLines(height,12), createPlayers(12));
         }).withMessage("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
     }
 
@@ -34,7 +34,7 @@ class LadderTest {
 
         // expect
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Ladder(createLines(height), createPlayers(3));
+            new Ladder(createLines(height, 3), createPlayers(3));
         }).withMessage("[ERROR] 사다리의 높이는 사람 수보다 크거나, 사람 수의 두 배 보다 작아야 합니다.");
     }
 
@@ -43,7 +43,7 @@ class LadderTest {
     void create_success() {
         // expect
         assertThatNoException().isThrownBy(() -> {
-            new Ladder(createLines(3), createPlayers(3));
+            new Ladder(createLines(3,3), createPlayers(3));
         });
     }
 
@@ -54,7 +54,7 @@ class LadderTest {
         Ladder ladder = createLadder();
 
         // when
-        Line foundLine = ladder.findLineByIndex(2);
+        Line foundLine = ladder.findLineByIndex(3);
 
         // then
         assertThat(foundLine.getSteps())
@@ -90,11 +90,21 @@ class LadderTest {
                 .isEqualTo(1);
     }
 
+    @Test
+    @DisplayName("사다리를 생성할 때 Line의 길이가 참여자와 맞지 않으면 예외가 발생한다.")
+    void create_lineWidthNotMatchPlayerCount() {
+        // expect
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new Ladder(createLines(4, 3), createPlayers(4));
+        });
+    }
+
     private Ladder createLadder() {
         return new Ladder(List.of(
                 new Line(List.of(Step.EXIST, Step.EMPTY, Step.EXIST)),
                 new Line(List.of(Step.EMPTY, Step.EMPTY, Step.EMPTY)),
+                new Line(List.of(Step.EMPTY, Step.EMPTY, Step.EMPTY)),
                 new Line(List.of(Step.EMPTY, Step.EXIST, Step.EMPTY))
-        ), createPlayers(3));
+        ), createPlayers(4));
     }
 }
