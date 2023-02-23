@@ -19,12 +19,10 @@ public class LadderGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final ConnectionGenerator connectionGenerator;
 
     public LadderGameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.connectionGenerator = new RandomConnectionGenerator();
     }
 
     public void run() {
@@ -61,7 +59,7 @@ public class LadderGameController {
     private Ladder makeLadder(final int numberOfNames) {
         try {
             int ladderHeight = inputView.readHeight();
-            return new Ladder(numberOfNames, ladderHeight, connectionGenerator);
+            return new Ladder(numberOfNames, ladderHeight, new RandomConnectionGenerator());
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return makeLadder(numberOfNames);
