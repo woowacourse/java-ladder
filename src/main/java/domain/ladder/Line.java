@@ -12,7 +12,7 @@ public class Line {
     private final List<Point> points;
 
     private Line(final List<Point> points) {
-        validate(points.size());
+        validate(points);
         this.points = new ArrayList<>(points);
     }
 
@@ -37,8 +37,32 @@ public class Line {
     }
 
     private static void validate(final int pointSize) {
+        validatePointRange(pointSize);
+    }
+
+    private static void validate(final List<Point> points) {
+        validatePointRange(points.size());
+        validateDiscontinuity(points);
+    }
+
+    private static void validatePointRange(final int pointSize) {
         if (pointSize < POINT_MIN_SIZE || pointSize > POINT_MAX_SIZE) {
             throw new IllegalArgumentException("포인트 범위는 0부터 19까지입니다.");
+        }
+    }
+
+    private static void validateDiscontinuity(final List<Point> points) {
+        boolean previousExistence = false;
+        for (Point point : points) {
+            boolean currentExistence = point.isExist();
+            checkContinuity(previousExistence, currentExistence);
+            previousExistence = currentExistence;
+        }
+    }
+
+    private static void checkContinuity(final boolean previousExistence, final boolean currentExistence) {
+        if (previousExistence && currentExistence) {
+            throw new IllegalArgumentException("라인은 겹칠 수 없습니다.");
         }
     }
 
