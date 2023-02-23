@@ -13,9 +13,9 @@ public class PlayerNames {
     InputView inputView;
 
     public PlayerNames(List<String> playerNames, InputView inputView) {
+        playerNames = validatePlayerNames(playerNames);
         this.playerNames = new ArrayList<>();
         this.inputView = inputView;
-        playerNames = validatePlayerNames(playerNames);
         createPlayerNames(playerNames);
     }
 

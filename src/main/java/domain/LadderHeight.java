@@ -9,8 +9,8 @@ public final class LadderHeight {
     private final InputView inputView;
 
     public LadderHeight(String ladderHeight, InputView inputView) {
-        this.inputView = inputView;
         ladderHeight = validateLadderHeight(ladderHeight);
+        this.inputView = inputView;
         this.ladderHeight = Integer.parseInt(ladderHeight);
     }
 
