@@ -72,7 +72,7 @@ public class LadderGameTest {
         List<String> prizes = List.of("10000", "20000", "30000");
         ladderGame = new LadderGame(players, 5, prizes, new ExistPointGenerator());
         LadderGameResult result = this.ladderGame.getResult();
-        Map<Player, Prize> totalResult = result.getResult();
+        Map<Player, Prize> totalResult = result.getPlayerToPrize();
         Assertions.assertThat(totalResult.get(playerList.get(playerIndex)).getValue()).isEqualTo(prizes.get(prizeIndex));
     }
 

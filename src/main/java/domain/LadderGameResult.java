@@ -11,10 +11,10 @@ import java.util.Map;
 
 public class LadderGameResult {
 
-    private final Map<Player, Prize> result;
+    private final Map<Player, Prize> playerToPrize;
 
-    private LadderGameResult(final Map<Player, Prize> result) {
-        this.result = new LinkedHashMap<>(result);
+    private LadderGameResult(final Map<Player, Prize> playerToPrize) {
+        this.playerToPrize = new LinkedHashMap<>(playerToPrize);
     }
 
     public static LadderGameResult of(Players players, Prizes prizes, Map<Integer, Integer> ladderResult) {
@@ -25,12 +25,12 @@ public class LadderGameResult {
         return new LadderGameResult(Collections.unmodifiableMap(playerToPrize));
     }
 
-    public Map<Player, Prize> getResult() {
-        return Collections.unmodifiableMap(result);
+    public Map<Player, Prize> getPlayerToPrize() {
+        return Collections.unmodifiableMap(playerToPrize);
     }
 
     public Prize getPersonalResult(final Player player) {
-        return result.get(player);
+        return playerToPrize.get(player);
     }
 
 }
