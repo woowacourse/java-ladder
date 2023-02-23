@@ -23,7 +23,7 @@ public class PlayersTest {
     }
 
     @Test
-    void getPlayersName_메서드_테스트() {
+    void 플레이어들의_이름_리스트를_반환하는_기능_테스트() {
         //given
         List<Player> playerList = List.of(new Player("judy"), new Player("ako"), new Player("pobi"));
         Players players = new Players(playerList);
