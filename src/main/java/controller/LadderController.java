@@ -1,6 +1,6 @@
 package controller;
 
-import domain.Items;
+import domain.item.Items;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.player.Players;
