@@ -5,6 +5,7 @@ import static view.InputView.DELIMITER;
 import domain.Ladder;
 import domain.People;
 import domain.Person;
+import domain.Prizes;
 import domain.RandomLadderGenerator;
 import java.util.Arrays;
 import java.util.List;
@@ -25,6 +26,7 @@ public class LadderController {
 
     public void run() {
         People people = repeat(this::nameRequest);
+        Prizes prizes = repeat(() -> prizesRequest(people.getCount()));
         Ladder ladder = repeat(() -> ladderRequest(people.getCount()));
 
         outputView.printNames(people.getNames());
@@ -53,9 +55,16 @@ public class LadderController {
         return new People(people);
     }
 
-    private List<String> convertToList(String inputNames) {
-        return Arrays.stream(inputNames.split(DELIMITER))
+    private List<String> convertToList(String inputs) {
+        return Arrays.stream(inputs.split(DELIMITER))
             .collect(Collectors.toList());
+    }
+
+    private Prizes prizesRequest(int peopleCount) {
+        String inputPrizes = inputView.readResults();
+
+        List<String> prizes = convertToList(inputPrizes);
+        return new Prizes(prizes, peopleCount);
     }
 
     private Ladder ladderRequest(int peopleCount) {
