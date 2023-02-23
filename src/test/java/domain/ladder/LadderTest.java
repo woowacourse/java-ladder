@@ -23,9 +23,9 @@ class LadderTest {
         @CsvSource(value = {"참가자1,골3", "참가자2,골1", "참가자3,골2"})
         void givenStaringPoint_thenReturnsGoalPoint(String participantName, String expectedGoalName) {
             Ladder ladder = Ladder.of(new FixBooleanGenerator(true, false, true, false, false),
-                    Players.ofValues(List.of("참가자1", "참가자2", "참가자3")),
+                    Players.ofNames(List.of("참가자1", "참가자2", "참가자3")),
                     Goals.of(3, List.of("골1", "골2", "골3")));
-            ladder.build(Height.of(3), 3);
+            ladder.build(Height.of(3));
 
             String goalName = ladder.ride(participantName);
 

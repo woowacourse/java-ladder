@@ -3,6 +3,7 @@ package domain.ladder;
 import util.BooleanGenerator;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,35 +31,44 @@ public class Line {
     }
 
     public void generateSteps() {
-        // 첫 발판! -> 왼쪽으로 연결되었다는 선택지가 없음
+        generateFirstStep();
+        generateMiddleStep();
+        generateLastStep();
+    }
+
+    private void generateFirstStep() {
         steps.add(Step.makeWithRightCondition(generator.generate()));
+    }
 
-        // 중간 발판! -> 왼쪽, 오른쪽, 독립 세 가지 선택지
+    private void generateMiddleStep() {
         while (!isLastStep()) {
-            if (isConnectedWithPrevious()) {
-                steps.add(Step.makeLeft());
-                continue;
-            }
-            steps.add(Step.makeWithRightCondition(generator.generate()));
+            generateStep();
         }
+    }
 
-        // 마지막 발판! -> 오른쪽으로 연결되었다는 선택지가 없음
-        if (isConnectedWithPrevious()) {
-            steps.add(Step.makeLeft());
+    private void generateStep() {
+        if (isPreviousConnected()) {
+            steps.add(Step.LEFT);
             return;
         }
-        steps.add(Step.makeNone());
+        steps.add(Step.makeWithRightCondition(generator.generate()));
     }
 
-    public List<Boolean> getConnectedToRightConditions(){
-        List<Boolean> conditions = new ArrayList<>();
-        for (int index = 0; index < steps.size() - 1; index++) {
-            conditions.add(steps.get(index).isConnectedToRight());
+    private void generateLastStep() {
+        if (isPreviousConnected()) {
+            steps.add(Step.LEFT);
+            return;
         }
-        return conditions;
+        steps.add(Step.NONE);
     }
 
-    private boolean isConnectedWithPrevious() {
+    public Iterator<Boolean> findConnectedConditions(){
+        return steps.stream()
+                .map(Step::isConnectedToRight)
+                .iterator();
+    }
+
+    private boolean isPreviousConnected() {
         return getPreviousStep().isConnectedToRight();
     }
 
@@ -69,7 +79,6 @@ public class Line {
     private Step getPreviousStep() {
         return this.steps.get(this.steps.size() - 1);
     }
-
 
     @Override
     public boolean equals(Object line) {

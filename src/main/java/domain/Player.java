@@ -42,7 +42,7 @@ public class Player {
         }
     }
 
-    public String getValue(){
+    public String getName(){
         return this.name;
     }
 

@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -24,7 +25,7 @@ public class Players {
         return new Players(players);
     }
 
-    public static Players ofValues(final List<String> nameValues) {
+    public static Players ofNames(final List<String> nameValues) {
         List<Player> players = Player.ofMultiple(nameValues);
         validateNames(players);
         return new Players(players);
@@ -57,12 +58,12 @@ public class Players {
         return this.players.size();
     }
 
-    public List<String> getNames() {
+    public Iterator<String> findNames() {
         List<String> names = this.players.stream()
-                .map(Player::getValue)
+                .map(Player::getName)
                 .collect(Collectors.toList());
 
-        return List.copyOf(names);
+        return names.iterator();
     }
 
     @Override
@@ -85,7 +86,7 @@ public class Players {
                 '}';
     }
 
-    public int getSequenceOf(String name) {
+    public int findSequenceOf(String name) {
         int sequence = players.indexOf(Player.of(name));
         if (sequence == -1) {
             throw new IllegalArgumentException(NOT_SAVED_PARTICIPANT_ERROR_MESSAGE);

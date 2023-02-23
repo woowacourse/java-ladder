@@ -7,6 +7,8 @@ import view.Command;
 import view.InputView;
 import view.OutputView;
 
+import java.util.Map;
+
 public class LadderGameController {
 
     private final BooleanGenerator booleanGenerator;
@@ -20,7 +22,7 @@ public class LadderGameController {
     }
 
     public void run() {
-        Players players = saveNames();
+        Players players = savePlayerNames();
         Goals goals = saveGoals(players.count());
         Ladder ladder = buildLadder(players, goals);
 
@@ -28,35 +30,14 @@ public class LadderGameController {
         rideLadder(ladder);
     }
 
-    private void rideLadder(Ladder ladder) {
+    private Players savePlayerNames() {
         try {
-            String participantName = getNameToRide();
-            if (participantName.equals(Command.ALL.getCommand())) {
-                rideAllLadder(ladder);
-                return;
-            }
-            rideLadderByParticipantName(participantName, ladder);
-            rideLadder(ladder);
+            outputView.printRequestNames();
+            return Players.ofNames(inputView.getNames());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            rideLadder(ladder);
+            return savePlayerNames();
         }
-    }
-
-    private String getNameToRide() {
-        outputView.printRequestNameToRide();
-        return inputView.getName();
-    }
-
-    private void rideAllLadder(Ladder ladder) {
-        for (String name : ladder.getNames().getNames()) {
-            rideLadderByParticipantName(name, ladder);
-        }
-    }
-
-    private void rideLadderByParticipantName(String participantName, Ladder ladder) {
-        String goalName = ladder.ride(participantName);
-        outputView.printResult(participantName, goalName);
     }
 
     private Goals saveGoals(int participantsSize) {
@@ -72,22 +53,8 @@ public class LadderGameController {
     private Ladder buildLadder(final Players players, final Goals goals) {
         Height height = saveHeight();
         Ladder ladder = Ladder.of(booleanGenerator, players, goals);
-        ladder.build(height, players.count());
+        ladder.build(height);
         return ladder;
-    }
-
-    private void printLadder(final Ladder ladder) {
-        outputView.printLadder(ladder.getNames(), ladder, ladder.getGoals());
-    }
-
-    private Players saveNames() {
-        try {
-            outputView.printRequestNames();
-            return Players.ofValues(inputView.getNames());
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return saveNames();
-        }
     }
 
     private Height saveHeight() {
@@ -98,5 +65,35 @@ public class LadderGameController {
             outputView.printErrorMessage(e.getMessage());
             return saveHeight();
         }
+    }
+
+    private void printLadder(final Ladder ladder) {
+        outputView.printLadder(ladder.findPlayerNames(), ladder.findAllConnectedConditions(), ladder.findGoalNames());
+    }
+
+    private void rideLadder(Ladder ladder) {
+        try {
+            String playerName = getPlayerName();
+            doRideLadder(ladder, playerName);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            rideLadder(ladder);
+        }
+    }
+
+    private void doRideLadder(Ladder ladder, String playerName) {
+        if (playerName.equals(Command.ALL.getCommand())) {
+            Map<String, String> rideResult = ladder.rideAll();
+            outputView.printResult(rideResult);
+            return;
+        }
+
+        String goalName = ladder.ride(playerName);
+        outputView.printResult(playerName, goalName);
+    }
+
+    private String getPlayerName() {
+        outputView.printRequestNameToRide();
+        return inputView.getName();
     }
 }

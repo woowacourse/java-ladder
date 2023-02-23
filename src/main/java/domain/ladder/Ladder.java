@@ -5,9 +5,7 @@ import domain.Height;
 import domain.Players;
 import util.BooleanGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class Ladder {
 
@@ -26,8 +24,8 @@ public class Ladder {
         return new Ladder(booleanGenerator, players, goals);
     }
 
-    public void build(final Height height, final int width) {
-        generateLines(height, width, booleanGenerator);
+    public void build(final Height height) {
+        generateLines(height, players.count(), booleanGenerator);
     }
 
     private void generateLines(final Height height, final int width, BooleanGenerator booleanGenerator) {
@@ -38,23 +36,26 @@ public class Ladder {
         }
     }
 
-    public List<List<Boolean>> getConnectedToRightConditionsOfAll() {
+    public Iterator<Iterator<Boolean>> findAllConnectedConditions() {
         return lines.stream()
-                .map(Line::getConnectedToRightConditions)
-                .collect(Collectors.toList());
+                .map(Line::findConnectedConditions)
+                .iterator();
     }
 
-    @Override
-    public String toString() {
-        return "Ladder{" +
-                "lines=" + lines +
-                ", booleanGenerator=" + booleanGenerator +
-                '}';
+    public Map<String, String> rideAll() {
+        Map<String, String> rideResult = new HashMap<>();
+        Iterator<String> playerNames = players.findNames();
+        while (playerNames.hasNext()) {
+            String playerName = playerNames.next();
+            rideResult.put(playerName, ride(playerName));
+        }
+        return rideResult;
     }
 
-    public String ride(String participantName) {
-        int startingPoint = players.getSequenceOf(participantName);
-        return goals.getNameOfSequence(ride(startingPoint, 0));
+    public String ride(String playerName) {
+        int startingSequence = players.findSequenceOf(playerName);
+        int goalSequence = ride(startingSequence, 0);
+        return goals.findGoalNameOf(goalSequence);
     }
 
     private int ride(int startingPoint, int indexFromTop) {
@@ -72,11 +73,19 @@ public class Ladder {
         return ride(startingPoint, indexFromTop + 1);
     }
 
-    public Players getNames() {
-        return players;
+    public Iterator<String> findPlayerNames() {
+        return players.findNames();
     }
 
-    public Goals getGoals() {
-        return goals;
+    public Iterator<String> findGoalNames() {
+        return goals.findGoalNames();
+    }
+
+    @Override
+    public String toString() {
+        return "Ladder{" +
+                "lines=" + lines +
+                ", booleanGenerator=" + booleanGenerator +
+                '}';
     }
 }

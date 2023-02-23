@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,13 +24,13 @@ public class Goals {
         return new Goals(goals);
     }
 
-    public List<String> getGoalNames() {
+    public Iterator<String> findGoalNames() {
         return goals.stream()
                 .map(Goal::getName)
-                .collect(Collectors.toList());
+                .iterator();
     }
 
-    public String getNameOfSequence(int sequence) {
+    public String findGoalNameOf(int sequence) {
         return goals.get(sequence)
                 .getName();
     }

@@ -31,12 +31,12 @@ class OutputViewTest {
         @Test
         @DisplayName("주어진 이름과 사다리, 도착 결과를 바탕으로 사다리를 만든다.")
         void givenNamesAndLadder_thenReturnsLadderMessage() {
-            Players players = Players.ofValues(List.of("참가자1", "참가자2"));
-            Goals goals = Goals.of(2, List.of("골", "탈락"));
-            Ladder ladder = Ladder.of(new FixBooleanGenerator(true, false), players, goals);
-            ladder.build(Height.of(2), 2);
+            List<String> playerNames = List.of("참가자1", "참가자2");
+            List<String> goalNames = List.of("골", "탈락");
+            Ladder ladder = makeLadder(playerNames, goalNames, true, false);
+            ladder.build(Height.of(2));
 
-            outputView.printLadder(players, ladder, goals);
+            outputView.printLadder(playerNames.iterator(), ladder.findAllConnectedConditions(), goalNames.iterator());
 
             assertThat(messagePrinter.getMessages())
                     .containsExactly(
@@ -51,15 +51,13 @@ class OutputViewTest {
         @Test
         @DisplayName("옆으로 길게 뻗은 사다리도 만들 수 있다.")
         void givenMultipleNamesAndLadder_thenReturnsLadderMessage() {
-            Players players = Players.ofValues(List.of("참가자1", "참가자2", "참가자3", "참가자4"));
-            Goals goals = Goals.of(4, List.of("골", "탈락", "40000", "3000"));
-            Ladder ladder = Ladder.of(
-                    new FixBooleanGenerator(true, true, false, true, false),
-                    players, goals
-            );
-            ladder.build(Height.of(2), 4);
 
-            outputView.printLadder(players, ladder, goals);
+            List<String> playerNames = List.of("참가자1", "참가자2", "참가자3", "참가자4");
+            List<String> goalNames = List.of("골", "탈락", "40000", "3000");
+            Ladder ladder = makeLadder(playerNames, goalNames, true, true, false, true, false);
+            ladder.build(Height.of(2));
+
+            outputView.printLadder(playerNames.iterator(), ladder.findAllConnectedConditions(), goalNames.iterator());
 
             assertThat(messagePrinter.getMessages())
                     .containsExactly(
@@ -69,6 +67,12 @@ class OutputViewTest {
                             "|     |-----|     |",
                             "골     탈락    40000 3000 "
                     );
+        }
+
+        private Ladder makeLadder(List<String> playerNames, List<String> goalNames, boolean... connectedCondition) {
+            Players players = Players.ofNames(playerNames);
+            Goals goals = Goals.of(players.count(), goalNames);
+            return Ladder.of(new FixBooleanGenerator(connectedCondition), players, goals);
         }
     }
 

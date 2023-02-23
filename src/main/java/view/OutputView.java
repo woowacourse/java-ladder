@@ -1,13 +1,12 @@
 package view;
 
-import domain.Goals;
-import domain.Players;
-import domain.ladder.Ladder;
 import util.MessageGenerator;
 import util.MessagePrinter;
 import view.constant.Sign;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -31,27 +30,27 @@ public class OutputView {
         messagePrinter.println(REQUEST_LADDER_HEIGHT_MESSAGE);
     }
 
-    public void printLadder(final Players players, final Ladder ladder, Goals goals) {
+    public void printLadder(final Iterator<String> playerNames, final Iterator<Iterator<Boolean>> connectedConditions, final Iterator<String> goalNames) {
         printResultMessage();
-        printParticipantNames(players);
-        printGeneratedLadder(ladder.getConnectedToRightConditionsOfAll());
-        printGoals(goals);
+        printParticipantNames(playerNames);
+        printGeneratedLadder(connectedConditions);
+        printGoals(goalNames);
     }
 
-    private void printGoals(Goals goals) {
-        messagePrinter.println(MessageGenerator.generateGoalsMessage(goals));
+    private void printGoals(Iterator<String> goalNames) {
+        messagePrinter.println(MessageGenerator.generateGoalsMessage(goalNames));
     }
 
     private void printResultMessage() {
         messagePrinter.println(RESULT_MESSAGE);
     }
 
-    private void printParticipantNames(final Players players) {
-        messagePrinter.println(MessageGenerator.generateNamesMessage(players));
+    private void printParticipantNames(final Iterator<String> playerNames) {
+        messagePrinter.println(MessageGenerator.generateNamesMessage(playerNames));
     }
 
-    private void printGeneratedLadder(final List<List<Boolean>> ladderInfo) {
-        List<String> ladderMessages = MessageGenerator.generateLadderMessage(ladderInfo);
+    private void printGeneratedLadder(final Iterator<Iterator<Boolean>> connectedConditions) {
+        List<String> ladderMessages = MessageGenerator.generateLadderMessage(connectedConditions);
         for (String ladderMessage : ladderMessages) {
             messagePrinter.println(ladderMessage);
         }
@@ -69,7 +68,16 @@ public class OutputView {
         messagePrinter.println(REQUIRING_NAME_TO_INQUIRE);
     }
 
-    public void printResult(String participantName, String goalName) {
-        messagePrinter.println(String.format("%s : %s", participantName, goalName));
+    public void printResult(Map<String, String> result) {
+        result.forEach((playerName, goalName)
+                -> messagePrinter.println(generatePrintMessage(playerName, goalName)));
+    }
+
+    public void printResult(String playerName, String goalName) {
+        messagePrinter.println(generatePrintMessage(playerName, goalName));
+    }
+
+    private static String generatePrintMessage(String playerName, String goalName) {
+        return String.format("%s : %s", playerName, goalName);
     }
 }
