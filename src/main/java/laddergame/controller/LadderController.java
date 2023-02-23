@@ -67,7 +67,7 @@ public class LadderController {
     private void searchResultItemByNameFrom(NamesWithMatchedResult t) {
         while (true) {
             try {
-                printResultWhileCommandIsNotAll(t);
+                printResultForName(t);
                 return;
             } catch (RuntimeException e) {
                 OutputView.printExceptionMessage(e.getMessage());
@@ -75,7 +75,7 @@ public class LadderController {
         }
     }
 
-    private void printResultWhileCommandIsNotAll(NamesWithMatchedResult namesWithMatchedResult) {
+    private void printResultForName(NamesWithMatchedResult namesWithMatchedResult) {
         while (true) {
             String name = inputView.readNameToCheckResult();
             if (isAll(name)) {
