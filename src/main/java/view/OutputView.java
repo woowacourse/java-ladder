@@ -2,9 +2,9 @@ package view;
 
 import static java.util.stream.Collectors.joining;
 
-import domain.LadderResultRequest;
 import domain.ladder.Ladder;
 import domain.ladder.LadderResult;
+import domain.ladder.LadderResultRequest;
 import domain.ladder.LadderResults;
 import domain.ladder.Line;
 import domain.ladder.LinePoint;

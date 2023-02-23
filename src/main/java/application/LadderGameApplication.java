@@ -1,23 +1,22 @@
 package application;
 
-import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-import domain.LadderResultRequest;
 import domain.ladder.Ladder;
 import domain.ladder.LadderGame;
 import domain.ladder.LadderGenerator;
 import domain.ladder.LadderHeight;
 import domain.ladder.LadderResult;
+import domain.ladder.LadderResultRequest;
 import domain.ladder.LadderResults;
 import domain.player.Name;
 import domain.player.Player;
 import domain.player.Players;
 import domain.player.Position;
 import dto.PlayerLadderResult;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-import java.util.stream.IntStream;
 import view.InputView;
 import view.OutputView;
 
@@ -35,7 +34,7 @@ public class LadderGameApplication {
 
     public void run() {
         Players players = retryIfError(this::createPlayers);
-        LadderHeight ladderHeight = retryIfError(inputView::readLadderHeight);
+        LadderHeight ladderHeight = retryIfError(this::createLadderHeight);
         LadderResults ladderResults = retryIfError(() -> createLadderResults(players.size()));
 
         Ladder ladder = ladderGenerator.generate(players.size(), ladderHeight, ladderResults);
@@ -57,11 +56,26 @@ public class LadderGameApplication {
     }
 
     private Players createPlayers() {
-        List<Name> names = inputView.readNames();
+        List<Name> names = createNames();
 
-        return IntStream.range(0, names.size())
-                .mapToObj(idx -> new Player(names.get(idx), new Position(idx + 1)))
-                .collect(collectingAndThen(toList(), Players::new));
+        List<Player> players = new ArrayList<>();
+        for (int idx = 0; idx < names.size(); idx++) {
+            players.add(new Player(names.get(idx), new Position(idx + 1)));
+        }
+
+        return new Players(players);
+    }
+
+    private List<Name> createNames() {
+        return inputView.readNames()
+                .stream()
+                .map(Name::new)
+                .collect(toList());
+    }
+
+    private LadderHeight createLadderHeight() {
+        int height = inputView.readLadderHeight();
+        return new LadderHeight(height);
     }
 
     private LadderResults createLadderResults(int size) {

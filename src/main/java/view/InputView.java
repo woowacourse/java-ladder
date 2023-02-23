@@ -2,10 +2,8 @@ package view;
 
 import static java.util.stream.Collectors.toList;
 
-import domain.LadderResultRequest;
-import domain.ladder.LadderHeight;
 import domain.ladder.LadderResult;
-import domain.player.Name;
+import domain.ladder.LadderResultRequest;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -19,21 +17,19 @@ public class InputView {
         this.scanner = new Scanner(System.in);
     }
 
-    public List<Name> readNames() {
+    public List<String> readNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
         String rawNames = scanner.nextLine();
         return Arrays.stream(rawNames.split(VALUE_DELIMITER))
                 .map(String::trim)
-                .map(Name::new)
                 .collect(toList());
     }
 
-    public LadderHeight readLadderHeight() {
+    public int readLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
 
-        int height = parseInt(scanner.nextLine());
-        return new LadderHeight(height);
+        return parseInt(scanner.nextLine());
     }
 
     public List<LadderResult> readLadderResults() {
@@ -51,7 +47,7 @@ public class InputView {
         return new LadderResultRequest(scanner.nextLine());
     }
 
-    private static int parseInt(String rawLadderHeight) {
+    private int parseInt(String rawLadderHeight) {
         try {
             return Integer.parseInt(rawLadderHeight);
         } catch (NumberFormatException e) {
