@@ -5,6 +5,7 @@ import laddergame.domain.player.Player;
 import laddergame.domain.player.Players;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Results {
@@ -49,6 +50,6 @@ public class Results {
     }
 
     public List<Result> findAll() {
-        return results;
+        return Collections.unmodifiableList(results);
     }
 }

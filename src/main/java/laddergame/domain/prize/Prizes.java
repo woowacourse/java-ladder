@@ -2,6 +2,7 @@ package laddergame.domain.prize;
 
 import java.util.List;
 
+import static java.util.Collections.unmodifiableList;
 import static java.util.stream.Collectors.toList;
 
 public class Prizes {
@@ -35,7 +36,7 @@ public class Prizes {
     }
 
     public List<Prize> getPrizes() {
-        return prizes;
+        return unmodifiableList(prizes);
     }
 
     public int getMaxPrizeLength() {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toUnmodifiableList;
 
 public class Names {
     private static final int MIN_NUMBER_OF_PLAYERS = 2;
@@ -38,7 +39,7 @@ public class Names {
     public List<String> getNames() {
         return names.stream()
                 .map(Name::getName)
-                .collect(toList());
+                .collect(toUnmodifiableList());
     }
 
     public int getSize() {
