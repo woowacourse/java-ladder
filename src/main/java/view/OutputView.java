@@ -1,7 +1,7 @@
 package view;
 
-import domain.Line;
-import domain.Lines;
+import domain.Floor;
+import domain.Ladder;
 import domain.Name;
 import domain.Names;
 import domain.Result;
@@ -11,10 +11,10 @@ import domain.Rewards;
 public class OutputView {
     private static final String PRINT_ALL_COMMEND = "all";
 
-    public void printLines(Names names, Lines lines, Rewards rewards) {
+    public void printLines(Names names, Ladder ladder, Rewards rewards) {
         System.out.println(Message.OUTPUT_LINES_MESSAGE.message);
         printEachName(names);
-        printEachLine(lines);
+        printEachLine(ladder);
         printEachReward(rewards);
     }
 
@@ -25,11 +25,11 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printEachLine(Lines lines) {
-        for (Line line : lines.getLines()) {
+    private void printEachLine(Ladder ladder) {
+        for (Floor floor : ladder.getLines()) {
             StringBuilder result = new StringBuilder();
             result.append(Message.COLUMN_LADDER.message);
-            line.getLine()
+            floor.getLine()
                     .forEach(isPoint -> result.append(getPointString(isPoint)));
             System.out.println(result);
         }

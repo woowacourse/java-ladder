@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import utils.BooleanGenerator;
 import utils.TrueBooleanGenerator;
 
-public class LinesGameTest {
+public class LadderGameTest {
     public BooleanGenerator booleanGenerator;
 
     @BeforeEach
@@ -18,12 +18,12 @@ public class LinesGameTest {
     @DisplayName("생성된 사다리를 타는 것을 테스트한다.")
     @Test
     void validLinesGameTest() {
-        Lines lines = new Lines(4, 1, booleanGenerator);
-        LinesGame linesGame = new LinesGame(lines.getLines());
+        Ladder ladder = new Ladder(4, 1, booleanGenerator);
+        LadderGame ladderGame = new LadderGame(ladder.getLines());
 
-        Assertions.assertThat(linesGame.getResult(0)).isEqualTo(1);
-        Assertions.assertThat(linesGame.getResult(1)).isEqualTo(0);
-        Assertions.assertThat(linesGame.getResult(2)).isEqualTo(3);
-        Assertions.assertThat(linesGame.getResult(3)).isEqualTo(2);
+        Assertions.assertThat(ladderGame.getResult(0)).isEqualTo(1);
+        Assertions.assertThat(ladderGame.getResult(1)).isEqualTo(0);
+        Assertions.assertThat(ladderGame.getResult(2)).isEqualTo(3);
+        Assertions.assertThat(ladderGame.getResult(3)).isEqualTo(2);
     }
 }

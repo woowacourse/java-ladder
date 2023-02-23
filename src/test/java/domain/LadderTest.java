@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import utils.BooleanGenerator;
 import utils.RandomBooleanGenerator;
 
-public class LinesTest {
+public class LadderTest {
     private static final BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
     private static final int PERSON_NUMBER = 4;
 
@@ -17,7 +17,7 @@ public class LinesTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 99, 100})
     void validHeightTest(int height) {
-        Assertions.assertDoesNotThrow(() -> new Lines(PERSON_NUMBER, height, booleanGenerator));
+        Assertions.assertDoesNotThrow(() -> new Ladder(PERSON_NUMBER, height, booleanGenerator));
     }
 
     @DisplayName("사다리 높이가 1 미만 100 초과인 경우 예외 처리한다.")
@@ -25,7 +25,7 @@ public class LinesTest {
     @ValueSource(ints = {-1, 0, 101, 102})
     void invalidHeightTest(int height) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Lines(PERSON_NUMBER, height, booleanGenerator))
+                .isThrownBy(() -> new Ladder(PERSON_NUMBER, height, booleanGenerator))
                 .withMessageContaining("[ERROR] 1 이상 100 이하의 자연수만 입력해 주세요.");
     }
 }

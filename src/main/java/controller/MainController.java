@@ -1,7 +1,7 @@
 package controller;
 
-import domain.Lines;
-import domain.LinesGame;
+import domain.Ladder;
+import domain.LadderGame;
 import domain.Names;
 import domain.Result;
 import domain.Rewards;
@@ -27,10 +27,10 @@ public class MainController {
         Rewards rewards = inputView.readRewards(names);
         int height = inputView.readHeight();
 
-        Lines lines = new Lines(names.getPersonNumber(), height, booleanGenerator);
-        outputView.printLines(names, lines, rewards);
-        LinesGame linesGame = new LinesGame(lines.getLines());
-        Result result = new Result(names.getNames(), linesGame.getResult(), rewards.getRewards());
+        Ladder ladder = new Ladder(names.getPersonNumber(), height, booleanGenerator);
+        outputView.printLines(names, ladder, rewards);
+        LadderGame ladderGame = new LadderGame(ladder.getLines());
+        Result result = new Result(names.getNames(), ladderGame.getResult(), rewards.getRewards());
 
         showResult(result, names);
     }

@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import utils.BooleanGenerator;
 
-public class Lines {
+public class Ladder {
     private static final int MIN_HEIGHT = 1;
     private static final int MAX_HEIGHT = 100;
 
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Floor> floors = new ArrayList<>();
 
-    public Lines(int personNumber, int height, BooleanGenerator booleanGenerator) {
+    public Ladder(int personNumber, int height, BooleanGenerator booleanGenerator) {
         validateHeight(height);
         for (int i = 0; i < height; i++) {
-            Line line = new Line(personNumber, booleanGenerator);
-            lines.add(line);
+            Floor floor = new Floor(personNumber, booleanGenerator);
+            floors.add(floor);
         }
     }
 
@@ -26,7 +26,7 @@ public class Lines {
         }
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public List<Floor> getLines() {
+        return floors;
     }
 }

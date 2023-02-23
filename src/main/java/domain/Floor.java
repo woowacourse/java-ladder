@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import utils.BooleanGenerator;
 
-public class Line {
+public class Floor {
     private static final int PERSON_NUMBER_LINE_SIZE_DIFFERENCE = 1;
 
     private final BooleanGenerator generator;
     private final List<Boolean> line = new ArrayList<>();
 
-    public Line(int personNumber, BooleanGenerator generator) {
+    public Floor(int personNumber, BooleanGenerator generator) {
         this.generator = generator;
         generateLine(personNumber);
     }
