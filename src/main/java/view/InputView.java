@@ -15,8 +15,7 @@ public class InputView {
     private final String NOT_INTEGER_ERROR_MESSAGE = "사다리의 높이는 숫자여야 합니다.";
     private final String READ_RESULT_COMMAND_MESSAGE = "결과를 보고 싶은 사람은?";
 
-    private final String NAME_DELIMITER = ",";
-    private final String PRIZE_DELIMITER = ",";
+    private final String INPUT_DELIMITER = ",";
     private final Scanner scanner = new Scanner(System.in);
 
     private InputView() {
@@ -29,7 +28,7 @@ public class InputView {
     public List<String> readNames() {
         System.out.println(READ_NAMES_MESSAGE);
         String line = scanner.nextLine();
-        return Parser.parse(line, NAME_DELIMITER);
+        return Parser.parse(line, INPUT_DELIMITER);
     }
 
     public int readHeight() {
@@ -45,7 +44,7 @@ public class InputView {
     public List<String> readPrizes() {
         System.out.println(READ_PRIZES_MESSAGE);
         String line = scanner.nextLine();
-        return Parser.parse(line, PRIZE_DELIMITER);
+        return Parser.parse(line, INPUT_DELIMITER);
     }
 
     public String readResultOfPlayer() {
