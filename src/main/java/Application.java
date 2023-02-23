@@ -12,18 +12,18 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         LadderGame ladderGame = new LadderGame();
-        Person person = inputPerson(ladderGame);
+        People people = inputPeople(ladderGame);
         int ladderHeight = InputView.inputLadderHeight();
 
-        Lines lines = ladderGame.createLines(person.getPerson().size(), ladderHeight);
-        OutputView.printResult(person, lines);
+        Lines lines = ladderGame.createLines(people.getPeople().size(), ladderHeight);
+        OutputView.printResult(people, lines);
     }
 
-    private static Person inputPerson(LadderGame ladderGame){
+    private static People inputPeople(LadderGame ladderGame){
         while (true){
             try {
                 List<String> names = InputView.inputPersonName();
-                return ladderGame.createPerson(names);
+                return ladderGame.createPeople(names);
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }

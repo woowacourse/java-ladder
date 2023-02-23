@@ -12,12 +12,12 @@ import util.RandomValueGenerator;
  */
 public class LadderGame {
 
-    public Person createPerson(List<String> names) {
-        List<People> person = new ArrayList<>();
+    public People createPeople(List<String> names) {
+        List<Person> people = new ArrayList<>();
         for (String name : names) {
-            person.add(new People(name));
+            people.add(new Person(name));
         }
-        return new Person(person);
+        return new People(people);
     }
 
     public Lines createLines(int width, int height) {

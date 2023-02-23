@@ -1,9 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 /**
  * @author 최원용
  * @version 2.0.0
@@ -11,23 +7,23 @@ import java.util.List;
  */
 public class Person {
 
-    private final List<People> person;
+    private final String name;
 
-    public Person(List<People> person) {
-        validatePeopleNumber(person);
-        this.person = person;
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_NAME_LENGTH = 1;
+
+    public Person(String name) {
+        validateNameLength(name);
+        this.name = name;
     }
 
-    private static void validatePeopleNumber(List<People> person){
-        if(person.size() <= 1)
-        throw new IllegalArgumentException("진행자 수는 2명 이상이어야 합니다.");
+    private static void validateNameLength(String name) {
+        if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH) {
+            throw new IllegalArgumentException("이름은 1~" + MAX_NAME_LENGTH + "글자여야 합니다.");
+        }
     }
 
-    public List<People> getPerson() {
-        return Collections.unmodifiableList(person);
-    }
-
-    public int calculateMaxNameLength(){
-        return person.stream().mapToInt(p -> p.getName().length()).max().orElseThrow();
+    public String getName() {
+        return name;
     }
 }

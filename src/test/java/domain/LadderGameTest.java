@@ -23,16 +23,16 @@ class LadderGameTest {
         ladderGame = new LadderGame();
     }
 
-    @DisplayName("이름을 입력 받았을 때 Peoples 객체가 생성되어야 한다.")
+    @DisplayName("이름을 입력 받았을 때 People 객체가 생성되어야 한다.")
     @Test
-    void PEOPLES_객체_생성() {
+    void PEOPLE_객체_생성() {
         List<String> names = List.of("p1", "p2", "p3");
-        Person person = ladderGame.createPerson(names);
+        People people = ladderGame.createPeople(names);
 
         Assertions.assertAll(
                 () -> {
                     for (int i = 0; i < names.size(); i++) {
-                        assertEquals(person.getPerson().get(i).getName(), names.get(i));
+                        assertEquals(people.getPeople().get(i).getName(), names.get(i));
                     }
                 }
         );

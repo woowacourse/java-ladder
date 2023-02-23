@@ -13,18 +13,18 @@ public class OutputView {
 
     private static final String EXECUTE_RESULT = "실행결과";
 
-    public static void printResult(Person person, Lines lines) {
+    public static void printResult(People people, Lines lines) {
         System.out.println("\n" + EXECUTE_RESULT + "\n");
-        int maxLength = person.calculateMaxNameLength();
-        printNames(person, maxLength);
+        int maxLength = people.calculateMaxNameLength();
+        printNames(people, maxLength);
         printLadder(lines, maxLength);
     }
 
-    private static void printNames(Person person, int maxLength) {
+    private static void printNames(People people, int maxLength) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (People people : person.getPerson()) {
-            stringBuilder.append(align(people.getName(), maxLength));
+        for (Person person : people.getPeople()) {
+            stringBuilder.append(align(person.getName(), maxLength));
         }
 
         System.out.println(stringBuilder);
