@@ -20,4 +20,16 @@ public class LadderGameTest {
 
         Assertions.assertDoesNotThrow(() -> new LadderGame(names, results, height));
     }
+
+    @Test
+    @DisplayName("실행 결과의 수가 참여자의 수와 다르면 예외를 던진다.")
+    void validateResultsSizeTest() {
+        List<String> names = List.of("pobi", "crong", "seong", "haddy");
+        List<String> results = List.of("꽝", "5000", "꽝", "3000", "6000");
+        int height = 5;
+
+        assertThatThrownBy(() -> new LadderGame(names, results, height))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 실행 결과의 수는 참여자의 수와 같아야합니다.");
+    }
 }
