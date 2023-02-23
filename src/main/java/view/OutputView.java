@@ -24,7 +24,9 @@ public class OutputView {
         System.out.println(RESULT_ANNOUNCEMENT);
         printValues(names.stream().map(Name::getValue).collect(Collectors.toList()));
         printLadder(ladder,
-            names.stream().map(name -> name.getValue().length()).max(Comparator.naturalOrder())
+            names.stream()
+                .map(name -> name.getValue().length())
+                .max(Comparator.naturalOrder())
                 .orElse(INTERVAL_UNIT));
         printValues(results.stream().map(Result::getValue).collect(Collectors.toList()));
     }
@@ -42,7 +44,8 @@ public class OutputView {
     }
 
     private void printLadder(Ladder ladder, int lineLength) {
-        ladder.getLayers().forEach(layer -> printLayer(layer, lineLength));
+        ladder.getLayers()
+            .forEach(layer -> printLayer(layer, lineLength));
     }
 
     private void printLayer(Layer layer, int lineLength) {
