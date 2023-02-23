@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import laddergame.domain.ladder.GameResult;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.LadderHeight;
+import laddergame.domain.ladder.Result;
 import laddergame.domain.ladder.line.LineWidth;
 import laddergame.domain.players.Player;
 import laddergame.domain.players.Players;
@@ -33,7 +34,10 @@ public class LadderGame {
     }
 
     public void generateLadder(int height, List<String> results) {
-        this.ladder = Ladder.of(new LineWidth(players.size()), new LadderHeight(height), results);
+        List<Result> ladderResults = results.stream()
+                .map(Result::new)
+                .collect(Collectors.toList());
+        this.ladder = Ladder.of(new LineWidth(players.size()), new LadderHeight(height), ladderResults);
     }
 
     public GameResult computeResult() {
@@ -56,7 +60,8 @@ public class LadderGame {
 
     private String findResultByPlayerName(String playerName) {
         int startIndex = players.indexOf(playerName);
-        return ladder.findResultByStartIndex(startIndex);
+        Result found = ladder.findResultByStartIndex(startIndex);
+        return found.getValue();
     }
 
     public List<String> playerNames() {

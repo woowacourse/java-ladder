@@ -6,22 +6,22 @@ import laddergame.domain.util.IndexValidator;
 
 public class Destination {
 
-    private final List<String> destination;
+    private final List<Result> results;
 
-    public Destination(List<String> destination) {
-        this.destination = destination;
+    public Destination(List<Result> results) {
+        this.results = results;
     }
 
     public int size() {
-        return destination.size();
+        return results.size();
     }
 
-    public String get(int index) {
-        IndexValidator.validateBounds(index, destination.size(), "주어진 위치가 종착지 정보의 개수보다 큽니다.");
-        return destination.get(index);
+    public Result get(int index) {
+        IndexValidator.validateBounds(index, results.size(), "주어진 위치가 종착지 정보의 개수보다 큽니다.");
+        return results.get(index);
     }
 
-    public List<String> results() {
-        return new ArrayList<>(destination);
+    public List<Result> results() {
+        return new ArrayList<>(results);
     }
 }

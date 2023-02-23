@@ -24,18 +24,6 @@ public class LadderLines {
         return new LadderLines(generated);
     }
 
-    public List<Line> toLines() {
-        return new ArrayList<>(lines);
-    }
-
-    public int height() {
-        return lines.size();
-    }
-
-    public int width() {
-        return lines.get(0).size();
-    }
-
     public int findDestinationIndex(int startIndex) {
         int index = startIndex;
         for (Line line : lines) {
@@ -43,5 +31,18 @@ public class LadderLines {
             index = nextDirection.computeNextIndex(index);
         }
         return index;
+    }
+
+    public int height() {
+        return lines.size();
+    }
+
+    public int width() {
+        Line firstLine = lines.get(0);
+        return firstLine.size();
+    }
+
+    public List<Line> toLines() {
+        return new ArrayList<>(lines);
     }
 }

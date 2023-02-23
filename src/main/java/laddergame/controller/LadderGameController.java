@@ -37,7 +37,7 @@ public class LadderGameController {
 
     private void showLadderResult(Ladder ladder) {
         gameStatus = GameStatus.PLAYED;
-        OutputView.showLadderResult(game.playerNames(), ladder.toLines(), ladder.toResults());
+        OutputView.showLadderResult(game.playerNames(), ladder.toLadderLines(), ladder.toResults());
     }
 
     private void showGameResult(GameResult gameResult, String keyword) {

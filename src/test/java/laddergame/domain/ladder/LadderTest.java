@@ -20,7 +20,7 @@ class LadderTest {
     @Test
     @DisplayName("결과의 개수가 라인의 폭이 같지 않으면 예외를 던진다.")
     void should_ThrowException_When_DestinationSizeNotEqualWithPlayersCount() {
-        List<String> wrongResults = List.of("실패");
+        List<Result> wrongResults = List.of(new Result("실패"));
         assertThatThrownBy(() -> Ladder.of(DEFAULT_WIDTH, DEFAULT_HEIGHT, wrongResults))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("결과의 개수와 라인의 폭(3)은 일치해야 합니다.");
@@ -29,10 +29,10 @@ class LadderTest {
     @Test
     @DisplayName("출발지에 따른 종착지 위치의 결과를 반환한다.")
     void should_ReturnResult_When_GivenStartIndex() {
-        List<String> results = List.of("a", "b", "c");
+        List<Result> results = List.of(new Result("a"), new Result("b"), new Result("c"));
         Ladder ladder = Ladder.of(DEFAULT_WIDTH, DEFAULT_HEIGHT, results);
 
-        List<String> foundResults = new ArrayList<>();
+        List<Result> foundResults = new ArrayList<>();
         for (int i = 0; i < DEFAULT_WIDTH.get(); i++) {
             foundResults.add(ladder.findResultByStartIndex(i));
         }
