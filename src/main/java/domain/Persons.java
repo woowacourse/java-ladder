@@ -1,7 +1,6 @@
 package domain;
 
 import exception.ErrorCode;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,13 +35,6 @@ public class Persons {
         return new Persons(persons);
     }
 
-    public int getLongestPersonNameLength() {
-        List<Integer> namesLength = getAllPersonName().stream()
-                .map(String::length)
-                .collect(Collectors.toList());
-        return Collections.max(namesLength);
-    }
-
     public int getTotalPersonCount() {
         return persons.size();
     }
@@ -57,5 +49,14 @@ public class Persons {
         return persons.stream()
                 .map(Person::getPosition)
                 .collect(Collectors.toList());
+    }
+
+    public String findPersonNameInPosition(int position) {
+        for (Person person : persons) {
+            if (position == person.getPosition()) {
+                return person.getName();
+            }
+        }
+        return null;
     }
 }
