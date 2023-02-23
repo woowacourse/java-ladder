@@ -1,9 +1,12 @@
 package controller;
 
 import java.util.List;
+import java.util.Map;
 
 import domain.Ladder;
+import domain.LadderGame;
 import domain.Players;
+import domain.Prize;
 import domain.numbergenerator.NumberGenerator;
 import utils.Command;
 import utils.LogType;
@@ -16,7 +19,6 @@ public class LadderController {
     private final OutputView outputView;
     private final NumberGenerator numberGenerator;
 
-
     public LadderController(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
@@ -25,9 +27,15 @@ public class LadderController {
 
     public void run() {
         Players players = generatePlayers();
-        Ladder ladder = generateLadder(players.getPlayerSize());
+        int playerCount = players.getPlayerSize();
+        Ladder ladder = generateLadder(playerCount);
+        Prize prize = generatePrize(playerCount);
+        LadderGame ladderGame = new LadderGame(ladder, players, prize);
+        Map<String, String> result = ladderGame.run();
         outputView.printNames(players);
         outputView.printLadder(ladder);
+        outputView.printPrizes(prize);
+
     }
 
     private Players generatePlayers() {
@@ -41,6 +49,12 @@ public class LadderController {
         }
     }
 
+    private void validateCommandNames(List<String> names) {
+        if (Command.isIn(names)) {
+            throw new IllegalArgumentException("사다리 게임 참여자의 이름은 결과 검색 명령어와는 달라야합니다.");
+        }
+    }
+
     private Ladder generateLadder(int personCount) {
         try {
             int height = inputView.readHeight();
@@ -51,9 +65,13 @@ public class LadderController {
         }
     }
 
-    private void validateCommandNames(List<String> names) {
-        if (Command.isIn(names)) {
-            throw new IllegalArgumentException("사다리 게임 참여자의 이름은 결과 검색 명령어와는 달라야합니다.");
+    private Prize generatePrize(int playerCount) {
+        try {
+            List<String> prizes = inputView.readPrizes();
+            return new Prize(prizes, playerCount);
+        } catch (IllegalArgumentException exception) {
+            LogType.ERROR_MESSAGE.log(exception.getMessage());
+            return generatePrize(playerCount);
         }
     }
 }
