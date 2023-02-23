@@ -1,7 +1,6 @@
 package controller;
 
 import domain.*;
-import exception.NotFindPersonException;
 import util.BooleanGenerator;
 import view.input.InputView;
 import view.output.OutputView;
