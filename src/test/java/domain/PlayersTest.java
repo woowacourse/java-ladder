@@ -1,7 +1,6 @@
 package domain;
 
 import org.junit.jupiter.api.*;
-import view.InputView;
 
 import java.util.ArrayList;
 import java.util.List;

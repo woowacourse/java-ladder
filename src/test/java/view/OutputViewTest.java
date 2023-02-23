@@ -21,7 +21,7 @@ public class OutputViewTest {
 
     @BeforeAll
     static void initSetting() {
-        nameList = new ArrayList<>(List.of("judy","ako", "pobi"));
+        nameList = new ArrayList<>(List.of("judy", "ako", "pobi"));
 
         Player judy = new Player("judy");
         Player ako = new Player("ako");

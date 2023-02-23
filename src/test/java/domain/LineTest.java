@@ -2,7 +2,6 @@ package domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
-import view.InputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +15,9 @@ public class LineTest {
 
     @BeforeAll
     void initSetting() {
-        List<String> nameList = new ArrayList<>(List.of("judy","ako", "pobi"));
+        List<String> nameList = new ArrayList<>(List.of("judy", "ako", "pobi"));
 
-        players = new Players(new PlayerNames (nameList));
+        players = new Players(new PlayerNames(nameList));
     }
 
     @Test
