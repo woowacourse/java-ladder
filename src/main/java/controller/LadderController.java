@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 public class LadderController {
     private static final String END_ORDER = "end";
     private static final String ALL_ORDER = "all";
+    private static final int WIDTH_PLAYERS_DIFFERENCE = 1;
     private final InputView inputView;
     private final OutputView outputView;
     private final LadderMaker ladderMaker;
@@ -43,13 +44,13 @@ public class LadderController {
         makePlayers();
         goods = makeGoods(players.size());
         int height = inputView.inputLadderHeight();
-        ladder = ladderMaker.make(new Height(height), new Width(players.size() - 1));
+        ladder = ladderMaker.make(new Height(height), new Width(players.size() - WIDTH_PLAYERS_DIFFERENCE));
         outputView.printResult(players.getPlayersName(), ladder);
         outputView.printNames(goods.getGoodsNames());
     }
 
     private void playGame() {
-        LadderGame ladderGame = new LadderGame(players.size() - 1);
+        LadderGame ladderGame = new LadderGame(ladder.getLineCountInt());
         ladderGame.playLadderGame(players, ladder);
     }
 
