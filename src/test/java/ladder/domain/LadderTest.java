@@ -54,7 +54,7 @@ class LadderTest {
         assertThat(ladder.getLadderIndexResult(0))
                 .isEqualTo(2);
         assertThat(ladder.getLadderIndexResult(1))
-                .isEqualTo(0);
+                .isZero();
         assertThat(ladder.getLadderIndexResult(2))
                 .isEqualTo(3);
         assertThat(ladder.getLadderIndexResult(3))

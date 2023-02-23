@@ -48,8 +48,8 @@ class LadderServiceTest {
         Ladder ladder = ladderService.createLadder(height, createPlayers(5));
 
         // then
-        assertThat(ladder.getLines().size())
-                .isEqualTo(5);
+        assertThat(ladder.getLines())
+                .hasSize(5);
     }
 
     @Test
