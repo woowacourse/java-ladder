@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class Line {
 
-    private final List<FootStep> footSteps = new ArrayList<>();
+    private final List<Step> footSteps = new ArrayList<>();
     private final BooleanGenerator generator;
 
     public Line(final BooleanGenerator generator) {
@@ -28,23 +28,23 @@ public class Line {
 
     public void generateFootStep() {
         if (!isStartEdge()) {
-            FootStep previous = getPreviousFootStep();
+            Step previous = getPreviousFootStep();
             addFootStep(previous.isSteppable());
             return;
         }
         addFootStep(false);
     }
 
-    private FootStep getPreviousFootStep() {
+    private Step getPreviousFootStep() {
         return this.footSteps.get(this.footSteps.size() - 1);
     }
 
     private void addFootStep(final boolean isPreviousFootStepSteppable) {
         if (isPreviousFootStepSteppable) {
-            this.footSteps.add(new FootStep(false));
+            this.footSteps.add(new Step(false));
             return;
         }
-        this.footSteps.add(new FootStep(generator.generate()));
+        this.footSteps.add(new Step(generator.generate()));
     }
 
     private boolean isStartEdge() {
@@ -61,7 +61,7 @@ public class Line {
 
     public List<Boolean> getValue(){
         return List.copyOf(footSteps.stream()
-                .map(FootStep::isSteppable)
+                .map(Step::isSteppable)
                 .collect(Collectors.toList()));
     }
 

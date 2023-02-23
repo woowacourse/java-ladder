@@ -1,9 +1,9 @@
 package domain;
 
-public class FootStep {
+public class Step {
     private final boolean steppable;
 
-    public FootStep(final boolean steppable) {
+    public Step(final boolean steppable) {
         this.steppable = steppable;
     }
 
