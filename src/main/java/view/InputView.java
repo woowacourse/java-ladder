@@ -7,15 +7,25 @@ import java.util.stream.Collectors;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final String NAME_INPUT_NOTICE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String PLAYER_NAME_INPUT_NOTICE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String PIRZE_INPUT_NOTICE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String DELIMITER = ",";
     private static final String LADDER_HEIGHT_INPUT_NOTICE = "최대 사다리 높이는 몇 개인가요?";
     private static final String NOT_INTEGER_MESSAGE = "숫자가 아닙니다.";
 
     public List<String> readPlayerNames() {
-        System.out.println(NAME_INPUT_NOTICE);
-        String[] names = readInput().split(DELIMITER);
-        return Arrays.stream(names)
+        System.out.println(PLAYER_NAME_INPUT_NOTICE);
+        return readCsv();
+    }
+
+    public List<String> readPrizeNames() {
+        System.out.println(PIRZE_INPUT_NOTICE);
+        return readCsv();
+    }
+
+    private List<String> readCsv() {
+        String[] csv = readInput().split(DELIMITER);
+        return Arrays.stream(csv)
                 .map(String::trim)
                 .collect(Collectors.toList());
     }
@@ -32,5 +42,6 @@ public class InputView {
             throw new IllegalArgumentException(NOT_INTEGER_MESSAGE);
         }
     }
+
 
 }
