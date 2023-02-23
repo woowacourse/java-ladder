@@ -4,17 +4,17 @@ import java.util.Arrays;
 
 public enum Direction {
 
-    LEFT(-1, "-----"),
-    STAY(0, "     "),
-    RIGHT(1, "     "),
+    LEFT(-1, true),
+    STAY(0, false),
+    RIGHT(1, false),
     ;
 
     private final int value;
-    private final String foothold;
+    private final boolean footholdStatus;
 
-    Direction(final int value, final String foothold) {
+    Direction(final int value, final boolean footholdStatus) {
         this.value = value;
-        this.foothold = foothold;
+        this.footholdStatus = footholdStatus;
     }
 
     public static Direction from(final int value) {
@@ -28,7 +28,7 @@ public enum Direction {
         return value;
     }
 
-    public String getFoothold() {
-        return foothold;
+    public boolean getFootholdStatus() {
+        return footholdStatus;
     }
 }

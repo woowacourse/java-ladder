@@ -17,6 +17,8 @@ public class OutputView {
     private static final String LINE_BREAK = System.lineSeparator();
     private static final String EXECUTION_RESULT = "실행 결과";
     private static final String LADDER = "|";
+    private static final String FOOTHOLD = "-----";
+    private static final String EMPTY_FOOTHOLD = "     ";
 
     public void printLadderGame(final Players players, final Ladder ladder, final Prizes prizes) {
         System.out.println(LINE_BREAK + "사다리 결과" + LINE_BREAK);
@@ -54,10 +56,17 @@ public class OutputView {
         final StringJoiner joiner = new StringJoiner(LADDER, "", LADDER);
 
         for (final Direction direction : directions) {
-            joiner.add(direction.getFoothold());
+            joiner.add(drawFootHold(direction));
         }
 
         return joiner.toString();
+    }
+
+    private String drawFootHold(final Direction direction) {
+        if (direction.getFootholdStatus()) {
+            return FOOTHOLD;
+        }
+        return EMPTY_FOOTHOLD;
     }
 
     private void printPrizeNames(final Prizes prizes) {
