@@ -3,6 +3,7 @@ package ladder.validator;
 import java.util.Objects;
 
 public class CommonValidator {
+
     public static void validate(String input) {
         validateBlank(input);
     }

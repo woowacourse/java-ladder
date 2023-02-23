@@ -26,7 +26,6 @@ public class Results {
         return splitResults;
     }
 
-
     private void validateRange(int resultSize, int peopleSize) {
         if (resultSize != peopleSize) {
             throw new IllegalArgumentException("사람 수와 결과의 개수가 같아야 합니다.");

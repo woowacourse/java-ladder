@@ -1,7 +1,6 @@
 package ladder.domain.people;
 
 public class Position {
-
     private int position;
 
     public Position(int position) {
