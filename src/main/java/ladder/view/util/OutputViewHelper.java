@@ -3,7 +3,6 @@ package ladder.view.util;
 import ladder.domain.ladder.Bar;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
-import ladder.view.OutputView;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,9 +18,6 @@ public class OutputViewHelper {
     }
 
     private static String parseDisplayInputString(List<String> inputString, int stringIndex) {
-        if (stringIndex == 0) {
-            return inputString.get(stringIndex);
-        }
         return String.format("%6s", inputString.get(stringIndex));
     }
 
