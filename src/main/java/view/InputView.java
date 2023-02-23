@@ -27,4 +27,8 @@ public class InputView {
     public List<Result> readResults(int playerCount) {
         return ResultFactory.create(playerCount, scanner.nextLine());
     }
+
+    public Name readDesirousResultName() {
+        return new Name(scanner.nextLine());
+    }
 }
