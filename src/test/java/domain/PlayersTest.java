@@ -22,4 +22,13 @@ public class PlayersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Players.DUPLICATE_NAME_ERROR);
     }
+
+    @Test
+    @DisplayName("존재하지 않는 TargetPlayer를 입력시 예외 발생")
+    void validateTargetPlayer() {
+        Players players = new Players(List.of("a", "b", "c"));
+        Assertions.assertThatThrownBy(() -> players.validateTargetPlayer("d"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Players.TARGET_PLAYER_EXIST_ERROR);
+    }
 }
