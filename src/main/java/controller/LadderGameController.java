@@ -2,8 +2,10 @@ package controller;
 
 import domain.Command;
 import domain.Height;
+import domain.Player;
 import domain.Players;
 import domain.Results;
+import domain.Reward;
 import domain.Rewards;
 import domain.ladder.Ladder;
 import domain.ladder.LadderGame;
@@ -45,9 +47,9 @@ public class LadderGameController {
 
     private void printLadderInitialState(Players players, Ladder ladder, Rewards rewards) {
         outputView.printLadderResultPrefix();
-        outputView.printPlayerNames(players);
+        outputView.printNames(players.getPlayers(), Player::getName);
         outputView.printLadder(ladder);
-        outputView.printRewardNames(rewards);
+        outputView.printNames(rewards.getRewards(), Reward::getName);
     }
 
     public void printError(Exception exception) {

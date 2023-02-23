@@ -1,14 +1,13 @@
 package view;
 
 import domain.Direction;
-import domain.Player;
-import domain.Players;
 import domain.Point;
 import domain.Result;
 import domain.Results;
-import domain.Reward;
-import domain.Rewards;
 import domain.ladder.Ladder;
+
+import java.util.List;
+import java.util.function.Function;
 
 public class OutputView {
 
@@ -27,21 +26,29 @@ public class OutputView {
         System.out.println(LADDER_RESULT_PREFIX_MESSAGE);
     }
 
-    public void printPlayerNames(Players players) {
-        for (Player player : players.getPlayers()) {
-            System.out.print(formatName(player.getName()) + BLANK);
+    public <T, R> void printNames(List<T> t, Function<T, R> function) {
+        for (T element : t) {
+            System.out.print(formatName((String) function.apply(element)) + BLANK);
         }
 
         breakLine();
     }
 
-    public void printRewardNames(Rewards rewards) {
-        for (Reward reward : rewards.getRewards()) {
-            System.out.print(formatName(reward.getName()) + BLANK);
-        }
-
-        breakLine();
-    }
+//    public void printPlayerNames(Players players) {
+//        for (Player player : players.getPlayers()) {
+//            System.out.print(formatName(player.getName()) + BLANK);
+//        }
+//
+//        breakLine();
+//    }
+//
+//    public void printRewardNames(Rewards rewards) {
+//        for (Reward reward : rewards.getRewards()) {
+//            System.out.print(formatName(reward.getName()) + BLANK);
+//        }
+//
+//        breakLine();
+//    }
 
     public void printResult(Results results) {
         System.out.println(RESULT_PREFIX_MESSAGE);
