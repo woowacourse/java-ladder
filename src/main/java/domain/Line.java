@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -54,6 +55,6 @@ public class Line {
     }
 
     public List<Boolean> getMovements() {
-        return movements;
+        return Collections.unmodifiableList(movements);
     }
 }
