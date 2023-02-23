@@ -24,7 +24,7 @@ public class RandomLadderGenerator implements LadderGenerator{
         return new Line(line);
     }
 
-    private Bridge generateBridge(List<Bridge> result) {
+    private Bridge generateBridge(final List<Bridge> result) {
         if (result.isEmpty() || !result.get(result.size() - 1).isExist()) {
             return Bridge.from(random.nextBoolean());
         }

@@ -30,7 +30,7 @@ public class InputView {
         }
     }
 
-    public List<String> inputResult(int userCount) {
+    public List<String> inputResult(final int userCount) {
         System.out.println(RESULT_INPUT_GUIDE_MESSAGE);
         List<String> result = Arrays.asList(sc.nextLine().split(RESULT_SPLIT_CHARACTER));
         if (result.size() != userCount) {

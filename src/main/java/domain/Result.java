@@ -8,7 +8,7 @@ import java.util.Map;
 public class Result {
     private final Map<String, String> result;
 
-    public Result(List<String> inputResult, Map<String, Integer> ladderGameResult) {
+    public Result(final List<String> inputResult, final Map<String, Integer> ladderGameResult) {
         result = new LinkedHashMap<>();
         for (String user : ladderGameResult.keySet()) {
             int finalPosition = ladderGameResult.get(user);
@@ -16,7 +16,7 @@ public class Result {
         }
     }
 
-    public String getUserResult(String userName) {
+    public String getUserResult(final String userName) {
         return result.get(userName);
     }
 

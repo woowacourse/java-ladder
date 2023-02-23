@@ -11,12 +11,12 @@ public class Users {
     private static final String INVALID_USER_COUNT_MESSAGE = "유저는 2~10명 까지만 가능합니다.";
     private final List<User> users;
 
-    public Users(List<User> users) {
+    public Users(final List<User> users) {
         validateUserCount(users);
         this.users = users;
     }
 
-    private void validateUserCount(List<User> users) {
+    private void validateUserCount(final List<User> users) {
         if (users.size() < USER_COUNT_MIN_RANGE || users.size() > USER_COUNT_MAX_RANGE) {
             throw new IllegalArgumentException(INVALID_USER_COUNT_MESSAGE);
         }

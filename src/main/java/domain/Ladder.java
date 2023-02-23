@@ -8,11 +8,11 @@ import java.util.Map;
 public class Ladder {
     private final List<Line> ladder;
 
-    public Ladder(Height height, Width width, LadderGenerator randomLadderGenerator) {
+    public Ladder(final Height height, final Width width, final LadderGenerator randomLadderGenerator) {
         this.ladder = randomLadderGenerator.generate(width, height);
     }
 
-    public Map<String, Integer> play(Users users) {
+    public Map<String, Integer> play(final Users users) {
         int startPosition = 0;
         Map<String, Integer> result = new HashMap<>();
         for (User user : users.getUsers()) {

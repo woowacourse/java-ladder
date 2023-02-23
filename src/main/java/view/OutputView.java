@@ -14,14 +14,14 @@ public class OutputView {
     private static final String USER_NAME_FORMAT = "%5s ";
     private static final String BRIDGE_DELIMITER = "|";
 
-    public void printUsers(UsersDTO usersDTO) {
+    public void printUsers(final UsersDTO usersDTO) {
         System.out.println(RESULT_MESSAGE);
         usersDTO.getUsersDTO()
                 .forEach(user -> System.out.printf(USER_NAME_FORMAT, user));
         System.out.println();
     }
 
-    public void printLadder(LineDTO lineDTO) {
+    public void printLadder(final LineDTO lineDTO) {
         String collect = lineDTO.getLine().stream()
                 .map(Bridge::getFormat)
                 .collect(Collectors.joining(BRIDGE_DELIMITER));
@@ -34,7 +34,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printExceptionMessage(String errorMessage) {
+    public void printExceptionMessage(final String errorMessage) {
         System.out.println(errorMessage);
     }
 }
