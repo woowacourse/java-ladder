@@ -43,13 +43,13 @@ public class OutputView {
     }
 
     private static void printFormatted(final String value) {
-        System.out.print(BLANK_SPACE.repeat(ONE_BLOCK_SIZE - calculateBlank(value)));
+        System.out.print(BLANK_SPACE.repeat(ONE_BLOCK_SIZE - calculateSizeOf(value)));
         System.out.printf("%s", value);
     }
 
-    private static int calculateBlank(String user) {
+    private static int calculateSizeOf(String data) {
         double userNameSpan = INIT_SPAN;
-        for (Character word : user.toCharArray()) {
+        for (Character word : data.toCharArray()) {
             userNameSpan += userNameSpanSize(word);
         }
         return (int) (userNameSpan);

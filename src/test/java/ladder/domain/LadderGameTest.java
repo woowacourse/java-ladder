@@ -84,7 +84,7 @@ class LadderGameTest {
     }
 
     @Test
-    @DisplayName("사디레 게임에게 게임 결과를 반환하게하면 사다리 게임의 전체 결과를 반환한다.")
+    @DisplayName("사다리 게임에게 게임 결과를 반환하게하면 사다리 게임의 전체 결과를 반환한다.")
     void getRewardOfAllTest() {
         assertThat(DEFAULT_LADDER_GAME.getGameResult())
                 .isInstanceOf(BridgeGameResult.class);
@@ -116,7 +116,7 @@ class LadderGameTest {
     }
 
     @Test
-    @DisplayName("꼬인 사다리 게임 결과 반환 값 테스트")
+    @DisplayName("다리가 이어진 사다리 게임 결과 반환 값 테스트")
     void getRewardOfAllValueTest2() {
         final Ladder ladder = new Ladder(3, DEFAULT_USERS);
         ladder.makeFloors(new TestLineSourceGenerator(List.of(
