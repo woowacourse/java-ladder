@@ -36,7 +36,7 @@ public class LadderGameController {
         LadderGame ladderGame = new LadderGame(players, rewards, ladder);
         ladderGame.start();
         List<String> playerNames = players.getPlayers().stream().map(Player::getName).collect(Collectors.toList());
-        outputView.printResult(playerNames, ladder.getLines(), players.getMaxPlayerNameLength());
+        outputView.printResult(playerNames, ladder.getLines(), players.getMaxPlayerNameLength(), rewards.getRewards());
         showLadderRunResult(playerNames, players);
     }
 

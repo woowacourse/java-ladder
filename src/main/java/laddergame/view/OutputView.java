@@ -15,10 +15,12 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printResult(List<String> playersName, List<Line> lines, int maxPlayerNameLength) {
+    public void printResult(List<String> playersName, List<Line> lines, int maxPlayerNameLength, List<String> rewards) {
         playersName.forEach(name -> System.out.printf("%" + maxPlayerNameLength + "s ", name));
         System.out.println();
         lines.forEach(line -> System.out.println(changeFormat(line, maxPlayerNameLength)));
+        rewards.forEach(reward -> System.out.printf("%" + maxPlayerNameLength + "s ", reward));
+        System.out.println();
     }
 
     public void printErrormessage(String errorMessage) {
