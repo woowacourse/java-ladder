@@ -18,13 +18,17 @@ public class InputView {
 
 	public static List<String> readParticipantsNames() {
 		System.out.println(PARTICIPANTS_NAMES_REQUEST_MSG);
+		return parseListFromInput();
+	}
+
+	private static List<String> parseListFromInput() {
 		String line = scanner.nextLine();
 		System.out.println();
 		validateLastComma(line);
-		String[] names = line.split(DELIMITER);
-		validateNameNum(names);
-		return Arrays.stream(names)
-				.map(name -> name.trim())
+		String[] items = line.split(DELIMITER);
+		validateListLength(items);
+		return Arrays.stream(items)
+				.map(String::trim)
 				.collect(Collectors.toList());
 	}
 
@@ -34,8 +38,8 @@ public class InputView {
 		}
 	}
 
-	private static void validateNameNum(String[] names) {
-		if (names.length <= 1) {
+	private static void validateListLength(String[] items) {
+		if (items.length <= 1) {
 			throw new IllegalArgumentException(NAME_NUMBER_ERROR_MSG);
 		}
 	}
