@@ -90,4 +90,13 @@ public class LadderGameTest {
         assertThat(position.getIndex()).isEqualTo(resultIndex);
     }
 
+    @DisplayName("플레이어의 이름을 통해 사다리 최종 위치를 반환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"a,0", "b,2", "c,3", "d,1"})
+    void get_result_of_player(String name, int expected) {
+        int result = ladderGame.getResultIndex(name);
+
+        assertThat(result).isEqualTo(expected);
+    }
+    
 }
