@@ -38,12 +38,12 @@ public class LadderGame {
     }
 
     private void goDownOneLine(Player player, Line line) {
-        if (player.getPosition().getValue() < players.size() - 1 && line.doesRungExistsIndexOf(
+        if (player.getPosition().getValue() < players.size() - 1 && line.isPointFilledAt(
                 player.getPosition().getValue())) {
             player.moveRight();
             return;
         }
-        if (player.getPosition().getValue() > 0 && line.doesRungExistsIndexOf(
+        if (player.getPosition().getValue() > 0 && line.isPointFilledAt(
                 player.getPosition().getValue() - 1)) {
             player.moveLeft();
         }

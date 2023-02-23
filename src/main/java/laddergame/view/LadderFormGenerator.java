@@ -1,17 +1,21 @@
 package laddergame.view;
 
+import static laddergame.domain.Point.FILLED;
+
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import laddergame.domain.LadderResult;
 import laddergame.domain.LadderResultItem;
 import laddergame.domain.Line;
 import laddergame.domain.PersonalName;
 import laddergame.domain.PersonalNames;
+import laddergame.domain.Point;
 
 public class LadderFormGenerator {
-    private final String LADDER_ROW_RUNG = "-";
+    private final String LADDER_ROW_FILLED = "-";
     private final String LADDER_ROW_EMPTY = " ";
     private final String LADDER_COL = "|";
 
@@ -52,24 +56,24 @@ public class LadderFormGenerator {
         lines.forEach(line -> {
             ladderBuilder.append(LADDER_ROW_EMPTY.repeat(rungLength));
             ladderBuilder.append(LADDER_COL);
-            ladderBuilder.append(joinUnitsOfRowFrom(line.getRungExistsAtEachColumn()));
+            ladderBuilder.append(joinUnitsOfRowFrom(line.getPoints()));
             ladderBuilder.append(System.lineSeparator());
         });
         return ladderBuilder.toString();
     }
 
-    private String joinUnitsOfRowFrom(final List<Boolean> rungExistsAtEachColumn) {
+    private String joinUnitsOfRowFrom(final List<Point> points) {
         final StringBuilder rowBuilder = new StringBuilder();
-        rungExistsAtEachColumn.forEach(rungExists -> {
+        points.forEach(rungExists -> {
             rowBuilder.append(getRowDisplayUnitOf(rungExists).repeat(rungLength));
             rowBuilder.append(LADDER_COL);
         });
         return rowBuilder.toString();
     }
 
-    private String getRowDisplayUnitOf(boolean rungExistsAtColumn) {
-        if (rungExistsAtColumn) {
-            return LADDER_ROW_RUNG;
+    private String getRowDisplayUnitOf(Point point) {
+        if (point.equals(FILLED)) {
+            return LADDER_ROW_FILLED;
         }
         return LADDER_ROW_EMPTY;
     }

@@ -64,7 +64,7 @@ class LineTest {
         List<Boolean> values = List.of(true, false, true);
         Line line = new Line(values);
         //when
-        boolean value = line.doesRungExistsIndexOf(index);
+        boolean value = line.isPointFilledAt(index);
         Assertions.assertThat(value).isEqualTo(values.get(index));
     }
 
@@ -76,7 +76,7 @@ class LineTest {
         List<Boolean> values = List.of(true, false, true);
         Line line = new Line(values);
         //when
-        assertThatThrownBy(() -> line.doesRungExistsIndexOf(index))
+        assertThatThrownBy(() -> line.isPointFilledAt(index))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -1,14 +1,19 @@
 package laddergame.domain;
 
+import static laddergame.domain.Point.of;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class Line {
-    private final List<Boolean> rungExistsAtEachColumn;
+    private final List<Point> points = new ArrayList<>();
 
-    public Line(final List<Boolean> rungExistsAtColumn) {
-        validate(rungExistsAtColumn);
-        this.rungExistsAtEachColumn = rungExistsAtColumn;
+    public Line(final List<Boolean> rungExistsAtPoint) {
+        validate(rungExistsAtPoint);
+        for (final Boolean isFilled : rungExistsAtPoint) {
+            points.add(of(isFilled));
+        }
     }
 
     private void validate(final List<Boolean> points) {
@@ -25,14 +30,15 @@ public class Line {
                 .anyMatch(pointIndex -> rungExistsAtColumn.get(pointIndex) && rungExistsAtColumn.get(pointIndex + 1));
     }
 
-    public List<Boolean> getRungExistsAtEachColumn() {
-        return rungExistsAtEachColumn;
+    public List<Point> getPoints() {
+        return points;
     }
 
-    public boolean doesRungExistsIndexOf(int index) {
-        if (index < 0 || index >= rungExistsAtEachColumn.size()) {
+    public boolean isPointFilledAt(int index) {
+        try {
+            return points.get(index).isFilled();
+        } catch (IndexOutOfBoundsException e) {
             throw new IllegalArgumentException("인덱스가 라인의 길이를 벗어납니다.");
         }
-        return rungExistsAtEachColumn.get(index);
     }
 }
