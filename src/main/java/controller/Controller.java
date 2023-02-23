@@ -64,7 +64,7 @@ public class Controller {
         outputView.printLadderResultMessage();
         outputView.printName(names);
         outputView.printLadder(names, ladder, ladderHeight);
-        outputView.printGoal(goal);
+        outputView.printLadderGoal(goal);
     }
 
     private void playLadderGame(Game game, Names names) {

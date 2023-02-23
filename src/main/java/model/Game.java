@@ -7,14 +7,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Game {
-    private Map<Name, Result> prizeResult = new HashMap<>();
+    private Map<Name, Goal> prizeResult = new HashMap<>();
 
     public Game(Names names, LadderGoal goal, Ladder ladder, GameStrategy gameStrategy) {
         prizeResult = convertPrize(gameStrategy.playGame(ladder),
                 names, goal);
     }
 
-    private Map<Name, Result> convertPrize(Map<Integer,Integer> prize,Names names, LadderGoal goal){
+    private Map<Name, Goal> convertPrize(Map<Integer,Integer> prize, Names names, LadderGoal goal){
         prize.forEach((key,value) -> {
             prizeResult.put(names.getNames().get(key),
                     goal.getLadderGoal().get(value));
@@ -23,10 +23,10 @@ public class Game {
     }
 
     public String getPrizeIndividualPlayer(Player name) {
-        return prizeResult.get(new Name(name.getPlayer())).getResult();
+        return prizeResult.get(new Name(name.getPlayer())).getGoal();
     }
 
-    public Map<Name,Result> getPrizePlayers() {
+    public Map<Name, Goal> getPrizePlayers() {
         return Collections.unmodifiableMap(prizeResult);
     }
 }

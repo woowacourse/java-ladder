@@ -4,13 +4,13 @@ import model.*;
 import message.LadderPrintMessage;
 import model.LadderHeight;
 import model.Name;
-import model.Result;
+import model.Goal;
 
 import java.util.Map;
 
 public class OutputView {
     private static final String PLAYER_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String EXECUTION_RESULT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String EXECUTION_GOAL_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String PLAYER_RESULT_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final String LADDER_RESULT = "사다리 결과";
@@ -24,7 +24,7 @@ public class OutputView {
     }
 
     public void printExecutionGoalMessage() {
-        System.out.println(System.lineSeparator() + EXECUTION_RESULT_MESSAGE);
+        System.out.println(System.lineSeparator() + EXECUTION_GOAL_MESSAGE);
     }
 
     public void printLadderHeightMessage() {
@@ -77,9 +77,9 @@ public class OutputView {
             stringBuilder.append(LadderPrintMessage.NO_CONNECT_LADDER.getMessage());
     }
 
-    public void printGoal(LadderGoal ladderGoal) {
+    public void printLadderGoal(LadderGoal ladderGoal) {
         ladderGoal.getLadderGoal().forEach(name -> System.out.printf("%-" + MAXIMUM_PLAYER_NAME_SPACE + "s ",
-                name.getResult()));
+                name.getGoal()));
         System.out.println();
     }
 
@@ -87,12 +87,12 @@ public class OutputView {
         System.out.println(player);
     }
 
-    public void printPlayerGameEndResult(Map<Name, Result> prizeResult) {
+    public void printPlayerGameEndResult(Map<Name, Goal> prizeResult) {
         stringBuilder = new StringBuilder();
         for (Name name : prizeResult.keySet()) {
             stringBuilder.append(name.getName())
                     .append(" : ")
-                    .append(prizeResult.get(name).getResult())
+                    .append(prizeResult.get(name).getGoal())
                     .append(System.lineSeparator());
         }
         System.out.print(stringBuilder.toString());

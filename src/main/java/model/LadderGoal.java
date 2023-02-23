@@ -10,26 +10,26 @@ import java.util.stream.Collectors;
 public class LadderGoal {
     private static final String SPLIT_DELIMITER = ",";
 
-    private final List<Result> ladderGoal;
+    private final List<Goal> ladderGoal;
 
-    public LadderGoal(String result, int personCount) {
-        List<Result> splitGoal = splitLadderGoal(result);
+    public LadderGoal(String goal, int personCount) {
+        List<Goal> splitGoal = splitLadderGoal(goal);
         validateLadderGoal(splitGoal, personCount);
         this.ladderGoal = splitGoal;
     }
 
-    private List<Result> splitLadderGoal(String goal) {
+    private List<Goal> splitLadderGoal(String goal) {
         List<String> splitGoal = Arrays.asList(goal.split(SPLIT_DELIMITER));
-        return splitGoal.stream().map(h -> new Result(h)).collect(Collectors.toList());
+        return splitGoal.stream().map(h -> new Goal(h)).collect(Collectors.toList());
     }
 
-    private void validateLadderGoal(List<Result> goal, int personCount) {
+    private void validateLadderGoal(List<Goal> goal, int personCount) {
         if (goal.size() != personCount || goal.isEmpty()) {
             throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_LADDER_GOAL.getExceptionMessage());
         }
     }
 
-    public List<Result> getLadderGoal() {
+    public List<Goal> getLadderGoal() {
         return Collections.unmodifiableList(ladderGoal);
     }
 }
