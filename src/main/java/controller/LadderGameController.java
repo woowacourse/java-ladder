@@ -21,10 +21,27 @@ public class LadderGameController {
 
     public void run() {
         Players players = getPlayers();
+        Prizes prizes = getPrizes(players.getCount());
         Ladder ladder = getLadder(players.getCount() - 1);
 
         outputView.printPlayerNames(players.getNames());
         outputView.printLadder(ladder.getLines());
+    private Prizes getPrizes(int count) {
+        try {
+            List<String> names = inputView.readPrizeNames();
+            Prizes prizes = new Prizes(names);
+            validatePrizesCount(prizes, count);
+            return prizes;
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return getPrizes(count);
+        }
+    }
+
+    private void validatePrizesCount(Prizes prizes, int count) {
+        if (!prizes.isSame(count)) {
+            throw new IllegalArgumentException("실행결과 수는 참여자 수와 같아야합니다.");
+        }
     }
 
     private Players getPlayers() {
