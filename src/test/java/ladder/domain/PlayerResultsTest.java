@@ -15,7 +15,7 @@ class PlayerResultsTest {
         PlayerResults playerResults = new PlayerResults(createPlayerResults());
 
         // when
-        PlayerResult result = playerResults.findByPlayer(new Player("glen"));
+        PlayerResult result = playerResults.findByPlayerName("glen");
 
         // then
         assertThat(result.getPrize())

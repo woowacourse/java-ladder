@@ -10,9 +10,9 @@ public class PlayerResults {
         this.playerResults = playerResults;
     }
 
-    public PlayerResult findByPlayer(Player player) {
+    public PlayerResult findByPlayerName(String playerName) {
         return playerResults.stream()
-                .filter(playerResult -> playerResult.isPlayerMatch(player))
+                .filter(playerResult -> playerResult.isPlayerNameMatch(playerName))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 참여자가 없습니다."));
     }

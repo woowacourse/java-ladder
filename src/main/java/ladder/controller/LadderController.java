@@ -39,8 +39,7 @@ public class LadderController {
             if (playerName.equals("all")) {
                 break;
             }
-            Player player = players.findByPlayerName(playerName);
-            PlayerResult playerResult = playerResults.findByPlayer(player);
+            PlayerResult playerResult = playerResults.findByPlayerName(playerName);
             ladderView.printResult(playerResult.getPrize());
         }
         ladderView.printAllPlayerResults(PlayerResultsResponse.of(playerResults));
