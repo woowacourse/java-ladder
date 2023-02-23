@@ -49,7 +49,7 @@ public class LadderGameRunner {
 
     private void searchLadderGameResultByInput(final Result result, final Players earlyPlayers) {
         while (QUIT_CONDITION) {
-            String input = getSearchLadderGameResultInput(result);
+            String input = readSearchLadderGameResultInput(result);
             Result searchResult = result.resultByName(input);
             outputView.printSearchResult(searchResult, earlyPlayers);
             isInputAll(input);
@@ -62,14 +62,14 @@ public class LadderGameRunner {
         }
     }
 
-    private String getSearchLadderGameResultInput(final Result result) {
+    private String readSearchLadderGameResultInput(final Result result) {
         try {
             String input = inputView.readSearchName();
             result.isExistPlayerName(input);
             return input;
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return getSearchLadderGameResultInput(result);
+            return readSearchLadderGameResultInput(result);
         }
     }
 
