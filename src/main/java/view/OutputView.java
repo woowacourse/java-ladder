@@ -74,7 +74,7 @@ public class OutputView {
         }
     }
 
-    public void printNoMatchingPlayerMessage(LadderResultRequest request) {
+    public void printPlayerNotExistMessage(LadderResultRequest request) {
         System.out.println(request.getMessage() + "는 존재하지 않는 플레이어입니다.");
     }
 

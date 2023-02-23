@@ -17,7 +17,7 @@ public class LadderGame {
         this.players = players;
     }
 
-    public boolean isNotMatchingPlayerByName(String name) {
+    public boolean isPlayerExistByName(String name) {
         return players.containPlayerBySpecificName(name);
     }
 

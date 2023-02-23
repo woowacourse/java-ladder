@@ -78,8 +78,8 @@ public class LadderGameApplication {
                 return;
             }
 
-            if (ladderGame.isNotMatchingPlayerByName(request.getMessage())) {
-                outputView.printNoMatchingPlayerMessage(request);
+            if (!ladderGame.isPlayerExistByName(request.getMessage())) {
+                outputView.printPlayerNotExistMessage(request);
                 continue;
             }
 
