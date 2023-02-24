@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 import ladder.domain.BooleanGenerator;
+import ladder.domain.Height;
 import ladder.domain.Items;
 import ladder.domain.LadderGame;
 import ladder.domain.LadderGameResult;
@@ -38,7 +39,7 @@ public class LadderGameController {
     private LadderGame initialize() {
         final Players players = repeatUntilGetValidInput(() -> Players.from(inputView.readPlayerNames()));
         final Items items = repeatUntilGetValidInput(() -> Items.from(inputView.readItemNames(), players.count()));
-        final int height = repeatUntilGetValidInput(inputView::readLadderHeight);
+        final Height height = repeatUntilGetValidInput(() -> new Height(inputView.readLadderHeight()));
 
         return LadderGame.initialize(players, booleanGenerator, height, items);
     }

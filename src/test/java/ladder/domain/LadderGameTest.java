@@ -16,11 +16,12 @@ public class LadderGameTest {
     private LadderGame initializeLadderGame(
             final List<String> playerNames,
             final List<Boolean> ladder,
-            final int height,
+            final int value,
             final List<String> itemNames
     ) {
         final Players players = Players.from(playerNames);
         final BooleanGenerator booleanGenerator = new TestBooleanGenerator(ladder);
+        final Height height = new Height(String.valueOf(value));
         final Items items = Items.from(itemNames, players.count());
 
         return LadderGame.initialize(players, booleanGenerator, height, items);

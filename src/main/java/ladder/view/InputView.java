@@ -12,11 +12,6 @@ public class InputView {
     private static final int SPLIT_LIMIT = -1;
     private static final String READ_ITEM_NAMES_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String READ_LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
-    private static final int LADDER_HEIGHT_LOWER_BOUND = 1;
-    private static final int LADDER_HEIGHT_UPPER_BOUND = 100;
-    private static final String INVALID_NUMBER_MESSAGE = LADDER_HEIGHT_UPPER_BOUND + " 이하의 정수만 입력 가능합니다.";
-    private static final String INVALID_HEIGHT_MESSAGE =
-            "높이는 최소 " + LADDER_HEIGHT_LOWER_BOUND + "이상, " + LADDER_HEIGHT_UPPER_BOUND + "이하여야 합니다.";
     private static final String READ_PLAYER_NAME_MESSAGE = NEXT_LINE + "결과를 보고 싶은 사람은? [all 입력시 전체 결과 출력 후 종료]";
 
     private final Scanner scanner;
@@ -45,32 +40,9 @@ public class InputView {
         return splitCsvInput(input);
     }
 
-    public int readLadderHeight() {
+    public String readLadderHeight() {
         System.out.println(READ_LADDER_HEIGHT_MESSAGE);
-        final String input = scanner.nextLine();
-
-        final int height = parseInt(input);
-        validateHeight(height);
-
-        return height;
-    }
-
-    private int parseInt(final String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_NUMBER_MESSAGE);
-        }
-    }
-
-    private void validateHeight(final int height) {
-        if (isInvalidHeight(height)) {
-            throw new IllegalArgumentException(INVALID_HEIGHT_MESSAGE);
-        }
-    }
-
-    private boolean isInvalidHeight(final int height) {
-        return height < LADDER_HEIGHT_LOWER_BOUND || LADDER_HEIGHT_UPPER_BOUND < height;
+        return scanner.nextLine();
     }
 
     public String readPlayerName() {

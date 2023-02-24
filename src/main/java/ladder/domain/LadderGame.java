@@ -20,10 +20,11 @@ public class LadderGame {
     public static LadderGame initialize(
             final Players players,
             final BooleanGenerator booleanGenerator,
-            final int height,
+            final Height height,
             final Items items
     ) {
-        final Ladder ladder = Ladder.generate(booleanGenerator, height, players.count() - SUBTRACT_LADDER_WIDTH_VALUE);
+        final int ladderWidth = players.count() - SUBTRACT_LADDER_WIDTH_VALUE;
+        final Ladder ladder = Ladder.generate(booleanGenerator, height.getValue(), ladderWidth);
         return new LadderGame(players, ladder, items);
     }
 
