@@ -51,20 +51,4 @@ public class NamesTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("참가한 플레이어의 이름 중 중복된 이름이 존재하면 안됩니다.");
     }
-
-    @Test
-    @DisplayName("참여한 플레이어의 수를 반환하다.")
-    void returns_number_of_players() {
-        // given
-        String playerHavingLongestName = "dolbi";
-        List<String> playerNames = List.of(firstPlayerName, secondPlayerName, playerHavingLongestName);
-        Names names = new Names(playerNames);
-        int expectedResult = names.getNames().size();
-
-        // when
-        int numberOfPlayer = names.findNumberOfNames();
-
-        // then
-        assertThat(numberOfPlayer).isEqualTo(expectedResult);
-    }
 }

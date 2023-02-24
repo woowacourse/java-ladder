@@ -12,7 +12,6 @@ public class GameResult {
 
     public String findResult(final String name) {
         validateCorrectName(name);
-
         return this.gameResult.get(name);
     }
 

@@ -22,7 +22,7 @@ public class OutputView {
     private static final StringBuilder ladderOutput = new StringBuilder();
     private static final StringBuilder resultOutput = new StringBuilder();
 
-    public void printLadder(final Names names, final Ladder ladder, final Results results) {
+    public static void printLadder(final Names names, final Ladder ladder, final Results results) {
         System.out.println(NEW_LINE + "사다리결과" + NEW_LINE);
 
         System.out.println(makeNamesOutput(names));
@@ -30,7 +30,7 @@ public class OutputView {
         System.out.println(makeResultsOutput(results, names));
     }
 
-    private StringBuilder makeNamesOutput(final Names names) {
+    private static StringBuilder makeNamesOutput(final Names names) {
         namesOutput.append(findFirstPlayerName(names))
                 .append(BLANK);
 
@@ -41,7 +41,7 @@ public class OutputView {
         return namesOutput;
     }
 
-    private int findLongestLengthOfName(final Names names) {
+    private static int findLongestLengthOfName(final Names names) {
         return names.getNames()
                 .stream()
                 .mapToInt(player -> player.getName().length())
@@ -49,11 +49,11 @@ public class OutputView {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    private String findFirstPlayerName(final Names names) {
+    private static String findFirstPlayerName(final Names names) {
         return names.getNames().get(0).getName();
     }
 
-    private void appendPlayerNames(final int longestName, final Name name) {
+    private static void appendPlayerNames(final int longestName, final Name name) {
         if (isMaximumLengthOfName(name)) {
             namesOutput.append(BLANK)
                     .append(name.getName());
@@ -62,18 +62,18 @@ public class OutputView {
         drawPlayerName(longestName, name);
     }
 
-    private boolean isMaximumLengthOfName(final Name name) {
+    private static boolean isMaximumLengthOfName(final Name name) {
         return name.getName().length() == MAXIMUM_LENGTH_OF_NAME;
     }
 
-    private void drawPlayerName(final int longestName, final Name name) {
+    private static void drawPlayerName(final int longestName, final Name name) {
         int numberOfBlank = longestName - name.getName().length();
         namesOutput.append(LadderSymbol.draw(BLANK, numberOfBlank))
                 .append(name.getName())
                 .append(BLANK);
     }
 
-    private StringBuilder makeLadderOutput(final Names names, final Ladder ladder) {
+    private static StringBuilder makeLadderOutput(final Names names, final Ladder ladder) {
         for (int heightIndex = 0; heightIndex < findLadderHeight(ladder); heightIndex++) {
             drawSpaceAtFirst(findLengthOfFirstPlayerName(names));
             drawInnerLadder(names, ladder, heightIndex);
@@ -82,15 +82,15 @@ public class OutputView {
         return ladderOutput;
     }
 
-    private int findLadderHeight(final Ladder ladder) {
+    private static int findLadderHeight(final Ladder ladder) {
         return ladder.getHeight().getValue();
     }
 
-    private int findLengthOfFirstPlayerName(final Names names) {
+    private static int findLengthOfFirstPlayerName(final Names names) {
         return names.getNames().get(0).getName().length();
     }
 
-    private void drawSpaceAtFirst(final int lengthOfFirstPlayerName) {
+    private static void drawSpaceAtFirst(final int lengthOfFirstPlayerName) {
         if (lengthOfFirstPlayerName >= BOUNDARY_OF_NAME_LENGTH) {
             ladderOutput.append(BLANK.repeat(BOUNDARY_OF_NAME_LENGTH));
             return;
@@ -98,7 +98,7 @@ public class OutputView {
         ladderOutput.append(BLANK.repeat(lengthOfFirstPlayerName));
     }
 
-    private void drawInnerLadder(final Names names, final Ladder ladder, final int heightIndex) {
+    private static void drawInnerLadder(final Names names, final Ladder ladder, final int heightIndex) {
         for (Boolean isExistingConnection : findSelectedLine(ladder.getLines(), heightIndex)) {
             ladderOutput.append(BAR);
             drawExistingConnection(names, isExistingConnection);
@@ -107,11 +107,11 @@ public class OutputView {
                 .append(NEW_LINE);
     }
 
-    public List<Boolean> findSelectedLine(final Lines lines, final int selectedPosition) {
+    private static List<Boolean> findSelectedLine(final Lines lines, final int selectedPosition) {
         return lines.getLines().get(selectedPosition).getConnections();
     }
 
-    private void drawExistingConnection(final Names names, final Boolean isExistingConnection) {
+    private static void drawExistingConnection(final Names names, final Boolean isExistingConnection) {
         if (isExistingConnection) {
             ladderOutput.append(CONNECTION.repeat(findLongestLengthOfName(names)));
             return;
@@ -119,7 +119,7 @@ public class OutputView {
         ladderOutput.append(BLANK.repeat(findLongestLengthOfName(names)));
     }
 
-    private StringBuilder makeResultsOutput(final Results results, final Names names) {
+    private static StringBuilder makeResultsOutput(final Results results, final Names names) {
         for (Result result : results.getResults()) {
             resultOutput.append(result.getResult())
                     .append(BLANK.repeat(findLongestLengthOfName(names) - result.getResult().length()));
@@ -128,14 +128,17 @@ public class OutputView {
         return resultOutput;
     }
 
-    public void printSoloGameResult(final String gameResult) {
+    public static void printResult(final String inputName, final String result, final Map<String, String> gameResult) {
         System.out.println(NEW_LINE + "실행 결과");
-        System.out.println(gameResult);
+
+        if (inputName.equals("all")) {
+            makeAllNameAndResult(gameResult);
+            return;
+        }
+        System.out.println(result);
     }
 
-    public void printAllGameResult(final Map<String, String> gameResult) {
-        System.out.println(NEW_LINE + "실행 결과");
-
+    private static void makeAllNameAndResult(final Map<String, String> gameResult) {
         for (String name : gameResult.keySet()) {
             System.out.println(name + " : " + gameResult.get(name));
         }

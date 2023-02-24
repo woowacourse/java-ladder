@@ -25,7 +25,7 @@ public class Names {
         }
     }
 
-    private boolean isNotPermittedNumberOfPlayers(List<String> names) {
+    private boolean isNotPermittedNumberOfPlayers(final List<String> names) {
         return (names.size() < MINIMUM_LENGTH_OF_NAME) || (names.size() > MAXIMUM_LENGTH_OF_NAME);
     }
 
@@ -41,10 +41,6 @@ public class Names {
         return names.stream()
                 .map(Name::new)
                 .collect(Collectors.toUnmodifiableList());
-    }
-
-    public int findNumberOfNames() {
-        return this.names.size();
     }
 
     public List<Name> getNames() {
