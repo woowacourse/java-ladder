@@ -16,7 +16,7 @@ public class LadderGame {
         this.ladder = ladder;
         this.users = users;
         this.results = results;
-        ladderGameResult = getLadderGameResult(users.getSize(), ladder.getLadderRows().size());
+        ladderGameResult = getLadderGameResult(users.getSize(), ladder.getLadderHeight());
     }
 
     private LadderGameResult getLadderGameResult(final int userCount, final int ladderHeight) {
