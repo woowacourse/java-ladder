@@ -16,19 +16,16 @@ import static ladder.view.InputView.QUERY_ALL;
 public class Application {
 
     public static void main(String[] args) {
-        final LineStrategy lineStrategy = new RandomDiscreteStrategy();
-        final LadderGameFactory gameFactory = new LadderGameFactory(lineStrategy);
+        final LadderGameFactory gameFactory = initFactory();
 
         final LadderGame game = repeatUntilValid(() -> initGame(gameFactory));
         OutputView.printLadder(game.getPlayerNames(), game.getLadder(), game.getResults());
         inquireGameResult(game);
     }
 
-    private static void inquireGameResult(LadderGame game) {
-        String queryName = "";
-        while (!queryName.equals(QUERY_ALL)) {
-            queryName = inquireResult(game);
-        }
+    private static LadderGameFactory initFactory() {
+        final LineStrategy lineStrategy = new RandomDiscreteStrategy();
+        return new LadderGameFactory(lineStrategy);
     }
 
     private static LadderGame initGame(LadderGameFactory factory) {
@@ -36,6 +33,13 @@ public class Application {
         List<String> results = InputView.readResults();
         int height = InputView.readLadderHeight();
         return factory.generateGame(names, results, height);
+    }
+
+    private static void inquireGameResult(LadderGame game) {
+        String queryName = "";
+        while (!queryName.equals(QUERY_ALL)) {
+            queryName = inquireResult(game);
+        }
     }
 
     private static String inquireResult(final LadderGame game) {
