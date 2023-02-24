@@ -6,6 +6,7 @@ import java.util.Map;
 import ladder.domain.ladder.Line;
 import ladder.exception.NotFoundPlayerException;
 import ladder.service.LadderGame;
+import ladder.service.LadderGameMaker;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 import ladder.view.ResultView;
@@ -23,7 +24,7 @@ public class LadderGameController {
 
     private LadderGame generateLadderGame() {
         try {
-            return new LadderGame(readNames(), readResults(), readLadderHeight());
+            return LadderGameMaker.createLadderGame(readNames(), readResults(), readLadderHeight());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return generateLadderGame();
