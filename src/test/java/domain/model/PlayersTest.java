@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayersTest {
 
@@ -27,21 +29,18 @@ class PlayersTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("최소 최대 인원 성공 테스트")
-    public void validateSizeSuccessTest() {
+    @ParameterizedTest(name = "최소 최대 인원 성공 테스트")
+    @ValueSource(ints = {2, 100})
+    public void validateSizeSuccessTest(int size) {
         //given
-        List<String> mockStrings1 = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            mockStrings1.add(i + "t");
+        List<String> mockStrings = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            mockStrings.add(i + "t");
         }
-        List<String> mockStrings2 = new ArrayList<>();
-        mockStrings2.add("t");
 
         //when
         //then
-        assertDoesNotThrow(() -> new Players(mockStrings1));
-        assertDoesNotThrow(() -> new Players(mockStrings2));
+        assertDoesNotThrow(() -> new Players(mockStrings));
     }
 
     @Test

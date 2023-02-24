@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class WidthTest {
 
     @ParameterizedTest(name = "{0} 너비는 허용된다.")
-    @ValueSource(strings = {"0", "99"})
+    @ValueSource(strings = {"1", "99"})
     void makeWidthSuccess(int provided) {
         assertThatNoException().isThrownBy(() -> new Width(provided));
     }
