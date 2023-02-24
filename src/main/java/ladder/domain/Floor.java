@@ -8,8 +8,9 @@ public class Floor {
     private static final int MOVE_INDEX_VALUE = 1;
     private static final int DONT_CHANGE_IN_INDEX = 0;
     private static final String INVALID_INDEX_ERROR_MESSAGE = "해당 위치는 존재하지 않는 값입니다.";
-    private static final int FLOORT_SIZE_HAVE_ONE_MORE_THAN_LINES = 1;
+    private static final int FLOOR_SIZE_HAVE_ONE_MORE_THAN_LINES = 1;
     private static final int TO_PREVIOUS_INDEX = 1;
+    private static final int MAKE_DECREASE_VALUE = -1;
     private final List<Line> lines = new ArrayList<>();
 
     public Floor(int lineSize) {
@@ -42,10 +43,7 @@ public class Floor {
 
     public int getResultPosition(final int index) {
         validateIndexRange(index);
-        if (endOfLadder(index)) {
-            return index + getIndexIncrementOfEnd(index);
-        }
-        return index + getIndexIncrementOf(index);
+        return index + getAmountOfChange(index);
     }
 
     private void validateIndexRange(final int index) {
@@ -54,38 +52,32 @@ public class Floor {
         }
     }
 
-    private int getIndexIncrementOf(final int index) {
-        return getIndexDecrementOfLeft(index) + getIndexIncrementOfRight(index);
+    private int getAmountOfChange(final int index) {
+        return getDecreaseOf(index) + getIncreaseOf(index);
     }
 
-    private int getIndexIncrementOfEnd(final int index) {
-        if (index == START_POINT_OF_LADDER) {
-            return getIndexIncrementOfRight(index);
+    private int getDecreaseOf(final int index) {
+        if(index == START_POINT_OF_LADDER){
+            return DONT_CHANGE_IN_INDEX;
         }
-        return getIndexDecrementOfLeft(index);
+        if(lines.get(index - TO_PREVIOUS_INDEX).isExist()){
+            return MOVE_INDEX_VALUE * MAKE_DECREASE_VALUE;
+        }
+        return DONT_CHANGE_IN_INDEX;
     }
 
-
-    private int getIndexIncrementOfRight(final int index) {
-        if (lines.get(index).isExist()) {
+    private int getIncreaseOf(final int index) {
+        if(index == lines.size()){
+            return DONT_CHANGE_IN_INDEX;
+        }
+        if(lines.get(index).isExist()){
             return MOVE_INDEX_VALUE;
         }
         return DONT_CHANGE_IN_INDEX;
     }
 
-    private int getIndexDecrementOfLeft(final int index) {
-        if (lines.get(index - TO_PREVIOUS_INDEX).isExist()) {
-            return MOVE_INDEX_VALUE * (-1);
-        }
-        return DONT_CHANGE_IN_INDEX;
-    }
-
-    private boolean endOfLadder(final int index) {
-        return index == START_POINT_OF_LADDER || index == lines.size();
-    }
-
     public int getSize() {
-        return lines.size() + FLOORT_SIZE_HAVE_ONE_MORE_THAN_LINES;
+        return lines.size() + FLOOR_SIZE_HAVE_ONE_MORE_THAN_LINES;
     }
 
     public List<Line> getLines() {
