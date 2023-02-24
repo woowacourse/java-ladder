@@ -1,7 +1,6 @@
 package ladder.domain;
 
 public class Height {
-
     private static final int HEIGHT_LOWER_BOUND = 1;
     private static final int HEIGHT_UPPER_BOUND = 100;
     private static final String INVALID_HEIGHT_MESSAGE =

@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Position {
-
     private static final int POSITION_VALUE_LOWER_BOUND = 0;
     private static final int POSITION_VALUE_UPPER_BOUND = 20;
     private static final int MOVE_COUNT = 1;
