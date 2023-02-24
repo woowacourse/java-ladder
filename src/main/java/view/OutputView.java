@@ -4,6 +4,8 @@ import java.util.List;
 
 import domain.Line;
 import domain.Name;
+import domain.Players;
+import domain.Prizes;
 
 public class OutputView {
     private static final String BRIDGE = "-----";
@@ -11,9 +13,22 @@ public class OutputView {
     private static final String BLANK_LINE = "     ";
     private static final String BLANK = " ";
     private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String LADDER_RESULT = "실행 결과";
 
     public void printErrorMessage(Exception e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
+    }
+
+    public void printPlayerResult(String prize) {
+        System.out.println(LADDER_RESULT);
+        System.out.println(prize);
+    }
+
+    public void printAllPlayerResult(Players players, List<String> resultPrizes) {
+        System.out.println(LADDER_RESULT);
+        for (int i = 0; i < players.getCount(); i++) {
+            System.out.println("" + players.getNames().get(i) + " : " +  resultPrizes.get(i));
+        }
     }
 
     public void printLadder(List<Line> lines) {

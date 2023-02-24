@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import domain.*;
@@ -22,9 +23,28 @@ public class LadderGameController {
         Prizes prizes = getPrizes(players.getCount());
         Ladder ladder = getLadder(players.getCount() - 1);
 
+        LadderGame ladderGame = new LadderGame(players, ladder);
+
         outputView.printNames(players.getNames());
         outputView.printLadder(ladder.getLines());
         outputView.printNames(prizes.getNames());
+
+
+        while (true) {
+            String name = inputView.readCheckPlayer();
+            if (name.equals("all")) {
+                List<String> resultPrizes = new ArrayList<>();
+                for (Integer index : ladderGame.getResultAllIndex()) {
+                    resultPrizes.add(prizes.getName(index));
+                }
+                outputView.printAllPlayerResult(players, resultPrizes);
+                break;
+            }
+            int resultIndex = ladderGame.getResultIndex(name);
+            outputView.printPlayerResult(prizes.getName(resultIndex));
+        }
+
+
     }
 
     private Prizes getPrizes(int count) {

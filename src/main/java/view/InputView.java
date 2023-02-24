@@ -11,11 +11,17 @@ public class InputView {
     private static final String PIRZE_INPUT_NOTICE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String DELIMITER = ",";
     private static final String LADDER_HEIGHT_INPUT_NOTICE = "최대 사다리 높이는 몇 개인가요?";
+    private static final String RESULT_OF_PLAYER_CHECK_NOTICE = "결과를 보고 싶은 사람은?";
     private static final String NOT_INTEGER_MESSAGE = "숫자가 아닙니다.";
 
     public List<String> readPlayerNames() {
         System.out.println(PLAYER_NAME_INPUT_NOTICE);
         return readCsv();
+    }
+
+    public String readCheckPlayer(){
+        System.out.println(RESULT_OF_PLAYER_CHECK_NOTICE);
+        return readInput();
     }
 
     public List<String> readPrizeNames() {
@@ -37,7 +43,7 @@ public class InputView {
     public int readLadderHeight() {
         System.out.println(LADDER_HEIGHT_INPUT_NOTICE);
         try {
-            return Integer.parseInt(scanner.next());
+            return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_INTEGER_MESSAGE);
         }
