@@ -15,20 +15,19 @@ public class Players {
     private final List<Player> players;
 
     public Players(List<String> playerNames) {
-        List<Player> players = playerNames.stream()
+        validatePlayerNames(playerNames);
+        this.players = playerNames.stream()
                 .map(Player::new)
                 .collect(Collectors.toUnmodifiableList());
-        validatePlayerNames(players);
-        this.players = players;
     }
 
-    private void validatePlayerNames(List<Player> players) {
-        Set<Player> playerSet = new HashSet<>(players);
-        if (playerSet.size() != players.size()) {
+    private void validatePlayerNames(List<String> playerNames) {
+        Set<String> nameSet = new HashSet<>(playerNames);
+        if (nameSet.size() != playerNames.size()) {
             throw new IllegalArgumentException(ErrorCode.PLAYER_NAME_DUPLICATED.getCode());
         }
 
-        if (players.size() < MIN_PLAYER_COUNT) {
+        if (playerNames.size() < MIN_PLAYER_COUNT) {
             throw new IllegalArgumentException(ErrorCode.NOT_VALID_PLAYER_COUNT.getCode());
         }
     }
@@ -38,8 +37,8 @@ public class Players {
     }
 
     public Position positionOf(String name) {
-        Player targetPlayer = new Player(name);
-        int index = players.indexOf(targetPlayer);
+        List<String> playerNames = getPlayerNames();
+        int index = playerNames.indexOf(name);
         validatePositionIndex(index);
         return new Position(index + 1);
     }
