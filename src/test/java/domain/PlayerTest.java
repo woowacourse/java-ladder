@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class PlayerTest {
-    private final Name name = new Name("깃짱");
-    private final Position initialPosition = new Position(0);
-    private final Player gitJjang = new Player(name, initialPosition);
-
     @Test
     void 사용자_생성() {
+        final Name name = new Name("깃짱");
+        final Position initialPosition = new Position(0);
+        final Player gitJjang = new Player(name, initialPosition);
+
         Assertions.assertEquals(gitJjang.getName(), name);
         Assertions.assertEquals(gitJjang.getPosition(), initialPosition);
     }
