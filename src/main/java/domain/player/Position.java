@@ -10,7 +10,7 @@ public class Position {
         this.value = position;
     }
 
-    public int getValue() {
+    public int value() {
         return value;
     }
 

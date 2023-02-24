@@ -16,7 +16,7 @@ class PositionTest {
         @ValueSource(ints = {0, 1, 2, 3})
         void 포지션_생성_값_입력(int input) {
             Position position = new Position(input);
-            Assertions.assertEquals(position.getValue(), input);
+            Assertions.assertEquals(position.value(), input);
         }
     }
 }

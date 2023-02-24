@@ -10,7 +10,6 @@ public class Name {
 
     public Name(String name) {
         validate(name);
-        // TODO: 이름 자체가 all인 경우
         this.value = name;
     }
 
@@ -23,6 +22,9 @@ public class Name {
         boolean isInvalidLength = name.length() < MIN_LENGTH || name.length() > MAX_LENGTH;
         if (isBlank || isInvalidLength) {
             throw new IllegalArgumentException("1글자 이상 5글자 이하의 이름만 입력해주세요.");
+        }
+        if (name.equals("all")) {
+            throw new IllegalArgumentException("all만은 안됩니다ㅠㅠ");
         }
     }
 
