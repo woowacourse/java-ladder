@@ -16,6 +16,10 @@ public class Player {
         this.position = Position.valueOf(0);
     }
 
+    public Position play(final Ladder ladder) {
+        return ladder.play(position);
+    }
+
     public boolean isSamePosition(final Position position) {
         return this.position == position;
     }

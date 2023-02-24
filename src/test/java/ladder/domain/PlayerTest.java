@@ -2,6 +2,8 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+import ladder.util.TestBooleanGenerator;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -25,5 +27,20 @@ public class PlayerTest {
         final Player player = new Player("item", Position.valueOf(0));
 
         assertThat(player.isSamePosition(Position.valueOf(position))).isEqualTo(result);
+    }
+
+    @Test
+    void 참가자는_사다리를_받아_사다리타기를_진행한다() {
+        final Player player = new Player("item", Position.valueOf(0));
+        final BooleanGenerator booleanGenerator = new TestBooleanGenerator(List.of(
+                false, false, true,
+                false, true, false,
+                true, false, true
+        ));
+        final Ladder ladder = Ladder.generate(booleanGenerator, 3, 3);
+
+        final Position result = player.play(ladder);
+
+        assertThat(result).isEqualTo(Position.valueOf(1));
     }
 }
