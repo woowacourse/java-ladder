@@ -3,14 +3,14 @@ package ladder.domain;
 import java.util.List;
 
 class DeterminedBooleanGenerator implements BooleanGenerator {
-    private final List<Boolean> bars;
+    private final List<Boolean> expects;
 
-    public DeterminedBooleanGenerator(List<Boolean> bars) {
-        this.bars = bars;
+    public DeterminedBooleanGenerator(List<Boolean> expects) {
+        this.expects = expects;
     }
 
     @Override
     public boolean generate() {
-        return bars.remove(0);
+        return expects.remove(0);
     }
 }
