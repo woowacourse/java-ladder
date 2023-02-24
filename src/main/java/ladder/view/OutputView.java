@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.*;
 
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class OutputView {
@@ -19,32 +20,34 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printResult(Users users, Ladder ladder) {
-
+    public static void printLadder(Users users, Ladder ladder, Prizes prizes) {
         printUsersName(users);
         System.out.println();
         printLadder(ladder);
+        printPrizes(prizes);
+    }
+
+    private static void printPrizes(Prizes prizes) {
+        prizes.getPrizeNames().forEach(prize -> System.out.printf("%10s", prize));
+        System.out.println();
     }
 
     private static void printUsersName(Users users) {
-
         for (User user : users.getUsers()) {
             System.out.print(BLANK_SPACE.repeat(ONE_BLOCK_SIZE - calculateBlank(user)));
-            System.out.printf("%s", user.getName());
+            System.out.printf("%s", user.getName().getValue());
         }
     }
 
     private static int calculateBlank(User user) {
-
         double userNameSpan = INIT_SPAN;
-        for (Character name : user.getName().toCharArray()) {
+        for (Character name : user.getName().getValue().toCharArray()) {
             userNameSpan += userNameSpanSize(name);
         }
         return (int) Math.round(userNameSpan);
     }
 
     private static double userNameSpanSize(Character name) {
-
         String hi = String.valueOf(name);
 
         if (Pattern.matches(KOREAN_MATCH_REGEX, hi)) {
@@ -54,7 +57,6 @@ public class OutputView {
     }
 
     private static void printLadder(Ladder ladder) {
-
         for (Floor floor : ladder.getFloors()) {
             printFloor(floor);
             System.out.println();
@@ -62,17 +64,15 @@ public class OutputView {
     }
 
     private static void printFloor(Floor floor) {
-
         System.out.print(BLANK_SPACE.repeat(BLOCK_SIZE_EXCEPT_DELIMITER));
         System.out.print(DELIMITER);
-        for (Boolean point : floor.getPoints()) {
+        for (Point point : floor.getPoints()) {
             printLine(point);
         }
     }
 
-    private static void printLine(Boolean point) {
-
-        if (point) {
+    private static void printLine(Point point) {
+        if (point.isExist()) {
             System.out.print(LINE_COMPONENT.repeat(BLOCK_SIZE_EXCEPT_DELIMITER));
             System.out.print(DELIMITER);
             return;
@@ -81,4 +81,18 @@ public class OutputView {
         System.out.print(DELIMITER);
     }
 
+    public static void printSingleResult(PrizeName prizeName) {
+        System.out.println("실행 결과");
+        if (prizeName == null) {
+            System.out.println("없는 유저 이름입니다.");
+            return;
+        }
+        System.out.println(prizeName.getValue());
+        System.out.println();
+    }
+
+    public static void printAll(Map<UserName, PrizeName> allResult) {
+        System.out.println("실행 결과");
+        allResult.forEach((userName, prizeName) -> System.out.println(userName.getValue() + " : " + prizeName.getValue()));
+    }
 }

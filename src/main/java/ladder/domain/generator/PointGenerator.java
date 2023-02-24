@@ -1,5 +1,5 @@
 package ladder.domain.generator;
 
-public interface LineGenerator {
+public interface PointGenerator {
     boolean generate();
 }

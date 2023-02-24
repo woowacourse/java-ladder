@@ -1,10 +1,11 @@
 package ladder.domain;
 
-import ladder.domain.generator.LineGenerator;
-import ladder.domain.generator.RandomLineGenerator;
-import ladder.domain.generator.TestLineGenerator;
+import ladder.domain.generator.PointGenerator;
+import ladder.domain.generator.RandomPointGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -13,13 +14,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
 
-    private final LineGenerator lineGenerator = new RandomLineGenerator();
+    private final PointGenerator pointGenerator = new RandomPointGenerator();
 
     @Test
     @DisplayName("0이하의 값으로 Ladder생성시 예외가 발생한다.")
     void inValidLadderSizeTest() {
 
-        assertThatThrownBy(() -> new Ladder(0, new Users(List.of("1", "2")), lineGenerator))
+        assertThatThrownBy(() -> new Ladder(0, new Users(List.of("1", "2")), pointGenerator))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -28,7 +29,7 @@ public class LadderTest {
     void checkValidLadderSizeTest() {
 
         var users = new Users(List.of("1", "2"));
-        var ladder = new Ladder(1, users, lineGenerator);
+        var ladder = new Ladder(1, users, pointGenerator);
 
         assertThat(ladder.getFloors().size()).isEqualTo(1);
     }
@@ -36,44 +37,42 @@ public class LadderTest {
     @Test
     @DisplayName("Ladder 생성시 users보다 1작은 width로 생성된다.")
     void checkLadderWidthTest() {
-
+        //given
         var users = new Users(List.of("1", "2", "3"));
-
-        var ladder = new Ladder(3, users, lineGenerator);
-
+        //when
+        var ladder = new Ladder(3, users, pointGenerator);
         List<Floor> floors = ladder.getFloors();
-        for (Floor floor : floors) {
-            assertThat(floor.getPoints().size()).isEqualTo(users.getUsers().size() - 1);
-        }
+
+        //then
+        assertThat(floors)
+                .map(Floor::getPoints)
+                .map(List::size)
+                .containsExactlyElementsOf(List.of(2, 2, 2));
     }
 
-    @Test
-    @DisplayName("Ladder 정상 생성 테스트")
-    void makeFloorTest() {
-
-        List list = List.of(true, false, true);
-        TestLineGenerator testLineGenerator = new TestLineGenerator(list);
-
-        Ladder ladder = new Ladder(1, new Users(List.of("1", "2", "3", "4")), testLineGenerator);
-
-        assertThat(ladder.getFloors().get(0).getPoints())
-                .containsExactlyElementsOf(List.of(true, false, true));
-
+    @ParameterizedTest
+    @CsvSource(value = {"0:1", "1:0", "2:3", "3:2"}, delimiter = ':')
+    @DisplayName("사다리 결과 도출 로직 테스트")
+    void getResultAllTrueTest(int start, int end) {
+        //given
+        Users users = new Users(List.of("0", "1", "2", "3"));
+        Ladder ladder = new Ladder(3, users, () -> true);
+        //when
+        int result = ladder.getResult(start);
+        //then
+        assertThat(result).isEqualTo(end);
     }
 
-    @Test
-    @DisplayName("Ladder 정상 생성 테스트2")
-    void makeFloorTest2() {
-
-        TestLineGenerator testLineGenerator = new TestLineGenerator(List.of(true, false, false, true, true, true));
-        Ladder ladder = new Ladder(2, new Users(List.of("1", "2", "3", "4")), testLineGenerator);
-
-        assertThat(ladder.getFloors().get(0).getPoints())
-                .containsExactlyElementsOf(List.of(true, false, false));
-
-        assertThat(ladder.getFloors().get(1).getPoints())
-                .containsExactlyElementsOf(List.of(true, false, true));
-
+    @ParameterizedTest
+    @CsvSource(value = {"0:0", "1:1", "2:2", "3:3"}, delimiter = ':')
+    @DisplayName("사다리 결과 도출 로직 테스트")
+    void getResultAllFalseTest(int start, int end) {
+        //given
+        Users users = new Users(List.of("0", "1", "2", "3"));
+        Ladder ladder = new Ladder(3, users, () -> false);
+        //when
+        int result = ladder.getResult(start);
+        //then
+        assertThat(result).isEqualTo(end);
     }
-
 }

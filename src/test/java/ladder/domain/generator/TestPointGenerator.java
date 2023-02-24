@@ -1,15 +1,13 @@
 package ladder.domain.generator;
 
-import ladder.domain.generator.LineGenerator;
-
 import java.util.List;
 
-public class TestLineGenerator implements LineGenerator {
+public class TestPointGenerator implements PointGenerator {
 
     private final List<Boolean> values;
     private int index = 0;
 
-    public TestLineGenerator(List<Boolean> values) {
+    public TestPointGenerator(List<Boolean> values) {
         this.values = values;
     }
 
