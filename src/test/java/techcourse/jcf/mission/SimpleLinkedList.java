@@ -19,13 +19,7 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public String get(int index) {
-        Node pointer = this.head;
-        for (int i = 0; i <= index; i++) {
-            pointer = pointer.next;
-            if (pointer == null) {
-                throw new IndexOutOfBoundsException();
-            }
-        }
+        Node pointer = getNodeOf(index);
         return pointer.value;
     }
 
@@ -52,7 +46,10 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public String set(int index, String value) {
-        return null;
+        Node pointer = getNodeOf(index);
+        String valueBeforeSet = pointer.value;
+        pointer.value = value;
+        return valueBeforeSet;
     }
 
     @Override
@@ -103,7 +100,18 @@ public class SimpleLinkedList implements SimpleList {
         return sb.toString();
     }
 
+    private Node getNodeOf(int index) {
+        Node pointer = this.head;
+        for (int i = 0; i <= index; i++) {
+            pointer = pointer.next;
+            if (pointer == null) {
+                throw new IndexOutOfBoundsException();
+            }
+        }
+        return pointer;
+    }
     class Node {
+
         private String value;
         private Node next;
 
