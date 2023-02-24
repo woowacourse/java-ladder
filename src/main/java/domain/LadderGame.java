@@ -8,6 +8,7 @@ import domain.player.Players;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -45,7 +46,7 @@ public class LadderGame {
         return result.stream()
                 .filter(element -> element.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("해당 이름을 찾을 수 없습니다."));
+                .orElseThrow(() -> new NoSuchElementException("해당 이름을 찾을 수 없습니다."));
     }
 
     public List<Result> findAllResult() {
