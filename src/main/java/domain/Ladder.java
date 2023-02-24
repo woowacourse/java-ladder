@@ -47,9 +47,16 @@ public class Ladder {
         return position;
     }
 
+    public List<Integer> getLastPositions(int playerSize) {
+        List<Integer> lastPositions = new ArrayList<>();
+
+        for (int position = 0; position < playerSize; position++) {
+            lastPositions.add(getLastPosition(position));
+        }
+        return lastPositions;
+    }
 
     public List<Line> getLines() {
         return lines;
     }
-
 }
