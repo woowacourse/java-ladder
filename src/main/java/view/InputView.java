@@ -10,6 +10,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
+
     private static final String INPUT_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String INPUT_LADDER_HEIGHT_MESSAGE = "\n최대 사다리 높이는 몇 개인가요?";
     private static final String NAME_DELIMITER = ",";
@@ -33,15 +34,15 @@ public class InputView {
     public Results inputResults() {
         System.out.println(INPUT_RESULTS_MESSAGE);
         List<String> results = List.of(scanner.nextLine().split(NAME_DELIMITER));
-        // TODO:validateResults(results);
+        validateNames(results);
         return new Results(mapToResult(results));
     }
 
     public Names inputResultViewerName() {
         System.out.println(INPUT_RESULT_VIEWER_NAME_MESSAGE);
         List<String> names = List.of(scanner.nextLine().split(NAME_DELIMITER));
-        // TODO:validate
-        return new Names(mapToName(names));
+        validateNames(names);
+        return new Names(mapToName(trimNames(names)));
     }
 
     private void validateNames(final List<String> names) {
