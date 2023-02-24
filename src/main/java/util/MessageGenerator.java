@@ -1,61 +1,78 @@
 package util;
 
-import domain.Names;
+import domain.ladder.Line;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static view.constant.LadderShapes.*;
 
 public class MessageGenerator {
 
-    public static String generateNamesMessage(Names names) {
-        int maxNameLength = names.findMaxNameLength();
+    private MessageGenerator() {
+    }
+
+    public static String generateNamesMessage(Iterator<String> playerNames) {
         StringBuilder stringBuilder = new StringBuilder();
-
-        for (String name : names.getNames()) {
-            stringBuilder.append(alignLeft(name, maxNameLength));
+        while (playerNames.hasNext()) {
+            String name = playerNames.next();
+            stringBuilder.append(alignLeft(name));
         }
-
         return stringBuilder.toString();
     }
 
-    private static String alignLeft(final String name, final int length) {
-        return String.format("%-" + length + "s ", name);
+    public static String generateGoalsMessage(Iterator<String> goalNames) {
+        List<String> alignedGoalNames = new ArrayList<>();
+        while (goalNames.hasNext()) {
+            alignedGoalNames.add(MessageGenerator.alignLeft(goalNames.next()));
+        }
+        return String.join(" ", alignedGoalNames);
     }
 
-    public static List<String> generateLadderMessage(List<List<Boolean>> ladderInfo, int maxNameLength) {
+    private static String alignLeft(final String name) {
+        return String.format("%-5s", name);
+    }
+
+    public static List<String> generateLadderMessage(Iterator<Iterator<Boolean>> connectedConditions) {
         List<String> ladderMessage = new ArrayList<>();
-        for (List<Boolean> line : ladderInfo) {
-            ladderMessage.add(generateLineMessage(line, maxNameLength));
+        while (connectedConditions.hasNext()) {
+            ladderMessage.add(generateLineMessage(connectedConditions.next()));
         }
         return ladderMessage;
     }
 
-    private static String generateLineMessage(final List<Boolean> line, final int maxLength) {
+    private static String generateLineMessage(final Iterator<Boolean> connectedConditions) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Boolean isSteppable : line) {
-            printSteppableLine(stringBuilder, maxLength, isSteppable);
-            printUnSteppableLine(stringBuilder, maxLength, isSteppable);
+        while (connectedConditions.hasNext()) {
+            generateStepMessage(connectedConditions, stringBuilder);
         }
         stringBuilder.append(PILLAR.getShape());
         return stringBuilder.toString();
     }
 
-    private static void printUnSteppableLine(StringBuilder stringBuilder, final int maxLength, final Boolean isSteppable) {
-        if (!isSteppable) {
-            stringBuilder.append(generateLineMessage(BLANK.getShape(), maxLength));
+    private static void generateStepMessage(Iterator<Boolean> connectedConditions, StringBuilder stringBuilder) {
+        Boolean connectedCondition = connectedConditions.next();
+        if (connectedConditions.hasNext()) {
+            generateConnectedStep(stringBuilder, connectedCondition);
+            generateUnConnectedStep(stringBuilder, connectedCondition);
         }
     }
 
-    private static void printSteppableLine(StringBuilder stringBuilder, final int maxLength, final Boolean isSteppable) {
-        if (isSteppable) {
-            stringBuilder.append(generateLineMessage(FOOTSTEP.getShape(), maxLength));
+    private static void generateUnConnectedStep(StringBuilder stringBuilder, final Boolean connected) {
+        if (!connected) {
+            stringBuilder.append(generateLineMessage(BLANK.getShape()));
         }
     }
 
-    private static String generateLineMessage(final String shape, final int maxLength) {
-        String footSteps = shape.repeat(maxLength);
+    private static void generateConnectedStep(StringBuilder stringBuilder, final Boolean connected) {
+        if (connected) {
+            stringBuilder.append(generateLineMessage(FOOTSTEP.getShape()));
+        }
+    }
+
+    private static String generateLineMessage(final String shape) {
+        String footSteps = shape.repeat(Line.BRIDGE_LENGTH);
         return String.format("%s%s", PILLAR.getShape(), footSteps);
     }
 }

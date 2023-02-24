@@ -1,5 +1,7 @@
 package domain;
 
+import domain.ladder.player.Player;
+import domain.ladder.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -11,11 +13,11 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("이름들은 ")
-class NamesTest {
+class PlayersTest {
 
-    private Names getNamesInstance(String... names) {
-        return Names.of(Stream.of(names)
-                .map(Name::of)
+    private Players getNamesInstance(String... names) {
+        return Players.of(Stream.of(names)
+                .map(Player::of)
                 .collect(Collectors.toList()));
     }
 
