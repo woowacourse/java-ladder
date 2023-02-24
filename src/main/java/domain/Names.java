@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Names {
+    private static final int MINUS_VALUE_FOR_LADDER_WIDTH = 1;
     private static final int MIN_NAME_INCLUSIVE = 2;
     private static final String ERROR_MIN_PEOPLE = "[ERROR] " + MIN_NAME_INCLUSIVE + "명 이상의 사람들을 입력해주세요";
     private static final String ERROR_NAME_SEARCH_ERROR = "해당하는 값이 없습니다";
@@ -22,18 +23,22 @@ public class Names {
         }
     }
 
-    public int getNameIndexByValue(String value) {
+    public int getNameIndexByValue(final String value) {
         return IntStream.range(0, names.size())
                 .filter(nameIndex -> names.get(nameIndex).getValue().equals(value))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_NAME_SEARCH_ERROR));
     }
 
+    public Width toWidth() {
+        return new Width(names.size() - MINUS_VALUE_FOR_LADDER_WIDTH);
+    }
+
     public int size() {
         return names.size();
     }
 
-    public boolean hasName(String targetName) {
+    public boolean hasName(final String targetName) {
         return names.stream()
                 .anyMatch(name -> name.getValue().equals(targetName));
     }
