@@ -20,6 +20,7 @@ LadderGame --> Players
 Players --> Player
 Player --> PlayerName
 Player --> Position
+Players --> Ladder
 
 LadderGame --> Items
 Items --> Item
