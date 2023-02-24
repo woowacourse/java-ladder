@@ -9,6 +9,7 @@ import ladder.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -23,19 +24,25 @@ public class LadderGameController {
     }
 
     public void run() {
-        Players players = initializePlayers(inputView.askPlayerNames());
-        Results results = new Results(players, inputView.askResultProducts());
-        int height = inputView.askLadderHeight();
+        Players players = repeat(() -> initializePlayers(inputView.askPlayerNames()));
+        Results results = repeat(() -> new Results(players, inputView.askResultProducts()));
+        int height = repeat(inputView::askLadderHeight);
         LadderGame game = new LadderGame(players, height);
 
         showLadder(game, results);
         game.play();
 
+        checkResult(results);
+    }
+
+    private void checkResult(final Results results) {
         while (true) {
-            String playerName = inputView.askResultByPlayerName();
-            String product = results.toResultByPlayerName(playerName);
-            outputView.showResult(product);
-            if ("all".equals(playerName)) {
+            Map<String, String> result = repeat(() -> {
+                String name = inputView.askResultByPlayerName();
+                return results.toResultByPlayerName(name);
+            });
+            outputView.showResult(result);
+            if (result.size() > 1) {
                 return;
             }
         }
@@ -65,6 +72,7 @@ public class LadderGameController {
         try {
             return input.get();
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return repeat(input);
         }
     }

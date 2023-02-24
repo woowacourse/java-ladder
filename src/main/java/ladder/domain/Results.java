@@ -1,8 +1,9 @@
 package ladder.domain;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
-import java.util.StringJoiner;
+import java.util.Map;
 
 public class Results {
 
@@ -23,28 +24,26 @@ public class Results {
         }
     }
 
-    public String toResultByPlayerName(final String name) {
+    public Map<String, String> toResultByPlayerName(final String name) {
         if ("all".equals(name)) {
             return createAllResultMessage();
         }
 
         Player player = players.getPlayerByName(name);
         int position = player.getPosition();
-        return products.get(position);
+        return Map.of(player.getName(), products.get(position));
     }
 
-    private String createAllResultMessage() {
-        StringBuilder builder = new StringBuilder();
-        StringJoiner joiner = new StringJoiner(delimiter);
+    private Map<String, String> createAllResultMessage() {
+        Map<String, String> result = new HashMap<>();
 
         for (Player player : players.toUnmodifiablePlayers()) {
             String name = player.getName();
             String product = products.get(player.getPosition());
-            String join = String.join(delimiter, name, product);
-            builder.append(join + "\n");
+            result.put(name, product);
         }
 
-        return builder.toString();
+        return result;
     }
 
     public List<String> toUnmodifiableResults() {

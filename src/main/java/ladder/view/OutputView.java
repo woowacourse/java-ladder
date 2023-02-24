@@ -4,6 +4,7 @@ import ladder.domain.Line;
 import ladder.domain.Point;
 
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
@@ -52,8 +53,9 @@ public class OutputView {
         return NONE;
     }
 
-    public void showResult(final String product) {
-        System.out.println(product);
-        
+    public void showResult(final Map<String, String> result) {
+        for (String name : result.keySet()) {
+            System.out.println(name + " : " + result.get(name));
+        }
     }
 }
