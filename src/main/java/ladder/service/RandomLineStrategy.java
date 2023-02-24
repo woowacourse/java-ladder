@@ -27,7 +27,7 @@ public class RandomLineStrategy implements LineStrategy {
     }
 
     private boolean isProperSteps(Deque<Step> steps) {
-        return steps.isEmpty() || steps.peek() == Step.EMPTY;
+        return steps.isEmpty() || steps.peekLast() == Step.EMPTY;
     }
 
     private Step createRandomStep() {
