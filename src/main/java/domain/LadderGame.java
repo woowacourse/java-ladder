@@ -19,29 +19,29 @@ public class LadderGame {
 
     public ResultsMap getResults(String input) {
         if (input.equals(ALL)) {
-            return calculateTotalResults();
+            return getTotalResults();
         }
-        Map<Person, Result> resultMap = new LinkedHashMap<>();
-        Person targetPerson = new Person(input);
-        resultMap.put(targetPerson, calculateSingleResult(targetPerson));
-        return new ResultsMap(resultMap);
+        return getSingleResult(input);
     }
 
-    public ResultsMap calculateTotalResults() {
+    public ResultsMap getTotalResults() {
         Map<Person, Result> resultMap = new LinkedHashMap<>();
         for (Person person : people.getPeople()) {
-            resultMap.put(person, calculateSingleResult(person));
+            resultMap.put(person, calculateResult(person));
         }
         return new ResultsMap(resultMap);
     }
 
-    public Result calculateSingleResult(Person person) {
+    public ResultsMap getSingleResult(String name) {
+        Map<Person, Result> resultMap = new LinkedHashMap<>();
+        Person targetPerson = new Person(name);
+        resultMap.put(targetPerson, calculateResult(targetPerson));
+        return new ResultsMap(resultMap);
+    }
+
+    public Result calculateResult(Person person) {
         Column startColumn = people.findColumnByPerson(person);
         Column resultColumn = ladder.startFromColumnAndGetResultColumn(startColumn);
         return results.getResultByColumn(resultColumn);
-    }
-
-    public People getPeople() {
-        return people;
     }
 }

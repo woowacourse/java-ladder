@@ -41,7 +41,7 @@ public class LadderGameTest {
             "jk,5000",
     })
     void single_result_test(String name, String result) {
-        assertThat(ladderGame.calculateSingleResult(new Person(name)))
+        assertThat(ladderGame.calculateResult(new Person(name)))
                 .isEqualTo(new Result(result));
     }
 
@@ -54,7 +54,7 @@ public class LadderGameTest {
                 new Person("crong"), new Result("꽝"),
                 new Person("jk"), new Result("5000")
         );
-        ResultsMap resultMap = ladderGame.calculateTotalResults();
+        ResultsMap resultMap = ladderGame.getTotalResults();
         assertThat(resultMap).isEqualTo(new ResultsMap(data));
     }
 }

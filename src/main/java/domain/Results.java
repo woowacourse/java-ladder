@@ -21,15 +21,15 @@ public class Results {
         }
     }
 
+    private void validateColumn(Column column) {
+        if (column.get() >= results.size()) {
+            throw new IllegalArgumentException("유효 범위를 초과한 column입니다.");
+        }
+    }
+
     public Result getResultByColumn(Column column) {
         validateColumn(column);
         return results.get(column.get());
-    }
-
-    private void validateColumn(Column column) {
-        if (column.get() >= results.size()) {
-            throw new IllegalArgumentException("유효 범위를 초과한 Column입니다.");
-        }
     }
 
     public List<Result> getResults() {

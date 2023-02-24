@@ -1,8 +1,12 @@
-import domain.*;
+import domain.Ladder;
+import domain.LadderGame;
+import domain.People;
+import domain.RandomLadderGenerator;
+import domain.Results;
+import domain.ResultsMap;
 import view.InputView;
 import view.OutputView;
 
-import java.util.Map;
 import java.util.function.Supplier;
 
 public class Application {

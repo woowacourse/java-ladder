@@ -16,15 +16,15 @@ public class ResultsMap {
         return resultMap.size() == 1;
     }
 
-    public Set<Map.Entry<Person, Result>> entrySet() {
-        return Collections.unmodifiableSet(resultMap.entrySet());
-    }
-
     public Result getSingleResult() {
         return resultMap.values()
                 .stream()
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("결과가 존재하지 않습니다."));
+    }
+
+    public Set<Map.Entry<Person, Result>> entrySet() {
+        return Collections.unmodifiableSet(resultMap.entrySet());
     }
 
     @Override
