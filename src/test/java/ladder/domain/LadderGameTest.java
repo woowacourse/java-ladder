@@ -24,8 +24,9 @@ class LadderGameTest {
         Items items = Items.generate(List.of("1000", "2000", "0"), players.getSize());
         LadderGame ladderGame = new LadderGame(players, ladder, items);
 
+        Player player = players.findBy("a");
         GameResult gameResult = ladderGame.play();
 
-        assertThat(gameResult.findResult("a")).containsEntry("a", "0");
+        assertThat(gameResult.findResult(player)).containsEntry(player, items.findBy(2));
     }
 }

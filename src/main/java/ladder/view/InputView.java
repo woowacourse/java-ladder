@@ -25,7 +25,6 @@ public class InputView {
         String input = SCANNER.next();
         return Arrays.stream(input.split(","))
                 .collect(Collectors.toList());
-
     }
 
     public String readName() {

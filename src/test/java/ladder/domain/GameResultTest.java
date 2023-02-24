@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.assertj.core.api.Assertions.entry;
 
 import java.util.List;
 import java.util.Map;
@@ -17,9 +17,10 @@ class GameResultTest {
         Items items = Items.generate(List.of("1", "2"), players.getSize());
         GameResult gameResult = GameResult.of(players, items);
 
-        Map<String, String> result = gameResult.findResult("a");
+        Player player = players.findBy("a");
+        Map<Player, Item> result = gameResult.findResult(player);
 
-        assertThat(result).containsEntry("a", "1");
+        assertThat(result).containsEntry(player, items.findBy(0));
     }
 
     @Test
@@ -29,11 +30,11 @@ class GameResultTest {
         Items items = Items.generate(List.of("1", "2"), players.getSize());
         GameResult gameResult = GameResult.of(players, items);
 
-        Map<String, String> result = gameResult.findAll();
+        Map<Player, Item> result = gameResult.findAll();
 
-        assertAll(
-                () -> assertThat(result).containsEntry("a", "1"),
-                () -> assertThat(result).containsEntry("b", "2"));
+        assertThat(result).containsExactly(
+                entry(players.findBy("a"), items.findBy(0)),
+                entry(players.findBy("b"), items.findBy(1))
+        );
     }
-
 }

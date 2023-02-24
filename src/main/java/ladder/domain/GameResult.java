@@ -5,33 +5,28 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class GameResult {
-    public static final String RESERVED_WORD = "all";
+    private final Map<Player, Item> results;
 
-    private final Map<String, String> results;
-
-    private GameResult(Map<String, String> results) {
+    private GameResult(Map<Player, Item> results) {
         this.results = results;
     }
 
     public static GameResult of(Players players, Items items) {
-        Map<String, String> results = new LinkedHashMap<>();
+        Map<Player, Item> results = new LinkedHashMap<>();
         for (Player player : players.toUnmodifiablePlayers()) {
-            results.put(player.getName(), items.findBy(player.getPosition()).getName());
+            results.put(player, items.findBy(player.getPosition()));
         }
         return new GameResult(results);
     }
 
-    public Map<String, String> findResult(String name) {
-        if (name.equals(RESERVED_WORD)) {
-            return findAll();
-        }
-        if (results.containsKey(name)) {
-            return Map.of(name, results.get(name));
+    public Map<Player, Item> findResult(Player player) {
+        if (results.containsKey(player)) {
+            return Map.of(player, results.get(player));
         }
         throw new IllegalArgumentException("해당 이름의 결과를 찾을 수 없습니다");
     }
 
-    public Map<String, String> findAll() {
+    public Map<Player, Item> findAll() {
         return Collections.unmodifiableMap(results);
     }
 }

@@ -21,7 +21,7 @@ public class Player {
         ladder.moveToResult(position);
     }
 
-    public boolean isMatchesBy(Name name) {
-        return this.name.equals(name);
+    public boolean isMatchesBy(String name) {
+        return this.name.equals(new Name(name));
     }
 }

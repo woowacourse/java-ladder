@@ -74,7 +74,7 @@ class PlayersTest {
 
         Players players = Players.generate(names);
 
-        assertThat(players.findPositionBy(new Name("a"))).isEqualTo(0);
+        assertThat(players.findPositionBy("a")).isEqualTo(0);
     }
 
     /*
@@ -93,6 +93,6 @@ class PlayersTest {
 
         players.moveAll(ladder);
 
-        assertThat(players.findPositionBy(new Name(playerName))).isEqualTo(expectPosition);
+        assertThat(players.findPositionBy(playerName)).isEqualTo(expectPosition);
     }
 }

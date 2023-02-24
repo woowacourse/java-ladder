@@ -36,7 +36,7 @@ public class Players {
         }
     }
 
-    public int findPositionBy(Name name) {
+    public int findPositionBy(String name) {
         Player findPlayer = players.stream()
                 .filter(player -> player.isMatchesBy(name))
                 .findFirst()
@@ -46,6 +46,13 @@ public class Players {
 
     public int getSize() {
         return players.size();
+    }
+
+    public Player findBy(String name) {
+        return players.stream()
+                .filter(player -> player.isMatchesBy(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름을 가진 Player가 없습니다"));
     }
 
     public List<String> getNameValues() {

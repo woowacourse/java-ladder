@@ -21,7 +21,7 @@ class PlayerTest {
     void shouldReturnTrueWhenInputEqualsName() {
         Player player = new Player("box", 0);
 
-        boolean isMatch = player.isMatchesBy(new Name("box"));
+        boolean isMatch = player.isMatchesBy("box");
 
         assertThat(isMatch).isTrue();
     }

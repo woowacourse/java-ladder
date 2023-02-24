@@ -3,7 +3,9 @@ package ladder.view;
 import java.util.List;
 import java.util.Map;
 import ladder.domain.Bar;
+import ladder.domain.Item;
 import ladder.domain.Line;
+import ladder.domain.Player;
 
 public class OutputView {
     private static final String WIDTH_PREFIX = "    ";
@@ -55,20 +57,20 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printResult(Map<String, String> result) {
+    public void printResult(Map<Player, Item> result) {
         printResultMessage();
         if (result.size() != 1) {
             printAllResult(result);
             return;
         }
-        for (String name : result.keySet()) {
-            System.out.println(result.get(name));
+        for (Player player : result.keySet()) {
+            System.out.println(result.get(player).getName());
         }
     }
 
-    private void printAllResult(Map<String, String> result) {
-        for (String name : result.keySet()) {
-            System.out.println(name + " : " + result.get(name));
+    private void printAllResult(Map<Player, Item> result) {
+        for (Player player : result.keySet()) {
+            System.out.println(player.getName() + " : " + result.get(player).getName());
         }
     }
 
