@@ -73,13 +73,13 @@ public class InputView {
         return new Height(Integer.parseInt(input));
     }
 
-    public List<Result> mapToResult(List<String> result) {
+    private List<Result> mapToResult(List<String> result) {
         return result.stream()
                 .map(Result::new)
                 .collect(Collectors.toList());
     }
 
-    public List<Name> mapToName(List<String> names) {
+    private List<Name> mapToName(List<String> names) {
         return names.stream()
                 .map(Name::new)
                 .collect(Collectors.toList());
