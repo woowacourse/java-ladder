@@ -11,63 +11,71 @@ import static exception.ErrorMessage.USER_NAME_NOT_EXISTS_IN_USERS_EXCEPTION;
 
 public class LadderGameController {
 
-    private Users users;
-    private Ladder ladder;
-    private Results results;
+    private List<String> firstUserPositions;
     private List<String> lastUserPositions;
+    private List<String> resultsPositions;
 
-    public void makeLadderGame() {
-        generateUsers();
-        generateResults();
-        generateLadder();
-        printLadder();
-        calculateLadderGameResult();
+    public void run() {
+        Users users = generateUsers();
+        Results results = generateResults(users);
+        Ladder ladder = generateLadder(users);
+        printLadder(users, results, ladder);
+
+        storeLadderGameResult(users, results, ladder);
+
+        printResult(users);
     }
 
-    public void printResult() {
+    private void printResult(Users users) {
         String name = InputView.readTargetUserName();
         while(!"all".equals(name)) {
-            printResultWhenTargetIsNotAll(name);
+            printResultWhenTargetIsNotAll(users, name);
             name = InputView.readTargetUserName();
         }
         printAllResult();
     }
 
-    private void generateUsers() {
+    private Users generateUsers() {
+        Users users = null;
         try {
             users = new Users(InputView.readUserNames());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             generateUsers();
         }
+        return users;
     }
 
-    private void generateLadder() {
+    private Ladder generateLadder(final Users users) {
+        Ladder ladder = null;
         try {
             ladder = new Ladder(InputView.readLadderHeight(), users.size(), new RandomLinkGenerator());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            generateLadder();
+            generateLadder(users);
         }
+        return ladder;
     }
 
-    private void generateResults() {
+    private Results generateResults(final Users users) {
+        Results results = null;
         try {
             results = new Results(InputView.readResultNames(), users.size());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            generateResults();
+            generateResults(users);
         }
+        return results;
     }
 
-    private void printLadder() {
+    private void printLadder(final Users users, final Results results, final Ladder ladder) {
         OutputView.printResultMessage();
         OutputView.printUserNames(users.getUserNames());
-        OutputView.printLadder(formatPrimitiveLadder());
+        OutputView.printLadder(formatPrimitiveLadder(ladder));
         OutputView.printResultNames(results.getResultNames());
     }
 
-    private List<List<Boolean>> formatPrimitiveLadder() {
+    private List<List<Boolean>> formatPrimitiveLadder(final Ladder ladder) {
         List<List<Boolean>> primitiveLadder = new ArrayList<>();
         List<Line> lines = ladder.getLadder();
         for (Line line : lines) {
@@ -84,30 +92,35 @@ public class LadderGameController {
         primitiveLadder.add(primitiveLine);
     }
 
-    private void calculateLadderGameResult() {
-        CalculateLadderGameResult calculator = new CalculateLadderGameResult();
-        lastUserPositions = calculator.passLadder(ladder.getLadder(), users.getUserNames());
+    private void storeLadderGameResult(final Users users, final Results results, final Ladder ladder) {
+        firstUserPositions = users.getUserNames();
+        lastUserPositions = calculateLadderGameResult(users, ladder);
+        resultsPositions = results.getResultNames();
     }
 
-    private void printResultWhenTargetIsNotAll(final String name) {
+    private List<String> calculateLadderGameResult(final Users users, final Ladder ladder) {
+        CalculateLadderGameResult calculator = new CalculateLadderGameResult();
+        return calculator.passLadder(ladder.getLadder(), users.getUserNames());
+    }
+
+    private void printResultWhenTargetIsNotAll(final Users users, final String name) {
         try {
-            printTargetUserResult(name);
+            printTargetUserResult(users, name);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private void printTargetUserResult(final String userName) {
-        if (!users.isExist(userName)) {
+    private void printTargetUserResult(final Users users, final String name) {
+        if (!users.isExist(name)) {
             throw new IllegalArgumentException(USER_NAME_NOT_EXISTS_IN_USERS_EXCEPTION.getMessage());
-
         }
-        int index = lastUserPositions.indexOf(userName);
-        String result = results.getResultNames().get(index);
+        int index = lastUserPositions.indexOf(name);
+        String result = resultsPositions.get(index);
         OutputView.printUserResult(result);
     }
 
     private void printAllResult() {
-        OutputView.printAllResult(lastUserPositions, results.getResultNames());
+        OutputView.printAllResult(lastUserPositions, resultsPositions);
     }
 }
