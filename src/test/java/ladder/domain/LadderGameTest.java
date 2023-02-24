@@ -18,10 +18,10 @@ class LadderGameTest {
 
     private final LineSource I_____I = LineSource.MAKE_LINE;
     private final LineSource IxxxxxI = LineSource.MAKE_BLANK;
-    private Users DEFAULT_USERS;
-    private Ladder DEFAULT_LADDER;
-    private Reward DEFAULT_REWARD;
-    private LadderGame DEFAULT_LADDER_GAME;
+    private static Users DEFAULT_USERS;
+    private static Ladder DEFAULT_LADDER;
+    private static Reward DEFAULT_REWARD;
+    private static LadderGame DEFAULT_LADDER_GAME;
 
     @BeforeEach
     void setting() {
