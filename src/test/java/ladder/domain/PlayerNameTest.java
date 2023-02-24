@@ -33,7 +33,7 @@ public class PlayerNameTest {
 
     @Test
     void all을_이름으로_사용할_수_없다() {
-        assertThatThrownBy(() -> new Player("all"))
+        assertThatThrownBy(() -> new PlayerName("all"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("all은 사용할 수 없는 이름입니다.");
     }

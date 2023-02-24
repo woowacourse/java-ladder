@@ -9,11 +9,6 @@ class Item {
         this.position = position;
     }
 
-    public Item(final String name) {
-        this.name = new ItemName(name);
-        this.position = Position.valueOf(0);
-    }
-    
     public boolean isSamePosition(final Position position) {
         return this.position == position;
     }
