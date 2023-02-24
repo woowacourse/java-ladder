@@ -57,7 +57,7 @@ public class Ladder {
     }
 
     private void getPointConnectionStatus(Boolean[] isConnectedAt, Line line, int i) {
-        if(line.points().get(i).isPassable()) {
+        if (line.points().get(i).isPassable()) {
             isConnectedAt[i] = true;
         }
     }

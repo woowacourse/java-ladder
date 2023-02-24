@@ -2,7 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.function.Consumer;
 
 public class Results {
     private final List<Result> results;
@@ -22,8 +22,8 @@ public class Results {
         return results.get(position);
     }
 
-    public Stream<Result> stream() {
-        return results.stream();
+    public void forEach(Consumer<Result> action) {
+        results.forEach(action);
     }
 
 }

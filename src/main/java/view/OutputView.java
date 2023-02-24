@@ -28,13 +28,13 @@ public class OutputView {
 
     public void printFormattedResults(Results results) {
         int numberOfStandardBlanks = EDGE_OF_POINT.length() + PASSABLE_POINT.length();
-        results.stream().forEach(result -> printFormattedString(result.value(), numberOfStandardBlanks));
+        results.forEach(result -> printFormattedString(result.value(), numberOfStandardBlanks));
         System.out.println();
     }
 
     public void printFormattedNames(Names names) {
         int numberOfStandardBlanks = EDGE_OF_POINT.length() + PASSABLE_POINT.length();
-        names.stream().forEach(name -> printFormattedString(name.value(), numberOfStandardBlanks));
+        names.forEach(name -> printFormattedString(name.value(), numberOfStandardBlanks));
         System.out.println();
     }
 

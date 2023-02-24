@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 public class Names {
@@ -39,6 +40,10 @@ public class Names {
 
     public Stream<Name> stream() {
         return List.copyOf(names).stream();
+    }
+
+    public void forEach(Consumer<Name> action) {
+        names.forEach(action);
     }
 
     public Name get(int position) {
