@@ -23,7 +23,7 @@ public class LadderTest {
     @Test
     @DisplayName("0이하의 값으로 Ladder생성시 예외가 발생한다.")
     void inValidLadderSizeTest() {
-        assertThatThrownBy(() -> new Ladder(0, new Users(List.of("1", "2"))))
+        assertThatThrownBy(() -> new Ladder(0, 2))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리의 높이는 1이상 입니다.");
     }
@@ -31,18 +31,18 @@ public class LadderTest {
     @Test
     @DisplayName("1이상의 값으로 Ladder생성 시 사이즈 테스트")
     void checkValidLadderSizeTest() {
-        assertThat(new Ladder(3, new Users(List.of("1", "2"))).getFloors().size())
+        assertThat(new Ladder(3, 2).getFloors().size())
                 .isEqualTo(3);
     }
 
     @Test
     @DisplayName("Ladder 가로 사이즈 테스트")
     void checkLadderWidthTest() {
-        Ladder ladder = new Ladder(3, new Users(List.of("1", "2", "3")));
+        Ladder ladder = new Ladder(3, 2);
         List<Floor> floors = ladder.getFloors();
 
         for (Floor floor : floors) {
-            assertThat(floor.getLines().size()).isEqualTo(2);
+            assertThat(floor.getSize()).isEqualTo(2);
         }
     }
 
@@ -51,7 +51,7 @@ public class LadderTest {
     void I_____IFirstFloorTest() {
         TestLineSourceGenerator testLineSourceGenerator = new TestLineSourceGenerator(List.of(I_____I, IxxxxxI, IxxxxxI));
 
-        Ladder ladder = new Ladder(1, new Users(List.of("1", "2", "3", "4")));
+        Ladder ladder = new Ladder(1, 4);
         ladder.makeFloors(testLineSourceGenerator);
 
         List<Line> firstFloorLines = getFloorLines(1, ladder);
@@ -66,7 +66,7 @@ public class LadderTest {
     void I_____IFloorTest() {
         TestLineSourceGenerator testLineSourceGenerator = new TestLineSourceGenerator(List.of(I_____I, IxxxxxI, IxxxxxI, I_____I, I_____I, I_____I));
 
-        Ladder ladder = new Ladder(2, new Users(List.of("1", "2", "3", "4")));
+        Ladder ladder = new Ladder(2, 4);
         ladder.makeFloors(testLineSourceGenerator);
 
         List<Line> firstFloorLines = getFloorLines(1, ladder);
@@ -85,7 +85,7 @@ public class LadderTest {
     @DisplayName("아무 연결 없는 일자 사다리일 경우 반환 위치를 제대로 반환하는지 확인")
     void testForStraightBridge() {
         final Users users = new Users(List.of("a", "b", "c", "d"));
-        final Ladder ladder = new Ladder(8, users);
+        final Ladder ladder = new Ladder(8, 4);
         ladder.makeFloors(new TestLineSourceGenerator(List.of(IxxxxxI)));
         for (int i = 0; i < users.size(); i++) {
             assertThat(ladder.resultPositionOf(i)).isEqualTo(i);
@@ -96,7 +96,7 @@ public class LadderTest {
     @DisplayName("2줄 짜리 꼬인 사다리 테스트")
     void SecondFloorBridgeTest() {
         final Users users = new Users(List.of("a", "b"));
-        final Ladder ladder = new Ladder(2, users);
+        final Ladder ladder = new Ladder(2, 2);
         ladder.makeFloors(new TestLineSourceGenerator(List.of(
                 I_____I,
                 IxxxxxI
@@ -115,7 +115,7 @@ public class LadderTest {
     @DisplayName("3명으로 구성된 3층 사다리 테스트")
     void testForBridge() {
         final Users users = new Users(List.of("a", "b", "c"));
-        final Ladder ladder = new Ladder(3, users);
+        final Ladder ladder = new Ladder(3, 3);
         ladder.makeFloors(new TestLineSourceGenerator(List.of(
                 I_____I, IxxxxxI,
                 IxxxxxI, I_____I,
@@ -139,7 +139,7 @@ public class LadderTest {
     @ValueSource(ints = {-1, 3, 4, 5, 6})
     @DisplayName("사다리 크기에 맞지 않는 위치의 최종 위치값 반환 함수를 호출하면 예외를 발생시킨다.")
     void resultPositionExceptionTest(int index) {
-        final Ladder ladder = new Ladder(2, new Users(List.of("a", "b", "C")));
+        final Ladder ladder = new Ladder(2, 3);
         assertThatThrownBy(() -> ladder.resultPositionOf(index))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("해당 위치는 존재하지 않는 값입니다.");

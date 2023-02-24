@@ -26,7 +26,7 @@ class LadderGameTest {
     @BeforeEach
     void setting() {
         DEFAULT_USERS = new Users(List.of("a", "b", "c"));
-        DEFAULT_LADDER = new Ladder(3, DEFAULT_USERS);
+        DEFAULT_LADDER = new Ladder(3, 3);
         DEFAULT_REWARD = new Reward(List.of("1", "2", "3"));
         DEFAULT_LADDER_GAME = new LadderGame(DEFAULT_LADDER, DEFAULT_USERS, DEFAULT_REWARD);
     }
@@ -45,7 +45,7 @@ class LadderGameTest {
     }
 
     @Test
-    @DisplayName("직선 사디레에서 전체 유저들의 보상을 테스트한다.")
+    @DisplayName("직선 사다리에서 전체 유저들의 보상을 테스트한다.")
     void getRewardOfAllUserTest1() {
         final LadderGame ladderGame = new LadderGame(DEFAULT_LADDER, DEFAULT_USERS, DEFAULT_REWARD);
         assertAll(() -> {
@@ -63,7 +63,7 @@ class LadderGameTest {
     @Test
     @DisplayName("전체 유저들의 보상을 테스트한다.")
     void getRewardOfAllUserTest2() {
-        final Ladder ladder = new Ladder(3, DEFAULT_USERS);
+        final Ladder ladder = new Ladder(3, 3);
         ladder.makeFloors(new TestLineSourceGenerator(List.of(
                 I_____I, IxxxxxI,
                 IxxxxxI, I_____I,
@@ -118,7 +118,7 @@ class LadderGameTest {
     @Test
     @DisplayName("다리가 이어진 사다리 게임 결과 반환 값 테스트")
     void getRewardOfAllValueTest2() {
-        final Ladder ladder = new Ladder(3, DEFAULT_USERS);
+        final Ladder ladder = new Ladder(3, 3);
         ladder.makeFloors(new TestLineSourceGenerator(List.of(
                 I_____I, IxxxxxI,
                 IxxxxxI, I_____I,
@@ -163,7 +163,7 @@ class LadderGameTest {
                 .hasMessage("사다리, 보상, 유저 수의 크기는 같아야 합니다.");
 
         assertThatThrownBy(() -> {
-            new LadderGame(new Ladder(3, new Users(List.of("a", "b"))), DEFAULT_USERS, DEFAULT_REWARD);
+            new LadderGame(new Ladder(3, 2), DEFAULT_USERS, DEFAULT_REWARD);
         })
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리, 보상, 유저 수의 크기는 같아야 합니다.");

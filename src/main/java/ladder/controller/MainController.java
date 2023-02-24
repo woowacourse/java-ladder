@@ -43,7 +43,7 @@ public class MainController {
 
     private static Ladder inputLadder(Users users) {
         try {
-            return new Ladder(InputView.inputFloorHeight(), users);
+            return new Ladder(InputView.inputFloorHeight(), users.size());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputLadder(users);
