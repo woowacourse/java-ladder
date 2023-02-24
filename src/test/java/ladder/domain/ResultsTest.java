@@ -15,7 +15,7 @@ import java.util.List;
 public class ResultsTest {
 
     @Test
-    @DisplayName("입력된 결과의 수가 인원 수와 다르면 IllegalArgumentException 예외가 발생한다.")
+    @DisplayName("입력 결과의 수가 인원 수와 다르면 IllegalArgumentException 예외가 발생한다.")
     void create_mismatchWithPlayerCount() {
         // given
         String[] inputResults = {"꽝", "꽝", "5000", "3000"};
@@ -24,11 +24,11 @@ public class ResultsTest {
         // expect
         assertThatIllegalArgumentException().isThrownBy(() ->
                 new Results(inputResults, playerCount)
-        ).withMessage("[ERROR] 입력된 결과의 수가 인원 수와 같아야 합니다.");
+        ).withMessage("[ERROR] 입력 결과의 수가 인원 수와 같아야 합니다.");
     }
 
     @Test
-    @DisplayName("입력된 결과가 정상적으로 생성된다.")
+    @DisplayName("입력 결과가 정상적으로 생성된다.")
     void create_success() {
         // given
         String[] inputResults = {"O", "X", "X", "X"};
@@ -50,7 +50,7 @@ public class ResultsTest {
         Results results = new Results(inputResults, players.getPlayersCount());
 
         // when
-        String result = results.findResult(ladder.getLines(), players.findPosition(name));
+        String result = results.findResult(ladder, players.findPosition(name));
 
         // then
         assertThat(result).isEqualTo(expect);
@@ -66,7 +66,7 @@ public class ResultsTest {
         Results results = new Results(inputResults, players.getPlayersCount());
 
         // when
-        List<String> allResult = results.findAllResult(ladder.getLines());
+        List<String> allResult = results.findAllResult(ladder);
 
         // then
         assertThat(allResult).isEqualTo(List.of("성공", "꽝", "성공", "꽝"));
