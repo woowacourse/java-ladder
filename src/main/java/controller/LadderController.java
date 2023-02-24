@@ -1,15 +1,16 @@
 package controller;
 
 import domain.model.Ladder;
+import domain.model.Players;
+import domain.service.LadderGame;
 import domain.service.LadderMaker;
+import domain.service.PlayerMaker;
 import domain.vo.Height;
-import domain.vo.Name;
+import domain.vo.Names;
+import domain.vo.Results;
 import domain.vo.Width;
 import view.InputView;
 import view.OutputView;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderController {
     private final InputView inputView;
@@ -23,16 +24,27 @@ public class LadderController {
     }
 
     public void play() {
-        List<Name> names = inputNames();
-        int height = inputView.inputLadderHeight();
-        Ladder ladder = ladderMaker.make(new Height(height), new Width(names.size() - 1));
-        outputView.printResult(names, ladder);
+        LadderGame ladderGame = initLadderGame();
+        ladderGame.play();
+        viewResult(ladderGame);
     }
 
-    private List<Name> inputNames() {
-        return inputView.inputNames()
-                .stream()
-                .map(Name::new)
-                .collect(Collectors.toList());
+    private void viewResult(LadderGame ladderGame) {
+        Names viewers = inputView.inputResultViewerName();
+        Results viewResult = ladderGame.resultsByNames(viewers);
+        outputView.printGameResult(viewers, viewResult);
     }
+
+    private LadderGame initLadderGame() {
+        Names inputNames = inputView.inputNames();
+        Results inputResult = inputView.inputResults();
+
+        Height height = inputView.inputLadderHeight();
+        Width width = new Width(inputNames.size() - 1);
+        Ladder ladder = ladderMaker.make(height, width);
+        outputView.printLadder(inputNames, ladder, inputResult);
+        Players players = new PlayerMaker().make(inputNames);
+        return new LadderGame(ladder, players, inputResult);
+    }
+
 }

@@ -6,15 +6,14 @@ import domain.wrapper.Position;
 public class Player {
 
     private final Name name;
-    private final Position position;
+    private Position position;
 
-    private Player(Name name, Position position) {
+    public Player(Name name) {
         this.name = name;
-        this.position = position;
     }
 
-    public static Player of(Name name, Position position) {
-        return new Player(name, position);
+    public void initPosition(int index) {
+        position = Position.of(index);
     }
 
     public void move(Ladder ladder) {
@@ -47,7 +46,7 @@ public class Player {
         return position.getY();
     }
 
-    public String getName() {
-        return name.getValue();
+    public Name getName() {
+        return name;
     }
 }

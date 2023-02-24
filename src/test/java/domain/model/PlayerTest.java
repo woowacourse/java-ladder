@@ -3,7 +3,6 @@ package domain.model;
 import domain.vo.Height;
 import domain.vo.Name;
 import domain.vo.Width;
-import domain.wrapper.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +11,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class PlayerTest {
 
     Ladder ladder;
+
     @BeforeEach
     void setUp() {
         ladder = new Ladder(new Height(3), new Width(4));
@@ -35,9 +35,11 @@ class PlayerTest {
         ladder.addLayer(layer2);
         ladder.addLayer(layer3);
     }
+
     @Test
     void move() {
-        Player player = Player.of(new Name("name1"), Position.of(0));
+        Player player = new Player(new Name("name1"));
+        player.initPosition(0);
 
         player.move(ladder);
         assertThat(player.getXPosition()).isEqualTo(1);

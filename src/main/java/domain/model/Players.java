@@ -1,30 +1,34 @@
 package domain.model;
 
-import java.util.ArrayList;
+import domain.vo.Name;
+
 import java.util.List;
 
 public class Players {
 
-    private final List<Player> players = new ArrayList<>();
+    private final List<Player> players;
 
-    public void add(Player player) {
-        players.add(player);
+    public Players(List<Player> players) {
+        this.players = List.copyOf(players);
+        initPosition();
     }
 
-    public void addAll(List<Player> players) {
-        this.players.addAll(players);
+    public void initPosition() {
+        for (int i = 0; i < players.size(); i++) {
+            players.get(i).initPosition(i);
+        }
     }
 
     public void moveAll(Ladder ladder) {
         players.forEach(player -> player.move(ladder));
     }
 
-    public int orderByName(String name) {
+    public int orderByName(Name name) {
         Player player = findByName(name);
         return player.getXPosition();
     }
 
-    public Player findByName(String name) {
+    public Player findByName(Name name) {
         return players.stream()
                 .filter(player -> player.getName().equals(name))
                 .findAny()

@@ -1,21 +1,23 @@
 package domain.vo;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Results {
 
-    private final List<Result> results = new ArrayList<>();
+    private final List<Result> results;
 
-    public void add(Result result) {
-        results.add(result);
+    public Results(List<Result> results) {
+        this.results = List.copyOf(results);
     }
 
-    public void addAll(List<Result> results) {
-        this.results.addAll(results);
+    public Result get(int index) {
+        return results.get(index);
     }
 
-    public String get(int order) {
-        return results.get(order).getValue();
+    public List<String> mapToStrings() {
+        return results.stream()
+                .map(Result::getValue)
+                .collect(Collectors.toList());
     }
 }

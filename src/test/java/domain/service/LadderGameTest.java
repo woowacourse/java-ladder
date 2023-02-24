@@ -5,7 +5,6 @@ import domain.model.Layer;
 import domain.model.Player;
 import domain.model.Players;
 import domain.vo.*;
-import domain.wrapper.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -22,12 +21,11 @@ class LadderGameTest {
 
     @BeforeEach
     void setUp() {
-        players = new Players();
-        Player player1 = Player.of(new Name("p1"), Position.of(0));
-        Player player2 = Player.of(new Name("p2"), Position.of(1));
-        Player player3 = Player.of(new Name("p3"), Position.of(2));
-        Player player4 = Player.of(new Name("p4"), Position.of(3));
-        players.addAll(List.of(player1, player2, player3, player4));
+        Player player1 = new Player(new Name("p1"));
+        Player player2 = new Player(new Name("p2"));
+        Player player3 = new Player(new Name("p3"));
+        Player player4 = new Player(new Name("p4"));
+        players = new Players(List.of(player1, player2, player3, player4));
 
         ladder = new Ladder(new Height(3), new Width(4));
 
@@ -55,8 +53,7 @@ class LadderGameTest {
         Result result3 = new Result("2000");
         Result result4 = new Result("3000");
 
-        results = new Results();
-        results.addAll(List.of(result1, result2, result3, result4));
+        results = new Results(List.of(result1, result2, result3, result4));
     }
 
     @ParameterizedTest(name = "{0}이 사다리 높이 만큼 이동했을 때의 위치는 ({1}, 3)")
@@ -68,7 +65,7 @@ class LadderGameTest {
 
         players = ladderGame.getPlayers();
 
-        Player player = players.findByName(name);
+        Player player = players.findByName(new Name(name));
 
         assertThat(player.getXPosition()).isEqualTo(xPosition);
         assertThat(player.getYPosition()).isEqualTo(3);
@@ -81,10 +78,14 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(ladder, players, results);
 
         ladderGame.play();
-        List<String> wantResult = List.of("p1", "p2", "p3", "p4");
-        List<String> resultsByNames = ladderGame.resultsByNames(wantResult);
+        Name p1 = new Name("p1");
+        Name p2 = new Name("p2");
+        Name p3 = new Name("p3");
+        Name p4 = new Name("p4");
+        Names wantResult = new Names(List.of(p1, p2, p3, p4));
+        Results resultsByNames = ladderGame.resultsByNames(wantResult);
 
-        assertThat(resultsByNames.get(index)).isEqualTo(expected);
+        assertThat(resultsByNames.get(index).getValue()).isEqualTo(expected);
     }
 
     @ParameterizedTest(name = "결과를 원하는 {0}번 째 player의 결과는 {1}")
@@ -93,9 +94,9 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(ladder, players, results);
 
         ladderGame.play();
-        List<String> wantResult = List.of("p3", "p4");
-        List<String> resultsByNames = ladderGame.resultsByNames(wantResult);
+        Names wantResult = new Names(List.of(new Name("p3"), new Name("p4")));
+        Results resultsByNames = ladderGame.resultsByNames(wantResult);
 
-        assertThat(resultsByNames.get(index)).isEqualTo(expected);
+        assertThat(resultsByNames.get(index).getValue()).isEqualTo(expected);
     }
 }

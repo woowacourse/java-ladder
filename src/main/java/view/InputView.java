@@ -1,5 +1,6 @@
 package view;
 
+import domain.vo.*;
 import validator.InputValidator;
 import validator.dto.InputValidationRequest;
 import validator.type.ValidateType;
@@ -22,25 +23,25 @@ public class InputView {
         this.validator = inputValidator;
     }
 
-    public List<String> inputNames() {
+    public Names inputNames() {
         System.out.println(INPUT_NAMES_MESSAGE);
         List<String> names = List.of(scanner.nextLine().split(NAME_DELIMITER));
         validateNames(names);
-        return trimNames(names);
+        return new Names(mapToName(trimNames(names)));
     }
 
-    public List<String> inputResults() {
+    public Results inputResults() {
         System.out.println(INPUT_RESULTS_MESSAGE);
         List<String> results = List.of(scanner.nextLine().split(NAME_DELIMITER));
         // TODO:validateResults(results);
-        return results;
+        return new Results(mapToResult(results));
     }
 
-    public List<String> inputResultViewerName() {
+    public Names inputResultViewerName() {
         System.out.println(INPUT_RESULT_VIEWER_NAME_MESSAGE);
         List<String> names = List.of(scanner.nextLine().split(NAME_DELIMITER));
         // TODO:validate
-        return names;
+        return new Names(mapToName(names));
     }
 
     private void validateNames(final List<String> names) {
@@ -60,7 +61,7 @@ public class InputView {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public int inputLadderHeight() {
+    public Height inputLadderHeight() {
         System.out.println(INPUT_LADDER_HEIGHT_MESSAGE);
         String input = scanner.nextLine();
         validator.validate(
@@ -69,6 +70,18 @@ public class InputView {
                         input
                 )
         );
-        return Integer.parseInt(input);
+        return new Height(Integer.parseInt(input));
+    }
+
+    public List<Result> mapToResult(List<String> result) {
+        return result.stream()
+                .map(Result::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<Name> mapToName(List<String> names) {
+        return names.stream()
+                .map(Name::new)
+                .collect(Collectors.toList());
     }
 }

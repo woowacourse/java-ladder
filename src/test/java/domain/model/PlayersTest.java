@@ -3,7 +3,6 @@ package domain.model;
 import domain.vo.Height;
 import domain.vo.Name;
 import domain.vo.Width;
-import domain.wrapper.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -19,12 +18,12 @@ class PlayersTest {
 
     @BeforeEach
     void setUp() {
-        players = new Players();
-        Player player1 = Player.of(new Name("p1"), Position.of(0));
-        Player player2 = Player.of(new Name("p2"), Position.of(1));
-        Player player3 = Player.of(new Name("p3"), Position.of(2));
-        Player player4 = Player.of(new Name("p4"), Position.of(3));
-        players.addAll(List.of(player1, player2, player3, player4));
+
+        Player player1 = new Player(new Name("p1"));
+        Player player2 = new Player(new Name("p2"));
+        Player player3 = new Player(new Name("p3"));
+        Player player4 = new Player(new Name("p4"));
+        players = new Players(List.of(player1, player2, player3, player4));
 
         ladder = new Ladder(new Height(3), new Width(4));
 
@@ -53,7 +52,7 @@ class PlayersTest {
     void moveAll(String name, int expectedX, int expectedY) {
         players.moveAll(ladder);
 
-        Player player = players.findByName(name);
+        Player player = players.findByName(new Name(name));
         assertThat(player.getXPosition()).isEqualTo(expectedX);
         assertThat(player.getYPosition()).isEqualTo(expectedY);
     }
@@ -65,6 +64,6 @@ class PlayersTest {
             players.moveAll(ladder);
         }
 
-        assertThat(players.orderByName(name)).isEqualTo(expected);
+        assertThat(players.orderByName(new Name(name))).isEqualTo(expected);
     }
 }

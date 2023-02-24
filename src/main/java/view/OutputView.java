@@ -2,7 +2,8 @@ package view;
 
 import domain.model.Ladder;
 import domain.model.Layer;
-import domain.vo.Name;
+import domain.vo.Names;
+import domain.vo.Results;
 
 import java.util.List;
 
@@ -16,18 +17,28 @@ public class OutputView {
     private static final String UNCONNECTED_LINE = "     ";
     private static final String NAME_SPACE = " ";
 
-    public void printResult(List<Name> names, Ladder ladder) {
+    public void printLadder(Names names, Ladder ladder, Results results) {
         System.out.println(RESULT_ANNOUNCEMENT);
         printNames(names);
         printLadder(ladder);
+        printResult(results);
     }
 
-    private void printNames(final List<Name> names) {
+    private void printResult(Results results) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String result : results.mapToStrings()) {
+            stringBuilder.append(NAME_SPACE.repeat(4));
+            stringBuilder.append(result);
+        }
+        System.out.println(stringBuilder);
+    }
+
+    private void printNames(final Names names) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\n");
-        names.forEach(name -> {
-            int difference = INTERVAL_UNIT - name.getValue().length();
-            stringBuilder.append(name.getValue()).append(NAME_SPACE.repeat(difference));
+        names.mapToString().forEach(name -> {
+            int difference = INTERVAL_UNIT - name.length();
+            stringBuilder.append(name).append(NAME_SPACE.repeat(difference));
         });
         System.out.println(stringBuilder);
     }
@@ -53,9 +64,9 @@ public class OutputView {
         return UNCONNECTED_LINE;
     }
 
-    public void printGameResult(List<String> viewers, List<String> viewResult) {
+    public void printGameResult(Names viewers, Results viewResult) {
         for (int i = 0; i < viewers.size(); i++) {
-            System.out.println(viewers.get(i) + " : " + viewResult.get(i));
+            System.out.println(viewers.get(i).getValue() + " : " + viewResult.get(i).getValue());
         }
     }
 }
