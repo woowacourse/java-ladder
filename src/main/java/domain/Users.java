@@ -28,9 +28,7 @@ public class Users {
 
     public List<String> getUserNames() {
         final List<String> userNames = new ArrayList<>();
-        for (final User user : users) {
-            userNames.add(user.getName());
-        }
+        users.forEach(user -> userNames.add(user.getName()));
         return userNames;
     }
 
@@ -42,9 +40,7 @@ public class Users {
 
     private List<User> initUsers(List<String> userNames) {
         final List<User> users = new ArrayList<>();
-        for (final String userName : userNames) {
-            users.add(new User(userName));
-        }
+        userNames.forEach(userName -> users.add(new User(userName)));
         return users;
     }
 }

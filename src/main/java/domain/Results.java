@@ -16,9 +16,7 @@ public class Results {
 
     public List<String> getResultNames() {
         final List<String> resultNames = new ArrayList<>();
-        for (final Result result : results) {
-            resultNames.add(result.getName());
-        }
+        results.forEach(result -> resultNames.add(result.getName()));
         return List.copyOf(resultNames);
     }
 
@@ -30,9 +28,7 @@ public class Results {
 
     private List<Result> initResults(final List<String> resultNames) {
         final List<Result> results = new ArrayList<>();
-        for (final String resultName : resultNames) {
-            results.add(new Result(resultName));
-        }
+        resultNames.forEach(resultName -> results.add(new Result(resultName)));
         return results;
     }
 }
