@@ -36,10 +36,9 @@ public class LadderGameController {
 
     private void ready() {
         List<String> playerNames = inputView.readPlayerNames();
-        Players players = Players.valueOf(playerNames);
-        List<String> prizes = inputView.readPrizes();
+        List<String> prizeValues = inputView.readPrizes();
         int ladderHeight = inputView.readLadderHeight();
-        ladderGame = new LadderGame(players, ladderHeight, prizes, pointGenerator);
+        ladderGame = new LadderGame(playerNames, ladderHeight, prizeValues, pointGenerator);
     }
 
     private void printGeneratedLadder() {

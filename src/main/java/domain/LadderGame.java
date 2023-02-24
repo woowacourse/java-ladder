@@ -16,16 +16,16 @@ public class LadderGame {
     private final Prizes prizes;
     private final LadderGameResult result;
 
-    public LadderGame(final Players players, final int ladderHeight, final List<String> prizes, final PointGenerator pointGenerator) {
-        validate(players, prizes);
-        this.players = players;
-        this.ladder = Ladder.of(players.getPlayerSize(), ladderHeight, pointGenerator);
-        this.prizes = Prizes.from(prizes);
-        this.result = LadderGameResult.of(players, this.prizes, ladder.ride(players.getPlayerSize()));
+    public LadderGame(final List<String> playerNames, final int ladderHeight, final List<String> prizeValues, final PointGenerator pointGenerator) {
+        validate(playerNames, prizeValues);
+        this.players = Players.valueOf(playerNames);
+        this.ladder = Ladder.of(playerNames.size(), ladderHeight, pointGenerator);
+        this.prizes = Prizes.from(prizeValues);
+        this.result = LadderGameResult.of(players, this.prizes, ladder.ride(playerNames.size()));
     }
 
-    private void validate(final Players players, final List<String> prizes) {
-        if (players.getPlayerSize() != prizes.size()) {
+    private void validate(final List<String> playerNames, final List<String> prizes) {
+        if (playerNames.size() != prizes.size()) {
             throw new IllegalArgumentException("참여자 수와 당첨 항목의 수는 같아야합니다.");
         }
     }

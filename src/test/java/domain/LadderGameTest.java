@@ -20,16 +20,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderGameTest {
 
-    private Players players;
     private LadderGame ladderGame;
 
     @BeforeEach
     void before() {
         List<String> playerNames = List.of("a", "b", "c");
         int ladderHeight = 5;
-        players = Players.valueOf(playerNames);
         List<String> prizes = List.of("10000", "20000", "30000");
-        ladderGame = new LadderGame(players, ladderHeight, prizes, new ExistPointGenerator());
+        ladderGame = new LadderGame(playerNames, ladderHeight, prizes, new ExistPointGenerator());
     }
 
     @DisplayName("Ladder를 생성한다.")
@@ -57,7 +55,7 @@ public class LadderGameTest {
     @Test
     void playersSizeAndEntriesSizeSame() {
         List<String> prizes = List.of("10000", "20000", "30000", "40000");
-        assertThatThrownBy(() -> new LadderGame(players, 5, prizes, new ExistPointGenerator()))
+        assertThatThrownBy(() -> new LadderGame(List.of("a", "b", "c"), 5, prizes, new ExistPointGenerator()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("참여자 수와 당첨 항목의 수는 같아야합니다.");
     }
@@ -66,10 +64,10 @@ public class LadderGameTest {
     @CsvSource(value = {"0:1", "1:0", "2:2"}, delimiter = ':')
     @ParameterizedTest
     void getTotalResult(int playerIndex, int prizeIndex) {
-        List<String> playerList = List.of("a", "b", "c");
-        Players players = Players.valueOf(playerList);
+        List<String> playerNames = List.of("a", "b", "c");
+        Players players = Players.valueOf(playerNames);
         List<String> prizes = List.of("10000", "20000", "30000");
-        ladderGame = new LadderGame(players, 5, prizes, new ExistPointGenerator());
+        ladderGame = new LadderGame(playerNames, 5, prizes, new ExistPointGenerator());
         LadderGameResult result = this.ladderGame.getResult();
         Map<Player, Prize> totalResult = result.getPlayerToPrize();
 
