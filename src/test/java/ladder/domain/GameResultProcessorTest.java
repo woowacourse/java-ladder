@@ -1,6 +1,8 @@
 package ladder.domain;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 import java.util.Map;
@@ -36,12 +38,25 @@ class GameResultProcessorTest {
         );
     }
 
-    @Test
-    void should__when_() {
+    @ParameterizedTest
+    @CsvSource({"00,2", "01,0", "02,1", "03,3", "04,4"})
+    void should_특정플레이어_게임결과_반환_when_fetchResultByName을호출하면(String name, String expected) {
         // given
+        Players players = Players.from(List.of("00", "01", "02", "03", "04"));
+        Ladder ladder = new Ladder(LadderTest.generateRowList());
+        Prizes prizes = Prizes.from(List.of(
+                "0",
+                "1",
+                "2",
+                "3",
+                "4"
+        ));
+        GameResultProcessor gameResultProcessor = GameResultProcessor.process(players.climbDownLadder(ladder), prizes);
 
         // when
+        String actual = gameResultProcessor.fetchResultByName(name);
 
         //then
+        assertThat(actual).isEqualTo(expected);
     }
 }
