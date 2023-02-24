@@ -12,10 +12,11 @@ public class Ladder {
     }
 
     public Position climbDownFrom(Position initialPosition) {
-        return rows.stream()
-                   .reduce(initialPosition,
-                           (from, row) -> row.movePlayer(from),
-                           (dummy1, dummy2) -> dummy1);
+        Position currentPosition = initialPosition;
+        for (Row row : rows) {
+            currentPosition = row.movePlayer(currentPosition);
+        }
+        return currentPosition;
     }
 
     public List<Row> getRows() {
