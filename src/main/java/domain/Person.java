@@ -8,6 +8,7 @@ package domain;
 public class Person {
 
     private final String name;
+    private int position;
 
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_NAME_LENGTH = 1;
@@ -15,6 +16,7 @@ public class Person {
     public Person(String name) {
         validateNameLength(name);
         this.name = name;
+        this.position = 0;
     }
 
     private static void validateNameLength(String name) {
@@ -23,7 +25,20 @@ public class Person {
         }
     }
 
+
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void goLeft() {
+        --position;
+    }
+
+    public void goRight() {
+        ++position;
     }
 }
