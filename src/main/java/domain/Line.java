@@ -42,44 +42,26 @@ public class Line {
     public int moveToNext(final int presentPosition) {
         int nextPosition = presentPosition;
 
-        nextPosition = moveAtLeftMost(presentPosition, nextPosition);
         nextPosition = moveGenerally(presentPosition, nextPosition);
-        nextPosition = moveAtRightMost(presentPosition, nextPosition);
 
-        return nextPosition;
-    }
-
-    private int moveAtLeftMost(final int presentPosition, int nextPosition) {
-        if (presentPosition == 0) {
-            nextPosition = moveRightWhenConnectionExist(presentPosition, nextPosition);
-        }
         return nextPosition;
     }
 
     private int moveGenerally(final int presentPosition, int nextPosition) {
-        if (presentPosition > 0 && presentPosition < connections.size()) {
-            nextPosition = moveLeftWhenConnectionExist(presentPosition, nextPosition);
-            nextPosition = moveRightWhenConnectionExist(presentPosition, nextPosition);
-        }
-        return nextPosition;
-    }
-
-    private int moveAtRightMost(final int presentPosition, int nextPosition) {
-        if (presentPosition == connections.size()) {
-            nextPosition = moveLeftWhenConnectionExist(presentPosition, nextPosition);
-        }
+        nextPosition = moveLeftWhenConnectionExist(presentPosition, nextPosition);
+        nextPosition = moveRightWhenConnectionExist(presentPosition, nextPosition);
         return nextPosition;
     }
 
     private int moveLeftWhenConnectionExist(final int presentPosition, int nextPosition) {
-        if (connections.get(presentPosition - 1)) {
+        if (presentPosition != 0 && connections.get(presentPosition - 1)) {
             nextPosition--;
         }
         return nextPosition;
     }
 
     private int moveRightWhenConnectionExist(final int presentPosition, int nextPosition) {
-        if (connections.get(presentPosition)) {
+        if (presentPosition != connections.size() && connections.get(presentPosition)) {
             nextPosition++;
         }
         return nextPosition;
