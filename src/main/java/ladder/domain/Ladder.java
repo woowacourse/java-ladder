@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import ladder.dto.RowsDto;
+import ladder.dto.LadderDto;
 
 /**
  * 사다리타기 로직을 구현할 때 사다리의 가로 행 하나를 하나의 Row로 추상화하고 전체 사다리를 Row의 집합인 Rows로 추상화하였습니다. 직관적인 사다리의 형태에서 양 끝의
@@ -13,35 +13,32 @@ import ladder.dto.RowsDto;
  * 데이터입니다.) 이 경우 Row에 정의되어 있는 List<Step> connected의 내용은 {Step.BLANK,Step.CONNECTED,Step.BLANK,Step.BLANK}가
  * 되고, 출력 시에는 첫번째 인덱스의 값을 무시합니다.
  */
-public class Rows {
+public class Ladder {
 
-    private final List<Row> rows;
-    private final Height height;
+    private final List<Row> rowList;
 
-    public Rows(int height, int width) {
-        this.height = new Height(height);
-        rows = new ArrayList<>();
+    public Ladder(int height, int width, StepGenerator stepGenerator) {
+        new Height(height);
+        rowList = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            rows.add(new Row(width));
+            rowList.add(new Row(width));
         }
+        rowList.forEach(row -> row.generateStep(stepGenerator));
     }
 
-    public void generateLegsOfLines(StepGenerator stepGenerator) {
-        rows.forEach(row -> row.generateLeg(stepGenerator));
-    }
 
-    public int followLadder(int initPos) {
-        int curPos = initPos;    //시작 위치
-        for (int i = 0; i < height.getHeight(); i++) {
-            curPos = rows.get(i).getAdjacent(curPos);
+    public int followLadder(int initPosition) {
+        int currentPosition = initPosition;
+        for (int i = 0; i < rowList.size(); i++) {
+            currentPosition = rowList.get(i).findAdjacentIndex(currentPosition);
         }
-        return curPos;
+        return currentPosition;
     }
 
 
-    public RowsDto toDto() {
-        return new RowsDto(rows.stream()
+    public LadderDto toDto() {
+        return new LadderDto(rowList.stream()
             .map(Row::toDto)
-            .collect(Collectors.toList()), height.getHeight());
+            .collect(Collectors.toList()), rowList.size());
     }
 }

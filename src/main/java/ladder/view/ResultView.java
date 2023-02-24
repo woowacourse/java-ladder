@@ -3,7 +3,7 @@ package ladder.view;
 import java.util.List;
 import ladder.domain.Step;
 import ladder.dto.ResultDto;
-import ladder.dto.RowsDto;
+import ladder.dto.LadderDto;
 import ladder.dto.NamesDto;
 
 public class ResultView {
@@ -11,11 +11,11 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printResult(NamesDto playerNamesDto, RowsDto rowsDto,
+    public static void printResult(NamesDto playerNamesDto, LadderDto ladderDto,
         NamesDto rewardNamesDto) {
         printResultTitle();
         printNames(playerNamesDto);
-        printRows(rowsDto);
+        printRows(ladderDto);
         printNames(rewardNamesDto);
         System.out.println();
     }
@@ -34,20 +34,20 @@ public class ResultView {
         System.out.printf("%6s", name);
     }
 
-    private static void printRows(RowsDto rowsDto) {
-        List<List<Step>> lines = rowsDto.getLines();
+    private static void printRows(LadderDto ladderDto) {
+        List<List<Step>> lines = ladderDto.getLines();
         lines.forEach(ResultView::printRow);
     }
 
     private static void printRow(List<Step> steps) {
         System.out.print("     |");
         for (int i = 0; i < steps.size(); i++) {
-            printLeg(steps, i);
+            printStep(steps, i);
         }
         System.out.println();
     }
 
-    private static void printLeg(List<Step> steps, int index) {
+    private static void printStep(List<Step> steps, int index) {
         if (steps.get(index) == Step.CONNECTED) {
             System.out.print("-----|");
             return;
