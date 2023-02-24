@@ -16,7 +16,6 @@ public class Ladder {
     private final List<Floor> floors;
 
     public Ladder(int height, Users users, PointGenerator pointGenerator) {
-
         validateSize(height);
         int width = calculateWidth(users);
 
@@ -24,7 +23,6 @@ public class Ladder {
     }
 
     private void validateSize(int height) {
-
         if (height < MINIMUM_HEIGHT) {
             throw new IllegalArgumentException(LADDER_SIZE_ERROR_MESSAGE);
         }

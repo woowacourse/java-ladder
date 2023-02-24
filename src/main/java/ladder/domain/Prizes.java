@@ -8,7 +8,6 @@ public class Prizes {
     private final List<Prize> prizes;
 
     public Prizes(List<String> prizeNames, Users users) {
-
         validateEqualSize(prizeNames, users);
         this.prizes = prizeNames.stream()
                 .map(Prize::new)

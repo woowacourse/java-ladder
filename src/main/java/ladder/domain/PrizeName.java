@@ -9,7 +9,6 @@ public class PrizeName {
     private final String value;
 
     public PrizeName(String value) {
-
         value = value.trim();
         validate(value);
         this.value = value;

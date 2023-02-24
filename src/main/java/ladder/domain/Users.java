@@ -14,27 +14,23 @@ public class Users {
     private final List<User> users;
 
     public Users(List<String> userNames) {
-
         validate(userNames);
         this.users = userNames.stream().map(User::new)
                 .collect(Collectors.toList());
     }
 
     private void validate(List<String> userNames) {
-
         validateDuplication(userNames);
         validateSize(userNames);
     }
 
     private void validateSize(List<String> userNames) {
-
         if (userNames.size() < MINIMUM_SIZE) {
             throw new IllegalArgumentException(USERS_SIZE_ERROR_MESSAGE);
         }
     }
 
     private void validateDuplication(List<String> userNames) {
-
         int inputNamesSize = userNames.size();
         int unDuplicationNamesSize = new HashSet<>(userNames).size();
 

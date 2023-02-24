@@ -28,14 +28,14 @@ public class LadderGameController {
         readResults(results);
     }
 
-    private void readResults(Map<UserName, PrizeName> results) {
-        String userName = inputPrizeWinner();
-        while (!userName.equals(COMMAND_ALL)) {
-            PrizeName prizeName = results.get(new UserName(userName));
-            printSingleResult(prizeName);
-            userName = inputPrizeWinner();
+    private <T> T readInput(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        printAll(results);
     }
 
     private Map<UserName, PrizeName> calculateAllResult(Users users, Ladder ladder, Prizes prizes) {
@@ -47,14 +47,13 @@ public class LadderGameController {
         return results;
     }
 
-    private <T> T readInput(Supplier<T> supplier) {
-
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+    private void readResults(Map<UserName, PrizeName> results) {
+        String userName = inputPrizeWinner();
+        while (!userName.equals(COMMAND_ALL)) {
+            PrizeName prizeName = results.get(new UserName(userName));
+            printSingleResult(prizeName);
+            userName = inputPrizeWinner();
         }
+        printAll(results);
     }
 }

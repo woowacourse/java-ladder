@@ -13,14 +13,12 @@ public class UserName {
     private final String value;
 
     public UserName(String name) {
-
         name = name.trim();
         validate(name);
         this.value = name;
     }
 
     private void validate(String name) {
-
         validateLength(name);
         validateCommandAll(name);
     }

@@ -11,7 +11,6 @@ public class Floor {
     private final List<Point> points;
 
     public Floor(List<Point> values) {
-
         List<Point> points = new ArrayList<>(values);
 
         removeContinuousLine(points);

@@ -21,7 +21,6 @@ public class OutputView {
     }
 
     public static void printLadder(Users users, Ladder ladder, Prizes prizes) {
-
         printUsersName(users);
         System.out.println();
         printLadder(ladder);
@@ -34,7 +33,6 @@ public class OutputView {
     }
 
     private static void printUsersName(Users users) {
-
         for (User user : users.getUsers()) {
             System.out.print(BLANK_SPACE.repeat(ONE_BLOCK_SIZE - calculateBlank(user)));
             System.out.printf("%s", user.getName().getValue());
@@ -42,7 +40,6 @@ public class OutputView {
     }
 
     private static int calculateBlank(User user) {
-
         double userNameSpan = INIT_SPAN;
         for (Character name : user.getName().getValue().toCharArray()) {
             userNameSpan += userNameSpanSize(name);
@@ -51,7 +48,6 @@ public class OutputView {
     }
 
     private static double userNameSpanSize(Character name) {
-
         String hi = String.valueOf(name);
 
         if (Pattern.matches(KOREAN_MATCH_REGEX, hi)) {
@@ -61,7 +57,6 @@ public class OutputView {
     }
 
     private static void printLadder(Ladder ladder) {
-
         for (Floor floor : ladder.getFloors()) {
             printFloor(floor);
             System.out.println();
@@ -69,7 +64,6 @@ public class OutputView {
     }
 
     private static void printFloor(Floor floor) {
-
         System.out.print(BLANK_SPACE.repeat(BLOCK_SIZE_EXCEPT_DELIMITER));
         System.out.print(DELIMITER);
         for (Point point : floor.getPoints()) {
@@ -78,7 +72,6 @@ public class OutputView {
     }
 
     private static void printLine(Point point) {
-
         if (point.isExist()) {
             System.out.print(LINE_COMPONENT.repeat(BLOCK_SIZE_EXCEPT_DELIMITER));
             System.out.print(DELIMITER);
@@ -99,9 +92,7 @@ public class OutputView {
     }
 
     public static void printAll(Map<UserName, PrizeName> allResult) {
-
         System.out.println("실행 결과");
         allResult.forEach((userName, prizeName) -> System.out.println(userName.getValue() + " : " + prizeName.getValue()));
     }
-
 }
