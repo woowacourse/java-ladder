@@ -13,6 +13,7 @@ public class InputView {
     private static final String DELIMITER = ",";
     public static final String INPUT_RESULT_MESSAGE = "\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     public static final String INPUT_RESULT_TARGET_MESSAGE = "\n결과를 보고 싶은 사람은?";
+    public static final String NAME_RESULT_COUNT_NOT_MATCH_MESSAGE = "결과 개수와 이름의 개수가 일치하지 않습니다.";
     private final InputValidatorChain validator;
     private final Scanner scanner = new Scanner(System.in);
 
@@ -20,7 +21,7 @@ public class InputView {
         this.validator = inputValidator;
     }
 
-    public List<String> inputNames() {
+    public List<String> inputPlayers() {
         return getInputs(INPUT_NAMES_MESSAGE, List.of(ValidateType.EMPTY_VALUE));
     }
 
@@ -32,8 +33,12 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public List<String> inputResults() {
-        return getInputs(INPUT_RESULT_MESSAGE, List.of(ValidateType.EMPTY_VALUE));
+    public List<String> inputResults(final int namesSize) {
+        List<String> inputs = getInputs(INPUT_RESULT_MESSAGE, List.of(ValidateType.EMPTY_VALUE));
+        if (inputs.size() != namesSize) {
+            throw new IllegalArgumentException(NAME_RESULT_COUNT_NOT_MATCH_MESSAGE);
+        }
+        return  inputs;
     }
 
     public String inputResultTarget() {

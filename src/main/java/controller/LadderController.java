@@ -2,14 +2,14 @@ package controller;
 
 import common.ExecuteContext;
 import domain.model.Ladder;
+import domain.model.Player;
+import domain.model.Players;
+import domain.model.Result;
+import domain.model.Results;
 import domain.service.LadderGameSupport;
 import domain.vo.Height;
-import domain.vo.Name;
-import domain.vo.Result;
 import domain.vo.Width;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import view.InputView;
 import view.OutputView;
 
@@ -18,8 +18,6 @@ public class LadderController {
     private static final int NAMES_WIDTH_DIFFERENCE = 1;
     private static final String ALL = "all";
     public static final String NAME_NOT_FOUND_ERROR_MESSAGE = "해당 이름이 존재하지 않습니다.";
-    public static final String NAME_RESULT_COUNT_NOT_MATCH_MESSAGE = "결과 개수와 이름의 개수가 일치하지 않습니다.";
-    public static final String DUPLICATE_NAME_ERROR_MESSAGE = "중복된 이름은 허용되지 않습니다.";
     private final InputView inputView;
     private final OutputView outputView;
     private final LadderGameSupport ladderGameSupport;
@@ -32,73 +30,44 @@ public class LadderController {
     }
 
     public void play() {
-        final List<Name> names = getNames();
-        final List<Result> results = getResults(names.size());
-        final Height height = getHeight();
-        final Width width = new Width(names.size() - NAMES_WIDTH_DIFFERENCE);
-        final Ladder ladder = ladderGameSupport.makeLadder(height, width);
-        outputView.printLadder(names, ladder, results);
-        final Map<Name, Result> resultBoard = ladderGameSupport.makeResultBoard(ladder, names, results);
+        final Players players = getPlayers();
+        final Results results = getResults(players.size());
+        final Width width = new Width(players.size() - NAMES_WIDTH_DIFFERENCE);
+        final Ladder ladder = ladderGameSupport.makeLadder(getHeight(), width);
+        outputView.printLadder(players, ladder, results);
+        final Map<Player, Result> resultBoard = ladderGameSupport.makeResultBoard(ladder, players, results);
         ExecuteContext.workWithExecuteStrategy(() -> printResult(resultBoard));
     }
 
-    private Boolean printResult(final Map<Name, Result> resultBoard) {
+    private Boolean printResult(final Map<Player, Result> resultBoard) {
         final String input = inputView.inputResultTarget();
-        final Name name = new Name(input);
-        if (name.getValue().equals(ALL)) {
+        final Player player = new Player(input);
+        if (player.getName().equals(ALL)) {
             outputView.printAllResult(resultBoard);
             return true;
         }
-        printOneResult(resultBoard, name);
-        printResult(resultBoard);
-        return null;
+        printOneResult(resultBoard, player);
+        return printResult(resultBoard);
     }
 
-    private void printOneResult(final Map<Name, Result> resultBoard, final Name name) {
-        if (resultBoard.containsKey(name)) {
-            outputView.printResult(resultBoard.get(name));
+    private void printOneResult(final Map<Player, Result> resultBoard, final Player player) {
+        if (resultBoard.containsKey(player)) {
+            outputView.printResult(resultBoard.get(player));
             return;
         }
         throw new IllegalArgumentException(NAME_NOT_FOUND_ERROR_MESSAGE);
     }
 
-    private List<Name> getNames() {
-        return ExecuteContext.workWithExecuteStrategy(() -> {
-            final List<Name> names = inputView.inputNames()
-                .stream()
-                .map(Name::new)
-                .collect(Collectors.toList());
-            checkNameDuplicate(names);
-            return names;
-        });
+    private Players getPlayers() {
+        return ExecuteContext.workWithExecuteStrategy(() -> new Players(inputView.inputPlayers()));
     }
 
     private Height getHeight() {
-        return ExecuteContext.workWithExecuteStrategy(
-            () -> new Height(inputView.inputLadderHeight()));
+        return ExecuteContext.workWithExecuteStrategy(() -> new Height(inputView.inputLadderHeight()));
     }
 
-    private List<Result> getResults(final int namesSize) {
-        return ExecuteContext.workWithExecuteStrategy(() -> {
-                final List<Result> results = inputView.inputResults()
-                    .stream()
-                    .map(Result::new)
-                    .collect(Collectors.toList());
-                checkNamesAndResultsSize(namesSize, results);
-                return results;
-            }
+    private Results getResults(final int playersSize) {
+        return ExecuteContext.workWithExecuteStrategy(() -> new Results(inputView.inputResults(playersSize))
         );
-    }
-
-    private void checkNamesAndResultsSize(final int namesSize, final List<Result> results) {
-        if (results.size() != namesSize) {
-            throw new IllegalArgumentException(NAME_RESULT_COUNT_NOT_MATCH_MESSAGE);
-        }
-    }
-
-    private void checkNameDuplicate(final List<Name> names) {
-        if (names.stream().distinct().count() != names.size()) {
-            throw new IllegalArgumentException(DUPLICATE_NAME_ERROR_MESSAGE);
-        }
     }
 }

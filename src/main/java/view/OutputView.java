@@ -2,9 +2,11 @@ package view;
 
 import domain.model.Ladder;
 import domain.model.Layer;
+import domain.model.Player;
+import domain.model.Players;
+import domain.model.Result;
+import domain.model.Results;
 import domain.type.Line;
-import domain.vo.Name;
-import domain.vo.Result;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -20,15 +22,17 @@ public class OutputView {
     private static final String SPACE = " ";
     public static final String RESULT_DELIMITER = " : ";
 
-    public void printLadder(final List<Name> names, final Ladder ladder, final List<Result> results) {
+    public void printLadder(final Players players, final Ladder ladder, final Results results) {
         System.out.println(RESULT_ANNOUNCEMENT);
-        printValues(names.stream().map(Name::getValue).collect(Collectors.toList()));
+        printValues(
+            players.getPlayers().stream().map(Player::getName).collect(Collectors.toList()));
         printLadder(ladder,
-            names.stream()
-                .map(name -> name.getValue().length())
+            players.getPlayers().stream()
+                .map(name -> name.getName().length())
                 .max(Comparator.naturalOrder())
                 .orElse(INTERVAL_UNIT));
-        printValues(results.stream().map(Result::getValue).collect(Collectors.toList()));
+        printValues(
+            results.getResults().stream().map(Result::getValue).collect(Collectors.toList()));
     }
 
     public void printResult(final Result result) {
@@ -36,10 +40,10 @@ public class OutputView {
         System.out.println(result.getValue());
     }
 
-    public void printAllResult(final Map<Name, Result> result) {
+    public void printAllResult(final Map<Player, Result> result) {
         System.out.println(RESULT_ANNOUNCEMENT);
-        for (Name name : result.keySet()) {
-            System.out.println(name.getValue() + RESULT_DELIMITER + result.get(name).getValue());
+        for (Player player : result.keySet()) {
+            System.out.println(player.getName() + RESULT_DELIMITER + result.get(player).getValue());
         }
     }
 
