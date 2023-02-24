@@ -12,22 +12,15 @@ import org.junit.jupiter.params.provider.ValueSource;
 class HeightTest {
 
     @ParameterizedTest
-    @DisplayName("1보다 낮은 값이 들어오면 예외가 발생한다.")
-    @ValueSource(ints = {Integer.MIN_VALUE, -1, 0})
-    void create_underThan1(int input) {
-        // expect
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Height(input, createPlayers(3));
-        }).withMessage("[ERROR] 사다리의 높이는 1~26 사이여야 합니다.");
-    }
+    @DisplayName("1보다 낮은 값이 들어오거나 26보다 큰 값이 들어오면 예외가 발생한다.")
+    @ValueSource(ints = {-1, 0, 27})
+    void create_UnderThan1OrOverThan26(int input) {
+        // given
+        Players players = createPlayers(2);
 
-    @ParameterizedTest
-    @DisplayName("26보다 큰 값이 들어오면 예외가 발생한다.")
-    @ValueSource(ints = {27, 28, 29, Integer.MAX_VALUE})
-    void create_overThan26(int input) {
         // expect
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Height(input, createPlayers(3));
+            new Height(input, players);
         }).withMessage("[ERROR] 사다리의 높이는 1~26 사이여야 합니다.");
     }
 
