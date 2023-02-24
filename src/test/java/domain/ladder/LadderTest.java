@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -38,6 +39,14 @@ class LadderTest {
 		return lines.stream()
 			.map(Line::getPoints)
 			.collect(Collectors.toList());
+	}
+
+	@Test
+	@DisplayName("0, 1, 2, 3의 index가 1, 0, 3, 2로 변해야 한다.")
+	void getMovedIndexTest() {
+		Ladder ladder = new Ladder(new LadderHeight(3), new LadderWidth(3), new PresentPointGenerator());
+		List<Integer> indices = ladder.getMovedIndex();
+		Assertions.assertThat(indices).containsExactly(1, 0, 3, 2);
 	}
 
 	static class PresentPointGenerator implements PointGenerator {

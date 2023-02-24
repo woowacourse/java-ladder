@@ -10,7 +10,6 @@ import domain.ladder.LadderHeight;
 import domain.ladder.LadderWidth;
 import domain.user.User;
 import domain.user.Users;
-import domain.util.IndexMover;
 import domain.util.RandomPointGenerator;
 import domain.util.ResultMapper;
 import view.InputView;
@@ -67,7 +66,7 @@ public class LadderController {
 	}
 
 	private Map<User, End> mapResult(final Ladder ladder, final Users users, final Ends ends) {
-		List<Integer> movedIndex = IndexMover.getMovedIndex(ladder);
+		List<Integer> movedIndex = ladder.getMovedIndex();
 		return ResultMapper.map(users.getUsers(), ends.getEnds(), movedIndex);
 	}
 
