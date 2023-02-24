@@ -27,6 +27,12 @@ public class Ladder {
         }
     }
 
+    public void movePlayer(Player player) {
+        for (Line line : lines) {
+            line.movePlayerInLine(player);
+        }
+    }
+
     public List<Line> getLines() {
         return this.lines;
     }

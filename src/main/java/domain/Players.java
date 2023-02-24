@@ -1,8 +1,7 @@
 package domain;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Players {
 
@@ -17,9 +16,12 @@ public class Players {
     }
 
     public static Players of(String[] names) {
-        List<Player> players = Arrays.stream(names)
-                .map(Player::new)
-                .collect(Collectors.toList());
+        List<Player> players = new ArrayList<>();
+
+        for (int playerPosition = 0; playerPosition < names.length; playerPosition++) {
+            Player player = new Player(names[playerPosition], playerPosition);
+            players.add(player);
+        }
 
         return new Players(players);
     }

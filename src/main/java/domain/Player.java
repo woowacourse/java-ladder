@@ -5,10 +5,12 @@ public class Player {
     private static final int MAXIMUM_LENGTH = 5;
 
     private final String name;
+    private int position;
 
-    public Player(String name) {
+    public Player(String name, int position) {
         validateNameLength(name);
         this.name = name;
+        this.position = position;
     }
 
     private void validateNameLength(String name) {
@@ -19,5 +21,17 @@ public class Player {
 
     public String getName() {
         return this.name;
+    }
+
+    public void moveToRight() {
+        this.position++;
+    }
+
+    public void moveToLeft() {
+        this.position--;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

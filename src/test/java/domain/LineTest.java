@@ -52,4 +52,45 @@ public class LineTest {
             }
         }
     }
+
+    @Test
+    @DisplayName("라인의 첫 번째에 위치한 플레이어는 오른쪽으로만 이동할 수 있다")
+    void movePlayerToRightDirection() {
+        Player player = new Player("roy", 0);
+        int numberOfSteps = 3;
+        BooleanGenerator booleanGenerator = new TrueGenerator();
+        Line line = Line.of(numberOfSteps, booleanGenerator);
+        line.generateRandomLine();
+
+        line.movePlayerInLine(player);
+
+        assertThat(player.getPosition()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("라인의 마지막에 위치한 플레이어는 왼쪽으로만 이동할 수 있다.")
+    void movePlayerToLeftDirection() {
+        Player player = new Player("roy", 3);
+        int numberOfSteps = 3;
+        BooleanGenerator booleanGenerator = new TrueGenerator();
+        Line line = Line.of(numberOfSteps, booleanGenerator);
+        line.generateRandomLine();
+
+        line.movePlayerInLine(player);
+
+        assertThat(player.getPosition()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("플레이의의 양쪽 다리가 모두 끊어진 경우 플레이어는 움직이지 않는다.")
+    void stayPlayerWhenBothSideOfStepsAreNonExist() {
+        Player player = new Player("roy", 1);
+        int numberOfSteps = 2;
+        BooleanGenerator booleanGenerator = new RandomBooleanGenerator();
+        Line line = Line.of(numberOfSteps, booleanGenerator);
+
+        line.movePlayerInLine(player);
+
+        assertThat(player.getPosition()).isEqualTo(1);
+    }
 }
