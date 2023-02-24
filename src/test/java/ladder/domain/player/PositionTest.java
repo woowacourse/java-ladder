@@ -23,4 +23,14 @@ class PositionTest {
     void index가_0보다_크면_여러번_호출해도_동일한_객체_반환() {
         assertThat(valueOf(1)).isEqualTo(valueOf(1));
     }
+
+    @Test
+    void moveRight_메서드를_호출했을_경우에_1만큼_이동한_포지션이_반환됨() {
+        assertThat(valueOf(0).moveRight()).isEqualTo(valueOf(1));
+    }
+
+    @Test
+    void moveLeft_메서드를_호출했을_경우에_1만큼_이동한_포지션이_반환됨() {
+        assertThat(valueOf(1).moveLeft()).isEqualTo(valueOf(0));
+    }
 }

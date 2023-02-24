@@ -33,4 +33,12 @@ public class Position {
             throw new IllegalArgumentException("index 는 " + MIN_POSITION + " 이상이어야 합니다.");
         }
     }
+
+    public Position moveRight() {
+        return valueOf(index + 1);
+    }
+
+    public Position moveLeft() {
+        return valueOf(index - 1);
+    }
 }
