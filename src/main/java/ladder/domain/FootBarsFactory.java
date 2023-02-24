@@ -17,20 +17,11 @@ public class FootBarsFactory {
     }
 
     private static void makeFootBar(BooleanGenerator generator, List<Boolean> footBars, int index) {
-        if (existLineAtLeftCell(footBars, index)) {
+        if (FootBars.existLineAtLeftCell(footBars, index)) {
             footBars.add(Boolean.FALSE);
             return;
         }
 
         footBars.add(generator.generate());
     }
-
-    private static boolean existLineAtLeftCell(List<Boolean> footBars, int cellIndex) {
-        return cellIndex != FIRST_CELL_INDEX && footBars.get(beforeIndexOf(cellIndex));
-    }
-
-    private static int beforeIndexOf(int index) {
-        return index - 1;
-    }
-
 }
