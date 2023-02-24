@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Name {
     private static final int MAXIMUM_LENGTH = 5;
+    private static final String RESERVED_WORD = "all";
 
     private final String value;
 
@@ -13,8 +14,15 @@ public class Name {
     }
 
     private void validate(String value) {
+        validateReservedWord(value);
         validateBlank(value);
         validateLength(value);
+    }
+
+    private void validateReservedWord(String value) {
+        if (RESERVED_WORD.equals(value)) {
+            throw new IllegalArgumentException("이름은 all을 사용할 수 없습니다.");
+        }
     }
 
     private void validateBlank(String value) {
