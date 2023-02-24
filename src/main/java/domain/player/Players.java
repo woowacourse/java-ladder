@@ -45,12 +45,12 @@ public class Players {
                 .orElseThrow(() -> new IllegalStateException("해당하는 이름을 가진 Player는 존재하지 않습니다."));
     }
 
-    public Stream<Player> stream() {
-        return players.stream();
-    }
-
     public int size() {
         return players.size();
+    }
+
+    public Stream<Player> stream() {
+        return players.stream();
     }
 
     public List<Player> getPlayers() {
