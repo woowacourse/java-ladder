@@ -31,7 +31,7 @@ public class User {
     }
 
     private void validateNotAll(final String name) {
-        if (name.equals("all")) {
+        if ("all".equals(name)) {
             throw new IllegalArgumentException(USER_NAME_IS_ALL_EXCEPTION.getMessage());
         }
     }

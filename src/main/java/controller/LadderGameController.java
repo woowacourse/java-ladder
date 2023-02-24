@@ -90,7 +90,7 @@ public class LadderGameController {
     }
 
     private void printResultWhenTargetIsNotAll(String name) {
-        while (!name.equals("all")) {
+        while (!"all".equals(name)) {
             printTargetUserResult(name);
             name = InputView.readTargetUserName();
         }
