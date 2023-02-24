@@ -7,13 +7,13 @@ public enum Direction {
     RIGHT(value -> value + 1),
     STRAIGHT(value -> value);
 
-    private final IntUnaryOperator nextIndexFunction;
+    private final IntUnaryOperator moveFunction;
 
-    Direction(IntUnaryOperator nextIndexFunction) {
-        this.nextIndexFunction = nextIndexFunction;
+    Direction(IntUnaryOperator moveFunction) {
+        this.moveFunction = moveFunction;
     }
 
-    public int nextIndex(int index) {
-        return nextIndexFunction.applyAsInt(index);
+    public int move(int index) {
+        return moveFunction.applyAsInt(index);
     }
 }

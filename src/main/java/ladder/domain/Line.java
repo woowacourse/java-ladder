@@ -31,12 +31,12 @@ public class Line {
 
     public int nextLineIndex(int index) {
         if (isLeftStepExist(index)) {
-            return LEFT.nextIndex(index);
+            return LEFT.move(index);
         }
         if (isRightStepExist(index)) {
-            return RIGHT.nextIndex(index);
+            return RIGHT.move(index);
         }
-        return STRAIGHT.nextIndex(index);
+        return STRAIGHT.move(index);
     }
 
     private boolean isLeftStepExist(int index) {
