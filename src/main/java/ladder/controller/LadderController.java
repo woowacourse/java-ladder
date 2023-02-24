@@ -50,14 +50,14 @@ public class LadderController {
         return makeHeight();
     }
 
-    private Gifts makeGifts(final int numberOfPlayer) {
+    private Gifts makeGifts(final int playerSize) {
         try {
-            return new Gifts(inputView.readGiftNames(), numberOfPlayer);
+            return new Gifts(inputView.readGiftNames(), playerSize);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
         }
 
-        return makeGifts(numberOfPlayer);
+        return makeGifts(playerSize);
     }
 
     public Result makeResult(final Players players) {
