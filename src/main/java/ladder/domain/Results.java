@@ -43,11 +43,13 @@ public class Results {
     }
 
     private boolean canMoveLeft(List<Step> steps, int position) {
-        return position != FIRST_LINE && steps.get(position - 1) == Step.EXIST;
+        int left = position - 1;
+        return position != FIRST_LINE && steps.get(left) == Step.EXIST;
     }
 
     private boolean canMoveRight(List<Step> steps, int position) {
-        return position != steps.size() && steps.get(position) == Step.EXIST;
+        int right = position;
+        return position != steps.size() && steps.get(right) == Step.EXIST;
     }
 
     public List<String> findAllResult(List<Line> ladder) {
