@@ -20,7 +20,7 @@ public class LadderController {
     }
 
     public void run() {
-        final Players players = retry(() -> new Players(inputView.readGiftNames()));
+        final Players players = retry(() -> new Players(inputView.readPlayerNames()));
         final Gifts gifts = retry(() -> new Gifts(inputView.readGiftNames(), players.numberOfPlayers()));
         final Height height = retry(() -> new Height(inputView.readHeight()));
 
@@ -33,11 +33,12 @@ public class LadderController {
     }
 
     private <T> T retry(final Supplier<T> supplier) {
-        try {
-            return supplier.get();
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-            return retry(supplier);
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
         }
     }
 }
