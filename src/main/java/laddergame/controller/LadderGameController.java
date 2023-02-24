@@ -32,6 +32,8 @@ public class LadderGameController {
         outputView.printLadder(ladder.getLines(), participantNames);
         List<String> resultNames = getResultNames(results);
         outputView.printResultNames(resultNames);
+
+        String requestContent = makeRequest();
     }
 
     private Participants createParticipants() {
@@ -54,6 +56,10 @@ public class LadderGameController {
             String resultNames = inputView.readResults();
             return new Results(resultNames, participants.size());
         });
+    }
+
+    private String makeRequest() {
+        return inputView.repeatUntilGettingValidValue(inputView::readRequest);
     }
 
     private List<String> getParticipantNames(final Participants participants) {
