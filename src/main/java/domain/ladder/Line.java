@@ -1,7 +1,7 @@
 package domain.ladder;
 
 import domain.generator.BooleanGenerator;
-import domain.player.Movement;
+import domain.player.Position;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,57 +14,28 @@ public class Line {
     }
 
     private List<LadderStep> createLine(int count, BooleanGenerator ladderGenerator) {
-        List<LadderStep> line = new ArrayList<>();
-        for (int index = 0; index < count; index++) {
-            line.add(generateLadderStep(ladderGenerator, index));
+        List<LadderStep> newLine = new ArrayList<>();
+        newLine.add(LadderStep.createFreely(ladderGenerator));
+        for (int index = 1; index < count; index++) {
+            LadderStep previousStep = newLine.get(index - 1);
+            newLine.add(LadderStep.createConsideringPreviousStep(ladderGenerator, previousStep));
         }
-        return line;
+        return newLine;
     }
-
-    private LadderStep generateLadderStep(BooleanGenerator ladderGenerator, int index) {
-        if (isFirstLadderStep(index)) {
-            return generateFreely(ladderGenerator);
-        }
-        return generateConsideringPreviousCondition(ladderGenerator, index);
-    }
-
-    private static boolean isFirstLadderStep(int index) {
-        return index == 0;
-    }
-
-    private LadderStep generateFreely(BooleanGenerator ladderGenerator) {
-        return LadderStep.of(ladderGenerator);
-    }
-
-    private LadderStep generateConsideringPreviousCondition(BooleanGenerator ladderGenerator, int index) {
-        LadderStep previousStep = line.get(index - 1);
-        return LadderStep.of(ladderGenerator, previousStep);
-    }
-
 
     public List<LadderStep> getLadderSteps() {
         return Collections.unmodifiableList(line);
     }
 
-    public int getNextStepIndex(int index) {
-        if (canGoLeft(index) && isExists(index - 1)) {
-            return Movement.GO_LEFT.move(index);
-        }
-        if (canGoRight(index) && isExists(index)) {
-            return Movement.GO_RIGHT.move(index);
-        }
-        return Movement.STAY.move(index);
+    public boolean canMoveLeft(Position position) {
+        return position.getValue() > 0;
     }
 
-    private boolean canGoLeft(int index) {
-        return index > 0;
+    public boolean canMoveRight(Position position) {
+        return position.getValue() < line.size();
     }
 
-    private boolean canGoRight(int index) {
-        return index < line.size();
-    }
-
-    private boolean isExists(int index) {
+    public boolean isExists(int index) {
         return line.get(index).exists();
     }
 }

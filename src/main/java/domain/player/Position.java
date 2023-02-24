@@ -1,5 +1,6 @@
 package domain.player;
 
+import domain.ladder.Line;
 import java.util.Objects;
 
 public class Position {
@@ -10,7 +11,17 @@ public class Position {
         this.value = position;
     }
 
-    public int value() {
+    public Position findNextPosition(Position position, Line line) {
+        if (line.canMoveLeft(position) && line.isExists(position.value - 1)) {
+            return Movement.GO_LEFT.move(position);
+        }
+        if (line.canMoveRight(position) && line.isExists(position.value)) {
+            return Movement.GO_RIGHT.move(position);
+        }
+        return Movement.STAY.move(position);
+    }
+
+    public int getValue() {
         return value;
     }
 

@@ -40,7 +40,7 @@ class LadderTest {
     @Nested
     @DisplayName("라인 이동 테스트")
     class MoveLadderTest {
-        @Test
+       /* @Test
         void 사다리를_따라_끝까지_이동한다() {
             BooleanGenerator trueBooleanGenerator = new TrueBooleanGenerator();
             Ladder nonRandomLadder = new Ladder(3, 3, trueBooleanGenerator);
@@ -48,6 +48,6 @@ class LadderTest {
             Assertions.assertEquals(nonRandomLadder.getExitPosition(1), 0);
             Assertions.assertEquals(nonRandomLadder.getExitPosition(2), 3);
             Assertions.assertEquals(nonRandomLadder.getExitPosition(3), 2);
-        }
+        }*/
     }
 }

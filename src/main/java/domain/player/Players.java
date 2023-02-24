@@ -24,7 +24,7 @@ public class Players {
 
     public List<Player> getPlayersSortedByPosition() {
         return players.stream()
-                .sorted(Comparator.comparing(player -> player.getPosition().value()))
+                .sorted(Comparator.comparing(player -> player.getPosition().getValue()))
                 .collect(Collectors.toUnmodifiableList());
         // TODO: getter 자제, 메세지를 보내자.
     }
