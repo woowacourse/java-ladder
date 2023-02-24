@@ -48,7 +48,7 @@ class LadderPrizesTest {
         LadderPrizes ladderPrizes = generateLadderPrizesByParameter("3000", "1000", "2000", "5000", "꽝");
 
         // when
-        LadderPrize ladderPrize = ladderPrizes.findResultByPosition(new Position(position));
+        LadderPrize ladderPrize = ladderPrizes.findPrizeByPosition(new Position(position));
 
         assertThat(ladderPrize.getPrize()).isEqualTo(expectedResult);
     }

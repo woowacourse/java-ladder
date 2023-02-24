@@ -21,7 +21,7 @@ public class LadderPrizes {
         return new LadderPrizes(ladderPrizes);
     }
 
-    public LadderPrize findResultByPosition(Position position) {
+    public LadderPrize findPrizeByPosition(Position position) {
         return ladderPrizes.get(position.getPosition() - 1);
     }
 

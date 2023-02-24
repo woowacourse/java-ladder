@@ -31,7 +31,7 @@ public class LadderGame {
 
         for (Player player : players.getPlayers()) {
             Position position = player.move(ladder);
-            LadderPrize prize = ladderPrizes.findResultByPosition(position);
+            LadderPrize prize = ladderPrizes.findPrizeByPosition(position);
             gameResultDtos.add(new GameResultDto(player.getName(), prize.getPrize()));
         }
 
@@ -42,6 +42,6 @@ public class LadderGame {
         Player findPlayer = players.findSpecificNamePlayer(name);
         Position position = findPlayer.move(ladder);
 
-        return ladderPrizes.findResultByPosition(position);
+        return ladderPrizes.findPrizeByPosition(position);
     }
 }
