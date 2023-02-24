@@ -7,11 +7,11 @@ public enum ResultCommand {
 
     private String name;
 
-    public static ResultCommand from(String value){
-        if(value.equals("end")){
+    public static ResultCommand from(String value) {
+        if (value.equals("end")) {
             return END;
         }
-        if(value.equals("all")){
+        if (value.equals("all")) {
             return ALL;
         }
         ResultCommand resultCommand = ResultCommand.PLAYER;
@@ -19,7 +19,7 @@ public enum ResultCommand {
         return resultCommand;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 

@@ -38,35 +38,35 @@ public class LadderGame {
 
     }
 
-    private void printResult(Players players){
+    private void printResult(Players players) {
         ResultCommand resultCommand = ResultCommand.from(inputView.inputPlayerForResult());
-        if(resultCommand.equals(ResultCommand.PLAYER)){
+        if (resultCommand.equals(ResultCommand.PLAYER)) {
             String prizeName = getPrizeNameByPlayerName(resultCommand.getName(), players);
             resultView.printPrizeOfPlayer(prizeName);
             printResult(players);
         }
-        if(resultCommand.equals(ResultCommand.ALL)){
+        if (resultCommand.equals(ResultCommand.ALL)) {
             resultView.printPrizeOfPlayers(getAllResult(players));
             printResult(players);
         }
-        if(resultCommand.equals(ResultCommand.END)){
+        if (resultCommand.equals(ResultCommand.END)) {
             resultView.printEndMessage();
         }
     }
 
-    private Map<String, String> getAllResult(Players players){
+    private Map<String, String> getAllResult(Players players) {
         return players.getPrizes();
     }
 
-    private String getPrizeNameByPlayerName(String playerName, Players players){
+    private String getPrizeNameByPlayerName(String playerName, Players players) {
         return getPrizeNameOfPlayer(players.findByName(playerName));
     }
 
-    private String getPrizeNameOfPlayer(Player player){
+    private String getPrizeNameOfPlayer(Player player) {
         return player.getPrizeName();
     }
 
-    private void runGame(Players players, Prizes prizes, Ladder ladder){
+    private void runGame(Players players, Prizes prizes, Ladder ladder) {
         List<Integer> orders = ladder.getAllEndPosition();
         Prizes orderedPrizes = prizes.getOrderedPrizes(orders);
         players.setPrizes(orderedPrizes);
@@ -77,7 +77,7 @@ public class LadderGame {
         return Players.from(names);
     }
 
-    private Prizes getPrizes(int expectedSize){
+    private Prizes getPrizes(int expectedSize) {
         List<String> names = inputView.inputPrizes();
         return Prizes.from(names, expectedSize);
     }

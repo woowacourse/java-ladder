@@ -9,33 +9,33 @@ import java.util.stream.Collectors;
 public class Prizes {
     private final List<Prize> prizes;
 
-    private Prizes(List<Prize> prizes){
+    private Prizes(List<Prize> prizes) {
         this.prizes = prizes;
     }
 
-    private Prizes(List<Prize> prizes, int expectedSize){
+    private Prizes(List<Prize> prizes, int expectedSize) {
         validateSize(prizes, expectedSize);
         this.prizes = prizes;
     }
 
-    public static Prizes from(List<String> names, int expectedSize){
+    public static Prizes from(List<String> names, int expectedSize) {
         List<Prize> prizes = names.stream().map(Prize::new).collect(Collectors.toList());
         return new Prizes(prizes, expectedSize);
     }
 
-    private void validateSize(List<Prize> prizes, int expectedSize){
-        if(prizes.size() != expectedSize){
+    private void validateSize(List<Prize> prizes, int expectedSize) {
+        if (prizes.size() != expectedSize) {
             throw new IllegalArgumentException(String.format("상품의 개수는 %d이어야합니다.", expectedSize));
         }
     }
 
-    public Prize get(int index){
+    public Prize get(int index) {
         return prizes.get(index);
     }
 
-    public Prizes getOrderedPrizes(List<Integer> orders){
+    public Prizes getOrderedPrizes(List<Integer> orders) {
         List<Prize> orderedPrize = new ArrayList<>();
-        for(int order : orders){
+        for (int order : orders) {
             orderedPrize.add(get(order));
         }
         return new Prizes(orderedPrize);

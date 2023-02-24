@@ -34,20 +34,14 @@ public class Row {
     public boolean isPossibleInstallStep(int index) {
         int leftIndex = index - 1;
         int rightIndex = index + 1;
-        if (isStepExist(leftIndex) || isStepExist(rightIndex) || isStepExist(index)) {
-            return false;
-        }
-        return true;
+        return !isStepExist(leftIndex) && !isStepExist(rightIndex) && !isStepExist(index);
     }
 
     public boolean isStepExist(int index) {
         if (index < MIN_INDEX || index >= row.size()) {
             return false;
         }
-        if (row.get(index).equals(Step.N)) {
-            return false;
-        }
-        return true;
+        return !row.get(index).equals(Step.N);
     }
 
     public int size() {

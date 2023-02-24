@@ -14,9 +14,9 @@ public class Ladder {
         return new Ladder(ladderGenerator.generateLadder());
     }
 
-    public List<Integer> getAllEndPosition(){
+    public List<Integer> getAllEndPosition() {
         List<Integer> endPositions = new ArrayList<>();
-        for(int startPosition = 0; startPosition <= getLadderWidth(); startPosition++){
+        for (int startPosition = 0; startPosition <= getLadderWidth(); startPosition++) {
             endPositions.add(getEndPosition(startPosition));
         }
         return endPositions;
@@ -45,18 +45,12 @@ public class Ladder {
 
     private boolean isMovableToLeft(int curPosition, Row row) {
         int leftWidth = getLeftWidth(curPosition);
-        if (row.isStepExist(leftWidth)) {
-            return true;
-        }
-        return false;
+        return row.isStepExist(leftWidth);
     }
 
     private boolean isMovableToRight(int curPosition, Row row) {
         int rightWidth = getRightWidth(curPosition);
-        if (row.isStepExist(rightWidth)) {
-            return true;
-        }
-        return false;
+        return row.isStepExist(rightWidth);
     }
 
     private int getLeftWidth(int position) {

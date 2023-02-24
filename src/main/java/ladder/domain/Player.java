@@ -27,11 +27,11 @@ public class Player {
         }
     }
 
-    public boolean isSameName(String name){
+    public boolean isSameName(String name) {
         return this.name.equals(name);
     }
 
-    public void setPrize(Prize prize){
+    public void setPrize(Prize prize) {
         this.prize = prize;
     }
 
