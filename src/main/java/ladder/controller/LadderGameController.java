@@ -34,10 +34,10 @@ public class LadderGameController {
 
     private Players generatePlayers() {
         try {
-            List<String> names = inputView.readNames();
-            return new Players(names.stream()
+            List<Player> names = inputView.readNames().stream()
                     .map(Player::new)
-                    .collect(Collectors.toList()));
+                    .collect(Collectors.toList());
+            return new Players(names);
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
             return generatePlayers();
@@ -46,20 +46,13 @@ public class LadderGameController {
 
     private Rewards generateRewards(int playerCount) {
         try {
-            List<String> rewards = inputView.readRewards();
-            validateRewardCount(rewards.size(), playerCount);
-            return new Rewards(rewards.stream()
+            List<Reward> rewards = inputView.readRewards().stream()
                     .map(Reward::new)
-                    .collect(Collectors.toList()));
+                    .collect(Collectors.toList());
+            return Rewards.of(rewards, playerCount);
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
             return generateRewards(playerCount);
-        }
-    }
-
-    private void validateRewardCount(int rewardCount, int playerCount) {
-        if (rewardCount != playerCount) {
-            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_REWARD_COUNT.getMessage());
         }
     }
 
