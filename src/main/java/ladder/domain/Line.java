@@ -1,10 +1,8 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Line {
     private static final int BOTH_ENDS_COUNT = 2;
@@ -28,9 +26,9 @@ public class Line {
     }
     
     private void addMiddleDirections(BarGenerator barGenerator, int peopleSize, List<Direction> line) {
-        IntStream.range(0, peopleSize - BOTH_ENDS_COUNT)
-                .mapToObj(middleDirectionCount -> getLastDirection(line).createNext(barGenerator))
-                .forEach(line::add);
+        for (int middleDirectionCount = 0; middleDirectionCount < peopleSize - BOTH_ENDS_COUNT; middleDirectionCount++) {
+            line.add(getLastDirection(line).createNext(barGenerator));
+        }
     }
     
     private void addLastDirection(List<Direction> line) {
