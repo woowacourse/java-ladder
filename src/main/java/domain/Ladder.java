@@ -15,7 +15,7 @@ public class Ladder {
     public static Ladder of(Height height, int personCount) {
         List<Line> lines = new ArrayList<>();
         for (int index = 0; index < height.getHeight(); index++) {
-            lines.add(new Line(personCount));
+            lines.add(Line.from(personCount));
         }
         return new Ladder(lines);
     }

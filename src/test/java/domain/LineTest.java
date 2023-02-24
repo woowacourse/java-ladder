@@ -22,7 +22,7 @@ class LineTest {
             int personCount = 5;
 
             //when
-            Line line = new Line(personCount);
+            Line line = Line.from(personCount);
 
             //then
             assertThat(line.getBridges().size()).isEqualTo(personCount - 1);
@@ -32,7 +32,7 @@ class LineTest {
         @DisplayName("BridgeGenerator 결과가 항상 true 일 때 다리 생성 테스트")
         void alwaysTrueCreateBridge() {
             //given
-            Line line = new Line(5);
+            Line line = Line.from(5);
 
             //when
             line.generate(new TrueGenerator());
@@ -45,7 +45,7 @@ class LineTest {
         @DisplayName("BridgeGenerator 결과가 항상 false 일 때 다리 생성 테스트")
         void alwaysFalseCreateBridge() {
             //given
-            Line line = new Line(5);
+            Line line = Line.from(5);
 
             //when
             line.generate(new FalseGenerator());
@@ -62,7 +62,7 @@ class LineTest {
         @DisplayName("왼쪽에 연결된 다리가 있는지")
         void hasBridgeInLeftTest() {
             //given
-            Line line = new Line(5);
+            Line line = Line.from(5);
             line.generate(new TestGenerator(List.of(true, false, true, false)));
 
             //when
@@ -74,7 +74,7 @@ class LineTest {
         @DisplayName("오른쪽에 연결된 다리가 있는지")
         void hasBridgeInRightTest() {
             //given
-            Line line = new Line(5);
+            Line line = Line.from(5);
             line.generate(new TestGenerator(List.of(true, false, true, false)));
 
             //when

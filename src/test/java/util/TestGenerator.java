@@ -1,6 +1,5 @@
 package util;
 
-import domain.Bridge;
 import java.util.List;
 
 public class TestGenerator implements BooleanGenerator {

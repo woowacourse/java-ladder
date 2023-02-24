@@ -29,7 +29,7 @@ public class Persons {
 
     private static Persons initializePerson(List<String> names) {
         List<Person> persons = names.stream()
-                .map(name -> new Person(name, names.indexOf(name)))
+                .map(name -> Person.of(name, names.indexOf(name)))
                 .collect(Collectors.toList());
         return new Persons(persons);
     }

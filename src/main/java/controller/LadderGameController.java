@@ -9,6 +9,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
+    private static final String GAME_END_COMMAND = "all";
     private final InputView inputView;
     private final OutputView outputView;
     private LadderGame ladderGame;
@@ -72,7 +73,7 @@ public class LadderGameController {
 
     private void showResult() {
         String inputName = inputView.requestShowingName();
-        if ("all".equals("inputName")) {
+        if (GAME_END_COMMAND.equals(inputName)) {
             outputView.printAllResult(ladderGame.getAllResult());
             return;
         }

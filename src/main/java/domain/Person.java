@@ -8,13 +8,17 @@ public class Person {
     private final String name;
     private int position;
 
-    public Person(String name, int position) {
-        validate(name);
+    private Person(String name, int position) {
         this.name = name;
         this.position = position;
     }
 
-    private void validate(String name) {
+    public static Person of(String name, int position) {
+        validate(name);
+        return new Person(name, position);
+    }
+
+    private static void validate(String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(
                     String.format(ErrorCode.NAME_OUT_OF_RANGE.getMessage(), MIN_NAME_LENGTH, MAX_NAME_LENGTH));

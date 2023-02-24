@@ -10,11 +10,16 @@ public class Line {
     private final List<Bridge> bridges;
     private final int lineSize;
 
-    public Line(int personCount) {
-        this.bridges = IntStream.range(0, personCount - 1)
+    private Line(List<Bridge> bridges, int lineSize) {
+        this.bridges = bridges;
+        this.lineSize = lineSize;
+    }
+
+    public static Line from(int personCount) {
+        List<Bridge> bridges = IntStream.range(0, personCount - 1)
                 .mapToObj(it -> Bridge.EMPTY)
                 .collect(Collectors.toList());
-        this.lineSize = bridges.size();
+        return new Line(bridges, bridges.size());
     }
 
     public void generate(BooleanGenerator booleanGenerator) {
@@ -30,7 +35,7 @@ public class Line {
         }
     }
 
-    public Bridge generateRandomBridge(BooleanGenerator booleanGenerator) {
+    private Bridge generateRandomBridge(BooleanGenerator booleanGenerator) {
         if (booleanGenerator.generate()) {
             return Bridge.EXIST;
         }
