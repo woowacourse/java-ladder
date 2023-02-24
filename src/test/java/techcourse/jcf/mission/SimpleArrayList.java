@@ -179,6 +179,17 @@ public class SimpleArrayList implements SimpleList {
         return foundIndex;
     }
 
+    @Override
+    public String remove(int index) {
+        Objects.checkIndex(index, size);
+        final String[] es = elementData;
+
+        String oldValue = es[index];
+        fastRemove(es, index);
+
+        return oldValue;
+    }
+
     private void fastRemove(String[] elementData, int index) {
         final int newSize;
         newSize = size -1;
@@ -189,11 +200,6 @@ public class SimpleArrayList implements SimpleList {
         // 땡긴 후 마지막 인덱스를 null 처리로 지운다.
         size = newSize;
         elementData[size] = null;
-    }
-
-    @Override
-    public String remove(int index) {
-        return null;
     }
 
     @Override
