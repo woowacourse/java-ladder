@@ -1,6 +1,5 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.player.Players;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,29 +39,23 @@ public class LadderGameTest {
     @DisplayName("사다리게임을 시작하면 플레이어가 왼쪽으로 움직일 수 있으면 왼쪽으로 움직인다.")
     void givenLadder_whenStartGame_thenReturnLeftMoveResult() {
         // when
-        final Players gameResult = ladderGame.startGame();
+        ladderGame.startGame();
 
         // then
-        assertAll(
-                () -> assertThat(gameResult.getPlayerSize()).isEqualTo(3),
-                () -> assertThat(getPosition(gameResult, 1)).isEqualTo(0)
-        );
+        assertThat(getPlayerPosition(1)).isEqualTo(0);
     }
 
     @Test
     @DisplayName("사다리게임을 시작하면 플레이어가 오른쪽으로 움직일 수 있으면 오른쪽으로 움직인다.")
     void givenLadder_whenStartGame_thenReturnRightMoveResult() {
         // when
-        final Players gameResult = ladderGame.startGame();
+        ladderGame.startGame();
 
         // then
-        assertAll(
-                () -> assertThat(gameResult.getPlayerSize()).isEqualTo(3),
-                () -> assertThat(getPosition(gameResult, 0)).isEqualTo(1)
-        );
+        assertThat(getPlayerPosition(0)).isEqualTo(1);
     }
 
-    private int getPosition(final Players gameResult, final int index) {
-        return gameResult.getPlayers().get(index).getPosition();
+    private int getPlayerPosition(final int index) {
+        return players.getPlayers().get(index).getPosition();
     }
 }

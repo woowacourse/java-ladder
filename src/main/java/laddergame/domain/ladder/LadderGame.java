@@ -21,13 +21,11 @@ public class LadderGame {
         return new LadderGame(ladder, players, prizes);
     }
 
-    public Players startGame() {
+    public void startGame() {
         final int ladderHeight = ladder.getHeight();
         for (int height = 0; height < ladderHeight; height++) {
             movePlayers(height);
         }
-
-        return this.players;
     }
 
     private void movePlayers(final int height) {
