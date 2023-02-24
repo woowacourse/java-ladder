@@ -10,6 +10,7 @@ public class Name {
 
     public Name(String name) {
         validate(name);
+        // TODO: 이름 자체가 all인 경우
         this.value = name;
     }
 

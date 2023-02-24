@@ -13,6 +13,7 @@ public class Mission {
     }
 
     private void validateMission(String mission) {
+        // TODO: null에 대한 테스트 코드 추가
         if (mission.isBlank()) {
             throw new IllegalArgumentException("공백 또는 null을 입력할 수 없습니다.");
         }
