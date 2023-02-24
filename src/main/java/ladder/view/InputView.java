@@ -35,7 +35,7 @@ public class InputView {
     }
 
     public String askResultByPlayerName() {
-        System.out.println("결과를 보고 싶은 사람은?");
+        System.out.println("결과를 보고 싶은 사람은? (전부 보고싶으면 all 을 입력하세요)");
         return scanner.nextLine();
     }
 }
