@@ -72,7 +72,6 @@ public class OutputView {
 
     public static void printPlayerNameForResult() {
         System.out.println();
-        System.out.println(RESULT_INFO_MSG);
         System.out.println(PLAYER_NAME_FOR_RESULT_REQUEST_MSG);
     }
 
@@ -85,6 +84,8 @@ public class OutputView {
     }
 
     public static void printLadderGameResult(String result) {
+        System.out.println();
+        System.out.println(RESULT_INFO_MSG);
         System.out.println(result);
     }
 

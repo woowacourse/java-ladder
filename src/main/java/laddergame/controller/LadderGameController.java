@@ -11,15 +11,15 @@ import java.util.List;
 public class LadderGameController {
 
     public void run() {
-        Players players = initPlayers();
-        Prizes prizes = initPrizes(players.size());
-        int ladderHeight = initLadderHeight();
-        Ladder ladder = new Ladder(players.size(), ladderHeight, new RandomPointGenerator());
+        final Players players = initPlayers();
+        final Prizes prizes = initPrizes(players.size());
+        final int ladderHeight = initLadderHeight();
+        final Ladder ladder = new Ladder(players.size(), ladderHeight, new RandomPointGenerator());
 
-        LadderGame ladderGame = new LadderGame(players, ladder, prizes);
+        final LadderGame ladderGame = new LadderGame(players, ladder, prizes);
         printLadderGame(ladderGame);
 
-        Result result = new Result(players, ladder, prizes);
+        final Result result = new Result(players, ladder, prizes);
         printLadderGameResult(result);
     }
 
@@ -42,8 +42,7 @@ public class LadderGameController {
     private int initLadderHeight() {
         return RepeatValidator.retryUntilValidate(() -> {
             OutputView.printLadderHeightRequestMsg();
-            int ladderHeight = InputView.inputLadderHeight();
-            return ladderHeight;
+            return InputView.inputLadderHeight();
         });
     }
 
@@ -54,15 +53,11 @@ public class LadderGameController {
         OutputView.printPrizeNames(ladderGame.getPrizeNames());
     }
 
-    private String printLadderGameResult(Result result) {
+    private Result printLadderGameResult(Result result) {
         return RepeatValidator.retryUntilValidate(() -> {
-            String playerName = readPlayerNameForResult();
-            while (!playerName.equals("all")) {
-                OutputView.printLadderGameResult(result.getResult(playerName));
-                playerName = readPlayerNameForResult();
-            }
+            repeatPrintPlayerResult(result);
             OutputView.printLadderGameAllResult(result.getAllResults());
-            return playerName;
+            return result;
         });
     }
 
@@ -71,5 +66,13 @@ public class LadderGameController {
             OutputView.printPlayerNameForResult();
             return InputView.inputPlayerNameForResult();
         });
+    }
+
+    private void repeatPrintPlayerResult(Result result) {
+        String playerName = readPlayerNameForResult();
+        while (!playerName.equals("all")) {
+            OutputView.printLadderGameResult(result.getResult(playerName));
+            playerName = readPlayerNameForResult();
+        }
     }
 }

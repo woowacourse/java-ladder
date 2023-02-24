@@ -15,10 +15,13 @@ class LadderGameTest {
     void setLadderGameTest() {
         List<String> playerNames = List.of("pobi", "honux", "crong", "jk");
         int height = 5;
+        List<String> prizeNames = List.of("꽝","5000","꽝","3000");
+
         assertDoesNotThrow(() -> {
             Players players = new Players(playerNames);
             Ladder ladder = new Ladder(players.size(), height, new RandomPointGenerator());
-            LadderGame ladderGame = new LadderGame(players, ladder);
+            Prizes prizes = new Prizes(prizeNames, players.size());
+            LadderGame ladderGame = new LadderGame(players, ladder, prizes);
         });
     }
 }
