@@ -15,9 +15,16 @@ public class Ladder {
     }
 
     public static Ladder generate(int countOfLine, int countOfBar, BooleanGenerator booleanGenerator) {
+        validateCountOfLine(countOfLine);
         return Stream.generate(() -> Line.generate(countOfBar, booleanGenerator))
                 .limit(countOfLine)
                 .collect(collectingAndThen(toList(), Ladder::new));
+    }
+
+    private static void validateCountOfLine(int countOfLine) {
+        if (countOfLine <= 0) {
+            throw new IllegalArgumentException("사다리 높이는 0보다 커야합니다.");
+        }
     }
 
     public void moveToResult(Position startPosition) {
