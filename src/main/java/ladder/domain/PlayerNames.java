@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PlayerNames {
     private static final int MIN_PLAYER_NUMBER = 2;
@@ -50,7 +51,7 @@ public class PlayerNames {
     }
     
     public String findByName(String playerName) {
-        if (playerName.equals("all")) {
+        if ("all".equals(playerName)) {
             return playerName;
         }
         
