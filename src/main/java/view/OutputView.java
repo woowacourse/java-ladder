@@ -1,10 +1,18 @@
 package view;
 
-import domain.*;
+import domain.Ladder;
+import domain.Line;
+import domain.People;
+import domain.Person;
+import domain.Result;
+import domain.Results;
+import domain.ResultsMap;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class OutputView {
 
@@ -50,12 +58,20 @@ public class OutputView {
     public void printGameResults(ResultsMap resultMap) {
         System.out.println("\n실행 결과");
         if (!resultMap.canTryAgain()) {
-            for (Map.Entry<Person, Result> entry : resultMap.entrySet()) {
-                System.out.printf(FORMAT, entry.getKey().getName(), entry.getValue().getResult());
-            }
-            System.out.println();
+            printTotalResults(resultMap);
             return;
         }
+        printSingleResult(resultMap);
+    }
+
+    private void printTotalResults(ResultsMap resultMap) {
+        for (Map.Entry<Person, Result> entry : resultMap.entrySet()) {
+            System.out.printf(FORMAT, entry.getKey().getName(), entry.getValue().getResult());
+        }
+        System.out.println();
+    }
+
+    private void printSingleResult(ResultsMap resultMap) {
         Result singleResult = resultMap.getSingleResult();
         System.out.println(singleResult.getResult());
     }
@@ -67,5 +83,33 @@ public class OutputView {
     public void printCriticalError(Exception exception) {
         System.out.println("예기치 못한 에러가 발생했습니다.");
         System.out.println(exception.getMessage());
+    }
+
+    private enum LineType {
+
+        GO(Boolean.TRUE, "-----"),
+        STOP(Boolean.FALSE, "     ");
+
+        private static final Map<Boolean, LineType> MAP = new HashMap<>();
+
+        static {
+            for (LineType type : values()) {
+                MAP.put(type.movable, type);
+            }
+        }
+
+        private final Boolean movable;
+        private final String message;
+
+        LineType(Boolean movable, String message) {
+            this.movable = movable;
+            this.message = message;
+        }
+
+        public static String getMessageByMovable(Boolean movable) {
+            Objects.requireNonNull(movable);
+            return MAP.get(movable)
+                    .message;
+        }
     }
 }
