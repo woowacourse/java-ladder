@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import static ladder.domain.Direction.*;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -29,12 +31,12 @@ public class Line {
 
     public int nextLineIndex(int index) {
         if (isLeftStepExist(index)) {
-            return index - 1;
+            return LEFT.nextIndex(index);
         }
         if (isRightStepExist(index)) {
-            return index + 1;
+            return RIGHT.nextIndex(index);
         }
-        return index;
+        return STRAIGHT.nextIndex(index);
     }
 
     private boolean isLeftStepExist(int index) {
