@@ -15,7 +15,11 @@ public class Players {
     public Players(String[] names) {
         trimNames(names);
         validate(names);
-        this.players = Arrays.stream(names)
+        this.players = create(names);
+    }
+
+    private List<Player> create(String[] names) {
+        return Arrays.stream(names)
                 .map(Player::new)
                 .collect(toList());
     }
