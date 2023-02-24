@@ -13,4 +13,8 @@ public class Prize {
             throw new IllegalArgumentException("[ERROR] 사다리 상품은 공백이 아니여야 합니다.");
         }
     }
+
+    public String getPrize() {
+        return prize;
+    }
 }

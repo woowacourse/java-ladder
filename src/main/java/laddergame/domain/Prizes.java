@@ -24,4 +24,8 @@ public class Prizes {
     public int size() {
         return prizes.size();
     }
+
+    public String get(int position) {
+        return prizes.get(position).getPrize();
+    }
 }
