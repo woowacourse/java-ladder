@@ -39,7 +39,7 @@ class LineTest {
                 .isEqualTo(expected);
     }
 
-    @ParameterizedTest(name = "라인은 주어진 위치에 대해 방향을 반환한다")
+    @ParameterizedTest(name = "decideDirection 메소드는 위치{0}에 대해 {1}를 반환한다")
     @CsvSource(value = {"0:RIGHT", "1:LEFT", "2:RIGHT", "4:STRAIGHT"}, delimiter = ':')
     void 라인은_주어진_위치에_대해_방향을_반환한다(int position, Direction expect) {
         List<Boolean> dummy = List.of(true, false, true, false, false);
