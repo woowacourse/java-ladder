@@ -1,7 +1,7 @@
 package helper;
 
 import domain.Bridge;
-import domain.Line;
+import domain.BridgeStatus;
 import domain.People;
 import domain.Person;
 
@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 
 public abstract class AbstractTestFixture {
 
-    public List<Bridge> convert(Boolean... flags) {
+    public List<BridgeStatus> convert(Boolean... flags) {
         return Arrays.stream(flags)
                      .map((flag) -> {
                          if (flag) {
-                             return Bridge.EXIST;
+                             return BridgeStatus.EXIST;
                          }
-                         return Bridge.EMPTY;
+                         return BridgeStatus.EMPTY;
                      })
                      .collect(Collectors.toList());
     }
@@ -27,11 +27,29 @@ public abstract class AbstractTestFixture {
         return new People(List.of(new Person("aa"), new Person("bb")));
     }
 
-    public List<Line> createLines(final int height) {
-        List<Line> lines = new ArrayList<>();
+    public List<Bridge> createBridges(final int height) {
+        List<Bridge> bridges = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(convert(true, false, true)));
+            bridges.add(new Bridge(convert(true, false, true)));
         }
-        return lines;
+        return bridges;
+    }
+
+    public List<String> createResultCandidates(int size) {
+        List<String> candidates = new ArrayList<>();
+
+        for (int i = 0; i < size; i++) {
+            candidates.add(getResultCandidate(i));
+        }
+
+        return candidates;
+    }
+
+    private String getResultCandidate(int count) {
+        if (count % 2 == 0) {
+            return "꽝";
+        }
+
+        return String.valueOf(count * 1000);
     }
 }

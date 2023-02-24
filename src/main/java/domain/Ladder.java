@@ -7,25 +7,38 @@ import static java.util.stream.Collectors.toUnmodifiableList;
 
 public class Ladder {
 
-    private static final int MIN_HEIGHT = 0;
-
     private final People people;
-    private final List<Line> lines;
+    private final Line line;
+    private final List<String> resultCandidates;
 
-    public Ladder(final People people, final List<Line> lines) {
-        validateHeightOf(lines);
-        this.lines = copyOf(lines);
+    public Ladder(final People people, final Line line, final List<String> resultCandidates) {
+        validateEqualsSizeOf(people, resultCandidates);
+        this.line = line;
         this.people = people;
+        this.resultCandidates = copyOf(resultCandidates);
     }
 
-    private void validateHeightOf(final List<Line> lines) {
-        if (lines.size() <= MIN_HEIGHT) {
-            throw new IllegalArgumentException("높이는 양수만 가능합니다");
+    private void validateEqualsSizeOf(final People people, final List<String> resultCandidates) {
+        if (people.getParticipantsSize() != resultCandidates.size()) {
+            throw new IllegalArgumentException("실행 결과 개수는 참가자 수와 같아야합니다.");
         }
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public String getLadderMatchingPersonalResult(String name) {
+
+        int ladderStartIndex = people.getParticipants().indexOf(new Person(name));
+
+        if (ladderStartIndex == -1) {
+            throw new IllegalArgumentException("참여자가 없습니다.");
+        }
+
+        int destination = line.move(ladderStartIndex);
+
+        return resultCandidates.get(destination);
+    }
+
+    public List<Bridge> getBridges() {
+        return line.getBridges();
     }
 
     public List<String> getParticipantNames() {
@@ -33,5 +46,9 @@ public class Ladder {
                      .stream()
                      .map(Person::getName)
                      .collect(toUnmodifiableList());
+    }
+
+    public List<String> getResultCandidates() {
+        return resultCandidates;
     }
 }
