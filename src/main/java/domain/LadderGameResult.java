@@ -9,7 +9,7 @@ public class LadderGameResult {
     private final Map<User, Result> ladderGameResult;
 
     public LadderGameResult(final Map<User, Result> ladderGameResult) {
-        this.ladderGameResult = ladderGameResult;
+        this.ladderGameResult = Map.copyOf(ladderGameResult);
     }
 
     public LadderGameResult(final User user, final Result result) {
@@ -22,6 +22,6 @@ public class LadderGameResult {
     }
 
     public Map<User, Result> getLadderGameResult() {
-        return Collections.unmodifiableMap(ladderGameResult);
+        return ladderGameResult;
     }
 }
