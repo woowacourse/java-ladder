@@ -31,9 +31,7 @@ public class Ladder {
     }
 
     private void validateLinesSameSize(final List<Line> lines) {
-        for (int i = 0; i < lines.size() - 1; i++) {
-            validateLineSameSize(lines, i);
-        }
+        IntStream.range(0, lines.size() - 1).forEach(i -> validateLineSameSize(lines, i));
     }
 
     private void validateLineSameSize(final List<Line> lines, final int index) {
@@ -44,9 +42,9 @@ public class Ladder {
 
     public Map<String, String> calculateResult(final Names names, final Prizes prizes) {
         Map<String, String> totalResult = new HashMap<>();
-        for (int position = 0; position < names.size(); position++) {
-            totalResult.put(names.getNameByIndex(position).getValue(), calculateSingleResult(prizes, position));
-        }
+        IntStream.range(0, names.size()).forEach(
+            position -> totalResult.put(names.getNameByIndex(position).getValue(), calculateSingleResult(prizes, position))
+        );
         return new HashMap<>(totalResult);
     }
 

@@ -4,6 +4,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Line {
     private static final String ERROR_SCAFFOLD_EMPTY = "[ERROR] 발판이 생성되지 않았습니다";
@@ -17,7 +18,8 @@ public class Line {
 
     private List<Scaffold> createLine(final Width width, final ScaffoldGenerator scaffoldGenerator) {
         Deque<Scaffold> scaffolds = new ArrayDeque<>();
-        for (int i = 0; i < width.getValue(); i++) {
+        final int widthSize = width.getValue();
+        for (int i = 0; i < widthSize; i++) {
             scaffolds.add(createScaffold(scaffoldGenerator, scaffolds));
         }
         return new ArrayList<>(scaffolds);
@@ -47,10 +49,7 @@ public class Line {
     }
 
     private void validateConsistExistScaffolds(final List<Scaffold> scaffolds) {
-        int lineSize = scaffolds.size() - 1;
-        for (int i = 0; i < lineSize; i++) {
-            validateConsistExistScaffold(scaffolds, i);
-        }
+        IntStream.range(0, scaffolds.size()- 1).forEach(i -> validateConsistExistScaffold(scaffolds, i));
     }
 
     private void validateConsistExistScaffold(final List<Scaffold> scaffolds, final int index) {
