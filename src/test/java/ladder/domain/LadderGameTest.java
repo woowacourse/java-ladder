@@ -54,7 +54,5 @@ class LadderGameTest {
         assertThat(doi.getPosition()).isEqualTo(0);
         assertThat(juno.getPosition()).isEqualTo(1);
         assertThat(boxster.getPosition()).isEqualTo(2);
-
-        
     }
 }

@@ -17,5 +17,4 @@ public class MockedPointGenerator implements RandomGenerator<Boolean> {
     public Boolean generate() {
         return dummy.get(index++);
     }
-
 }

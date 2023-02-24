@@ -45,5 +45,4 @@ class PlayerTest {
             assertThat(player.getPosition()).isEqualTo(0);
         }
     }
-
 }
