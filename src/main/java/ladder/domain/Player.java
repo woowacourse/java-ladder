@@ -16,6 +16,10 @@ public class Player {
         this.position = Position.valueOf(0);
     }
 
+    public boolean isSamePosition(final Position position) {
+        return this.position == position;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -35,9 +39,5 @@ public class Player {
 
     public String getName() {
         return name.getValue();
-    }
-
-    public Position getPosition() {
-        return position;
     }
 }

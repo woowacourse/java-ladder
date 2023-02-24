@@ -14,6 +14,7 @@ public class Players {
     private static final String INVALID_PLAYERS_SIZE_MESSAGE =
             "참가자는 최소 " + PLAYERS_SIZE_LOWER_BOUND + "명, 최대 " + PLAYERS_SIZE_UPPER_BOUND + "명이어야 합니다.";
     private static final String DUPLICATE_NAMES_MESSAGE = "참가자의 이름은 중복되지 않아야 합니다.";
+    private static final String INVALID_PLAYER_MESSAGE = "해당 위치에 있는 참가자가 존재하지 않습니다.";
 
     private final List<Player> players;
 
@@ -50,8 +51,11 @@ public class Players {
         return players.size();
     }
 
-    public Player get(final Position position) {
-        return players.get(position.getValue());
+    public Player findByPosition(final Position position) {
+        return players.stream()
+                .filter(player -> player.isSamePosition(position))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_PLAYER_MESSAGE));
     }
 
     public List<String> getNames() {

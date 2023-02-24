@@ -53,9 +53,9 @@ public class PlayersTest {
     void 입력받은_위치에_해당하는_참가자를_반환한다() {
         final Players players = Players.from(List.of("name1", "name2"));
 
-        final Player result = players.get(Position.valueOf(0));
+        final Player result = players.findByPosition(Position.valueOf(0));
 
-        assertThat(result).isEqualTo(new Player("name1"));
+        assertThat(result.getName()).isEqualTo("name1");
     }
 
     @Test
