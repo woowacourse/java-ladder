@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -22,12 +23,21 @@ public class LadderTest {
 
     @Test
     @DisplayName("사다리가 제대로(왼쪽, 오른쪽, 직진) 작동해 최종 위치를 반환하는지 확인")
-    void getLast() {
+    void getLastPosition() {
         int startPosition = 0;
         int lastPosition = 1;
         Ladder ladder = new Ladder(5, 4, new StubPossiblePointGenerator());
 
         assertThat(ladder.getLastPosition(startPosition))
                 .isEqualTo(lastPosition);
+    }
+
+    @Test
+    @DisplayName("사다리가 제대로(왼쪽, 오른쪽, 직진) 작동해 최종 위치들을 반환하는지 확인")
+    void getLastPositions() {
+        int playerSize = 4;
+        Ladder ladder = new Ladder(5, playerSize, new StubPossiblePointGenerator());
+
+        assertThat(ladder.getLastPositions(playerSize)).isEqualTo(List.of(1, 0, 3, 2));
     }
 }
