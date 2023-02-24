@@ -21,33 +21,49 @@ public class Line {
     }
 
     private LadderStep generateLadderStep(BooleanGenerator ladderGenerator, int index) {
-        if (index == 0) {
-            return LadderStep.of(ladderGenerator);
+        if (isFirstLadderStep(index)) {
+            return generateFreely(ladderGenerator);
         }
+        return generateConsideringPreviousCondition(ladderGenerator, index);
+    }
+
+    private static boolean isFirstLadderStep(int index) {
+        return index == 0;
+    }
+
+    private LadderStep generateFreely(BooleanGenerator ladderGenerator) {
+        return LadderStep.of(ladderGenerator);
+    }
+
+    private LadderStep generateConsideringPreviousCondition(BooleanGenerator ladderGenerator, int index) {
         LadderStep previousStep = line.get(index - 1);
         return LadderStep.of(ladderGenerator, previousStep);
     }
+
 
     public List<LadderStep> getLadderSteps() {
         return Collections.unmodifiableList(line);
     }
 
     public int getNextStepIndex(int index) {
-        if (canGoLeft(index) && line.get(index - 1).exists()) {
+        if (canGoLeft(index) && isExists(index - 1)) {
             return Movement.GO_LEFT.move(index);
         }
-        if (canGoRight(index) && line.get(index).exists()) {
+        if (canGoRight(index) && isExists(index)) {
             return Movement.GO_RIGHT.move(index);
         }
         return Movement.STAY.move(index);
-    }
-
-    private boolean canGoRight(int index) {
-        return index < line.size();
     }
 
     private boolean canGoLeft(int index) {
         return index > 0;
     }
 
+    private boolean canGoRight(int index) {
+        return index < line.size();
+    }
+
+    private boolean isExists(int index) {
+        return line.get(index).exists();
+    }
 }
