@@ -41,14 +41,21 @@ public class Line {
     }
 
     public Direction getDirection(Player player) {
-        if (player.getPosition() == FIRST_INDEX) {
-            return judge(NON_PASS, points.get(player.getPosition()).isPoint());
+        if (checkSidePosition(player)) {
+            return moveSidePosition(player.getPosition());
         }
-        Point prevPoint = points.get(player.getPosition() - 1);
-        if (player.getPosition() == points.size()) {
-            return judge(prevPoint.isPoint(), NON_PASS);
+        return judge(points.get(player.getPosition() - 1).isPoint(), points.get(player.getPosition()).isPoint());
+    }
+
+    public boolean checkSidePosition(Player player) {
+        return player.getPosition() == 0 || player.getPosition() == points.size();
+    }
+
+    public Direction moveSidePosition(int playerPosition) {
+        if (playerPosition == 0) {
+            return judge(NON_PASS, points.get(playerPosition).isPoint());
         }
-        return judge(prevPoint.isPoint(), points.get(player.getPosition()).isPoint());
+        return judge(points.get(playerPosition - 1).isPoint(), NON_PASS);
     }
 
     private Direction judge(boolean left, boolean right) {
@@ -60,6 +67,4 @@ public class Line {
         }
         return Direction.STAY;
     }
-
-
 }
