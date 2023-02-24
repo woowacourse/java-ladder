@@ -80,7 +80,13 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public int size() {
-        return 0;
+        Node pointer = this.head.next;
+        int size = 0;
+        while (pointer != null) {
+            pointer = pointer.next;
+            size += 1;
+        }
+        return size;
     }
 
     @Override
