@@ -35,37 +35,6 @@ public class LadderGame {
 
     }
 
-    private void inputResultCommand(Players players, ResultCommand resultCommand) {
-        executeResultCommand(players, resultCommand);
-        if (!resultCommand.equals(ResultCommand.END)) {
-            inputResultCommand(players, ResultCommand.from(inputView.inputPlayerForResult()));
-        }
-    }
-
-    private void executeResultCommand(Players players, ResultCommand resultCommand) {
-        if (resultCommand.equals(ResultCommand.END)) {
-            resultView.printEndMessage();
-        }
-        if (resultCommand.equals(ResultCommand.PLAYER)) {
-            String prizeName = getPrizeNameByPlayerName(resultCommand.getName(), players);
-            resultView.printPrizeOfPlayer(prizeName);
-        }
-        if (resultCommand.equals(ResultCommand.ALL)) {
-            resultView.printPrizeOfPlayers(players.getPrizesWithPlayers());
-        }
-    }
-
-    private String getPrizeNameByPlayerName(String playerName, Players players) {
-        Player player = players.findByName(playerName);
-        return player.getPrizeName();
-    }
-
-    private void runGame(Players players, Prizes prizes, Ladder ladder) {
-        List<Integer> orders = ladder.getAllEndPosition();
-        Prizes orderedPrizes = prizes.getOrderedPrizes(orders);
-        players.setPrizes(orderedPrizes);
-    }
-
     private Players enroll() {
         List<String> names = inputView.inputPlayers();
         return Players.from(names);
@@ -92,5 +61,36 @@ public class LadderGame {
         resultView.printNames(players.getNames());
         resultView.printLadder(ladder.getLadder());
         resultView.printNames(prizes.getNames());
+    }
+
+    private void runGame(Players players, Prizes prizes, Ladder ladder) {
+        List<Integer> orders = ladder.getAllEndPosition();
+        Prizes orderedPrizes = prizes.getOrderedPrizes(orders);
+        players.setPrizes(orderedPrizes);
+    }
+
+    private void inputResultCommand(Players players, ResultCommand resultCommand) {
+        executeResultCommand(players, resultCommand);
+        if (!resultCommand.equals(ResultCommand.END)) {
+            inputResultCommand(players, ResultCommand.from(inputView.inputPlayerForResult()));
+        }
+    }
+
+    private void executeResultCommand(Players players, ResultCommand resultCommand) {
+        if (resultCommand.equals(ResultCommand.END)) {
+            resultView.printEndMessage();
+        }
+        if (resultCommand.equals(ResultCommand.PLAYER)) {
+            String prizeName = getPrizeNameByPlayerName(resultCommand.getName(), players);
+            resultView.printPrizeOfPlayer(prizeName);
+        }
+        if (resultCommand.equals(ResultCommand.ALL)) {
+            resultView.printPrizeOfPlayers(players.getPrizesWithPlayers());
+        }
+    }
+
+    private String getPrizeNameByPlayerName(String playerName, Players players) {
+        Player player = players.findByName(playerName);
+        return player.getPrizeName();
     }
 }
