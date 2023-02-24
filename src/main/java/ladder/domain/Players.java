@@ -12,7 +12,9 @@ public class Players {
     private static final int MINIMUM_PLAYER_SIZE = 2;
     private static final int MAXIMUM_PLAYER_SIZE = 10;
     private static final String PLAYER_SIZE_ERROR_MESSAGE =
-            "플레이어는 " + MINIMUM_PLAYER_SIZE + "명 이상, " + MAXIMUM_PLAYER_SIZE + "명 이하만 가능합니다. 현재 입력한 플레이어 수는 {0}명 입니다.";
+            "플레이어는 "
+            + MINIMUM_PLAYER_SIZE + "명 이상, "
+            + MAXIMUM_PLAYER_SIZE + "명 이하만 가능합니다. 현재 입력한 플레이어 수는 {0}명 입니다.";
     private static final String DUPLICATE_PLAYER_ERROR_MESSAGE = "플레이어 이름은 중복되면 안됩니다.";
 
     private final List<Player> players;
