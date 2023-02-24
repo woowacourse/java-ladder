@@ -31,7 +31,7 @@ public class LadderGame {
         try {
             players = createPlayers();
         } catch (Exception exception) {
-            System.out.println(exception.getMessage());
+            inputView.printErrorMessage(exception.getMessage());
             players = validatePlayersInput();
         }
         return players;
@@ -48,7 +48,7 @@ public class LadderGame {
         try {
             rewards = createRewards(players);
         } catch (Exception exception) {
-            System.out.println(exception.getMessage());
+            inputView.printErrorMessage(exception.getMessage());
             rewards = validateRewardsInput(players);
         }
         return rewards;
@@ -63,7 +63,7 @@ public class LadderGame {
         try {
             ladder = createLadder(players);
         } catch (Exception exception) {
-            System.out.println(exception.getMessage());
+            inputView.printErrorMessage(exception.getMessage());
             ladder = validateLadderInput(players);
         }
         return ladder;
