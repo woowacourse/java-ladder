@@ -27,11 +27,10 @@ class LadderGameTest {
         LadderHeight ladderHeight = new LadderHeight(3, numberOfPeople);
         List<Integer> numberListToGenerate = List.of(0);
         MockNumberGenerator numberGenerator = new MockNumberGenerator(numberListToGenerate);
-        Ladder ladder = Ladder.create(numberOfPeople, ladderHeight, numberGenerator);
+        Ladder ladder = Ladder.of(numberOfPeople, ladderHeight, numberGenerator);
         Names names = new Names(List.of(new Name("pobi"), new Name("glen"), new Name("vero")));
         Results results = new Results(List.of(new Result("포비결과"), new Result("글렌결과"), new Result("베로결과")),
                 names.size());
-        LadderGame ladderGame = new LadderGame(names, ladder, results);
-        return ladderGame;
+        return LadderGame.of(names, ladder, results);
     }
 }

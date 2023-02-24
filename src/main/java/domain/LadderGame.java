@@ -1,23 +1,29 @@
 package domain;
 
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGame {
     private final Names names;
-    private final Ladder ladder;
     private final Results results;
 
-    public LadderGame(Names names, Ladder ladder, Results results) {
-        this.ladder = ladder;
+    private LadderGame(Names names, Results results) {
         this.names = names;
         this.results = results;
     }
 
+    public static LadderGame of(Names names, Ladder ladder, Results unsortedResults) {
+        List<Result> results = IntStream.range(0, names.size())
+                .mapToObj(startPosition -> unsortedResults.get(ladder.getResultPositionOf(startPosition)))
+                .collect(Collectors.toList());
+        return new LadderGame(names, new Results(results, names.size()));
+    }
+
     public Result getResultOf(String inputName) {
         validateExistName(inputName);
-        int startPosition = names.getPositionOf(inputName);
-        int resultPosition = ladder.getResultPositionOf(startPosition);
-        return results.get(resultPosition);
+        int position = names.getPositionOf(inputName);
+        return results.get(position);
     }
 
     private void validateExistName(String inputName) {
@@ -27,16 +33,12 @@ public class LadderGame {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참가자 이름입니다."));
     }
 
-    public Results getAllResult() {
-        return new Results(
-                names.stream()
-                        .map(name -> getResultOf(name.value()))
-                        .collect(Collectors.toList()),
-                names.size());
+    public Names getAllNames() {
+        return this.names;
     }
 
-    public Names getAllParticipants() {
-        return this.names;
+    public Results getAllResults() {
+        return this.results;
     }
 
 }

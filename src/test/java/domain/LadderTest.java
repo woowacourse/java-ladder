@@ -71,13 +71,13 @@ class LadderTest {
 
     private Ladder createLadder(int height, int numberOfPeople) {
         LadderHeight ladderHeight = new LadderHeight(height, numberOfPeople);
-        Ladder ladder = Ladder.create(numberOfPeople, ladderHeight, new RandomNumberGenerator());
+        Ladder ladder = Ladder.of(numberOfPeople, ladderHeight, new RandomNumberGenerator());
         return ladder;
     }
 
     public Ladder createLadder(int height, int numberOfPeople, NumberGenerator numberGenerator) {
         LadderHeight ladderHeight = new LadderHeight(height, numberOfPeople);
-        Ladder ladder = Ladder.create(numberOfPeople, ladderHeight, numberGenerator);
+        Ladder ladder = Ladder.of(numberOfPeople, ladderHeight, numberGenerator);
         return ladder;
     }
 }

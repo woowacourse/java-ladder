@@ -16,9 +16,9 @@ public class Ladder {
         this.ladderHeight = ladderHeight;
     }
 
-    public static Ladder create(int numberOfPeople,
-                                LadderHeight ladderHeight,
-                                NumberGenerator numberGenerator) {
+    public static Ladder of(int numberOfPeople,
+                            LadderHeight ladderHeight,
+                            NumberGenerator numberGenerator) {
         List<Line> lines = new ArrayList<>();
         Ladder ladder = new Ladder(lines, ladderHeight);
         ladder.addLines(numberOfPeople, numberGenerator);

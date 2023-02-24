@@ -20,6 +20,6 @@ class ResultsTest {
     void create_fail_with_wrong_number_of_results() {
         assertThatThrownBy(() -> new Results(List.of(new Result("당첨"), new Result("꽝")), 1))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("이름과 결과의 수는 같아야 합니다.");
+                .hasMessageContaining("참가자의 수와 결과의 수는 같아야 합니다.");
     }
 }

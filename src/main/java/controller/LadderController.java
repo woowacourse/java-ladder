@@ -34,8 +34,8 @@ public class LadderController {
         Names names = createNames();
         Results results = createResults(names.size());
         LadderHeight ladderHeight = createLadderHeight(names.size());
-        Ladder ladder = Ladder.create(names.size(), ladderHeight, numberGenerator);
-        LadderGame ladderGame = new LadderGame(names, ladder, results);
+        Ladder ladder = Ladder.of(names.size(), ladderHeight, numberGenerator);
+        LadderGame ladderGame = LadderGame.of(names, ladder, results);
 
         outputView.printCreatedLadderGame(names, ladder, results);
         showResultByCommandOrName(ladderGame);
@@ -78,7 +78,7 @@ public class LadderController {
     private void showResultByCommandOrName(LadderGame ladderGame) {
         String userInput = inputView.readCommandOrName();
         if (userInput.equals("all")) {
-            outputView.printAllResult(ladderGame.getAllParticipants(), ladderGame.getAllResult());
+            outputView.printAllResult(ladderGame.getAllNames(), ladderGame.getAllResults());
             return;
         }
         showResultByName(ladderGame, userInput);
