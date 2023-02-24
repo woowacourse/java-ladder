@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Participants {
 
     private static final String DELIMITER = ",";
-    private static final int MIN_COUNT = 1;
+    private static final int MIN_COUNT = 2;
 
     private final List<Participant> participants;
 
