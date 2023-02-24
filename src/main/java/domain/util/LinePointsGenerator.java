@@ -3,6 +3,8 @@ package domain.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import domain.ladder.Point;
+
 public class LinePointsGenerator {
 	private final int width;
 	private final PointGenerator pointGenerator;

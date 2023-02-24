@@ -1,4 +1,4 @@
-package domain.util;
+package domain.ladder;
 
 public enum Point {
 	PRESENCE(true),

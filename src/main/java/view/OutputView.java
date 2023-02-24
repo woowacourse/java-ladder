@@ -12,7 +12,7 @@ import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.user.User;
 import domain.user.Users;
-import domain.util.Point;
+import domain.ladder.Point;
 
 public class OutputView {
 
