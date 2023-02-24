@@ -112,7 +112,7 @@ class LadderGameTest {
         ladderGame.generateLadder(new TestLineCreateDecider(newArrayList(true, false, false, true)));
 
         ladderGame.playLadderGame();
-        Map<Player, Reward> result = ladderGame.getResult();
+        Map<Player, Reward> result = ladderGame.getResult().getResult();
 
         Assertions.assertThat(result.get(player1)).isEqualTo(reward3);
         Assertions.assertThat(result.get(player2)).isEqualTo(reward1);
