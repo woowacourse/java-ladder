@@ -1,4 +1,4 @@
-package ladder.domain.controller;
+package ladder.controller;
 
 import ladder.domain.*;
 import ladder.domain.generator.RandomPointGenerator;

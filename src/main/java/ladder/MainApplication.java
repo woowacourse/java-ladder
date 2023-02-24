@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.controller.LadderGameController;
+import ladder.controller.LadderGameController;
 
 public class MainApplication {
 
