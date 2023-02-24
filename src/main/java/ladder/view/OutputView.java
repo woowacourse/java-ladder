@@ -14,7 +14,7 @@ public class OutputView {
     }
     
     public static void printNames(PlayerNames playerNames) {
-        println("\n" + parseDisplayElements(parsePlayerNames(playerNames)));
+        println(System.lineSeparator() + parseDisplayElements(parsePlayerNames(playerNames)));
     }
     
     private static List<String> parsePlayerNames(PlayerNames playerNames) {
@@ -44,7 +44,7 @@ public class OutputView {
         return ladder.getLines().stream()
                 .map(OutputView::parseLine)
                 .map(lineDisplay -> lineDisplay.substring(PER_NAME_SPACE - firstNameLength))
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     private static String parseLine(Line line) {
@@ -73,14 +73,14 @@ public class OutputView {
         List<String> names = parsePlayerNames(playerNames);
         List<GameResult> sortedGameResults = gameResults.getSortedGameResults(movedPositions);
         
-        println("\n실행 결과");
+        println(System.lineSeparator() + "실행 결과");
         println(parseAllPlayerResult(names, sortedGameResults));
     }
     
     private static String parseAllPlayerResult(List<String> names, List<GameResult> gameResults) {
         return IntStream.range(0, names.size())
                 .mapToObj(playerIndex -> parsePlayerResult(playerIndex, names, gameResults))
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(System.lineSeparator()));
     }
     
     private static String parsePlayerResult(int playerIndex, List<String> names, List<GameResult> gameResults) {
@@ -89,7 +89,7 @@ public class OutputView {
     }
     
     public static void printOnePlayerResult(int playerIndex, List<Integer> movedPositions, GameResults gameResults) {
-        println("\n실행 결과");
+        println(System.lineSeparator() + "실행 결과");
         
         GameResult gameResult = gameResults.getGameResult(playerIndex, movedPositions);
         println(gameResult.getGameResult());
