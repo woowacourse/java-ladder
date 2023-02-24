@@ -43,7 +43,7 @@ public class Users {
         }
     }
 
-    public String getUserNameByIndex(int index) {
+    public UserName getUserNameByIndex(int index) {
         return users.get(index).getName();
     }
 
@@ -51,7 +51,7 @@ public class Users {
         return users.stream()
                 .map(User::getName)
                 .collect(Collectors.toList())
-                .contains(name);
+                .contains(new UserName(name));
     }
 
     public List<User> getUsers() {

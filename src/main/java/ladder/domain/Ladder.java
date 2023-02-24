@@ -49,11 +49,11 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public int getResult(int index) {
+    public int getResult(int position) {
         for (int i = 0; i < floors.size(); i++) {
-            index = floors.get(i).moveUserByPath(index);
+            position = floors.get(i).moveUserByPath(position);
         }
-        return index;
+        return position;
     }
 
     public List<Floor> getFloors() {

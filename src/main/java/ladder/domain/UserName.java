@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class UserName {
 
     private static final int MAX_NAME_LENGTH = 5;
@@ -8,13 +10,13 @@ public class UserName {
     private static final String COMMAND_ALL = "all";
     private static final String INVALID_USERNAME_COMMAND_ALL = "유저 이름은 " + COMMAND_ALL + " 일 수 없습니다.";
 
-    private final String name;
+    private final String value;
 
     public UserName(String name) {
 
         name = name.trim();
         validate(name);
-        this.name = name;
+        this.value = name;
     }
 
     private void validate(String name) {
@@ -35,7 +37,24 @@ public class UserName {
         }
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        UserName userName = (UserName) o;
+        return Objects.equals(value, userName.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    public String getValue() {
+        return value;
     }
 }

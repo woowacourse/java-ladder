@@ -8,7 +8,7 @@ public class Prize {
         this.name = new PrizeName(name);
     }
 
-    public String getName() {
-        return name.getValue();
+    public PrizeName getName() {
+        return name;
     }
 }

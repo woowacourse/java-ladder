@@ -60,7 +60,7 @@ public class UsersTest {
     void getUserNameByIndex(int index, String name) {
         var users = new Users(List.of("user1", "user2", "user3"));
 
-        String userNameByIndex = users.getUserNameByIndex(index);
+        String userNameByIndex = users.getUserNameByIndex(index).getValue();
 
         assertThat(userNameByIndex).isEqualTo(name);
     }

@@ -21,13 +21,14 @@ public class Prizes {
         }
     }
 
-    public String getPrizeNameByIndex(int index) {
+    public PrizeName getPrizeNameByIndex(int index) {
         return prizes.get(index).getName();
     }
 
     public List<String> getPrizeNames() {
         return prizes.stream()
                 .map(Prize::getName)
+                .map(PrizeName::getValue)
                 .collect(Collectors.toList());
     }
 }

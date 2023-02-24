@@ -36,7 +36,7 @@ class PrizesTest {
         List<String> prizeNames = List.of("pr1", "pr2", "pr3");
         //when
         var prizes = new Prizes(prizeNames, users);
-        var prizeNameByIndex = prizes.getPrizeNameByIndex(index);
+        var prizeNameByIndex = prizes.getPrizeNameByIndex(index).getValue();
         //then
         assertThat(prizeNameByIndex).isEqualTo(name);
     }
