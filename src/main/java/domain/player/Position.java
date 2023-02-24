@@ -1,6 +1,7 @@
 package domain.player;
 
 import domain.ladder.Line;
+import java.util.Objects;
 
 public class Position {
 
@@ -36,5 +37,23 @@ public class Position {
 
     public int getPosition() {
         return position;
+    }
+
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+        Position otherPosition = (Position) other;
+        return position == otherPosition.position;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position);
     }
 }

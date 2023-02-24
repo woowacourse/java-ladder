@@ -20,11 +20,12 @@ public class OutputView {
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
     public void printLadderMap(Players players,
-                               Ladder ladder) {
+                               Ladder ladder,
+                               LadderResults ladderResults) {
         System.out.println("사다리 결과");
 
         System.out.println(getFormattedNames(players));
-        printLadder(ladder);
+        printLadder(ladder, ladderResults);
     }
 
     private String getFormattedNames(Players players) {
@@ -33,12 +34,12 @@ public class OutputView {
                 .collect(joining(" "));
     }
 
-    private void printLadder(Ladder ladder) {
+    private void printLadder(Ladder ladder, LadderResults ladderResults) {
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
             printLine(line);
         }
-        System.out.println(getFormattedResults(ladder.getLadderResults()));
+        System.out.println(getFormattedResults(ladderResults));
     }
 
     private void printLine(Line line) {

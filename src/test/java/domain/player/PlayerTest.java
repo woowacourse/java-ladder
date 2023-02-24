@@ -1,12 +1,16 @@
 package domain.player;
 
+import static domain.ladder.LinePoint.BLOCKED;
+import static domain.ladder.LinePoint.PASSABLE;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.ladder.Ladder;
 import domain.ladder.Line;
-import domain.ladder.LinePoint;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class PlayerTest {
 
@@ -32,48 +36,30 @@ class PlayerTest {
         assertThat(player.isSameName("differentName")).isFalse();
     }
 
-    @DisplayName("move시에 우측 이동이 가능하면 position을 1 증가 시킨다.")
-    @Test
-    void move_to_right_position_plus_one() {
+    /**
+     * pobi  neo   me    ohs   hello |-----|     |-----|     | |     |-----|     |-----| |     |-----|     |-----| |
+     * |-----|     |-----|
+     */
+    @DisplayName("move()를 통해 게임 결과에 맞는 positon을 반환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1:3", "2:1", "3:5", "4:2", "5:4"}, delimiter = ':')
+    void move_result_test(int startPosition, int expectedPosition) {
         // given
-        Name name = new Name("name");
-        Player player = new Player(name, new Position(1));
-        Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
+        Ladder ladder = new Ladder(createLine());
+        Player player = new Player(new Name("hs"), new Position(startPosition));
 
         // when
-        player.move(line);
+        Position actualPosition = player.move(ladder);
 
         // then
-        assertThat(player.getPosition()).isEqualTo(2);
+        assertThat(actualPosition).isEqualTo(new Position(expectedPosition));
     }
 
-    @DisplayName("move시에 좌측 이동이 가능하면 position을 1 감소 시킨다.")
-    @Test
-    void move_to_left_position_minus_one() {
-        // given
-        Name name = new Name("name");
-        Player player = new Player(name, new Position(2));
-        Line line = new Line(List.of(LinePoint.PASSABLE, LinePoint.BLOCKED));
-
-        // when
-        player.move(line);
-
-        // then
-        assertThat(player.getPosition()).isEqualTo(1);
-    }
-
-    @DisplayName("move시에 아무런 조건을 만족못하면 position이 변하지 않는다.")
-    @Test
-    void move_not_change_position() {
-        // given
-        Name name = new Name("name");
-        Player player = new Player(name, new Position(3));
-        Line line = new Line(List.of(LinePoint.BLOCKED, LinePoint.BLOCKED));
-
-        // when
-        player.move(line);
-
-        // then
-        assertThat(player.getPosition()).isEqualTo(3);
+    private List<Line> createLine() {
+        return List.of(
+                new Line(List.of(PASSABLE, BLOCKED, PASSABLE, BLOCKED)),
+                new Line(List.of(BLOCKED, PASSABLE, BLOCKED, PASSABLE)),
+                new Line(List.of(BLOCKED, PASSABLE, BLOCKED, PASSABLE)),
+                new Line(List.of(BLOCKED, PASSABLE, BLOCKED, PASSABLE)));
     }
 }

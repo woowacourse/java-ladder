@@ -37,10 +37,10 @@ public class LadderGameApplication {
         LadderHeight ladderHeight = retryIfError(this::createLadderHeight);
         LadderResults ladderResults = retryIfError(() -> createLadderResults(players.size()));
 
-        Ladder ladder = ladderGenerator.generate(players.size(), ladderHeight, ladderResults);
-        LadderGame ladderGame = new LadderGame(ladder, players);
+        Ladder ladder = ladderGenerator.generate(players.size(), ladderHeight);
+        LadderGame ladderGame = new LadderGame(ladder, players, ladderResults);
 
-        outputView.printLadderMap(players, ladder);
+        outputView.printLadderMap(players, ladder, ladderResults);
 
         printResult(ladderGame);
     }

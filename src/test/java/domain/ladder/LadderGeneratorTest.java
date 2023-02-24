@@ -20,8 +20,7 @@ class LadderGeneratorTest {
     void create_success() {
         // given
         int numberOfPeople = 3;
-        Ladder ladder = ladderGenerator.generate(3, new LadderHeight(3),
-                createLadderResults(numberOfPeople, "당첨", "꽝", "1000"));
+        Ladder ladder = ladderGenerator.generate(3, new LadderHeight(3));
 
         // when
         List<Line> lines = ladder.getLines();

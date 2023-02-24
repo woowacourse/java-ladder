@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import domain.player.Position;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -20,8 +21,8 @@ public class LadderResults {
         return new LadderResults(ladderResults);
     }
 
-    public LadderResult findResultByPosition(int position) {
-        return ladderResults.get(position - 1);
+    public LadderResult findResultByPosition(Position position) {
+        return ladderResults.get(position.getPosition() - 1);
     }
 
     public Stream<LadderResult> stream() {

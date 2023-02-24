@@ -1,22 +1,25 @@
 package service;
 
-import static java.util.stream.Collectors.toList;
-
 import domain.ladder.Ladder;
 import domain.ladder.LadderResult;
+import domain.ladder.LadderResults;
 import domain.player.Player;
 import domain.player.Players;
+import domain.player.Position;
 import dto.GameResultDto;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
 
     private final Ladder ladder;
     private final Players players;
+    private final LadderResults ladderResults;
 
-    public LadderGame(Ladder ladder, Players players) {
+    public LadderGame(Ladder ladder, Players players, LadderResults ladderResults) {
         this.ladder = ladder;
         this.players = players;
+        this.ladderResults = ladderResults;
     }
 
     public boolean isPlayerExistByName(String name) {
@@ -24,16 +27,21 @@ public class LadderGame {
     }
 
     public List<GameResultDto> findAllPlayerResult() {
-        return players.stream()
-                .map(player -> {
-                    LadderResult ladderResult = ladder.play(player);
-                    return new GameResultDto(player.getName(), ladderResult.getResult());
-                })
-                .collect(toList());
+        List<GameResultDto> gameResultDtos = new ArrayList<>();
+
+        for (Player player : players.getPlayers()) {
+            Position position = player.move(ladder);
+            LadderResult ladderResult = ladderResults.findResultByPosition(position);
+            gameResultDtos.add(new GameResultDto(player.getName(), ladderResult.getResult()));
+        }
+
+        return gameResultDtos;
     }
 
     public LadderResult findSinglePlayerResultByName(String name) {
         Player findPlayer = players.findSpecificNamePlayer(name);
-        return ladder.play(findPlayer);
+        Position position = findPlayer.move(ladder);
+
+        return ladderResults.findResultByPosition(position);
     }
 }
