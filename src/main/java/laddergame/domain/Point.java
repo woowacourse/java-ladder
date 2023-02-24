@@ -3,10 +3,18 @@ package laddergame.domain;
 import laddergame.constant.ErrorCode;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public enum Point {
     CONNECT(true),
     DISCONNECT(false);
+
+    private static final Map<Boolean, Point> BY_CONDITION
+            = Stream.of(values()).collect(Collectors.toUnmodifiableMap(Point::isConnected, Function.identity()));
 
     private final boolean isConnected;
 
@@ -15,10 +23,7 @@ public enum Point {
     }
 
     public static Point findByConnectedCondition(boolean condition) {
-        return Arrays.stream(Point.values())
-                .filter(point -> point.isConnected == condition)
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorCode.NOT_VALID_ARGUMENT.getCode()));
+        return BY_CONDITION.get(condition);
     }
 
     public boolean isConnected() {
