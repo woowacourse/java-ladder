@@ -2,14 +2,11 @@ package ladder.domain.people;
 
 import ladder.util.StringSplitter;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class Names {
-
     private static final Pattern INPUT_NAMES_PATTERN = Pattern.compile("([a-zA-Z]{1,5})(,[a-zA-Z]{1,5})*");
     private static final int MINIMUM_NAMES_RANGE = 2;
     private static final int MAXIMUM_NAMES_RANGE = 100;
