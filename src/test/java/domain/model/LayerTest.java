@@ -3,6 +3,7 @@ package domain.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.type.Line;
+import domain.vo.Width;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -20,7 +21,7 @@ public class LayerTest {
         Layer layer = new Layer(new ArrayList<>(), () -> true);
 
         //when
-        IntStream.range(0, 10).forEach(i -> layer.makeLine());
+        layer.makeLine(new Width(10));
 
         //then
         List<Line> lines = layer.getLines();
@@ -35,7 +36,7 @@ public class LayerTest {
         Layer layer = new Layer(new ArrayList<>(), () -> false);
 
         //when
-        IntStream.range(0, 10).forEach(i -> layer.makeLine());
+        layer.makeLine(new Width(10));
 
         //then
         List<Line> lines = layer.getLines();
@@ -50,7 +51,7 @@ public class LayerTest {
 
         //when
         int size = 10;
-        IntStream.range(0, size).forEach(i -> layer.makeLine());
+        layer.makeLine(new Width(size));
 
         //then
         assertThat(layer.getLines().size()).isEqualTo(size);
@@ -61,7 +62,7 @@ public class LayerTest {
     public void moveSuccessCase(int horizon, int result) {
         //given
         Layer layer = new Layer(new ArrayList<>(), () -> true);
-        IntStream.range(0, 10).forEach(i -> layer.makeLine());
+        layer.makeLine(new Width(10));
         Location location = new Location(horizon);
 
         //when

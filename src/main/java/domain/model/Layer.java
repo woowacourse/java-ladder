@@ -1,7 +1,9 @@
 package domain.model;
 
 import domain.type.Line;
+import domain.vo.Width;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Layer {
 
@@ -15,13 +17,29 @@ public class Layer {
         this.booleanGenerator = booleanGenerator;
     }
 
-    public void makeLine() {
-        if (booleanGenerator.generate()
-            && (lines.isEmpty() || lines.get(lines.size() - LOCATION_DIFFERENCE).equals(Line.UNCONNECTED))) {
+    public void makeLine(final Width width) {
+        if (lines.size() < width.getValue()) {
+            int difference = width.getValue() - lines.size();
+            generateLine(difference);
+        }
+    }
+
+    private void generateLine(final int difference) {
+        IntStream.range(0, difference)
+            .forEach(index -> generateLine());
+    }
+
+    private void generateLine() {
+        if (isPossibleToConnect()) {
             lines.add(Line.CONNECTED);
             return;
         }
         lines.add(Line.UNCONNECTED);
+    }
+
+    private boolean isPossibleToConnect() {
+        return booleanGenerator.generate()
+            && (lines.isEmpty() || lines.get(lines.size() - LOCATION_DIFFERENCE).equals(Line.UNCONNECTED));
     }
 
     public void move(final Location location) {
