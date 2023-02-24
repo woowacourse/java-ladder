@@ -32,7 +32,7 @@ public class LadderController {
 
     public void run() {
         Names names = createNames();
-        Results results = createResults(names.size());
+        Results results = createResults(names);
         LadderHeight ladderHeight = createLadderHeight(names.size());
         Ladder ladder = Ladder.of(names.size(), ladderHeight, numberGenerator);
         LadderGame ladderGame = LadderGame.of(names, ladder, results);
@@ -53,15 +53,15 @@ public class LadderController {
         }
     }
 
-    private Results createResults(int numberOfParticipants) {
+    private Results createResults(Names names) {
         try {
             List<String> userInput = inputView.readResults();
             return new Results(userInput.stream()
                     .map(Result::new)
-                    .collect(Collectors.toList()), numberOfParticipants);
+                    .collect(Collectors.toList()), names);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return createResults(numberOfParticipants);
+            return createResults(names);
         }
     }
 

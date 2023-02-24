@@ -30,7 +30,7 @@ class LadderGameTest {
         Ladder ladder = Ladder.of(numberOfPeople, ladderHeight, numberGenerator);
         Names names = new Names(List.of(new Name("pobi"), new Name("glen"), new Name("vero")));
         Results results = new Results(List.of(new Result("포비결과"), new Result("글렌결과"), new Result("베로결과")),
-                names.size());
+                names);
         return LadderGame.of(names, ladder, results);
     }
 }

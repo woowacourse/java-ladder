@@ -17,7 +17,7 @@ public class LadderGame {
         List<Result> results = IntStream.range(0, names.size())
                 .mapToObj(startPosition -> unsortedResults.get(ladder.getResultPositionOf(startPosition)))
                 .collect(Collectors.toList());
-        return new LadderGame(names, new Results(results, names.size()));
+        return new LadderGame(names, new Results(results, names));
     }
 
     public Result getResultOf(String inputName) {

@@ -7,8 +7,8 @@ import java.util.function.Consumer;
 public class Results {
     private final List<Result> results;
 
-    public Results(List<Result> results, int numberOfPeople) {
-        validate(results, numberOfPeople);
+    public Results(List<Result> results, Names names) {
+        validate(results, names.size());
         this.results = new ArrayList<>(results);
     }
 
@@ -23,7 +23,7 @@ public class Results {
     }
 
     public void forEach(Consumer<Result> action) {
-        results.forEach(action);
+        List.copyOf(results).forEach(action);
     }
 
 }
