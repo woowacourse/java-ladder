@@ -1,9 +1,10 @@
 package domain;
 
 import exception.ErrorCode;
-import type.LadderElementInformation;
 
 public class Person {
+    private static final int MAX_NAME = 5;
+    private static final int MIN_NAME = 1;
     private final String name;
 
     public Person(String name) {
@@ -12,11 +13,9 @@ public class Person {
     }
 
     private void validate(String name) {
-        if (name.length() < LadderElementInformation.MIN_LENGTH.getLength()
-                || name.length() > LadderElementInformation.MAX_LENGTH.getLength()) {
-            throw new IllegalArgumentException(String.format(ErrorCode.LENGTH_OUT_OF_RANGE.getMessage(),
-                    LadderElementInformation.MIN_LENGTH.getLength(),
-                    LadderElementInformation.MAX_LENGTH.getLength()));
+        if (name.length() < MIN_NAME || name.length() > MAX_NAME) {
+            throw new IllegalArgumentException(
+                    String.format(ErrorCode.NAME_OUT_OF_RANGE.getMessage(), MIN_NAME, MAX_NAME));
         }
     }
 
