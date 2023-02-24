@@ -25,7 +25,7 @@ public class Ladder {
 
     public int getLadderIndexResult(int index) {
         for (Line line : lines) {
-            index = line.nextLadderIndex(index);
+            index = line.nextLineIndex(index);
         }
         return index;
     }

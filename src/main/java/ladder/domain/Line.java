@@ -27,7 +27,7 @@ public class Line {
         return steps.get(index) == Step.EXIST && steps.get(index - 1) == Step.EXIST;
     }
 
-    public int nextLadderIndex(int index) {
+    public int nextLineIndex(int index) {
         if (isLeftStepExist(index)) {
             return index - 1;
         }
