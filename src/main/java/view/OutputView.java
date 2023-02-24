@@ -34,7 +34,7 @@ public class OutputView {
     }
 
     public void printLines(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
+        for (Line line : ladder.getLadder()) {
             StringBuilder ladderDisplay = new StringBuilder();
             ladderDisplay.append(Message.COLUMN_LADDER.message);
             line.getLadderSteps()

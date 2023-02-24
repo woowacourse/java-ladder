@@ -11,10 +11,6 @@ public enum Movement {
         this.movement = movement;
     }
 
-    public int move2(int index) {
-        return index + movement;
-    }
-
     public Position move(Position position) {
         return new Position(position.getValue() + movement);
     }

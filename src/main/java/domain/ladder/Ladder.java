@@ -7,22 +7,27 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> ladder;
 
     public Ladder(int count, int height, BooleanGenerator ladderGenerator) {
-        Height linesHeight = new Height(height);
-        for (int i = 0; i < linesHeight.getHeight(); i++) {
-            lines.add(new Line(count, ladderGenerator));
-        }
+        this.ladder = createLadder(count, height, ladderGenerator);
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    private static List<Line> createLadder(int count, int height, BooleanGenerator ladderGenerator) {
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(count, ladderGenerator));
+        }
+        return lines;
+    }
+
+    public List<Line> getLadder() {
+        return Collections.unmodifiableList(ladder);
     }
 
     public Position findFinalPosition(Position initialPosition) {
         Position position = initialPosition;
-        for (Line line : lines) {
+        for (Line line : ladder) {
             position = position.findNextPosition(position, line);
         }
         return position;
