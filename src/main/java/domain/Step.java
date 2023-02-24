@@ -11,10 +11,6 @@ public enum Step {
         this.moveDirection = movePosition;
     }
 
-    public boolean isSteppable() {
-        return this == LEFT || this == RIGHT;
-    }
-
     public boolean isRightConnection() {
         return this == RIGHT;
     }

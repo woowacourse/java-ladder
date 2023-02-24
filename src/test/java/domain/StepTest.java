@@ -8,20 +8,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("디딤대는 ")
 class StepTest {
     @Test
-    @DisplayName("없을 경우 발을 디딜 수 없다고 알려준다.")
-    void unsteppableCase() {
-        assertThat(Step.NONE.isSteppable())
-                .isFalse();
-    }
-
-    @Test
-    @DisplayName("있을 경우 발을 디딜 수 있다고 알려준다.")
-    void steppableCase() {
-        assertThat(Step.RIGHT.isSteppable())
-                .isTrue();
-    }
-
-    @Test
     @DisplayName(" 오른쪽 발판일 때 사용자 위치를 오른쪽으로 보낸다.")
     void whenConnectedToRight_thenMoveRight() {
         assertThat(Step.RIGHT.move(2))
