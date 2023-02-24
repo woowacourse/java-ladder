@@ -1,9 +1,10 @@
 package ladder.domain;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Results {
@@ -13,9 +14,13 @@ public class Results {
 
     public Results(String[] inputResults, int playerCount) {
         validateCount(inputResults.length, playerCount);
-        this.results = Arrays.stream(inputResults)
+        this.results = create(inputResults);
+    }
+
+    private List<Result> create(String[] inputResults) {
+        return Arrays.stream(inputResults)
                 .map(Result::new)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     private void validateCount(int resultCount, int playerCount) {
@@ -55,7 +60,7 @@ public class Results {
     public List<String> findAllResult(List<Line> ladder) {
         return IntStream.range(0, results.size())
                 .mapToObj(x -> findResult(ladder, x))
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public List<Result> getResults() {
