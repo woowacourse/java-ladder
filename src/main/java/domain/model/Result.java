@@ -4,8 +4,7 @@ public class Result {
 
     public static final int MIN_LENGTH = 1;
     public static final int MAX_LENGTH = 5;
-    public static final String LENGTH_ERROR_MESSAGE =
-        "결과의 길이는 " + MIN_LENGTH + "~" + MAX_LENGTH + "글자입니다.";
+    public static final String LENGTH_ERROR_MESSAGE = "결과의 길이는 " + MIN_LENGTH + "~" + MAX_LENGTH + "글자입니다.";
     private final String value;
 
     public Result(final String value) {

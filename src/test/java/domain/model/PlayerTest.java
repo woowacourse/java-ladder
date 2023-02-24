@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import domain.vo.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,11 +28,11 @@ class PlayerTest {
     @DisplayName("동등성 검사 실패 테스트")
     public void equalsFailureTest() {
         //given
-        Name name1 = new Name("name1");
-        Name name2 = new Name("name2");
+        Player player1 = new Player("test1");
+        Player player2 = new Player("test2");
 
         //when
-        boolean result = name1.equals(name2);
+        boolean result = player1.equals(player2);
 
         //then
         assertThat(result).isFalse();
@@ -43,11 +42,11 @@ class PlayerTest {
     @DisplayName("동등성 검사 성공 테스트")
     public void equalsSuccessTest() {
         //given
-        Name name1 = new Name("name");
-        Name name2 = new Name("name");
+        Player player1 = new Player("name");
+        Player player2 = new Player("name");
 
         //when
-        boolean result = name1.equals(name2);
+        boolean result = player1.equals(player2);
 
         //then
         assertThat(result).isTrue();
@@ -57,14 +56,14 @@ class PlayerTest {
     @DisplayName("해쉬 코드 값 테스트")
     public void hashCodeTest() {
         //given
-        Name name1 = new Name("name");
-        Name name2 = new Name("name");
+        Player player1 = new Player("name");
+        Player player2 = new Player("name");
 
         //when
-        int name1HashCode = name1.hashCode();
-        int name2HashCode = name2.hashCode();
+        int player1HashCode = player1.hashCode();
+        int player2HashCode = player2.hashCode();
 
         //then
-        assertThat(name1HashCode == name2HashCode).isTrue();
+        assertThat(player1HashCode == player2HashCode).isTrue();
     }
 }

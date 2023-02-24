@@ -7,8 +7,7 @@ public class Players {
 
     private static final int MIN_SIZE = 1;
     private static final int MAX_SIZE = 100;
-    private static final String INVALID_SIZE_ERROR_MESSAGE =
-        "참가자는 " + MIN_SIZE + "~" + MAX_SIZE + "명입니다.";
+    private static final String INVALID_SIZE_ERROR_MESSAGE = "참가자는 " + MIN_SIZE + "~" + MAX_SIZE + "명입니다.";
     private static final String DUPLICATE_NAME_ERROR_MESSAGE = "중복된 이름은 허용되지 않습니다.";
     private final List<Player> players;
 

@@ -17,8 +17,7 @@ public class Layer {
 
     public void makeLine() {
         if (booleanGenerator.generate()
-            && (lines.isEmpty() || lines.get(lines.size() - LOCATION_DIFFERENCE)
-            .equals(Line.UNCONNECTED))) {
+            && (lines.isEmpty() || lines.get(lines.size() - LOCATION_DIFFERENCE).equals(Line.UNCONNECTED))) {
             lines.add(Line.CONNECTED);
             return;
         }
