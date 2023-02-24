@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Results {
-    private final static int FIRST_LINE = 0;
-
     private final List<Result> results;
 
     public Results(String[] inputResults, int playerCount) {
@@ -29,37 +27,14 @@ public class Results {
         }
     }
 
-    public String findResult(List<Line> ladder, int position) {
-        for (Line line : ladder) {
-            List<Step> steps = line.getSteps();
-            position = move(steps, position);
-        }
-        return results.get(position).getResult();
+    public String findResult(Ladder ladder, int startPosition) {
+        int lastPosition = ladder.moveToResult(startPosition);
+        return results.get(lastPosition).getResult();
     }
 
-    private int move(List<Step> steps, int position) {
-        if (canMoveLeft(steps, position)) {
-            return position - 1;
-        }
-        if (canMoveRight(steps, position)) {
-            return position + 1;
-        }
-        return position;
-    }
-
-    private boolean canMoveLeft(List<Step> steps, int position) {
-        int left = position - 1;
-        return position != FIRST_LINE && steps.get(left) == Step.EXIST;
-    }
-
-    private boolean canMoveRight(List<Step> steps, int position) {
-        int right = position;
-        return position != steps.size() && steps.get(right) == Step.EXIST;
-    }
-
-    public List<String> findAllResult(List<Line> ladder) {
-        return IntStream.range(0, results.size())
-                .mapToObj(x -> findResult(ladder, x))
+    public List<String> findAllResult(Ladder ladder) {
+        return IntStream.range(0, ladder.getLadderWidth())
+                .mapToObj(position -> findResult(ladder, position))
                 .collect(toList());
     }
 

@@ -60,7 +60,7 @@ public class Application {
 
     private static boolean isAll(boolean proceed, String input) {
         if (proceed && input.equals(ALL)) {
-            printAllResult(players.getPlayersName(), results.findAllResult(ladder.getLines()));
+            printAllResult(players.getPlayerNames(), results.findAllResult(ladder));
             return FINISH;
         }
         return PROCEED;
@@ -68,7 +68,7 @@ public class Application {
 
     private static void isSingleResult(boolean proceed, String playerName) {
         if (proceed) {
-            printSingleResult(results.findResult(ladder.getLines(), players.findPosition(playerName)));
+            printSingleResult(results.findResult(ladder, players.findPosition(playerName)));
         }
     }
 }
