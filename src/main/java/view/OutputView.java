@@ -1,11 +1,6 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.People;
-import domain.Person;
-import domain.Result;
-import domain.Results;
+import domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +34,7 @@ public class OutputView {
 
     private void printResults(Results results) {
         for (Result result : results.getResults()) {
-            System.out.printf("%5s ", result.get());
+            System.out.printf("%5s ", result.getResult());
         }
         System.out.println();
     }
@@ -52,21 +47,17 @@ public class OutputView {
         return collect;
     }
 
-    public void printGameResults(Map<Person, Result> resultMap) {
-        if (resultMap.size() > 1) {
-            System.out.println("\n실행 결과");
+    public void printGameResults(ResultsMap resultMap) {
+        System.out.println("\n실행 결과");
+        if (!resultMap.canTryAgain()) {
             for (Map.Entry<Person, Result> entry : resultMap.entrySet()) {
-                System.out.printf(FORMAT, entry.getKey().getName(), entry.getValue().get());
+                System.out.printf(FORMAT, entry.getKey().getName(), entry.getValue().getResult());
             }
             System.out.println();
             return;
         }
-        System.out.println("\n실행 결과");
-        String singleResult = resultMap.values().stream()
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("결과가 존재하지 않습니다."))
-                .get();
-        System.out.println(singleResult);
+        Result singleResult = resultMap.getSingleResult();
+        System.out.println(singleResult.getResult());
     }
 
     public void printError(Exception exception) {

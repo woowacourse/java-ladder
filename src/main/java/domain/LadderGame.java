@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -18,23 +17,22 @@ public class LadderGame {
         this.results = results;
     }
 
-    public Map<Person, Result> getResults(String input) {
+    public ResultsMap getResults(String input) {
         if (input.equals(ALL)) {
             return calculateTotalResults();
         }
         Map<Person, Result> resultMap = new LinkedHashMap<>();
         Person targetPerson = new Person(input);
         resultMap.put(targetPerson, calculateSingleResult(targetPerson));
-        return resultMap;
+        return new ResultsMap(resultMap);
     }
 
-    public Map<Person, Result> calculateTotalResults() {
+    public ResultsMap calculateTotalResults() {
         Map<Person, Result> resultMap = new LinkedHashMap<>();
-
         for (Person person : people.getPeople()) {
             resultMap.put(person, calculateSingleResult(person));
         }
-        return resultMap;
+        return new ResultsMap(resultMap);
     }
 
     public Result calculateSingleResult(Person person) {

@@ -38,14 +38,14 @@ public class Application {
     }
 
     private void run() {
-        Map<Person, Result> results;
+        ResultsMap results;
         do {
             results = repeat(() -> {
                 String input = inputView.readResult();
                 return ladderGame.getResults(input);
             });
             outputView.printGameResults(results);
-        } while (results.size() == 1);
+        } while (results.canTryAgain());
     }
 
 
