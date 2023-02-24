@@ -18,9 +18,9 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LadderGameSupportTest {
+class LadderGameTest {
 
-    private final LadderGameSupport ladderGameSupport = new LadderGameSupport(() -> true);
+    private final LadderGame ladderGame = new LadderGame(() -> true);
 
     @Test
     @DisplayName("사다리 생성을 테스트한다.")
@@ -30,7 +30,7 @@ class LadderGameSupportTest {
         Width width = new Width(5);
 
         //when
-        Ladder ladder = ladderGameSupport.makeLadder(height, width);
+        Ladder ladder = ladderGame.makeLadder(height, width);
 
         //then
         assertThat(ladder.getLayers().size()).isEqualTo(height.getValue());
@@ -55,7 +55,7 @@ class LadderGameSupportTest {
         Results results = new Results(mockLetters);
 
         //when
-        Map<Player, Result> resultBoard = ladderGameSupport.makeResultBoard(ladder, players, results);
+        Map<Player, Result> resultBoard = ladderGame.makeResultBoard(ladder, players, results);
 
         //then
         for (int i = 0; i < width.getValue(); i++) {

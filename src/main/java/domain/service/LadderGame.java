@@ -17,12 +17,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LadderGameSupport {
+public class LadderGame {
 
     public static final int INITIAL_VERTICAL = 0;
     private final BooleanGenerator booleanGenerator;
 
-    public LadderGameSupport(BooleanGenerator booleanGenerator) {
+    public LadderGame(BooleanGenerator booleanGenerator) {
         this.booleanGenerator = booleanGenerator;
     }
 

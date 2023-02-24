@@ -6,7 +6,7 @@ import domain.model.Player;
 import domain.model.Players;
 import domain.model.Result;
 import domain.model.Results;
-import domain.service.LadderGameSupport;
+import domain.service.LadderGame;
 import domain.vo.Height;
 import domain.vo.Width;
 import java.util.Map;
@@ -20,22 +20,22 @@ public class LadderController {
     public static final String NAME_NOT_FOUND_ERROR_MESSAGE = "해당 이름이 존재하지 않습니다.";
     private final InputView inputView;
     private final OutputView outputView;
-    private final LadderGameSupport ladderGameSupport;
+    private final LadderGame ladderGame;
 
     public LadderController(final InputView inputView, final OutputView outputView,
-        final LadderGameSupport ladderGameSupport) {
+        final LadderGame ladderGame) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.ladderGameSupport = ladderGameSupport;
+        this.ladderGame = ladderGame;
     }
 
     public void play() {
         final Players players = getPlayers();
         final Results results = getResults(players.size());
         final Width width = new Width(players.size() - NAMES_WIDTH_DIFFERENCE);
-        final Ladder ladder = ladderGameSupport.makeLadder(getHeight(), width);
+        final Ladder ladder = ladderGame.makeLadder(getHeight(), width);
         outputView.printLadder(players, ladder, results);
-        final Map<Player, Result> resultBoard = ladderGameSupport.makeResultBoard(ladder, players, results);
+        final Map<Player, Result> resultBoard = ladderGame.makeResultBoard(ladder, players, results);
         ExecuteContext.workWithExecuteStrategy(() -> printResult(resultBoard));
     }
 

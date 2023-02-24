@@ -1,6 +1,6 @@
 import controller.LadderController;
 import domain.model.RandomBooleanGenerator;
-import domain.service.LadderGameSupport;
+import domain.service.LadderGame;
 import validator.EmptyInputValidatorChain;
 import validator.InputValidatorChain;
 import validator.NotIntegerValidatorChain;
@@ -12,7 +12,7 @@ public class Application {
 
     public static void main(String[] args) {
         LadderController ladderController = new LadderController(makeInputView(), new OutputView(),
-            new LadderGameSupport(new RandomBooleanGenerator()));
+            new LadderGame(new RandomBooleanGenerator()));
         ladderController.play();
     }
 
