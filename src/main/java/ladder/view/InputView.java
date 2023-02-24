@@ -25,15 +25,11 @@ public class InputView {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
-        List<String> names = new ArrayList<>(List.of(input.split(",")));
-        validateDuplicatedNames(names);
-        return names;
+        return split(input);
     }
 
-    private void validateDuplicatedNames(List<String> names) {
-        if (names.size() != names.stream().distinct().count()) {
-            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_DUPLICATED_NAME.getMessage());
-        }
+    private List<String> split(String input) {
+        return new ArrayList<>(List.of(input.split(",")));
     }
 
     public List<String> readRewards() {
@@ -42,8 +38,7 @@ public class InputView {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
-        String[] rewards = input.split(",");
-        return new ArrayList<>(List.of(rewards));
+        return split(input);
     }
 
     public int readHeight() {

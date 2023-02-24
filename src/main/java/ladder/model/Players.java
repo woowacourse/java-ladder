@@ -15,12 +15,19 @@ public class Players {
 
     public Players(List<Player> players) {
         validatePlayerCount(players);
+        validateDuplicatedNames(players);
         this.players = players;
     }
 
     private void validatePlayerCount(List<Player> players) {
         if (!isPlayerCountIncludedInRange(players.size())) {
             throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_PLAYER_COUNT.getMessage());
+        }
+    }
+
+    private void validateDuplicatedNames(List<Player> names) {
+        if (names.size() != names.stream().distinct().count()) {
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_DUPLICATED_NAME.getMessage());
         }
     }
 
