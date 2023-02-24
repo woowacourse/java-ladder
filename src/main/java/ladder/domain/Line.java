@@ -17,9 +17,13 @@ public class Line {
 
     public Players movePlayers(final Players players) {
         final List<Integer> positions = players.getPositions().stream()
-                .map(pos -> pos + directions.get(pos).getMove())
+                .map(position -> position + nextMove(position))
                 .collect(Collectors.toList());
 
         return new Players(players.getPlayerNames(), positions);
+    }
+
+    private int nextMove(Integer pos) {
+        return directions.get(pos).getMove();
     }
 }
