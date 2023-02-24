@@ -14,11 +14,6 @@ public class InputView {
         return asList(namesInput);
     }
 
-    private List<String> asList(String rawNames) {
-        String[] names = rawNames.split(NAMES_DELIMITER);
-        return Arrays.asList(names);
-    }
-
     public int readLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String heightString = scanner.nextLine();
@@ -31,5 +26,21 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("사다리 높이는 숫자입니다");
         }
+    }
+
+    public List<String> readGameResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String gameResultsInput = scanner.nextLine();
+        return asList(gameResultsInput);
+    }
+
+    private List<String> asList(String inputString) {
+        String[] strings = inputString.split(NAMES_DELIMITER);
+        return Arrays.asList(strings);
+    }
+
+    public String readScopeOfResultChecking() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
     }
 }

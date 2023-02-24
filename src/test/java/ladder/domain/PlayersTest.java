@@ -40,13 +40,6 @@ class PlayersTest {
         // given
         Players players = Players.from(List.of("첫째", "둘째", "셋째", "넷째", "다섯째"));
         Ladder ladder = new Ladder(LadderTest.generateRowList());
-//        Prizes prizes = Prizes.from(List.of(
-//                "0",
-//                "1",
-//                "2",
-//                "3",
-//                "4"
-//        ));
         Map<Player, Position> expected = new HashMap<>(Map.of(
                 players.get(0), new Position(2),
                 players.get(1), new Position(0),

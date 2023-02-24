@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -15,7 +15,7 @@ public class Prizes {
     public static Prizes from(List<String> prizeNames, int prizesCount) {
         validatePrizesCount(prizeNames.size(), prizesCount);
 
-        Map<Position, Prize> prizes = new HashMap<>();
+        Map<Position, Prize> prizes = new LinkedHashMap<>();
         for (int i = 0; i < prizeNames.size(); i++) {
             Position prizePosition = new Position(i);
             Name prizeName = new Name(prizeNames.get(i));
