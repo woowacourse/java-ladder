@@ -18,20 +18,24 @@ graph TD
 
     Ladder --> Line
     Line --> LineStatus
-
-    LadderGame --> Position
-    Ladder --> Position
-    Items --> Position
     Line --> Position
-    Players --> Position
+
+    Players --> Ladder
+    Player --> Ladder
+
+    Item --> Position
+    Player --> Position
+
 
     LadderGame --> LadderGameResult
 
-    Items --> Item
-    Players --> Player
+    Items --> Item --> ItemName
+    Players --> Player --> PlayerName
 
     LadderGameController --> InputView
     LadderGameController --> OutputView
+
+    OutputView --> LadderMessageGenerator
 
 ```
 
