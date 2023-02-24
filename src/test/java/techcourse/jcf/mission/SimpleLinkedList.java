@@ -111,7 +111,11 @@ public class SimpleLinkedList implements SimpleList {
 
     @Override
     public String remove(int index) {
-        return null;
+        Node previousPointer = getNodeOf(index - 1);
+        Node pointerToRemove = getNodeOf(index);
+        String valueToRemove = pointerToRemove.value;
+        previousPointer.next = pointerToRemove.next;
+        return valueToRemove;
     }
 
     @Override

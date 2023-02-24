@@ -118,6 +118,12 @@ class SimpleListTest {
     }
 
     @Test
+    void removeWithIndexThrowException() {
+        assertThatThrownBy(() -> list.remove(2))
+                .isInstanceOf(IndexOutOfBoundsException.class);
+    }
+
+    @Test
     void clear() {
         assertThat(list.size()).isEqualTo(2);
         list.clear();
