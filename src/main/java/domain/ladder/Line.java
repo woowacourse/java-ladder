@@ -2,6 +2,7 @@ package domain.ladder;
 
 import domain.generator.BooleanGenerator;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -12,34 +13,28 @@ public class Line {
     }
 
     private List<LadderStep> createLine(int count, BooleanGenerator ladderGenerator) {
-        final List<LadderStep> ladderSteps;
-        ladderSteps = new ArrayList<>();
-        for (int index = 0; index < count; index++) {
-            if (index > 0 && isLadderStepExists(index - 1)) {
-                ladderSteps.add(LadderStep.from(false));
-            } else {
-                ladderSteps.add(LadderStep.from(ladderGenerator.generate()));
-            }
+        final List<LadderStep> line = new ArrayList<>();
+        line.add(LadderStep.from(ladderGenerator.generate()));
+        for (int index = 1; index < count; index++) {
+            LadderStep previousStep = line.get(index - 1);
+            LadderStep ladderStep = LadderStep.of(previousStep, ladderGenerator);
+            line.add(ladderStep);
         }
-        return ladderSteps;
+        return line;
     }
 
-/*    public List<LadderStep> getLadderSteps() {
-        return Collections.unmodifiableList(ladderSteps);
-    }*/
+    public List<LadderStep> getLadderSteps() {
+        return Collections.unmodifiableList(line);
+    }
 
     public int getNextStepIndex(int index) {
-        if (canGoLeft(index) && isLadderStepExists(index - 1)) {
+        if (canGoLeft(index) && line.get(index - 1).exists()) {
             return Movement.GO_LEFT.move(index);
         }
-        if (canGoRight(index) && isLadderStepExists(index)) {
+        if (canGoRight(index) && line.get(index).exists()) {
             return Movement.GO_RIGHT.move(index);
         }
         return Movement.STAY.move(index);
-    }
-
-    private boolean isLadderStepExists(int index) {
-        return line.get(index).exists();
     }
 
     private boolean canGoRight(int index) {

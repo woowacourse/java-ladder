@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import domain.generator.BooleanGenerator;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -19,7 +20,14 @@ public enum LadderStep {
                 .orElseThrow(NoSuchElementException::new);
     }
 
+    public static LadderStep of(LadderStep previousStep, BooleanGenerator generator) {
+        if (previousStep.equals(EXISTS)) {
+            return NONE;
+        }
+        return LadderStep.from(generator.generate());
+    }
+
     public boolean exists() {
-        return this == EXISTS;
+        return this.equals(EXISTS);
     }
 }
