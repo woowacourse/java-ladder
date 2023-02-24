@@ -1,5 +1,7 @@
 package laddergame.domain.ladder.line;
 
+import static laddergame.domain.ladder.line.Direction.LEFT;
+import static laddergame.domain.ladder.line.Direction.RIGHT;
 import static laddergame.domain.ladder.line.StepPoint.EXIST;
 import static laddergame.domain.ladder.line.StepPoint.NONE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,18 +33,11 @@ class LineTest {
     @DisplayName("주어진 개수 만큼의 방향을 주어진 생성방식에 따라 생성된다.")
     void should_GenerateDirections_By_GivenStepPointGenerator() {
         List<StepPoint> stepPoints = List.of(EXIST, NONE, EXIST, NONE, EXIST);
-        List<Direction> expected = List.of(
-                Direction.findDirection(NONE, EXIST),
-                Direction.findDirection(EXIST, NONE),
-                Direction.findDirection(NONE, EXIST),
-                Direction.findDirection(EXIST, NONE),
-                Direction.findDirection(NONE, EXIST),
-                Direction.findDirection(EXIST, NONE)
-        );
         Queue<StepPoint> generateValues = new LinkedList<>(stepPoints);
 
-        Line line = Line.of(new MockedPointGenerator(generateValues), new LineWidth(expected.size()));
+        Line line = Line.of(new MockedPointGenerator(generateValues), new LineWidth(stepPoints.size() + 1));
 
+        List<Direction> expected = List.of(RIGHT, LEFT, RIGHT, LEFT, RIGHT, LEFT);
         assertThat(line.toDirections()).isEqualTo(expected);
     }
 
