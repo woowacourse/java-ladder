@@ -1,5 +1,6 @@
 package ladder.model;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -29,7 +30,7 @@ public class Ladder {
     }
 
     public List<Row> getRows() {
-        return rows;
+        return Collections.unmodifiableList(rows);
     }
 
 }
